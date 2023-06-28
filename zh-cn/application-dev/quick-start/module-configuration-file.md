@@ -97,6 +97,7 @@ module.json5配置文件包含以下标签。
 | [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
+| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
 
 ## deviceTypes标签
 
@@ -180,7 +181,7 @@ deviceTypes示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 该标签标识数据项的键名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| name | 该标签标识数据项的名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | value | 该标签标识数据项的值，标签值为字符串（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 该标签标识定义用户自定义数据格式，标签值为标识该数据的资源的索引值。该标签最大字节长度为255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
@@ -258,6 +259,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0，但不能小于平台支持的最小窗口高度；最大取值不能大于maxWindowHeight。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
 | excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions	，三方应用配置不生效。[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)| 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| unclearableMission | 标识当前UIAbility组件是否在最近任务列表中不可以移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 abilities示例：
 
@@ -302,7 +304,8 @@ abilities示例：
     "minWindowWidth": 1400,
     "maxWindowHeight": 300,
     "minWindowHeight": 200,
-    "excludeFromMissions": false
+    "excludeFromMissions": false,
+    "unclearableMission": false
   }]
 }
 ```

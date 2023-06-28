@@ -3,7 +3,7 @@
 
 ## When to Use
 
-The main task of cross-device migration is to migrate the current task (including the page control status) of an application to the target device so that the task can continue on it. Cross-device migration supports the following functionalities:
+The main task of cross-device migration is to migrate the current task (including the page control status) of an application to the target device so that the task can continue on it. Cross-device migration supports the following features:
 
 - Storage and restoration of custom data
 
@@ -16,7 +16,8 @@ The main task of cross-device migration is to migrate the current task (includin
 
 The following figure shows the cross-device migration process.
 
-**Figure 1** Cross-device migration process 
+**Figure 1** Cross-device migration process
+
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
 
@@ -49,7 +50,7 @@ The table below describes the main APIs used for cross-device migration. For det
 
 1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Configure the fields related to cross-device migration in the configuration file.
 
@@ -79,7 +80,7 @@ The table below describes the main APIs used for cross-device migration. For det
 
    - Checking application compatibility: You can obtain the version number of the target application from **wantParam** and check the compatibility between the target application and the current application.
 
-   - Making a migration decision: You can determine whether to support the migration based on the return value of **onContinue()**. For details about the return value, see [Available APIs](#available-apis).
+   - Making a migration decision: You can determine whether to support the migration based on the return value of **onContinue()**. For details about the return values, see [Available APIs](#available-apis).
 
      The sample code is as follows:
      

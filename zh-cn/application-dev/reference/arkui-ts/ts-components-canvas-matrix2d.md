@@ -413,6 +413,70 @@ struct Matrix2DMultiply {
 }
 ```
 
+### rotate<sup>(deprecated) </sup>
+
+rotate(rx?: number, ry?: number): Matrix2D
+
+对当前矩阵进行旋转运算。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
+
+该接口从API version 10开始废弃，推荐使用[rotate](#rotate10)。
+
+**参数：**
+
+| 参数 | 类型   | 必填 | 默认值 | 描述                             |
+| ---- | ------ | ---- | ------ | -------------------------------- |
+| rx   | number | 否   | 0      | 旋转点的水平方向坐标，单位为vp。 |
+| ry   | number | 否   | 0      | 旋转点的垂直方向坐标，单位为vp。 |
+
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
+| [Matrix2D](#matrix2d) | 旋转后结果矩阵对象。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DRotate {
+  @State message: string = 'Matrix2D Rotate'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix rotate")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            matrix.rotate(10, 10)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### rotate<sup>10+</sup>
 
 rotate(degree: number, rx?: number, ry?: number): Matrix2D

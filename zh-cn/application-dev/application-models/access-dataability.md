@@ -11,7 +11,7 @@
 
 - @ohos.data.dataAbility
 
-- @ohos.data.rdb
+- @ohos.data.relationalStore
 
 
 访问DataAbility的示例代码如下：
@@ -23,7 +23,7 @@
    // 作为参数传递的URI,与config中定义的URI的区别是多了一个"/",有三个"/"
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
-   import ohos_data_rdb from '@ohos.data.rdb'
+   import relationalStore from '@ohos.data.relationalStore'
    
    let urivar = "dataability:///com.ix.DataAbility"
    let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);

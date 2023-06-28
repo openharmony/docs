@@ -1,9 +1,10 @@
 # Native API的相关指导
 
-- [Native API介绍](introduction.md)
 - [Native API在应用工程中的使用指导](napi-guidelines.md)
 - [Drawing开发指导](drawing-guidelines.md)
 - [Rawfile开发指导](rawfile-guidelines.md)
 - [NativeWindow开发指导](native-window-guidelines.md)
 - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
+- [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
 - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
+- [Purgeable memory开发指导](purgeable-memory-guidelines.md)

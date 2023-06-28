@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-ability分享数据。
+ability设置分享数据。其中，ohos.extra.param.key.contentTitle表示分享框中对分享内容title的描述，ohos.extra.param.key.shareAbstract表示分享框中对携带内容的摘要描述，ohos.extra.param.key.shareUrl表示服务的在线地址。以上三项分享数据均是开发者填充，且为Object对象，对象的key分别为title，abstract，url。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -332,13 +332,58 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
     onShare(wantParams) {
         console.log('onShare');
-        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
-        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
-        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "OA"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for company employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "oa.example.com"};
     }
 }
   ```
 
+## UIAbility.onPrepareToTerminate<sup>10+</sup>
+
+onPrepareToTerminate(): boolean;
+
+UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
+
+**需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| boolean | 是否执行UIAbility关闭操作，返回true表示本次UIAbility关闭流程取消，不再退出，返回false表示UIAbility继续正常关闭。 |
+
+**示例：**
+
+  ```ts
+  export default class EntryAbility extends UIAbility {
+    onPrepareToTermiante() {
+      // 开发者定义预关闭动作
+      // 例如拉起另一个ability，根据ability处理结果执行异步关闭
+      let want:Want = {
+        bundleName: "com.example.myapplication",
+        moduleName: "entry",
+        abilityName: "SecondAbility"
+      }
+      this.context.startAbilityForResult(want)
+        .then((result)=>{
+          // 获取ability处理结果，当返回结果的resultCode为0关闭当前UIAbility
+          console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+          if (result.resultCode === 0) {
+            this.context.terminateSelf();
+          }
+        }).catch((err)=>{
+          // 异常处理
+          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          this.context.terminateSelf();
+        })
+
+      return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
+    }
+  }
+  ```
 
 ## Caller
 
@@ -623,11 +668,12 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
     
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
   let caller;
   let dstDeviceId: string;
   export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
+      onWindowStageCreate(windowStage: window.WindowStage) {
           this.context.startAbilityByCall({
               bundleName: 'com.example.myservice',
               abilityName: 'MainUIAbility',
@@ -643,7 +689,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
               }
           }).catch((err) => {
               console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
-          })；
+          })
       }
   }
   ```

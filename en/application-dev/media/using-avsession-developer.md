@@ -16,15 +16,15 @@ For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 
 | API| Description|
 | -------- | -------- |
-| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility.|
-| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void | Sets AVSession metadata.|
-| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void | Sets the AVSession playback state.|
-| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Starts a UIAbility.|
-| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void | Obtains the controller of the AVSession.|
-| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void | Obtains the output device information.|
-| activate(callback: AsyncCallback&lt;void&gt;): void | Activates the AVSession.|
-| deactivate(callback: AsyncCallback&lt;void&gt;): void | Deactivates this session.|
-| destroy(callback: AsyncCallback&lt;void&gt;): void | Destroys the AVSession.|
+| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void<sup>10+<sup> | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility.|
+| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets AVSession metadata.|
+| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets the AVSession playback state.|
+| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Starts a UIAbility.|
+| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void<sup>10+<sup> | Obtains the controller of the AVSession.|
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | Obtains the output device information.|
+| activate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Activates the AVSession.|
+| deactivate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Deactivates this session.|
+| destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Destroys the AVSession.|
 | setAVQueueItems(items: Array&lt;AVQueueItem&gt;, callback: AsyncCallback&lt;void&gt;): void <sup>10+<sup> | Sets a playlist.|
 | setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a name for the playlist.|
 | dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Dispatches a custom session event.|
@@ -343,21 +343,20 @@ To enable an audio and video application to access the AVSession service as a pr
      session.off('commonCommand');
    }
    ```
-   
-   
+
    The code snippet below is used for destroying the AVSession object:
    
-      ```ts
+   ```ts
    async destroySession() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-    let session: AVSessionManager.AVSession = ALREADY_CREATE_A_SESSION;
-    // Destroy the AVSession object.
-    session.destroy(function (err) {
-      if (err) {
-        console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`Destroy : SUCCESS `);
-      }
-    });
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+     let session: AVSessionManager.AVSession = ALREADY_CREATE_A_SESSION;
+     // Destroy the AVSession object.
+     session.destroy(function (err) {
+       if (err) {
+         console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+       } else {
+         console.info(`Destroy : SUCCESS `);
+       }
+     });
    }
-      ```
+   ```

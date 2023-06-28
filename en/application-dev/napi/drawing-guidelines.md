@@ -128,10 +128,7 @@ The following steps describe how to use the canvas and brush of the Native Drawi
     ```c++
     // Obtain the pixel address after drawing. The memory to which the address points contains the pixel data of the drawing on the canvas.
     void* bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap);
-    auto ret = memcpy_s(addr, addrSize, bitmapAddr, addrSize);
-    if (ret != EOK) {
-        LOGI("memcpy_s failed");
-    }
+    std::copy(addr, addr + addrSize, static_cast<uint8_t*>(bitmapAddr));
     // Destroy the canvas object.
     OH_Drawing_CanvasDestroy(cCanvas);
     // Destroy the bitmap object.

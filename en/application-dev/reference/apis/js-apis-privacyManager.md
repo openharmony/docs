@@ -59,7 +59,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -88,7 +88,7 @@ The permission usage record includes the application identity (token ID) of the 
 | permissionName | Permissions | Yes  | Name of the permission.|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If a usage record is added successfully, **err** is **undefine**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -109,7 +109,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err, data) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -161,14 +161,14 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 import privacyManager from '@ohos.privacyManager';
 
 let request = {
-    "tokenId": 1,
-    "isRemote": false,
-    "deviceId": "device",
-    "bundleName": "bundle",
-    "permissionNames": [],
-    "beginTime": 0,
-    "endTime": 1,
-    "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
+    'tokenId': 1,
+    'isRemote': false,
+    'deviceId': 'device',
+    'bundleName': 'bundle',
+    'permissionNames': [],
+    'beginTime': 0,
+    'endTime': 1,
+    'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
     privacyManager.getPermissionUsedRecord(request).then((data) => {
@@ -196,7 +196,7 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | request | [PermissionUsedRequest](#permissionusedrequest) | Yes| Request for querying permission usage records.|
-| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback invoked to return the result. If the query is successful, **err** is **undefine** and **data** is the permission usage record. Otherwise, **err** is an error object.|
+| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the permission usage record obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -216,14 +216,14 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 import privacyManager from '@ohos.privacyManager';
 
 let request = {
-    "tokenId": 1,
-    "isRemote": false,
-    "deviceId": "device",
-    "bundleName": "bundle",
-    "permissionNames": [],
-    "beginTime": 0,
-    "endTime": 1,
-    "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
+    'tokenId': 1,
+    'isRemote': false,
+    'deviceId': 'device',
+    'bundleName': 'bundle',
+    'permissionNames': [],
+    'beginTime': 0,
+    'endTime': 1,
+    'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
     privacyManager.getPermissionUsedRecord(request, (err, data) => {
@@ -281,7 +281,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('startUsingPermission success');
     }).catch((err) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -307,7 +307,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
 | permissionName | Permissions                | Yes  | Permission to use.                    |
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the permission is successfully used, **err** is **undefine**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -329,7 +329,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -384,7 +384,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -410,7 +410,7 @@ Stops using a permission. This API is called by a system application and uses a 
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
 | permissionName | Permissions                | Yes  | Permission to use.                     |
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefine**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -432,7 +432,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
 try {
-    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -482,7 +482,7 @@ import privacyManager from '@ohos.privacyManager';
 let permissionList = [];
 try {
     privacyManager.on('activeStateChange', permissionList, (data) => {
-        console.debug("receive permission state change, data:" + JSON.stringify(data));
+        console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -514,7 +514,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 | ID| Error Message|
 | -------- | -------- |
 | 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The interface is not used together with "on()".|
+| 12100004 | The interface is not used together with 'on'.|
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -550,14 +550,14 @@ Represents the request for querying permission usage records.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | No   | Token ID of the application (invoker).                                |
-| isRemote | boolean         | No   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
-| deviceId  | string         | No   | ID of the device hosting the target application.                                |
-| bundleName | string         | No   | Bundle name of the target application.|
-| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.                                |
-| beginTime | number         | No   | Start time of the query, in ms. The default value is **0**, indicating that no start time is set.|
-| endTime | number         | No   | End time of the query, in ms. The default value is **0**, indicating that no end time is set.|
-| flag | [PermissionUsageFlag](#permissionusageflag)         | Yes   | Query mode. The default value is **FLAG_PERMISSION_USAGE_SUMMARY**.|
+| tokenId  | number         | No   | Token ID of the application (invoker).<br>By default, all applications are queried.        |
+| isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br> The default value is **false**, which means the permission usage records of the local device are queried by default.|
+| deviceId  | string         | No   | ID of the device hosting the target application.<br> The default value is the local device ID.  |
+| bundleName | string         | No   | Bundle name of the target application.<br>By default, all applications are queried.|
+| permissionNames  | Array&lt;Permissions&gt;         | No   | Permissions to query.<br>By default, the usage records of all permissions are queried.              |
+| beginTime | number         | No   | Start time of the query, in ms.<br>The default value is **0**, which means the start time is not set.|
+| endTime | number         | No   | End time of the query, in ms.<br>The default value is **0**, which means the end time is not set.|
+| flag | [PermissionUsageFlag](#permissionusageflag)         | Yes   | Query mode.|
 
 ## PermissionUsedResponse
 
@@ -567,9 +567,9 @@ Represents the permission usage records of all applications.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| beginTime | number         | No   | Start time of the query, in ms.|
-| endTime | number         | No   | End time of the query, in ms.|
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | No   | Permission usage records.                                |
+| beginTime | number         | Yes   | Start time of the query, in ms.|
+| endTime | number         | Yes   | End time of the query, in ms.|
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | Yes   | Permission usage records.                                |
 
 ## BundleUsedRecord
 
@@ -579,11 +579,11 @@ Represents the permission access records of an application.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | No   | Token ID of the application (invoker).                                |
-| isRemote | boolean         | No   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
-| deviceId  | string         | No   | ID of the device hosting the target application.                                |
-| bundleName | string         | No   | Bundle name of the target application.|
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | No   | Permission usage records of the target application.                                |
+| tokenId  | number         | Yes   | Token ID of the application (invoker).                                |
+| isRemote | boolean         | Yes   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
+| deviceId  | string         | Yes   | ID of the device hosting the target application.                                |
+| bundleName | string         | Yes   | Bundle name of the target application.|
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | Yes   | Permission usage records of the target application.                                |
 
 ## PermissionUsedRecord
 
@@ -593,14 +593,14 @@ Represents the usage records of a permission.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | No   | Name of the permission.                                |
-| accessCount | number         | No   | Total number of times that the permission is accessed.|
-| rejectCount | number         | No   | Total number of times that the access to the permission is rejected.|
-| lastAccessTime | number         | No   | Last time when the permission was accessed, accurate to ms.|
-| lastRejectTime | number         | No   | Last time when the access to the permission was rejected, accurate to ms.|
-| lastAccessDuration | number         | No   | Last access duration, in ms.|
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | No   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | No   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
+| permissionName  | Permissions         | Yes   | Name of the permission.                                |
+| accessCount | number         | Yes   | Total number of times that the permission is accessed.|
+| rejectCount | number         | Yes   | Total number of times that the access to the permission is rejected.|
+| lastAccessTime | number         | Yes   | Last time when the permission was accessed, accurate to ms.|
+| lastRejectTime | number         | Yes   | Last time when the access to the permission was rejected, accurate to ms.|
+| lastAccessDuration | number         | Yes   | Last access duration, in ms.|
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
 
 ## UsedRecordDetail
 
@@ -610,9 +610,9 @@ Represents the details of a single access record.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| status  | number         | No   | Access status.                                |
-| timestamp | number         | No   | Access timestamp, in ms.|
-| accessDuration  | number         | No   | Access duration, in ms.                                |
+| status  | number         | Yes   | Access status.                                |
+| timestamp | number         | Yes   | Access timestamp, in ms.|
+| accessDuration  | number         | Yes   | Access duration, in ms.                                |
 
 ## PermissionActiveStatus
 

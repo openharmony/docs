@@ -50,7 +50,7 @@ Application resources can be accessed via an absolute or relative path. In this 
 >
 >  - If code files A and B are in the same directory, you can use either a relative or absolute path in code file B to reference resource files.
 >
->  - If code files A and B are in different directories, you must use an absolute path in code file B to reference resource files. The reason is that the directory of code file B changes during Webpack packaging.
+>  - If code files A and B are in different directories, you must use an absolute path in code file B to reference resource files, because the directory of code file B changes during Webpack packaging.
 >
 
 

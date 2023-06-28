@@ -3,6 +3,8 @@
 Frequent activities of background applications cause user devices to consume power quickly and respond slowly. To meet performance and power consumption requirements, the system allows applications in the background to execute only activities within the specifications. Activities beyond the specifications are suspended by default, and resources allocated to them will be reclaimed when the available resources are insufficient.
 If an application or a service module running in the background has a service to continue, it can request a [transient task](#transient-tasks) to delay the suspension or a [continuous task](#continuous-tasks) to prevent the suspension. If an application needs to execute a non-real-time task when running in the background, it can request a [Work Scheduler task](#work-scheduler-tasks). A privileged application can also request [efficiency resources](#efficiency-resources) for more flexibility.
 
+ **Resource usage constraints**: The system provides resource quotas for running services, including the memory usage and CPU usage in a continuous period of time, as well as disk write I/O volume in 24 hours. When the quota is reached, the system generates a warning-level log if the process is running in the foreground, and terminates the process if it is running in the background.
+
 
 ## Background Task Types
 

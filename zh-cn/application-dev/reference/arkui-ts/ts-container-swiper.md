@@ -45,18 +45,19 @@ Swiper(controller?: SwiperController)
 | cachedCount<sup>8+</sup>    | number                                   | 设置预加载子组件个数。<br/>默认值：1<br/>**说明：** <br/>cachedCount已经做了预加载的优化，不建议与[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)一起使用。 |
 | disableSwipe<sup>8+</sup>   | boolean                                  | 禁用组件滑动切换功能。<br/>默认值：false                              |
 | curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../apis/js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。<br/>默认值：Curve.Linear |
-| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md)<br/>} | 设置导航点样式：<br/>\- left: 设置导航点距离Swiper组件左边的距离。<br/>\- top: 设置导航点距离Swiper组件顶部的距离。<br/>\- right: 设置导航点距离Swiper组件右边的距离。<br/>\- bottom: 设置导航点距离Swiper组件底部的距离。<br/>\- size: 设置导航点的直径。<br/>\- mask: 设置是否显示导航点蒙层样式。<br/>\- color: 设置导航点的颜色。<br/>\- selectedColor: 设置选中的导航点的颜色。 |
-| displayCount<sup>8+</sup>   | number\|string                                               | 设置一页内元素显示个数。<br/>默认值：1<br/>**说明：** <br/>字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。<br/>使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1的itemSpace）的方式进行主轴拉伸（收缩）布局。 |
+| indicatorStyle<sup>(deprecated)</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md)<br/>} | 设置导航点样式：<br/>\- left: 设置导航点距离Swiper组件左边的距离。<br/>\- top: 设置导航点距离Swiper组件顶部的距离。<br/>\- right: 设置导航点距离Swiper组件右边的距离。<br/>\- bottom: 设置导航点距离Swiper组件底部的距离。<br/>\- size: 设置导航点的直径，不支持设置百分比。默认值：6vp。<br/>\- mask: 设置是否显示导航点蒙层样式。<br/>\- color: 设置导航点的颜色。<br/>\- selectedColor: 设置选中的导航点的颜色。 <br/>从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。|
+| displayCount<sup>8+</sup>   | number\|string                                               | 设置一页内元素显示个数。<br/>默认值：1<br/>**说明：** <br/>字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。<br/>使用number类型且设置小于等于0时，按默认值1显示。<br/>使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1的itemSpace）的方式进行主轴拉伸（收缩）布局。 |
 | effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring<br/>**说明：** <br/>控制器接口调用时不生效回弹。 |
-| nextMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 后边距，用于露出后一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。当cachedCount设置值小于等于0时，此时会露出后一项的一小部分，但无法加载子组件。         |
-| prevMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 前边距，用于露出前一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。当cachedCount设置值小于等于0时，此时会露出前一项的一小部分，但无法加载子组件。        |
+| displayArrow<sup>10+</sup> | value:[ArrowStyle](#arrowstyle10对象说明) \| boolean,<br/>isHoverShow?: boolean | 设置导航点箭头样式。<br/>-value: 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。<br/>\-isHoverShow：设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 
 ## SwiperDisplayMode枚举说明
 
 | 名称 | 描述 |
 | ----------- | ------------------------------------------ |
-| Stretch     | Swiper滑动一页的宽度为Swiper组件自身的宽度。|
-| AutoLinear  | Swiper滑动一页的宽度为子组件宽度中的最大值。|
+| Stretch<sup>(deprecated)</sup>     | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API verdion 10开始不再维护，建议使用STRETCH代替。|
+| AutoLinear<sup>(deprecated)</sup>   | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API verdion 10开始不再维护，建议使用AUTO_LINEAR代替。|
+| STRETCH<sup>10+</sup>     | Swiper滑动一页的宽度为Swiper组件自身的宽度。|
+| AUTO_LINEAR<sup>10+</sup>  | Swiper滑动一页的宽度为子组件宽度中的最大值。|
 
 ## SwiperController
 
@@ -92,10 +93,10 @@ finishAnimation(callback?: () => void): void
 
 | 参数名 | 参数类型 | 必填项 | 参数描述                             |
 | ------ | -------- | ------ | ------------------------------------ |
-| left   | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件左边的距离。 |
-| top    | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件顶部的距离。 |
-| right  | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件右边的距离。 |
-| bottom | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件底部的距离。 |
+| left   | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件左边的距离。<br/>默认值：0<br/>单位：vp |
+| top    | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件顶部的距离。<br/>默认值：0<br/>单位：vp |
+| right  | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
+| bottom | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件底部的距离。<br/>默认值：0<br/>单位：vp |
 
 ### DotIndicator
 
@@ -108,8 +109,8 @@ finishAnimation(callback?: () => void): void
 | selectedItemWidth  | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的宽。<br/>默认值：6<br/>单位：vp |
 | selectedItemHeight | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的高。<br/>默认值：6<br/>单位：vp |
 | mask               | boolean       | 否     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
-| color              | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
-| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+| color              | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
 ### DigitIndicator
 
@@ -121,6 +122,20 @@ finishAnimation(callback?: () => void): void
 | selectedFontColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否     | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 | digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否     | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。 |
 | selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否     | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。 |
+
+### ArrowStyle<sup>10+</sup>对象说明
+左右箭头属性。
+
+| 参数名        | 参数类型 | 必填项 | 参数描述 |
+| ------------- | -------- | ------ | -------- |
+| isShowBackground   | boolean  | 否 | 设置箭头底板是否显示。<br/>默认值：false |
+| isSidebarMiddle | boolean  | 否 | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。|
+| backgroundSize     | [Length](ts-types.md#length) | 否 | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
+| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：\#19182431<br/>在组件两侧显示：<br/>默认值：\#00000000 |
+| arrowSize     | [Length](ts-types.md#length) | 否 | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>isShowBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
+| arrowColor    | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置箭头颜色。<br/>默认值：\#182431 |
+
+
 
 ## 事件
 
@@ -189,6 +204,13 @@ struct SwiperExample {
       .loop(true)
       .duration(1000)
       .itemSpace(0)
+      .displayArrow({
+        isShowBackground:true,
+        isSidebarMiddle:true,
+        backgroundSize:24,
+        backgroundColor:Color.White,
+        arrowSize:18,
+        arrowColor:Color.Blue},false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())

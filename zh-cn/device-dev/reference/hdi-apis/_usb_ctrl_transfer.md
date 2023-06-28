@@ -1,38 +1,34 @@
 # UsbCtrlTransfer
 
 
-## **概述**
+## 概述
 
 USB设备控制传输信息。
 
 **Since:**
-
 3.2
-
 **Version:**
-
 1.0
-
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [requestType](#requesttype) | 请求类型。 | 
-| [requestCmd](#requestcmd) | 请求命令。 | 
-| [value](#value) | 请求值。 | 
-| [index](#index) | 索引值。 | 
-| [timeout](#timeout) | 超时时间。 | 
+| [requestType](#requesttype) | int<br/>请求类型。&nbsp; | 
+| [requestCmd](#requestcmd) | int<br/>请求命令。&nbsp; | 
+| [value](#value) | int<br/>请求值。&nbsp; | 
+| [index](#index) | int<br/>索引值。&nbsp; | 
+| [timeout](#timeout) | int<br/>超时时间。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### index
@@ -41,9 +37,7 @@ USB设备控制传输信息。
 ```
 int UsbCtrlTransfer::index
 ```
-
-**描述：**
-
+**描述:**
 索引值。
 
 
@@ -53,9 +47,7 @@ int UsbCtrlTransfer::index
 ```
 int UsbCtrlTransfer::requestCmd
 ```
-
-**描述：**
-
+**描述:**
 请求命令。
 
 
@@ -65,9 +57,7 @@ int UsbCtrlTransfer::requestCmd
 ```
 int UsbCtrlTransfer::requestType
 ```
-
-**描述：**
-
+**描述:**
 请求类型。
 
 
@@ -77,9 +67,7 @@ int UsbCtrlTransfer::requestType
 ```
 int UsbCtrlTransfer::timeout
 ```
-
-**描述：**
-
+**描述:**
 超时时间。
 
 
@@ -89,7 +77,5 @@ int UsbCtrlTransfer::timeout
 ```
 int UsbCtrlTransfer::value
 ```
-
-**描述：**
-
+**描述:**
 请求值。

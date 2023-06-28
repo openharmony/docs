@@ -77,7 +77,7 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 **参考链接**
 
-[readPixelsToBuffer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md#readpixelstobuffer7-1)
+[readPixelsToBuffer](../reference/apis/js-apis-image.md#readpixelstobuffer7-1)
 
 ## 如何获取rdb关系型数据库文件 
 

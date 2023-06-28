@@ -6,15 +6,23 @@ A drag event is triggered when a component is dragged.
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| allowDrop<sup>10+</sup> | Array\<UnifiedData> | Type of data that can be dropped to the component.<br>Default value: empty<br>|
+| draggable<sup>10+</sup> | boolean | Whether the widget is draggable.<br>Default value: **false**<br>|
 ## Events
 
 | Name                                                        | Bubbling Supported| Description                                                    |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 500 ms long press. If the duration of a long-press gesture is set to less than or equal to 500 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 500 ms long press. If the duration of a long press gesture is set to less than or equal to 500 ms, the callback for the long press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
+| onDragEnd(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void)<sup>10+</sup> | No      | Triggered when the dragging of the component bound to the event ends.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
 
 ## DragItemInfo
 
@@ -42,6 +50,31 @@ A drag event is triggered when a component is dragged.
 | ------ | ------ | ---------------- |
 | getX() | number | X-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | getY() | number | Y-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
+| useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the default drop animation when the dragging ends.|
+| dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Component tree behavior corresponding to the drga event.|
+| setData(unifiedData: UnifiedData)<sup>10+</sup> | void | Sets drag-related data in the drag event.|
+| getData()<sup>10+</sup> | UnifiedData | Obtains drag-related data from the drag event.|
+| getSummary()<sup>10+</sup> | Summary | Obtains the summary of drag-related data from the drag event.|
+| setResult(dragRect: [DragRet](#dragret10))<sup>10+</sup>| void | Sets the drag and drop result in the drag event.|
+| getResult()<sup>10+</sup> | [DragRet](#dragret10)| Obtains the drag and drop result from the drag event.|
+| getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the rectangle where the preview image is located.|
+
+## DragBehavior<sup>10+</sup>
+
+| Name| Description|
+| ------ | ------ |
+| COPY | In the component tree, copy the component that initiates the dragging and copy the copy result to the position where the dragging ends.|
+| MOVE | In the component tree, cut the component that initiates the dragging and move it to the position where the dragging ends.|
+
+## DragRet<sup>10+</sup>
+
+| Name| Description|
+| ----- | ----------------- |
+| DRAG_SUCCESS | The drag and drop operation succeeded.|
+| DRAG_FAILED | The drag and drop operation failed.|
+| DRAG_CANCELED | The drag and drop operation was canceled.|
+| DROP_ENABLED | The component allows for a drop operation.|
+| DROP_DISABLED | The component does not allow for a drop operation.|
 
 ## Example
 

@@ -265,6 +265,8 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 启用或禁用飞行模式。使用callback异步回调。
 
+此接口暂不支持。
+
 **系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
@@ -292,6 +294,8 @@ settings.enableAirplaneMode(isEnabled, (err) => {
 enableAirplaneMode(enable: boolean): Promise\<void>
 
 启用或禁用飞行模式。使用Promise异步回调。
+
+此接口暂不支持。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 

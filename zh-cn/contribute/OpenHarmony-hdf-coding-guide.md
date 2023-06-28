@@ -190,7 +190,7 @@ root {
 
 【说明】HDF框架将一类设备驱动放在同一个Host里面，开发者也可以将Host中的驱动功能分层独立开发和部署，支持一个驱动多个Node，HDF驱动模型如下图所示：
 
-![HDF驱动模型.png](../device-dev/driver/figures/HDF驱动模型.png)
+![HDF驱动模型.png](figures/HDF驱动模型.png)
 
 开发者应当将同一类的设备放在同一个Host里面，在新增设备时，检查是否已经存在同类型的Host。如果已存在Host，则将Device配置在此Host中，禁止重复配置Host。一个驱动设备应该只属于一类驱动类型，因此也禁止将同一个Device配置在不同Host当中。
 

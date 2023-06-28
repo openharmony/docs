@@ -17,13 +17,16 @@ import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 授权URI给指定应用，通过callback返回结果。
 
 默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -74,13 +77,16 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number,
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
 授权URI给指定应用，通过返回值返回结果。
 
 默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -137,13 +143,16 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number)
   ```
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 撤销授权指定应用的URI，通过callback返回结果。
 
 默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -181,14 +190,18 @@ revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&
 
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
 撤销授权指定应用的URI，通过返回值返回结果。
 
 
 默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+
 
 **参数：**
 

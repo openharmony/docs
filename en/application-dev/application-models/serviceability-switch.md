@@ -4,9 +4,9 @@
 The ServiceAbility component in the FA model corresponds to the ServiceExtensionAbility component in the stage model. The ServiceExtensionAbility class provides system APIs. Only system applications can create ServiceExtensionAbility instances. Therefore, ServiceAbility switching adopts different policies for system applications and third-party applications.  
 
 
-## Switching a ServiceAbility of a System Application
+## Switching a ServiceAbility for a System Application
 
-The procedure for switching a ServiceAbility of a system application is similar to the procedure of PageAbility switching.
+The procedure for switching a ServiceAbility for a system application is similar to the procedure of PageAbility switching.
 
 1. [Create a ServiceExtensionAbility](serviceextensionability.md) in the stage model.
 
@@ -24,7 +24,7 @@ The table below describes the lifecycle comparison of the ServiceAbility and Ser
    | onStop(): void | onDestroy(): void | The two methods have the same meaning, invoking time, and parameters.|
 
 
-## Switching a ServiceAbility of a Third-Party Application
+## Switching a ServiceAbility for a Third-Party Application
 
 In the stage model, third-party applications cannot provide services for other third-party applications. You can select a switching solution based on your service requirements.
 

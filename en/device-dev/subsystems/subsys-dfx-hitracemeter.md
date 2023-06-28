@@ -1,4 +1,4 @@
-# HiTraceMeter Development
+# HiTraceMeter
 
 ## Introduction
 
@@ -279,6 +279,7 @@ The hitrace CLI tool is an executable binary program. On an OpenHarmony-powered 
 | --trace_begin                 | Starts capturing trace data.                                                |
 | --trace_dump                  | Dumps trace data to the specified position. The default position is the console.                                       |
 | --trace_finish                | Stops capturing trace data and dumps trace data to the specified position. The default position is the console.                             |
+| --trace_finish_nodump         | Stops capturing trace packets and dumping trace data.                                |
 | -l, --list_categories         | Lists the trace categories supported by the device.                                         |
 | --overwrite                   | Sets the action to take when the buffer is full. If this option is used, the latest trace data is discarded. If this option is not used, the earliest trace data is discarded (default).                           |
 | -o *filename*, --output *filename*| Outputs trace data to the specified file.                                             |

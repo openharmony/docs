@@ -1,10 +1,10 @@
 # Updating Local and Online Images in the Widget
 
 
-Generally, local images or online images downloaded from the network need to be displayed on a widget. To obtain local and online images, use the FormExtensionAbility. The following exemplifies how to show local and online images on a widget.
+Typically, a widget includes local images or online images downloaded from the network. To obtain local and online images, use the FormExtensionAbility. The following exemplifies how to show local and online images on a widget.
 
 
-1. Internet access is required for downloading online images. Therefore, you need to apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md).
+1. For the widget to download online images, declare the **ohos.permission.INTERNET** permission for the widget. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md).
 
 2. Update local files in the **onAddForm** lifecycle callback of the EntryFormAbility.
    
@@ -44,7 +44,7 @@ Generally, local images or online images downloaded from the network need to be 
    }
    ```
 
-3. Update online files in the onFormEvent lifecycle callback of the EntryFormAbility.
+3. Update online images in the **onFormEvent** lifecycle callback of the EntryFormAbility.
    
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
@@ -60,8 +60,8 @@ Generally, local images or online images downloaded from the network need to be 
          'text': 'Updating...'
        })
        formProvider.updateForm(formId, formInfo)
-       // Note: The FormExtensionAbility is started when the lifecycle callback is triggered. It can run  in the background for only 5 seconds.
-       // When possible, limit the size of the image to download. If an image cannot be downloaded within 5 seconds, it cannot be updated to the widget page.
+       // Note: After being started with the triggering of the lifecycle callback, the FormExtensionAbility can run in the background for only 5 seconds.
+       // When possible, limit the size of the image to download. If an image cannot be downloaded within 5 seconds, it will not be updated to the widget page.
        let netFile = 'https://xxxx/xxxx.png'; // Specify the URL of the image to download.
        let tempDir = this.context.getApplicationContext().tempDir;
        let fileName = 'file' + Date.now();
@@ -161,6 +161,6 @@ Generally, local images or online images downloaded from the network need to be 
    ```
 
 > **NOTE**
-> - The **\<Image>** component displays images in the remote memory based on the **memory://** identifier in the input parameter (**memory://fileName**). The **fileName** value must be consistent with the key in the object (**'formImages': {key: fd}**) passed by the EntryFormAbility.
+> - The **\<Image>** component displays images in the remote memory based on the **memory://** identifier in the input parameter (**memory://fileName**). The value of **fileName** must be consistent with the key in the object (**'formImages': {key: fd}**) passed by the EntryFormAbility.
 > 
-> - The **\<Image>** component determines whether to update the image based on whether the input parameter is changed. Therefore, the value of **imgName** passed by the EntryFormAbility each time must be different. If the two values of **imgName** passed consecutively are identical, the image is not updated.
+> - The **\<Image>** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.

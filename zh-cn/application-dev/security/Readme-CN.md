@@ -14,7 +14,7 @@
   - [通用密钥库密码算法规格](huks-appendix.md)
 - 加解密算法库框架
   - [加解密算法库框架概述](cryptoFramework-overview.md)
-  - [加解密算法框架开发指导](cryptoFramework-guidelines.md)
+  - [加解密算法库框架开发指导](cryptoFramework-guidelines.md)
 - 证书
   - [证书概述](cert-overview.md)
   - [证书开发指导](cert-guidelines.md)

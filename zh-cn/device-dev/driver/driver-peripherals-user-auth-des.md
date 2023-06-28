@@ -109,7 +109,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 
 ### 接口说明
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/user_auth/v1_0/）。
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/user_auth）。
 在本文中，执行器注册、凭据录入、凭据删除、用户认证和用户识别相关的HDI接口如表1所示。
 
 **表1** 接口功能介绍

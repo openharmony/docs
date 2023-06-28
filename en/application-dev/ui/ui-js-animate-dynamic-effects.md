@@ -156,7 +156,7 @@ button{
 ```js
 // xxx.js
 import animator from '@ohos.animator';
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     scaleVal:1,
@@ -178,7 +178,7 @@ export default {
     var _this= this;
     // Add an animation repeat event.
     this.animation.onrepeat = function() {
-      prompt.showToast({
+      promptAction.showToast({
         message: 'repeat'
       });
       var repeatoptions = {
@@ -220,7 +220,7 @@ export default {
     var _this= this;
    // Add an animation completion event.
     this.animation.onfinish = function() {
-      prompt.showToast({
+      promptAction.showToast({
         message: 'finish'
       })
     };

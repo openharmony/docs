@@ -1,7 +1,7 @@
 # IUsbdSubscriber
 
 
-## **概述**
+## 概述
 
 定义USB驱动的订阅类相关函数。
 
@@ -9,21 +9,21 @@
 
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DeviceEvent](#deviceevent)&nbsp;([in]&nbsp;struct&nbsp;[USBDeviceInfo](_u_s_b_device_info.md)&nbsp;info) | 设备状态改变事件。 | 
-| [PortChangedEvent](#portchangedevent)&nbsp;([in]&nbsp;struct&nbsp;[PortInfo](_port_info.md)&nbsp;info) | 端口改变事件。 | 
+| [DeviceEvent](#deviceevent)&nbsp;([in]&nbsp;struct&nbsp;[USBDeviceInfo](_u_s_b_device_info.md)&nbsp;info) | 设备状态改变事件。&nbsp; | 
+| [PortChangedEvent](#portchangedevent)&nbsp;([in]&nbsp;struct&nbsp;[PortInfo](_port_info.md)&nbsp;info) | 端口改变事件。&nbsp; | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### DeviceEvent()
@@ -32,9 +32,7 @@
 ```
 IUsbdSubscriber::DeviceEvent ([in] struct USBDeviceInfo info)
 ```
-
-**描述：**
-
+**描述:**
 设备状态改变事件。
 
 **参数:**
@@ -56,9 +54,7 @@ IUsbdSubscriber::DeviceEvent ([in] struct USBDeviceInfo info)
 ```
 IUsbdSubscriber::PortChangedEvent ([in] struct PortInfo info)
 ```
-
-**描述：**
-
+**描述:**
 端口改变事件。
 
 **参数:**

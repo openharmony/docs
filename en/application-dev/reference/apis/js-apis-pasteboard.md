@@ -372,16 +372,18 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 Defines the properties of all data records on the pasteboard, including the timestamp, data type, and additional data.
 
+The defined properties can be applied to the pasteboard only with the [setProperty](#setproperty9) API.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Type| Readable| Writable| Description                                                                                        |
-| -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | Yes| Yes| Additional data.                                                                              |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.                                                                    |
-| tag<sup>7+</sup> | string | Yes| Yes| Custom tag.                                                                                  |
-| timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).                                                                       |
-| localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. This attribute is not supported currently. You are advised to use **shareOption** instead.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                             |
+| Name| Type| Readable| Writable| Description   |
+| -------- | -------- | -------- | -------- |----------------|
+| additions<sup>7+</sup> | {[key:string]:object} | Yes| Yes| Additional data. |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard. |
+| tag<sup>7+</sup> | string | Yes| Yes| Custom tag. |
+| timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms). |
+| localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the **shareOption** attribute instead. **ShareOption.INAPP** and **ShareOption.LOCALDEVICE** set **localOnly** to **true**, and **ShareOption.CROSSDEVICE** sets **localOnly** to false.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.|
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -483,9 +485,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-Provides **PasteData** APIs.
+Implements a **PasteData** object. Paste data contains one or more data records ([PasteDataRecord](#pastedatarecord7)) and property description objects ([PasteDataProperty](#pastedataproperty7)).
 
-Before calling any **PasteData** API, you must obtain a **PasteData** object. 
+Before calling any API in **PasteData**, you must use **[createData()](#pasteboardcreatedata9)** or **[getData()](#getdata9)** to create a **PasteData** object.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -737,7 +739,7 @@ let property = pasteData.getProperty();
 
 setProperty(property: PasteDataProperty): void
 
-Sets the property (attributes) for the pasteboard data. Currently, only the **shareOption** attribute is supported.
+Sets a [PasteDataProperty](#pastedataproperty7) object.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -753,7 +755,28 @@ Sets the property (attributes) for the pasteboard data. Currently, only the **sh
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.additions['TestOne'] = 123;
+prop.additions['TestTwo'] = {'Test' : 'additions'};
+prop.tag = 'TestTag';
 pasteData.setProperty(prop);
+```
+The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pastedataproperty7) are mutually exclusive. The **shareOption** attribute prevails, and its value affect the value of **localOnly**.
+```js
+prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
+prop.localOnly = true;
+pasteData.setProperty(prop);
+pasteData.localOnly //false
+
 ```
 
 ### getRecord<sup>9+</sup>

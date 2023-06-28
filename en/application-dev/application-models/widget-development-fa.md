@@ -115,7 +115,7 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataStorage from '@ohos.data.storage';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. Implement the widget lifecycle callbacks in **form.ts**.
@@ -265,7 +265,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         "updateCount": 0
     };
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // Put the widget information.
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
@@ -303,7 +303,7 @@ You should override **onDestroy** to implement widget data deletion.
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // Delete the widget information.
         await storage.delete(formId);
         console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);

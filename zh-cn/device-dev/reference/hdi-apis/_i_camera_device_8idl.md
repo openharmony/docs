@@ -1,7 +1,7 @@
 # ICameraDevice.idl
 
 
-## **概述**
+## 概述
 
 Camera设备操作接口。
 
@@ -15,17 +15,17 @@ Camera设备操作接口。
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ICameraDevice](interface_i_camera_device.md) | 定义Camera设备基本的操作。 | 
+| [ICameraDevice](interface_i_camera_device.md) | interface<br/>定义Camera设备基本的操作。 | 
 
 
 ### 关键字

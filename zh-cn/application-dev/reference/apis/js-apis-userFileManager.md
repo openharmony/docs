@@ -62,6 +62,14 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | options  | [FetchOptions](#fetchoptions)        | 是   | 图片和视频检索选项。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback返回图片和视频检索结果集。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
+
 **示例：**
 
 ```ts
@@ -111,6 +119,14 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | --------------------------- | -------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
+
 **示例：**
 
 ```ts
@@ -155,6 +171,15 @@ createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&
 | albumUri  | string        | 是   | 创建的图片或者视频所在相册的uri。              |
 | callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | 是   | callback返回创建的图片和视频结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName or albumUri is not string.         |
+| 14000001   | if type displayName invalid.         |
+
 **示例：**
 
 ```ts
@@ -197,6 +222,15 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 | displayName  | string        | 是   | 创建的图片或者视频文件名。              |
 | callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | 是   | callback返回创建的图片和视频结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName is not string.         |
+| 14000001   | if type displayName invalid.         |
+
 **示例：**
 
 ```ts
@@ -237,6 +271,14 @@ createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&g
 | --------------------------- | -------------- |
 | Promise&lt;[FileAsset](#fileasset)&gt; | Promise对象，返回创建的图片和视频结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName or albumUri is not string.         |
+
 **示例：**
 
 ```ts
@@ -270,6 +312,15 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback
 | displayName  | string        | 是   | 创建的图片或者视频文件名。              |
 | createOption  | [PhotoCreateOptions](#photocreateoptions10)        | 是   | 图片或视频的创建选项。              |
 | callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | 是   | callback返回创建的图片和视频结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName is not string.         |
+| 14000001   | if type displayName invalid.         |
 
 **示例：**
 
@@ -314,6 +365,14 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise
 | --------------------------- | -------------- |
 | Promise&lt;[FileAsset](#fileasset)&gt; | Promise对象，返回创建的图片和视频结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName is not string.         |
+
 **示例：**
 
 ```ts
@@ -341,7 +400,7 @@ createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.WRITE_AUDIO
 
 **参数：**
 
@@ -349,6 +408,15 @@ createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | 是   | 创建的音频文件名。              |
 | callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | 是   | callback返回创建的音频资源结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName is not string.         |
+| 14000001   | if type displayName invalid.         |
 
 **示例：**
 
@@ -375,7 +443,7 @@ createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**需要权限**：ohos.permission.WRITE_AUDIO
 
 **参数：**
 
@@ -388,6 +456,14 @@ createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
 | Promise&lt;[FileAsset](#fileasset)&gt; | Promise对象，返回创建的音频资源结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type displayName is not string.         |
 
 **示例：**
 
@@ -422,6 +498,14 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
 
 **示例：**
 
@@ -473,6 +557,14 @@ getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
 
 **示例：**
 
@@ -599,11 +691,13 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
-  // 示例代码为删除名称包含newAlbumName的第一个相册。
+  // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.like('album_name', '%newAlbumName%');
+  predicates.equalTo('album_name', 'newAlbumName');
   let fetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -648,11 +742,13 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
-  // 示例代码为删除名称包含newAlbumName的第一个相册。
+  // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.like('album_name', '%newAlbumName%');
+  predicates.equalTo('album_name', 'newAlbumName');
   let fetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -689,14 +785,24 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callbac
 | options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOption.         |
+
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
-  // 示例代码中为获取相册名中包含newAlbumName的第一个相册。
+  // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.like('album_name', '%newAlbumName%');
+  predicates.equalTo('album_name', 'newAlbumName');
   let fetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -736,6 +842,14 @@ getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;Fet
 | type  | [AlbumType](#albumtype10)         | 是   | 相册类型。              |
 | subType  | [AlbumSubType](#albumsubtype10)         | 是   | 相册子类型。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOption.         |
 
 **示例：**
 
@@ -785,14 +899,24 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promi
 | --------------------------- | -------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOption.         |
+
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
-  // 示例代码中为获取相册名中包含newAlbumName的第一个相册。
+  // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.like('album_name', '%newAlbumName%');
+  predicates.equalTo('album_name', 'newAlbumName');
   let fetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -827,6 +951,14 @@ getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&l
 | -------- | ------------------------ | ---- | ------------------------- |
 | type  | [PrivateAlbumType](#privatealbumtype)        | 是   | 系统相册类型。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | 是   | callback返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type type is not PrivateAlbumType.         |
 
 **示例：**
 
@@ -866,6 +998,14 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 | --------------------------- | -------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Promise对象，返回相册检索结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type type is not PrivateAlbumType.         |
+
 **示例：**
 
 ```ts
@@ -897,6 +1037,14 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | 是   | 检索选项。              |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback返回音频检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
 
 **示例：**
 
@@ -948,6 +1096,14 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | --------------------------- | -------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise对象，返回音频检索结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
+
 **示例：**
 
 ```ts
@@ -992,6 +1148,14 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 媒体文件uri。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type uri is not string.         |
 
 **示例：**
 
@@ -1047,6 +1211,14 @@ delete(uri: string): Promise&lt;void&gt;;
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 | Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type uri is not string.         |
 
 **示例：**
 
@@ -1385,9 +1557,19 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别，uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)。注：uri可以注册多个不同的callback监听，[off<sup>10+</sup>](#off10)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if parameter is invalid.         |
+
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('onDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1438,9 +1620,19 @@ async function example() {
 | uri      | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
 | callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 解除[on<sup>10+</sup>](#on10)注册时的callback的监听，不填时，解除该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if parameter is invalid.         |
+
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 async function example() {
   console.info('offDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -1557,7 +1749,7 @@ async function example() {
     };
     let fetchResult = await mgr.getPhotoAssets(fetchOption);
     let fileAsset = await fetchResult.getFirstObject();
-    let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME;
+    let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
     fileAsset.set(displayName, 'newDisplayName1');
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1595,7 +1787,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   let fileAsset = await fetchResult.getFirstObject();
-  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME;
+  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
   let fileAssetDisplayName = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
   fileAsset.set(displayName, 'newDisplayName2');
@@ -1640,7 +1832,7 @@ async function example() {
   };
   let fetchResult = await mgr.getPhotoAssets(fetchOption);
   let fileAsset = await fetchResult.getFirstObject();
-  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME;
+  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
   let fileAssetDisplayName = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
   fileAsset.set(displayName, 'newDisplayName3');
@@ -2060,6 +2252,15 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 | hiddenState | boolean                   | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 13900020   | if parameter is invalid.         |
+
 **示例：**
 
 ```ts
@@ -2107,6 +2308,15 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 | 类型                  | 说明         |
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 13900020   | if parameter is invalid.         |
 
 **示例：**
 
@@ -2198,7 +2408,7 @@ async function example() {
   const fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
   let fileAsset = await fetchResult.getLastObject();
-  if (!fetchResult.isAfterLast()) {
+  if (fetchResult.isAfterLast()) {
     console.info('fileAsset isAfterLast displayName = ', fileAsset.displayName);
   } else {
     console.info('fileAsset  not isAfterLast ');
@@ -2464,6 +2674,14 @@ getPositionObject(index: number, callback: AsyncCallback&lt;T&gt;): void
 | index    | number                                   | 是    | 要获取的文件的索引，从0开始。     |
 | callback | AsyncCallback&lt;T&gt; | 是    | 异步返回指定索引的文件资产的回调。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type index is not number.         |
+
 **示例：**
 
 ```ts
@@ -2506,6 +2724,14 @@ getPositionObject(index: number): Promise&lt;T&gt;
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 | Promise&lt;T&gt; | Promise对象，返回结果集中指定索引的一个对象。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type index is not number.         |
 
 **示例：**
 
@@ -2604,8 +2830,8 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType<sup>8+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
-| albumSubType<sup>8+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
+| albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
+| albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
 | albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
@@ -2627,6 +2853,14 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | -------- | ------------------------- | ---- | ---------- |
 | options | [FetchOptions](#fetchoptions) | 是   | 检索选项。 |
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback返回图片和视频数据结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
 
 **示例：**
 
@@ -2677,6 +2911,14 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
 
 **示例：**
 
@@ -2803,6 +3045,14 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&g
 | assets | Array&lt;[FileAsset](#fileasset)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
+
 **示例：**
 
 ```ts
@@ -2855,6 +3105,14 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
+
 **示例：**
 
 ```ts
@@ -2899,6 +3157,14 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 | -------- | ------------------------- | ---- | ---------- |
 | assets | Array&lt;[FileAsset](#fileasset)&gt; | 是   | 相册中待移除的图片或视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
 
@@ -2952,6 +3218,14 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
+
 **示例：**
 
 ```ts
@@ -2996,6 +3270,14 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;vo
 | -------- | ------------------------- | ---- | ---------- |
 | assets | Array&lt;[FileAsset](#fileasset)&gt; | 是   | 回收站中待恢复图片或者视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
 
@@ -3049,6 +3331,14 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
+
 **示例：**
 
 ```ts
@@ -3095,6 +3385,14 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 | -------- | ------------------------- | ---- | ---------- |
 | assets | Array&lt;[FileAsset](#fileasset)&gt; | 是   | 回收站中待彻底删除图片或者视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
 
@@ -3149,6 +3447,14 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
 
@@ -3211,6 +3517,14 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | options | [FetchOptions](#fetchoptions) | 是   | 检索选项。 |
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback返回图片和视频数据结果集。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
+
 **示例：**
 
 ```ts
@@ -3258,6 +3572,14 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 | Promise:[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;| Promise对象，返回图片和视频数据结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not FetchOptions.         |
 
 **示例：**
 

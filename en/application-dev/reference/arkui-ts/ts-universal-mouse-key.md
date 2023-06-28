@@ -11,7 +11,7 @@ If an action triggers multiple events, the order of these events is fixed. By de
 
 | Name                                                        | Bubbling Supported| Description                                                        |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onHover(event: (isHover?: boolean) =&gt; void) | No      | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
+| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes      | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.<br>**event**: bubbling blocking of the event.|
 | onMouse(event: (event?: MouseEvent) =&gt; void) | Yes      | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
@@ -29,6 +29,12 @@ If an action triggers multiple events, the order of these events is fixed. By de
 | timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
+
+## HoverEvent<sup>10+</sup>
+
+| Name     | Type                           | Description                  |
+| --------- | ------------------------------- | -------------------- |
+| stopPropagation   | () => void                          | Stops the event from bubbling upwards or downwards.|
 
 ## Example
 
@@ -48,7 +54,7 @@ struct MouseEventExample {
       Button(this.hoverText)
         .width(180).height(80)
         .backgroundColor(this.color)
-        .onHover((isHover: boolean) => {
+        .onHover((isHover: boolean, event: HoverEvent) => {
           // Use the onHover event to dynamically change the text content and background color of a button when the mouse pointer is hovered on it.
           if (isHover) {
             this.hoverText = 'hover';

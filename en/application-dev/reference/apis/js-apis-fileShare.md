@@ -14,7 +14,7 @@ import fileShare from '@ohos.fileshare';
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, callback: AsyncCallback&lt;void&gt;): void
 
 Grants permissions on a user file by the URI to an application. This API uses an asynchronous callback to return the result.
 
@@ -30,7 +30,7 @@ Grants permissions on a user file by the URI to an application. This API uses an
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | Yes  | URI of a user file.|
 | bundleName   | string | Yes  | Bundle name of the application to be grated with the permissions.|
-| mode   | number | Yes  | Permissions to grant. For details, see [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags).<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
+| flag   | wantConstant.Flags | Yes  | Permissions to grant. For details, see [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags).<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result.                           |
 
 **Error codes**
@@ -67,7 +67,7 @@ try {
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;void&gt;
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): Promise&lt;void&gt;
 
 Grants permissions on a user file by the URI to an application. This API uses a promise to return the result.
 
@@ -83,7 +83,7 @@ Grants permissions on a user file by the URI to an application. This API uses a 
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | Yes  | URI of a user file.|
 | bundleName   | string | Yes  | Bundle name of the application to be grated with the permissions.|
-| mode   | number | Yes  | Permissions to grant. For details, see [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags).<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
+| flag   | wantConstant.Flags | Yes  | Permissions to grant. For details, see [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags).<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
 
 **Return value**
 

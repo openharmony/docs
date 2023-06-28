@@ -5,13 +5,11 @@ For details about the definition of a system common event, see [Support in @ohos
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-## COMMON_EVENT_BOOT_COMPLETED
-Indicates that the user has finished booting and the system has been loaded.
-- Value: **usual.event.BOOT_COMPLETED**
-- Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
+## [COMMON_EVENT_BOOT_COMPLETED](./common_event/commonEvent-ability.md)
+Indicates that the user has finished the boot process.
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
-(Reserved, not supported yet) Indicates that the user has finished booting and the system has been loaded but the screen is still locked.
+(Reserved, not supported yet) Indicates that the user has finished the boot process but the screen is still locked.
 - Value: **usual.event.LOCKED_BOOT_COMPLETED**
 - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -40,30 +38,25 @@ Indicates that the device is connected to an external power supply.
 - Value: **usual.event.POWER_CONNECTED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_POWER_DISCONNECTED
 Indicates that the device is disconnected from the external power supply.
 - Value: **usual.event.POWER_DISCONNECTED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_SCREEN_OFF
 Indicates that the device screen is off and the device is in sleep mode.
 - Value: **usual.event.SCREEN_OFF**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_SCREEN_ON
 Indicates that the device screen is on and the device is in interactive state.
 - Value: **usual.event.SCREEN_ON**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+</sup>
 Indicates that the device's thermal level has changed.
 - Value: **usual.event.THERMAL_LEVEL_CHANGED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 (Reserved, not supported yet) Indicates that the user unlocks the device.
@@ -78,42 +71,35 @@ Indicates that the system time has changed as time ticks by.
 - Value: **usual.event.TIME_TICK**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_TIME_CHANGED
 Indicates that the system time is set.
 - Value: **usual.event.TIME_CHANGED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_DATE_CHANGED
 (Reserved, not supported yet) Indicates that the system date has changed.
 - Value: **usual.event.DATE_CHANGED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_TIMEZONE_CHANGED
 Indicates that the system time zone has changed.
 - Value: **usual.event.TIMEZONE_CHANGED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
 (Reserved, not supported yet) Indicates that the user closes a temporary system dialog box.
 - Value: **usual.event.CLOSE_SYSTEM_DIALOGS**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_PACKAGE_ADDED
 Indicates that a new application package has been installed on the device.
 - Value: **usual.event.PACKAGE_ADDED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_PACKAGE_REPLACED
 (Reserved, not supported yet) Indicates that a later version of an installed application package has replaced the previous one on the device.
 - Value: **usual.event.PACKAGE_REPLACED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_MY_PACKAGE_REPLACED
 (Reserved, not supported yet) Indicates that a later version of your application package has replaced the previous one.
@@ -125,84 +111,66 @@ Indicates that an installed application has been uninstalled from the device wit
 - Value: **usual.event.PACKAGE_REMOVED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_BUNDLE_REMOVED
 (Reserved, not supported yet) Indicates that an installed bundle has been uninstalled from the device with the application data retained. 
 - Value: **usual.event.BUNDLE_REMOVED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_PACKAGE_FULLY_REMOVED
 (Reserved, not supported yet) Indicates that an installed application, including both the application data and code, has been completely uninstalled from the device.
 - Value: **usual.event.PACKAGE_FULLY_REMOVED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_PACKAGE_CHANGED
 Indicates that an application package has been changed (for example, an ability in the package has been enabled or disabled).
 - Value: **usual.event.PACKAGE_CHANGED**
 - Required subscriber permissions: none
 
-
-## COMMON_EVENT_PACKAGE_RESTARTED
+## [COMMON_EVENT_PACKAGE_RESTARTED](./common_event/commonEvent-ability.md)
 Indicates that the user closed all processes of the application and restarted the application.
-- Value: **usual.event.PACKAGE_RESTARTED**
-- Required subscriber permissions: none
 
-
-## COMMON_EVENT_PACKAGE_DATA_CLEARED
+## [COMMON_EVENT_PACKAGE_DATA_CLEARED](./common_event/commonEvent-ability.md)
 Indicates that the user cleared the application package data.
-- Value: **usual.event.PACKAGE_DATA_CLEARED**
-- Required subscriber permissions: none
-
 
 ## COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>
 Indicates that the user cleared the application package cache.
 - Value: **usual.event.PACKAGE_CACHE_CLEARED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_PACKAGES_SUSPENDED
 (Reserved, not supported yet) Indicates that application HAP files are suspended.
 - Value: **usual.event.PACKAGES_SUSPENDED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_PACKAGES_UNSUSPENDED
 (Reserved, not supported yet) Indicates that application HAP files are not suspended (restored from the suspended state).
 - Value: **usual.event.PACKAGES_UNSUSPENDED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_MY_PACKAGE_SUSPENDED
 Indicates that an application HAP file is suspended.
 - Value: **usual.event.MY_PACKAGE_SUSPENDED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_MY_PACKAGE_UNSUSPENDED
 Indicates that an application HAP file is not suspended.
 - Value: **usual.event.MY_PACKAGE_UNSUSPENDED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_UID_REMOVED
 (Reserved, not supported yet) Indicates that a user ID has been removed from the system.
 - Value: **usual.event.UID_REMOVED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_PACKAGE_FIRST_LAUNCH
 (Reserved, not supported yet) Indicates that an installed application is started for the first time.
 - Value: **usual.event.PACKAGE_FIRST_LAUNCH**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
 (Reserved, not supported yet) Indicates that an application requires system verification.
 - Value: **usual.event.PACKAGE_NEEDS_VERIFICATION**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_PACKAGE_VERIFIED
 (Reserved, not supported yet) Indicates that an application has been verified by the system.
@@ -215,90 +183,75 @@ Indicates that an application HAP file is not suspended.
 - Value: **usual.event.EXTERNAL_APPLICATIONS_AVAILABLE**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE
 (Reserved, not supported yet) Indicates that applications installed on the external storage are not available for the system.
 - Value: **usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_CONFIGURATION_CHANGED
 (Reserved, not supported yet) Indicates that the device state (for example, orientation and locale) has changed.
 - Value: **usual.event.CONFIGURATION_CHANGED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_LOCALE_CHANGED
 (Reserved, not supported yet) Indicates that the device locale has changed.
 - Value: **usual.event.LOCALE_CHANGED**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_MANAGE_PACKAGE_STORAGE
 (Reserved, not supported yet) Indicates that the device storage is insufficient.
 - Value: **usual.event.MANAGE_PACKAGE_STORAGE**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_DRIVE_MODE
 (Reserved, not supported yet) Indicates that the system is in driving mode.
 - Value: **common.event.DRIVE_MODE**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_HOME_MODE
 (Reserved, not supported yet) Indicates that the system is in home mode.
 - Value: **common.event.HOME_MODE**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_OFFICE_MODE
 (Reserved, not supported yet) Indicates that the system is in office mode.
 - Value: **common.event.OFFICE_MODE**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_USER_STARTED
 (Reserved, not supported yet) Indicates that the user has been started.
 - Value: **usual.event.USER_STARTED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_USER_BACKGROUND
 (Reserved, not supported yet) Indicates that the user has been brought to the background.
 - Value: **usual.event.USER_BACKGROUND**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_USER_FOREGROUND
 (Reserved, not supported yet) Indicates that the user has been brought to the foreground.
 - Value: **usual.event.USER_FOREGROUND**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_USER_SWITCHED
 Indicates that user switching is in progress.
 - Value: **usual.event.USER_SWITCHED**
 - Required subscriber permissions: ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
 
 ## COMMON_EVENT_USER_STARTING
 (Reserved, not supported yet) Indicates that the user is being started.
 - Value: **usual.event.USER_STARTING**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-
 ## COMMON_EVENT_USER_UNLOCKED
 (Reserved, not supported yet) Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
 - Value: **usual.event.USER_UNLOCKED**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_USER_STOPPING
 (Reserved, not supported yet) Indicates that the user is going to be stopped.
 - Value: **usual.event.USER_STOPPING**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 
 ## COMMON_EVENT_USER_STOPPED
 (Reserved, not supported yet) Indicates that the user has been stopped.
@@ -665,11 +618,15 @@ Indicates that the system charging type has changed. This event is available onl
 - Value: **usual.event.CHARGE_TYPE_CHANGED**
 - Required subscriber permissions: none
 
-## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
+## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
 (Reserved, not supported yet) Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
 
+## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
+Indicates that the exemption list for resource usage restrictions has been updated in idle mode. This event is for system applications only.
+- Value: **usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED**
+- Required subscriber permissions: none
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
 Indicates that the system power saving mode has changed.
@@ -766,60 +723,50 @@ Indicates that a user has been removed from the system.
 - Value: **common.event.IVI_VOLTAGE_RECOVERY**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_IVI_TEMPERATURE_RECOVERY
 (Reserved, not supported yet) Indicates that the temperature of the IVI system is restored to normal.
 - Value: **common.event.IVI_TEMPERATURE_RECOVERY**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_IVI_ACTIVE
 (Reserved, not supported yet) Indicates that the battery service of the IVI system is active.
 - Value: **common.event.IVI_ACTIVE**
 - Required subscriber permissions: none
 
-
 ## COMMON_EVENT_USB_STATE<sup>9+</sup>
 Indicates that the USB device state has changed.
-- Value: **usual.event.hardware.usb.action.USB_STATE**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>
 Indicates that the USB port state of the device has changed.
-- Value: **usual.event.hardware.usb.action.USB_PORT_CHANGED**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 Indicates that a USB device has been attached to the device functioning as a USB host.
-- Value: **usual.event.hardware.usb.action.USB_DEVICE_ATTACHED**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 Indicates that a USB device has been detached from the device functioning as a USB host.
-- Value: **usual.event.hardware.usb.action.USB_DEVICE_DETACHED**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 (Reserved, not supported yet) Indicates that a USB accessory was attached.
-- Value: **usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_USB_ACCESSORY_DETACHED
 (Reserved, not supported yet) Indicates that a USB accessory was detached.
-- Value: **usual.event.data.DISK_MOUNTED**
-- Required subscriber permissions: none
 
+For details, see [Common Events of the USB Subsystem](common_event/commonEvent-usb.md).
 
 ## COMMON_EVENT_DISK_REMOVED
 (Reserved, not supported yet) Indicates that an external storage device was removed.
 - Value: **usual.event.data.DISK_BAD_REMOVAL**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
-
 
 ## COMMON_EVENT_DISK_UNMOUNTED
 (Reserved, not supported yet) Indicates that an external storage device was unmounted.
@@ -838,92 +785,77 @@ Indicates that a USB device has been detached from the device functioning as a U
 - Value: usual.event.data.DISK_REMOVED
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-
 ## COMMON_EVENT_DISK_UNMOUNTABLE
 (Reserved, not supported yet) Indicates that an external storage device is unmountable when the card is inserted.
 - Value: **usual.event.data.DISK_UNMOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
-
 
 ## COMMON_EVENT_DISK_EJECT
 (Reserved, not supported yet) Indicates that an external storage device was ejected (at the software level).
 - Value: **usual.event.data.DISK_EJECT**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-
 ## COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>
 Indicates that an external storage device was removed.
 - Value: **usual.event.data.VOLUME_REMOVED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
-
 
 ## COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>
 Indicates that an external storage device was unmounted.
 - Value: **usual.event.data.VOLUME_UNMOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-
 ## COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup>
 Indicates that an external storage device was mounted.
 - Value: **usual.event.data.VOLUME_MOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
-
 
 ## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup>
 Indicates that an external storage device was removed without being unmounted.
 - Value: **usual.event.data.VOLUME_BAD_REMOVAL**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-
 ## COMMON_EVENT_VOLUME_EJECT<sup>9+</sup>
 Indicates that an external storage device was ejected (at the software level).
 - Value: usual.event.data.VOLUME_EJECT
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
-
 
 ## COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 (Reserved, not supported yet) Indicates that the account visibility changed.
 - Value: **usual.event.data.VISIBLE_ACCOUNTS_UPDATED**
 - Required subscriber permissions: ohos.permission.GET_APP_ACCOUNTS
 
-
 ## COMMON_EVENT_ACCOUNT_DELETED
 (Reserved, not supported yet) Indicates that an account was deleted.
 - Value: **usual.event.data.ACCOUNT_DELETED**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 
 ## COMMON_EVENT_FOUNDATION_READY
 (Reserved, not supported yet) Indicates that the foundation is ready.
 - Value: **usual.event.data.FOUNDATION_READY**
 - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 
-
 ## COMMON_EVENT_AIRPLANE_MODE_CHANGED
 Indicates that the airplane mode of the device has changed.
 - Value: **usual.event.AIRPLANE_MODE**
 - Required subscriber permissions: none
-
 
 ## COMMON_EVENT_SPLIT_SCREEN
 Indicates that the screen has been split.
 - Value: **usual.event.SPLIT_SCREEN**
 - Required subscriber permissions: ohos.permission.RECEIVER_SPLIT_SCREEN
 
-
 ## COMMON_EVENT_SLOT_CHANGE<sup>9+</sup>
 Indicates that the notification slot has been updated.
 - Value: **usual.event.SLOT_CHANGE**
 - Required subscriber permissions: ohos.permission.NOTIFICATION_CONTROLLER
-
 
 ## COMMON_EVENT_SPN_INFO_CHANGED<sup>9+</sup>
 Indicates that the SPN displayed has been updated.
 - Value: **usual.event.SPN_INFO_CHANGED**
 - Required subscriber permissions: none
 
-
-## COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup>
+## [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+<sup>](./common_event/commonEvent-ability.md)
 Indicates the result of applying a quick fix to the application.
 - Value: **usual.event.QUICK_FIX_APPLY_RESULT**
 - Required subscriber permissions: none
@@ -1049,3 +981,6 @@ Indicates that the screen is unlocked.
 
 - Value: **usual.event.SCREEN_UNLOCKED**
 - Required subscriber permissions: none
+## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
+
+ָIndicates the result of revoking a quick fix to the application.

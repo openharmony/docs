@@ -1,4 +1,4 @@
-# 使用画布绘制自定义图形
+# 使用画布绘制自定义图形（Canvas）
 
 
 Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制，绘制对象可以是基础形状、文本、图片等。
@@ -89,11 +89,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie'
   ```
 
-  具体接口参考[Lottie](../reference/arkui-ts/ts-components-canvas-lottie.md)，具体实例请参考[Lottie动画](#相关实例)。
-
-  >**说明：**
-  >
-  >在第一次使用Lottie之前，需要在Terminal窗口运行ohpm install \@ohos/lottieETS命令下载Lottie。
+  具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
 
 
 ## 初始化画布组件
@@ -344,8 +340,8 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023032422159](figures/2023032422159.jpg)
 
-  ## 相关实例
+## 相关实例
 
-  使用画布绘制自定义图形，有以下相关实例可供参考：
+使用画布绘制自定义图形，有以下相关实例可供参考：
 
-  - [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
+- [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)

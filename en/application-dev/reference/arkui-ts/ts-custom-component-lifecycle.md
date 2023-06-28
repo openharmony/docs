@@ -113,6 +113,63 @@ Since API version 9, this API is supported in ArkTS widgets.
 | children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | Child component layout information.        |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraint information of the parent component.|
 
+## onRecycle<sup>10+</sup>
+
+onRecycle?(params: { [key: string]: unknown }): void
+
+Invoked when a custom component previously placed in the cache for future reuse is re-added to the node tree, with the parameters used for constructing the component passed in.
+
+Since API version 10, this API is supported in ArkTS widgets.
+
+**Parameters**
+
+| Name| Type                      | Description                |
+| ------ | -------------------------- | -------------------- |
+| params | { [key: string]: unknown } | Parameters used for constructing the custom component.|
+
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State switch: boolean = true
+
+  build() {
+    Column() {
+      Button(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch
+        })
+      if (this.switch) {
+        Child()
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Recycle
+@Component
+struct Child {
+  onRecycle(params) {
+    console.info("Recycle Child")
+  }
+
+  build() {
+    Column() {
+      Text("Child Component")
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
 
 ## LayoutChild<sup>9+</sup>
 

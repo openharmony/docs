@@ -209,6 +209,9 @@ try {
 **接口说明**
 
 根据开发流程，在导入加密密钥过程中，需要依次调用HUKS的生成密钥、导出公钥、导入加密密钥、删除密钥接口。
+
+**表1** 加密导入的接口介绍
+
 | 接口名                      | 描述                 |
 | -------------------------------------- | ----------------------------|
 |generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void| 生成新密钥|
@@ -949,7 +952,7 @@ struct Index {
 
 ### 密钥协商
 
-应用在协商密钥时建议传入[HuksKeyStorageType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
+应用在协商密钥时建议传入[HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
 
 ```ts
 /*
@@ -1320,7 +1323,7 @@ async function testAgree() {
 
 ### 密钥派生
 
-应用在派生密钥时建议传入[HuksKeyStorageType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
+应用在派生密钥时建议传入[HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
 
 ```ts
 /*
@@ -1697,8 +1700,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 2. 使用密钥时，先初始化密钥会话，然后根据密钥生成/导入阶段指定的挑战值类型属性是否需要获取挑战值，或组装新的挑战值。
         
-  **表6** 使用密钥的接口介绍
-
+    **表6** 使用密钥的接口介绍
 	| 接口名                      | 描述                 |
 	| -------------------------------------- | ----------------------------|
 	|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| 初始化密钥会话，获取挑战值|
@@ -2076,18 +2078,18 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 ### 细粒度用户身份认证访问控制
 
-该功能是基于已有[密钥访问控制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md#%E5%AF%86%E9%92%A5%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6)能力的扩展，提供了基于生物特征和锁屏密码二次身份认证的细粒度访问控制能力，允许设置密钥在加密、解密、签名、验签、密钥协商、密钥派生的单个或多个场景时是否需要进行身份验证。比如，业务需要使用HUKS密钥加密保存账号密码信息等数据，要求在加密的时候不进行指纹等身份认证，解密的时候需要进行指纹等身份认证，这是就需要依赖HUKS提供细粒度的二次身份认证访问控制机制。
+该功能是基于已有[密钥访问控制](#密钥访问控制)能力的扩展，提供了基于生物特征和锁屏密码二次身份认证的细粒度访问控制能力，允许设置密钥在加密、解密、签名、验签、密钥协商、密钥派生的单个或多个场景时是否需要进行身份验证。比如，业务需要使用HUKS密钥加密保存账号密码信息等数据，要求在加密的时候不进行指纹等身份认证，解密的时候需要进行指纹等身份认证，这是就需要依赖HUKS提供细粒度的二次身份认证访问控制机制。
 
 **开发流程**
 
-1. 基于用户身份认证访问控制的流程，在密钥生成阶段，通过额外指定用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukstag)值，来指定在某种算法用途的情况下需要使用用户身份认证访问控制能力。
+1. 基于用户身份认证访问控制的流程，在密钥生成阶段，通过额外指定用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag)值，来指定在某种算法用途的情况下需要使用用户身份认证访问控制能力。
 2. 基于用户身份认证访问控制的流程，在密钥使用阶段，业务无需再次指定HUKS_TAG_KEY_AUTH_PURPOSE值，同用户身份认证访问控制的开发流程。
 
 **接口说明**
 
-新增用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukstag)，该Tag值取值范围为枚举类[HuksKeyAlg](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeyalg)。
+新增用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag)，该Tag值取值范围为枚举类[HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg)。
 
-**表8** 细粒度用户身份认证访问控制Tag类型介绍
+**表7** 细粒度用户身份认证访问控制Tag类型介绍
 | 名称                      | 描述                 |
 | -------------------------------------- | ----------------------------|
 |HUKS_TAG_KEY_AUTH_PURPOSE| 表示密钥认证用途的tag，用于设置某种算法用途下需要用户身份认证访问控制|
@@ -2715,3 +2717,6 @@ async function AttestKeyTest() {
 2. Property 'finishSession' does not exist on type 'typeof huks'. Did you mean 'finish'?
 
    不能在huks库中找到finishSession，finishSession是API9版本的，请更新SDK版本或替换新版本的security.huks.d.ts文件。
+
+## 相关实例
+[通用密钥库系统](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks): 本示例使用huks相关接口实现了对任意输入内容进行加密和解密的功能

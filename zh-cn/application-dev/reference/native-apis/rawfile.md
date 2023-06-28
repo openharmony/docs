@@ -1,10 +1,7 @@
 # Rawfile
 
 
-提供操作rawfile目录和rawfile文件的功能。
-
-
-功能包括遍历、打开、搜索、读取和关闭rawfile。
+提供操作rawfile目录和rawfile文件的功能，包括打开、遍历、搜索、读取和关闭rawfile。
 
 
 **起始版本：**
@@ -50,12 +47,12 @@
 | [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | 关闭已打开的[RawDir](#rawdir)并释放所有相关联资源。       |
 | [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | 读取rawfile。                               |
 | [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | 基于指定的offset，在rawfile文件内搜索读写数据的位置。        |
-| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | 获取rawfile长度，单位为int32_t。                  |
+| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | 获取rawfile文件大小。                  |
 | [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | 关闭已打开的[RawFile](#rawfile) 以及释放所有相关联资源。   |
-| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的offset，单位为int32_t。           |
-| [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于offset(单位为int32_t)和文件长度打开rawfile，并获取rawfile文件描述符。 |
+| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的offset。           |
+| [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于offset和文件长度打开rawfile，并获取rawfile文件描述符。 |
 | [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 关闭rawfile文件描述符。                          |
-| [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScript resource manager获取native resource manager。 |
+| [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScript resource manager获取native resource manager。通过此对象完成rawfile相关功能。 |
 | [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | 释放native resource manager。               |
 | [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录。                             |
 | [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件。                             |
@@ -64,10 +61,10 @@
 ## 详细描述
 
 
-## 类型定义说明
+### 类型定义说明
 
 
-### NativeResourceManager
+#### NativeResourceManager
 
 
 ```
@@ -78,14 +75,14 @@ typedef struct NativeResourceManager NativeResourceManager
 
 代表resource manager。
 
-此类封装了JavaScript resource manager的native实现 **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取
+此类封装了JavaScript resource manager的native实现，**ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取。
 
 **起始版本：**
 
 8
 
 
-### RawDir
+#### RawDir
 
 
 ```
@@ -101,7 +98,7 @@ typedef struct RawDir RawDir
 8
 
 
-### RawFile
+#### RawFile
 
 
 ```
@@ -110,17 +107,17 @@ typedef struct RawFile RawFile
 
 **描述：**
 
-提供对rawfile的访问功能。
+提供对rawfile文件操作的相关功能。
 
 **起始版本：**
 
 8
 
 
-## 函数说明
+### 函数说明
 
 
-### OH_ResourceManager_CloseRawDir()
+#### OH_ResourceManager_CloseRawDir()
 
 
 ```
@@ -146,7 +143,7 @@ void OH_ResourceManager_CloseRawDir (RawDir * rawDir)
 8
 
 
-### OH_ResourceManager_CloseRawFile()
+#### OH_ResourceManager_CloseRawFile()
 
 
 ```
@@ -172,7 +169,7 @@ void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 8
 
 
-### OH_ResourceManager_GetRawFileCount()
+#### OH_ResourceManager_GetRawFileCount()
 
 
 ```
@@ -200,7 +197,7 @@ int OH_ResourceManager_GetRawFileCount (RawDir * rawDir)
 8
 
 
-### OH_ResourceManager_GetRawFileDescriptor()
+#### OH_ResourceManager_GetRawFileDescriptor()
 
 
 ```
@@ -209,7 +206,7 @@ bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDe
 
 **描述：**
 
-基于offset(单位为int32_t)和文件长度打开rawfile，并获取rawfile文件描述符。
+基于offset和文件长度打开rawfile，并获取rawfile文件描述符。
 
 打开的文件描述符被用于读取rawfile。
 
@@ -229,7 +226,7 @@ bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDe
 8
 
 
-### OH_ResourceManager_GetRawFileName()
+#### OH_ResourceManager_GetRawFileName()
 
 
 ```
@@ -262,7 +259,7 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 8
 
 
-### OH_ResourceManager_GetRawFileOffset()
+#### OH_ResourceManager_GetRawFileOffset()
 
 
 ```
@@ -271,7 +268,7 @@ long OH_ResourceManager_GetRawFileOffset (const RawFile * rawFile)
 
 **描述：**
 
-获取rawfile当前的offset，单位为int32_t。
+获取rawfile当前的offset。
 
 rawfile当前的offset。
 
@@ -290,7 +287,7 @@ rawfile当前的offset。
 8
 
 
-### OH_ResourceManager_GetRawFileSize()
+#### OH_ResourceManager_GetRawFileSize()
 
 
 ```
@@ -299,7 +296,7 @@ long OH_ResourceManager_GetRawFileSize (RawFile * rawFile)
 
 **描述：**
 
-获取rawfile长度，单位为int32_t。
+获取rawfile文件大小。
 
 **参数：**
 
@@ -309,14 +306,14 @@ long OH_ResourceManager_GetRawFileSize (RawFile * rawFile)
 
 **返回：**
 
-Returns rawfile整体长度。
+Returns rawfile整体文件大小。
 
 **起始版本：**
 
 8
 
 
-### OH_ResourceManager_InitNativeResourceManager()
+#### OH_ResourceManager_InitNativeResourceManager()
 
 
 ```
@@ -345,7 +342,7 @@ NativeResourceManager* OH_ResourceManager_InitNativeResourceManager (napi_env en
 8
 
 
-### OH_ResourceManager_OpenRawDir()
+#### OH_ResourceManager_OpenRawDir()
 
 
 ```
@@ -380,7 +377,7 @@ RawDir* OH_ResourceManager_OpenRawDir (const NativeResourceManager * mgr, const 
 8
 
 
-### OH_ResourceManager_OpenRawFile()
+#### OH_ResourceManager_OpenRawFile()
 
 
 ```
@@ -415,7 +412,7 @@ RawFile* OH_ResourceManager_OpenRawFile (const NativeResourceManager * mgr, cons
 8
 
 
-### OH_ResourceManager_ReadRawFile()
+#### OH_ResourceManager_ReadRawFile()
 
 
 ```
@@ -445,7 +442,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 8
 
 
-### OH_ResourceManager_ReleaseNativeResourceManager()
+#### OH_ResourceManager_ReleaseNativeResourceManager()
 
 
 ```
@@ -467,7 +464,7 @@ void OH_ResourceManager_ReleaseNativeResourceManager (NativeResourceManager * re
 8
 
 
-### OH_ResourceManager_ReleaseRawFileDescriptor()
+#### OH_ResourceManager_ReleaseRawFileDescriptor()
 
 
 ```
@@ -495,7 +492,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor (const RawFileDescriptor & desc
 8
 
 
-### OH_ResourceManager_SeekRawFile()
+#### OH_ResourceManager_SeekRawFile()
 
 
 ```

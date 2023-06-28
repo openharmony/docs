@@ -27,7 +27,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
 
 **错误码：**
 
@@ -92,7 +92,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 mount(volumeId: string): Promise&lt;void&gt;
 
-异步挂载指定卷设备，以promise方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
+异步挂载指定卷设备，以promise方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -108,7 +108,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 挂载指定卷设备 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
 
 **错误码：**
 
@@ -141,7 +141,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 
 mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
-异步挂载指定卷设备，以callback方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
+异步挂载指定卷设备，以callback方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -199,7 +199,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 卸载指定卷设备 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
 
 **错误码：**
 
@@ -290,7 +290,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
 
 **错误码：**
 
@@ -375,7 +375,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
 
 **错误码：**
 
@@ -461,7 +461,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
   | 类型                    | 说明                       |
   | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | 设置卷设备信息                  |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象                  |
 
 **错误码：**
 
@@ -554,7 +554,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 对指定卷设备进行格式化 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
 
 **错误码：**
 
@@ -647,7 +647,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 
   | 类型                      | 说明                       |
    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | 对磁盘进行分区              |
+  | Promise&lt;void&gt;   | 无返回结果的Promise对象              |
 
 **错误码：**
 
@@ -724,9 +724,9 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | 名称         | 类型    | 可读   | 可写   | 说明                 |
 | ----------- | ------- | ------- | ----- | -------------------- |
 | id          | string  | 是 | 否 | 卷设备ID的格式为vol-{主设备号}-{次设备号}，主设备号用来区分不同种类的设备，次设备号用来区分同一类型的多个设备，卷设备ID会随着插卡顺序不同而变化。                 |
-| uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid               |
-| diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID好格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
-| description | string  | 是 | 否 | 卷设备描述、           |
-| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备、 |
+| uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid。               |
+| diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID的格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
+| description | string  | 是 | 否 | 卷设备描述。           |
+| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。 |
 | state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
 | path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/external/{uuid}         |

@@ -1,18 +1,22 @@
 # IActivityChangedCallback
 
 
-## **概述**
+## 概述
 
-定义上报行为事件的回调函数
+定义上报行为事件的回调函数。
 
 用户在获得订阅的行为事件或获取设备缓存的行为事件前，需要先注册该回调函数。只有当订阅的行为发生时，行为数据才会通过回调函数进行上报。 详情可参考[IActivityInterface](interface_i_activity_interface.md)。
 
+**Since:**
+
+3.2
+
 **相关模块:**
 
-[HdiActivityRecognition](activity_recognition.md)
+[HdiActivityRecognition](_hdi_activity_recognition.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -22,7 +26,7 @@
 | [OnActivityChanged](#onactivitychanged)&nbsp;([in]&nbsp;struct&nbsp;[ActRecognitionEvent](_act_recognition_event.md)[]&nbsp;event) | 定义上报行为事件的回调函数。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### OnActivityChanged()
@@ -32,7 +36,7 @@
 IActivityChangedCallback::OnActivityChanged ([in] struct ActRecognitionEvent[] event)
 ```
 
-**描述：**
+**描述:**
 
 定义上报行为事件的回调函数。
 

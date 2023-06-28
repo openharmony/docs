@@ -44,17 +44,17 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-inner-
    }
    ```
 
-2. Set the display orientation of the host featureAbility.
+2. Set the display orientation of the **featureAbility**.
    
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
-   import bundle from '@ohos.bundle';
+   import bundleManager from '@ohos.bundle.bundleManager';
    
    export default {
      onCreate() {
        // Obtain the context and call related APIs.
        let context = featureAbility.getContext();
-       context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE).then(() => {
+       context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
            console.info("Set display orientation.")
        })
        console.info('Application onCreate')

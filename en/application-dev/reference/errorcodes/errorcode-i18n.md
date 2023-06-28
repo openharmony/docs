@@ -26,7 +26,7 @@ Check whether the parameter type is correct.
 
 **Error Message**
 
-Unspported option value.
+param value not valid
 
 **Description**
 

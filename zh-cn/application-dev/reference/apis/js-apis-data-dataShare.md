@@ -17,27 +17,6 @@
 import dataShare from '@ohos.data.dataShare'
 ```
 
-## uri命名规则
-
-标准uri定义结构如下:
-
-**Scheme://authority/path** 
-- Scheme: 协议名，对于data share统一为datashare
-- authority: [userinfo@]host[:port]
-    - userinfo: 登录信息，不需要填写。
-    - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
-    - port: 服务器端口，不需要填写。
-- path: data share的标识信息和资源的路径信息，需要包含data share的标识信息，资源的路径信息可以不填写。
-
-uri示例:
-
-- 不包含资源路径: `datashare:///com.samples.datasharetest.DataShare`
-
-- 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
-
-其中，data share的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
-
-
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
@@ -375,7 +354,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 参数名     | 类型        | 必填 | 说明                       |
 | -------- | -------------| ---- | ------------------------- |
-| uri      | string       | 是   | 指示要插入的数据的路径。     |
+| uri      | string       | 是   | 指示要删除的数据的路径。     |
 | subscriberId | string   | 是   | 订阅者ID，每个订阅者的ID是唯一的。          |
 
 **错误码：**
@@ -558,7 +537,7 @@ let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDat
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -593,7 +572,7 @@ let data : Array<dataShare.PublishedItem> = [
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
 let nums:number[] = [1,2,3];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
-    console.log("publishCallback " + JSON.stringify(result));
+    console.info("publishCallback " + JSON.stringify(result));
     ashmem.closeAshmem();
 }
 try {
@@ -605,10 +584,10 @@ try {
         "data" : ashmem,
         "subscriberId" : "11",
     });
-    console.log("data length is:", data.length);
+    console.info("data length is:", data.length);
     dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
-    console.log("publish error " + JSON.stringify(e));
+    console.error("publish error " + JSON.stringify(e));
 }
 ```
 
@@ -616,7 +595,7 @@ try {
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -640,7 +619,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 ```ts
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
-    console.log("publishCallback " + JSON.stringify(result));
+    console.info("publishCallback " + JSON.stringify(result));
 }
 let data : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
@@ -653,7 +632,7 @@ dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallbac
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number): Promise&lt;Array&lt;OperationResult&gt;&gt;
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -825,7 +804,7 @@ const valueBucket = {
 }
 try {
     dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
+        console.info("insert succeed, data : " + data);
     }). catch((err) => {
         console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -902,7 +881,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
+        console.info("delete succeed, data : " + data);
     }). catch((err) => {
         console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
@@ -943,7 +922,7 @@ try {
             console.error(`query error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     });
 } catch (err) {
     console.error(`query error: code: ${err.code}, message: ${err.message} `);
@@ -983,7 +962,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns).then((data) =>  {
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     }). catch((err) => {
         console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
@@ -1029,7 +1008,7 @@ try {
             console.error(`update error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     });
 } catch (err) {
     console.error(`update error: code: ${err.code}, message: ${err.message} `);
@@ -1074,7 +1053,7 @@ const va = {
 }
 try {
     dataShareHelper.update(uri, da, va).then((data) =>  {
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     }). catch((err) => {
         console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
@@ -1112,7 +1091,7 @@ try {
             console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     });
 } catch (err) {
     console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
@@ -1149,7 +1128,7 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
 try {
     dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     }). catch((err) => {
         console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -1179,9 +1158,9 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err !== undefined) {
-        console.log("normalizeUri failed, error message : " + err);
+        console.info("normalizeUri failed, error message : " + err);
     }else{
-        console.log("normalizeUri = " + data);
+        console.info("normalizeUri = " + data);
     }
 });
 ```
@@ -1211,9 +1190,9 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
-    console.log("normalizeUri = " + data);
+    console.info("normalizeUri = " + data);
 }).catch((err) => {
-    console.log("normalizeUri failed, error message : " + err);
+    console.info("normalizeUri failed, error message : " + err);
 });
 ```
 
@@ -1238,9 +1217,9 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err !== undefined) {
-        console.log("denormalizeUri failed, error message : " + err);
+        console.error("denormalizeUri failed, error message : " + err);
     }else{
-        console.log("denormalizeUri = " + data);
+        console.info("denormalizeUri = " + data);
     }
 });
 ```
@@ -1270,9 +1249,9 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
-    console.log("denormalizeUri = " + data);
+    console.info("denormalizeUri = " + data);
 }).catch((err) => {
-    console.log("denormalizeUri failed, error message : " + err);
+    console.error("denormalizeUri failed, error message : " + err);
 });
 ```
 
@@ -1296,7 +1275,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
-    console.log("***** notifyChange *****");
+    console.info("***** notifyChange *****");
 });
 ```
 

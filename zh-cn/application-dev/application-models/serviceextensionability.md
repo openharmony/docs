@@ -392,7 +392,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // 对客户端包名进行识别
         if (callerBundleName != 'com.example.connectextapp') { // 识别不通过
-          console.info(TAG, 'The caller bundle is not in whitelist, reject');
+          console.info(TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // 识别通过，执行正常业务逻辑
@@ -449,9 +449,9 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   }
   ```
 
-## 相关示例
+## 相关实例
 
-针对ServiceExtensionAbility开发，有以下相关示例可供参考：
+针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
 - [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
 - [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)

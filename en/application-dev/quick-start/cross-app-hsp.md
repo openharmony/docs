@@ -29,7 +29,9 @@ liba
 │       └── module.json5
 └── oh-package.json5
 ```
-Below is an example of the **index.ets** file content:
+In the entry file **index.ets**, declare the APIs to be exposed.
+
+Below is an example:
 
 ```ts
 // liba/src/main/ets/index.ets
@@ -168,7 +170,7 @@ struct Index {
 }
 ```
 
-## Inter-Application HSP Distribution
+## Inter-Application HSP Distribution (for System Applications Only)
 Inter-application HSPs are not completely integrated into an application. They are distributed by being preset in the system version or installed with an application on the device. To be specific:
 1. Some frequently-used inter-application HSPs are preset in the system version.
 2. When a user downloads an application from the application market, if the application market detects that the application depends on one or more inter-application HSPs and any of these HSPs are not installed on the target device, it will download the application as well as the missing HSPs for the user. In this way, the application can use the features shared through the HSPs properly.

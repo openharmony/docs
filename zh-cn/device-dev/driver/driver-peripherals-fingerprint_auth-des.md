@@ -88,7 +88,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 ### 接口说明
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/fingerprint_auth/v1_0/）。
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/fingerprint_auth）。
 在本文中，指纹凭据的录入、认证、识别和删除相关的HDI接口如表1所示，表2中的回调函数分别用于指纹执行器返回操作结果给框架和返回操作过程中的提示信息给上层应用。
 
 **表1** 接口功能介绍
@@ -101,7 +101,8 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定模板ID的模板信息。        |
 | OnRegisterFinish(const std::vector\<uint64_t>& templateIdList,<br/>        const std::vector\<uint8_t>& frameworkPublicKey, const std::vector\<uint8_t>& extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的模板列表用于对账。 |
 | Enroll(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br/>        const sptr\<IExecutorCallback>& callbackObj) | 录入指纹模板。                                               |
-| Authenticate(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br/>        const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | 认证指纹模板。         |
+| Authenticate(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br/>        const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | 认证指纹模板(V1_0版本)。         |
+| AuthenticateV1_1(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br/>        bool endAfterFirstFail, const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | 认证指纹模板(V1_1版本)。         |
 | Identify(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br/>        const sptr\<IExecutorCallback>& callbackObj) | 识别指纹模板。           |
 | Delete(const std::vector\<uint64_t>& templateIdList)          | 删除指纹模板。        |
 | Cancel(uint64_t scheduleId)     | 通过scheduleId取消指定录入、认证、识别操作。     |
@@ -109,6 +110,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 | GetProperty(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<GetPropertyType>& propertyTypes, Property& property) | 获取执行器属性信息。 |
 | SetCachedTemplates(const std::vector\<uint64_t> &templateIdList) | 设置需缓存模板列表。 |
 | RegisterSaCommandCallback(const sptr\<ISaCommandCallback> &callbackObj) | 注册SA命令回调。 |
+
 **表2** 回调函数介绍
 
 | 接口名称                                                       | 功能介绍                 |
@@ -349,15 +351,24 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
        return HDF_SUCCESS;
    }
 
-   // 实现指纹认证接口
-   int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,
+   // 调用指纹认证V1_1版本接口实现指纹认证V1_0版本接口
+   int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t> &templateIdList,
+       const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
+   {
+       IAM_LOGI("interface mock start");
+       return AuthenticateV1_1(scheduleId, templateIdList, true, extraInfo, callbackObj);
+   }
+
+   // 实现指纹认证V1_1版本接口
+   int32_t AuthenticateV1_1(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList, bool endAfterFirstFail,
        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
        static_cast<void>(templateIdList);
+       static_cast<void>(endAfterFirstFail);
        static_cast<void>(extraInfo);
-       IAM_LOGI("authenticate, result is %{public}d", ResultCode::NOT_ENROLLED);
+       IAM_LOGI("authenticateV1_1, result is %{public}d", ResultCode::NOT_ENROLLED);
        int32_t ret = callbackObj->OnResult(ResultCode::NOT_ENROLLED, {});
        if (ret != ResultCode::SUCCESS) {
            IAM_LOGE("callback result is %{public}d", ret);

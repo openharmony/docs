@@ -45,15 +45,16 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device serial, result : ${result}`);
 });
 ```
 
@@ -94,13 +95,14 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device serial, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -136,15 +138,16 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting display version, result : ${result}`);
 });
 ```
 
@@ -185,13 +188,14 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting display version, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -227,15 +231,16 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceName(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceName(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device name, result : ${result}`);
 });
 ```
 
@@ -276,12 +281,13 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceName(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device name, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
 });
 ```

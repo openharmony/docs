@@ -1,7 +1,7 @@
 # UsbTypes.idl
 
 
-## **概述**
+## 概述
 
 USB驱动相关的数据类型。
 
@@ -15,21 +15,21 @@ USB驱动相关的数据类型。
 
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [PortInfo](_port_info.md) | USB设备端口信息。 | 
-| [UsbDev](_usb_dev.md) | USB设备地址信息。 | 
-| [UsbPipe](_usb_pipe.md) | USB设备管道信息。 | 
-| [UsbCtrlTransfer](_usb_ctrl_transfer.md) | USB设备控制传输信息。 | 
-| [USBDeviceInfo](_u_s_b_device_info.md) | USB设备信息。 | 
+| [PortInfo](_port_info.md) | struct<br/>USB设备端口信息。 | 
+| [UsbDev](_usb_dev.md) | struct<br/>USB设备地址信息。 | 
+| [UsbPipe](_usb_pipe.md) | struct<br/>USB设备管道信息。 | 
+| [UsbCtrlTransfer](_usb_ctrl_transfer.md) | struct<br/>USB设备控制传输信息。 | 
+| [USBDeviceInfo](_u_s_b_device_info.md) | struct<br/>USB设备信息。 | 
 
 
 ### 关键字

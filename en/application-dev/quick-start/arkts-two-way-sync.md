@@ -1,4 +1,4 @@
-# $ Syntax: Two-Way Synchronization of Built-in Components
+# $$ Syntax: Two-Way Synchronization of Built-in Components
 
 
 The $$ operator provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.

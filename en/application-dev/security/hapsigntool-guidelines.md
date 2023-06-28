@@ -246,8 +246,10 @@ The process of signing a HAP is as follows:
    ```shell
    java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
    ```
-   
-   > Note:<br>Record the values of **keyAlias**, **keyStorePwd**, and **keyPwd**. These values will be used when the application signing certificate is generated and the HAP is signed.
+
+   > **NOTE**
+   >
+   > Record the values of **keyAlias**, **keyStorePwd**, and **keyPwd**. These values will be used when the application signing certificate is generated and the HAP is signed.
 
    The command parameters are described as follows:
 
@@ -325,16 +327,18 @@ The process of signing a HAP is as follows:
    ```shell
    java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
    ```
-   > Note:<br>The following parameters are used when there is no application signing certificate available. If the application signing certificate is available, the following parameters must be modified.
+   > **NOTE**
+   >
+   > The following parameters are used when there is no application signing certificate available. If the application signing certificate is available, the following parameters must be modified.
    >
    > - **keyAlias**: Enter the key alias of the application signing certificate. This parameter is mandatory. 
    > - **appCertFile**: Enter the application signing certificate. This parameter is mandatory.
    > - **keystoreFile**: Enter the KS file of the application signing certificate. This parameter is mandatory. 
-   > - **keyPwd**: Enter the key password in the KS file. 
+> - **keyPwd**: Enter the key password in the KS file. 
    > - **keystorePwd**: Enter the KS password in the KS file.
 
    The command parameters are described as follows:
-
+   
    ```
    sign-app: Sign a HAP.
        ├──-keyAlias          # Key alias, which must be the same as the alias of the key pair generated. This parameter is mandatory.

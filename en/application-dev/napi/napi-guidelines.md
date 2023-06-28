@@ -1,4 +1,4 @@
-# Using N-APIs in Application Projects
+# Using Native APIs in Application Projects
 
 In OpenHarmony, you can use the N-APIs in C APIs to implement interaction between ArkTS/TS/JS and C/C++. The  N-API names are the same as those in the third-party **Node.js**. Currently, OpenHarmony supports some N-APIs. For details about the APIs supported, see [arkui_napi](https://gitee.com/openharmony/arkui_napi/blob/master/libnapi.ndk.json).
 
@@ -156,7 +156,7 @@ struct Index {
 // Declare the N-APIs exposed to ArkTS.
 export const add: (a: number, b: number) => number;
 export const nativeCallArkTS: (a: object) => number;
-```
+``` 
 
 ## Development Guidelines
 

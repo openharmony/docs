@@ -237,7 +237,6 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | [Audio Recording](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)| This codelab shows how to use **AudioRecorder** to record an audio file and use **AudioPlayer** to play the recorded audio.| ArkTS |
 | [Notepad](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS)| This codelab shows how to develop a notepad in ArkTS. You can create, delete, and favorite notes, and use the lightweight database to store data persistently. | ArkTS |
 | [Distributed Mail Editing](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS)| This codelab shows how to develop the distributed email editing function. By leveraging the distributed capabilities, a remote device in the same LAN and with the same login account can be started, and email editing can be continued on the remote device.| ArkTS |
-| [Third-party Library](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/VCardDemo)| This codelab shows how to use vcard, a third-party library used in OpenHarmony to write and read contact data in a specified format (file with the extension name **vcard**).| ArkTS |
 
 
 ## Resolved Issues

@@ -27,9 +27,9 @@
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
+  - [Common Component Development](subsys-graphics-common-guide.md)
   - [Container Component Development](subsys-graphics-container-guide.md)
   - [Development of Layout Container Components](subsys-graphics-layout-guide.md)
-  - [Common Component Development](subsys-graphics-common-guide.md)
   - [Animator Development](subsys-graphics-animation-guide.md)
 - Multimedia
   - Camera
@@ -65,8 +65,8 @@
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
   - [Development on HUKS](subsys-security-huks-guide.md)
-  - [Application Privilege Configuration Guide](subsys-app-privilege-config-guide.md)
-  - [Preset Application Configuration Guide](subsys-preinstall-app-config-guide.md)
+  - [Application Privilege Configuration](subsys-app-privilege-config-guide.md)
+  - [Configuration of Pre-installed Applications](subsys-preinstall-app-config-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module
@@ -79,6 +79,7 @@
       - [Component-based Startup](subsys-boot-init-sub-unit.md)
       - [init Run Log Standardization](subsys-boot-init-log.md)
       - [Seccomp Policy Development](subsys-boot-init-seccomp.md)
+      - [DeviceInfo Adaptation](subsys-boot-init-deviceInfo.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
   - [FAQs](subsys-boot-faqs.md)

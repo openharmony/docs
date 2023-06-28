@@ -113,7 +113,7 @@ Failed to get the missionInfo of the specified missionId.
 **Possible Causes**
 
 The possible causes are as follows:
-1. The mission ID is incorrect.
+1. An incorrect mission ID is passed in.
 2. The mission information corresponding to the mission ID does not exist.
 
 **Solution**
@@ -192,6 +192,26 @@ The continuation task has been initiated and is not complete yet.
 **Solution**
 
 Wait until the continuation task is complete.
+
+## 16300507 Failed to get the missionInfo of the specified bundleName.
+
+**Description**
+
+This error code is reported when calling the **distributedMissionManager.continueMission** API with **bundleName** specified fails.
+
+**Error Message**
+
+Failed to get the missionInfo of the specified bundle name.
+
+**Possible Causes**
+
+The possible causes are as follows:
+1. An incorrect bundle name is passed in.
+2. The mission information corresponding to the bundle name does not exist.
+
+**Solution**
+
+Verify the bundle name.
 
 ## 3 Failed to flatten the object.
 

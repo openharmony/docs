@@ -257,7 +257,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 撤销快速修复的接口，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.INSTALL_BUNDLE, ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -302,7 +302,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 撤销快速修复的接口，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.INSTALL_BUNDLE, ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 

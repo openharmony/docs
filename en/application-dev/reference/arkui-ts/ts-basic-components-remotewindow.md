@@ -20,9 +20,9 @@ Creates a **\<RemoteWindow>** through a window animation object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| target | [WindowAnimationTarget](#windowanimationtarget) | Yes| - | Description of the animation window to control.|
+| Name| Type| Mandatory | Description|
+| -------- | -------- | --------------- | -------- |
+| target | [WindowAnimationTarget](#windowanimationtarget) | Yes  | Description of the animation window to control.|
 
 ## WindowAnimationTarget
 
@@ -56,20 +56,120 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
+The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object passed from the **WindowAnimationController** object set through [windowAnimationManager](../apis/js-apis-windowAnimationManager.md). You can create a **RemoteWindowExample.ets** file and encapsulate the **RemoteWindowExample** component and the passed **WindowAnimationTarget** object.
+The **\<RemoteWindow>** component can be used only in the system application Launcher. Therefore, you can place the **RemoteWindowExample** component in the **build** function of the **EntryView.ets** page of Launcher, compile Launcher, and push the Launcher installation package to the device system.
 
 ```ts
-// xxx.ets
+// WindowAnimationControllerImpl.ets file
+import windowAnimationManager from '@ohos.animation.windowAnimationManager';
+
+export default class WindowAnimationControllerImpl implements windowAnimationManager.WindowAnimationController {
+  onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                         finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void
+  {
+    console.log(`remote window animaion onStartAppFromLauncher`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onStartAppFromRecent(startingWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                       finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
+    console.log(`remote window animaion onStartAppFromRecent`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onStartAppFromOther(startingWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                      finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
+    console.log(`remote window animaion onStartAppFromOther`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onAppTransition(fromWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                  toWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                  finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void{
+    console.log(`remote window animaion onAppTransition`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onMinimizeWindow(minimizingWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                   finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
+    console.log(`remote window animaion onMinimizeWindow`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onCloseWindow(closingWindowTarget: windowAnimationManager.WindowAnimationTarget,
+                finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
+    console.log(`remote window animaion onCloseWindow`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onScreenUnlock(finishedCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
+    console.log(`remote window animaion onScreenUnlock`);
+    finishedCallback.onAnimationFinish();
+  }
+
+  onWindowAnimationTargetsUpdate(fullScreenWindowTarget: windowAnimationManager.WindowAnimationTarget, 
+                              floatingWindowTargets: Array<windowAnimationManager.WindowAnimationTarget>): void {
+    console.log('onWindowAnimationTargetsUpdate, the fullScreenWindowTarget is: ' + fullScreenWindowTarget);
+    console.log('onWindowAnimationTargetsUpdate, the floatingWindowTargets are: ' + floatingWindowTargets);
+  }
+}
+```
+
+```ts
+// RemoteWindowExample.ets file
+import windowAnimationManager from '@ohos.animation.windowAnimationManager';
+import WindowAnimationControllerImpl from '../animation/remoteanimation/WindowAnimationControllerImpl';
+
 @Entry
 @Component
-struct RemoteWindowExample {
-  @State target: WindowAnimationTarget = undefined // Obtained through windowAnimationManager
+export default struct RemoteWindowExample {
+  @State target: WindowAnimationTarget = undefined // Obtained through windowAnimationManager.
+
+  aboutToAppear(): void {
+    let controller = new WindowAnimationControllerImpl();
+    windowAnimationManager.setController(controller);
+
+    controller.onStartAppFromLauncher = (startingWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onStartAppFromLauncher`);
+      this.target = startingWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+
+    controller.onStartAppFromRecent = (startingWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onStartAppFromRecent`);
+      this.target = startingWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+
+    controller.onStartAppFromOther = (startingWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onStartAppFromOther`);
+      this.target = startingWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+
+    controller.onAppTransition = (fromWindowTarget, toWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onAppTransition`);
+      this.target = toWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+
+    controller.onMinimizeWindow = (minimizingWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onMinimizeWindow`);
+      this.target = minimizingWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+
+    controller.onCloseWindow = (closingWindowTarget, finishedCallback) => {
+      console.log(`RemoteWindowExample: remote window animaion onCloseWindow`);
+      this.target = closingWindowTarget;
+      finishedCallback.onAnimationFinish();
+    }
+  }
 
   build() {
     Column() {
       RemoteWindow(this.target)
-      	.translate({ x: 100, y: 200 })
-      	.scale({ x: 0.5, y: 0.5 })
-        .opacity(0.8)
+        .scale({ x: 0.5, y: 0.5}) // Used for demonstration purposes only. .In general cases, scale({ x: 1, y: 1 }) is required.
       	.position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
       	.width(px2vp(this.target?.windowBounds.width))
       	.height(px2vp(this.target?.windowBounds.height))

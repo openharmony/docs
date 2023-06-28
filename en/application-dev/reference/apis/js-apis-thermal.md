@@ -1,6 +1,6 @@
 # @ohos.thermal (Thermal Management)
 
-The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
+This module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 
 > **NOTE**
 >
@@ -90,7 +90,7 @@ Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**
+**Return value**:
 
 | Type        | Description        |
 | ------------ | ------------ |
@@ -173,7 +173,7 @@ Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**
+**Return value**:
 
 | Type          | Description    |
 | ------------ | ------ |

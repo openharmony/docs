@@ -63,7 +63,6 @@ Provides the device information.
 | screenDensity<sup>4+</sup> | number | Screen density.|
 | screenShape<sup>4+</sup> | string | Screen shape. The options are as follows:<br>- **rect**: rectangular screen<br>- **circle**: round screen|
 | apiVersion<sup>4+</sup> | number | API version.|
-| releaseType<sup>4+</sup> | string | Release type. The value includes both the release type and the API version, for example, Beta1.<br>Available release types are as follows:<br>- **Canary**: Releases of this type are compatible with each other under the same API version, but not with those of the **beta** and **release** type.<br>- **Beta**: Releases of this type are compatible with each other under the same API version, but not with those of the **release** type.<br>- **Release**: Releases of this type are compatible with the latest five API versions.|
 | deviceType<sup>4+</sup> | string | Device type.|
 
 

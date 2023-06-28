@@ -20,10 +20,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name      | Type   | Mandatory  | Description                                    |
-| --------- | ------- | ---- | ---------------------------------------- |
-| rating    | number  | Yes   | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.|
-| indicator | boolean | No   | Whether the component is used only as an indicator and cannot be operated.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
+| Name   | Type| Mandatory| Description                                                    |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| rating    | number   | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| indicator | boolean  | No  | Whether the component is used only as an indicator and cannot be operated.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
 
 
 ## Attributes

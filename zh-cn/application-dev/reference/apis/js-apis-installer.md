@@ -16,6 +16,7 @@ import installer from '@ohos.bundle.installer';
 | 权限                           | 权限等级    | 描述             |
 | ------------------------------ | ----------- | ---------------- |
 | ohos.permission.INSTALL_BUNDLE | system_core | 可安装、卸载应用。 |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
 
@@ -91,7 +92,12 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -160,7 +166,12 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -224,7 +235,12 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -746,6 +762,98 @@ try {
     console.error('getBundleInstaller failed. Cause: ' + error.message);
 }
 ```
+
+## BundleInstaller.getSpecifiedDistributionType<sup>10+</sup>
+getSpecifiedDistributionType(bundleName: string): string;
+
+以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的InstallParam中的specifiedDistributionType字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的分发类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = "com.example.myapplication";
+
+try {
+    let type = installer.getSpecifiedDistributionType(bundleName);
+    console.info('getSpecifiedDistributionType successfully, type:' + type);
+} catch (error) {
+    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+}
+```
+
+
+## BundleInstaller.getAdditionalInfo<sup>10+</sup>
+
+getAdditionalInfo(bundleName: string): string;
+
+以同步接口查询指定bundleName的额外信息。该返回值是在调用install接口时传入的InstallParam中的additionalInfo字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的额外信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = "com.example.myapplication";
+
+try {
+    let info = installer.getAdditionalInfo(bundleName);
+    console.info('getAdditionalInfo successfully, additionInfo:' + info);
+} catch (error) {
+    console.error('getAdditionalInfo failed. Cause: ' + error.message);
+}
+```
+
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
@@ -773,8 +881,10 @@ try {
 | installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装，默认值为应用初次安装 |
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录，默认值为false。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
-| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期，默认值为-1。 |
+| crowdtestDeadline| number                         | 否                        | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
+| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
+| additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 
 ## UninstallParam<sup>10+</sup>
 

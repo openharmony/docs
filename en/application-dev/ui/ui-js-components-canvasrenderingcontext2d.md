@@ -732,7 +732,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001232003008](figures/en-us_image_0000001232003008.gif)
+![en-us_image_0000001218279600](figures/en-us_image_0000001218279600.gif)
 
 > **NOTE**
 > - Unlike the **transform()** function, the **setTransform()** function resets the existing transformation matrix and creates a transformation matrix even if it uses the same parameters.
