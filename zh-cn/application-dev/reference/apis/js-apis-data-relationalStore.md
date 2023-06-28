@@ -458,8 +458,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的列表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
-| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的列表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
+| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -2932,7 +2932,7 @@ promiseRestore.then(()=>{
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置分布式列表，使用callback异步回调。
+设置分布式数据库表，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2942,7 +2942,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名。 |
+| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式数据库表表名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
 
 **错误码：**
@@ -2969,7 +2969,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
-设置分布式列表，使用Promise异步回调。
+设置分布式数据库表，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2979,7 +2979,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 
 | 参数名 | 类型                     | 必填 | 说明                     |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | ArrayArray&lt;string&gt; | 是   | 要设置的分布式列表表名。 |
+| tables | ArrayArray&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
 
 **返回值**：
 
@@ -3010,7 +3010,7 @@ promise.then(() => {
 
 setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
-设置分布式列表，使用callback异步回调。
+设置分布式数据库表，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3020,7 +3020,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: number, config: Distribu
 
 | 参数名      | 类型                                  | 必填  | 说明              |
 | -------- | ----------------------------------- | --- | --------------- |
-| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名。     |
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库表表名。     |
 | type     | number | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
 | config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
@@ -3043,7 +3043,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
  setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
 
-设置分布式列表，使用Promise异步回调。
+设置分布式数据库表，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3053,7 +3053,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式列表表名。                                     |
+| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                     |
 | type   | number                                    | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
 | config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
 
