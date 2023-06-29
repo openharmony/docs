@@ -4,27 +4,27 @@
 >
 > This guide applies to JS development using OpenHarmony API version 9 and SDK version 3.2.7 or later.
 
-## Generating and Converting a Key
+## Key Generation and Conversion
 
-**When to Use**
+### When to Use
 
 Typical key generation operations involve the following:
 
-1. Randomly create a key instance for subsequent encryption and decryption.
-2. Convert external or stored binary data into a key instance for subsequent encryption and decryption.
-3. Obtain the binary data of a key for storage or transmission.
-> **NOTE**<br>The key instance can be a symmetric key instance (**SymKey**) or an asymmetric key pair instance (**KeyPair**). The **KeyPair** instance consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+1. Randomly create a key object for subsequent encryption and decryption.
+2. Convert external or internal binary data into a key object for subsequent encryption and decryption.
+3. Obtain the binary data of a key object for storage or transmission.
 
+> **NOTE**
+>
+> The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
-**Available APIs**
+### Available APIs
 
-For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
-
-The table below describes the APIs used in this guide.
+The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 |Instance|API|Description|
 |---|---|---|
-|cryptoFramework|createAsyKeyGenerator(algName : string) : AsyKeyGenerator|Creates an **AsyKeyGenerator** instance.|
+|cryptoFramework|createAsyKeyGenerator(algName : string) : AsyKeyGenerator|Creates an **AsyKeyGenerator** instance based on the asymmetric key pair specifications specified by **algName**.|
 |cryptoFramework|createSymKeyGenerator(algName : string) : SymKeyGenerator|Creates a **SymKeyGenerator** instance.|
 |AsyKeyGenerator|generateKeyPair(callback : AsyncCallback\<KeyPair>) : void|Generates an asymmetric key pair randomly. This API uses an asynchronous callback to return the result.|
 |AsyKeyGenerator|generateKeyPair() : Promise\<KeyPair>|Generates an asymmetric key pair randomly. This API uses a promise to return the result.|
@@ -36,17 +36,17 @@ The table below describes the APIs used in this guide.
 | SymKeyGenerator         |convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>| Converts binary data into a symmetric key. This API uses a promise to return the result.|
 | Key | getEncoded() : DataBlob;  | Obtains the binary data of a key. (The child class instances of **Key** include **SymKey**, **PubKey**, and **PriKey**.)|
 
-**How to Develop**
+### How to Develop
 
-Example 1: Randomly generate an asymmetric key pair and obtain its binary data.
+Randomly generate an asymmetric key pair and obtain its binary data.
 
 1. Create an **AsyKeyGenerator** instance.
 2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
-3. Obtain binary data of the key pair generated.
+3. Obtain the binary data of the key pair generated.
 
-The following sample code demonstrates how to randomly generate an RSA key (1024 bits and two primes) using promise-based APIs.
+Example: Randomly generate an RSA key (1024 bits and two primes) in promise mode.
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function generateAsyKey() {
@@ -67,15 +67,15 @@ function generateAsyKey() {
 }
 ```
 
-Example 2: Randomly generate a symmetric key and obtain its binary data.
+Randomly generate a symmetric key and obtain its binary data.
 
 1. Create a **SymKeyGenerator** instance.
 2. Randomly generate a symmetric key using **SymKeyGenerator**. 
-3. Obtain binary data of the key generated.
+3. Obtain the binary data of the key generated.
 
-The following example demonstrates how to randomly generate a 256-bit AES key using promise-based APIs.
+Example: Randomly generate an AES key (256 bits) in promise mode.
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // Output the byte streams in hexadecimal format.
@@ -98,12 +98,12 @@ function testGenerateAesKey() {
 }
 ```
 
-Example 3: Generate an asymmetric key pair from the binary RSA key data.
+Generate an RSA asymmetric key pair from the binary data.
 
 1. Obtain the binary data of the RSA public or private key. The public key must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format. The private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
-2. Create an **AsyKeyGenerator** instance and call **convertKey()** to convert the key binary data (data of the private or public key, or both) into a **KeyPair** instance.
+2. Create an **AsyKeyGenerator** instance, and use **convertKey()** to convert the key binary data (data of the private or public key, or both) into a **KeyPair** instance.
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
@@ -121,14 +121,14 @@ function convertAsyKey() {
 
 > **NOTE**
 >
-> The public key material to be converted in **convertKey()** must be in the DER format complying with X.509 specifications, and the private key material must be in the DER format complying with PKCS #8 specifications.
+> The public key binary data to be converted by **convertKey()** must be in the DER format complying with X.509 specifications, and the private key binary data must be in the DER format complying with PKCS #8 specifications.
 
-Example 4: Generate an asymmetric key pair from the binary ECC key data.
+Generate an ECC asymmetric key pair from the binary key data.
 
 1. Obtain the ECC binary key data and encapsulate it into a **DataBlob** instance.
-2. Call **convertKey()** to convert the key binary data (data of the private or public key, or both) into a **KeyPair** instance.
+2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function convertEccAsyKey() {
@@ -146,15 +146,15 @@ function convertEccAsyKey() {
 }
 ```
 
-Example 5: Generate a symmetric key from binary data.
+Generate a symmetric key from the binary key data.
 
 1. Create a **SymKeyGenerator** instance.
-2. Generate a symmetric key from the binary data passed in.
-3. Obtain binary data of the key generated.
+2. Generate a symmetric key from the binary data.
+3. Obtain the binary data of the key generated.
 
-The following example demonstrates how to generate a 3DES key (192 bits only) using callback-based APIs.
+Example: Generate a 3DES key (192 bits only) in callback mode.
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // Output the byte streams in hexadecimal format.
@@ -189,26 +189,27 @@ function testConvertAesKey() {
       let encodedKey = key.getEncoded();    // Obtain the binary data of the symmetric key and output a 192-bit byte stream.
       console.info('key getEncoded hex: ' + uint8ArrayToShowStr(encodedKey.data));
     })
-  } catch (error) {    // Throw an exception immediately in synchronous mode when an error is detected during the parameter check.
+  } catch (error) {    // Throw an exception immediately after an error is detected during the parameter check.
     console.error(`convertKey failed, ${error.code}, ${error.message}`);
     return;
   }
 }
 ```
 
-## Encrypting and Decrypting Data
+## Encryption and Decryption
 
-**When to Use**
+### When to Use
 
 Important data needs to be encrypted in data storage or transmission for security purposes. Typical encryption and decryption operations involve the following:
+
 1. Encrypt and decrypt data using a symmetric key.
 2. Encrypt and decrypt data using an asymmetric key pair.
 
-**Available APIs**
+### Available APIs
 
-For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to the complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs in the API reference to ensure correct use of these APIs.
+The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
-The table below describes the APIs used in this guide.
+Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
 
 |Instance|API|Description|
 |---|---|---|
@@ -220,16 +221,16 @@ The table below describes the APIs used in this guide.
 |Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finalizes the encryption or decryption. This API uses an asynchronous callback to return the result.|
 |Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finalizes the encryption or decryption. This API uses a promise to return the result.|
 
-**How to Develop**
+### How to Develop
 
-Example 1: Encrypt and decrypt data using a symmetric key.
+Encrypt and decrypt data using a symmetric key.
 
 1. Create a **SymKeyGenerator** instance.
 2. Use the key generator to generate a symmetric key.
 3. Create a **Cipher** instance.
 4. Encrypt or decrypt data.
 
-The following example demonstrates how to use the AES-GCM to encrypt and decrypt data with promise-based APIs.
+Example: Use AES GCM to encrypt and decrypt data in promise mode.
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -291,7 +292,7 @@ function genKeyMaterialBlob() {
 }
 
 
-// Automatically generate a key in AES GCM mode and return the result in a promise.
+// Automatically generate an AES GCM key in promise mode.
 function testAesGcm() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -308,7 +309,7 @@ function testAesGcm() {
     console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
     // Use the key generator to randomly generate a 128-bit symmetric key.
     let promiseSymKey = symKeyGenerator.generateSymKey();
-    // Constructor
+    // Generate GCM parameter specifications.
     globalGcmParams = genGcmParamsSpec();
 
     // Create a Cipher instance.
@@ -327,7 +328,7 @@ function testAesGcm() {
       globalKey = key;
       return key;
   }).then(key => {
-      // Initialize the cipher environment and start encryption.
+      // Initialize the Cipher instance and start encryption.
       let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
       let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
       return promiseInit;
@@ -344,7 +345,7 @@ function testAesGcm() {
       globalGcmParams.authTag = authTag;
       return;
   }).then(() => {
-      // Initialize the cipher environment and start decryption.
+      // Initialize the Cipher instance and start decryption.
       let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
       let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
       return promiseInit;
@@ -365,7 +366,7 @@ function testAesGcm() {
 }
 ```
 
-The following example demonstrates how to use the the 3DES ECB to convert existing data into a key and encrypt and decrypt data using callback-based APIs.
+Example: Generate a key from the existing data to encrypt and decrypt data using 3DES ECB in callback mode.
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -409,7 +410,7 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-// Use the 3DES ECB to Generate a key from the existing data and encrypt and decrypt data using callback-based APIs.
+// Generate a 3DES ECB key from the existing data in callback mode.
 function test3DesEcb() {
   // Create a SymKeyGenerator instance.
   let symAlgName = '3DES192';
@@ -444,7 +445,7 @@ function test3DesEcb() {
       console.info('key getEncoded hex: ' + uint8ArrayToShowStr(encodedKey.data));
       globalKey = key;
 
-      // Initialize the cipher environment and start encryption.
+      // Initialize the Cipher instance and start encryption.
       let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
       // init
       globalCipher.init(mode, key, null, (err, ) => {
@@ -465,7 +466,7 @@ function test3DesEcb() {
               globalCipherText = new Uint8Array(globalCipherText);
               globalCipherText = {data : globalCipherText};
             }
-            // Initialize the cipher environment and start decryption.
+            // Initialize the Cipher instance and start decryption.
             let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
             // init
             globalCipher.init(mode, globalKey, null, (err, ) => {
@@ -490,9 +491,10 @@ function test3DesEcb() {
   }
 }
 ```
-The following example demonstrates how to call **update()** multiple times to implement AES GCM encryption and decryption by using promise-based APIs.
 
-```javascript
+Example: Encrypt and decrypt a large amount in AES GCM mode by calling **update()** multiple times in promise mode.
+
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 var globalCipher;
@@ -550,7 +552,7 @@ function testAesMultiUpdate() {
     console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
     // Use the key generator to randomly generate a 128-bit symmetric key.
     let promiseSymKey = symKeyGenerator.generateSymKey();
-    // Constructor
+    // Generate GCM parameter specifications.
     globalGcmParams = genGcmParamsSpec();
 
     // Create a Cipher instance.
@@ -569,12 +571,12 @@ function testAesMultiUpdate() {
     globalKey = key;
     return key;
   }).then(key => {
-    // Initialize the cipher environment and start encryption.
+    // Initialize the Cipher instance and start encryption.
     let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
     return promiseInit;
   }).then(async () => {
-    let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the plaintext contains 43 bytes.
+    let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the plaintext is of 43 bytes.
     let messageArr = [];
     let updateLength = 20; // Pass in 20 bytes by update() each time.
     globalCipherText = [];
@@ -602,7 +604,7 @@ function testAesMultiUpdate() {
     globalGcmParams.authTag = authTag;
     return;
   }).then(() => {
-    // Initialize the cipher environment and start decryption.
+    // Initialize the Cipher instance and start decryption.
     let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
     let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
     return promiseInit;
@@ -614,7 +616,7 @@ function testAesMultiUpdate() {
       let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
       let message = new Uint8Array(messageArr);
       let messageBlob = { data : message };
-      let updateOutput = await globalCipher.update(messageBlob); // Pass in data by segment.
+      let updateOutput = await globalCipher.update(messageBlob); // Update by segment.
       globalPlainText += uint8ArrayToString(updateOutput.data);     // Restore the original plaintext.
     }
     return;
@@ -632,13 +634,13 @@ function testAesMultiUpdate() {
 }
 ```
 
-Example 2: Encrypt and decrypt data using an asymmetric key pair.
+Encrypt and decrypt data using an asymmetric key pair.
 
 1. Generate an RSA key pair.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
 2. Create a **Cipher** instance.<br>Call **createCipher()** to create a **Cipher** instance, and set the key and encryption/decryption mode.
-3. Perform encryption and decryption operations.<br>Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
+3. Encrypt and decrypt data.<br>Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let plan = "This is cipher test.";
@@ -738,8 +740,10 @@ function decryptMessageCallback() {
   });
 }
 ```
-The following example demonstrates how to implement RSA asymmetric encryption and decryption (**doFinal()** is called multiple times).
-```javascript
+
+Example: Use an RSA asymmetric key pair to encrypt and decrypt data. In this example, **doFinal()** is called multiple times to process data by segment.
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -784,9 +788,9 @@ function encryptLongMessagePromise() {
       resolve("testRsaMultiDoFinal");
     }, 10);
   }).then(() => {
-    return asyKeyGenerator.generateKeyPair(); // Generate an RSA key.
+    return asyKeyGenerator.generateKeyPair(); // Generate an RSA key pair.
   }).then(keyPair => {
-    globalKeyPair = keyPair; // Save the key to global variables.
+    globalKeyPair = keyPair; // Save the key pair as a global variable.
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, globalKeyPair.pubKey, null);
   }).then(async () => {
     globalCipherOutput = [];
@@ -825,21 +829,22 @@ function encryptLongMessagePromise() {
 
 > **NOTE**
 >
-> - In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize the **Cipher** instance. You must create a **Cipher** instance for each encryption and decryption.
-> - The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see "Basic Concepts" in [Cryptographic Framework Overview](cryptoFramework-overview.md).
-> - In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
+> 1. In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize a **Cipher** instance. You must create a **Cipher** instance for each encryption and decryption.
+> 2. The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see "Basic Concepts" in [Cryptographic Framework Overview](cryptoFramework-overview.md).
+> 3. In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
 
-## Generating and Verifying a Signature
+## Signing and Signature Verification
 
-**When to Use**
+### When to Use
 
 A digital signature can be used to verify the authenticity of a message. Typical signing and signature verification operations involve the following:
-- Use the RSA to generate and verify a signature.
-- Use the ECC to generate and verify a signature.
 
-**Available APIs**
+1. Use RSA to generate a signature and verify the signature.
+2. Use ECC to generate a signature and verify the signature.
 
-For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to the complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs in the API reference to ensure correct use of these APIs.
+### Available APIs
+
+For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
 
 |Instance|API|Description|
 |---|---|---|
@@ -855,27 +860,29 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 |Verify|init(priKey : PriKey) : Promise\<void>|Sets a key and initializes the **Verify** instance. This API uses a promise to return the result.|
 |Verify|update(data : DataBlob, callback : AsyncCallback\<void>) : void|Updates the data for signature verification. This API uses an asynchronous callback to return the result.|
 |Verify|update(data : DataBlob) : Promise\<void>|Updates the data for signature verification. This API uses a promise to return the result.|
-|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|Verifies the signature. This API uses an asynchronous callback to return the result.|
-|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|Verifies the signature. This API uses a promise to return the result.|
+|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|Verifies a signature. This API uses an asynchronous callback to return the result.|
+|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|Verifies a signature. This API uses a promise to return the result.|
 
-**How to Develop**
+### How to Develop
 
-Example 1: Use the RSA to generate and verify a signature.
+Use RSA to sign data and verify the signature.
+
 1. Generate an RSA key pair.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an RSA asymmetric key pair.
 2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
-3. Generate a signature.<br>Call **update()** provided by the **Sign** class to add the data for signing and call **sign()** to generate a signature.
+3. Generate a signature.<br>Call **update()** provided by the **Sign** class to pass in the data for signing and call **sign()** to generate a signature.
 4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-5. Verify the signature.<br>Call **update()** provided by the **Verify** class to add signature data and call **verify()** to verify the signature.
-```javascript
+5. Verify the signature.<br>Call **update()** provided by the **Verify** class to pass in the signature data and call **verify()** to verify the signature.
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
-	var arr = [];
-	for (var i = 0, j = str.length; i < j; ++i) {
-		arr.push(str.charCodeAt(i));
-	}
-	var tmpArray = new Uint8Array(arr);
-	return tmpArray;
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+     arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
 }
 
 let globalKeyPair;
@@ -944,23 +951,24 @@ function verifyMessageCallback() {
 }
 ```
 
-Example 2: Use the ECDSA to generate and verify a signature.
+Use ECDSA to sign data and verify the signature.
+
 1. Generate an ECC key.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
 2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
-3. Generate a signature.<br>Call **update()** provided by the **Sign** class to add the data for signing and call **doFinal()** to generate a signature.
+3. Generate a signature.<br>Call **update()** provided by the **Sign** class to pass in the data for signing and call **doFinal()** to generate a signature.
 4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
-5. Verify the signature.<br>Call **update()** provided by the **Verify** class to add signature data and call **doFinal()** to verify the signature.
+5. Verify the signature.<br>Call **update()** provided by the **Verify** class to pass in the signature data and call **doFinal()** to verify the signature.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
-	var arr = [];
-	for (var i = 0, j = str.length; i < j; ++i) {
-		arr.push(str.charCodeAt(i));
-	}
-	var tmpArray = new Uint8Array(arr);
-	return tmpArray;
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
 }
 
 let globalKeyPair;
@@ -1028,8 +1036,10 @@ function verifyMessageCallback() {
   })
 }
 ```
-The following example demonstrates how to call **update()** multiple times to implement signing and signature verification.
-```javascript
+
+The following example presents how to call **update()** multiple times to implement signing and signature verification.
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -1056,16 +1066,16 @@ function signLongMessagePromise() {
   let cipherAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // Create an AsyKeyGenerator object.
-  let signer = cryptoFramework.createSign(cipherAlgName); //Create a cipher object for encryption.
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // Create a Decoder object for decryption.
+  let signer = cryptoFramework.createSign(cipherAlgName); //Create a Sign object for signing.
+  let verifier = cryptoFramework.createVerify(cipherAlgName); // Create a Verify object for signature verification.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
     }, 10);
   }).then(() => {
-    return asyKeyGenerator.generateKeyPair(); // Generate an RSA key.
+    return asyKeyGenerator.generateKeyPair(); // Generate an RSA key pair.
   }).then(keyPair => {
-    globalKeyPair = keyPair; // Save the key to global variables.
+    globalKeyPair = keyPair; // Save the key pair as a global variable.
     return signer.init(globalKeyPair.priKey);
   }).then(async () => {
     // If the plaintext is too large, split the plaintext based on the specified length and cyclically call update() to pass in the plaintext.
@@ -1095,11 +1105,11 @@ function signLongMessagePromise() {
 }
 ```
 
-## Generating a Digest
+## Message Digest
 
-**When to Use**
+### When to Use
 
-A message digest (MD) is a fixed size numeric representation of the content of a message, computed by a has function. It is sent with the message. The receiver can generate a digest for the message and compare it with the digest received. If the two digests are the same, the message integrity is verified.
+A message digest (MD) is a fixed size numeric representation of the content of a message, computed by a hash function. It is sent with the message. The receiver can generate a digest for the message and compare it with the digest received. If the two digests are the same, the message integrity is verified.
 
 Typical MD operations involve the following:
 
@@ -1108,7 +1118,7 @@ Typical MD operations involve the following:
 3. Compute a digest.
 4. Obtain the algorithm and length of a digest.
 
-**Available APIs**
+### Available APIs
 
 For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
@@ -1122,162 +1132,153 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Md              | getMdLength() : number;                                      | Obtains the digest length based on the specified digest algorithm.            |
 | Md              | readonly algName : string;                                   | Obtains the digest algorithm.                          |
 
-**How to Develop**
+### How to Develop
 
-1. Call **createMd()** to create an **Md** instance.
-2. Call **update()** to pass in the data for computing a digest. **update()** can be called multiple times to pass in the data by segment.
-3. Call **digest()** to compute a digest.
+1. Use **createMd()** to create an **Md** instance.
+2. Use **update()** to update the data for computing a digest. **update()** can be called multiple times to update the data by segment.
+3. Use **digest()** to compute a digest.
 4. Obtain the digest algorithm and length of the digest generated.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-// Convert string into uint8Arr.
+// Convert strings in plaintext into byte streams.
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-  }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
-}
-
-// Generate a dataBlob of the given length.
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-      dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-      console.error("GenDataBlob: dataBlobLen is invalid");
-      dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-// Compute an MD using promise-based APIs.
-function doMdByPromise(algName) {
-  var md;
-  try {
-    md = cryptoFramework.createMd(algName);
-  } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
-  }
-  console.error("[Promise]: Md algName is: " + md.algName);
-  // Initial update().
-  var promiseMdUpdate = md.update(GenDataBlob(12));
-  promiseMdUpdate.then(() => {
-    // Call update() multiple times based on service requirements.
-    promiseMdUpdate = md.update(GenDataBlob(12));
-    return promiseMdUpdate;
-  }).then(mdOutput => {
-    var PromiseMdDigest = md.digest();
-    return PromiseMdDigest;
-  }).then(mdOutput => {
-    console.error("[Promise]: MD result: " + mdOutput.data);
-    var mdLen = md.getMdLength();
-    console.error("[Promise]: MD len: " + mdLen);
-  }).catch(error => {
-    console.error("[Promise]: error: " + error.message);
-  });
-}
-
-// Compute an MD using callback-based APIs.
-function doMdByCallback(algName) {
-  var md;
-  try {
-    md = cryptoFramework.createMd(algName);
-  } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
-  }
-  console.error("[Callback]: Md algName is: " + md.algName);
-  // Initial update().
-  md.update(GenDataBlob(12), (err,) => {
-    if (err) {
-      console.error("[Callback]: err: " + err.code);
-    }
-    // Call update() multiple times based on service requirements.
-    md.update(GenDataBlob(12), (err1,) => {
-      if (err1) {
-        console.error("[Callback]: err: " + err1.code);
-      }
-      md.digest((err2, mdOutput) => {
-        if (err2) {
-          console.error("[Callback]: err: " + err2.code);
-        } else {
-          console.error("[Callback]: MD result: " + mdOutput.data);
-          var mdLen = md.getMdLength();
-          console.error("[Callback]: MD len: " + mdLen);
-        }
-      });
-    });
-  });
-}
-```
-The following example demonstrates how to call **update()** multiple times to update the MD.
-```javascript
-import cryptoFramework from "@ohos.security.cryptoFramework"
-
-async function updateData(index, obj, data) {
-  console.error("update " + (index + 1) + " MB data...");
-  return obj.update(data);
-}
-
-function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-    dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-    console.error("GenDataBlob: dataBlobLen is invalid");
-    dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-function LoopMdPromise(algName, loopSize) {
-  var md;
+// Generate a digest in promise mode.
+function doMdByPromise() {
+  let mdAlgName = "SHA256"; // Digest algorithm name.
+  let message = "mdTestMessgae"; // Data to be digested.
+  let md;
+  let mdOutput;
   try {
-    md = cryptoFramework.createMd(algName);
+    md = cryptoFramework.createMd(mdAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
     return;
   }
-  console.error("[Promise]: Md algName is: " + md.algName);
-  var promiseMdUpdate = md.update(GenDataBlob(12));
+  console.info("[Promise]: Md algName is: " + md.algName);
+  // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
+  let promiseMdUpdate = md.update({ data: stringToUint8Array(message) });
   promiseMdUpdate.then(() => {
-    var PromiseMdDigest = md.digest();
+    // Call digest() to return the result.
+    let PromiseMdDigest = md.digest();
     return PromiseMdDigest;
-  }).then(async () => {
-    for (var i = 0; i < loopSize; i++) {
-      await updateData(i, md, GenDataBlob(12));
+  }).then(digestOutput => {
+    mdOutput = digestOutput;
+    console.info("[Promise]: MD result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("[Promise]: MD len: " + mdLen);
+  }).catch(error => {
+    console.error("[Promise]: error: " + error.message);
+  });
+}
+
+// Generate a digest in callback mode.
+function doMdByCallback() {
+  let mdAlgName = "SHA256"; // Digest algorithm name.
+  let message = "mdTestMessgae"; // Data to be digested.
+  let md;
+  let mdOutput;
+  try {
+    md = cryptoFramework.createMd(mdAlgName);
+  } catch (error) {
+    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+  }
+  console.info("[Callback]: Md algName is: " + md.algName);
+  // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
+  md.update({ data: stringToUint8Array(message) }, (err,) => {
+    if (err) {
+      console.error("[Callback]: err: " + err.code);
     }
-    var PromiseMdDigest = md.digest();
-    return PromiseMdDigest;
-  }).then(mdOutput => {
-    console.error("[Promise]: MD result: " + mdOutput.data);
-    var mdLen = md.getMdLength();
-    console.error("[Promise]: MD len: " + mdLen);
+    md.digest((err1, digestOutput) => {
+      if (err1) {
+        console.error("[Callback]: err: " + err1.code);
+      } else {
+        mdOutput = digestOutput;
+        console.info("[Callback]: MD result: " + mdOutput.data);
+        let mdLen = md.getMdLength();
+        console.info("[Callback]: MD len: " + mdLen);
+      }
+    });
+  });
+}
+```
+
+The following example presents how to call **update()** multiple times to update the MD.
+
+```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+// Convert strings in plaintext into byte streams.
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+
+// Generate a digest by segment in promise mode.
+async function doLoopMdPromise() {
+  let mdAlgName = "SHA256"; // Digest algorithm name.
+  let md;
+  let mdOutput;
+  try {
+    md = cryptoFramework.createMd(mdAlgName);
+  } catch (error) {
+    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    return;
+  }
+  console.info("[Promise]: Md algName is: " + md.algName);
+  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the message is of 43 bytes.
+  let messageArr = [];
+  let updateLength = 20; // For example, pass in 20 bytes in each update().
+
+  for (let i = 0; i <= messageText.length; i++) {
+    if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
+      let message = new Uint8Array(messageArr);
+      let messageBlob = { data : message };
+      // Use await to process the update() in the for() loop.
+      try {
+        await md.update (messageBlob); // Use update() to process data by segment.
+      } catch (error) {
+        console.error("await update error code: " + error.code + ", message is: " + error.message);
+        return;
+      }
+      messageArr = [];
+    }
+    // Pad messageArr based on the segment length.
+    if (i < messageText.length) {
+      messageArr.push(messageText.charCodeAt(i));
+    }
+  }
+  let PromiseMdDigest = md.digest();
+  PromiseMdDigest.then(digestOutput => {
+    mdOutput = digestOutput;
+    console.info("[Promise]: MD result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("[Promise]: MD len: " + mdLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 ```
 
-## Performing Key Agreement
+## Key Agreement
 
-**When to Use**
+### When to Use
 
 Key agreement allows two parties to establish a shared secret over an insecure channel.
 
-**Available APIs**
+### Available APIs
 
 For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
@@ -1287,12 +1288,12 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 |KeyAgreement|generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataBlob>) : void|Generates a shared secret. This API uses an asynchronous callback to return the result.|
 |KeyAgreement|generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>|Generates a shared secret. This API uses a promise to return the result.|
 
-**How to Develop**
+### How to Develop
 
-1. Use **createKeyAgreement()** to create a **KeyAgreement** object for subsequent key agreement operations.
+1. Use **createKeyAgreement()** to create a **KeyAgreement** instance for subsequent key agreement operations.
 2. Use **generateSecret()** provided by **KeyAgreement** to pass in the peer ECC public key object and the ECC private key object generated locally.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalSelfPriKey;
@@ -1337,27 +1338,27 @@ function ecdhCallback() {
 }
 ```
 
-## Generating a MAC
+## HMAC
 
-**When to Use**
+### When to Use
 
-A message authentication code (MAC) can be used to verify both the integrity and authenticity of a message using a shared secret. 
+A hash-based message authentication code (HMAC) can be used to verify both the integrity and authenticity of a message using a shared secret. 
 
 Typical MAC operations involve the following:
 
 1. Create a **Mac** instance.
-2. Initialize the **Mac** instance, add one or more segments of data for generating a MAC, and generate a MAC.
-3. Obtain the algorithm and length of a MAC.
+2. Initialize the **Mac** instance, add one or more segments of data for generating a MAC, and generate an HMAC.
+3. Obtain the algorithm and length of an HMAC.
 
-**Available APIs**
+### Available APIs
 
 For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 | Instance         | API                                                      | Description                                               |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
 | cryptoFramework | function createMac(algName : string) : Mac;                  | Creates a **Mac** instance.                |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the MAC operation. This API uses an asynchronous callback to return the result.|
-| Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the MAC operation. This API uses a promise to return the result. |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | Initializes the **Mac** instance. This API uses an asynchronous callback to return the result.|
+| Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the **Mac** instance. This API uses a promise to return the result. |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
 | Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
 | Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
@@ -1365,7 +1366,7 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
 | Mac             | readonly algName : string;                                   | Obtains the digest algorithm.                           |
 
-**How to Develop**
+### How to Develop
 
 1. Call **createMac()** to create a **Mac** instance.
 2. Call **init()** to initialize the **Mac** instance with the symmetric key passed in.
@@ -1373,80 +1374,75 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 4. Call **doFinal()** to generate a MAC.
 5. Obtain the algorithm and length of the MAC.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-// Convert string into uint8Arr.
+// Convert strings in plaintext into byte streams.
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-// Generate a blob.
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-      dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-      console.error("GenDataBlob: dataBlobLen is invalid");
-      dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-function doHmacByPromise(algName) {
-  var mac;
+// Generate an HMAC in promise mode.
+function doHmacByPromise() {
+  let macAlgName = "SHA256"; // Digest algorithm name.
+  let message = "hmacTestMessgae"; // Data used to generate an HMAC.
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
   }
-  console.error("[Promise]: Mac algName is: " + mac.algName);
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128-bit key
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-  var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // Convert the binary data into a key.
+  let promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
   promiseConvertKey.then(symKey => {
-    var promiseMacInit = mac.init(symKey);
+    let promiseMacInit = mac.init(symKey);
     return promiseMacInit;
   }).then(() => {
-    // Initial update().
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
+    // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
+    let promiseMacUpdate = mac.update({ data: stringToUint8Array(message) });
     return promiseMacUpdate;
   }).then(() => {
-    // Call update() multiple times based on service requirements.
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
-    return promiseMacUpdate;
-  }).then(() => {
-    var PromiseMacDoFinal = mac.doFinal();
+    let PromiseMacDoFinal = mac.doFinal();
     return PromiseMacDoFinal;
-  }).then(macOutput => {
-    console.error("[Promise]: HMAC result: " + macOutput.data);
-    var macLen = mac.getMacLength();
-    console.error("[Promise]: MAC len: " + macLen);
+  }).then(output => {
+    macOutput = output;
+    console.info("[Promise]: HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.info("[Promise]: MAC len: " + macLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 
-// Generate a MAC using callback-based APIs.
-function doHmacByCallback(algName) {
-  var mac;
+// Generate an HMAC in callback mode.
+function doHmacByCallback() {
+  let macAlgName = "SHA256"; // Digest algorithm name.
+  let message = "hmacTestMessgae"; // Data used to generate an HMAC.
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
-    AlertDialog.show({message: "[Callback]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
   }
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128-bit key
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // Convert the binary data into a key.
   symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
     if (err) {
       console.error("[Callback]: err: " + err.code);
@@ -1455,107 +1451,109 @@ function doHmacByCallback(algName) {
       if (err1) {
         console.error("[Callback]: err: " + err1.code);
       }
-      // Initial update().
-      mac.update(GenDataBlob(12), (err2, ) => {
+      // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
+      mac.update({ data: stringToUint8Array(message) }, (err2, ) => {
         if (err2) {
           console.error("[Callback]: err: " + err2.code);
         }
-        // Call update() multiple times based on service requirements.
-        mac.update(GenDataBlob(12), (err3, ) => {
+        mac.doFinal((err3, output) => {
           if (err3) {
             console.error("[Callback]: err: " + err3.code);
+          } else {
+            macOutput = output;
+            console.info("[Callback]: HMAC result: " + macOutput.data);
+            let macLen = mac.getMacLength();
+            console.info("[Callback]: MAC len: " + macLen);
           }
-          mac.doFinal((err4, macOutput) => {
-            if (err4) {
-              console.error("[Callback]: err: " + err4.code);
-            } else {
-              console.error("[Callback]: HMAC result: " + macOutput.data);
-              var macLen = mac.getMacLength();
-              console.error("[Callback]: MAC len: " + macLen);
-            }
-          });
         });
       });
     });
   });
 }
 ```
-The following example demonstrates how to call **update()** multiple times to update the MAC.
-```javascript
+
+Generate an HMAC by segment. 
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-async function updateData(index, obj, data) {
-  console.error("update " + (index + 1) + " MB data...");
-  return obj.update(data);
-}
-
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-    dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-    console.error("GenDataBlob: dataBlobLen is invalid");
-    dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-function LoopHmacPromise(algName, loopSize) {
-  var mac;
+function doLoopHmacPromise() {
+  let macAlgName = "SHA256"; // Digest algorithm name.
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
     return;
   }
-  console.error("[Promise]: Mac algName is: " + mac.algName);
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128-bit key
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-  var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
+  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the message is of 43 bytes.
+  let updateLength = 20; // For example, pass in 20 bytes in each update().
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // Convert the binary data into a key.
+  let promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
   promiseConvertKey.then(symKey => {
-    var promiseMacInit = mac.init(symKey);
+    let promiseMacInit = mac.init(symKey);
     return promiseMacInit;
   }).then(async () => {
-    for (var i = 0; i < loopSize; i++) {
-      await updateData(i, mac, GenDataBlob(12));
+    let promiseMacUpdate;
+    let messageArr = [];
+    for (let i = 0; i <= messageText.length; i++) {
+      if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
+        let message = new Uint8Array(messageArr);
+        let messageBlob = { data : message };
+        // Use await to process the update() in the for() loop.
+        try {
+          promiseMacUpdate = await mac.update(messageBlob); // Invoke update() multiple times.
+        } catch (error) {
+          console.error("await update error code: " + error.code + ", message is: " + error.message);
+          return;
+        }
+        messageArr = [];
+      }
+      // Pad messageArr based on the segment length.
+      if (i < messageText.length) {
+        messageArr.push(messageText.charCodeAt(i));
+      }
     }
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
     return promiseMacUpdate;
   }).then(() => {
-    var PromiseMacDoFinal = mac.doFinal();
+    let PromiseMacDoFinal = mac.doFinal();
     return PromiseMacDoFinal;
-  }).then(macOutput => {
-    console.error("[Promise]: HMAC result: " + macOutput.data);
-    var macLen = mac.getMacLength();
-    console.error("[Promise]: MAC len: " + macLen);
+  }).then(output => {
+    macOutput = output;
+    console.log("[Promise]: HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.log("[Promise]: MAC len: " + macLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 ```
 
+## Random Number
 
-## Generating a Random Number
-
-**When to Use**
+### When to Use
 
 Typical random number operations involve the following:
 
-- Generate a random number.
-- Set a seed based on the random number generated.
+- 1. Generate a random number of the specified length.
+- 2. Set a seed based on the random number generated.
 
-**Available APIs**
+### Available APIs
 
 For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
@@ -1566,16 +1564,16 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Random          | generateRandom(len : number) : Promise\<DataBlob>;          | Generates a random number. This API uses a promise to return the result.     |
 | Random          | setSeed(seed : DataBlob) : void;                            | Sets a seed. |
 
-**How to Develop**
+### How to Develop
 
 1. Call **createRandom()** to create a **Random** instance.
 2. Call **generateRandom()** to generate a random number of the given length.
 3. Call **setSeed()** to set a seed.
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-// Generate a random number and set a seed using promise-based APIs.
+// Generate a random number and set a seed in promise mode.
 function doRandByPromise(len) {
   var rand;
   try {
@@ -1596,7 +1594,7 @@ function doRandByPromise(len) {
   });
 }
 
-// Generate a random number and set a seed using callback-based APIs.
+// Generate a random number and set a seed in callback mode.
 function doRandByCallback(len) {
   var rand;
   try {
