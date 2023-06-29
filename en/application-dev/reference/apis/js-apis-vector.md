@@ -304,15 +304,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. The default value is this instance.|
 
 **Example**
 
@@ -342,15 +342,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Example**
 
@@ -378,7 +378,7 @@ Sorts elements in this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Callback invoked for sorting.|
+| comparator | function | No| Callback invoked for sorting. The default value is this instance.|
 
 comparator
 
