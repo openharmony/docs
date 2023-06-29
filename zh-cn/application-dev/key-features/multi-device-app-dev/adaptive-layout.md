@@ -269,7 +269,7 @@ struct EquipartitionCapabilitySample {
 
 - 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)。
   - 当父容器尺寸确定时，其子组件按照开发者配置的权重比例分配父容器中主轴方向的空间。
-  - 仅当父容器是Row、Colomn或者Flex时，layoutWeight属性才会生效。
+  - 仅当父容器是Row、Column或者Flex时，layoutWeight属性才会生效。
   - 设置layoutWeight属性后，组件本身的尺寸会失效。比如同时设置了.width('40%')和.layoutWeight(1)，那么只有.layoutWeight(1)会生效。
 
 
@@ -419,8 +419,8 @@ struct ScaleCapabilitySample {
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Column() {
           Image($r("app.media.illustrator")).width('100%').height('100%')
+          .aspectRatio(1)                           // 固定宽高比
         }
-        .aspectRatio(1)                           // 固定宽高比
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")
