@@ -16,7 +16,7 @@ import matrix4 from '@ohos.matrix4'
 
 ## matrix4.init
 
-init(option: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
+init(options: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
 
 
 Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，矩阵为列优先。
@@ -176,7 +176,7 @@ struct Test {
 
 ### combine
 
-combine(option: Matrix4Transit): Matrix4Transit
+combine(options: Matrix4Transit): Matrix4Transit
 
 
 Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
@@ -273,7 +273,7 @@ struct Tests {
 
 ### translate
 
-translate(option: TranslateOption): Matrix4Transit
+translate(options: TranslateOption): Matrix4Transit
 
 Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
 
@@ -317,7 +317,7 @@ struct Test {
 
 ### scale
 
-scale(option: ScaleOption): Matrix4Transit
+scale(options: ScaleOption): Matrix4Transit
 
 
 Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
@@ -361,7 +361,7 @@ struct Test {
 
 ### rotate
 
-rotate(option: RotateOption): Matrix4Transit
+rotate(options: RotateOption): Matrix4Transit
 
 
 Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
@@ -406,7 +406,7 @@ struct Test {
 
 ### transformPoint
 
-transformPoint(option: [number, number]): [number, number]
+transformPoint(options: [number, number]): [number, number]
 
 
 Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
@@ -464,15 +464,15 @@ struct Test {
 
 ## TranslateOption
 
-| 参数名 | 类型   | 必填 | 说明                                                        |
-| ------ | ------ | ---- | ----------------------------------------------------------- |
-| x      | number | 否   | x轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
-| y      | number | 否   | y轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
-| z      | number | 否   | z轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| 名称 | 类型   | 必填 | 说明                                                        |
+| ---- | ------ | ---- | ----------------------------------------------------------- |
+| x    | number | 否   | x轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| y    | number | 否   | y轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| z    | number | 否   | z轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
 
 ## ScaleOption
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
+| 名称    | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | x       | number | 否   | x轴的缩放倍数。x>1时以x轴方向放大，x<1时以x轴方向缩小。<br/>默认值：1<br/>取值范围 [0, +∞)<br/>**说明：** <br/>设置小于0的值时，按照默认值处理。 |
 | y       | number | 否   | y轴的缩放倍数。y>1时以y轴方向放大，y<1时以y轴方向缩小。<br/>默认值：1<br/>取值范围 [0, +∞)<br/>**说明：** <br/>设置小于0的值时，按照默认值处理。 |
@@ -482,7 +482,7 @@ struct Test {
 
 ## RotateOption
 
-| 参数名  | 类型   | 必填 | 说明                                                    |
+| 名称    | 类型   | 必填 | 说明                                                    |
 | ------- | ------ | ---- | ------------------------------------------------------- |
 | x       | number | 否   | 旋转轴向量x坐标。<br/>默认值：1。<br/>取值范围 (-∞, +∞) |
 | y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：1。<br/>取值范围 (-∞, +∞) |

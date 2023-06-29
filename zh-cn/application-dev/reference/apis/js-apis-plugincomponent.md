@@ -262,7 +262,7 @@ pluginComponentManager.push(
     name: "ets/pages/plugin2.js",
     data: {
       "js": "ets/pages/plugin.js",
-      "key_1": 1111, ,
+      "key_1": 1111, 
     },
     extraData: {
       "extra_str": "this is push event"
