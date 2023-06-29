@@ -195,12 +195,11 @@ struct GridExample {
         console.info(first.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        return {totalOffset: (index / 5) * (80 + 10) - 10 + offset, totalLength: 80 * 5 + 10 * 4}
+        return {totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4}
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
-      .scrollBar(BarState.Off)
       Button('next page')
         .onClick(() => { // 点击后滑到下一页
           this.scroller.scrollPage({ next: true })
