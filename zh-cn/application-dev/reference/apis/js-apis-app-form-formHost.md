@@ -1682,7 +1682,7 @@ formHost.on('formRemove', callback, bundleName);
 
 ## off('formRemove')<sup>10+</sup>
 
- off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
 取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -2333,7 +2333,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
+getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 
 根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。

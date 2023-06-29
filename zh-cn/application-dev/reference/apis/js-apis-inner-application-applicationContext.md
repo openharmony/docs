@@ -134,7 +134,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: **number**): **void**;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 
 取消监听应用内生命周期
 
@@ -285,11 +285,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -322,11 +318,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 

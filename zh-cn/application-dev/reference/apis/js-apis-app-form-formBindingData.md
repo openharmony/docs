@@ -21,8 +21,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 卡片代理刷新的订阅标识，与数据发布者保持一致。|
-| subscriberId | string | 否 | 卡片代理刷新的订阅条件，默认值为当前卡片的formId。|
+| key<sup>10+</sup> | string | 是 | 卡片代理刷新的订阅标识，与数据发布者保持一致。|
+| subscriberId<sup>10+</sup> | string | 否 | 卡片代理刷新的订阅条件，默认值为当前卡片的formId。|
 
 
 ## FormBindingData
