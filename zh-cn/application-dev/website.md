@@ -1215,7 +1215,7 @@
         - [栅格设置](reference/arkui-ts/ts-universal-attributes-grid.md)
         - [颜色渐变](reference/arkui-ts/ts-universal-attributes-gradient-color.md)
         - [Popup控制](reference/arkui-ts/ts-universal-attributes-popup.md)
-        - [Menu控制](reference/arkui-ts/ts-universal-attributes-menu.md)
+        - [菜单控制](reference/arkui-ts/ts-universal-attributes-menu.md)
         - [焦点控制](reference/arkui-ts/ts-universal-attributes-focus.md)
         - [悬浮态效果](reference/arkui-ts/ts-universal-attributes-hover-effect.md)
         - [组件标识](reference/arkui-ts/ts-universal-attributes-component-id.md)
@@ -1230,8 +1230,8 @@
           - [全屏模态转场](reference/arkui-ts/ts-universal-attributes-modal-transition.md)
           - [半模态转场](reference/arkui-ts/ts-universal-attributes-sheet-transition.md)
         - [隐私遮罩](reference/arkui-ts/ts-universal-attributes-obscured.md)
-      - [文本通用属性](reference/arkui-ts/ts-universal-attributes-text-style.md)
-      - [安全控件通用属性](reference/arkui-ts/ts-universal-attributes-securitycomponent.md)
+        - [文本通用](reference/arkui-ts/ts-universal-attributes-text-style.md)
+        - [安全控件通用](reference/arkui-ts/ts-universal-attributes-securitycomponent.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
