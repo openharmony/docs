@@ -41,9 +41,6 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
@@ -106,9 +103,6 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
   | 16000050 | Internal error. |
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
@@ -166,9 +160,6 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
@@ -220,9 +211,6 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
