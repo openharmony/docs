@@ -1,6 +1,6 @@
 # 使用OHAudio开发音频录制功能
 
-OHAudio是OpenHarmony在API10中引入的一套全新C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
+OHAudio是OpenHarmony在API version 10中引入的一套全新Naitve API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
 ## 使用入门
 
@@ -85,7 +85,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 6. 释放构造器
 
-构造器不在使用时，需要释放它。
+    构造器不再使用时，需要释放相关资源。
 
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
