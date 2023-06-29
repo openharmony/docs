@@ -1064,7 +1064,7 @@ function signLongMessagePromise() {
       resolve("testRsaMultiUpdate");
     }, 10);
   }).then(() => {
-    return asyKeyGenerator.generateKeyPair(); // 生成rsa密钥
+    return asyKeyGenerator.generateKeyPair(); // 生成RSA密钥
   }).then(keyPair => {
     globalKeyPair = keyPair; // 保存到密钥对全局变量
     return signer.init(globalKeyPair.priKey);
