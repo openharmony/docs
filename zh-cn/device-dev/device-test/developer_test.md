@@ -859,14 +859,123 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
-**Fuzzing安全测试**
+- ** stage模型ets用例编译配置示例**
 
-[Fuzzing安全测试编译文件的编写规范](https://gitee.com/openharmony/test_developertest/blob/master/libs/fuzzlib/README_zh.md)
+    ```
+    # Copyright (C) 2023 XXXX Device Co., Ltd.
+    
+    import("//build/test.gni")
 
-**Benchmark测试**
+    want_output_path = "developertest/stage_test"
+    
+    ohos_js_stage_unittest("ActsBundleMgrStageEtsTest") {
+    hap_profile = "entry/src/main/module.json"
+    deps = [
+        ":actbmsstageetstest_js_assets",
+        ":actbmsstageetstest_resources",
+    ]
+    ets2abc = true
+    certificate_profile = "signature/openharmony_sx.p7b"
+    hap_name = "ActsBundleMgrStageEtsTest"
+    subsystem_name = "developertest"
+    part_name = "stage_test"
+    module_out_path = want_output_path
+    }
+    ohos_app_scope("actbmsstageetstest_app_profile") {
+    app_profile = "AppScope/app.json"
+    sources = [ "AppScope/resources" ]
+    }
+    ohos_js_assets("actbmsstageetstest_js_assets") {
+    source_dir = "entry/src/main/ets"
+    }
+    ohos_resources("actbmsstageetstest_resources") {
+    sources = [ "entry/src/main/resources" ]
+    deps = [ ":actbmsstageetstest_app_profile" ]
+    hap_profile = "entry/src/main/module.json"
+    }
+    group("unittest") {
+    testonly = true
+    deps = []
+    deps += [ ":ActsBundleMgrStageEtsTest" ]
+    }
+    ```
+	详细内容如下：
 
-[Benchmark编译文件编写规范](https://gitee.com/openharmony/test_developertest/blob/master/libs/benchmark/README_zh.md)
-      
+	1. 添加文件头注释信息
+
+		```
+		# Copyright (C) 2023 XXXX Device Co., Ltd.
+		```
+
+	2. 导入编译模板文件
+
+		```
+		import("//build/test.gni")
+		```
+
+	3. 指定文件输出路径
+
+		```
+		want_output_path = "developertest/stage_test"
+		```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		> 
+		> 此处输出路径为部件/模块名。
+
+	4. 指定测试用例编译目标输出的文件名称
+
+		```
+		ohos_js_stage_unittest("ActsBundleMgrStageEtsTest") {
+		}
+		```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		> 
+		> - 使用模板ohos_js_stage_unittest定义stage模型的ets测试套。
+
+	5. 指定配置文件module.json、签名文件、部件名称和编译输出路径，都为必选项。
+
+		```
+		ohos_js_stage_unittest("ActsBundleMgrStageEtsTest") {
+        hap_profile = "entry/src/main/module.json"
+        certificate_profile = "signature/openharmony_sx.p7b"
+        subsystem_name = "developertest"
+        part_name = "stage_test"  // 部件名称
+		}
+		```
+
+	6. 指定配置资源文件（添加需要参与编译的源文件、配置和依赖）
+		```
+		声明一个HAP的AppScope模块，该目标的app_profile和sources会在编译时拼接到具体的entry内编译。
+		ohos_app_scope("actbmsstageetstest_app_profile") {
+        app_profile = "AppScope/app.json"
+        sources = [ "AppScope/resources" ]
+		}
+
+		stage模型用例代码分别放置到ets目录下。
+		ohos_js_assets("actbmsstageetstest_js_assets") {
+        source_dir = "entry/src/main/ets"
+		}
+
+		源文件，Stage模型编译后放置在resources目录下。
+		ohos_resources("actbmsstageetstest_resources") {
+        sources = [ "entry/src/main/resources" ]
+        deps = [ ":actbmsstageetstest_app_profile" ]
+        hap_profile = "entry/src/main/module.json"
+		}
+
+		```
+
+   7. 对目标测试用例文件进行条件分组
+
+       ```
+       group("unittest") {
+       testonly = true
+       deps = [ ":GetAppInfoJsTest" ]
+       }
+       ```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		> 
+		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
 **编译入口配置文件bundle.json**
 
