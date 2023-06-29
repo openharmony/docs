@@ -557,3 +557,10 @@ This API is supported in ArkTS widgets.
 | LIGHT  | Small area (light)| Spring effect, with stiffness of 410, damping of 38, and initial velocity of 1.| 90% |
 | MIDDLE | Medium area (stable)| Spring effect, with stiffness of 350, damping of 35, and initial velocity of 0.5.| 95% |
 | HEAVY  | Large area (heavy)| Spring effect, with stiffness of 240, damping of 28, and initial velocity of 0.| 95% |
+
+## TextContentStyle<sup>10+</sup>
+
+| Name   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.            |
