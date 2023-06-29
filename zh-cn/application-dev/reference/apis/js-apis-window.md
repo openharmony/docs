@@ -2964,8 +2964,6 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 开启窗口生命周期变化的监听。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -2992,8 +2990,6 @@ try {
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
 关闭窗口生命周期变化的监听。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
