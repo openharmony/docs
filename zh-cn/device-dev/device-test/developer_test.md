@@ -698,6 +698,8 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
 		> - ohos_unittest：单元测试
+        > - ohos_js_unittest: FA模型js用例单元测试
+        > - ohos_js_stage_unittest: stage模型ets用例单元测试
 		> - ohos_moduletest：模块测试
 		> - ohos_systemtest：系统测试
 		> - ohos_performancetest：性能测试
@@ -859,7 +861,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
-- ** stage模型ets用例编译配置示例**
+- **stage模型ets用例编译配置示例**
 
     ```
     # Copyright (C) 2023 XXXX Device Co., Ltd.
@@ -930,7 +932,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		```
 		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
 		> 
-		> - 使用模板ohos_js_stage_unittest定义stage模型的ets测试套。
+		> 使用模板ohos_js_stage_unittest定义stage模型的ets测试套。
 
 	5. 指定配置文件module.json、签名文件、部件名称和编译输出路径，都为必选项。
 
@@ -945,18 +947,18 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	6. 指定配置资源文件（添加需要参与编译的源文件、配置和依赖）
 		```
-		声明一个HAP的AppScope模块，该目标的app_profile和sources会在编译时拼接到具体的entry内编译。
+		# 声明一个HAP的AppScope模块，该目标的app_profile和sources会在编译时拼接到具体的entry内编译。
 		ohos_app_scope("actbmsstageetstest_app_profile") {
         app_profile = "AppScope/app.json"
         sources = [ "AppScope/resources" ]
 		}
 
-		stage模型用例代码分别放置到ets目录下。
+		# stage模型用例代码分别放置到ets目录下。
 		ohos_js_assets("actbmsstageetstest_js_assets") {
         source_dir = "entry/src/main/ets"
 		}
 
-		源文件，Stage模型编译后放置在resources目录下。
+		# 源文件，Stage模型编译后放置在resources目录下。
 		ohos_resources("actbmsstageetstest_resources") {
         sources = [ "entry/src/main/resources" ]
         deps = [ ":actbmsstageetstest_app_profile" ]
@@ -1337,7 +1339,6 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 当执行完测试指令，控制台会自动生成测试结果，若需要详细测试报告，您可在以下路径中进行查找相应的数据文档。
 
-### 测试结果
 测试结果输出根路径如下：
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
