@@ -49,7 +49,7 @@ HUKS采用分层架构，包含应用层、服务层、核心层（领域层）�
 
  - **密钥不出安全环境**
 
-   HUKS的核心特点是密钥全生命周期明文不出HUKS Core，在有硬件条件的设备上，如有TEE（Trusted Execution Environment)或安全芯片的设备，HUKS Core运行在硬件安全环境中。能确保即使REE（Rich Execution Environment）环境被攻破，密钥明文也不会泄露。因此，HUKS直通式HDI API所有函数接口密钥材料数据只能是密文格式。
+   HUKS的核心特点是密钥全生命周期明文不出HUKS Core，在有硬件条件的设备上，如有TEE（Trusted Execution Environment)或安全芯片的设备，HUKS Core运行在硬件安全环境中。即使REE（Rich Execution Environment）环境被攻破，也能确保密钥明文也不会泄露。因此，HUKS直通式HDI API所有函数接口密钥材料数据只能是密文格式。
 
 - **系统级安全加密存储**
 
@@ -70,11 +70,12 @@ HUKS采用分层架构，包含应用层、服务层、核心层（领域层）�
 
   AttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成Blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
-![CertChain格式图](figures/HUKS-CertChain.png)
+  ![CertChain格式图](figures/HUKS-CertChain.png)
 
-* 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
+- **KeyBlob格式**
+  接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
-![KeyBlob格式图](figures/HUKS-KeyBlob.png)
+  ![KeyBlob格式图](figures/HUKS-KeyBlob.png)
 
 ## 开发指导
 
