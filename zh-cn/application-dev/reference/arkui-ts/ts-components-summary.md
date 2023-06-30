@@ -300,12 +300,3 @@
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     用来展示菜单MenuItem的分组。
-- [SecLocationButton](ts-basic-components-seclocationbutton.md)
-
-    安全控件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
-- [SecPasteButton](ts-basic-components-secpastebutton.md)
-
-    安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
-- [SecSaveButton](ts-basic-components-secsavebutton.md)
-
-    安全控件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
