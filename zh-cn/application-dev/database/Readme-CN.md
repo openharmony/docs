@@ -16,7 +16,7 @@
   - [数据库备份与恢复](data-backup-and-restore.md)
   - [数据库加密](data-encryption.md)
   - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
-- 同设备跨应用数据共享
+- 跨应用数据共享
   - [跨应用数据共享概述](data-share-overview.md)
   - [标准化数据定义](unified-data-definition.md)
   - 一对多数据共享（仅对系统应用开放）
