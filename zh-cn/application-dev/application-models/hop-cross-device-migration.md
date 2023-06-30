@@ -11,6 +11,12 @@
 
 - 支持应用兼容性检测。
 
+- 支持应用根据实际使用场景动态设置迁移状态（默认迁移状态为ACTIVE激活状态）。如编辑类应用在编辑文本的页面下才需要迁移，其他页面不需要迁移，则可以通过[setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)进行控制。
+
+- 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。如应用希望自定义迁移到其他设备后显示的页面，则可以通过[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+
+- 支持应用动态选择流转成功后是否退出迁移发起端应用（默认流转成功后退出迁移发起端应用）。则可以通过[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+
 
 ## 跨端迁移流程
 
@@ -125,3 +131,63 @@
          }
          ```
    - 如果是单实例应用，则采用同样的代码实现onNewWant()接口即可。
+
+6. **可选配置：** 在应用支持迁移特性时，默认开启应用迁移状态开关，根据应用当前任务获取焦点/失去焦点通知周边的可信设备当前任务可流转/取消流转。若应用需要在特定场景下才通知周边设备可流转，则需要在应用打开时设置迁移状态为INACTIVE，在后续的业务流程中需要迁移时再设置迁移状态为ACTIVE。接口见[setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)。
+
+    - 示例：应用启动不需要流转
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+        onCreate(want, launchParam) {
+          this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+            console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+          });
+        }
+        ```
+    - 示例：应用在后续的业务流程中需要流转了
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+        this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+          console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+        });
+        ```
+
+7. **可选配置：** 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。如果应用不想使用系统默认恢复的页面栈，则可以设置不进行页面栈迁移，而需要在`onWindowStageRestore`设置流转后进入的页面，参数定义见[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams)。
+
+    - 示例：应用迁移不需要自动流转页面栈信息
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import wantConstant from '@ohos.app.ability.wantConstant.d.ts';
+
+        onContinue(wantParam : {[key: string]: any}) {         
+            console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+            wantParam[wantConstant.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
+            return AbilityConstant.OnContinueResult.AGREE;
+        }
+
+        onWindowStageRestore(windowStage) {
+            // 若不需要自动流转页面栈信息，则需要在此处设置应用流转后进入的页面
+            windowStage.setUIContent(this.contex, "pages/index", null);
+        }
+        ```
+
+8. **可选配置：** 支持应用动态选择迁移成功后是否退出迁移发起端应用（默认流转成功后退出迁移发起端应用）。如果应用不想让系统自动退出迁移发起端应用，则可以设置不退出，参数定义见参数定义见[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams)。
+
+    - 示例：应用迁移设置不需要迁移成功后退出迁移发起端应用
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import wantConstant from '@ohos.app.ability.wantConstant.d.ts';
+
+        onContinue(wantParam : {[key: string]: any}) {         
+            console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+            wantParam[wantConstant.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
+            return AbilityConstant.OnContinueResult.AGREE;
+        }
+        ```
