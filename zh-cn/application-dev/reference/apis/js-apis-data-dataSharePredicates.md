@@ -27,6 +27,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -175,6 +177,8 @@ and(): DataSharePredicates
 该接口用于将和条件添加到谓词中。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -649,6 +653,8 @@ orderByAsc(field: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -677,6 +683,8 @@ orderByDesc(field: string): DataSharePredicates
 该接口用于配置谓词以匹配其值按降序排序的列。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -731,6 +739,8 @@ limit(total: number, offset: number): DataSharePredicates
 该接口用于配置谓词以指定结果数和起始位置。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -823,6 +833,8 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 该接口用于配置谓词以匹配值在指范围内的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
