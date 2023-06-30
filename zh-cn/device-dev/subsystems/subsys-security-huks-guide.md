@@ -134,9 +134,9 @@ HUKS Core的初始化，一般用于初始化全局变量，比如全局线程�
 <details>
   <summary><strong>返回值</strong></summary>
 
-  - HKS_SUCCESS：成功
+  - HKS_SUCCESS：成功，值为0，下同
 
-  - 其他：失败
+  - 其他：失败，值为负数，具体参考<a href="https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type.h">HksErrorCode枚举值定义</a>，下同
 </details>
 
 - - -
@@ -581,7 +581,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 - - -
 
-#### checkkeyvalidity
+#### CheckKeyValidity
 
 **接口描述**
 
@@ -601,7 +601,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
   用于校验密钥完整性接口的参数，默认传空
   <br></br>
   <strong>const struct HuksBlob *encKey</strong>
-  待校验密钥完整性的密钥材料
+  待校验密钥完整性的密钥材料（密文）
   </pre>
 </details>
 <br></br>
@@ -1068,7 +1068,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 #### 代码目录
 
-HDI接口的适配在以下目录中：
+1. HDI接口的适配在以下目录中：
 
 ```undefined
 //drivers_peripheral/huks
@@ -1085,7 +1085,7 @@ HDI接口的适配在以下目录中：
     └── unittest # 单元测试
 ```
 
-HUKS Core软实现的代码在以下目录中：
+2. HUKS Core软实现的代码在以下目录中：
 
 ```undefined
 //base/security/huks/services/huks_standard/huks_engine
@@ -1099,17 +1099,35 @@ HUKS Core软实现的代码在以下目录中：
         └── hks_core_service.c # HUKS Core详细实现
         └── ... #其他功能代码
 ```
+**注意事项!!!**
 
+  <summary><strong>HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥、证书相关等，如设备开发者使用了相关代码，一定要替换成自有实现</strong></summary>
+
+  - **根密钥**
+
+    用于加密HUKS业务密钥，一般由设备根密钥派生而来，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/frameworks/huks_standard/main/crypto_engine/openssl/src/hks_openssl_get_main_key.c">hks_openssl_get_main_key.c</a>
+
+ - **访问控制用于对AuthToken做HMAC的密钥**
+
+   用于UserIAM对AuthToken进行HMAC，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+
+ - **访问控制用于对AuthToken敏感字段加密的密钥**
+
+   用于UserIAM对AuthToken敏感字段进行加密的密钥，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+
+  - **根证书、设备CA、设备证书**
+
+    用于密钥证明，一般由设备证书管理模块预置在硬件设备安全存储当中，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/device_cert_manager/include/dcm_certs_and_key.h">dcm_certs_and_key.h</a>
 
 #### 适配样例
 
-下文以HUKS Core中的密钥会话Init\Update\Finish接口适配作为一个样例，介绍基本流程。详细代码参考[HUKS源码目录](https://gitee.com/openharmony/security_huks)
+下文以HUKS Core中的密钥会话Init\Update\Finish接口适配作为一个样例，介绍基本流程，仅供参考不可实际运行，实际可运行代码参考[HUKS源码目录](https://gitee.com/openharmony/security_huks)
 
 1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
 
    ```c
 
-   //三段式Init接口
+   //密钥会话Init接口
 
    int32_t HksCoreInit(const struct  HuksBlob *key, const struct HuksParamSet *paramSet, struct HuksBlob *handle,
     struct HuksBlob *token)
@@ -1180,7 +1198,7 @@ HUKS Core软实现的代码在以下目录中：
 2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
    
     ```c
-    //三段式Update接口
+    //密钥会话Update接口
     int32_t HksCoreUpdate(const struct HuksBlob *handle, const struct HuksParamSet *paramSet, const struct HuksBlob *inData,
         struct HuksBlob *outData)
     {
@@ -1195,7 +1213,7 @@ HUKS Core软实现的代码在以下目录中：
         
         uint64_t sessionId;
         struct HuksKeyNode *keyNode = NULL;
-        //根据handle获取本次三段式操作需要的上下文
+        //根据handle获取本次密钥会话操作需要的上下文
         int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
         if (ret != HKS_SUCCESS) {
             HKS_LOG_E("GetParamsForCoreUpdate failed");
@@ -1246,7 +1264,7 @@ HUKS Core软实现的代码在以下目录中：
 3. 结束密钥操作并取回结果，销毁句柄。
 
    ```c
-   //三段式Finish接口
+   //密钥会话Finish接口
    int32_t HksCoreFinish(const struct HuksBlob *handle, const struct HuksParamSet *paramSet, const struct HuksBlob *inData,
     struct HuksBlob *outData)
    {
@@ -1261,7 +1279,7 @@ HUKS Core软实现的代码在以下目录中：
     
        uint64_t sessionId;
        struct HuksKeyNode *keyNode = NULL;
-       //根据handle获取本次三段式操作需要的上下文
+       //根据handle获取本次密钥会话操作需要的上下文
        int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
        if (ret != HKS_SUCCESS) {
            HKS_LOG_E("GetParamsForCoreUpdate failed");
@@ -1316,7 +1334,7 @@ HUKS Core软实现的代码在以下目录中：
 
 对于每个HDI接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的HDI接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
-JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
+JS测试代码示例如下（仅供参考），如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型和完整样例请见[huks-guidelines.md](../../application-dev/security/huks-guidelines.md)。
 
 **AES生成密钥和加密**
 
