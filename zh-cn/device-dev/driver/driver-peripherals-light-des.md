@@ -107,7 +107,7 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
 
 3. 灯驱动代码实现路径为： drivers\hdf_core\framework\model\misc\light\driver\src\light_driver.c。
 
-   - 灯驱动驱动对应的HdfDriverEntry对象，其中，Driver Entry入口函数定义如下：
+   - 灯驱动对应的HdfDriverEntry对象，其中，Driver Entry入口函数定义如下：
 
      ```c
      /* 注册灯入口数据结构体对象 */
@@ -319,7 +319,7 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
      }
      ```
 
-   - 灯驱动的内部接口完成了灯类型获取、闪烁模式设置和停止的接口开发，并实现根据闪烁模式创建和销毁定时器。
+   - 灯驱动的内部接口完成了灯类型获取、闪烁模式设置和停止的接口开发，并支持根据闪烁模式创建和销毁定时器。
 
      - GetAllLightInfo接口实现如下：
 
@@ -874,7 +874,6 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
     module_out_path = module_output_path
     sources = [ "light_test.cpp" ]
     include_dirs = [
-      "//drivers/hdf_core/framework/include/platform",
       "//drivers/peripheral/light/interfaces/include",
     ]
     deps = [ "//drivers/peripheral/light/hal:hdi_light" ]
