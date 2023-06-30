@@ -1,6 +1,6 @@
 # Progress
 
-The **\<Progress>** component is used to provide a progress indicator that displays the progress of content loading or an operation.
+The **\<Progress>** component represents a progress indicator that displays the progress of content loading or an operation.
 
 >  **NOTE**
 >
@@ -22,36 +22,36 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | number | Yes| Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| total | number | No| Total progress.<br>Default value: **100**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| type<sup>8+</sup> | [ProgressType](#progresstype) | No| Style the progress indicator.<br>Default value: **ProgressType.Linear**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| style<sup>deprecated</sup> | [ProgressStyle](#progressstyle) | No| Type of the progress indicator.<br>This parameter is deprecated since API version 8. You are advised to use **type** instead.<br>Default value: **ProgressStyle.Linear**|
+| Name                       | Type                               | Mandatory  | Description                                    |
+| -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
+| value                      | number                              | Yes   | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| total                      | number                              | No   | Total progress.<br>Default value: **100**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| type<sup>8+</sup>          | [ProgressType](#progresstype)   | No   | Style of the progress indicator.<br>Default value: **ProgressType.Linear**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| style<sup>deprecated</sup> | [ProgressStyle](#progressstyle) | No   | Style of the progress indicator.<br>This parameter is deprecated since API version 8. You are advised to use **type** instead.<br>Default value: **ProgressStyle.Linear**|
 
 ## ProgressType
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name| Description|
-| -------- | -------- |
-| Linear | Linear type. Since API version 9, the progress indicator adaptively switches to vertical layout if the height is greater than the width.|
-| Ring<sup>8+</sup> | Indeterminate ring type. The ring fills up as the progress increases.|
-| Eclipse<sup>8+</sup> | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full.|
-| ScaleRing<sup>8+</sup> | Determinate ring type, which is similar to the clock scale. Since API version 9, when the outer circles of scales overlap, the progress indicator is automatically converted to the **Ring** type.|
-| Capsule<sup>8+</sup> | Capsule type. At both ends, the progress indicator works in a same manner as the eclipse type. In the middle part of the capsule, the progress indicator works in a same manner as the linear type. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
+| Name                    | Description                                      |
+| ---------------------- | ---------------------------------------- |
+| Linear                 | Linear style. Since API version 9, the progress indicator adaptively switches to vertical layout if the height is greater than the width.  |
+| Ring<sup>8+</sup>      | Indeterminate ring style. The ring fills up as the progress increases.                |
+| Eclipse<sup>8+</sup>   | Eclipse style, which visualizes the progress in a way similar to the moon waxing from new to full.        |
+| ScaleRing<sup>8+</sup> | Determinate ring style, which is similar to the clock scale. Since API version 9, when the outer circles of scales overlap, the progress indicator is automatically converted to the **Ring** style.|
+| Capsule<sup>8+</sup>   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
 
 ##  ProgressStyle
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name     | Description                                                        |
-| --------- | ------------------------------------------------------------ |
-| Linear    | Linear type.|
-| Ring      | Indeterminate ring type. The ring fills up as the progress increases.|
-| Eclipse   | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full.|
-| ScaleRing | Determinate ring type, which is similar to the clock scale.|
-| Capsule   | Capsule type. At both ends, the progress indicator works in a same manner as the eclipse type. In the middle part of the capsule, the progress indicator works in a same manner as the linear type. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
+| Name       | Description                                      |
+| --------- | ---------------------------------------- |
+| Linear    | Linear style.                                   |
+| Ring      | Indeterminate ring style. The ring fills up as the progress increases.                |
+| Eclipse   | Eclipse style, which visualizes the progress in a way similar to the moon waxing from new to full.        |
+| ScaleRing | Determinate ring style, which is similar to the clock scale.              |
+| Capsule   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
 
 ## Attributes
 
@@ -61,7 +61,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | -------- | -------- | -------- |
 | value | number | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used. Invalid values do not take effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | color | [ResourceColor](ts-types.md#resourcecolor) | Background color of the progress indicator.<br>Default value: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the progress indicator.<br>Default value: **'\#19182431'**<br><br>Since API version 9, this API is supported in ArkTS widgets.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the progress indicator.<br>Default value: **'\#19182431'**<br><br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the progress indicator instead of the entire **\<Progress>** component.|
 | style<sup>8+</sup> | {<br>strokeWidth?: [Length](ts-types.md#length),<br>scaleCount?: number,<br>scaleWidth?: [Length](ts-types.md#length)<br>} | Component style.<br>- **strokeWidth**: stroke width of the progress indicator. It cannot be set in percentage. Since API version 9, if the stroke width of the ring progress bar is greater than or equal to the radius, the width is changed to half of the radius.<br>Default value: **4.0Vp**<br>- **scaleCount**: number of divisions on the determinate ring-type process indicator.<br>Default value: **120**<br>- **scaleWidth**: scale width of the ring progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0Vp**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Events
@@ -128,4 +128,4 @@ struct ProgressExample {
 }
 ```
 
-![progress](figures/progress.png)
+![progress](figures/arkts-progress.png)
