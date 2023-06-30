@@ -433,7 +433,7 @@ try {
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-Obtains the list of windows on a display. This API uses an asynchronous callback to return the result.
+Obtains the list of windows on this display. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -610,7 +610,7 @@ Defines the accessibilityelement. Before calling APIs of **AccessibilityElement*
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 
@@ -636,7 +636,7 @@ rootElement.attributeNames().then((data) => {
     console.log('failed to get attribute names, because ${JSON.stringify(err)}');
 });
 ```
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
@@ -664,7 +664,7 @@ rootElement.attributeNames((err, data) => {
     console.info('get attribute names success');
 });
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
@@ -709,7 +709,7 @@ try {
     console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
@@ -752,7 +752,7 @@ try {
     console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
-## actionNames
+### actionNames
 
 actionNames(): Promise\<Array\<string>>;
 
@@ -778,7 +778,7 @@ rootElement.actionNames().then((data) => {
     console.error('failed to get action names because ${JSON.stringify(err)}');
 });
 ```
-## actionNames
+### actionNames
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
@@ -806,7 +806,7 @@ rootElement.actionNames((err, data) => {
     console.info('get action names success');
 });
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
@@ -818,8 +818,8 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
-| parameters | object | No   | Parameters required for performing the target action. Not supported currently.    |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.    |
 
 **Return value**
 
@@ -849,7 +849,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
@@ -861,7 +861,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -888,7 +888,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
@@ -901,7 +901,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 | Name       | Type                       | Mandatory  | Description                                      |
 | ---------- | ------------------------- | ---- | ---------------------------------------- |
 | actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object                    | Yes   | Parameters required for performing the target action. Not supported currently.                 |
+| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                 |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                       |
 
 **Error codes**
@@ -932,7 +932,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -971,7 +971,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
@@ -1007,7 +1007,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
@@ -1046,7 +1046,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
@@ -1082,7 +1082,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
@@ -1121,7 +1121,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 

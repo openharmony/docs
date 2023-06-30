@@ -12,7 +12,7 @@ The **sharing** module allows you to share your device's Internet connection wit
 import sharing from '@ohos.net.sharing'
 ```
 
-## sharing.isSharingSupported
+## sharing.isSharingSupported<sup>9+</sup>
 
 isSharingSupported(callback: AsyncCallback\<boolean>): void
 
@@ -35,6 +35,7 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -48,7 +49,7 @@ sharing.isSharingSupported((error, data) => {
 });
 ```
 
-## sharing.isSharingSupported
+## sharing.isSharingSupported<sup>9+</sup>
 
 isSharingSupported(): Promise\<boolean>
 
@@ -71,6 +72,7 @@ Checks whether network sharing is supported. This API uses a promise to return t
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -85,7 +87,7 @@ sharing.isSharingSupported().then(data => {
 });
 ```
 
-## sharing.isSharing
+## sharing.isSharing<sup>9+</sup>
 
 isSharing(callback: AsyncCallback\<boolean>): void
 
@@ -108,8 +110,10 @@ Checks whether network sharing is in progress. This API uses an asynchronous cal
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **Example**
 
@@ -120,7 +124,7 @@ sharing.isSharing((error, data) => {
 });
 ```
 
-## sharing.isSharing
+## sharing.isSharing<sup>9+</sup>
 
 isSharing(): Promise\<boolean>
 
@@ -143,8 +147,10 @@ Checks whether network sharing is in progress. This API uses a promise to return
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **Example**
 
@@ -156,7 +162,7 @@ sharing.isSharing().then(data => {
 });
 ```
 
-## sharing.startSharing
+## sharing.startSharing<sup>9+</sup>
 
 startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -180,6 +186,7 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                             |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -201,7 +208,7 @@ sharing.startSharing(SHARING_WIFI, (error) => {
 });
 ```
 
-## sharing.startSharing
+## sharing.startSharing<sup>9+</sup>
 
 startSharing(type: SharingIfaceType): Promise\<void>
 
@@ -229,6 +236,7 @@ Starts network sharing of a specified type. This API uses a promise to return th
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 202     | Non-system applications use system APIs.                             |
 | 201     | Permission denied.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
@@ -253,7 +261,7 @@ sharing.startSharing(SHARING_WIFI).then(() => {
 });
 ```
 
-## sharing.stopSharing
+## sharing.stopSharing<sup>9+</sup>
 
 stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -277,10 +285,12 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -296,7 +306,7 @@ sharing.stopSharing(SHARING_WIFI, (error) => {
 });
 ```
 
-## sharing.stopSharing
+## sharing.stopSharing<sup>9+</sup>
 
 stopSharing(type: SharingIfaceType): Promise\<void>
 
@@ -325,10 +335,12 @@ Stops network sharing of a specified type. This API uses a promise to return the
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -346,7 +358,7 @@ sharing.stopSharing(SHARING_WIFI).then(() => {
 });
 ```
 
-## sharing.getStatsRxBytes
+## sharing.getStatsRxBytes<sup>9+</sup>
 
 getStatsRxBytes(callback: AsyncCallback\<number>): void
 
@@ -369,6 +381,8 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -381,7 +395,7 @@ sharing.getStatsRxBytes((error, data) => {
 });
 ```
 
-## sharing.getStatsRxBytes
+## sharing.getStatsRxBytes<sup>9+</sup>
 
 getStatsRxBytes(): Promise\<number>
 
@@ -404,6 +418,8 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -417,7 +433,7 @@ sharing.getStatsRxBytes().then(data => {
 });
 ```
 
-## sharing.getStatsTxBytes
+## sharing.getStatsTxBytes<sup>9+</sup>
 
 getStatsTxBytes(callback: AsyncCallback\<number>): void
 
@@ -440,6 +456,8 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -452,7 +470,7 @@ sharing.getStatsTxBytes((error, data) => {
 });
 ```
 
-## sharing.getStatsTxBytes
+## sharing.getStatsTxBytes<sup>9+</sup>
 
 getStatsTxBytes(): Promise\<number>
 
@@ -475,6 +493,8 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -488,7 +508,7 @@ sharing.getStatsTxBytes().then(data => {
 });
 ```
 
-## sharing.getStatsTotalBytes
+## sharing.getStatsTotalBytes<sup>9+</sup>
 
 getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
@@ -511,6 +531,8 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -523,7 +545,7 @@ sharing.getStatsTotalBytes((error, data) => {
 });
 ```
 
-## sharing.getStatsTotalBytes
+## sharing.getStatsTotalBytes<sup>9+</sup>
 
 getStatsTotalBytes(): Promise\<number>
 
@@ -546,6 +568,8 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -559,7 +583,7 @@ sharing.getStatsTotalBytes().then(data => {
 });
 ```
 
-## sharing.getSharingIfaces
+## sharing.getSharingIfaces<sup>9+</sup>
 
 getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void
 
@@ -583,6 +607,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -600,7 +625,7 @@ sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
 });
 ```
 
-## sharing.getSharingIfaces
+## sharing.getSharingIfaces<sup>9+</sup>
 
 getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
@@ -629,6 +654,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -647,7 +673,7 @@ sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
 });
 ```
 
-## sharing.getSharingState
+## sharing.getSharingState<sup>9+</sup>
 
 getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void
 
@@ -671,6 +697,7 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -688,7 +715,7 @@ sharing.getSharingState(SHARING_WIFI, (error, data) => {
 });
 ```
 
-## sharing.getSharingState
+## sharing.getSharingState<sup>9+</sup>
 
 getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
@@ -711,6 +738,7 @@ Obtains the network sharing state of the specified type. This API uses a promise
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -735,7 +763,7 @@ sharing.getSharingState(SHARING_WIFI).then(data => {
 });
 ```
 
-## sharing.getSharableRegexes
+## sharing.getSharableRegexes<sup>9+</sup>
 
 getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void
 
@@ -759,6 +787,7 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -776,7 +805,7 @@ sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
 });
 ```
 
-## sharing.getSharableRegexes
+## sharing.getSharableRegexes<sup>9+</sup>
 
 getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
@@ -805,6 +834,7 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -823,7 +853,7 @@ sharing.getSharableRegexes(SHARING_WIFI).then(data => {
 });
 ```
 
-## sharing.on('sharingStateChange')
+## sharing.on('sharingStateChange')<sup>9+</sup>
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
@@ -847,6 +877,7 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -857,7 +888,7 @@ sharing.on('sharingStateChange', (data) => {
 });
 ```
 
-## sharing.off('sharingStateChange')
+## sharing.off('sharingStateChange')<sup>9+</sup>
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
@@ -881,6 +912,7 @@ Unsubscribes from network sharing state changes. This API uses an asynchronous c
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -891,7 +923,7 @@ sharing.off('sharingStateChange', (data) => {
 });
 ```
 
-## sharing.on('interfaceSharingStateChange')
+## sharing.on('interfaceSharingStateChange')<sup>9+</sup>
 
 on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
 SharingIfaceState }>): void
@@ -916,6 +948,7 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -926,7 +959,7 @@ sharing.on('interfaceSharingStateChange', (data) => {
 });
 ```
 
-## sharing.off('interfaceSharingStateChange')
+## sharing.off('interfaceSharingStateChange')<sup>9+</sup>
 
 off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
 SharingIfaceState }>): void
@@ -951,6 +984,7 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -961,7 +995,7 @@ sharing.off('interfaceSharingStateChange', (data) => {
 });
 ```
 
-## sharing.on('sharingUpstreamChange')
+## sharing.on('sharingUpstreamChange')<sup>9+</sup>
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
@@ -985,6 +1019,7 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -995,7 +1030,7 @@ sharing.on('sharingUpstreamChange', (data) => {
 });
 ```
 
-## sharing.off('sharingUpstreamChange')
+## sharing.off('sharingUpstreamChange')<sup>9+</sup>
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
@@ -1019,6 +1054,7 @@ Unsubscribes from upstream network changes. This API uses an asynchronous callba
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **Example**
@@ -1029,7 +1065,7 @@ sharing.off('sharingUpstreamChange', (data) => {
 });
 ```
 
-## SharingIfaceState
+## SharingIfaceState<sup>9+</sup>
 
 Enumerates the network sharing states of an NIC.
 
@@ -1043,7 +1079,7 @@ Enumerates the network sharing states of an NIC.
 | SHARING_NIC_CAN_SERVER | 2 | Network sharing is supported.|
 | SHARING_NIC_ERROR      | 3 | An error occurred during network sharing.|
 
-## SharingIfaceType
+## SharingIfaceType<sup>9+</sup>
 
 Enumerates the network sharing types of an NIC.
 

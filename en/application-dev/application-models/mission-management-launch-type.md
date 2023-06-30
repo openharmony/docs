@@ -1,4 +1,4 @@
-# Mission Management and Launch Type
+# Mission and Launch Type
 
 
 One UIAbility instance corresponds to one mission. The number of UIAbility instances is related to the UIAbility launch type, specified by **launchType**, which is configured in the **config.json** file in the FA model and the [module.json5](../quick-start/module-configuration-file.md) file in the stage model.
@@ -11,13 +11,13 @@ The following describes how the mission list manager manages the UIAbility insta
   
   ![mission-and-singleton](figures/mission-and-singleton.png)
   
-- **multiton**: Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a **UIAbility** instance is created in the application process.
+- **multiton**: Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a UIAbility instance is created in the application process.
   
   **Figure 2** Missions and multiton mode
   
   ![mission-and-multiton](figures/mission-and-multiton.png)
   
-- **specified**: The ([onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)) method of [AbilityStage](abilitystage.md) determines whether to create an instance.
+- **specified**: The ([onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)) method of [AbilityStage](abilitystage.md) determines whether to create a UIAbility instance.
   
   **Figure 3** Missions and specified mode
   

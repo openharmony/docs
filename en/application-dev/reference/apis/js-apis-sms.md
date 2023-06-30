@@ -14,7 +14,7 @@ import sms from '@ohos.telephony.sms';
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback\<ShortMessage\>\): void
 
 Creates an SMS instance based on the protocol data unit (PDU) and specified SMS protocol. This API uses an asynchronous callback to return the result.
 
@@ -27,6 +27,18 @@ Creates an SMS instance based on the protocol data unit (PDU) and specified SMS 
 | pdu           | Array&lt;number&gt;                                | Yes  | Protocol data unit, which is obtained from the received SMS message.                          |
 | specification | string                                             | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
 | callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -42,7 +54,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<ShortMessage\>
 
 Creates an SMS instance based on the PDU and specified SMS protocol. This API uses a promise to return the result.
 
@@ -61,6 +73,18 @@ Creates an SMS instance based on the PDU and specified SMS protocol. This API us
 | -------------------------------------------- | --------------------------------- |
 | Promise&lt;[ShortMessage](#shortmessage)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -77,7 +101,7 @@ promise.then(data => {
 
 ## sms.sendMessage
 
-sendMessage(options: SendMessageOptions): void
+sendMessage\(options: SendMessageOptions\): void
 
 Sends an SMS message.
 
@@ -197,6 +221,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -244,6 +269,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -264,7 +290,7 @@ promise.then(() => {
 
 ## sms.setSmscAddr<sup>7+</sup>
 
-setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
+setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\): void
 
 Sets the short message service center (SMSC) address. This API uses an asynchronous callback to return the result.
 
@@ -289,6 +315,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -338,6 +365,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -360,7 +388,7 @@ promise.then(() => {
 
 ## sms.getSmscAddr<sup>7+</sup>
 
-getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
+getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 Obtains the SMSC address. This API uses an asynchronous callback to return the result.
 
@@ -384,6 +412,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -402,7 +431,7 @@ sms.getSmscAddr(slotId, (err, data) => {
 
 ## sms.getSmscAddr<sup>7+</sup>
 
-getSmscAddr\(slotId: number\): Promise<string\>
+getSmscAddr\(slotId: number\): Promise\<string\>
 
 Obtains the SMSC address. This API uses a promise to return the result.
 
@@ -431,6 +460,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -451,7 +481,7 @@ promise.then(data => {
 
 ## sms.hasSmsCapability<sup>7+</sup>
 
-hasSmsCapability(): boolean
+hasSmsCapability\(\): boolean
 
 Checks whether the current device can send and receive SMS messages. This API works in synchronous mode.
 
@@ -470,7 +500,7 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 
 ## sms.splitMessage<sup>8+</sup>
 
-splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
+splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): void
 
 Splits an SMS message into multiple segments. This API uses an asynchronous callback to return the result.
 
@@ -494,6 +524,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -512,7 +543,7 @@ sms.splitMessage(content, (err, data) => {
 
 ## sms.splitMessage<sup>8+</sup>
 
-splitMessage(content: string): Promise<Array<string\>>
+splitMessage\(content: string\): Promise\<Array\<string\>\>
 
 Splits an SMS message into multiple segments. This API uses a promise to return the result.
 
@@ -541,6 +572,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -561,7 +593,7 @@ promise.then(data => {
 
 ## sms.addSimMessage<sup>7+</sup>
 
-addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
+addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): void
 
 Adds a SIM message. This API uses an asynchronous callback to return the result.
 
@@ -585,6 +617,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -608,7 +641,7 @@ sms.addSimMessage(simMessageOptions, (err) => {
 
 ## sms.addSimMessage<sup>7+</sup>
 
-addSimMessage(options: SimMessageOptions): Promise<void\>
+addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
 Adds a SIM message. This API uses a promise to return the result.
 
@@ -637,6 +670,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -662,7 +696,7 @@ promise.then(() => {
 
 ## sms.delSimMessage<sup>7+</sup>
 
-delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
+delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>\): void
 
 Deletes a SIM message. This API uses an asynchronous callback to return the result.
 
@@ -687,6 +721,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -706,7 +741,7 @@ sms.delSimMessage(slotId, msgIndex, (err) => {
 
 ## sms.delSimMessage<sup>7+</sup>
 
-delSimMessage(slotId: number, msgIndex: number): Promise<void\>
+delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
 Deletes a SIM message. This API uses a promise to return the result.
 
@@ -736,6 +771,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -757,7 +793,7 @@ promise.then(() => {
 
 ## sms.updateSimMessage<sup>7+</sup>
 
-updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
+updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<void\>\): void
 
 Updates a SIM message. This API uses an asynchronous callback to return the result.
 
@@ -781,6 +817,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -805,7 +842,7 @@ sms.updateSimMessage(updateSimMessageOptions, (err) => {
 
 ## sms.updateSimMessage<sup>7+</sup>
 
-updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
+updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 
 Updates a SIM message. This API uses a promise to return the result.
 
@@ -834,6 +871,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -860,7 +898,7 @@ promise.then(() => {
 
 ## sms.getAllSimMessages<sup>7+</sup>
 
-getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
+getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessage\>\>\): void
 
 Obtains all SIM card messages. This API uses an asynchronous callback to return the result.
 
@@ -884,6 +922,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -902,7 +941,7 @@ sms.getAllSimMessages(slotId, (err, data) => {
 
 ## sms.getAllSimMessages<sup>7+</sup>
 
-getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
+getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 
 Obtains all SIM card messages. This API uses a promise to return the result.
 
@@ -931,6 +970,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -951,7 +991,7 @@ promise.then(data => {
 
 ## sms.setCBConfig<sup>7+</sup>
 
-setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
+setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 
 Sets the cell broadcast configuration. This API uses an asynchronous callback to return the result.
 
@@ -975,6 +1015,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -999,7 +1040,7 @@ sms.setCBConfig(cbConfigOptions, (err) => {
 
 ## sms.setCBConfig<sup>7+</sup>
 
-setCBConfig(options: CBConfigOptions): Promise<void\>
+setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 
 Sets the cell broadcast configuration. This API uses a promise to return the result.
 
@@ -1028,6 +1069,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1054,7 +1096,7 @@ promise.then(() => {
 
 ## sms.getSmsSegmentsInfo<sup>8+</sup>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
+getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback\<SmsSegmentsInfo\>\): void
 
 Obtains SMS message segment information. This API uses an asynchronous callback to return the result.
 
@@ -1077,6 +1119,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1095,7 +1138,7 @@ sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
 
 ## sms.getSmsSegmentsInfo<sup>8+</sup>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
+getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promise\<SmsSegmentsInfo\>
 
 Obtains SMS message segment information. This API uses a promise to return the result.
 
@@ -1123,6 +1166,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1143,7 +1187,7 @@ promise.then(data => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
+isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 Checks whether SMS is supported on IMS. This API uses an asynchronous callback to return the result.
 
@@ -1164,6 +1208,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1182,7 +1227,7 @@ sms.isImsSmsSupported(slotId, (err, data) => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(slotId: number): Promise<boolean\>
+isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
 This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
@@ -1208,6 +1253,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1228,7 +1274,7 @@ promise.then(data => {
 
 ## sms.getImsShortMessageFormat<sup>8+</sup>
 
-getImsShortMessageFormat(callback: AsyncCallback<string\>): void
+getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
 Obtains the SMS format supported by the IMS. This API uses an asynchronous callback to return the result.
 
@@ -1248,6 +1294,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1265,7 +1312,7 @@ sms.getImsShortMessageFormat((err, data) => {
 
 ## sms.getImsShortMessageFormat<sup>8+</sup>
 
-getImsShortMessageFormat(): Promise<string\>
+getImsShortMessageFormat\(\): Promise\<string\>
 
 Obtains the SMS format supported by the IMS. This API uses a promise to return the result.
 
@@ -1285,8 +1332,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
+| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -1304,7 +1350,7 @@ promise.then(data => {
 
 ## sms.decodeMms<sup>8+</sup>
 
-decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
+decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<MmsInformation\>\): void
 
 Decodes MMS messages. This API uses an asynchronous callback to return the result.
 
@@ -1343,7 +1389,7 @@ sms.decodeMms(mmsFilePathName, (err, data) => {
 
 ## sms.decodeMms<sup>8+</sup>
 
-decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
+decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\>
 
 Decodes MMS messages. This API uses a promise to return the result.
 
@@ -1389,7 +1435,7 @@ promise.then(data => {
 
 ## sms.encodeMms<sup>8+</sup>
 
-encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
+encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): void
 
 MMS message code. This API uses an asynchronous callback to return the result.
 
@@ -1436,7 +1482,7 @@ sms.encodeMms(mmsInformation, (err, data) => {
 
 ## sms.encodeMms<sup>8+</sup>
 
-encodeMms(mms: MmsInformation): Promise<Array<number\>>
+encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 
 MMS message code. This API uses a promise to return the result.
 

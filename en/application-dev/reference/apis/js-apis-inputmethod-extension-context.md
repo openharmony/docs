@@ -21,9 +21,9 @@ Before using the **InputMethodExtensionContext** module, you must define a child
 ```js
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 class EntryAbility extends InputMethodExtensionAbility {
-    onCreate() {
-        let context = this.context;
-    }
+  onCreate() {
+    let context = this.context;
+  }
 }
 ```
 
@@ -44,8 +44,8 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 **Example**
 
 ```js
-this.context.destroy((err) => {
-    console.log('destroy result:' + JSON.stringify(err));
+this.context.destroy(() => {
+  console.log('Succeeded in destroying context.');
 });
 ```
 
@@ -67,8 +67,6 @@ Terminates this ability. This API uses a promise to return the result.
 
 ```js
 this.context.destroy().then(() => {
-    console.log('Succeeded in destroying context.');
-}).catch((error) => {
-    console.log('Failed to destroy context: ' + JSON.stringify(error));
+  console.log('Succeed in destroying context.');
 });
 ```

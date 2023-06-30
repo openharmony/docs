@@ -1,10 +1,10 @@
-# @ohos.taskpool（使用任务池）
+# @ohos.taskpool（启动任务池）
 
 任务池（taskpool）作用是为应用程序提供一个多线程的运行环境，降低整体资源的消耗、提高系统的整体性能，且您无需关心线程实例的生命周期。您可以使用任务池API创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。理论上您可以使用任务池API创建数量不受限制的任务，但是出于内存因素不建议您这样做。此外，不建议您在任务中执行阻塞操作，特别是无限期阻塞操作，长时间的阻塞操作占据工作线程，可能会阻塞其他任务调度，影响您的应用性能。
 
-您所创建的同一优先级任务的执行顺序可以由您决定，任务真实执行的顺序与您调用任务池API提供的任务执行接口顺序一致。任务默认优先级是MEDIUM。（任务优先级机制暂未支持）
+您所创建的同一优先级任务的执行顺序可以由您决定，任务真实执行的顺序与您调用任务池API提供的任务执行接口顺序一致。任务默认优先级是MEDIUM。
 
-当同一时间待执行的任务数量大于任务池工作线程数量，任务池会根据负载均衡机制进行扩容，增加工作线程数量，减少整体等待时长。同样，当执行的任务数量减少，工作线程数量大于执行任务数量，部分工作线程处于空闲状态，任务池会根据负载均衡机制进行缩容，减少工作线程数量。（负载均衡机制暂未支持）
+当同一时间待执行的任务数量大于任务池工作线程数量，任务池会根据负载均衡机制进行扩容，增加工作线程数量，减少整体等待时长。同样，当执行的任务数量减少，工作线程数量大于执行任务数量，部分工作线程处于空闲状态，任务池会根据负载均衡机制进行缩容，减少工作线程数量。
 
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
@@ -32,40 +32,37 @@ import taskpool from '@ohos.taskpool';
 **示例：**
 
 ```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
 
-  let highCount = 0;
-  let mediumCount = 0;
-  let lowCount = 0;
-  let allCount = 100;
-  for (let i = 0; i < allCount; i++) {
-    taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-      lowCount++;
-      console.log("taskpool lowCount is :" + lowCount);
-    }).catch((e) => {
-      console.error("low task error: " + e);
-    })
-    taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-      mediumCount++;
-      console.log("taskpool mediumCount is :" + mediumCount);
-    }).catch((e) => {
-      console.error("medium task error: " + e);
-    })
-    taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-      highCount++;
-      console.log("taskpool highCount is :" + highCount);
-    }).catch((e) => {
-      console.error("high task error: " + e);
-    })
-  }
+let task = new taskpool.Task(printArgs, 100);
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+    lowCount++;
+    console.log("taskpool lowCount is :" + lowCount);
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+    mediumCount++;
+    console.log("taskpool mediumCount is :" + mediumCount);
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+    highCount++;
+    console.log("taskpool highCount is :" + highCount);
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
 }
-taskpoolTest();
 ```
 
 ## Task
@@ -99,12 +96,80 @@ Task的构造函数。
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-let task = new taskpool.Task(func, "this is my first Task");
+let task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### isCanceled
+
+static isCanceled(): boolean
+
+检查当前正在运行的任务是否已取消。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 如果当前正在运行的任务被取消返回true，未被取消返回false。|
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // do something
+    ...
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled.");
+      // do something
+      ...
+      return arg + 1;
+    }
+    // do something
+    ...
+    return arg;
+}
+```
+
+> **说明：**<br/>
+> isCanceled方法需要和taskpool.cancel方法搭配使用，如果不调用cancel方法，isCanceled方法默认返回false。
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // 第一时间检查取消并回复
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // 延时2s
+    var t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // 第二次检查取消并作出响应
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+  return arg + 1;
+}
+
+let task = new taskpool.Task(inspectStatus, 100);
+taskpool.execute(task).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+// 不调用cancel，isCanceled()默认返回false，task执行的结果为101
 ```
 
 ### 属性
@@ -144,24 +209,21 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 10200003 | Worker initialization failure.            |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not mark as concurrent.   |
 
 **示例：**
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let value = await taskpool.execute(func, 100);
+taskpool.execute(printArgs, 100).then((value) => {
   console.log("taskpool result: " + value);
-}
-
-taskpoolTest();
+});
 ```
 
 ## taskpool.execute
@@ -192,25 +254,22 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 10200003 | Worker initialization failure.            |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not mark as concurrent.   |
 
 **示例：**
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
-  let value = await taskpool.execute(task);
+let task = new taskpool.Task(printArgs, 100);
+taskpool.execute(task).then((value) => {
   console.log("taskpool result: " + value);
-}
-
-taskpoolTest();
+});
 ```
 
 ## taskpool.cancel
@@ -233,89 +292,51 @@ cancel(task: Task): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ------------------------- |
-| 10200015 | If the task is not exist. |
-| 10200016 | If the task is running.   |
+| 10200015 | The task does not exist when it is canceled. |
+| 10200016 | The task is executing when it is canceled.   |
 
-**任务取消成功示例：**
-
-```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
-    return args;
-}
-
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
-  taskpool.execute(task);
-  try {
-    taskpool.cancel(task);
-  } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
-  }
-}
-
-taskpoolTest();
-```
-
-**已执行的任务取消失败示例：**
+**正在执行的任务取消示例：**
 
 ```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
-    return args;
+@Concurrent
+function inspectStatus(arg) {
+    // 第一时间检查取消并回复
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // 2s sleep
+    var t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // 第二次检查取消并作出响应
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+    return arg + 1;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
-  let value = taskpool.execute(task);
-  let start = new Date().getTime();
-  while (new Date().getTime() - start < 1000) { // 延时1s，确保任务已执行
-    continue;
-  }
-
-  try {
-    taskpool.cancel(task); //任务已执行,取消失败
-  } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
-  }
-}
-
-taskpoolTest();
-```
-
-**正在执行的任务取消失败示例：**
-
-```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
-    return args;
-}
-
-async function taskpoolTest() {
-  let task1 = new taskpool.Task(func, 100);
-  let task2 = new taskpool.Task(func, 200);
-  let task3 = new taskpool.Task(func, 300);
-  let task4 = new taskpool.Task(func, 400);
-  let task5 = new taskpool.Task(func, 500);
-  let task6 = new taskpool.Task(func, 600);
-
-  let res1 = taskpool.execute(task1);
-  let res2 = taskpool.execute(task2);
-  let res3 = taskpool.execute(task3);
-  let res4 = taskpool.execute(task4);
-  let res5 = taskpool.execute(task5);
-  let res6 = taskpool.execute(task6);
-  try {
-    taskpool.cancel(task1); // task1任务正在执行，取消失败
-  } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
-  }
-}
-
-taskpoolTest();
+let task1 = new taskpool.Task(inspectStatus, 100);
+let task2 = new taskpool.Task(inspectStatus, 200);
+let task3 = new taskpool.Task(inspectStatus, 300);
+let task4 = new taskpool.Task(inspectStatus, 400);
+let task5 = new taskpool.Task(inspectStatus, 500);
+let task6 = new taskpool.Task(inspectStatus, 600);
+taskpool.execute(task1).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+let res2 = taskpool.execute(task2);
+let res3 = taskpool.execute(task3);
+let res4 = taskpool.execute(task4);
+let res5 = taskpool.execute(task5);
+let res6 = taskpool.execute(task6);
+// 1s后取消task
+setTimeout(()=>{
+  taskpool.cancel(task1);}, 1000);
 ```
 
 ## 其他说明
@@ -327,7 +348,7 @@ taskpoolTest();
 - 仅支持在Stage模型且module的compileMode为esmodule的project中使用taskpool api。确认module的compileMode方法：查看当前module的build-profile.json5，在buildOption中补充"compileMode": "esmodule"。
 - taskpool任务只支持引用入参传递或者import的变量，不支持使用闭包变量，使用装饰器@Concurrent进行拦截。
 - taskpool任务只支持普通函数或者async函数，不支持类成员函数或者匿名函数，使用装饰器@Concurrent进行拦截。
-- 装饰器@Concurrent仅支持在ets文件使用，在ts文件中创建taskpool任务需使用"use concurrent"。
+- 装饰器@Concurrent仅支持在ets文件使用。
 
 ### 简单使用
 
@@ -336,23 +357,23 @@ taskpoolTest();
 ```ts
 // 支持普通函数、引用入参传递
 @Concurrent
-function func(args) {
+function printArgs(args) {
     console.log("func: " + args);
     return args;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(func, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
   // taskpool.execute(function)
-  let val2 = await taskpool.execute(func, "execute task by func");
+  let val2 = await taskpool.execute(printArgs, "execute task by func");
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例二**
@@ -367,24 +388,24 @@ export var c = 2000;
 import { c } from "./b";
 
 @Concurrent
-function test(a) {
+function printArgs(a) {
     console.log(a);
     console.log(c);
     return a;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(test, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
   // taskpool.execute(function)
-  let val2 = await taskpool.execute(test, "execute task by func");
+  let val2 = await taskpool.execute(printArgs, "execute task by func");
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例三**
@@ -392,57 +413,132 @@ taskpoolTest();
 ```ts
 // 支持async函数
 @Concurrent
-async function task() {
+async function delayExcute() {
   let ret = await Promise.all([
     new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
   return ret;
 }
 
-async function taskpoolTest() {
-  taskpool.execute(task).then((result) => {
+async function taskpoolExecute() {
+  taskpool.execute(delayExcute).then((result) => {
     console.log("TaskPoolTest task result: " + result);
   });
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例四**
 
 ```ts
-// 在ts文件中创建taskpool任务需使用"use concurrent"
-// c.ts
-function test1(n) {
-    "use concurrent"
-    return n;
+// c.ets
+@Concurrent
+function strSort(inPutArr) {
+  let newArr = inPutArr.sort();
+  return newArr;
 }
-export async function taskpoolTest1() {
-    console.log("taskpoolTest1 start");
-    var task = new taskpool.Task(test1, 100);
+export async function func1() {
+    console.log("taskpoolTest start");
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    var task = new taskpool.Task(strSort, strArray);
     var result = await taskpool.execute(task);
-    console.log("taskpoolTest1 result:" + result);
+    console.log("func1 result:" + result);
 }
 
-async function test2() {
-    "use concurrent"
-    var ret = await Promise.all([
-        new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
-    ]);
-    return ret;
-}
-export async function taskpoolTest2() {
+export async function func2() {
     console.log("taskpoolTest2 start");
-    taskpool.execute(test2).then((result) => {
-        console.log("TaskPoolTest2 result: " + result);
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    taskpool.execute(strSort, strArray).then((result) => {
+        console.log("func2 result: " + result);
     });
 }
 ```
 
 ```ts
-// a.ets(与c.ts在同一目录中)
+// a.ets(与c.ets在同一目录中)
 import { taskpoolTest1, taskpoolTest2 } from "./c";
 
-taskpoolTest1();
-taskpoolTest2();
+func1();
+func2();
+```
+
+**示例五**
+
+```ts
+// 任务取消成功
+@Concurrent
+function inspectStatus(arg) {
+    // 第一时间检查取消并回复
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // 2s sleep
+    var t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // 第二次检查取消并作出响应
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+    return arg + 1;
+}
+
+async function taskpoolCancel() {
+    let task = new taskpool.Task(inspectStatus, 100);
+    taskpool.execute(task).then((res)=>{
+      console.log("taskpool test result: " + res);
+    }).catch((err) => {
+      console.log("taskpool test occur error: " + err);
+    });
+    // 1s后取消task
+    setTimeout(()=>{
+      taskpool.cancel(task);}, 1000);
+}
+
+taskpoolCancel();
+```
+
+**示例六**
+
+```ts
+// 已执行的任务取消失败
+@Concurrent
+function inspectStatus(arg) {
+    // 第一时间检查取消并回复
+    if (taskpool.Task.isCanceled()) {
+      return arg + 2;
+    }
+    // 延时2s
+    var t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // 第二次检查取消并作出响应
+    if (taskpool.Task.isCanceled()) {
+      return arg + 3;
+    }
+    return arg + 1;
+}
+
+async function taskpoolCancel() {
+    let task = new taskpool.Task(inspectStatus, 100);
+    taskpool.execute(task).then((res)=>{
+      console.log("taskpool test result: " + res);
+    }).catch((err) => {
+      console.log("taskpool test occur error: " + err);
+    });
+    setTimeout(()=>{
+      try {
+        taskpool.cancel(task); // 任务已执行,取消失败
+      } catch (e) {
+        console.log("taskpool.cancel occur error:" + e);
+      }
+    }, 3000); // 延时3s，确保任务已执行
+}
+
+taskpoolCancel();
 ```

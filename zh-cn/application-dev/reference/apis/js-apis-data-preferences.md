@@ -185,7 +185,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
-| 15500010 | Failed to delete preferences. |
+| 15500010 | Failed to delete preferences file. |
 
 **示例：**
 
@@ -262,7 +262,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
-| 15500010 | Failed to delete preferences. |
+| 15500010 | Failed to delete preferences file. |
 
 **示例：**
 

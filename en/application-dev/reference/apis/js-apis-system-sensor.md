@@ -89,7 +89,7 @@ Subscribes to data changes of the compass sensor. If this API is called multiple
 ```js
 sensor.subscribeCompass({
   success: function(ret) {
-    console.log('get data direction:' + ret.direction);
+    console.log('Get data direction:' + ret.direction);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -133,7 +133,7 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 ```js
 sensor.subscribeProximity({
   success: function(ret) {
-    console.log('get data distance:' + ret.distance);
+    console.log('Get data distance:' + ret.distance);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -177,7 +177,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 ```js
 sensor.subscribeLight({
   success: function(ret) {
-    console.log('get data intensity:' + ret.intensity);
+    console.log('Get data intensity:' + ret.intensity);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -223,7 +223,7 @@ Subscribes to data changes of the step counter sensor. If this API is called mul
 ```js
 sensor.subscribeStepCounter({
   success: function(ret) {
-    console.log('get step value:' + ret.steps);
+    console.log('Get step value:' + ret.steps);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -270,7 +270,7 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 ```js
 sensor.subscribeBarometer({
   success: function(ret) {
-    console.log('get data value:' + ret.pressure);
+    console.log('Get data value:' + ret.pressure);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -318,7 +318,7 @@ Subscribes to data changes of the heart rate sensor. If this API is called multi
 ```js
 sensor.subscribeHeartRate({
   success: function(ret) {
-    console.log('get heartrate value:' + ret.heartRate);
+    console.log('Get heartrate value:' + ret.heartRate);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -365,7 +365,7 @@ Subscribes to changes of the wearing state of a wearable device. If this API is 
 ```js
 sensor.subscribeOnBodyState({
   success: function(ret) {
-    console.log('get on-body state value:' + ret.value);
+    console.log('Get on-body state value:' + ret.value);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -409,7 +409,7 @@ Obtains the wearing state of a wearable device.
 ```js
 sensor.getOnBodyState({
   success: function(ret) {
-    console.log('on body state: ' + ret.value);
+    console.log('On body state: ' + ret.value);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -710,7 +710,7 @@ Defines the wearing state.
 
 | Name    | Type                                       | Mandatory| Description                    |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
-| success  | [OnBodyStateResponse](#onbodystateresponse) | No  | Callback upon a successful API call.|
+| success  | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Callback upon a successful API call.|
 | fail     | Function                                    | No  | Callback upon an API call failure.|
 | complete | Function                                    | No  | Called when the API call is complete.|
 

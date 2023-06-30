@@ -46,13 +46,16 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
+  if (err) {
+    console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting date time');
 })
 ```
 
@@ -94,12 +97,14 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting date time');
+}).catch((err) => {
+  console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -136,13 +141,16 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing modify date time');
 })
 ```
 
@@ -184,12 +192,14 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing modify date time');
+}).catch((err) => {
+  console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -225,13 +235,16 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
 })
 ```
 
@@ -272,11 +285,13 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```

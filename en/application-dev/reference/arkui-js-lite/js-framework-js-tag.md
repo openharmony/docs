@@ -4,10 +4,10 @@
 The "js" tag contains the instance name and page route information.
 
 
-| Tag| Type| Default Value| Mandatory| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| name | string | default | Yes| Name of the JavaScript instance.|
-| pages | Array | - | Yes| Route information. For details, see ["pages"](#pages).|
+| Tag   | Type    | Default Value    | Mandatory  | Description                           |
+| ----- | ------ | ------- | ---- | ----------------------------- |
+| name  | string | default | Yes   | Name of the JavaScript instance.                   |
+| pages | Array  | -       | Yes   | Route information. For details, see ["pages"](#pages).|
 
 
 >  **NOTE**
@@ -34,10 +34,10 @@ The **"pages"** defines the route information of each page. Each page consists o
 
 >  **NOTE**
 >
-> 
-> - The application home page is fixed to **pages/index/index**.
-> 
-> - The page name should not be a component name, for example, **text.hml** or **button.hml**.
+>
+>  - The application home page is fixed to **pages/index/index**.
+>
+>  - The page name should not be a component name, for example, **text.hml** or **button.hml**.
 
 
 ## Example
@@ -46,7 +46,7 @@ The **"pages"** defines the route information of each page. Each page consists o
 ```
 {
   "app": {
-    "bundleName": "com.huawei.player",
+    "bundleName": "com.example.player",
     "version": {
         "code": 1,
         "name": "1.0"

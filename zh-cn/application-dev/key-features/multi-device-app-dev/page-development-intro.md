@@ -23,7 +23,7 @@
 
 
 
-## 相关示例
+## 相关实例
 
 [OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev)中提供了如下一多示例，感兴趣的开发者可以自行下载、运行及查看效果。
 

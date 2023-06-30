@@ -31,7 +31,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| checked | boolean | Whether the radio button is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| checked | boolean | Whether the radio button is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle) | Style of the radio button in selected or deselected state.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 ## Events

@@ -139,7 +139,7 @@ This version has the following updates to OpenHarmony 3.2 Beta4.
 
 From this version on, only the public SDK is released. You can obtain the public SDK from the mirror or download it from DevEco Studio for your application development.
 
-To use the full SDK that contains system APIs, you must download the full code, compile and build an SDK file, and switch to the full SDK on DevEco Studio. For details about how to compile the full SDK using the source code, see [Full SDK Compilation Guide](../application-dev/quick-start/full-sdk-compile-guide.md).
+To use the full SDK that contains system APIs, you must download the full code, compile and build an SDK file, and switch to the full SDK on DevEco Studio. For details about how to compile the full SDK using the source code, see [Full SDK Compilation Guide](../application-dev/faqs/full-sdk-compile-guide.md).
 
 
 ### Feature Updates

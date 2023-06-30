@@ -12,7 +12,7 @@ rust三方库使用cargo编译，配置为Cargo.toml。集成到OpenHarmony上�
     
 2. 创建配置文件cargo2gn.json，可以参考如下配置。
 
-    ```
+    ```json
     {
         "copy-out": true,
         "run": true,
@@ -24,7 +24,7 @@ rust三方库使用cargo编译，配置为Cargo.toml。集成到OpenHarmony上�
 3. 执行以下命令进行转换。
    
    ```
-   python /mnt/xxx/openharmony/build/scripts/cargo2gn.py --config cargo2gn.json
+   python3 /mnt/xxx/openharmony/build/scripts/cargo2gn.py --config cargo2gn.json
    ```
    
    转换结果
@@ -83,7 +83,7 @@ rust三方库使用cargo编译，配置为Cargo.toml。集成到OpenHarmony上�
    ```
 2. 把所有需要转换的rust三方库添加到rust目录下的Cargo.toml的[workspace]里，如下所示。
 
-    ```
+    ```toml
     [workspace]
     members = [
         "aho-corasick",

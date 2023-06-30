@@ -985,7 +985,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止自身。通过Promise返回结果。
+停止ability自身。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1617,8 +1617,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
   let want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
-      abilityName: 'EntryAbility'
-      deviceId: ''
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true

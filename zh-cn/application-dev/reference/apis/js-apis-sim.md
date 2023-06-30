@@ -685,9 +685,11 @@ promise.then(data => {
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
-获取SIM卡账户信息。使用callback异步回调。
+获取SIM卡帐户信息。使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -706,8 +708,6 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -729,9 +729,11 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
-获取SIM卡账户信息。使用Promise异步回调。
+获取SIM卡帐户信息。使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -747,7 +749,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
 
 **错误码：**
 
@@ -755,8 +757,6 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -780,9 +780,11 @@ promise.then(data => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-获取活跃SIM卡账户信息列表。使用callback异步回调。
+获取活跃SIM卡帐户信息列表。使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -800,8 +802,6 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -821,9 +821,11 @@ sim.getActiveSimAccountInfoList((err, data) => {
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-获取活跃SIM卡账户信息列表。使用Promise异步回调。
+获取活跃SIM卡帐户信息列表。使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -833,7 +835,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 
@@ -841,8 +843,6 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300004  | Do not have sim card.                        |
@@ -2250,6 +2250,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2302,6 +2303,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3990,6 +3992,80 @@ try {
 }
 ```
 
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
+
+获取默认语音业务的SIM卡ID。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明       |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+sim.getDefaultVoiceSimId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(\): Promise\<number\>
+
+获取默认语音业务的SIM卡ID。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<number\> | 以Promise形式返回默认语音业务的SIM卡ID。<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+let promise = sim.getDefaultVoiceSimId();
+promise.then(data => {
+    console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## SimState
 
 SIM卡状态。
@@ -4113,7 +4189,7 @@ SIM卡状态。
 
 ## IccAccountInfo<sup>7+</sup>
 
-Icc账户信息。
+Icc帐户信息。
 
 **系统接口：** 此接口为系统接口。
 

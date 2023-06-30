@@ -22,7 +22,7 @@ When developing an application, you may need to configure certain tags to identi
           "actions": ["action.system.home"]
         }
       ]
-      // ...
+      ...
     }
   ```
 

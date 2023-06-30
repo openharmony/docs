@@ -13,6 +13,21 @@ The **wallpaper** module is a system service module in OpenHarmony that provides
 ```js
 import wallpaper from '@ohos.wallpaper';
 ```
+## WallpaperResourceType<sup>10+</sup>
+
+Enumerates the types of wallpaper resources.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| DEFAULT | 0 |Default type (image resource).|
+| PICTURE | 1 |Image resource.|
+| VIDEO | 2 |Video resource.|
+| PACKAGE | 3 |Package resource.|
+
 
 ## WallpaperType<sup>7+</sup>
 
@@ -43,6 +58,158 @@ Defines the RGBA color space for the wallpaper.
 | blue | number | Yes| Yes| Blue color. The value ranges from 0 to 255.|
 | alpha | number | Yes| Yes| Alpha value. The value ranges from 0 to 255.|
 
+
+## wallpaper.setVideo<sup>10+</sup>
+
+setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets a video resource as the home screen wallpaper or lock screen wallpaper. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.SET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | string | Yes| URI of an MP4 file.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
+try {
+    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+        if (error) {
+            console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+            return;
+        }
+        console.log(`success to setVideo.`);
+    });
+} catch (error) {
+    console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+}
+
+```
+
+## wallpaper.setVideo<sup>10+</sup>
+
+setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+Sets a video resource as the home screen wallpaper or lock screen wallpaper. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | string | Yes| URI of an MP4 file.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
+try {
+    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+        console.log(`success to setVideo.`);
+    }).catch((error) => {
+        console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+    });
+} catch (error) {
+    console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+}
+```
+
+## wallpaper.on('wallpaperChange')<sup>10+</sup>
+
+on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+
+Subscribes to wallpaper change events.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
+| callback | function | Yes| Callback used to return the wallpaper type and wallpaper resource type.<br>- wallpaperType<br>  Wallpaper type.<br>- resourceType<br>  Wallpaper resource type.|
+
+**Example**
+
+```js
+try {
+    let listener = (wallpaperType, resourceType) => {
+        console.log(`wallpaper color changed.`);
+    };
+    wallpaper.on('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+```
+
+## wallpaper.off('wallpaperChange')<sup>10+</sup>
+
+off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+
+Unsubscribes from wallpaper change events.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
+| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- wallpaperType<br>  Wallpaper type.<br>- resourceType<br>  Wallpaper resource type.|
+
+**Example**
+
+```js
+let listener = (wallpaperType, resourceType) => {
+    console.log(`wallpaper color changed.`);
+};
+try {
+    wallpaper.on('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // Unsubscribe from the listener.
+    wallpaper.off('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // Unsubscribe from all callbacks of the 'wallpaperChange' event type.
+    wallpaper.off('wallpaperChange');
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+```
 
 ## wallpaper.getColorsSync<sup>9+</sup>
 
@@ -210,7 +377,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
@@ -270,7 +437,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setImage.`);
 }).catch((error) => {
@@ -898,7 +1065,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
@@ -960,7 +1127,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setWallpaper.`);
   }).catch((error) => {

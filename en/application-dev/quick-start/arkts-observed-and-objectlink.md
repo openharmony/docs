@@ -316,7 +316,7 @@ class StringArray extends Array<String> {
 
  
 
-Declare a class that extends from** Array**: **class StringArray extends Array\<String> {}** and create an instance of **StringArray**. The use of the **new** operator is required for the \@Observed class decorator to work properly.
+Declare a class that extends from **Array**: **class StringArray extends Array\<String> {}** and create an instance of **StringArray**. The use of the **new** operator is required for the \@Observed class decorator to work properly.
 
 
 ```ts

@@ -39,7 +39,6 @@ Publishes a common event and executes an asynchronous callback after the event i
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -87,7 +86,6 @@ Publishes a common event with given attributes. This API uses an asynchronous ca
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -144,8 +142,6 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -199,9 +195,7 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
-| 1500004  | not System services.                |
+| 1500004  | not System services or System app.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
 | 1500009  | error obtaining system parameters.  |
@@ -251,16 +245,7 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | Yes  | Subscriber information.            |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Yes  | Callback used to return the result.|
 
-**Error codes**
-
- For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
-
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
-
 **Example**
-
 
 ```ts
 let subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -307,14 +292,6 @@ Creates a subscriber. This API uses a promise to return the result.
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Promise used to return the subscriber object.|
 
-**Error codes**
-
- For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
-
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
-
 **Example**
 
 ```ts
@@ -356,7 +333,6 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -426,7 +402,6 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401  | The parameter check failed.             |
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -495,6 +470,8 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 **Required permissions**: ohos.permission.COMMONEVENT_STICKY
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                            |
@@ -508,12 +485,9 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201  | The application dose not have permission to call the interface. |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
 | 1500004  | not system service.                 |
-| 1500007  | The message send error.             |
-| 1500008  | The CEMS error.                     |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
 
 **Example**
 
@@ -525,7 +499,6 @@ CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => {
         return;
     }
     console.info(`Remove sticky event AsyncCallback success`);
-    }
 });
 ```
 
@@ -538,6 +511,8 @@ Removes a sticky common event. This API uses a promise to return the result.
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Required permissions**: ohos.permission.COMMONEVENT_STICKY
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -557,20 +532,102 @@ Removes a sticky common event. This API uses a promise to return the result.
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201  | The application dose not have permission to call the interface. |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
 | 1500004  | not system service.                 |
-| 1500007  | The message send error.             |
-| 1500008  | The CEMS error.                     |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
 
 **Example**
 
 
 ```ts
-commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`Remove sticky event AsyncCallback success`);
 }).catch ((err) => {
     console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
+
+## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
+
+Enables or disables static subscription for the current application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled.|
+| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
+
+**Example**
+
+
+```ts
+CommonEventManager.setStaticSubscriberState(true, (err) => {
+    if (!err) {
+        console.info(`Set static subscriber state callback failed, err is null.`);
+        return;
+    }
+    if (err.code) {
+        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        return;
+    }
+    console.info(`Set static subscriber state callback success`);
+});
+```
+
+## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
+
+setStaticSubscriberState(enable: boolean): Promise\<void>;
+
+Enables or disables static subscription for the current application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| enable  | boolean | Yes  | Whether static subscription is enabled.<br> **true**: enabled.<br>**false**: disabled.|
+
+**Return value**
+
+| Type          | Description                        |
+| -------------- | ---------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
+
+**Example**
+
+
+```ts
+CommonEventManager.setStaticSubscriberState(false).then(() => {
+    console.info(`Set static subscriber state promise success`);
+}).catch ((err) => {
+    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

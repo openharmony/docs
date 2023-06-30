@@ -136,7 +136,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 1. 设备描述配置
 
-   如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs。具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+   如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs。具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
    ```c
    input :: host {
@@ -181,7 +181,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 2. 板级配置及器件私有配置
 
-   如下配置包含板级硬件配置及器件私有数据配置，配置文件路径为drivers/adapter/khdf/linux/hcs/input/input_config.hcs。实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
+   如下配置包含板级硬件配置及器件私有数据配置，配置文件路径为vendor/hihope/rk3568/hdf_config/khdf/input/input_config.hcs。实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
 
    ```c
    root {
@@ -270,7 +270,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 3. 添加器件驱动
 
-   在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明，代码路径为drivers/framework/model/input/driver/touchscreen/touch_gt911.c。具体开发过程，需要根据实际使用的单板及器件进行适配。
+   在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明，代码路径为drivers/hdf_core/framework/model/input/driver/touchscreen/touch_gt911.c。具体开发过程，需要根据实际使用的单板及器件进行适配。
 
    ```c
    /* 将从器件中读取到的报点数据解析为坐标 */

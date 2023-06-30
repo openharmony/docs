@@ -12,15 +12,13 @@ You can use the related APIs to [share a file with another application](#sharing
 
 The file URIs are in the following format:
 
-  file://&lt;bundleName&gt;/&lt;path&gt;/\#networkid=&lt;networkid&gt;
+  file://&lt;bundleName&gt;/&lt;path&gt;
 
 - **file**: indicates a file URI.
 
 - *bundleName*: specifies the owner of the file.
 
 - *path*: specifies the application sandbox path of the file.
-
-- *networkid* (optional): specifies the device to which the file belongs in a distributed file system. Leave this parameter unspecified if the file location does not need to be set.
 
 ## Sharing a File with Another Application
 

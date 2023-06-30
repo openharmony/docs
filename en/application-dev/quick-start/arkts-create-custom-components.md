@@ -1,7 +1,7 @@
 # Creating a Custom Component
 
 
-In ArkUI, components are what's displayed on the UI. They can be classified as built-in components – those directly provided by ArkUI framework, and custom components – those defined by developers. Defining the entire application UI with just built-in components would lead to a monolithic design, low code maintainability, and poor execution performance. A good UI is the result of a well-thought-out development process, with such factors as code reusability, separation of service logic from the UI, and version evolution carefully considered. Creating custom components that encapsulate the UI and some business logic is a critical step in this process.
+In ArkUI, components are what's displayed on the UI. They can be classified as built-in components – those directly provided by the ArkUI framework, and custom components – those defined by developers. Defining the entire application UI with just built-in components would lead to a monolithic design, low code maintainability, and poor execution performance. A good UI is the result of a well-thought-out development process, with such factors as code reusability, separation of service logic from the UI, and version evolution carefully considered. Creating custom components that encapsulate the UI and some business logic is a critical step in this process.
 
 
 The custom component has the following features:
@@ -80,7 +80,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the data structures declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -114,15 +114,28 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
+- \@Recycle: A custom component decorated with \@Recycle can be reused.
+
+  > **NOTE**
+  >
+  > Since API version 10, this decorator is supported in ArkTS widgets.
+
+  ```ts
+  @Recycle
+  @Component
+  struct MyComponent {
+  }
+  ```
+
 
 ## Member Functions/Variables
 
-In addition to the mandatory** build()** function, a custom component may implement other member functions with the following restrictions:
+In addition to the mandatory **build()** function, a custom component may implement other member functions with the following restrictions:
 
 
 - Static functions are not supported.
 
-- Access to the member functions is always private. Defining **private** access is optional. Defining access other than **private** is a syntax error.
+- Access to the member functions is always private.
 
 
 A custom component can also implement member variables with the following restrictions:
@@ -130,7 +143,7 @@ A custom component can also implement member variables with the following restri
 
 - Static member variables are not supported.
 
-- Access to the member variables is always private.The access rules of member variables are the same as those of member functions.
+- Access to the member variables is always private. The access rules of member variables are the same as those of member functions.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
@@ -378,4 +391,5 @@ In the preceding example:
 2. The **StyleExample** parent component holds a **Controller** instance and with which calls the **changeText** API of **Controller**. That is, the value of the state variable **value** of **MyComponent** is changed through the **this** pointer of the **MyComponent** child component held by the controller.
 
 Through the encapsulation of the controller, **MyComponent** exposes the **changeText** API. All instances that hold the controller can call the **changeText** API to change the value of the **MyComponent** state variable **value**.
+
 <!--no_check-->

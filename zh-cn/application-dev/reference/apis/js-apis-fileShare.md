@@ -1,4 +1,4 @@
-# @ohos.fileShare (文件分享)
+# @ohos.fileshare (文件分享)
 
 该模块提供文件分享能力，提供系统应用将公共目录文件统一资源标志符（Uniform Resource Identifier，URI）以读写权限授权给其他应用的接口，授权后应用可通过[@ohos.file.fs](js-apis-file-fs.md)的相关接口进行相关open、read、write等操作，实现文件分享。
 
@@ -9,12 +9,12 @@
 ## 导入模块
 
 ```js
-import fileShare from '@ohos.fileShare';
+import fileShare from '@ohos.fileshare';
 ```
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, callback: AsyncCallback&lt;void&gt;): void
 
 对公共目录文件URI进行授权操作，使用callback异步回调。  
 
@@ -30,7 +30,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number, callback: Asyn
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| mode   | number | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | wantConstant.Flags | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
  | callback | AsyncCallback&lt;void&gt;  | 是    | 异步授权之后的回调                             |
 
 **错误码：**
@@ -67,7 +67,7 @@ try {
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;void&gt;
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): Promise&lt;void&gt;
 
 将公共目录文件URI进行授权操作，使用Promise异步回调。  
 
@@ -83,7 +83,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;vo
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| mode   | number | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | wantConstant.Flags | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
 
 **返回值：**
 

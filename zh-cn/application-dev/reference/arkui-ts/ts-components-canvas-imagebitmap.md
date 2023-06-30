@@ -65,6 +65,6 @@ ImageBitmap(src: string)
 
 close()
 
-释放ImageBitmap对象相关联的所有图形资源。该接口为空接口。
+释放ImageBitmap对象相关联的所有图形资源，并讲ImageBitmap对象的宽高置为0。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。

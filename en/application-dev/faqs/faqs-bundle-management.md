@@ -2,7 +2,7 @@
 
 ## How do I determine whether an application is a system application?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -14,7 +14,7 @@ Use **bundleManager.getApplicationInfo** (available only for system applications
 
 ## How do I obtain the version code and version name of an application?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -96,7 +96,7 @@ Applicable to: OpenHarmony 3.2 Beta5
 
 ## How do I obtain the source file path of the current application?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -121,6 +121,81 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 ## Can I obtain the HAP information of other applications from the current application?
 
+Applicable to: OpenHarmony 3.2 (API version 9)
+
+**Solution**
+
+Currently, only system applications can call the API to query information about other applications.
+
+- To query information about an application in the system, you must obtain the normal-level permission **ohos.permission.GET\_BUNDLE\_INFO** and call the **bundleManager.getApplicationInfo\(\)** API.
+
+- To query information about all applications in the system, you must obtain the system\_basic-level permission **ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED** and call the **bundleManager.getAllApplicationInfo\(\)** API.
+
+**Reference**
+
+[@ohos.bundle.bundleManager \(bundleManager\)](../reference/apis/js-apis-bundleManager.md)
+
+## How do I query the PID of a process?
+
 Applicable to: OpenHarmony 3.2 Beta (API version 9)
 
-According to the OpenHarmony security design specifications, the SDK does not provide APIs for third-party applications to obtain bundle information (including but not limited to the application name and version number) of other applications.
+**Solution**
+
+You can obtain the PID through the **@ohos.process** interface.
+
+**Example**
+
+```
+import process from '@ohos.process';
+private pid = process.pid;
+```
+
+**Reference**
+
+[@ohos.process \ (Obtaining Process Information\)](../reference/apis/js-apis-process.md)
+
+## How do I disable the maximize button?
+
+Applicable to: OpenHarmony 3.2 Beta (API version 9)
+
+**Solution**
+
+You can use the **supportWindowModes** field to specify whether to display the maximize button.
+
+- **full\_screen** means that a window in full-screen mode is supported.
+
+- **split** means that a window in split-screen mode is supported.
+
+- **floating** means that a floating window is supported.
+
+**Example**
+
+```
+"abilities": [
+  {
+    "name": "EntryAbility",
+    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "description": "$string:EntryAbility_desc",
+    "icon": "$media:icon",
+    "label": "$string:EntryAbility_label",
+    "startWindowIcon": "$media:icon",
+    "startWindowBackground": "$color:start_window_background",
+    "exported": true,
+    "supportWindowMode": ["split", "floating"],
+    "skills": [
+      {
+        "entities": [
+          "entity.system.home"
+        ],
+        "actions": [
+          "action.system.home"
+        ]
+      }
+    ]
+  }
+]
+```
+
+**Reference**
+
+[supportWindowModes](../reference/apis/js-apis-bundleManager-abilityInfo.md)

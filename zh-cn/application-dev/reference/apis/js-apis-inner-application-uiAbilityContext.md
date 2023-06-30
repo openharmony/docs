@@ -1228,7 +1228,7 @@ terminateSelf(): Promise&lt;void&gt;;
         // 处理业务逻辑错误
         console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
       });
-  } catch (error) {
+  } catch (err) {
     // 捕获同步的参数错误
     console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -2577,8 +2577,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
   let want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
-      abilityName: 'EntryAbility'
-      deviceId: ''
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true

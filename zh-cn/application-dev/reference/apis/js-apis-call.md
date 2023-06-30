@@ -45,6 +45,8 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -88,6 +90,8 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -141,6 +145,8 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2719,6 +2725,91 @@ call.off('mmiCodeResult', data => {
 });
 ```
 
+
+## call.on('audioDeviceChange')<sup>10+</sup>
+
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+
+订阅通话音频设备切换事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                                                |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                          | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
+| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | 是   | 回调函数。                                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.on('audioDeviceChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.off('audioDeviceChange')<sup>10+</sup>
+
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+
+取消订阅audioDeviceChange事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填  |                           说明                      |
+| -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                                     | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
+| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.off('audioDeviceChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+
 ## call.isNewCallAllowed<sup>8+</sup>
 
 isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
@@ -3507,7 +3598,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice8) | 是   | 音频设备。 |
+| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
 
 **错误码：**
@@ -3526,11 +3617,58 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```js
-call.setAudioDevice(1, (err) => {
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
+## call.setAudioDevice<sup>10+</sup>
+
+setAudioDevice\(device: AudioDevice): Promise\<void\>
+
+设置通话音频设备。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明       |
+| -------- | ---------------------------- | ---- | ---------- |
+| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice).then(() => {
+    console.log(`setAudioDevice success.`);
+}).catch((err) => {
+    console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.setAudioDevice<sup>9+</sup>
 
@@ -3546,7 +3684,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 | 参数名   | 类型                                       | 必填 | 说明           |
 | -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#audiodevice8)               | 是   | 音频设备。     |
+| device   | [AudioDevice](#audiodevice10)               | 是   | 音频设备。     |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
 | callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
 
@@ -3566,10 +3704,13 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 **示例：**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions, (err) => {
+call.setAudioDevice(audioDevice, audioDeviceOptions, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3589,7 +3730,7 @@ setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<vo
 
 | 参数名  | 类型                                       | 必填 | 说明               |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#audiodevice8)               | 是   | 音频设备。         |
+| device  | [AudioDevice](#audiodevice10)               | 是   | 音频设备。         |
 | options | [AudioDeviceOptions](#audiodeviceoptions9) | 否   | 音频设备参数参数。 |
 
 **返回值：**
@@ -3614,10 +3755,13 @@ setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<vo
 **示例：**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions).then(() => {
+call.setAudioDevice(audioDevice, audioDeviceOptions).then(() => {
     console.log(`setAudioDevice success.`);
 }).catch((err) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
@@ -4062,6 +4206,472 @@ promise.then(data => {
 });
 ```
 
+
+## call.closeUnfinishedUssd<sup>10+</sup>
+
+closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
+
+取消未激活完成的非结构化补充数据业务。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                    |
+| -------- | ------------------------- | ---- | -------------------------------------- |
+| slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+call.closeUnfinishedUssd(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.closeUnfinishedUssd<sup>10+</sup>
+
+closeUnfinishedUssd\(slotId: number\): Promise\<void\>
+
+取消未激活完成的非结构化补充数据业务。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
+
+**返回值：**
+
+| 类型                | 说明                         |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+call.closeUnfinishedUssd(slotId).then(() => {
+    console.log(`closeUnfinishedUssd success.`);
+}).catch((err) => {
+    console.error(`closeUnfinishedUssd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.setVoNRState<sup>10+</sup>
+
+setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\): void
+
+设置NR语音的开关状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                           | 必填 | 说明                                                 |
+| ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                |
+| state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                            |
+| callback    | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let state = 1;
+call.setVoNRState(slotId, state, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.setVoNRState<sup>10+</sup>
+
+setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
+
+设置NR语音的开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                           | 必填 | 说明                                        |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                   |
+
+**返回值：**
+
+| 类型                   | 说明                                          |
+| ---------------------- | --------------------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let state = 1;
+call.setVoNRState(slotId, state).then((data) => {
+    console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.getVoNRState<sup>10+</sup>
+
+getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
+
+查询NR语音的开关状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      |                     类型                      | 必填  | 说明                                                   |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                  |
+| callback    | AsyncCallback&lt;[VoNRState](#vonrstate10)&gt;| 是   | 回调函数。返回NR语音开关的状态。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+call.getVoNRState(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.getVoNRState<sup>10+</sup>
+
+getVoNRState\(slotId: number\): Promise\<VoNRState\>
+
+查询NR语音的开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                           | 必填 | 说明                                        |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+
+**返回值：**
+
+|                 类型                     | 说明                                        |
+| ---------------------------------------- | ------------------------------------------- |
+| Promise&lt;[VoNRState](#vonrstate10)&gt; | 以Promise形式异步返回开关状态。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = call.getVoNRState(slotId);
+promise.then(data => {
+    console.log(`getVoNRState success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getVoNRState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.canSetCallTransferTime<sup>10+</sup>
+
+canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): void
+
+检查是否可以设置呼叫转移时间。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                           | 必填 | 说明                                                  |
+| ----------- | ----------------------------- | ---- | ----------------------------------------------------- |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                 |
+| callback    | AsyncCallback&lt;boolean&gt;  | 是   | 回调函数。返回true表示可以设置，返回false表示不可以设置。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+call.canSetCallTransferTime(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.canSetCallTransferTime<sup>10+</sup>
+
+canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
+
+检查是否可以设置呼叫转移时间。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                           | 必填 | 说明                                        |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+
+**返回值：**
+
+| 类型                   | 说明                                          |
+| ---------------------- | --------------------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+call.canSetCallTransferTime(slotId).then((data) => {
+    console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.inputDialerSpecialCode<sup>10+</sup>
+
+inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): void
+
+暗码广播。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                       |
+| ----------- | ---------------------------- | ---- | ----------------------------------------- |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+call.inputDialerSpecialCode('2846579', (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.inputDialerSpecialCode<sup>10+</sup>
+
+inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
+
+暗码广播。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                       |
+| ----------- | ---------------------------- | ---- | ----------------------------------------- |
+| inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+try {
+    call.inputDialerSpecialCode('2846579');
+    console.log(`inputDialerSpecialCode success`);
+} catch (error) {
+    console.log(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+
 ## DialOptions
 
 拨打电话的可选参数。
@@ -4071,23 +4681,25 @@ promise.then(data => {
 |        名称              | 类型                               | 必填 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
 | extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。   |
-| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。                                                    |
-| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。                                                                                   |
-| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。                                                                                       |
-| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。                                                                                       |
+| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。此接口为系统接口。                                   |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                                                                  |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                                                      |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                                                      |
 
 ## DialCallOptions<sup>9+</sup>
 
 拨打电话的可选参数。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CallManager
 
-|        名称              | 类型                               | 必填 | 说明                                                         |
-| ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。|
-| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
-| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
-| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
+|        名称              | 类型                               | 必填 | 说明                                         |
+| ------------------------ | ---------------------------------- | ---- | ------------------------------------------- |
+| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。|
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。                               |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。                                   |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。                                   |
 
 ## CallState
 
@@ -4138,7 +4750,20 @@ IP多媒体系统调用模式。
 | CALL_MODE_SEND_RECEIVE | 3    | 允许发送和接收呼叫 |
 | CALL_MODE_VIDEO_PAUSED | 4    | 暂停视频呼叫       |
 
-## AudioDevice<sup>8+</sup>
+## VoNRState<sup>10+</sup>
+
+5G语音开关状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称                   | 值   | 说明               |
+| ---------------------- | ---- | ----------------- |
+| VONR_STATE_OFF         | 0    | 关闭状态           |
+| VONR_STATE_ON          | 1    | 打开状态           |
+
+## AudioDevice<sup>10+</sup>
 
 音频设备。
 
@@ -4146,13 +4771,40 @@ IP多媒体系统调用模式。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| deviceType <sup>10+</sup>    | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。    |
+| address <sup>10+</sup> | string          | 否   | 音频设备地址。    |
+
+## AudioDeviceType<sup>10+</sup>
+
+音频设备类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
 | 名称                 | 值   | 说明         |
-| -------------------- | ---- | ------------ |
+| -------------------- | ---- | ----------- |
 | DEVICE_EARPIECE      | 0    | 耳机设备     |
-| DEVICE_SPEAKER       | 1    | 扬声器设备 |
+| DEVICE_SPEAKER       | 1    | 扬声器设备   |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
-| DEVICE_MIC           | 4    | 麦克风设备 |
+
+## AudioDeviceInfo<sup>10+</sup>
+
+音频设备信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice10) | 是   | 音频设备列表。    |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | 是   | 音频设备类型。    |
+| isMuted <sup>10+</sup>            | boolean                               | 是   | 是否静音。        |
+
 
 ## CallRestrictionType<sup>8+</sup>
 

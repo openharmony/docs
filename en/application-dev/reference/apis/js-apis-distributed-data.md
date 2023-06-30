@@ -3768,7 +3768,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 Synchronizes the KV store manually.
 > **NOTE**
 >
-> The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3778,9 +3778,9 @@ Synchronizes the KV store manually.
 
 | Name   | Type                 | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
+| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms.    |
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Example**
 
@@ -3799,7 +3799,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
@@ -5246,7 +5246,7 @@ Synchronizes the KV store manually.
 
 > **NOTE**
 >
-> The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5256,7 +5256,7 @@ Synchronizes the KV store manually.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | Yes   |IDs of the devices to be synchronized.|
+| deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized.|
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
 | delayMs  |number                 | No   |Allowed synchronization delay time, in ms. The default value is **0**. |
 
@@ -5277,7 +5277,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {

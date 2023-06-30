@@ -24,7 +24,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
      onAcceptWant(want) {
-       // Triggered only for the ability with the specified launch type.
+       // Triggered only for the UIAbility with the specified launch type.
        return "MyAbilityStage";
      }
    }
@@ -37,7 +37,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
        "name": "entry",
        "type": "entry",
        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
-       // ...
+       ...
      }
    }
    ```

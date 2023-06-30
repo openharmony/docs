@@ -189,7 +189,9 @@ int clone(int (*fn)(void *), void *stack, int flags, void *arg, ...
   int unshare(int flags);
   ```
 
-  **NOTE**<br>For the PID or Time container, **unshare()** moves the child process (not the process itself) to a new container created.
+  > **NOTE**
+  >
+  > For the PID or Time container, **unshare()** moves the child process (not the process itself) to a new container created.
 
 - **setns**
 
@@ -199,7 +201,9 @@ int clone(int (*fn)(void *), void *stack, int flags, void *arg, ...
   int setns(int fd, int nstype);
   ```
 
-  **NOTE**<br>For the PID or Time container, **setns()** moves the child process (not the process itself) to another container.
+  > **NOTE**
+  >
+  > For the PID or Time container, **setns()** moves the child process (not the process itself) to another container.
 
 ### Destroying a Container
 
@@ -307,8 +311,6 @@ inum = CONTAINER_IDEX_BASE + (unsigned int)i;
 
 - The container features are controlled by compiler macros.
 
-  - Container compiler macro definition:
-
   ```
   // Macro of the container feature
   LOSCFG_CONTAINER
@@ -321,7 +323,7 @@ inum = CONTAINER_IDEX_BASE + (unsigned int)i;
   LOSCFG_TIME_CONTAINER
   LOSCFG_IPC_CONTAINER
   ```
-
+  
 
 ### Development Examples
 

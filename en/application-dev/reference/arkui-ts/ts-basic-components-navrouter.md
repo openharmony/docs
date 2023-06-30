@@ -1,6 +1,6 @@
 # NavRouter
 
-The **\<NavRouter>** component provides default logic for click response processing, eliminating the need for manual logic definition.
+The **\<NavRouter>** component provides default processing logic for responding to clicks, eliminating the need for manual logic definition.
 
 > **NOTE**
 >
@@ -10,16 +10,56 @@ The **\<NavRouter>** component provides default logic for click response process
 
 This component must contain two child components, the second of which must be **[\<NavDestination>](ts-basic-components-navdestination.md)**.
 
+> **NOTE**
+>  
+> 1. If there is only one child component, the navigation to the **\<NavDestination>** component does not work.
+> 2. If there is only the **\<NavDestination>** child component, the navigation is not performed.
+> 3. If there are more than two child components, the excess child components are not displayed.
+> 4. If the second child component is not **\<NavDestination>**, the navigation does not work.
+
 ## APIs
 
-NavRouter()
+**API 1**: NavRouter()
 
+**API 2**: NavRouter(value: RouteInfo)<sup>10+</sup>
+
+Provides route information so that clicking the **\<NavRouter>** component redirects the user to the specified navigation destination page.
+
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description         |
+| ------- | ----------------------------------- | ---- | ------------- |
+| value   | [RouteInfo](#routeinfo10) | No   | Route information.|
+
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                           | Type                                    | Description                                      |
+| ----------------------------- | ---------------------------------------- | ---------------------------------------- |
+| mode                  | [NavRouteMode](#navroutemode)                                  | Route mode used for redirection.<br>Default value: **NavRouteMode.PUSH_WITH_RECREATE**<br>|
+
+## RouteInfo<sup>10+</sup>
+
+| Name                | Type                                                    | Mandatory| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| name             | string            | Yes  | Name of the navigation destination page to be redirected to.|
+| param            | unknown           | No   | Parameter transferred during redirection.|
+
+## NavRouteMode
+
+| Name   | Description              |
+| ----- | ---------------- |
+| PUSH_WITH_RECREATE | The new navigation destination page replaces the current one. The current page is destroyed, but the information about this page is retained in the navigation stack.|
+| PUSH               | The new navigation destination page overwrites the current one. The current page is not destroyed, and the information about this page is retained in the navigation stack.|
+| REPLACE            | The new navigation destination page replaces the current one. The current page is destroyed, and the information about this page is removed from the navigation stack.|
 
 ## Events
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onStateChange(callback: (isActivated: boolean) => void) | Invoked when the component activation status changes. The value **true** means that component is activated, and **false** means the opposite.<br> **NOTE**<br>After the user clicks **NavRouter**, if the **\<NavRouter>** component is activated and the corresponding **\<NavDestination>** child component loaded, **onStateChange(true)** is called. If the corresponding **\<NavDestination>** child component is no longer displayed, **onStateChange(false)** is called. |
+| Name                                                   | Description                                                    |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| onStateChange(callback: (isActivated: boolean) => void) | Called when the component activation status changes. The value **true** means that component is activated, and **false** means the opposite.<br> **NOTE**<br>**onStateChange(true)** is called when the **\<NavRouter>** component is activated and its **\<NavDestination>** child component is loaded. **onStateChange(false)** is called when the **\<NavDestination>** child component is not displayed.|
 
 ## Example
 

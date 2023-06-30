@@ -33,7 +33,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name      | Type| Description                                                        |
 | ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | Whether to allow text to scale.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| allowScale | boolean  | Whether to allow text to scale.<br>This attribute is not supported currently.<br>Default value: **false** |
 
 ## Events
 

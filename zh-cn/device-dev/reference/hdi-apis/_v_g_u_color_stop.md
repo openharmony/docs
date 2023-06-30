@@ -1,7 +1,7 @@
 # VGUColorStop
 
 
-## **概述**
+## 概述
 
 渐变颜色分布位置。
 
@@ -10,12 +10,12 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [stop](_display.md#stop) | 颜色偏移位置,&nbsp;值范围是&nbsp;0.0&nbsp;~&nbsp;1.0 | 
-| [color](_display.md#color-45) | 偏移位置对应颜色 | 
+| [stop](_display.md#stop) | float<br/>颜色偏移位置，值范围是&nbsp;0.0&nbsp;~&nbsp;1.0 | 
+| [color](_display.md#color-45) | uint32_t<br/>偏移位置对应颜色 | 

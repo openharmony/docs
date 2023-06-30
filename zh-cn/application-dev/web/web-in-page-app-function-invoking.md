@@ -92,7 +92,7 @@
   > 使用[registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy)接口注册方法时，注册后需调用[refresh()](../reference/apis/js-apis-webview.md#refresh)接口生效。
 
 
-- index.htm前端页面触发应用侧代码。
+- index.html前端页面触发应用侧代码。
 
   ```html
   <!-- index.html -->

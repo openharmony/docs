@@ -247,7 +247,7 @@ Cancels the listener for changes in the list of enabled accessibility extension 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type |  string | Yes| Listening type. The value is fixed at **'enabledAccessibilityExtensionListChange'**, indicating listening for changes in the list of enabled accessibility extension abilities.|
-| callback | Callback&lt;void&gt; | No| Callback invoked when the list of enabled accessibility extension abilities changes.|
+| callback | Callback&lt;void&gt; | No| Callback for the event.|
 
 **Example**
 
@@ -425,7 +425,7 @@ Cancels the listener for attribute changes. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | No| Callback invoked when the list of enabled accessibility extension abilities changes.|
+| callback | Callback&lt;T&gt; | No| Callback for the event.|
 
 **Example**
 

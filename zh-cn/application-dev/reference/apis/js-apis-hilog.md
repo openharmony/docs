@@ -210,3 +210,43 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 ```
 08-05 12:21:47.579  2695-2703/com.example.myapplication F 00001/testTag: hello World <private>
 ```
+
+## 参数格式符
+
+上述接口中，日志打印的格式化参数需按照如下格式打印：
+
+%[private flag]specifier
+
+|  隐私标识符（private flag） | 说明 |
+| ------------ | ---- |
+|      无      | 缺省值默认为private，不打印明文参数。 |
+|  private     | 隐私参数类型，不打印明文参数。 |
+|  public      | 明文显示参数。 |
+
+| 格式说明符（specifier） | 说明 | 示例 |
+| ------------ | ---- | ---- |
+|      d/i      | 支持打印number和bigint类型。 | 123 |
+|   s     | 支持打印string undefined bool 和null类型。 | "123" |
+
+**示例：**
+```js
+let obj2 = new Object({name:"Jack", age:22});
+let isBol = true;
+let bigNum = BigInt(1234567890123456789);
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(obj2));
+hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
+hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
+hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);
+hilog.info(0x0001, "jsHilogTest", "print bigNum: %{public}d %{public}i", bigNum, bigNum);
+hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
+```
+
+打印结果
+```
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print undefined: undefined
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print number: 123 456
+08-09 13:26:29.095  2266  2266 I A00001/jsHilogTest: print bigNum: 1234567890123456768 1234567890123456768
+08-09 13:26:29.095  2266  2266 I A00001/jsHilogTest: print boolean: true
+```

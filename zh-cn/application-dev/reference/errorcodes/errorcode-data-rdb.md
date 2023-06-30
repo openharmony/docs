@@ -4,29 +4,47 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
 
+##  14800000 内部错误
+
+**错误信息**
+
+Inner error.
+
+**错误描述**
+
+数据库底层发生错误。
+
+**可能原因**
+
+传入SQL语句非法等。
+
+**处理步骤**
+
+需通过日志信息确认错误发生原因。
+
 ## 14800010 数据库名称不合法
 
 **错误信息**
 
-Invalid database name.
+Failed to open or delete database by invalid database path.
 
 **错误描述**
 
-数据库名称不合法。
+数据库路径不合法。
 
 **可能原因**
 
-无效的数据库名称，数据库名称为空或包含的字符超出1024字节。
+无效的数据库路径。
 
 **处理步骤**
 
-检查传入数据库名称，检查数据库名称是否为空或包含的字符超出1024字节。
+检查传入数据库路径。
 
 ## 14800011 数据库文件损坏
 
 **错误信息**
 
-Database corrupted.
+Failed to open database by database corrupted.
 
 **错误描述**
 
@@ -45,7 +63,7 @@ Database corrupted.
 
 **错误信息**
 
-The result set is  empty or the specified location is invalid.
+The result set is empty or the specified location is invalid.
 
 **错误描述**
 

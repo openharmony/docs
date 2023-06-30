@@ -17,19 +17,22 @@ This document describes the following operations:
 
 ## Setting a Mission Snapshot Icon (for System Applications Only)
 
-Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. The icon is an object of the [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) type. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-```ts
-let imagePixelMap: PixelMap = undefined; // Obtain the PixelMap information.
+Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
 
-this.context.setMissionIcon(imagePixelMap, (err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+```ts
+let context = ...; // UIAbilityContext
+let pixelMap: PixelMap =...; // PixelMap information of the image.
+
+context.setMissionIcon(pixelMap, (err) => {
+  if (err.code) {
+    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  }
 })
 ```
 
 The display effect is shown below.
 
 Figure 2 Mission snapshot icon
-
 ![](figures/mission-set-task-snapshot-icon.png)
 
 ## Setting a Mission Snapshot Name
@@ -37,15 +40,16 @@ Figure 2 Mission snapshot icon
 Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
 
 ```ts
-this.context.setMissionLabel('test').then(() => {
-  console.info('setMissionLabel succeeded.');
+let context = ...; // UIAbilityContext
+
+context.setMissionLabel('test').then(() => {
+  console.info('Succeeded in seting mission label.');
 }).catch((err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
 The display effect is shown below.
 
 Figure 3 Mission snapshot name
-
 ![](figures/mission-set-task-snapshot-label.png)

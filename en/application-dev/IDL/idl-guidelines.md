@@ -1,4 +1,4 @@
-# OpenHarmony IDL Specifications and User Guide
+# IDL Specifications and User Guide
 
 ## IDL Overview
 To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.
@@ -162,7 +162,7 @@ Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder n
 
 If the executable file does not exist, download the SDK package from the mirror as instructed in the [Release Notes](../../release-notes). The following uses [3.2 Beta3](../../release-notes/OpenHarmony-v3.2-beta3.md) as an example.
 
-For details about how to replace the SDK package, see [Full SDK Compilation Guide](../quick-start/full-sdk-compile-guide.md).
+For details about how to replace the SDK package, see [Full SDK Compilation Guide](../faqs/full-sdk-compile-guide.md).
 
 After obtaining the executable file, perform subsequent development steps based on your scenario.
 

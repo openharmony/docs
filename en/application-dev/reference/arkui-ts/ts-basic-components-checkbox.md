@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
-| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the check box when it is not selected.|
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10) | Internal icon style of the check box.|
@@ -39,9 +39,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
 
-| Name                                        | Description                                                    |
+| Name                                         | Description                                                  |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes due to a manual operation.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets. |
 
 ## MarkStyle<sup>10+</sup>
 

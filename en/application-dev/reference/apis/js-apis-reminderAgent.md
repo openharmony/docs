@@ -1,4 +1,4 @@
-# @ohos.reminderAgent (Reminder Agent)
+# @ohos.reminderAgent (reminderAgent)
 
 The **reminderAgent** module provides APIs for publishing scheduled reminders through the reminder agent.
 
@@ -18,13 +18,15 @@ import reminderAgent from'@ohos.reminderAgent';
 ```
 
 
-## reminderAgent.publishReminder
+## reminderAgent.publishReminder<sup>(deprecated)</sup>
 
-```ts
-publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback<number>): void
-```
+publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
 Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder).
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -35,7 +37,7 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-  | callback | AsyncCallback\<number\> | Yes| Callback used to return the published reminder's ID.|
+  | callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
 
 **Example**
 ```ts
@@ -50,13 +52,15 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 ```
 
 
-## reminderAgent.publishReminder
+## reminderAgent.publishReminder<sup>(deprecated)</sup>
 
-```ts
-publishReminder(reminderReq: ReminderRequest): Promise<number>
-```
+publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder-1).
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -70,7 +74,7 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise\<number\> | Promise used to return the published reminder's ID.|
+  | Promise\<number> | Promise used to return the published reminder's ID.|
 
 **Example**
 ```ts
@@ -85,13 +89,15 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 ```
 
 
-## reminderAgent.cancelReminder
+## reminderAgent.cancelReminder<sup>(deprecated)</sup>
 
-```ts
-cancelReminder(reminderId: number, callback: AsyncCallback<void>): void
-```
+cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 Cancels the reminder with the specified ID. This API uses an asynchronous callback to return the cancellation result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -100,7 +106,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel. The value is obtained by calling [publishReminder](#reminderagentpublishreminder).|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -111,13 +117,15 @@ reminderAgent.cancelReminder(1, (err, data) => {
 ```
 
 
-## reminderAgent.cancelReminder
+## reminderAgent.cancelReminder<sup>(deprecated)</sup>
 
-```ts
-cancelReminder(reminderId: number): Promise<void>
-```
+cancelReminder(reminderId: number): Promise\<void>
 
 Cancels the reminder with the specified ID. This API uses a promise to return the cancellation result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder-1).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -131,7 +139,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -141,13 +149,15 @@ reminderAgent.cancelReminder(1).then(() => {
 });
 ```
 
-## reminderAgent.getValidReminders
+## reminderAgent.getValidReminders<sup>(deprecated)</sup>
 
-```ts
-getValidReminders(callback: AsyncCallback<Array<ReminderRequest>>): void
-```
+getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -155,7 +165,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)\>\> | Yes| Asynchronous callback used to return an array of all valid reminders set by the current application.|
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes| Callback used to return an array of all valid reminders set by the current application.|
 
 **Example**
 
@@ -187,13 +197,15 @@ reminderAgent.getValidReminders((err, reminders) => {
 ```
 
 
-## reminderAgent.getValidReminders
+## reminderAgent.getValidReminders<sup>(deprecated)</sup>
 
-```ts
-getValidReminders(): Promise<Array<ReminderRequest>>
-```
+getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the reminders.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders-1).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -201,7 +213,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)\>\> | Promise used to return an array of all valid reminders set by the current application.|
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return an array of all valid reminders set by the current application.|
 
 **Example**
 
@@ -233,13 +245,15 @@ reminderAgent.getValidReminders().then((reminders) => {
 ```
 
 
-## reminderAgent.cancelAllReminders
+## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
 
-```ts
-cancelAllReminders(callback: AsyncCallback<void>): void
-```
+cancelAllReminders(callback: AsyncCallback\<void>): void
 
 Cancels all reminders set by the current application. This API uses an asynchronous callback to return the cancellation result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -247,7 +261,7 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -258,13 +272,15 @@ reminderAgent.cancelAllReminders((err, data) =>{
 ```
 
 
-## reminderAgent.cancelAllReminders
+## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
 
-```ts
-cancelAllReminders(): Promise<void>
-```
+cancelAllReminders(): Promise\<void>
 
 Cancels all reminders set by the current application. This API uses a promise to return the cancellation result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders-1).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -272,7 +288,7 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -282,13 +298,15 @@ reminderAgent.cancelAllReminders().then(() => {
 })
 ```
 
-## reminderAgent.addNotificationSlot
+## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
 
-```ts
-addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void
-```
+addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
 Adds a notification slot. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -297,7 +315,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -313,13 +331,15 @@ reminderAgent.addNotificationSlot(mySlot, (err, data) => {
 ```
 
 
-## reminderAgent.addNotificationSlot
+## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
 
-```ts
-addNotificationSlot(slot: NotificationSlot): Promise<void>
-```
+addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 Adds a notification slot. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot-1).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -333,7 +353,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -349,13 +369,15 @@ reminderAgent.addNotificationSlot(mySlot).then(() => {
 ```
 
 
-## reminderAgent.removeNotificationSlot
+## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-```ts
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
-```
 
 Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -364,7 +386,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -377,13 +399,15 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, 
 ```
 
 
-## reminderAgent.removeNotificationSlot
+## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-```ts
 removeNotificationSlot(slotType: notification.SlotType): Promise<void>
-```
 
 Removes a notification slot of a specified type. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot-1).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -397,7 +421,7 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -410,9 +434,13 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 ```
 
 
-## ActionButtonType
+## ActionButtonType<sup>(deprecated)</sup>
 
 Enumerates button types.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButtonType](js-apis-reminderAgentManager.md#ActionButtonType).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -422,9 +450,13 @@ Enumerates button types.
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
 
 
-## ReminderType
+## ReminderType<sup>(deprecated)</sup>
 
 Enumerates reminder types.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderType](js-apis-reminderAgentManager.md#ReminderType).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -435,9 +467,13 @@ Enumerates reminder types.
 | REMINDER_TYPE_ALARM | 2 | Alarm reminder.|
 
 
-## ActionButton
+## ActionButton<sup>(deprecated)</sup>
 
 Defines a button displayed in the reminder notification.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButton](js-apis-reminderAgentManager.md#ActionButton).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -447,9 +483,13 @@ Defines a button displayed in the reminder notification.
 | type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
 
 
-## WantAgent
+## WantAgent<sup>(deprecated)</sup>
 
 Sets the package and ability that are redirected to when the reminder notification is clicked.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.WantAgent](js-apis-reminderAgentManager.md#WantAgent).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -459,9 +499,13 @@ Sets the package and ability that are redirected to when the reminder notificati
 | abilityName | string | Yes| Name of the ability that is redirected to when the reminder notification is clicked.|
 
 
-## MaxScreenWantAgent
+## MaxScreenWantAgent<sup>(deprecated)</sup>
 
 Provides the information about the target package and ability to start automatically when the reminder is displayed in full-screen mode. This API is reserved.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#MaxScreenWantAgent).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -471,9 +515,13 @@ Provides the information about the target package and ability to start automatic
 | abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
 
 
-## ReminderRequest
+## ReminderRequest<sup>(deprecated)</sup>
 
 Defines the reminder to publish.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#ReminderRequest).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -494,26 +542,32 @@ Defines the reminder to publish.
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | No| Type of the slot used by the reminder.|
 
 
-## ReminderRequestCalendar
+## ReminderRequestCalendar<sup>(deprecated)</sup>
 
-ReminderRequestCalendar extends ReminderRequest
 
 Defines a reminder for a calendar event.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestCalendar](js-apis-reminderAgentManager.md#ReminderRequestCalendar).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dateTime | [LocalDateTime](#localdatetime) | Yes| Reminder time.|
-| repeatMonths | Array\<number\> | No| Month in which the reminder repeats.|
-| repeatDays | Array\<number\> | No| Date on which the reminder repeats.|
+| repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
+| repeatDays | Array\<number> | No| Date on which the reminder repeats.|
 
 
-## ReminderRequestAlarm
+## ReminderRequestAlarm<sup>(deprecated)</sup>
 
-ReminderRequestAlarm extends ReminderRequest
 
 Defines a reminder for an alarm.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestAlarm](js-apis-reminderAgentManager.md#ReminderRequestAlarm).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -521,14 +575,16 @@ Defines a reminder for an alarm.
 | -------- | -------- | -------- | -------- |
 | hour | number | Yes| Hour portion of the reminder time.|
 | minute | number | Yes| Minute portion of the reminder time.|
-| daysOfWeek | Array\<number\> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
+| daysOfWeek | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
-## ReminderRequestTimer
-
-ReminderRequestTimer extends ReminderRequest
+## ReminderRequestTimer<sup>(deprecated)</sup>
 
 Defines a reminder for a scheduled timer.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestTimer](js-apis-reminderAgentManager.md#ReminderRequestTimer).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -537,9 +593,13 @@ Defines a reminder for a scheduled timer.
 | triggerTimeInSeconds | number | Yes| Number of seconds in the countdown timer.|
 
 
-## LocalDateTime
+## LocalDateTime<sup>(deprecated)</sup>
 
 Sets the time information for a calendar reminder.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.LocalDateTime](js-apis-reminderAgentManager.md#LocalDateTime).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 

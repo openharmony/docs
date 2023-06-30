@@ -20,8 +20,6 @@ OpenHarmony Stable Version类型的源码为OpenHarmony稳定版本源码，通�
 
 ## 操作步骤
 
-OpenHarmony稳定版本源码，支持OpenHarmony-v1.1.4-LTS、OpenHarmony-v3.0.3-LTS和OpenHarmony-v3.1-Release版本。
-
 1. 打开DevEco Device Tool，进入Home页，点击**New Project**创建新工程。
 
    ![zh-cn_image_0000001272258726](figures/zh-cn_image_0000001272258726.png)

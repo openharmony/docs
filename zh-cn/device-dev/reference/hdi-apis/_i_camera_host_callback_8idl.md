@@ -1,7 +1,7 @@
 # ICameraHostCallback.idl
 
 
-## **概述**
+## 概述
 
 ICameraHost的回调接口，提供Camera设备和闪关灯状态变化的回调函数，回调函数由调用者实现。
 
@@ -15,20 +15,20 @@ ICameraHost的回调接口，提供Camera设备和闪关灯状态变化的回调
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ICameraHostCallback](interface_i_camera_host_callback.md) | 定义Camera设备功能回调操作。 | 
+| [ICameraHostCallback](interface_i_camera_host_callback.md) | interface<br/>定义Camera设备功能回调操作。 | 
 
 
-### 关键字
+### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |

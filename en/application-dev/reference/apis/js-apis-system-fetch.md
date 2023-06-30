@@ -16,7 +16,16 @@ import fetch from '@system.fetch';
 
 ## fetch.fetch<sup>3+</sup>
 
-fetch(Object): void
+fetch(options:{ <br>
+&nbsp;&nbsp;url: string;<br>
+&nbsp;&nbsp;data?: string | object;<br>
+&nbsp;&nbsp;header?: Object;<br>
+&nbsp;&nbsp;method?: string;<br>
+&nbsp;&nbsp;responseType?: string;<br>
+&nbsp;&nbsp;success?: (data: FetchResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+&nbsp;&nbsp;complete?: () => void;<br>
+  } ): void
 
 Obtains data through a network.
 
@@ -43,7 +52,9 @@ Obtains data through a network.
 | Object | Not set| The default value of **Content-Type** is **application/x-www-form-urlencoded**. The **data** value is encoded based on the URL rule and appended in the request body.|
 | Object | application/x-www-form-urlencoded | The value of data is encoded based on the URL rule and is used as the request body.|
 
-## FetchResponse
+## FetchResponse<sup>3+</sup>
+
+**System capability**: SystemCapability.Communication.NetStack
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |

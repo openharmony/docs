@@ -4,8 +4,8 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Modules to Import
 
 ```js
@@ -24,7 +24,6 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name    | Type  | Mandatory| Description|
@@ -36,6 +35,19 @@ Obtains the total size (in bytes) of the specified volume in an external storage
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;number&gt; | Promise used to return the total volume size obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -60,13 +72,25 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                      |
   | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume size obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -90,7 +114,6 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name    | Type  | Mandatory| Description|
@@ -102,6 +125,19 @@ Obtains the available space (in bytes) of the specified volume in an external st
   | Type                 | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -127,13 +163,25 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                        |
   | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -157,7 +205,6 @@ Obtains the space (in bytes) of an application. This API uses a promise to retur
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name     | Type  | Mandatory| Description    |
@@ -169,6 +216,19 @@ Obtains the space (in bytes) of an application. This API uses a promise to retur
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
   | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -193,13 +253,25 @@ Obtains the space (in bytes) of an application. This API uses an asynchronous ca
 
 **System API**: This is a system API.
 
-
 **Parameters**
 
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the application.|
   | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -225,6 +297,16 @@ Obtains the space (in bytes) of this third-party application. This API uses a pr
   | ------------------------------------------ | -------------------------- |
   | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.     |
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -246,6 +328,16 @@ Obtains the space (in bytes) of this third-party application. This API uses an a
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -265,7 +357,6 @@ Obtains the space (in bytes) of this third-party application. This API uses an a
 | cacheSize | number | Yes| No| Cache size of the application, in bytes.  |
 | dataSize  | number | Yes| No| Total data size of the application, in bytes.|
 
-
 ## storageStatistics.getTotalSize<sup>9+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
@@ -283,6 +374,18 @@ Obtains the total size (in bytes) of the built-in storage. This API uses a promi
   | Type                  | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the built-in storage size obtained.  |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -309,6 +412,18 @@ Obtains the total size (in bytes) of the built-in storage. This API uses an asyn
   | -------- | ------------------------------------ | ---- | ------------------------ |
   | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage size obtained.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -317,7 +432,6 @@ Obtains the total size (in bytes) of the built-in storage. This API uses an asyn
       console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
   ```
-
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
 
@@ -337,13 +451,24 @@ Obtains the available space (in bytes) of the built-in storage. This API uses a 
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
   let number = storageStatistics.getFreeSize();
   console.info("getFreeSize successfully:"+ JSON.stringify(number));
   ```
-
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
 
@@ -362,6 +487,18 @@ Obtains the available space (in bytes) of the built-in storage. This API uses an
   | Name   | Type                                 | Mandatory| Description                      |
   | -------- | ------------------------------------ | ---- | ------------------------- |
   | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -384,12 +521,23 @@ Obtains the system data space, in bytes. This API uses a promise to return the r
 
 **System API**: This is a system API.
 
-
 **Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;number&gt; | Promise used to return the system data space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -419,6 +567,18 @@ Obtains the system data space, in bytes. This API uses an asynchronous callback 
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data space obtained.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -445,6 +605,18 @@ Obtains the storage statistics (in bytes) of this user. This API uses a promise 
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -474,6 +646,18 @@ Obtains the storage statistics (in bytes) of this user. This API uses an asynchr
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -482,6 +666,9 @@ Obtains the storage statistics (in bytes) of this user. This API uses an asynchr
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   });
   ```
+
+## storageStatistics.getUserStorageStats<sup>9+</sup>
+
 getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 Obtains the storage statistics (in bytes) of the specified user. This API uses a promise to return the result.
@@ -503,6 +690,19 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600009 | User if out of range. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -534,6 +734,19 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
   | userId | number                               | Yes  | User ID.|
   | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600009 | User if out of range. |
+| 13900032 | Unknown error. |
+
 **Example**
 
   ```js
@@ -543,7 +756,6 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   });
   ```
-
 
 ## StorageStats<sup>9+</sup>
 

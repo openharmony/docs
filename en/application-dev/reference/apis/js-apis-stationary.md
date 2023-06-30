@@ -123,7 +123,7 @@ Unsubscribes from the device status.
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
-| callback             | Callback<[ActivityResponse](#activityresponse)\>  | No  | Callback used to receive reported data, if the callback parameter is not passed, all callbacks subscribed to this type under this process will be removed.   |
+| callback | Callback<[ActivityResponse](#activityresponse)\>  | No  | Callback used to receive reported data. If this parameter is not passed, all callbacks associated with the specified event in the process will be unregistered. |
 
 **Example**
 

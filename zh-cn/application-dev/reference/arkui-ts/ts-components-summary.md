@@ -22,7 +22,7 @@
 
 ## 堆叠Flex与栅格
 
-- [Stack](ts-container-stack.md) 
+- [Stack](ts-container-stack.md)
 
     堆叠容器组件，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
 - [Flex](ts-container-flex.md)
@@ -63,7 +63,7 @@
 
 ## 滚动与滑动
 
-- [Scroll](ts-container-scroll.md) 
+- [Scroll](ts-container-scroll.md)
 
     可滚动的容器组件，当子组件的布局尺寸超过父组件的尺寸时，内容可以滚动。
 - [Swiper](ts-container-swiper.md)
@@ -79,9 +79,9 @@
 
 ## 导航
 
-- [Navigator](ts-container-navigator.md) 
+- [Navigator](ts-container-navigator.md)
 
-    路由容器组件，提供路由跳转能力。    
+    路由容器组件，提供路由跳转能力。
 - [Navigation](ts-basic-components-navigation.md)
 
     一般作为Page页面的根容器，通过属性设置来展示页面的标题栏、工具栏、导航栏等。
@@ -234,7 +234,7 @@
     提供画布组件，用于自定义绘制图形。
 - [Circle](ts-drawing-components-circle.md)
 
-    用于绘制圆形的组件。 
+    用于绘制圆形的组件。
 - [Ellipse](ts-drawing-components-ellipse.md)
 
     椭圆绘制组件。
@@ -281,7 +281,7 @@
     可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 - [Refresh](ts-container-refresh.md)
 
-    可以进行页面下拉操作并显示刷新动效的容器组件。 
+    可以进行页面下拉操作并显示刷新动效的容器组件。
 - [AbilityComponent](ts-container-ability-component.md)
 
     独立显示Ability的容器组件。
@@ -300,3 +300,12 @@
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     用来展示菜单MenuItem的分组。
+- [SecLocationButton](ts-basic-components-seclocationbutton.md)
+
+    安全控件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+- [SecPasteButton](ts-basic-components-secpastebutton.md)
+
+    安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+- [SecSaveButton](ts-basic-components-secsavebutton.md)
+
+    安全控件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。

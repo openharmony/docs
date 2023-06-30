@@ -1,42 +1,38 @@
 # WifiStationInfo
 
 
-## **概述**
+## 概述
 
 STA的信息。
 
 **Since:**
-
 3.2
-
 **Version:**
-
 1.0
-
 **相关模块:**
 
-[WLAN](wlan.md)
+[WLAN](_w_l_a_n.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [rxRate](#rxrate) | 接收速率。 | 
-| [txRate](#txrate) | 发送速率。 | 
-| [flags](#flags) | 速率传输类型。 | 
-| [rxVhtmcs](#rxvhtmcs) | 接收VHT-MCS（Very&nbsp;High&nbsp;Throughput&nbsp;Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）配置。 | 
-| [txVhtmcs](#txvhtmcs) | 发送VHT-MCS（Very&nbsp;High&nbsp;Throughput&nbsp;Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）配置。 | 
-| [rxMcs](#rxmcs) | 接收MCS（Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）索引。 | 
-| [txMcs](#txmcs) | 发送MCS（Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）索引。 | 
-| [rxVhtNss](#rxvhtnss) | 接收VHT-NSS（Very&nbsp;High&nbsp;Throughput&nbsp;Number&nbsp;of&nbsp;Spatial&nbsp;Streams）配置。 | 
-| [txVhtNss](#txvhtnss) | 发送VHT-NSS（Very&nbsp;High&nbsp;Throughput&nbsp;Number&nbsp;of&nbsp;Spatial&nbsp;Streams）配置。 | 
+| [rxRate](#rxrate) | unsigned&nbsp;int<br/>接收速率。&nbsp; | 
+| [txRate](#txrate) | unsigned&nbsp;int<br/>发送速率。&nbsp; | 
+| [flags](#flags) | unsigned&nbsp;int<br/>速率传输类型。&nbsp; | 
+| [rxVhtmcs](#rxvhtmcs) | unsigned&nbsp;char<br/>接收VHT-MCS（Very&nbsp;High&nbsp;Throughput&nbsp;Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）配置。&nbsp; | 
+| [txVhtmcs](#txvhtmcs) | unsigned&nbsp;char<br/>发送VHT-MCS（Very&nbsp;High&nbsp;Throughput&nbsp;Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）配置。&nbsp; | 
+| [rxMcs](#rxmcs) | unsigned&nbsp;char<br/>接收MCS（Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）索引。&nbsp; | 
+| [txMcs](#txmcs) | unsigned&nbsp;char<br/>发送MCS（Modulation&nbsp;and&nbsp;Coding&nbsp;Scheme）索引。&nbsp; | 
+| [rxVhtNss](#rxvhtnss) | unsigned&nbsp;char<br/>接收VHT-NSS（Very&nbsp;High&nbsp;Throughput&nbsp;Number&nbsp;of&nbsp;Spatial&nbsp;Streams）配置。&nbsp; | 
+| [txVhtNss](#txvhtnss) | unsigned&nbsp;char<br/>发送VHT-NSS（Very&nbsp;High&nbsp;Throughput&nbsp;Number&nbsp;of&nbsp;Spatial&nbsp;Streams）配置。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### flags
@@ -45,9 +41,7 @@ STA的信息。
 ```
 unsigned int WifiStationInfo::flags
 ```
-
-**描述：**
-
+**描述:**
 速率传输类型。
 
 
@@ -57,9 +51,7 @@ unsigned int WifiStationInfo::flags
 ```
 unsigned char WifiStationInfo::rxMcs
 ```
-
-**描述：**
-
+**描述:**
 接收MCS（Modulation and Coding Scheme）索引。
 
 
@@ -69,9 +61,7 @@ unsigned char WifiStationInfo::rxMcs
 ```
 unsigned int WifiStationInfo::rxRate
 ```
-
-**描述：**
-
+**描述:**
 接收速率。
 
 
@@ -81,9 +71,7 @@ unsigned int WifiStationInfo::rxRate
 ```
 unsigned char WifiStationInfo::rxVhtmcs
 ```
-
-**描述：**
-
+**描述:**
 接收VHT-MCS（Very High Throughput Modulation and Coding Scheme）配置。
 
 
@@ -93,9 +81,7 @@ unsigned char WifiStationInfo::rxVhtmcs
 ```
 unsigned char WifiStationInfo::rxVhtNss
 ```
-
-**描述：**
-
+**描述:**
 接收VHT-NSS（Very High Throughput Number of Spatial Streams）配置。
 
 
@@ -105,9 +91,7 @@ unsigned char WifiStationInfo::rxVhtNss
 ```
 unsigned char WifiStationInfo::txMcs
 ```
-
-**描述：**
-
+**描述:**
 发送MCS（Modulation and Coding Scheme）索引。
 
 
@@ -117,9 +101,7 @@ unsigned char WifiStationInfo::txMcs
 ```
 unsigned int WifiStationInfo::txRate
 ```
-
-**描述：**
-
+**描述:**
 发送速率。
 
 
@@ -129,9 +111,7 @@ unsigned int WifiStationInfo::txRate
 ```
 unsigned char WifiStationInfo::txVhtmcs
 ```
-
-**描述：**
-
+**描述:**
 发送VHT-MCS（Very High Throughput Modulation and Coding Scheme）配置。
 
 
@@ -141,7 +121,5 @@ unsigned char WifiStationInfo::txVhtmcs
 ```
 unsigned char WifiStationInfo::txVhtNss
 ```
-
-**描述：**
-
+**描述:**
 发送VHT-NSS（Very High Throughput Number of Spatial Streams）配置。

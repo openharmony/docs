@@ -10,7 +10,7 @@
   
 - **应用图标和标签配置**
 
-  FA模型不支持直接配置应用图标和标签，会以符合规则的PageAbility的图标和标签作为应用图标和标签。PageAbility的图标和标签配置请参见[PageAbility组件配置](pageability-configuration.md)。需在config.json文件的abilities标签下配置icon字段，标签值为资源文件的索引。图标需要在配置IDE的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。标签值为资源文件的索引，标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 "action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon和label将同时作为应用的icon和label。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon和label作为应用的icon和label。应用图标和标签配置可以参考[ablities标签说明](../quick-start/module-structure.md)。
+  FA模型不支持直接配置应用图标和标签，会以符合规则的PageAbility的图标和标签作为应用图标和标签。PageAbility的图标和标签配置请参见[PageAbility组件配置](pageability-configuration.md)。需在config.json文件的abilities标签下配置icon字段，标签值为资源文件的索引。图标需要在配置IDE的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。标签值为资源文件的索引，标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 "action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon和label将同时作为应用的icon和label。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon和label作为应用的icon和label。应用图标和标签配置可以参考[abilities标签说明](../quick-start/module-structure.md)。
 
   ```json
     "abilities": [
@@ -36,4 +36,4 @@
 
 - **组件权限申请配置**
 
-  组件权限申请配置需在confog.json中的module标签下配置reqPermission字段。来声明需要申请权限的名称，申请权限的原因以及权限使用的场景。组件权限申请可以参考[reqPermission标签说明](../quick-start/module-structure.md)。
+  组件权限申请配置需在config.json中的module标签下配置reqPermission字段。来声明需要申请权限的名称，申请权限的原因以及权限使用的场景。组件权限申请可以参考[reqPermission标签说明](../quick-start/module-structure.md)。

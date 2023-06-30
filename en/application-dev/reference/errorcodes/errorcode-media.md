@@ -1,4 +1,4 @@
-#  Media Error Codes
+# Media Error Codes
 
 > **NOTE**
 >
@@ -27,7 +27,7 @@ Destroy this instance and re-create it. If the re-creation fails, stop related o
 
 **Error Message**
 
-Operate not permit.
+Operation not allowed.
 
 **Description**
 
@@ -45,7 +45,7 @@ Switch the instance to the correct state and perform the operation.
 
 **Error Message**
 
-IO error.
+I/O error.
 
 **Description**
 
@@ -63,7 +63,7 @@ Ensure that the network is normal, destroy this instance, and re-create it. If t
 
 **Error Message**
 
-Time out.
+Operation timeout.
 
 **Description**
 
@@ -71,7 +71,7 @@ The operation timed out.
 
 **Possible Causes**
 
-1. The network connection times out.
+1. The network connection times out. (The default network timeout period is 15 seconds, and the timer starts after the buffered event is reported.)
 2. Accessing other modules times out.
 
 **Solution**

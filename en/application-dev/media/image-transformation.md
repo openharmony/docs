@@ -1,4 +1,4 @@
-# Image Transformation
+# Image Transformation (ArkTS)
 
 Image processing refers to a series of operations performed on the pixel map, such as obtaining image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading and writing pixel data. These operations can be classified into image transformation and [pixel map operation](image-pixelmap-operation.md). This topic describes the image transformation operations that you can perform.
 
@@ -51,7 +51,7 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to i
        
      ```
      // Translate the image by 100 units downwards.
-     // Translate the image by 100 units to the right.
+     // Translate the image by 100 units rightwards.
      pixelMap.translate(100, 100);
      ```
    

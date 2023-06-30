@@ -20,7 +20,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | -------- | -------- | -------- | -------- |
 | handler | Function \| string | 是 | 定时器到期后执行函数。类型为string则打印Error信息，不进行其他处理。 |
 | delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。如果省略该参数，delay取默认值0，意味着“马上”执行，或尽快执行。 |
-| ...arguments | Array&lt;any&gt; | 否 | 附加参数，一旦定时器到期，它们会作为参数传递给handler。 |
+| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，它们会作为参数传递给handler。 |
 
 **返回值：**
 
@@ -41,7 +41,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 clearTimeout(timeoutID?: number): void
 
-取消了先前通过调用setTimeout()建立的定时器。
+可取消通过调用setTimeout()建立的定时器。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +75,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 | -------- | -------- | -------- | -------- |
 | handler | Function \| string | 是 | 要重复调用的函数。类型为string则打印Error信息，不进行其他处理。|
 | delay | number | 是 | 延迟的毫秒数，函数的调用会在该延迟之后发生。 |
-| ...arguments | Array&lt;any&gt; | 否 | 附加参数，一旦定时器到期，他们会作为参数传递给handler。 |
+| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，他们会作为参数传递给handler。 |
 
 **返回值：**
 
@@ -96,7 +96,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 clearInterval(intervalID?: number): void
 
-可取消先前通过setInterval()设置的重复定时任务。
+可取消通过setInterval()设置的重复定时任务。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

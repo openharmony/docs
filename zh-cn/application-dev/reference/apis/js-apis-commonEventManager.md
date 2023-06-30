@@ -562,7 +562,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | enable  | boolean | 是   | 表示静态订阅事件使能状态。 true:使能 false：去使能。 |
-| callback  | AsyncCallback<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
+| callback  | AsyncCallback\<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
 
 **错误码：**
 

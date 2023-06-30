@@ -1,4 +1,4 @@
-## NotificationSubscriber
+# NotificationSubscriber
 
 作为订阅通知接口[subscribe](js-apis-notificationSubscribe.md)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
 

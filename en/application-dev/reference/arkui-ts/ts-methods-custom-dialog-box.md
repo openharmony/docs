@@ -112,9 +112,10 @@ struct CustomDialogUser {
     customStyle: false
   })
 
+  // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
   aboutToDisappear() {
-    delete this.dialogController,
-    this.dialogController = undefined
+    delete this.dialogController, // Delete the dialogController instance.
+    this.dialogController = undefined //Set dialogController to undefined.
   }
 
   onCancel() {

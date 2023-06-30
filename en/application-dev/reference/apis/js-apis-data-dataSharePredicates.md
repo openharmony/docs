@@ -1,4 +1,4 @@
-# @ohos.data.dataSharePredicates (DataShare Predicates)
+# @ohos.data.dataSharePredicates (Data Share Predicates)
 
 You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare.md#update), [deleting](js-apis-data-dataShare.md#delete), and [querying](js-apis-data-dataShare.md#query) data when **DataShare** is used to manage data.
 
@@ -7,8 +7,7 @@ The APIs provided by  **DataSharePredicates** correspond to the filter criteria 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+
 
 
 ## Modules to Import
@@ -18,13 +17,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
 ## DataSharePredicates
-Provides methods for setting different **DataSharePredicates** objects.
+Provides methods for setting different **DataSharePredicates** objects. This type is not multi-thread safe. If a **DataSharePredicates** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
-### equalTo
+### equalTo<sup>10+</sup>
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is equal to the specified value.
 
 Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
@@ -54,9 +53,11 @@ predicates.equalTo("NAME", "Rose")
 
 notEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is not equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is not equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -88,6 +89,8 @@ Adds a left parenthesis to this **DataSharePredicates**.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
@@ -115,6 +118,8 @@ endWrap(): DataSharePredicates
 Adds a right parenthesis to this **DataSharePredicates** object.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -144,6 +149,8 @@ Adds the OR condition to this **DataSharePredicates** object.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
@@ -161,7 +168,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("NAME", "Rose")
 ```
 
-### and
+### and<sup>10+</sup>
 
 and(): DataSharePredicates
 
@@ -190,9 +197,11 @@ predicates.equalTo("NAME", "lisi")
 
 contains(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that contains the specified value.
+Sets a **DataSharePredicates** object to match the data that contains the specified value.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -220,9 +229,11 @@ predicates.contains("NAME", "os")
 
 beginsWith(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that begins with the specified value.
+Sets a **DataSharePredicates** object to match the data that begins with the specified value.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -250,9 +261,11 @@ predicates.beginsWith("NAME", "os")
 
 endsWith(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that ends with the specified value.
+Sets a **DataSharePredicates** object to match the data that ends with the specified value.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -280,9 +293,11 @@ predicates.endsWith("NAME", "os")
 
 isNull(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data whose value is null.
+Sets a **DataSharePredicates** object to match the data whose value is null.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -309,9 +324,11 @@ predicates.isNull("NAME")
 
 isNotNull(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data whose value is not null.
+Sets a **DataSharePredicates** object to match the data whose value is not null.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -338,9 +355,11 @@ predicates.isNotNull("NAME")
 
 like(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that matches the specified wildcard expression.
+Sets a **DataSharePredicates** object to match the data that matches the specified wildcard expression.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -368,9 +387,11 @@ predicates.like("NAME", "%os%")
 
 unlike(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that does not match the specified wildcard expression.
+Sets a **DataSharePredicates** object to match the data that does not match the specified wildcard expression.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -398,9 +419,11 @@ predicates.unlike("NAME", "%os%")
 
 glob(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that matches the specified wildcard expression.
+Sets a **DataSharePredicates** object to match the data that matches the specified wildcard expression.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -428,9 +451,11 @@ predicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is within the specified range, including the start and end values.
+Sets a **DataSharePredicates** object to match the data that is within the specified range, including the start and end values.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -459,9 +484,11 @@ predicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is out of the specified range, excluding the start and end values.
+Sets a **DataSharePredicates** object to match the data that is out of the specified range, excluding the start and end values.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -490,9 +517,11 @@ predicates.notBetween("AGE", 10, 50)
 
 greaterThan(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is greater than the specified value.
+Sets a **DataSharePredicates** object to match the data that is greater than the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -520,9 +549,11 @@ predicates.greaterThan("AGE", 10)
 
 lessThan(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is less than the specified value.
+Sets a **DataSharePredicates** object to match the data that is less than the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -550,9 +581,11 @@ predicates.lessThan("AGE", 50)
 
 greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is greater than or equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is greater than or equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -580,9 +613,11 @@ predicates.greaterThanOrEqualTo("AGE", 10)
 
 lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is less than or equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is less than or equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -606,7 +641,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThanOrEqualTo("AGE", 50)
 ```
 
-### orderByAsc
+### orderByAsc<sup>10+</sup>
 
 orderByAsc(field: string): DataSharePredicates
 
@@ -635,7 +670,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByAsc("AGE")
 ```
 
-### orderByDesc
+### orderByDesc<sup>10+</sup>
 
 orderByDesc(field: string): DataSharePredicates
 
@@ -672,6 +707,8 @@ Sets a **DataSharePredicates** object to filter out duplicate data records.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
@@ -687,7 +724,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-### limit
+### limit<sup>10+</sup>
 
 limit(total: number, offset: number): DataSharePredicates
 
@@ -725,6 +762,8 @@ Sets a **DataSharePredicates** object group the records according to the specifi
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -754,6 +793,8 @@ Sets a **DataSharePredicates** object to list data by the specified index.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -775,11 +816,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-### in
+### in<sup>10+</sup>
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is within the specified value.
+Sets a **DataSharePredicates** object to match the data that is within the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -809,9 +850,11 @@ predicates.in("AGE", [18, 20])
 
 notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is not in the specified value.
+Sets a **DataSharePredicates** object to match the data that is not in the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -839,9 +882,11 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 prefixKey(prefix: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data with the specified key prefix.
+Sets a **DataSharePredicates** object to match the data with the specified key prefix.
 
 Currently, only the KVDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -868,9 +913,11 @@ predicates.prefixKey("NAME")
 
 inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data whose keys are within the given range.
+Sets a **DataSharePredicates** object to match the data whose keys are within the given range.
 
 Currently, only the KVDB supports this **DataSharePredicates** object.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

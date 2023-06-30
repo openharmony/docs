@@ -494,7 +494,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
@@ -502,7 +502,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **示例：**
 
@@ -538,7 +538,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 
 **返回值：**
@@ -550,7 +550,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **示例：**
 
@@ -953,7 +953,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -987,7 +987,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1067,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1139,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1258,11 +1258,11 @@ promise.then(() => {
 });
 ```
 
-### on<sup>10+</sup>
+### on('show')<sup>10+</sup>
 
-on(type: 'show' | 'hide', callback: () => void): void
+on(type: 'show', callback: () => void): void
 
-监听当前面板状态，使用callback异步回调。
+监听当前面板显示状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1270,7 +1270,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1281,11 +1281,11 @@ panel.on('show', () => {
 });
 ```
 
-### off<sup>10+</sup>
+### on('hide')<sup>10+</sup>
 
-off(type: 'show' | 'hide', callback?: () => void): void
+on(type: 'hide', callback: () => void): void
 
-取消监听当前面板状态，使用callback异步回调。
+监听当前面板隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1293,13 +1293,57 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.on('hide', () => {
+  console.log('Panel is hiding.');
+});
+```
+
+### off('show')<sup>10+</sup>
+
+off(type: 'show', callback?: () => void): void
+
+取消监听当前面板显示状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
 
 ```js
 panel.off('show');
+```
+
+### off('hide')<sup>10+</sup>
+
+off(type: 'hide', callback?: () => void): void
+
+取消监听当前面板隐藏状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 否   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.off('hide');
 ```
 
 ### changeFlag<sup>10+</sup>
@@ -2485,7 +2529,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -2521,8 +2565,8 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。 |
-| keyAction | number   | 是   | 否   | 按键的状态。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## PanelFlag<sup>10+</sup>
 

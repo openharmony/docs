@@ -24,7 +24,7 @@ StepperItem()
 | -------- | -------- | -------- |
 | prevLabel | string | 设置左侧文本按钮内容，第一页没有左侧文本按钮，当步骤导航器大于一页时，除第一页外默认值都为“返回”。 |
 | nextLabel | string | 设置右侧文本按钮内容，最后一页默认值为“开始”，其余页默认值为“下一步”。 |
-| status | ItemState | 步骤导航器nextLabel的显示状态。<br/>默认值：ItemState.Normal |
+| status | [ItemState](#itemstate枚举说明) | 步骤导航器nextLabel的显示状态，参数可选。<br/>默认值：ItemState.Normal |
 
 ## ItemState枚举说明
 

@@ -19,7 +19,7 @@ The following lifecycle callbacks are provided for the lifecycle of a page, that
 - [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the Back button.
 
 
-The following lifecycle callbacks are provided for the lifecycle of a custom component, which is one decorated with \@Component:
+The following lifecycle callbacks are provided for the lifecycle of a component, that is, the lifecycle of a custom component decorated with \@Component:
 
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after a new instance of the custom component is created and before its **build** function is executed.
@@ -134,7 +134,7 @@ struct MyComponent {
         Child()
       }
       // When this.showChild is false, the Child child component is deleted, and Child aboutToDisappear is invoked.
-      Button('create or delete Child').onClick(() => {
+      Button('delete Child').onClick(() => {
         this.showChild = false;
       })
       // Because of the pushing from the current page to Page2, onPageHide is invoked.

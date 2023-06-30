@@ -142,6 +142,7 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
+
 | ID| Error Message                              |
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
@@ -234,7 +235,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                            |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
@@ -247,6 +248,7 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 **Example**
 
@@ -285,7 +287,7 @@ Decompresses a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | options | [Options](#options) | Yes  | Decompression parameters.                                          |
 
@@ -297,6 +299,7 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 | ------ | ------------------------------------- |
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 ```typescript
 // Decompress a file.

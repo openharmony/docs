@@ -8,7 +8,7 @@ OpenHarmony provides multiple classes for you to develop audio recording applica
 
 - [AudioCapturer](using-audiocapturer-for-recording.md): provides ArkTS and JS API to implement audio input. It supports only the PCM format and requires applications to continuously read audio data. The application can perform data processing after audio output. This class can be used to develop more professional and diverse recording applications. To use this class, you must have basic audio processing knowledge.
 
-- [OpenSLES](using-opensl-es-for-recording.md): provides a set of standard, cross-platform, yet unique native audio APIs. It supports audio input in PCM format and is applicable to recording applications that are ported from other embedded platforms or that implements audio input at the native layer.
+- [OpenSL ES](using-opensl-es-for-recording.md): provides a set of standard, cross-platform, yet unique native audio APIs. It supports audio input in PCM format and is applicable to recording applications that are ported from other embedded platforms or that implements audio input at the native layer.
 
 ## Precautions for Developing Audio Recording Applications
 

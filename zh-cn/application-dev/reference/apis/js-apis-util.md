@@ -586,7 +586,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
-encodeIntoUint8Array(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
 放置生成的UTF-8编码文本。
 
@@ -617,7 +617,7 @@ result = that.encodeIntoUint8Array('abcd', dest)
 
 ### encodeInto<sup>(deprecated)</sup>
 
-encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 放置生成的UTF-8编码文本。
 
@@ -1100,7 +1100,7 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量。 |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
 
 **示例：**
 
@@ -3400,7 +3400,7 @@ constructor(capacity?: number)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| capacity | number | 否 | 指示要为缓冲区自定义的容量。 |
+| capacity | number | 否 | 指示要为缓冲区自定义的容量，默认值为64。 |
 
 **示例：**
 

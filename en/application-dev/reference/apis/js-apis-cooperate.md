@@ -1,12 +1,12 @@
 # @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)
 
-The **inputDeviceCooperate** module enables two or more networked devices to share the keyboard and mouse for collaborative operations.
+The **inputDeviceCooperate** module implements screen hopping for two or more networked devices to share the keyboard and mouse for collaborative operations.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs.
-
+>   - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>  - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -66,7 +66,7 @@ Specifies whether to enable screen hopping. This API uses a promise to return th
 
 **Return value**
 
-| Name                | Description                    |
+| Parameters                | Description                    |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise used to return the result.       |
 
@@ -221,7 +221,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 | Name               | Description                           |
 | --------             | ----------------------------   |
-| Promise\<void>       |  Promise used to return the result.     | 
+| Promise\<void>       |  Promise used to return the result.     |
 
 **Example**
 
@@ -287,7 +287,7 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 
 **Return value**
 
-| Name                       | Description                    |
+| Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise used to return the result.       |
 
@@ -296,6 +296,7 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 **Example**
 
 ```js
+let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
@@ -311,7 +312,7 @@ try {
 
 on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, eventMsg: EventMsg }>): void
 
-Enables listening for screen hopping events.
+Enables listening for screen hopping status change events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
@@ -340,7 +341,7 @@ try {
 
 off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
-Disables listening for screen hopping events.
+Disables listening for screen hopping status change events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
@@ -388,7 +389,7 @@ Enumerates screen hopping event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
-| Name                       | Value       | Description                             |
+| Name                      | Value       | Description                             |
 | --------                     | --------- |  -----------------               |
 | MSG_COOPERATE_INFO_START     | 200       |  Screen hopping starts.      |
 | MSG_COOPERATE_INFO_SUCCESS   | 201       |  Screen hopping succeeds.     |

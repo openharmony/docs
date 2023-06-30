@@ -2,11 +2,11 @@
 
 ## cl.filemanagement.1 environment Module Change 
 
-The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **environment** module supports error code handling.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **environment** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **environment** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **environment** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 
@@ -24,11 +24,11 @@ import environment from '@ohos.file.environment';
 
 ## cl.filemanagement.2 securityLabel Change
 
-Moved the file management subsystem **d.ts** file to the **file** directory. The **securityLabel** module supports error code handling.
+Moved the file management subsystem **d.ts** file to the **file** directory. The **securityLabel** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **securityLabel** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **securityLabel** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 
@@ -58,11 +58,11 @@ The type of the **ino** attribute of **Stat** is changed from number to BigInt.
 
 ## cl.filemanagement.4 fileAccess Change
 
-Moved the file management subsystem **d.ts** file to the **file** directory. The **fileAccess** module supports error code handling.
+Moved the file management subsystem **d.ts** file to the **file** directory. The **fileAccess** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **fileAccess** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **fileAccess** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 
@@ -80,11 +80,11 @@ import fileAccess from '@ohos.file.fileAccess';
 
 ## cl.filemanagement.5 fileExtensionInfo Change
 
-Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code handling.
+Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **fileExtensionInfo** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **fileExtensionInfo** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 
@@ -102,11 +102,11 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 ## cl.filemanagement.6 storageStatistics Change
 
-Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code handling.
+Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **storageStatistics** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **storageStatistics** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 
@@ -124,11 +124,11 @@ import storageStatistics from '@ohos.file.storageStatistics';
 
 ## cl.filemanagement.7 volumeManager Change
 
-Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code handling.
+Moved the file management subsystem **d.ts** file to the **file** directory. The **fileExtensionInfo** module supports error code processing.
 
 **Change Impact**
 
-If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **volumeManager** module supports error code handling. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md).
+If your application is developed based on earlier versions, note that the **d.ts** file location and the name of the module to be imported are changed. The **volumeManager** module supports error code processing. See [Adaptation Guide](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md) for more details.
 
 **Key API/Component Changes**
 

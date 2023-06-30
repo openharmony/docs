@@ -2222,7 +2222,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 Obtains the information about widget hosts based on the widget provider information. This API uses a promise to return the result.
 
@@ -2273,7 +2273,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
 
@@ -2321,7 +2321,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
 
@@ -2366,7 +2366,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 Obtains the information about widget hosts based on the widget ID. This API uses an asynchronous callback to return the result.
 

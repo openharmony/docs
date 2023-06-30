@@ -2,7 +2,9 @@
 
 为了保证OpenHarmony应用的完整性和来源可靠，在应用构建时需要对应用进行签名。经过签名的应用才能在真机设备上安装、运行、和调试。[developtools_hapsigner仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名等功能。
 
-> **说明：** 针对无需通过ACL跨级别申请权限的应用，DevEco Studio为开发者提供了自动化签名方案，可以一键完成应用/服务签名。具体可参考[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
+> **说明：** 
+>
+> 针对无需通过ACL跨级别申请权限的应用，DevEco Studio为开发者提供了自动化签名方案，可以一键完成应用/服务签名。具体可参考[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
 
 ## 基本概念
 

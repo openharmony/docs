@@ -4,7 +4,7 @@
 
 ### Introduction
 
-By default, OpenHarmony provides the power consumption statistics feature. However, the power consumption benchmarks vary according to hardware specifications of different products.  To address this issue, OpenHarmony provides the power consumption statistics customization function, allowing you to customize power consumption benchmarks depending on your hardware specifications.
+By default, OpenHarmony provides the power consumption statistics feature. However, the power consumption benchmarks vary according to hardware specifications of different products. To address this issue, OpenHarmony provides the power consumption statistics customization function, allowing you to customize power consumption benchmarks depending on your hardware specifications.
 
 ### Basic Concepts
 

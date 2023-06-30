@@ -16,8 +16,17 @@ Since API version 9, it is recommended that this component be used together with
 
 ## APIs
 
-Navigation()
+**API 1**: Navigation()
 
+**API 2**: Navigation(pathInfos: NavPathStack)<sup>10+</sup>
+
+Binds a navigation stack to the **\<Navigation>** component.
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description         |
+| ------- | ----------------------------------- | ---- | ------------- |
+| pathInfos   | [NavPathStack](#navpathstack10) | No   | Information about the navigation stack.|
 
 ## Attributes
 
@@ -32,13 +41,215 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | toolBar                       | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).|
 | hideToolBar                   | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
 | hideTitleBar                  | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton                | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.<br>The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The Back button is available only when **titleMode** is set to **NavigationTitleMode.Mini**.|
+| hideBackButton                | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Display the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button is available only when **titleMode** is set to **NavigationTitleMode.Mini**.|
 | navBarWidth<sup>9+</sup>      | [Length](ts-types.md#length)             | Width of the navigation bar.<br>Default value: **200**<br>Unit: vp<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
-| navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
-| mode<sup>9+</sup>             | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
-| backButtonIcon<sup>9+</sup>   | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
+| navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition)        | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
+| mode<sup>9+</sup>             | [NavigationMode](#navigationmode)        | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
+| backButtonIcon<sup>9+</sup>   | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | hideNavBar<sup>9+</sup>       | boolean                                  | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
+| navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passsed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
 
+## NavPathStack<sup>10+</sup>
+
+Implements a navigation stack.
+
+### push<sup>10+</sup>
+
+push(info: NavPathInfo): void
+
+Pushes the NavDestination page information specified by **info** to the stack.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| info  | [NavPathInfo](#navpathinfo10)                  | Yes   | Information about the navigation destination page.  |
+
+### pushName<sup>10+</sup>
+
+pushName(name: string, param: unknown): void
+
+Pushes the navigation destination page specified by **name** to the navigation stack.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name   | string                   | Yes   | Name of the navigation destination page.  |
+| param  | unknown                  | Yes   | Parameter information of the navigation destination page.  |
+
+### pop<sup>10+</sup>
+
+pop(): NavPathInfo | undefined
+
+Pops the top element out of the navigation stack.
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| NavPathInfo | Returns the information about the navigation destination page at the top of the stack.|
+| undefined   | Returns **undefined** if the navigation stack is empty.|
+
+### popTo<sup>10+</sup>
+
+popTo(name: string): number
+
+Returns the navigation stack to the first navigation destination page that matches the value of **name**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name   | string                  | Yes  | Name of the navigation destination page.  |
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| number | Returns the index of the first navigation destination page that matches the value of **name** if it exists in the navigation stack; returns **-1** otherwise.|
+
+### popToIndex<sup>10+</sup>
+
+popToIndex(index: number): void
+
+Returns the navigation stack to the navigation destination page that matches the value of **index**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | Yes  | Index of the navigation destination page.  |
+
+### moveToTop<sup>10+</sup>
+
+moveToTop(name: string): number
+
+Moves to the top of the navigation stack the first navigation destination page that matches the value of **name**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| number | Returns the index of the first navigation destination page that matches the value of **name** if it exists in the navigation stack; returns **-1** otherwise.|
+
+### moveIndexToTop<sup>10+</sup>
+
+moveIndexToTop(index: number): void
+
+Moves to the top of the navigation stack the navigation destination page that matches the value of **index**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | Yes  | Index of the navigation destination page.  |
+
+### clear<sup>10+</sup>
+
+clear(): void
+
+Clears the navigation stack.
+
+### getAllPathName<sup>10+</sup>
+
+getAllPathName(): Array<string\>
+
+Obtains the names of all navigation destination pages in the navigation stack.
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| Array<string\> | Names of all navigation destination pages in the navigation stack.|
+
+### getParamByIndex<sup>10+</sup>
+
+getParamByIndex(index: number): unknown | undefined
+
+Obtains the parameter information of the navigation destination page that matches the value of **index**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | Yes  | Index of the navigation destination page.  |
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| unknown   | Returns the parameter information of the matching navigation destination page.|
+| undefined | Returns **undefined** if the passed index is invalid.|
+
+### getParamByName<sup>10+</sup>
+
+getParamByName(name: string): Array<unknown\>
+
+Obtains the parameter information of all the navigation destination pages that match the value of **name**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| Array<unknown\>  | Parameter information of all the matching navigation destination pages.|
+
+### getIndexByName<sup>10+</sup>
+
+getIndexByName(name: string): Array<number\>
+
+Obtains the indexes information of all the navigation destination pages that match the value of **name**.
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name   | string                  | Yes  | Name of the navigation destination page.  |
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| Array<number\>  | Indexes of all the matching navigation destination pages.|
+
+### size<sup>10+</sup>
+
+size(): number
+
+Obtains the stack size.
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| number  | Stack size.|
+
+## NavPathInfo<sup>10+</sup>
+
+Describes the navigation page information.
+
+### constructor
+
+constructor(name: string, param: unknown)
+
+**Parameters**
+
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
+| param  | unknown                  | No   | Parameter information of the navigation destination page.  |
 
 ## NavigationMenuItem
 
@@ -102,6 +313,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 
 >  **NOTE**
+>
 >  Among the scrollable components, only **\<List>** is supported.
 
 
@@ -109,8 +321,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
-| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Triggered when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
+| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
+| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
 
 
 ## Example

@@ -78,6 +78,8 @@ httpRequest.request(
       // data.header为HTTP响应头，可根据业务需要进行解析
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+      // 当该请求使用完毕时，调用destroy方法主动销毁
+      httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件
@@ -165,4 +167,3 @@ httpRequest.request2(
 针对HTTP数据请求，有以下相关实例可供参考：
 
 - [`Http:`数据请求（ArkTS）（API9））](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [使用HTTP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

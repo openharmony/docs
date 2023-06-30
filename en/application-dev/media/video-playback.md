@@ -78,7 +78,9 @@ export class AVPlayerDemo {
   private avPlayer;
   private count: number = 0;
   private surfaceID: string; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
-
+  private isSeek: boolean = true; // Specify whether the seek operation is supported.
+  private fileSize: number = -1;
+  private fd: number = 0;
   // Set AVPlayer callback functions.
   setAVPlayerCallback() {
     // Callback function for the seek operation.
@@ -113,8 +115,13 @@ export class AVPlayerDemo {
         case 'playing': // This state is reported upon a successful callback of play().
           console.info('AVPlayer state playing called.');
           if (this.count !== 0) {
-            console.info('AVPlayer start to seek.');
-            this.avPlayer.seek (this.avPlayer.duration); // Call seek() to seek to the end of the video clip.
+            if (this.isSeek) {
+              console.info('AVPlayer start to seek.');
+              this.avPlayer.seek (this.avPlayer.duration); // Call seek() to seek to the end of the video clip.
+            } else {
+              // When the seek operation is not supported, the playback continues until it reaches the end.
+              console.info('AVPlayer wait to play end.');
+            }
           } else {
             this.avPlayer.pause(); // Call pause() to pause the playback.
           }
@@ -152,10 +159,11 @@ export class AVPlayerDemo {
     let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
-    let path = pathDir  + '/H264_AAC.mp4'; 
+    let path = pathDir + '/H264_AAC.mp4';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
+    this.isSeek = true; // The seek operation is supported.
     this.avPlayer.url = fdPath;
   }
 
@@ -169,8 +177,85 @@ export class AVPlayerDemo {
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+    this.isSeek = true; // The seek operation is supported.
     // Assign a value to fdSrc to trigger the reporting of the initialized state.
     this.avPlayer.fdSrc = fileDescriptor;
+  }
+
+  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file with the seek operation using the dataSrc attribute.
+  async avPlayerDataSrcSeekDemo() {
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+    // Set a callback function for state changes.
+    this.setAVPlayerCallback();
+    // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
+    let src = {
+      fileSize: -1,
+      callback: (buf, length, pos) => {
+        let num = 0;
+        if (buf == undefined || length == undefined || pos == undefined) {
+          return -1;
+        }
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        if (num > 0 && (this.fileSize >= pos)) {
+          return num;
+        }
+        return -1;
+      }
+    }
+    let context = getContext(this) as common.UIAbilityContext;
+    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
+    let pathDir = context.filesDir;
+    let path = pathDir + '/H264_AAC.mp4';
+    await fs.open(path).then((file) => {
+      this.fd = file.fd;
+    })
+    // Obtain the size of the file to be played.
+    this.fileSize = fs.statSync(path).size;
+    src.fileSize = this.fileSize;
+    this.isSeek = true; // The seek operation is supported.
+    this.avPlayer.dataSrc = src;
+  }
+
+  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file without the seek operation using the dataSrc attribute.
+  async avPlayerDataSrcNoSeekDemo() {
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+    // Set a callback function for state changes.
+    this.setAVPlayerCallback();
+    let context = getContext(this) as common.UIAbilityContext;
+    let src: object = {
+      fileSize: -1,
+      callback: (buf, length, pos) => {
+        let num = 0;
+        if (buf == undefined || length == undefined) {
+          return -1;
+        }
+        num = fs.readSync(this.fd, buf);
+        if (num > 0) {
+          return num;
+        }
+        return -1;
+      }
+    }
+    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
+    let pathDir = context.filesDir;
+    let path = pathDir + '/H264_AAC.mp4';
+    await fs.open(path).then((file) => {
+      this.fd = file.fd;
+    })
+    this.isSeek = false; // The seek operation is not supported.
+    this.avPlayer.dataSrc = src;
+  }
+
+  // The following demo shows how to play live streams by setting the network address through the URL.
+  async avPlayerLiveDemo() {
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+    // Set a callback function for state changes.
+    this.setAVPlayerCallback();
+    this.isSeek = false; // The seek operation is not supported.
+    this.avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
   }
 }
 ```

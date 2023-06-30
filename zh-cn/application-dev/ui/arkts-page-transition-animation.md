@@ -34,7 +34,7 @@ type为RouteType.None表示对页面栈的push、pop操作均生效，type的默
 
 
 ```ts
-// page A
+// pageA
 pageTransition() {
   // 定义页面进入时的效果，从左侧滑入，时长为1200ms，无论页面栈发生push还是pop操作均可生效
   PageTransitionEnter({ type: RouteType.None, duration: 1200 })
@@ -48,7 +48,7 @@ pageTransition() {
 
 
 ```ts
-// page B
+// pageB
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1000ms，无论页面栈发生push还是pop操作均可生效
   PageTransitionEnter({ type: RouteType.None, duration: 1000 })
@@ -80,7 +80,7 @@ type为RouteType.Push表示仅对页面栈的push操作生效，type为RouteType
 
 
 ```ts
-// page A
+// pageA
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1200ms，页面栈发生push操作时该效果才生效
   PageTransitionEnter({ type: RouteType.Push, duration: 1200 })
@@ -100,7 +100,7 @@ pageTransition() {
 
 
 ```ts
-// page B
+// pageB
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1000ms，页面栈发生push操作时该效果才生效
   PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
@@ -157,7 +157,7 @@ pageTransition() {
 
 
 ```ts
-// page A
+// PageTransitionSrc1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -175,7 +175,7 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一个页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
+            router.pushUrl({ url: 'pages/myTest/PageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
@@ -209,7 +209,7 @@ struct PageTransitionSrc1 {
 
 
 ```ts
-// page B
+// PageTransitionDst1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -227,7 +227,7 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
+            router.pushUrl({ url: 'pages/myTest/PageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {
@@ -267,7 +267,7 @@ struct PageTransitionDst1 {
 
 
 ```ts
-// page A
+// PageTransitionSrc2
 import router from '@ohos.router';
 @Entry
 @Component
@@ -313,7 +313,7 @@ struct PageTransitionSrc2 {
 
 
 ```ts
-// page B
+// PageTransitionDst2
 import router from '@ohos.router';
 @Entry
 @Component

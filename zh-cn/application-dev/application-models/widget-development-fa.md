@@ -114,7 +114,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataStorage from '@ohos.data.storage';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. 在form.ts中，实现卡片生命周期接口
@@ -263,7 +263,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         "updateCount": 0
     };
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // put form info
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
@@ -301,7 +301,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // del form info
         await storage.delete(formId);
         console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);

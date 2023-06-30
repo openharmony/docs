@@ -12,7 +12,7 @@ However, you can customize an animation to be played during the display or hidin
 
 > **NOTE**
 >
-> This document involves the use of system APIs. Use the full SDK for development. For details, see [Guide to Switching to Full SDK](../quick-start/full-sdk-switch-guide.md).
+> This document involves the use of system APIs. Use the full SDK for development. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
 
 ## Available APIs

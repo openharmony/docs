@@ -20,7 +20,7 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 Figure 1 shows the working principles of the widget framework.
 
-**Figure 1** Widget framework working principles in the FA model 
+**Figure 1** Widget framework working principles in the FA model
 ![form-extension](figures/form-extension.png)
 
 The widget host consists of the following modules:
@@ -115,55 +115,55 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataStorage from '@ohos.data.storage';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. Implement the widget lifecycle callbacks in **form.ts**.
    
    ```ts
    export default {
-       onCreate(want) {
-           console.info('FormAbility onCreate');
-           // Called when the widget is created. The widget provider should return the widget data binding class.
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       },
-       onCastToNormal(formId) {
-           // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
-           console.info('FormAbility onCastToNormal');
-       },
-       onUpdate(formId) {
-           // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-           console.info('FormAbility onUpdate');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-           });
-       },
-       onVisibilityChange(newStatus) {
-           // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-           console.info('FormAbility onVisibilityChange');
-       },
-       onEvent(formId, message) {
-           // If the widget supports event triggering, override this method and implement the trigger.
-           console.info('FormAbility onEvent');
-       },
-       onDestroy(formId) {
-           // Delete widget data.
-           console.info('FormAbility onDestroy');
-       },
-       onAcquireFormState(want) {
-           console.info('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
-       },
+     onCreate(want) {
+       console.info('FormAbility onCreate');
+       // Called when the widget is created. The widget provider should return the widget data binding class.
+       let obj = {
+         "title": "titleOnCreate",
+         "detail": "detailOnCreate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       return formData;
+     },
+     onCastToNormal(formId) {
+       // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+       console.info('FormAbility onCastToNormal');
+     },
+     onUpdate(formId) {
+       // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+       console.info('FormAbility onUpdate');
+       let obj = {
+         "title": "titleOnUpdate",
+         "detail": "detailOnUpdate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error) => {
+         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+       });
+     },
+     onVisibilityChange(newStatus) {
+       // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+       console.info('FormAbility onVisibilityChange');
+     },
+     onEvent(formId, message) {
+       // If the widget supports event triggering, override this method and implement the trigger.
+       console.info('FormAbility onEvent');
+     },
+     onDestroy(formId) {
+       // Delete widget data.
+       console.info('FormAbility onDestroy');
+     },
+     onAcquireFormState(want) {
+       console.info('FormAbility onAcquireFormState');
+       return formInfo.FormState.READY;
+     },
    }
    ```
 
@@ -188,15 +188,15 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   
   ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
+  "js": [{
+     "name": "widget",
+     "pages": ["pages/index/index"],
+     "window": {
+         "designWidth": 720,
+         "autoDesignWidth": true
+     },
+     "type": "form"
+  }]
   ```
 
 - The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
@@ -265,7 +265,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         "updateCount": 0
     };
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // Put the widget information.
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
@@ -275,7 +275,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
     }
 }
 
-// ...
+...
     onCreate(want) {
         console.info('FormAbility onCreate');
 
@@ -293,7 +293,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         let formData = formBindingData.createFormBindingData(obj);
         return formData;
     }
-// ...
+...
 ```
 
 You should override **onDestroy** to implement widget data deletion.
@@ -303,7 +303,7 @@ You should override **onDestroy** to implement widget data deletion.
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // Delete the widget information.
         await storage.delete(formId);
         console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
@@ -313,14 +313,14 @@ async function deleteFormInfo(formId: string) {
     }
 }
 
-// ...
+...
     onDestroy(formId) {
         console.info('FormAbility onDestroy');
         // Delete the persistent widget instance data.
         // Implement this API based on project requirements.
         deleteFormInfo(formId);
     }
-// ...
+...
 ```
 
 For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
@@ -543,4 +543,3 @@ The following is an example:
     }
   }
   ```
-

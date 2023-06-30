@@ -7,7 +7,7 @@ js标签中包含了实例名称、页面路由信息。
 | 标签    | 类型     | 默认值     | 必填   | 描述                            |
 | ----- | ------ | ------- | ---- | ----------------------------- |
 | name  | string | default | 是    | 标识JS实例的名字。                    |
-| pages | Array  | -       | 是    | 路由信息，详见“**[pages](#pages)**”。 |
+| pages | Array  | -       | 是    | 路由信息，详见“[pages](#pages)”。 |
 
 
 >  **说明：**
@@ -46,7 +46,7 @@ js标签中包含了实例名称、页面路由信息。
 ```
 {
   "app": {
-    "bundleName": "com.huawei.player",
+    "bundleName": "com.example.player",
     "version": {
         "code": 1,
         "name": "1.0"

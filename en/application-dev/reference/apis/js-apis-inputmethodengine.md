@@ -56,7 +56,11 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 getInputMethodAbility(): InputMethodAbility
 
-Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
+Obtains an [InputMethodAbility](#inputmethodability) instance for the input method.
+
+This API can be called only by an input method.
+
+The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -96,11 +100,11 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-Obtains an [InputMethodEngine](#inputmethodengine-1) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
+Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethodAbility()](#inputmethodenginegetinputmethodability9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethodAbility()](#inputmethodenginegetinputmethodability9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -108,7 +112,7 @@ Obtains an [InputMethodEngine](#inputmethodengine-1) instance for the input meth
 
 | Type                                     | Description              |
 | ----------------------------------------- | ------------------ |
-| [InputMethodEngine](#inputmethodengine-1) | **InputMethodAbility** instance.|
+| [InputMethodEngine](#inputmethodengine) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -124,7 +128,7 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 
 > **NOTE**
 >
->This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9).
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -163,8 +167,8 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 ```js
 inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textClient) => {
-    let keyboardController = kbController;
-    let textInputClient = textClient;
+  let keyboardController = kbController;
+  let textInputClient = textClient;
 });
 ```
 
@@ -187,7 +191,7 @@ Cancels listening for the input method binding event.
 
 ```js
 inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textInputClient) => {
-    console.log('delete inputStart notification.');
+  console.log('delete inputStart notification.');
 });
 ```
 
@@ -210,10 +214,10 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 
 ```js
 inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
-    console.log('inputMethodEngine keyboardShow.');
+  console.log('inputMethodEngine keyboardShow.');
 });
 inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
-    console.log('inputMethodEngine keyboardHide.');
+  console.log('inputMethodEngine keyboardHide.');
 });
 ```
 
@@ -262,8 +266,8 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client) => {
-    let keyboardController = kbController;
-    let inputClient = client;
+  let keyboardController = kbController;
+  let inputClient = client;
 });
 ```
 
@@ -307,7 +311,7 @@ Enables listening for the input method unbinding event. This API uses an asynchr
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
-    console.log('inputMethodAbility inputStop');
+  console.log('inputMethodAbility inputStop');
 });
 ```
 
@@ -330,7 +334,7 @@ Cancels listening for the input method stop event. This API uses an asynchronous
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
-    console.log('inputMethodAbility delete inputStop notification.');
+  console.log('inputMethodAbility delete inputStop notification.');
 });
 ```
 
@@ -353,7 +357,7 @@ Enables listening for the window invocation setting event. This API uses an asyn
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid) => {
-    console.log('inputMethodAbility setCallingWindow');
+  console.log('inputMethodAbility setCallingWindow');
 });
 ```
 
@@ -375,8 +379,8 @@ Disables listening for the window invocation setting event. This API uses an asy
 **Example**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
-    console.log('inputMethodAbility delete setCallingWindow notification.');
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
+  console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
 
@@ -384,7 +388,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Enables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -399,10 +403,10 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
-    console.log('InputMethodAbility keyboardShow.');
+  console.log('InputMethodAbility keyboardShow.');
 });
 inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
-    console.log('InputMethodAbility keyboardHide.');
+  console.log('InputMethodAbility keyboardHide.');
 });
 ```
 
@@ -410,7 +414,7 @@ inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Disables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -425,10 +429,10 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
-    console.log('InputMethodAbility delete keyboardShow notification.');
+  console.log('InputMethodAbility delete keyboardShow notification.');
 });
 inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
-    console.log('InputMethodAbility delete keyboardHide notification.');
+  console.log('InputMethodAbility delete keyboardHide notification.');
 });
 ```
 
@@ -442,16 +446,16 @@ Enables listening for the input method subtype setting event. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
+| Name   | Type| Mandatory | Description|
+| -------- | --- | ---- | --- |
+| type     | string | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | Yes  | Callback used to return the input method subtype.                          |
 
 **Example**
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) => {
-    console.log('InputMethodAbility setSubtype.');
+  console.log('InputMethodAbility setSubtype.');
 });
 ```
 
@@ -465,16 +469,16 @@ Disables listening for the input method subtype setting event. This API uses an 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
+| Name  | Type | Mandatory| Description  |
+| ------- | ----- | ---- | ---- |
+| type     | string | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | No  | Callback used to return the input method subtype. |
 
 **Example**
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
-    console.log('InputMethodAbility delete setSubtype notification.');
+  console.log('InputMethodAbility delete setSubtype notification.');
 });
 ```
 
@@ -482,7 +486,9 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-Creates an input method panel. This API can be called only by input method applications and system applications with the system_core permission. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application. This API uses an asynchronous callback to return the result.
+Creates an input method panel. This API uses an asynchronous callback to return the result.
+
+This API can be called only by an input method. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -490,7 +496,7 @@ Creates an input method panel. This API can be called only by input method appli
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](./js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 | callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
 
@@ -504,19 +510,19 @@ Creates an input method panel. This API can be called only by input method appli
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -524,7 +530,9 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-Creates an input method panel. This API can be called only by input method applications and system applications with the system_core permission. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application. This API uses a promise to return the result.
+Creates an input method panel. This API uses a promise to return the result.
+
+This API can be called only by an input method. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -532,7 +540,7 @@ Creates an input method panel. This API can be called only by input method appli
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 
 **Return value**
@@ -550,13 +558,13 @@ Creates an input method panel. This API can be called only by input method appli
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
 }).catch((err) => {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 })
 ```
 
@@ -579,32 +587,32 @@ Destroys an input method panel. This API uses an asynchronous callback to return
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
     if(err !== undefined) {
-      console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in destroying panel.');
   })
 } catch(err) {
-  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -631,30 +639,30 @@ Destroys an input method panel. This API uses a promise to return the result.
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
     console.log('Succeed in destroying panel.');
   }).catch((err) => {
-    console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+    console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -681,14 +689,14 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent) => {
-    console.info('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.info('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
-    return true;
+  console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
+  console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+  return true;
 });
 inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
-    console.info('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.info('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
-    return true;
+  console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
+  console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+  return true;
 });
 ```
 
@@ -702,21 +710,21 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                                                        |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Listening type.<br>The value **'keyDown'** indicates the keydown event.<br>The value **'keyUp'** indicates the keyup event.|
+| Name   | Type    | Mandatory | Description |
+| -------- | ------- | ---- | ----- |
+| type     | string  | Yes  | Listening type.<br>The value **'keyDown'** indicates the keydown event.<br>The value **'keyUp'** indicates the keyup event.|
 | callback | (event: [KeyEvent](#keyevent)) => boolean | No  | Callback used to return the key information. |
 
 **Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent) => {
-    console.log('delete keyUp notification.');
-    return true;
+  console.log('delete keyUp notification.');
+  return true;
 });
 inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
-    console.log('delete keyDown notification.');
-    return true;
+  console.log('delete keyDown notification.');
+  return true;
 });
 ```
 
@@ -730,18 +738,18 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                                                        |
-| -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                         | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
+| Name   | Type | Mandatory | Description |
+| -------- | ---- | ---- | ----- |
+| type     | string | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
 | callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: x coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
 
 **Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height) => {
-    console.log('inputMethodEngine cursorContextChange x:' + x);
-    console.log('inputMethodEngine cursorContextChange y:' + y);
-    console.log('inputMethodEngine cursorContextChange height:' + height);
+  console.log('inputMethodEngine cursorContextChange x:' + x);
+  console.log('inputMethodEngine cursorContextChange y:' + y);
+  console.log('inputMethodEngine cursorContextChange height:' + height);
 });
 ```
 
@@ -755,9 +763,9 @@ Cancels listening for cursor context changes. This API uses an asynchronous call
 
   **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
+| Name   | Type | Mandatory | Description  |
+| -------- | ---- | ---- | ------ |
+| type     | string  | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
 | callback | (x: number, y:number, height:number) => void | No  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: x coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.<br>|
 
 
@@ -765,7 +773,7 @@ Cancels listening for cursor context changes. This API uses an asynchronous call
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height) => {
-    console.log('delete cursorContextChange notification.');
+  console.log('delete cursorContextChange notification.');
 });
 ```
 ### on('selectionChange')
@@ -778,19 +786,19 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
+| Name   | Type  | Mandatory| Description  |
+| -------- | ----- | ---- | ---- |
+| type     | string  | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
-    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
-    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
-    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
+  console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+  console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+  console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+  console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
 });
 ```
 
@@ -804,9 +812,9 @@ Cancels listening for text selection changes. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
+| Name  | Type | Mandatory| Description    |
+| -------- | ------- | ---- | ------- |
+| type     | string  | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.<br>|
 
 **Example**
@@ -831,13 +839,13 @@ Enables listening for the text change event. This API uses an asynchronous callb
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Listening type.<br>The value **'textChange'** indicates the text change event.|
-| callback | (text: string) => void | Yes  | Callback used to return the text content.                                  |
+| callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
-    console.log('inputMethodEngine textChange. text:' + text);
+  console.log('inputMethodEngine textChange. text:' + text);
 });
 ```
 
@@ -860,7 +868,7 @@ Cancels listening for text changes. This API uses an asynchronous callback to re
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
-    console.log('delete textChange notification. text:' + text);
+  console.log('delete textChange notification. text:' + text);
 });
 ```
 
@@ -889,13 +897,13 @@ Loads content from a page to this panel. This API uses an asynchronous callback 
 try {
   panel.setUiContent('pages/page2/page2', (err) => {
     if (err) {
-      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   });
-} catch (exception) {
-  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -925,12 +933,12 @@ Loads content from a page to this panel. This API uses a promise to return the r
 try {
   let promise = panel.setUiContent('pages/page2/page2');
   promise.then(() => {
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   }).catch((err) =>{
-    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+    console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -947,7 +955,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses an
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page from which the content will be loaded.|
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -958,13 +966,13 @@ storage.setOrCreate('storageSimpleProp',121);
 try {
   panel.setUiContent('pages/page2/page2', storage, (err) => {
     if (err) {
-      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   });
-} catch (exception) {
-  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -981,7 +989,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page from which the content will be loaded.|
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
 
@@ -997,12 +1005,12 @@ storage.setOrCreate('storageSimpleProp',121);
 try {
   let promise = panel.setUiContent('pages/page2/page2');
   promise.then(() => {
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   }).catch((err) =>{
-    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+    console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1011,6 +1019,7 @@ try {
 resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 Resizes this panel. This API uses an asynchronous callback to return the result.
+
 The panel width cannot exceed the screen width, and the panel height cannot be higher than half of the screen height.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
@@ -1019,8 +1028,8 @@ The panel width cannot exceed the screen width, and the panel height cannot be h
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | Yes  | Target width of the panel, in pixels.|
-| height | number | Yes  | Target height of the panel, in pixels.|
+| width | number | Yes  | Target width of the panel, in px.|
+| height | number | Yes  | Target height of the panel, in px.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1029,13 +1038,13 @@ The panel width cannot exceed the screen width, and the panel height cannot be h
 try {
   panel.resize(500, 1000, (err) => {
     if (err) {
-      console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
+      console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in changing the panel size.');
+    console.log('Succeeded in changing the panel size.');
   });
-} catch (exception) {
-  console.error('Failed to change the panel size. Cause:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1044,6 +1053,7 @@ try {
 resize(width: number, height: number): Promise\<void>;
 
 Resizes this panel. This API uses a promise to return the result.
+
 The panel width cannot exceed the screen width, and the panel height cannot be higher than half of the screen height.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
@@ -1052,14 +1062,14 @@ The panel width cannot exceed the screen width, and the panel height cannot be h
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | Yes  | Target width of the panel, in pixels.|
-| height | number | Yes  | Target height of the panel, in pixels.|
+| width | number | Yes  | Target width of the panel, in px.|
+| height | number | Yes  | Target height of the panel, in px.|
 
 **Return value**
 
 | Type  | Description                            |
 | ------- | ------------------------------ |
-| Promise<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -1067,12 +1077,12 @@ The panel width cannot exceed the screen width, and the panel height cannot be h
 try {
   let promise = panel.resize(500, 1000);
   promise.then(() => {
-    console.info('Succeeded in changing the panel size.');
+    console.log('Succeeded in changing the panel size.');
   }).catch((err) =>{
-    console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
+    console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to change the panel size. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1081,6 +1091,7 @@ try {
 moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 Moves this panel to the specified position. This API uses an asynchronous callback to return the result. 
+
 This API does not work on panels in the FLG_FIXED state.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
@@ -1090,7 +1101,7 @@ This API does not work on panels in the FLG_FIXED state.
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | x | number | Yes  | Distance to move along the x-axis, in px. A positive value indicates moving rightwards.|
-| y | number | Yes  | Distance to move along the y-axis, in pixels. A positive value indicates moving downwards.|
+| y | number | Yes  | Distance to move along the y-axis, in px. A positive value indicates moving downwards.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1099,13 +1110,13 @@ This API does not work on panels in the FLG_FIXED state.
 try {
   panel.moveTo(300, 300, (err) =>{
     if (err) {
-      console.error('Failed to move the panel. err:' + JSON.stringify(err));
+      console.error(`Failed to move panel: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in moving the panel.');
+    console.log('Succeeded in moving the panel.');
   });
-} catch (exception) {
-    console.error('Failed to move the panel. err:' + JSON.stringify(exception));
+} catch (err) {
+    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1113,7 +1124,8 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-Moves this panel to the specified position. This API uses a promise to return the result. 
+Moves this panel to the specified position. This API uses a promise to return the result.
+
 This API does not work on panels in the FLG_FIXED state.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
@@ -1122,14 +1134,14 @@ This API does not work on panels in the FLG_FIXED state.
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | Yes  | Distance to move along the x-axis, in pixels. A positive value indicates moving rightwards.|
-| y | number | Yes  | Distance to move along the y-axis, in pixels. A positive value indicates moving downwards.|
+| x | number | Yes  | Distance to move along the x-axis, in px. A positive value indicates moving rightwards.|
+| y | number | Yes  | Distance to move along the y-axis, in px. A positive value indicates moving downwards.|
 
 **Return value**
 
 | Type  | Description                            |
 | ------- | ------------------------------ |
-| Promise<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -1137,12 +1149,12 @@ This API does not work on panels in the FLG_FIXED state.
 try {
   let promise = windowClass.moveTo(300, 300);
   promise.then(() => {
-    console.info('Succeeded in moving the panel.');
+    console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
-    console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to move the panel. Cause:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1150,7 +1162,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-Displays this panel. This API uses an asynchronous callback to return the result. 
+Shows this panel. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1165,10 +1177,10 @@ Displays this panel. This API uses an asynchronous callback to return the result
 ```js
 panel.show((err) => {
   if (err) {
-    console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to show panel: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in showing the panel.');
+  console.log('Succeeded in showing the panel.');
 });
 ```
 
@@ -1176,7 +1188,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-Displays this panel. This API uses a promise to return the result. 
+Shows this panel. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1191,9 +1203,9 @@ Displays this panel. This API uses a promise to return the result.
 ```js
 let promise = panel.show();
 promise.then(() => {
-  console.info('Succeeded in showing the panel.');
+  console.log('Succeeded in showing the panel.');
 }).catch((err) =>{
-  console.error('Failed to show the panel. err: ' + JSON.stringify(err));
+  console.error(`Failed to show panel: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1216,10 +1228,10 @@ Hides this panel. This API uses an asynchronous callback to return the result.
 ```js
 panel.hide((err) => {
   if (err) {
-    console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in hiding the panel.');
+  console.log('Succeeded in hiding the panel.');
 });
 ```
 
@@ -1242,9 +1254,9 @@ Hides this panel. This API uses a promise to return the result.
 ```js
 let promise = panel.hide();
 promise.then(() => {
-  console.info('Succeeded in hiding the panel.');
+  console.log('Succeeded in hiding the panel.');
 }).catch((err) =>{
-  console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
+  console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1267,7 +1279,7 @@ Enables listening for a panel visibility event. This API uses an asynchronous ca
 
 ```js
 panel.on('show', () => {
-  console.info('Panel is showing.');
+  console.log('Panel is showing.');
 });
 ```
 
@@ -1283,7 +1295,7 @@ Disables listening for a panel visibility event. This API uses an asynchronous c
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
+| type | 'show'\|'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
 | callback | () => void | No  | Callback used to return the result.|
 
 **Example**
@@ -1309,7 +1321,7 @@ Changes the panel state type. This API only works for SOFT_KEYBOARD panels.
 **Example**
 
 ```js
-let panelFlag = inputMethodEngine.getInputMethodAbility().PanelFlag.FLG_FIXED;
+let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
 panel.changeFlag(panelFlag);
 ```
 
@@ -1343,11 +1355,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 keyboardController.hide((err) => {
-    if (err !== undefined) {
-        console.error('Failed to hide keyboard: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in hiding keyboard.');
+  if (err) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -1377,9 +1389,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 keyboardController.hide().then(() => {
-    console.info('Succeeded in hiding keyboard.');
+  console.log('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('Failed to hide keyboard: ' + JSON.stringify(err));
+  console.log(`Failed to hide: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1391,7 +1403,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1405,11 +1417,11 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 ```js
 keyboardController.hideKeyboard((err) => {
-    if (err !== undefined) {
-        console.error('Failed to hide Keyboard: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in hiding keyboard.');
+  if (err) {
+    console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -1421,7 +1433,7 @@ Hides the keyboard. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1435,11 +1447,58 @@ Hides the keyboard. This API uses a promise to return the result.
 
 ```js
 keyboardController.hideKeyboard().then(() => {
-    console.info('Succeeded in hiding keyboard.');
+  console.log('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('Failed to hide Keyboard: ' + JSON.stringify(err));
+  console.log(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
 });
 ```
+
+## ExtendAction<sup>10+</sup>
+
+Describes the type of the extended edit action on the text box.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| SELECT_ALL  | 0 |Select all.|
+| CUT  | 3 |Cut.|
+| COPY  | 4 |Copy.|
+| PASTE  | 5 |Paste.|
+
+## Direction<sup>10+</sup>
+
+Enumerates the directions of cursor movement of the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| CURSOR_UP  | 1 |Upward.|
+| CURSOR_DOWN  | 2 |Downward.|
+| CURSOR_LEFT  | 3 |Leftward.|
+| CURSOR_RIGHT  | 4 |Rightward.|
+
+## Range<sup>10+</sup>
+
+Describes the range of the selected text.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| start  | number | Yes| Yes| Index of the first selected character in the text box.|
+| end  | number | Yes| Yes| Index of the last selected character in the text box.|
+
+## Movement<sup>10+</sup>
+
+Describes the direction in which the cursor moves when the text is selected.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| direction  | [Direction](#direction10) | Yes| Yes| Direction in which the cursor moves when the text is selected.|
 
 ## InputClient<sup>9+</sup>
 
@@ -1457,7 +1516,7 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1473,19 +1532,19 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let action = 1;
 try {
-    inputClient.sendKeyFunction(action, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in sending key function. ');
-        } else {
-            console.error('Failed to sendKeyFunction. ');
-        }
-    });
+  inputClient.sendKeyFunction(action, (err, result) => {
+    if (err) {
+      console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in sending key function.');
+    } else {
+      console.error('Failed to sendKeyFunction.');
+    }
+  });
 } catch (err) {
-    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1501,7 +1560,7 @@ Sends the function key. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -1522,17 +1581,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let action = 1;
 try {
-    inputClient.sendKeyFunction(action).then((result) => {
-        if (result) {
-            console.info('Succeeded in sending key function. ');
-        } else {
-            console.error('Failed to sendKeyFunction. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
-    });
+  inputClient.sendKeyFunction(action).then((result) => {
+    if (result) {
+      console.log('Succeeded in sending key function.');
+    } else {
+      console.error('Failed to sendKeyFunction.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1565,15 +1624,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.getForward(length, (err, text) => {
-        if (err !== undefined) {
-            console.error('Failed to getForward: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in getting forward, text: ' + text);
-    });
+  inputClient.getForward(length, (err, text) => {
+    if (err) {
+      console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting forward, text: ' + text);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1611,13 +1670,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.getForward(length).then((text) => {
-        console.info('Succeeded in getting forward, text: ' + text);
-    }).catch((err) => {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-    });
+  inputClient.getForward(length).then((text) => {
+    console.log('Succeeded in getting forward, text: ' + text);
+  }).catch((err) => {
+    console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1650,15 +1709,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.getBackward(length, (err, text) => {
-        if (err !== undefined) {
-            console.error('Failed to getForward: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in getting backward, text: ' + text);
-    });
+  inputClient.getBackward(length, (err, text) => {
+    if (err) {
+      console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting backward, text: ' + text);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1696,13 +1755,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.getBackward(length).then((text) => {
-        console.info('Succeeded in getting backward, text: ' + text);
-    }).catch((err) => {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-    });
+  inputClient.getBackward(length).then((text) => {
+    console.log('Succeeded in getting backward, text: ' + text);
+  }).catch((err) => {
+    console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1735,19 +1794,19 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.deleteForward(length, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to delete forward: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in deleting forward. ');
-        } else {
-            console.error('Failed to delete forward: ' + JSON.stringify(err));
-        }
-    });
+  inputClient.deleteForward(length, (err, result) => {
+    if (err) {
+      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in deleting forward.');
+    } else {
+      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+    }
+  });
 } catch (err) {
-    console.error('Failed to delete forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1785,17 +1844,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.deleteForward(length).then((result) => {
-        if (result) {
-            console.info('Succeeded in deleting forward. ');
-        } else {
-            console.error('Failed to delete Forward. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to delete Forward: ' + JSON.stringify(err));
-    });
+  inputClient.deleteForward(length).then((result) => {
+    if (result) {
+      console.log('Succeeded in deleting forward.');
+    } else {
+      console.error('Failed to delete Forward.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to delete Forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1828,19 +1887,19 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    inputClient.deleteBackward(length, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to delete Backward: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in deleting backward. ');
-        } else {
-            console.error('Failed to delete Backward: ' + JSON.stringify(err));
-        }
-    });
+  inputClient.deleteBackward(length, (err, result) => {
+    if (err) {
+      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in deleting backward.');
+    } else {
+      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+    }
+  });
 } catch (err) {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+  console.error('deleteBackward err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1848,7 +1907,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
+Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1878,13 +1937,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 inputClient.deleteBackward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 }).catch((err) => {
-    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1916,15 +1975,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 inputClient.insertText('test', (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (err) {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 });
 ```
 
@@ -1961,17 +2020,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.insertText('test').then((result) => {
-        if (result) {
-            console.info('Succeeded in inserting text. ');
-        } else {
-            console.error('Failed to insertText. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-    });
+  inputClient.insertText('test').then((result) => {
+    if (result) {
+      console.log('Succeeded in inserting text.');
+    } else {
+      console.error('Failed to insertText.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to insertText: ' + JSON.stringify(err));
+  console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2001,12 +2060,12 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 inputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err !== undefined) {
-        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  if (err) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -2036,10 +2095,10 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 inputClient.getEditorAttribute().then((editorAttribute) => {
-    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
+  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2070,15 +2129,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to moveCursor: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in moving cursor.');
-    });
+  inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
+    if (err) {
+      console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in moving cursor.');
+  });
 } catch (err) {
-    console.error('Failed to moveCursor: ' + JSON.stringify(err));
+  console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2114,13 +2173,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
-        console.log('Succeeded in moving cursor.');
-    }).catch((err) => {
-        console.error('Failed to moveCursor: ' + JSON.stringify(err));
-    });
+  inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+    console.log('Succeeded in moving cursor.');
+  }).catch((err) => {
+    console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to moveCursor: ' + JSON.stringify(err));
+  console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2136,7 +2195,7 @@ Selects text based on the specified range. This API uses an asynchronous callbac
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.                                            |
+| range    | [Range](#range10) | Yes  | Range of the selected text.                                            |
 | callback | AsyncCallback&lt;void&gt;                                 | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2152,15 +2211,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.selectByRange({start: 0, end: 1}, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to selectByRange: ${err.message}');
-            return;
-        }
-        console.info('Succeeded in selecting by range.');
-    });
+  inputClient.selectByRange({start: 0, end: 1}, (err) => {
+    if (err) {
+      console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in selecting by range.');
+  });
 } catch (err) {
-    console.error('Failed to selectByRange: ${err.message}');
+  console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2176,7 +2235,7 @@ Selects text based on the specified range. This API uses a promise to return the
 
 | Name| Type                                                     | Mandatory| Description            |
 | ------ | --------------------------------------------------------- | ---- | ---------------- |
-| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.|
+| range  | [Range](#range10) | Yes  | Range of the selected text.|
 
 **Return value**
 
@@ -2197,13 +2256,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.selectByRange({start: 0, end:1}).then(() => {
-        console.log('Succeeded in selecting by range.');
-    }).catch((err) => {
-        console.error('Failed to selectByRange: ${err.message}');
-    });
+  inputClient.selectByRange({start: 0, end:1}).then(() => {
+    console.log('Succeeded in selecting by range.');
+  }).catch((err) => {
+    console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to selectByRange: ${err.message}');
+  console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2217,10 +2276,10 @@ Selects text based on the cursor movement direction. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.                                      |
-| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+| Name  | Type | Mandatory| Description  |
+| -------- | ------ | ---- | ------ |
+| movement | [Movement](#movement10)   | Yes  | Direction in which the cursor moves when the text is selected. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2235,15 +2294,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.selectByMovement({direction: 1}, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to selectByMovement: ${err.message}');
-            return;
-        }
-        console.info('Succeeded in selecting by movement.');
-    });
+  inputClient.selectByMovement({direction: 1}, (err) => {
+    if (err) {
+      console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in selecting by movement.');
+  });
 } catch (err) {
-    console.error('Failed to selectByMovement: ${err.message}');
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2259,7 +2318,7 @@ Selects text based on the specified range. This API uses a promise to return the
 
 | Name  | Type                                                        | Mandatory| Description                  |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.|
+| movement | [Movement](#movement10) | Yes  | Direction in which the cursor moves when the text is selected.|
 
 **Return value**
 
@@ -2280,13 +2339,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 try {
-    inputClient.selectByMovement({direction: 1}).then(() => {
-        console.log('Succeeded in selecting by movement.');
-    }).catch((err) => {
-        console.error('Failed to selectByMovement: ${err.message}');
-    });
+  inputClient.selectByMovement({direction: 1}).then(() => {
+    console.log('Succeeded in selecting by movement.');
+  }).catch((err) => {
+    console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to selectByMovement: ${err.message}');
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2310,7 +2369,6 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                      |
 | -------- | ------------------------------ |
-| 401      | parameter error.               |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2318,11 +2376,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 inputClient.getTextIndexAtCursor((err, index) => {
-    if (err !== undefined) {
-        console.error('Failed to getTextIndexAtCursor: ${err.message}');
-        return;
-    }
-    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+  if (err) {
+    console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getTextIndexAtCursor: ' + index);
 });
 ```
 
@@ -2353,10 +2411,97 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 inputClient.getTextIndexAtCursor().then((index) => {
-    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+  console.log('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err) => {
-    console.error('Failed to getTextIndexAtCursor: ${err.message}');
+  console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
 });
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
+
+Sends an extended edit action. This API uses an asynchronous callback to return the result.
+
+The input method calls this API to send an extended edit action to an editor component (for example, a text box), which in turn listens for the corresponding event [on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10) for further processing.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| action | [ExtendAction](#extendaction10) | Yes  | Extended edit action to send.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+try {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err) => {
+    if (err) {
+      console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in sending extend action.');
+  });
+} catch(err) {
+  console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+}
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
+
+Sends an extended edit action. This API uses a promise to return the result.
+
+The input method calls this API to send an extended edit action to an editor component (for example, a text box), which in turn listens for the corresponding event [on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10) for further processing.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| action | [ExtendAction](#extendaction10) | Yes| Extended edit action to send.|
+
+**Return value**
+
+| Type                 | Description                                   |
+| --------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+try {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
+    console.log('Succeeded in sending extend action.');
+  }).catch((err) => {
+    console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+  console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+}
 ```
 
 ## EditorAttribute
@@ -2378,8 +2523,8 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value.|
-| keyAction | number   | Yes  | No  | Key status.|
+| keyCode   | number   | Yes  | No  | Key value. For detail, see [KeyCode](js-apis-keycode.md#keycode).|
+| keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>
 
@@ -2418,7 +2563,7 @@ Describes the attributes of the input method panel.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [InputClient](#inputclient9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [InputClient](#inputclient9) instead.
 
 In the following API examples, you must first use **[on('inputStart')](#oninputstart)** to obtain a **TextInputClient** instance, and then call the APIs using the obtained instance.
 
@@ -2430,7 +2575,7 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2446,11 +2591,11 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 ```js
 let length = 1;
 textInputClient.getForward(length, (err, text) => {
-    if (err !== undefined) {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in getting forward, text: ' + text);
+  if (err) {
+    console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getting forward, text: ' + text);
 });
 ```
 
@@ -2462,7 +2607,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2483,9 +2628,9 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 ```js
 let length = 1;
 textInputClient.getForward(length).then((text) => {
-    console.info('Succeeded in getting forward, text: ' + text);
+  console.log('Succeeded in getting forward, text: ' + text);
 }).catch((err) => {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2497,7 +2642,7 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2513,11 +2658,11 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 ```js
 let length = 1;
 textInputClient.getBackward(length, (err, text) => {
-    if (err !== undefined) {
-        console.error('Failed to getBackward: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in getting borward, text: ' + text);
+  if (err) {
+    console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getting borward, text: ' + text);
 });
 ```
 
@@ -2529,7 +2674,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2550,9 +2695,9 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 ```js
 let length = 1;
 textInputClient.getBackward(length).then((text) => {
-    console.info('Succeeded in getting backward: ' + JSON.stringify(text));
+  console.log('Succeeded in getting backward: ' + JSON.stringify(text));
 }).catch((err) => {
-    console.error('Failed to getBackward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2564,7 +2709,7 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2580,15 +2725,15 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 ```js
 let length = 1;
 textInputClient.deleteForward(length, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to deleteForward: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in deleting forward. ');
-    } else {
-        console.error('Failed to deleteForward. ');
-    }
+  if (err) {
+    console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in deleting forward.');
+  } else {
+    console.error('Failed to deleteForward.');
+  }
 });
 ```
 
@@ -2600,7 +2745,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2621,13 +2766,13 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 ```js
 let length = 1;
 textInputClient.deleteForward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting forward. ');
-    } else {
-        console.error('Failed to delete forward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting forward.');
+  } else {
+    console.error('Failed to delete forward.');
+  }
 }).catch((err) => {
-    console.error('Failed to delete forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2639,31 +2784,31 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | Yes  | Text length.    |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
-  **Example**
+**Example**
 
 ```js
 let length = 1;
 textInputClient.deleteBackward(length, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to delete backward: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (err) {
+    console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 });
 ```
 
@@ -2671,11 +2816,11 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
+Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2696,13 +2841,13 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 ```js
 let length = 1;
 textInputClient.deleteBackward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 }).catch((err) => {
-    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
 ### sendKeyFunction<sup>(deprecated)</sup>
@@ -2713,31 +2858,31 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
-  **Example**
+**Example**
 
 ```js
 let action = 1;
 textInputClient.sendKeyFunction(action, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in sending key function. ');
-    } else {
-        console.error('Failed to sendKeyFunction. ');
-    }
+  if (err) {
+    console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in sending key function.');
+  } else {
+    console.error('Failed to sendKeyFunction.');
+  }
 });
 ```
 
@@ -2749,7 +2894,7 @@ Sends the function key. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2757,7 +2902,7 @@ Sends the function key. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -2770,13 +2915,13 @@ Sends the function key. This API uses a promise to return the result.
 ```js
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result) => {
-    if (result) {
-        console.info('Succeeded in sending key function. ');
-    } else {
-        console.error('Failed to sendKeyFunction. ');
-    }
+  if (result) {
+    console.log('Succeeded in sending key function.');
+  } else {
+    console.error('Failed to sendKeyFunction.');
+  }
 }).catch((err) => {
-    console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2788,7 +2933,7 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2803,15 +2948,15 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 ```js
 textInputClient.insertText('test', (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (err) {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 });
 ```
 
@@ -2823,7 +2968,7 @@ Inserts text. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2843,13 +2988,13 @@ Inserts text. This API uses a promise to return the result.
 
 ```js
 textInputClient.insertText('test').then((result) => {
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 }).catch((err) => {
-    console.error('Failed to insertText: ' + JSON.stringify(err));
+  console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2861,26 +3006,26 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name                        | Type                         | Mandatory                           | Description                                                        |
-| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Name   | Type  | Mandatory | Description  |
+| -------- | ----- | ----- | ----- |
 | callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes|  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```js
 textInputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err !== undefined) {
-        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  if (err) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -2892,7 +3037,7 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2906,10 +3051,10 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 
 ```js
 textInputClient.getEditorAttribute().then((editorAttribute) => {
-    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
+  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
 <!--no_check-->

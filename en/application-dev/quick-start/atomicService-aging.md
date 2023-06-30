@@ -4,7 +4,7 @@ Space management for atomic services is necessary from two aspects. On the one h
 
 ## Managing Quota for Atomic Service Data Directories
 
-Set a storage quota for the data sandbox directory of an atomic service. This quota can be obtained through the system parameter **persist.sys.bms.aging.policy.atomicservice.datasize.threshold**. The default value is 1024 MB. When the quota is used up, writing data will return an error message.
+Set a storage quota for the data sandbox directory of an atomic service. This quota can be obtained through the system parameter **persist.sys.bms.aging.policy.atomicservice.datasize.threshold**. The default value is 50 MB. When the quota is used up, writing data will return an error message.
 
 You can run the [param get/set](../../device-dev/subsystems/subsys-boot-init-plugin.md) command to view and set system parameters.
 

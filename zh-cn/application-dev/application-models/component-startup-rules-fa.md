@@ -34,7 +34,7 @@
 - **跨应用启动FA模型的ServiceAbility组件或DataAbility组件，对端应用需配置关联启动**
   - 只针对跨应用场景
   - 只针对目标组件为ServiceAbility与DataAbility生效
-  - 目标应用的AssociateWakeUp为**ture**，其提供的ServiceAbility与DataAbility才允许被其他应用访问
+  - 目标应用的AssociateWakeUp为**true**，其提供的ServiceAbility与DataAbility才允许被其他应用访问
   - 只有系统预置应用才允许配置AssociateWakeUp字段，其余应用AssociateWakeUp默认为**false**
 
 

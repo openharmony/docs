@@ -4,7 +4,9 @@ The **\<Menu>** component is a vertical list of items presented to the user.
 
 > **NOTE**
 >
-> This component is supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The **\<Menu>** component must be used together with the [bindMenu](ts-universal-attributes-menu.md) or [bindContextMenu](ts-universal-attributes-menu.md) method. It does not work when used alone.
 
 ## Child Components
 

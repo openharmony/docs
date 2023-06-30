@@ -21,11 +21,11 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| HCE | 0 | HCE 卡模拟。 |
-| UICC | 1 | SIM 卡模拟。 |
-| ESE | 2 | ESE卡模拟。 |
+| 名称   | 值    | 说明       |
+| ---- | ---- | -------- |
+| HCE  | 0    | HCE 卡模拟。 |
+| UICC | 1    | SIM 卡模拟。 |
+| ESE  | 2    | ESE卡模拟。  |
 
 ## CardType<sup>9+</sup>
 
@@ -33,10 +33,10 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
+| 名称      | 值         | 说明                |
+| ------- | --------- | ----------------- |
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
-| OTHER | "other" | 卡模拟应用所使用的业务是其他类型。 |
+| OTHER   | "other"   | 卡模拟应用所使用的业务是其他类型。 |
 
 ## isSupported
 
@@ -51,15 +51,15 @@ isSupported(feature: number): boolean
 
 **参数：**
 
-| 参数名  | 类型     | 必填 | 说明                    |
-| ------- | -------- | ---- | ----------------------- |
-| feature | number | 是   | 卡模拟类型值，详细请见[FeatureType](#featuretype)枚举值。 |
+| 参数名     | 类型     | 必填   | 说明                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretype)枚举值。 |
 
 **返回值：**
 
-| **类型** | **说明** |
-| -------- | -------- |
-| boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。|
+| **类型**  | **说明**                                 |
+| ------- | -------------------------------------- |
+| boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。 |
 
 ## hasHceCapability<sup>9+</sup>
 
@@ -73,9 +73,9 @@ hasHceCapability(): boolean
 
 **返回值：**
 
-| **类型** | **说明** |
-| -------- | -------- |
-| boolean | true: 支持HCE，&nbsp;false: 不支持HCE。|
+| **类型**  | **说明**                           |
+| ------- | -------------------------------- |
+| boolean | true: 支持HCE，&nbsp;false: 不支持HCE。 |
 
 ## isDefaultService<sup>9+</sup>
 
@@ -89,16 +89,16 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **参数：**
 
-| 参数名  | 类型     | 必填 | 说明                    |
-| ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是 | 应用的描述，由Bundle名称和组件名称组成。 |
-| type | [CardType](#cardtype9) | 是 | 卡模拟业务类型。 |
+| 参数名         | 类型                                       | 必填   | 说明                      |
+| ----------- | ---------------------------------------- | ---- | ----------------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是    | 应用的描述，由Bundle名称和组件名称组成。 |
+| type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。                |
 
 **返回值：**
 
-| **类型** | **说明** |
-| -------- | -------- |
-| boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。|
+| **类型**  | **说明**                               |
+| ------- | ------------------------------------ |
+| boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。 |
 
 **示例：**
 
@@ -108,13 +108,11 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 var isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
-    return;
 }
 
 var hasHceCap = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
-    return;
 }
 
 var elementName = {

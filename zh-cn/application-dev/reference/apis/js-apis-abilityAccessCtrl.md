@@ -197,7 +197,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -308,7 +308,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 

@@ -130,6 +130,6 @@ import Want from '@ohos.application.Want';
             });
         ```
 
-- 更多详细说明和示例请参见： [应用模型](../../application-models/Readme-CN.md)的信息传递载体Want
+- 更多详细说明和示例请参见： [应用模型](../../application-models/application-model-composition.md)的信息传递载体Want
 
   <!--no_check-->

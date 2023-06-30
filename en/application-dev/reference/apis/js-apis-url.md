@@ -23,7 +23,7 @@ A constructor used to create a **URLParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
 
 **Example**
 
@@ -150,7 +150,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 
@@ -404,7 +404,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Example**
 
@@ -444,7 +444,7 @@ Parses a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Error codes**
 
@@ -522,7 +522,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
 
 **Example**
 
@@ -665,7 +665,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 

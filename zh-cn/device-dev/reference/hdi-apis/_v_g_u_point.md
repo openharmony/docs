@@ -1,7 +1,7 @@
 # VGUPoint
 
 
-## **概述**
+## 概述
 
 坐标点对象。
 
@@ -10,12 +10,12 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [x](_display.md#x-34) | 点水平坐标 | 
-| [y](_display.md#y-34) | 点垂直坐标 | 
+| [x](_display.md#x-34) | [VGUScalar](_display.md#vguscalar)<br/>点水平坐标 | 
+| [y](_display.md#y-34) | [VGUScalar](_display.md#vguscalar)<br/>点垂直坐标 | 

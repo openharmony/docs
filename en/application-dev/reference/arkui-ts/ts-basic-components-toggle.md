@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name| Type| Mandatory  | Description          |
 | ---- | ---------- | -----| -------------- |
 | type | [ToggleType](#toggletype) | Yes  | Type of the toggle.|
-| isOn | boolean    | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**|
+| isOn | boolean    | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 
 ## ToggleType
@@ -31,9 +31,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name      | Description                |
 | -------- | ---------------- |
-| Checkbox | Check box type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 12 vp,<br> right: 12 vp,<br> bottom: 12 vp,<br> left: 12 vp<br> } |
+| Checkbox | Check box type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 12 px,<br> right: 12 px,<br> bottom: 12 px,<br> left: 12 px<br> } |
 | Button   | Button type. The set string, if any, will be displayed inside the button.      |
-| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 14 vp,<br> right:6 vp,<br> bottom: 6 vp,<br> left: 14 vp<br> } |
+| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 6px,<br> right: 14px,<br> bottom: 6 px,<br> left: 14 px<br> } |
 
 ## Attributes
 

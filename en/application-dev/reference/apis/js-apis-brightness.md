@@ -22,7 +22,7 @@ Sets the screen brightness.
 
 **System API**: This is a system API.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability:** SystemCapability.PowerManager.DisplayPowerManager
 
 **Parameters**
 
@@ -34,9 +34,9 @@ Sets the screen brightness.
 
 For details about the error codes, see [Screen Brightness Error Codes](../errorcodes/errorcode-brightness.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4700101 | Operation failed. Cannot connect to service.|
+| 4700101 | If connecting to the service failed. |
 
 **Example**
 

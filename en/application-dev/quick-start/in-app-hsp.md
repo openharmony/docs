@@ -5,7 +5,7 @@ The in-application HSP is released with the Application Package (App Pack) of th
 
 ## Developing an In-Application HSP
 
-You can kickstart your HSP development with the HSP template in DevEco Studio. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+[Create an HSP module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546). In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
 ```
 library
 ├── src
@@ -88,7 +88,7 @@ if **Image("common/example.png")** is used in the HSP module, the **\<Image>** c
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** method in the **libnative.so** file is exported.
 ```ts
-// ibrary/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ts
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
@@ -103,15 +103,9 @@ export { nativeMulti } from './utils/nativeTest'
 ```
 
 ## Using the In-Application HSP
-To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). If the HSP and the invoking module are in the same project, the APIs can be referenced locally. The sample code is as follows:
-```json
-// entry/oh-package.json5
-"dependencies": {
-    "library": "file:../library"
-}
-```
-You can now call the external APIs of the HSP in the same way as calling the APIs in the HAR.
-In this example, the external APIs are the following ones exported from **library**:
+To use APIs in the HSP, first [configure the dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195) on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
+You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
+
 ```ts
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'

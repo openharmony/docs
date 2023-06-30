@@ -46,7 +46,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -85,7 +85,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -116,7 +116,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -153,7 +153,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -191,7 +191,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -222,7 +222,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -257,7 +257,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -288,7 +288,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -323,7 +323,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -354,7 +354,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -389,7 +389,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -420,7 +420,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -455,7 +455,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -492,7 +492,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -530,7 +530,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -563,7 +563,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -594,7 +594,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -625,7 +625,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -660,7 +660,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -691,7 +691,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -1735,6 +1735,35 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 **Example**
   ```ts
   let timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
+  ```
+
+### getTimezonesByLocation<sup>10+</sup>
+
+static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
+
+Creates an array of **TimeZone** objects corresponding to the specified longitude and latitude.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description    |
+| --------- | ------ | ---- | ------ |
+| longitude | number | Yes   | Longitude. The value ranges from **-180** to **179.9**. A positive value is used for east longitude and a negative value is used for west longitude.|
+| latitude  | number | Yes   | Latitude. The value ranges from **-90** to **89.9**. A positive value is used for north latitude and a negative value is used for south latitude.|
+
+**Return value**
+
+| Type      | Description         |
+| -------- | ----------- |
+| Array&lt;[TimeZone](#timezone)&gt; | Array of **TimeZone** objects.|
+
+**Example**
+  ```js
+  let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  for (var i = 0; i < timezoneArray.length; i++) {
+     let tzId = timezoneArray[i].getID();
+  }
   ```
 
 

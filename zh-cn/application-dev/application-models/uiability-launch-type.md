@@ -90,7 +90,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    }
    ```
 
-2. 在创建UIAbility实例之前，开发者可以为该实例指定一个唯一的字符串Key，这样在调用[`startAbility()`](.../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，应用就可以根据指定的Key来识别响应请求的UIAbility实例。在EntryAbility中，调用[`startAbility()`](.../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，可以在`want`参数中增加一个自定义参数，例如`instanceKey`，以此来区分不同的UIAbility实例。
+2. 在创建UIAbility实例之前，开发者可以为该实例指定一个唯一的字符串Key，这样在调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，应用就可以根据指定的Key来识别响应请求的UIAbility实例。在EntryAbility中，调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，可以在`want`参数中增加一个自定义参数，例如`instanceKey`，以此来区分不同的UIAbility实例。
 
    ```ts
    // 在启动指定实例模式的UIAbility时，给每一个UIAbility实例配置一个独立的Key标识

@@ -3,7 +3,7 @@
 
 ## When to Use
 
-According to big data statistics, in a typical cross-application data access scenario, applications are started nearly 83 times on average in a day.
+In a typical cross-application data access scenario, an application may be started multiple times.
 
 To reduce the number of application startup times and improve the access speed, OpenHarmony provides the silent access feature, which allows direct access to the database without starting the data provider.
 

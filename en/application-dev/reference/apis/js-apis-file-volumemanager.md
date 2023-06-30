@@ -6,7 +6,6 @@ The **volumeManager** module provides APIs for volume and disk management, inclu
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are system APIs.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
@@ -26,9 +25,21 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Return value**
 
-| Type                              | Description                      |
-| ---------------------------------- | -------------------------- |
-| Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
+  | Type                              | Description                      |
+  | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -52,9 +63,21 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
+  | Name  | Type                                             | Mandatory| Description                                |
+  | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -64,7 +87,6 @@ Obtains information about all volumes of this external storage device. This API 
       // Do something
   });
   ```
-
 
 ## volumemanager.mount
 
@@ -78,15 +100,31 @@ Asynchronously mounts a volume. This API uses a promise to return the result. Cu
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description|
-| -------- | ------ | ---- | ---- |
-| volumeId | string | Yes  | Volume ID.|
+  | Name  | Type  | Mandatory| Description|
+  | -------- | ------ | ---- | ---- |
+  | volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-| Type                  | Description      |
-| ---------------------- | ---------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                  | Description      |
+  | ---------------------- | ---------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600003 | Failed to mount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -111,10 +149,26 @@ Asynchronously mounts a volume. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                |
-| -------- | ------------------------------------- | ---- | -------------------- |
-| volumeId | string                                | Yes  | Volume ID.                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | Name  | Type                                 | Mandatory| Description                |
+  | -------- | ------------------------------------- | ---- | -------------------- |
+  | volumeId | string                                | Yes  | Volume ID.                |
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600003 | Failed to mount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -137,15 +191,31 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description|
-| -------- | ------ | ---- | ---- |
-| volumeId | string | Yes  | Volume ID.|
+  | Name  | Type  | Mandatory| Description|
+  | -------- | ------ | ---- | ---- |
+  | volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-| Type                  | Description      |
-| ---------------------- | ---------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                  | Description      |
+  | ---------------------- | ---------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600004 | Failed to unmount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -170,10 +240,26 @@ Asynchronously unmounts a volume. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                |
-| -------- | ------------------------------------- | ---- | -------------------- |
-| volumeId | string                                | Yes  | Volume ID.                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | Name  | Type                                 | Mandatory| Description                |
+  | -------- | ------------------------------------- | ---- | -------------------- |
+  | volumeId | string                                | Yes  | Volume ID.                |
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600004 | Failed to unmount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -196,15 +282,28 @@ Obtains information about a volume based on the universally unique identifier (U
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description|
-| -------- | ------ | ---- | ---- |
-| uuid | string | Yes  | UUID of the volume.|
+  | Name  | Type  | Mandatory| Description|
+  | -------- | ------ | ---- | ---- |
+  | uuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-| Type                              | Description                      |
-| ---------------------------------- | -------------------------- |
-| Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+  | Type                              | Description                      |
+  | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -229,10 +328,23 @@ Obtains information about a volume based on the UUID. This API uses an asynchron
 
 **Parameters**
 
-| Name   | Type                                                | Mandatory| Description                |
-| -------- | ------------------------------------------------ | ---- | -------------------- |
-| uuid | string                                                 | Yes  | UUID of the volume.                |
-| callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+  | Name   | Type                                                | Mandatory| Description                |
+  | -------- | ------------------------------------------------ | ---- | -------------------- |
+  | uuid | string                                                 | Yes  | UUID of the volume.                |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -255,15 +367,28 @@ Obtains information about a volume based on the volume ID. This API uses a promi
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description|
-| -------- | ------ | ---- | ---- |
-| volumeId | string | Yes  | Volume ID.|
+  | Name   | Type   | Mandatory | Description|
+  | -------- | ------ | ---- | ---- |
+  | volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-| Type                              | Description                      |
-| ---------------------------------- | -------------------------- |
-| Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+  | Type                              | Description                      |
+  | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -288,10 +413,23 @@ Obtains information about a volume based on the volume ID. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                         |
-| -------- | ------------------------- | ---- | ----------------------------- |
-| volumeId | string                    | Yes  | Volume ID.               |
-| callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+  | Name  | Type                     | Mandatory| Description                         |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | Yes  | Volume ID.               |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -314,16 +452,31 @@ Sets volume description. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description|
-| --------- | ------ | ---- | ---- |
-| uuid      | string | Yes  | UUID of the volume.|
-| description | string | Yes  | Volume description to set.|
+  | Name    | Type  | Mandatory| Description|
+  | --------- | ------ | ---- | ---- |
+  | uuid      | string | Yes  | UUID of the volume.|
+  | description | string | Yes  | Volume description to set.|
 
 **Return value**
 
-| Type                   | Description                      |
-| ---------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.                 |
+  | Type                   | Description                      |
+  | ---------------------- | -------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.                 |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -349,11 +502,26 @@ Sets volume description. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name     | Type                                    | Mandatory| Description             |
-| ---------- | --------------------------------------- | ---- | ---------------- |
-| uuid       | string                                  | Yes  | UUID of the volume.           |
-| description | string                                 | Yes  | Volume description to set.           |
-| callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+  | Name     | Type                                    | Mandatory| Description             |
+  | ---------- | --------------------------------------- | ---- | ---------------- |
+  | uuid       | string                                  | Yes  | UUID of the volume.           |
+  | description | string                                 | Yes  | Volume description to set.           |
+  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -377,16 +545,31 @@ Formats a volume. This API uses a promise to return the result. Currently, only 
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description|
-| ----------- | ------ | ---- | ---- |
-| volumeId    | string | Yes  | Volume ID.|
-| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+  | Name      | Type  | Mandatory| Description|
+  | ----------- | ------ | ---- | ---- |
+  | volumeId    | string | Yes  | Volume ID.|
+  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
 
 **Return value**
 
-| Type                  | Description      |
-| ---------------------- | ---------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                  | Description      |
+  | ---------------------- | ---------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -412,11 +595,26 @@ Formats a volume. This API uses an asynchronous callback to return the result. C
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                         |
-| -------- | ------------------------- | ---- | ----------------------------- |
-| volumeId | string                    | Yes  | Volume ID.               |
-| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
-| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
+  | Name  | Type                     | Mandatory| Description                         |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | Yes  | Volume ID.               |
+  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+  | callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -440,16 +638,29 @@ Partitions a disk. This API uses a promise to return the result. The system supp
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description|
-| ----------- | ------ | ---- | ---- |
-| diskId    | string | Yes  | ID of the disk to partition.|
-| type      | number | Yes  | Partition type.   |
+  | Name      | Type  | Mandatory| Description|
+  | ----------- | ------ | ---- | ---- |
+  | diskId    | string | Yes  | ID of the disk to partition.|
+  | type      | number | Yes  | Partition type.   |
 
 **Return value**
 
-| Type                     | Description                      |
-| --------------------- | ----------------------- |
-| Promise&lt;void&gt;   | Promise used to return the result.             |
+  | Type                     | Description                      |
+   | --------------------- | ----------------------- |
+  | Promise&lt;void&gt;   | Promise used to return the result.             |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 
@@ -475,11 +686,24 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name     | Type                                  | Mandatory| Description             |
-| -------- | --------------------------------------- | ---- | ---------------- |
-| diskId   | string                                  | Yes  | ID of the disk to partition.     |
-| type     | number                                  | Yes  | Partition type.          |
-| callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
+  | Name     | Type                                  | Mandatory| Description             |
+  | -------- | --------------------------------------- | ---- | ---------------- |
+  | diskId   | string                                  | Yes  | ID of the disk to partition.     |
+  | type     | number                                  | Yes  | Partition type.          |
+  | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **Example**
 

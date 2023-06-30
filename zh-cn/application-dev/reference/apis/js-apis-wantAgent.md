@@ -354,7 +354,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数：** 
 
 | 参数名  | 类型      | 必填 | 说明          |
 | ----- | --------- | ---- | ------------- |

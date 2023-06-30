@@ -1,4 +1,4 @@
-# 单选框
+# 单选框（Radio）
 
 
 Radio是单选框组件，通常用于提供相应的用户交互选择项，同一组的Radio中只有一个可以被选中。具体用法请参考[Radio](../reference/arkui-ts/ts-basic-components-radio.md)。

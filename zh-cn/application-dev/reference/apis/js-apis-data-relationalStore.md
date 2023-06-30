@@ -38,10 +38,11 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name.  |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed to open database by database corrupted.              |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -121,10 +122,11 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed to open database by database corrupted.              |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -196,9 +198,10 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -262,9 +265,10 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -330,6 +334,45 @@ class EntryAbility extends UIAbility {
 | S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
 | S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
+## AssetStatus<sup>10+</sup>
+
+描述资产附件的状态枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                              | 值   | 说明             |
+| ------------------------------- | --- | -------------- |
+| ASSET_NORMAL     | -   | 表示资产状态正常。      |
+| ASSET_INSERT | - | 表示资产需要插入到云端。 |
+| ASSET_UPDATE | - | 表示资产需要更新到云端。 |
+| ASSET_DELETE | - | 表示资产需要在云端删除。 |
+| ASSET_ABNORMAL    | -   | 表示资产状态异常。      |
+| ASSET_DOWNLOADING | -   | 表示资产正在下载到本地设备。 |
+
+## Asset<sup>10+</sup>
+
+记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称          | 类型                          | 必填  | 说明           |
+| ----------- | --------------------------- | --- | ------------ |
+| name        | string                      | 是   | 资产的名称。       |
+| uri         | string                      | 是   | 资产的uri，在系统里的绝对路径。       |
+| path        | string                      | 是   | 资产在应用沙箱里的路径。       |
+| createTime  | string                      | 是   | 资产被创建出来的时间。   |
+| modifyTime  | string                      | 是   | 资产最后一次被修改的时间。 |
+| size        | string                      | 是   | 资产占用空间的大小。    |
+| status      | [AssetStatus](#assetstatus10) | 否   | 资产的状态，默认值为ASSET_NORMAL。        |
+
+## Assets<sup>10+</sup>
+
+表示[Asset](#asset10)类型的数组。
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| [Asset](#asset10)[] | 表示Asset类型的数组。   |
+
 ## ValueType
 
 用于表示允许的数据字段类型。
@@ -338,9 +381,13 @@ class EntryAbility extends UIAbility {
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
+| null<sup>10+</sup>    | 表示值类型为空。   |
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |
 | boolean | 表示值类型为布尔值。 |
+| Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
+| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
+| Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 
 ## ValuesBucket
 
@@ -348,20 +395,21 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 键类型 | 值类型                                                      |
-| ------ | ----------------------------------------------------------- |
-| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
+| 键类型 | 值类型                   |
+| ------ | ----------------------- |
+| string | [ValueType](#valuetype) |
 
 ## SyncMode
 
 指数据库同步模式。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH | 0    | 表示数据从本地设备推送到远程设备。 |
-| SYNC_MODE_PULL | 1    | 表示数据从远程设备拉至本地设备。   |
+| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
+| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 
 ## SubscribeType
 
@@ -369,11 +417,59 @@ class EntryAbility extends UIAbility {
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
+| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | 订阅云端数据更改。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | 订阅云端数据更改详情。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## ChangeType<sup>10+</sup>
+
+描述数据变更类型的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+| 名称                         | 值   | 说明                         |
+| -------------------------- | --- | -------------------------- |
+| DATA_CHANGE  | -   | 表示是数据发生变更。   |
+| ASSET_CHANGE | -   | 表示是资产附件发生了变更。 |
+
+## ChangeInfo<sup>10+</sup>
+
+记录端云同步过程详情。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称       | 类型                                 | 必填  | 说明                                                                                                                   |
+| -------- | ---------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
+| table    | string                             | 是   | 表示发生变化的表的名称。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                                   |
+| type     | [ChangeType](#changetype10)          | 是   | 表示发生变化的数据的类型，数据或者资产附件发生变化。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+
+## DistributedType<sup>10+</sup>
+
+描述表的分布式类型的枚举。请使用枚举名称而非枚举值。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+| 名称                | 值   | 说明                                                                                                 |
+| ------------------ | --- | -------------------------------------------------------------------------------------------------- |
+| DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
+| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## DistributedConfig<sup>10+</sup>
+
+记录表的分布式配置信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -1289,9 +1385,10 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1332,9 +1429,10 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1379,9 +1477,10 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1426,9 +1525,10 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1467,9 +1567,10 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1528,9 +1629,10 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1583,9 +1685,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1628,9 +1731,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1677,9 +1781,10 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1726,9 +1831,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1774,9 +1880,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1829,9 +1936,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1872,9 +1980,10 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1914,9 +2023,10 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1955,9 +2065,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2003,9 +2114,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2037,6 +2149,14 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2047,8 +2167,17 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 })
 ```
 
@@ -2067,6 +2196,14 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **返回值**：
 
 | 类型                                                    | 说明                                               |
@@ -2080,8 +2217,17 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2108,6 +2254,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2119,8 +2273,17 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 })
 ```
 
@@ -2150,6 +2313,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2158,8 +2329,17 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2187,6 +2367,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2212,8 +2400,17 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
       console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`ResultSet column names: ${resultSet.columnNames}`);
-    console.info(`ResultSet column count: ${resultSet.columnCount}`);
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+    while(resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // 释放数据集的内存
+    resultSet.close();
   }
 )
 ```
@@ -2245,6 +2442,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ------------------------------------------------------------ | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2266,8 +2471,17 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 }).catch((err) => {
   console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
@@ -2289,6 +2503,14 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2297,8 +2519,17 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 })
 ```
 
@@ -2323,13 +2554,30 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
 let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}`);
-  console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2355,9 +2603,10 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2397,9 +2646,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2425,9 +2675,10 @@ beginTransaction():void
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2544,6 +2795,14 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 | destName | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2576,6 +2835,14 @@ backup(destName:string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2601,6 +2868,14 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 | -------- | ------------------------- | ---- | ------------------------ |
 | srcName  | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2634,6 +2909,14 @@ restore(srcName:string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2649,7 +2932,7 @@ promiseRestore.then(()=>{
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置分布式列表，使用callback异步回调。
+设置分布式数据库表，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2659,8 +2942,16 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名 |
+| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式数据库表表名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2678,7 +2969,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
-设置分布式列表，使用Promise异步回调。
+设置分布式数据库表，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2686,9 +2977,85 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 
 **参数：**
 
-| 参数名 | 类型                | 必填 | 说明                     |
-| ------ | ------------------- | ---- | ------------------------ |
-| tables | Array&lt;string&gt; | 是   | 要设置的分布式列表表名。 |
+| 参数名 | 类型                     | 必填 | 说明                     |
+| ------ | ------------------------ | ---- | ------------------------ |
+| tables | ArrayArray&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**示例：**
+
+```js
+let promise = store.setDistributedTables(["EMPLOYEE"]);
+promise.then(() => {
+  console.info(`SetDistributedTables successfully.`);
+}).catch((err) => {
+  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
+
+设置分布式数据库表，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填  | 说明              |
+| -------- | ----------------------------------- | --- | --------------- |
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库表表名。     |
+| type     | number | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
+| callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
+
+**示例：**
+
+```js
+let config = new DistributedConfig();
+config.autoSync = true;
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
+ setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
+
+设置分布式数据库表，使用Promise异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                     |
+| type   | number                                    | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
 
 **返回值**：
 
@@ -2699,7 +3066,9 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 **示例：**
 
 ```js
-let promise = store.setDistributedTables(["EMPLOYEE"]);
+let config = new DistributedConfig();
+config.autoSync = true;
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -2728,6 +3097,14 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | device   | string                      | 是   | 远程设备ID 。                                                |
 | table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2782,6 +3159,14 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 | --------------------- | ----------------------------------------------------- |
 | Promise&lt;string&gt; | Promise对象。如果操作成功，返回远程设备的分布式表名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2821,9 +3206,17 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是推、拉。                               |
+| mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
 | predicates | [RdbPredicates](#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2872,7 +3265,7 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode)               | 是   | 指同步模式。该值可以是推、拉。 |
+| mode       | [SyncMode](#syncmode)               | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
@@ -2880,6 +3273,14 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 | 类型                                         | 说明                                                         |
 | -------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2917,7 +3318,38 @@ promise.then((result) =>{
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
+注册数据库的数据变更的事件监听。当分布式数据库中的数据发生更改时，将调用回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
+| type     | [SubscribeType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md#subscribetype) | 是   | 订阅类型。                                                   |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
+
+**示例：**
+
+```
+function storeObserver(devices) {
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
+}
+try {
+  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### on('dataChange')<sup>10+</sup>
+
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
+
+注册数据库的数据变更的事件监听。当分布式数据库中的数据发生更改时，将调用回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2927,7 +3359,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
 
 **示例：**
 
@@ -2948,7 +3380,38 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 使用callback异步回调。
+取消数据变更的事件监听。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
+| type     | [SubscribeType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md#subscribetype) | 是   | 订阅类型。                                                   |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指已注册的数据更改观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
+
+**示例：**
+
+```
+function storeObserver(devices) {
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
+}
+try {
+  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+} catch (err) {
+  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### off('dataChange')<sup>10+</sup>
+
+off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
+
+取消数据变更的事件监听。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2958,7 +3421,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **示例：**
 
@@ -3111,7 +3574,7 @@ goTo(offset:number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3152,7 +3615,7 @@ goToRow(position: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3188,7 +3651,7 @@ goToFirstRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3223,7 +3686,7 @@ goToLastRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3258,7 +3721,7 @@ goToNextRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3293,7 +3756,7 @@ goToPreviousRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3328,6 +3791,14 @@ getBlob(columnIndex: number): Uint8Array
 | ---------- | -------------------------------- |
 | Uint8Array | 以字节数组的形式返回指定列的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
 **示例：**
 
   ```js
@@ -3353,6 +3824,14 @@ getString(columnIndex: number): string
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
 | string | 以字符串形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -3380,6 +3859,14 @@ getLong(columnIndex: number): number
 | ------ | ------------------------------------------------------------ |
 | number | 以Long形式返回指定列的值。<br>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议使用[getDouble](#getdouble)。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
 **示例：**
 
   ```js
@@ -3406,11 +3893,88 @@ getDouble(columnIndex: number): number
 | ------ | ---------------------------- |
 | number | 以double形式返回指定列的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
 **示例：**
 
   ```js
 const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
+
+### getAsset<sup>10+</sup>
+
+getAsset(columnIndex: number): Asset
+
+以[Asset](#asset10)形式获取当前行中指定列的值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型              | 说明                         |
+| --------------- | -------------------------- |
+| [Asset](#asset10) | 以Asset形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                     |
+| --------- | ------------------------------------------------------------ |
+| 14800013  | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```js
+const doc = resultSet.getAsset(resultSet.getColumnIndex("DOC"));
+```
+
+### getAssets<sup>10+</sup>
+
+getAssets(columnIndex: number): Assets
+
+以[Assets](#assets10)形式获取当前行中指定列的值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [Assets](#assets10)| 以Assets形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```js
+const docs = resultSet.getAssets(resultSet.getColumnIndex("DOCS"));
+```
+
 
 ### isColumnNull
 
@@ -3472,4 +4036,4 @@ promiseClose.then((resultSet) => {
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |

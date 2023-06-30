@@ -100,7 +100,7 @@ Worker不支持某API。
 
 **错误信息**
 
-Serializing an uncaught exception failed.
+An exception occurred during serialization.
 
 **错误描述**
 
@@ -246,7 +246,7 @@ Function未被标记为concurrent。
 
 **错误信息**
 
-The task is not exist when cancel it.
+The task does not exist when it is canceled.
 
 **错误描述**
 
@@ -264,7 +264,7 @@ The task is not exist when cancel it.
 
 **错误信息**
 
-The task is running when cancel it.
+The task is executing when it is canceled.
 
 **错误描述**
 

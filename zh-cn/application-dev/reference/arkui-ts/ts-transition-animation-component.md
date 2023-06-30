@@ -12,25 +12,10 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| transition | TransitionOptions \| TransitionEffect<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见TransitionOptions和TransitionEffect参数说明。 |
+| transition | TransitionOptions<sup>(deprecated)</sup> \| TransitionEffect<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见TransitionOptions和TransitionEffect对象说明。 |
 
-## TransitionOptions参数说明
-TransitionOptions通过指定结构体内的参数来指定转场效果。
-| 参数名称 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| type | [TransitionType](ts-appendix-enums.md#transitiontype)  | 否 | 指定该转场样式生效的场景。<br/>默认值：TransitionType.All<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>不指定type时默认为TransitionType.All，即插入删除都生效。 |
-| opacity | number | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0或大于1的非法值时，按1处理。 |
-| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerX?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
->  **说明：**
->
->  1. 当使用TransitionOptions类型的入参指定转场效果时，**必须**配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线、延时跟随animateTo中的配置。
->  2. 当使用TransitionOptions作为入参，且不指定除type外的任何参数时，此时相当于指定了透明度的转场效果。例如，指定{type: TransitionType.Insert}相当于指定了{type: TransitionType.Insert, opacity: 0}的转场效果。而指定了具体效果时，则不会添加默认的透明度转场效果。 
->  3. 更详细的关于scale、rotate效果的介绍可参考[图形变换](ts-universal-attributes-transformation.md)。
-
-## TransitionEffect<sup>10+</sup>参数说明
+## TransitionEffect<sup>10+</sup>对象说明
 TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | 接口名称 | 参数类型 | 是否静态函数 | 参数描述 |
 | -------- | ---------- | -------- | -------- |
@@ -49,7 +34,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | -------- | -------- |
 | IDENTITY | 禁用转场效果。 |
 | OPACITY | 指定透明度为0的转场效果。即相当于TransitionEffect.opacity(0) |
-| SLIDE | 指定出现时从左侧滑入、消失时从右侧滑出的转场效果。即相当于TransitionEffect.asymmetric(TransitionEffect.START, TrasitionEffect.END) |
+| SLIDE | 指定出现时从左侧滑入、消失时从右侧滑出的转场效果。即相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END)) |
 
 >  **说明：**
 >
@@ -57,47 +42,26 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 >  2. 动画参数的生效顺序为：本TransitionEffect指定的animation参数 > 前面的TransitionEffect指定的animation参数 > 触发该组件出现消失的animateTo中的动画参数。
 >  3. 如果未使用animateTo触发转场动画且TransitionEffect中也无animation参数，则该组件直接出现或者消失。
 >  4. TransitionEffect中指定的属性值如与默认值相同，则该属性不会产生转场动画。如TransitionEffect.opacity(1).animation({duration:1000})，由于opacity默认值也为1，未产生透明度动画，该组件直接出现或者消失。
+>  5. 更详细的关于scale、rotate效果的介绍可参考[图形变换](ts-universal-attributes-transformation.md)。
+
+## TransitionOptions<sup>(deprecated)</sup>
+TransitionOptions通过指定结构体内的参数来指定转场效果。
+
+从API version 10开始不再维护，建议使用[TransitionEffect](#transitioneffect10对象说明)代替。
+| 参数名称 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| type | [TransitionType](ts-appendix-enums.md#transitiontype)  | 否 | 指定该转场样式生效的场景。<br/>默认值：TransitionType.All<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>不指定type时默认为TransitionType.All，即插入删除都生效。 |
+| opacity | number | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0或大于1的非法值时，按1处理。 |
+| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerX?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+
+>  **说明：**
+>
+>  1. 当使用TransitionOptions类型的入参指定转场效果时，**必须**配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线、延时跟随animateTo中的配置。
+>  2. 当使用TransitionOptions作为入参，且不指定除type外的任何参数时，此时相当于指定了透明度的转场效果。例如，指定{type: TransitionType.Insert}相当于指定了{type: TransitionType.Insert, opacity: 0}的转场效果。而指定了具体效果时，则不会添加默认的透明度转场效果。
 
 ## 示例
-下面是一个出现消失使用TransitionOptions的示例。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TransitionExample {
-  @State flag: boolean = true
-  @State show: string = 'show'
-
-  build() {
-    Column() {
-      Button(this.show).width(80).height(30).margin(30)
-        .onClick(() => {
-          // 点击Button控制Image的显示和消失
-          if (this.flag) {
-            this.show = 'hide';
-          } else {
-            this.show = 'show';
-          }
-          // 使用TransitionOptions指定transition时，必须配合animateTo才能产生动画
-          animateTo({ duration: 1000 }, () => {
-            this.flag = !this.flag
-          })
-        })
-      if (this.flag) {
-        // Image的显示和消失配置为不同的过渡效果
-        // 出现时从指定的x方向scale为0、y方向scale为1的状态变为默认的x、y方向scale都为1的状态
-        // 消失时从默认的旋转角为0变为绕z轴顺时针旋转180°的状态
-        Image($r('app.media.testImg')).width(200).height(200)
-          .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
-          .transition({ type: TransitionType.Delete, rotate: { z: 1, angle: 180 } })
-      }
-    }.width('100%')
-  }
-}
-```
-
-示意图：<br/>
-![transitionComponent1](figures/transitionComponent1.gif)
 
 下面是一个出现消失使用同一TransitionEffect（出现和消失互为逆过程）的示例。
 ```ts

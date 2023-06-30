@@ -25,12 +25,14 @@
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
-- 图形图像
-    - [图形图像概述](subsys-graphics-overview.md)
-    - [容器类组件开发指导](subsys-graphics-container-guide.md)
-    - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
-    - [普通组件开发指导](subsys-graphics-common-guide.md)
-    - [动画开发指导](subsys-graphics-animation-guide.md)
+- 小型系统图形图像
+    - [小型系统图形图像概述](subsys-graphics-overview.md)
+      - [普通组件开发指导](subsys-graphics-common-guide.md)
+      - [容器类组件开发指导](subsys-graphics-container-guide.md)
+      - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
+      - [动画开发指导](subsys-graphics-animation-guide.md)
+      - [Windows QT 模拟器使用指导](subsys-graphics-simulator-guide.md)
+      - [如何对接图形框架](subsys-graphics-porting-guide.md)
 - 媒体
     - 相机
         - [相机开发概述](subsys-multimedia-camera-overview.md)
@@ -79,6 +81,7 @@
       - [组件化启动](subsys-boot-init-sub-unit.md)
       - [init运行日志规范化](subsys-boot-init-log.md)
       - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
+      - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)

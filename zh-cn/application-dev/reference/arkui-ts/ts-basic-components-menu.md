@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - Menu组件需和[bindMenu](ts-universal-attributes-menu.md)或[bindContextMenu](ts-universal-attributes-menu.md)方法配合使用，不支持作为普通组件单独使用。
 
 ## 子组件
 

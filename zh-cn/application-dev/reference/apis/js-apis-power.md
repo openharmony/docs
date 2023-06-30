@@ -147,13 +147,20 @@ try {
 
 ## power.suspend<sup>9+</sup>
 
-suspend(): void
+suspend(isImmediate?: boolean): void
 
 休眠设备。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+
 
 **错误码：**
 

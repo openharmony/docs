@@ -726,7 +726,7 @@ Checks whether this **Buffer** instance contains the specified value.
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 
 **Return value**
 
@@ -758,7 +758,7 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 
 **Return value**
 
@@ -815,7 +815,7 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 
 **Return value**
 
@@ -838,7 +838,7 @@ console.log(buf.lastIndexOf('buffer').toString());	// Print: 17
 
 readBigInt64BE(offset?: number): bigint
 
-Reads a signed, big-endian 64-bit big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, signed big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -872,14 +872,14 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigInt64LE
 
 readBigInt64LE(offset?: number): bigint
 
-Reads a signed, little-endian 64-bit big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, signed big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -913,14 +913,14 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigUInt64BE
 
 readBigUInt64BE(offset?: number): bigint
 
-Reads an unsigned, big-endian 64-bit big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, unsigned big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -954,14 +954,14 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readBigUInt64LE
 
 readBigUInt64LE(offset?: number): bigint
 
-Reads an unsigned, little-endian 64-bit big integer from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, unsigned big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -995,14 +995,14 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readDoubleBE
 
 readDoubleBE(offset?: number): number
 
-Reads a 64-bit, big-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a 64-bit, big-endian, double-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1042,7 +1042,7 @@ let result = buf1.writeDoubleBE(123.456, 0);
 
 readDoubleLE(offset?: number): number
 
-Reads a 64-bit, little-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a 64-bit, little-endian, double-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1082,7 +1082,7 @@ let result = buf1.writeDoubleLE(123.456, 0);
 
 readFloatBE(offset?: number): number
 
-Reads a 32-bit, big-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, single-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1122,7 +1122,7 @@ let result = buf1.writeFloatBE(0xcabcbcbc, 0);
 
 readFloatLE(offset?: number): number
 
-Reads a 32-bit, little-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, single-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1162,7 +1162,7 @@ let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 
 readInt8(offset?: number): number
 
-Reads a signed 8-bit integer from this **Buffer** instance at the specified offset.
+Reads a 8-bit signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1203,7 +1203,7 @@ let result = buf1.writeInt8(0x12);
 
 readInt16BE(offset?: number): number
 
-Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, big-endian, signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1243,7 +1243,7 @@ let result = buf1.writeInt16BE(0x1234, 0);
 
 readInt16LE(offset?: number): number
 
-Reads a signed, little-endian 16-bit integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, little-endian, signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1283,7 +1283,7 @@ let result = buf1.writeInt16BE(0x1234, 0);
 
 readInt32BE(offset?: number): number
 
-Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1323,7 +1323,7 @@ let result = buf1.writeInt32BE(0x12345678, 0);
 
 readInt32LE(offset?: number): number
 
-Reads a signed, little-endian 32-bit integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1449,7 +1449,7 @@ let result = buf1.writeIntLE(0x123456789011, 0, 6);
 
 readUInt8(offset?: number): number
 
-Reads an unsigned 8-bit integer from this **Buffer** instance at the specified offset.
+Reads a 8-bit unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1491,7 +1491,7 @@ let result = buf1.writeUInt8(0x42);
 
 readUInt16BE(offset?: number): number
 
-Reads an unsigned, big-endian 16-bit integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, big-endian, unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1533,7 +1533,7 @@ let result = buf1.writeUInt16BE(0x1234, 0);
 
 readUInt16LE(offset?: number): number
 
-Reads an unsigned, little-endian 16-bit integer from this **Buffer** instance at the specified offset.
+Reads a 16-bit, little-endian, unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1575,7 +1575,7 @@ let result = buf1.writeUInt16LE(0x1234, 0);
 
 readUInt32BE(offset?: number): number
 
-Reads an unsigned, big-endian 32-bit integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, big-endian, unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1616,7 +1616,7 @@ let result = buf1.writeUInt32BE(0x12345678, 0);
 
 readUInt32LE(offset?: number): number
 
-Reads an unsigned, little-endian 32-bit integer from this **Buffer** instance at the specified offset.
+Reads a 32-bit, little-endian, unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2013,7 +2013,7 @@ let length = buffer1.write('abcd', 8);
 
 writeBigInt64BE(value: bigint, offset?: number): number
 
-Writes a signed, big-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, signed big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2045,14 +2045,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigInt64LE
 
 writeBigInt64LE(value: bigint, offset?: number): number
 
-Writes a signed, little-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, signed big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2084,14 +2084,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigInt64LE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigUInt64BE
 
 writeBigUInt64BE(value: bigint, offset?: number): number
 
-Writes an unsigned, big-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2123,14 +2123,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeBigUInt64LE
 
 writeBigUInt64LE(value: bigint, offset?: number): number
 
-Writes an unsigned, little-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2162,14 +2162,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeDoubleBE
 
 writeDoubleBE(value: number, offset?: number): number
 
-Writes a big-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 64-bit, big-endian, double-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2208,7 +2208,7 @@ let result = buf.writeDoubleBE(123.456, 0);
 
 writeDoubleLE(value: number, offset?: number): number
 
-Writes a little-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 64-bit, little-endian, double-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2247,7 +2247,7 @@ let result = buf.writeDoubleLE(123.456, 0);
 
 writeFloatBE(value: number, offset?: number): number
 
-Writes a big-endian single-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, single-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2287,7 +2287,7 @@ let result = buf.writeFloatBE(0xcafebabe, 0);
 
 writeFloatLE(value: number, offset?: number): number
 
-Writes a little-endian single-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, single-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2326,7 +2326,7 @@ let result = buf.writeFloatLE(0xcafebabe, 0);
 
 writeInt8(value: number, offset?: number): number
 
-Writes a signed 8-bit integer to this **Buffer** instance at the specified offset.
+Writes a 8-bit signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2367,7 +2367,7 @@ let result1 = buf.writeInt8(-2, 1);
 
 writeInt16BE(value: number, offset?: number): number
 
-Writes a signed, big-endian 16-bit integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, big-endian, signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2407,7 +2407,7 @@ let result = buf.writeInt16BE(0x0102, 0);
 
 writeInt16LE(value: number, offset?: number): number
 
-Writes a signed, little-endian 16-bit integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, little-endian, signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2446,7 +2446,7 @@ let result = buf.writeInt16LE(0x0304, 0);
 
 writeInt32BE(value: number, offset?: number): number
 
-Writes a signed, big-endian 32-bit integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2486,7 +2486,7 @@ let result = buf.writeInt32BE(0x01020304, 0);
 
 writeInt32LE(value: number, offset?: number): number
 
-Writes a signed, little-endian 32-bit integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2606,7 +2606,7 @@ let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 
 writeUInt8(value: number, offset?: number): number
 
-Writes an unsigned 8-bit integer to this **Buffer** instance at the specified offset.
+Writes a 8-bit unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2648,7 +2648,7 @@ let result3 = buf.writeUInt8(0x42, 3);
 
 writeUInt16BE(value: number, offset?: number): number
 
-Writes an unsigned, big-endian 16-bit integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, big-endian, unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2688,7 +2688,7 @@ let result1 = buf.writeUInt16BE(0xbeef, 2);
 
 writeUInt16LE(value: number, offset?: number): number
 
-Writes an unsigned, little-endian 16-bit integer to this **Buffer** instance at the specified offset.
+Writes a 16-bit, little-endian, unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2728,7 +2728,7 @@ let result1 = buf.writeUInt16LE(0xbeef, 2);
 
 writeUInt32BE(value: number, offset?: number): number
 
-Writes an unsigned, big-endian 32-bit integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, big-endian, unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2767,7 +2767,7 @@ let result = buf.writeUInt32BE(0xfeedface, 0);
 
 writeUInt32LE(value: number, offset?: number): number
 
-Writes an unsigned, little-endian 32-bit integer to this **Buffer** instance at the specified offset.
+Writes a 32-bit, little-endian, unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
