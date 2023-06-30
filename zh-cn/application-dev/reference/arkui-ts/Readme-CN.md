@@ -39,6 +39,7 @@
     - [多态样式](ts-universal-attributes-polymorphic-style.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
+    - [组件内容模糊](ts-universal-attributes-foreground-blur-style.md)
     - [点击回弹](ts-universal-attributes-click-effect.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
