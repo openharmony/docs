@@ -63,42 +63,6 @@ struct WebComponent {
 
 Implements a **WebMessagePort** object to send and receive messages.
 
-### close
-
-close(): void
-
-Closes this message port.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Example**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = null;
-
-  build() {
-    Column() {
-      Button('close')
-        .onClick(() => {
-          if (this.msgPort && this.msgPort[1]) {
-            this.msgPort[1].close();
-          } else {
-            console.error("msgPort is null, Please initialize first");
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
@@ -364,6 +328,7 @@ struct WebComponent {
 }
 ```
 
+HTML file to be loaded:
 ```html
 <!--index.html-->
 <!DOCTYPE html>
@@ -448,6 +413,56 @@ function postStringToApp() {
 }
 ```
 
+### close
+
+close(): void
+
+Closes this message port. To use this API, a message port must first be created using [createWebMessagePorts](#createwebmessageports).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  msgPort: web_webview.WebMessagePort[] = null;
+
+  build() {
+    Column() {
+      // Use createWebMessagePorts to create a message port.
+      Button('createWebMessagePorts')
+        .onClick(() => {
+          try {
+            this.msgPort = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.msgPort.length)
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Button('close')
+        .onClick(() => {
+          try {
+            if (this.msgPort && this.msgPort.length == 2) {
+              this.msgPort[1].close();
+            } else {
+              console.error("msgPort is null, Please initialize first");
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }      
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebviewController
 
 Implements a **WebviewController** to control the behavior of the **\<Web>** component. A **WebviewController** can control only one **\<Web>** component, and the APIs (except static APIs) in the **WebviewController** can be invoked only after it has been bound to the target **\<Web>** component.
@@ -473,7 +488,6 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
-        globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
 }
@@ -516,30 +530,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### Creating an Object
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### setWebDebuggingAccess
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-Sets whether to enable web debugging.
+Sets whether to enable web debugging. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -656,70 +651,73 @@ struct WebComponent {
 ```
 
 There are three methods for loading local resource files:
+
 1. Using $rawfile
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-  build() {
-    Column() {
-      Button('loadUrl')
-        .onClick(() => {
-          try {
-            // Load a local resource file through $rawfile.
-            this.controller.loadUrl($rawfile('xxx.html'));
-          } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Button('loadUrl')
+           .onClick(() => {
+             try {
+               // Load a local resource file through $rawfile.
+               this.controller.loadUrl($rawfile('index.html'));
+             } catch (error) {
+               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+             }
+           })
+         Web({ src: 'www.example.com', controller: this.controller })
+       }
+     }
+   }
+   ```
+
 2. Using the resources protocol
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-  build() {
-    Column() {
-      Button('loadUrl')
-        .onClick(() => {
-          try {
-            // Load a local resource file through the resource protocol.
-            this.controller.loadUrl("resource://rawfile/xxx.html");
-          } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Button('loadUrl')
+           .onClick(() => {
+             try {
+               // Load a local resource file through the resource protocol.
+               this.controller.loadUrl("resource://rawfile/index.html");
+             } catch (error) {
+               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+             }
+           })
+         Web({ src: 'www.example.com', controller: this.controller })
+       }
+     }
+   }
+   ```
 
 3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
-```html
-<!-- xxx.html -->
-<!DOCTYPE html>
-<html>
-  <body>
-    <p>Hello World</p>
-  </body>
-</html>
-```
+   HTML file to be loaded:
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+     <body>
+       <p>Hello World</p>
+     </body>
+   </html>
+   ```
 
 ### loadData
 
@@ -1343,6 +1341,24 @@ struct Index {
 }
 ```
 
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+        Hello world!
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+        str = objName.test("test function")
+        console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
+```
+
 ### runJavaScript
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
@@ -1406,6 +1422,24 @@ struct WebComponent {
 }
 ```
 
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
+```
+
 ### runJavaScript
 
 runJavaScript(script: string): Promise\<string>
@@ -1444,11 +1478,9 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State webResult: string = '';
 
   build() {
     Column() {
-      Text(this.webResult).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
         .onPageEnd(e => {
@@ -1470,6 +1502,23 @@ struct WebComponent {
 }
 ```
 
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
+```
 
 ### runJavaScriptExt<sup>10+</sup>
 
@@ -1569,8 +1618,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+HTML file to be loaded:
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -1681,8 +1733,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+HTML file to be loaded:
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -2178,14 +2233,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
-      Web({ src: $rawfile('xxx.html'), controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+HTML file to be loaded:
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -2973,14 +3029,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+HTML file to be loaded:
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3045,14 +3102,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+HTML file to be loaded:
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3117,14 +3175,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+HTML file to be loaded:
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3640,7 +3699,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            // globalThis.cacheDir is obtained from EntryAbility.ts.
             let path = globalThis.cacheDir;
             path += '/WebState';
             // Synchronously open a file.
@@ -3657,14 +3716,14 @@ struct WebComponent {
 }
 ```
 
-2. Modify **MainAbility.ts**.
+2. Modify the **EntryAbility.ts** file.
 Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
         globalThis.cacheDir = this.context.cacheDir;
@@ -3712,7 +3771,7 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            // globalThis.cacheDir is obtained from EntryAbility.ts.
             let path = globalThis.cacheDir;
             path += '/WebState';
             // Synchronously open a file.
@@ -3739,14 +3798,14 @@ struct WebComponent {
 }
 ```
 
-2. Modify **MainAbility.ts**.
+2. Modify the **EntryAbility.ts** file.
 Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
         globalThis.cacheDir = this.context.cacheDir;
@@ -6230,6 +6289,9 @@ Describes the mode in which the **\<Web>** component uses HTTPDNS.
 
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
-| Off           | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
-| Auto          | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
-| SecureOnly    | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
+| Off<sup>(deprecated)</sup>           | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.<br>This API is deprecated since API version 10. You are advised to use **OFF** instead.|
+| Auto<sup>(deprecated)</sup>          | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.<br>This API is deprecated since API version 10. You are advised to use **AUTO** instead.|
+| SecureOnly<sup>(deprecated)</sup>    | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.<br>This API is deprecated since API version 10. You are advised to use **SECURE_ONLY** instead.|
+| OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
+| AUTO                                 | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
+| SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
