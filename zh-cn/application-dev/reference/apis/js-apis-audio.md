@@ -5918,8 +5918,6 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401     | if input parameter type or number mismatch              |
@@ -5951,8 +5949,6 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 | callback | Callback\<[AudioDeviceDescriptors](#AudioDeviceDescriptor)> | 是   | 取消监听的音频设备变化。                            |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
