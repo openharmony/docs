@@ -1101,7 +1101,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 ```
 **注意事项!!!**
 
-  <summary><strong>HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥</strong></summary>
+  <summary><strong>HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥、证书相关等，如设备开发者使用了相关代码，一定要替换成自有实现</strong></summary>
 
   - **根密钥**
 
@@ -1334,7 +1334,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 对于每个HDI接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的HDI接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
-JS测试代码示例如下（仅供参考），如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型和完整样例请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
+JS测试代码示例如下（仅供参考），如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型和完整样例请见[huks-guidelines.md](../../application-dev/security/huks-guidelines.md)。
 
 **AES生成密钥和加密**
 
