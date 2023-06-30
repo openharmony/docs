@@ -573,7 +573,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -627,7 +627,7 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 取消监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
