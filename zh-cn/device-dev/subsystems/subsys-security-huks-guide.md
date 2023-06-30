@@ -1068,7 +1068,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 #### 代码目录
 
-HDI接口的适配在以下目录中：
+1. HDI接口的适配在以下目录中：
 
 ```undefined
 //drivers_peripheral/huks
@@ -1085,7 +1085,7 @@ HDI接口的适配在以下目录中：
     └── unittest # 单元测试
 ```
 
-HUKS Core软实现的代码在以下目录中：
+2. HUKS Core软实现的代码在以下目录中：
 
 ```undefined
 //base/security/huks/services/huks_standard/huks_engine
@@ -1099,7 +1099,25 @@ HUKS Core软实现的代码在以下目录中：
         └── hks_core_service.c # HUKS Core详细实现
         └── ... #其他功能代码
 ```
+**注意事项!!!**
 
+  <summary><strong>HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥</strong></summary>
+
+  - **根密钥**
+
+    用于加密HUKS业务密钥，一般由设备根密钥派生而来，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/frameworks/huks_standard/main/crypto_engine/openssl/src/hks_openssl_get_main_key.c">hks_openssl_get_main_key.c</a>
+
+ - **访问控制用于对AuthToken做HMAC的密钥**
+
+   用于UserIAM对AuthToken进行HMAC，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+
+ - **访问控制用于对AuthToken敏感字段加密的密钥**
+
+   用于UserIAM对AuthToken敏感字段进行加密的密钥，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+
+  - **根证书、设备CA、设备证书**
+
+    用于密钥证明，一般由设备证书管理模块预置在硬件设备安全存储当中，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/device_cert_manager/include/dcm_certs_and_key.h">dcm_certs_and_key.h</a>
 
 #### 适配样例
 
