@@ -1460,17 +1460,17 @@ function signLongMessagePromise() {
   let globalSignData;
   let textSplitLen = 64; // 自定义的数据拆分长度
   let keyGenName = "RSA1024";
-  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let signAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // 创建非对称密钥生成器对象
-  let signer = cryptoFramework.createSign(cipherAlgName); // 创建加密Cipher对象
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // 创建解密Decoder对象
+  let signer = cryptoFramework.createSign(signAlgName); // 创建签名Signer对象
+  let verifier = cryptoFramework.createVerify(signAlgName); // 创建验签Verifier对象
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
     }, 10);
   }).then(() => {
-    return asyKeyGenerator.generateKeyPair(); // 生成rsa密钥
+    return asyKeyGenerator.generateKeyPair(); // 生成RSA密钥
   }).then(keyPair => {
     globalKeyPair = keyPair; // 保存到密钥对全局变量
     return signer.init(globalKeyPair.priKey);
@@ -1487,7 +1487,7 @@ function signLongMessagePromise() {
     console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
     return verifier.init(globalKeyPair.pubKey);
   }).then(async() => {
-    // 将密文按128B进行拆分解密，得到原文后进行拼接
+    // 当原文过大时，可将原文按理想长度进行拆分，循环调用update添加原文
     for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
       let tempData = globalPlainText.slice(i * textSplitLen, (i + 1) * textSplitLen);
       let tempBlob = { data : stringToUint8Array(tempData) };
