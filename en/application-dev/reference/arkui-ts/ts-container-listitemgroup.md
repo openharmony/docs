@@ -19,21 +19,29 @@ This component supports the **[\<ListItem>](ts-container-listitem.md)** child co
 
 ## APIs
 
-ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string})
+ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string, style?: ListItemGroupStyle})
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| header | [CustomBuilder](ts-types.md#custombuilder8) | No|  Header of the **\<ListItemGroup>** component.|
-| footer | [CustomBuilder](ts-types.md#custombuilder8) | No|  Footer of the **\<ListItemGroup>** component.|
-| space | number \| string | No| Spacing between list items. This parameter is valid only between list items, but not between a header and list item or between a footer and list item.|
+| Name             | Type                                           | Mandatory| Description                                                    |
+| ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.                                 |
+| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.                                 |
+| space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between a header and list item or between a footer and list item.|
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group. |
 
 ## Attributes
 
 | Name| Type|  Description|
 | -------- | -------- | -------- |
 | divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start of the list.<br>- **endMargin**: distance between the divider and the end of the list.|
+
+## ListItemGroupStyle<sup>10+</sup>
+
+| Name| Description              |
+| ---- | ------------------ |
+| NONE | No style.          |
+| CARD | Default card style.|
 
 > **NOTE**
 >
@@ -99,12 +107,12 @@ struct ListItemGroupExample {
               }
             }, item => item)
           }
-          .borderRadius(20)
           .divider ({ strokeWidth: 1,color:Color.Blue }) // Divider between lines
         })
       }
       .width('90%')
       .sticky(StickyStyle.Header|StickyStyle.Footer)
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
