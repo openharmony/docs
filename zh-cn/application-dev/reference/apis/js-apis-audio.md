@@ -5914,7 +5914,7 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
-| callback | Callback\<[AudioDeviceDescriptors](#AudioDeviceDescriptor)> | 是   | 返回监听的音频设备变化。                            |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 返回监听的音频设备变化。                            |
 
 **错误码：**
 
@@ -5946,7 +5946,7 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
-| callback | Callback\<[AudioDeviceDescriptors](#AudioDeviceDescriptor)> | 是   | 取消监听的音频设备变化。                            |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 取消监听的音频设备变化。                            |
 
 **错误码：**
 
