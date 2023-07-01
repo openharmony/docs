@@ -34,10 +34,10 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401      | The parameter invalid. |
-| 22900001 | Service exception.     |
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
@@ -67,16 +67,16 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 | 参数名       | 类型                                                                                                 | 必填 | 说明                                   |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | string                                                                                               | 是   | 设备ID，通过queryDevices获得           |
+| deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得           |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调                     |
 | callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象 |
 
 **错误码：**
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401      | The parameter invalid. |
-| 22900001 | Service exception.     |
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
@@ -111,7 +111,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 | 参数名       | 类型                        | 必填 | 说明                         |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | string                      | 是   | 设备ID，通过queryDevices获得 |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得 |
 | onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调           |
 
 **返回值：** 
@@ -122,10 +122,10 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 **错误码：**
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401      | The parameter invalid. |
-| 22900001 | Service exception.     |
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
@@ -155,15 +155,15 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                           |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| deviceId | string                      | 是   | 设备ID，通过queryDevices获得。 |
+| deviceId | number                      | 是   | 设备ID，通过queryDevices获得。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 解绑完成的回调。               |
 
 **错误码：**
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401      | The parameter invalid. |
-| 22900001 | Service exception.     |
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
 
@@ -192,14 +192,14 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 | 参数名   | 类型   | 必填 | 说明                           |
 | -------- | ------ | ---- | ------------------------------ |
-| deviceId | string | 是   | 设备ID，通过queryDevices获得。 |
+| deviceId | number | 是   | 设备ID，通过queryDevices获得。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401      | The parameter invalid. |
-| 22900001 | Service exception.     |
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
 
 **返回值：** 
 
