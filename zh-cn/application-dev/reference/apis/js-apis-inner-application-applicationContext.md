@@ -294,7 +294,6 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **
 | type     | 'applicationStateChange'                                     | 是   | 监听事件的类型。 |
 | callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调方法。       |
 
-
 **示例：**
 
 ```ts
@@ -371,7 +370,6 @@ off(type: 'applicationStateChange'): **void**;
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-
 
 **示例：**
 

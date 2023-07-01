@@ -7,13 +7,11 @@ ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对�
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
-
 ## 导入模块
 
 ```ts
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 ```
-
 
 ## ApplicationStateChangeCallback.onApplicationForeground
 
@@ -31,9 +29,7 @@ onApplicationBackground(): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-
 **示例：**
-    
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
