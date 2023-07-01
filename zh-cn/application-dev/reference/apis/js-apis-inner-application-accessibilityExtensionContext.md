@@ -241,6 +241,14 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 | isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
 | callback             | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 9300003 | Do not have accessibility right for this operation. |
+
 **示例：**
 
 ```ts
