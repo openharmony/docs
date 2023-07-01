@@ -141,7 +141,7 @@ The type of credential has not been enrolled.
 
 **错误信息**
 
-The authentication is canceled from widget.
+Indicates that this operation is canceled from widget's navigation button.
 
 **可能原因**
 

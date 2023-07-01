@@ -4,7 +4,7 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 
 >  **NOTE**
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -18,10 +18,10 @@ Describes the **PluginComponent** template parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type  | Mandatory| Description                       |
-| ---------- | ------ | ---- | --------------------------- |
-| source     | string | Yes  | Component template name.               |
-| bundleName | string | Yes  | Bundle name of the provider ability.|
+| Name        | Type    | Mandatory  | Description                    |
+| ---------- | ------ | ---- | ---------------------- |
+| source     | string | Yes   | Component template name.                |
+| bundleName | string | Yes   | Bundle name of the provider ability.|
 
 
 ## PluginComponentManager
@@ -33,14 +33,14 @@ Stores information in key-value pairs in JSON format.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-| Value Range             | Description                                    |
-| --------------------- | ---------------------------------------- |
+| Value Range                 | Description                  |
+| --------------------- | -------------------- |
 | [key: string]         | Keyword. The value is a string and can be an empty string.|
-| number                | Key value of the number type.                |
+| number                | Key value of the number type.        |
 | string                | Key value of the string type. The value can be an empty string.|
-| boolean               | Key value of the Boolean type.              |
-| []                    | Key value. The value can be [].                      |
-| [KVObject](#kvobject) | Key value of the KVObject type.            |
+| boolean               | Key value of the Boolean type.       |
+| []                    | Key value. The value can be [].          |
+| [KVObject](#kvobject) | Key value of the KVObject type.  |
 
 
 ### PushParameters
@@ -51,13 +51,13 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the FA mod
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                               | Mandatory| Description                                                          |
-| --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
-| want      | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                       |
-| name      | string                              | Yes  | Component name.                                                    |
-| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                  |
-| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                  |
-| jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
+| Name       | Type                                 | Mandatory  | Description                                      |
+| --------- | ----------------------------------- | ---- | ---------------------------------------- |
+| want      | [Want](js-apis-application-want.md) | Yes   | Ability information of the component user.                         |
+| name      | string                              | Yes   | Component name.                                   |
+| data      | [KVObject](#kvobject)               | Yes   | Component data value.                                  |
+| extraData | [KVObject](#kvobject)               | Yes   | Additional data value.                                  |
+| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### PushParameterForStage
 
@@ -69,14 +69,14 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the stage 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                               | Mandatory| Description                                                            |
-| --------- | ----------------------------------- | ---- | ---------------------------------------------------------------- |
-| owner     | [Want](js-apis-application-want.md) | Yes  | Ability information of the component provider.                                         |
-| target    | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                         |
-| name      | string                              | Yes  | Component name.                                                      |
-| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                    |
-| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                    |
-| jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
+| Name       | Type                                 | Mandatory  | Description                                      |
+| --------- | ----------------------------------- | ---- | ---------------------------------------- |
+| owner     | [Want](js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
+| target    | [Want](js-apis-application-want.md) | Yes   | Ability information of the component user.                         |
+| name      | string                              | Yes   | Component name.                                   |
+| data      | [KVObject](#kvobject)               | Yes   | Component data value.                                  |
+| extraData | [KVObject](#kvobject)               | Yes   | Additional data value.                                  |
+| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameters
 
@@ -86,12 +86,12 @@ Sets the parameters to be passed in the **PluginManager.Request** API in the FA 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type                               | Mandatory| Description                                                                                                                 |
-| -------- | ----------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------- |
-| want     | [Want](js-apis-application-want.md) | Yes  | Ability information of the component provider.                                                                                              |
-| name     | string                              | Yes  | Name of the requested component.                                                                                                       |
-| data     | [KVObject](#kvobject)               | Yes  | Additional data.                                                                                                           |
-| jsonPath | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
+| Name      | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| want     | [Want](js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
+| name     | string                              | Yes   | Name of the requested component.                                 |
+| data     | [KVObject](#kvobject)               | Yes   | Additional data.                                   |
+| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
 
 ### RequestParameterForStage
 
@@ -103,13 +103,13 @@ Sets the parameters to be passed in the **PluginManager.Request** API in the sta
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type                               | Mandatory| Description                                                                                                                 |
-| -------- | ----------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------- |
-| owner    | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                                                                              |
-| target   | [Want](js-apis-application-want.md) | Yes  | Ability information of the component provider.                                                                                              |
-| name     | string                              | Yes  | Name of the requested component.                                                                                                       |
-| data     | [KVObject](#kvobject)               | Yes  | Additional data.                                                                                                           |
-| jsonPath | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
+| Name      | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| owner    | [Want](js-apis-application-want.md) | Yes   | Ability information of the component user.                         |
+| target   | [Want](js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
+| name     | string                              | Yes   | Name of the requested component.                                 |
+| data     | [KVObject](#kvobject)               | Yes   | Additional data.                                   |
+| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
 
 ### RequestCallbackParameters
 
@@ -117,11 +117,11 @@ Provides the result returned after the **PluginManager.Request** API is called.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name             | Type                                               | Mandatory| Description      |
-| ----------------- | --------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes  | Component template.|
-| data              | [KVObject](#kvobject)                               | Yes  | Component data.|
-| extraData         | [KVObject](#kvobject)                               | Yes  | Additional data.|
+| Name               | Type                                      | Mandatory  | Description   |
+| ----------------- | ---------------------------------------- | ---- | ----- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Component template.|
+| data              | [KVObject](#kvobject)                    | Yes   | Component data.|
+| extraData         | [KVObject](#kvobject)                    | Yes   | Additional data.|
 
 ### RequestEventResult
 
@@ -129,11 +129,11 @@ Provides the result returned after the request listener is registered and the re
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                 | Mandatory| Description      |
-| --------- | --------------------- | ---- | ---------- |
-| template  | string                | No  | Component template.|
-| data      | [KVObject](#kvobject) | No  | Component data.|
-| extraData | [KVObject](#kvobject) | No  | Additional data.|
+| Name       | Type                   | Mandatory  | Description   |
+| --------- | --------------------- | ---- | ----- |
+| template  | string                | No   | Component template.|
+| data      | [KVObject](#kvobject) | No   | Component data.|
+| extraData | [KVObject](#kvobject) | No   | Additional data.|
 
 ### OnPushEventCallback
 
@@ -144,12 +144,12 @@ Registers the listener for the push event.
 
 **Parameters**
 
-| Name     | Type                                               | Mandatory| Description                                    |
-| --------- | --------------------------------------------------- | ---- | ---------------------------------------- |
-| source    | [Want](js-apis-application-want.md)                 | Yes  | Information about the push request sender.                |
-| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes  | Name of the request component template for the push request sender.|
-| data      | [KVObject](#kvobject)                               | Yes  | Data.                                  |
-| extraData | [KVObject](#kvobject)                               | Yes  | Additional data.                              |
+| Name       | Type                                      | Mandatory  | Description                    |
+| --------- | ---------------------------------------- | ---- | ---------------------- |
+| source    | [Want](js-apis-application-want.md)      | Yes   | Information about the push request sender.        |
+| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Name of the request component template for the push request sender.|
+| data      | [KVObject](#kvobject)                    | Yes   | Data.                   |
+| extraData | [KVObject](#kvobject)                    | Yes   | Additional data.                 |
 
 **Example**
 
@@ -172,11 +172,11 @@ Registers the listener for the request event.
 
 **Parameters**
 
-| Name     | Type                               | Mandatory| Description                       |
-| --------- | ----------------------------------- | ---- | --------------------------- |
-| source    | [Want](js-apis-application-want.md) | Yes  | Information about the request sender.|
-| name      | string                              | Yes  | Template name.                 |
-| extraData | [KVObject](#kvobject)               | Yes  | Additional data.                 |
+| Name       | Type                                 | Mandatory  | Description               |
+| --------- | ----------------------------------- | ---- | ----------------- |
+| source    | [Want](js-apis-application-want.md) | Yes   | Information about the request sender.|
+| name      | string                              | Yes   | Template name.            |
+| extraData | [KVObject](#kvobject)               | Yes   | Additional data.            |
 
 **Example**
 
@@ -200,10 +200,10 @@ Pushes the component and data to the component user.
 **Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
-| Name  | Type                             | Mandatory| Description                    |
-| -------- | --------------------------------- | ---- | ------------------------ |
-| param    | [PushParameters](#pushparameters) | Yes  | Information about the component user.  |
-| callback | AsyncCallback&lt;void&gt;         | Yes  | Asynchronous callback used to return the result.|
+| Name     | Type                               | Mandatory  | Description          |
+| -------- | --------------------------------- | ---- | ------------ |
+| param    | [PushParameters](#pushparameters) | Yes   | Information about the component user. |
+| callback | AsyncCallback&lt;void&gt;         | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
 
@@ -241,10 +241,10 @@ Pushes the component and data to the component user.
 **Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
-| Name  | Type                                           | Mandatory| Description                    |
-| -------- | ----------------------------------------------- | ---- | ------------------------ |
-| param    | [PushParameterForStage](#pushparameterforstage) | Yes  | Information about the component user.  |
-| callback | AsyncCallback&lt;void&gt;                       | Yes  | Asynchronous callback used to return the result.|
+| Name     | Type                                      | Mandatory  | Description          |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| param    | [PushParameterForStage](#pushparameterforstage) | Yes   | Information about the component user. |
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
 
@@ -289,10 +289,10 @@ Requests the component from the component provider.
 
 **Parameters**
 
-| Name  | Type                                                                                          | Mandatory| Description                                                            |
-| -------- | ---------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
-| param    | [RequestParameters](#requestparameters)                                                        | Yes  | Information about the component request.                                        |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters) \| void&gt; | Yes  | Asynchronous callback used to return the requested data.|
+| Name     | Type                                      | Mandatory  | Description                                 |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| param    | [RequestParameters](#requestparameters)  | Yes   | Information about the component request.                       |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
@@ -332,10 +332,10 @@ Requests the component from the component provider.
 
 **Parameters**
 
-| Name  | Type                                                                                          | Mandatory| Description                                                            |
-| -------- | ---------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
-| param    | [RequestParameterForStage](#requestparameterforstage)                                          | Yes  | Information about the component request.                                        |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters) \| void&gt; | Yes  | Asynchronous callback used to return the requested data.|
+| Name     | Type                                      | Mandatory  | Description                                 |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| param    | [RequestParameterForStage](#requestparameterforstage) | Yes   | Information about the component request.                       |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
@@ -371,10 +371,10 @@ Listens for events of the request type and returns the requested data, or listen
 
 **Parameters**
 
-| Name   | Type                                                                                                      | Mandatory| Description                                                                                                                                                          |
-| --------- | ---------------------------------------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| eventType | string                                                                                                     | Yes  | Type of the event to listen for. The options are as follows:<br>**"push"**: The component provider pushes data to the component consumer.<br>**"request"**: The component consumer proactively requests data from the component provider.    |
-| callback  | [OnPushEventCallback](#onpusheventcallback) \| [OnRequestEventCallback](#onrequesteventcallback) | Yes  | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
+| Name      | Type                                      | Mandatory  | Description                                      |
+| --------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| eventType | string                                   | Yes   | Type of the event to listen for. The options are as follows:<br>**"push"**: The component provider pushes data to the component consumer.<br>**"request"**: The component consumer proactively requests data from the component provider.|
+| callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
 
 
 **Example**

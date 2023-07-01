@@ -18,7 +18,7 @@
 | 名称               | 类型                                   | 必填 | 描述                   |
 | ------------------ | -------------------------------------- | ---- | ---------------------- |
 | height             | [SheetSize](#sheetsize10)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否 | 半模态高度。          |
-| showDragBar        | boolean                                | 否   | 是否显示控制条。          |
+| dragBar            | boolean                                | 否   | 是否显示控制条。          |
 
 ## SheetSize<sup>10+</sup>
 

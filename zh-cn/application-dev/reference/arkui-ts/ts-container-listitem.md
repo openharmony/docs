@@ -42,7 +42,7 @@
 | sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
 | editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>end?:CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。 |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>end?:CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>- start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。<br/> - 滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
 从API version9开始废弃，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
@@ -118,6 +118,7 @@ struct ListItemExample {
           }
         }, item => item)
       }.width('90%')
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
@@ -125,54 +126,6 @@ struct ListItemExample {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ListItemExample2 {
-  @State message: string = 'Hello World'
-
-  @Builder itemEnd() {
-    Row () {
-      Button("Del").margin("4vp")
-      Button("Set").margin("4vp")
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
-  }
-
-  build() {
-    Column() {
-      List({space:10}) {
-        ListItem() {
-          Text(this.message)
-          .width('100%')
-          .height(100)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .borderRadius(10)
-          .backgroundColor(0xFFFFFF)
-        }
-        .swipeAction({ end:this.itemEnd})
-
-        ListItem() {
-          Text(this.message)
-          .width('100%')
-          .height(100)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .borderRadius(10)
-          .backgroundColor(0xFFFFFF)
-        }
-        .swipeAction({ start:this.itemEnd})
-      }
-    }
-    .padding(10)
-    .backgroundColor(0xDCDCDC)
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-![zh-cn_image_1501929990650](figures/zh-cn_image_1501929990650.jpg)
 
 ```ts
 // xxx.ets

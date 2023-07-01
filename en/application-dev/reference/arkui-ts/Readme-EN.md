@@ -12,7 +12,7 @@
     - [Mouse Event](ts-universal-mouse-key.md)
     - [Component Area Change Event](ts-universal-component-area-change-event.md)
     - [Visible Area Change Event](ts-universal-component-visible-area-change-event.md)
-    - [Custom Keyboard Shortcuts](ts-universal-events-keyboardshortcut.md)
+    - [Component Keyboard Shortcut Event](ts-universal-events-keyboardshortcut.md)
   - Universal Attributes
     - [Size](ts-universal-attributes-size.md)
     - [Location](ts-universal-attributes-location.md)
@@ -43,7 +43,7 @@
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
-    - Touch Interactions
+    - Transition
       - [Modal Transition](ts-universal-attributes-modal-transition.md)
       - [Sheet Transition](ts-universal-attributes-sheet-transition.md)
     - [Obscuring](ts-universal-attributes-obscured.md)

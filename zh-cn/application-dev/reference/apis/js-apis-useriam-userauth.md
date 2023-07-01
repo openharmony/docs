@@ -716,12 +716,12 @@ try {
 
 ## AuthEventKey<sup>9+</sup>
 
-表示认证事件类型的关键字，作为[on](#on9)接口的的参数。
+表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
 
 | 取值类型       | 说明                    |
 | ---------- | ----------------------- |
-| "result" | [on](#on9)接口第一个参数为"result"时，[callback](#callback9)回调返回认证的结果信息。 |
-| "tip"    | [on](#on9)接口第一个参数为"tip"时，[callback](#callback9)回调返回认证操作中的提示信息。 |
+| "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callback9)回调返回认证的结果信息。 |
+| "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callback9)回调返回认证操作中的提示信息。 |
 
 ## AuthEvent<sup>9+</sup>
 
@@ -739,7 +739,7 @@ callback(result : EventInfo) : void
 
 | 参数名    | 类型                       | 必填 | 说明                           |
 | --------- | -------------------------- | ---- | ------------------------------ |
-| result    | [EventInfo](#eventinfo9+)     | 是   | 返回的认证结果信息或提示信息。  |
+| result    | [EventInfo](#eventinfo9)     | 是   | 返回的认证结果信息或提示信息。  |
 
 **示例：**
 
@@ -1035,7 +1035,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#userIAM_userAuth.getUserauthinstance10)替代。
+> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#useriam_userauthgetuserauthinstance10)替代。
 
 > **说明：**
 > 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
@@ -1252,7 +1252,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 执行用户认证，使用回调函数返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[start](#start9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[start](#startdeprecated)代替。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -1303,7 +1303,7 @@ cancelAuth(contextID : Uint8Array) : number
 表示通过contextID取消本次认证操作。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[cancel](#cancel9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[cancel](#canceldeprecated)代替。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -1428,7 +1428,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示认证结果的对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 

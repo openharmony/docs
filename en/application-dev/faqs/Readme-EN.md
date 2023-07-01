@@ -3,7 +3,7 @@
 - [Full SDK Compilation](full-sdk-compile-guide.md)
 - [Switching to Full SDK](full-sdk-switch-guide.md)
 - [Application Model Development](faqs-ability.md)
-- ArkUI Framework Development (ArkTS)
+- ArkUI Development (ArkTS)
   - [ArkTS Syntax Usage](faqs-arkui-arkts.md)
   - [ArkUI Component Development (ArkTS)](faqs-arkui-component.md)
   - [ArkUI Layout Development (ArkTS)](faqs-arkui-layout.md)

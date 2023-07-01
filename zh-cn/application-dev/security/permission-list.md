@@ -654,6 +654,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.MANAGE_VPN
+
+允许应用程序启动或停止VPN功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.MANAGE_NET_STRATEGY
 
 允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
@@ -663,6 +673,16 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.GET_NETWORK_STATS
+
+允许应用程序获取历史流量信息和监听流量变化。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -2093,6 +2113,16 @@
 允许应用访问安全检测与响应框架。
 
 **权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+允许应用与用户认证框架交互和注册扩展能力。
+
+**权限级别**: system_basic
 
 **授权方式**：system_grant
 

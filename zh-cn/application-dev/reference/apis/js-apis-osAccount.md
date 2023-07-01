@@ -4107,7 +4107,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid challenge or authType or authTrustLevel. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
@@ -4166,7 +4166,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid userId or challenge or authType or authTrustLevel. |
+| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |

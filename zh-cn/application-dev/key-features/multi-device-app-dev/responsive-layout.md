@@ -341,7 +341,7 @@ struct GridRowSample1 {
 
 为了便于理解，下图中自定义预览器的设备屏幕宽度设置为650vp。示例代码中将侧边栏的变化范围控制在[100vp, 600vp]，那么右侧的栅格组件宽度相对应在[550vp, 50vp]之间变化。根据代码中对栅格断点的配置，栅格组件宽度发生变化时，其断点相应的发生改变。
 
-![component](figures/component.gif)
+![component](figures/component_example2.gif)
 
 
 ```ts

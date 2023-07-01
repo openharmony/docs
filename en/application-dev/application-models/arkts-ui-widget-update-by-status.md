@@ -1,7 +1,8 @@
 # Updating Widget Content by State
 
+There are cases where multiple copies of the same widget are added to the home screen to accommodate different needs. In these cases, the widget content needs to be dynamically updated based on the state. This topic exemplifies how this is implemented.
 
-There are cases where multiple copies of the same widget are added to the home screen to accommodate different needs. In these cases, the widget content needs to be dynamically updated based on the state. This topic exemplifies how this is implemented. In the following example, two weather widgets are added to the home screen: one for displaying the weather of London, and the other Beijing, both configured to be updated at 07:00 every morning. The widget provider detects the target city, and then displays the city-specific weather information on the widgets.
+In the following example, two copies of the weather widget are added to the home screen: one for displaying the weather of London, and the other Beijing, both configured to be updated at 07:00 every morning. The widget provider detects the target city, and then displays the city-specific weather information on the widgets.
 
 
 - Widget configuration file: Configure the widget to be updated at 07:00 every morning.
@@ -94,7 +95,7 @@ There are cases where multiple copies of the same widget are added to the home s
   import formProvider from '@ohos.app.form.formProvider';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import dataStorage from '@ohos.data.storage'
+  import dataPreferences from '@ohos.data.preferences';
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want) {
@@ -102,10 +103,10 @@ There are cases where multiple copies of the same widget are added to the home s
       let isTempCard: boolean = want.parameters[formInfo.FormParam.TEMPORARY_KEY];
       if (isTempCard === false) {// If the widget is a normal one, the widget information is persisted.
         console.info('Not temp card, init db for:' + formId);
-        let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-        storeDB.putSync('A' + formId, 'false');
-        storeDB.putSync('B' + formId, 'false');
-        storeDB.flushSync();
+        let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
+        storeDB.put('A' + formId, 'false');
+        storeDB.put('B' + formId, 'false');
+        storeDB.flush();
       }
       let formData = {};
       return formBindingData.createFormBindingData(formData);
@@ -113,24 +114,24 @@ There are cases where multiple copies of the same widget are added to the home s
   
     onRemoveForm(formId) {
       console.info('onRemoveForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.deleteSync('A' + formId);
-      storeDB.deleteSync('B' + formId);
+      let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
+      storeDB.delete('A' + formId);
+      storeDB.delete('B' + formId);
     }
   
     // If the widget is a temporary one, it is recommended that the widget information be persisted when the widget is converted to a normal one.
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.putSync('A' + formId, 'false');
-      storeDB.putSync('B' + formId, 'false');
-      storeDB.flushSync();
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
+      storeDB.put('A' + formId, 'false');
+      storeDB.put('B' + formId, 'false');
+      storeDB.flush();
     }
   
     onUpdateForm(formId) {
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      let stateA = storeDB.getSync('A' + formId, 'false').toString()
-      let stateB = storeDB.getSync('B' + formId, 'false').toString()
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
+      let stateA = storeDB.get('A' + formId, 'false').toString()
+      let stateB = storeDB.get('B' + formId, 'false').toString()
       // Update textA in state A.
       if (stateA === 'true') {
         let formInfo = formBindingData.createFormBindingData({
@@ -150,17 +151,17 @@ There are cases where multiple copies of the same widget are added to the home s
     onFormEvent(formId, message) {
       // Store the widget state.
       console.info('onFormEvent formId:' + formId + 'msg:' + message);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
       let msg = JSON.parse(message)
       if (msg.selectA != undefined) {
         console.info('onFormEvent selectA info:' + msg.selectA);
-        storeDB.putSync('A' + formId, msg.selectA);
+        storeDB.put('A' + formId, msg.selectA);
       }
       if (msg.selectB != undefined) {
         console.info('onFormEvent selectB info:' + msg.selectB);
-        storeDB.putSync('B' + formId, msg.selectB);
+        storeDB.put('B' + formId, msg.selectB);
       }
-      storeDB.flushSync();
+      storeDB.flush();
     }
   };
   ```
@@ -168,4 +169,4 @@ There are cases where multiple copies of the same widget are added to the home s
 
 > **NOTE**
 >
-> When the local database is used for widget information persistence, it is recommended that [TEMPORARY_KEY](../reference/apis/js-apis-app-form-formInfo.md#formparam) be used to determine whether the currently added widget is a normal one in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) lifecycle callback. If the widget is a normal one, the widget information is directly persisted. If the widget is a temporary one, the widget information is persisted when the widget is converted to a normal one ([onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)). In addition, the persistent widget information needs to be deleted when the widget is destroyed ([onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)), preventing the database size from continuously increasing due to repeated widget addition and deletion.
+> When the local database is used for widget information persistence, it is recommended that [TEMPORARY_KEY](../reference/apis/js-apis-app-form-formInfo.md#formparam) be used in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) lifecycle callback to determine whether the currently added widget is a normal one. If the widget is a normal one, the widget information is directly persisted. If the widget is a temporary one, the widget information is persisted when the widget is converted to a normal one ([onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)). In addition, the persistent widget information needs to be deleted when the widget is destroyed ([onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)), preventing the database size from continuously increasing due to repeated widget addition and deletion.

@@ -3592,13 +3592,15 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
 **系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
+| device   | [AudioDevice](#audiodevice10)| 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
 
 **错误码：**
@@ -3607,6 +3609,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
@@ -3641,7 +3644,13 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
+| device   | [AudioDevice](#audiodevice10)| 是   | 音频设备。 |
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
 **错误码：**
 
@@ -3664,104 +3673,6 @@ let audioDevice={
     deviceType: 1
 }
 call.setAudioDevice(audioDevice).then(() => {
-    console.log(`setAudioDevice success.`);
-}).catch((err) => {
-    console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## call.setAudioDevice<sup>9+</sup>
-
-setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback\<void\>\): void
-
-设置通话音频设备。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明           |
-| -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#audiodevice10)               | 是   | 音频设备。     |
-| options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
-| callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let audioDevice={
-    deviceType: 1
-}
-let audioDeviceOptions={
-    bluetoothAddress: "IEEE 802-2014"
-}
-call.setAudioDevice(audioDevice, audioDeviceOptions, (err) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
-});
-```
-
-
-## call.setAudioDevice<sup>9+</sup>
-
-setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<void\>
-
-设置通话音频设备。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名  | 类型                                       | 必填 | 说明               |
-| ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#audiodevice10)               | 是   | 音频设备。         |
-| options | [AudioDeviceOptions](#audiodeviceoptions9) | 否   | 音频设备参数参数。 |
-
-**返回值：**
-
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let audioDevice={
-    deviceType: 1
-}
-let audioDeviceOptions={
-    bluetoothAddress: "IEEE 802-2014"
-}
-call.setAudioDevice(audioDevice, audioDeviceOptions).then(() => {
     console.log(`setAudioDevice success.`);
 }).catch((err) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
@@ -4773,8 +4684,8 @@ IP多媒体系统调用模式。
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| deviceType <sup>10+</sup>    | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。    |
-| address <sup>10+</sup> | string          | 否   | 音频设备地址。    |
+| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。     |
+| address <sup>10+</sup>            | string                                | 否   | 音频设备地址。     |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -4802,7 +4713,7 @@ IP多媒体系统调用模式。
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice10) | 是   | 音频设备列表。    |
-| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | 是   | 音频设备类型。    |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | 是   | 当前音频设备。    |
 | isMuted <sup>10+</sup>            | boolean                               | 是   | 是否静音。        |
 
 

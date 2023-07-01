@@ -36,7 +36,6 @@ FormBindingData相关描述。
 | data | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
 | proxies<sup>10+</sup> | Array<[ProxyData](#proxydata)> | 否 | 卡片代理刷新的订阅信息，默认为空数组。|
 
-
 ## createFormBindingData
 
 createFormBindingData(obj?: Object | string): FormBindingData
@@ -76,3 +75,14 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
+
+## ProxyData
+
+定义表单代理数据。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | string | 是 | 代理的密钥。值取决于数据发布者。|
+| subscriberId | string | 否 | 订阅者ID。值取决于数据发布者。默认值为当前卡片ID。|

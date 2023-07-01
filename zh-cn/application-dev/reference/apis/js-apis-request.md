@@ -1888,11 +1888,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | conf | [Conf](#conf10) | 是 | 任务的配置信息。 |
 
 
-### on('progress'|'completed'|'failed')<sup>10+</sup>
+### on('progress')<sup>10+</sup>
 
-on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&gt; void): void
+on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-订阅任务相关的监听。
+订阅任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1900,8 +1900,8 @@ on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构|
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。|
 
 **错误码：**
 
@@ -1950,7 +1950,149 @@ on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&
   };
   request.agent.create(context, conf).then((task)=> {
     task.on('progress', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### on('completed')<sup>10+</sup>
+
+on(event: 'completed', callback: (progress: Progress) =&gt; void): void
+
+订阅任务完成的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let context;
+  let attachments = [{
+                       name: "taskOnTest",
+                       value: {
+                         filename: "taskOnTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOnTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(context, conf).then((task)=> {
     task.on('completed', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### on('failed')<sup>10+</sup>
+
+on(event: 'failed', callback: (progress: Progress) =&gt; void): void
+
+订阅任务失败的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let context;
+  let attachments = [{
+                       name: "taskOnTest",
+                       value: {
+                         filename: "taskOnTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOnTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(context, conf).then((task)=> {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
@@ -1962,11 +2104,12 @@ on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-### off('progress'|'completed'|'failed')<sup>10+</sup>
 
-off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) =&gt; void): void
+### off('progress')<sup>10+</sup>
 
-取消订阅任务相关的监听。
+off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1974,8 +2117,8 @@ off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) 
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构|
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
 
 **错误码：**
 
@@ -2024,10 +2167,152 @@ off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) 
   };
   request.agent.create(context, conf).then((task)=> {
     task.on('progress', createOffCallback);
-    task.on('completed', createOffCallback);
-    task.on('failed', createOffCallback);
     task.off('progress', createOffCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('completed')<sup>10+</sup>
+
+off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务完成的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let context;
+  let attachments = [{
+                       name: "taskOffTest",
+                       value: {
+                         filename: "taskOffTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOffTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(context, conf).then((task)=> {
+    task.on('completed', createOffCallback);
     task.off('completed', createOffCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('failed')<sup>10+</sup>
+
+off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务失败的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let context;
+  let attachments = [{
+                       name: "taskOffTest",
+                       value: {
+                         filename: "taskOffTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOffTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(context, conf).then((task)=> {
+    task.on('failed', createOffCallback);
     task.off('failed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
@@ -2053,7 +2338,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，开启任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数，开启任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2187,7 +2472,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，暂停任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数，暂停任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2564,7 +2849,7 @@ stop(): Promise&lt;void&gt;
 
 create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): void
 
-创建要上传或下载的任务，并将其排入队列，使用callback异步回调。
+创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用callback异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
@@ -2641,7 +2926,7 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
 
 create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
 
-创建要上传或下载的任务，并将其排入队列。使用Promise异步回调。
+创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用Promise异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET

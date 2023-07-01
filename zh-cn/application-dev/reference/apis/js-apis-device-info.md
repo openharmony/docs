@@ -50,7 +50,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
 | udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID|
-| distributionOSName<sup>10+</sup> | String | 是 | 否 | 分布式操作系统名称。 |
-| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 分布式操作系统版本号。 |
-| distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 分布式操作系统api版本。 |
+| distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称。 |
+| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
+| distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型。 |
