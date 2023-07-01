@@ -65,6 +65,14 @@
 
 当系统充电类型改变时，将会触发事件通知服务发布该系统公共事件。
 
+## COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED
+表示设备进入充电空闲模式的公共事件的动作。
+
+- 值： usual.event.CHARGE_IDLE_MODE_CHANGED
+- 订阅者所需权限： 无
+
+当设备处于空闲、正在充电并且温升可接受的一种状态时，将会触发事件通知服务发布该系统公共事件。
+
 ## COMMON_EVENT_SHUTDOWN
 表示设备正在关闭并将继续最终关闭的公共事件的操作。
 
