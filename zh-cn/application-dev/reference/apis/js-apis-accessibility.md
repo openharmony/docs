@@ -633,8 +633,8 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
@@ -660,8 +660,8 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
