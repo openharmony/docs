@@ -371,7 +371,7 @@ reminderAgent.addNotificationSlot(mySlot).then(() => {
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
+removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
 Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
@@ -401,7 +401,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, 
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType): Promise<void>
+removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 Removes a notification slot of a specified type. This API uses a promise to return the result.
 
