@@ -21,6 +21,32 @@ onApplicationForeground(): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+globalThis.applicationStateChangeCallback = {
+    onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+    }
+}
+
+export default class MyAbility extends UIAbility {
+    onCreate() {
+        console.log('MyAbility onCreate');
+        globalThis.applicationContext = this.context.getApplicationContext();
+        // 1.获取applicationContext
+        let applicationContext = globalThis.applicationContext;
+        // 2.通过applicationContext注册应用前后台状态监听
+        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+    }
+    onDestroy() {
+        let applicationContext = globalThis.applicationContext;
+        // 1.通过applicationContext解除注册应用前后台状态监听
+        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+    }
+}
+```
+
 ## ApplicationStateChangeCallback.onApplicationBackground
 
 onApplicationBackground(): void;
@@ -35,9 +61,6 @@ onApplicationBackground(): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 globalThis.applicationStateChangeCallback = {
-    onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
-    },
     onApplicationBackground() {
         console.info('applicationStateChangeCallback onApplicationBackground');
     }

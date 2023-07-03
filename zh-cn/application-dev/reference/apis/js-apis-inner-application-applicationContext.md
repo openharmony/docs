@@ -291,8 +291,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **
 
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | 'applicationStateChange'                                     | 是   | 监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调方法。       |
+| type     | string                                     | 是   | 监听事件类型，必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 
@@ -325,7 +325,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
 
-取消对当前应用前后台变化的监听。删除指定callback对应的注册监听。
+取消当前应用指定的前后台变化的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -333,7 +333,7 @@ off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**
 
 | 参数名   | 类型                     | 必填 | 说明                             |
 | -------- | ------------------------ | ---- | -------------------------------- |
-| type     | 'applicationStateChange' | 是   | 取消监听事件的类型。             |
+| type     | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。             |
 | callback | AsyncCallback\<void>     | 否   | 删除指定callback对应的注册监听。 |
 
 **示例：**
@@ -361,7 +361,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'applicationStateChange'): **void**;
 
-取消对当前应用前后台变化的监听。删除全部的注册监听。
+取消当前应用注册的前后台变化的全部监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -369,7 +369,7 @@ off(type: 'applicationStateChange'): **void**;
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
+| type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
 
 **示例：**
 
