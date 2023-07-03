@@ -19,7 +19,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ## DataSharePredicates
 提供用于不同实现不同查询方法的数据共享谓词。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
-### equalTo<sup>10+</sup>
+### equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
@@ -170,7 +170,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("NAME", "Rose")
 ```
 
-### and<sup>10+</sup>
+### and
 
 and(): DataSharePredicates
 
@@ -645,7 +645,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThanOrEqualTo("AGE", 50)
 ```
 
-### orderByAsc<sup>10+</sup>
+### orderByAsc
 
 orderByAsc(field: string): DataSharePredicates
 
@@ -676,7 +676,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByAsc("AGE")
 ```
 
-### orderByDesc<sup>10+</sup>
+### orderByDesc
 
 orderByDesc(field: string): DataSharePredicates
 
@@ -732,7 +732,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-### limit<sup>10+</sup>
+### limit
 
 limit(total: number, offset: number): DataSharePredicates
 
@@ -826,7 +826,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-### in<sup>10+</sup>
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
