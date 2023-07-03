@@ -162,6 +162,8 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 监听字幕配置启用状态变化事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                      |
@@ -187,6 +189,8 @@ try {
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 监听字幕风格变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -216,6 +220,8 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 取消监听字幕配置启用状态变化事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
@@ -241,6 +247,8 @@ try {
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 取消字幕风格变化监听事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -573,7 +581,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -600,7 +608,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听触摸浏览功能启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
 **参数：**
 
@@ -627,13 +635,13 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 取消监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
@@ -654,13 +662,13 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 取消监听触摸浏览启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
