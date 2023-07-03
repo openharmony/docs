@@ -364,7 +364,7 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action},  cal
 | 参数名     | 类型                                      | 必填 | 说明                 |
 | ---------- | ----------------------------------------- | ---- | -------------------- |
 | accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
+| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息 |
 | callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。           |
 
 **示例：**
@@ -405,7 +405,7 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 | 参数名     | 类型                                      | 必填 | 说明                 |
 | ---------- | ----------------------------------------- | ---- | -------------------- |
 | accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
+| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息 |
 
 **返回值：**
 
