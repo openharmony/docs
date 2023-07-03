@@ -21,6 +21,8 @@ onApplicationForeground(): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**示例：**
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
