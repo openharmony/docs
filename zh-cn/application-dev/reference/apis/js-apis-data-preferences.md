@@ -310,7 +310,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移除指定的Preferences实例，使用callback异步回调。
 
 调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
@@ -373,7 +373,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
 调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
@@ -438,7 +438,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-从内存中移除指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
 调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
@@ -485,7 +485,7 @@ class EntryAbility extends UIAbility {
 
 ## Preferences
 
-存储实例，提供获取和修改存储数据的接口。
+首选项实例，提供获取和修改存储数据的接口。
 
 下列接口都需先使用[data_preferences.getPreferences](#data_preferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
@@ -494,7 +494,7 @@ class EntryAbility extends UIAbility {
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用callback异步回调。
+从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -527,7 +527,7 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用Promise异步回调。
+从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -563,7 +563,7 @@ try {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
+从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -595,7 +595,7 @@ try {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-获取含有所有键值的Object对象。
+从缓存的Preferences实例中获取所有键值数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -603,7 +603,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为含有所有键值的Object对象；否则err为错误码。 |
+| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为所有键值数据；否则err为错误码。 |
 
 **示例：**
 
@@ -628,7 +628,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-获取含有所有键值的Object对象。
+从缓存的Preferences实例中获取所有键值数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -636,7 +636,7 @@ getAll(): Promise&lt;Object&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise对象，返回含有所有键值的Object对象。 |
+| Promise&lt;Object&gt; | Promise对象，返回含有所有键值数据。 |
 
 **示例：**
 
@@ -659,7 +659,7 @@ try {
 
 getAllSync(): Object
 
-获取含有所有键值的Object对象，此为同步接口。
+从缓存的Preferences实例中获取所有键值数据。，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -667,7 +667,7 @@ getAllSync(): Object
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Object | 返回含有所有键值的Object对象。 |
+| Object | 返回含有所有键值数据。 |
 
 **示例：**
 
@@ -686,7 +686,7 @@ try {
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-将数据写入Preferences实例，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
+将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -719,7 +719,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-将数据写入Preferences实例，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
+将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -756,7 +756,7 @@ try {
 
 putSync(key: string, value: ValueType): void
 
-将数据写入Preferences实例，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
+将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -782,7 +782,7 @@ try {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查Preferences实例是否包含名为给定Key的存储键值对，使用callback异步回调。
+检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -818,7 +818,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查Preferences实例是否包含名为给定Key的存储键值对，使用Promise异步回调。
+检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -858,7 +858,7 @@ try {
 
 hasSync(key: string): boolean
 
-检查Preferences实例是否包含名为给定Key的存储键值对，此为同步接口。
+检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -894,7 +894,7 @@ try {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-从Preferences实例中删除名为给定Key的存储键值对，使用callback异步回调。
+从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -926,7 +926,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-从Preferences实例中删除名为给定Key的存储键值对，使用Promise异步回调。
+从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -962,7 +962,7 @@ try {
 
 deleteSync(key: string): void
 
-从Preferences实例中删除名为给定Key的存储键值对，此为同步接口。
+从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -987,7 +987,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
+将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1018,7 +1018,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
+将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1048,7 +1048,7 @@ try {
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-清除此Preferences实例中的所有存储，使用callback异步回调。
+清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1079,7 +1079,7 @@ try {
 
 clear(): Promise&lt;void&gt;
 
-清除此Preferences实例中的所有存储，使用Promise异步回调。
+清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1109,7 +1109,7 @@ try {
 
 clearSync(): void
 
-清除此Preferences实例中的所有存储，此为同步接口。
+清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
