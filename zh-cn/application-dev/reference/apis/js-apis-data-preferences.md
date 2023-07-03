@@ -436,7 +436,7 @@ class EntryAbility extends UIAbility {
 
 ## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
 
-removePreferencesFromCacheSync(context: Context, name: string): void;
+removePreferencesFromCacheSync(context: Context, name: string): void
 
 从内存中移除指定的Preferences实例，此为同步接口。
 
@@ -561,7 +561,7 @@ try {
 
 ### getSync<sup>10+</sup>
 
-getSync(key: string, defValue: ValueType): ValueType;
+getSync(key: string, defValue: ValueType): ValueType
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
 
@@ -657,7 +657,7 @@ try {
 
 ### getAllSync<sup>10+</sup>
 
-getAllSync(): Object;
+getAllSync(): Object
 
 获取含有所有键值的Object对象，此为同步接口。
 
@@ -754,7 +754,7 @@ try {
 
 ### putSync<sup>10+</sup>
 
-putSync(key: string, value: ValueType): void;
+putSync(key: string, value: ValueType): void
 
 将数据写入Preferences实例，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
@@ -856,7 +856,7 @@ try {
 
 ### hasSync<sup>10+</sup>
 
-hasSync(key: string): boolean;
+hasSync(key: string): boolean
 
 检查Preferences实例是否包含名为给定Key的存储键值对，此为同步接口。
 
@@ -960,7 +960,7 @@ try {
 
 ### deleteSync<sup>10+</sup>
 
-deleteSync(key: string): void;
+deleteSync(key: string): void
 
 从Preferences实例中删除名为给定Key的存储键值对，此为同步接口。
 
@@ -1107,7 +1107,7 @@ try {
 
 ### clearSync<sup>10+</sup>
 
-clearSync(): void;
+clearSync(): void
 
 清除此Preferences实例中的所有存储，此为同步接口。
 
