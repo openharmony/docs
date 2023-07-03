@@ -84,7 +84,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config * config)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| config | 一个指向OH_NativeBuffer属性的指针，类型为OH_NativeBuffer_Config。 |
+| config | 一个指向OH_NativeBuffer_Config类型的指针。 |
 
 **返回:**
 
