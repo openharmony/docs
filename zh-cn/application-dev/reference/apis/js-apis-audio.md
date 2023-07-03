@@ -831,7 +831,7 @@ async function createTonePlayerBefore(){
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
-## VolumeAdjustType<sup>8+</sup><a name="volumeadjusttype"></a>
+## VolumeAdjustType<sup>10+</sup><a name="volumeadjusttype"></a>
 
 枚举，音频场景。
 
@@ -5494,7 +5494,7 @@ getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
-audioRenderer.getMinStreamVolume((err, minVolume)=>{
+audioRenderer.getMinStreamVolume((err, minVolume) => {
   if(err){
     console.error(`Get min stream volume Fail: ${err}`);
   }
@@ -5518,7 +5518,7 @@ getMinStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMinStreamVolume().then(minVolume=>{
+audioRenderer.getMinStreamVolume().then(minVolume => {
   console.info(`Get min stream volume Success! ${minVolume}`);
 }).catch((err) => {
   console.error(`Get min stream volume Fail: ${err}`);
@@ -5542,7 +5542,7 @@ getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
-audioRenderer.getMaxStreamVolume((err, maxVolume)=>{
+audioRenderer.getMaxStreamVolume((err, maxVolume) => {
   if(err){
     console.error(`Get max stream volume Fail: ${err}`);
   }
@@ -5566,7 +5566,7 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMaxStreamVolume().then(maxVolume=>{
+audioRenderer.getMaxStreamVolume().then(maxVolume => {
   console.info(`Get max stream volume Success! ${maxVolume}`);
 }).catch((err) => {
   console.error(`Get max stream volume Fail: ${err}`);
@@ -5590,7 +5590,7 @@ getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
-audioRenderer.getUnderflowCount((err, underflowCount)=>{
+audioRenderer.getUnderflowCount((err, underflowCount) => {
   if(err){
     console.error(`Get underflow count Fail: ${err}`);
   }
@@ -5614,7 +5614,7 @@ getUnderflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getUnderflowCount().then(underflowCount=>{
+audioRenderer.getUnderflowCount().then(underflowCount => {
   console.info(`Get underflow count Success! ${underflowCount}`);
 }).catch((err) => {
   console.error(`Get underflow count Fail: ${err}`);
@@ -5638,7 +5638,7 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 **示例：**
 
 ```js
-audioRenderer.getCurrentOutputDevices((err, deviceInfo)=>{
+audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
   if(err){
     console.error(`Get underflow count Fail: ${err}`);
   }
@@ -5669,7 +5669,7 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```js
-audioRenderer.getCurrentOutputDevices().then(deviceInfo=>{
+audioRenderer.getCurrentOutputDevices().then(deviceInfo => {
   console.info(`DeviceInfo id: ${deviceInfo.id}`);
   console.info(`DeviceInfo type: ${descriptor.deviceType}`);
   console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
