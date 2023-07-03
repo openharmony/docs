@@ -26,7 +26,7 @@ import vibrator from '@system.vibrator';
 
 **需要权限**：ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
 **参数：**
 
@@ -57,7 +57,7 @@ vibrator.vibrate({
 
 **需要权限**：ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
 | 名称     | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |

@@ -20,7 +20,7 @@ get(options: GetStorageOptions): void
 
 通过索引读取缓存中存储的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **参数：**
 
@@ -55,7 +55,7 @@ set(options: SetStorageOptions): void
 
 修改缓存中索引对应的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **参数：**
 
@@ -88,7 +88,7 @@ clear(options?: ClearStorageOptions): void
 
 清空缓存中存储的键值对。
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **参数：**
 
@@ -119,7 +119,7 @@ delete(options: DeleteStorageOptions): void
 
 删除缓存中索引对应的键值对。
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **参数：**
 
@@ -147,7 +147,7 @@ export default {
 
 ## GetStorageOptions
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | 名称     | 类型          | 必填 | 说明                     |
 | -------- | ---------------- | ---- | ------------------- |
@@ -160,7 +160,7 @@ export default {
 
 ## SetStorageOptions
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | 名称     | 类型                | 必填 | 说明                   |
 | -------- | ------------------- | ---- | -------------------- |
@@ -173,7 +173,7 @@ export default {
 
 ## ClearStorageOptions
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | 名称     | 类型             | 必填 | 说明                         |
 | -------- | --------------------- | ---- | -------------------- |
@@ -184,7 +184,7 @@ export default {
 
 ## DeleteStorageOptions
 
-**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | 名称     | 类型                 | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------ |

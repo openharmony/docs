@@ -71,7 +71,7 @@
 
 | 版本源码                              | **版本信息**  | **下载站点**                                                 | **SHA256校验码**                                             |
 | ------------------------------------- | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 全量代码（标准、轻量和小型系统）      | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz.sha256) |
+| 全量代码（标准、轻量和小型系统）      | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release_20230628.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz_20230628.sha256) |
 | Hi3861解决方案（二进制）              | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz.sha256) |
 | Hi3516解决方案-LiteOS（二进制）       | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz.sha256) |
 | Hi3516解决方案-Linux（二进制）        | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz.sha256) |
