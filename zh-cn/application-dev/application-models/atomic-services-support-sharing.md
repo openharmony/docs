@@ -15,7 +15,7 @@
    }
    ```
 
-2. 系统弹框调用[abilityManager.acquireShareData()](../reference/apis/js-apis-app-ability-abilityManager.md#acquiresharedata)接口发起原子化服务共享，根据missionId找到对应的UIAbiltiy，调用其OnShare生命周期，收到共享数据。
+2. 系统弹框调用[abilityManager.acquireShareData()](../reference/apis/js-apis-app-ability-abilityManager.md#acquiresharedata)接口发起原子化服务共享，根据missionId找到对应的UIAbility，调用其OnShare生命周期，收到共享数据。
 
    ```ts
    import abilityManager from '@ohos.app.ability.abilityManager';
