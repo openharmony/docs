@@ -381,6 +381,7 @@ Creates and returns an **XmlPullParser** object.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
     '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
@@ -432,6 +433,7 @@ Parses XML information.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -499,6 +501,7 @@ Obtains the column line number, starting from 1.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -542,6 +545,7 @@ Obtains the depth of this element.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -588,6 +592,7 @@ Obtains the current line number, starting from 1.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -631,6 +636,7 @@ Obtains the name of this element.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -673,6 +679,7 @@ Obtains the namespace of this element.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -715,6 +722,7 @@ Obtains the prefix of this element.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -758,6 +766,7 @@ Obtains the text of the current event.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -800,6 +809,7 @@ Checks whether the current element is empty.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -842,6 +852,7 @@ Checks whether the current text event contains only whitespace characters.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -883,6 +894,7 @@ Obtains the number of attributes for the current start tag.
 **Example**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +

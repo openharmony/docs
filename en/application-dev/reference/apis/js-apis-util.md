@@ -586,7 +586,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
-encodeIntoUint8Array(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
 Stores the UTF-8 encoded text.
 
@@ -617,7 +617,7 @@ result = that.encodeIntoUint8Array('abcd', dest)
 
 ### encodeInto<sup>(deprecated)</sup>
 
-encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 Stores the UTF-8 encoded text.
 
@@ -1100,7 +1100,7 @@ A constructor used to create a **LruCache** instance. The default capacity of th
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the **LruCache** to create.|
+| capacity | number | No  | Capacity of the **LruCache** to create. The default value is **64**.|
 
 **Example**
 
@@ -3400,7 +3400,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| capacity | number | No| Capacity of the **LruBuffer** to create.|
+| capacity | number | No| Capacity of the **LruBuffer** to create. The default value is **64**.|
 
 **Example**
 
