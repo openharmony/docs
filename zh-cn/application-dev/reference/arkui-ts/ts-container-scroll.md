@@ -35,6 +35,7 @@ Scroll(scroller?: Scroller)
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
+| enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
@@ -131,7 +132,7 @@ currentOffset(): { xOffset: number, yOffset: number }
 
 ### scrollToIndex
 
-scrollToIndex(value: number, smooth?:boolean): void
+scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 
 滑动到指定Index。
 
@@ -148,6 +149,7 @@ scrollToIndex(value: number, smooth?:boolean): void
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value                 | number   | 是   | 要滑动到的列表项在列表中的索引值。                           |
 | smooth<sup>10+ </sup> | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign枚举说明)  | 否   | 指定滑动到的列表项与List的对齐方式。<br/>默认值：ScrollAlign.START。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
 
 ### scrollBy<sup>9+</sup>
 
@@ -168,6 +170,14 @@ scrollBy(dx: Length, dy: Length): void
 | dx | Length | 是    | 水平方向滚动距离，不支持百分比形式。 |
 | dy | Length | 是    | 竖直方向滚动距离，不支持百分比形式。 |
 
+## ScrollAlign枚举说明<sup>10+ </sup>
+
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| START   | 首部对齐。指定item首部与List首部对齐。  |
+| CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
+| END  | 尾部对齐。指定item尾部与List尾部对齐。 |
+| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
 ## 示例
 ### 示例1

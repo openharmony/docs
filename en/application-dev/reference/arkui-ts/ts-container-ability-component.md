@@ -29,9 +29,9 @@ AbilityComponent(want: Want)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | Yes| Description of the default ability to load.|
+| Name | Type                                    | Mandatory  | Description           |
+| ---- | ---------------------------------------- | ---- | --------------- |
+| want | [Want](../apis/js-apis-app-ability-want.md) | Yes   | Description of the default ability to load.|
 
 
 ## Events
@@ -74,5 +74,3 @@ struct MyComponent {
   }
 }
 ```
-
- <!--no_check--> 

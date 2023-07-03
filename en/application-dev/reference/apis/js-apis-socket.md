@@ -479,12 +479,12 @@ Enables listening for message receiving events of the UDPSocket connection. This
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 udp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -513,12 +513,12 @@ Disables listening for message receiving events of the UDPSocket connection. Thi
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -681,10 +681,10 @@ Defines other properties of the UDPSocket connection.
 | Name           | Type   | Mandatory| Description                            |
 | ----------------- | ------- | ---- | -------------------------------- |
 | broadcast         | boolean | No  | Whether to send broadcast messages. The default value is **false**. |
-| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.  |
-| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.  |
+| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.  |
+| sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.  |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
-| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.|
+| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms. The default value is **0**.|
 
 ## SocketStateBase<sup>7+</sup>
 
@@ -1365,12 +1365,12 @@ Enables listening for message receiving events of the TCPSocket connection. This
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 tcp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1399,12 +1399,12 @@ Disables listening for message receiving events of the TCPSocket connection. Thi
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1569,10 +1569,10 @@ Defines other properties of the TCPSocket connection.
 | OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
 | TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCPSocket connection. The default value is **false**.                      |
 | socketLinger      | Object  | Yes  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
-| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.                              |
-| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.                              |
+| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.                              |
+| sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
-| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.                            |
+| socketTimeout     | number  | No  | Timeout duration of the TCPSocket connection, in ms. The default value is **0**.                            |
 
 ## Description of TCP Error Codes
 
@@ -1888,12 +1888,12 @@ Subscribes to **message** events of the TLSSocket connection. This API uses an a
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 tls.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1922,12 +1922,12 @@ Unsubscribes from **message** events of the TLSSocket connection. This API uses 
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -2739,6 +2739,7 @@ Closes a TLSSocket connection. This API uses an asynchronous callback to return 
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2774,6 +2775,7 @@ Closes a TLSSocket connection. This API uses a promise to return the result.
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2799,7 +2801,7 @@ Defines TLS connection options.
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
-| ALPNProtocols  | Array\<string\>                         | No| Application Layer Protocol Negotiation (ALPN) protocols.     |
+| ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -2813,10 +2815,10 @@ Defines TLS security options. The CA certificate is mandatory, and other paramet
 | cert                  | string                                                  | No| Digital certificate of the local client.                |
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
 | password                | string                                                  | No| Password for reading the private key.                     |
-| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version.                 |
-| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.         |
-| signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication.              |
-| cipherSuite           | string                                                 | No| Cipher suite used during communication.              |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version. The default value is **TLSv1.2**.                 |
+| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.       |
+| signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication. The default value is **""**.             |
+| cipherSuite           | string                                                 | No| Cipher suite used during communication. The default value is **""**.             |
 
 ## Protocol<sup>9+</sup>
 

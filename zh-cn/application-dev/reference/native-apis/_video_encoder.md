@@ -3,56 +3,61 @@
 
 ## 概述
 
-VideoEncoder模块提供用于视频编码功能的函数和枚举。该模块在部分设备上可能不支持，可以通过[CanIUse](../syscap.md)接口确认。
+VideoEncoder模块提供用于视频编码功能的函数。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+\@syscap SystemCapability.Multimedia.Avcodec.VideoEncoder
 
 **起始版本：**
+
 9
+
 
 ## 汇总
 
 
 ### 文件
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
 | [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md) | 声明用于视频编码的Native API。<br>引用文件：<multimedia/player_framework/native_avcodec_videoencoder.h>  | 
 
 
 ### 类型定义
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | 视频编码的比特率模式。  | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | 视频编码器的比特率模式。 | 
 
 
 ### 枚举
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { **CBR** = 0, **VBR** = 1, **CQ** = 2 } | 视频编码的比特率模式。  | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { **CBR** = 0, **VBR** = 1, **CQ** = 2 } | 视频编码器的比特率模式。 | 
 
 
 ### 函数
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncoder_CreateByMime](#oh_videoencoder_createbymime) (const char \*mime) | 通过mime类型创建一个视频编码器实例，大多数情况下推荐使用该接口。  | 
-| [OH_VideoEncoder_CreateByName](#oh_videoencoder_createbyname) (const char \*name) | 通过视频编码器名称创建一个视频编码器实例，使用这个接口的前提是必须清楚编码器准确的名称。  | 
-| [OH_VideoEncoder_Destroy](#oh_videoencoder_destroy) (OH_AVCodec \*codec) | 清空编码器内部资源，并销毁编码器实例。  | 
-| [OH_VideoEncoder_SetCallback](#oh_videoencoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，使得你的应用能够响应视频编码器产生的事件，该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoEncoder_Configure](#oh_videoencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频编码器，典型地，需要配置被编码视频轨道的描述信息，该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoEncoder_Prepare](#oh_videoencoder_prepare) (OH_AVCodec \*codec) | 准备编码器内部资源，调用该接口前必须先调用Configure接口。  | 
-| [OH_VideoEncoder_Start](#oh_videoencoder_start) (OH_AVCodec \*codec) | 启动编码器，该接口必须在已经Prepare成功后调用。 在启动成功后，编码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。  | 
-| [OH_VideoEncoder_Stop](#oh_videoencoder_stop) (OH_AVCodec \*codec) | 停止编码器。在停止后可通过Start重新进入Started状态。  | 
-| [OH_VideoEncoder_Flush](#oh_videoencoder_flush) (OH_AVCodec \*codec) | 清空编码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。  | 
-| [OH_VideoEncoder_Reset](#oh_videoencoder_reset) (OH_AVCodec \*codec) | 重置编码器。如需继续编码工作，需要重新调用Configure接口以配置该编码器实例。  | 
-| [OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取该编码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例的生命周期 将会再下一次调用该接口时或者该OH_AVCodec实例被销毁时失效。  | 
-| [OH_VideoEncoder_SetParameter](#oh_videoencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 向编码器设置动态参数，注意：该接口仅能在编码器被启动后调用，同时错误的参数设置，可能会导致编码失败。  | 
-| [OH_VideoEncoder_GetSurface](#oh_videoencoder_getsurface) (OH_AVCodec \*codec, OHNativeWindow \*\*window) | 从视频编码器获取输入Surface， 该接口被调用必须是在Prepare被调用前。  | 
-| [OH_VideoEncoder_FreeOutputData](#oh_videoencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理结束的输出Buffer交还给编码器。  | 
-| [OH_VideoEncoder_NotifyEndOfStream](#oh_videoencoder_notifyendofstream) (OH_AVCodec \*codec) | 通知视频编码器输入码流已结束。surface模式推荐使用该接口通知编码器码流结束。  | 
+| \*[OH_VideoEncoder_CreateByMime](#oh_videoencoder_createbymime) (const char \*mime) | 多数情况下，推荐从MIME类型创建视频编码器实例。 | 
+| \*[OH_VideoEncoder_CreateByName](#oh_videoencoder_createbyname) (const char \*name) | 通过视频编码器名称创建一个视频编码器实例。使用此接口的前提是知道编码器的确切名称。 | 
+| [OH_VideoEncoder_Destroy](#oh_videoencoder_destroy) (OH_AVCodec \*codec) | 清除编码器的内部资源并销毁编码器实例。 | 
+| [OH_VideoEncoder_SetCallback](#oh_videoencoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，以便您的应用程序能够响应视频编码器事件。 | 
+| [OH_VideoEncoder_Configure](#oh_videoencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频编码器，通常需要配置要编码的视频轨的描述信息。 | 
+| [OH_VideoEncoder_Prepare](#oh_videoencoder_prepare) (OH_AVCodec \*codec) | 若要准备编码器的内部资源，必须先调用Configure接口，再调用此接口。 | 
+| [OH_VideoEncoder_Start](#oh_videoencoder_start) (OH_AVCodec \*codec) | 启动编码器, 这个接口必须要在Prepare接口执行成功后调用。 | 
+| [OH_VideoEncoder_Stop](#oh_videoencoder_stop) (OH_AVCodec \*codec) | 停止编码器。 | 
+| [OH_VideoEncoder_Flush](#oh_videoencoder_flush) (OH_AVCodec \*codec) | 清除编码器中缓冲的输入和输出数据。 | 
+| [OH_VideoEncoder_Reset](#oh_videoencoder_reset) (OH_AVCodec \*codec) | 重置编码器。 | 
+| \*[OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取编码器输出数据的描述信息，详细信息请参阅 **OH_AVFormat**。 | 
+| [OH_VideoEncoder_SetParameter](#oh_videoencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 为编码器设置动态参数。 | 
+| [OH_VideoEncoder_GetSurface](#oh_videoencoder_getsurface) (OH_AVCodec \*codec, OHNativeWindow \*\*window) | 从视频编码器获取输入Surface，必须在调用Prepare之前调用此接口。 | 
+| [OH_VideoEncoder_FreeOutputData](#oh_videoencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
+| [OH_VideoEncoder_NotifyEndOfStream](#oh_videoencoder_notifyendofstream) (OH_AVCodec \*codec) | 通知视频编码器输入流已结束。建议使用此接口进行通知。 | 
+| [OH_VideoEncoder_PushInputData](#oh_videoencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | 将填入数据的输入缓冲区提交给视频编码器。 | 
+| \*[OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | 获取视频编码器接收的描述信息，调用Configure后调用此接口，请参阅 **OH_AVFormat** 获取详细信息。 | 
+| [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。 | 
 
 
 ## 类型定义说明
@@ -64,10 +69,16 @@ VideoEncoder模块提供用于视频编码功能的函数和枚举。该模块�
 ```
 typedef enum OH_VideoEncodeBitrateModeOH_VideoEncodeBitrateMode
 ```
-**描述:**
-视频编码的比特率模式。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
+
+视频编码器的比特率模式。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：**
+
+9
 
 
 ## 枚举类型说明
@@ -79,16 +90,22 @@ typedef enum OH_VideoEncodeBitrateModeOH_VideoEncodeBitrateMode
 ```
 enum OH_VideoEncodeBitrateMode
 ```
-**描述:**
-视频编码的比特率模式。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-  | 枚举值 | 描述 | 
+视频编码器的比特率模式。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：**
+
+9
+
+| 枚举值 | 描述 |
 | -------- | -------- |
-| CBR  | 恒定比特率模式 | 
-| VBR  | 可变比特率模式 | 
-| CQ  | 恒定质量模式 | 
+| CBR | 恒定比特率模式。 | 
+| VBR | 可变比特率模式。 | 
+| CQ | 恒定质量模式。 | 
 
 
 ## 函数说明
@@ -100,23 +117,29 @@ enum OH_VideoEncodeBitrateMode
 ```
 OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**描述:**
-配置视频编码器，典型地，需要配置被编码视频轨道的描述信息，该接口被调用必须是在Prepare被调用前。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+配置视频编码器，通常需要配置要编码的视频轨的描述信息。
 
-  | 名称 | 描述 | 
+必须在调用Prepare之前，调用此接口。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| format | 指向OH_AVFormat的指针，用以给出待编码视频轨道的描述信息  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| format | 指向OH_AVFormat的指针，用于给出要编码的视频轨的描述。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_CreateByMime()
@@ -125,20 +148,26 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format
 ```
 OH_AVCodec* OH_VideoEncoder_CreateByMime (const char * mime)
 ```
-**描述:**
-通过mime类型创建一个视频编码器实例，大多数情况下推荐使用该接口。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+多数情况下，推荐从MIME类型创建视频编码器实例。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| mime | mime类型描述字符串，参考[OH_AVCODEC_MIMETYPE_VIDEO_AVC](_codec_base.md#oh_avcodec_mimetype_video_avc) | 
+| mime | MIME类型描述字符串，请参阅 **AVCODEC_MIME_TYPE**。 | 
 
-**返回:**
+**返回：**
 
-返回一个指向OH_AVCodec实例的指针
+返回一个指向OH_AVCodec实例的指针, 需要调用OH_VideoEncoder_Destroy销毁。
+
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_CreateByName()
@@ -147,20 +176,26 @@ OH_AVCodec* OH_VideoEncoder_CreateByMime (const char * mime)
 ```
 OH_AVCodec* OH_VideoEncoder_CreateByName (const char * name)
 ```
-**描述:**
-通过视频编码器名称创建一个视频编码器实例，使用这个接口的前提是必须清楚编码器准确的名称。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+通过视频编码器名称创建一个视频编码器实例。使用此接口的前提是知道编码器的确切名称。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| name | 视频编码器名称  | 
+| name | 视频编码器名称。 | 
 
-**返回:**
+**返回：**
 
-返回一个指向OH_AVCodec实例的指针
+返回指向OH_AVCodec实例的指针。
+
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_Destroy()
@@ -169,22 +204,26 @@ OH_AVCodec* OH_VideoEncoder_CreateByName (const char * name)
 ```
 OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec * codec)
 ```
-**描述:**
-清空编码器内部资源，并销毁编码器实例。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+清除编码器的内部资源并销毁编码器实例。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_Flush()
@@ -193,22 +232,28 @@ OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec * codec)
 ```
-**描述:**
-清空编码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+清除编码器中缓冲的输入和输出数据。
 
-  | 名称 | 描述 | 
+调用此接口后，之前通过异步回调函数报告的索引将无效，请确保不要访问与这些索引相对应的缓冲区。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_FreeOutputData()
@@ -217,23 +262,57 @@ OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
 ```
-**描述:**
-将处理结束的输出Buffer交还给编码器。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+将处理后的输出缓冲区返回给编码器。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| index | 输出Buffer对应的索引值  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输出缓冲区对应的索引值。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
+
+
+### OH_VideoEncoder_GetInputDescription()
+
+  
+```
+OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec * codec)
+```
+
+**描述：**
+
+获取视频编码器接收的描述信息，调用Configure后调用此接口，请参阅 **OH_AVFormat** 获取详细信息。
+
+应该注意的是，返回指针所指向的OH_AVFormat实例的生命周期需要由调用者手动释放。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+
+**返回：**
+
+返回指向OH_AVFormat实例的指针。
+
+**起始版本：**
+
+10
 
 
 ### OH_VideoEncoder_GetOutputDescription()
@@ -242,20 +321,28 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index 
 ```
 OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec * codec)
 ```
-**描述:**
-获取该编码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例的生命周期 将会再下一次调用该接口时或者该OH_AVCodec实例被销毁时失效。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+获取编码器输出数据的描述信息，详细信息请参阅 **OH_AVFormat**。
 
-  | 名称 | 描述 | 
+需要注意的是，返回值指针指向的OH_AVFormat实例的生命周期需要由调用者手动释放。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-返回AVFormat实例的指针
+返回指向OH_AVFormat实例的指针。
+
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_GetSurface()
@@ -264,23 +351,58 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec * codec, OHNativeWindow ** window )
 ```
-**描述:**
-从视频编码器获取输入Surface， 该接口被调用必须是在Prepare被调用前。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+从视频编码器获取输入Surface，必须在调用Prepare之前调用此接口。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| window | 指向一个OHNativeWindow实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| window | 指向OHNativeWindow实例的指针, 参考 **OHNativeWindow**。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
+
+
+### OH_VideoEncoder_IsValid()
+
+  
+```
+OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
+```
+
+**描述：**
+
+检查当前编解码器实例是否有效。
+
+它可以用于故障恢复或应用程序的后台切换。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| isValid | 指向布尔实例的指针，true: 编码器实例有效，false: 编码器实例无效。 | 
+
+**返回：**
+
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+**起始版本：**
+
+10
 
 
 ### OH_VideoEncoder_NotifyEndOfStream()
@@ -289,22 +411,28 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec * codec, OHNativeWindow ** w
 ```
 OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec * codec)
 ```
-**描述:**
-通知视频编码器输入码流已结束。surface模式推荐使用该接口通知编码器码流结束。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+通知视频编码器输入流已结束。建议使用此接口进行通知。
 
-  | 名称 | 描述 | 
+编码器surface模式下，输入流的结束通知。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_Prepare()
@@ -313,22 +441,56 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec * codec)
 ```
-**描述:**
-准备编码器内部资源，调用该接口前必须先调用Configure接口。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+若要准备编码器的内部资源，必须先调用Configure接口，再调用此接口。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
+
+
+### OH_VideoEncoder_PushInputData()
+
+  
+```
+OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+```
+
+**描述：**
+
+将填入数据的输入缓冲区提交给视频编码器。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输入缓冲区对应的索引值。 | 
+| attr | 缓冲区中包含数据的描述信息。 | 
+
+**返回：**
+
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+**起始版本：**
+
+10
 
 
 ### OH_VideoEncoder_Reset()
@@ -337,22 +499,26 @@ OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec * codec)
 ```
-**描述:**
-重置编码器。如需继续编码工作，需要重新调用Configure接口以配置该编码器实例。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+重置编码器。要继续编码，您需要再次调用Configure接口配置编码器实例。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_SetCallback()
@@ -361,24 +527,30 @@ OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
-**描述:**
-设置异步回调函数，使得你的应用能够响应视频编码器产生的事件，该接口被调用必须是在Prepare被调用前。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+设置异步回调函数，以便您的应用程序能够响应视频编码器事件。
 
-  | 名称 | 描述 | 
+必须在调用Prepare之前，调用此接口。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| callback | 一个包含所有回调函数的集合体，参考[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | 
-| userData | 用户特定数据  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| callback | 所有回调函数的集合，请参阅 **OH_AVCodecAsyncCallback**。 | 
+| userData | 用户的特定数据。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_SetParameter()
@@ -387,23 +559,29 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCal
 ```
 OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**描述:**
-向编码器设置动态参数，注意：该接口仅能在编码器被启动后调用，同时错误的参数设置，可能会导致编码失败。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+为编码器设置动态参数。
 
-  | 名称 | 描述 | 
+注意，此接口只有在编码器启动后才能调用。 同时，不正确的参数设置可能会导致编码失败。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| format | OH_AVFormat句柄指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| format | OH_AVFormat句柄指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_Start()
@@ -412,22 +590,28 @@ OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * for
 ```
 OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec * codec)
 ```
-**描述:**
-启动编码器，该接口必须在已经Prepare成功后调用。 在启动成功后，编码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+启动编码器, 这个接口必须要在Prepare接口执行成功后调用。
 
-  | 名称 | 描述 | 
+在成功启动编码器之后，编码器将开始报告NeedInputData事件。
+
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_VideoEncoder_Stop()
@@ -436,19 +620,23 @@ OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec * codec)
 ```
 OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec * codec)
 ```
-**描述:**
-停止编码器。在停止后可通过Start重新进入Started状态。
 
-@syscap SystemCapability.Multimedia.Media.VideoEncoder
+**描述：**
 
-**参数:**
+停止编码器。停止之后，你可以通过Start接口进入Started状态。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.VideoEncoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，返回AV_ERR_OK 否则，返回特定的错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9

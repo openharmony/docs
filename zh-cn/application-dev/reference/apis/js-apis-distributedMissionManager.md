@@ -475,6 +475,171 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
   }
   ```
 
+## distributedMissionManager.continueMission<sup>10+</sup>
+
+continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&gt;): void;
+
+通过指定包名的方式进行迁移任务，使用callback异步回调。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明    |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 迁移任务完成回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+| 16300507 | Failed to get the missionInfo of the specified bundle name. |
+
+**示例：**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      bundleName: "ohos.test.continueapp",
+      wantParam: {"key": "value"}
+  };
+  try {
+      distributedMissionManager.continueMission(parameter, (error) => {
+          if (error.code != 0) {
+              console.error('continueMission failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('continueMission finished')
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.continueMission<sup>10+</sup>
+
+continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
+
+通过指定包名的方式进行迁移任务，使用Promise异步回调。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明    |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+| 16300507 | Failed to get the missionInfo of the specified bundle name. |
+
+**示例：**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      bundleName: "ohos.test.continueapp",
+      wantParam: {"key": "value"}
+  };
+  try {
+      distributedMissionManager.continueMission(parameter)
+      .then(data => {
+          console.info('continueMission finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.on('continueStateChange')<sup>10+</sup>
+
+on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+
+注册当前应用任务流转状态的监听。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+| 参数名       | 类型                                       | 必填   | 说明       |
+| --------- | ---------------------------------------- | ---- | -------- |
+| type | string  | 是    | 注册当前应用任务流转的状态监听，取值为continueStateChange    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 指示要注册的应用任务流转状态监听的回调，返回应用任务流转状态和流转信息。      |
+
+**示例：**
+
+```js
+  try {
+    distributedMissionManager.on('continueStateChange', (data) => {
+      console.info("continueStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
+
+off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+
+取消当前应用任务流转的状态监听。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+| 参数名       | 类型                                       | 必填   | 说明       |
+| --------- | ---------------------------------------- | ---- | -------- |
+| type | string  | 是    | 取消当前应用任务流转的状态监听，取值为continueStateChange    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 指示要取消的应用任务流转状态监听的回调。      |
+
+**示例：**
+
+```js
+  try {
+    distributedMissionManager.off('continueStateChange', (data) => {
+      console.info("continueStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ## MissionCallback
 
 表示开始同步后，建立的回调函数。
@@ -514,3 +679,14 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | 是    | 是    | 表示设备ID。 |
+
+## ContinueState<sup>10+</sup>
+
+ContinueState说明枚举，表示当前应用任务流转的状态。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+| 名称           | 值       | 说明                                                         |
+| ------------- | --------- | ------------------------------------------------------------ |
+| ACTIVE        | 0         | 表示当前应用任务流转处于激活状态。                              |
+| INACTIVE      | 1         | 表示当前应用任务流转处于未激活状态。                            |

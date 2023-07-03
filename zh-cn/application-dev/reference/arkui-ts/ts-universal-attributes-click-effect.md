@@ -9,16 +9,16 @@
 
 ### 属性
 
-| 名称        | 参数类型            | 描述                                                         |
-| ----------- | ------------------- | ------------------------------------------------------------ |
-| clickEffect | [ClickEffect](#clickeffect对象说明) \| null | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过null取消点击回弹效果。 |
+| 名称        | 参数类型                                    | 描述                                                         |
+| ----------- | ------------------------------------------- | ------------------------------------------------------------ |
+| clickEffect | [ClickEffect](#clickeffect对象说明) \| null | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
 
 ### ClickEffect对象说明
 
 | 名称  | 参数类型                                                    | 必填 | 描述                                                         |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | 是   | 设置当前组件点击回弹效果。<br/>默认值：ClickEffectLevel.LIGHT |
-| scale | number                                                      | 否   | 回弹缩放比例，支持在设置ClickEffectLevel的基础上微调回弹缩放比例。<br/>**说明：**<br/>level等于ClickEffectLevel.LIGHT时，默认值：0.90<br/>level等于ClickEffectLevel.MIDDLE或者ClickEffectLevel.HEAVY时，默认值：0.95 |
+| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>level等于undefined或者null时， ClickEffect采用ClickEffectLevel.LIGHT对应的回弹效果, 缩放比参照scale说明。 |
+| scale | number                                                      | 否   | 回弹缩放比例，支持在设置ClickEffectLevel的基础上微调回弹缩放比例。<br/>**说明：**<br/>level等于ClickEffectLevel.LIGHT时，默认值：0.90<br/>level等于ClickEffectLevel.MIDDLE或者ClickEffectLevel.HEAVY时，默认值：0.95<br/>level等于undefined或者null时，level为ClickEffectLevel.LIGHT，默认值：0.90<br/>scale等于undefined或者null时，scale与当前设置的level对应的默认缩放比相同。<br/> |
 
 ### 示例
 

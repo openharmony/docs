@@ -3,41 +3,114 @@
 
 ## 概述
 
-AudioDecoder模块提供用于音频解码功能的函数。该模块在部分设备上可能不支持，可以通过[CanIUse](../syscap.md)接口确认。
+AudioDecoder模块提供用于音频解码的函数。该模块在部分设备上可能不支持，可以通过[CanIUse](../syscap.md)接口确认。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **起始版本：**
+
 9
+
 
 ## 汇总
 
 
 ### 文件
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md) | 声明用于音频解码的Native API。<br>引用文件：<multimedia/player_framework/native_avcodec_audiodecoder.h>  |
+| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md) | 声明用于音频解码的Native API。<br>引用文件：<multimedia/player_framework/native_avcodec_audiodecoder.h> | 
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。<br>引用文件：<multimedia/avcodec_audio_channel_layout.h> | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OHOS::Media::AudioChannelSet](#audiochannelset) : uint64_t {<br/>**FRONT_LEFT** = 1ULL &lt;&lt; 0U, **FRONT_RIGHT** = 1ULL &lt;&lt; 1U, **FRONT_CENTER** = 1ULL &lt;&lt; 2U, **LOW_FREQUENCY** = 1ULL &lt;&lt; 3U,<br/>**BACK_LEFT** = 1ULL &lt;&lt; 4U, **BACK_RIGHT** = 1ULL &lt;&lt; 5U, **FRONT_LEFT_OF_CENTER** = 1ULL &lt;&lt; 6U, **FRONT_RIGHT_OF_CENTER** = 1ULL &lt;&lt; 7U,<br/>**BACK_CENTER** = 1ULL &lt;&lt; 8U, **SIDE_LEFT** = 1ULL &lt;&lt; 9U, **SIDE_RIGHT** = 1ULL &lt;&lt; 10U, **TOP_CENTER** = 1ULL &lt;&lt; 11U,<br/>**TOP_FRONT_LEFT** = 1ULL &lt;&lt; 12U, **TOP_FRONT_CENTER** = 1ULL &lt;&lt; 13U, **TOP_FRONT_RIGHT** = 1ULL &lt;&lt; 14U, **TOP_BACK_LEFT** = 1ULL &lt;&lt; 15U,<br/>**TOP_BACK_CENTER** = 1ULL &lt;&lt; 16U, **TOP_BACK_RIGHT** = 1ULL &lt;&lt; 17U, **STEREO_LEFT** = 1ULL &lt;&lt; 29U, **STEREO_RIGHT** = 1ULL &lt;&lt; 30U,<br/>**WIDE_LEFT** = 1ULL &lt;&lt; 31U, **WIDE_RIGHT** = 1ULL &lt;&lt; 32U, **SURROUND_DIRECT_LEFT** = 1ULL &lt;&lt; 33U, **SURROUND_DIRECT_RIGHT** = 1ULL &lt;&lt; 34U,<br/>**LOW_FREQUENCY_2** = 1ULL &lt;&lt; 35U, **TOP_SIDE_LEFT** = 1ULL &lt;&lt; 36U, **TOP_SIDE_RIGHT** = 1ULL &lt;&lt; 37U, **BOTTOM_FRONT_CENTER** = 1ULL &lt;&lt; 38U,<br/>**BOTTOM_FRONT_LEFT** = 1ULL &lt;&lt; 39U, **BOTTOM_FRONT_RIGHT** = 1ULL &lt;&lt; 40U, **AMBISONICS_ACN0** = 1ULL &lt;&lt; 41U, OHOS::Media::AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br/>OHOS::Media::AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U, OHOS::Media::AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U, OHOS::Media::AMBISONICS_W = AMBISONICS_ACN0, OHOS::Media::AMBISONICS_Y = AMBISONICS_ACN1,<br/>OHOS::Media::AMBISONICS_Z = AMBISONICS_ACN2, OHOS::Media::AMBISONICS_X = AMBISONICS_ACN3, OHOS::Media::AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U, OHOS::Media::AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br/>OHOS::Media::AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U, OHOS::Media::AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U, OHOS::Media::AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U, OHOS::Media::AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br/>OHOS::Media::AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U, OHOS::Media::AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U, OHOS::Media::AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U, OHOS::Media::AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br/>OHOS::Media::AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U, OHOS::Media::AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br/>} | 音频声道数集合， 将每一个声道数映射为int64的变量。 | 
+| [OHOS::Media::AudioChannelLayout](#audiochannellayout) : uint64_t {<br/>**UNKNOWN_CHANNEL_LAYOUT** = 0, **MONO** = (AudioChannelSet::FRONT_CENTER), **STEREO** = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT), **CH_2POINT1** = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br/>**CH_2_1** = (STEREO \| AudioChannelSet::BACK_CENTER), **SURROUND** = (STEREO \| AudioChannelSet::FRONT_CENTER), **CH_3POINT1** = (SURROUND \| AudioChannelSet::LOW_FREQUENCY), **CH_4POINT0** = (SURROUND \| AudioChannelSet::BACK_CENTER),<br/>**CH_4POINT1** = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_2_2** = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT), **QUAD** = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT0** = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>**CH_5POINT1** = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_5POINT0_BACK** = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT1_BACK** = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY), **CH_6POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br/>**CH_6POINT0_FRONT** = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **HEXAGONAL** = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER), **CH_6POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER), **CH_6POINT1_BACK** = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br/>**CH_6POINT1_FRONT** = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY), **CH_7POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_7POINT0_FRONT** = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>**CH_7POINT1_WIDE** = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1_WIDE_BACK**, **CH_3POINT1POINT2** = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT), **CH_5POINT1POINT2** = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>**CH_5POINT1POINT4**, **CH_7POINT1POINT2** = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_7POINT1POINT4**, **CH_9POINT1POINT4** = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br/>**CH_9POINT1POINT6** = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_10POINT2**, **CH_22POINT2**, **OCTAGONAL** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br/>**HEXADECAGONAL**, **STEREO_DOWNMIX** = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT), **HOA_FIRST**, **HOA_SECOND**,<br/>**HOA_THIRD**<br/>} | 音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。 | 
 
 
 ### 函数
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime) | 通过mime类型创建一个音频解码器实例，大多数情况下推荐使用该接口。  | 
-| [OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name) | 通过音频解码器名称创建一个音频解码器实例，使用这个接口的前提是必须清楚解码器准确的名称。  | 
-| [OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec) | 清空解码器内部资源，并销毁解码器实例  | 
-| [OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，使得你的应用能够响应音频解码器产生的事件，该接口被调用必须是在Prepare被调用前。  | 
-| [OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置音频解码器，典型地，需要配置被解码音频轨道的描述信息，这些信息能够从容器中提取出来， 该接口被调用必须是在Prepare被调用前。  | 
-| [OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec) | 准备解码器内部资源，调用该接口前必须先调用Configure接口。  | 
-| [OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec) | 启动解码器，该接口必须在已经Prepare成功后调用。 在启动成功后，解码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。  | 
-| [OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec) | 停止解码器。在停止后可通过Start重新进入Started状态，但需要注意的是，若先前给解码器输入过 Codec-Specific-Data，则需要重新输入。  | 
-| [OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec) | 清空解码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。  | 
-| [OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec) | 重置解码器。如需继续解码工作，需要重新调用Configure接口以配置该解码器实例。  | 
-| [OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec) | 获取该解码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例需调用者手动释放。  | 
-| [OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 向解码器设置动态参数，注意：该接口仅能在解码器被启动后调用，同时错误的参数设置，可能会导致解码失败。  | 
-| [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充好数据的输入Buffer提交给音频解码器。[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调会报告可用的输入 Buffer及对应的索引值。一旦指定索引的Buffer被提交给解码器，直到再一次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) 回调报告相同索引的Buffer可用前，该Buffer都不可以再次被访问。另外，对于部分解码器，要求在最开始给解码器输入 Codec-Specific-Data，用以初始化解码器的解码过程。  | 
-| [OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理结束的输出Buffer交还给解码器。  | 
+| \*[OHOS::Media::OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime) | 根据MIME类型创建音频解码器实例，大多数场景下建议使用此方式。 | 
+| \*[OHOS::Media::OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name) | 通过音频解码器名称创建音频解码器实例，使用此接口的前提是知道解码器的确切名称。 | 
+| [OHOS::Media::OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec) | 清理解码器内部资源，销毁解码器实例。 | 
+| [OHOS::Media::OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，使您的应用程序可以响应音频解码器生成的事件。 | 
+| [OHOS::Media::OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 要配置音频解码器，通常需要配置从容器中提取的音频描述信息。 | 
+| [OHOS::Media::OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec) | 准备解码器的内部资源，在调用此接口之前必须调用Configure接口。 | 
+| [OHOS::Media::OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec) | Prepare成功后调用此接口启动解码器。 | 
+| [OHOS::Media::OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec) | 停止解码器。 | 
+| [OHOS::Media::OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec) | 清除解码器中缓存的输入和输出数据。 | 
+| [OHOS::Media::OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec) | 重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例 。 | 
+| \*[OHOS::Media::OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec) | 获取解码器输出数据的描述信息，详细信息请参见**OH_AVFormat**。 | 
+| [OHOS::Media::OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置解码器的动态参数。注意：该接口必须在解码器启动后才能调用。另外，参数配置错误可能会导致解码失败。 | 
+| [OHOS::Media::OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | 将填充有数据的输入缓冲区提交给音频解码器。 | 
+| [OHOS::Media::OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给解码器。 | 
+| [OHOS::Media::OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测解码器有效状态。 | 
+
+
+## 枚举类型说明
+
+
+### AudioChannelLayout
+
+  
+```
+enum OHOS::Media::AudioChannelLayout : uint64_t
+```
+
+**描述：**
+
+音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。
+
+\@syscap SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：**
+
+10
+
+
+### AudioChannelSet
+
+  
+```
+enum OHOS::Media::AudioChannelSet : uint64_t
+```
+
+**描述：**
+
+音频声道数集合， 将每一个声道数映射为int64的变量。
+
+\@syscap SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：**
+
+10
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| AMBISONICS_ACN1 | 零阶立体声声道数 0 | 
+| AMBISONICS_ACN2 | 一阶立体声声道数 1 | 
+| AMBISONICS_ACN3 | 一阶立体声声道数 2 | 
+| AMBISONICS_W | 一阶立体声声道数 3 | 
+| AMBISONICS_Y | 同于零阶立体声声道数 0 | 
+| AMBISONICS_Z | 同于一阶立体声声道数 1 | 
+| AMBISONICS_X | 同于一阶立体声声道数 2 | 
+| AMBISONICS_ACN4 | 同于一阶立体声声道数 3 | 
+| AMBISONICS_ACN5 | 二阶立体声声道数 4 | 
+| AMBISONICS_ACN6 | 二阶立体声声道数 5 | 
+| AMBISONICS_ACN7 | 二阶立体声声道数 6 | 
+| AMBISONICS_ACN8 | 二阶立体声声道数 7 | 
+| AMBISONICS_ACN9 | 二阶立体声声道数 8 | 
+| AMBISONICS_ACN10 | 三阶立体声声道数 9 | 
+| AMBISONICS_ACN11 | 三阶立体声声道数 10 | 
+| AMBISONICS_ACN12 | 三阶立体声声道数 11 | 
+| AMBISONICS_ACN13 | 三阶立体声声道数 12 | 
+| AMBISONICS_ACN14 | 三阶立体声声道数 13 | 
+| AMBISONICS_ACN15 | 三阶立体声声道数 14 | 
 
 
 ## 函数说明
@@ -47,334 +120,439 @@ AudioDecoder模块提供用于音频解码功能的函数。该模块在部分�
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**描述:**
-配置音频解码器，典型地，需要配置被解码音频轨道的描述信息，这些信息能够从容器中提取出来， 该接口被调用必须是在Prepare被调用前。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+要配置音频解码器，通常需要配置从容器中提取的音频描述信息。
 
-  | 名称 | 描述 | 
+在调用Prepare之前，必须调用此接口。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| format | 指向OH_AVFormat的指针，用以给出待解码音频轨道的描述信息  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| format | 指向OH_AVFormat的指针，给出要解码的音频轨道的描述。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_CreateByMime()
 
   
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByMime (const char * mime)
 ```
-**描述:**
-通过mime类型创建一个音频解码器实例，大多数情况下推荐使用该接口。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+根据MIME类型创建音频解码器实例，大多数场景下建议使用此方式。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| mime | mime类型描述字符串，参考[OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac) | 
+| mime | MIME类型描述字符串，请参阅**AVCODEC_MIME_TYPE**。 | 
 
-**返回:**
+**返回：**
 
-返回一个指向OH_AVCodec实例的指针
+返回指向OH_AVCodec实例的指针。
+
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_CreateByName()
 
   
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByName (const char * name)
+OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByName (const char * name)
 ```
-**描述:**
-通过音频解码器名称创建一个音频解码器实例，使用这个接口的前提是必须清楚解码器准确的名称。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+通过音频解码器名称创建音频解码器实例，使用此接口的前提是知道解码器的确切名称。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| name | 音频解码器名称  | 
+| name | 音频解码器名称。 | 
 
-**返回:**
+**返回：**
 
-返回一个指向OH_AVCodec实例的指针
+返回指向OH_AVCodec实例的指针。
+
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_Destroy()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Destroy (OH_AVCodec * codec)
 ```
-**描述:**
-清空解码器内部资源，并销毁解码器实例
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+清理解码器内部资源，销毁解码器实例。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_Flush()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Flush (OH_AVCodec * codec)
 ```
-**描述:**
-清空解码器内部缓存的输入输出数据。在该接口被调用后，所有先前通过异步回调报告的Buffer的索引都将 失效，确保不要再访问这些索引对应的Buffers。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+清除解码器中缓存的输入和输出数据。
 
-  | 名称 | 描述 | 
+调用此接口后，以前通过异步回调上报的所有缓冲区索引都将失效，请确保不要访问这些索引对应的缓冲区。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_FreeOutputData()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
 ```
-**描述:**
-将处理结束的输出Buffer交还给解码器。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+将处理后的输出缓冲区返回给解码器。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| index | 输出Buffer对应的索引值  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输出缓冲区Buffer对应的索引值。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_GetOutputDescription()
 
   
 ```
-OH_AVFormat* OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OHOS::Media::OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
 ```
-**描述:**
-获取该解码器输出数据的描述信息，需要注意的是，返回值所指向的OH_AVFormat实例需调用者手动释放。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+获取解码器输出数据的描述信息，详细信息请参见**OH_AVFormat**。 需要注意的是，返回值所指向的OH_AVFormat实例的生命周期需要调用者手动释放。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-返回OH_AVFormat句柄指针，需调用者手动释放;
+返回OH_AVFormat句柄指针，生命周期将使用下一个GetOutputDescription 刷新，或使用OH_AVCodec销毁。
+
+**起始版本：**
+
+9
+
+
+### OH_AudioDecoder_IsValid()
+
+  
+```
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+```
+
+**描述：**
+
+检查当前解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测解码器有效状态。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向OH_AVCodec实例的指针。 | 
+| isValid | 指向布尔实例的指针，true：解码器实例有效，false：解码器实例无效。 | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+**起始版本：**
+
+10
 
 
 ### OH_AudioDecoder_Prepare()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Prepare (OH_AVCodec * codec)
 ```
-**描述:**
-准备解码器内部资源，调用该接口前必须先调用Configure接口。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+准备解码器的内部资源，在调用此接口之前必须调用Configure接口。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_PushInputData()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
-**描述:**
-将填充好数据的输入Buffer提交给音频解码器。[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调会报告可用的输入 Buffer及对应的索引值。一旦指定索引的Buffer被提交给解码器，直到再一次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) 回调报告相同索引的Buffer可用前，该Buffer都不可以再次被访问。另外，对于部分解码器，要求在最开始给解码器输入 Codec-Specific-Data，用以初始化解码器的解码过程。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+将填充有数据的输入缓冲区提交给音频解码器。
 
-  | 名称 | 描述 | 
+**OH_AVCodecOnNeedInputData**回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频解码器，则无法再次访问此缓冲区， 直到再次收到**OH_AVCodecOnNeedInputData**回调，收到相同索引时此缓冲区才可使用。 此外，对于某些解码器，需要在开始时向解码器输入特定配置参数，以初始化解码器的解码过程。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| index | 输入Buffer对应的索引值  | 
-| attr | 描述该Buffer内所包含数据的信息  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| index | 输入缓冲区Buffer对应的索引值。 | 
+| attr | 描述缓冲区中包含的数据的信息。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_Reset()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Reset (OH_AVCodec * codec)
 ```
-**描述:**
-重置解码器。如需继续解码工作，需要重新调用Configure接口以配置该解码器实例。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例。
 
-  | 名称 | 描述 | 
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_SetCallback()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
-**描述:**
-设置异步回调函数，使得你的应用能够响应音频解码器产生的事件，该接口被调用必须是在Prepare被调用前。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+设置异步回调函数，使您的应用程序可以响应音频解码器生成的事件。
 
-  | 名称 | 描述 | 
+在调用Prepare之前，必须调用此接口。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| callback | 一个包含所有回调函数的集合体，参考[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | 
-| userData | 用户特定数据  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| callback | 所有回调函数的集合，请参见 **OH_AVCodecAsyncCallback**。 | 
+| userData | 用户特定数据。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_SetParameter()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**描述:**
-向解码器设置动态参数，注意：该接口仅能在解码器被启动后调用，同时错误的参数设置，可能会导致解码失败。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+配置解码器的动态参数。
 
-  | 名称 | 描述 | 
+注意，该接口必须在解码器启动后才能调用。另外，参数配置错误可能会导致解码失败。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
-| format | OH_AVFormat句柄指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
+| format | OH_AVFormat句柄指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_Start()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Start (OH_AVCodec * codec)
 ```
-**描述:**
-启动解码器，该接口必须在已经Prepare成功后调用。 在启动成功后，解码器将开始报告[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)事件。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+Prepare成功后调用此接口启动解码器。
 
-  | 名称 | 描述 | 
+启动后，解码器将开始上报OH_AVCodecOnNeedInputData事件。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9
 
 
 ### OH_AudioDecoder_Stop()
 
   
 ```
-OH_AVErrCode OH_AudioDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Stop (OH_AVCodec * codec)
 ```
-**描述:**
-停止解码器。在停止后可通过Start重新进入Started状态，但需要注意的是，若先前给解码器输入过 Codec-Specific-Data，则需要重新输入。
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**描述：**
 
-**参数:**
+停止解码器。
 
-  | 名称 | 描述 | 
+停止后，您可以通过Start重新进入已启动状态，但需要注意的是， 如果解码器之前已输入数据，则需要重新输入解码器数据。
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**参数：**
+
+| 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向OH_AVCodec实例的指针  | 
+| codec | 指向OH_AVCodec实例的指针。 | 
 
-**返回:**
+**返回：**
 
-执行成功返回AV_ERR_OK
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-执行失败返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)
+**起始版本：**
+
+9

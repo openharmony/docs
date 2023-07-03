@@ -41,8 +41,8 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 | 参数名          | 参数类型                                     | 必填   | 参数描述                                     |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| space        | number&nbsp;\|&nbsp;string               | 否    | 子组件主轴方向的间隔。<br/>默认值：0<br/>**说明：** <br/>设置为除-1外其他负数或百分比时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
-| initialIndex | number                                   | 否    | 设置当前List初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为除-1外其他负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| space        | number&nbsp;\|&nbsp;string               | 否    | 子组件主轴方向的间隔。<br/>默认值：0<br/>**说明：** <br/>设置为负数时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
+| initialIndex | number                                   | 否    | 设置当前List初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否    | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 
 ## 属性
@@ -63,6 +63,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | lanes<sup>9+</sup>                  | number \| [LengthConstrain](ts-types.md#lengthconstrain) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>-&nbsp;lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。<br/>-&nbsp;lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算<br/>-&nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>该接口支持在ArkTS卡片中使用。 |
 | alignListItem<sup>9+</sup>          | [ListItemAlign](#listitemalign9枚举说明)     | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start<br/>该接口支持在ArkTS卡片中使用。 |
 | sticky<sup>9+</sup>                 | [StickyStyle](#stickystyle9枚举说明)         | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。<br/>默认值：StickyStyle.None<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。 |
+| enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -181,6 +182,7 @@ struct ListExample {
         }, item => item)
       }
       .listDirection(Axis.Vertical) // 排列方向
+      .scrollBar(BarState.Off)
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
       .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
       .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -231,6 +233,7 @@ struct ListLanesExample {
       .border({ width: 3, color: Color.Red })
       .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
+      .scrollBar(BarState.Off)
 
       Button("点击更改alignListItem:" + this.alignListItem).onClick(() => {
         if (this.alignListItem == ListItemAlign.Start) {
@@ -289,6 +292,7 @@ struct ListExample{
             }
           }, item => item)
         }.width('90%')
+        .scrollBar(BarState.Off)
       }.width('100%')
 
       Button('edit list')

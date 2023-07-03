@@ -368,6 +368,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default value of **contentType** is **CONTENT_TYPE_MUSIC**, and the default value of **streamUsage** is **STREAM_USAGE_MEDIA**.<br>It can be set only when the AVPlayer is in the initialized state.|
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **contentType** and **streamUsage** of **audioRendererInfo** are changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
@@ -1018,7 +1019,7 @@ Selects an audio track. This API can be called only when the AVPlayer is in the 
 
 ```js
 let index = 2
-avPlayer.setBitrate(index)
+avPlayer.selectTrack(index)
 ```
 
 ### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
@@ -1071,7 +1072,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 let mediaType = media.MediaType.MEDIA_TYPE_AUD;
 let trackIndex = null;
 
-avPlayer.getCurrentTrack(mediaType  (err, index) => {
+avPlayer.getCurrentTrack(mediaType, (err, index) => {
   if (err == null) {
     console.info('getCurrentTrack success');
     trackIndex = index;

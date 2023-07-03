@@ -1,4 +1,4 @@
-# @ohos.secureElement( 安全单元的通道管理)
+# @ohos.secureElement (安全单元的通道管理)
 
 本模块主要用于操作及管理安全单元（SecureElement，简称SE）。文档中出现的SE服务为SEService实例，参见[newSEService](#secureelementnewseservice)。
 

@@ -705,7 +705,7 @@ try {
 
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
-用于自绘控件绑定输入法应用。使用callback异步回调。
+用于自绘控件绑定输入法应用。使用promise异步回调。
 
 必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
 
@@ -1692,11 +1692,11 @@ off(type: 'insertText'): void
 inputMethodController.off('insertText');
 ```
 
-### on('deleteLeft' | 'deleteRight')<sup>10+</sup>
+### on('deleteLeft')<sup>10+</sup>
 
-on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
+on(type: 'deleteLeft', callback: (length: number) => void): void
 
-订阅输入法应用向左删除或向右删除事件。使用callback异步回调。
+订阅输入法应用向左删除事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1704,8 +1704,8 @@ on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ----- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘deleteLeft’时表示订阅输入法应用向左删除事件监听。 <br/>- type为‘deleteRight’时表示订阅输入法应用向右删除事件监听。|
-| callback | (length: number) => void | 是   | 回调函数，返回需要向左或向右删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
+| type     | string  | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示订阅输入法应用向左删除事件监听。 |
+| callback | (length: number) => void | 是   | 回调函数，返回需要向左删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
 
 **错误码：**
 
@@ -1725,7 +1725,34 @@ try {
 } catch(err) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
 }
+```
 
+### on('deleteRight')<sup>10+</sup>
+
+on(type: 'deleteRight', callback: (length: number) => void): void
+
+订阅输入法应用向右删除事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明 |
+| -------- | ----- | ---- | ----- |
+| type     | string  | 是   | 设置监听类型。<br/>- type为`deleteRight`表示订阅输入法应用向右删除事件监听。|
+| callback | (length: number) => void | 是   | 回调函数，返回需要向右删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
+**示例：**
+
+```js
 try {
   inputMethodController.on('deleteRight', (length) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
@@ -1734,12 +1761,11 @@ try {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
+### off('deleteLeft')<sup>10+</sup>
 
-### off('deleteLeft' | 'deleteRight')<sup>10+</sup>
+off(type: 'deleteLeft'): void
 
-off(type: 'deleteLeft' | 'deleteRight'): void
-
-取消订阅输入法应用向左或向右删除文本事件。
+取消订阅输入法应用向左删除文本事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1747,12 +1773,31 @@ off(type: 'deleteLeft' | 'deleteRight'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘deleteLeft’时表示取消订阅输入法应用向左删除的事件监听。 <br/>- type为‘deleteRight’时表示取消订阅输入法应用向右删除的事件监听。|
+| type   | string | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示取消订阅输入法应用向左删除的事件监听。|
 
 **示例：**
 
 ```js
 inputMethodController.off('deleteLeft');
+```
+
+### off('deleteRight')<sup>10+</sup>
+
+off(type: 'deleteRight'): void
+
+取消订阅输入法应用向右删除文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>- type为`deleteRight`表示取消订阅输入法应用向右删除的事件监听。|
+
+**示例：**
+
+```js
 inputMethodController.off('deleteRight');
 ```
 
@@ -2110,11 +2155,11 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 inputMethodSetting.off('imeChange');
 ```
 
-### on('imeShow'|'imeHide')<sup>10+</sup>
+### on('imeShow')<sup>10+</sup>
 
-on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 
-订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+订阅输入法软键盘显示事件。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -2124,7 +2169,7 @@ on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void)
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示订阅输入法软键盘隐藏事件。 |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`表示订阅输入法软键盘显示事件。 |
 | callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
 
 **示例：**
@@ -2135,11 +2180,36 @@ inputMethodSetting.on('imeShow', (info) => {
 });
 ```
 
-### off('imeShow'|'imeHide')<sup>10+</sup>
+### on('imeHide')<sup>10+</sup>
 
-off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 
-取消订阅输入法软键盘显示或隐藏事件。
+订阅输入法软键盘隐藏事件。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明 |
+| -------- | ---- | ---- | ---- |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeHide`表示订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+
+**示例：**
+
+```js
+inputMethodSetting.on('imeHide', (info) => {
+    console.info('Succeeded in subscribing imeHide event.');
+});
+```
+
+### off('imeShow')<sup>10+</sup>
+
+off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+取消订阅输入法软键盘显示事件。
 
 **系统接口**：此接口为系统接口。
 
@@ -2149,13 +2219,36 @@ off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => voi
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示取消订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示取消订阅输入法软键盘隐藏事件。 |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`表示取消订阅输入法软键盘显示事件。 |
 | callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
 inputMethodSetting.off('imeShow');
+```
+
+### off('imeHide')<sup>10+</sup>
+
+off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+取消订阅输入法软键盘隐藏事件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeHide`表示取消订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```js
+inputMethodSetting.off('imeHide');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>

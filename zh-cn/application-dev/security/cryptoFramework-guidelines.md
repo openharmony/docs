@@ -140,6 +140,8 @@ function convertAsyKey() {
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
 function convertEccAsyKey() {
     let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
@@ -1458,17 +1460,17 @@ function signLongMessagePromise() {
   let globalSignData;
   let textSplitLen = 64; // 自定义的数据拆分长度
   let keyGenName = "RSA1024";
-  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let signAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // 创建非对称密钥生成器对象
-  let signer = cryptoFramework.createSign(cipherAlgName); // 创建加密Cipher对象
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // 创建解密Decoder对象
+  let signer = cryptoFramework.createSign(signAlgName); // 创建签名Signer对象
+  let verifier = cryptoFramework.createVerify(signAlgName); // 创建验签Verifier对象
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
     }, 10);
   }).then(() => {
-    return asyKeyGenerator.generateKeyPair(); // 生成rsa密钥
+    return asyKeyGenerator.generateKeyPair(); // 生成RSA密钥
   }).then(keyPair => {
     globalKeyPair = keyPair; // 保存到密钥对全局变量
     return signer.init(globalKeyPair.priKey);
@@ -1485,7 +1487,7 @@ function signLongMessagePromise() {
     console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
     return verifier.init(globalKeyPair.pubKey);
   }).then(async() => {
-    // 将密文按128B进行拆分解密，得到原文后进行拼接
+    // 当原文过大时，可将原文按理想长度进行拆分，循环调用update添加原文
     for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
       let tempData = globalPlainText.slice(i * textSplitLen, (i + 1) * textSplitLen);
       let tempBlob = { data : stringToUint8Array(tempData) };

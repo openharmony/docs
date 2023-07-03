@@ -35,3 +35,4 @@
 | removable<sup>8+</sup>     | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                     |
 | accessTokenId<sup>8+</sup> | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                    |
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid。                                              |
+| entityType                 | string                                                       | 是   | 否   | 应用程序的类别，例如游戏、社交、影视、新闻。 |

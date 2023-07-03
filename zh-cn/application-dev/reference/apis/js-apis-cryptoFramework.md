@@ -369,10 +369,6 @@ getEncoded(): DataBlob
 
 **错误码：**
 
-> **说明：**
->
-> 从API version 10开始，该接口支持抛出错误码。
-
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 801 | this operation is not supported. |
@@ -794,8 +790,8 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. |
-| 801<sup>10+</sup> | this operation is not supported. |
-| 17620001<sup>10+</sup> | memory error. |
+| 801 | this operation is not supported. |
+| 17620001 | memory error. |
 
 **示例：**
 
@@ -837,7 +833,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 17620001 | memory error.          |
-| 17630001<sup>10+</sup> | crypto operation error.          |
+| 17630001 | crypto operation error.          |
 
 **示例：**
 
@@ -874,7 +870,7 @@ generateKeyPair(): Promise\<KeyPair>
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 17620001 | memory error.          |
-| 17630001<sup>10+</sup> | crypto operation error.          |
+| 17630001 | crypto operation error.          |
 
 **示例：**
 
@@ -912,7 +908,7 @@ convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 17620001 | memory error.          |
-| 17630001<sup>10+</sup> | crypto operation error.          |
+| 17630001 | crypto operation error.          |
 
 **示例：**
 
@@ -960,7 +956,7 @@ convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 17620001 | memory error.          |
-| 17630001<sup>10+</sup> | crypto operation error.          |
+| 17630001 | crypto operation error.          |
 
 **示例：**
 
@@ -1088,7 +1084,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generateKeyPair((err, keyPair) => {
+asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
   if (err) {
     console.error("generateKeyPair: error.");
     return;
@@ -1126,7 +1122,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generateKeyPair();
+let keyGenPromise = asyKeyGeneratorBySpec.generateKeyPair();
 keyGenPromise.then( keyPair => {
   console.info("generateKeyPair success.");
 }).catch(error => {
@@ -1163,7 +1159,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generatePriKey((err, prikey) => {
+asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
   if (err) {
     console.error("generatePriKey: error.");
     return;
@@ -1201,7 +1197,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generatePriKey();
+let keyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
 keyGenPromise.then( priKey => {
   console.info("generatePriKey success.");
 }).catch(error => {
@@ -1238,7 +1234,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generateKeyPair((err, pubKey) => {
+asyKeyGeneratorBySpec.generateKeyPair((err, pubKey) => {
   if (err) {
     console.error("generatePubKey: error.");
     return;
@@ -1276,7 +1272,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generatePubKey();
+let keyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
 keyGenPromise.then( pubKey => {
   console.info("generatePubKey success.");
 }).catch(error => {
@@ -1315,7 +1311,7 @@ createCipher(transformation: string): Cipher
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 801 | this operation is not supported. |
-| 17620001<sup>10+</sup> | memory error.          |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1837,8 +1833,8 @@ Sign实例生成。<br/>支持的规格详见框架概述“[签名验签规格]
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
-| 801<sup>10+</sup> | this operation is not supported.          |
-| 17620001<sup>10+</sup> | memory error.          |
+| 801 | this operation is not supported.          |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -2224,8 +2220,8 @@ Verify实例生成。<br/>支持的规格详见框架概述“[签名验签规�
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
-| 801<sup>10+</sup> | this operation is not supported.          |
-| 17620001<sup>10+</sup> | memory error.          |
+| 801 | this operation is not supported.          |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -2570,8 +2566,8 @@ KeyAgreement实例生成。<br/>支持的规格详见框架概述“[密钥协�
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
-| 801<sup>10+</sup> | this operation is not supported.          |
-| 17620001<sup>10+</sup> | memory error.          |
+| 801 | this operation is not supported.          |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -3584,7 +3580,7 @@ try {
 }
 
 try {
-  let randData = random.generateRandomSync(12);
+  let randData = rand.generateRandomSync(12);
   if (randData != null) {
     console.info("[Sync]: rand result: " + randData.data);
   } else {

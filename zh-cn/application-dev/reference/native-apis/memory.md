@@ -190,7 +190,7 @@ size_t OH_PurgeableMemory_ContentSize (OH_PurgeableMemory * purgObj)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 待读取内存数据的PurgeableMemory对象。 |  | 
+| purgObj | 待读取内存数据的PurgeableMemory对象。 | 
 
 **返回:**
 
@@ -314,7 +314,7 @@ void* OH_PurgeableMemory_GetContent (OH_PurgeableMemory * purgObj)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 待读取内存数据的PurgeableMemory对象。 |  | 
+| purgObj | 待读取内存数据的PurgeableMemory对象。 | 
 
 **返回:**
 

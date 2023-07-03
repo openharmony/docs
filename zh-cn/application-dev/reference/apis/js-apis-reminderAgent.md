@@ -27,9 +27,9 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder)替代。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+**需要权限**：ohos.permission.PUBLISH_AGENT_REMINDER
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -361,14 +361,14 @@ reminderAgent.addNotificationSlot(mySlot).then(() => {
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
+removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
 删除目标NotificationSlot，使用callback方式实现异步调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot)替代。
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -390,14 +390,14 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, 
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType): Promise<void>
+removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 删除目标NotificationSlot，使用Promise方式实现异步调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot-1)替代。
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -505,7 +505,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#ReminderRequest)替代。
 
-**系统能力**`SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

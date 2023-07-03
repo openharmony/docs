@@ -57,11 +57,11 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                 | 参数类型                                     | 描述                                       |
-| ------------------ | ---------------------------------------- | ---------------------------------------- |
-| value              | number                                   | 设置当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。非法数值不生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 设置进度条前景色。从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。<br/>默认值（API version 9）：'\#ff007dff'<br/>默认值（API version 10）：<br/>- Capsule：'\#33006cde'<br/>- Ring：起始端：'\#ff3b61f7'，结束端：'\#ff6591bf'<br/>- 其他样式：'\#ff007dff'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。|
-| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条底色。<br/>默认值（API version 9）：'\#19182431'<br/>默认值（API version 10）：<br/>- Capsule：'\#33ffffff'<br/>- Ring：'\#08182431'<br/>- 其他样式：'\#19182431'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 名称               | 参数类型                                                     | 描述                                                         |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| value              | number                                                       | 设置当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。非法数值不生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 设置进度条前景色。从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。<br/>默认值（API version 9）：'\#ff007dff'<br/>默认值（API version 10）：<br/>- Capsule：'\#33006cde'<br/>- Ring：起始端：'\#ff3b61f7'，结束端：'\#ff6591bf'<br/>- 其他样式：'\#ff007dff'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。 |
+| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置进度条底色。<br/>默认值（API version 9）：'\#19182431'<br/>默认值（API version 10）：<br/>- Capsule：'\#33ffffff'<br/>- Ring：'\#08182431'<br/>- 其他样式：'\#19182431'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当设置[通用属性backgroundColor](./ts-universal-attributes-background.md)时，生效的是进度条的底色，而不是整个Progress组件的背景色。 |
 | style<sup>8+</sup> | [ProgressStyleOptions](#progressstyleoptions) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) | 定义组件的样式。从API version 10开始追加CapsuleStyleOptions和RingStyleOptions类型。<br/>- CapsuleStyleOptions用于设置Capsule的样式。<br/>- RingStyleOptions用于设置Ring的样式。<br/>- ProgressStyleOptions设置其他类型进度条的样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中设置ProgressStyleOptions，暂不支持CapsuleStyleOptions和RingStyleOptions。 |
 
 ## ProgressStyleOptions
@@ -75,9 +75,9 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：'\#33006cde' |
-| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度。<br/>默认值：1Vp |
+| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度（不支持百分比设置）。<br/>默认值：1Vp |
 | content | string | 否 | 文本内容，应用可自定义。 |
-| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小：12Fp <br/>其他文本参数跟随text组件的主题值。|
+| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12Fp <br/>其他文本参数跟随text组件的主题值。|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
 | enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false |
 

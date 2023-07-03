@@ -136,7 +136,7 @@
 - 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，拍照第一次曝光时触发，该事件返回此次拍照的captureId。
     
   ```ts
-  photoOutput.on('captureStart', (captureId) => {
+  photoOutput.on('captureStart', (err, captureId) => {
       console.info(`photo capture stated, captureId : ${captureId}`);
   })
   ```
@@ -144,7 +144,7 @@
 - 通过注册固定的captureEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo)。
     
   ```ts
-  photoOutput.on('captureEnd', (captureEndInfo) => {
+  photoOutput.on('captureEnd', (err, captureEndInfo) => {
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
   })

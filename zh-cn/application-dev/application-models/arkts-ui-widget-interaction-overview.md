@@ -1,6 +1,6 @@
 # 卡片数据交互说明
 
-ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发卡片的页面刷新。  
+ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发卡片的页面刷新。
 ![WidgetLocalStorageProp](figures/WidgetLocalStorageProp.png)
 
 
@@ -11,7 +11,8 @@ ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发�
 
 下面介绍卡片页面刷新的典型场景。
 
-- [定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+- [卡片定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+- [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
 - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
 - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
 - [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)

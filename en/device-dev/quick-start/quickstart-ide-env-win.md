@@ -10,7 +10,11 @@ The following describes how to set up the Windows environment.
 
 - Windows 10 (64-bit): 8 GB or larger memory and a 100 GB or larger hard disk recommended
 
-- DevEco Device Tool: latest and same version installed on both Windows and Ubuntu
+- DevEco Device Tool: latest and same version installed on both Ubuntu and Windows
+
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  >
+  > The following uses DevEco Device Tool of the 3.1 Release version as an example. The supported features and operations vary according to the DevEco Device Tool version. For details, see the [User Guide](https://device.harmonyos.com/en/docs/documentation/guide/service_introduction-0000001050166905).
 
 
 ## Procedure
@@ -23,6 +27,7 @@ The following describes how to set up the Windows environment.
 
 4. Set the installation path for DevEco Device Tool and click **Next**. Make sure the path does not contain Chinese characters and is **in a drive other than the C drive**.
 
+   ![en-us_image_0000001326386753](figures/en-us_image_0000001326386753.png)
 
 5. Install the dependent tools by following the onscreen instructions.
 

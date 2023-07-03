@@ -33,7 +33,7 @@
 
   |![底部页签](figures/底部页签.png) | ![子页签超出屏幕](figures/子页签超出屏幕.png) | ![标题栏-普通](figures/标题栏-普通.png) |
 | -------- | -------- | -------- |
-|底部[页签](multimodal-bottom-tab.md) | [子页签](multimodal-subtab.md) | [标题栏](multimodal-title-bar.md) | 
+|[底部页签](multimodal-bottom-tab.md) | [子页签](multimodal-subtab.md) | [标题栏](multimodal-title-bar.md) | 
  | ![标题栏-普通备份](figures/标题栏-普通备份.png)|  ![步骤导航器-默认](figures/步骤导航器-默认.png) |  ![2_zh-cn_image_0000001568412869.png](figures/2_zh-cn_image_0000001568412869.png) |
 |[侧边导航栏](multimodal-sidebar.md) | [导航点](multimodal-swiper.md) | [步骤导航器](multimodal-stepper.md) | 
 
@@ -60,13 +60,13 @@
 |[菜单](multimodal-menu.md) |  |  | 
 
 
-输入类
+## 输入类
 
   |![1_zh-cn_image_0000001517452972.png](figures/1_zh-cn_image_0000001517452972.png) | ![1_zh-cn_image_0000001568093217.png](figures/1_zh-cn_image_0000001568093217.png) |
 | -------- | -------- |
 |[文本框](multimodal-text-box.md) |[搜索框](multimodal-search-box.md) |  | 
 
-选择类
+## 选择类
 
   |![1_zh-cn_image_0000001517133818.png](figures/1_zh-cn_image_0000001517133818.png) |![1_zh-cn_image_0000001517293384.png](figures/1_zh-cn_image_0000001517293384.png) |![1_zh-cn_image_0000001568093265.png](figures/1_zh-cn_image_0000001568093265.png) |
 | -------- | -------- | -------- |

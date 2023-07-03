@@ -428,7 +428,7 @@
 
 允许应用读取其他应用的敏感权限的状态。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -654,6 +654,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.MANAGE_VPN
+
+允许应用程序启动或停止VPN功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.MANAGE_NET_STRATEGY
 
 允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
@@ -663,6 +673,16 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.GET_NETWORK_STATS
+
+允许应用程序获取历史流量信息和监听流量变化。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -1027,6 +1047,46 @@
 ## ohos.permission.ENTERPRISE_GET_SETTINGS
 
 允许设备管理员查询“设置”应用数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+允许设备管理员管理证书。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_RESTRICT_POLICY
+
+允许设备管理员下发和获取限制类策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_USB
+
+允许设备管理员管理USB。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+允许设备管理员管理网络。
 
 **权限级别**：system_basic
 
@@ -1496,7 +1556,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1516,7 +1576,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -1997,3 +2057,73 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_ECOLOGICAL_RULE
+
+允许为管控服务设置场景值生成规则和配套的体验。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_SCENE_CODE
+
+允许应用获取指定应用当前的场景值。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.FILE_GUARD_MANAGER
+
+允许应用进行公共目录扫描及设置文件扩展属性。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.SET_FILE_GUARD_POLICY
+
+允许应用下发文件管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.securityguard.SET_MODEL_STATE
+
+允许应用控制设备风险管理平台模型开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.hsdr.HSDR_ACCESS
+
+允许应用访问安全检测与响应框架。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+允许应用与用户认证框架交互和注册扩展能力。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE

@@ -41,8 +41,10 @@ Before developing applications related to tag read and write, you must declare N
             }
         ],
         "requestPermissions": [
-            "name": "ohos.permission.NFC_TAG",
-            "reason": "tag",
+            {
+                "name": "ohos.permission.NFC_TAG",
+                "reason": "tag",
+            }
         ]
     }
 }

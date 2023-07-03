@@ -88,7 +88,7 @@ The permission usage record includes the application identity (token ID) of the 
 | permissionName | Permissions | Yes  | Name of the permission.|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If a usage record is added successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -196,7 +196,7 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | request | [PermissionUsedRequest](#permissionusedrequest) | Yes| Request for querying permission usage records.|
-| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback invoked to return the result. If the query is successful, **err** is **undefined** and **data** is the permission usage record. Otherwise, **err** is an error object.|
+| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the permission usage record obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -307,7 +307,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
 | permissionName | Permissions                | Yes  | Permission to use.                    |
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the permission is successfully used, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 

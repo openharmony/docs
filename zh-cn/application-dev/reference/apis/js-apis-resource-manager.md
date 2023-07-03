@@ -151,6 +151,45 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
   ```
 
 
+## resourceManager.getSystemResourceManager
+
+getSystemResourceManager(): ResourceManager
+
+获取系统资源管理对象，返回系统资源的ResourceManager对象。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**返回值：**
+
+| 类型                                       | 说明                 |
+| ---------------------------------------- | ------------------ |
+| Resourcemanager | 返回系统资源的管理对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001009  | If application can't access system resource.                       |
+
+**示例：**
+  ```js
+import resourceManager from '@ohos.resourceManager';
+
+try {
+    let systemResourceManager = resourceManager.getSystemResourceManager();
+    systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("systemResourceManager getStringValue promise error is " + error);
+    });
+} catch (error) {
+    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+}
+  ```
+
+
 ## Direction
 
 用于表示设备屏幕方向。

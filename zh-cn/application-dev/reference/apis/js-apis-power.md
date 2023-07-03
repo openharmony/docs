@@ -147,13 +147,20 @@ try {
 
 ## power.suspend<sup>9+</sup>
 
-suspend(): void
+suspend(isImmediate?: boolean): void
 
 休眠设备。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+
 
 **错误码：**
 
@@ -287,6 +294,39 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .catch(err => {
     console.error('set power mode failed, err: ' + err);
 });
+```
+
+## power.isStandby<sup>10+</sup>
+
+isStandby(): boolean
+
+检测当前设备是否进入待机低功耗续航模式。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| boolean | 进入待机模式返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+
+**示例：**
+
+```js
+try {
+    var isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
 ```
 
 ## power.rebootDevice<sup>(deprecated)</sup>

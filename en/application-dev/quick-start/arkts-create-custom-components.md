@@ -80,7 +80,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the data structures declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.

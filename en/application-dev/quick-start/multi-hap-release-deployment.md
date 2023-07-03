@@ -9,7 +9,9 @@ Below is the process of developing, debugging, releasing, and deploying multiple
 You can use [DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio) to create multiple modules as needed and develop services in respective modules.
 
 ## Debugging
-After building code into one or more HAP files and installing or updating these HAP files, you can debug them by using the methods:
+After building code into one or more HAP files and installing or updating these HAP files, you can debug them. You can leverage a single set of code and files to build multiple target editions for different audiences, deployment environments, operating environments, and more. For details, see [Customizing Multi-Target and Multi-Product Builds](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/customized-multi-targets-and-products-0000001430013853-V3?catalogVersion=V3).
+
+You can debug HAP files using the methods:
 * Using DevEco Studio for debugging
 
    Follow the instructions in [Debugging Configuration](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520).
@@ -49,7 +51,7 @@ After building code into one or more HAP files and installing or updating these 
     // The execution result is as follows:
     uninstall bundle successfully.
     ```
-    After the HAP files are installed or updated, you can debug them by following the instructions in [Ability Assistant](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/tools/aa-tool.md/).
+    After the HAP files are installed or updated, you can debug them by following the instructions in [Ability Assistant](../tools/aa-tool.md).
 
 ## Release
 When your application package meets the release requirements, you can package and build it into an App Pack and release it to the application market on the cloud. The application market verifies the signature of the App Pack. If the signature verification is successful, the application market obtains the HAP files from the App Pack, signs them, and distributes the signed HAP files.

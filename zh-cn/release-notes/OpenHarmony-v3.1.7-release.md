@@ -13,8 +13,8 @@
 | 软件                                             | 版本                                                         | 备注                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OpenHarmony                                      | 3.1.7&nbsp;Release                                           | NA                                                           |
-| Full&nbsp;SDK                                    | Ohos_sdk_full&nbsp;3.1.13.5&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Relese) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full&nbsp;SDK时需要手动从镜像站点获取，并在DevEco&nbsp;Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
-| Public&nbsp;SDK                                  | Ohos_sdk_public&nbsp;3.1.13.5&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>DevEco&nbsp;Studio&nbsp;3.0&nbsp;Beta4版本起，通过DevEco&nbsp;Studio获取的SDK默认为Public&nbsp;SDK。 |
+| Full&nbsp;SDK                                    | Ohos_sdk_full&nbsp;3.1.13.6&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Relese) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full&nbsp;SDK时需要手动从镜像站点获取，并在DevEco&nbsp;Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
+| Public&nbsp;SDK                                  | Ohos_sdk_public&nbsp;3.1.13.6&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>DevEco&nbsp;Studio&nbsp;3.0&nbsp;Beta4版本起，通过DevEco&nbsp;Studio获取的SDK默认为Public&nbsp;SDK。 |
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选）           | 3.1&nbsp;Preview&nbsp;for&nbsp;OpenHarmony                   | OpenHarmony应用开发推荐使用。                                |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release                                             | OpenHarmony智能设备集成开发环境推荐使用。                    |
 
@@ -81,10 +81,10 @@ repo forall -c 'git lfs pull'
 | Hi3861轻量系统解决方案（二进制）           | 3.1.7&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_pegasus.tar.gz.sha256) |
 | Hi3516小型系统解决方案-LiteOS（二进制）    | 3.1.7&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_taurus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_taurus.tar.gz.sha256) |
 | Hi3516小型系统解决方案-Linux（二进制）     | 3.1.7&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/hispark_taurus_linux.tar.gz.sha256) |
-| 标准系统Full&nbsp;SDK包（Mac）             | 3.1.13.5           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-full.tar.gz.sha256) |
-| 标准系统Full&nbsp;SDK包（Windows\Linux）   | 3.1.13.5           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-full.tar.gz.sha256) |
-| 标准系统Public&nbsp;SDK包（Mac）           | 3.1.13.5           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-public.tar.gz.sha256) |
-| 标准系统Public&nbsp;SDK包（Windows\Linux） | 3.1.13.5           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-public.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Mac）             | 3.1.13.6           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-full-3.1.13.6.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-full-3.1.13.6.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Windows\Linux）   | 3.1.13.6           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-full-3.1.13.6.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-full-3.1.13.6.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Mac）           | 3.1.13.6           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-public-3.1.13.6.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-mac-public-3.1.13.6.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Windows\Linux） | 3.1.13.6           | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-public-3.1.13.6.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.7/ohos-sdk-public-3.1.13.6.tar.gz.sha256) |
 
 
 ## 更新说明
@@ -117,7 +117,7 @@ repo forall -c 'git lfs pull'
 | 媒体子系统   | 打开图库应用，选择相册页签，点击相机，高概率闪退值桌面([I5QUSZ](https://gitee.com/openharmony/applications_hap/issues/I5QUSZ))<br/>通过工具测出CPPCrash问题([I65GZ1](https://gitee.com/openharmony/multimedia_medialibrary_standard/issues/I65GZ1)) |
 | 全球化子系统 | 通过工具测出CPPCrash问题([I65GR8](https://gitee.com/openharmony/global_resmgr_standard/issues/I65GR8)) |
 | 无障碍子系统 | 安全注入攻击测试，测试报告中存在服务接口ohos.accessibility.IAccessibleAbilityManagerServiceClient存在注入异常([I65PHE](https://gitee.com/openharmony/accessibility/issues/I65PHE)) |
-| ArkUI子系统  | 图像效果功能失效([I65UID](https://gitee.com/openharmony/arkui_ace_engine/issues/I65UID)) |
+| ArkUI子系统  | 图像效果功能失效([I65UID](https://gitee.com/openharmony/arkui_ace_engine/issues/I65UID))<br/>适配lite多资源打包([I78S6M](https://gitee.com/openharmony/developtools_ace_js2bundle/issues/I78S6M)) |
 | 元能力子系统 | 两个窗口分屏配对后，关闭B窗口另一个窗口也会关闭([I6AF0Y](https://gitee.com/openharmony/ability_ability_runtime/issues/I6AF0Y)) |
 | DFX子系统    | ohos.samples.distributedmusicplayer出现libhilog.z.so崩溃([I6DCSL](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I6DCSL)) |
 

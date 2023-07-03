@@ -415,7 +415,9 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
+| 401     | Parameter error.                     |
 
 **Example**
 
@@ -448,7 +450,9 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
+| 401     | Parameter error.                     |
 
 **Example**
 

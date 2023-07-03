@@ -53,10 +53,10 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 | 名称          | 参数类型                                     | 必填   | 描述                                  |
 | ----------- | ---------------------------------------- | ---- | ----------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽。                             |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。                             |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431           |
-| startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离。<br/>默认值：0.0<br/>单位：vp |
-| endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离。<br/>默认值：0.0<br/>单位：vp |
+| startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
+| endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 
 ## BarMode枚举说明
 

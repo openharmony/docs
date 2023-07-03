@@ -479,12 +479,12 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 udp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -513,12 +513,12 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1365,12 +1365,12 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 tcp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1399,12 +1399,12 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1888,12 +1888,12 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 tls.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1922,12 +1922,12 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));

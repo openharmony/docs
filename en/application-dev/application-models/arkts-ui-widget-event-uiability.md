@@ -5,7 +5,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the **router** event to the FormExtensionAbility.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to the FormExtensionAbility.
   
   ```ts
   let storage = new LocalStorage();
@@ -45,7 +45,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   import formInfo from '@ohos.app.form.formInfo';
   
   export default class EntryAbility extends UIAbility {
-    // If the UIAbility is started for the first time, the onCreate lifecycle callback is triggered after the router event is received.
+    // If the UIAbility is started for the first time, onCreate is triggered after the router event is received.
     onCreate(want, launchParam) {
       console.info('Want:' + JSON.stringify(want));
       if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
@@ -63,7 +63,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
         })
       }
     }
-    // If the UIAbility is running in the background, the onNewWant lifecycle callback is triggered after the router event is received.
+    // If the UIAbility is running in the background, onNewWant is triggered after the router event is received.
     onNewWant(want, launchParam) {
       console.info('onNewWant Want:' + JSON.stringify(want));
       if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
@@ -88,7 +88,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the call Event
 
-- When using the **call** event of the **postCardAction** API, the value of **formId** must be updated in the **onAddForm** callback of the FormExtensionAbility.
+- When using the call event of the **postCardAction** API, the value of **formId** must be updated in the **onAddForm** callback of the FormExtensionAbility.
   
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
@@ -142,13 +142,12 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   }
   ```
   
-- Listen for the method required by the **call** event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
+- Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
-  import formInfo from '@ohos.app.form.formInfo';
   
   const MSG_SEND_METHOD: string = 'funA';
   
@@ -173,7 +172,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
     return null;
   }
   export default class EntryAbility extends UIAbility {
-    // If the UIAbility is started for the first time, the onCreate lifecycle callback is triggered after the call event is received.
+    // If the UIAbility is started for the first time, onCreate is triggered after the call event is received.
     onCreate(want, launchParam) {
       console.info('Want:' + JSON.stringify(want));
       try {

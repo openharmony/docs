@@ -376,10 +376,24 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 | eventType | string                                   | 是    | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。 |
 | callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | 是    | 对应监听回调，push事件对应回调类型为[OnPushEventCallback](#onpusheventcallback)，request事件对应回调类型为[OnRequestEventCallback](#onrequesteventcallback) 。 |
 
-
 **示例：**
 
 ```js
+function onPushListener(source, template, data, extraData) {
+  console.log("onPushListener template.source=" + template.source)
+  console.log("onPushListener source=" + JSON.stringify(source))
+  console.log("onPushListener template=" + JSON.stringify(template))
+  console.log("onPushListener data=" + JSON.stringify(data))
+  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+}
+function onRequestListener(source, name, data) {
+  console.error("onRequestListener");
+  console.log("onRequestListener source=" + JSON.stringify(source));
+  console.log("onRequestListener name=" + name);
+  console.log("onRequestListener data=" + JSON.stringify(data));
+
+  return { template: "ets/pages/plugin.js", data: data };
+}
 pluginComponentManager.on("push", onPushListener)
 pluginComponentManager.on("request", onRequestListener)
 ```

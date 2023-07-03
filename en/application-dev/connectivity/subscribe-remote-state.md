@@ -7,7 +7,7 @@ IPC/RPC allows you to subscribe to the state changes of a remote stub object. Wh
 This subscription mechanism is applicable when the local proxy object needs to detect death of the process hosting the remote stub object or network detach of the device hosting the remote stub object. When the proxy detects death of the remote stub object, the proxy can clear local resources. Currently, IPC supports death notification for anonymous objects, but RPC does not. That is, you can only subscribe to death notifications of services that have been registered with SAMgr.
 
 
-## **Using Native APIs**
+## **Development Using Native APIs**
 
 | API| Return Value Type| Feature Description|
 | -------- | -------- | -------- |
@@ -20,7 +20,6 @@ This subscription mechanism is applicable when the local proxy object needs to d
 ```C++
 #include "iremote_broker.h"
 #include "iremote_stub.h"
-
 
 // Define message codes.
 enum {
@@ -61,9 +60,6 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 }
 ```
 
-
-
-
 ```c++
 #include "iremote_object.h"
 
@@ -84,18 +80,54 @@ bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for 
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
 
-## **Using JS APIs**
+## **Development Using JS APIs**
 
-| API              | Return Value Type| Feature Description                                                    |
-| -------------------- | ---------- | ------------------------------------------------------------ |
-| addDeathRecippient   | boolean    | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
-| removeDeathRecipient | boolean    | Removes the recipient for death notifications of the remote object.                        |
-| onRemoteDied         | void       | Called to perform subsequent operations when a death notification of the remote object is received.|
+| API                  | Return Value Type| Feature Description                                                         |
+| ------------------------ | ---------- | ----------------------------------------------------------------- |
+| registerDeathRecipient   | void       | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
+| unregisterDeathRecipient | void       | Removes the recipient for death notifications of the remote object.                             |
+| onRemoteDied             | void       | Called to perform subsequent operations when a death notification of the remote object is received.   |
+
+### Obtaining the Context
+
+If you use the stage model, you need to obtain the context before connecting to an ability.
+
+```ts
+import Ability from "@ohos.app.ability.UIAbility";
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate");
+        globalThis.context = this.context;
+    }
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy");
+    }
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate");
+    }
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy");
+    }
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground");
+    }
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground");
+    }
+}
+```
 
 ### Sample Code
 
 ```ts
-import FA from "@ohos.ability.featureAbility";
+// Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+// import FA from "@ohos.ability.featureAbility";
+
 let proxy;
 let connect = {
     onConnect: function(elementName, remoteProxy) {
@@ -113,31 +145,35 @@ let want = {
     "bundleName": "com.ohos.server",
     "abilityName": "com.ohos.server.EntryAbility",
 };
-FA.connectAbility(want, connect);
+// Use this method to connect to the ability in the FA model.
+// FA.connectAbility(want, connect);
+
+globalThis.context.connectServiceExtensionAbility(want, connect);
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.addDeathRecippient(deathRecipient, 0);
-proxy.removeDeathRecipient(deathRecipient, 0);
+proxy.registerDeathRecippient(deathRecipient, 0);
+proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
 
 ## Reverse Death Notification (Anonymous Stub)
 
-Forward dead notification is a mechanism that allows the proxy to detect death notifications of the stub. To achieve reverse dead notification, we can leverage the forward dead notification mechanism to allow the stub to detect death notifications of the proxy. 
+Forward dead notification is a mechanism that allows the proxy to detect death notifications of the stub. To achieve reverse dead notification, we can leverage the forward dead notification mechanism to allow the stub to detect death notifications of the proxy. Suppose there are two processes, A (the process hosting the original stub) and B (the process hosting the original proxy). After obtaining the proxy object of process A, process B creates an anonymous stub object (that is, a stub object not registered with SAMgr), which can be called a callback stub. Then, process B calls **SendRequest** to send the callback stub to the original stub of process A. As a result, process A obtains the callback proxy of process B. When process B dies or the device hosting process B detaches from the network, the callback stub dies. The callback proxy detects the death of the callback stub and sends a death notification to the original stub. In this way, reverse death notification is implemented.
 
-Suppose there are two processes, A (the process hosting the original stub) and B (the process hosting the original proxy). After obtaining the proxy object of process A, process B creates an anonymous stub object (that is, a stub object not registered with SAMgr), which can be called a callback stub. Then, process B calls **SendRequest** to send the callback stub to the original stub of process A. As a result, process A obtains the callback proxy of process B. When process B dies or the device hosting process B detaches from the network, the callback stub dies. The callback proxy detects the death of the callback stub and sends a death notification to the original stub. In this way, reverse death notification is implemented.
+Note:
 
-> NOTE
-> - Reverse death notification can only be used for cross-process communication within a device.
-> - When an anonymous stub object is not pointed by any proxy, the kernel automatically reclaims the object.
+> Reverse death notification can only be used for cross-process communication within a device.
+
+> When an anonymous stub object is not pointed by any proxy, the kernel automatically reclaims the object.
 
 ### Sample Code
 
 ```c++
-// Proxy
+//Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -149,7 +185,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-// Stub
+//Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

@@ -109,7 +109,7 @@
   ```js
   audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
     if (err) {
-      console.error(`Failed to get effect info array`);
+      console.error('Failed to get effect info array');
       return;    
     } else {
       console.info(`getAudioEffectInfoArray: ${audioEffectInfoArray}`);

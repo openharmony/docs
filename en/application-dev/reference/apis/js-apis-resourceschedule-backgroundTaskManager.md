@@ -628,9 +628,11 @@ Enumerates the efficiency resource types.
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
-| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
-| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
-| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
-| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+| COMMON_EVENT            | 2    | Common events are not proxied when the application is suspended.|
+| TIMER                   | 4    | System timers are not proxied when the application is suspended.|
+| WORK_SCHEDULER          | 8    | WorkScheduler uses a loose control policy by default. For details, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on using-work-scheduler-tasks).|
+| BLUETOOTH               | 16   | Bluetooth resources are not proxied when the application is suspended.|
+| GPS                     | 32   | GPS resources are not proxied when the application is suspended.|
+| AUDIO                   | 64   | Audio resources are not proxied when the application is suspended.|
+| RUNNING_LOCK | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
+| SENSOR | 256 | Sensor callbacks are not intercepted.|

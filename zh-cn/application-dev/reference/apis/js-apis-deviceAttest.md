@@ -33,23 +33,23 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
 ```js
 try {
-    deviceAttest.getAttestStatus((error, result) => {
-        if (typeof err === 'undefined') {
-            console.info("error code:" + error.code + " message:" + error.message);
-        } else {
-            console.info("auth:" + result.authResult + " software:" + result.softwareResult + " ticket:" + result.ticket);
-            console.info("versionIdResult:" + result.softwareResultDetail[0],
-                " patchlevelResult:" + result.softwareResultDetail[1],
-                " roothashResult:" + result.softwareResultDetail[2],
-                " PCIDResult:" + result.softwareResultDetail[3],
-                " reserver:" + result.softwareResultDetail[4]);
-        }
+    deviceAttest.getAttestStatus((error, value) => {
+    if (typeof error != 'undefined') {
+        console.info("error code:" + error.code + " message:" + error.message);
+    } else {
+        console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
+        console.info("versionIdResult:" + value.softwareResultDetail[0],
+        " patchlevelResult:" + value.softwareResultDetail[1],
+        " roothashResult:" + value.softwareResultDetail[2],
+        " PCIDResult:" + value.softwareResultDetail[3],
+        " reserver:" + value.softwareResultDetail[4]);
+    }
     })
 } catch (error) {
     console.info("error code:" + error.code + " message:" + error.message);
@@ -74,21 +74,21 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
 ```js
 try {
     deviceAttest.getAttestStatus().then((value) => {
-        console.info("auth:" + result.authResult + " software:" + result.softwareResult + " ticket:" + result.ticket);
-        console.info("versionIdResult:" + result.softwareResultDetail[0],
-            " patchlevelResult:" + result.softwareResultDetail[1],
-            " roothashResult:" + result.softwareResultDetail[2],
-            " PCIDResult:" + result.softwareResultDetail[3],
-            " reserver:" + result.softwareResultDetail[4]);
+    console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
+    console.info("versionIdResult:" + value.softwareResultDetail[0],
+        " patchlevelResult:" + value.softwareResultDetail[1],
+        " roothashResult:" + value.softwareResultDetail[2],
+        " PCIDResult:" + value.softwareResultDetail[3],
+        " reserver:" + value.softwareResultDetail[4]);
     }).catch((error) => {
-        console.info("error code:" + error.code + " message:" + error.message);
+    console.info("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
     console.info("error code:" + error.code + " message:" + error.message);
@@ -113,19 +113,19 @@ getAttestStatusSync() : AttestResultInfo
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
 ```js
 try {
-    let attestResultInfo = deviceAttest.getAttestStatusSync();
-    console.info("auth:" + result.authResult + " software:" + result.softwareResult + " ticket:" + result.ticket);
-    console.info("versionIdResult:" + result.softwareResultDetail[0],
-        " patchlevelResult:" + result.softwareResultDetail[1],
-        " roothashResult:" + result.softwareResultDetail[2],
-        " PCIDResult:" + result.softwareResultDetail[3],
-        " reserver:" + result.softwareResultDetail[4]);
+    let value = deviceAttest.getAttestStatusSync();
+    console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
+    console.info("versionIdResult:" + value.softwareResultDetail[0],
+    " patchlevelResult:" + value.softwareResultDetail[1],
+    " roothashResult:" + value.softwareResultDetail[2],
+    " PCIDResult:" + value.softwareResultDetail[3],
+    " reserver:" + value.softwareResultDetail[4]);
 } catch (error) {
     console.info("error code:" + error.code + " message:" + error.message);
 }

@@ -1,6 +1,6 @@
 # @ohos.abilityAccessCtrl (Application Access Control)
 
-The **AbilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
+The **abilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
 
 > **NOTE**
 >
@@ -49,7 +49,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
 | permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
@@ -96,7 +96,7 @@ Verifies whether a permission is granted to an application. This API returns the
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
 | permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
@@ -138,7 +138,7 @@ Grants a user_grant permission to an application. This API uses a promise to ret
 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
 | permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 
@@ -195,7 +195,7 @@ Grants a user_grant permission to an application. This API uses an asynchronous 
 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
@@ -249,7 +249,7 @@ Revokes a user_grant permission from an application. This API uses a promise to 
 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
 | permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 
@@ -306,7 +306,7 @@ Revokes a user_grant permission from an application. This API uses an asynchrono
 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
 | permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
@@ -360,7 +360,7 @@ Obtains the permission flag of an application. This API uses a promise to return
 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
 | permissionName | Permissions              | Yes  | Target permission. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
@@ -413,7 +413,7 @@ Obtains the data version of the permission management. This API uses a promise t
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the version.|
+| Promise&lt;number&gt; | Promise used to return the version obtained.|
 
 **Example**
 
@@ -441,9 +441,9 @@ Subscribes to permission state changes of the specified applications and permiss
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to subscribe to. The value is **'permissionStateChange'**, which indicates the permission grant state change. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | Token IDs of the applications to observe. If this parameter is left empty, the permission grant state changes of all applications are observed. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permission names. If this parameter is left empty, the grant state changes of all permissions are subscribed to.              |
+| type               | string                | Yes  | Event type to subscribe to. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs to observe. If this parameter is left empty, the permission grant state changes of all applications will be subscribed to. |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. If this parameter is left empty, the grant state changes of all permissions will be subscribed to.              |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | Yes| Callback invoked to return the permission grant state change.|
 
 **Error codes**
@@ -493,9 +493,9 @@ Unsubscribes from permission grant state changes of the specified applications a
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to unsubscribe from. The value is **'permissionStateChange'**, which indicates the permission grant state change. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | Token IDs of the applications. If this parameter is left empty, the permission grant state changes of all applications are unsubscribed from. The value must be the same as that passed in **on()**. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | Permission names. If this parameter is left empty, the grant state changes of all permissions are unsubscribed from. The value must be the same as that passed in **on()**. |
+| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is left empty, the permission grant state changes of all applications will be unsubscribed from. The value must be the same as that passed in **on()**.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. If this parameter is left empty, the grant state changes of all permissions will be unsubscribed from. The value must be the same as that passed in **on()**.|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | No| Callback for the permission grant state change. |
 
 **Error codes**
@@ -542,7 +542,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
 | permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
 
 **Return value**
@@ -613,7 +613,7 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-Requests user authorization in a dialog box opened by a UIAbility.  This API uses a promise to return the result.
+Requests user authorization in a dialog box opened by a UIAbility. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -678,8 +678,8 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | string | Yes  | Permission to check.|
+| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
+| permissionName | string | Yes  | Permission to verify.|
 
 **Return value**
 
@@ -712,7 +712,7 @@ Checks whether a permission is granted to an application. This API returns the r
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
 | permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
@@ -773,5 +773,5 @@ Defines detailed information about the permission grant state change.
 | Name          | Type                      | Readable| Writable| Description               |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
-| tokenID        | number                    | Yes  | No  | Token ID of the application. |
+| tokenID        | number                    | Yes  | No  | Application token ID.|
 | permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |

@@ -1096,6 +1096,10 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 **示例：**
 
 ```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -1116,7 +1120,7 @@ let queueItemDescription_2 = {
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon: imagePixel,
     iconUri: 'http://www.xxx.com',
     extras: {'extras':'any'}
 };
@@ -1158,6 +1162,10 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 **示例：**
 
 ```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -1178,7 +1186,7 @@ let queueItemDescription_2 = {
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon: imagePixel,
     iconUri: 'http://www.icon.uri.com',
     extras: {'extras':'any'}
 };
@@ -2197,7 +2205,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
 | 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -2467,6 +2475,7 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -2724,6 +2733,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2758,6 +2768,7 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -2925,6 +2936,8 @@ getExtras(): Promise\<{[key: string]: Object}>
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 ```js
@@ -2955,6 +2968,8 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **示例：**
 ```js
@@ -3919,6 +3934,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -3947,6 +3963,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -3975,6 +3992,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4003,6 +4021,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4031,6 +4050,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4089,6 +4109,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4117,6 +4138,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4145,6 +4167,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4173,6 +4196,7 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 

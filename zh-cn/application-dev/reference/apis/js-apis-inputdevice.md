@@ -180,7 +180,7 @@ try {
 
 off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
-取消监听输入设备的热插拔事件。
+取消监听输入设备的热插拔事件。在应用退出前调用，取消监听。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -460,6 +460,132 @@ try {
 }
 ```
 
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| delay    | number                    | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(350, (error) => {
+    if (error) {
+      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
+
+设置键盘按键的重复时延，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| delay | number | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(350).then(() => {
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| rate    | number                    | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(60, (error) => {
+    if (error) {
+      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
+
+设置键盘按键的重复速率，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| rate | number | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(60).then(() => {
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## DeviceListener<sup>9+</sup>
 
 输入设备热插拔的描述信息。
@@ -506,7 +632,7 @@ try {
 | pressure    | string | 是 | 否 | 表示pressure轴。    |
 | x           | string | 是 | 否 | 表示x轴。           |
 | y           | string | 是 | 否 | 表示y轴。           |
-| NULL        | string | 是 | 否 | 无。              |
+| null        | string | 是 | 否 | 无。              |
 
 ## AxisRange
 

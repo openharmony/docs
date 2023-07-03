@@ -318,10 +318,3 @@ export default {
 
 
 ![zh-cn_image_0000001188771358](figures/zh-cn_image_0000001188771358.gif)
-
-
-## 相关实例
-
-针对input开发，有以下相关实例可供参考：
-
-- [input、label（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)

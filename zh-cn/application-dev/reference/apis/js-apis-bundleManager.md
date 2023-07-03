@@ -19,6 +19,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -114,6 +115,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
+| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | [AuthorizationExtensionAbility](js-apis-appAccount-authorizationExtensionAbility.md)：应用帐号认证扩展能力，用于处理帐号授权的请求，允许第三方（相对于操作系统厂商）生态平台的帐号授权。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -675,7 +677,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -724,7 +726,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -763,7 +765,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -814,7 +816,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -863,7 +865,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -902,7 +904,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

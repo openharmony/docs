@@ -29,8 +29,9 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 随着系统的演进发展，OpenHarmony先后提供了两种应用模型：
 
-- **FA（Feature Ability）模型：** OpenHarmony API 7开始支持的模型，已经不再主推。FA模型开发可见[FA模型开发概述](../application-models/fa-model-development-overview.md)。
-- **Stage模型：** OpenHarmony API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。Stage模型开发可见[Stage模型开发概述](../application-models/stage-model-development-overview.md)。
+- **Stage模型：** OpenHarmony API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。Stage模型开发可见[Stage模型开发概述](../application-models/stage-model-development-overview.md)。**快速入门以此为例提供开发指导。**
+
+- **FA（Feature Ability）模型：** OpenHarmony API 7开始支持的模型，已经不再主推。FA模型开发可见[FA模型开发概述](../application-models/fa-model-development-overview.md)。**快速入门章节不再对此展开提供开发指导。**
 
 FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应用模型解读](../application-models/application-model-description.md)。
 
@@ -39,8 +40,8 @@ FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应
 
 ## 工具准备
 
-1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)。
+1. 安装最新版[DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta1.md#配套关系)。
 
 2. 请参考[配置开发环境](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)，完成**DevEco Studio**的安装和开发环境配置。
 
-完成上述操作及基本概念的理解后，可参照[使用ArkTS语言进行开发（Stage模型）](start-with-ets-stage.md)、[使用ArkTS语言开发（FA模型）](start-with-ets-fa.md)、[使用JS语言开发（FA模型）](../quick-start/start-with-js-fa.md)中的任一章节进行下一步体验和学习。
+完成上述操作及基本概念的理解后，可参照[使用ArkTS语言进行开发（Stage模型）](start-with-ets-stage.md)中的任一章节进行下一步体验和学习。

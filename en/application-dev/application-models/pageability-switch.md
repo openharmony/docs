@@ -27,7 +27,7 @@ The PageAbility lifecycle is basically the same as the UIAbility lifecycle. The 
 3. Adjust the migrated code, since the methods of loading pages are different.
 
    - In the FA model, you can configure the page to be loaded by setting page information in **config.json**.
-   - In the stage model, you must call **windowStage.loadContent** in the **onWindowStageCreate** callback to load a page.
+   - In the stage model, call **windowStage.loadContent** in the **onWindowStageCreate** callback to load a page.
 
    For example, to load the **pages/Index** page after the ability is started, use the following code in the **config.json** file in the FA model:
 

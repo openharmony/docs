@@ -32,24 +32,23 @@
     - [栅格设置](ts-universal-attributes-grid.md)
     - [颜色渐变](ts-universal-attributes-gradient-color.md)
     - [Popup控制](ts-universal-attributes-popup.md)
-    - [Menu控制](ts-universal-attributes-menu.md)
+    - [菜单控制](ts-universal-attributes-menu.md)
     - [焦点控制](ts-universal-attributes-focus.md)
     - [悬浮态效果](ts-universal-attributes-hover-effect.md)
     - [组件标识](ts-universal-attributes-component-id.md)
     - [多态样式](ts-universal-attributes-polymorphic-style.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
+    - [组件内容模糊](ts-universal-attributes-foreground-blur-style.md)
     - [点击回弹](ts-universal-attributes-click-effect.md)
     - 触摸交互控制
-      - [点击控制](ts-universal-attributes-click.md)
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
     - 模态转场设置
       - [全屏模态转场](ts-universal-attributes-modal-transition.md)
       - [半模态转场](ts-universal-attributes-sheet-transition.md)
     - [隐私遮罩](ts-universal-attributes-obscured.md)
-  - [文本通用属性](ts-universal-attributes-text-style.md)
-  - [安全控件通用属性](ts-universal-attributes-securitycomponent.md)
+    - [文本通用](ts-universal-attributes-text-style.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -92,9 +91,6 @@
   - [RichText](ts-basic-components-richtext.md)
   - [ScrollBar](ts-basic-components-scrollbar.md)
   - [Search](ts-basic-components-search.md)
-  - [SecLocationButton](ts-basic-components-seclocationbutton.md)
-  - [SecPasteButton](ts-basic-components-secpastebutton.md)
-  - [SecSaveButton](ts-basic-components-secsavebutton.md)
   - [Select](ts-basic-components-select.md)
   - [Slider](ts-basic-components-slider.md)
   - [Span](ts-basic-components-span.md)
@@ -157,6 +153,7 @@
   - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
   - [ImageData对象](ts-components-canvas-imagedata.md)
   - [Matrix2D](ts-components-canvas-matrix2d.md)
+  - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 动画
@@ -183,3 +180,5 @@
 - [类型定义](ts-types.md)
 - 已停止维护的组件
   - [GridContainer](ts-container-gridcontainer.md)
+- 已停止维护的接口 
+  - [点击控制](ts-universal-attributes-click.md)

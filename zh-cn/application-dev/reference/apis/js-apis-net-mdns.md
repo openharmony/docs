@@ -629,7 +629,7 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -645,7 +645,7 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -666,7 +666,7 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
@@ -682,7 +682,7 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
@@ -706,6 +706,8 @@ on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, er
 
 ```js
 // 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -735,6 +737,8 @@ on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, err
 
 ```js
 // 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -764,6 +768,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -793,6 +799,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 ```js
 // 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 

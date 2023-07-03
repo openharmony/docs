@@ -1,6 +1,6 @@
-# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)
 
-本模块提供企业管理员应用拓展能力。
+本模块提供企业设备管理扩展能力。
 
 企业管理员应用需要存在一个EnterpriseAdminExtensionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
 
@@ -75,7 +75,7 @@ onBundleAdded(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
-    console.log("added bundle name: " + bundleName);
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
   }
 };
 ```
@@ -100,8 +100,8 @@ onBundleRemoved(bundleName: string): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string) {
-    console.log("removed bundle name: " + bundleName);
+  onBundleRemoved(bundleName: string) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
   }
 };
 ```
@@ -127,7 +127,7 @@ onAppStart(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
-    console.log("started bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
   }
 };
 ```
@@ -153,7 +153,7 @@ onAppStop(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
-    console.log("stopped bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
   }
 };
 ```

@@ -27,8 +27,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.<br>If the content set exceeds the space provided by the tab bar, it will be clipped.|
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.<br>**NOTE**<br>The bottom tab style does not include an underline.<br>When an icon display error occurs, a gray blank block is displayed.|
+| tabBar | string \| [Resource](ts-types.md#resource) \| {<br>icon?: string \| [Resource](ts-types.md#resource),<br>text?: string \| [Resource](ts-types.md#resource)<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.<br>If the content set exceeds the space provided by the tab bar, it will be clipped.|
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.<br>**NOTE**<br>The bottom tab style does not include an underline.<br>When an icon display error occurs, a gray blank block is displayed.|
 
 >  **NOTE**
 >
@@ -81,10 +81,10 @@ The following attributes are supported.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | No| Underline indicator color and board color.<br>Default value: **#FF007DFF**|
-| height | [Length](ts-types.md#length) | No| Height of the underline indicator.<br>Default value: **2.0**<br>Unit: vp|
-| width | [Length](ts-types.md#length) | No| Width of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
-| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
-| marginTop | [Length](ts-types.md#length) | No| Spacing between the underline indicator and text.<br>Default value: **8.0**<br>Unit: vp|
+| height | [Length](ts-types.md#length) | No| Height of the underline indicator. It cannot be set in percentage.<br>Default value: **2.0**<br>Unit: vp|
+| width | [Length](ts-types.md#length) | No| Width of the underline indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
+| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
+| marginTop | [Length](ts-types.md#length) | No| Spacing between the underline indicator and text. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
 
 ## SelectedMode<sup>10+</sup>
 | Name      | Description                    |
@@ -96,7 +96,7 @@ The following attributes are supported.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------------ |
-| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator.<br>Default value: **8.0**<br>Unit: vp|
+| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the board. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
 
 ## LabelStyle<sup>10+</sup>
 

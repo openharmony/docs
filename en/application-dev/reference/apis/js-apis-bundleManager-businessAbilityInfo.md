@@ -7,6 +7,8 @@ The **BusinessAbilityInfo** module provides basic information about a business a
 
 ## BusinessAbilityInfo
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                             | Type                                                        | Readable| Writable| Description                |

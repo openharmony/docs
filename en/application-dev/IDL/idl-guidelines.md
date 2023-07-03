@@ -1,4 +1,4 @@
-# OpenHarmony IDL Specifications and User Guide
+# IDL Specifications and User Guide
 
 ## IDL Overview
 To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.

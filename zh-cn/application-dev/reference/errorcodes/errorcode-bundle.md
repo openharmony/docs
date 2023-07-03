@@ -595,8 +595,8 @@ Failed to install the HAP because the isolationMode configured is not supported.
 安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
 
 **可能原因**<br/>
-1. 设备支持隔离模式，即supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
-2. 设备不支持隔离模式，即supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
+1. 设备支持隔离模式，即persist.bms.supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
+2. 设备不支持隔离模式，即persist.bms.supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
 
 **处理步骤**<br/>
 1. 按照设备的隔离模式正确配置HAP字段isolationMode。
@@ -628,3 +628,20 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 **处理步骤**<br/>
 1. 设置应用的版本号大于当前版本。
 2. 如果希望应用更新但版本号不升级，需要设置installFlag为REPLACE_EXISTING。
+
+## 17700048 代码签名校验失败
+**错误信息**<br/>
+Failed to install the HAP because the code signature verification is failed.
+
+**错误描述**<br/>
+安装应用时，安装包的代码签名文件校验失败。
+
+**可能原因**<br/>
+1. 代码签名文件对应的module在安装包中不存在。
+2. 代码签名文件路径无效。
+3. 代码签名文件和对应的安装包不匹配。
+
+**处理步骤**<br/>
+1. 检查代码签名文件对应的module是否包含在安装包路径之中。
+2. 检查提供的代码签名文件的路径是否合法。
+3. 使用和安装包匹配的代码签名文件。

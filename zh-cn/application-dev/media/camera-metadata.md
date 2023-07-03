@@ -48,7 +48,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+  metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
       console.info(`metadata output metadataObjectsAvailable`);
   })
   ```

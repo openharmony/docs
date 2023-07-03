@@ -3,8 +3,6 @@
 - Getting Started
   - [Before You Start](start-overview.md)
   - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
-  - [Getting Started with ArkTS in FA Model](start-with-ets-fa.md)
-  - [Getting Started with JavaScript in FA Model](start-with-js-fa.md)  
 - Development Fundamentals
   - Application Package Fundamentals
     - [Application Package Overview](application-package-overview.md)
@@ -38,7 +36,7 @@
   - Application Configuration Files in FA Model
     - [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md)
     - [Internal Structure of the app Tag](app-structure.md)
-    - [Internal Structure of deviceConfig Tag](deviceconfig-structure.md)
+    - [Internal Structure of the deviceConfig Tag](deviceconfig-structure.md)
     - [Internal Structure of the module Tag](module-structure.md)
   - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
