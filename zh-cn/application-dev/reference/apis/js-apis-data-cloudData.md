@@ -361,11 +361,11 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action},  cal
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| accountId  | string                                                       | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](https://gitee.com/openharmony/docs/blob/0a732228c11c5b8a6620444b7778aea745054735/zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md#Action)} | 是   | 要清除数据的应用信息 |
-| callback   | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。           |
+| 参数名     | 类型                                      | 必填 | 说明                 |
+| ---------- | ----------------------------------------- | ---- | -------------------- |
+| accountId  | string                                    | 是   | 具体打开的云ID。     |
+| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
+| callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。           |
 
 **示例：**
 
@@ -402,10 +402,10 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| accountId  | string                                                       | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](https://gitee.com/openharmony/docs/blob/0a732228c11c5b8a6620444b7778aea745054735/zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md#Action)} | 是   | 要清除数据的应用信息 |
+| 参数名     | 类型                                      | 必填 | 说明                 |
+| ---------- | ----------------------------------------- | ---- | -------------------- |
+| accountId  | string                                    | 是   | 具体打开的云ID。     |
+| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
 
 **返回值：**
 
