@@ -726,7 +726,7 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
 });
 ```
 
-### on('keyEvent')
+### on('keyEvent')<sup>10+</sup>
 
 on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 
@@ -752,7 +752,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent) => {
 });
 ```
 
-### off('keyEvent')
+### off('keyEvent')<sup>10+</sup>
 
 off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 
