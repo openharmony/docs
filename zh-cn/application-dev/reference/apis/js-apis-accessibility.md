@@ -147,7 +147,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕配置管理，在调用CaptionsManager的方法前，需要先通过 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8)获取 CaptionsManager实例。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 ### 属性
 
