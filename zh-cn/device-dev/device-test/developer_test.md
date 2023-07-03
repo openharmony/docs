@@ -699,7 +699,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
 		> - ohos_unittest：单元测试
         > - ohos_js_unittest: FA模型js用例单元测试
-        > - ohos_js_stage_unittest: stage模型ets用例单元测试
+        > - ohos_js_stage_unittest: stage模型ArkTs用例单元测试
 		> - ohos_moduletest：模块测试
 		> - ohos_systemtest：系统测试
 		> - ohos_performancetest：性能测试
@@ -861,7 +861,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
-- **stage模型ets用例编译配置示例**
+- **stage模型ArkTs用例编译配置示例**
 
     ```
     # Copyright (C) 2023 XXXX Device Co., Ltd.
@@ -932,7 +932,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		```
 		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
 		> 
-		> 使用模板ohos_js_stage_unittest定义stage模型的ets测试套。
+		> 使用模板ohos_js_stage_unittest定义stage模型的ArkTs测试套。
 
 	5. 指定配置文件module.json、签名文件、部件名称和编译输出路径，都为必选项。
 
