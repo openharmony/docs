@@ -120,7 +120,7 @@ GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新
 | 名称 | 描述 |
 | -------- | -------- |
 | image | 指向OH_NativeImage实例的指针。 |
-| textureId | OH_NativeImage要附加到的OPENGL ES纹理的id。 |
+| textureId | OH_NativeImage要附加到的OpenGL ES纹理的id。 |
 
 **返回:**
 
