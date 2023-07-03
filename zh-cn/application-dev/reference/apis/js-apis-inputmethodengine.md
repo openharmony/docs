@@ -726,6 +726,56 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
 });
 ```
 
+### on('keyEvent')
+
+on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
+
+订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示订阅硬键盘按键事件。 |
+| callback | (event: [InputKeyEvent](js-apis-keyevent.md#KeyEvent)) => boolean | 是   | 回调函数，返回按键信息。                                     |
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent) => {
+  console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
+  console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+  console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+  return true;
+});
+```
+
+### off('keyEvent')
+
+off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
+
+取消订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示取消订阅硬键盘按键事件。 |
+| callback | (event: [InputKeyEvent](js-apis-keyevent.md#KeyEvent)) => boolean | 否   | 回调函数，返回按键信息。                                     |
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent) => {
+  console.log('delete keyEvent notification.');
+  return true;
+});
+```
+
 ### on('cursorContextChange')
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
