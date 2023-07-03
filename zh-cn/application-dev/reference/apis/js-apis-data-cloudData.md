@@ -1,6 +1,6 @@
 # @ohos.data.cloudData (端云协同)
 
-端云协同提供结构化数据（RDB Store)端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
+端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
 
 该模块提供以下端云协同相关的常用功能：
 
@@ -18,7 +18,7 @@ import cloudData from '@ohos.data.cloudData';
 
 ##   Action
 
-清除本地数据云信息的行为枚举。
+清除本地保存的云端数据的行为枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -27,7 +27,7 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 说明                         |
 | --------- | ---------------------------- |
 | CLEAR_CLOUD_INFO | 清除云标识信息。 |
-| CLEAR_CLOUD_DATA_AND_INFO |清除所有云相关数据，包括云标识信息以及从云端下载的数据（不包括本地已修改或生成的数据）。   |
+| CLEAR_CLOUD_DATA_AND_INFO |清除本地保存的所有云端数据，包括云标识信息以及从云端下载的数据（不包括本地已修改或生成的数据）。   |
 
 ## Config
 
@@ -49,7 +49,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云ID。                                             |
+| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
 | switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
@@ -87,7 +87,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云ID。                                             |
+| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
 | switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
@@ -126,10 +126,10 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 **参数：**
 
-| 参数名    | 类型                      | 必填 | 说明             |
-| --------- | ------------------------- | ---- | ---------------- |
-| accountId | string                    | 是   | 具体打开的云ID。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+| 参数名    | 类型                      | 必填 | 说明                 |
+| --------- | ------------------------- | ---- | -------------------- |
+| accountId | string                    | 是   | 具体打开的云帐号ID。 |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 **示例：**
 
@@ -162,9 +162,9 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明             |
-| --------- | ------ | ---- | ---------------- |
-| accountId | string | 是   | 具体打开的云ID。 |
+| 参数名    | 类型   | 必填 | 说明                 |
+| --------- | ------ | ---- | -------------------- |
+| accountId | string | 是   | 具体打开的云帐号ID。 |
 
 **返回值：**
 
@@ -203,8 +203,8 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云ID。 |
-| bundleName| string                         | 是   | 应用名 |
+| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| bundleName| string                         | 是   | 应用名。 |
 | status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
 
@@ -242,8 +242,8 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云ID。 |
-| bundleName| string                         | 是   | 应用名 |
+| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| bundleName| string                         | 是   | 应用名。 |
 | status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
@@ -282,11 +282,11 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明             |
-| ---------- | ------------------------- | ---- | ---------------- |
-| accountId  | string                    | 是   | 具体打开的云ID。 |
-| bundleName | string                    | 是   | 应用名           |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+| 参数名     | 类型                      | 必填 | 说明                 |
+| ---------- | ------------------------- | ---- | -------------------- |
+| accountId  | string                    | 是   | 具体打开的云帐号ID。 |
+| bundleName | string                    | 是   | 应用名。             |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 **示例：**
 
@@ -320,10 +320,10 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明             |
-| ---------- | ------ | ---- | ---------------- |
-| accountId  | string | 是   | 具体打开的云ID。 |
-| bundleName | string | 是   | 应用名           |
+| 参数名     | 类型   | 必填 | 说明                 |
+| ---------- | ------ | ---- | -------------------- |
+| accountId  | string | 是   | 具体打开的云帐号ID。 |
+| bundleName | string | 是   | 应用名。             |
 
 **返回值：**
 
@@ -361,11 +361,11 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action},  cal
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明                 |
-| ---------- | ----------------------------------------- | ---- | -------------------- |
-| accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息 |
-| callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。           |
+| 参数名     | 类型                                      | 必填 | 说明                   |
+| ---------- | ----------------------------------------- | ---- | ---------------------- |
+| accountId  | string                                    | 是   | 具体打开的云帐号ID。   |
+| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息。 |
+| callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。             |
 
 **示例：**
 
@@ -376,14 +376,14 @@ let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions, function (err, data) {
-    if (err == undefined) {
+  cloudData.Config.clean(account, appActions, function (err) {
+    if (err === undefined) {
       console.info('Succeeding in cleaning cloud data');
     } else {
-      console.error(`Failed to clean. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (e) {
+} catch (error) {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -402,10 +402,10 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明                 |
-| ---------- | ----------------------------------------- | ---- | -------------------- |
-| accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息 |
+| 参数名     | 类型                                      | 必填 | 说明                   |
+| ---------- | ----------------------------------------- | ---- | ---------------------- |
+| accountId  | string                                    | 是   | 具体打开的云帐号ID。   |
+| appActions | {[bundleName: string]: [Action](#action)} | 是   | 要清除数据的应用信息。 |
 
 **返回值：**
 
@@ -422,12 +422,12 @@ let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions).then((data) => {
+  cloudData.Config.clean(account, appActions).then(() => {
     console.info('Succeeding in cleaning cloud data');
-  }).catch((error) => {
-    console.error(`Failed to clean. Code: ${err.code}, message: ${err.message}`);
+  }).catch((err) => {
+    console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
   });
-} catch (e) {
+} catch (error) {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
