@@ -14,6 +14,10 @@
 >  **说明：** 
 >
 >  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>
+>  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AutoLinear或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>
+>  Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 
 
 ## 接口
