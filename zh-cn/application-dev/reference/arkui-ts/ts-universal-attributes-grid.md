@@ -6,6 +6,7 @@
 >
 >  - 栅格布局的列宽、列间距由距离最近的GridContainer父组件决定。使用栅格属性的组件树上至少需要有1个GridContainer容器组件。
 
+>  - gridSpan、gridOffset属性调用时其父组件或祖先组件必须是GridContainer。
 
 ## 属性
 

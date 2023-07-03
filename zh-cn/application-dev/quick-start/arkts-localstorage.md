@@ -37,7 +37,6 @@ LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供
 
 - LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
 - LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared9)接口仅能获取当前stage，通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[以持久化方式订阅某个事件并接收事件回调](#以持久化方式订阅某个事件并接收事件回调)。
 
 
 ## \@LocalStorageProp
@@ -61,7 +60,7 @@ LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供
 | \@LocalStorageProp变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，且必须和LocalStorage中对应属性相同。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型                    | 单向同步：从LocalStorage的对应属性到组件的状态变量。组件本地的修改是允许的，但是LocalStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -119,7 +118,7 @@ LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供
 | \@LocalStorageLink变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，且必须和LocalStorage中对应属性相同。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型                    | 双向同步：从LocalStorage的对应属性到自定义组件，从自定义组件到LocalStorage对应属性。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -417,179 +416,6 @@ struct CompA {
     Column() {
       Text(`${this.varA}`).fontSize(50)
     }
-  }
-}
-```
-
-### 以持久化方式订阅某个事件并接收事件回调
-
-推荐使用持久化方式订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
-
-
-```ts
-import emitter from '@ohos.events.emitter';
-
-let NextID: number = 0;
-
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-  id: number;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-    this.id = NextID++;
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-  private preIndex: number = -1
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: item.id
-            })
-          }.aspectRatio(1)
-          .onClick(() => {
-            if (this.preIndex === item.id) {
-              return
-            }
-            var innerEvent = { eventId: item.id }
-            // 选中态：黑变红
-            var eventData = {
-              data: {
-                "colorTag": 1
-              }
-            }
-            emitter.emit(innerEvent, eventData)
-
-            if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
-              // 取消选中态：红变黑
-              var eventData = {
-                data: {
-                  "colorTag": 0
-                }
-              }
-              emitter.emit(innerEvent, eventData)
-            }
-            this.preIndex = item.id
-          })
-
-        }, (item: ViewData) => JSON.stringify(item))
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
-  }
-
-  aboutToAppear() {
-    //定义事件ID
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-  }
-}
-```
-
-以下示例为消息机制方式订阅事件，会导致回调监听的节点数较多，非常耗时，不推荐以此来实现应用代码。
-
-
-```ts
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData, index?: number) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: index
-            })
-          }.aspectRatio(1)
-
-        }, (item: ViewData, index?: number) => {
-          return JSON.stringify(item) + index;
-        })
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  // 判断是否被选中
-  onTapIndexChange() {
-    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
-      this.tapColor = Color.Red;
-    } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
-      this.tapColor = Color.Black;
-    }
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .onClick(() => {
-          this.tapIndex = this.index;
-        })
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-
   }
 }
 ```
