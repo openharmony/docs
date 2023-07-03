@@ -61,8 +61,7 @@
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50,
-  "isolationMode": "nonisolationFirst"
+  "targetPriority": 50
 }
 ```
 
