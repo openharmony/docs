@@ -19,13 +19,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ## DataSharePredicates
 提供用于不同实现不同查询方法的数据共享谓词。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
-### equalTo<sup>10+</sup>
+### equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值等于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -168,13 +170,15 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("NAME", "Rose")
 ```
 
-### and<sup>10+</sup>
+### and
 
 and(): DataSharePredicates
 
 该接口用于将和条件添加到谓词中。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -641,13 +645,15 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThanOrEqualTo("AGE", 50)
 ```
 
-### orderByAsc<sup>10+</sup>
+### orderByAsc
 
 orderByAsc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按升序排序的列。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -670,13 +676,15 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByAsc("AGE")
 ```
 
-### orderByDesc<sup>10+</sup>
+### orderByDesc
 
 orderByDesc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按降序排序的列。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -724,13 +732,15 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-### limit<sup>10+</sup>
+### limit
 
 limit(total: number, offset: number): DataSharePredicates
 
 该接口用于配置谓词以指定结果数和起始位置。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -816,13 +826,15 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-### in<sup>10+</sup>
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配值在指范围内的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 

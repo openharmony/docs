@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -18,6 +18,8 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 该类型用于表示数据库允许的数据字段类型。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 | 类型    | 说明                 |
@@ -29,6 +31,8 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 ## ValuesBucket
 
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。 
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
