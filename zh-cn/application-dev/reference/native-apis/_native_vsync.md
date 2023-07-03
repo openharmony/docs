@@ -95,7 +95,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| name | 参数表示一个vsync连接的名字 |
+| name | 表示一个名字，与创建的OH_NativeVSync实例关联 |
 | length | name的长度 |
 
 **返回:**

@@ -335,7 +335,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void * obj)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| obj | 一个NativeWindow or NativeWindowBuffer的结构体实例的指针 |
+| obj | 一个NativeWindow或者NativeWindowBuffer的结构体实例的指针 |
 
 **返回:**
 
@@ -359,7 +359,7 @@ int32_t OH_NativeWindow_NativeObjectReference (void * obj)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| obj | 一个NativeWindow or NativeWindowBuffer的结构体实例的指针 |
+| obj | 一个NativeWindow或者NativeWindowBuffer的结构体实例的指针 |
 
 **返回:**
 
@@ -383,7 +383,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void * obj)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| obj | 一个NativeWindow or NativeWindowBuffer的结构体实例的指针 |
+| obj | 一个NativeWindow或者NativeWindowBuffer的结构体实例的指针 |
 
 **返回:**
 
