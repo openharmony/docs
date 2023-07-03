@@ -347,3 +347,83 @@ try {
 }
 ```
 
+###  clean
+
+static clean(accountId: string, appActions: {[bundleName: string]: Action}, callback: AsyncCallback<void>):void
+
+清除本地数据中云信息，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| accountId  | string                                                       | 是   | 具体打开的云ID。     |
+| appActions | {[bundleName: string]: [Action](https://gitee.com/openharmony/docs/blob/0a732228c11c5b8a6620444b7778aea745054735/zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md#Action)} | 是   | 要清除数据的应用信息 |
+| callback   | AsyncCallback<void>                                          | 是   | 回调函数。           |
+
+**示例：**
+
+```js
+let con = ddm.Action;
+let account = "test_id";
+let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
+try {
+    await ddm.Config.clean(account, appActions, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in cleaning cloud data');
+        } else {
+            console.error(`Failed to clean. Code: ${err.code}, message: ${err.message}`);
+        }
+    });
+} catch (e) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+### clean
+
+static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise<void>
+
+清除本地数据中云信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| accountId  | string                                                       | 是   | 具体打开的云ID。     |
+| appActions | {[bundleName: string]: [Action](https://gitee.com/openharmony/docs/blob/0a732228c11c5b8a6620444b7778aea745054735/zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md#Action)} | 是   | 要清除数据的应用信息 |
+
+**返回值：**
+
+| 类型          | 说明                      |
+| ------------- | ------------------------- |
+| Promise<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let con = ddm.Action;
+let account = "test_id";
+let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
+try {
+    await  ddm.Config.clean(account, appActions).then((data) => {
+        console.info('Succeeding in cleaning cloud data');
+    }).catch((error) => {
+        console.error(`Failed to clean. Code: ${err.code}, message: ${err.message}`);
+    });
+} catch (e) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
