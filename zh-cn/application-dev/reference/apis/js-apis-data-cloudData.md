@@ -351,7 +351,7 @@ try {
 
 static clean(accountId: string, appActions: {[bundleName: string]: Action},  callback: AsyncCallback&lt;void&gt;):void
 
-清除本地数据保存的云端数据，使用callback异步回调。
+清除本地保存的云端数据，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -392,7 +392,7 @@ try {
 
 static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
 
-清除本地数据保存的云端数据，使用Promise异步回调。
+清除本地保存的云端数据，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
