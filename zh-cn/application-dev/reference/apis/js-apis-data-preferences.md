@@ -434,6 +434,55 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+
+removePreferencesFromCacheSync(context: Context, name: string): void;
+
+从内存中移除指定的Preferences实例，此为同步接口。
+
+调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型                                  | 必填 | 说明                    |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
+| name    | string                                | 是   | Preferences实例的名称。 |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+try {
+    data_preferences.removePreferencesFromCacheSync(context, 'mystore');
+} catch(err) {
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCacheSync(this.context, 'mystore');
+        } catch(err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
 ## Preferences
 
 存储实例，提供获取和修改存储数据的接口。
@@ -510,6 +559,38 @@ try {
 }
 ```
 
+### getSync<sup>10+</sup>
+
+getSync(key: string, defValue: ValueType): ValueType;
+
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| [ValueType](#valuetype) | 返回键对应的值。 |
+
+**示例：**
+
+```js
+try {
+    let value = preferences.getSync('startup', 'default');
+    console.info("Succeeded in getting value of 'startup'. Data: " + value);
+} catch(err) {
+    console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+}
+```
+
 ### getAll
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
@@ -569,6 +650,33 @@ try {
     }).catch((err) => {
         console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     })
+} catch (err) {
+    console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+}
+```
+
+### getAllSync<sup>10+</sup>
+
+getAllSync(): Object;
+
+获取含有所有键值的Object对象，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**返回值：**
+
+| 类型                  | 说明                                        |
+| --------------------- | ------------------------------------------- |
+| Object | 返回含有所有键值的Object对象。 |
+
+**示例：**
+
+```js
+try {
+    let value = preferences.getAllSync();
+    let allKeys = Object.keys(value);
+    console.info('getAll keys = ' + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
 } catch (err) {
     console.info("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
 }
@@ -638,6 +746,32 @@ try {
     }).catch((err) => {
         console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
     })
+} catch(err) {
+    console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
+}
+```
+
+
+### putSync<sup>10+</sup>
+
+putSync(key: string, value: ValueType): void;
+
+将数据写入Preferences实例，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名 | 类型                    | 必填 | 说明                                                         |
+| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+
+**示例：**
+
+```js
+try {
+    preferences.putSync('startup', 'auto');
 } catch(err) {
     console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
 }
@@ -720,6 +854,42 @@ try {
 ```
 
 
+### hasSync<sup>10+</sup>
+
+hasSync(key: string): boolean;
+
+检查Preferences实例是否包含名为给定Key的存储键值对，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | 是   | 要检查的存储key名称，不能为空。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+
+**示例：**
+
+```js
+try {
+    let isExist = preferences.hasSync('startup');
+    if (isExist) {
+        console.info("The key 'startup' is contained.");
+    } else {
+        console.info("The key 'startup' dose not contain.");
+    }
+} catch(err) {
+    console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+}
+```
+
+
 ### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
@@ -782,6 +952,31 @@ try {
     }).catch((err) => {
         console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
+} catch(err) {
+    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+}
+```
+
+
+### deleteSync<sup>10+</sup>
+
+deleteSync(key: string): void;
+
+从Preferences实例中删除名为给定Key的存储键值对，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | 是   | 要删除的存储key名称，不能为空。 |
+
+**示例：**
+
+```js
+try {
+    preferences.deleteSync('startup');
 } catch(err) {
     console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
@@ -904,6 +1099,25 @@ try {
     }).catch((err) => {
         console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
     })
+} catch(err) {
+    console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
+}
+```
+
+
+### clearSync<sup>10+</sup>
+
+clearSync(): void;
+
+清除此Preferences实例中的所有存储，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**示例：**
+
+```js
+try {
+    preferences.clearSync();
 } catch(err) {
     console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
