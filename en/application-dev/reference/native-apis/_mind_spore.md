@@ -1109,7 +1109,7 @@ Obtains the provider name.
 
 **Returns**
 
-Provider name
+Provider name.
 
 
 ### OH_AI_DeviceInfoGetProviderDevice()
