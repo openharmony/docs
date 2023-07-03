@@ -64,3 +64,35 @@ import bundleManager from '@ohos.bundle.bundleManager';
 2. 该权限为user_grant类型的，安装时默认不会授权，需要应用调用弹框接口由用户选择是否授权或者使用预授权进行授权。
 3. 使用弹框授权方式可以参考[向用户申请授权](../../../application-dev/security/accesstoken-guidelines.md#向用户申请授权)。
 4. 使用预授权方式可以参考[权限预授权](../../../application-dev/security/accesstoken-guidelines.md#user_grant权限预授权)。
+
+## cl.bundlemanager.5 包管理@ohos.bundle.installer.d.ts中getSpecifiedDistributionType接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+包管理@ohos.bundle.installer.d.ts中getSpecifiedDistributionType接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**变更影响**<br>
+升级新版本SDK后，包管理@ohos.bundle.installer.d.ts中getSpecifiedDistributionType接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**关键的接口/组件变更**<br>
+包管理@ohos.bundle.installer.d.ts中getSpecifiedDistributionType接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**适配指导**<br>
+1. 修改导入模块，使用bundleManager中的getSpecifiedDistributionType
+```ets
+import bundleManager form '@ohos.bundle.bundleManager'
+```
+
+## cl.bundlemanager.6 包管理@ohos.bundle.installer.d.ts中getAdditionalInfo接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+包管理@ohos.bundle.installer.d.ts中getAdditionalInfo接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**变更影响**<br>
+升级新版本SDK后，包管理@ohos.bundle.installer.d.ts中getAdditionalInfo接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**关键的接口/组件变更**<br>
+包管理@ohos.bundle.installer.d.ts中getAdditionalInfo接口移动到@ohos.bundle.bundleManager.d.ts中。
+
+**适配指导**<br>
+1. 修改导入模块，使用bundleManager中的getAdditionalInfo
+```ets
+import bundleManager form '@ohos.bundle.bundleManager'
+```
