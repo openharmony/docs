@@ -839,8 +839,8 @@ async function createTonePlayerBefore(){
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| VOLUME_ADJUST_TURN_UP    | 0      | 单步向上调节音量。     |
-| VOLUME_ADJUST_TURN_DOWN    | 1      | 单步向下调节音量。 |
+| VOLUME_UP    | 0      | 单步向上调节音量。     |
+| VOLUME_DOWN    | 1      | 单步向下调节音量。 |
 
 ## AudioManager
 
@@ -3028,7 +3028,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_ADJUST_TURN_UP, (err) => {
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err) => {
   if (err) {
     console.error(`Failed to adjust the volume by step. ${err}`);
     return;
@@ -3065,7 +3065,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_ADJUST_TURN_UP).then(() => {
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
 }).catch((error)=>{
   console.info('Fail to adjust the volume by step.');
@@ -3097,7 +3097,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_ADJUST_TURN_UP, (err) => {
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err) => {
   if (err) {
     console.error(`Failed to adjust the system volume by step. ${err}`);
     return;
@@ -3135,7 +3135,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_ADJUST_TURN_UP).then(() => {
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
 }).catch((error)=>{
   console.info('Fail to adjust the system volume by step.');
