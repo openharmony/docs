@@ -739,7 +739,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示订阅硬键盘按键事件。 |
-| callback | Function | 是   | 回调函数，返回按键信息event。<br/>-&nbsp;返回的按键信息event数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键信息被消费，则callback返回true，否则返回false。 |
+| callback | Function | 是   | 回调函数，返回按键信息event。<br/>-&nbsp;返回的按键信息event的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键信息被消费，则callback返回true，否则返回false。 |
 
 **示例：**
 
@@ -765,7 +765,7 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示取消订阅硬键盘按键事件。 |
-| callback | (event: [InputKeyEvent](js-apis-keyevent.md#KeyEvent)) => boolean | 否   | 回调函数，返回按键信息event。<br/>-&nbsp;返回的按键信息event数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键信息被消费，则callback返回true，否则返回false。 |
+| callback | (event: [InputKeyEvent](js-apis-keyevent.md#KeyEvent)) => boolean | 否   | 回调函数，返回按键信息event。<br/>-&nbsp;返回的按键信息event的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键信息被消费，则callback返回true，否则返回false。 |
 
 **示例：**
 
