@@ -13,7 +13,7 @@
 | 名称                             | 参数类型                                                     | 默认值 | 描述                                                         |
 | -------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
 | blur                             | number                                                       | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| linearGradientBlur               | {<br/>value: number,<br/>options: LinearGradientBlurOptions<br/>}                                      | -      | 为当前组件添加内容线性渐变模糊效果，入参1为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>入参2为线性梯度模糊选项，LinearGradientBlurOptions线性梯度模糊包含两个部分fractionStops和direction<br/>fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊不生效数组中二元数组个数必须大于等于2，否则渐变模糊不生效<br/>direction为渐变模糊方向，默认值为GradientDirection.Bottom<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| linearGradientBlur               | <br/>value: number,<br/>{<br/>fractionStops:Array<FractionStop>,<br/>direction:GradientDirection<br/>} <br/>                                    | -      | 为当前组件添加内容线性渐变模糊效果，value为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；<br/>模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊不生效数组中二元数组个数必须大于等于2，否则渐变模糊不生效 <br/>direction为渐变模糊方向，默认值为GradientDirection.Bottom <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | backdropBlur                     | number                                                       | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | shadow                           | [ShadowOptions](#shadowoptions对象说明) \| [ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。 |
 | grayscale                        | number                                                       | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -55,7 +55,7 @@
 ## 示例
 
 ### 示例1
-模糊属性的用法，blur内容模糊，linearGradientBlur内容线性渐变模糊，backdropBlur背景模糊。
+模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
 ```ts
 // xxx.ets
 @Entry
@@ -73,8 +73,6 @@ struct BlurEffectsExample {
           .blur(2).margin(10)
         Text('blur text')
           .blur(3).margin(10)
-        Text('linearGradientBlur text')
-          .linearGradientBlur(60,{fractionStops: [[0,0],[0.5,1],[1,1]], direction:GradientDirection.Bottom}).margin(10)
       }.width('90%').height(40)
       .backgroundColor(0xF9CF93)
 
@@ -324,3 +322,32 @@ struct PixelStretchExample {
 跟原图对比发现，效果图分两步实现：<br>1、原图大小缩小，缩小后的大小为原图大小减去像素
 收缩的距离。例如，原图大小为`100*100`，设置了`pixelStretchEffect({top:-10,left:-10,
 right:-10,bottom:-10 })`，则缩小后的大小为`(100-10-10)*(100-10-10)`，即`80*80`。<br>2、使用边缘像素扩展，将图像扩展为原图大小。
+
+### 示例8
+
+设置组件的内容线性渐变模糊效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ImageExample1 {
+  private_resource1:Resource = $r('app.media.1')
+  @State image_src: Resource = this.private_resource1
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Image(this.image_src)
+            .linearGradientBlur(60, { fractionStops: [[0,0],[0,0.33],[1,0.66],[1,1]], direction: GradientDirection.Bottom })
+        }
+      }
+    }
+  }
+}
+
+```
+
+效果图如下：
+
+![testlinearGradientBlur](figures/testlinearGradientBlur.png)
