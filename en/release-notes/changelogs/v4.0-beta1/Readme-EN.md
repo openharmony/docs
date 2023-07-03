@@ -13,5 +13,7 @@
 | ArkUI          | UX changed      | [The hover effect of the \<Button> component is changed from scale-up by 100% to 105% to overlay of 0% to 5% opacity.](changelogs-arkui.md)|
 | ArkUI          | UX changed      | [The alignment mode of multi-line text in toasts is changed from center-aligned to left-aligned.](changelogs-arkui.md)|
 | Bundle management subsystem        | Mechanism changed    | [The HAP is no longer decompressed during HAP installation.](changelogs-bundlemanager.md)|
+| Security-HUKS | Behavior changed | [HuksKeyStorageType must be passed in for key derivation or key agreement.](changelogs-huks.md) |
+| Security-HUKS | Permission changed | [Permission is required for Using attestKeyItem.](changelogs-huks.md) |
 | Web            | Input parameter added | [The input parameter type Resource is added for the setResponseData API.](changelogs-web.md) |
 | Resource scheduler subsystem      | Behavior changed    | [The reminder agent allows you to customize buttons for system applications. Clicking a custom button will redirect you to the specified application page.](changelogs-resourceschedule.md)|
