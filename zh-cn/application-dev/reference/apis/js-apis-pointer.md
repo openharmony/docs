@@ -1592,6 +1592,18 @@ try {
 }
 ```
 
+## PrimaryButton<sup>10+</sup>
+
+右键菜单触发方式。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| TOUCHPAD_RIGHT_BUTTON            | 1    |触控板右键区域 |
+| TOUCHPAD_LEFT_BUTTON            | 2    |触控板左键区域 |
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或按压触控板|
+
 ## pointer.setTouchpadRightClickType<sup>10+</sup>
 
 setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>): void
