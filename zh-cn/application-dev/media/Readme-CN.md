@@ -48,6 +48,8 @@
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话](using-distributed-avsession.md)
+  - 音视频投播
+    - [使用音视频投播](using-avsession-avcast.md)
 - 相机
   - [相机开发概述](camera-overview.md)
   - 相机开发指导
