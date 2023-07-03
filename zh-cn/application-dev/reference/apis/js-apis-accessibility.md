@@ -147,7 +147,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕配置管理，在调用CaptionsManager的方法前，需要先通过 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8)获取 CaptionsManager实例。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Hearing
 
 ### 属性
 
@@ -161,6 +161,8 @@ import accessibility from '@ohos.accessibility';
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 监听字幕配置启用状态变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -187,6 +189,8 @@ try {
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 监听字幕风格变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -216,6 +220,8 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 取消监听字幕配置启用状态变化事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
@@ -241,6 +247,8 @@ try {
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 取消字幕风格变化监听事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
