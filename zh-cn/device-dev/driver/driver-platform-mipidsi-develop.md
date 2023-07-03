@@ -117,7 +117,7 @@ MIPI DSI模块适配包含以下四个步骤：
 
 ### 开发实例
 
-下方将基于Hi3516DV300开发板以//device_soc_hisilicon/common/platform/mipi_dsi/mipi_tx_hi35xx.c驱动为示例，展示需要厂商提供哪些内容来完整实现设备功能。
+下方将基于Hi3516DV300开发板以//device/soc/hisilicon/common/platform/mipi_dsi/mipi_tx_hi35xx.c驱动为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 1. 实例化驱动入口 
 
