@@ -1563,7 +1563,7 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**. |
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
 
 **Error codes**
 
@@ -1698,8 +1698,8 @@ Unsubscribes from widget removal events. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**. |
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled. |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
 
 **Example**
 
@@ -2162,9 +2162,11 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId, (error) => {
+  formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost acquireFormData, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -2192,7 +2194,7 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise<{[key: string]: Object}>| Promise used to return the API call result and the shared data.|
 
 **Error codes**
 
@@ -2210,8 +2212,8 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId).then(() => {
-    console.log('formHost acquireFormData success');
+  formHost.acquireFormData(formId).then((data) => {
+    console.log('formHost acquireFormData success' + data);
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -2286,7 +2288,7 @@ Obtains the information about widget hosts based on the widget provider informat
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -2339,7 +2341,7 @@ Obtains the information about widget hosts based on the widget ID. This API uses
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the widget host information obtained. |
+| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the widget host information obtained.|
 
 **Error codes**
 
@@ -2379,7 +2381,7 @@ Obtains the information about widget hosts based on the widget ID. This API uses
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
