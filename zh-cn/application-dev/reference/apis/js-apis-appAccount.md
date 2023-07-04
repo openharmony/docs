@@ -730,7 +730,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or credentialType or credential. |
+| 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
 
 **示例：**
@@ -776,7 +776,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or credentialType or credential. |
+| 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
 
 **示例：**

@@ -16,7 +16,6 @@ import installer from '@ohos.bundle.installer';
 | 权限                           | 权限等级    | 描述             |
 | ------------------------------ | ----------- | ---------------- |
 | ohos.permission.INSTALL_BUNDLE | system_core | 可安装、卸载应用。 |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
 
@@ -131,6 +130,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed. |
 
 **示例：**
 
@@ -203,6 +203,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed. |
 
 **示例：**
 
@@ -279,6 +280,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
+| 17700048 | Failed to install the HAP because the code signature verification is failed. |
 
 **示例：**
 
@@ -763,97 +765,6 @@ try {
 }
 ```
 
-## BundleInstaller.getSpecifiedDistributionType<sup>10+</sup>
-getSpecifiedDistributionType(bundleName: string): string;
-
-以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的InstallParam中的specifiedDistributionType字段。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名         | 类型                                | 必填 | 说明                         |
-| -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 指定的bundleName。 |
-
-**返回值：**
-
-| 类型          | 说明                                   |
-| ------------- | -------------------------------------- |
-| string | 返回指定bundleName的分发类型。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17700001 | The specified bundleName is not found. |
-
-**示例：**
-```ts
-import installer from '@ohos.bundle.installer';
-let bundleName = "com.example.myapplication";
-
-try {
-    let type = installer.getSpecifiedDistributionType(bundleName);
-    console.info('getSpecifiedDistributionType successfully, type:' + type);
-} catch (error) {
-    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
-}
-```
-
-
-## BundleInstaller.getAdditionalInfo<sup>10+</sup>
-
-getAdditionalInfo(bundleName: string): string;
-
-以同步接口查询指定bundleName的额外信息。该返回值是在调用install接口时传入的InstallParam中的additionalInfo字段。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名         | 类型                                | 必填 | 说明                         |
-| -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | 是   | 指定的bundleName。 |
-
-**返回值：**
-
-| 类型          | 说明                                   |
-| ------------- | -------------------------------------- |
-| string | 返回指定bundleName的额外信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17700001 | The specified bundleName is not found. |
-
-**示例：**
-
-```ts
-import installer from '@ohos.bundle.installer';
-let bundleName = "com.example.myapplication";
-
-try {
-    let info = installer.getAdditionalInfo(bundleName);
-    console.info('getAdditionalInfo successfully, additionInfo:' + info);
-} catch (error) {
-    console.error('getAdditionalInfo failed. Cause: ' + error.message);
-}
-```
-
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
@@ -885,6 +796,7 @@ try {
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
 | specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
+| verifyCodeParams<sup>10+</sup> | Array<[VerifyCodeParam](#verifycodeparam10)> | 否 | 代码签名文件参数，默认值为空。         |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -898,3 +810,16 @@ try {
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 共享包包名。                                                 |
 | versionCode | number | 否   | 指示共享包的版本号。默认值：如果不填写versionCode，则卸载该包名的所有共享包。 |
+
+## VerifyCodeParam<sup>10+</sup>
+
+应用程序代码签名文件信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明             |
+| ---------- | ------ | ---------------- | ---------------- |
+| moduleName | string | 是 | 应用程序模块名称。 |
+| signatureFilePath  | string | 是 | 代码签名文件路径。           |

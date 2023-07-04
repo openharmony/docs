@@ -1,4 +1,4 @@
-# 跨端迁移（仅对系统应用开放）
+# 跨端迁移
 
 
 ## 功能描述
@@ -40,9 +40,10 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| onContinue(wantParam&nbsp;:&nbsp;{[key:&nbsp;string]:&nbsp;any}):&nbsp;OnContinueResult | 迁移发起端在该回调中保存迁移所需要的数据，同时返回是否同意迁移：<br/>-&nbsp;AGREE：表示同意。<br/>-&nbsp;REJECT：表示拒绝。<br/>-&nbsp;MISMATCH：表示版本不匹配。 |
-| onCreate(want:&nbsp;Want,&nbsp;param:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 多实例应用迁移接收端在该回调中完成数据恢复，并触发页面恢复。 |
-| onNewWant(want:&nbsp;Want,&nbsp;launchParams:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 单实例应用迁移接收端在该回调中完成数据恢复，并触发页面恢复。 |
+| onContinue(wantParam&nbsp;:&nbsp;{[key:&nbsp;string]:&nbsp;any}):&nbsp;OnContinueResult | 迁移发起端在该回调中保存迁移所需要的数据，同时返回是否同意迁移：<br/>-&nbsp;AGREE：表示同意。<br/>-&nbsp;REJECT：表示拒绝：如应用在onContinue中异常可以直接REJECT。<br/>-&nbsp;MISMATCH：表示版本不匹配：迁移发起端应用可以在onContinue中获取到迁移接收端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。 |
+| onCreate(want:&nbsp;Want,&nbsp;param:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 多实例应用迁移接收端在该回调中完成数据恢复，并触发页面恢复。详见[应用组件启动模式](uiability-launch-type.md) |
+| onNewWant(want:&nbsp;Want,&nbsp;launchParams:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 单实例应用迁移接收端在该回调中完成数据恢复，并触发页面恢复。详见[应用组件启动模式](uiability-launch-type.md) |
+
 
 
 ## 开发步骤
@@ -77,7 +78,7 @@
    当应用触发迁移时，[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口在发起端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在wantParam中。
 
-   - 应用兼容性检测：开发者可以通过从wantParam中获取目标应用的版本号与本应用版本号做兼容性校验。
+   - 应用兼容性检测：开发者可以通过从wantParam中获取目标应用的版本号与本应用版本号做兼容性校验。开发者可以在触发迁移时从`onContinue`接口中`wantParam.version`获取到迁移接收端应用的版本号与迁移发起端应用版本号做兼容校验。
 
    - 迁移决策：开发者可以通过onContinue接口的返回值决定是否支持此次迁移，返回值信息见[接口说明](#接口说明)。
 
@@ -101,7 +102,7 @@
    - 多实例场景onCreate实现示例
       - 目标端设备上，在onCreate中根据launchReason判断该次启动是否为迁移LaunchReason.CONTINUATION。
       - 开发者可以从want中获取保存的迁移数据。
-      - 完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复。
+      - 完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复：包括页面栈信息。
         
          ```ts
          import UIAbility from '@ohos.app.ability.UIAbility'; 

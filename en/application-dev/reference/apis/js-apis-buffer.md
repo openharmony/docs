@@ -204,7 +204,7 @@ Concatenates an array of **Buffer** instances of the specified length into a new
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | Yes| Array of instances to concatenate.|
-| totalLength | number | No| Total length of bytes to be copied.|
+| totalLength | number | No| Total length of bytes to be copied. The default value is **0**.|
 
 **Return value**
 
@@ -1915,7 +1915,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
 | start  | number | No|  Offset to the start position of the data to convert. The default value is **0**.|
 | end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** instance.|
 

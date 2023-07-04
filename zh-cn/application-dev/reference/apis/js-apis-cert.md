@@ -1199,7 +1199,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 ## cryptoCert.createCertExtension<sup>10+</sup> 
 
-createCertExtension(inStream : EncodingBlob, callback : AsyncCallback<CertExtension>) : void
+createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
 
 表示创建证书扩展域段的对象，使用Callback回调异步返回结果。
 
@@ -1241,7 +1241,7 @@ cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
 
 ## cryptoCert.createCertExtension<sup>10+</sup>
 
-createCertExtension(inStream : EncodingBlob) : Promise<CertExtension>
+createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 表示创建证书扩展域段的对象，使用Promise方式异步返回结果。
 

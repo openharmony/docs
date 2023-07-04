@@ -38,7 +38,7 @@ function printArgs(args) {
     return args;
 }
 
-let task = new taskpool.Task(printArgs, 100);
+let task = new taskpool.Task(printArgs, 100); // 100: test number
 let highCount = 0;
 let mediumCount = 0;
 let lowCount = 0;
@@ -88,7 +88,7 @@ Task的构造函数。
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-| 错误码ID | 错误信息                                |
+| 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 10200014 | The function is not mark as concurrent. |
 
@@ -104,7 +104,7 @@ function printArgs(args) {
 let task = new taskpool.Task(printArgs, "this is my first Task");
 ```
 
-### isCanceled
+### isCanceled<sup>10+</sup>
 
 static isCanceled(): boolean
 
@@ -124,15 +124,12 @@ static isCanceled(): boolean
 @Concurrent
 function inspectStatus(arg) {
     // do something
-    ...
     if (taskpool.Task.isCanceled()) {
       console.log("task has been canceled.");
       // do something
-      ...
       return arg + 1;
     }
     // do something
-    ...
     return arg;
 }
 ```
@@ -151,7 +148,7 @@ function inspectStatus(arg) {
       return arg + 2;
     }
     // 延时2s
-    var t = Date.now();
+    let t = Date.now();
     while (Date.now() - t < 2000) {
       continue;
     }
@@ -163,13 +160,57 @@ function inspectStatus(arg) {
   return arg + 1;
 }
 
-let task = new taskpool.Task(inspectStatus, 100);
+let task = new taskpool.Task(inspectStatus, 100); // 100: test number
 taskpool.execute(task).then((res)=>{
   console.log("taskpool test result: " + res);
 }).catch((err) => {
   console.log("taskpool test occur error: " + err);
 });
 // 不调用cancel，isCanceled()默认返回false，task执行的结果为101
+```
+
+### setTransferList<sup>10+</sup>
+
+setTransferList(transfer?: ArrayBuffer[]): void
+
+设置任务的传输列表。
+
+> **说明：**<br/>
+> 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                                          |
+| -------- | ------------- | ---- | --------------------------------------------- |
+| transfer | ArrayBuffer[] | 否   | 可传输对象是ArrayBuffer的实例对象，默认为空数组。 |
+
+**示例：**
+
+```ts
+let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+let buffer1 = new ArrayBuffer(16);
+let view1 = new Uint8Array(buffer1);
+
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+@Concurrent
+function testTransfer(arg1, arg2) {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+let task = new taskpool.Task(testTransfer, view, view1);
+task.setTransferList([view.buffer, view1.buffer]);
+taskpool.execute(task).then((res)=>{
+  console.info("test result: " + res);
+}).catch((e)=>{
+  console.error("test catch: " + e);
+})
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
 ```
 
 ### 属性
@@ -180,6 +221,95 @@ taskpool.execute(task).then((res)=>{
 | --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
 | function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
 | arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+
+## TaskGroup<sup>10+</sup>
+表示任务组。使用以下方法前，需要先构造TaskGroup。
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+TaskGroup的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+let taskGroup = new taskpool.TaskGroup();
+```
+
+### addTask<sup>10+</sup>
+
+addTask(func: Function, ...args: unknown[]): void
+
+将待执行的函数添加到任务组中。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | unknown[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+taskGroup.addTask(printArgs, 100); // 100: test number
+```
+
+### addTask<sup>10+</sup>
+
+addTask(task: Task): void
+
+将创建好的任务添加到任务组中。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                       |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | 是   | 需要添加到任务组中的任务。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+let task = new taskpool.Task(printArgs, 200); // 200: test number
+taskGroup.addTask(task);
+```
 
 ## taskpool.execute
 
@@ -206,11 +336,11 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 10200003 | Worker initialization failure.            |
-| 10200006 | An exception occurred during serialization. |
-| 10200014 | The function is not mark as concurrent.   |
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
+| 10200003 | Worker initialization failure.               |
+| 10200006 | An exception occurred during serialization.  |
+| 10200014 | The function is not mark as concurrent.      |
 
 **示例：**
 
@@ -221,7 +351,7 @@ function printArgs(args) {
     return args;
 }
 
-taskpool.execute(printArgs, 100).then((value) => {
+taskpool.execute(printArgs, 100).then((value) => { // 100: test number
   console.log("taskpool result: " + value);
 });
 ```
@@ -239,23 +369,23 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 | 参数名   | 类型                  | 必填 | 说明                                       |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [Task](#task)         | 是   | 需要在任务池中执行的任务。                  |
-| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为MEDIUM |
+| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
 
-| 类型             | 说明                           |
-| ---------------- | ------------------------------ |
-| Promise\<unknown> | execute是异步方法，返回Promise对象。 |
+| 类型              | 说明              |
+| ----------------  | ---------------- |
+| Promise\<unknown> | 返回Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 10200003 | Worker initialization failure.            |
+| 错误码ID | 错误信息                                     |
+| -------- | ------------------------------------------- |
+| 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200014 | The function is not mark as concurrent.   |
+| 10200014 | The function is not mark as concurrent.     |
 
 **示例：**
 
@@ -266,9 +396,71 @@ function printArgs(args) {
     return args;
 }
 
-let task = new taskpool.Task(printArgs, 100);
+let task = new taskpool.Task(printArgs, 100); // 100: test number
 taskpool.execute(task).then((value) => {
   console.log("taskpool result: " + value);
+});
+```
+
+## taskpool.execute<sup>10+</sup>
+
+execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
+
+将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                                                           |
+| --------- | --------------------------- | ---- | -------------------------------------------------------------- |
+| group     | [TaskGroup](#taskgroup)     | 是   | 需要在任务池中执行的任务组。                                      |
+| priority  | [Priority](#priority)       | 否   | 等待执行的任务组的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**返回值：**
+
+| 类型                 | 说明                               |
+| ----------------    | ---------------------------------- |
+| Promise\<unknown[]> | execute是异步方法，返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | ------------------------------------------- |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup1 = new taskpool.TaskGroup();
+taskGroup1.addTask(printArgs, 10); // 10: test number
+taskGroup1.addTask(printArgs, 20); // 20: test number
+taskGroup1.addTask(printArgs, 30); // 30: test number
+
+let taskGroup2 = new taskpool.TaskGroup();
+let task1 = new taskpool.Task(printArgs, 100); // 100: test number
+let task2 = new taskpool.Task(printArgs, 200); // 200: test number
+let task3 = new taskpool.Task(printArgs, 300); // 300: test number
+taskGroup2.addTask(task1);
+taskGroup2.addTask(task2);
+taskGroup2.addTask(task3);
+taskpool.execute(taskGroup1).then((res) => {
+  console.info("taskpool execute res is:" + res);
+}).catch((e) => {
+  console.error("taskpool execute error is:" + e);
+});
+taskpool.execute(taskGroup2).then((res) => {
+  console.info("taskpool execute res is:" + res);
+}).catch((e) => {
+  console.error("taskpool execute error is:" + e);
 });
 ```
 
@@ -290,10 +482,12 @@ cancel(task: Task): void
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-| 错误码ID | 错误信息                  |
-| -------- | ------------------------- |
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
 | 10200015 | The task does not exist when it is canceled. |
 | 10200016 | The task is executing when it is canceled.   |
+
+从API version10开始，此接口调用时不再涉及上报错误码10200016。
 
 **正在执行的任务取消示例：**
 
@@ -306,7 +500,7 @@ function inspectStatus(arg) {
       return arg + 2;
     }
     // 2s sleep
-    var t = Date.now();
+    let t = Date.now();
     while (Date.now() - t < 2000) {
       continue;
     }
@@ -318,12 +512,12 @@ function inspectStatus(arg) {
     return arg + 1;
 }
 
-let task1 = new taskpool.Task(inspectStatus, 100);
-let task2 = new taskpool.Task(inspectStatus, 200);
-let task3 = new taskpool.Task(inspectStatus, 300);
-let task4 = new taskpool.Task(inspectStatus, 400);
-let task5 = new taskpool.Task(inspectStatus, 500);
-let task6 = new taskpool.Task(inspectStatus, 600);
+let task1 = new taskpool.Task(inspectStatus, 100); // 100: test number
+let task2 = new taskpool.Task(inspectStatus, 200); // 200: test number
+let task3 = new taskpool.Task(inspectStatus, 300); // 300: test number
+let task4 = new taskpool.Task(inspectStatus, 400); // 400: test number
+let task5 = new taskpool.Task(inspectStatus, 500); // 500: test number
+let task6 = new taskpool.Task(inspectStatus, 600); // 600: test number
 taskpool.execute(task1).then((res)=>{
   console.log("taskpool test result: " + res);
 }).catch((err) => {
@@ -337,6 +531,60 @@ let res6 = taskpool.execute(task6);
 // 1s后取消task
 setTimeout(()=>{
   taskpool.cancel(task1);}, 1000);
+```
+
+## taskpool.cancel<sup>10+</sup>
+
+cancel(group: TaskGroup): void
+
+取消任务池中的任务组。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                 |
+| ------- | ----------------------- | ---- | -------------------- |
+| group   | [TaskGroup](#taskgroup) | 是   | 需要取消执行的任务组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                 |
+| -------- | ------------------------------------------------------- |
+| 10200018 | The task group does not exist when it is canceled.      |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup1 = new taskpool.TaskGroup();
+taskGroup1.addTask(printArgs, 10); // 10: test number
+let taskGroup2 = new taskpool.TaskGroup();
+taskGroup2.addTask(printArgs, 100); // 100: test number
+taskpool.execute(taskGroup1).then((res)=>{
+  console.info("taskGroup1 res is:" + res)
+});
+taskpool.execute(taskGroup2).then((res)=>{
+  console.info("taskGroup2 res is:" + res)
+});
+setTimeout(()=>{
+  try {
+    taskpool.cancel(taskGroup2);
+  } catch (e) {
+    console.log("taskGroup.cancel occur error:" + e);
+  }
+}, 1000);
 ```
 
 ## 其他说明
@@ -380,7 +628,7 @@ taskpoolExecute();
 
 ```ts
 // b.ets
-export var c = 2000;
+export let c = 2000;
 ```
 ```ts
 // 引用import变量
@@ -441,8 +689,8 @@ function strSort(inPutArr) {
 export async function func1() {
     console.log("taskpoolTest start");
     let strArray = ['c test string', 'b test string', 'a test string'];
-    var task = new taskpool.Task(strSort, strArray);
-    var result = await taskpool.execute(task);
+    let task = new taskpool.Task(strSort, strArray);
+    let result = await taskpool.execute(task);
     console.log("func1 result:" + result);
 }
 
@@ -475,7 +723,7 @@ function inspectStatus(arg) {
       return arg + 2;
     }
     // 2s sleep
-    var t = Date.now();
+    let t = Date.now();
     while (Date.now() - t < 2000) {
       continue;
     }
@@ -488,7 +736,7 @@ function inspectStatus(arg) {
 }
 
 async function taskpoolCancel() {
-    let task = new taskpool.Task(inspectStatus, 100);
+    let task = new taskpool.Task(inspectStatus, 100); // 100: test number
     taskpool.execute(task).then((res)=>{
       console.log("taskpool test result: " + res);
     }).catch((err) => {
@@ -513,7 +761,7 @@ function inspectStatus(arg) {
       return arg + 2;
     }
     // 延时2s
-    var t = Date.now();
+    let t = Date.now();
     while (Date.now() - t < 2000) {
       continue;
     }
@@ -525,7 +773,7 @@ function inspectStatus(arg) {
 }
 
 async function taskpoolCancel() {
-    let task = new taskpool.Task(inspectStatus, 100);
+    let task = new taskpool.Task(inspectStatus, 100); // 100: test number
     taskpool.execute(task).then((res)=>{
       console.log("taskpool test result: " + res);
     }).catch((err) => {
@@ -541,4 +789,47 @@ async function taskpoolCancel() {
 }
 
 taskpoolCancel();
+```
+
+**示例七**
+
+```ts
+// 待执行的任务组取消成功
+@Concurrent
+function printArgs(args) {
+  let t = Date.now();
+  while (Date.now() - t < 1000) {
+    continue;
+  }
+  console.log("printArgs: " + args);
+  return args;
+}
+
+async function taskpoolGroupCancelTest() {
+  let taskGroup1 = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  taskGroup1.addTask(printArgs, 20); // 20: test number
+  taskGroup1.addTask(printArgs, 30); // 30: test number
+  let taskGroup2 = new taskpool.TaskGroup();
+  let task1 = new taskpool.Task(printArgs, 100); // 100: test number
+  let task2 = new taskpool.Task(printArgs, 200); // 200: test number
+  let task3 = new taskpool.Task(printArgs, 300); // 300: test number
+  taskGroup2.addTask(task1);
+  taskGroup2.addTask(task2);
+  taskGroup2.addTask(task3);
+  taskpool.execute(taskGroup1).then((res) => {
+    console.info("taskpool execute res is:" + res);
+  }).catch((e) => {
+    console.error("taskpool execute error is:" + e);
+  });
+  taskpool.execute(taskGroup2).then((res) => {
+    console.info("taskpool execute res is:" + res);
+  }).catch((e) => {
+    console.error("taskpool execute error is:" + e);
+  });
+
+  taskpool.cancel(taskGroup2);
+}
+
+taskpoolGroupCancelTest()
 ```

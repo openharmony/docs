@@ -841,7 +841,6 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
     module_out_path = module_output_path
     sources = [ "vibrator_test.cpp" ]
     include_dirs = [
-      "//drivers/hdf_core/framework/include/platform",
       "//drivers/peripheral/vibrator/interfaces/include",
     ]
     deps = [ "//drivers/peripheral/vibrator/hal:hdi_vibrator" ]

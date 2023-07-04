@@ -28,8 +28,17 @@ To use DevTools for frontend page debugging, perform the following steps:
      }
    }
    ```
+2. Declare the required permission in the **module.json5** file of the application project in DevEco Studio.
 
-2. Connect your device to a PC, and configure port mapping on the PC as follows:
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
+
+3. Connect your device to a PC, and configure port mapping on the PC as follows:
 
    ```
    // Configure port mapping.
@@ -38,7 +47,7 @@ To use DevTools for frontend page debugging, perform the following steps:
    hdc fport ls
    ```
 
-3. Enter **chrome://inspect/\#devices** in the address box of the Chrome browser on the PC. Once the device is identified, you can get started with page debugging. The debugging effect is as follows:
+4. Enter **chrome://inspect/\#devices** in the address box of the Chrome browser on the PC. Once the device is identified, you can get started with page debugging. The debugging effect is as follows:
 
      **Figure 1** Page debugging effect 
 

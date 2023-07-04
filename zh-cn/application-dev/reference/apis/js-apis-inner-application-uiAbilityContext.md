@@ -1228,7 +1228,7 @@ terminateSelf(): Promise&lt;void&gt;;
         // 处理业务逻辑错误
         console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
       });
-  } catch (error) {
+  } catch (err) {
     // 捕获同步的参数错误
     console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -2577,8 +2577,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
   let want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
-      abilityName: 'EntryAbility'
-      deviceId: ''
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true
@@ -2599,4 +2599,53 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
     // 处理入参错误异常
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
+  ```
+
+## UIAbilityContext.reportDrawnCompleted
+
+reportDrawnCompleted(callback: AsyncCallback<void>): void;
+
+当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
+ **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 页面加载完成打点的回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+onWindowStageCreate(windowStage: Window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+        if (err.code) {
+            return;
+        }
+        try {
+            this.context.reportDrawnCompleted((err) => {
+                if (err.code) {
+                    // 处理业务逻辑错误
+                    console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+                    return;
+                }
+                // 执行正常业务
+                console.info('reportDrawnCompleted succeed');
+            });
+        } catch (err) {
+            // 捕获同步的参数错误
+            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+        }
+    });
+    console.log("MainAbility onWindowStageCreate")
+}
   ```

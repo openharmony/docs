@@ -509,6 +509,7 @@
 | BACKGROUND_REGULAR    | 中距景深模糊。   |
 | BACKGROUND_THICK      | 远距景深模糊。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
+| NONE<sup>10+</sup> | 关闭模糊。  |
 
 ## ThemeColorMode<sup>10+</sup>
 

@@ -48,7 +48,7 @@ A constructor used to create a **TreeMap** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator.|
+| comparator | function | No| Custom comparator. The default value is **hole** (a blank placeholder), indicating that no comparator. is provided.|
 
 **Error codes**
 
@@ -611,14 +611,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the element that is currently traversed.|
-| key | K | No| Key of the element that is currently traversed.|
-| map | TreeMap<K, V> | No| Instance that invokes the **forEach** method.|
+| value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key | K | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| map | TreeMap<K, V> | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 

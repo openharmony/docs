@@ -1,11 +1,11 @@
-# @ohos.resourceschedule.deviceStandby（设备待机模块）
-当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备或应用是否为待机模式，以及为应用申请或取消待机资源管控。
+# @ohos.resourceschedule.deviceStandby (Device Standby)
+A device enters standby mode if it is unused for a long period of time or after the Power button is pressed. The standby mode prolongs the battery life without affecting the use of applications. The **deviceStandby** module provides APIs for you to check whether a device is in standby mode and request or cancel standby resource control for an application.
 
->  **说明**:
+>  **NOTE**
 >   
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## 导入模块
+## Modules to Import
 
 ```js
 import deviceStandby from '@ohos.resourceschedule.deviceStandby';
@@ -15,23 +15,23 @@ import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 
 isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 
-当前设备是否进入待机低功耗续航模式，使用Callback异步回调。
+Checks whether the device is in standby mode. This API uses an asynchronous callback to return the result.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**参数**：
+**Parameters**
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the device is standby mode.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -39,7 +39,7 @@ isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 try{
@@ -59,23 +59,23 @@ console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.co
 
 isDeviceInStandby(): Promise&lt;boolean&gt;
 
-当前设备是否进入待机低功耗续航模式，使用Promise异步回调。
+Checks whether the device is in standby mode. This API uses a promise to return the result.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**返回值**：
+**Return value**
 
-| 类型                    | 说明                                       |
+| Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | 指定的Promise回调方法，返回是否进入待机低功耗续航模式。|
+| Promise&lt;boolean&gt; | Promise used to return whether the device is in standby mode.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -83,7 +83,7 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 try{
@@ -101,26 +101,26 @@ console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.co
 
 getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void;
 
-获取进入待机模式的应用名单，使用Callback异步回调。
+Obtains the list of applications that can still use resources of the specified types when the device is in standby mode. This API uses an asynchronous callback to return the result.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-**参数**：
+**Parameters**
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | 是    | 资源类型。 |
-| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 。|
+| [ResourceTypes](#resourcetype)|number | Yes   | Types of resources that can be used.|
+| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | Yes   |Callback used to return the exempted application information.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -128,7 +128,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 try{
@@ -151,31 +151,31 @@ console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code
 
 getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
-获取进入待机模式的应用名单，使用Promise异步回调。
+Obtains the list of applications that can still use resources of the specified type when the device is in standby mode. This API uses a promise to return the result.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-**参数**：
+**Parameters**
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | 是    |资源类型。|
+| [ResourceTypes](#resourcetype)|number | Yes   |Types of resources that can be used.|
 
-**返回值**：
+**Return value**
 
-| 类型                    | 说明                                       |
+| Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
-| Promise<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 豁免应用信息。 |
+| Promise<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | Promise used to return the exempted application information.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -186,7 +186,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 try{
@@ -207,25 +207,25 @@ console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code
 
 requestExemptionResource(request: ResourceRequest): void;
 
-应用订阅申请豁免，使应用临时不进入待机管控。
+Requests exemption, so that the application can use restricted resources when the device is in standby mode.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-**参数**：
+**Parameters**
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求。 |
+| request |[ResourceRequest](#resourcerequest)| Yes   | Request body.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -233,7 +233,7 @@ requestExemptionResource(request: ResourceRequest): void;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 let resRequest = {
@@ -243,7 +243,7 @@ let resRequest = {
   duration:10,
   reason:"apply",
 };
-// 异步方法promise方式
+// Promise mode
 try{
 deviceStandby.requestExemptionResource(resRequest).then( () => {
   console.log('DEVICE_STANDBY requestExemptionResource promise succeeded.');
@@ -254,7 +254,7 @@ deviceStandby.requestExemptionResource(resRequest).then( () => {
 console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
 }
 
-// 异步方法callback方式
+// Asynchronous callback mode
 try{
 deviceStandby.requestExemptionResource(resRequest, (err) => {
    if (err) {
@@ -272,25 +272,25 @@ console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + e
 
 releaseExemptionResource(request: ResourceRequest): void;
 
-取消应用订阅申请豁免。
+Cancels exemption for the application.
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
+**System capability**: SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-**参数**：
+**Parameters**
 
-| 参数名      | 类型                   | 必填   | 说明                             |
+| Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 。|
+| request |[ResourceRequest](#resourcerequest)| Yes   | Request body.|
 
-**错误码**：
+**Error codes**
 
-以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
-| 错误码ID  | 错误信息             |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
@@ -298,7 +298,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed. |
 
-**示例**：
+**Example**
 
 ```js
 let resRequest = {
@@ -308,7 +308,7 @@ let resRequest = {
   duration:10,
   reason:"unapply",
 };
-// 异步方法promise方式
+// Promise mode
 try{
 deviceStandby.releaseExemptionResource(resRequest).then( () => {
   console.log('DEVICE_STANDBY releaseExemptionResource promise succeeded.');
@@ -319,7 +319,7 @@ deviceStandby.releaseExemptionResource(resRequest).then( () => {
 console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
 }
 
-// 异步方法callback方式
+// Asynchronous callback mode
 try{
 deviceStandby.releaseExemptionResource(resRequest, (err) => {
   if (err) {
@@ -335,48 +335,48 @@ console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + e
 
 ## ResourceType
 
-非待机应用资源枚举。
+Enumerates the types of resources that can be used by exempted applications.
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-|名称   |值   |说明|
+|Name  |Value  |Description|
 | ------------ | ------------ |--------------|
-|NETWORK    |1   |网络访问资源|
-|RUNNING_LOCK    |2   |cpu-runninglock资源|
-|TIMER     |4   | timer任务资源|
-|WORK_SCHEDULER     |8   | work任务资源|
-|AUTO_SYNC      |16   | 自动同步的资源 |
-|PUSH     |32   | pushkit资源|
-|FREEZE       |64   | 冻结应用资源|
+|NETWORK    |1   |Network access resource.|
+|RUNNING_LOCK    |2   |CPU running lock resource.|
+|TIMER     |4   | Timer task resource.|
+|WORK_SCHEDULER     |8   | Work task resource.|
+|AUTO_SYNC      |16   | Automatic synchronization resource.|
+|PUSH     |32   | Push kit resource.|
+|FREEZE       |64   | Freezing application resource.|
 
 ## ExemptedAppInfo 
 
-豁免应用信息，未进入待机管控的应用信息。
+Defines the information about an exempted application.
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-|名称  |类型   | 必填   |说明   |
+|Name |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------ | ------------ |
-|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
-|name   |string   | 是   |  应用名  |
-|duration   | number  | 是   | 豁免时长 |
+|[resourceTypes](#resourcetype)   | number  | Yes  |Types of resources that can be used.  |
+|name   |string   | Yes  |  Name of the application. |
+|duration   | number  | Yes  | Exemption duration.|
 
 ## ResourceRequest
 
-待机资源请求体。
+Defines the message used to request to be an exempted application.
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**System API**: This is a system API.
 
-|名称   |类型   | 必填   |说明   |
+|Name  |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------| ------------ |
-|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
-|uid   | number  | 是   |应用uid   |
-|name   |string   | 是   | 应用名称  |
-|duration   | number  | 是   | 豁免时长 |
-|reason   |string   | 是   |  申请原因  |
+|[resourceTypes](#resourcetype)   | number  | Yes  |Types of resources that can be used.  |
+|uid   | number  | Yes  |UID of the application.  |
+|name   |string   | Yes  | Name of the application. |
+|duration   | number  | Yes  | Exemption duration.|
+|reason   |string   | Yes  |  Reason for the request. |
