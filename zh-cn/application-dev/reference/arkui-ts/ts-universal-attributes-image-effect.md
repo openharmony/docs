@@ -348,6 +348,4 @@ struct ImageExample1 {
 
 ```
 
-效果图如下：
-
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
