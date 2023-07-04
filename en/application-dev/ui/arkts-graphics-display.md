@@ -1,4 +1,4 @@
-# Displaying Images
+# Displaying Images (Image)
 
 
 More often than not, you may need to display images in your application, for example, logos in buttons, online images, and local images. To do so, you need to use the **\<Image>** component, which supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).

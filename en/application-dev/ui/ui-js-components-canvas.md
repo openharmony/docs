@@ -61,6 +61,8 @@ Set **width**, **height**, **background-color**, and **border** of the **&lt;can
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  width: 100%;
+  height: 100%;
 }
 canvas{
   width: 500px;

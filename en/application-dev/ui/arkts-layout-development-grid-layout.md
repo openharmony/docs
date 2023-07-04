@@ -1,4 +1,4 @@
-# Responsive Grid Layout
+# Responsive Grid Layout (GridRow/GridCol)
 
 
 ## Overview
