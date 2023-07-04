@@ -676,7 +676,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| ifaceInfo | [IfaceInfo](#ifaceInfo10) | 是   | 指定查询的网卡信息，参见[IfaceInfo](#ifaceInfo10)。                   |
+| ifaceInfo | [IfaceInfo](#ifaceinfo10) | 是   | 指定查询的网卡信息，参见[IfaceInfo](#ifaceinfo10)。                   |
 | callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)>         | 是   | 回调函数。成功时statsInfo返回包含网卡历史流量信息，error为undefined，否则为错误对象|
 
 **错误码：**
@@ -725,7 +725,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| ifaceInfo | [IfaceInfo](#ifaceInfo10) | 是   | 指定查询的网卡信息，参见[IfaceInfo](#ifaceInfo10)。                   |
+| ifaceInfo | [IfaceInfo](#ifaceinfo10) | 是   | 指定查询的网卡信息，参见[IfaceInfo](#ifaceinfo10)。                   |
 
 **返回值：**
 | 类型 | 说明 |
@@ -899,7 +899,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| ifaceInfo   | IfaceInfo\<[IfaceInfo](#ifaceInfo10)> |  是 |  需查询的网卡和时间参数信息|
+| ifaceInfo   | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> |  是 |  需查询的网卡和时间参数信息|
 | uid         | number           |  是 |  需查询的应用uid|
 
 ## NetStatsInfo<sup>10+</sup>
