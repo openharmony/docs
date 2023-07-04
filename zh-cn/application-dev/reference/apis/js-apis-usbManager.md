@@ -280,7 +280,6 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -320,7 +319,6 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -361,7 +359,6 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -401,7 +398,6 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -441,7 +437,6 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
@@ -477,7 +472,6 @@ getFileDescriptor(pipe: USBDevicePipe): number
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
@@ -524,7 +518,6 @@ let param = {
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
@@ -568,7 +561,6 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -612,7 +604,6 @@ closePipe(pipe: USBDevicePipe): number
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
