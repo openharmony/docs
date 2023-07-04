@@ -2871,7 +2871,7 @@ promise.then(data => {
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: AsyncCallback\<NetworkCapabilityState\>\): void
 
-获取网络开关状态。使用callback异步回调。
+获取指定网络类型的开关状态。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2916,7 +2916,7 @@ radio.getNetworkCapability(slotId, type, (err, data) => {
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<NetworkCapabilityState\>
 
-获取网络开关状态。使用Promise异步回调。
+获取指定网络类型的开关状态。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2970,7 +2970,7 @@ promise.then(data => {
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState,
       callback: AsyncCallback\<void\>\): void
 
-设置网络开关。使用callback异步回调。
+设置指定网络类型的开关状态。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3016,7 +3016,7 @@ radio.setNetworkCapability(slotId, type, state, (err) => {
 
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState\): Promise\<void\>
 
-设置网络开关。使用Promise异步回调。
+设置指定网络类型的开关状态。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
