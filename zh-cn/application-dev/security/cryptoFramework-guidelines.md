@@ -60,12 +60,11 @@ function generateAsyKey() {
   // 通过非对称密钥生成器，随机生成非对称密钥
   let keyGenPromise = rsaGenerator.generateKeyPair();
   keyGenPromise.then( keyPair => {
-    globalKeyPair = keyPair;
-    let pubKey = globalKeyPair.pubKey;
-    let priKey = globalKeyPair.priKey;
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
     // 获取非对称密钥的二进制数据
-    pkBlob = pubKey.getEncoded();
-    skBlob = priKey.getEncoded();
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
     AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
     AlertDialog.show({ message : "sk bin data" + skBlob.data} );
   })
@@ -147,7 +146,7 @@ function convertEccAsyKey() {
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
@@ -206,6 +205,94 @@ function testConvertAesKey() {
     console.error(`convertKey failed, ${error.code}, ${error.message}`);
     return;
   }
+}
+```
+
+### 随机生成SM2密钥对，并获得二进制数据
+
+示例6：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
+
+1. 创建非对称密钥生成器。
+2. 通过非对称密钥生成器随机生成非对称密钥。
+3. 获取密钥对象的二进制数据。
+
+以使用Promise方式随机生成SM2密钥（256位）为例：
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function generateAsyKey() {
+  // 创建非对称密钥生成器
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // 通过非对称密钥生成器，随机生成非对称密钥
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then( keyPair => {
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
+    // 获取非对称密钥的二进制数据
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
+    AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
+    AlertDialog.show({ message : "sk bin data" + skBlob.data} );
+  })
+}
+```
+
+### 随机生成SM4密钥，并获得二进制数据
+
+示例7：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器随机生成对称密钥。
+3. 获取算法库密钥对象的二进制数据。
+
+以使用Promise方式随机生成SM4密钥（128位）为例：
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+// 字节流以16进制输出
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+function testGenerateAesKey() {
+  // 创建对称密钥生成器
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("SM4_128");
+  // 通过密钥生成器随机生成对称密钥
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then( key => {
+    // 获取对称密钥的二进制数据，输出长度为256bit的字节流
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+  })
+}
+```
+
+### 根据SM2密钥二进制数据，生成密钥对
+
+示例8：根据指定的SM2非对称密钥二进制数据，生成KeyPair对象（场景2、3）
+
+1. 获取SM2二进制密钥数据，封装成DataBlob对象。
+2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function convertSM2AsyKey() {
+    let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,129,28,207,85,1,130,45,3,66,0,4,90,3,58,157,190,248,76,7,132,200,151,208,112,230,96,140,90,238,211,155,128,109,248,40,83,214,78,42,104,106,55,148,249,35,61,32,221,135,143,100,45,97,194,176,52,73,136,174,40,70,70,34,103,103,161,99,27,187,13,187,109,244,13,7]);
+    let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,54,41,239,240,63,188,134,113,31,102,149,203,245,89,15,15,47,202,170,60,38,154,28,169,189,100,251,76,112,223,156,159,160,10,6,8,42,129,28,207,85,1,130,45]);
+    let pubKeyBlob = { data: pubKeyArray };
+    let priKeyBlob = { data: priKeyArray };
+    let generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+    generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
+        if (error) {
+            AlertDialog.show({message : "Convert keypair fail"});
+        }
+        AlertDialog.show({message : "Convert KeyPair success"});
+    })
 }
 ```
 
@@ -884,7 +971,7 @@ function stringToUint8Array(str) {
 }
 
 // 以Promise方式加密
-function encryptMessageProMise() {
+function encryptMessagePromise() {
   // 生成非对称密钥生成器
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   // 生成加解密生成器
@@ -927,7 +1014,7 @@ function encryptMessageCallback() {
 }
 
 // 以Promise方式加解密
-function decryptMessageProMise() {
+function decryptMessagePromise() {
   // 生成非对称密钥生成器
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   // 生成加解密生成器，用于加密
@@ -1211,6 +1298,220 @@ function rsaUseSpecDecryptOAEPPromise() {
 }
 ```
 
+### SM2加解密开发步骤
+
+示例7：使用SM2非对称密钥的加解密操作
+
+1. 生成SM2密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成SM2非对称密钥。
+2. 生成Cipher对象。通过createCipher接口创建Cipher对象，执行初始化操作，设置密钥及加解密模式。
+3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
+
+```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+let plan = "This is cipher test.";
+
+// 可理解的字符串转成字节流
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 以Promise方式加密
+function encryptMessagePromise() {
+  // 生成非对称密钥生成器
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // 生成加解密生成器
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // 通过非对称秘钥生成器生成非对称密钥对
+  let keyGenPromise = sm2Generator.generateKeyPair();
+  keyGenPromise.then(sm2KeyPair => {
+    let pubKey = sm2KeyPair.pubKey;
+    // 初始化加解密操作环境:使用公钥开始加密
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
+  }).then(() => {
+    // doFinal
+    let input = { data : stringToUint8Array(plan) };
+    return cipher.doFinal(input);
+  }).then(dataBlob => {
+    // 获取加密后的信息
+    console.info("EncryptOutPut is " + dataBlob.data);
+  });
+}
+
+// 以Callback方式加密
+function encryptMessageCallback() {
+  // 生成非对称密钥生成器
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // 生成加解密生成器
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // 通过非对称秘钥生成器生成非对称密钥对
+  sm2Generator.generateKeyPair(function (err, keyPair) {
+    let pubKey = keyPair.pubKey;
+    // 初始化加解密操作环境:使用公钥开始加密
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
+      let input = {data : stringToUint8Array(plan) };
+      // doFinal
+      cipher.doFinal(input, function (err, data) {
+        // 获取加密后的信息
+        console.info("EncryptOutPut is " + data.data);
+      })
+    })
+  })
+}
+
+// 以Promise方式加解密
+function decryptMessagePromise() {
+  // 生成非对称密钥生成器
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // 生成加解密生成器，用于加密
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // 生成加解密生成器，用于解密
+  let decoder = cryptoFramework.createCipher("SM2_256|SM3");
+  // 通过非对称秘钥生成器生成非对称密钥对
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  let keyPair;
+  let cipherDataBlob;
+  let input = { data : stringToUint8Array(plan) };
+  keyGenPromise.then(rsaKeyPair => {
+    keyPair = rsaKeyPair;
+    // 初始化加解密操作环境:使用公钥开始加密
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
+  }).then(() => {
+    // 加密doFinal
+    return cipher.doFinal(input);
+  }).then(dataBlob => {
+    // 获取加密后的信息，并用于解密的入参
+    console.info("EncryptOutPut is " + dataBlob.data);
+    AlertDialog.show({message : "output" + dataBlob.data});
+    cipherDataBlob = dataBlob;
+    // 初始化加解密操作环境:使用私钥开始解密
+    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+  }).then(() => {
+    // 解密doFinal
+    return decoder.doFinal(cipherDataBlob);
+  }).then(decodeData => {
+    // 验证解密后，数据与原先数据是否保持一致
+    if (decodeData.data.toString() === input.data.toString()) {
+      AlertDialog.show({message : "decrypt success"});
+      return;
+    }
+    AlertDialog.show({message : "decrypt fail"});
+  });
+}
+
+// 以Callback方式加解密
+function decryptMessageCallback() {
+  // 生成非对称密钥生成器
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  // 生成加解密生成器，用于加密
+  let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // 生成加解密生成器，用于解密
+  let decoder = cryptoFramework.createCipher("SM2_256|SM3");
+  let plainText = "this is cipher text";
+  let input = {data : stringToUint8Array(plainText) };
+  let cipherData;
+  let keyPair;
+  // 通过非对称秘钥生成器生成非对称密钥对
+  rsaGenerator.generateKeyPair(function (err, newKeyPair) {
+    keyPair = newKeyPair;
+    // 初始化加解密操作环境:使用公钥开始加密
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, function (err, data) {
+      // 加密doFinal
+      cipher.doFinal(input, function (err, data) {
+        // 获取加密后的信息，并用于解密的入参
+        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        cipherData = data;
+        // 初始化加解密操作环境:使用私钥开始解密
+        decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
+          // 解密doFinal
+          decoder.doFinal(cipherData, function (err, data) {
+            // 验证解密后，数据与原先数据是否保持一致
+            if (input.data.toString() === data.data.toString()) {
+              AlertDialog.show({ message : "decrype success"} );
+              return;
+            }
+            AlertDialog.show({ message : "decrype fail"} );
+          });
+        });
+      });
+    });
+  });
+}
+```
+
+### SM4 ECB以callback方式加解密开发步骤：
+
+示例8：使用SM4对称密钥的加解密操作
+
+1. 创建对称密钥生成器。
+2. 通过已有二进制数据生成密钥。
+3. 创建加解密生成器。
+4. 通过加解密生成器加密或解密数据。
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function stringToUint8Array(str) {
+	let arr = [];
+	for (let i = 0, j = str.length; i < j; ++i) {
+	arr.push(str.charCodeAt(i));
+	}
+	return new Uint8Array(arr);
+}
+
+// 字节流转成可理解的字符串
+function uint8ArrayToString(array) {
+  let arrayString = '';
+  for (let i = 0; i < array.length; i++) {
+    arrayString += String.fromCharCode(array[i]);
+  }
+  return arrayString;
+}
+
+// SM4 ECB模式示例，callback写法
+function testSM4Ecb() {
+  // 生成非对称密钥生成器
+  let rsaGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
+  // 生成加解密生成器，用于加密
+  let cipher = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
+  // 生成加解密生成器，用于解密
+  let decoder = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
+  let plainText = "this is cipher text";
+  let input = {data : stringToUint8Array(plainText) };
+  let cipherData;
+  let key;
+  // 通过非对称秘钥生成器生成非对称密钥对
+  rsaGenerator.generateSymKey(function (err, newKey) {
+    key = newKey;
+    // 初始化加解密操作环境:使用公钥开始加密
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, key, null, function (err, data) {
+      // 加密doFinal
+      cipher.doFinal(input, function (err, data) {
+        // 获取加密后的信息，并用于解密的入参
+        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        cipherData = data;
+        // 初始化加解密操作环境:使用私钥开始解密
+        decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, key, null, function (err, data) {
+          // 解密doFinal
+          decoder.doFinal(cipherData, function (err, data) {
+            // 验证解密后，数据与原先数据是否保持一致
+            if (input.data.toString() === data.data.toString()) {
+              AlertDialog.show({ message : "decrype success"} );
+              return;
+            }
+            AlertDialog.show({ message : "decrype fail"} );
+          });
+        });
+      });
+    });
+  });
+}
+```
+
 ## 使用签名验签操作
 
 ### 场景说明
@@ -1219,6 +1520,7 @@ function rsaUseSpecDecryptOAEPPromise() {
 1. 使用RSA签名验签操作
 2. 使用ECC签名验签操作
 3. 使用RSA签名验签，PSS模式时，获取、设置SignSpecItem参数。
+4. 使用SM2签名验签操作
 
 > **说明：**
 >
@@ -1593,6 +1895,63 @@ function verifyMessageCallbackPSS() {
               })
             });
           });
+        });
+      });
+    });
+  });
+}
+```
+
+### SM2签名验签开发步骤
+
+示例5：使用SM2操作
+
+1. 生成SM2密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成SM2非对称密钥。
+2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
+3. 执行签名操作。通过Sign类提供的update接口，添加签名数据，并调用doFinal接口生成数据的签名。
+4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
+5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
+
+```js
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+// 可理解的字符串转成字节流
+function stringToUint8Array(str) {
+    var arr = [];
+    for (var i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+    }
+    var tmpArray = new Uint8Array(arr);
+    return tmpArray;
+}
+
+let globalKeyPair;
+let SignMessageBlob;
+let plan1 = "This is Sign test plan1";
+let plan2 = "This is Sign test plan2";
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
+
+function signAndVerify() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  let signer = cryptoFramework.createSign("SM2_256|SM3");
+  rsaGenerator.generateKeyPair(function (err, keyPair) {
+    globalKeyPair = keyPair;
+    let priKey = globalKeyPair.priKey;
+    signer.init(priKey, function (err, data) {
+      signer.update(input1, function (err, data) {
+        signer.sign(input2, function (err, data) {
+          SignMessageBlob = data;
+          console.info("sign output is " + SignMessageBlob.data);
+          let verifyer = cryptoFramework.createVerify("SM2_256|SM3");
+          verifyer.init(globalKeyPair.pubKey, function (err, data) {
+            verifyer.update(input1, function (err, data) {
+              verifyer.verify(input2, SignMessageBlob, function (err, data) {
+                console.info("verify result is " + data);
+                AlertDialog.show({message:"decrype success"})
+              });
+            });
+          })
         });
       });
     });
