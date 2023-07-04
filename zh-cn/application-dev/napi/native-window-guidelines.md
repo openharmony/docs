@@ -24,16 +24,20 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 | OH_NativeWindow_NativeObjectReference (void \*obj) | 增加一个NativeObject的引用计数。 | 
 | OH_NativeWindow_NativeObjectUnreference (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。 | 
 | OH_NativeWindow_GetNativeObjectMagic (void \*obj) | 获取NativeObject的MagicId。 | 
-| OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow \*window, uint32_t sequence, OHScalingMode scalingMode) | 设置OHNativeWindow的缩放模式，此接口从API version 10开始废弃，不提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow \*window, uint32_t sequence, int32_t size, const OHHDRMetaData \*metaData) | 设置OHNativeWindow的HDR静态元数据，此接口从API version 10开始废弃，不提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow \*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | 设置OHNativeWindow的HDR静态元数据集，此接口从API version 10开始废弃，不提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow \*window, const OHExtDataHandle \*handle) | 设置OHNativeWindow的TunnelHandle，此接口从API version 10开始废弃，不提供替代接口。 | 
+| OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow \*window, uint32_t sequence, OHScalingMode scalingMode) | 设置OHNativeWindow的缩放模式，此接口从API version 10开始废弃，不再提供替代接口。 | 
+| OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow \*window, uint32_t sequence, int32_t size, const OHHDRMetaData \*metaData) | 设置OHNativeWindow的HDR静态元数据，此接口从API version 10开始废弃，不再提供替代接口。 | 
+| OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow \*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | 设置OHNativeWindow的HDR静态元数据集，此接口从API version 10开始废弃，不再提供替代接口。 | 
+| OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow \*window, const OHExtDataHandle \*handle) | 设置OHNativeWindow的TunnelHandle，此接口从API version 10开始废弃，不再提供替代接口。 | 
 
 详细的接口说明请参考[native_window](../reference/native-apis/_native_window.md)。
 
 ## 开发步骤
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的`NAPI`接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
+**头文件**
+    ```c++
+    #include <native_window/external_window.h>
+    ```
 
 1. **获取OHNativeWindow实例**。可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取。
    1. 在xxx.ets 中定义 XComponent。
@@ -100,10 +104,6 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 
 2. **设置NativeWindowBuffer的属性**。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`NativeWindowBuffer`的属性。
     ```c++
-    // 设置 NativeWindowBuffer 的读写场景
-    int code = SET_USAGE;
-    int32_t usage = BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE | BUFFER_USAGE_MEM_DMA;
-    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, usage);
     // 设置 NativeWindowBuffer 的宽高
     code = SET_BUFFER_GEOMETRY;
     int32_t width = 0x100;
@@ -113,10 +113,6 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
     code = SET_STRIDE;
     int32_t stride = 0x8;
     ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
-    // 设置 NativeWindowBuffer 的格式
-    code = SET_FORMAT;
-    int32_t format = PIXEL_FMT_RGBA_8888;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, format);
     ```
 
 3. **从图形队列申请NativeWindowBuffer**。

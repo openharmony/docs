@@ -1,11 +1,11 @@
-# NativeImage 开发指导
+# NativeImage开发指导
 
 ## 场景介绍
 
 NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，表示图形队列的消费者端。开发者可以通过`NativeImage`接口接收和使用`Buffer`，并将`Buffer`关联输出到OpenGL外部纹理。
 针对NativeImage，常见的开发场景如下：
 
-* 通过`NativeImage`提供的`NAPI`接口创建`NativeImage`实例作为消费者端，获取与该实例对应的`NativeWindow`作为生产者端。`NativeWindow`相关接口可用于填充`Buffer`内容并提交，`NativeImage`将`Buffer`内容更新到OpenGL外部纹理上。
+* 通过`NativeImage`提供的Native API接口创建`NativeImage`实例作为消费者端，获取与该实例对应的`NativeWindow`作为生产者端。`NativeWindow`相关接口可用于填充`Buffer`内容并提交，`NativeImage`将`Buffer`内容更新到OpenGL外部纹理上。本模块需要配合NativeWindow、NativeBuffer、EGL、GLES3模块一起使用。
 
 ## 接口说明
 
@@ -24,52 +24,113 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeImage`提供的`NAPI`接口，创建`NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
+以下步骤描述了在**OpenHarmony**中如何使用`NativeImage`提供的Native API接口，创建`OH_NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
+**头文件**
+    ```c++
+    #include <EGL/egl.h>
+    #include <EGL/eglext.h>
+    #include <GLES3/gl3.h>
+    #include <native_image/native_image.h>
+    #include <native_window/external_window.h>
+    #include <native_buffer/native_buffer.h>
+    ```
 
 1. **初始化EGL环境**。
+    这里提供一份初始化EGL环境的代码示例
     ```c++
-    EGLDisplay = GetPlatformEglDisplay(EGL_PLATFORM_OHOS_KHR, EGL_DEFAULT_DISPLAY, NULL);
-    if (eglDisplay_ == EGL_NO_DISPLAY) {
-        std::cout << "Failed to create EGLDisplay gl errno : " << eglGetError() << std::endl;
-        return;
+    #include <EGL/egl.h>
+    #include <EGL/eglext.h>
+    using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
+    constexpr const char* EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";
+    constexpr const char* EGL_KHR_PLATFORM_WAYLAND = "EGL_KHR_platform_wayland";
+    constexpr int32_t EGL_CONTEXT_CLIENT_VERSION_NUM = 2;
+    constexpr char CHARACTER_WHITESPACE = ' ';
+    constexpr const char* CHARACTER_STRING_WHITESPACE = " ";
+    constexpr const char* EGL_GET_PLATFORM_DISPLAY_EXT = "eglGetPlatformDisplayEXT";
+    EGLContext eglContext_ = EGL_NO_CONTEXT;
+    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
+    static inline EGLConfig config_;
+
+    static bool CheckEglExtension(const char* extensions, const char* extension)
+    {
+        size_t extlen = strlen(extension);
+        const char* end = extensions + strlen(extensions);
+
+        while (extensions < end) {
+            size_t n = 0;
+            if (*extensions == CHARACTER_WHITESPACE) {
+                extensions++;
+                continue;
+            }
+            n = strcspn(extensions, CHARACTER_STRING_WHITESPACE);
+            if (n == extlen && strncmp(extension, extensions, n) == 0) {
+                return true;
+            }
+            extensions += n;
+        }
+        return false;
     }
 
-    EGLint major, minor;
-    if (eglInitialize(eglDisplay_, &major, &minor) == EGL_FALSE) {
-        std::cout << "Failed to initialize EGLDisplay" << std::endl;
-        return;
+    static EGLDisplay GetPlatformEglDisplay(EGLenum platform, void* native_display, const EGLint* attrib_list)
+    {
+        static GetPlatformDisplayExt eglGetPlatformDisplayExt = NULL;
+
+        if (!eglGetPlatformDisplayExt) {
+            const char* extensions = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
+            if (extensions &&
+                (CheckEglExtension(extensions, EGL_EXT_PLATFORM_WAYLAND) ||
+                    CheckEglExtension(extensions, EGL_KHR_PLATFORM_WAYLAND))) {
+                eglGetPlatformDisplayExt = (GetPlatformDisplayExt)eglGetProcAddress(EGL_GET_PLATFORM_DISPLAY_EXT);
+            }
+        }
+
+        if (eglGetPlatformDisplayExt) {
+            return eglGetPlatformDisplayExt(platform, native_display, attrib_list);
+        }
+
+        return eglGetDisplay((EGLNativeDisplayType)native_display);
     }
 
-    if (eglBindAPI(EGL_OPENGL_ES_API) == EGL_FALSE) {
-        std::cout << "Failed to bind OpenGL ES API" << std::endl;
-        return;
+    static void InitEGLEnv()
+    {
+        eglDisplay_ = GetPlatformEglDisplay(EGL_PLATFORM_OHOS_KHR, EGL_DEFAULT_DISPLAY, NULL);
+        if (eglDisplay_ == EGL_NO_DISPLAY) {
+            std::cout << "Failed to create EGLDisplay gl errno : " << eglGetError() << std::endl;
+        }
+        
+        EGLint major, minor;
+        if (eglInitialize(eglDisplay_, &major, &minor) == EGL_FALSE) {
+            std::cout << "Failed to initialize EGLDisplay" << std::endl;
+        }
+        
+        if (eglBindAPI(EGL_OPENGL_ES_API) == EGL_FALSE) {
+            std::cout << "Failed to bind OpenGL ES API" << std::endl;
+        }
+        
+        unsigned int ret;
+        EGLint count;
+        EGLint config_attribs[] = { EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
+            EGL_ALPHA_SIZE, 8, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT, EGL_NONE };
+        
+        ret = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
+        if (!(ret && static_cast<unsigned int>(count) >= 1)) {
+            std::cout << "Failed to eglChooseConfig" << std::endl;
+        }
+        
+        static const EGLint context_attribs[] = { EGL_CONTEXT_CLIENT_VERSION, EGL_CONTEXT_CLIENT_VERSION_NUM, EGL_NONE };
+        
+        eglContext_ = eglCreateContext(eglDisplay_, config_, EGL_NO_CONTEXT, context_attribs);
+        if (eglContext_ == EGL_NO_CONTEXT) {
+            std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
+        }
+        
+        eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
+        
+        std::cout << "Create EGL context successfully, version" << major << "." << minor << std::endl;
     }
-
-    unsigned int ret;
-    EGLint count;
-    EGLint config_attribs[] = { EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
-        EGL_ALPHA_SIZE, 8, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT, EGL_NONE };
-
-    ret = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
-    if (!(ret && static_cast<unsigned int>(count) >= 1)) {
-        std::cout << "Failed to eglChooseConfig" << std::endl;
-        return;
-    }
-
-    static const EGLint context_attribs[] = { EGL_CONTEXT_CLIENT_VERSION, EGL_CONTEXT_CLIENT_VERSION_NUM, EGL_NONE };
-
-    eglContext_ = eglCreateContext(eglDisplay_, config_, EGL_NO_CONTEXT, context_attribs);
-    if (eglContext_ == EGL_NO_CONTEXT) {
-        std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
-        return;
-    }
-
-    eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
-
-    std::cout << "Create EGL context successfully, version" << major << "." << minor << std::endl;
     ```
    
-2. **创建NativeImage实例**。
+2. **创建OH_NativeImage实例**。
     ```c++
     // 创建 OpenGL 纹理
     GLuint textureId;
@@ -82,56 +143,34 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
     ```c++
     // 获取生产者NativeWindow
     OHNativeWindow* nativeWindow = OH_NativeImage_AcquireNativeWindow(image);
-    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 NativeWindowBuffer 实例
-    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
-    // 通过 OH_NativeWindow_GetNativeBufferHandleFromNative 获取 buffer 的 handle
-    BufferHandle* bufferHandle = OH_NativeWindow_GetNativeBufferHandleFromNative(buffer);
     ```
 
 4. **将生产的内容写入NativeWindowBuffer**。
-    1. 设置NativeWindowBuffer的属性
+    1. 从NativeWindow中获取NativeWindowBuffer
     ```c++
-    // 设置 NativeWindowBuffer 的读写场景
-    int code = SET_USAGE;
-    int32_t usage = BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE | BUFFER_USAGE_MEM_DMA;
-    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, usage);
-    // 设置 NativeWindowBuffer 的宽高
-    code = SET_BUFFER_GEOMETRY;
+    OHNativeWindowBuffer* buffer = nullptr;
+    int fenceFd;
+    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
+    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
+    
+    BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
+    int code = SET_BUFFER_GEOMETRY;
     int32_t width = 0x100;
     int32_t height = 0x100;
     ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    // 设置 NativeWindowBuffer 的步长
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
-    // 设置 NativeWindowBuffer 的格式
-    code = SET_FORMAT;
-    int32_t format = PIXEL_FMT_RGBA_8888;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, format);
-    ```
-    2. 从图形队列申请NativeWindowBuffer
-    ```c++
-    struct NativeWindowBuffer* buffer = nullptr;
-    int fenceFd;
-    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 NativeWindowBuffer 实例
-    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
-    // 通过 OH_NativeWindow_GetNativeBufferHandleFromNative 获取 buffer 的 handle
-    BufferHandle* bufferHandle = OH_NativeWindow_GetNativeBufferHandleFromNative(buffer);
     ```
     3. 将生产的内容写入NativeWindowBuffer
     ```c++
-    auto data = static_cast<uint8_t *>(buffer->sfbuffer->GetVirAddr());
     static uint32_t value = 0x00;
     value++;
-
-    uint32_t *pixel = static_cast<uint32_t *>(data);
+    uint32_t *pixel = static_cast<uint32_t *>(handle->virAddr);
     for (uint32_t x = 0; x < width; x++) {
         for (uint32_t y = 0;  y < height; y++) {
             *pixel++ = value;
         }
     }
     ```
-    4. 提交NativeWindowBuffer到图形队列
+    4. 将NativeWindowBuffer提交到NativeWindow
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
