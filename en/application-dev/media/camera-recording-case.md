@@ -22,7 +22,7 @@ if (!cameraManager) {
 } 
 
 // Listen for camera status changes.
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })

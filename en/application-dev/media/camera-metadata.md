@@ -48,7 +48,7 @@ During camera application development, you can listen for the status of metadata
 - Register the 'metadataObjectsAvailable' event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a **MetadataOutput** object is created.
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+  metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
       console.info(`metadata output metadataObjectsAvailable`);
   })
   ```
