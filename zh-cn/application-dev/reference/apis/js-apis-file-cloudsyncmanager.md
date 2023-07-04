@@ -414,7 +414,7 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&
 
 clean(accountId: string, appActions: { [bundleName: string]: Action }, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法去使能端云协同能力，以callback形式返回结果。
+异步方法清理本地云相关数据，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
@@ -426,7 +426,7 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }, callback:
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 帐号Id|
 | appActions | object | 是   | 清理动作类型，bundleName为待清理应用包名, [Action](#action)为清理动作类型|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步去使能端云协同能力之后的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步方法清理本地云相关数据 |
 
 **错误码：**
 
