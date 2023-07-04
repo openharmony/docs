@@ -588,7 +588,7 @@ getUidTxBytes(uid: number): Promise\<number>;
 
 on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void
 
-注册流量改变事件通知。
+订阅流量改变事件通知。
 
 **系统接口**：此接口为系统接口。
 
@@ -627,7 +627,7 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 
 off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
 
-注销流量改变事件通知。
+取消订阅流量改变事件通知。
 
 **系统接口**：此接口为系统接口。
 
@@ -664,7 +664,7 @@ statistics.off('netStatsChange');
 
 getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
-获取网卡历史流量信息，使用callback方式作为异步方法。
+获取指定网卡历史流量信息，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -705,9 +705,9 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
   statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
   });
 ```
 
@@ -715,7 +715,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 
 getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
-获取网卡历史流量信息，使用Promise方式作为异步方法。
+获取指定网卡历史流量信息，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -757,9 +757,9 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
   statistics.getTrafficStatsByIface().then(function (statsInfo) {
     console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByIface bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByIface packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
   })
 ```
 
@@ -767,7 +767,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
 getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
-获取应用历史流量信息，使用callback方式作为异步方法。
+获取指定应用历史流量信息，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -779,7 +779,7 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidInfo | [UidInfo](#uidinfo10) | 是   | 指定查询的应用历史流量信息，参见[UidInfo](#uidinfo10)。                   |
+| uidInfo | [UidInfo](#uidinfo10) | 是   | 指定查询的应用信息，参见[UidInfo](#uidinfo10)。                   |
 | callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)>         | 是   | 回调函数。成功时statsInfo返回包含应用历史流量信息，error为undefined，否则为错误对象|
 
 **错误码：**
@@ -811,9 +811,9 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
   statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
   });
 ```
 
@@ -821,7 +821,7 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 
 getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
-获取应用历史流量信息，使用Promise方式作为异步方法。
+获取指定应用历史流量信息，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -833,7 +833,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidInfo | [UidInfo](#uidinfo10) | 是   | 指定查询的应用历史流量信息，参见[UidInfo](#uidinfo10)。                   |
+| uidInfo | [UidInfo](#uidinfo10) | 是   | 指定查询的应用信息，参见[UidInfo](#uidinfo10)。                   |
 
 **返回值：**
 
@@ -869,9 +869,9 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
   statistics.getTrafficStatsByUid(uidInfo).then(function (statsInfo) {
     console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getTrafficStatsByUid bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
     console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getTrafficStatsByUid packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
   })
 ```
 
@@ -885,7 +885,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| iface     | string    |  是 |  需要查询我网卡名。|
+| iface     | string    |  是 |  查询的网卡名。|
 | startTime | number    |  是 |  查询的开始时间(时间戳;单位：秒)。   |
 | endTime   | number    |  是 |  查询的结束时间(时间戳;单位：秒)。   |
 
