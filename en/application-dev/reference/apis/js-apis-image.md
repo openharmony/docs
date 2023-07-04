@@ -984,7 +984,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
 
 **Return value**
 
@@ -1022,7 +1022,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -2274,7 +2274,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|    
 
 **Example**
 

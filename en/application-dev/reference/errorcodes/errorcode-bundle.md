@@ -719,9 +719,8 @@ Failed to install the HAP because the isolationMode configured is not supported.
 During application installation, the value of **isolationMode** in the HAP conflicts with the isolation mode of the device.
 
 **Possible Causes**
-
-1. The device supports the isolation mode (the value of **supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
-2. The device does not support the isolation mode (the value of **supportIsolationMode** is **false**), whereas the value of **isolationMode** in the HAP is **isolationOnly**.
+1. The device supports the isolation mode (the value of **persist.bms.supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
+2. The device does not support the isolation mode (the value of **persist.bms.supportIsolationMode** is **false**), whereas the value of **isolationMode** in the HAP is **isolationOnly**.
 
 **Solution**
 
