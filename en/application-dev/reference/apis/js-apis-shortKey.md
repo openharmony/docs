@@ -15,7 +15,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 ##  shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
+setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the delay for starting an ability using the shortcut key. This API uses an asynchronous callback to return the result.
 
@@ -25,7 +25,7 @@ Sets the delay for starting an ability using the shortcut key. This API uses an 
 
 | Name    | Type               | Mandatory| Description                                                        |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-| businessId | string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
 | delay      | number              | Yes  | Delay for starting an ability using the shortcut key, in ms.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
@@ -49,7 +49,7 @@ try {
 
 ## shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number): Promise&lt;void&gt;
+setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 
 Sets the delay for starting an ability using the shortcut key. This API uses a promise to return the result.
 
@@ -59,7 +59,7 @@ Sets the delay for starting an ability using the shortcut key. This API uses a p
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| businessId | string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
 | delay      | number | Yes  | Delay for starting an ability using the shortcut key, in ms.|
 
 **Return value**
