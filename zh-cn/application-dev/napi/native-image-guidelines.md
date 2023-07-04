@@ -25,17 +25,19 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
 ## 开发步骤
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeImage`提供的Native API接口，创建`OH_NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
+
 **头文件**
-    ```c++
-    #include <EGL/egl.h>
-    #include <EGL/eglext.h>
-    #include <GLES3/gl3.h>
-    #include <native_image/native_image.h>
-    #include <native_window/external_window.h>
-    #include <native_buffer/native_buffer.h>
-    ```
+```c++
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <GLES3/gl3.h>
+#include <native_image/native_image.h>
+#include <native_window/external_window.h>
+#include <native_buffer/native_buffer.h>
+```
 
 1. **初始化EGL环境**。
+
     这里提供一份初始化EGL环境的代码示例
     ```c++
     #include <EGL/egl.h>
@@ -51,6 +53,7 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
     EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
     static inline EGLConfig config_;
 
+    // 检查egl扩展
     static bool CheckEglExtension(const char* extensions, const char* extension)
     {
         size_t extlen = strlen(extension);
@@ -71,6 +74,7 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
         return false;
     }
 
+    // 获取当前的显示设备
     static EGLDisplay GetPlatformEglDisplay(EGLenum platform, void* native_display, const EGLint* attrib_list)
     {
         static GetPlatformDisplayExt eglGetPlatformDisplayExt = NULL;
@@ -93,16 +97,19 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
 
     static void InitEGLEnv()
     {
+        // 获取当前的显示设备
         eglDisplay_ = GetPlatformEglDisplay(EGL_PLATFORM_OHOS_KHR, EGL_DEFAULT_DISPLAY, NULL);
         if (eglDisplay_ == EGL_NO_DISPLAY) {
             std::cout << "Failed to create EGLDisplay gl errno : " << eglGetError() << std::endl;
         }
         
         EGLint major, minor;
+        // 初始化EGLDisplay
         if (eglInitialize(eglDisplay_, &major, &minor) == EGL_FALSE) {
             std::cout << "Failed to initialize EGLDisplay" << std::endl;
         }
         
+        // 绑定图形绘制的API为OpenGLES
         if (eglBindAPI(EGL_OPENGL_ES_API) == EGL_FALSE) {
             std::cout << "Failed to bind OpenGL ES API" << std::endl;
         }
@@ -112,6 +119,7 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
         EGLint config_attribs[] = { EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
             EGL_ALPHA_SIZE, 8, EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT, EGL_NONE };
         
+        // 获取一个有效的系统配置信息
         ret = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
         if (!(ret && static_cast<unsigned int>(count) >= 1)) {
             std::cout << "Failed to eglChooseConfig" << std::endl;
@@ -119,13 +127,16 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
         
         static const EGLint context_attribs[] = { EGL_CONTEXT_CLIENT_VERSION, EGL_CONTEXT_CLIENT_VERSION_NUM, EGL_NONE };
         
+        // 创建上下文
         eglContext_ = eglCreateContext(eglDisplay_, config_, EGL_NO_CONTEXT, context_attribs);
         if (eglContext_ == EGL_NO_CONTEXT) {
             std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
         }
         
+        // 关联上下文
         eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
         
+        // EGL环境初始化完成
         std::cout << "Create EGL context successfully, version" << major << "." << minor << std::endl;
     }
     ```
@@ -177,26 +188,24 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
     ```
+    5. 用完需要销毁NativeWindow
+    ```c++
+    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+    ```
 
 5. **更新内容到OpenGL纹理**。
     ```c++
     // 更新内容到OpenGL纹理。
     int32_t ret = OH_NativeImage_UpdateSurfaceImage(image);
-    if (ret != SURFACE_ERROR_OK) {
+    if (ret != 0) {
         std::cout << "OH_NativeImage_UpdateSurfaceImage failed" << std::endl;
-        return -1;
     }
     // 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的时间戳和变化矩阵。
     int64_t timeStamp = OH_NativeImage_GetTimestamp(image);
-    if (timeStamp == SURFACE_ERROR_ERROR) {
-        std::cout << "OH_NativeImage_GetTimestamp failed" << std::endl;
-        return -1;
-    }
     float matrix[16];
     ret = OH_NativeImage_GetTransformMatrix(image, matrix);
-    if (ret != SURFACE_ERROR_OK) {
+    if (ret != 0) {
         std::cout << "OH_NativeImage_GetTransformMatrix failed" << std::endl;
-        return -1;
     }
     ```
 
@@ -204,12 +213,17 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
     ```c++
     // 将OH_NativeImage实例从当前OpenGL ES上下文分离
     ret = OH_NativeImage_DetachContext(image);
-    if (ret != SURFACE_ERROR_OK) {
+    if (ret != 0) {
         std::cout << "OH_NativeImage_DetachContext failed" << std::endl;
-        return -1;
     }
     // 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新
     GLuint textureId2;
     glGenTextures(1, &textureId2);
     ret = OH_NativeImage_AttachContext(image, textureId2);
+    ```
+
+7. **OH_NativeImage实例使用完需要销毁掉**。
+    ```c++
+    // 销毁OH_NativeImage实例
+    OH_NativeImage_Destroy(&image);
     ```

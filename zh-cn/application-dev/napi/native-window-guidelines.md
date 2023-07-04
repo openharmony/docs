@@ -5,7 +5,7 @@
 NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生产者端。开发者可以通过`NativeWindow`接口进行申请和提交`Buffer`，配置`Buffer`属性信息。
 针对NativeWindow，常见的开发场景如下：
 
-* 通过`NativeWindow`提供的`NAPI`接口申请图形`Buffer`，并将生产图形内容写入图形`Buffer`，最终提交`Buffer`到图形队列
+* 通过`NativeWindow`提供的Native API接口申请图形`Buffer`，并将生产图形内容写入图形`Buffer`，最终提交`Buffer`到图形队列
 * 在适配EGL层的`eglswapbuffer`接口时，进行申请和提交`Buffer`
 
 ## 接口说明
@@ -20,11 +20,12 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的`NAPI`接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
+以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的Native API接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
+
 **头文件**
-    ```c++
-    #include <native_window/external_window.h>
-    ```
+```c++
+#include <native_window/external_window.h>
+```
 
 1. **获取OHNativeWindow实例**。可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取。
    1. 在xxx.ets 中定义 XComponent。
@@ -89,30 +90,30 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
        OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
        ```
 
-2. **设置NativeWindowBuffer的属性**。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`NativeWindowBuffer`的属性。
+2. **设置OHNativeWindowBuffer的属性**。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`OHNativeWindowBuffer`的属性。
     ```c++
-    // 设置 NativeWindowBuffer 的宽高
+    // 设置 OHNativeWindowBuffer 的宽高
     code = SET_BUFFER_GEOMETRY;
     int32_t width = 0x100;
     int32_t height = 0x100;
     ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    // 设置 NativeWindowBuffer 的步长
+    // 设置 OHNativeWindowBuffer 的步长
     code = SET_STRIDE;
     int32_t stride = 0x8;
     ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
     ```
 
-3. **从图形队列申请NativeWindowBuffer**。
+3. **从图形队列申请OHNativeWindowBuffer**。
     ```c++
-    struct NativeWindowBuffer* buffer = nullptr;
+    OHNativeWindowBuffer* buffer = nullptr;
     int fenceFd;
-    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 NativeWindowBuffer 实例
+    // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
     OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
     // 通过 OH_NativeWindow_GetNativeBufferHandleFromNative 获取 buffer 的 handle
     BufferHandle* bufferHandle = OH_NativeWindow_GetNativeBufferHandleFromNative(buffer);
     ```
 
-4. **将生产的内容写入NativeWindowBuffer**。
+4. **将生产的内容写入OHNativeWindowBuffer**。
     ```c++
     auto image = static_cast<uint8_t *>(buffer->sfbuffer->GetVirAddr());
     static uint32_t value = 0x00;
@@ -126,9 +127,9 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
     }
     ```
 
-5. **提交NativeWindowBuffer到图形队列**。
+5. **提交OHNativeWindowBuffer到图形队列**。
     ```c++
-    // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
+    // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region);

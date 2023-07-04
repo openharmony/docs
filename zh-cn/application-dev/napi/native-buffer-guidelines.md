@@ -23,11 +23,12 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeBuffer`提供的`NAPI`接口，创建`OH_NativeBuffer`实例获取内存的属性信息，并把对应的ION内存映射到进程空间。
+以下步骤描述了在**OpenHarmony**中如何使用`NativeBuffer`提供的Native API接口，创建`OH_NativeBuffer`实例获取内存的属性信息，并把对应的ION内存映射到进程空间。
+
 **头文件**
-    ```c++
-    #include <native_buffer/native_buffer.h>
-    ```
+```c++
+#include <native_buffer/native_buffer.h>
+```
 
 1. **创建OH_NativeBuffer实例**。
     ```c++
@@ -37,7 +38,7 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
     };
     OH_NativeBuffer* buffer = OH_NativeBuffer_Alloc(&config);
     if (buffer == nullptr) {
-        return;
+        std::cout << "OH_NativeBuffer_Alloc Failed" << std::endl;
     }
     ```
    
@@ -45,15 +46,16 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
     应用如需要访问这块buffer的内存空间，需要通过OH_NativeBuffer_Map接口将buffer对应的ION内存映射到进程空间
     ```c++
     // 将ION内存映射到进程空间
+    void* virAddr = nullptr;
     int32_t ret = OH_NativeBuffer_Map(buffer, &virAddr); // 映射后通过第二个参数virAddr返回内存的首地址
-    if (ret != OHOS::GSERROR_OK) {
-        return;
+    if (ret != 0) {
+        std::cout << "OH_NativeBuffer_Map Failed" << std::endl;
     }
 
     // 使用后请及时将OH_NativeBuffer对应的ION内存从进程空间移除
     ret = OH_NativeBuffer_Unmap(buffer);
-    if (ret != OHOS::GSERROR_OK) {
-        return;
+    if (ret != 0) {
+        std::cout << "OH_NativeBuffer_Unmap Failed" << std::endl;
     }
     ```
 
@@ -70,7 +72,7 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
     ```c++
     // 调用OH_NativeBuffer_Unreference引用计数减1，之后buffer的引用计数为0，buffer会销毁
     ret = OH_NativeBuffer_Unreference(buffer);
-    if (ret != OHOS::GSERROR_OK) {
-        return;
+    if (ret != 0) {
+        std::cout << "OH_NativeBuffer_Unreference Failed" << std::endl;
     }
     ```

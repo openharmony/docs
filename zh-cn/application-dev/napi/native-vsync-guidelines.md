@@ -18,10 +18,11 @@ NativeVsync模块用来获取系统VSync信号，提供了OH_NativeVSync实例�
 ## 开发步骤
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeVsync`提供的Native API接口，创建和销毁`OH_NativeVsync`实例，以及如何设置VSync回调函数。
+
 **头文件**
-    ```c++
-    #include <native_vsync/native_vsync.h>
-    ```
+```c++
+#include <native_vsync/native_vsync.h>
+```
 
 1. **首先需要准备一个VSync回调函数**
     ```c++
