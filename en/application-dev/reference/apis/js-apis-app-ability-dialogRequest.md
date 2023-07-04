@@ -324,7 +324,7 @@ setRequestResult(result: RequestResult): void;
 
 Sets the result of the request for the modal dialog box.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 

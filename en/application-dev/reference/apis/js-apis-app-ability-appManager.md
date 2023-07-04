@@ -298,7 +298,7 @@ appManager.getRunningProcessInformation((err, data) => {
 });
 ```
 
-## appManager.isSharedBundleRunning
+## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
 
@@ -323,11 +323,20 @@ Checks whether the shared library is in use. This API uses a promise to return t
 | -------- | -------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
+**Error codes**
+
+| ID | Error Message |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
+const bundleName = "this is a bundleName";
+const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
     console.log('The shared bundle running is: ${JSON.stringify(data)}');
 }).catch((error) => {
@@ -335,7 +344,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
 });
 ```
 
-## appManager.isSharedBundleRunning
+## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
 
@@ -353,18 +362,22 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
 |AsyncCallback\<boolean>> | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+
+**Error codes**
+
+| ID | Error Message |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
+const bundleName = "this is a bundleName";
+const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
     if (err) {
         console.error('err: ${JSON.stringify(err)}');

@@ -173,6 +173,8 @@ Saves the ability state, which will be used for recovery. This API can be used t
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);

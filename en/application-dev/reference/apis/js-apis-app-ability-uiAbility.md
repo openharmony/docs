@@ -339,6 +339,51 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
+## UIAbility.onPrepareToTerminate<sup>10+</sup>
+
+onPrepareToTerminate(): boolean;
+
+Triggered when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Return value**
+
+| Type| Description|
+| -- | -- |
+| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled and the UIAbility is not terminated. The value **false** means to continue terminating the UIAbility.|
+
+**Example**
+
+  ```ts
+  export default class EntryAbility extends UIAbility {
+    onPrepareToTerminate() {
+      // Define a pre-termination operation,
+      // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
+      let want:Want = {
+        bundleName: "com.example.myapplication",
+        moduleName: "entry",
+        abilityName: "SecondAbility"
+      }
+      this.context.startAbilityForResult(want)
+        .then((result)=>{
+          // Obtain the startup result and terminate the current UIAbility when resultCode in the return value is 0.
+          console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+          if (result.resultCode === 0) {
+            this.context.terminateSelf();
+          }
+        }).catch((err)=>{
+          // Exception handling.
+          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          this.context.terminateSelf();
+        })
+
+      return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
+    }
+  }
+  ```
 
 ## Caller
 
@@ -623,11 +668,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
   let caller;
   let dstDeviceId: string;
   export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
+      onWindowStageCreate(windowStage: window.WindowStage) {
           this.context.startAbilityByCall({
               bundleName: 'com.example.myservice',
               abilityName: 'MainUIAbility',
@@ -643,7 +689,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
               }
           }).catch((err) => {
               console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
-          });
+          })
       }
   }
   ```

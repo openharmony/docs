@@ -19,7 +19,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.|
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | displayId | number | No| Display ID. The default value is **0**, indicating the current display.|
 
 **Example**

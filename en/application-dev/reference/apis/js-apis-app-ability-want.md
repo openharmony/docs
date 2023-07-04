@@ -176,13 +176,14 @@ import Want from '@ohos.app.ability.Want';
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
-
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
+      ```
+    ```ts
 
         // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
-        let context = ...; // ServiceExtensionContext
+        let context ; // ServiceExtensionContext
         let want = {
           bundleName: 'com.example.myapplication2',
           abilityName: 'MainAbility',
