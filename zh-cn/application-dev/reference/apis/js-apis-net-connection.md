@@ -58,9 +58,9 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **参数：**
 
-| 参数名   | 类型                                    | 必填 | 说明       |
-| -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取默认激活的数据网络时，err为undefined，data为默认激活的数据网络；否则为错误对象 |
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取默认激活的数据网络时，error为undefined，data为默认激活的数据网络；否则为错误对象 |
 
 **错误码：**
 
@@ -156,9 +156,9 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明             |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，err为undefined，data为网络的全局代理配置信息；否则为错误对象|
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象 |
 
 **错误码：**
 
@@ -227,10 +227,10 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明             |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | 是   | 网络全局Http代理配置信息 |
-| callback  | AsyncCallback\<void> | 是   | 回调函数。当成功设置网络全局Http代理配置信息时，err为undefined，否则为错误对象|
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| httpProxy | [HttpProxy](#httpproxy) | 是   | 网络全局Http代理配置信息                                     |
+| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功设置网络全局Http代理配置信息时，error为undefined，否则为错误对象 |
 
 **错误码：**
 
@@ -324,7 +324,7 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，err为undefined，data为网络默认的代理配置信息；否则为错误对象 |
+| callback | AsyncCallback<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，error为undefined，data为网络默认的代理配置信息；否则为错误对象 |
 
 **错误码：**
 
@@ -385,9 +385,9 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明             |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取App绑定的网络信息时，err为undefined，data为获取到App绑定的网络信息；否则为错误对象|
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取App绑定的网络信息时，error为undefined，data为获取到App绑定的网络信息；否则为错误对象 |
 
 **错误码：**
 
@@ -450,10 +450,10 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明             |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | 是   | 数据网络的句柄。 |
-| callback  | AsyncCallback\<void> | 是   | 回调函数。当成功绑定App到指定网络时，err为undefined，否则为错误对象|
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。                                             |
+| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功绑定App到指定网络时，error为undefined，否则为错误对象 |
 
 **错误码：**
 
@@ -534,7 +534,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。当成功获取所有处于连接状态的网络列表时，err为undefined，data为激活的数据网络列表；否则为错误对象 |
+| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。当成功获取所有处于连接状态的网络列表时，error为undefined，data为激活的数据网络列表；否则为错误对象 |
 
 **错误码：**
 
@@ -599,10 +599,10 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明             |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | 是   | 数据网络的句柄。 |
-| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | 是   | 回调函数。当成功获取netHandle对应的网络的连接信息时，err为undefined，data为获取的网络连接信息；否则为错误对象|
+| 参数名    | 类型                                                         | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                                      | 是   | 数据网络的句柄。                                             |
+| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | 是   | 回调函数。当成功获取netHandle对应的网络的连接信息时，error为undefined，data为获取的网络连接信息；否则为错误对象 |
 
 **错误码：**
 
@@ -679,10 +679,10 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 **参数：**
 
-| 参数名    | 类型                                                | 必填 | 说明             |
-| --------- | --------------------------------------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                             | 是   | 数据网络的句柄。 |
-| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | 是   | 回调函数。当成功获取netHandle对应的网络的能力信息时，err为undefined，data为获取到的网络能力信息；否则为错误对象       |
+| 参数名    | 类型                                                | 必填 | 说明                                                         |
+| --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                             | 是   | 数据网络的句柄。                                             |
+| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | 是   | 回调函数。当成功获取netHandle对应的网络的能力信息时，error为undefined，data为获取到的网络能力信息；否则为错误对象 |
 
 **错误码：**
 
@@ -969,7 +969,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                              | 必填 | 说明               |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当关闭飞行模式成功，err为undefined，否则为错误对象。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当关闭飞行模式成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1040,7 +1040,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向网络管理报告网络处于可用状态成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向网络管理报告网络处于可用状态成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1118,7 +1118,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向网络管理报告网络处于不可用状态成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当向网络管理报告网络处于不可用状态成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1193,10 +1193,10 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明               |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | 是   | 需要解析的主机名。 |
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用默认网络解析主机名成功获取所有IP地址，err为undefined，data为获取到的所有IP地址；否则为错误对象。|
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | 是   | 需要解析的主机名。                                           |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用默认网络解析主机名成功获取所有IP地址，error为undefined，data为获取到的所有IP地址；否则为错误对象。 |
 
 **错误码：**
 
@@ -1280,9 +1280,9 @@ register(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明       |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当订阅指定网络状态变化的通知成功，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当订阅指定网络状态变化的通知成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1313,9 +1313,9 @@ unregister(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明       |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当取消订阅指定网络状态变化的通知成功，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当取消订阅指定网络状态变化的通知成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1597,7 +1597,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 | 参数名      | 类型                     | 必填 | 说明                            |
 | ----------- | ------------------------ | ---- | -------------------------------|
 | socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
-| callback    | AsyncCallback\<void>      | 是   | 回调函数。当TCPSocket或UDPSocket成功绑定到当前网络，err为undefined，否则为错误对象。|
+| callback    | AsyncCallback\<void>      | 是   | 回调函数。当TCPSocket或UDPSocket成功绑定到当前网络，error为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1749,10 +1749,10 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明               |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | 是   | 需要解析的主机名。 |
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用对应网络解析主机名成功获取所有IP地址，err为undefined，data为获取到的所有IP地址；否则为错误对象。|
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | 是   | 需要解析的主机名。                                           |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用对应网络解析主机名成功获取所有IP地址，error为undefined，data为获取到的所有IP地址；否则为错误对象。 |
 
 **错误码：**
 
@@ -1831,10 +1831,10 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明               |
-| -------- | ----------------------------------------- | ---- | ------------------ |
-| host     | string                                    | 是   | 需要解析的主机名。 |
-| callback | AsyncCallback\<[NetAddress](#netaddress)> | 是   | 回调函数。当使用对应网络解析主机名获取第一个IP地址成功，err为undefined，data为获取的第一个IP地址；否则为错误对象。         |
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                    | 是   | 需要解析的主机名。                                           |
+| callback | AsyncCallback\<[NetAddress](#netaddress)> | 是   | 回调函数。当使用对应网络解析主机名获取第一个IP地址成功，error为undefined，data为获取的第一个IP地址；否则为错误对象。 |
 
 **错误码：**
 
