@@ -33,7 +33,7 @@ AVCastPicker()
 
 ## 示例
 
-投播功能的示例说明请参考[音视频投播](../../media/avcastpicker-overview.md)。
+投播功能的示例说明参考如下。
 
 ```ts
 import AVCastPicker from '@ohos.multimedia.avCastPicker'
