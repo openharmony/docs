@@ -505,7 +505,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
-| filterRule    | [AddFilterRule](#AddFilterRule)     | 是    | 添加网络包过滤规则                  |
+| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -563,7 +563,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| filterRule    | [AddFilterRule](#AddFilterRule)     | 是    | 添加网络包过滤规则                  |
+| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则                  |
 
 **返回值：**
 
@@ -624,7 +624,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
-| filterRule    | [RemoveFilterRule](#RemoveFilterRule)     | 是    | 移除网络包过滤规则                  |
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -680,7 +680,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| filterRule    | [RemoveFilterRule](#RemoveFilterRule)     | 是    | 移除网络包过滤规则                  |
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则                  |
 
 **返回值：**
 
@@ -831,10 +831,10 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 | srcPort | string   | 否   | ip源端口。 |
 | destPort        | string    | 否   | ip目标端口。 |
 | uid | string   | 否   | 应用uid。 |
-| method        | [AddMethod](#AddMethod)    | 是   | 添加策略。 |
-| direction | [Direction](#Direction)    | 是   | 规则链。 |
-| action        | [Action](#Action)    | 是   | 接收或者丢弃数据包。 |
-| protocol | [Protocol](#Protocol)   | 否   | 网络协议。 |
+| method        | [AddMethod](#addmethod)    | 是   | 添加策略。 |
+| direction | [Direction](#direction)    | 是   | 规则链。 |
+| action        | [Action](#action)    | 是   | 接收或者丢弃数据包。 |
+| protocol | [Protocol](#protocol)   | 否   | 网络协议。 |
 
 ## RemoveFilterRule
 
@@ -851,9 +851,9 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 | srcPort | string   | 否   | ip源端口。 |
 | destPort        | string    | 否    | ip目标端口。 |
 | uid | string   | 否    | 应用uid。 |
-| direction | [Direction](#Direction)    | 是    | 规则链。 |
-| action        | [Action](#Action)    | 否    | 接收或者丢弃数据包。 |
-| protocol | [Protocol](#Protocol)   | 否    | 网络协议。 |
+| direction | [Direction](#direction)    | 是    | 规则链。 |
+| action        | [Action](#action)    | 否    | 接收或者丢弃数据包。 |
+| protocol | [Protocol](#protocol)   | 否    | 网络协议。 |
 
 ## AddMethod
 
@@ -896,7 +896,7 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 
 ## Protocol
 
-数据包的行为。
+网络协议。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
