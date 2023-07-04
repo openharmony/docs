@@ -35,9 +35,9 @@ import inputMethod from '@ohos.inputMethod';
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法唯一标识。|
 | label<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称。|
 | labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
-| icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据。该字段可以通过iconId查询获取，当前无具体使用意义。|
+| icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。<br/>- API version 10起：非必填；<br/>- API version 9：必填。当前此字段无具体含义，暂不使用。|
+| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
