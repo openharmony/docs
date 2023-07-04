@@ -1666,7 +1666,7 @@ listen(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                                         |
 | :-------------- | :----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回TCPSocketServer绑定本机的IP地址和端口，以及监听与此套接字建立连接的结果。 |
+| Promise\<void\> | 以Promise形式返回, 成功返回空，失败返回错误码错误信息。|
 
 **错误码：**
 
@@ -1860,13 +1860,13 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 参数名  | 类型                                | 必填 | 说明                                                         |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
+| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
 
 **返回值：**
 
 | 类型            | 说明                                                       |
 | :-------------- | :--------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置TCPSocketServer连接的其他属性的结果。 |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -2116,7 +2116,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                                         |
 | :-------------- | :----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回通过TCPSocketConnection连接发送数据的结果。 |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -2193,7 +2193,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭与TCPSocket连接的结果。 |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
