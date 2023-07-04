@@ -1,10 +1,11 @@
-# \@Extend: Extension of Built-in Components
+# \@Extend Decorator: Extension of Built-in Components
 
 
 Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which allows you to add a new attribute feature to a built-in component.
 
 
 > **NOTE**
+>
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 

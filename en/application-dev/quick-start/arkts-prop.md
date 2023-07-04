@@ -1,4 +1,4 @@
-# \@Prop: One-Way Synchronization from Parent to Child Components
+# \@Prop Decorator: One-Way Synchronization from Parent to Child Components
 
 
 An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
