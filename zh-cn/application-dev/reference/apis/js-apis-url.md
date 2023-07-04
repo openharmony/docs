@@ -13,7 +13,7 @@ import Url from '@ohos.url'
 
 ### constructor<sup>9+</sup>
 
-constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
+constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParams)
 
 URLParams的构造函数。
 
@@ -23,7 +23,7 @@ URLParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象<br/>- 默认值：null。 |
 
 **示例：**
 
