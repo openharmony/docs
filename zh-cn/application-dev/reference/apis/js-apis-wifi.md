@@ -1644,7 +1644,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 **示例：**
 ```js
-import wifi from '@ohos.wifiManager';
+import wifi from '@ohos.wifi';
 
 wifi.getP2pPeerDevices((err, data) => {
    if (err) {
