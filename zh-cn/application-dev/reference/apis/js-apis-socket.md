@@ -1596,7 +1596,7 @@ let tcpServer = socket.constructTCPSocketServerInstance();
 
 ## TCPSocketServer<sup>10+</sup>
 
-TCPSocketServer连接。在调用TCPSocketServer的方法前，需要先通过[socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance)创建TCPSocketServer对象。
+TCPSocketServer连接。在调用TCPSocketServer的方法前，需要先通过[socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10)创建TCPSocketServer对象。
 
 ### listen<sup>10+</sup>
 
@@ -1615,7 +1615,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                          |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
-| address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| address  | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
 | callback | AsyncCallback\<void\>     | 是   | 回调函数。                                    |
 
 **错误码：**
@@ -1660,7 +1660,7 @@ listen(address: NetAddress): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                                          |
 | ------- | ------------------------- | ---- | --------------------------------------------- |
-| address | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| address | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
 
 **返回值：**
 
@@ -1709,7 +1709,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                               | 必填 | 说明       |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -1757,7 +1757,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                         | 说明                                       |
 | :------------------------------------------- | :----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+| Promise<[SocketStateBase](#socketstatebase7)> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
 
@@ -1802,7 +1802,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
+| options  | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
 | callback | AsyncCallback\<void\>               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -1860,7 +1860,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 参数名  | 类型                                | 必填 | 说明                                                         |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
+| options | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -1917,7 +1917,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<TCPSocketConnection\> | 是   | 回调函数。                            |
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 是   | 回调函数。                            |
 
 **错误码：**
 
@@ -1950,7 +1950,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<TCPSocketConnection\> | 否   | 回调函数。                            |
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 否   | 回调函数。                            |
 
 **错误码：**
 
@@ -2067,7 +2067,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocketConnection发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
+| options  | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
 | callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2110,7 +2110,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocketConnection发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
+| options | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
 
 **返回值：**
 
@@ -2233,7 +2233,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                     | 必填 | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
+| callback | AsyncCallback<[NetAddress](#netaddress7)> | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -2276,7 +2276,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                               | 说明                                        |
 | :--------------------------------- | :------------------------------------------ |
-| Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
+| Promise<[NetAddress](#netaddress7)> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
 
@@ -2313,7 +2313,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
@@ -2355,7 +2355,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
