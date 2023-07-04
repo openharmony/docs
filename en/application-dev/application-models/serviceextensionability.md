@@ -2,7 +2,7 @@
 
 ## Overview
 
-[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the service type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), which provides a variety of APIs are provided for external systems.
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the service type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), which provides a variety of APIs for external systems.
 
 In this document, the started ServiceExtensionAbility is called the server, and the component that starts the ServiceExtensionAbility is called the client.
 
@@ -28,7 +28,7 @@ Note the following:
 
 ## Lifecycle
 
-The [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) class provides the lifecycle callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
+The [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) class provides the lifecycle callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestroy()**. Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
 
 **Figure 1** ServiceExtensionAbility lifecycle 
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
@@ -249,7 +249,6 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 >
 > - The background service calls the [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) method to automatically stop itself.
 > - Another component calls the [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) method to stop the background service.
->
 
 ## Connecting to a Background Service
 
@@ -382,7 +381,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
 - **Verifying the client identity based on callerUid**
 
-  Call the [getCallingUid()](../reference/apis/js-apis-rpc.md#getcallinguid) method to obtain the UID of the client, and then call the [getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) method to obtain the corresponding bundle name. In this way, the client identify is verified. Note that [getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) is asynchronous, and therefore the server cannot return the verification result to the client. This verification mode applies when the client sends an asynchronous task request to the server. The sample code is as follows:
+  Call the [getCallingUid()](../reference/apis/js-apis-rpc.md#getcallinguid) method to obtain the UID of the client, and then call the [getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) method to obtain the corresponding bundle name. In this way, the client identity is verified. Note that [getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) is asynchronous, and therefore the server cannot return the verification result to the client. This verification mode applies when the client sends an asynchronous task request to the server. The sample code is as follows:
 
   ```ts
   import rpc from '@ohos.rpc';
