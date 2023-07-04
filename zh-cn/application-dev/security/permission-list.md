@@ -1094,6 +1094,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
+
+允许设备设置/取消浏览器策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
