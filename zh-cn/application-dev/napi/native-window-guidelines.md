@@ -12,22 +12,9 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| OH_NativeWindow_CreateNativeWindowFromSurface (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 | 
-| OH_NativeWindow_DestroyNativeWindow (OHNativeWindow \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
-| OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 | 
-| OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer \*buffer) | 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。 | 
 | OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。 | 
 | OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。 | 
-| OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer) | 通过OHNativeWindow将之前申请出来的NativeWindowBuffer返还到Buffer队列中，供下次再申请。 | 
 | OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。 | 
-| OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer \*buffer) | 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。 | 
-| OH_NativeWindow_NativeObjectReference (void \*obj) | 增加一个NativeObject的引用计数。 | 
-| OH_NativeWindow_NativeObjectUnreference (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。 | 
-| OH_NativeWindow_GetNativeObjectMagic (void \*obj) | 获取NativeObject的MagicId。 | 
-| OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow \*window, uint32_t sequence, OHScalingMode scalingMode) | 设置OHNativeWindow的缩放模式，此接口从API version 10开始废弃，不再提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow \*window, uint32_t sequence, int32_t size, const OHHDRMetaData \*metaData) | 设置OHNativeWindow的HDR静态元数据，此接口从API version 10开始废弃，不再提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow \*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | 设置OHNativeWindow的HDR静态元数据集，此接口从API version 10开始废弃，不再提供替代接口。 | 
-| OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow \*window, const OHExtDataHandle \*handle) | 设置OHNativeWindow的TunnelHandle，此接口从API version 10开始废弃，不再提供替代接口。 | 
 
 详细的接口说明请参考[native_window](../reference/native-apis/_native_window.md)。
 
