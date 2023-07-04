@@ -26,7 +26,8 @@
 >  Grid子组件的visibility属性设置为Hidden或None时依然会计算索引值。
 >
 >  Grid子组件的visibility属性设置为None时不显示，但依然会占用子组件对应的网格。
-
+>
+>  Grid子组件设置position属性，会占用子组件对应的网格，子组件将显示在相对Grid左上角偏移position的位置。该子组件不会随其对应网格滚动，在对应网格滑出Grid显示范围外后不显示。
 
 ## 接口
 
@@ -71,10 +72,6 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - Grid的宽高没有设置时，默认适应父组件尺寸。
 - Gird网格列大小按照Gird自身内容区域大小减去所有行列Gap后按各个行列所占比重分配。
 - GridItem默认填满网格大小。
-- 此模式下GridItem同时设置了rowStart、columnStart，会用设置的rowStart、columnStart所在位置摆放GridItem。如果这个位置已经有GridItem则会发生重叠。
-- 如果GridItem设置了rowStart、columnStart其中一个，会从上一个GridItem布局位置开始遍历寻找满足rowStart或columnStart的空闲位置摆放，如果无满足条件的空闲位置，则不布局该GridItem。
-- 如果GridItem的rowStart、columnStart属性都没有设置，会从上一个GridItem布局位置开始遍历寻找空闲位置摆放，如果没有空闲位置，则不布局该GridItem。
-- 如果GridItem的rowEnd有设置，但是rowStart没有设置，当做rowStart已经设置，并且和rowEnd设置为相同值。如果GridItem的columnEnd有设置，但是columnStart没有设置，当做columnStart已经设置，并且和columnEnd设置为相同值。
 
 2、rowsTemplate、columnsTemplate仅设置其中的一个：
 
@@ -84,10 +81,6 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
 - 网格交叉轴方向尺寸根据Gird自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
 - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem高度最大值。
-- 此模式下GridItem同时设置了rowStart、columnStart，会用设置的rowStart、columnStart所在位置摆放GridItem。如果这个位置已经有GridItem则会发生重叠。
-- 如果GridItem设置了rowStart、columnStart其中一个，会从上一个GridItem布局位置开始遍历寻找满足rowStart或columnStart的空闲位置摆放。
-- 如果GridItem的rowStart、columnStart属性都没有设置，会从上一个GridItem布局位置开始遍历寻找空闲位置摆放。
-- 如果GridItem的rowEnd有设置，但是rowStart没有设置，当做rowStart已经设置，并且和rowEnd设置为相同值。如果GridItem的columnEnd有设置，但是columnStart没有设置，当做columnStart已经设置，并且和columnEnd设置为相同值。
 
 3、rowsTemplate、columnsTemplate都不设置：
 
@@ -96,7 +89,6 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - 此模式下仅生效以下属性：layoutDirection、maxCount、minCount、cellLength、editMode、columnsGap、rowsGap。
 - 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排一下一列。剩余高度不足时不再布局，整体内容顶部居中。
 - 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排一下一列，剩余宽度度不足时不再。整体内容顶部居中。
-- 此模式下GridItem的rowStart、columnStart不生效。
 
 ## GridDirection<sup>8+</sup>枚举说明
 
