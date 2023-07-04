@@ -24,6 +24,7 @@ Persistence of data is a relatively slow operation. Applications should avoid th
 
 The preceding situations may overload the change process of persisted data. As a result, the PersistentStorage implementation may limit the change frequency of persisted attributes.
 
+PersistentStorage is associated with UIContext and can be called to persist data only when [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext) is specified. The context can be identified in [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask).
 
 ## Application Scenarios
 
@@ -77,7 +78,7 @@ struct Index {
 ```
 
 - First running after fresh application installation:
-  1. **PersistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute on the PersistentStorage disk returns no result, because the application has just been installed.  
+  1. **PersistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute on the PersistentStorage disk returns no result, because the application has just been installed.
   2. A search for the attribute **aProp** in AppStorage still returns no result.
   3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value 47.
   4. PersistentStorage writes the **aProp** attribute and its value **47** to the disk. The value of **aProp** in AppStorage and its subsequent changes are persisted.
