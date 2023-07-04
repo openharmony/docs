@@ -660,9 +660,9 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 statistics.off('netStatsChange');
 ```
 
-## statistics.getIfaceStats<sup>10+</sup>
+## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getIfaceStats(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
 获取网卡历史流量信息，使用callback方式作为异步方法。
 
@@ -702,18 +702,18 @@ getIfaceStats(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): voi
     endTime: 16859485670
   }
 
-  statistics.getIfaceStats(ifaceInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
-    console.log("getIfaceStats bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getIfaceStats bytes of send = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getIfaceStats packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getIfaceStats packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+    console.log("getTrafficStatsByIface bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
+    console.log("getTrafficStatsByIface packets of send = " + JSON.stringify(statsInfo.txPackets));
   });
 ```
 
-## statistics.getIfaceStats<sup>10+</sup>
+## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getIfaceStats(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
 获取网卡历史流量信息，使用Promise方式作为异步方法。
 
@@ -730,7 +730,7 @@ getIfaceStats(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[NetStatsInfo](#NetStatsInfo)> | 以Promise形式返回获取结果。成功时NetStatsInfo返回包含网卡历史流量信息。 |
+| Promise\<[NetStatsInfo](#NetStatsInfo)> | 以Promise形式返回获取结果,返回网卡历史流量信息。 |
 
 **错误码：**
 
@@ -755,17 +755,17 @@ getIfaceStats(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
     endTime: 16859485670
   }
 
-  statistics.getIfaceStats().then(function (statsInfo) {
-    console.log("getIfaceStats bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getIfaceStats bytes of send = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getIfaceStats packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getIfaceStats packets of send = " + JSON.stringify(statsInfo.txPackets));
+  statistics.getTrafficStatsByIface().then(function (statsInfo) {
+    console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+    console.log("getTrafficStatsByIface bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
+    console.log("getTrafficStatsByIface packets of send = " + JSON.stringify(statsInfo.txPackets));
   })
 ```
 
-## statistics.getIfaceUidStats<sup>10+</sup>
+## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getIfaceUidStats(uidStatsInfo: UidStatsInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;
 
 获取应用历史流量信息，使用callback方式作为异步方法。
 
@@ -779,7 +779,7 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo, callback: AsyncCallback\<NetStatsIn
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidStatsInfo | [UidStatsInfo](#UidStatsInfo) | 是   | 指定查询的应用历史流量信息，参见[UidStatsInfo](#UidStatsInfo)。                   |
+| uidInfo | [UidInfo](#UidInfo) | 是   | 指定查询的应用历史流量信息，参见[UidInfo](#UidInfo)。                   |
 | callback | AsyncCallback\<[NetStatsInfo](#NetStatsInfo)>         | 是   | 回调函数。成功时statsInfo返回包含应用历史流量信息，error为undefined，否则为错误对象|
 
 **错误码：**
@@ -799,7 +799,7 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo, callback: AsyncCallback\<NetStatsIn
 **示例：**
 
 ```js
-  let uidStatsInfo = {
+  let uidInfo = {
     ifaceInfo: {
       iface: "wlan0",
       startTime: 1685948465,
@@ -808,18 +808,18 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo, callback: AsyncCallback\<NetStatsIn
     uid: 20010037
   }
 
-  statistics.getIfaceStats(uidStatsInfo), (error, statsInfo) => {
+  statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
     console.log(JSON.stringify(error))
-    console.log("getIfaceStats bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getIfaceStats bytes of send = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getIfaceStats packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getIfaceStats packets of send = " + JSON.stringify(statsInfo.txPackets));
+    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+    console.log("getTrafficStatsByUid bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+    console.log("getTrafficStatsByUid packets of send = " + JSON.stringify(statsInfo.txPackets));
   });
 ```
 
-## statistics.getIfaceUidStats<sup>10+</sup>
+## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getIfaceUidStats(uidStatsInfo: UidStatsInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
 获取应用历史流量信息，使用Promise方式作为异步方法。
 
@@ -833,13 +833,13 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo): Promise\<NetStatsInfo>;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| uidStatsInfo | [UidStatsInfo](#UidStatsInfo) | 是   | 指定查询的应用历史流量信息，参见[UidStatsInfo](#UidStatsInfo)。                   |
+| uidInfo | [UidInfo](#UidInfo) | 是   | 指定查询的应用历史流量信息，参见[UidInfo](#UidInfo)。                   |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[NetStatsInfo](#NetStatsInfo)> | 以Promise形式返回获取结果。成功时NetStatsInfo返回包含应用历史流量信息。 |
+| Promise\<[NetStatsInfo](#NetStatsInfo)> | 以Promise形式返回获取结果,返回应用历史流量信息。 |
 
 **错误码：**
 
@@ -858,7 +858,7 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo): Promise\<NetStatsInfo>;
 **示例：**
 
 ```js
-  let uidStatsInfo = {
+  let uidInfo = {
     ifaceInfo: {
       iface: "wlan0",
       startTime: 1685948465,
@@ -867,11 +867,11 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo): Promise\<NetStatsInfo>;
     uid: 20010037
   }
 
-  statistics.getIfaceStats(uidStatsInfo).then(function (statsInfo) {
-    console.log("getIfaceStats bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-    console.log("getIfaceStats bytes of send = " + JSON.stringify(statsInfo.txBytes));
-    console.log("getIfaceStats packets of received = " + JSON.stringify(statsInfo.rxPackets));
-    console.log("getIfaceStats packets of send = " + JSON.stringify(statsInfo.txPackets));
+  statistics.getTrafficStatsByUid(uidInfo).then(function (statsInfo) {
+    console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+    console.log("getTrafficStatsByUid bytes of send = " + JSON.stringify(statsInfo.txBytes));
+    console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+    console.log("getTrafficStatsByUid packets of send = " + JSON.stringify(statsInfo.txPackets));
   })
 ```
 
@@ -889,7 +889,7 @@ getIfaceUidStats(uidStatsInfo: UidStatsInfo): Promise\<NetStatsInfo>;
 | startTime | number    |  是 |  查询的开始时间(时间戳;单位：秒)。   |
 | endTime   | number    |  是 |  查询的结束时间(时间戳;单位：秒)。   |
 
-## UidStatsInfo<sup>10+</sup>
+## UidInfo<sup>10+</sup>
 
 查询应用历史流量参数信息。
 
