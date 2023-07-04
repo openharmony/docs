@@ -869,24 +869,6 @@ struct Index {
       }
 
       Row() {
-        TextInput({ placeholder: '这里将会显示加解密的结果', controller: this.controller })
-          .placeholderColor(Color.Grey)
-          .placeholderFont({ size: 14, weight: 400 })
-          .caretColor(Color.Blue)
-          .width(400)
-          .height(40)
-          .margin(20)
-          .fontSize(14)
-          .fontColor(Color.Black)
-          .type(InputType.Normal)
-          .onChange((value: string) => {
-            this.message += '您输入得明文是: ' + value + '\n'
-            plainText = value
-          })
-          .margin({ top: 10 })
-      }
-
-      Row() {
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Text('generateAesKey')
             .fontColor(Color.White)
