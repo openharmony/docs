@@ -101,12 +101,12 @@
 
 - **现象描述：** 编译失败：“Error: some services do not match with critical whitelist”。
 
-- **可能原因：** 报错中列举出来的进程.cfg配置文件中，定义了critical字段，而该进程并不在允许使能critical字段的进程范围内。
+- **可能原因：** 报错中列举出来的进程.cfg配置文件中，定义并使能了critical字段，而该进程未被允许添加critical字段，或该字段配置与白名单中不符。
 
 - **解决办法：**
 
-  1. 移除进程的critical字段。修改.cfg配置文件中的critical字段，非必需的场景下，不要使能critical字段。
+  1. 移除进程的critical字段或把critical字段第一位置0。修改原服务.cfg配置文件中的critical字段，非必需的场景下，不要使能critical字段。
 
-     *如果由于实现业务功能需要，进程必须要有critical字段，只有在联系安全专家评审，通过安全审视后，方可修改产品的critical_reboot进程管控列表，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/critical_reboot_process_list.json`"。*
-
-     *示例：rk3586的高权限进程配置文件位于`//vendor/hihope/rk3568/security_config/critical_reboot_process_list.json`*
+     *关于critical字段的详细使用方法，请参考[服务配置](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-service.md)
+     *如果由于实现业务功能需要，进程必须要使能critical字段，只有在联系安全专家评审，通过安全审视后，方可修改产品的critical_reboot进程管控白名单，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/critical_reboot_process_list.json`"。*
+     *示例：rk3586的critical_reboot进程管控白名单位于`//vendor/hihope/rk3568/security_config/critical_reboot_process_list.json`*
