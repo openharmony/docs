@@ -1586,7 +1586,7 @@ constructTCPSocketServerInstance(): TCPSocketServer
 
 | 类型                                | 说明                          |
 | :---------------------------------- | :---------------------------- |
-| [TCPSocketServer](#tcpsocketserver) | 返回一个TCPSocketServer对象。 |
+| [TCPSocketServer](#tcpsocketserver10) | 返回一个TCPSocketServer对象。 |
 
 **示例：**
 
@@ -1802,7 +1802,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
+| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
 | callback | AsyncCallback\<void\>               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2048,7 +2048,7 @@ TCPSocketConnection连接，即TCPSocket客户端与服务端的连接。在调�
 
 | 名称     | 类型   | 必填 | 说明                                      |
 | -------- | ------ | ---- | ----------------------------------------- |
-| clientId | number | 是   | 一个客户端与TCPSocketServer建立连接的id。 |
+| clientId | number | 是   | 客户端与TCPSocketServer建立连接的id。 |
 
 ### send<sup>10+</sup>
 
@@ -2313,7 +2313,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
@@ -2355,7 +2355,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
