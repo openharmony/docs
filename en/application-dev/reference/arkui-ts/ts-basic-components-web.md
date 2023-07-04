@@ -70,26 +70,26 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   Example of loading local resource files in the sandbox:
 
   1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
-     ```ts
-     // xxx.ets
-     import web_webview from '@ohos.web.webview'
-     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  let url = 'file://' + globalThis.filesDir + '/index.html'
 
-     @Entry
-     @Component
-     struct WebComponent {
-       controller: web_webview.WebviewController = new web_webview.WebviewController()
-       build() {
-         Column() {
-           // Load the files in the sandbox.
-           Web({ src: url, controller: this.controller })
-         }
-       }
-     }
-     ```
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // Load the files in the sandbox.
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
 
-  2. Modify the **MainAbility.ts** file.
-  
+  2. Modify the **EntryAbility.ts** file.
+
      The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
      ```ts
      // xxx.ts
@@ -105,6 +105,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
      }
      ```
 
+     HTML file to be loaded:
      ```html
      <!-- index.html -->
      <!DOCTYPE html>
@@ -569,15 +570,16 @@ Sets whether to display the horizontal scrollbar, including the default system s
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .horizontalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  HTML file to be loaded:
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -622,15 +624,16 @@ Sets whether to display the vertical scrollbar, including the default system scr
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .verticalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  HTML file to be loaded:
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -650,6 +653,12 @@ Sets whether to display the vertical scrollbar, including the default system scr
   </body>
   </html>
   ```
+
+### password
+
+password(password: boolean)
+
+Sets whether the password should be saved. This API is a void API.
 
 ### cacheMode
 
@@ -1217,6 +1226,18 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
   }
   ```
 
+### tableData
+
+tableData(tableData: boolean)
+
+Sets whether form data should be saved. This API is a void API.
+
+### wideViewModeAccess
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+Sets whether to support the viewport attribute of the HTML **\<meta>** tag. This API is a void API.
+
 ### pinchSmooth<sup>9+</sup>
 
 pinchSmooth(isEnabled: boolean)
@@ -1284,7 +1305,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1314,8 +1335,9 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1366,7 +1388,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1396,8 +1418,9 @@ Called when this page is about to exit after the user refreshes or closes the pa
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1448,7 +1471,7 @@ Called when **confirm()** is invoked by the web page.
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1478,8 +1501,9 @@ Called when **confirm()** is invoked by the web page.
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1537,7 +1561,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             console.log("url:" + event.url)
             console.log("message:" + event.message)
@@ -1568,8 +1592,9 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1639,6 +1664,8 @@ Called to notify the host application of a JavaScript console message.
 ### onDownloadStart
 
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+
+Instructs the main application to start downloading a file.
 
 **Parameters**
 
@@ -1947,6 +1974,26 @@ Called when loading of the web page is complete. This API is used by an applicat
     }
   }
   ```
+
+### onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+Called when an SSL error occurs during resource loading.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9) instead.
+
+### onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+Called to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onShowFileSelector<sup>9+</sup>](#onshowfileselector9) instead.
 
 ### onRenderExited<sup>9+</sup>
 
@@ -4560,6 +4607,7 @@ This API is deprecated since API version 9. You are advised to use [registerJava
   }
   ```
 
+  HTML file to be loaded:
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4620,7 +4668,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
     }
   }
   ```
-
+  HTML file to be loaded:
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4702,17 +4750,11 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
 ### setCookie<sup>(deprecated)</sup>
-setCookie(url: string, value: string): boolean
+setCookie(): boolean
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
+
 This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie) instead.
-
-**Parameters**
-
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
-| value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**
 
@@ -4720,31 +4762,11 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 | ------- | ------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('setCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 ### saveCookie<sup>(deprecated)</sup>
 saveCookie(): boolean
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
+
 This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
 
 **Return value**
@@ -4752,25 +4774,3 @@ This API is deprecated since API version 9. You are advised to use [saveCookieAs
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Operation result.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('saveCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookie()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
