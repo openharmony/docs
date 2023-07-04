@@ -865,10 +865,6 @@ struct Index {
       }
 
       Row() {
-        Text('加密或解密的结果').fontSize(20).margin({ left: 2, top: 10 })
-      }
-
-      Row() {
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Text('generateAesKey')
             .fontColor(Color.White)
