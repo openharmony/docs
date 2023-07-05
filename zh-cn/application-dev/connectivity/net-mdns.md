@@ -116,20 +116,6 @@ class EntryAbility extends UIAbility {
 }
 let context = globalThis.context;
 
-// 建立LocalService对象
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
 // 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
