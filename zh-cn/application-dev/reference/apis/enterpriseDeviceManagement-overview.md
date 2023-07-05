@@ -6,7 +6,7 @@ OpenHarmony通过企业设备管理（Enterprise Device Management）API支持�
 ## 开发企业管理应用
 
 ### 基本概念
-- 设备管理员应用：具备[企业设备管理扩展能力](js-apis-EnterpriseAdminExtensionAbility.md)的系统应用
+- 设备管理员应用：具备[企业设备管理扩展能力](../../application-models/enterprise-extensionAbility.md)的系统应用。
 
 ### 约束与限制
 - 仅支持Stage模型
