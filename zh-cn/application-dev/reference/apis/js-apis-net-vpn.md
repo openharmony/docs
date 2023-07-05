@@ -27,13 +27,15 @@ function createVpnConnection(context: AbilityContext): VpnConnection;
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401     | Parameter error.             |
 
 **示例：**
+
+FA模型示例：
 
 ```js
   import featureAbility from '@ohos.ability.featureAbility';
@@ -43,9 +45,11 @@ function createVpnConnection(context: AbilityContext): VpnConnection;
   console.info("vpn onInit: " + JSON.stringify(VpnConnection));
 ```
 
+Stage模型示例：
+
 ## VpnConnection.setUp<sup>10+</sup>
 
-setUp(config: VpnConfig, callback: AsyncCallback\<number>): void;
+setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
 
 使用config创建一个vpn网络，使用callback方式作为异步方法。
 
@@ -60,11 +64,11 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | config | [VpnConfig](#vpnconfig10) | 是   | 指定VPN网络的配置信息。                   |
-| callback | AsyncCallback\<number\>         | 是   | 回调函数，当成功启动VPN网络时，返回虚拟网卡的tunfd, error为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<number\>         | 是   | 回调函数，当成功启动VPN网络时，返回虚拟网卡的文件描述符fd, error为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -84,7 +88,7 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number>): void;
       addresses: [{
           address: {
               address: "10.0.0.5",
-              family: 1,
+              family: 1
           },
           prefixLength: 24,
       }],
@@ -93,8 +97,8 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number>): void;
       dnsAddresses:[
           "8.8.8.8",  // 114.114.114.114
       ],
-      acceptedApplications:[],
-      refusedApplications:[],
+      trustedApplications:[],
+      blockedApplications:[]
   }
   VpnConnection.setUp(config, (error, data) => {
     console.info(JSON.stringify(error));
@@ -124,11 +128,11 @@ setUp(config: VpnConfig): Promise\<number\>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回获取结果，返回指定虚拟网卡的tunfd。 |
+| Promise\<number\> | 以Promise形式返回获取结果，返回指定虚拟网卡的文件描述符fd。 |
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -148,7 +152,7 @@ setUp(config: VpnConfig): Promise\<number\>;
       addresses: [{
           address: {
               address: "10.0.0.5",
-              family: 1,
+              family: 1
           },
           prefixLength: 24,
       }],
@@ -158,7 +162,7 @@ setUp(config: VpnConfig): Promise\<number\>;
           "8.8.8.8",  // 114.114.114.114
       ],
       acceptedApplications:[],
-      refusedApplications:[],
+      refusedApplications:[]
   }
   VpnConnection.setUp(config).then((data) => {
       console.info(TAG + "setUp success, tunfd: " + JSON.stringify(data))
@@ -184,11 +188,11 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | socketFd | number | 是   | 指定保护的socketfd。                   |
-| callback | AsyncCallback\<void\>         | 是   | 回调函数，成功时，err为undefined，失败返回错误码错误信息。 |
+| callback | AsyncCallback\<void\>         | 是   | 回调函数，成功时，error为undefined，失败返回错误码错误信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -205,11 +209,9 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
 ```js
   import socket from "@ohos.net.socket";
   var tcp = socket.constructTCPSocketInstance();  
-  let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
-      family: 1,
-      port: 0
+      family: 1
   })
   let connectAddress = {
       address: "192.168.1.11",
@@ -219,19 +221,18 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
   tcp.connect({
       address: connectAddress, timeout: 6000
   })
-  tcp.getSocketFd().then((data) => {
-      console.info("tunenlfd: " + data);
-      tunnelfd = data
-  })
-  VpnConnection.protect(tunnelfd, (error, data) => {
-    console.info(JSON.stringify(error));
-    console.info(JSON.stringify(data));
+  tcp.getSocketFd().then((tunnelfd) => {
+      console.info("tunenlfd: " + tunnelfd);
+      VpnConnection.protect(tunnelfd, (error, data) => {
+        console.info(JSON.stringify(error));
+        console.info(JSON.stringify(data));
+      })
   })
 ```
 
 ## VpnConnection.protect<sup>10+</sup>
 
-protect(socketFd: number): Promise<void>;
+protect(socketFd: number): Promise\<void\>;
 
 保护套接字不受VPN连接。经过保护后，通过此套接字发送的数据将直接进入底层网络，因此其流量不会通过VPN转发, 使用Promise方式作为异步方法。
 
@@ -255,7 +256,7 @@ protect(socketFd: number): Promise<void>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -272,11 +273,9 @@ protect(socketFd: number): Promise<void>;
 ```js
   import socket from "@ohos.net.socket";
   var tcp = socket.constructTCPSocketInstance();  
-  let tunnelfd = 0
   tcp.bind({
       address: "0.0.0.0",
-      family: 1,
-      port: 0
+      family: 1
   })
   let connectAddress = {
       address: "192.168.1.11",
@@ -286,14 +285,13 @@ protect(socketFd: number): Promise<void>;
   tcp.connect({
       address: connectAddress, timeout: 6000
   })
-  tcp.getSocketFd().then((data) => {
-      console.info("tunenlfd: " + data);
-      tunnelfd = data
-  })
-  VpnConnection.protect(tunnelfd).then((data) => {
-      console.info("protect success" + JSON.stringify(data))
-  }).catch(err => {
-      console.info("protect fail" + JSON.stringify(err))
+  tcp.getSocketFd().then((tunnelfd) => {
+      console.info("tunenlfd: " + tunnelfd);
+      VpnConnection.protect(tunnelfd).then((data) => {
+        console.info("protect success" + JSON.stringify(data))
+      }).catch(err => {
+        console.info("protect fail" + JSON.stringify(err))
+      })
   })
 ```
 
@@ -313,11 +311,11 @@ destroy(callback: AsyncCallback\<void\>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<void\>         | 是   | 回调函数，成功时，err为undefined，失败返回错误码错误信息。 |
+| callback | AsyncCallback\<void\>         | 是   | 回调函数，成功时，error为undefined，失败返回错误码错误信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -338,7 +336,7 @@ destroy(callback: AsyncCallback\<void\>): void;
 
 ## VpnConnection.destroy<sup>10+</sup>
 
-destroy(): Promise<void>;
+destroy(): Promise\<void\>;
 
 销毁启动的VPN网络，使用Promise方式作为异步方法。
 
@@ -356,7 +354,7 @@ destroy(): Promise<void>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn)。
+以下错误码的详细介绍参见[VPN错误码](../errorcodes/errorcode-net-vpn.md)。
 
 | 错误码ID | 错误信息                       |
 | ------- | -----------------------------  |
@@ -386,14 +384,14 @@ VPN配置参数。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------- | ------ | -- |------------------------------ |
-| addresses | Array<LinkAddress> | 是 | VPN虚拟网卡的IP地址。 |
-| routes  | Array<RouteInfo> | 否 | VPN虚拟网卡的路由信息。 |
-| dnsAddresses    | Array<string> | 否 | DNS服务器地址信息。 |
-| searchDomains | Array<string> | 否 | DNS的搜索域列表。 |
+| addresses | Array\<LinkAddress\> | 是 | VPN虚拟网卡的IP地址。 |
+| routes  | Array\<RouteInfo\> | 否 | VPN虚拟网卡的路由信息。 |
+| dnsAddresses    | Array\<string\> | 否 | DNS服务器地址信息。 |
+| searchDomains | Array\<string\> | 否 | DNS的搜索域列表。 |
 | mtu  | number | 否 | 最大传输单元MTU值(单位:字节)。 |
 | isIPv4Accepted    | boolean | 否 | 是否支持IPV4, 默认值为true。 |
 | isIPv6Accepted    | boolean | 否 | 是否支持IPV6, 默认值为flase。 ||
 | isLegacy    | boolean | 否 | 是否支持内置VPN, 默认值为flase。 |
 | isBlocking    | boolean | 否 | 是否阻塞模式, 默认值为flase。 |
-| trustedApplications    | Array<string> | 否 | 白名单信息, string类型表示的包名。 |
-| blockedApplications    | Array<string> | 否 | 黑名单信息, string类型表示的包名。 |
+| trustedApplications    | Array\<string\> | 否 | 白名单信息, string类型表示的包名。 |
+| blockedApplications    | Array\<string\> | 否 | 黑名单信息, string类型表示的包名。 |
