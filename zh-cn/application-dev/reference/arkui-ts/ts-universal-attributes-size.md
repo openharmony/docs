@@ -23,12 +23,17 @@
 
 | 大小排列                                     | 结果                 |
 | ---------------------------------------- | ------------------ |
-| minWidth/minHeight < width/height< maxWidth/maxHeight | width/height       |
+| minWidth/minHeight < width/height < maxWidth/maxHeight | width/height       |
 | minWidth/minHeight < maxWidth/maxHeight  < width/height | maxWidth/maxHeight |
 | maxWidth/maxHeight < minWidth/minHeight  < width/height | minWidth/minHeight |
-| maxWidth/maxHeight < width/height< minWidth/minHeight | minWidth/minHeight |
+| maxWidth/maxHeight < width/height < minWidth/minHeight | minWidth/minHeight |
 | width/height      < maxWidth/maxHeight  < minWidth/minHeight | minWidth/minHeight |
 | width/height       < minWidth/minHeight  < maxWidth/maxHeight | minWidth/minHeight |
+| minWidth/minHeight = maxWidth/maxHeight | minWidth/minHeight       |
+| minWidth/minHeight < maxWidth/maxHeight  = width/height | maxWidth/maxHeight |
+| maxWidth/maxHeight < minWidth/minHeight  = width/height | minWidth/minHeight |
+| width/height = minWidth/minHeight < maxWidth/maxHeight | minWidth/minHeight |
+| width/height = maxWidth/maxHeight < minWidth/minHeight  | minWidth/minHeight |
 ## 示例
 
 ```ts
