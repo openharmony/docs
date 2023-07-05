@@ -1,11 +1,12 @@
 # @ohos.enterprise.bundleManager（包管理）
 
-本模块提供包管理能力，包括添加包安装白名单、获取包安装白名单、移除包安装白名单等。仅企业设备管理员应用才能调用。
+本模块提供包管理能力，包括添加包安装白名单、获取包安装白名单、移除包安装白名单等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
+>
+> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 

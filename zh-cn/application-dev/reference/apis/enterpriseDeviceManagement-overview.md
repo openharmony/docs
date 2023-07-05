@@ -5,6 +5,9 @@ OpenHarmony通过企业设备管理（Enterprise Device Management）API支持�
 
 ## 开发企业管理应用
 
+### 基本概念
+- 设备管理员应用：具备[企业设备管理扩展能力](js-apis-EnterpriseAdminExtensionAbility.md)的系统应用
+
 ### 约束与限制
 - 仅支持Stage模型
 
@@ -34,6 +37,8 @@ OpenHarmony通过企业设备管理（Enterprise Device Management）API支持�
 - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
 - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
 - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)
+- [@ohos.enterprise.deviceSettings (设备设置管理)](js-apis-enterprise-deviceSettings.md)
 - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
 - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
+- [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
 - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
