@@ -58,12 +58,11 @@ function generateAsyKey() {
   // Use the key generator to randomly generate an asymmetric key pair.
   let keyGenPromise = rsaGenerator.generateKeyPair();
   keyGenPromise.then( keyPair => {
-    globalKeyPair = keyPair;
-    let pubKey = globalKeyPair.pubKey;
-    let priKey = globalKeyPair.priKey;
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
     // Obtain the binary data of the asymmetric key pair.
-    pkBlob = pubKey.getEncoded();
-    skBlob = priKey.getEncoded();
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
     AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
     AlertDialog.show({ message : "sk bin data" + skBlob.data} );
   })
@@ -145,7 +144,7 @@ function convertEccAsyKey() {
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
@@ -884,7 +883,7 @@ function stringToUint8Array(str) {
 }
 
 // Encrypt the message in promise mode.
-function encryptMessageProMise() {
+function encryptMessagePromise() {
   // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   // Create a Cipher instance.
@@ -927,7 +926,7 @@ function encryptMessageCallback() {
 }
 
 // Encrypt and decrypt the message in promise mode.
-function decryptMessageProMise() {
+function decryptMessagePromise() {
   // Create an AsyKeyGenerator instance.
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   // Create a Cipher instance for encryption.
