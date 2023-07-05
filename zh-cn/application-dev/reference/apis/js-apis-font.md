@@ -30,12 +30,14 @@ registerFont(options: FontOptions): void
 
 ## FontOptions
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称         | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | familyName | string | 是    | 设置注册的字体名称。   |
 | familySrc  | string | 是    | 设置注册字体文件的路径。 |
 
-## 示例
+**示例：**
 
 ```ts
 // xxx.ets
@@ -64,4 +66,3 @@ struct FontExample {
   }
 }
 ```
-
