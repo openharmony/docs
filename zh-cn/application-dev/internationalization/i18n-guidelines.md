@@ -610,8 +610,10 @@ try {
    调用transform接口，获取音译字符串。
 
    ```js
-   let transliterator = I18n.Transliterator.getInstance("Any-Latn"); // Any-Latn表示将任意文本转换为Latn文本
+   let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latn表示将任意文本转换为Latn文本
    let transformText = transliterator.transform("你好"); // transformText = "nǐ hǎo "
+   let transliterator2 = I18n.Transliterator.getInstance("Latin-ASCII"); // Latin-ASCII表示将Latin文本转换为ASCII文本
+   let transformText = transliterator2.transform(transformText); // transformText = "ni hao"
    ```
 
 ## 字符类型判断
