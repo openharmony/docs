@@ -34,6 +34,12 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
 **示例：**
 
 ```js
@@ -158,6 +164,12 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
 | callback | AsyncCallback&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
 
 **示例：**
 
