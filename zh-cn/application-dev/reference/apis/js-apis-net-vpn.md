@@ -47,6 +47,19 @@ FA模型示例：
 
 Stage模型示例：
 
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+VpnConnection = vpn.createVpnConnection(context);
+console.info("vpn onInit: " + JSON.stringify(VpnConnection));
+```
+
 ## VpnConnection.setUp<sup>10+</sup>
 
 setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
