@@ -18,7 +18,7 @@ import cloudData from '@ohos.data.cloudData';
 
 ##   Action
 
-清除本地保存的云端数据的行为枚举。
+清除本地下载的云端数据的行为枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -27,7 +27,7 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 说明                         |
 | --------- | ---------------------------- |
 | CLEAR_CLOUD_INFO | 清除云标识信息。 |
-| CLEAR_CLOUD_DATA_AND_INFO |清除本地保存的所有云端数据，包括云标识信息以及从云端下载的数据（不包括本地已修改或生成的数据）。   |
+| CLEAR_CLOUD_DATA_AND_INFO |清除本地下载的所有云端数据，包括云标识信息以及从云端下载的数据（不包括本地已修改或生成的数据）。   |
 
 ## Config
 
@@ -351,7 +351,7 @@ try {
 
 static clean(accountId: string, appActions: {[bundleName: string]: Action},  callback: AsyncCallback&lt;void&gt;):void
 
-清除本地保存的云端数据，使用callback异步回调。
+清除本地下载的云端数据，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -392,7 +392,7 @@ try {
 
 static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
 
-清除本地保存的云端数据，使用Promise异步回调。
+清除本地下载的云端数据，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
