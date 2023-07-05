@@ -1235,6 +1235,87 @@ promise.then(() => {
 });
 ```
 
+### getSocketFd<sup>10+</sup>
+
+getSocketFd(callback: AsyncCallback\<number\>): void
+
+获取TCPSocket的文件描述符。使用callback方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                   | 必填 | 说明       |
+| -------- | ------------------------------------------------------ | ---- | ---------- |
+| callback | AsyncCallback\<number\> | 是   | 回调函数，当成功获取fd时，返回tcpsocket的fd。 |
+
+**示例：**
+
+```js
+  import socket from "@ohos.net.socket";
+  var tcp = socket.constructTCPSocketInstance();
+  let tunnelfd = 0
+  tcp.bind({
+      address: "0.0.0.0",
+      family: 1,
+  })
+  let connectAddress = {
+      address: "192.168.1.11",
+      port: 8888,
+      family: 1
+  };
+  tcp.connect({
+      address: connectAddress, timeout: 6000
+  })
+  tcp.getSocketFd((data) => {
+      console.info("tunenlfd: " + data);
+      tunnelfd = data
+  })
+```
+### getSocketFd<sup>10+</sup>
+
+getSocketFd(): Promise\<number\>
+
+获取TCPSocket的文件描述符。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| :----------------------------------------------- | :----------------------------------------- |
+| Promise\<number\> | 以Promise形式返回获取TCPSocket的文件描述符。 |
+
+**示例：**
+
+```js
+  import socket from "@ohos.net.socket";
+  var tcp = socket.constructTCPSocketInstance();
+  let tunnelfd = 0
+  tcp.bind({
+      address: "0.0.0.0",
+      family: 1,
+  })
+  let connectAddress = {
+      address: "192.168.1.11",
+      port: 8888,
+      family: 1
+  };
+  tcp.connect({
+      address: connectAddress, timeout: 6000
+  })
+  tcp.getSocketFd().then((data) => {
+      console.info("tunenlfd: " + data);
+      tunnelfd = data
+  })
+```
+
 ### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
