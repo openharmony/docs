@@ -210,6 +210,10 @@ function testConvertAesKey() {
 
 ### 随机生成SM2密钥对，并获得二进制数据
 
+> **说明：**
+>
+> 从API version 10开始， 支持SM2非对称密钥随机生成。
+
 示例6：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
 
 1. 创建非对称密钥生成器。
@@ -239,6 +243,10 @@ function generateAsyKey() {
 ```
 
 ### 随机生成SM4密钥，并获得二进制数据
+
+ > **说明：**
+ >
+ > 从API version 10开始， 支持SM4密钥随机生成。
 
 示例7：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
 
@@ -272,6 +280,10 @@ function testGenerateAesKey() {
 ```
 
 ### 根据SM2密钥二进制数据，生成密钥对
+
+ > **说明：**
+ >
+ > 从API version 10开始， 支持SM2密钥转换。
 
 示例8：根据指定的SM2非对称密钥二进制数据，生成KeyPair对象（场景2、3）
 
@@ -1300,6 +1312,10 @@ function rsaUseSpecDecryptOAEPPromise() {
 
 ### SM2加解密开发步骤
 
+> **说明：**
+>
+> 从API version 10开始， 支持SM2加解密。
+
 示例7：使用SM2非对称密钥的加解密操作
 
 1. 生成SM2密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成SM2非对称密钥。
@@ -1444,6 +1460,10 @@ function decryptMessageCallback() {
 ```
 
 ### SM4 ECB以callback方式加解密开发步骤：
+
+> **说明：**
+>
+> 从API version 10开始， 支持SM4加解密。
 
 示例8：使用SM4对称密钥的加解密操作
 
@@ -1903,6 +1923,10 @@ function verifyMessageCallbackPSS() {
 ```
 
 ### SM2签名验签开发步骤
+
+> **说明：**
+>
+> 从API version 10开始， 支持SM2签名验签。
 
 示例5：使用SM2操作
 
