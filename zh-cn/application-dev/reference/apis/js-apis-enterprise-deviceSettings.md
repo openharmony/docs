@@ -1,10 +1,12 @@
 # @ohos.enterprise.deviceSettings (设备设置管理)
 
-本模块提供企业设备设置能力，包括获取设备息屏时间等。仅企业设备管理员应用才能调用。
+本模块提供企业设备设置能力，包括获取设备息屏时间等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
