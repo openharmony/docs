@@ -22,7 +22,7 @@
 
 ## Stack, Flex, and Grid
 
-- [Stack](ts-container-stack.md) 
+- [Stack](ts-container-stack.md)
 
     A container where child components are successively stacked and the latter one overwrites the previous one.
 - [Flex](ts-container-flex.md)
@@ -63,7 +63,7 @@
 
 ## Scroll and Swipe
 
-- [Scroll](ts-container-scroll.md) 
+- [Scroll](ts-container-scroll.md)
 
     A container that scrolls the content when the layout size of a component exceeds the size of its parent component.
 - [Swiper](ts-container-swiper.md)
@@ -79,9 +79,9 @@
 
 ## Navigation
 
-- [Navigator](ts-container-navigator.md) 
+- [Navigator](ts-container-navigator.md)
 
-    A container that provides redirection.   
+    A container that provides redirection.
 - [Navigation](ts-basic-components-navigation.md)
 
     A container that typically functions as the root container of a page and displays the title bar, toolbar, and navigation bar based on the attribute settings.
@@ -293,7 +293,7 @@
     A component that is used to display widgets.
 - [Menu](ts-basic-components-menu.md)
 
-    A component that is used to present a vertical list of items to the user. 
+    A component that is used to present a vertical list of items to the user.
 - [MenuItem](ts-basic-components-menuitem.md)
 
     A component that is used to represent an item in a menu.

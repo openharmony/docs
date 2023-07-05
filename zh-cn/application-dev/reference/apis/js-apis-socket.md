@@ -1574,6 +1574,959 @@ TCPSocket连接的其他属性。
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。                             |
 
+## socket.constructTCPSocketServerInstance<sup>10+</sup>
+
+constructTCPSocketServerInstance(): TCPSocketServer
+
+创建一个TCPSocketServer对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| :---------------------------------- | :---------------------------- |
+| [TCPSocketServer](#tcpsocketserver10) | 返回一个TCPSocketServer对象。 |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+```
+
+## TCPSocketServer<sup>10+</sup>
+
+TCPSocketServer连接。在调用TCPSocketServer的方法前，需要先通过[socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10)创建TCPSocketServer对象。
+
+### listen<sup>10+</sup>
+
+listen(address: NetAddress, callback: AsyncCallback\<void\>): void
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。监听并接受与此套接字建立的TCPSocket连接。该接口使用多线程并发处理客户端的数据。使用callback方法作为异步方法。
+
+> **说明：**
+> 服务端使用该方法完成bind，listen，accept操作。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                          |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| address  | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
+| callback | AsyncCallback\<void\>     | 是   | 回调函数。                                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+```
+
+### listen<sup>10+</sup>
+
+listen(address: NetAddress): Promise\<void\>
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。监听并接受与此套接字建立的TCPSocket连接。该接口使用多线程并发处理客户端的数据。使用Promise方法作为异步方法。
+
+> **说明：**
+> 服务端使用该方法完成bind，listen，accept操作。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                      | 必填 | 说明                                          |
+| ------- | ------------------------- | ---- | --------------------------------------------- |
+| address | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| :-------------- | :----------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回, 成功返回空，失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promise = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promise.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+获取TCPSocketServer状态。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                               | 必填 | 说明       |
+| -------- | -------------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+tcpServer.getState((err, data) => {
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
+})
+```
+
+### getState<sup>10+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+获取TCPSocketServer状态。使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                         | 说明                                       |
+| :------------------------------------------- | :----------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase7)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promiseListen.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+let promise = tcpServer.getState();
+promise.then(() => {
+  console.log('getState success');
+}).catch(err => {
+  console.log('getState fail');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
+
+设置TCPSocketServer连接的其他属性。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
+| callback | AsyncCallback\<void\>               | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+tcpServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+}, err => {
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
+
+设置TCPSocketServer连接的其他属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                | 必填 | 说明                                                         |
+| ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
+
+**返回值：**
+
+| 类型            | 说明                                                       |
+| :-------------- | :--------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promiseListen.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+let promise = tcpServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+});
+promise.then(() => {
+  console.log('setExtraOptions success');
+}).catch(err => {
+  console.log('setExtraOptions fail');
+});
+```
+
+### on('connect')<sup>10+</sup>
+
+on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
+
+订阅TCPSocketServer的连接事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                                  |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 是   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(data) {
+  console.log(JSON.stringify(data))
+});
+```
+
+### off('connect')<sup>10+</sup>
+
+off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
+
+取消订阅TCPSocketServer的连接事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                                  |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 否   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let callback = data => {
+  console.log('on connect message: ' + JSON.stringify(data));
+}
+tcpServer.on('connect', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcpServer.off('connect', callback);
+tcpServer.off('connect');
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅TCPSocketServer连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅TCPSocketServer连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+tcpServer.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcpServer.off('error', callback);
+tcpServer.off('error');
+```
+
+## TCPSocketConnection<sup>10+</sup>
+
+TCPSocketConnection连接，即TCPSocket客户端与服务端的连接。在调用TCPSocketConnection的方法前，需要先获取TCPSocketConnection对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+### 属性
+
+| 名称     | 类型   | 必填 | 说明                                      |
+| -------- | ------ | ---- | ----------------------------------------- |
+| clientId | number | 是   | 客户端与TCPSocketServer建立连接的id。 |
+
+### send<sup>10+</sup>
+
+send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
+
+通过TCPSocketConnection连接发送数据。使用callback方式作为异步方法。
+
+> **说明：**
+> 与客户端建立连接后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                              | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
+| callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.send({data: 'Hello, client!'}, err => {
+    if (err) {
+        console.log('send fail');
+        return;
+    }
+    console.log('send success');
+  });
+});
+```
+
+### send<sup>10+</sup>
+
+send(options: TCPSendOptions): Promise\<void\>
+
+通过TCPSocketConnection连接发送数据。使用Promise方式作为异步方法。
+
+> **说明：**
+> 与客户端建立连接后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| :-------------- | :----------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.send({data: 'Hello, client!'});
+  promise.then(() => {
+    console.log('send success');
+  }).catch(err => {
+    console.log('send fail');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(callback: AsyncCallback\<void\>): void
+
+关闭一个与TCPSocket建立的连接。使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(): Promise\<void\>
+
+关闭一个与TCPSocket建立的连接。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                         |
+| :-------------- | :------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.close();
+  promise.then(() => {
+  	console.log('close success');
+  }).catch(err => {
+  	console.log('close fail');
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
+
+获取对端Socket地址。使用callback方式作为异步方法。
+
+> **说明：**
+> 与客户端建立连接后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明       |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback<[NetAddress](#netaddress7)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.getRemoteAddress((err, data) => {
+    if (err) {
+      console.log('getRemoteAddress fail');
+      return;
+    }
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(): Promise\<NetAddress\>
+
+获取对端Socket地址。使用Promise方式作为异步方法。
+
+> **说明：**
+> 与客户端建立连接后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                               | 说明                                        |
+| :--------------------------------- | :------------------------------------------ |
+| Promise<[NetAddress](#netaddress7)> | 以Promise形式返回获取对端socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.getRemoteAddress();
+  promise.then(() => {
+    console.log('getRemoteAddress success');
+  }).catch(err => {
+    console.log('getRemoteAddress fail');
+  });
+});
+```
+
+### on('message')<sup>10+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('message', value => {
+    let messageView = '';
+    for (var i = 0; i < value.message.length; i++) {
+      let messages = value.message[i];
+      let message = String.fromCharCode(messages);
+      messageView += item;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
+});
+```
+
+### off('message')<sup>10+</sup>
+
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = value => {
+  let messageView = '';
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i];
+    let message = String.fromCharCode(messages);
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('message', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('message', callback);
+  client.off('message');
+});
+```
+
+### on('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+订阅TCPSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+取消订阅TCPSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = () => {
+  console.log("on close success");
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('close', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('close', callback);
+  client.off('close');
+});
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅TCPSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('error', err => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅TCPSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('error', callback);
+  client.off('error');
+});
+```
+
 ## TCP 错误码说明
 
 TCP 其余错误码映射形式为：2301000 + Linux内核错误码。

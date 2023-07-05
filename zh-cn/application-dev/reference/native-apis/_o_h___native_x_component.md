@@ -1,10 +1,9 @@
 # Native XComponent
 
 
-描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上。
+描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[XComponent开发指导](../../napi/xcomponent-guidelines.md)。
 
 **起始版本：**
-
 
 8
 
@@ -192,7 +191,7 @@ anonymous enum
 
 OH_NativeXComponent_EventSourceType
 
-  
+
 ```
 enum OH_NativeXComponent_EventSourceType
 ```
@@ -286,7 +285,7 @@ enum OH_NativeXComponent_TouchEventType
 
 ### OH_NativeXComponent_TouchPointToolType
 
-  
+
 ```
 enum OH_NativeXComponent_TouchPointToolType
 ```
@@ -372,7 +371,7 @@ int32_t OH_NativeXComponent_GetTouchEvent (OH_NativeXComponent * component, cons
 
 ### OH_NativeXComponent_GetTouchPointTiltX()
 
-  
+
 ```
 int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component, uint32_t pointIndex, float * tiltX )
 ```
@@ -400,7 +399,7 @@ int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component,
 
 ### OH_NativeXComponent_GetTouchPointTiltY()
 
-  
+
 ```
 int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component, uint32_t pointIndex, float * tiltY )
 ```
@@ -428,7 +427,7 @@ int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component,
 
 ### OH_NativeXComponent_GetTouchPointToolType()
 
-  
+
 ```
 int32_t OH_NativeXComponent_GetTouchPointToolType (OH_NativeXComponent * component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType * toolType )
 ```

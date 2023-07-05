@@ -5145,15 +5145,3 @@ MMI码结果。
 | MMI_CODE_SUCCESS | 0    | 表示MMI码成功 |
 | MMI_CODE_FAILED  | 1    | 表示MMI码失败 |
 
-## AudioDeviceOptions<sup>9+</sup>
-
-音频设备选项。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-| 名称             | 类型   | 必填 | 说明     |
-| ---------------- | ------ | ---- | -------- |
-| bluetoothAddress | string | 否   | 蓝牙地址 |
-

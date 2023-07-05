@@ -125,8 +125,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| isSameAccount | boolean                           | 是    | 是否同帐号。            |
-| isWakeRemote  | boolean                           | 是    | 是否唤醒设备。           |
+| isSameAccount | boolean                           | 否    | 是否同帐号。            |
+| isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
 | capability    | [SubscribeCap](#subscribecap)     | 是    | 发现能力。             |
 
 

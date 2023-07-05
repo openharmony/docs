@@ -3236,15 +3236,10 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3261,18 +3256,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3313,15 +3296,10 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3337,18 +3315,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```

@@ -46,9 +46,11 @@ Adhere to the following constraints and rules when using transient tasks:
 - **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). The default quota for a single day is 10 minutes, and the maximum quota for each request is 3 minutes. After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
 
 ## Continuous Tasks
+
 Continuous tasks provide background running lifecycle support for services that can be directly perceived by users and need to run in the background. For example, if a service needs to play audio or continue with navigation and positioning in the background, which can be perceived by users, it can execute a continuous task in the respective background mode.
 
 ### Background Mode Classification
+
 OpenHarmony provides 9 background modes for services that require continuous task execution.
 
 **Table 1** Background modes for continuous tasks
@@ -66,6 +68,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 | taskKeeping           | Computing task                     | A computing task is running    | Effective only for specific devices                 |
 
 ### Restrictions on Using Continuous Tasks
+
 - If a user triggers a perceivable task, such as broadcasting and navigation, the corresponding background mode is triggered. When the task is started, the system forcibly displays a notification to the user.
 - If the task is complete, the application should exit the background mode. If the system detects that an application is not using the resources in the corresponding background mode when the application is running in the background, the application is suspended.
 - Ensure that the requested continuous task background mode matches the application type. If the background mode does not match the application type, the system will suspend the task once it detects the issue.
@@ -73,6 +76,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 - An ability can request only one continuous task at a time. If an application has multiple abilities, you can request a continuous task for each ability.
 
 ## Work Scheduler Tasks
+
 The Work Scheduler provides a mechanism for an application to execute a non-real-time task, for example, data learning, when the system is idle. The system places the Work Scheduler tasks requested by applications in a queue and determines the optimal scheduling time of each task based on the storage space, power consumption, temperature, and more. Persistence is supported. This means that a requested Work Scheduler task can be triggered when the application exits or the device restarts.
 
 ### Restrictions on Using Work Scheduler Tasks
@@ -103,6 +107,7 @@ The use of the Work Scheduler must comply with the following restrictions and ru
   - The carried parameters can be of the number, string, or boolean type.
 
 ## Efficiency Resources
+
 Efficiency resources are classified into software (WORK_SCHEDULER, COMMON_EVENT, and TIMER) and hardware resources (CPU, GPS, BLUETOOTH, and AUDIO).
 
 An application can perform different operations based on the requested efficiency resources.
@@ -126,6 +131,7 @@ An application can perform different operations based on the requested efficienc
 | AUDIO          | 64   | AUDIO resources, which prevent audio resources from being proxied when the application is suspended. |
 
 ### Restrictions on Using Efficiency Resources
+
 - Applications or processes are responsible for requesting and releasing efficiency resources. A process can release the resources requested by itself, whereas an application can release the resources requested by both itself and its processes. For example, an application requests CPU resources, and its process requests CPU and WORK_SCHEDULER resources. If the application initiates CPU resource release, the CPU resources requested by the process are also released. However, the WORK_SCHEDULER resources are not released. If the process initiates CPU resource release, the CPU resources requested by the application are retained until being released by the application.
 - If persistent resources and non-persistent resources of the same type are requested, the persistent resources overwrite the non-persistent resources and they will not be released upon a timeout. For example, if an application first requests 10-second CPU resources and then requests persistent CPU resources at the 5th second, the CPU resources become persistent and will not be released at the tenth second. If the application releases the CPU resources at the 8th second, both types of CPU resources are released.
 - The WORK_SCHEDULER resources can be requested and released by applications, but not by processes.

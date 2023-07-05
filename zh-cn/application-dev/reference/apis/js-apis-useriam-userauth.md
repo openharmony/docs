@@ -14,14 +14,14 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 ## WindowModeType<sup>10+</sup>
 
-表示用户身份认证控件的窗口类型。
+表示用户身份认证组件的窗口类型。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
 | DIALOG_BOX | 1    | 弹框类型。 |
-| FULLSCREEN | 2    | 全屏类型   |
+| FULLSCREEN | 2    | 全屏类型。 |
 
 ## AuthParam<sup>10+</sup>
 
@@ -37,27 +37,28 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 ## WidgetParam<sup>10+</sup>
 
-统一认证控件相关参数。
+统一认证组件相关参数。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                 | 类型                                | 必填 | 说明                 |
 | -------------------- | ----------------------------------- | ---- | -------------------- |
-| title                | string                              | 是   | 认证控件标题。       |
-| navigationButtonTest | string                              | 否   | 导航按键的说明文本。 |
-| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 控件是否全屏显示。   |
+| title                | string                              | 是   | 认证组件标题。       |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本。 |
+| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 组件是否全屏显示。   |
 
-## UseAuthResult<sup>10+</sup>
+## UserAuthResult<sup>10+</sup>
 
 用户认证结果。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称     | 类型                           | 必填 | 说明                 |
-| -------- | ------------------------------ | ---- | -------------------- |
-| result   | number                         | 是   | 用户认证结果         |
-| token    | Uint8Array                     | 否   | 认证通过的令牌信息。 |
-| authType | [UserAuthType](#userauthtype8) | 否   | 认证类型             |
+| 名称     | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| result   | number                         | 是   | 用户认证结果，详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。 |
+| token    | Uint8Array                     | 否   | 认证通过的令牌信息。                                         |
+| authType | [UserAuthType](#userauthtype8) | 否   | 认证类型。                                                   |
+
 
 ## IAuthCallback<sup>10+</sup>
 
@@ -65,7 +66,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 ### onResult<sup>10+</sup>
 
-onResult(result: UseAuthResult): void;
+onResult(result: UserAuthResult): void
 
 回调函数，返回认证结果。
 
@@ -75,7 +76,7 @@ onResult(result: UseAuthResult): void;
 
 | 参数名 | 类型                               | 必填 | 说明       |
 | ------ | ---------------------------------- | ---- | ---------- |
-| result | [UseAuthResult](useauthresult10) | 是   | 认证结果。 |
+| result | [UserAuthResult](userauthresult10) | 是   | 认证结果。 |
 
 **示例：**
 
@@ -116,15 +117,14 @@ try {
 
 ## UserAuthInstance<sup>10+</sup>
 
-用于执行用户身份认证，并支持使用统一用户身份认证控件。
+用于执行用户身份认证，并支持使用统一用户身份认证组件。
+使用以下接口前，都需要先通过[getUserAuthInstance](#useriam_userauthgetuserauthinstance10)方法获取UserAuthInstance对象。
 
 ### on<sup>10+</sup>
 
-on(type: 'result', callback: IAuthCallback): void;
+on(type: 'result', callback: IAuthCallback): void
 
 订阅用户身份认证结果。
-
-> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -135,9 +135,9 @@ on(type: 'result', callback: IAuthCallback): void;
 | type     | 'result'                         | 是   | 订阅事件类型，表明该事件用来返回认证结果。 |
 | callback | [IAuthCallback](iauthcallback10) | 是   | 认证接口的回调函数，用于返回认证结果。     |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -183,7 +183,7 @@ try {
 
 ### off<sup>10+</sup>
 
-off(type: 'result', callback?: IAuthCallback): void;
+off(type: 'result', callback?: IAuthCallback): void
 
 取消订阅用户身份认证结果。
 
@@ -198,9 +198,9 @@ off(type: 'result', callback?: IAuthCallback): void;
 | type     | 'result'                         | 是   | 订阅事件类型，表明该事件用来返回认证结果。 |
 | callback | [IAuthCallback](iauthcallback10) | 否   | 认证接口的回调函数，用于返回认证结果。     |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -255,19 +255,17 @@ try {
 
 ### start<sup>10+</sup>
 
-start(): void;
+start(): void
 
 开始认证。
-
-> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
@@ -282,7 +280,7 @@ start(): void;
 | 12500007 | The authentication task is busy.                 |
 | 12500009 | The authenticator is locked.                     |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | The authentication is canceled from widget.      |
+| 12500011 | The authentication is canceled from widget's navigation button.      |
 
 **示例：**
 
@@ -317,11 +315,11 @@ try {
 
 ### cancel<sup>10+</sup>
 
-cancel(): void;
+cancel(): void
 
 取消认证。
 
-> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消认证，此UserAuthInstance需要是正在进行认证的对象。
+> **说明**：此时UserAuthInstance需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -329,11 +327,11 @@ cancel(): void;
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 201      |                          |
-| 401      | Incorrect parameters.    |
-| 12500002 | General operation error. |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Incorrect parameters.           |
+| 12500002 | General operation error.        |
 
 **示例：**
 
@@ -379,9 +377,9 @@ try {
 
 ## userIAM_userAuth.getUserAuthInstance<sup>10+</sup>
 
-getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance;
+getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
 
-获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证控件。
+获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证组件。
 
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
@@ -401,9 +399,9 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 | --------------------------------------- | ------------ |
 | [UserAuthInstance](#userauthinstance10) | 认证器对象。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
@@ -443,13 +441,13 @@ try {
 
 | 名称          | 值   | 说明                 |
 | ------------- | ---- | -------------------- |
-| WIDGET_NOTICE | 1    | 表示来自控件的通知。 |
+| WIDGET_NOTICE | 1    | 表示来自组件的通知。 |
 
 ## userIAM_userAuth.sendNotice<sup>10+</sup>
 
-sendNotice(noticeType: NoticeType, eventData: string): void;
+sendNotice(noticeType: NoticeType, eventData: string): void
 
-在使用统一身份认证控件进行用户身份认证时，用于接收来自统一身份认证控件的通知。
+在使用统一身份认证组件进行用户身份认证时，用于接收来自统一身份认证组件的通知。
 
 **需要权限**：ohos.permission.SUPPORT_USER_AUTH
 
@@ -462,9 +460,9 @@ sendNotice(noticeType: NoticeType, eventData: string): void;
 | noticeType | [NoticeType](#noticetype) | 是   | 通知类型。 |
 | eventData  | string                    | 是   | 事件数据。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -484,13 +482,13 @@ sendNotice(noticeType, {"eventData" : "EVENT_AUTH_TYPE_READY"});
 
 ## UserAuthWidgetMgr<sup>10+</sup>
 
-控件管理接口，提供控件注册、管理、调度。
+组件管理接口，可将用身份认证组件注册到UserAuthWidgetMgr中，由UserAuthWidgetMgr进行管理、调度。
 
 ### on<sup>10+</sup>
 
-on(type: 'command', callback: IAuthWidgetCallback): void;
+on(type: 'command', callback: IAuthWidgetCallback): void
 
-身份认证控件订阅来自用户认证框架的命令。
+身份认证组件订阅来自用户认证框架的命令。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -498,12 +496,12 @@ on(type: 'command', callback: IAuthWidgetCallback): void;
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 是   | 控件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
-
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证组件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 是   | 组件管理接口的回调函数，用于用户认证框架向身份认证组件发送命令。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -538,9 +536,9 @@ try {
 
 ### off<sup>10+</sup>
 
-off(type: 'command', callback?: IAuthWidgetCallback): void;
+off(type: 'command', callback?: IAuthWidgetCallback): void
 
-身份认证控件取消订阅来自用户认证框架的命令。
+身份认证组件取消订阅来自用户认证框架的命令。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -548,12 +546,12 @@ off(type: 'command', callback?: IAuthWidgetCallback): void;
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 否   | 控件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
-
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证组件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 否   | 组件管理接口的回调函数，用于用户认证框架向身份认证组件发送命令。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -596,7 +594,7 @@ try {
 
 ## userIAM_userAuth.getUserAuthWidgetMgr<sup>10+</sup>
 
-getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr;
+getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 获取UserAuthWidgetMgr对象，用于执行用户身份认证。
 
@@ -609,7 +607,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| version | number | 是   | 表示认证控件的版本。 |
+| version | number | 是   | 表示认证组件的版本。 |
 
 **返回值：**
 
@@ -617,9 +615,9 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr;
 | ----------------------------------------- | ------------ |
 | [UserAuthWidgetMgr](#userauthwidgetmgr10) | 认证器对象。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -644,13 +642,13 @@ try {
 
 ## IAuthWidgetCallback<sup>10+</sup>
 
-认证控件通过该回调获取用户认证框架发送的命令。
+认证组件通过该回调获取用户认证框架发送的命令。
 
 ### sendCommand<sup>10+</sup>
 
-sendCommand(cmdData: string): void;
+sendCommand(cmdData: string): void
 
-回调函数，用于用户认证框架向控件发送命令。
+回调函数，用于用户认证框架向组件发送命令。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -658,7 +656,7 @@ sendCommand(cmdData: string): void;
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | ---------------------------------- |
-| cmdData | string | 是   | 用户身份认证框架向控件发送的命令。 |
+| cmdData | string | 是   | 用户身份认证框架向组件发送的命令。 |
 
 **示例：**
 
@@ -683,7 +681,7 @@ try {
 
 表示认证结果信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
@@ -717,6 +715,8 @@ try {
 ## AuthEventKey<sup>9+</sup>
 
 表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
 | 取值类型       | 说明                    |
 | ---------- | ----------------------- |
@@ -817,9 +817,9 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 | name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
 | callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -884,9 +884,9 @@ off : (name : AuthEventKey) => void
 | --------- | -------------------------- | ---- | ------------------------- |
 | name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -948,9 +948,9 @@ start : () => void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -1000,9 +1000,9 @@ cancel : () => void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -1056,9 +1056,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 | --------------------------------------- | ------------ |
 | [AuthInstance](#authinstancedeprecated) | 认证器对象。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -1101,9 +1101,9 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
 **错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -1145,7 +1145,7 @@ try {
 | BUSY                    | 12500007      | 忙碌状态。           |
 | LOCKED                  | 12500009      | 认证器已锁定。       |
 | NOT_ENROLLED            | 12500010      | 用户未录入认证信息。 |
-| CANCELED_FROM_WIDGET | 12500011 | 当前的认证操作被用户从控件取消。返回这个错误码，表示使用应用自定义认证。 |
+| CANCELED_FROM_WIDGET | 12500011 | 当前的认证操作被用户从组件取消。返回这个错误码，表示使用应用自定义认证。 |
 
 ## UserAuth<sup>(deprecated)</sup>
 

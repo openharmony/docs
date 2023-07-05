@@ -22,7 +22,7 @@ getValue(options?: GetBrightnessOptions): void
 
 Obtains the current screen brightness.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **Parameters**
 
@@ -50,7 +50,7 @@ setValue(options?: SetBrightnessOptions): void
 
 Sets the screen brightness.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **Parameters**
 
@@ -79,7 +79,7 @@ getMode(options?: GetBrightnessModeOptions): void
 
 Obtains the screen brightness adjustment mode.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **Parameters**
 
@@ -107,7 +107,7 @@ setMode(options?: SetBrightnessModeOptions): void
 
 Sets the screen brightness adjustment mode.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **Parameters**
 | Name| Type| Mandatory| Description|
@@ -137,7 +137,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 Sets whether to always keep the screen on. Call this API in **onShow()**.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **Parameters**
 
@@ -162,7 +162,7 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 
 Defines the options for obtaining the screen brightness.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name    | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -174,7 +174,7 @@ Defines the options for obtaining the screen brightness.
 
 Defines the options for setting the screen brightness.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name    | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -187,7 +187,7 @@ Defines the options for setting the screen brightness.
 
 Defines a response that returns the screen brightness.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -197,7 +197,7 @@ Defines a response that returns the screen brightness.
 
 Defines the options for obtaining the screen brightness mode.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -209,7 +209,7 @@ Defines the options for obtaining the screen brightness mode.
 
 Defines the options for setting the screen brightness mode.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name    | Type                                | Mandatory| Description                                                  |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
@@ -222,7 +222,7 @@ Defines the options for setting the screen brightness mode.
 
 Defines a response that returns the screen brightness mode.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -232,7 +232,7 @@ Defines a response that returns the screen brightness mode.
 
 Defines the options for setting the screen to be steady on.
 
-**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | Name        | Type                                | Mandatory| Description                                                  |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------ |
