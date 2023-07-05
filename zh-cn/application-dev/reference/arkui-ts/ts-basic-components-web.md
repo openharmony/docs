@@ -3413,6 +3413,56 @@ onRequestSelected(callback: () => void)
     }
   }
   ```
+### onScreenCaptureRequest<sup>10+</sup>
+
+onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+
+通知收到屏幕捕获请求。
+
+**参数：**
+
+| 参数名     | 参数类型                                     | 参数描述           |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | 通知Web组件用户操作行为。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScreenCaptureRequest((event) => {
+            AlertDialog.show({
+              title: 'title: ' + event.handler.getOrigin(),
+              message: 'text',
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.handler.deny()
+                }
+              },
+              secondaryButton: {
+                value: 'onConfirm',
+                action: () => {
+                  event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                }
+              },
+              cancel: () => {
+                event.handler.deny()
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
 
 ## ConsoleMessage
 
@@ -4008,6 +4058,42 @@ grant(resources: Array\<string\>): void
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
 
+## ScreenCaptureHandler<sup>10+</sup>
+
+Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
+
+### deny<sup>10+</sup>
+
+deny(): void
+
+拒绝网页所请求的屏幕捕获操作。
+
+### getOrigin<sup>10+</sup>
+
+getOrigin(): string
+
+获取网页来源。
+
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 当前请求权限网页的来源。 |
+
+### grant<sup>10+</sup>
+
+grant(config: ScreenCaptureConfig): void
+
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+
+对网页访问的屏幕捕获操作进行授权。
+
+**参数：**
+
+| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
+| --------- | --------------- | ---- | ---- | ------------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
+
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 | 名称                   | 描述         |
 | -------------------- | ---------- |
@@ -4325,6 +4411,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 | VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。 | |
+| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 | |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 | 名称      | 描述                                   |
@@ -4332,6 +4419,12 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | Off     | Web深色模式关闭。                     |
 | On      | Web深色模式开启。                     |
 | Auto    | Web深色模式跟随系统。                 |
+
+## WebCaptureMode<sup>10+</sup>枚举说明
+
+| 名称        | 描述            |
+| --------- | ------------- |
+| HOME_SCREEN | 主屏捕获模式。 |
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -4341,6 +4434,14 @@ Web媒体策略的配置。
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Web屏幕捕获的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
