@@ -1066,7 +1066,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-将批量数据插入数据库。使用callback异步回调。
+将批量数据插入数据库。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1102,7 +1102,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-将批量数据插入数据库。使用Promise异步回调。
+将批量数据插入数据库。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
