@@ -51,21 +51,25 @@ Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的�
 
 ## 工具源码使用教程
 
-1.[interface仓](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools)中 clone "api_diff"工具(对比两个版本SDK里的API差异)和"应用API解析"工具(用于解析并汇总应用中使用到的API)到本地。
+1.[interface仓](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools)中 clone [diff_api](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/diff_api)工具(对比两个版本SDK里的API差异)和[api_collector](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/api_collector)工具(用于解析并汇总应用中使用到的API)到本地。
 
 ![suap-warehouse](figures/suap-warehouse.png)
 
-2.在api_diff工具和collect_application_api工具目录下进入终端，进行安装和编译。输入命令：npm install，之后进行构建：npm run build。</br>构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collectort.js
+2.在本地api_collector工具目录下创建名为'deps'的文件夹，在deps文件夹，放置[typescript](https://gitee.com/openharmony/third_party_typescript/tree/master/build_package)源码。
+
+![suap-deps](figures/suap-deps.png)
+
+3.在本地diff_api工具和api_collector工具目录下进入终端，进行安装和编译。输入命令：npm install，之后进行构建：npm run build。构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collectort.js
 
 ![suap-diff](figures/suap-diff.png)
 ![suap-collect](figures/suap-collect.png)
 
-3.在本地磁盘的最后一个盘符，创建名为'updateCheck'文件夹，内部分别创建'api-diff'和'collect_application_api'文件夹。</br>将上图diff.js文件放置'api-diff'文件夹下，将上图collect_application_api文件夹下lib文件夹以及上图api-collector.js放置在'collect_application_api'文件夹下。
+4.在本地磁盘的最后一个盘符，创建名为'updateCheck'文件夹，内部分别创建'api-diff'和'collect_application_api'文件夹。</br>将步骤3中的api-diff.js文件放置'api-diff'文件夹下，api_collect文件夹下lib文件夹以及api-collector.js放置在'collect_application_api'文件夹下。
 
 ![suap-diff-file](figures/suap-diff-file.png)
 ![suap-collect-file](figures/suap-collect-file.png)
 
-4.升级辅助工具源码clone下来之后，在idea上打开，需要配置gradle环境，并且在src同级目录下新建'build.gradle.kts'文件，将下面内容粘贴至文件中，刷新gradle，在idea右侧gradle工具栏即可运行项目和打包成插件。
+5.升级辅助工具源码clone下来之后，在idea上打开，需要配置gradle环境，并且在src同级目录下新建'build.gradle.kts'文件，将下面内容粘贴至文件中，刷新gradle，在idea右侧gradle工具栏即可运行项目和打包成插件。
 ```lombok.config
 plugins {
     id("java")
