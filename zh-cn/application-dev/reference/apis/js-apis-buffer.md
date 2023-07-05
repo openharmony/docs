@@ -218,7 +218,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "totalLength" is out of range. |
+| 10200001 | The value of "length" is out of range. It must be >= 0 and <= uint32 max. Received value is: [length] |
 
 **示例：**
 
@@ -1387,7 +1387,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1431,7 +1431,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1681,7 +1681,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1723,7 +1723,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2037,7 +2037,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2076,7 +2076,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2115,7 +2115,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2154,7 +2154,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2193,7 +2193,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
@@ -2232,7 +2232,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
@@ -2271,7 +2271,7 @@ writeFloatBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
@@ -2311,7 +2311,7 @@ writeFloatLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
@@ -2350,7 +2350,7 @@ writeInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2391,7 +2391,7 @@ writeInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2431,7 +2431,7 @@ writeInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2470,7 +2470,7 @@ writeInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2510,7 +2510,7 @@ writeInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2550,7 +2550,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2591,7 +2591,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2630,7 +2630,7 @@ writeUInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2672,7 +2672,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2712,7 +2712,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2752,7 +2752,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2791,7 +2791,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2831,7 +2831,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2871,7 +2871,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
