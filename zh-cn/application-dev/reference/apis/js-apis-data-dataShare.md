@@ -1141,7 +1141,7 @@ try {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1169,7 +1169,7 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1200,7 +1200,7 @@ dataShareHelper.normalizeUri(uri).then((data) => {
 
 denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将指定的URI转换为非规范化URI。使用callback异步回调。
+将指定的URI转换为非规范化URI。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1228,7 +1228,7 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
-将指定的URI转换为非规范化URI。使用Promise异步回调。
+将指定的URI转换为非规范化URI。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1259,7 +1259,7 @@ dataShareHelper.denormalizeUri(uri).then((data) => {
 
 notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1283,7 +1283,7 @@ dataShareHelper.notifyChange(uri, () => {
 
 notifyChange(uri: string): Promise&lt;void&gt;
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
