@@ -1196,7 +1196,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 ```js
 try {
-  let promise = windowClass.moveTo(300, 300);
+  let promise = panel.moveTo(300, 300);
   promise.then(() => {
     console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
