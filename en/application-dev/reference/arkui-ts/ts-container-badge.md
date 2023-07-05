@@ -2,7 +2,7 @@
 
 The **\<Badge>** component is a container that can be attached to another component for tagging.
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -11,6 +11,9 @@ The **\<Badge>** component is a container that can be attached to another compon
 
 This component supports only one child component.
 
+>  **NOTE**
+>
+>  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 ## APIs
 
@@ -22,12 +25,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| count | number | Yes| - | Number of notifications.|
-| position | [BadgePosition](#badgeposition) | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
-| maxCount | number | No| 99 | Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.|
-| style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| position | [BadgePosition](#badgeposition) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**|
+| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
 
 **API 2**: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
@@ -57,12 +60,19 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name      | Type                                      | Mandatory| Default Value     | Description                                       |
-| ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
-| color      | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.White | Font color.                                 |
-| fontSize   | number \| string                 | No  | 10          | Font size, in vp.                         |
-| badgeSize  | number \| string                 | No  | 16          | Badge size, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
-| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.Red   | Badge color.                              |
+| Name                     | Type                                                        | Mandatory| Description                                                        |
+| ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color.<br>Default value: **Color.White**                          |
+| fontSize                  | number \| string                                   | No  | Font size.<br>Default value: **10**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage.|
+| badgeSize                 | number \| string                                   | No  | Badge size.<br>Default value: **16**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Badge color.<br>Default value: **Color.Red**                         |
+## Attributes
+
+The [universal attributes](ts-universal-attributes-size.md) are supported.
+
+## Events
+
+The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
 
