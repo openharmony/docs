@@ -369,6 +369,8 @@ class EntryAbility extends UIAbility {
 
 表示[Asset](#asset10)类型的数组。
 
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
 | 类型    | 说明                 |
 | ------- | -------------------- |
 | [Asset](#asset10)[] | 表示Asset类型的数组。   |
@@ -399,6 +401,36 @@ class EntryAbility extends UIAbility {
 | ------ | ----------------------- |
 | string | [ValueType](#valuetype) |
 
+## PRIKeyType<sup>10+</sup> 
+
+数据库表某一行的主键。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型           | 说明                               |
+| -------------- | ---------------------------------- |
+| number\|string | 主键的类型可以是number或者string。 |
+
+## UTCTime<sup>10+</sup>
+
+UTC类型的时间。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型 | 说明            |
+| ---- | --------------- |
+| Date | UTC类型的时间。 |
+
+## ModifyTime<sup>10+</sup> 
+
+用于存储主键和修改时间的Map。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型                                                    | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Map<[PRIKeyType](#prikeytype10), [UTCTime](#utctime10)> | 键表示是数据库表某一行的主键，值表示该行的最后修改时间，用UTC格式表示。 |
+
 ## SyncMode
 
 指数据库同步模式。
@@ -407,9 +439,9 @@ class EntryAbility extends UIAbility {
 | -------------- | ---- | ---------------------------------- |
 | SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
 | SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 
 ## SubscribeType
 
@@ -440,15 +472,15 @@ class EntryAbility extends UIAbility {
 
 记录端云同步过程详情。
 
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称       | 类型                                 | 必填  | 说明                                                                                                                   |
-| -------- | ---------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
-| table    | string                             | 是   | 表示发生变化的表的名称。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                                   |
-| type     | [ChangeType](#changetype10)          | 是   | 表示发生变化的数据的类型，数据或者资产附件发生变化。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
-| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
-| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
-| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| 名称     | 类型                               | 必填 | 说明                                                         |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| table    | string                             | 是   | 表示发生变化的表的名称。                                     |
+| type     | [ChangeType](#changetype10)        | 是   | 表示发生变化的数据的类型，数据或者资产附件发生变化。         |
+| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。 |
+| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。 |
+| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。 |
 
 ## DistributedType<sup>10+</sup>
 
@@ -485,6 +517,70 @@ class EntryAbility extends UIAbility {
 | ON_CONFLICT_FAIL     | 3    | 表示当冲突发生时，中止当前 SQL 语句。但它不会撤销失败的 SQL 语句的先前更改，也不会结束事务。 |
 | ON_CONFLICT_IGNORE   | 4    | 表示当冲突发生时，跳过包含违反约束的行并继续处理 SQL 语句的后续行。 |
 | ON_CONFLICT_REPLACE  | 5    | 表示当冲突发生时，在插入或更新当前行之前删除导致约束违例的预先存在的行，并且命令会继续正常执行。 |
+
+## Progress<sup>10+</sup>
+
+描述端云同步过程的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称             | 值   | 说明                     |
+| ---------------- | ---- | ------------------------ |
+| SYNC_BEGIN       | -    | 表示端云同步过程开始。   |
+| SYNC_IN_PROGRESS | -    | 表示正在端云同步过程中。 |
+| SYNC_FINISH      | -    | 表示端云同步过程已完成。 |
+
+## Statistic<sup>10+</sup>
+
+描述数据库表的端云同步过程的统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型   | 必填 | 说明                                     |
+| -------- | ------ | ---- | ---------------------------------------- |
+| total    | number | 是   | 表示数据库表中需要端云同步的总行数。     |
+| success  | number | 是   | 表示数据库表中端云同步成功的行数。       |
+| failed   | number | 是   | 表示数据库表中端云同步失败的行数。       |
+| remained | number | 是   | 表示数据库表中端云同步剩余未执行的行数。 |
+
+## TableDetails<sup>10+</sup>
+
+描述数据库表执行端云同步任务上传和下载的统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                      | 必填 | 说明                                       |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| upload   | [Statistic](#statistic10) | 是   | 表示数据库表中端云同步上传过程的统计信息。 |
+| download | [Statistic](#statistic10) | 是   | 表示数据库表中端云同步下载过程的统计信息。 |
+
+## ProgressCode<sup>10+</sup>
+
+表示端云同步过程的状态。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                  | 值   | 说明                                                   |
+| --------------------- | ---- | ------------------------------------------------------ |
+| SUCCESS               | -    | 表示端云同步过程成功。                                 |
+| UNKNOWN_ERROR         | -    | 表示端云同步过程遇到未知错误。                         |
+| NETWORK_ERROR         | -    | 表示端云同步过程遇到网络错误。                         |
+| CLOUD_DISABLED        | -    | 表示云端不可用。                                       |
+| LOCKED_BY_OTHERS      | -    | 表示有其他设备正在端云同步。                           |
+| RECORD_LIMIT_EXCEEDED | -    | 表示本次端云同步需要同步的条目或大小超出最大限制。 |
+| NO_SPACE_FOR_ASSET    | -    | 表示云空间剩余空间小于待同步的资产大小。               |
+
+## ProgressDetails<sup>10+</sup>
+
+描述数据库表执行端云同步任务上传和下载的统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| schedule | [Progress](#progress10)                           | 是   | 表示端云同步过程。                                           |
+| code     | [ProgressCode](#progresscode10)                   | 是   | 表示端云同步过程的状态。                                     |
+| details  | [table: string] : [TableDetails](#tabledetails10) | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
 
 ## RdbPredicates
 
@@ -2663,6 +2759,79 @@ promise.then(() => {
 })
 ```
 
+### getModifyTime<sup>10+</sup>
+
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;;
+
+获取数据库表中数据的最后修改时间，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                          | 必填 | 说明                         |
+| ----------- | ----------------------------- | ---- | ---------------------------- |
+| table       | string                        | 是   | 指定要查询的数据库表的表名。 |
+| columnName  | string                        | 是   | 指定要查询的数据库表的列名。 |
+| primaryKeys | [PRIKeyType](#prikeytype10)[] | 是   | 指定要查询的行的主键。       |
+
+**返回值**：
+
+| 类型                                       | 说明                                                      |
+| ------------------------------------------ | --------------------------------------------------------- |
+| Promise&lt;[ModifyTime](#modifytime10)&gt; | 返回ModifyTime类型的Promise对象，表示数据最后的修改时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**示例：**
+
+```js
+let PRIKey = [1, 2, 3];
+relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
+    let size = modifyTime.size();
+});
+```
+
+### getModifyTime<sup>10+</sup>
+
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void;
+
+获取数据库表中数据的最后修改时间，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                             | 必填 | 说明                                                       |
+| ----------- | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| table       | string                                           | 是   | 指定要查询的数据库表的表名。                               |
+| columnName  | string                                           | 是   | 指定要查询的数据库表的列名。                               |
+| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | 是   | 指定要查询的行的主键。                                     |
+| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ModifyTime对象，表示数据的最后修改时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**示例：**
+
+```js
+let PRIKey = [1, 4, 2, 3];
+relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, data) {
+    let size = modifyTime.size();
+});
+```
+
 ### beginTransaction
 
 beginTransaction():void
@@ -3312,6 +3481,144 @@ promise.then((result) =>{
 }).catch((err) => {
   console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
 })
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void;
+
+手动执行端云同步，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                             |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。             |
+| callback | AsyncCallback&lt;void&gt;                             | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (ProgressDetails) {
+    console.info("Progess: " + '\n' + JSON.stringify(ProgressDetails));
+}, function (err) {
+     if (err) {
+         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+         return;
+     }
+     console.info('cloud sync success.');
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;;
+
+手动执行端云同步，使用promise异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                   |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                 |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
+
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```
+function Progess(ProgressDetail) {
+    console.info("Progess: " + JSON.stringify(ProgressDetail));
+}
+
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, Progess).then(() => {
+    console.info('cloud sync success:');
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void;
+
+手动执行端云同步，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                             |
+| tables   | string[]                                              | 是   | 指定同步的表名。                                   |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。             |
+| callback | AsyncCallback&lt;void&gt;                             | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```
+const tables = ["table1", "table2"];
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (ProgressDetails) {
+    console.info("Progess: " + '\n' + JSON.stringify(ProgressDetails));
+}, function (err) {
+     if (err) {
+         console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+         return;
+     }
+     console.info('cloud sync success.');
+});
+```
+
+### cloudSync<sup>10+</sup>
+
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;;
+
+手动执行端云同步，使用promise异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                   |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                 |
+| tables   | string[]                                              | 是   | 指定同步的表名。                       |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
+
+**返回值**：
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象，用于向调用者发送同步结果。 |
+
+**示例：**
+
+```
+const tables = ["table1", "table2"];
+function Progess(ProgressDetail) {
+    console.info("Progess: " + JSON.stringify(ProgressDetail));
+}
+
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, Progess).then(() => {
+    console.info('cloud sync success:');
+});
 ```
 
 ### on('dataChange')
