@@ -33,17 +33,17 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 ## BundleChangedEvent
 
-监听的事件类型的枚举信息。
+监听的事件类型。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **系统API：**  此接口为系统接口。
 
-| 名称       | 类型   | 说明             |
-| ---------- | ------ | --------------- |
-| app        | string | 监听应用事件。   |
-| update     | string | 监听更新事件。   |
-| remove     | string | 监听删除事件。   |
+| 名称       | 说明             |
+| ---------- | --------------- |
+| app        | 监听应用事件。   |
+| update     | 监听更新事件。   |
+| remove     | 监听删除事件。   |
 
 ## bundleMonitor.on
 
@@ -61,7 +61,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| BundleChangedEvent| 是   | 注册监听的事件类型。 |
+| type| [BundleChangedEvent](#BundleChangedEvent)| 是   | 注册监听的事件类型。 |
 | callback | callback\<BundleChangedInfo>| 是   | 注册监听的回调函数。 |
 
 **示例：**
