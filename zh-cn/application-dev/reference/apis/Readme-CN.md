@@ -1,4 +1,4 @@
-# 接口
+﻿# 接口
 
 - [开发说明](development-intro.md)
 
@@ -414,11 +414,12 @@
   - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (应用管理)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.browser (浏览器管理)](js-apis-enterprise-browser.md)
   - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)
-  - [@ohos.enterprise.deviceSettings (设备设置管理)](js-apis-enterprise-deviceSetings.md)
+  - [@ohos.enterprise.deviceSettings (设备设置管理)](js-apis-enterprise-deviceSettings.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
