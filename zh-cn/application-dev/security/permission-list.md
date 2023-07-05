@@ -496,7 +496,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用（除了企业InHouse应用）。
+允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。
 
 **权限级别**：system_core
 
@@ -2137,3 +2137,33 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
+
+允许在企业设备上安装企业MDM应用包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE
+
+允许在企业设备上安装企业NORMAL应用包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.INSTALL_SELF_BUNDLE
+
+允许在企业设备上企业MDM应用可以自升级。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
