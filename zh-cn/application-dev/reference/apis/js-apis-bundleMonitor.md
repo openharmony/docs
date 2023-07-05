@@ -31,6 +31,20 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
 | userId     | number | 是   | 否   | 应用状态发生变化的用户id。   |
 
+## BundleChangedEvent
+
+监听的事件类型的枚举信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**系统API：**  此接口为系统接口。
+
+| 名称       | 类型   | 说明             |
+| ---------- | ------ | --------------- |
+| app        | string | 监听应用事件。   |
+| update     | string | 监听更新事件。   |
+| remove     | string | 监听删除事件。   |
+
 ## bundleMonitor.on
 
 on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
@@ -47,7 +61,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| BundleChangedEvent| 是   | 枚举类型（add，updata，remove），注册监听的事件类型。 |
+| type| BundleChangedEvent| 是   | 注册监听的事件类型。 |
 | callback | callback\<BundleChangedInfo>| 是   | 注册监听的回调函数。 |
 
 **示例：**
@@ -80,7 +94,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| type| BundleChangedEvent| 是   | 枚举类型（add，updata，remove），注销监听的事件类型。                                         |
+| type| BundleChangedEvent| 是   | 注销监听的事件类型。                                         |
 | callback | callback\<BundleChangedInfo>| 否   | 注销监听的回调函数，默认值：注销当前事件的所有callback。 |
 
 **示例：**
@@ -94,4 +108,3 @@ try {
     console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
 }
 ```
-
