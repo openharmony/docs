@@ -26,8 +26,8 @@ import cloudData from '@ohos.data.cloudData';
 
 | 名称      | 说明                         |
 | --------- | ---------------------------- |
-| CLEAR_CLOUD_INFO | 清除云标识信息。 |
-| CLEAR_CLOUD_DATA_AND_INFO |清除本地下载的所有云端数据，包括云标识信息以及从云端下载的数据（不包括本地已修改或生成的数据）。   |
+| CLEAR_CLOUD_INFO | 将云端下载的数据变为本地数据。 |
+| CLEAR_CLOUD_DATA_AND_INFO |清除从云端下载的数据，不包括本地已修改的云端数据。   |
 
 ## Config
 
