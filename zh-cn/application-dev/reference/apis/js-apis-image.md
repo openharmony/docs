@@ -925,6 +925,96 @@ async function Demo() {
 }
 ```
 
+### marshalling<sup>10+</sup>
+
+marshalling(sequence: rpc.MessageSequence): void
+
+将PixelMap序列化后写入MessageSequence。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                                                  | 必填 | 说明                                     |
+| ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
+
+**示例：**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let parcelable = new MySequence(pixelMap);
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+}
+```
+
+### unmarshalling<sup>10+</sup>
+
+unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
+
+从MessageSequence中获取PixelMap。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                                                  | 必填 | 说明                                     |
+| ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
+
+**示例：**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let pixel_map = undefined;
+    let ret = new MySequence(pixel_map);
+    await data.readParcelable(ret);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
