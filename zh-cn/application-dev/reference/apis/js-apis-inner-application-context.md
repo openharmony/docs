@@ -156,3 +156,77 @@ try {
 }
 ```
 
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(groupId: string): Promise\<string>;
+
+通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| groupId | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<string> | 以Promise方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+let groupId = "1";
+context.getGroupDir(groupId).then(data => {
+    console.log("getGroupDir result:" + data);
+}).catch((err) => {
+    console.error('error: ${JSON.stringify(err)}');
+});
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(groupId: string, callback: AsyncCallback\<string>);
+
+通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| groupId | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+context.getGroupDir("1", (err, data) => {
+    if (err) {
+        console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    }
+});
+```
+
