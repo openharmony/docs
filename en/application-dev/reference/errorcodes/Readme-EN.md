@@ -60,6 +60,7 @@
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)  
   - [NFC Error Codes](errorcode-nfc.md)
+  - [SE Error Codes](errorcode-se.md)
   - [RPC Error Codes](errorcode-rpc.md)
  - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
