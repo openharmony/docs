@@ -476,6 +476,9 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_CHARGE_TYPE_CHANGED](./common_event/commonEvent-powermgr.md)
 表示系统充电类型改变的公共事件的动作。仅限系统应用使用。
 
+## [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](./common_event/commonEvent-powermgr.md)
+表示设备进入充电空闲模式的公共事件的动作。
+
 ## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
 表示系统待机空闲模式已更改的公共事件的动作。
 ## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
