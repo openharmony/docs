@@ -468,6 +468,8 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
+**系统API**：此接口为系统接口。
+
 **参数**：
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
@@ -498,6 +500,8 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 设置键盘按键的重复时延，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -591,6 +595,8 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
+**系统API**：此接口为系统接口。
+
 **参数**：
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
@@ -621,6 +627,8 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 设置键盘按键的重复速率，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
 
 **参数**：
 
