@@ -1757,8 +1757,8 @@ static getAvailableIDs(): string[]
 
 **示例：** 
   ```ts
-  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...]，共支持671个id
-  // 每一个id由使用中划线分割的两部分组成，格式为 source-destination
+  // ids共支持671个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
+  // 更多使用信息可以参考ISO-15924。
   let ids = I18n.Transliterator.getAvailableIDs();
   ```
 
