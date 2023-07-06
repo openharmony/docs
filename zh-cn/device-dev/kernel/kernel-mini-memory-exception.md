@@ -276,6 +276,6 @@ OpenHarmony LiteOS-M内核的回溯栈模块提供以下接口，接口详细信
    2101c658:	21025fb0 	.word	0x21025fb0
    ```
    
-6. LR值2101c648上一行是bl 2101c60c <GetResultException0>，此处调用了异常函数，调用异常函数的父函数为GetResultException1。
+6. LR值2101c648上一行是bl 2101c60c \<GetResultException0\>，此处调用了异常函数，调用异常函数的父函数为GetResultException1。
 
 7. 重复步骤3，解析异常信息中backtrace start至backtrace end之间的LR值，得到调用产生异常的函数调用栈关系，找到异常原因。
