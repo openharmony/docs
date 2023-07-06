@@ -2157,3 +2157,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+允许应用访问智能语音服务对外接口。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
