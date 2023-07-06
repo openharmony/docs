@@ -151,7 +151,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
   ```
 
 
-## resourceManager.getSystemResourceManager
+## resourceManager.getSystemResourceManager<sup>10+</sup>
 
 getSystemResourceManager(): ResourceManager
 
