@@ -16,6 +16,7 @@ Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/TLS协议。
 应用通过Socket进行数据传输，支持TCP/UDP/TLS协议。主要场景有：
 
 - 应用通过TCP/UDP Socket进行数据传输
+- 应用通过TCP Socket Server进行数据传输
 - 应用通过TLS Socket进行加密数据传输
 
 ## 接口说明
@@ -28,12 +29,15 @@ Socket连接主要由socket模块提供。具体接口说明如下表。
 | -------- | -------- |
 | constructUDPSocketInstance() | 创建一个UDPSocket对象。 |
 | constructTCPSocketInstance() | 创建一个TCPSocket对象。 |
+| constructTCPSocketServerInstance() | 创建一个TCPSocketServer对象。 |
+| listen() | 绑定IP地址和端口，监听并接受与此套接字建立的TCPSocket连接。（仅TCP支持） |
 | bind() | 绑定IP地址和端口。 |
 | send() | 发送数据。 |
 | close() | 关闭连接。 |
 | getState() | 获取Socket状态。 |
 | connect() | 连接到指定的IP地址和端口（仅TCP支持） |
 | getRemoteAddress() | 获取对端Socket地址（仅TCP支持，需要先调用connect方法） |
+| setExtraOptions() | 设置Socket连接的其他属性。 |
 | on(type:&nbsp;'message') | 订阅Socket连接的接收消息事件。 |
 | off(type:&nbsp;'message') | 取消订阅Socket连接的接收消息事件。 |
 | on(type:&nbsp;'close') | 订阅Socket连接的关闭事件。 |
@@ -161,6 +165,79 @@ setTimeout(() => {
   tcp.off('connect');
   tcp.off('close');
 }, 30 * 1000);
+```
+
+## 应用通过TCP Socket Server进行数据传输
+
+### 开发步骤
+
+服务端TCP Socket流程：
+
+1. import需要的socket模块。
+2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+3. 绑定IP地址和端口，监听并接受与此套接字建立的TCPSocket连接。
+4. 订阅TCPSocketServer相关的connect事件。
+5. 通过返回的TCPSocketConnection对象订阅相关的事件。
+6. 发送数据。
+7. 关闭与TCPSocket建立的连接，取消相关事件的订阅。
+
+```js
+import socket from '@ohos.net.socket'
+
+// 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+let tcpServer = socket.constructTCPSocketServerInstance();
+
+// 绑定本地IP地址和端口，进行监听
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+
+// 订阅TCPSocketServer的connect事件
+tcpServer.on('connect', function(client) {
+  // 订阅TCPSocketConnection相关的事件
+  client.on('close', () => {
+    console.log("on close success");
+  });
+  client.on('message', function(value) {
+    console.log("received address--:" + value.remoteInfo.address);
+    console.log("received family--:" + value.remoteInfo.family);
+    console.log("received port--:" + value.remoteInfo.port);
+    console.log("received size--:" + value.remoteInfo.size);
+  });
+
+  // 发送数据
+  client.send({data: 'Hello, client!'}, err => {
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
+  });
+
+  // 关闭与客户端的连接
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+
+  // 取消TCPSocketConnection相关的事件订阅
+  setTimeout(() => {
+    client.off('message');
+    client.off('close');
+  }, 10 * 1000);
+});
+
+// 取消TCPSocketServer相关的事件订阅
+setTimeout(() => {
+  tcpServer.off('connect');
+}, 2 * 1000);
 ```
 
 ## 应用通过TLS Socket进行加密数据传输
