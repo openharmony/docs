@@ -261,7 +261,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
 
 **描述：**
 
-检查当前编解码实例是否有效。可用于后台故障恢复或APP回切。
+检查当前编解码实例是否有效。
 
 \@syscap SystemCapability.Multimedia.Media.VideoDecoder
 

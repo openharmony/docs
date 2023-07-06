@@ -385,8 +385,6 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
 
 检查当前编解码器实例是否有效。
 
-它可以用于故障恢复或应用程序的后台切换。
-
 \@syscap SystemCapability.Multimedia.Media.VideoEncoder
 
 **参数：**
