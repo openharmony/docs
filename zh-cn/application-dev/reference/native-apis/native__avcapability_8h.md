@@ -37,8 +37,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) { **BITRATE_MODE_CBR** = 0, **BITRATE_MODE_VBR** = 1, **BITRATE_MODE_CQ** = 2 } | 编码器的比特率模式。 | 
-| [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) { **HARDWARE** = 0, **SOFTWARE** } | 编解码器类别。 | 
+| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_CBR** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_VBR** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**BITRATE_MODE_CQ** = 2<br/>} | 编码器的比特率模式。 | 
+| [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HARDWARE** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SOFTWARE**<br/>} | 编解码器类别。 | 
 
 
 ### 函数

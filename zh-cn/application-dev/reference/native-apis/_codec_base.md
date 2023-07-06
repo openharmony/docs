@@ -57,17 +57,17 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) {<br/>**AVCODEC_BUFFER_FLAGS_NONE** = 0, **AVCODEC_BUFFER_FLAGS_EOS** = 1 &lt;&lt; 0, **AVCODEC_BUFFER_FLAGS_SYNC_FRAME** = 1 &lt;&lt; 1, **AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME** = 1 &lt;&lt; 2,<br/>**AVCODEC_BUFFER_FLAGS_CODEC_DATA** = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat) { **AV_OUTPUT_FORMAT_DEFAULT** = 0, **AV_OUTPUT_FORMAT_MPEG_4** = 2, **AV_OUTPUT_FORMAT_M4A** = 6 } | 枚举封装器的输出文件格式。 | 
-| [OH_MediaType](#oh_mediatype) { **MEDIA_TYPE_AUD** = 0, **MEDIA_TYPE_VID** = 1 } | 媒体类型。 | 
-| [OH_AVCProfile](#oh_avcprofile) { **AVC_PROFILE_BASELINE** = 0, **AVC_PROFILE_HIGH** = 4, **AVC_PROFILE_MAIN** = 8 } | AVC Profile枚举。 | 
-| [OH_HEVCProfile](#oh_hevcprofile) {<br/>**HEVC_PROFILE_MAIN** = 0, **HEVC_PROFILE_MAIN_10** = 1, **HEVC_PROFILE_MAIN_STILL** = 2, **HEVC_PROFILE_MAIN_10_HDR10** = 3,<br/>**HEVC_PROFILE_MAIN_10_HDR10_PLUS** = 4<br/>} | HEVC Profile枚举。 | 
-| [OH_AACProfile](#oh_aacprofile) { **AAC_PROFILE_LC** = 0 } | AAC Profile枚举。 | 
-| [OH_AVSeekMode](#oh_avseekmode) { **SEEK_MODE_NEXT_SYNC** = 0, **SEEK_MODE_PREVIOUS_SYNC**, **SEEK_MODE_CLOSEST_SYNC** } | 跳转模式。 | 
-| [OH_ColorPrimary](#oh_colorprimary) {<br/>**COLOR_PRIMARY_BT709** = 1, **COLOR_PRIMARY_UNSPECIFIED** = 2, **COLOR_PRIMARY_BT470_M** = 4, **COLOR_PRIMARY_BT601_625** = 5,<br/>**COLOR_PRIMARY_BT601_525** = 6, **COLOR_PRIMARY_SMPTE_ST240** = 7, **COLOR_PRIMARY_GENERIC_FILM** = 8, **COLOR_PRIMARY_BT2020** = 9,<br/>**COLOR_PRIMARY_SMPTE_ST428** = 10, **COLOR_PRIMARY_P3DCI** = 11, **COLOR_PRIMARY_P3D65** = 12<br/>} | 原色。 | 
-| [OH_TransferCharacteristic](#oh_transfercharacteristic) {<br/>**TRANSFER_CHARACTERISTIC_BT709** = 1, **TRANSFER_CHARACTERISTIC_UNSPECIFIED** = 2, **TRANSFER_CHARACTERISTIC_GAMMA_2_2** = 4, **TRANSFER_CHARACTERISTIC_GAMMA_2_8** = 5,<br/>**TRANSFER_CHARACTERISTIC_BT601** = 6, **TRANSFER_CHARACTERISTIC_SMPTE_ST240** = 7, **TRANSFER_CHARACTERISTIC_LINEAR** = 8, **TRANSFER_CHARACTERISTIC_LOG** = 9,<br/>**TRANSFER_CHARACTERISTIC_LOG_SQRT** = 10, **TRANSFER_CHARACTERISTIC_IEC_61966_2_4** = 11, **TRANSFER_CHARACTERISTIC_BT1361** = 12, **TRANSFER_CHARACTERISTIC_IEC_61966_2_1** = 13,<br/>**TRANSFER_CHARACTERISTIC_BT2020_10BIT** = 14, **TRANSFER_CHARACTERISTIC_BT2020_12BIT** = 15, **TRANSFER_CHARACTERISTIC_PQ** = 16, **TRANSFER_CHARACTERISTIC_SMPTE_ST428** = 17,<br/>**TRANSFER_CHARACTERISTIC_HLG** = 18<br/>} | 转移特性。 | 
-| [OH_MatrixCoefficient](#oh_matrixcoefficient) {<br/>**MATRIX_COEFFICIENT_IDENTITY** = 0, **MATRIX_COEFFICIENT_BT709** = 1, **MATRIX_COEFFICIENT_UNSPECIFIED** = 2, **MATRIX_COEFFICIENT_FCC** = 4,<br/>**MATRIX_COEFFICIENT_BT601_625** = 5, **MATRIX_COEFFICIENT_BT601_525** = 6, **MATRIX_COEFFICIENT_SMPTE_ST240** = 7, **MATRIX_COEFFICIENT_YCGCO** = 8,<br/>**MATRIX_COEFFICIENT_BT2020_NCL** = 9, **MATRIX_COEFFICIENT_BT2020_CL** = 10, **MATRIX_COEFFICIENT_SMPTE_ST2085** = 11, **MATRIX_COEFFICIENT_CHROMATICITY_NCL** = 12,<br/>**MATRIX_COEFFICIENT_CHROMATICITY_CL** = 13, **MATRIX_COEFFICIENT_ICTCP** = 14<br/>} | 矩阵系数。 | 
-| [OH_BitsPerSample](#oh_bitspersample) {<br/>**SAMPLE_U8** = 0, **SAMPLE_S16LE** = 1, **SAMPLE_S24LE** = 2, **SAMPLE_S32LE** = 3,<br/>**SAMPLE_F32LE** = 4, **SAMPLE_U8P** = 5, **SAMPLE_S16P** = 6, **SAMPLE_S24P** = 7,<br/>**SAMPLE_S32P** = 8, **SAMPLE_F32P** = 9, **INVALID_WIDTH** = -1<br/>} | 枚举每个编码样本的音频位数。 | 
+| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_NONE** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_EOS** = 1 &lt;&lt; 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_SYNC_FRAME** = 1 &lt;&lt; 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME** = 1 &lt;&lt; 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_CODEC_DATA** = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
+| [OH_AVOutputFormat](#oh_avoutputformat) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_DEFAULT** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_MPEG_4** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_M4A** = 6<br/>} | 枚举封装器的输出文件格式。 | 
+| [OH_MediaType](#oh_mediatype) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MEDIA_TYPE_AUD** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MEDIA_TYPE_VID** = 1<br/>} | 媒体类型。 | 
+| [OH_AVCProfile](#oh_avcprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_BASELINE** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_HIGH** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_MAIN** = 8<br/>} | AVC Profile枚举。 | 
+| [OH_HEVCProfile](#oh_hevcprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_STILL** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10_HDR10** = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10_HDR10_PLUS** = 4<br/>} | HEVC Profile枚举。 | 
+| [OH_AACProfile](#oh_aacprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AAC_PROFILE_LC** = 0<br/>} | AAC Profile枚举。 | 
+| [OH_AVSeekMode](#oh_avseekmode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_NEXT_SYNC** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_PREVIOUS_SYNC**,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_CLOSEST_SYNC**<br/>} | 跳转模式。 | 
+| [OH_ColorPrimary](#oh_colorprimary) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT470_M** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT601_625** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT601_525** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_GENERIC_FILM** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT2020** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_SMPTE_ST428** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_P3DCI** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_P3D65** = 12<br/>} | 原色。 | 
+| [OH_TransferCharacteristic](#oh_transfercharacteristic) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_GAMMA_2_2** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_GAMMA_2_8** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT601** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LINEAR** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LOG** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LOG_SQRT** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_IEC_61966_2_4** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT1361** = 12,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_IEC_61966_2_1** = 13,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT2020_10BIT** = 14,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT2020_12BIT** = 15,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_PQ** = 16,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_SMPTE_ST428** = 17,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_HLG** = 18<br/>} | 转移特性。 | 
+| [OH_MatrixCoefficient](#oh_matrixcoefficient) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_IDENTITY** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_FCC** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT601_625** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT601_525** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_YCGCO** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT2020_NCL** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT2020_CL** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_SMPTE_ST2085** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_CHROMATICITY_NCL** = 12,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_CHROMATICITY_CL** = 13,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_ICTCP** = 14<br/>} | 矩阵系数。 | 
+| [OH_BitsPerSample](#oh_bitspersample) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_U8** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S16LE** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S24LE** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S32LE** = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_F32LE** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_U8P** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S16P** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S24P** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S32P** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_F32P** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**INVALID_WIDTH** = -1<br/>} | 枚举每个编码样本的音频位数。 | 
 
 
 ### 变量
@@ -145,7 +145,7 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
   
 ```
-typedef enum OH_AACProfileOH_AACProfile
+typedef enum OH_AACProfile OH_AACProfile
 ```
 
 **描述：**
@@ -159,7 +159,7 @@ AAC Profile枚举。
 
   
 ```
-typedef struct OH_AVCodecAsyncCallbackOH_AVCodecAsyncCallback
+typedef struct OH_AVCodecAsyncCallback OH_AVCodecAsyncCallback
 ```
 
 **描述：**
@@ -182,7 +182,7 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 
   
 ```
-typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
+typedef struct OH_AVCodecBufferAttr OH_AVCodecBufferAttr
 ```
 
 **描述：**
@@ -196,7 +196,7 @@ typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
 
   
 ```
-typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
+typedef enum OH_AVCodecBufferFlags OH_AVCodecBufferFlags
 ```
 
 **描述：**
@@ -210,7 +210,7 @@ typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
 
   
 ```
-typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
+typedef void (*OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
 ```
 
 **描述：**
@@ -232,7 +232,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 
   
 ```
-typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+typedef void (*OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 ```
 
 **描述：**
@@ -255,7 +255,7 @@ typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH
 
   
 ```
-typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
+typedef void (*OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 ```
 
 **描述：**
@@ -279,7 +279,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 
   
 ```
-typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+typedef void (*OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 ```
 
 **描述：**
@@ -301,7 +301,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 
   
 ```
-typedef enum OH_AVCProfileOH_AVCProfile
+typedef enum OH_AVCProfile OH_AVCProfile
 ```
 
 **描述：**
@@ -315,7 +315,7 @@ AVC Profile枚举。
 
   
 ```
-typedef enum OH_AVOutputFormatOH_AVOutputFormat
+typedef enum OH_AVOutputFormat OH_AVOutputFormat
 ```
 
 **描述：**
@@ -327,7 +327,7 @@ typedef enum OH_AVOutputFormatOH_AVOutputFormat
 
   
 ```
-typedef enum OH_AVSeekModeOH_AVSeekMode
+typedef enum OH_AVSeekMode OH_AVSeekMode
 ```
 
 **描述：**
@@ -341,7 +341,7 @@ typedef enum OH_AVSeekModeOH_AVSeekMode
 
   
 ```
-typedef enum OH_BitsPerSampleOH_BitsPerSample
+typedef enum OH_BitsPerSample OH_BitsPerSample
 ```
 
 **描述：**
@@ -355,7 +355,7 @@ typedef enum OH_BitsPerSampleOH_BitsPerSample
 
   
 ```
-typedef enum OH_ColorPrimaryOH_ColorPrimary
+typedef enum OH_ColorPrimary OH_ColorPrimary
 ```
 
 **描述：**
@@ -369,7 +369,7 @@ typedef enum OH_ColorPrimaryOH_ColorPrimary
 
   
 ```
-typedef enum OH_HEVCProfileOH_HEVCProfile
+typedef enum OH_HEVCProfile OH_HEVCProfile
 ```
 
 **描述：**
@@ -383,7 +383,7 @@ HEVC Profile枚举。
 
   
 ```
-typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
+typedef enum OH_MatrixCoefficient OH_MatrixCoefficient
 ```
 
 **描述：**
@@ -397,7 +397,7 @@ typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
 
   
 ```
-typedef enum OH_MediaTypeOH_MediaType
+typedef enum OH_MediaType OH_MediaType
 ```
 
 **描述：**
@@ -411,7 +411,7 @@ typedef enum OH_MediaTypeOH_MediaType
 
   
 ```
-typedef enum OH_TransferCharacteristicOH_TransferCharacteristic
+typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
 
 **描述：**

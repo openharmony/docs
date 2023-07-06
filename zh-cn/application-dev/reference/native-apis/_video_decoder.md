@@ -52,7 +52,7 @@ VideoDecoder模块提供用于视频解码的函数。
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **描述：**
@@ -83,7 +83,7 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format
 
   
 ```
-OH_AVCodec* OH_VideoDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_VideoDecoder_CreateByMime (const char *mime)
 ```
 
 **描述：**
@@ -111,7 +111,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByMime (const char * mime)
 
   
 ```
-OH_AVCodec* OH_VideoDecoder_CreateByName (const char * name)
+OH_AVCodec* OH_VideoDecoder_CreateByName (const char *name)
 ```
 
 **描述：**
@@ -139,7 +139,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByName (const char * name)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -167,7 +167,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -197,7 +197,7 @@ OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec *codec, uint32_t index)
 ```
 
 **描述：**
@@ -226,7 +226,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index 
 
   
 ```
-OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -256,12 +256,12 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid)
 ```
 
 **描述：**
 
-检查当前编解码实例是否有效。可用于后台故障恢复或APP回切。
+检查当前编解码实例是否有效。
 
 \@syscap SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -285,7 +285,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -313,7 +313,7 @@ OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr)
 ```
 
 **描述：**
@@ -349,7 +349,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, 
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec *codec, uint32_t index)
 ```
 
 **描述：**
@@ -380,7 +380,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec * codec, uint32_t inde
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -408,7 +408,7 @@ OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData)
 ```
 
 **描述：**
@@ -440,7 +440,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCal
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **描述：**
@@ -471,7 +471,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * for
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * window )
+OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec *codec, OHNativeWindow *window)
 ```
 
 **描述：**
@@ -500,7 +500,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * wi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec *codec)
 ```
 
 **描述：**
@@ -530,7 +530,7 @@ OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec * codec)
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 ```
 
 **描述：**
