@@ -505,7 +505,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
-| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则                  |
+| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -563,13 +563,13 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则                  |
+| filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当添加网络包过滤规则失败时抛出错误对象  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当添加网络包过滤规则失败时抛出错误对象。  |
 
 **错误码**：
 
@@ -624,7 +624,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
-| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则                  |
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -680,13 +680,13 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则                  |
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当移除网络包过滤规则失败时抛出错误对象  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当移除网络包过滤规则失败时抛出错误对象。  |
 
 **错误码**：
 
