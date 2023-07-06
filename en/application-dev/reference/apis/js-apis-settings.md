@@ -376,6 +376,8 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables airplane mode. This API uses an asynchronous callback to return the result.
 
+This API is not supported in the current version.
+
 **System capability**: SystemCapability.Applications.settings.Core
 
 **Parameters**
@@ -403,6 +405,8 @@ settings.enableAirplaneMode(isEnabled, (err) => {
 enableAirplaneMode(enable: boolean): Promise\<void>
 
 Enables or disables airplane mode. This API uses a promise to return the result.
+
+This API is not supported in the current version.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
