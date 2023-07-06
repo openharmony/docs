@@ -5505,7 +5505,7 @@ audioRenderer.getMinStreamVolume((err, minVolume) => {
 
 getMinStreamVolume(): Promise&lt;number&gt;
 
-获取应用基于音频流的最小音量（音量范围0-1）。使用Promise异步回调。
+获取应用基于音频流的最小音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5553,7 +5553,7 @@ audioRenderer.getMaxStreamVolume((err, maxVolume) => {
 
 getMaxStreamVolume(): Promise&lt;number&gt;
 
-获取应用基于音频流的最大音量（音量范围0-1）。使用Promise异步回调。
+获取应用基于音频流的最大音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
