@@ -159,3 +159,22 @@ getMask(): DrawableDescriptor;
 drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getMask();
   ```
+## LayeredDrawableDescriptor.getMashClipPath
+static getMashClipPath(): string;
+
+LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
+| string | 返回裁切路径的命令字符串 |
+
+**示例：**
+  ```ts
+Image($r('app.media.testImg'))
+    .width('200px').height('200px')
+    .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+  ```
