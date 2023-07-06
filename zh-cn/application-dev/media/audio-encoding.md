@@ -152,7 +152,7 @@ constexpr int32_t COMPLIANCE_LEVEL = 0;
 // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
 constexpr BITS_PER_CODED_SAMPLE BITS_PER_CODED_SAMPLE =OH_BitsPerSample::SAMPLE_S24LE;
 // 配置最大输入长度（可选）
-constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*2*4;//aac
+constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
 OH_AVFormat *format = OH_AVFormat_Create();
 // 写入format
 OH_AVFormat_SetIntValue(format,MediaDescriptionKey::MD_KEY_SAMPLE_RATE.data(),DEFAULT_SMAPLERATE);
@@ -199,9 +199,29 @@ if (ret != AV_ERR_OK) {
 
 6. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+   
+   aac： 样点数(FRAME_SIZE)固定为1024
+   
+   flac： 样点数(FRAME_SIZE)比较特殊需要，根据如下表格进行设置
+   
+   | 采样率 | 样点数 |
+   | :----: | :----: |
+   |  8000  |  576   |
+   | 16000  |  1152  |
+   | 22050  |  2304  |
+   | 24000  |  2304  |
+   | 32000  |  2304  |
+   | 44100  |  4608  |
+   | 48000  |  4608  |
+   | 88200  |  8192  |
+   | 96000  |  8192  |
+   
+   **注意**：aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
 ```c++
-constexpr int32_t INPUT_FRAME_BYTES = 2 * 1024 * 4;
+constexpr int32_t FRAME_SIZE = 1024; //aac
+constexpr int32_t DEFAULT_CHANNEL_COUNT =2;
+constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * FRAME_SIZE * sizeof(float); //aac
 // 配置buffer info信息
 OH_AVCodecBufferAttr info;
 // 设置输入pkt尺寸、偏移量、时间戳等信息
