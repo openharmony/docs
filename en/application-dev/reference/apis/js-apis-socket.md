@@ -1750,7 +1750,7 @@ promise.then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1802,7 +1802,7 @@ tls.setExtraOptions({
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses a promise to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
