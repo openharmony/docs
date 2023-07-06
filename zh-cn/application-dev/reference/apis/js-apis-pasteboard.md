@@ -18,7 +18,7 @@ import pasteboard from '@ohos.pasteboard';
 
 | 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 单个PasteData中所能包含的最大条目数。 |
+| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 表示单个PasteData中所能包含的最大条目数。从API10开始，不再限制单个PasteData中所能包含的最大条目数。 |
 | MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | Want内容的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。 |
@@ -618,8 +618,6 @@ addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -643,8 +641,6 @@ pasteData.addRecord(htmlRecord);
 addRecord(mimeType: string, value: ValueType): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -947,7 +943,6 @@ addHtmlRecord(htmlText: string): void
 
 向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -974,7 +969,6 @@ addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -1004,7 +998,6 @@ addTextRecord(text: string): void
 
 向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -1030,7 +1023,6 @@ addUriRecord(uri: string): void
 
 向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
