@@ -37,17 +37,19 @@ create(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
   ```js
-  let options = {
-    duration: 1500,
-    easing: "friction",
-    delay: 0,
-    fill: "forwards",
-    direction: "normal",
-    iterations: 3,
-    begin: 200.0,
-    end: 400.0
-  };
-  animator.create(options);
+import animator, { AnimatorOptions } from '@ohos.animator';
+
+let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0
+};
+animator.create(options);
   ```
 
 ## AnimatorResult
@@ -80,7 +82,7 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```js
-let options = {
+let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -513,7 +515,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
 ```js
-let options = {
+let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
   duration: 1500,
   easing: "friction",
   delay: 0,
