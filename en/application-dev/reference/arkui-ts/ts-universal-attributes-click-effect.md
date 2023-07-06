@@ -9,16 +9,16 @@ You can set the click effect for a component to define how it behaves when click
 
 ### Attributes
 
-| Name       | Type           | Description                                                        |
-| ----------- | ------------------- | ------------------------------------------------------------ |
-| clickEffect | [ClickEffect](#clickeffect) \| null | Click effect of the component.<br>**NOTE**<br>The click effect is revoked when this attribute is set to **null**.|
+| Name       | Type                                   | Description                                                        |
+| ----------- | ------------------------------------------- | ------------------------------------------------------------ |
+| clickEffect | [ClickEffect](#clickeffect) \| null | Click effect of the component.<br>**NOTE**<br>You can remove the click effect by setting this attribute to **undefined** or **null**.<br>Avoid using this attribute in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger a universal event.|
 
 ### ClickEffect
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | Yes  | Click effect of the component.<br>Default value: **ClickEffectLevel.LIGHT**|
-| scale | number                                                      | No  | Zoom ratio. This parameter works based on the setting of **ClickEffectLevel**.<br>**NOTE**<br>The default value of this parameter varies by the value of **level**.<br>- If **level** is set to **ClickEffectLevel.LIGHT**, the default value is **0.90**.<br>- If **level** is set to **ClickEffectLevel.MIDDLE** or **ClickEffectLevel.HEAVY**, the default value is **0.95**. |
+| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | Yes  | Click effect of the component.<br>**NOTE**<br>If **level** is set to **undefined** or **null**, the click effect corresponding to **ClickEffectLevel.LIGHT** will be used. For details about the zoom ratio, see the description of **scale**.|
+| scale | number                                                      | No  | Zoom ratio. This parameter works based on the setting of **ClickEffectLevel**.<br>**NOTE**<br>The default value of this parameter varies by the value of **level**.<br>- If **level** is set to **ClickEffectLevel.LIGHT**, the default value is **0.90**.<br>- If **level** is set to **ClickEffectLevel.MIDDLE** or **ClickEffectLevel.HEAVY**, the default value is **0.95**.<br>- If **level** is set to **undefined** or **null** (both of which evaluate to **ClickEffectLevel.LIGHT**), the default value is **0.90**.<br>If **scale** is set to **undefined** or **null**, the default zoom ratio for the set level will be used. |
 
 ### Example
 
