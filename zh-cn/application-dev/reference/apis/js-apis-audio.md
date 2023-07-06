@@ -831,16 +831,16 @@ async function createTonePlayerBefore(){
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
-## VolumeAdjustType<sup>10+</sup><a name="volumeadjusttype"></a>
+## VolumeAdjustType<sup>10+</sup>
 
-枚举，音频场景。
+枚举，音量调节类型。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| VOLUME_UP    | 0      | 单步向上调节音量。     |
-| VOLUME_DOWN    | 1      | 单步向下调节音量。 |
+| VOLUME_UP    | 0      | 向上调节音量。     |
+| VOLUME_DOWN    | 1      | 向下调节音量。 |
 
 ## AudioManager
 
@@ -2985,9 +2985,9 @@ audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
 
 ### isVolumeUnadjustable<sup>(deprecated)</sup>
 
-isVolumeUnadjustable(): boolean&gt;
+isVolumeUnadjustable(): boolean
 
-获取固定音量模式开关，使用同步方式返回结果。
+获取固定音量模式开关，打开时进入固定音量模式，此时音量固定无法被调节，使用同步方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2995,7 +2995,7 @@ isVolumeUnadjustable(): boolean&gt;
 
 | 类型                   | 说明                                                   |
 | ---------------------- | ------------------------------------------------------ |
-| boolean&gt;            | 同步回调返回固定音量模式开关状态，true为固定音量模式，false为非固定音量模式。 |
+| boolean            | 同步回调返回固定音量模式开关状态，true为固定音量模式，false为非固定音量模式。 |
 
 **示例：**
 
@@ -3008,7 +3008,7 @@ console.info(`Whether it is volume unadjustable: ${switch} `);
 
 adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
 
-单步设置当前最高优先级的流的音量，使用callback方式异步返回结果。
+调节当前最高优先级的流的音量，使音量值加一或减一，使用callback方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -3022,7 +3022,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| adjustType | [VolumeAdjustType](#volumeadjusttype) | 是   | 音量调节方向。                                             |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
 
 **示例：**
@@ -3054,7 +3054,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| adjustType | [VolumeAdjustType](#volumeadjusttype) | 是   | 音量调节方向。                                             |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 
 **返回值：**
 
@@ -3091,7 +3091,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| adjustType | [VolumeAdjustType](#volumeadjusttype) | 是   | 音量调节方向。                                             |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
 
 **示例：**
@@ -3124,7 +3124,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| adjustType | [VolumeAdjustType](#volumeadjusttype) | 是   | 音量调节方向。                                             |
+| adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 
 **返回值：**
 
@@ -3146,7 +3146,7 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
 
-获取音量增益DB值，使用callback方式异步返回结果。
+获取音量增益dB值，使用callback方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -3157,7 +3157,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volumeLevel | volumeLevel                         | 是   | 音量等级。                                               |
+| volumeLevel | number                         | 是   | 音量等级。                                               |
 | device     | [DeviceType](#devicetype)           | 是   | 设备类型。                                               |
 | callback   | AsyncCallback&lt;number&gt;           | 是   | 回调返回对应的音量增益DB值。                              |
 
@@ -5489,7 +5489,7 @@ getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名  | 类型       | 必填   | 说明                 |
 | ------- | -----------| ------ | ------------------- |
-|callback |AsyncCallback&lt;number&gt; | 是     |Callback回调返回音频流的最小音量。|
+|callback |AsyncCallback&lt;number&gt; | 是     |Callback回调返回音频流最小音量（音量范围0-1）。|
 
 **示例：**
 
@@ -5505,7 +5505,7 @@ audioRenderer.getMinStreamVolume((err, minVolume) => {
 
 getMinStreamVolume(): Promise&lt;number&gt;
 
-获取应用基于音频流的最小音量。使用Promise异步回调。
+获取应用基于音频流的最小音量（音量范围0-1）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5513,7 +5513,7 @@ getMinStreamVolume(): Promise&lt;number&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt;| Promise回调返回音频流的最小音量。|
+| Promise&lt;number&gt;| Promise回调返回音频流最小音量（音量范围0-1）。|
 
 **示例：**
 
@@ -5537,7 +5537,7 @@ getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名  | 类型       | 必填   | 说明                 |
 | ------- | -----------| ------ | ------------------- |
-|callback | AsyncCallback&lt;number&gt; | 是     |Callback回调返回音频流的最大音量。|
+|callback | AsyncCallback&lt;number&gt; | 是     |Callback回调返回音频流最大音量（音量范围0-1）。|
 
 **示例：**
 
@@ -5553,7 +5553,7 @@ audioRenderer.getMaxStreamVolume((err, maxVolume) => {
 
 getMaxStreamVolume(): Promise&lt;number&gt;
 
-获取应用基于音频流的最大音量。使用Promise异步回调。
+获取应用基于音频流的最大音量（音量范围0-1）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5561,7 +5561,7 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt;| Promise回调返回音频流的最大音量。|
+| Promise&lt;number&gt;| Promise回调返回音频流最大音量（音量范围0-1）。|
 
 **示例：**
 
@@ -5664,7 +5664,7 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt;| Promise回调返回音频流的输出设备描述符。|
+| Promise&lt;AudioDeviceDescriptors&gt;| Promise回调返回音频流的输出设备描述符。|
 
 **示例：**
 
