@@ -36,6 +36,7 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 | decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
 | letterSpacing       | number \| string  | Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
 
 
 ## Events
