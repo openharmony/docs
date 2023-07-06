@@ -170,14 +170,14 @@ Obtains the drawing context of the offscreen canvas.
 
 | Name       | Type                                                        | Mandatory| Default Value| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | Yes  | "2d"   | Type of the drawing context of the offscreen canvas.                       |
+| contextType | string                                                       | Yes  | "2d"   | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.                      |
 | option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | Drawing context of the offscreen canvas.|
+| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | Drawing context of the offscreen canvas. If **contextType** in **getContext** is set to a value other than **"2d"** (including **null** and **undefined**), **null** is returned.|
 
 **Example**
 

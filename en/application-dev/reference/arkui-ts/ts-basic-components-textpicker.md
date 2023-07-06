@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-TextPicker(options?: {range: string[]|Resource|TextPickerRangeContent[], selected?: number, value?: string})
+TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number, value?: string})
 
 Creates a text picker based on the selection range specified by **range**.
 
@@ -22,9 +22,9 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | string[] \| [Resource](ts-types.md#resource) \| [TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.|
-| selected | number | No| Index of the default item in the range.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| value | string | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only for a text list. It does not work for an image list or a list consisting of text and images.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
+| range | string[] \| string[][]<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../quick-start/resource-categories-and-access.md#resource-group-subdirectories).|
+| selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -33,6 +33,13 @@ Creates a text picker based on the selection range specified by **range**.
 | icon   | string \| [Resource](ts-types.md#resource) | Yes  | Image resource.|
 | text   | string \| [Resource](ts-types.md#resource) | No  | Text information.|
 
+## TextCascadePickerRangeContent<sup>10+</sup>
+
+| Name| Type                                                | Mandatory| Description  |
+| ------ | -------------------------------------------------------- | ---- | ---------- |
+| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.|
+| children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[] | No  | Linkage data.|
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -40,9 +47,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | defaultPickerItemHeight | number \| string | Height of each item in the picker.|
-| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.|
-| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| selectedIndex<sup>10+</sup> | number \| number[] | Sets the index value of the default selected item in the array. The priority is higher than that of the selected value in options.<br>**NOTE**<br>For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type.|
 
 ## Events
 
@@ -50,9 +58,9 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onAccept(callback: (value: string, index: number) => void) | Triggered when the OK button in the dialog box is clicked.<br><br>- **value**: value of the selected item.<br>- **index**: index of the selected item.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
-| onCancel(callback: () => void) | Triggered when the Cancel button in the dialog box is clicked.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
-| onChange(callback: (value: string, index: number) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item.<br>**NOTE**<br>For a text list or a list consisting of text and images, **value** indicates the text value of the selected item. For an image list, **value** is empty.<br>- **index**: index of the selected item.|
+| onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | Triggered when the OK button in the dialog box is clicked.<br>- **value**: value of the selected item.<br>- **index**: index of the selected item.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
+| onCancel(callback: () => void)<sup>(deprecated) </sup>  | Triggered when the Cancel button in the dialog box is clicked.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
+| onChange(callback: (value: string \| string[]<sup>10+</sup>, index: number \| number[]<sup>10+</sup>) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item. (For a multi-column picker, **value** is of the array type.)<br>- **index**: index of the selected item. (For a multi-column picker, **index** is of the array type.)<br>**NOTE**<br>When the picker contains text only or both text and imagery, **value** indicates the text value of the selected item.When the picker contains imagery only, **value** is empty.|
 
 
 ## Example
