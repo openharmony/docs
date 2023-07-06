@@ -230,23 +230,23 @@ Invalid web storage origin.
 2. 如果已经使用，检查调用失败原因，如databaseAccess开发是否打开。
 
 
-## 17100013 申请内存失败
+## 17100013 预连接时，输入socket数目无效
 
 **错误信息**
 
-New failed, out of memeory.
+The number of preconnect sockets is invalid.
 
 **错误描述**
 
-申请失败，内存不足。
+预连接时，输入socket的数目是无效的。
 
 **可能原因**
 
-需要发送的数据过大，导致申请内存失败。
+预连接时，输入socket的数目小于等于0，或者大于6。
 
 **处理步骤**
 
-检查需要发送的数据的长度。
+检查输入的socket的数目范围是否大于0且小于等于6。
 
 
 ## 17100014 类型和值不匹配
@@ -266,4 +266,23 @@ The type does not match with the value of the message.
 **处理步骤**
 
 需要根据消息的类型调用相应的接口来获取消息的值。举例：如获取到的类型是BOOLEAN，则需要调用GetBoolean接口来获取布尔值。
+
+
+## 17100015 申请内存失败
+
+**错误信息**
+
+New failed, out of memeory.
+
+**错误描述**
+
+申请失败，内存不足。
+
+**可能原因**
+
+需要发送的数据过大，导致申请内存失败。
+
+**处理步骤**
+
+检查需要发送的数据的长度。
 
