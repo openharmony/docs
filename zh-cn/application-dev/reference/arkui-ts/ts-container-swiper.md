@@ -53,6 +53,8 @@ Swiper(controller?: SwiperController)
 | displayCount<sup>8+</sup>             | number\|string                           | 设置一页内元素显示个数。<br/>默认值：1<br/>**说明：** <br/>字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。<br/>使用number类型且设置小于等于0时，按默认值1显示。<br/>使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1的itemSpace）的方式进行主轴拉伸（收缩）布局。 |
 | effectMode<sup>8+</sup>               | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring<br/>**说明：** <br/>控制器接口调用时不生效回弹。 |
 | displayArrow<sup>10+</sup>            | value:[ArrowStyle](#arrowstyle10) \| boolean,<br/>isHoverShow?: boolean | 设置导航点箭头样式。<br/>-value: 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。<br/>\-isHoverShow：设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| nextMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 后边距，用于露出后一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。         |
+| prevMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 前边距，用于露出前一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。        |
 
 ## SwiperDisplayMode枚举说明
 
