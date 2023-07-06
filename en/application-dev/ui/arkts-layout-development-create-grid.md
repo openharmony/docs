@@ -1,4 +1,4 @@
-# Creating a Grid
+# Creating a Grid (Grid/GridItem)
 
 
 ## Overview

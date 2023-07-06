@@ -29,6 +29,7 @@ Environment is a singleton object created by the ArkUI framework at application 
 The chain of updates is as follows: Environment > AppStorage > Component.
 
 > **NOTE**
+>
 > An \@StorageProp decorated variable can be locally modified, but the change will not be updated to AppStorage. This is because the environment variable parameters are read-only to the application.
 
 
