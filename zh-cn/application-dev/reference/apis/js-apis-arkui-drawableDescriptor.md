@@ -160,7 +160,7 @@ drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.get
     .id))).getMask();
   ```
 ## LayeredDrawableDescriptor.getMashClipPath
-static getMashClipPath(): string;
+static getMashClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
 
