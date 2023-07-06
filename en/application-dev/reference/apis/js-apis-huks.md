@@ -48,7 +48,7 @@ Defines the HUKS handle structure.
 
 ## HuksReturnResult<sup>9+</sup>
 
-Defines the **HuksResult** structure.
+Defines the **HuksResult** struct.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -2260,8 +2260,8 @@ Enumerates the key storage modes.
 
 | Name                                         | Value  | Description                          |
 | --------------------------------------------  | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP                             | 0    | The key is managed locally.    |
-| HUKS_STORAGE_PERSISTENT                       | 1    | The key is managed by the HUKS service.|
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | The key is managed locally.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.|
+| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | The key is managed by the HUKS service.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.|
 | HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key is stored only in the HUKS.      |
 | HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key is exported from the HUKS and is not stored.|
 
@@ -3334,7 +3334,7 @@ Defines the HUKS handle structure.
 
 ## HuksResult<sup>(deprecated)</sup>
 
-Defines the **HuksResult** structure.
+Defines the **HuksResult** struct.
 
 **System capability**: SystemCapability.Security.Huks
 
