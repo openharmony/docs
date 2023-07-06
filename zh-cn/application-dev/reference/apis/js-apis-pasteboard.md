@@ -16,14 +16,14 @@ import pasteboard from '@ohos.pasteboard';
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 值 | 说明 |
-| -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 表示单个PasteData中所能包含的最大条目数。从API10开始，不再限制单个PasteData中所能包含的最大条目数。 |
-| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
-| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | Want内容的MIME类型定义。 |
+| 名称 | 类型 | 值            | 说明 |
+| -------- | -------- |--------------| -------- |
+| MAX_RECORD_NUM<sup>7+</sup> | number | -            | 表示单个PasteData中所能包含的最大条目数。从API10开始，不再限制单个PasteData中所能包含的最大条目数。 |
+| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html'  | HTML内容的MIME类型定义。 |
+| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want'  | Want内容的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。 |
-| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri' | URI内容的MIME类型定义。 |
-| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap' | PixelMap内容的MIME类型定义。 |
+| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri'   | URI内容的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap'   | PixelMap内容的MIME类型定义。 |
 
 ## ValueType<sup>9+</sup>
 
