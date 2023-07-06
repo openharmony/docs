@@ -838,6 +838,8 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 执行指定的shell命令（callback形式）
 
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -864,6 +866,8 @@ abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
 executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void;
 
 指定超时时间，并执行指定的shell命令（callback形式）
+
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -893,6 +897,8 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
 
 指定超时时间，并执行指定的shell命令（promise形式）
+
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
