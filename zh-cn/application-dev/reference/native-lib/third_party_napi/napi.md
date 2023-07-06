@@ -9,11 +9,9 @@ Node-API是用于封装JavaScript能力为Native插件的API，独立于底层Ja
 
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持[Node-API](https://nodejs.org/docs/v14.9.0/api/n-api.html)标准库中的部分接口。
+OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
-## N-API组件扩展的符号列表
-
-**标准库中导出的符号列表**
+## N-API组件标准库中导出的符号列表
 
 |符号类型|符号名|说明|
 | --- | --- | --- |
@@ -146,4 +144,10 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_object_seal|密封给定的对象。|
 |FUNC|napi_get_all_property_names|获取一个数组，其中包含此对象过滤后的属性名称。|
 |FUNC|napi_detach_arraybuffer|分离给定`ArrayBuffer`的底层数据。|
-|FUNC|napi_is_detached_arraybuffe|判断给定的`ArrayBuffer`是否已被分离过。|
+|FUNC|napi_is_detached_arraybuffer|判断给定的`ArrayBuffer`是否已被分离过。|
+
+## N-API组件扩展的符号列表
+
+|符号类型|符号名|说明|
+| --- | --- | --- |
+|FUNC|napi_queue_async_work_with_qos|将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。|
