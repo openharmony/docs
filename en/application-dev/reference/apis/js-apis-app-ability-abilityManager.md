@@ -388,7 +388,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-Acquires the shared data of the target application. This API uses an asynchronous callback to return the result. **missionId** indicates the target application's mission ID, which can be obtained by running the **hdc shell aa dump -a** command or calling the [missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos) API after the target application is started. **callback** indicates the data shared by the target application through the [UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare) lifecycle callback.
+Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -429,9 +429,15 @@ try {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-Acquires the shared data of the target application. This API uses a promise to return the result. **missionId** indicates the target application's mission ID, which can be obtained by running the **hdc shell aa dump -a** command or calling the [missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos) API after the target application is started. **Promise<{[key: string]: Object}>** indicates the data shared by the target application through the [UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare) lifecycle callback.
+Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses a promise to return the result.
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| missionId | number                                   | Yes| Mission ID on the target application. The maximum value is 2<sup>31</sup>-1.|
 
 **Return value**
 

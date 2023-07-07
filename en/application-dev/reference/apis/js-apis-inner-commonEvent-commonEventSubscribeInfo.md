@@ -8,7 +8,7 @@
 
 | Name               | Type          | Readable| Writable| Description                                                        |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| events              | Array\<string> | Yes | No | Name of the common event to publish.                                        |
+| events              | Array\<string> | Yes | No | Common events to subscribe to.                                        |
 | publisherPermission | string         | Yes | No | Permissions required for publishers to publish the common event.                                            |
 | publisherDeviceId   | string         | Yes | No | Device ID. The value must be the ID of a device on the same network.            |
 | userId              | number         | Yes | No | User ID. The value must be an existing user ID in the system. If this parameter is not specified, the default value, which is the ID of the current user, will be used. |

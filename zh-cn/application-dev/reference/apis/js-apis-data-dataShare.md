@@ -245,7 +245,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | ----- | -------- |
 | key | string | 是 | 指定运算结果的键。 |
-| result | number | 是 | 指定运算结果。  |
+| result | number | 是 | 指定运算结果。正常情况下返回0，异常情况下返回错误码。  |
 ## DataShareHelper
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
@@ -393,7 +393,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                           | 是   | 订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。  |
+| type      | string                           | 是   | 订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。type是固定值以外时，接口无响应。  |
 | uris    | Array&lt;string&gt;                | 是   | 要操作的数据的路径。           |
 | templateId | [TemplateId](#templateid10)       | 是   | 处理回调的templateId。           |
 | callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | 是   | 回调函数。当触发变更通知时调用，err为undefined，node为订阅数据变更结果；否则不被触发或为错误对象。  |
@@ -1066,7 +1066,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-将批量数据插入数据库。使用callback异步回调。
+将批量数据插入数据库。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1102,7 +1102,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-将批量数据插入数据库。使用Promise异步回调。
+将批量数据插入数据库。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1141,7 +1141,7 @@ try {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1169,7 +1169,7 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1200,7 +1200,7 @@ dataShareHelper.normalizeUri(uri).then((data) => {
 
 denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将指定的URI转换为非规范化URI。使用callback异步回调。
+将指定的URI转换为非规范化URI。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1228,7 +1228,7 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
-将指定的URI转换为非规范化URI。使用Promise异步回调。
+将指定的URI转换为非规范化URI。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1259,7 +1259,7 @@ dataShareHelper.denormalizeUri(uri).then((data) => {
 
 notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1283,7 +1283,7 @@ dataShareHelper.notifyChange(uri, () => {
 
 notifyChange(uri: string): Promise&lt;void&gt;
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

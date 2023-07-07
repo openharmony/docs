@@ -21,6 +21,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 授权URI给指定应用，通过callback返回结果。
 
+默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -38,22 +39,33 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **错误码：**
 
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201 | Permissions denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
-  | 16500050 | Internal error. |
-  | 16500058 | Invalid URI flag. |
-  | 16500059 | Invalid URI type. |
-  | 16500060 | Sandbox application can not grant URI permission. |
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | Sandbox application can not grant URI permission. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let path = this.context.filesDir + '/newDir';
+  await fileio.mkdir(path, function (err) {
+    if (err) {
+      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', "mkdir succeed");
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
@@ -66,6 +78,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 授权URI给指定应用，通过返回值返回结果。
 
+默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -89,22 +102,33 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 **错误码：**
 
   | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201 | Permissions denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
-  | 16500050 | Internal error. |
-  | 16500058 | Invalid URI flag. |
-  | 16500059 | Invalid URI type. |
-  | 16500060 | Sandbox application can not grant URI permission. |
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000058 | Invalid URI flag. |
+  | 16000059 | Invalid URI type. |
+  | 16000060 | Sandbox application can not grant URI permission. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
+  let path = this.context.filesDir + '/newDir';
+  await fileio.mkdir(path, function (err) {
+    if (err) {
+      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', "mkdir succeed");
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
+  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
   }).catch((error) => {
@@ -117,6 +141,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 撤销授权指定应用的URI，通过callback返回结果。
 
+默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -134,19 +159,21 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 **错误码：**
 
   | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201 | Permissions denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
-  | 16500059 | Invalid URI type. |
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  let targetBundleName = 'com.example.test_case1'
-  let URI = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  uriPermissionManager.revokeUriPermission(URI, targetBundleName, (result) => {
+  
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
+  uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
   ```
@@ -158,6 +185,8 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 撤销授权指定应用的URI，通过返回值返回结果。
 
+
+默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -181,18 +210,20 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 **错误码：**
 
   | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 201 | Permissions denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | The parameter check failed. |
-  | 16500059 | Invalid URI type. |
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)

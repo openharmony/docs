@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import AuthorizationExtensionAbility from '@ohos.account.appAccount.AuthorizationExtensionAbility';
+import AuthorizationExtensionAbility, { AuthorizationRequest, AuthorizationCallback } from '@ohos.account.appAccount.AuthorizationExtensionAbility';
 ```
 
 ## AuthorizationRequest

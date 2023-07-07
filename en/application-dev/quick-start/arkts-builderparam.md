@@ -1,4 +1,4 @@
-# \@BuilderParam: @Builder Function Reference
+# \@BuilderParam Decorator: @Builder Function Reference
 
 
 In certain circumstances, you may need to add a specific function, such as a click-to-jump action, to a custom component. However, embedding an event method directly inside of the component will add the function to all places where the component is imported. This is where the \@BuilderParam decorator comes into the picture. \@BuilderParam is used to decorate a custom component member variable of type reference to an \@Builder method. When initializing a custom component, you can assign a value to the variable, thereby adding the specific function to the custom component. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.

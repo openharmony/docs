@@ -25,7 +25,7 @@ import sensor from '@system.sensor';
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
@@ -60,7 +60,7 @@ unsubscribeAccelerometer(): void
 
 取消订阅加速度数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
@@ -76,7 +76,7 @@ sensor.unsubscribeAccelerometer();
 
 订阅罗盘数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -106,7 +106,7 @@ unsubscribeCompass(): void
 
 取消订阅罗盘。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -120,7 +120,7 @@ sensor.unsubscribeCompass();
 
 订阅距离感应数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -150,7 +150,7 @@ unsubscribeProximity(): void
 
 取消订阅距离感应。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -164,7 +164,7 @@ sensor.unsubscribeProximity();
 
 订阅环境光线感应数据变化。再次调用时，会覆盖前一次调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -194,7 +194,7 @@ unsubscribeLight(): void
 
 取消订阅环境光线感应。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -208,7 +208,7 @@ sensor.unsubscribeLight();
 
 订阅计步传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -240,7 +240,7 @@ unsubscribeStepCounter(): void
 
 取消订阅计步传感器。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -257,7 +257,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 
 订阅气压计传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -288,7 +288,7 @@ unsubscribeBarometer(): void
 
 取消订阅气压计传感器。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -303,7 +303,7 @@ sensor.unsubscribeBarometer();
 
 订阅心率传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -336,7 +336,7 @@ unsubscribeHeartRate(): void
 
 取消订阅心率传感器。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -352,7 +352,7 @@ sensor.unsubscribeHeartRate();
 
 订阅设备佩戴状态。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -382,7 +382,7 @@ unsubscribeOnBodyState(): void
 
 取消订阅设备佩戴状态。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -396,7 +396,7 @@ sensor.unsubscribeOnBodyState();
 
 获取设备佩戴状态。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -425,7 +425,7 @@ sensor.getOnBodyState({
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **参数：**
 
@@ -458,7 +458,7 @@ unsubscribeDeviceOrientation(): void
 
 取消订阅设备方向传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **示例：**
 
@@ -474,7 +474,7 @@ sensor.unsubscribeDeviceOrientation();
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
@@ -509,7 +509,7 @@ unsubscribeGyroscope(): void
 
 取消订阅陀螺仪传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 **需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
@@ -525,7 +525,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -539,7 +539,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称 | 类型   | 必填 | 说明          |
 | ---- | ------ | ---- | ------------- |
@@ -551,7 +551,7 @@ sensor.unsubscribeGyroscope();
 
 当罗盘传感器数据发生变化时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                | 必填 | 说明                           |
 | ------- | ----------------------------------- | ---- | ------------------------------ |
@@ -562,7 +562,7 @@ sensor.unsubscribeGyroscope();
 
 罗盘数据改变后触发的回调函数。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
@@ -572,7 +572,7 @@ sensor.unsubscribeGyroscope();
 
 当距离传感器数据发生变化时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                               |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
@@ -583,7 +583,7 @@ sensor.unsubscribeGyroscope();
 
 距离感应数据改变后调用的回调函数。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
@@ -593,7 +593,7 @@ sensor.unsubscribeGyroscope();
 
 当环境光传感器数据发生变化时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                            | 必填 | 说明                           |
 | ------- | ------------------------------- | ---- | ------------------------------ |
@@ -604,7 +604,7 @@ sensor.unsubscribeGyroscope();
 
 光线感应数据改变后的回调函数。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明                  |
 | --------- | ------ | ---- | --------------------- |
@@ -616,7 +616,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 必填 | 说明                             |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
@@ -629,7 +629,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型   | 必填 | 说明                             |
 | ----- | ------ | ---- | -------------------------------- |
@@ -639,7 +639,7 @@ sensor.unsubscribeGyroscope();
 
 当气压计传感器数据发生变化时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                             |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
@@ -650,7 +650,7 @@ sensor.unsubscribeGyroscope();
 
 气压计传感器数据改变后的回调函数。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -662,7 +662,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                                            |
 | ------- | --------------------------------------- | ---- | ----------------------------------------------- |
@@ -675,7 +675,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明     |
 | --------- | ------ | ---- | -------- |
@@ -685,7 +685,7 @@ sensor.unsubscribeGyroscope();
 
 当穿着状态改变时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
@@ -696,7 +696,7 @@ sensor.unsubscribeGyroscope();
 
 传感器是否磨损。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型    | 必填 | 说明         |
 | ----- | ------- | ---- | ------------ |
@@ -706,7 +706,7 @@ sensor.unsubscribeGyroscope();
 
  获取传感器磨损状态时调用。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                        | 必填 | 说明                     |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
@@ -718,7 +718,7 @@ sensor.unsubscribeGyroscope();
 
 用于监听设备方向传感器数据的回调函数的执行频率。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -730,7 +730,7 @@ sensor.unsubscribeGyroscope();
 
 感应到设备方向传感器数据变化后的回调函数。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
@@ -744,7 +744,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -758,7 +758,7 @@ sensor.unsubscribeGyroscope();
 
 **需要权限**：ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称 | 类型   | 必填 | 说明              |
 | ---- | ------ | ---- | ----------------- |

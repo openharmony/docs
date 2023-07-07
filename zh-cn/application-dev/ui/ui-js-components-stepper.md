@@ -3,10 +3,6 @@
 当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[stepper API](../reference/arkui-js/js-components-container-stepper.md)。
 
 
-> **说明：**
-> 从API Version 5 开始支持。
-
-
 ## 创建stepper组件
 
 在pages/index目录下的hml文件中创建一个stepper组件。

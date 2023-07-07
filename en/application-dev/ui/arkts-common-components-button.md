@@ -54,33 +54,36 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Capsule button (default type)
+  
   Buttons of this type have rounded corners whose radius is automatically set to half of the button height. The rounded corners cannot be reset through the **borderRadius** attribute.
-
+  
   ```ts
   Button('Disable', { type: ButtonType.Capsule, stateEffect: false }) 
     .backgroundColor(0x317aff) 
     .width(90)
     .height(40)
   ```
-
+  
   ![en-us_image_0000001511421208](figures/en-us_image_0000001511421208.png)
 
 
 - Circle button
+  
   Buttons of this type are round. The rounded corners cannot be reset through the **borderRadius** attribute.
-
+  
   ```ts
   Button('Circle', { type: ButtonType.Circle, stateEffect: false }) 
     .backgroundColor(0x317aff) 
     .width(90) 
     .height(90)
   ```
-
+  
   ![en-us_image_0000001511740428](figures/en-us_image_0000001511740428.png)
-
+  
 - Normal button
+  
   Buttons of this type have rounded corners set to 0. The rounded corners can be reset through the **borderRadius** attribute.
-
+  
   ```ts
   Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 
     .borderRadius(8) 
@@ -88,56 +91,60 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .width(90)
     .height(40)
   ```
-
+  
   ![en-us_image_0000001563060641](figures/en-us_image_0000001563060641.png)
 
 
 ## Setting Styles
 
-- Set the border radius:
+- Set the border radius.
+  
   In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
-
+  
   ```ts
   Button('circle border', { type: ButtonType.Normal }) 
     .borderRadius(20)
     .height(40)
   ```
-
+  
   ![en-us_image_0000001511900392](figures/en-us_image_0000001511900392.png)
 
 
-- The **Font** type is used to set the text style.
-  Add a font style for text displayed on the button.
-
+- Set the text style.
+  
+  Add text style attributes for the button.
+  
   ```ts
   Button('font style', { type: ButtonType.Normal }) 
     .fontSize(20) 
     .fontColor(Color.Pink) 
     .fontWeight(800)
   ```
-
+  
   ![en-us_image_0000001511580828](figures/en-us_image_0000001511580828.png)
 
 
-- Set the background color:
-  You can do so by adding the **backgroundColor** attribute.
-
+- Set the background color.
+  
+  Add the **backgroundColor** attribute for the button.
+  
   ```ts
   Button('background color').backgroundColor(0xF55A42)
   ```
-
+  
   ![en-us_image_0000001562940477](figures/en-us_image_0000001562940477.png)
 
 
-- Assign a function to the button:
+- Assign a function to the button.
+  
   In this example, the delete function is assigned to the button.
-
+  
   ```ts
   Button({ type: ButtonType.Circle, stateEffect: true }) { 
     Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
   }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
   ```
-
+  
   ![en-us_image_0000001511740436](figures/en-us_image_0000001511740436.png)
 
 
@@ -153,9 +160,10 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 ```
 
 
-## Example Scenario
+## Example
 
-- Using the Button for Startup
+- Using the button for startup
+
   You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
 
   ```ts
@@ -194,7 +202,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ![en-us_image_0000001562700393](figures/en-us_image_0000001562700393.png)
 
 
-- Use the button for submitting forms:
+- Using the button for submitting forms
+
   On the user login/registration page, you can use a button to submit a login or registration request.
 
   ```ts
@@ -217,7 +226,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ![en-us_image_0000001562940473](figures/en-us_image_0000001562940473.png)
 
-- Configure the button to float:
+- Configuring the button to float
+
   The button can remain floating when the user swipes on the screen.
 
   ```ts

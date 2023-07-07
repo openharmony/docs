@@ -2518,7 +2518,7 @@ p2pConnect(config: WifiP2PConfig): void
   var recvP2pPersistentGroupChangeFunc = () => {
       console.info("p2p persistent group change receive event");
   
-      wifiManager.getCurrentGroup((err, data) => {
+      wifiManager.getCurrentP2pGroup((err, data) => {
           if (err) {
               console.error('failed to get current group: ' + JSON.stringify(err));
               return;

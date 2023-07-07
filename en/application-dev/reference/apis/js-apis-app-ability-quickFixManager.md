@@ -57,10 +57,10 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -116,15 +116,15 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -225,9 +225,9 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
 
 **Error codes**
 
@@ -267,10 +267,10 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -312,15 +312,15 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -349,5 +349,3 @@ If an error occurs during patch installation, the error code and message are ret
     console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
   });
 ```
-
- <!--no_check--> 

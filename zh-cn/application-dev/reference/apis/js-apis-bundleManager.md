@@ -19,6 +19,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -676,7 +677,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -725,7 +726,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -764,7 +765,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -815,7 +816,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -864,7 +865,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -903,7 +904,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3210,5 +3211,96 @@ try {
     });
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.getSpecifiedDistributionType<sup>10+</sup>
+getSpecifiedDistributionType(bundleName: string): string;
+
+以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer.md#installparam)中的specifiedDistributionType字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的分发类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let type = bundleManager.getSpecifiedDistributionType(bundleName);
+    console.info('getSpecifiedDistributionType successfully, type:' + type);
+} catch (error) {
+    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+}
+```
+
+
+### bundleManager.getAdditionalInfo<sup>10+</sup>
+
+getAdditionalInfo(bundleName: string): string;
+
+以同步接口查询指定bundleName的额外信息。该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer.md#installparam)中的additionalInfo字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的额外信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let info = bundleManager.getAdditionalInfo(bundleName);
+    console.info('getAdditionalInfo successfully, additionInfo:' + info);
+} catch (error) {
+    console.error('getAdditionalInfo failed. Cause: ' + error.message);
 }
 ```

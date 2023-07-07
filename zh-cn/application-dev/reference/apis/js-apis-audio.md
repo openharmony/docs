@@ -4244,8 +4244,8 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
 | id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  |
-| name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。 |
-| address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。 |
+| name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 |
+| address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 |
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 |
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 |

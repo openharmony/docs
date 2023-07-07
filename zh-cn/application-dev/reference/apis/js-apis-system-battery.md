@@ -21,7 +21,7 @@ getStatus(options?: GetStatusOptions): void;
 
 获取设备当前的充电状态及剩余电量。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
 **参数：**
 
@@ -46,7 +46,7 @@ battery.getStatus({
 
 包含接口调用结果的对象。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -58,7 +58,7 @@ battery.getStatus({
 
 包含充电状态及剩余电量的对象。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

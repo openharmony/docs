@@ -279,6 +279,111 @@ export default class MyAbility extends Ability {
 }
 ```
 
+## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+
+注册对当前应用前后台变化的监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明             |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| type     | string                                     | 是   | 监听事件类型，必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onCreate() {
+        console.log('MyAbility onCreate');
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+
+        globalThis.applicationContext = this.context.getApplicationContext();
+        // 1.获取applicationContext
+        let applicationContext = globalThis.applicationContext;
+        // 2.通过applicationContext注册应用前后台状态监听
+        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        console.log('Resgiter applicationStateChangeCallback');
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange', callback: AsyncCallback\<void>)<sup>10+</sup>
+
+off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
+
+取消当前应用指定的前后台变化的监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                             |
+| -------- | ------------------------ | ---- | -------------------------------- |
+| type     | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。             |
+| callback | AsyncCallback\<void>     | 否   | 删除指定callback对应的注册监听。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onDestroy() {
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+
+off(type: 'applicationStateChange'): **void**;
+
+取消当前应用注册的前后台变化的全部监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange');
+    }
+}
+```
+
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;

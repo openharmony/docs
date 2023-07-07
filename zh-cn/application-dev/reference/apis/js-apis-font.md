@@ -7,6 +7,10 @@
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口为系统接口。
+>
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ## 导入模块
 
@@ -30,12 +34,14 @@ registerFont(options: FontOptions): void
 
 ## FontOptions
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称         | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
 | familyName | string | 是    | 设置注册的字体名称。   |
 | familySrc  | string | 是    | 设置注册字体文件的路径。 |
 
-## 示例
+**示例：**
 
 ```ts
 // xxx.ets
@@ -64,7 +70,7 @@ struct FontExample {
   }
 }
 ```
-## font.getSystemFontList
+## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
@@ -78,7 +84,7 @@ getSystemFontList(): Array\<string>
 | -------------------- | ----------------- |
 | Array\<string>       | 系统的字体名列表。  |
 
-## 示例
+**示例：**
 
 ```ts
 // xxx.ets
@@ -101,7 +107,7 @@ struct FontExample {
 }
 ```
 
-## font.getFontByName
+## font.getFontByName<sup>10+</sup>
 
 getFontByName(fontName: string): FontInfo;
 
@@ -123,18 +129,22 @@ getFontByName(fontName: string): FontInfo;
 
 ## FontInfo
 
-| 名称            | 类型    | 说明                       |
-| -------------- | ------- | ------------------------- |
-| path           | string  | 系统字体的文件路径。        |
-| postScriptName | string  | 系统字体的postScript名称。 |
-| fullName       | string  | 系统字体的名称。           |
-| family         | string  | 系统字体的字体家族。       |
-| subfamily      | string  | 系统字体的子字体家族。      |
-| weight         | number  | 系统字体的粗细程度。        |
-| width          | number  | 系统字体的宽窄风格属性。    |
-| italic         | boolean | 系统字体是否倾斜。          |
-| monoSpace      | boolean | 系统字体是否紧凑。         |
-| symbolic       | boolean | 系统字体是否支持符号字体。  |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| path           | string  | 是 | 系统字体的文件路径。        |
+| postScriptName | string  | 是 | 系统字体的postScript名称。 |
+| fullName       | string  | 是 | 系统字体的名称。           |
+| family         | string  | 是 | 系统字体的字体家族。       |
+| subfamily      | string  | 是 | 系统字体的子字体家族。      |
+| weight         | number  | 是 | 系统字体的粗细程度。        |
+| width          | number  | 是 | 系统字体的宽窄风格属性。    |
+| italic         | boolean | 是 | 系统字体是否倾斜。          |
+| monoSpace      | boolean | 是 | 系统字体是否紧凑。         |
+| symbolic       | boolean | 是 | 系统字体是否支持符号字体。  |
+
+**示例：**
 
 ```ts
 // xxx.ets

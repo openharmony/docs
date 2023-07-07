@@ -79,7 +79,7 @@ Slier组件滑块形状枚举。
 
 ## 事件
 
-通用事件仅支持挂载卸载事件：OnAppear，OnDisAppear。
+支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |

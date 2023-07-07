@@ -17,7 +17,7 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
   ![](figures/UnitTest.PNG)
 
   图2.脚本基础流程运行图
- 
+
   ![](figures/TestFlow.PNG)
 
 > **说明：**
@@ -50,13 +50,14 @@ OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.
 
 DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
 
+## 新建和编写测试脚本
 
-## 新建测试脚本
+### 新建测试脚本
 
 1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
 2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
 
-## 编写单元测试脚本
+### 编写单元测试脚本
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法。
 
@@ -101,7 +102,7 @@ export default function abilityTest() {
 }
 ```
 
-## 编写UI测试脚本
+### 编写UI测试脚本
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口（提供链接）调用，进而完成对应的测试活动。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
@@ -334,6 +335,64 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | taskconsuming| 执行当前测试用例总耗时（ms）。 |
 
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
+
+## 录制用户操作
+### 使用录制功能
+> 将当前界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
+
+```shell  
+ hdc shell uitest uiRecord record
+```
+### 查看录制数据
+支持两种方式查看数据。
+
+#### 命令读取并打印录制数据
+
+```shell  
+ hdc shell uitest uiRecord read
+```
+#### 命令导出 record.csv文件查看录制数据
+```shell  
+hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存储路径,用户可自定义
+```
+- record 数据字段含义请参考如下示例数据。
+```
+{
+	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
+	"BUNDLE": "com.ohos.launcher", // 操作应用
+	"CENTER_X": "", // 模拟捏合中心X, pinch事件
+	"CENTER_Y": "", // 模拟捏合中心Y, pinch事件
+	"EVENT_TYPE": "pointer", //  
+	"LENGTH": "0", // 总体步长
+	"OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、捏合、滑动、抛滑动作录制
+	"VELO": "0.000000", // 离手速度
+	"direction.X": "0.000000",// 总体移动X方向
+	"direction.Y": "0.000000", // 总体移动Y方向
+	"duration": 33885000.0, // 手势操作持续时间
+	"fingerList": [{
+		"LENGTH": "0", // 总体步长
+		"MAX_VEL": "40000", // 最大速度
+		"VELO": "0.000000", // 离手速度
+		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 起点控件bounds
+		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 起点控件hierarchy
+		"W1_ID": "", // 起点控件id
+		"W1_Text": "", // 起点控件text
+		"W1_Type": "Image", // 起点控件类型
+		"W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 终点控件bounds
+		"W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 终点控件hierarchy
+		"W2_ID": "", // 终点控件id
+		"W2_Text": "", // 终点控件text
+		"W2_Type": "Image", // 终点控件类型
+		"X2_POSI": "47", // 终点X
+		"X_POSI": "47", // 起点X
+		"Y2_POSI": "301", // 终点Y
+		"Y_POSI": "301", // 起点Y
+		"direction.X": "0.000000", // x方向移动量
+		"direction.Y": "0.000000" // Y方向移动量
+	}],
+	"fingerNumber": "1" //手指数量
+}
+```
 
 ## 相关实例
 
