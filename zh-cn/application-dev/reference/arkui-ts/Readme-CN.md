@@ -40,6 +40,7 @@
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
     - [点击回弹](ts-universal-attributes-click-effect.md)
+    - [拖拽控制](ts-universal-attributes-drag-drop.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
