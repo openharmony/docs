@@ -1,4 +1,4 @@
-# \@Link: Two-Way Synchronization Between Parent and Child Components
+# \@Link Decorator: Two-Way Synchronization Between Parent and Child Components
 
 
 An \@Link decorated variable can create two-way synchronization with a variable of its parent component.
@@ -184,3 +184,4 @@ struct Parent {
 
 
 As described above, the ArkUI framework can observe the addition, deletion, and replacement of array items. It should be noted that, in the preceding example, the type of the \@Link and \@State decorated variables is the same: number[]. It is not allowed to define the \@Link decorated variable in the child component as type number (**\@Link item: number**), and create child components for each array item in the \@State decorated array in the parent component. [\@Prop](arkts-prop.md) or \@Observed should be used depending on application semantics.
+<!--no_check-->

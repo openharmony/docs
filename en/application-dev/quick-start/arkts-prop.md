@@ -1,4 +1,4 @@
-# \@Prop: One-Way Synchronization from Parent to Child Components
+# \@Prop Decorator: One-Way Synchronization from Parent to Child Components
 
 
 An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
@@ -302,7 +302,7 @@ To enable an \@Component decorated component to be reusable, \@Prop allows for o
 
 The following example includes two @Prop decorated variables in child component.
 
-- The @Prop decorated variable **customCounter** has no local initialization, and therefore it requires a synchronization source in its parent component. When the source value changes, the @Prop decorated variable is udpated.
+- The @Prop decorated variable **customCounter** has no local initialization, and therefore it requires a synchronization source in its parent component. When the source value changes, the @Prop decorated variable is updated.
 
 - The @Prop decorated variable **customCounter2** has local initialization. In this case, specifying a synchronization source in the parent component is allowed but not mandatory.
 
@@ -360,3 +360,4 @@ struct MainProgram {
   }
 }
 ```
+<!--no_check-->

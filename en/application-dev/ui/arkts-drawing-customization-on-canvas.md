@@ -1,4 +1,4 @@
-# Drawing Custom Graphics Using the Canvas
+# Drawing Custom Graphics Using the Canvas (Canvas)
 
 
 **Canvas** provides a canvas component for drawing custom graphics. You can use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw graphics on the **Canvas** component. The drawing objects can be basic shapes, text, and images.
