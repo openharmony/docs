@@ -1,4 +1,4 @@
-# \@Link: Two-Way Synchronization Between Parent and Child Components
+# \@Link Decorator: Two-Way Synchronization Between Parent and Child Components
 
 
 An \@Link decorated variable can create two-way synchronization with a variable of its parent component.

@@ -1,4 +1,4 @@
-# Displaying Images
+# Displaying Images (Image)
 
 
 More often than not, you may need to display images in your application, for example, logos in buttons, online images, and local images. To do so, you need to use the **\<Image>** component, which supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
@@ -26,6 +26,7 @@ The **\<Image>** component supports two types of images: archived and pixel map.
 Data sources of the archived type can be classified into local resources, online resources, **Resource** objects, media library data share resources, and Base64 resources.
 
 - Local resources
+
   Create a folder and place a local image in any position in the **ets** folder.
 
   In the **\<Image>** component, import the local image path to display the image. The root directory is the **ets** folder.
@@ -36,6 +37,7 @@ Data sources of the archived type can be classified into local resources, online
   ```
 
 - Online resources
+
   To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Under this scenario, the **src** parameter of the **\<Image>** component is the URL of the online image.
 
   ```ts
@@ -43,6 +45,7 @@ Data sources of the archived type can be classified into local resources, online
   ```
 
 - **Resource** objects
+
   **Resource** objects can be used to import images across bundles and modules. All images in the **resources** folder can be read and converted to the **Resource** objects through **$r**.
 
   **Figure 1** resources folder 
@@ -57,9 +60,9 @@ Data sources of the archived type can be classified into local resources, online
 
   You can also place the images in the **rawfile** folder.
 
-  **Figure 2** rawfile folder
+  **Figure 2** rawfile folder 
 
- ![image-rawfile](figures/image-rawfile.jpg)
+  ![image-rawfile](figures/image-rawfile.jpg)
 
   API:
 
@@ -68,6 +71,7 @@ Data sources of the archived type can be classified into local resources, online
   ```
 
 - Media library data share resources
+
   To display images from the media library, use a path string that starts with **datashare://**.
 
   1. Call the API to obtain the image URL in the media library.

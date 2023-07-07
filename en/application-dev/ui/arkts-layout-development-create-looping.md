@@ -1,4 +1,4 @@
-# Creating a Swiper
+# Creating a Swiper (Swiper)
 
 
 The \<[Swiper](../reference/arkui-ts/ts-container-swiper.md)> component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.

@@ -1,4 +1,4 @@
-# Custom Dialog Box
+# Custom Dialog Box (CustomDialog)
 
 
 A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class. It can be used for user interactions, showing an ad, prize, alert, software update message, and more. For details, see [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md).
