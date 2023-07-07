@@ -29,13 +29,13 @@ Obtains the value of the system parameter with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br>The value can be **undefined** (in which case an empty string will be returned) or any custom value.|
+| def | string | No| Default value of the system parameter.<br>It works only when the system parameter does not exist.<br>The value can be **undefined** or any custom value. |
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | Value of the system parameter. If the specified key does not exist, the default value is returned. If no default value has been set, an empty string will be returned.|
+| string | Value of the system parameter.<br>If the specified key exists, the set value is returned.<br>If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an exception is thrown. |
 
 **Example**
 
@@ -43,7 +43,7 @@ Obtains the value of the system parameter with the specified key.
 try {
     var info = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
-}catch(e){
+} catch(e) {
     console.log("getSync unexpected error: " + e);
 }
 ```
@@ -73,7 +73,7 @@ try {
     } else {
         console.log(" get test.parameter.key value err:" + err.code)
     }});
-}catch(e){
+} catch(e) {
     console.log("get unexpected error: " + e);
 }
 ```
@@ -105,7 +105,7 @@ try {
             console.log(" get test.parameter.key value err:" + err.code)
         }
     });
-}catch(e){
+} catch(e) {
     console.log("get unexpected error:" + e)
 }
 ```
@@ -123,7 +123,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br>The value can be **undefined** (in which case an empty string will be returned) or any custom value.|
+| def | string | No| Default value of the system parameter.<br>It works only when the system parameter does not exist.<br>The value can be **undefined** or any custom value. |
 
 **Return value**
 
@@ -141,7 +141,7 @@ try {
     }).catch(function (err) {
         console.log("get test.parameter.key error: " + err.code);
     });
-}catch(e){
+} catch(e) {
     console.log("get unexpected error: " + e);
 }
 ```
@@ -166,7 +166,7 @@ Sets a value for the system parameter with the specified key.
 ```ts
 try {
     systemparameter.setSync("test.parameter.key", "default");
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
@@ -197,7 +197,7 @@ try {
     } else {
         console.log("set test.parameter.key value err:" + err.code)
     }});
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
@@ -233,7 +233,7 @@ try {
     }).catch(function (err) {
         console.log(" set test.parameter.key error: " + err.code);
     });
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
