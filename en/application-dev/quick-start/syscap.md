@@ -31,7 +31,7 @@ The SDK classifies devices into general devices and custom devices. The general 
 
 ### Mapping Between Devices and SDK Capabilities
 
-The SDK provides a full set of APIs for the IDE. DevEco Studio identifies the supported SysCap set based on the devices supported by the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
+The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies the supported SysCap set based on the devices supported by the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
 
 ![image-20220326065043006](figures/image-20220326065043006.png)
 
@@ -111,9 +111,9 @@ Use **canIUse** if you want to check whether a project supports a specific SysCa
 
 ```
 if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-	console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
+	console.log("This device supports SystemCapability.ArkUI.ArkUI.Full.");
 } else {
-	Console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
+	console.log("This device does not support SystemCapability.ArkUI.ArkUI.Full".);
 }
 ```
 
@@ -127,7 +127,7 @@ if (geolocation) {
 		console.log(location.latitude, location.longitude);
 	});
 } else {
-	Console.log('This device does not support location information.');
+	console.log('This device does not support location information.');
 }
 ```
 
@@ -144,7 +144,7 @@ const authenticator = userAuth.getAuthenticator();
 const result = authenticator.checkAbility('FACE_ONLY', 'S1');
 
 if (result == authenticator.CheckAvailabilityResult.AUTH_NOT_SUPPORT) {
-	Console.log('This device does not support facial recognition.');
+	console.log('This device does not support facial recognition.');
 }
 // If an unsupported API is forcibly called, an error message is returned, but no syntax error occurs.
 authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
