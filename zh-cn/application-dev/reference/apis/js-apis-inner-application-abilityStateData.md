@@ -12,6 +12,8 @@
 import appManager from '@ohos.application.appManager';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |

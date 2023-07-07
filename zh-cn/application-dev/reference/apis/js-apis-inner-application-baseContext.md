@@ -12,6 +12,8 @@ BaseContext抽象类用于表示继承的子类Context是Stage模型还是FA模�
 import common from '@ohos.app.ability.common';
 ```
 
+## 属性
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
