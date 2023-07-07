@@ -98,3 +98,98 @@ struct Child {
 
 如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
 
+## cl.arkui.3 PromptAction模块中，文本提示框toast的bottom属性含义变更。
+
+文本提示框toast的bottom属性值的含义，从文本提示框上边沿到屏幕下边沿，变更为文本提示框下边沿到屏幕下边沿。
+
+**示例：**
+
+```ts
+import promptAction from '@ohos.promptAction';
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button()
+      .onClick(() => {
+        try {
+          promptAction.showToast({
+            message: 'Message Info',
+            duration: 2000
+          });
+        } catch (error) {
+          console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+        };
+      })
+    }
+  }
+}
+```
+
+**变更影响**
+
+PromptAction模块中，文本提示框toast的bottom属性设置同样的数值，会由于编译器所使用的API版本是否为API version 10+而有所差异。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+编译器采用API version 9或以往版本以保持之前的样式，或者采用API version 10及以上版本以采用新样式。
+
+## cl.arkui.4 AlertDialog控件内容布局变更。
+
+AlertDialog的内容属性部分会根据：1）有无标题title，2）是否为单行文本，条件不同而布局有所不同。
+
+目前规格：仅无标题title的单行文本情况下为居中，其余情况文本左对齐。
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              message: 'text'.repeat(20),
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback')
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks')
+              }
+            }
+          )
+        })
+        .backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+**变更影响**
+
+AlertDialog控件message属性对应的文本内容，布局效果变更。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+无需主动适配，或者可以使用customDialog做相关实现。
