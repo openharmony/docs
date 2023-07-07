@@ -461,7 +461,7 @@ getDeviceTypeSync(networkId: string): number;
 
 ### startDiscovering
 
-startDiscovering(subscribeId: number, filterOptions?: string): void;
+startDiscovering(discoverParameter:string, filterOptions?: string): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -473,7 +473,7 @@ startDiscovering(subscribeId: number, filterOptions?: string): void;
 
   | 参数名            | 类型                        | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
-  | subscribeId   | number                          | 是   | 发现标识。 |
+  | discoverParameter   | string                          | 是   | 发现标识。 |
   | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。|
 
 **错误码：**
@@ -488,8 +488,7 @@ startDiscovering(subscribeId: number, filterOptions?: string): void;
 **示例：**
 
   ```js
-  // 生成发现标识，随机数确保每次调用发现接口的标识不一致
-  var subscribeId = Math.floor(Math.random() * 10000 + 1000);
+  var discoverParameter = "1";
   var filterOptions = {
     "filter_op": "OR", // 可选, 默认"OR"
     "filters": [
@@ -500,7 +499,7 @@ startDiscovering(subscribeId: number, filterOptions?: string): void;
     ]
   };
   try {
-    dmInstance.startDiscovering(subscribeId, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
+    dmInstance.startDiscovering(discoverParameter, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
     console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -508,19 +507,13 @@ startDiscovering(subscribeId: number, filterOptions?: string): void;
 
 ### stopDiscovering
 
-stopDiscovering(subscribeId: number): void;
+stopDiscovering(): void;
 
 停止发现周边设备。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**参数：**
-
-  | 参数名          | 类型   | 必填   | 说明    |
-  | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | 是    | 发现标识。 |
 
 **错误码：**
 
@@ -534,9 +527,7 @@ stopDiscovering(subscribeId: number): void;
 
   ```js
   try {
-    // stopDiscovering和startDiscovering需配对使用，入参需要和startDiscovering接口传入的subscribeId值相等
-    var subscribeId = 12345;
-    dmInstance.stopDiscovering(subscribeId);
+    dmInstance.stopDiscovering();
   } catch (err) {
     console.error("stopDiscovering errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -793,7 +784,7 @@ off(type: 'deviceStatusChange', callback?: Callback&lt;{ action: DeviceStatusCha
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
 注册发现设备成功回调监听。
 
@@ -806,7 +797,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device:
   | 参数名       | 类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
 **示例：**
 
@@ -822,7 +813,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device:
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
 取消注册设备发现成功回调。
 
@@ -835,7 +826,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, devic
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 取消注册设备发现回调。                 |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 **示例：**
 
@@ -909,7 +900,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+on(type: 'discoverFail', callback: Callback&lt;{ reason: number }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -922,7 +913,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
 **示例：**
 
@@ -938,7 +929,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
+off(type: 'discoverFail', callback?: Callback&lt;{ reason: number }&gt;): void;
 
 取消注册设备发现失败回调。
 
@@ -951,7 +942,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   | 参数名       | 类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调。     |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
 
 **示例：**
 
