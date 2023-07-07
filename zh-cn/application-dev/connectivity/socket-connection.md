@@ -176,10 +176,11 @@ setTimeout(() => {
 1. import需要的socket模块。
 2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
 3. 绑定IP地址和端口，监听并接受与此套接字建立的TCPSocket连接。
-4. 订阅TCPSocketServer相关的connect事件。
-5. 通过返回的TCPSocketConnection对象订阅相关的事件。
-6. 发送数据。
-7. 关闭与TCPSocket建立的连接，取消相关事件的订阅。
+4. 订阅TCPSocketServer相关的connect事件，用于监听客户端的连接。
+5. 一旦客户端与服务端连接上，返回连接的TCPSocketConnection对象，用于与客户端的交互。
+6. 订阅TCPSocketConnection相关的事件。
+7. 通过返回的TCPSocketConnection对象调用相应接口发送数据给到客户端。
+8. 关闭与TCPSocket建立的连接，取消相关事件的订阅。
 
 ```js
 import socket from '@ohos.net.socket'
@@ -203,6 +204,13 @@ tcpServer.on('connect', function(client) {
     console.log("on close success");
   });
   client.on('message', function(value) {
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("received message--:" + str);
     console.log("received address--:" + value.remoteInfo.address);
     console.log("received family--:" + value.remoteInfo.family);
     console.log("received port--:" + value.remoteInfo.port);
@@ -237,7 +245,7 @@ tcpServer.on('connect', function(client) {
 // 取消TCPSocketServer相关的事件订阅
 setTimeout(() => {
   tcpServer.off('connect');
-}, 2 * 1000);
+}, 30 * 1000);
 ```
 
 ## 应用通过TLS Socket进行加密数据传输
