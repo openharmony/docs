@@ -31,6 +31,18 @@ Creates a **DrawableDescriptor** object when the passed resource ID or name belo
 
 Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources.
 
+The content of the **drawble.json** file is as follows:
+
+```json
+{
+  "layered-image":
+  {
+    "background" : "$media:background",
+    "foreground" : "$media:foreground"
+  }
+}
+```
+
 **Example**
 ```ts
 // xxx.ets
@@ -45,7 +57,7 @@ struct Index {
     Row() {
       Column() {
         Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
           .id))).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -68,7 +80,8 @@ Obtains this **pixelMap** object.
 
 **Example**
   ```ts
-pixmap: PixelMap = drawable1.getPixelMap();
+pixmap: PixelMap = (<DrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+    .id))).getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -86,7 +99,8 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 **Example**
   ```ts
-pixmap: PixelMap = layeredDrawable1.getPixelMap();
+pixmap: PixelMap = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+          .id))).getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -104,7 +118,8 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = layeredDrawable1.getForeground();
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getForeground();
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -122,7 +137,8 @@ Obtains the **DrawableDescriptor** object of the background.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = layeredDrawable1.getBackground();
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getBackground();
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -140,5 +156,6 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 **Example**
   ```ts
-drawable: DrawableDescriptor = layeredDrawable1.getMask();
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getMask();
   ```

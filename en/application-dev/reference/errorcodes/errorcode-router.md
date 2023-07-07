@@ -22,7 +22,7 @@ The operation for obtaining the rendering engine or parsing parameters fails.
 
 NA
 
-## 100002 Incorrect URI
+## 100002 Incorrect URI During Page Redirection
 
 **Error Message**
 
@@ -58,7 +58,21 @@ Too many pages are pushed.
 
 Delete unnecessary or invalid pages.
 
-## 200002 Incorrect URI
+## 100004 Incorrect Route Name
+
+**Error Message**
+
+Named route error. The named route is not exist.
+
+**Description**
+
+This error code is reported when the specified route name for redirection is incorrect or does not exist.
+
+**Possible Causes**
+
+The specified route name for redirection is incorrect or does not exist.
+
+## 200002 Incorrect URI During Page Replacement
 
 **Error Message**
 
