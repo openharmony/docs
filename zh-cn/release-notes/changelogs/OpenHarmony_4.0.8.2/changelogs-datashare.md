@@ -24,16 +24,16 @@ PublishedItem中data的数据类型从Ashmem变更为ArrayBuffer
 **示例：**
 
 ```ts
-function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
-    for (let i = 0; i < node.data.length; i++) {
-        if (typeof node.data[i].data != 'string') {
-            let array:ArrayBuffer = node.data[i].data;
-            let data:Uint8Array = new Uint8Array(array);
-            console.info("onPublishCallback " + JSON.stringify(data));
-        }
-    }
+let arrayBuffer = new ArrayBuffer(1);
+let version = 1;
+let data : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
+function publishCallback(err, result: Array<dataShare.OperationResult>) {
+    console.info("publishCallback " + JSON.stringify(result));
 }
-let uris:Array<string> = ['city', 'datashareproxy://com.acts.ohos.data.datasharetest/appInfo', 'key2'];
-let subscriberId = '11';
-let result: Array<dataShare.OperationResult> = dataShareHelper.on('publishedDataChange', uris, subscriberId, onPublishCallback);
+try {
+    console.info("data length is:", data.length);
+    dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
+} catch (e) {
+    console.error("publish error " + JSON.stringify(e));
+}
 ```

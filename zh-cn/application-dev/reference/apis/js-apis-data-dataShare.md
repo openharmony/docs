@@ -558,25 +558,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 **示例：**
 
 ```ts
-let arrayBuffer = null;
-let subscriberId = '11';
+let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [
-    {key:"city", subscriberId:"11", data:"xian"},
-    {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
-    {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let nums:number[] = [1,2,3];
+let data : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
 try {
-    arrayBuffer = new ArrayBuffer(nums.length);
-    let array:Uint8Array = new Uint8Array(arrayBuffer);
-    data.push({
-        "key" : "key2",
-        "data" : array,
-        "subscriberId" : "11",
-    });
     console.info("data length is:", data.length);
     dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
