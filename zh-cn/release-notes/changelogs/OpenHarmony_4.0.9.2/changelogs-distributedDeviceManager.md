@@ -1,7 +1,7 @@
 # 设备管理ChangeLog
 ## cl.distributedDeviceManager.1 接口变更
 
-从Opeharmonny 4.0.9.2版本开始，新增设备管理接口。
+从Openharmony 4.0.9.2版本开始，新增设备管理接口。
 
 **变更影响**
 
