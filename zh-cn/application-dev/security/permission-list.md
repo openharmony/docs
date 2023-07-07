@@ -2137,3 +2137,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.ACCESS_BUNDLE_DIR
+
+允许应用访问其他应用安装目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
