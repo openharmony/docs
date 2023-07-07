@@ -22,7 +22,7 @@
 1. 准备烧录相关文件。
    1. 在客户端新建用于保存烧录文件的文件夹，例如“D:\liteos”或“D:\linux”。
    2. 将烧录所需烧写配置文件和启动引导文件保存到新建的文件夹中。
-      - Hi3516DV300对应的小型系统（LiteOS内核）的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_liteos.xml），模板如下：
+      - Hi3516DV300对应的LiteOS内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_liteos.xml），模板如下：
           
           ```
           <?xml version="1.0" encoding="GB2312" ?>
@@ -33,7 +33,7 @@
           <Part Sel="1" PartitionName="" FlashType="emmc" FileSystem="none" Start="60M" Length="50M" SelectFile="D:\liteos\userfs_vfat.img"/>
           </Partition_Info>
           ```
-      - Hi3516DV300对应的小型系统（Linux内核）的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_linux.xml），模板如下
+      - Hi3516DV300对应的Linux内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_linux.xml），模板如下
           
           ```
           <?xml version="1.0" encoding="GB2312" ?>
