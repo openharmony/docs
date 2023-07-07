@@ -217,7 +217,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
      "abilityName": "ServiceExtAbility"
    };
    context.stopServiceExtensionAbility(want).then(() => {
-     console.info('Succeeded in stoping ServiceExtensionAbility.');
+     console.info('Succeeded in stopping ServiceExtensionAbility.');
    }).catch((err) => {
      console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
