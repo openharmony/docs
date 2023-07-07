@@ -4,7 +4,7 @@ TreeMap可用于存储具有关联关系的key-value键值对集合，存储元�
 
 TreeMap底层使用红黑树实现，可以利用二叉树特性快速查找键值对。key值有序存储，可以实现快速的插入和删除。
 
-TreeMap和[HashMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
+TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
