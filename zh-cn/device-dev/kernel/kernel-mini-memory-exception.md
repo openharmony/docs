@@ -23,13 +23,14 @@ OpenHarmony LiteOS-M提供异常接管调测手段，帮助开发者定位分析
 
 ## 接口说明
 
-OpenHarmony LiteOS-M内核的回溯栈模块提供下面几种功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-M内核的回溯栈模块提供以下接口，接口详细信息可以查看API参考。
 
   **表1** 回溯栈模块接口
 
-| 功能分类 | 接口名 | 
+| 接口名 | 功能 | 
 | -------- | -------- |
-| 回溯栈接口 | LOS_BackTrace：打印调用处的函数调用栈关系。<br/>LOS_RecordLR：在无法打印的场景，用该接口获取调用处的函数调用栈关系。 | 
+| LOS_BackTrace | 打印调用处的函数调用栈关系。| 
+| LOS_RecordLR  | 在无法打印的场景，用该接口获取调用处的函数调用栈关系。|
 
 
 ## 使用指导
@@ -40,16 +41,19 @@ OpenHarmony LiteOS-M内核的回溯栈模块提供下面几种功能，接口详
 开启异常调测的典型流程如下：
 
 1. 配置异常接管相关宏。
-     需要在target_config.h头文件中修改配置：
-     | 配置项 | 含义 | 设置值 | 
+
+   需要在target_config.h头文件中修改配置：
+   
+   | 配置项 | 含义 | 设置值 | 
    | -------- | -------- | -------- |
    | LOSCFG_BACKTRACE_DEPTH | 函数调用栈深度，默认15层 | 15 | 
    | LOSCFG_BACKTRACE_TYPE | 回溯栈类型:<br/>0：表示关闭该功能；<br/>1：表示支持Cortex-m系列硬件的函数调用栈解析；<br/>2：表示用于Risc-v系列硬件的函数调用栈解析； | 根据工具链类型设置1或2 | 
 
-1. 使用示例中有问题的代码，编译、运行工程，在串口终端中查看异常信息输出。示例代码模拟异常代码，实际产品开发时使用异常调测机制定位异常问题。
-     本示例演示异常输出，包含1个任务，该任务入口函数模拟若干函数调用，最终调用一个模拟异常的函数。代码实现如下：
+2. 使用示例中有问题的代码，编译、运行工程，在串口终端中查看异常信息输出。示例代码模拟异常代码，实际产品开发时使用异常调测机制定位异常问题。
+   
+   本示例演示异常输出，包含1个任务，该任务入口函数模拟若干函数调用，最终调用一个模拟异常的函数。代码实现如下：
      
-   本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleExcEntry。
+   本演示代码在`./kernel/liteos_m/testsuites/src/osTest.c`中编译验证，在TestTaskEntry中调用验证入口函数ExampleExcEntry。
    
    ```
    #include <stdio.h>
@@ -210,17 +214,17 @@ OpenHarmony LiteOS-M内核的回溯栈模块提供下面几种功能，接口详
 
 异常接管一般的定位步骤如下：
 
-0. 确认编译时关掉优化选项，否则下述的描述内容可能被优化掉。
+1. 确认编译时关掉优化选项，否则下述的描述内容可能被优化掉。
 
-1. 打开编译后生成的镜像反汇编（asm）文件。如果默认没有生成，可以使用objdump工具生成，命令为：
+2. 打开编译后生成的镜像反汇编（asm）文件。如果默认没有生成，可以使用objdump工具生成，命令为：
    
    ```
-    arm-none-eabi-objdump -S -l XXX.elf
+   arm-none-eabi-objdump -S -l XXX.elf
    ```
 
-1. 搜索PC指针（指向当前正在执行的指令）在asm中的位置，找到发生异常的函数。
-   PC地址指向发生异常时程序正在执行的指令。在当前执行的二进制文件对应的asm文件中，查找PC值0x2101c61a，找到当前CPU正在执行的指令行，反汇编如下所示：
+3. 搜索PC指针（指向当前正在执行的指令）在asm中的位置，找到发生异常的函数。
 
+   PC地址指向发生异常时程序正在执行的指令。在当前执行的二进制文件对应的asm文件中，查找PC值0x2101c61a，找到当前CPU正在执行的指令行，反汇编如下所示：
    
    ```
    2101c60c <GetResultException0>:
@@ -243,14 +247,14 @@ OpenHarmony LiteOS-M内核的回溯栈模块提供下面几种功能，接口详
    2101c630:	21025f90 	.word	0x21025f90
    ```
    
-1. 可以看到:
-   1. 异常时CPU正在执行的指令是ldr	r3, [r3, #0]，其中r3取值为0xffffffff，导致发生非法地址异常。
+4. 可以看到:
+   1. 异常时CPU正在执行的指令是ldr r3, [r3, #0]，其中r3取值为0xffffffff，导致发生非法地址异常。
    2. 异常发生在函数GetResultException0中。
 
-2. 根据LR值查找异常函数的父函数。
+5. 根据LR值查找异常函数的父函数。
+   
    包含LR值0x2101c64d的反汇编如下所示：
 
-   
    ```
    2101c634 <GetResultException1>:
    2101c634:	b580      	push	{r7, lr}
@@ -272,6 +276,6 @@ OpenHarmony LiteOS-M内核的回溯栈模块提供下面几种功能，接口详
    2101c658:	21025fb0 	.word	0x21025fb0
    ```
    
-1. LR值2101c648上一行是bl	2101c60c <GetResultException0&gt;，此处调用了异常函数，调用异常函数的父函数为GetResultException1。
+6. LR值2101c648上一行是bl 2101c60c \<GetResultException0\>，此处调用了异常函数，调用异常函数的父函数为GetResultException1。
 
-2. 重复步骤3，解析异常信息中backtrace start至backtrace end之间的LR值，得到调用产生异常的函数调用栈关系，找到异常原因。
+7. 重复步骤3，解析异常信息中backtrace start至backtrace end之间的LR值，得到调用产生异常的函数调用栈关系，找到异常原因。
