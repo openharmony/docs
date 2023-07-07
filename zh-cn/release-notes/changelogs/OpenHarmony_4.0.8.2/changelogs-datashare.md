@@ -1,10 +1,10 @@
 # 分布式数据管理子系统ChangeLog
 
-## cl.datashare.1 js-apis-data-dataShare API version 10开始托管数据对外接口从Ashmem改为ArrayBuffer。
+## cl.datashare.1 js-apis-data-dataShare API version 10开始托管数据PublishedItem中data的数据类型从Ashmem变更为ArrayBuffer
 
 **变更影响**
 
-托管数据对外接口从Ashmem改为ArrayBuffer
+PublishedItem中data的数据类型从Ashmem变更为ArrayBuffer
 
 ## PublishedItem<sup>10+</sup>
 
