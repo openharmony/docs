@@ -6,7 +6,6 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -30,12 +29,14 @@ Registers a custom font with the font manager.
 
 ## FontOptions
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | familyName | string | Yes   | Name of the custom font to register.  |
 | familySrc  | string | Yes   | Path of the custom font to register.|
 
-## Example
+**Example**
 
 ```ts
 // xxx.ets
