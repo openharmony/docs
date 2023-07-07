@@ -146,7 +146,7 @@ struct Index {
 }
 ```
 
-### 跨包页面路由跳转
+### 页面路由跳转
 
 若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/MainAbility/Index.ets`）里这样使用：
 ```ts
