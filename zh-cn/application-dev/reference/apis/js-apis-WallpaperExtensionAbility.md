@@ -58,8 +58,8 @@ onWallpaperChange(wallpaperType: number): void
 
 ```js
 class WallpaperExt extends WallpaperExtensionAbility {
-  onWallpaperChanged(wallpaperType) {
-    console.log('onWallpaperChanged, wallpaperType:' + wallpaperType);
+  onWallpaperChange(wallpaperType) {
+    console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
   }
 }
 ```
