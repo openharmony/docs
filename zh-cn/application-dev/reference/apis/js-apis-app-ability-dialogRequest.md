@@ -262,7 +262,8 @@ getRequestCallback(want: Want): RequestCallback
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
             var requestInfo = dialogRequest.getRequestInfo(want);
-            window.bindDialogTarget(requestInfo, () => {
+            let windowClass = null;
+            windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
             }, (err) => {
                 if (err.code) {

@@ -1366,17 +1366,17 @@ context.printDrawnCompleted().then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称   | 读写属性 | 类型     | 必填   | 说明    |
-| ---- | ---- | ------ | ---- | ----- |
-| pid  | 只读   | number | 否    | 进程id。 |
-| uid  | 只读   | number | 否    | 用户id。 |
+| 名称   | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| pid  |number | 否    | 进程id。 |
+| uid  |number | 否    | 用户id。 |
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 读写属性 | 类型             | 必填   | 说明         |
-| ----------- | ---- | -------------- | ---- | ---------- |
-| requestCode | 只读   | number         | 是    | 用户传入的请求代码。 |
-| permissions | 只读   | Array\<string> | 是    | 用户传入的权限。   |
-| authResults | 只读   | Array\<number> | 是    | 请求权限的结果。   |
+| 名称         | 类型             | 必填   | 说明         |
+| ----------- |-------------- | ---- | ---------- |
+| requestCode | number         | 是    | 用户传入的请求代码。 |
+| permissions | Array\<string> | 是    | 用户传入的权限。   |
+| authResults | Array\<number> | 是    | 请求权限的结果。   |

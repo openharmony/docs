@@ -15,28 +15,6 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 import common from '@ohos.app.ability.common';
 ```
 
-## 使用说明
-
-在使用FormExtensionContext的功能前，需要通过FormExtensionAbility获取。
-
-```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAddForm(want) {
-    let formContext = this.context; // 获取FormExtensionContext
-    // ...
-    let dataObj1 = {
-      temperature: '11c',
-      'time': '11:00'
-    };
-    let obj1 = formBindingData.createFormBindingData(dataObj1);
-    return obj1;
-  }
-};
-```
-
 ## startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
@@ -57,7 +35,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16500100 | Failed to obtain the configuration information. |
 | 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **参数：**
 
@@ -126,7 +105,8 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 16500100 | Failed to obtain the configuration information. |
 | 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 

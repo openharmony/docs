@@ -275,18 +275,17 @@ let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    batchInsert(uri, valueBuckets, callback) {
-        if (valueBuckets === null || valueBuckets.length === undefined) {
-            console.error('invalid valueBuckets');
-            return;
-        }
-        rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
-                if (callback !== undefined) {
-                    callback(err, ret);
-                }
-            });
-        });
+  batchInsert(uri, valueBuckets, callback) {
+    if (valueBuckets === null || valueBuckets.length === undefined) {
+      console.error('invalid valueBuckets');
+      return;
     }
+    rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
+      if (callback !== undefined) {
+        callback(err, ret);
+      }
+    });
+  };
 };
 ```
 
