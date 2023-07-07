@@ -470,7 +470,7 @@ try {
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | 否                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
-| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
+| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0x00：应用初次安装，0x01：应用覆盖安装，0x10：应用免安装，默认值为应用初次安装。 |
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
 | crowdtestDeadline| number                         | 否                        | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
