@@ -199,7 +199,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 指定发布数据的键。 |
-| data | string \| ArrayBuffer | 是 | 指定发布的数据。如果数据很大，请使用ArrayBuffer。 |
+| data | string \| ArrayBuffer | 是 | 指定发布的数据。如果数据很大，请使用ArrayBuffer，建议20KB及以上使用ArrayBuffer。 |
 | subscriberId | string | 是 | 指定订阅者id。 |
 
 ## RdbDataChangeNode<sup>10+</sup>
