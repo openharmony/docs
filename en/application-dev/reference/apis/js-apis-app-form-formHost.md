@@ -1563,7 +1563,7 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**. |
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**.|
 
 **Error codes**
 
@@ -1698,8 +1698,8 @@ Unsubscribes from widget removal events. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**. |
-| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled. |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
 
 **Example**
 
@@ -2148,6 +2148,8 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2162,9 +2164,11 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId, (error) => {
+  formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost acquireFormData, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -2192,12 +2196,14 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise<{[key: string]: Object}>| Promise used to return the API call result and the shared data.|
 
 **Error codes**
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2210,8 +2216,8 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId).then(() => {
-    console.log('formHost acquireFormData success');
+  formHost.acquireFormData(formId).then((data) => {
+    console.log('formHost acquireFormData success' + data);
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -2248,8 +2254,13 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2273,7 +2284,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;): void
 
 Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
 
@@ -2285,8 +2296,8 @@ Obtains the information about widget hosts based on the widget provider informat
 
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -2294,8 +2305,13 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2321,7 +2337,8 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+function getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
+
 
 Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
 
@@ -2339,7 +2356,7 @@ Obtains the information about widget hosts based on the widget ID. This API uses
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the widget host information obtained. |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise used to return the widget host information obtained.|
 
 **Error codes**
 
@@ -2347,8 +2364,13 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2366,7 +2388,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 
 Obtains the information about widget hosts based on the widget ID. This API uses an asynchronous callback to return the result.
 
@@ -2379,7 +2401,7 @@ Obtains the information about widget hosts based on the widget ID. This API uses
 | Name     | Type           | Mandatory| Description                            |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -2387,7 +2409,11 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Error Code ID| Error Message|
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 ```ts
@@ -2406,3 +2432,145 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
+
+## on('notifyVisible')<sup>10+</sup>
+
+ on(type: 'notifyVisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
+
+Subscribes to events indicating that a widget becomes visible.
+
+This event is triggered when **notifyVisibleForms** is called to make a widget visible.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes  | Callback used to return **RunningFormInfo** of the widget.           |
+| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change visibility, data: ${JSON.stringify(data)');
+}
+
+formHost.on('notifyVisible', callback);
+formHost.on('notifyVisible', callback, bundleName);
+```
+
+## off('notifyVisible')<sup>10+</sup>
+
+ off(type: "notifyVisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
+
+Unsubscribes from events indicating that a widget becomes visible.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.|
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
+| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change visibility, data: ${JSON.stringify(data)');
+}
+
+formHost.off('notifyVisible', callback);
+formHost.off('notifyVisible', callback, bundleName);
+```
+
+> **NOTE**
+>
+> - **on('notifyVisible', callback)** and **off('notifyVisible', callback)** must be used in pairs.
+> - **on('notifyVisible', callback, bundleName)** and **off('notifyVisible', callback, bundleName)** must be used in pairs.
+> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
+
+
+
+## on('notifyInvisible')<sup>10+</sup>
+
+ on(type: 'notifyInvisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>, bundleName?: string): void
+
+Subscribes to events indicating that a widget becomes invisible.
+
+This event is triggered when **notifyInvisibleForms** is called to make a widget invisible.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.     |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes  | Callback used to return **RunningFormInfo** of the widget.         |
+| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change invisibility, data: ${JSON.stringify(data)');
+}
+
+formHost.on('notifyInvisible', callback);
+formHost.on('notifyInvisible', callback, bundleName);
+```
+
+## off('notifyInvisible')<sup>10+</sup>
+
+ off(type: "notifyInvisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;, bundleName?: string): void
+
+Unsubscribes from events indicating that a widget becomes invisible.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.   |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
+| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyInvisible')**. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change invisibility, data: ${JSON.stringify(data)');
+}
+
+formHost.off('notifyInvisible', callback);
+formHost.off('notifyInvisible', callback, bundleName);
+```
+
+> **NOTE**
+>
+> - **on('notifyInvisible', callback)** and **off('notifyInvisible', callback)** must be used in pairs.
+> - **on('notifyInvisible', callback, bundleName)** and **off('notifyInvisible', callback, bundleName)** must be used in pairs.
+> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.

@@ -36,8 +36,8 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](#oh_averrcode) {<br/>AV_ERR_OK = 0, AV_ERR_NO_MEMORY = 1, AV_ERR_OPERATE_NOT_PERMIT = 2, AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4, AV_ERR_TIMEOUT = 5, AV_ERR_UNKNOWN = 6, AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8, AV_ERR_UNSUPPORT = 9, AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 
-| [OH_AVPixelFormat](#oh_avpixelformat) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1, AV_PIXEL_FORMAT_NV12 = 2, AV_PIXEL_FORMAT_NV21 = 3, AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | AVPixel 格式的枚举类。 | 
+| [OH_AVErrCode](#oh_averrcode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OK = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_NO_MEMORY = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_VAL = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_IO = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_TIMEOUT = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNKNOWN = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_SERVICE_DIED = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_STATE = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNSUPPORT = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 
+| [OH_AVPixelFormat](#oh_avpixelformat) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_YUVI420 = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV12 = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV21 = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_RGBA = 5<br/>} | AVPixel 格式的枚举类。 | 
 
 
 ### 函数
@@ -75,7 +75,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
   
 ```
-typedef enum OH_AVErrCodeOH_AVErrCode
+typedef enum OH_AVErrCode OH_AVErrCode
 ```
 
 **描述：**
@@ -93,7 +93,7 @@ typedef enum OH_AVErrCodeOH_AVErrCode
 
   
 ```
-typedef enum OH_AVPixelFormatOH_AVPixelFormat
+typedef enum OH_AVPixelFormat OH_AVPixelFormat
 ```
 
 **描述：**
@@ -175,7 +175,7 @@ enum OH_AVPixelFormat
 
   
 ```
-bool OH_AVFormat_Copy (struct OH_AVFormat * to, struct OH_AVFormat * from )
+bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from)
 ```
 
 **描述：**
@@ -204,7 +204,7 @@ bool OH_AVFormat_Copy (struct OH_AVFormat * to, struct OH_AVFormat * from )
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_Create (void )
+struct OH_AVFormat* OH_AVFormat_Create (void)
 ```
 
 **描述：**
@@ -226,7 +226,7 @@ struct OH_AVFormat* OH_AVFormat_Create (void )
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char * mimeType, int32_t sampleRate, int32_t channelCount )
+struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t sampleRate, int32_t channelCount)
 ```
 
 **描述：**
@@ -256,7 +256,7 @@ struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char * mimeType, int32_
 
   
 ```
-struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char * mimeType, int32_t width, int32_t height )
+struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t width, int32_t height)
 ```
 
 **描述：**
@@ -286,7 +286,7 @@ struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char * mimeType, int32_
 
   
 ```
-void OH_AVFormat_Destroy (struct OH_AVFormat * format)
+void OH_AVFormat_Destroy (struct OH_AVFormat *format)
 ```
 
 **描述：**
@@ -310,7 +310,7 @@ void OH_AVFormat_Destroy (struct OH_AVFormat * format)
 
   
 ```
-const char* OH_AVFormat_DumpInfo (struct OH_AVFormat * format)
+const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 ```
 
 **描述：**
@@ -338,7 +338,7 @@ const char* OH_AVFormat_DumpInfo (struct OH_AVFormat * format)
 
   
 ```
-bool OH_AVFormat_GetBuffer (struct OH_AVFormat * format, const char * key, uint8_t ** addr, size_t * size )
+bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t **addr, size_t *size)
 ```
 
 **描述：**
@@ -369,7 +369,7 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat * format, const char * key, uint8
 
   
 ```
-bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat * format, const char * key, double * out )
+bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, double *out)
 ```
 
 **描述：**
@@ -399,7 +399,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat * format, const char * key, 
 
   
 ```
-bool OH_AVFormat_GetFloatValue (struct OH_AVFormat * format, const char * key, float * out )
+bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, float *out)
 ```
 
 **描述：**
@@ -429,7 +429,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat * format, const char * key, f
 
   
 ```
-bool OH_AVFormat_GetIntValue (struct OH_AVFormat * format, const char * key, int32_t * out )
+bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32_t *out)
 ```
 
 **描述：**
@@ -455,7 +455,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat * format, const char * key, int
 
   
 ```
-bool OH_AVFormat_GetLongValue (struct OH_AVFormat * format, const char * key, int64_t * out )
+bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int64_t *out)
 ```
 
 **描述：**
@@ -485,7 +485,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat * format, const char * key, in
 
   
 ```
-bool OH_AVFormat_GetStringValue (struct OH_AVFormat * format, const char * key, const char ** out )
+bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, const char **out)
 ```
 
 **描述：**
@@ -515,7 +515,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat * format, const char * key, 
 
   
 ```
-bool OH_AVFormat_SetBuffer (struct OH_AVFormat * format, const char * key, const uint8_t * addr, size_t size )
+bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size)
 ```
 
 **描述：**
@@ -546,7 +546,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat * format, const char * key, const
 
   
 ```
-bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat * format, const char * key, double value )
+bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, double value)
 ```
 
 **描述：**
@@ -576,7 +576,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat * format, const char * key, 
 
   
 ```
-bool OH_AVFormat_SetFloatValue (struct OH_AVFormat * format, const char * key, float value )
+bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, float value)
 ```
 
 **描述：**
@@ -606,7 +606,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat * format, const char * key, f
 
   
 ```
-bool OH_AVFormat_SetIntValue (struct OH_AVFormat * format, const char * key, int32_t value )
+bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32_t value)
 ```
 
 **描述：**
@@ -636,7 +636,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat * format, const char * key, int
 
   
 ```
-bool OH_AVFormat_SetLongValue (struct OH_AVFormat * format, const char * key, int64_t value )
+bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int64_t value)
 ```
 
 **描述：**
@@ -666,7 +666,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat * format, const char * key, in
 
   
 ```
-bool OH_AVFormat_SetStringValue (struct OH_AVFormat * format, const char * key, const char * value )
+bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, const char *value)
 ```
 
 **描述：**
@@ -724,7 +724,7 @@ OH_AVMemory* OH_AVMemory_Create (int32_t size)
 
   
 ```
-OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory * mem)
+OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory *mem)
 ```
 
 **描述：**
@@ -752,7 +752,7 @@ OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory * mem)
 
   
 ```
-uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory * mem)
+uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory *mem)
 ```
 
 **描述：**
@@ -780,7 +780,7 @@ uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory * mem)
 
   
 ```
-int32_t OH_AVMemory_GetSize (struct OH_AVMemory * mem)
+int32_t OH_AVMemory_GetSize (struct OH_AVMemory *mem)
 ```
 
 **描述：**

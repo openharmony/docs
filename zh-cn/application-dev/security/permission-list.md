@@ -2138,6 +2138,16 @@
 
 **ACL使能**：FALSE
 
+## ohos.permission.ACCESS_BUNDLE_DIR
+
+允许应用访问其他应用安装目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
 允许在企业设备上安装企业MDM应用包。

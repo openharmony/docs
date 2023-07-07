@@ -30,12 +30,12 @@ Creates a date picker in the given date range.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                              | Type                                    | Description                                      |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| lunar                            | boolean                                  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
-| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.          |
-| textStyle<sup>10+</sup>          | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.      |
-| selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width of the selected item.                     |
+| Name                            | Type                                     | Description                                                        |
+| -------------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| lunar                            | boolean                                       | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| textStyle<sup>10+</sup>          | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ## PickerTextStyle<sup>10+</sup>
 

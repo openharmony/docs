@@ -1617,8 +1617,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   let want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
-      abilityName: 'EntryAbility'
-      deviceId: ''
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
         // If the value of 'ohos.aafwk.param.callAbilityToForeground' is true, the ability is started in the foreground. If the value is false or not set, the ability is started in the background.
         'ohos.aafwk.param.callAbilityToForeground': true

@@ -116,3 +116,17 @@ struct Index {
 **适配指导**
 
 @BuilderParam 状态变量初始化赋值传入@Builder方法。
+
+## cl.arkui.4 Search组件的searchButton属性中SearchButtonOption修改为SearchButtonOptions
+
+**变更影响**
+
+如果显式地使用了SearchButtonOption类型，编译无法通过。
+
+**关键的接口/组件变更**
+
+searchButton属性中类型SearchButtonOption修改为SearchButtonOptions。
+
+**适配指导**
+
+SearchButtonOption修改为SearchButtonOptions。

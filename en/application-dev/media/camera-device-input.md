@@ -75,7 +75,7 @@ During camera application development, you can listen for the camera status, inc
 Register the 'cameraStatus' event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
 
 ```ts
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
   console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
   console.info(`status: ${cameraStatusInfo.status}`);
 })

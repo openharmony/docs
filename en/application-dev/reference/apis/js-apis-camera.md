@@ -576,7 +576,7 @@ Listens for camera mute status changes. This API uses an asynchronous callback t
 **Example**
 
 ```js
-cameraManager.on('cameraMute', (curMuetd) => {
+cameraManager.on('cameraMute', (err, curMuetd) => {
     let isMuted = curMuetd;
 })
 ```
@@ -1770,7 +1770,7 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 | Name    | Type                           | Mandatory| Description                |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | Yes  | EV. The supported EV range can be obtained by calling **getExposureBiasRange**. If the value passed is not within the supported range, the nearest critical point is used. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
+| exposureBias   | number                   | Yes  | EV. The supported EV range can be obtained by calling **getExposureBiasRange**. If the value passed is not within the supported range, the nearest critical point is used. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1804,7 +1804,7 @@ Obtains the exposure value in use.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| number    | Exposure value obtained. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
+| number    | Exposure value obtained. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2281,7 +2281,7 @@ Listens for focus state changes. This API uses an asynchronous callback to retur
 **Example**
 
 ```js
-captureSession.on('focusStateChange', (focusState) => {
+captureSession.on('focusStateChange', (err, focusState) => {
     console.log(`Focus state  : ${focusState}`);
 })
 ```
@@ -2883,7 +2883,7 @@ Listens for shooting start events. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-photoOutput.on('captureStart', (captureId) => {
+photoOutput.on('captureStart', (err, captureId) => {
     console.log(`photo capture stated, captureId : ${captureId}`);
 })
 ```
@@ -2906,7 +2906,7 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 **Example**
 
 ```js
-photoOutput.on('frameShutter', (frameShutterInfo) => {
+photoOutput.on('frameShutter', (err, frameShutterInfo) => {
     console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
     console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
@@ -2930,7 +2930,7 @@ Listens for shooting end events. This API uses an asynchronous callback to retur
 **Example**
 
 ```js
-photoOutput.on('captureEnd', (captureEndInfo) => {
+photoOutput.on('captureEnd', (err, captureEndInfo) => {
     console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
     console.log(`frameCount : ${captureEndInfo.frameCount}`);
 })
@@ -3378,7 +3378,7 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 **Example**
 
 ```js
-metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
     console.log(`metadata output metadataObjectsAvailable`);
 })
 ```

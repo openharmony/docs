@@ -39,7 +39,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.                                      |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.                                   |
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.                                              |
-
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
+| selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 ## IconOptions<sup>10+</sup>
 
 | Name| Type                                  | Mandatory| Description   |
@@ -66,21 +67,23 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Description            |
 | ----------------------- | ---------------- |
-| CONSTANT<sup>10+</sup>  | The Cancel button is always displayed.|
-| INVISIBLE<sup>10+</sup> | The Cancel button is always hidden.|
-| INPUT<sup>10+</sup>     | The Cancel button is displayed when there is text input.|
+| CONSTANT  | The Cancel button is always displayed.|
+| INVISIBLE | The Cancel button is always hidden.|
+| INPUT     | The Cancel button is displayed when there is text input.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onSubmit(callback: (value: string) => void) | Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
-| onChange(callback: (value: string) => void) | Invoked when the input in the text box changes.<br> - **value**: current text input. |
-| onCopy(callback: (value: string) => void) | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.     |
-| onCut(callback: (value: string) => void)  | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.     |
-| onPaste(callback: (value: string) => void) | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.     |
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onSubmit(callback: (value: string) => void)                  | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
+| onChange(callback: (value: string) => void)                  | Triggered when the input in the text box changes.<br> - **value**: current text input.|
+| onCopy(callback: (value: string) => void)                    | Triggered when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.|
+| onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
+| onPaste(callback: (value: string) => void)                   | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.|
+| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
 
 ## SearchController
 
@@ -102,7 +105,15 @@ Sets the position of the caret.
 | ------ | -------- | ---- | ---------------------------------- |
 | value  | number   | Yes  | Length from the start of the character string to the position where the caret is located.|
 
+### stopEditing<sup>10+</sup>
+
+stopEditing(): void
+
+Exits the editing state.
+
 ##  Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -119,7 +130,7 @@ struct SearchExample {
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
         .searchButton('SEARCH')
-        .width(400)
+        .width('95%')
         .height(40)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
@@ -143,3 +154,43 @@ struct SearchExample {
 ```
 
 ![search](figures/search.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchButtoonExample {
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
+      Search({ placeholder: 'Type to search...' })
+        .searchButton('SEARCH')
+        .searchIcon({
+          src: $r('app.media.search')
+        })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: {
+            src: $r('app.media.cancel')
+          }
+        })
+        .width('90%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .onSubmit((value: string) => {
+          this.submitValue = value
+        })
+        .margin(20)
+    }.width('100%')
+  }
+}
+```
+
+![searchButton](figures/searchButton.gif)

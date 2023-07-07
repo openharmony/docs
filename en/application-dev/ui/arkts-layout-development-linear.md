@@ -1,4 +1,4 @@
-# Linear Layout
+# Linear Layout (Row/Column)
 
 
 ## Overview

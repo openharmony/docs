@@ -29,7 +29,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 | 名称                    | 参数类型                                         | 描述                                           |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOption](#searchbuttonoption10对象说明)              | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
+| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。                           |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
@@ -56,7 +56,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 | width  | [Length](ts-types.md#length)               | 否   | 光标尺寸。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
-## SearchButtonOption<sup>10+</sup>对象说明
+## SearchButtonOptions<sup>10+</sup>对象说明
 
 | 参数名    | 参数类型                                   | 必填 | 参数描述         |
 | --------- | ------------------------------------------ | ---- | ---------------- |

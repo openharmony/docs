@@ -92,7 +92,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 
   
 ```
-typedef enum OH_AVCodecCategoryOH_AVCodecCategory
+typedef enum OH_AVCodecCategory OH_AVCodecCategory
 ```
 
 **描述：**
@@ -110,7 +110,7 @@ typedef enum OH_AVCodecCategoryOH_AVCodecCategory
 
   
 ```
-typedef struct OH_AVRangeOH_AVRange
+typedef struct OH_AVRange OH_AVRange
 ```
 
 **描述：**
@@ -128,7 +128,7 @@ typedef struct OH_AVRangeOH_AVRange
 
   
 ```
-typedef enum OH_BitrateModeOH_BitrateMode
+typedef enum OH_BitrateMode OH_BitrateMode
 ```
 
 **描述：**
@@ -199,7 +199,7 @@ enum OH_BitrateMode
 
   
 ```
-bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, int32_t profile, int32_t level )
+bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, int32_t profile, int32_t level)
 ```
 
 **描述：**
@@ -229,7 +229,7 @@ bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, i
 
   
 ```
-bool OH_AVCapability_AreVideoSizeAndFrameRateSupported (OH_AVCapability *capability, int32_t width, int32_t height, int32_t frameRate )
+bool OH_AVCapability_AreVideoSizeAndFrameRateSupported (OH_AVCapability *capability, int32_t width, int32_t height, int32_t frameRate)
 ```
 
 **描述：**
@@ -260,7 +260,7 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported (OH_AVCapability *capabil
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange (OH_AVCapability * capability, OH_AVRange * channelCountRange )
+OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange (OH_AVCapability *capability, OH_AVRange *channelCountRange)
 ```
 
 **描述：**
@@ -289,7 +289,7 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange (OH_AVCapability * capabi
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability * capability, const int32_t ** sampleRates, uint32_t * sampleRateNum )
+OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability *capability, const int32_t **sampleRates, uint32_t *sampleRateNum)
 ```
 
 **描述：**
@@ -319,7 +319,7 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability * cap
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability * capability, OH_AVRange * bitrateRange )
+OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability *capability, OH_AVRange *bitrateRange)
 ```
 
 **描述：**
@@ -348,7 +348,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability * capabilit
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability * capability, OH_AVRange * complexityRange )
+OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability *capability, OH_AVRange *complexityRange)
 ```
 
 **描述：**
@@ -377,7 +377,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability * capabi
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability * capability, OH_AVRange * qualityRange )
+OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability, OH_AVRange *qualityRange)
 ```
 
 **描述：**
@@ -406,7 +406,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability * capabilit
 
   
 ```
-int32_t OH_AVCapability_GetMaxSupportedInstances (OH_AVCapability * capability)
+int32_t OH_AVCapability_GetMaxSupportedInstances (OH_AVCapability *capability)
 ```
 
 **描述：**
@@ -434,7 +434,7 @@ int32_t OH_AVCapability_GetMaxSupportedInstances (OH_AVCapability * capability)
 
   
 ```
-const char* OH_AVCapability_GetName (OH_AVCapability * capability)
+const char* OH_AVCapability_GetName (OH_AVCapability *capability)
 ```
 
 **描述：**
@@ -462,7 +462,7 @@ const char* OH_AVCapability_GetName (OH_AVCapability * capability)
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability * capability, int32_t profile, const int32_t ** levels, uint32_t * levelNum )
+OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capability, int32_t profile, const int32_t **levels, uint32_t *levelNum)
 ```
 
 **描述：**
@@ -493,7 +493,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability * cap
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability * capability, const int32_t ** profiles, uint32_t * profileNum )
+OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability *capability, const int32_t **profiles, uint32_t *profileNum)
 ```
 
 **描述：**
@@ -523,7 +523,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability * capability,
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange (OH_AVCapability * capability, OH_AVRange * frameRateRange )
+OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange (OH_AVCapability *capability, OH_AVRange *frameRateRange)
 ```
 
 **描述：**
@@ -552,7 +552,7 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange (OH_AVCapability * capabilit
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize (OH_AVCapability * capability, int32_t width, int32_t height, OH_AVRange * frameRateRange )
+OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize (OH_AVCapability *capability, int32_t width, int32_t height, OH_AVRange *frameRateRange)
 ```
 
 **描述：**
@@ -583,7 +583,7 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize (OH_AVCapability * ca
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment (OH_AVCapability * capability, int32_t * heightAlignment )
+OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment (OH_AVCapability *capability, int32_t *heightAlignment)
 ```
 
 **描述：**
@@ -612,7 +612,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment (OH_AVCapability * capabili
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoHeightRange (OH_AVCapability * capability, OH_AVRange * heightRange )
+OH_AVErrCode OH_AVCapability_GetVideoHeightRange (OH_AVCapability *capability, OH_AVRange *heightRange)
 ```
 
 **描述：**
@@ -641,7 +641,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRange (OH_AVCapability * capability, 
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth (OH_AVCapability * capability, int32_t width, OH_AVRange * heightRange )
+OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth (OH_AVCapability *capability, int32_t width, OH_AVRange *heightRange)
 ```
 
 **描述：**
@@ -671,7 +671,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth (OH_AVCapability * capa
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats (OH_AVCapability * capability, const int32_t ** pixelFormats, uint32_t * pixelFormatNum )
+OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats (OH_AVCapability *capability, const int32_t **pixelFormats, uint32_t *pixelFormatNum)
 ```
 
 **描述：**
@@ -701,7 +701,7 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats (OH_AVCapability * ca
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability * capability, int32_t * widthAlignment )
+OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability *capability, int32_t *widthAlignment)
 ```
 
 **描述：**
@@ -730,7 +730,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability * capabilit
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability * capability, OH_AVRange * widthRange )
+OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability *capability, OH_AVRange *widthRange)
 ```
 
 **描述：**
@@ -759,7 +759,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability * capability, O
 
   
 ```
-OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight (OH_AVCapability * capability, int32_t height, OH_AVRange * widthRange )
+OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight (OH_AVCapability *capability, int32_t height, OH_AVRange *widthRange)
 ```
 
 **描述：**
@@ -789,7 +789,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight (OH_AVCapability * capa
 
   
 ```
-bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability * capability, OH_BitrateMode bitrateMode )
+bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability *capability, OH_BitrateMode bitrateMode)
 ```
 
 **描述：**
@@ -818,7 +818,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability * capability
 
   
 ```
-bool OH_AVCapability_IsHardware (OH_AVCapability * capability)
+bool OH_AVCapability_IsHardware (OH_AVCapability *capability)
 ```
 
 **描述：**
@@ -846,7 +846,7 @@ bool OH_AVCapability_IsHardware (OH_AVCapability * capability)
 
   
 ```
-bool OH_AVCapability_IsVideoSizeSupported (OH_AVCapability * capability, int32_t width, int32_t height )
+bool OH_AVCapability_IsVideoSizeSupported (OH_AVCapability *capability, int32_t width, int32_t height)
 ```
 
 **描述：**
@@ -876,7 +876,7 @@ bool OH_AVCapability_IsVideoSizeSupported (OH_AVCapability * capability, int32_t
 
   
 ```
-OH_AVCapability* OH_AVCodec_GetCapability (const char * mime, bool isEncoder )
+OH_AVCapability* OH_AVCodec_GetCapability (const char *mime, bool isEncoder)
 ```
 
 **描述：**
@@ -905,7 +905,7 @@ OH_AVCapability* OH_AVCodec_GetCapability (const char * mime, bool isEncoder )
 
   
 ```
-OH_AVCapability* OH_AVCodec_GetCapabilityByCategory (const char * mime, bool isEncoder, OH_AVCodecCategory category )
+OH_AVCapability* OH_AVCodec_GetCapabilityByCategory (const char *mime, bool isEncoder, OH_AVCodecCategory category)
 ```
 
 **描述：**

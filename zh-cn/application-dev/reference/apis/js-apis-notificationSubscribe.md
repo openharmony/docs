@@ -667,10 +667,10 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称  | 类型   | 可读 |  | 必填 | 说明     |
-| ----- | ------ | ---- | --- | -------- | -------- |
-| id    | number | 是 | 是 | 是  | 通知ID。   |
-| label | string | 是 | 是 | 否  | 通知标签。 |
+| 名称  | 类型   | 必填 | 说明     |
+| ----- | ------ | --- | -------- |
+| id    | number | 是  | 通知ID。   |
+| label | string | 否  | 通知标签。 |
 
 ## RemoveReason
 

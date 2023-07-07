@@ -22,9 +22,9 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 类型| 说明 | 
-  | -------- | -------- |
-  |AsyncCallback&lt;boolean&gt; |以回调方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。  | 
 
 **错误码**：
 
@@ -128,9 +128,9 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
 **参数：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | AsyncCallback&lt;boolean&gt; |以回调方式返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。  | 
 
 **错误码**：
 
@@ -198,9 +198,9 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
 **参数：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  |AsyncCallback&lt;number&gt; |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | 是 |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
 
 **错误码**：
 
@@ -272,9 +272,9 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 **参数：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | 是 |以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 | 
 
 **错误码**：
 
@@ -762,7 +762,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -812,7 +812,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
