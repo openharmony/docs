@@ -1,4 +1,4 @@
-# \@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects
+# \@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects
 
 
 The decorators described above can observe only the changes of the first layer. However, in real-world application development, the application may encapsulate its own data model based on development requirements. In the case of multi-layer nesting, for example, a two-dimensional array, an array item class, or a class insider another class as an attribute, the attribute changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.

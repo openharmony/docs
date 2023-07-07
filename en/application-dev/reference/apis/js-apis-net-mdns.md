@@ -623,7 +623,7 @@ FA model:
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -639,7 +639,7 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -660,7 +660,7 @@ FA model:
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
@@ -676,7 +676,7 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
@@ -700,6 +700,8 @@ Enables listening for **discoveryStart** events.
 
 ```js
 // See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -729,6 +731,8 @@ Enables listening for **discoveryStop** events.
 
 ```js
 // See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -758,6 +762,8 @@ Enables listening for **serviceFound** events.
 
 ```js
 // See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -787,6 +793,8 @@ Enables listening for **serviceLost** events.
 
 ```js
 // See mdns.createDiscoveryService.
+let context = globalThis.context;
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
@@ -805,7 +813,7 @@ Defines the mDNS service information.
 
 | Name                 | Type                               | Mandatory| Description                    |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| serviceType   | string                             |  Yes|  Type of the mDNS service. The value is in the format of **\_\<name>.\<tcp/udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
+| serviceType   | string                             |  Yes|  Type of the mDNS service. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
 | serviceName | string                             |  Yes|  Name of the mDNS service.  |
 | port            | number           |  No|  Port number of the mDNS server.          |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the mDNS service. The IP address is not effective when an mDNS service is added or removed.              |

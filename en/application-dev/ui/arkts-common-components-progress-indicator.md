@@ -1,4 +1,4 @@
-# Progress Indicator
+# Progress Indicator (Progress)
 
 
 The **\<Progress>** component is used to provide a progress indicator that displays the progress of an operation. For details, see [Progress](../reference/arkui-ts/ts-basic-components-progress.md).

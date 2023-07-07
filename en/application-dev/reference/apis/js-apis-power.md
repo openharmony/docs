@@ -147,13 +147,20 @@ try {
 
 ## power.suspend<sup>9+</sup>
 
-suspend(): void
+suspend(isImmediate?: boolean): void
 
 Hibernates a device.
 
 **System API**: This is a system API.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately. If this parameter is not specified, the default value **false** is used. The system automatically determines when to enter the hibernation state.<br>**NOTE**: This parameter is supported since API version 10.|
+
 
 **Error codes**
 

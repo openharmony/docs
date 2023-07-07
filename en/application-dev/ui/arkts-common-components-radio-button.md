@@ -1,4 +1,4 @@
-# Radio Button
+# Radio Button (Radio)
 
 
 The **\<Radio>** component allows users to select from a set of mutually exclusive options. Only one radio button in a given group can be selected at the same time. For details, see [Radio](../reference/arkui-ts/ts-basic-components-radio.md).

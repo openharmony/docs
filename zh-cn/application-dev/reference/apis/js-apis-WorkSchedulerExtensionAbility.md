@@ -22,7 +22,7 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
+| context<sup>10+</sup>| [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
 
 ## WorkSchedulerExtensionAbility.onWorkStart
 

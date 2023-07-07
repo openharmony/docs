@@ -3592,7 +3592,7 @@ Sets the audio device for a call. This API uses an asynchronous callback to retu
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice8) | Yes  | Audio device.|
+| device   | [AudioDevice](#audiodevice10) | Yes  | Audio device.|
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3611,17 +3611,64 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.setAudioDevice(1, (err) => {
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
+## call.setAudioDevice<sup>10+</sup>
+
+setAudioDevice\(device: AudioDevice): Promise\<void\>
+
+Sets the audio device for a call. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description      |
+| -------- | ---------------------------- | ---- | ---------- |
+| device   | [AudioDevice](#audiodevice10) | Yes  | Audio device.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice).then(() => {
+    console.log(`setAudioDevice success.`);
+}).catch((err) => {
+    console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback\<void\>\): void
 
-Sets the audio device for a call. This API uses an asynchronous callback to return the result.
+Sets the audio device for a call based on the specified options. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3631,7 +3678,7 @@ Sets the audio device for a call. This API uses an asynchronous callback to retu
 
 | Name  | Type                                      | Mandatory| Description          |
 | -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#audiodevice8)               | Yes  | Audio device.    |
+| device   | [AudioDevice](#audiodevice10)               | Yes  | Audio device.    |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | Yes  | Audio device parameters.|
 | callback | AsyncCallback&lt;void&gt;                  | Yes  | Callback used to return the result.    |
 
@@ -3651,10 +3698,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions, (err) => {
+call.setAudioDevice(audioDevice, audioDeviceOptions, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3674,7 +3724,7 @@ Sets the audio device for a call based on the specified options. This API uses a
 
 | Name | Type                                      | Mandatory| Description              |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#audiodevice8)               | Yes  | Audio device.        |
+| device  | [AudioDevice](#audiodevice10)               | Yes  | Audio device.        |
 | options | [AudioDeviceOptions](#audiodeviceoptions9) | No  | Audio device parameters.|
 
 **Return value**
@@ -3699,10 +3749,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions).then(() => {
+call.setAudioDevice(audioDevice, audioDeviceOptions).then(() => {
     console.log(`setAudioDevice success.`);
 }).catch((err) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
@@ -4242,7 +4295,7 @@ call.closeUnfinishedUssd(slotId).then(() => {
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<boolean\>\): void
+setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\): void
 
 Sets the status of the VoNR switch. This API uses an asynchronous callback to return the result.
 
@@ -4258,7 +4311,7 @@ Sets the status of the VoNR switch. This API uses an asynchronous callback to re
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
 | slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2               |
 | state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                           |
-| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. Callback used to return the result. The value **true** indicates that the operation is successful, and value **false** indicates the opposite.|
+| callback    | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4287,7 +4340,7 @@ call.setVoNRState(slotId, state, (err, data) => {
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
+setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 Sets the status of the VoNR switch. This API uses a promise to return the result.
 
@@ -4308,7 +4361,7 @@ Sets the status of the VoNR switch. This API uses a promise to return the result
 
 | Type                  | Description                                         |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.    |
+| Promise&lt;void&gt; | Promise used to return the result.    |
 
 **Error codes**
 
@@ -4329,7 +4382,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let slotId = 0;
 let state = 1;
-call.setVoNRState(slotId, state).then(() => {
+call.setVoNRState(slotId, state).then((data) => {
     console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
     console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
@@ -4516,7 +4569,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-call.canSetCallTransferTime(slotId).then(() => {
+call.canSetCallTransferTime(slotId).then((data) => {
     console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
     console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
@@ -4629,7 +4682,7 @@ Provides an option for determining whether a call is a video call.
 
 ## DialCallOptions<sup>9+</sup>
 
-Defines options for initiating a call.
+Provides an option for determining whether a call is a video call.
 
 **System API**: This is a system API.
 
@@ -4704,7 +4757,7 @@ Enumerates VoNR switch states.
 | VONR_STATE_OFF         | 0    | Disabled.          |
 | VONR_STATE_ON          | 1    | Enabled.          |
 
-## AudioDevice<sup>8+</sup>
+## AudioDevice<sup>10+</sup>
 
 Enumerates audio devices.
 
@@ -4712,13 +4765,10 @@ Enumerates audio devices.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                | Value  | Description        |
-| -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | Headset device.    |
-| DEVICE_SPEAKER       | 1    | Speaker device.|
-| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
-| DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
-| DEVICE_MIC           | 4    | Microphone device|
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| deviceType <sup>10+</sup>    | [AudioDeviceType](#audiodevicetype10) | Yes  | Audio device type.   |
+| address <sup>10+</sup> | string          | No  | Audio device address.   |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -4745,8 +4795,8 @@ Defines the audio device information.
 
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | Yes  | Audio device list.   |
-| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)          | Yes  | Audio device type.   |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice10) | Yes  | Audio device list.   |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | Yes  | Audio device type.   |
 | isMuted <sup>10+</sup>            | boolean                               | Yes  | Whether the audio device is muted.       |
 
 

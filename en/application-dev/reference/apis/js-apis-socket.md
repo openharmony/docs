@@ -479,12 +479,12 @@ Enables listening for message receiving events of the UDPSocket connection. This
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 udp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -513,12 +513,12 @@ Disables listening for message receiving events of the UDPSocket connection. Thi
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -541,7 +541,7 @@ Enables listening for data packet message events or close events of the UDPSocke
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **listening**: data packet message event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1365,12 +1365,12 @@ Enables listening for message receiving events of the TCPSocket connection. This
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 tcp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1399,12 +1399,12 @@ Disables listening for message receiving events of the TCPSocket connection. Thi
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1427,7 +1427,7 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1457,7 +1457,7 @@ Disables listening for connection or close events of the TCPSocket connection. T
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1766,7 +1766,7 @@ promise.then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1818,7 +1818,7 @@ tls.setExtraOptions({
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses a promise to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1881,19 +1881,19 @@ Subscribes to **message** events of the TLSSocket connection. This API uses an a
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to. **message**: message receiving event|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 tls.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1915,19 +1915,19 @@ Unsubscribes from **message** events of the TLSSocket connection. This API uses 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to. **message**: message receiving event|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
 ```js
 let tls = socket.constructTLSSocketInstance();
+let messageView = '';
 let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    let messageView = '';
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1948,7 +1948,7 @@ Enables listening for connection or close events of the TLSSocket connection. Th
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1978,7 +1978,7 @@ Disables listening for connection or close events of the TLSSocket connection. T
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**

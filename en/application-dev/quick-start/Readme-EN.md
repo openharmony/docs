@@ -3,8 +3,6 @@
 - Getting Started
   - [Before You Start](start-overview.md)
   - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
-  - [Getting Started with ArkTS in FA Model](start-with-ets-fa.md)
-  - [Getting Started with JavaScript in FA Model](start-with-js-fa.md)  
 - Development Fundamentals
   - Application Package Fundamentals
     - [Application Package Overview](application-package-overview.md)
@@ -38,9 +36,9 @@
   - Application Configuration Files in FA Model
     - [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md)
     - [Internal Structure of the app Tag](app-structure.md)
-    - [Internal Structure of deviceConfig Tag](deviceconfig-structure.md)
+    - [Internal Structure of the deviceConfig Tag](deviceconfig-structure.md)
     - [Internal Structure of the module Tag](module-structure.md)
-- [Resource Categories and Access](resource-categories-and-access.md)
+  - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
     - [Getting Started with ArkTS](arkts-get-started.md)
   - Basic Syntax
@@ -49,19 +47,19 @@
     - Custom Component
       - [Creating a Custom Component](arkts-create-custom-components.md)
       - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
-    - [\@Builder: Custom Builder Function](arkts-builder.md)
-    - [\@BuilderParam: @Builder Function Reference](arkts-builderparam.md)
-    - [\@Styles: Definition of Resusable Styles](arkts-style.md)
-    - [\@Extend: Extension of Built-in Components](arkts-extend.md)
-    - [stateStyles: Polymorphic Style](arkts-statestyles.md)
+    - [\@Builder Decorator: Custom Builder Function](arkts-builder.md)
+    - [\@BuilderParam Decorator: @Builder Function Reference](arkts-builderparam.md)
+    - [\@Styles Decorator: Definition of Resusable Styles](arkts-style.md)
+    - [\@Extend Decorator: Extension of Built-in Components](arkts-extend.md)
+    - [stateStyles Decorator: Polymorphic Style](arkts-statestyles.md)
   - State Management
     - [State Management Overview](arkts-state-management-overview.md)
     - Component State Management
-      - [\@State: State Owned by Component](arkts-state.md)
-      - [\@Prop: One-Way Synchronization from Parent to Child Components](arkts-prop.md)
-      - [\@Link: Two-Way Synchronization Between Parent and Child Components](arkts-link.md)
-      - [\@Provide and \@Consume: Two-Way Synchronization with Descendant Components](arkts-provide-and-consume.md)
-      - [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](arkts-observed-and-objectlink.md)
+      - [\@State Decorator: State Owned by Component](arkts-state.md)
+      - [\@Prop Decorator: One-Way Synchronization from Parent to Child Components](arkts-prop.md)
+      - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](arkts-link.md)
+      - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](arkts-provide-and-consume.md)
+      - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](arkts-observed-and-objectlink.md)
     - Application State Management
       - [Application State Management Overview](arkts-application-state-management-overview.md)
       - [LocalStorage: UI State Storage](arkts-localstorage.md)

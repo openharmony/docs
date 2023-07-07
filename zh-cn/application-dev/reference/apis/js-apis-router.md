@@ -670,7 +670,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data.['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString()
         })
         .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)
