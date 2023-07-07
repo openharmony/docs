@@ -7,7 +7,10 @@ The **Animator** module provides APIs for applying animation effects, including 
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This module can be used only after a component instance is created, and it cannot be used in the [UIAbility](./js-apis-app-ability-uiAbility.md).
-
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [createAnimator](./js-apis-arkui-UIContext.md#createanimator) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## Modules to Import
 

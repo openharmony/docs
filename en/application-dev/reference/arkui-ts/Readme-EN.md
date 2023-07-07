@@ -152,6 +152,7 @@
   - [ImageBitmap](ts-components-canvas-imagebitmap.md)
   - [ImageData](ts-components-canvas-imagedata.md)
   - [Matrix2D](ts-components-canvas-matrix2d.md)
+  - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - Animation

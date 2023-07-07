@@ -7,6 +7,10 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This module can be used only after a component instance is created, and it cannot be used in the [UIAbility](./js-apis-app-ability-uiAbility.md).
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [getPromptAction](./js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](./js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
 
 ## Modules to Import
 
@@ -62,7 +66,7 @@ Describes the options for showing the toast.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text to display.                                |
 | duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
-| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.                        |
+| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.<br>Default value: **80vp**                          |
 
 ## promptAction.showDialog
 
@@ -319,7 +323,7 @@ Describes the options for showing the action menu.
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
-| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, only the first six buttons will be displayed.|
 
 ## ActionMenuSuccessResponse
 

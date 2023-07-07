@@ -6,7 +6,7 @@ The documents are carefully organized as follows:
 
 ### Getting Started
 
-[Here](quick-start/Readme-EN.md) you'll learn how to quickly get started with OpenHarmony application development.
+[Here](quick-start/Readme-EN.md) you can learn how to better prepare yourself for application development.
 
 Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
 
@@ -51,7 +51,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md).
 
 ### API References
 
@@ -61,16 +61,15 @@ They are organized as follows:
 
 - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
 - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
-- [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md) 
-- APIs
-    - [JS and TS APIs](reference/apis/Readme-EN.md)
-    - Native APIs
-        -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
+- [JavaScript Service Widget UI Component Reference](reference/js-service-widget-ui/Readme-EN.md)
+- API Reference
+    - [ArkTS and JavaScript APIs](reference/apis/Readme-EN.md)
+    - Native API Reference
+        -   [Native APIs](reference/native-apis/Readme-EN.md)
+        -   [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
         -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 
 
 ### Readme
 
 For details about the principles and basic information of each subsystem, see the README file in [docs/en/readme](../readme).
-
- <!--no_check--> 

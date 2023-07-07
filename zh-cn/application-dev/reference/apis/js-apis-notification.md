@@ -1460,7 +1460,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](#bundleoption)       | 是   | 指定应用的包信息。           |
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | 是   | 通知键值。             |
-| reason          | [RemoveReason](#removereason9)      | 是   | 通知删除原因。         |
+| reason          | [RemoveReason](#removereason-deprecated)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
 **示例：**
@@ -1502,7 +1502,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](#bundleoption)    | 是   | 指定应用的包信息。 |
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | 是   | 通知键值。   |
-| reason          | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
+| reason          | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 
 **示例：**
 
@@ -1537,7 +1537,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
-| reason   | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
+| reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
 **示例：**
@@ -1573,7 +1573,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | 参数名     | 类型       | 必填 | 说明       |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | 是   | 通知唯一ID。 |
-| reason   | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
+| reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 
 **示例：**
 
@@ -2869,10 +2869,10 @@ Notification.getDeviceRemindType().then((data) => {
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)替代
 
-| 名称   | 类型   | 只读 | 必填 | 说明   |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | 否  | 是  | 应用的包信息。 |
-| uid    | number | 否  | 否  | 用户ID。 |
+| 名称   | 类型   | 必填 | 说明   |
+| ------ | ------ | --- |  ------ |
+| bundle | string | 是  | 应用的包信息。 |
+| uid    | number | 否  | 用户ID。 |
 
 ## NotificationKey<sup>deprecated</sup>
 
@@ -3055,7 +3055,7 @@ Notification.getDeviceRemindType().then((data) => {
 | classification        | string                                        | 是  | 是  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | groupName<sup>8+</sup>| string                                        | 是  | 是  | 组通知名称。                 |
 | template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | 是  | 是  | 通知模板。                   |
-| isRemoveAllowed<sup>8+</sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| isRemoveAllowed<sup>10+</sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | source<sup>8+</sup>   | number                                        | 是  | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | 是  | 是  | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
@@ -3197,16 +3197,16 @@ Notification.getDeviceRemindType().then((data) => {
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
 
-## RemoveReason<sup>9+</sup> <sup>deprecated</sup>
+## RemoveReason <sup>deprecated</sup>
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 9开始废弃。建议使用[notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason)替代
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason)替代
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE<sup>9+</sup>  | 1   | 点击通知后删除通知。    |
-| CANCEL_REASON_REMOVE<sup>9+</sup> | 2   | 用户删除通知。         |
+| CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
+| CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |

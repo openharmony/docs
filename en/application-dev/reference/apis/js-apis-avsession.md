@@ -307,9 +307,9 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 **Return value**
 
-| Type                                                 | Description                                                        |
-| ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
+| Type                                                    | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information. |
 
 **Error codes**
 
@@ -1119,6 +1119,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -1139,7 +1143,7 @@ let queueItemDescription_2 = {
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon: imagePixel,
     iconUri: 'http://www.xxx.com',
     extras: {'extras':'any'}
 };
@@ -1182,6 +1186,10 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```js
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+
+let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -1202,7 +1210,7 @@ let queueItemDescription_2 = {
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon: imagePixel,
     iconUri: 'http://www.icon.uri.com',
     extras: {'extras':'any'}
 };
@@ -2252,7 +2260,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ------------------------------ |
 | 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -2531,6 +2539,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -2795,6 +2804,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2830,6 +2840,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -3002,6 +3013,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 ```js
@@ -3033,6 +3046,8 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 ```js
@@ -4025,6 +4040,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4054,6 +4070,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4083,6 +4100,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4112,6 +4130,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4141,6 +4160,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4201,6 +4221,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4230,6 +4251,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message|
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4259,6 +4281,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID| Error Message          |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -4288,6 +4311,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 | ID | Error Message         |
 | -------- | ---------------- |
 | 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 

@@ -1,4 +1,4 @@
-# Drawing Geometric Shapes
+# Drawing Geometric Shapes (Shape)
 
 
 The drawing components are used to draw graphs on the page. The **\<Shape>** component is the parent component of the drawing components. The attributes of **\<Shape>** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/arkui-ts/ts-drawing-components-shape.md).

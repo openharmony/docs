@@ -136,7 +136,7 @@ During camera application development, you can listen for the status of the phot
 - Register the 'captureStart' event to listen for photographing start events. This event can be registered when a **PhotoOutput** object is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
     
   ```ts
-  photoOutput.on('captureStart', (captureId) => {
+  photoOutput.on('captureStart', (err, captureId) => {
       console.info(`photo capture stated, captureId : ${captureId}`);
   })
   ```
@@ -144,7 +144,7 @@ During camera application development, you can listen for the status of the phot
 - Register the 'captureEnd' event to listen for photographing end events. This event can be registered when a **PhotoOutput** object is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo) is returned.
     
   ```ts
-  photoOutput.on('captureEnd', (captureEndInfo) => {
+  photoOutput.on('captureEnd', (err, captureEndInfo) => {
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
   })

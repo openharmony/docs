@@ -367,9 +367,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称            | 类型                                              | 只读 | 必传 | 说明     |
+| 名称            | 类型                                              | 可读 | 可写 | 说明     |
 | --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | 是  | 是  | 通知内容。 |
+| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | 是  | 否  | 通知内容。 |
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | 是  | 否  | 通知排序信息。 |
 | reason          | number                                            | 是  | 否  | 删除原因。 |
 | sound           | string                                            | 是  | 否  | 通知声音。 |
@@ -382,11 +382,11 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称   | 类型    | 只读 | 必传 | 说明             |
+| 名称   | 类型    | 可读 | 可写 | 说明             |
 | ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | 是  | 是  | 应用的包名。       |
-| uid    | number  | 是  | 是  | 应用的uid。        |
-| enable | boolean | 是  | 是  | 应用通知使能状态。 |
+| bundle | string  | 是  | 否  | 应用的包名。       |
+| uid    | number  | 是  | 否  | 应用的uid。        |
+| enable | boolean | 是  | 否  | 应用通知使能状态。 |
 
 
 ## BadgeNumberCallbackData<sup>10+</sup>
@@ -395,9 +395,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 类型   | 只读 | 必传 | 描述         |
+| 名称        | 类型   | 可读 | 可写 | 描述         |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundle      | string | 是   | 是   | 应用的包名。 |
-| uid         | number | 是   | 是   | 应用的uid。  |
-| badgeNumber | number | 是   | 是   | 角标个数。   |
+| bundle      | string | 是   | 否   | 应用的包名。 |
+| uid         | number | 是   | 否   | 应用的uid。  |
+| badgeNumber | number | 是   | 否   | 角标个数。   |
 

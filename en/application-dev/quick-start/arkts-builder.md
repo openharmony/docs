@@ -1,4 +1,4 @@
-# \@Builder: Custom Builder Function
+# \@Builder Decorator: Custom Builder Function
 
 
 As previously described, you can reuse UI elements by creating a custom component, which comes with a fixed internal UI structure and allows for data transfer only with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purpose as the build function. The \@Builder function body follows the same syntax rules as the **build** function. You can abstract reusable UI elements into a method and call the method in **build**.
