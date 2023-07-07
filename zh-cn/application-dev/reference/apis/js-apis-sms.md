@@ -99,11 +99,15 @@ promise.then(data => {
 });
 ```
 
-## sms.sendMessage
+## sms.sendMessage<sup>(deprecated)</sup>
 
 sendMessage\(options: SendMessageOptions\): void
 
 发送短信。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -146,6 +150,114 @@ let options = {slotId, content, destinationHost, serviceCenter, destinationPort,
 sms.sendMessage(options);
 ```
 
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&gt;\): void
+
+发送短信。使用callback异步回调。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content = '短信内容';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}.`);
+});
+```
+
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
+
+发送短信。使用Promise异步回调。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | 以Promise形式返回发送短信的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content = '短信内容';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let promise = sms.sendShortMessage(options);
+promise.then(data => {
+    console.log(`sendShortMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
+});
+
+```
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
