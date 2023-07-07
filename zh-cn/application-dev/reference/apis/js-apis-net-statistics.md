@@ -623,7 +623,7 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 });
 ```
 
-## statistics.on('netStatsChange')<sup>10+</sup>
+## statistics.off('netStatsChange')<sup>10+</sup>
 
 off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
 

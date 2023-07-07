@@ -21,7 +21,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Placeholder text displayed when there is no input.     |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
@@ -50,6 +50,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | showUnderline<sup>10+</sup> | boolean | Whether to show an underline.<br>Default value: **false**|
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10) | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
+| selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 
 >  **NOTE**
 >
@@ -102,6 +103,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
 | onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
 | onPaste(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.|
+| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
 
 ## TextInputController<sup>8+</sup>
 
@@ -134,6 +137,12 @@ Sets the text selection area, which will be highlighted.
 | -------------- | -------- | ---- | ---------------------- |
 | selectionStart | number   | Yes  | Start position of the text selection area. The start position of the text in the text box is 0.|
 | selectionEnd   | number   | Yes  | End position of the text selection area.|
+
+### stopEditing<sup>10+</sup>
+
+stopEditing(): void
+
+Exits the editing state.
 
 ## Example
 

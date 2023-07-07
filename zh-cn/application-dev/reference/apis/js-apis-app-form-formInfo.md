@@ -25,7 +25,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
-| descriptionId      | number               | 是    | 否     | 卡片描述id。               |
+| descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。               |
 | colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
@@ -154,12 +154,12 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formId  | string               | 是    | 否     | 卡片标识。                   |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
 | hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
 | visibilityType  | [VisibilityType](#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 
 ## formProviderFilter<sup>10+</sup>

@@ -1,4 +1,4 @@
-# \@State: State Owned by Component
+# \@State Decorator: State Owned by Component
 
 
 An \@State decorated variable, also called a state variable, is a variable that holds the state property and is used to render the owning custom component. When it changes, the UI is re-rendered accordingly.

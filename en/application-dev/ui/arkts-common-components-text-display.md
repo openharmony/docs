@@ -1,4 +1,4 @@
-# Text Display
+# Text Display (Text/Span)
 
 
 The **\<Text>** component is used to display a piece of textual information. For details, see [Text](../reference/arkui-ts/ts-basic-components-text.md).

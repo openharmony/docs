@@ -276,6 +276,7 @@ zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/file-management/ @zengyawen
 zh-cn/application-dev/application-test/ @ningningW
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
+zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 
 zh-cn/application-dev/reference/apis/js-apis-ability-context.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-ability-errorCode.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen

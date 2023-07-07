@@ -26,7 +26,7 @@
 
 ## 生命周期
 
-[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)提供了onCreate()、onRequest()、onConnect()、onDisconnect()和onDestory()生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)提供了onCreate()、onRequest()、onConnect()、onDisconnect()和onDestroy()生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
 
   **图1** ServiceExtensionAbility生命周期  
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
@@ -217,7 +217,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
      "abilityName": "ServiceExtAbility"
    };
    context.stopServiceExtensionAbility(want).then(() => {
-     console.info('Succeeded in stoping ServiceExtensionAbility.');
+     console.info('Succeeded in stopping ServiceExtensionAbility.');
    }).catch((err) => {
      console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })

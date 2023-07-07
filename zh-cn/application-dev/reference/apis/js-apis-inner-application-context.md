@@ -45,7 +45,7 @@ createBundleContext(bundleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | bundleName | string | 是    | Bundle名称。 |
 
@@ -76,7 +76,7 @@ createModuleContext(moduleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | moduleName | string | 是    | 模块名。 |
 
@@ -109,7 +109,7 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | bundleName | string | 是    | Bundle名称。 |
 | moduleName | string | 是    | 模块名。 |

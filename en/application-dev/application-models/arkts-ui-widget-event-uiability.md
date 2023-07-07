@@ -16,7 +16,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   
     build() {
       Column() {
-        Button ('Jump')
+        Button ('Redirect')
           .margin('20%')
           .onClick(() => {
             console.info('postCardAction to EntryAbility');

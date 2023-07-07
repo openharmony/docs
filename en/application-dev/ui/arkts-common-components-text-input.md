@@ -1,4 +1,4 @@
-# Text Input
+# Text Input (TextInput/TextArea)
 
 
 The **\<TextInput>** and **\<TextArea>** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md).

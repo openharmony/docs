@@ -2138,11 +2138,21 @@
 
 **ACL使能**：FALSE
 
+## ohos.permission.ACCESS_BUNDLE_DIR
+
+允许应用访问其他应用安装目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集其他应用播放的音频，并且这些音频是语音下行场景属性的。
 
-**权限级别**: system_basic
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

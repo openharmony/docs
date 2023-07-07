@@ -137,6 +137,19 @@ The type of credential has not been enrolled.
 
 检查是否录入该类型的凭据，如果没有录入，则需要成功录入该类型凭据后再调用相关接口。
 
+## 12500011 认证被控件取消
+
+**错误信息**
+
+Indicates that this operation is canceled from widget's navigation button.
+
+**可能原因**
+
+当前的认证操作被用户从控件取消，返回这个错误码，标识使用应用自定义认证。例如用户点击使用自定义认证，返回到应用自定义认证流程。
+
+**处理步骤**
+
+重新调用认证接口，发起认证。
 ## 12700001 人脸录入过程中的操作失败
 
 **错误信息**

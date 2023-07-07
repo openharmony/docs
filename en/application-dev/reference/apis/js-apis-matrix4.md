@@ -16,7 +16,7 @@ import matrix4 from '@ohos.matrix4'
 
 ## matrix4.init
 
-init(array: Array&lt;number&gt;): Matrix4Transit
+init(option: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
 
 
 Matrix constructor, which is used to create a 4 x 4 matrix by using the input parameter. Column-major order is used.
@@ -25,17 +25,17 @@ Matrix constructor, which is used to create a 4 x 4 matrix by using the input pa
 
 **Parameters**
 
-| Name| Type               | Mandatory| Description                                                        |
-| ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| array  | Array&lt;number&gt; | Yes  | A number array whose length is 16 (4 x 4). For details, see **array** parameters.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| option | [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **Description of a 4 x 4 matrix**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | 4 x 4 matrix object created based on the input parameter.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameter.|
 
-**array** parameters
+**Description of a 4 x 4 matrix**
 
 | Name | Type    | Mandatory  | Description                  |
 | ---- | ------ | ---- | -------------------- |
@@ -91,9 +91,9 @@ Constructs an identity matrix.
 
 **Return value**
 
-| Type          | Description          |
-| -------------- | -------------- |
-| Matrix4Transit | Identity matrix object.|
+| Type                             | Description          |
+| --------------------------------- | -------------- |
+| [Matrix4Transit](#matrix4transit) | Identity matrix object.|
 
 **Example**
 
@@ -136,9 +136,9 @@ Copies this matrix object.
 
 **Return value**
 
-| Type          | Description                |
-| -------------- | -------------------- |
-| Matrix4Transit | Copy object of the current matrix.|
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
 
 **Example**
 
@@ -171,12 +171,12 @@ struct Test {
 ![en-us_image_0000001219744181](figures/en-us_image_0000001219744181.png)
 
 
-## Matrix4
+## Matrix4Transit
 
 
 ### combine
 
-combine(matrix: Matrix4): Matrix4Transit
+combine(option: Matrix4Transit): Matrix4Transit
 
 
 Combines the effects of two matrices to generate a new matrix object.
@@ -185,15 +185,15 @@ Combines the effects of two matrices to generate a new matrix object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description              |
-| ------ | ------- | ---- | ------------------ |
-| matrix | Matrix4 | Yes  | Matrix object to be combined.|
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
 
 **Return value**
 
-| Type          | Description              |
-| -------------- | ------------------ |
-| Matrix4Transit | Object after matrix combination.|
+| Type                             | Description              |
+| --------------------------------- | ------------------ |
+| [Matrix4Transit](#matrix4transit) | Object after matrix combination.|
 
 **Example**
 
@@ -238,9 +238,9 @@ Inverts this matrix object.
 
 **Return value**
 
-| Type          | Description                  |
-| -------------- | ---------------------- |
-| Matrix4Transit | Inverse matrix object of the current matrix.|
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
 
 **Example**
 
@@ -273,7 +273,7 @@ struct Tests {
 
 ### translate
 
-translate({x?: number, y?: number, z?: number}): Matrix4Transit
+translate(option: TranslateOption): Matrix4Transit
 
 Translates this matrix object along the x, y, and z axes.
 
@@ -281,17 +281,15 @@ Translates this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                       |
-| ------ | ------ | ---- | ----------------------------------------------------------- |
-| x      | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| y      | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| z      | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the translation effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the translation.|
 
 **Example**
 
@@ -319,7 +317,7 @@ struct Test {
 
 ### scale
 
-scale({x?: number, y?: number, z?: number, centerX?: number, centerY?: number}): Matrix4Transit
+scale(option: ScaleOption): Matrix4Transit
 
 
 Scales this matrix object along the x, y, and z axes.
@@ -328,19 +326,16 @@ Scales this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| x       | number | No  | Scaling multiple along the x-axis. If the value is greater than 1, the image is scaled up along the x-axis. If the value is less than 1, the image is scaled down along the x-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| y       | number | No  | Scaling multiple along the y-axis. If the value is greater than 1, the image is scaled up along the y-axis. If the value is less than 1, the image is scaled down along the y-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| z       | number | No  | Scaling multiple along the z-axis. If the value is greater than 1, the image is scaled up along the z-axis. If the value is less than 1, the image is scaled down along the z-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
+
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the scaling effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the scaling.|
 
 **Example**
 
@@ -367,7 +362,7 @@ struct Test {
 
 ### rotate
 
-rotate({x?: number, y?: number, z?: number, angle?: number, centerX?: Length, centerY?: Length}): Matrix4Transit
+rotate(option: RotateOption): Matrix4Transit
 
 
 Rotates this matrix object along the x, y, and z axes.
@@ -376,20 +371,16 @@ Rotates this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                   |
-| ------- | ------ | ---- | ------------------------------------------------------- |
-| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
-| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**                      |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**                      |
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
+
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the rotation effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the rotation.|
 
 **Example**
 
@@ -417,7 +408,7 @@ struct Test {
 
 ### transformPoint
 
-transformPoint(point: Point): Point
+transformPoint(option: [number, number]): [number, number]
 
 
 Applies the current transformation effect to a coordinate point.
@@ -426,15 +417,15 @@ Applies the current transformation effect to a coordinate point.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description              |
-| ------ | ----- | ---- | ------------------ |
-| point  | Point | Yes  | Point to be transformed.|
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | Yes  | Point to be transformed.|
 
 **Return value**
 
-| Type   | Description              |
-| ----- | ---------------- |
-| Point | Point object after matrix transformation|
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| [number, number] | Point object after matrix transformation|
 
 **Example**
 
@@ -472,3 +463,32 @@ struct Test {
 ```
 
 ![en-us_image_0000001219864133](figures/en-us_image_0000001219864133.PNG)
+
+## TranslateOption
+
+| Name| Type  | Mandatory| Description                                                       |
+| ------ | ------ | ---- | ----------------------------------------------------------- |
+| x      | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| y      | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| z      | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+
+## ScaleOption
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| x       | number | No  | Scaling multiple along the x-axis. If the value is greater than 1, the image is scaled up along the x-axis. If the value is less than 1, the image is scaled down along the x-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| y       | number | No  | Scaling multiple along the y-axis. If the value is greater than 1, the image is scaled up along the y-axis. If the value is less than 1, the image is scaled down along the y-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| z       | number | No  | Scaling multiple along the z-axis. If the value is greater than 1, the image is scaled up along the z-axis. If the value is less than 1, the image is scaled down along the z-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+
+## RotateOption
+
+| Name | Type  | Mandatory| Description                                                   |
+| ------- | ------ | ---- | ------------------------------------------------------- |
+| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
+| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**                      |
+| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**                      |

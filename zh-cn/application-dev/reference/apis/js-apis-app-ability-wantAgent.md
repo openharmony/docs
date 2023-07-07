@@ -31,7 +31,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -110,7 +110,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -179,7 +179,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -271,7 +271,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -354,7 +354,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -447,7 +447,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -531,7 +531,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -626,7 +626,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -710,7 +710,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -802,7 +802,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -1127,7 +1127,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1218,7 +1218,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
