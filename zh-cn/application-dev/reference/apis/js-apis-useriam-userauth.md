@@ -55,7 +55,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| result   | number                         | 是   | 用户认证结果，详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。 |
+| result   | number                         | 是   | 用户认证结果。若结果为成功返回0，若失败返回相应错误码，错误码详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。 |
 | token    | Uint8Array                     | 否   | 认证通过的令牌信息。                                         |
 | authType | [UserAuthType](#userauthtype8) | 否   | 认证类型。                                                   |
 
@@ -187,7 +187,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 取消订阅用户身份认证结果。
 
-> **说明：**需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+> **说明**：需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1506,7 +1506,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| PIN         | 1    | 口令认证。 |
+| PIN<sup>10+</sup>         | 1    | 口令认证。 |
 | FACE        | 2    | 人脸认证。 |
 | FINGERPRINT | 4    | 指纹认证。 |
 
