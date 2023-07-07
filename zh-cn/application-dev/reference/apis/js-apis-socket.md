@@ -2398,7 +2398,7 @@ on(type: 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                          |
+| callback | Callback\<void\> | 是   | 回调函数。                          |
 
 **错误码：**
 
