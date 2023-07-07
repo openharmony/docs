@@ -43,27 +43,31 @@ struct TextPickerDialogExample {
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 
   build() {
-    Column() {
-      Button("TextPickerDialog")
-        .margin(20)
-        .onClick(() => {
-          TextPickerDialog.show({
-            range: this.fruits,
-            selected: this.select,
-            onAccept: (value: TextPickerResult) => {
-              // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-              this.select = value.index
-              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-            },
-            onCancel: () => {
-              console.info("TextPickerDialog:onCancel()")
-            },
-            onChange: (value: TextPickerResult) => {
-              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
-            }
+    Row() {
+      Column() {
+        Button("TextPickerDialog")
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              onAccept: (value: TextPickerResult) => {
+                // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
+                this.select = value.index
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              },
+              onCancel: () => {
+                console.info("TextPickerDialog:onCancel()")
+              },
+              onChange: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              }
+            })
           })
-        })
-    }.width('100%')
+      }.width('100%')
+    }.height('100%')
   }
 }
 ```
+
+![TextPickerDialog](figures/TextPickerDialog.gif)
