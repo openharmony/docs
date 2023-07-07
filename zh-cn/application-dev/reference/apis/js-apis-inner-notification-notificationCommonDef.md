@@ -10,8 +10,8 @@ BundleOption模块为指定应用的包信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称   | 类型   | 可读 | 可写 | 必填 | 说明   |
-| ------ | ------ | ---- | ---- |  ------ |  ------ |
-| bundle | string | 是  | 是  | 是 | 应用的包信息。 |
-| uid    | number | 是  | 是  | 否 | 用户ID。 |
+| 名称   | 类型   | 必填 | 说明   |
+| ------ | ------ | ------ |  ------ |
+| bundle | string | 是 | 应用的包信息。 |
+| uid    | number | 否 | 用户ID。 |
 
