@@ -199,7 +199,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 指定发布数据的键。 |
-| data | string \| [Ashmem](js-apis-rpc.md#ashmem8) | 是 | 指定发布的数据。如果数据很大，请使用Ashmem。 |
+| data | string \| ArrayBuffer | 是 | 指定发布的数据。如果数据很大，请使用ArrayBuffer。 |
 | subscriberId | string | 是 | 指定订阅者id。 |
 
 ## RdbDataChangeNode<sup>10+</sup>
@@ -486,10 +486,9 @@ function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     for (let i = 0; i < node.data.length; i++) {
         console.info("onPublishCallback node " + typeof node.data[i].data);
         if (typeof node.data[i].data != 'string') {
-            let ash:rpc.Ashmem = node.data[i].data;
-            ash.mapReadonlyAshmem();
-            console.info("onPublishCallback " + JSON.stringify(ash.readAshmem(ash.getAshmemSize()/4, 0)));
-            ash.closeAshmem();
+            let array:ArrayBuffer = node.data[i].data;
+            let data:Uint8Array = new Uint8Array(array);
+            console.info("onPublishCallback " + i + " " + JSON.stringify(data));
         }
         console.info("onPublishCallback data " + i + " " + JSON.stringify(node.data[i]));
     }
@@ -561,9 +560,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
-
-let ashmem = null;
+let arrayBuffer = null;
 let subscriberId = '11';
 let version = 1;
 let data : Array<dataShare.PublishedItem> = [
@@ -573,15 +570,13 @@ let data : Array<dataShare.PublishedItem> = [
 let nums:number[] = [1,2,3];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
-    ashmem.closeAshmem();
 }
 try {
-    ashmem = rpc.Ashmem.create("ashmem", (nums.length) * 4);
-    ashmem.mapReadWriteAshmem();
-    ashmem.writeAshmem(nums, nums.length, 0);
+    arrayBuffer = new ArrayBuffer(nums.length);
+    let array:Uint8Array = new Uint8Array(arrayBuffer);
     data.push({
         "key" : "key2",
-        "data" : ashmem,
+        "data" : array,
         "subscriberId" : "11",
     });
     console.info("data length is:", data.length);
