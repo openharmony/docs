@@ -478,8 +478,6 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
-
 function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
     console.info("onPublishCallback node data size" + node.data.length);
