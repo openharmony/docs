@@ -82,9 +82,6 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 获取文件资源，使用callback方式返回异步结果。
 
-> **说明：**
-> 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
-
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -152,9 +149,6 @@ async function example() {
 getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 获取文件资源，使用Promise方式返回结果。
-
-> **说明：**
-> 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -271,9 +265,6 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 创建媒体资源，使用callback方式返回结果。
 
-> **说明：**
-> 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
-
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -310,9 +301,6 @@ async function example() {
 createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise&lt;FileAsset&gt;
 
 创建媒体资源，使用Promise方式返回结果。
-
-> **说明：**
-> 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -514,9 +502,6 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 获取相册列表，使用callback 方式返回结果。
 
-> **说明：**
-> 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件，当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
-
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -532,9 +517,10 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 ```js
 async function example() {
+   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
   let AlbumNoArgsfetchOp = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['Camera'],
+    selectionArgs: ['新建相册1'],
   };
   media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
     if (albumList != undefined) {
@@ -551,9 +537,6 @@ async function example() {
 getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 获取相册列表，使用 promise 方式返回结果。
-
-> **说明：**
-> 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件.当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -575,9 +558,10 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 ```js
 async function example() {
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
   let AlbumNoArgsfetchOp = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['Camera'],
+    selectionArgs: ['新建相册1'],
   };
   media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
     console.info('getAlbums successfully: ' + JSON.stringify(albumList));
@@ -1063,7 +1047,7 @@ async function example() {
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 | title                     | string                   | 是   | 是   | 文件标题。                                               |
 | relativePath<sup>8+</sup> | string                   | 是   | 是   | 相对公共目录路径。                                       |
-| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                        |
+| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id。                                               |
 | size                      | number                   | 是   | 否   | 文件大小（单位：字节）。                                 |
 | dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）。         |
 | dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。|
@@ -1074,9 +1058,9 @@ async function example() {
 | height                    | number                   | 是   | 否   | 图片高度（单位：像素）。                                 |
 | orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度）。 |
 | duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）。                                   |
-| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                   |
-| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                      |
-| albumName                 | string                   | 是   | 否   | 文件所归属相册名称。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                     |
+| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号。                                   |
+| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri。                                      |
+| albumName                 | string                   | 是   | 否   | 文件所归属相册名称。                                    |
 
 ### isDirectory<sup>8+</sup>
 
@@ -1162,9 +1146,6 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 修改文件的元数据，使用callback方式返回异步结果。
 
-> **说明：**
-> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
-
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1201,9 +1182,6 @@ async function example() {
 commitModify(): Promise&lt;void&gt;
 
 修改文件的元数据，使用promise方式返回异步结果。
-
-> **说明：**
-> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
