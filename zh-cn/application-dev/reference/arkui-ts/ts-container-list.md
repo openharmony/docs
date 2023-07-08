@@ -136,7 +136,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
 | onItemDelete<sup>(deprecated)</sup>(event: (index: number) => boolean) | 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。<br/>从API version9开始废弃。<br/>- index: 被删除的列表项的索引值。 |
-| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- [scrollState](#scrollstate枚举说明): 当前滑动状态。<br/>使用控制器调用ScrollEdge和ScrollToIndex时不会触发，其余情况有滚动就会触发该事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- [scrollState](#scrollstate枚举说明): 当前滑动状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | onScrollIndex(event: (start: number, end: number, center<sup>10+</sup>: number) => void) | 有子组件划入或划出List显示区域时触发。从API version 10开始，List显示区域中间位置子组件变化时也会触发。<br/>计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。<br/>- start: List显示区域内第一个子组件的索引值。<br/>- end: List显示区域内最后一个子组件的索引值。<br/>- center: List显示区域内中间位置子组件的索引值。<br/>触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。从API version 10开始，List显示区域中间位置子组件变化时也会触发。<br/>List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollIndex事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | onReachStart(event: () => void)          | 列表到达起始位置时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br>List初始化时如果initialIndex为0会触发一次，List滚动到起始位置时触发一次。List边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd(event: () => void)            | 列表到底末尾位置时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
@@ -156,9 +156,21 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
-| Idle   | 空闲状态。使用控制器提供的方法滚动、拖动滚动条滚动时触发。  |
-| Scroll | 手指拖动状态。使用手指拖动List滚动时触发。        |
-| Fling  | 惯性滚动状态。快速划动松手后惯性滚动和划动到边缘回弹时触发。 |
+| Idle   | 空闲状态。使用控制器提供的方法控制滚动时触发，拖动滚动条滚动时触发。<br/>**说明：** <br/> 从API version 10开始，调整为滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
+| Scroll | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。        |
+| Fling  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动，划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动，使用滚动控制器提供的带动画的方法控制的滚动。 |
+
+ScrollState枚举变更如下。
+
+| 场景     | API version 9及以下                         |API version 10开始                           |
+| ------ | ------------------------------ |------------------------------ |
+| 手指拖动滑动   | Scroll | Scroll |
+| 惯性滚动   | Fling | Fling |
+| 过界回弹   | Fling | Fling |
+| 鼠标滚轮滚动   | Idle | Scroll |
+| 拖动滚动条   | Idle | Scroll |
+| 滚动控制器滚动（带动画）   | Idle | Fling |
+| 滚动控制器滚动（不带动画）   | Idle | Idle |
 
 >  **说明：**
 >
@@ -201,11 +213,14 @@ struct ListExample {
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
-      .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
+      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
       .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
         console.info('first' + firstIndex)
         console.info('last' + lastIndex)
         console.info('center' + centerIndex)
+      })
+      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+        console.info(`onScroll scrollState = ${ScrollState[scrollState]}, scrollOffset = ${[scrollOffset]}`)
       })
       .width('90%')
     }
