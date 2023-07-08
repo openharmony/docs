@@ -31,7 +31,7 @@
     ```json
     "requestPermissions": [
           {
-            //允许应用查看蓝牙的配置。
+            //允许应用查看蓝牙的配置
             "name": "ohos.permission.USE_BLUETOOTH",
             "reason": "$string:grant_use_bluetooth",
             "usedScene": {
@@ -42,7 +42,7 @@
             }
           },
           {
-            //允许应用配置本地蓝牙，查找远端设备且与之配对连接。
+            //允许应用配置本地蓝牙，查找远端设备且与之配对连接
             "name": "ohos.permission.DISCOVER_BLUETOOTH",
             "reason": "$string:grant_discovery_bluetooth",
             "usedScene": {
@@ -53,7 +53,7 @@
             }
           },
           {
-            //允许应用获取设备位置信息。
+            //允许应用获取设备位置信息
             "name": "ohos.permission.LOCATION",
             "reason": "$string:grant_location",
             "usedScene": {
@@ -64,7 +64,7 @@
             }
           },
           {
-            //允许应用获取设备模糊位置信息。
+            //允许应用获取设备模糊位置信息
             "name": "ohos.permission.APPROXIMATELY_LOCATION",
             "reason": "$string:grant_location",
             "usedScene": {
@@ -75,7 +75,7 @@
             }
           },
           {
-            //允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问。
+            //允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问
             "name": "ohos.permission.MANAGE_BLUETOOTH",
             "reason": "$string:grant_manage_bluetooth",
             "usedScene": {
@@ -90,7 +90,7 @@
 2. 构建UI框架，整体的UI框架分为TitleBar（页面名称），PinDialog（配对蓝牙弹框），index（主页面）三个部分。
 
     ```ts
-    //Common/TitleBar.ets。
+    //Common/TitleBar.ets
     @Component
     export struct TitleBar {
       private handlerClickButton: () => void
@@ -118,14 +118,14 @@
       }
     }
     
-    //Common/PinDalog.ets。
+    //Common/PinDalog.ets
      ...
      aboutToAppear() {
         this.titleText = `"${this.data.deviceId}"要与您配对。请确认此配对码已在"${this.data.deviceId}"上直接显示，且不是手动输入的。`
         this.pinCode = JSON.stringify(this.data.pinCode)
       }
       build() {
-        //配对弹框描述文字。
+        //配对弹框描述文字
         Column({ space: 10 }) {
           Text($r('app.string.match_request'))
             .fontSize(30)
@@ -152,7 +152,7 @@
           .margin({ top: 5 })
     
           Row() {
-            //配对选择UI，取消or配对。
+            //配对选择UI，取消or配对
             this.choiceText($r('app.string.cancel'), () => {
               bluetooth.setDevicePairingConfirmation(this.data.deviceId, false)
               logger.info(TAG, `setDevicePairingConfirmation = ${bluetooth.setDevicePairingConfirmation(this.data.deviceId, false)}`)
@@ -186,7 +186,7 @@
           Scroll() {
             Column() {
               Row() {
-                //蓝牙开关。
+                //蓝牙开关
                 Column() {
                   Text($r('app.string.bluetooth'))
                     .fontSize(30)
@@ -227,7 +227,7 @@
                   .color('#ffece7e7')
                   .lineCap(LineCapStyle.Butt)
                   .margin('1%')
-                //已配对的设备。
+                //已配对的设备
                 Text($r('app.string.paired_device'))
                   .fontSize(25)
                   .fontColor('#ff565555')
@@ -246,7 +246,7 @@
                   .id(`pairedDevice${index}`)
                   .onClick(() => {
                     AlertDialog.show({
-                      //取消配对。
+                      //取消配对
                       title: $r('app.string.disconnect'),
                       message: '此操作将会断开您与以下设备的连接：' + item,
                       primaryButton: {
@@ -254,7 +254,7 @@
                         action: () => {
                         }
                       },
-                      //确认取消。
+                      //确认取消
                       secondaryButton: {
                         value: $r('app.string.confirm'),
                         action: () => {
@@ -284,7 +284,7 @@
                   .fontColor('#ff565555')
                   .margin({ left: '5%', bottom: '2%' })
                   .alignSelf(ItemAlign.Start)
-                //可用设备列表。
+                //可用设备列表
                 ForEach(this.discoveryList, (item) => {
                   Row() {
                     Text(item)
@@ -294,7 +294,7 @@
                   .width('100%')
                   .height(50)
                   .margin({ left: '5%', top: '1%' })
-                  //进行配对操作点击。
+                  //进行配对操作点击
                   .onClick(() => {
                     logger.info(TAG, `start bluetooth.pairDevice,item = ${item}`)
                     let pairStatus = bluetooth.pairDevice(item)
@@ -320,10 +320,10 @@
     initBluetooth() {
         bluetooth.on('stateChange', (data) => {
           logger.info(TAG, `enter on stateChange`)
-          //判断蓝牙开关状态。
+          //判断蓝牙开关状态
           if (data === bluetooth.BluetoothState.STATE_ON) {
             logger.info(TAG, `enter BluetoothState.STATE_ON`)
-            //蓝牙打开后的相关操作。
+            //蓝牙打开后的相关操作
             this.foundDevices()
           }
           if (data === bluetooth.BluetoothState.STATE_OFF) {
@@ -331,20 +331,20 @@
             bluetooth.off('bluetoothDeviceFind', (data) => {
               logger.info(TAG, `offBluetoothDeviceFindData = ${JSON.stringify(data)}`)
             })
-            //关闭。
+            //关闭
             bluetooth.stopBluetoothDiscovery()
             this.discoveryList = []
           }
           logger.info(TAG, `BluetoothState = ${JSON.stringify(data)}`)
         })
-        //开启蓝牙。
+        //开启蓝牙
         bluetooth.enableBluetooth()
       }
     ```
 4. 设置蓝牙扫描模式并开启扫描去发现设备，并订阅蓝牙设备发现上报时间获取设备列表
     ```ts
      foundDevices() {
-        //订阅蓝牙设备发现上报事件。
+        //订阅蓝牙设备发现上报事件
         bluetooth.on('bluetoothDeviceFind', (data) => {
           logger.info(TAG, `enter on bluetoothDeviceFind`)
           if (data !== null && data.length > 0) {
@@ -359,9 +359,9 @@
             logger.info(TAG, `deviceList =  ${JSON.stringify(this.deviceList)}`)
           }
         })
-        //开启蓝牙扫描，可以发现远端设备。
+        //开启蓝牙扫描，可以发现远端设备
         bluetooth.startBluetoothDiscovery()
-        //设置蓝牙扫描模式，可以被远端设备发现。
+        //设置蓝牙扫描模式，可以被远端设备发现
         bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, TIME)
       }
     ```
@@ -369,12 +369,12 @@
 5. 设置蓝牙扫描模式并开启扫描去发现设备，并订阅蓝牙设备发现上报时间获取设备列表
 
    ```ts
-   //配对确定和取消代码在PinDialog.ets文件中，
-   //setDevicePairingConfirmation(device: string, accept: boolean): void，
-   //device	string	表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。
-   //accept	boolean	接受配对请求设置为true，否则设置为false。
+   //配对确定和取消代码在PinDialog.ets文件中
+   //setDevicePairingConfirmation(device: string, accept: boolean): void
+   //device	string	表示远端设备地址，例如："XX:XX:XX:XX:XX:XX
+   //accept	boolean	接受配对请求设置为true，否则设置为false
    
-   //订阅蓝牙配对状态改变事件，根据蓝牙状态更新设备列表。
+   //订阅蓝牙配对状态改变事件，根据蓝牙状态更新设备列表
    bluetooth.on('bondStateChange', (data) => {
        logger.info(TAG, `enter bondStateChange`)
        logger.info(TAG, `data = ${JSON.stringify(data)}`)
