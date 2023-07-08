@@ -1,6 +1,6 @@
 # @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
 
-开发者可通过继承本模块开发自己的输入法应用并管理输入法应用生命周期。
+开发者可通过继承本模块开发自己的壁纸应用并管理壁纸应用生命周期。
 
 > **说明：**
 >
