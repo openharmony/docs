@@ -2243,7 +2243,7 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void;
 ```js
 try {
   inputMethodController.on('getTextIndexAtCursor', () => {
-    console.log(`Succeeded in subscribing getTextIndexAtCursor, length: ${length}`);
+    console.log(`Succeeded in subscribing getTextIndexAtCursor.`);
     let index:number = 0;
     retutn index;
   });
@@ -2272,7 +2272,7 @@ off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 ```js
 try {
   inputMethodController.off('getTextIndexAtCursor', () => {
-    console.log(`Succeeded in unsubscribing getTextIndexAtCursor, length: ${length}`);
+    console.log(`Succeeded in unsubscribing getTextIndexAtCursor.`);
     let index:number = 0;
     retutn index;
   });
