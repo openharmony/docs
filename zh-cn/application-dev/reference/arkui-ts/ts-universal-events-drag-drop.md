@@ -326,15 +326,13 @@ struct DragExample {
         console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
       })
       .onDrop((event: DragEvent, extraParams: string) => {
-        if (!extraParams.empty()) {
-          let jsonString = JSON.parse(extraParams);
-          if (this.bool) {
-            // 通过splice方法插入元素
-            this.numbers.splice(jsonString.insertIndex, 0, this.text)
-            this.bool = false
-          }
-          this.fruitVisible[this.idx] = Visibility.None
+        let jsonString = JSON.parse(extraParams);
+        if (this.bool) {
+          // 通过splice方法插入元素
+          this.numbers.splice(jsonString.insertIndex, 0, this.text)
+          this.bool = false
         }
+        this.fruitVisible[this.idx] = Visibility.None
         this.getDataFromUDMFWithRetry(event);
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
