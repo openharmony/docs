@@ -905,8 +905,6 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo (OH_AudioRenderer * rende
 
 查询当前音频流工作场景类型。
 
-The rendere info includes [OH_AudioStream_Usage](#oh_audiostream_usage) value and **OH_AudioStream_Content** value.
-
 **参数：**
 
 | 名称 | 描述 | 

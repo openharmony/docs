@@ -52,7 +52,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
     OH_AudioStreamBuilder_SetSampleFormat(builder, format);
     OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-    OH_AudioStreamBuilder_SetRendererInfo(builder, usage, content);
+    OH_AudioStreamBuilder_SetRendererInfo(builder, usage);
     ```
 
     注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../reference/native-apis/_o_h_audio.md#oh_audiorenderer_callbacks) 。
