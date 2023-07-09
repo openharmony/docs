@@ -2107,6 +2107,180 @@ off(type: 'selectByMovement'): void
 inputMethodController.off('selectByMovement');
 ```
 
+### on('getLeftTextOfCursor')<sup>10+</sup>
+
+on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
+
+订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘getLeftTextOfCursor’时表示订阅输入法应用获取光标左侧指定长度文本事件监听。 |
+| callback | (length: number) => string | 是   | 回调函数，返回光标左侧指定长度文本内容。<br/>开发者需要在回调函数中根据传入的长度，获取编辑框最新状态下光标左侧该长度的文本并返回。 |
+
+**示例：**
+
+```js
+try {
+  inputMethodController.on('getLeftTextOfCursor', (length) => {
+    console.log(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
+    let text:string = "";
+    retutn text;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getLeftTextOfCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### off('getLeftTextOfCursor')<sup>10+</sup>
+
+off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
+
+取消订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘getLeftTextOfCursor’时表示取消订阅输入法应用获取光标左侧指定长度文本事件监听。 |
+| callback | (length: number) => string | 否  | 回调函数，返回光标左侧指定长度文本内容。|
+
+**示例：**
+
+```js
+try {
+  inputMethodController.off('getLeftTextOfCursor', (length) => {
+    console.log(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
+    let text:string = "";
+    retutn text;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getLeftTextOfCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### on('getRightTextOfCursor')<sup>10+</sup>
+
+on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
+
+订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘getRightTextOfCursor’时表示订阅输入法应用获取光标右侧指定长度文本事件监听。 |
+| callback | (length: number) => string | 是   | 回调函数，返回光标右侧指定长度文本内容。<br/>开发者需要在回调函数中根据传入的长度，获取编辑框最新状态下光标右侧该长度的文本并返回。 |
+
+**示例：**
+
+```js
+try {
+  inputMethodController.on('getRightTextOfCursor', (length) => {
+    console.log(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
+    let text:string = "";
+    retutn text;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getRightTextOfCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### off('getRightTextOfCursor')<sup>10+</sup>
+
+off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
+
+取消订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘getRightTextOfCursor’时表示取消订阅输入法应用获取光标右侧指定长度文本事件监听。 |
+| callback | (length: number) => string | 否  | 回调函数，返回光标右侧指定长度文本内容。|
+
+**示例：**
+
+```js
+try {
+  inputMethodController.off('getRightTextOfCursor', (length) => {
+    console.log(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
+    let text:string = "";
+    retutn text;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getRightTextOfCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### on('getTextIndexAtCursor')<sup>10+</sup>
+
+on(type: 'getTextIndexAtCursor', callback: () => number): void;
+
+订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘getTextIndexAtCursor’时表示订阅输入法应用获取光标处文本索引事件监听。 |
+| callback | () => number | 是   | 回调函数，返回光标处文本索引。<br/>开发者需要在回调函数中，获取编辑框最新状态下光标处文本索引并返回。 |
+
+**示例：**
+
+```js
+try {
+  inputMethodController.on('getTextIndexAtCursor', () => {
+    console.log(`Succeeded in subscribing getTextIndexAtCursor, length: ${length}`);
+    let index:number = 0;
+    retutn index;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getTextIndexAtCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### off('getTextIndexAtCursor')<sup>10+</sup>
+
+off(type: 'getTextIndexAtCursor', callback?: () => number): void;
+
+取消订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘getTextIndexAtCursor’时表示取消订阅输入法应用获取光标处文本索引事件监听。 |
+| callback | () => number | 否  | 回调函数，返回光标处文本索引。|
+
+**示例：**
+
+```js
+try {
+  inputMethodController.off('getTextIndexAtCursor', () => {
+    console.log(`Succeeded in unsubscribing getTextIndexAtCursor, length: ${length}`);
+    let index:number = 0;
+    retutn index;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getTextIndexAtCursor: ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例，再通过此实例调用对应方法。
