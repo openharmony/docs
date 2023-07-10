@@ -240,6 +240,8 @@ plural.json文件的内容如下：
 
 引用rawfile下资源时使用```"$rawfile('filename')"```的形式，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
+访问rawfile文件的descriptor时，可使用[资源管理getRawFd接口](../reference/apis/js-apis-resource-manager.md#getrawfd9)，其返回值descriptor.fd为hap包的fd，访问此rawfile文件需要结合{fd, offset, length}一起使用。
+
 > **说明：**
 > 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
@@ -315,4 +317,4 @@ Image($r('sys.media.ohos_app_icon'))
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Resource/ResourceManager/README_zh.md)

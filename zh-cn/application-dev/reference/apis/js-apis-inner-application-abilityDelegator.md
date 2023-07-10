@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
+通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。此接口只能在测试环境下使用。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -27,7 +27,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 添加AbilityMonitor实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -70,7 +70,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 添加AbilityMonitor实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -118,7 +118,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 删除已经添加的AbilityMonitor实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -161,7 +161,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 删除已经添加的AbilityMonitor实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -209,7 +209,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -256,14 +256,14 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout  | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
+| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法                                           |
 
 **错误码**：
@@ -307,7 +307,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -356,7 +356,7 @@ getAppContext(): Context;
 
 获取应用Context
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -379,7 +379,7 @@ getAbilityState(ability: UIAbility): number;
 
 获取指定ability的生命周期状态
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -414,7 +414,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 
 获取当前应用顶部ability（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -449,7 +449,7 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 
 获取当前应用顶部ability（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -484,7 +484,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 启动指定ability（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -506,6 +506,8 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -534,7 +536,7 @@ startAbility(want: Want): Promise\<void>;
 
 启动指定ability（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -561,6 +563,8 @@ startAbility(want: Want): Promise\<void>;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -589,7 +593,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 调度指定ability生命周期状态到Foreground状态（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -628,7 +632,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 
 调度指定ability生命周期状态到Foreground状态（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -672,7 +676,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 调度指定ability生命周期状态到Background状态（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -711,7 +715,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 
 调度指定ability生命周期状态到Background状态（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -755,7 +759,7 @@ printSync(msg: string): void;
 
 打印日志信息到单元测试终端控制台
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -779,7 +783,7 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 
 打印日志信息到单元测试终端控制台（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -806,7 +810,7 @@ print(msg: string): Promise\<void>;
 
 打印日志信息到单元测试终端控制台（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -838,6 +842,8 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 执行指定的shell命令（callback形式）
 
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -865,6 +871,8 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 
 指定超时时间，并执行指定的shell命令（callback形式）
 
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -872,7 +880,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | 参数名      | 类型                                                         | 必填 | 说明                          |
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串               |
-| timeoutSecs | number                                                       | 否   | 设定命令超时时间，单位秒（s） |
+| timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
 | callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
 
 **示例：**
@@ -893,6 +901,8 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
 
 指定超时时间，并执行指定的shell命令（promise形式）
+
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -928,7 +938,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 
 结束测试并打印日志信息到单元测试终端控制台（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -964,7 +974,7 @@ finishTest(msg: string, code: number): Promise\<void>;
 
 结束测试并打印日志信息到单元测试终端控制台（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1005,7 +1015,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1044,7 +1054,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1088,7 +1098,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 
 从应用程序内存中删除指定的AbilityStageMonitor对象。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1127,7 +1137,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 从应用程序内存中删除指定的AbilityStageMonitor对象。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1171,7 +1181,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1214,7 +1224,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1263,7 +1273,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

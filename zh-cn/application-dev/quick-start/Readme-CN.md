@@ -52,6 +52,7 @@
     - [\@Styles装饰器：定义组件重用样式](arkts-style.md)
     - [\@Extend装饰器：定义扩展组件样式](arkts-extend.md)
     - [stateStyles：多态样式](arkts-statestyles.md)
+    - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
   - 状态管理
     - [状态管理概述](arkts-state-management-overview.md)
     - 管理组件拥有的状态

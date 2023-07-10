@@ -32,7 +32,7 @@ Light驱动模型为上层Light硬件服务层提供稳定的灯控制能力接�
 
 ### 场景介绍
 
-灯设备的控制，在实际生活中比比皆是，例如短信通知时闪灯、手机电量不足时预警、充电时根据充电进度变换灯的颜色等等。这些动作的实现，都需要使用Light驱动模型提供的接口，动态配置点灯模式、配置灯闪烁效果、点灯、熄灯等。
+灯设备的控制，在实际生活中比比皆是，例如短信通知时闪灯、终端电量不足时预警、充电时根据充电进度变换灯的颜色等等。这些动作的实现，都需要使用Light驱动模型提供的接口，动态配置点灯模式、配置灯闪烁效果、点灯、熄灯等。
 
 ### 接口说明
 
@@ -107,7 +107,7 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
 
 3. 灯驱动代码实现路径为： drivers\hdf_core\framework\model\misc\light\driver\src\light_driver.c。
 
-   - 灯驱动驱动对应的HdfDriverEntry对象，其中，Driver Entry入口函数定义如下：
+   - 灯驱动对应的HdfDriverEntry对象，其中，Driver Entry入口函数定义如下：
 
      ```c
      /* 注册灯入口数据结构体对象 */
@@ -319,7 +319,7 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
      }
      ```
 
-   - 灯驱动的内部接口完成了灯类型获取、闪烁模式设置和停止的接口开发，并实现根据闪烁模式创建和销毁定时器。
+   - 灯驱动的内部接口完成了灯类型获取、闪烁模式设置和停止的接口开发，并支持根据闪烁模式创建和销毁定时器。
 
      - GetAllLightInfo接口实现如下：
 
@@ -874,7 +874,6 @@ Light驱动模型支持获取系统中所有灯的信息、动态配置闪烁模
     module_out_path = module_output_path
     sources = [ "light_test.cpp" ]
     include_dirs = [
-      "//drivers/hdf_core/framework/include/platform",
       "//drivers/peripheral/light/interfaces/include",
     ]
     deps = [ "//drivers/peripheral/light/hal:hdi_light" ]

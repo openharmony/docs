@@ -74,6 +74,8 @@
 ### 示例1
 
 ```ts
+import UDMF from '@ohos.data.UDMF';
+
 @Observed
 class ClassA {
   public name: string
@@ -98,9 +100,25 @@ class ClassA {
 struct DragExample {
   @State arr: ClassA[] = [new ClassA('A', true), new ClassA('B', true), new ClassA('C', true)]
   @State dragIndex: number = 0
+  @State mTextNew: string = ''
+  @State mBool: boolean = false
 
   changeIndex(index1: number, index2: number) { // 交换数组位置
     [this.arr[index1], this.arr[index2]] = [this.arr[index2], this.arr[index1]];
+  }
+
+  public getDataFromUDMFWithRetry(event: DragEvent) {
+    let records = event.getData().getRecords();
+    if (records) {
+      let plainText = <UDMF.PlainText> (records[0])
+      this.mTextNew = plainText.textContent
+      this.mBool = false
+      return;
+    }
+    // 获取失败延时 1.5s 再次获取
+    setTimeout(() => {
+        this.getDataFromUDMFWithRetry(event)
+    }, 1500)
   }
 
   build() {
@@ -123,8 +141,7 @@ struct DragExample {
         }
         .listDirection(Axis.Horizontal)
         .onDrop((event: DragEvent, extraParams: string) => { // 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
-          let jsonString = JSON.parse(extraParams);
-          this.changeIndex(this.dragIndex, jsonString.insertIndex)
+          this.getDataFromUDMFWithRetry(event);
         })
       }.padding({ top: 10, bottom: 10 }).margin(10)
 
@@ -180,6 +197,8 @@ struct Child {
 
 ```ts
 // xxx.ets
+import UDMF from '@ohos.data.UDMF';
+
 @Extend(Text) function textStyle () {
   .width('25%')
   .height(35)
@@ -194,6 +213,8 @@ struct DragExample {
   @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
   @State text: string = ''
   @State bool: boolean = true
+  @State mBool: boolean = false
+  @State mTextNew: string = ''
   @State eventType: string = ''
   @State appleVisible: Visibility = Visibility.Visible
   @State orangeVisible: Visibility = Visibility.Visible
@@ -213,6 +234,20 @@ struct DragExample {
         .textAlign(TextAlign.Center)
         .backgroundColor(Color.Yellow)
     }
+  }
+
+  public getDataFromUDMFWithRetry(event: DragEvent) {
+    let records = event.getData().getRecords()
+    if (records) {
+      let plainText = <UDMF.PlainText> (records[0])
+      this.mTextNew = plainText.textContent
+      this.mBool = false
+      return;
+    }
+    // 获取失败延时 1.5s 再次获取
+    setTimeout(() => {
+        this.getDataFromUDMFWithRetry(event)
+    }, 1500)
   }
 
   build() {
@@ -291,6 +326,7 @@ struct DragExample {
           this.bool = false
         }
         this.fruitVisible[this.idx] = Visibility.None
+        this.getDataFromUDMFWithRetry(event);
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }

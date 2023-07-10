@@ -18,7 +18,7 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 | Name              | Type                                  | Mandatory| Description                  |
 | ------------------ | -------------------------------------- | ---- | ---------------------- |
 | height             | [SheetSize](#sheetsize10) \| [Length](ts-types.md#length) | No| Height of the sheet.         |
-| showDragBar        | boolean                                | No  | Whether the control bar is visible.         |
+| dragBar            | boolean                                | No  | Whether the control bar is visible.         |
 
 ## SheetSize<sup>10+</sup>
 

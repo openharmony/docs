@@ -726,6 +726,57 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
 });
 ```
 
+### on('keyEvent')<sup>10+</sup>
+
+on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
+
+订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示订阅硬键盘按键事件。 |
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。 |
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent) => {
+  console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
+  console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+  console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+  return true;
+});
+```
+
+### off('keyEvent')<sup>10+</sup>
+
+off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
+
+取消订阅硬键盘（即物理键盘）事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 设置监听类型。<br/>-&nbsp;type为'keyEvent'，表示取消订阅硬键盘按键事件。 |
+| callback | function | 否   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。<br/>-&nbsp;可选参数，若填写表示不再回调此函数，若不填写则取消注册该事件所有回调函数。 |
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent) => {
+  console.log('This is a callback function which will be deregistered.');
+  return true;
+});
+inputMethodEngine.getKeyboardDelegate().off('keyEvent');
+```
+
 ### on('cursorContextChange')
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
@@ -1145,7 +1196,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 ```js
 try {
-  let promise = windowClass.moveTo(300, 300);
+  let promise = panel.moveTo(300, 300);
   promise.then(() => {
     console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
@@ -1258,11 +1309,11 @@ promise.then(() => {
 });
 ```
 
-### on<sup>10+</sup>
+### on('show')<sup>10+</sup>
 
-on(type: 'show' | 'hide', callback: () => void): void
+on(type: 'show', callback: () => void): void
 
-监听当前面板状态，使用callback异步回调。
+监听当前面板显示状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1270,7 +1321,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1281,11 +1332,11 @@ panel.on('show', () => {
 });
 ```
 
-### off<sup>10+</sup>
+### on('hide')<sup>10+</sup>
 
-off(type: 'show' | 'hide', callback?: () => void): void
+on(type: 'hide', callback: () => void): void
 
-取消监听当前面板状态，使用callback异步回调。
+监听当前面板隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1293,13 +1344,57 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.on('hide', () => {
+  console.log('Panel is hiding.');
+});
+```
+
+### off('show')<sup>10+</sup>
+
+off(type: 'show', callback?: () => void): void
+
+取消监听当前面板显示状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
 
 ```js
 panel.off('show');
+```
+
+### off('hide')<sup>10+</sup>
+
+off(type: 'hide', callback?: () => void): void
+
+取消监听当前面板隐藏状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 否   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.off('hide');
 ```
 
 ### changeFlag<sup>10+</sup>

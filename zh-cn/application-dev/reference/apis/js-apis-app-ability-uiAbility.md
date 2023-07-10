@@ -359,10 +359,10 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
   ```ts
   export default class EntryAbility extends UIAbility {
-    onPrepareToTermiante() {
+    onPrepareToTerminate() {
       // 开发者定义预关闭动作
       // 例如拉起另一个ability，根据ability处理结果执行异步关闭
-      let want:Want = {
+      let want = {
         bundleName: "com.example.myapplication",
         moduleName: "entry",
         abilityName: "SecondAbility"
@@ -668,11 +668,12 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
     
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
   let caller;
   let dstDeviceId: string;
   export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
+      onWindowStageCreate(windowStage: window.WindowStage) {
           this.context.startAbilityByCall({
               bundleName: 'com.example.myservice',
               abilityName: 'MainUIAbility',
@@ -688,7 +689,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
               }
           }).catch((err) => {
               console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
-          })；
+          })
       }
   }
   ```

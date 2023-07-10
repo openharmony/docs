@@ -296,6 +296,39 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 });
 ```
 
+## power.isStandby<sup>10+</sup>
+
+isStandby(): boolean
+
+检测当前设备是否进入待机低功耗续航模式。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| boolean | 进入待机模式返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+
+**示例：**
+
+```js
+try {
+    var isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
+```
+
 ## power.rebootDevice<sup>(deprecated)</sup>
 
 rebootDevice(reason: string): void

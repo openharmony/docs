@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import Configuration from '@ohos.app.application.Configuration';
+import Configuration from '@ohos.application.Configuration';
 ```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase

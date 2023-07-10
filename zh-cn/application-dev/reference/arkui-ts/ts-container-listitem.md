@@ -118,6 +118,7 @@ struct ListItemExample {
           }
         }, item => item)
       }.width('90%')
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
@@ -125,54 +126,6 @@ struct ListItemExample {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ListItemExample2 {
-  @State message: string = 'Hello World'
-
-  @Builder itemEnd() {
-    Row () {
-      Button("Del").margin("4vp")
-      Button("Set").margin("4vp")
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
-  }
-
-  build() {
-    Column() {
-      List({space:10}) {
-        ListItem() {
-          Text(this.message)
-          .width('100%')
-          .height(100)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .borderRadius(10)
-          .backgroundColor(0xFFFFFF)
-        }
-        .swipeAction({ end:this.itemEnd})
-
-        ListItem() {
-          Text(this.message)
-          .width('100%')
-          .height(100)
-          .fontSize(16)
-          .textAlign(TextAlign.Center)
-          .borderRadius(10)
-          .backgroundColor(0xFFFFFF)
-        }
-        .swipeAction({ start:this.itemEnd})
-      }
-    }
-    .padding(10)
-    .backgroundColor(0xDCDCDC)
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-![zh-cn_image_1501929990650](figures/zh-cn_image_1501929990650.jpg)
 
 ```ts
 // xxx.ets

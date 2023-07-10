@@ -15,7 +15,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 ## AbilityState
 
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

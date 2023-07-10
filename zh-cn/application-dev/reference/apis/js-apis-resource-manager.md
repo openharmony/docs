@@ -151,7 +151,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
   ```
 
 
-## resourceManager.getSystemResourceManager
+## resourceManager.getSystemResourceManager<sup>10+</sup>
 
 getSystemResourceManager(): ResourceManager
 
@@ -3666,6 +3666,70 @@ getColorByNameSync(resName: string) : number;
     this.context.resourceManager.getColorByNameSync("test");
   } catch (error) {
     console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### addResource<sup>10+</sup>
+
+addResource(path: string) : void;
+
+应用运行时，加载指定的资源路径，实现资源覆盖。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| path | string | 是    | 资源路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001010  | If the overlay path is invalid.            |
+
+**示例：**
+  ```ts
+  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  try {
+      this.context.resourceManager.addResource(path);
+  } catch (error) {
+      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`)
+        }
+  ```
+
+### removeResource<sup>10+</sup>
+
+removeResource(path: string) : void;
+
+用户运行时，移除指定的资源路径，还原被覆盖前的资源。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型            | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| path | string | 是    | 资源路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001010  | If the overlay path is invalid.            |
+
+**示例：**
+  ```ts
+  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  try {
+      this.resmgr.removeResource(path);
+  } catch (error) {
+      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
 

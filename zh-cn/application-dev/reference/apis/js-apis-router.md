@@ -7,6 +7,10 @@
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
+>
+> - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
 
 ## 导入模块
 
@@ -600,7 +604,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -641,7 +645,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -689,7 +693,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if can not get the delegate. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -731,7 +735,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1050,7 +1054,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data.['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString()
         })
         .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)

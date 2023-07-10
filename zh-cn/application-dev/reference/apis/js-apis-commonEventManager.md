@@ -70,7 +70,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 以回调的形式发布公共事件。
 
-**系统能力：**SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 

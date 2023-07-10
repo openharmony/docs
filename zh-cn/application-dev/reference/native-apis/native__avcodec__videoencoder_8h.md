@@ -28,7 +28,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) { **CBR** = 0, **VBR** = 1, **CQ** = 2 } | 视频编码器的比特率模式。 | 
+| [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**CBR** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**VBR** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**CQ** = 2<br/>} | 视频编码器的比特率模式。 | 
 
 
 ### 函数

@@ -539,7 +539,7 @@ Checks whether a widget can be published to the widget host. This API uses an as
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 202 | The application is not a system application. |
+| 202 | If the application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
@@ -602,7 +602,7 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 202 | The application is not a system application. |
+| 202 | If the application is not a system application. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
 

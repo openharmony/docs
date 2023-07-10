@@ -280,7 +280,6 @@ close(file: number|File): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
       console.info("close file succeed");
-      fs.closeSync(file);
   }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3358,7 +3357,7 @@ open接口flags参数常量。文件打开标签。
 | lastModifiedAfter    | number | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
 | excludeMedia    | boolean | 是否排除Media中已有的文件。       |
 
-## ConflictFiles
+## ConflictFiles<sup>10+</sup>
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

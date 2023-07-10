@@ -31,6 +31,18 @@ constructor()
 
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。
 
+drawble.json文件如下：
+
+```json
+{
+  "layered-image":
+  {
+    "background" : "$media:background",
+    "foreground" : "$media:foreground"
+  }
+}
+```
+
 **示例：**
 ```ts
 // xxx.ets
@@ -45,7 +57,7 @@ struct Index {
     Row() {
       Column() {
         Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
           .id))).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -87,8 +99,8 @@ getPixelMap(): image.PixelMap;
 
 **示例：**
   ```ts
-pixmap: PixelMap = ((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-          .id))).getForeground()).getPixelMap();
+pixmap: PixelMap = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+          .id))).getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -106,7 +118,7 @@ getForeground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getForeground();
   ```
 
@@ -125,7 +137,7 @@ getBackground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getBackground();
   ```
 
@@ -144,6 +156,6 @@ getMask(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getMask();
   ```

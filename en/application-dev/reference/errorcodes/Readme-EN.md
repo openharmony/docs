@@ -60,8 +60,9 @@
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)  
   - [NFC Error Codes](errorcode-nfc.md)
+  - [SE Error Codes](errorcode-se.md)
   - [RPC Error Codes](errorcode-rpc.md)
- - Basic Features
+- Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [Application Event Logging Error Codes](errorcode-hiappevent.md)
@@ -92,7 +93,7 @@
   - [Update Error Codes](errorcode-update.md)
 - Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Language Base Class Library
-  - [Utils Error Codes](errorcode-utils.md)
+- Common Library Library
+  - [Common Library Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

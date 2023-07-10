@@ -1,4 +1,4 @@
-# Progress Indicator
+# Progress Indicator (Progress)
 
 
 The **\<Progress>** component is used to provide a progress indicator that displays the progress of an operation. For details, see [Progress](../reference/arkui-ts/ts-basic-components-progress.md).
@@ -48,7 +48,7 @@ Progress indicators come in five styles. When creating a progress indicator, you
 - Indeterminate ring style
 
   ```ts
-  // The progress indicator in the indeterminate ring style on the left: Retain its default settings for the foreground color (blue) and stroke width (2.0 vp).
+  // The progress indicator in the indeterminate ring style on the left: Retain its default settings for the foreground color (blue gradient) and stroke width (2.0 vp).
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)
   // The right progress indicator in the indeterminate ring style on the right.
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)
@@ -97,7 +97,7 @@ Progress indicators come in five styles. When creating a progress indicator, you
   ```ts
   Progress({ value: 10, total: 150, type: ProgressType.Capsule }).width(100).height(50)
   Progress({ value: 20, total: 150, type: ProgressType.Capsule }).width(50).height(100).color(Color.Grey)
-  Progress({ value: 50, total: 150, type: ProgressType.Capsule }).width(50).height(100).backgroundColor(Color.Black)
+  Progress({ value: 50, total: 150, type: ProgressType.Capsule }).width(50).height(100).color(Color.Blue).backgroundColor(Color.Black)
   ```
 
   ![progress_captule](figures/progress_captule.png)
@@ -115,8 +115,7 @@ struct ProgressCase1 {
   build() {
     Column() {
       Column() {
-        Progress({value:0, total:100, type:ProgressType.Capsule}).width(200).height(50)
-          .style({strokeWidth:50}).value(this.progressValue)
+        Progress({value:0, total:100, type:ProgressType.Capsule}).width(200).height(50).value(this.progressValue)
         Row().width('100%').height(5)
         Button ("Progress + 5")
           .onClick(()=>{

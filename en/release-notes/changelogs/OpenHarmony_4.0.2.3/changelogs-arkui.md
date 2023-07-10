@@ -1,8 +1,8 @@
-# ArkUI Subsystem ChangeLog
+# ArkUI Subsystem Changelog
 
 ## cl.arkui.1 Restrictions on Data Type Declarations of State Variables
 
-1. The data types of state variables decorated by state decorators must be explicitly declared. They cannot be declared as **any** or **Date**.
+1. The data types of state variables decorated by state decorators must be explicitly declared. They cannot be declared as **any**.
 
     Example:
 
@@ -13,34 +13,13 @@
     struct DatePickerExample {
       // Incorrect: @State isLunar: any = false
       @State isLunar: boolean = false
-      // Incorrect: @State selectedDate: Date = new Date('2021-08-08')
-      private selectedDate: Date = new Date('2021-08-08')
-
+    
       build() {
-        Column() {
-          Button('Switch Calendar')
-            .margin({ top: 30 })
-            .onClick(() => {
-              this.isLunar = !this.isLunar
-            })
-          DatePicker({
-            start: new Date('1970-1-1'),
-            end: new Date('2100-1-1'),
-            selected: this.selectedDate
-          })
-            .lunar(this.isLunar)
-            .onChange((value: DatePickerResult) => {
-              this.selectedDate.setFullYear(value.year, value.month, value.day)
-              console.info('select current date is: ' + JSON.stringify(value))
-            })
-
-        }.width('100%')
+      		...
       }
     }
     ```
-
-    ![datePicker](../../../application-dev/reference/arkui-ts/figures/datePicker.gif)
-
+    
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
     The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
@@ -76,17 +55,14 @@
 
 **Change Impacts**
 
-1. If the data type of a state variable decorated by a state decorator is declared as **any**, a build error will occur.
+1. If the data type of a state variable decorated by a state decorator is declared as **any**, a build error message will be displayed.
     ```ts
-    // ArkTS:ERROR Please define an explicit type, not any.
+    // ArkTS:WARN Please define an explicit type, not any.
     @State isLunar: any = false
     ```
-2. If the data type of a state variable decorated by a state decorator is declared as **Date**, a build error will occur.
-    ```ts
-    // ArkTS:ERROR The @State property 'selectedDate' cannot be a 'Date' object.
-    @State selectedDate: Date = new Date('2021-08-08')
-    ```
-3. If the data type of a **@State**, **@Provide**, **@Link**, and or **@Consume** decorated state variable is Length, **ResourceStr**, or **ResourceColor**, a build error will occur.
+3. If the data type of a **@State**, **@Provide**, **@Link**, and or **@Consume** decorated state variable is Length, **ResourceStr**, or **ResourceColor**,
+    a build error will occur.
+    
     ```ts
     /* ArkTS:ERROR The state variable type here is 'ResourceStr', it contains both a simple type and an object type,
       which are not allowed to be defined for state variable of a struct.*/
@@ -100,7 +76,6 @@ N/A
 **Adaptation Guide**
 
 1. Explicitly declare the data type for state variables decorated by state decorators.
-2. If a state variable decorated by a state decorator uses the **Date** object, change it to a regular variable – a variable not decorated by any decorator.
 3.  
     Adapt the **@State**, **@Provide**, **@Link**, and **@Consume** decorated variables based on the following code snippet so that they do not use the **Length(string|number|Resource)**, **ResourceStr(string|Resource)**, and **ResourceColor(string|number|Color|Resource)** types:
     ```ts
@@ -115,24 +90,24 @@ N/A
 Comply with the following rules when using constructors to initialize member variables:
 
 | **From the Variable in the Parent Component (Right) to the Variable in the Child Component (Below)**| **regular** | **@State** | **@Link** | **@Prop** | **@Provide** | **@Consume** | **@ObjectLink** |
-|---------------------------------|----------------------------|------------|-----------|-----------|--------------|--------------|------------------|
-| **regular**                    | Supported                        | Supported        | Supported       | Supported       | Not supported           | Not supported           | Supported              |
-| **@State**                     | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
-| **@Link**                      | Not supported                         | Supported (1)     | Supported (1)    | Supported (1)    | Supported (1)       | Supported (1)       | Supported (1)           |
-| **@Prop**                      | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
-| **@Provide**                   | Supported                        | Supported        | Supported       | Supported       | Supported          | Supported          | Supported              |
-| **@Consume**                   | Not supported                         | Not supported         | Not supported        | Not supported        | Not supported           | Not supported           | Not supported               |
-| **@ObjectLink**                | Not supported                         | Not supported     | Not supported        | Not supported        | Not supported           | Not supported           | Not supported               |
+| -------------------------- | ----------- | ---------- | --------- | --------- | ------------ | ------------ | --------------- |
+| **regular**                | Supported         | Supported        | Supported       | Supported       | Not supported         | Not supported         | Supported             |
+| **@State**                 | Supported         | Supported        | Supported       | Supported       | Supported          | Supported          | Supported             |
+| **@Link**                  | Not supported        | Supported (1)     | Supported (1)    | Supported (1)    | Supported (1)       | Supported (1)       | Supported (1)          |
+| **@Prop**                  | Supported         | Supported        | Supported       | Supported       | Supported          | Supported          | Supported             |
+| **@Provide**               | Supported         | Supported        | Supported       | Supported       | Supported          | Supported          | Supported             |
+| **@Consume**               | Not supported        | Not supported       | Not supported      | Not supported      | Not supported         | Not supported         | Not supported            |
+| **@ObjectLink**            | Not supported        | Not supported       | Not supported      | Not supported      | Not supported         | Not supported         | Not supported            |
 
 | **From the Variable in the Parent Component (Right) to the Variable in the Child Component (Below)**| **@StorageLink** | **@StorageProp** | **@LocalStorageLink** | **@LocalStorageProp** |
-|------------------|------------------|------------------|-----------------------|------------------------|
-| **regular**                   | Supported              | Not supported               | Not supported                    | Not supported             |
-| **@State**                    | Supported              | Supported              | Supported                   | Supported                    |
-| **@Link**                     | Supported (1)           | Supported (1)           | Supported (1)                | Supported (1)                 |
-| **@Prop**                     | Supported              | Supported              | Supported                   | Supported                    |
-| **@Provide**                  | Supported              | Supported              | Supported                   | Supported                    |
-| **@Consume**                  | Not supported            | Not supported             | Not supported                 | Not supported                  |
-| **@ObjectLink**               | Not supported            | Not supported             | Not supported                 | Not supported                  |
+| -------------------------- | ---------------- | ---------------- | --------------------- | --------------------- |
+| **regular**                | Supported              | Not supported             | Not supported                  | Not supported                  |
+| **@State**                 | Supported              | Supported              | Supported                   | Supported                   |
+| **@Link**                  | Supported (1)           | Supported (1)           | Supported (1)                | Supported (1)                |
+| **@Prop**                  | Supported              | Supported              | Supported                   | Supported                   |
+| **@Provide**               | Supported              | Supported              | Supported                   | Supported                   |
+| **@Consume**               | Not supported             | Not supported             | Not supported                  | Not supported                  |
+| **@ObjectLink**            | Not supported             | Not supported             | Not supported                  | Not supported                  |
 
 > **NOTE**
 >
@@ -144,7 +119,7 @@ Comply with the following rules when using constructors to initialize member var
 
 **Change Impacts**
 
-1. Variables decorated by **@LocalStorageLink** and **@LocalStorageProp** cannot be initialized from the parent component.
+1. **@LocalStorageLink** and **@LocalStorageProp** variables cannot be initialized from the parent component. Otherwise, a build error message will be displayed.
     ```ts
     @Entry
     @Component
@@ -152,10 +127,10 @@ Comply with the following rules when using constructors to initialize member var
         build() {
             Column() {
                 Child({
-                  /* ArkTS:ERROR Property 'simpleVarName' in the custom component 'Child' cannot
+                  /* ArkTS:WARN Property 'simpleVarName' in the custom component 'Child' cannot
                     initialize here (forbidden to specify). */
                   simpleVarName: 1,
-                  /* ArkTS:ERROR Property 'objectName' in the custom component 'Child' cannot
+                  /* ArkTS:WARN Property 'objectName' in the custom component 'Child' cannot
                     initialize here (forbidden to specify). */
                   objectName: new ClassA("x")
                 })
@@ -210,11 +185,11 @@ Comply with the following rules when using constructors to initialize member var
 N/A
 
 **Adaptation Guide**
-1. When building a child component, do not perform the build on the variables decorated by **@LocalStorageLink** and **@LocalStorageProp** in the child component.
-
-   To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
-
-2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).
+1. When building a child component, do not assign values to the variables decorated by **@LocalStorageLink** and **@LocalStorageProp** in the child component.
+    
+    To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
+    
+2. For details about how to use **@ObjectLink**, see [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).
 
 ## cl.arkui.3 Change of the onScrollBegin Event of the \<List> and \<Scroll> Components
 
@@ -226,13 +201,13 @@ The **onScrollBegin** event is deprecated and must be replaced with the **onScro
 
 **Key API/Component Changes**
 
-|       Old Event       |    New Event          |
-|------------------  | ------------------- |
+| Old Event                                   | New Event                                   |
+| ---------------------------------------- | ---------------------------------------- |
 | onScrollBegin(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number }) |
 
 For details about the **onScrollFrameBegin** event, see the following:
-- [Scroll](../../../application-dev/reference/arkui-ts/ts-container-scroll.md#events)
-- [List](../../../application-dev/reference/arkui-ts/ts-container-list.md#events)
+- [Scroll Events](../../../application-dev/reference/arkui-ts/ts-container-scroll.md#events)
+- [List Events](../../../application-dev/reference/arkui-ts/ts-container-list.md#events)
 
 **Adaptation Guide**
 

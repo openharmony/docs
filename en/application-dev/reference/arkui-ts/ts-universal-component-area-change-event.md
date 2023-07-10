@@ -11,7 +11,7 @@ The area change event is triggered when the component's size, position, or any o
 
 | Name                                      | Bubbling Supported| Description                                    |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onAreaChange(event: (oldValue: [Area](ts-types.md#area8), newValue: [Area](ts-types.md#area8)) =&gt; void) | No   | Triggered when the component area changes.|
+| onAreaChange(event: (oldValue: [Area](ts-types.md#area8), newValue: [Area](ts-types.md#area8)) =&gt; void) | No   | Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.|
 
 
 ## Example

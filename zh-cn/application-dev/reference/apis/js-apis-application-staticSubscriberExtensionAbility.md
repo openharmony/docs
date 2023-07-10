@@ -15,11 +15,13 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明     |
 | ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
-| context | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | 是   | 否   | 上下文。 |
+| context<sup>10+</sup> | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | 是   | 否   | 上下文。 |
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 

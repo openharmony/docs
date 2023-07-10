@@ -23,7 +23,7 @@
     // 通过 codecname 创建解码器
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *videoDec = OH_AudioDecoder_CreateByName(name); // name:"OH.Media.Codec.Decoder.Video.AVC"
+    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name); // name:"OH.Media.Codec.Decoder.Video.AVC"
    ```
    ```c++
     // 通过 mimetype 创建解码器

@@ -1,4 +1,4 @@
-# \@Provide and \@Consume: Two-Way Synchronization with Descendant Components
+# \@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components
 
 
 \@Provide and \@Consume are used for two-way data synchronization with descendant components in scenarios where state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.

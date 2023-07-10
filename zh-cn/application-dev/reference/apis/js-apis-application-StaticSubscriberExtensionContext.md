@@ -9,6 +9,12 @@ StaticSubscriberExtensionContext模块提供StaticSubscriberExtensionAbility具�
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+```
+
 ## 使用说明
 
 在使用StaticSubscriberExtensionContext的功能前，需要通过StaticSubscriberExtensionAbility获取。
@@ -30,6 +36,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -97,6 +105,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

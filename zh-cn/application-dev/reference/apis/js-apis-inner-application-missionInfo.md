@@ -12,6 +12,8 @@
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。

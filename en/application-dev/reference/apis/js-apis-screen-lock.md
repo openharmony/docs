@@ -220,7 +220,7 @@ screenlock.lock().then((data) => {
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
+Registers a callback for system events related to screen locking. This API can be called only by screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -264,7 +264,7 @@ try {
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Sends an event to the screen lock service. This API uses an asynchronous callback to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -304,7 +304,7 @@ screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-Sends an event to the screen lock service. This API uses a promise to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 

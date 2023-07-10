@@ -29,7 +29,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 | 名称                    | 参数类型                                         | 描述                                           |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOption](#searchbuttonoption10对象说明)              | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
+| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。                           |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
@@ -39,7 +39,8 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 | cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。                                       |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。                                    |
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。                                               |
-
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
+| selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
 ## IconOptions<sup>10+</sup>对象说明
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
@@ -55,7 +56,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 | width  | [Length](ts-types.md#length)               | 否   | 光标尺寸。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
-## SearchButtonOption<sup>10+</sup>对象说明
+## SearchButtonOptions<sup>10+</sup>对象说明
 
 | 参数名    | 参数类型                                   | 必填 | 参数描述         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
@@ -74,13 +75,15 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onSubmit(callback: (value: string) => void) | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
-| onChange(callback: (value: string) => void) | 输入内容发生变化时，触发该回调。<br> -value: 当前搜索框中输入的文本内容。  |
-| onCopy(callback: (value: string) => void) | 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。<br> -value: 复制的文本内容。      |
-| onCut(callback: (value: string) => void)  | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。      |
-| onPaste(callback: (value: string) => void) | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> -value: 粘贴的文本内容。      |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onSubmit(callback: (value: string) => void)                  | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
+| onChange(callback: (value: string) => void)                  | 输入内容发生变化时，触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
+| onCopy(callback: (value: string) => void)                    | 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。<br> -value: 复制的文本内容。 |
+| onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
+| onPaste(callback: (value: string) => void)                   | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> -value: 粘贴的文本内容。 |
+| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
 
 ## SearchController
 
@@ -101,6 +104,12 @@ caretPosition(value: number): void
 | 参数名 | 参数类型 | 必填 | 参数描述                           |
 | ------ | -------- | ---- | ---------------------------------- |
 | value  | number   | 是   | 从字符串开始到光标所在位置的长度。 |
+
+### stopEditing<sup>10+</sup>
+
+stopEditing(): void
+
+退出编辑态。
 
 ##  示例
 

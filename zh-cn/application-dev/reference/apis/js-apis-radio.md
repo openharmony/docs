@@ -2867,6 +2867,206 @@ promise.then(data => {
 ```
 
 
+## radio.getNetworkCapability<sup>10+</sup>
+
+getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: AsyncCallback\<NetworkCapabilityState\>\): void
+
+获取指定网络类型的开关状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                                       | 必填 | 说明                                  |
+| -------- | -----------------------------------------------------------------------| ---- | ----------------------------------- |
+| slotId   | number                                                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)                      | 是   | 网络能力类型。                        |
+| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | 是   | 回调函数。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+radio.getNetworkCapability(slotId, type, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNetworkCapability<sup>10+</sup>
+
+getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<NetworkCapabilityState\>
+
+获取指定网络类型的开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | 是   | 网络能力类型。                        |
+
+**返回值：**
+
+| 类型                                                         | 说明                    |
+| ------------------------------------------------------------- | ----------------------- |
+| Promise\<[NetworkCapabilityState](#networkcapabilitystate10)\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let promise = radio.getNetworkCapability(slotId, type);
+promise.then(data => {
+    console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.setNetworkCapability<sup>10+</sup>
+
+setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState,
+      callback: AsyncCallback\<void\>\): void
+
+设置指定网络类型的开关状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | 是   | 网络能力类型。                        |
+| state    | [NetworkCapabilityState](#networkcapabilitystate10)             | 是   | 网络能力状态。                        |
+| callback | AsyncCallback\<void\>                                           | 是   | 回调函数。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+radio.setNetworkCapability(slotId, type, state, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setNetworkCapability<sup>10+</sup>
+
+setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState\): Promise\<void\>
+
+设置指定网络类型的开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | 是   | 网络能力类型。                        |
+| state    | [NetworkCapabilityState](#networkcapabilitystate10)             | 是   | 网络能力状态。                        |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+let promise = radio.setNetworkCapability(slotId, type, state);
+promise.then(data => {
+    console.log(`setNetworkCapability success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## RadioTechnology
 
 无线接入技术。
@@ -3290,3 +3490,29 @@ IMS服务类型。
 | TYPE_VIDEO | 1    | 视频服务。 |
 | TYPE_UT    | 2    | UT服务。   |
 | TYPE_SMS   | 3    | 短讯服务。 |
+
+## NetworkCapabilityType<sup>10+</sup>
+
+网络能力类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称             | 值   | 说明       |
+| -----------------| ---- | ---------- |
+| SERVICE_TYPE_LTE | 0    | LTE服务类型。 |
+| SERVICE_TYPE_NR  | 1    | NR服务类型。 |
+
+## NetworkCapabilityState<sup>10+</sup>
+
+网络能力开关状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                   | 值   | 说明       |
+| -----------------------| ---- | ---------- |
+| SERVICE_CAPABILITY_OFF | 0    | 网络能力关闭。 |
+| SERVICE_CAPABILITY_ON  | 1    | 网络能力打开。 |

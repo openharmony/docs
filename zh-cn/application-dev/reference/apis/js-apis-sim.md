@@ -681,7 +681,7 @@ promise.then(data => {
 });
 ```
 
-## sim.getSimAccountInfo<sup>7+</sup>
+## sim.getSimAccountInfo<sup>10+</sup>
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
@@ -725,7 +725,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 ```
 
 
-## sim.getSimAccountInfo<sup>7+</sup>
+## sim.getSimAccountInfo<sup>10+</sup>
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
@@ -776,7 +776,7 @@ promise.then(data => {
 });
 ```
 
-## sim.getActiveSimAccountInfoList<sup>8+</sup>
+## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
@@ -817,7 +817,7 @@ sim.getActiveSimAccountInfoList((err, data) => {
 ```
 
 
-## sim.getActiveSimAccountInfoList<sup>8+</sup>
+## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 

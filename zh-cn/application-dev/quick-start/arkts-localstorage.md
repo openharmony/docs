@@ -9,7 +9,7 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接受的参�
 
 > **说明：**
 >
-> 本模块从API version 9开始支持。
+> LocalStorage从API version 9开始支持。
 
 
 ## 概述
@@ -26,7 +26,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 应用程序决定LocalStorage对象的生命周期。当应用释放最后一个指向LocalStorage的引用时，比如销毁最后一个自定义组件，LocalStorage将被JS Engine垃圾回收。
 
-LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供了两个装饰器：
+LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
 - [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单行同步关系。
 

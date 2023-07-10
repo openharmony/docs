@@ -154,10 +154,10 @@
 
 | 名称     | 类型                                       | 必填   | 说明                                       |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。 |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0  |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
 | family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前只支持'HarmonyOS Sans'字体。 |
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。<br>默认值：FontStyle.Normal                               |
 
 ## Area<sup>8+</sup>
 
@@ -309,3 +309,13 @@
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
+
+## SwiperAnimationEvent<sup>10+</sup>
+
+Swiper组件动画相关信息集合。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
+| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
+| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|

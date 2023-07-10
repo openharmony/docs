@@ -16,6 +16,11 @@
 
 Blank(min?: number&nbsp;|&nbsp;string)
 
+从API version 10开始：  
+ - Blank在父容器Row、Column、Flex主轴方向上未设置大小时会自动拉伸、压缩，设置了大小或容器自适应子节点大小时不会自动拉伸、压缩。  
+ - Blank设置主轴方向大小（size）与min时约束关系为max(min, size)。  
+ - Blank在父容器交叉轴上设置大小时不会撑满父容器交叉轴，交叉轴不设置大小时alignSelf默认值为ItemAlign.Stretch，会撑满容器交叉轴。  
+
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
