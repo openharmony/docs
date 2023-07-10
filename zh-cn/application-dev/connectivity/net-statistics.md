@@ -143,11 +143,16 @@ statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
 2. 取消订阅流量改变事件通知。
 
 ```js
-//订阅流量改变事件通知。
- statistics.on('netStatsChange', (data) => {
-  console.log('on netStatsChange' + JSON.stringify(data));
-});
 
-//取消订阅流量改变事件通知。
+let callback = data => {
+    console.log("on netStatsChange, data:" + JSON.stringify(data));
+}
+//订阅流量改变事件通知。
+statistics.on('netStatsChange', callback);
+
+
+//取消订阅流量改变事件通知。可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
+
 ```
