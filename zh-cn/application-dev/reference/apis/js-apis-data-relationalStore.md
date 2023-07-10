@@ -403,7 +403,7 @@ class EntryAbility extends UIAbility {
 
 ## PRIKeyType<sup>10+</sup> 
 
-数据库表某一行的主键。
+用于表示数据库表某一行主键的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -413,7 +413,7 @@ class EntryAbility extends UIAbility {
 
 ## UTCTime<sup>10+</sup>
 
-UTC类型的时间。
+用于表示UTC类型时间的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -423,7 +423,7 @@ UTC类型的时间。
 
 ## ModifyTime<sup>10+</sup> 
 
-用于存储主键和修改时间的Map。
+用于存储数据库表的主键和修改时间的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -560,15 +560,15 @@ UTC类型的时间。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称                  | 值   | 说明                                                   |
-| --------------------- | ---- | ------------------------------------------------------ |
-| SUCCESS               | -    | 表示端云同步过程成功。                                 |
-| UNKNOWN_ERROR         | -    | 表示端云同步过程遇到未知错误。                         |
-| NETWORK_ERROR         | -    | 表示端云同步过程遇到网络错误。                         |
-| CLOUD_DISABLED        | -    | 表示云端不可用。                                       |
-| LOCKED_BY_OTHERS      | -    | 表示有其他设备正在端云同步。                           |
-| RECORD_LIMIT_EXCEEDED | -    | 表示本次端云同步需要同步的条目或大小超出最大限制。 |
-| NO_SPACE_FOR_ASSET    | -    | 表示云空间剩余空间小于待同步的资产大小。               |
+| 名称                  | 值   | 说明                                                         |
+| --------------------- | ---- | ------------------------------------------------------------ |
+| SUCCESS               | -    | 表示端云同步过程成功。                                       |
+| UNKNOWN_ERROR         | -    | 表示端云同步过程遇到未知错误。                               |
+| NETWORK_ERROR         | -    | 表示端云同步过程遇到网络错误。                               |
+| CLOUD_DISABLED        | -    | 表示云端不可用。                                             |
+| LOCKED_BY_OTHERS      | -    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
+| RECORD_LIMIT_EXCEEDED | -    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
+| NO_SPACE_FOR_ASSET    | -    | 表示云空间剩余空间小于待同步的资产大小。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -2761,7 +2761,45 @@ promise.then(() => {
 
 ### getModifyTime<sup>10+</sup>
 
-getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;;
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void
+
+获取数据库表中数据的最后修改时间，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                             | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| table       | string                                           | 是   | 指定要查询的数据库表的表名。                                 |
+| columnName  | string                                           | 是   | 指定要查询的数据库表的列名。                                 |
+| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | 是   | 指定要查询的行的主键。<br>如果数据库表无主键，参数columnName需传入"rowid"，此时primaryKeys为要查询的数据库表的行号。<br>如果数据库表无主键，参数columnName传入不为"rowid"，返回对应的错误码。 |
+| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ModifyTime对象，表示数据的最后修改时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+
+**示例：**
+
+```js
+let PRIKey = [1, 4, 2, 3];
+relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, modifyTime) {
+    if (err) {
+        console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+        return;
+    }
+    let size = modifyTime.size();
+});
+```
+
+### getModifyTime<sup>10+</sup>
+
+getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;
 
 获取数据库表中数据的最后修改时间，使用Promise异步回调。
 
@@ -2769,11 +2807,11 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 
 **参数：**
 
-| 参数名      | 类型                          | 必填 | 说明                         |
-| ----------- | ----------------------------- | ---- | ---------------------------- |
-| table       | string                        | 是   | 指定要查询的数据库表的表名。 |
-| columnName  | string                        | 是   | 指定要查询的数据库表的列名。 |
-| primaryKeys | [PRIKeyType](#prikeytype10)[] | 是   | 指定要查询的行的主键。       |
+| 参数名      | 类型                          | 必填 | 说明                                                         |
+| ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| table       | string                        | 是   | 指定要查询的数据库表的表名。                                 |
+| columnName  | string                        | 是   | 指定要查询的数据库表的列名。                                 |
+| primaryKeys | [PRIKeyType](#prikeytype10)[] | 是   | 指定要查询的行的主键。<br>如果数据库表无主键，参数columnName需传入"rowid"，此时primaryKeys为要查询的数据库表的行号。<br>如果数据库表无主键，参数columnName传入不为"rowid"，返回对应的错误码。 |
 
 **返回值**：
 
@@ -2795,40 +2833,8 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 let PRIKey = [1, 2, 3];
 relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
     let size = modifyTime.size();
-});
-```
-
-### getModifyTime<sup>10+</sup>
-
-getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void;
-
-获取数据库表中数据的最后修改时间，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型                                             | 必填 | 说明                                                       |
-| ----------- | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| table       | string                                           | 是   | 指定要查询的数据库表的表名。                               |
-| columnName  | string                                           | 是   | 指定要查询的数据库表的列名。                               |
-| primaryKeys | [PRIKeyType](#prikeytype10)[]                    | 是   | 指定要查询的行的主键。                                     |
-| callback    | AsyncCallback&lt;[ModifyTime](#modifytime10)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ModifyTime对象，表示数据的最后修改时间。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息** |
-| ------------ | ------------ |
-| 14800000     | Inner error. |
-
-**示例：**
-
-```js
-let PRIKey = [1, 4, 2, 3];
-relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, data) {
-    let size = modifyTime.size();
+}).catch((err) => {
+    console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
 });
 ```
 
@@ -3485,9 +3491,9 @@ promise.then((result) =>{
 
 ### cloudSync<sup>10+</sup>
 
-cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void;
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行端云同步，使用callback异步回调。
+手动执行对所有分布式表的端云同步，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3503,23 +3509,23 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 **示例：**
 
-```
+```js
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (ProgressDetails) {
-    console.info("Progess: " + '\n' + JSON.stringify(ProgressDetails));
+    console.info(`Progess: ${ProgressDetails}`);
 }, function (err) {
      if (err) {
          console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
          return;
      }
-     console.info('cloud sync success.');
+     console.info('Cloud sync succeeded');
 });
 ```
 
 ### cloudSync<sup>10+</sup>
 
-cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;;
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行端云同步，使用promise异步回调。
+手动执行对所有分布式表的端云同步，使用promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3540,21 +3546,23 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 **示例：**
 
-```
+```js
 function Progess(ProgressDetail) {
-    console.info("Progess: " + JSON.stringify(ProgressDetail));
+    console.info(`Progess: ${ProgressDetail}`);
 }
 
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, Progess).then(() => {
-    console.info('cloud sync success:');
+    console.info('Cloud sync succeeded');
+}).catch((err) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
 });
 ```
 
 ### cloudSync<sup>10+</sup>
 
-cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void;
+cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行端云同步，使用callback异步回调。
+手动执行对指定表的端云同步，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3571,24 +3579,24 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 **示例：**
 
-```
+```js
 const tables = ["table1", "table2"];
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (ProgressDetails) {
-    console.info("Progess: " + '\n' + JSON.stringify(ProgressDetails));
+    console.info(`Progess: ${ProgressDetails}`);
 }, function (err) {
      if (err) {
          console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
          return;
      }
-     console.info('cloud sync success.');
+     console.info('Cloud sync succeeded');
 });
 ```
 
 ### cloudSync<sup>10+</sup>
 
-cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;;
+cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行端云同步，使用promise异步回调。
+手动执行对指定表的端云同步，使用promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3613,11 +3621,13 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 ```
 const tables = ["table1", "table2"];
 function Progess(ProgressDetail) {
-    console.info("Progess: " + JSON.stringify(ProgressDetail));
+    console.info(`Progess: ${ProgressDetail}`);
 }
 
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, Progess).then(() => {
-    console.info('cloud sync success:');
+    console.info('Cloud sync succeeded');
+}).catch((err) => {
+    console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
 });
 ```
 
