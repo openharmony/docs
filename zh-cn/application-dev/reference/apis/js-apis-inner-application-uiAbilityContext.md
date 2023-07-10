@@ -2213,6 +2213,82 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
       console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
     });
   ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+
+设置UIAbility任务中流转状态（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
+  ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+
+设置UIAbility任务中流转状态（promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
+    console.info('success');
+  }).catch((err) => {
+    console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
+  });
+  ```
+
 ## UIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage) : void;
