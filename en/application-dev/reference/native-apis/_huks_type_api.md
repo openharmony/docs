@@ -18,7 +18,7 @@ Defines the macros, enums, structs, and error codes used by OpenHarmony Universa
 
 | Name| Description|
 | -------- | -------- |
-| [native_huks_type.h](native__huks__type_8h.md) | Defines the enumerated variables, structs, and macros used in the HUKS APIs.<br>**File to include**: <huks/native_huks/native_huks_type.h><br>**Library**: libhuks_ndk.z.so|
+| [native_huks_type.h](native__huks__type_8h.md) | Defines the enumerated variables, structs, and macros used in the HUKS APIs.<br>File to include: <huks/native_huks/native_huks_type.h> |
 
 
 ### Structs
