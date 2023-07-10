@@ -400,7 +400,6 @@
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler](subsystems/subsys-arkcompiler-guide.md)
-  -  [分布式远程启动](subsystems/subsys-remote-start.md)
   -  图形图像
      - [图形图像概述](subsystems/subsys-graphics-overview.md)
      - [容器类组件开发指导](subsystems/subsys-graphics-container-guide.md)
