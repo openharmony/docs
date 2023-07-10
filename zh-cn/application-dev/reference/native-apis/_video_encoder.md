@@ -33,7 +33,7 @@ VideoEncoder模块提供用于视频编码功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { **CBR** = 0, **VBR** = 1, **CQ** = 2 } | 视频编码器的比特率模式。 | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**CBR** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**VBR** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**CQ** = 2<br/>} | 视频编码器的比特率模式。 | 
 
 
 ### 函数
