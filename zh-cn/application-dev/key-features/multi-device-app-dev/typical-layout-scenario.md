@@ -606,13 +606,15 @@ struct TripleColumnSample {
         .backgroundColor('#FFFFFF')
         .height('100%')
         .width('100%')
-        .navBarWidth(360)
+        .navBarWidth(240)
         .hideToolBar(true)
         .title(this.NavigationTitle)
+        .minContextWidth(600-240)
       }.width('100%').height('100%')
-    }.sideBarWidth(100)
+    }.sideBarWidth(240)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
+    .minContextWidth(600-240)
   }
 }
 ```
