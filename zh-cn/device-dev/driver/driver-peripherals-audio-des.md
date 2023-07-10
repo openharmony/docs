@@ -11,7 +11,7 @@
 
 ## Audio驱动框架介绍
 
-Audio驱动框架基于[HDF驱动框架](driver-hdf-overview.md)实现。Audio驱动架构组成：
+Audio驱动框架基于[HDF驱动框架](driver-overview-foundation.md)实现。Audio驱动架构组成：
 
 ![](figures/Audio框架图.png)
 
