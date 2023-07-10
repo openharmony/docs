@@ -19,9 +19,9 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_averrors.h](native__averrors_8h.md) | 声明了媒体播放框架的错误码。<br>引用文件：<multimedia/player_framework/native_averrors.h> <br>**库**：libnative_media_core.so | 
-| [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。<br>引用文件：<multimedia/player_framework/native_avformat.h> <br>**库**：libnative_media_core.so | 
-| [native_avmemory.h](native__avmemory_8h.md) | 声明了AVMemory的函数接口。<br>引用文件：<multimedia/player_framework/native_avmemory.h> <br>**库**：libnative_media_core.so | 
+| [native_averrors.h](native__averrors_8h.md) | 声明了媒体播放框架的错误码。<br>**引用文件**：<multimedia/player_framework/native_averrors.h> <br>**库**：libnative_media_core.so | 
+| [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。<br>**引用文件**：<multimedia/player_framework/native_avformat.h> <br>**库**：libnative_media_core.so | 
+| [native_avmemory.h](native__avmemory_8h.md) | 声明了AVMemory的函数接口。<br>**引用文件**：<multimedia/player_framework/native_avmemory.h> <br>**库**：libnative_media_core.so | 
 
 
 ### 类型定义
