@@ -406,7 +406,7 @@
 
 ## ohos.permission.UPDATE_MIGRATE
 
-允许调用升级迁移接口。
+允许升级过程中进行数据迁移。
 
 **权限级别**：system_basic
 
