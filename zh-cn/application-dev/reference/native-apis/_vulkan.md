@@ -54,15 +54,15 @@
 | [OHNativeWindow](#ohnativewindow) | OH本地窗口。 |
 | [VkSurfaceCreateFlagsOHOS](#vksurfacecreateflagsohos) | 用于Vulkan Surface创建时使用到的VkFlags类型位掩码，预留的标志类型。 |
 | [VkSurfaceCreateInfoOHOS](#vksurfacecreateinfoohos) | 包含创建Vulkan Surface时必要的参数。 |
-| [PFN_vkCreateSurfaceOHOS](#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |
+| VkResult ([VKAPI_PTR *PFN_vkCreateSurfaceOHOS](#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |
 | [VkNativeBufferUsageOHOS](#vknativebufferusageohos) | 提供OpenHarmony NativeBuffer用途的说明。 |
 | [VkNativeBufferPropertiesOHOS](#vknativebufferpropertiesohos) | 包含了NaitveBuffer的属性。 |
 | [VkNativeBufferFormatPropertiesOHOS](#vknativebufferformatpropertiesohos) | 包含了NaitveBuffer的一些格式属性。 |
 | [VkImportNativeBufferInfoOHOS](#vkimportnativebufferinfoohos) | 包含了OH_NativeBuffer结构体的指针。 |
 | [VkMemoryGetNativeBufferInfoOHOS](#vkmemorygetnativebufferinfoohos) | 用于从Vulkan内存中获取OH_NativeBuffer。 |
 | [VkExternalFormatOHOS](#vkexternalformatohos) | 表示外部定义的格式标识符。 |
-| [PFN_vkGetNativeBufferPropertiesOHOS](#pfn_vkgetnativebufferpropertiesohos)) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | 获取OH_NativeBuffer属性的函数指针定义。 |
-| [PFN_vkGetMemoryNativeBufferOHOS](#pfn_vkgetmemorynativebufferohos)) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer的函数指针定义。 |
+| VkResult ([VKAPI_PTR *PFN_vkGetNativeBufferPropertiesOHOS](#pfn_vkgetnativebufferpropertiesohos)) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | 获取OH_NativeBuffer属性的函数指针定义。 |
+| VkResult ([VKAPI_PTR *PFN_vkGetMemoryNativeBufferOHOS](#pfn_vkgetmemorynativebufferohos)) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer的函数指针定义。 |
 
 
 ### 函数
