@@ -12,6 +12,7 @@ Common模块将二级模块API组织在一起方便开发者进行导出。
 ```ts
 import common from '@ohos.app.ability.common';
 ```
+## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
