@@ -1,8 +1,12 @@
-# Standard Libraries Supported by Native APIs
+# Native API Standard Libraries
 - [libc](third_party_libc/musl.md)
+- [libc++](third_party_libc/cpp.md)
 - [Node-API](third_party_napi/napi.md)
 - [libuv](third_party_libuv/libuv.md)
 - [OpenSL ES](third_party_opensles/opensles.md)
+- [OpenGL ES](third_party_opengl/opengles.md)
+- [EGL](third_party_opengl/egl.md)
+- [zlib](third_party_zlib/zlib.md)
 - Appendix
   - [Native API Symbols Not Exported](third_party_libc/musl-peculiar-symbol.md)
   - [Native API Symbols That May Fail to Be Invoked Due to Permission Control](third_party_libc/musl-permission-control-symbol.md)
