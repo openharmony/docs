@@ -16,9 +16,9 @@ import pasteboard from '@ohos.pasteboard';
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | Maximum number of records in a **PasteData** object.|
+| Name| Type| Value           | Description                                                                                                                                       |
+| -------- | -------- |--------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| MAX_RECORD_NUM<sup>7+</sup> | number | -            | Maximum number of records in a **PasteData** object. In versions earlier than API version 10, the value is 512, indicating that no more records can be added once the number of records reaches 512.<br>Since API version 10, no limit is placed on the number of records in a **PasteData** object.|
 | MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | MIME type of the HTML content.|
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | MIME type of the Want content.|
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | MIME type of the plain text content.|
@@ -619,8 +619,6 @@ addRecord(record: PasteDataRecord): void
 
 Adds a data record to this pasteboard, and adds its type to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
-The pasteboard supports a maximum number of 512 data records.
-
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -644,8 +642,6 @@ pasteData.addRecord(htmlRecord);
 addRecord(mimeType: string, value: ValueType): void
 
 Adds a custom-type record to this pasteboard, and adds the custom type to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
-
-The pasteboard supports a maximum number of 512 data records.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -948,7 +944,6 @@ addHtmlRecord(htmlText: string): void
 
 Adds an HTML record to this pasteboard, and adds **MIMETYPE_TEXT_HTML** to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
-The pasteboard supports a maximum number of 512 data records.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
@@ -975,7 +970,6 @@ addWantRecord(want: Want): void
 
 Adds a Want record to this pasteboard, and adds **MIMETYPE_TEXT_WANT** to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
-The pasteboard supports a maximum number of 512 data records.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
@@ -1005,7 +999,6 @@ addTextRecord(text: string): void
 
 Adds a plain text record to this pasteboard, and adds **MIME_TEXT_PLAIN** to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
-The pasteboard supports a maximum number of 512 data records.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
@@ -1031,7 +1024,6 @@ addUriRecord(uri: string): void
 
 Adds a URI record to this pasteboard, and adds **MIMETYPE_TEXT_URI** to **mimeTypes** in [PasteDataProperty](#pastedataproperty7). The parameters cannot be empty. Otherwise, the operation fails.
 
-The pasteboard supports a maximum number of 512 data records.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [addRecord](#addrecord9).
