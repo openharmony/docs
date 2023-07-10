@@ -31,6 +31,8 @@
   - [Container Component Development](subsys-graphics-container-guide.md)
   - [Development of Layout Container Components](subsys-graphics-layout-guide.md)
   - [Animator Development](subsys-graphics-animation-guide.md)
+      - [Using Qt Creator on Windows](subsys-graphics-simulator-guide.md)
+      - [Small-System Graphics Framework Integration](subsys-graphics-porting-guide.md)
 - Multimedia
   - Camera
     - [Camera Overview](subsys-multimedia-camera-overview.md)
