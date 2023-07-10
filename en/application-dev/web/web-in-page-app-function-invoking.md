@@ -89,10 +89,10 @@ The following example registers the **test()** function with the frontend page. 
 
   > **NOTE**
   >
-  > If you use [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) to register a function, call **[refresh()]**(../reference/apis/js-apis-webview.md#refresh) for the function to take effect.
+  > If you use [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis/js-apis-webview.md#refresh) for the function to take effect.
 
 
-- Sample code for invoking application functions on the **index.htm** frontend page:
+- Sample code for invoking application functions on the **index.html** frontend page:
 
   ```html
   <!-- index.html -->

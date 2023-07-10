@@ -8,9 +8,9 @@ This module provides the following functions:
 - [Component<sup>9+</sup>](#component9): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
 - [Driver<sup>9+</sup>](#driver9): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
 - [UiWindow<sup>9+</sup>](#uiwindow9): works as the entry class and provides APIs for obtaining window attributes, dragging windows, and adjusting window sizes.
-- [By<sup>(deprecated)</sup>](#bydeprecated): provides UI component feature description APIs for component filtering and matching. This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
-- [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection. This API is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
-- [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This API is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
+- [By<sup>(deprecated)</sup>](#bydeprecated): provides UI component feature description APIs for component filtering and matching. This class is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
+- [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection. This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
+- [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
 >**NOTE**
 >
@@ -160,10 +160,8 @@ Since API version 9, the UiTest framework provides a wide range of UI component 
 The API capabilities provided by the **On** class exhibit the following features:
 
 - Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
-
 - Provide multiple match patterns for component attributes.
-
-- Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning. 
+- Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
 
@@ -1208,7 +1206,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Scroll'));
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
     let button = await scrollBar.scrollSearch(ON.text('next page'));
 }
 ```
@@ -2439,7 +2437,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    let obeserver = await driver.createUiEventObserve();
+    let observer = await driver.createUIEventObserver()
 }
 ```
 
@@ -2950,7 +2948,7 @@ async function demo() {
 
 ## UIEventObserver<sup>10+</sup>
 
-UI event listener.
+Implements a UI event listener.
 
 ### once('toastShow')
 
@@ -2971,6 +2969,7 @@ Subscribes to events of the toast component. This API uses a callback to return 
 
 ```js
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
     let  callback = (UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
@@ -3000,6 +2999,7 @@ Subscribes to events of the dialog component. This API uses a callback to return
 
 ```js
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
     let  callback = (UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
@@ -3013,15 +3013,16 @@ async function demo() {
 ## By<sup>(deprecated)</sup>
 
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
-The API capabilities provided by the **By** class exhibit the following features: 
 
-- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. 
+The API capabilities provided by the **By** class exhibit the following features:
+
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
 - Provide multiple match patterns for component attributes.
 - Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
-This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
+This class is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
 ```js
 BY.text('123').type('button');
@@ -3347,7 +3348,7 @@ In **UiTest**, the **UiComponent** class represents a component on the UI and pr
 
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
-This API is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
+This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 
 ### click<sup>(deprecated)</sup>
 
@@ -3729,7 +3730,7 @@ The **UiDriver** class is the main entry to the UiTest framework. It provides AP
 
 All APIs provided by this class, except for **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
 
-This API is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
+This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
 ### create<sup>(deprecated)</sup>
 
