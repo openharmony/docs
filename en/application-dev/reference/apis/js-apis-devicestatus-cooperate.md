@@ -455,3 +455,4 @@ Represents a screen hopping message notification.
 | COOPERATE_ACTIVATE_FAIL | 4 | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | Stopping screen hopping succeeds.|
 | COOPERATE_DEACTIVATE_FAIL | 6 | Stopping screen hopping fails.|
+| COOPERATE_SESSION_DISCONNECTED | 7 | The screen hopping session is disconnected.|

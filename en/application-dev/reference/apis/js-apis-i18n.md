@@ -1059,7 +1059,7 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | No   | Options of the **PhoneNumberFormat** object. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
 
 **Example**
   ```js
@@ -1149,7 +1149,7 @@ Obtains the home location of a phone number.
   ```
 
 
-## PhoneNumberFormatOptions<sup>9+</sup>
+## PhoneNumberFormatOptions<sup>8+</sup>
 
 Defines the options for this PhoneNumberFormat object.
 
@@ -1157,7 +1157,7 @@ Defines the options for this PhoneNumberFormat object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.|
+| type | string | Yes   | Yes   | Format type of a phone number. The available options are as follows: E164,&nbsp;INTERNATIONAL,&nbsp;NATIONAL, and&nbsp;RFC3966.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1786,8 +1786,8 @@ Obtains a list of IDs supported by the **Transliterator** object.
 
 **Example**
   ```ts
-  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...], 671 IDs supported in total
-  // Each ID consists of two parts separated by a hyphen (-). The format is source-destination.
+  // A total of 671 IDs are supported. One ID is comprised of two parts separated by a hyphen (-) in the format of source-destination. For example, in **ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]**, **Han-Latin** indicates conversion from Chinese to Latin, and **Amharic-Latin** indicates conversion from Amharic to Latin.
+  // For more information, see ISO-15924.
   let ids = I18n.Transliterator.getAvailableIDs();
   ```
 
@@ -2208,6 +2208,157 @@ Enumerates text normalization modes.
 | NFD | 2 | NFD.|
 | NFKC | 3 | NFKC.|
 | NFKD | 4 | NFKD.|
+
+
+## SystemLocaleManager<sup>10+</sup>
+
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+Creates a **SystemLocaleManager** object.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Example**
+  ```js
+  let systemLocaleManager= new I18n.SystemLocaleManager();
+  ```
+
+
+### getLanguageInfoArray<sup>10+</sup>
+
+getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+Obtains the language sorting array.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| languages | Array&lt;string&gt; | Yes  | List of languages to be sorted.|
+| options   | [SortOptions](#sortoptions10)   | No  | Language sorting option.|
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | Language list after sorting.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**Example**
+  ```js
+  // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var languages = ["zh-Hans", "en-US", "pt", "ar"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  try {
+    // The language list after sorting is [zh-Hans, en-US, pt, ar].
+    let sortedLanguages = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+### getRegionInfoArray<sup>10+</sup>
+
+getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+Obtains the country/region sorting array.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| regions   | Array&lt;string&gt; | Yes  | List of countries/regions to be sorted.|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.|
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | Country/region list after sorting.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**Example**
+  ```js
+  // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var regions = ["CN", "US", "PT", "EG"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  try {
+    // The country/region list after sorting is [CN, EG, US, PT].
+    let sortedRegions = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+## LocaleItem<sup>10+</sup>
+
+Represents the list of languages or countries/regions sorted by **SystemLocaleManager**.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type           |  Mandatory  |  Description                                  |
+| --------------- | --------------- | ------ | --------------------------------------- |
+| id              | string          |   Yes  | Language code or country/region code, for example, **zh** or **CN**.   |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   Yes | Language or country/region suggestion type.                 |
+| displayName     | string          |  Yes  | Displayed name of the ID in the locale of **SystemLocaleManager**.|
+| localName       | string          |  No  | Local name of the ID.                          |
+
+
+## SuggestionType<sup>10+</sup>
+
+Represents the language or country/region suggestion type.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name                  | Value | Description  |
+| ---------------------- | ---- | ---- |
+| SUGGESTION_TYPE_NONE   | 0x00 | Not a recommended language or country/region.|
+| SUGGESTION_TYPE_RELATED| 0x01 | Country/region recommended by the system language or language recommended by the system country/region.|
+| SUGGESTION_TYPE_SIM    | 0x02 | Language recommended by the country/region of the SIM card.|
+
+
+## SortOptions<sup>10+<sup>
+
+Represents the language or country/region sorting option.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type           |  Mandatory|   Description                                |
+| --------------- | --------------- | ---- | --------------------------------------- |
+| locale          | string          |  No | System locale, for example, **zh-Hans-CN**.   |
+| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting.                 |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
