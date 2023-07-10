@@ -2983,11 +2983,11 @@ audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
 });
 ```
 
-### isVolumeUnadjustable<sup>(deprecated)</sup>
+### isVolumeUnadjustable<sup>10+</sup>
 
 isVolumeUnadjustable(): boolean
 
-获取固定音量模式开关，打开时进入固定音量模式，此时音量固定无法被调节，使用同步方式返回结果。
+获取固定音量模式开关状态，打开时进入固定音量模式，此时音量固定无法被调节，使用同步方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
