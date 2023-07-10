@@ -185,7 +185,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -236,7 +236,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -337,7 +337,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1029,7 +1029,7 @@ async function example() {
 
 registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-打开对指定uri的监听，使用callback方式返回异步结果。
+注册对指定uri的监听，使用callback方式返回异步结果。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -1095,7 +1095,7 @@ async function example() {
 
 unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
-关闭指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该uri的所有监听。
+取消指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -1106,7 +1106,7 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri)的值。 |
-| callback | Callback&lt;[ChangeData](#changedata)&gt; | 否   | 解除[registerChange](#registerchange)注册时的callback的监听，不填时，解除该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
+| callback | Callback&lt;[ChangeData](#changedata)&gt; | 否   | 取消[registerChange](#registerchange)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
 
 **错误码：**
 
@@ -1376,7 +1376,7 @@ get(member: string): MemberType;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：PhotoKeys.URI。 |
+| member | string | 是    | 成员参数名称，在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
@@ -1428,8 +1428,8 @@ set(member: string, value: string): void;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：PhotoKeys.URI。 |
-| value | string | 是    | 设置成员参数名称，只能修改PhotoKeys.TITLE的值。 |
+| member | string | 是    | 成员参数名称例如：[PhotoKeys](#photokeys).TITLE。 |
+| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](#photokeys).TITLE的值。 |
 
 **错误码：**
 

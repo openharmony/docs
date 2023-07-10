@@ -481,113 +481,6 @@ async function example() {
 }
 ```
 
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
-
-
-获取相册，使用callback方式返回结果。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回相册检索结果。 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**示例：**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-
-  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
-    if (fetchResult != undefined) {
-      console.info('albums.count = ' + fetchResult.getCount());
-      fetchResult.getFirstObject((err, album) => {
-        if (album != undefined) {
-          console.info('first album.albumName = ' + album.albumName);
-        } else {
-          console.error('album is undefined, err = ', err);
-        }
-      });
-    } else {
-      console.error('getPhotoAlbums fail, message = ', err);
-    }
-  });
-}
-```
-
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
-
-获取相册，使用Promise方式返回结果。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
-
-**返回值：**
-
-| 类型                        | 说明           |
-| --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回相册检索结果。 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**示例：**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  try {
-    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
-    console.info('album.count = ' + fetchResult.getCount());
-    const album = await fetchResult.getFirstObject();
-    console.info('first album.albumName = ' + album.albumName);
-  } catch (err) {
-    console.error('getPhotoAlbums fail, message = ' + err);
-  }
-}
-```
-
 ### createAlbum<sup>10+</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
@@ -935,11 +828,123 @@ async function example() {
 }
 ```
 
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+
+获取相册，使用callback方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+
+  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
+    if (fetchResult != undefined) {
+      console.info('albums.count = ' + fetchResult.getCount());
+      fetchResult.getFirstObject((err, album) => {
+        if (album != undefined) {
+          console.info('first album.albumName = ' + album.albumName);
+        } else {
+          console.error('album is undefined, err = ', err);
+        }
+      });
+    } else {
+      console.error('getPhotoAlbums fail, message = ', err);
+    }
+  });
+}
+```
+
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+
+获取相册，使用Promise方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+  try {
+    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
+    console.info('album.count = ' + fetchResult.getCount());
+    const album = await fetchResult.getFirstObject();
+    console.info('first album.albumName = ' + album.albumName);
+  } catch (err) {
+    console.error('getPhotoAlbums fail, message = ' + err);
+  }
+}
+```
+
 ### getPrivateAlbum
 
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -981,6 +986,8 @@ async function example() {
 getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
 
 获取系统相册，使用Promise方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1252,102 +1259,6 @@ async function example() {
 }
 ```
 
-### on
-
-on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
-
-打开文件管理库变更通知，使用callback方式返回异步结果。
-
-此接口即将废弃，请使用[on<sup>10+</sup>](#on10)的新接口
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
-
-**示例：**
-
-```ts
-async function example() {
-  console.info('onDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // image file had changed, do something
-  });
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  //sleep 1s
-  if (count > 0) {
-    console.info('onDemo success');
-  } else {
-    console.error('onDemo fail');
-  }
-  mgr.off('imageChange', () => {
-    // stop listening success
-  });
-}
-```
-
-### off
-
-off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
-
-关闭文件管理库变更通知，使用callback方式返回异步结果。
-
-此接口即将废弃，请使用[off<sup>10+</sup>](#off10)的新接口
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
-| callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
-
-**示例：**
-
-```ts
-async function example() {
-  console.info('offDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // image file had changed, do something
-  });
-
-  mgr.off('imageChange', () => {
-    // stop listening success
-  });
-
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  //sleep 1s
-  if (count == 0) {
-    console.info('offDemo success');
-  } else {
-    console.error('offDemo fail');
-  }
-}
-```
-
 ### getActivePeers
 
 getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
@@ -1545,7 +1456,7 @@ async function example() {
 
 on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-打开对指定uri的监听，使用callback方式返回异步结果。
+对指定uri注册监听，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1609,7 +1520,7 @@ async function example() {
 
  off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
-关闭指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该uri的所有监听。
+取消对指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该uri的所有监听。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1618,7 +1529,7 @@ async function example() {
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 解除[on<sup>10+</sup>](#on10)注册时的callback的监听，不填时，解除该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 取消[on<sup>10+</sup>](#on10)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
 
 **错误码：**
 
@@ -1664,6 +1575,102 @@ async function example() {
       console.error('favorite failed with error:' + err);
     }
   });
+}
+```
+
+### on
+
+on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
+
+打开文件管理库变更通知，使用callback方式返回异步结果。
+
+此接口即将废弃，请使用[on<sup>10+</sup>](#on10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('onDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+  try {
+    let testFileName = 'testFile' + Date.now() + '.jpg';
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count > 0) {
+    console.info('onDemo success');
+  } else {
+    console.error('onDemo fail');
+  }
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
+}
+```
+
+### off
+
+off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
+
+关闭文件管理库变更通知，使用callback方式返回异步结果。
+
+此接口即将废弃，请使用[off<sup>10+</sup>](#off10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('offDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
+
+  try {
+    let testFileName = 'testFile' + Date.now() + '.jpg';
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count == 0) {
+    console.info('offDemo success');
+  } else {
+    console.error('offDemo fail');
+  }
 }
 ```
 
@@ -3488,6 +3495,8 @@ async function example() {
 
 系统相册。
 
+此接口即将废弃，请使用[Album](#album)接口替代。
+
 ### 属性
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -3505,6 +3514,8 @@ async function example() {
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
 获取系统相册中的文件。该方法使用callback形式来返回文件。
+
+此接口即将废弃，请使用[Album.getPhotoAssets](#getphotoassets-2)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -3557,6 +3568,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 获取系统相册中的文件。该方法使用Promise来返回文件。
 
+此接口即将废弃，请使用[Album.getPhotoAssets](#getphotoassets-3)接口替代。
+
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -3607,6 +3620,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除系统相册中的文件。
 
+此接口即将废弃，请使用[Album.deletePhotoAssets](#deletephotoassets10)接口替代。
+
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -3650,6 +3665,8 @@ async function example() {
 delete(uri: string): Promise&lt;void&gt;;
 
 删除系统相册中的文件。
+
+此接口即将废弃，请使用[Album.deletePhotoAssets](#deletephotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3698,6 +3715,8 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 恢复系统相册中的文件。
 
+此接口即将废弃，请使用[Album.recoverPhotoAssets](#recoverphotoassets10)接口替代。
+
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -3741,6 +3760,8 @@ async function example() {
 recover(uri: string): Promise&lt;void&gt;;
 
 恢复系统相册中的文件。
+
+此接口即将废弃，请使用[Album.recoverPhotoAssets](#recoverphotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3889,6 +3910,8 @@ async function example() {
 ## PrivateAlbumType
 
 枚举，系统相册类型。
+
+此接口即将废弃，请使用[AlbumType](#albumtype10)和[AlbumSubType](#albumsubtype10)和接口替代。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 

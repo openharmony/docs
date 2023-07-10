@@ -1,4 +1,4 @@
-# 媒体资源变更通知相关
+# 媒体资源（图片、视频和相册）变更通知相关
 
 photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定媒体资源变更进行监听。
 
@@ -12,23 +12,23 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 
 ## 监听指定URI
 
-通过调用[registerChange](../reference/apis/js-apis-photoAccessHelper.md#registerchange)接口监听指定URI。当被监听对象发生变更时返回监听器回调函数的值。
+通过调用[registerChange](../reference/apis/js-apis-photoAccessHelper.md#registerchange)接口监听指定uri。当被监听对象发生变更时返回监听器回调函数的值。
 
-### 打开对FileAsset的URI的监听
+### 对指定FileAsset注册监听
 
-打开对FileAsset的URI的进行监听，当目的FileAsset发生变更时，返回监听器回调函数的值。
+对指定FileAsset注册监听，当被监听的FileAsset发生变更时，返回监听回调。
 
 **前提条件：**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以打开对一张图片的URI的监听，通过将这张图片设置为收藏触发监听回调为例。
+下面以对一张图片注册监听，通过将这张图片设置为收藏触发监听回调为例。
 
 **开发步骤：**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
-2. 打开对指定媒体资源URI的监听。
+2. 对指定FileAsset注册监听。
 3. 将指定媒体资源设置为收藏。
 
 ```ts
@@ -58,22 +58,22 @@ try {
 }
 ```
 
-### 打开对Album的URI的监听
+### 对指定Album注册监听
 
-打开对Album的URI的进行监听，当目的Album发生变更时，返回监听器回调函数的值。
+对指定Album注册监听，当被监听的Album发生变更时，返回监听回调。
 
 **前提条件：**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以打开对一个用户相册的URI的监听，通过将重名名这个相册触发监听回调为例。
+下面以对一个用户相册注册监听，通过重命名相册触发监听回调为例。
 
 **开发步骤：**
 
 1. [获取用户相册](photoAccessHelper-userAlbum-guidelines.md#获取用户相册)。
-2. 打开对指定用户相册URI的监听。
-3. 将指定用户相册重名名。
+2. 对指定Album注册监听。
+3. 将指定用户相册重命名。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -106,22 +106,22 @@ try {
 
 ## 模糊监听
 
-通过设置forChildUris值为true来打开模糊监听，URI为相册URI时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。URI为fileAsset时，forChildUris为true、false没有区别，URI为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该URI，收不到任何消息。
+通过设置forChildUris值为true来注册模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forChildUris为true、false没有区别，uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。
 
-### 打开对所有FileAsset的URI的监听
+### 对所有FileAsset注册监听
 
-打开对所有FileAsset的URI的进行监听，当有FileAsset发生变更时，返回监听器回调函数的值。
+对所有FileAsset注册监听，当有被监听的FileAsset发生变更时，返回监听回调。
 
 **前提条件：**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以打开所有FileAsset的URI的监听，通过将一张图片进行设置和取消收藏触发监听回调为例。
+下面以对所有FileAsset注册监听，对被监听的FileAsset设置为收藏触发监听回调为例。
 
 **开发步骤：**
 
-1. 打开对所有FileAsset的URI的监听。
+1. 对所有FileAsset注册监听。
 2. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 3. 将指定媒体资源设置为收藏。
 
@@ -150,21 +150,21 @@ try {
 }
 ```
 
-## 关闭对指定URI的监听
+## 取消对指定URI的监听
 
-关闭指定URI的监听，通过调用[unRegisterChange](../reference/apis/js-apis-photoAccessHelper.md#unregisterchange)接口关闭对指定URI的监听。一个URI可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该URI的所有监听。
+取消对指定uri的监听，通过调用[unRegisterChange](../reference/apis/js-apis-photoAccessHelper.md#unregisterchange)接口取消对指定uri的监听。一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
 
 **前提条件：**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以一张图片的URI的监听中某一个callback监听进行关闭，通过将这张图片设置为收藏实现关闭的callback监听不再触发监听回调为例。
+下面以取消对一张图片指定的监听为例，取消监听后，改变图片的收藏状态不再触发对应的监听回调。
 
 **开发步骤：**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
-2. 关闭对指定媒体资源URI的监听。
+2. 取消对指定媒体资源uri的监听。
 3. 将指定媒体资源设置为收藏。
 
 ```ts
