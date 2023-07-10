@@ -58,8 +58,8 @@ Swiper(controller?: SwiperController)
 
 | 名称                                | 描述                                       |
 | --------------------------------- | ---------------------------------------- |
-| Stretch<sup>(deprecated)</sup>    | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API verdion 10开始不再维护，建议使用STRETCH代替。 |
-| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API verdion 10开始不再维护，建议使用AUTO_LINEAR代替。 |
+| Stretch<sup>(deprecated)</sup>    | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API version 10开始不再维护，建议使用STRETCH代替。 |
+| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API version 10开始不再维护，建议使用AUTO_LINEAR代替。 |
 | STRETCH<sup>10+</sup>             | Swiper滑动一页的宽度为Swiper组件自身的宽度。             |
 | AUTO_LINEAR<sup>10+</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。              |
 
@@ -148,8 +148,9 @@ finishAnimation(callback?: () => void): void
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
 | onChange(event: (index: number) => void) | 当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。<br/>-&nbsp;index:当前显示元素的索引。<br/>**说明：** <br>Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。 |
-| onAnimationStart<sup>9+</sup>(event: (index: number) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。 |
-| onAnimationEnd<sup>9+</sup>(event: (index: number) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>**说明：** <br/>当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimatio。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。 |
+| onAnimationStart<sup>9+</sup>(event: (index: number, targetIndex<sup>10+</sup>: number, extraInfo<sup>10+</sup>: [SwiperAnimationEvent](ts-types.md#swiperanimationevent)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。 |
+| onAnimationEnd<sup>9+</sup>(event: (index: number, extraInfo: [SwiperAnimationEvent](ts-types.md#swiperanimationevent)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。<br/>**说明：** <br/>当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。 |
+| onGestureSwipe<sup>10+</sup>(event: (index: number, extraInfo: [SwiperAnimationEvent](ts-types.md#swiperanimationevent)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。<br/>**说明：** <br/>多列Swiper时，index为最左侧组件的索引。 |
 
 ## 示例
 
@@ -218,6 +219,21 @@ struct SwiperExample {
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
+      })
+      .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
+        console.info("index: " + index)
+        console.info("current offset: " + extraInfo.currentOffset)
+      })
+      .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+        console.info("index: " + index)
+        console.info("targetIndex: " + targetIndex)
+        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("target offset: " + extraInfo.targetOffset)
+        console.info("velocity: " + extraInfo.velocity)
+      })
+      .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
+        console.info("index: " + index)
+        console.info("current offset: " + extraInfo.currentOffset)
       })
 
       Row({ space: 12 }) {

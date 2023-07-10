@@ -301,6 +301,7 @@
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
   - [@ohos.nfc.tag (Standard NFC Tags)](js-apis-nfcTag.md)
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
+  - [@ohos.secureElement (SE Channel Management)](js-apis-secureElement.md)
   - [@ohos.wifiManager (WLAN) (Recommended)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension) (Recommended)](js-apis-wifiManagerExt.md)
   - [@ohos.wifi (WLAN) (To Be Deprecated Soon)](js-apis-wifi.md)

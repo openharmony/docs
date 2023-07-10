@@ -615,7 +615,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是  | 回调返回指定卡槽是否插卡，如果插卡返回true。                           |
 
 **错误码：**
 

@@ -50,6 +50,7 @@
       - [半模态转场](ts-universal-attributes-sheet-transition.md)
     - [隐私遮罩](ts-universal-attributes-obscured.md)
     - [文本通用](ts-universal-attributes-text-style.md)
+    - [拖拽控制](ts-universal-attributes-drag-drop.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势

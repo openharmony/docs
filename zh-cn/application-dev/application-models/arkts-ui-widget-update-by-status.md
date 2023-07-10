@@ -20,7 +20,8 @@
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true,"scheduledUpdateTime": "07:00",
+        "updateEnabled": true,
+        "scheduledUpdateTime": "07:00",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
@@ -102,10 +103,15 @@
       let isTempCard: boolean = want.parameters[formInfo.FormParam.TEMPORARY_KEY];
       if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
         console.info('Not temp card, init db for:' + formId);
-        let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
-        storeDB.put('A' + formId, 'false');
-        storeDB.put('B' + formId, 'false');
-        storeDB.flush();
+        let promise = dataPreferences.getPreferences(this.context, 'myStore');
+        promise.then((storeDB) => {
+          console.info("Succeeded to get preferences.");
+          storeDB.putSync('A' + formId, 'false');
+          storeDB.putSync('B' + formId, 'false');
+          storeDB.flush();
+        }).catch((err) => {
+          console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+        })
       }
       let formData = {};
       return formBindingData.createFormBindingData(formData);
@@ -113,54 +119,71 @@
   
     onRemoveForm(formId) {
       console.info('onRemoveForm, formId:' + formId);
-      let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
-      storeDB.delete('A' + formId);
-      storeDB.delete('B' + formId);
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then((storeDB) => {
+        console.info("Succeeded to get preferences.");
+        storeDB.deleteSync('A' + formId);
+        storeDB.deleteSync('B' + formId);
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
-      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
-      storeDB.put('A' + formId, 'false');
-      storeDB.put('B' + formId, 'false');
-      storeDB.flush();
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then((storeDB) => {
+        console.info("Succeeded to get preferences.");
+        storeDB.putSync('A' + formId, 'false');
+        storeDB.putSync('B' + formId, 'false');
+        storeDB.flush();
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     onUpdateForm(formId) {
-      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
-      let stateA = storeDB.get('A' + formId, 'false').toString()
-      let stateB = storeDB.get('B' + formId, 'false').toString()
-      // A状态选中则更新textA
-      if (stateA === 'true') {
-        let formInfo = formBindingData.createFormBindingData({
-          'textA': 'AAA'
-        })
-        formProvider.updateForm(formId, formInfo)
-      }
-      // B状态选中则更新textB
-      if (stateB === 'true') {
-        let formInfo = formBindingData.createFormBindingData({
-          'textB': 'BBB'
-        })
-        formProvider.updateForm(formId, formInfo)
-      }
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then((storeDB) => {
+        console.info("Succeeded to get preferences.");
+        let stateA = storeDB.getSync('A' + formId, 'false').toString();
+        let stateB = storeDB.getSync('B' + formId, 'false').toString();
+        // A状态选中则更新textA
+        if (stateA === 'true') {
+          let formInfo = formBindingData.createFormBindingData({'textA': 'AAA'});
+          formProvider.updateForm(formId, formInfo);
+        }
+        // B状态选中则更新textB
+        if (stateB === 'true') {
+          let formInfo = formBindingData.createFormBindingData({'textB': 'BBB'});
+          formProvider.updateForm(formId, formInfo);
+        }
+        console.info(`Update form success stateA:${stateA} stateB:${stateB}.`);
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     onFormEvent(formId, message) {
       // 存放卡片状态
       console.info('onFormEvent formId:' + formId + 'msg:' + message);
-      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
-      let msg = JSON.parse(message)
-      if (msg.selectA != undefined) {
-        console.info('onFormEvent selectA info:' + msg.selectA);
-        storeDB.put('A' + formId, msg.selectA);
-      }
-      if (msg.selectB != undefined) {
-        console.info('onFormEvent selectB info:' + msg.selectB);
-        storeDB.put('B' + formId, msg.selectB);
-      }
-      storeDB.flush();
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then((storeDB) => {
+        console.info("Succeeded to get preferences.");
+        let msg = JSON.parse(message);
+        if (msg.selectA != undefined) {
+          console.info('onFormEvent selectA info:' + msg.selectA);
+          storeDB.putSync('A' + formId, msg.selectA);
+        }
+        if (msg.selectB != undefined) {
+          console.info('onFormEvent selectB info:' + msg.selectB);
+          storeDB.putSync('B' + formId, msg.selectB);
+        }
+        storeDB.flush();
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   };
   ```

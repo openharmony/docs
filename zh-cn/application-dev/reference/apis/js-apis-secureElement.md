@@ -43,10 +43,10 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 **参数：**
 
-| **参数名** | **类型**                                             | **说明**             |
-| ---------- | ---------------------------------------------------- | -------------------- |
-| type       | string                                               | 'serviceState'       |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | 返回SE服务状态的回调 |
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 'serviceState'       |
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | 是      | 返回SE服务状态的回调 |
 
 **返回值：**
 
@@ -59,20 +59,18 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
-this.result = "Service state is Unkown";
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log.("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService occurs exception:" + e.message;
+    console.log("newSEService occurs exception:" + e.message);
 }
 ```
 
@@ -95,35 +93,34 @@ getReaders(): Reader[]
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
-@State nfcServiceState: secureElement.ServiceState = null;
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaReaderList: secureElement.Reader[] = null;
+let nfcSEService = null;
+let nfcServiceState = null;
+let nfcOmaReader = null;
+let nfcOmaReaderList = null;
 
 // get SEService
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService excpetion:" + e.message;
+    console.log("newSEService excpetion:" + e.message);
 }
 
 try {
-    this.nfcOmaReaderList = this.nfcSEService.getReaders();
-    if (this.nfcOmaReaderList != null && this.nfcOmaReaderList.length > 0) {
-        this.nfcOmaReader = this.nfcOmaReaderList[0];
-        this.result = "get reader successfully";
+    nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        nfcOmaReader = this.nfcOmaReaderList[0];
+        console.log("get reader successfully");
     } else {
-        this.result = "get reader failed";
+        console.log("get reader failed");
     }
 } catch (e) {
-    this.result = "getReaders exception:" + e.message;
+    console.log("getReaders exception:" + e.message);
 }
 ```
 
@@ -146,20 +143,19 @@ isConnected(): boolean
 ```JS
 import secureElement from '@ohos.secureElement';
 
-@State result: string = ''
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
 try {
     let ret: boolean;
     // refer to newSEService for this.nfcSEService 
-    ret = this.nfcSEService.isConnected();
+    ret = nfcSEService.isConnected();
     if (ret) {
-        this.result = 'get state: connected';
+        console.log("get state: connected");
     } else {
-        this.result = 'get state: not connected';
+        console.log("get state: not connected");
     }
 } catch (e) {
-    this.result = "isConnected exception: " + e.message;
+    console.log("isConnected exception: " + e.message);
 }
 ```
 
@@ -176,15 +172,15 @@ shutdown(): void
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+
+let nfcSEService = null;
 
 try {
     // refer to newSEService for this.nfcSEService 
-    this.nfcSEService.shutdown();
-    this.result = "shutdown successfully";
+    nfcSEService.shutdown();
+    console.log("shutdown successfully");
 } catch (e) {
-    this.result = "shutdown exception:" + e.message;
+    console.log("shutdown exception:" + e.message);
 }
 ```
 
@@ -207,15 +203,14 @@ getVersion(): string
 ```JS
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
 this.result = "version: "
 try {
     // refer to newSEService for this.nfcSEService 
-    this.result += this.nfcSEService.getVersion();
+    console.log("version: " + nfcSEService.getVersion());
 } catch (e) {
-    this.result = "getVersion exception:" + e.message;
+    console.log("getVersion exception:" + e.message);
 }
 ```
 
@@ -238,14 +233,13 @@ getName(): string
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader 
-    this.result = this.nfcOmaReader.getName();
+    console.log(nfcOmaReader.getName());
 } catch (e) {
-    this.result = "getName exception:" + e.message;
+    console.log("getName exception:" + e.message);
 }
 ```
 
@@ -276,18 +270,17 @@ isSecureElementPresent(): boolean
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    if (this.nfcOmaReader.isSecureElementPresent()) {
-        this.result = "isSecureElementPresent TRUE";
+    if (nfcOmaReader.isSecureElementPresent()) {
+        console.log("isSecureElementPresent TRUE");
     } else {
-        this.result = "isSecureElementPresent FALSE";
+        console.log("isSecureElementPresent FALSE");
     }
 } catch (e) {
-    this.result = "isSecureElementPresent exception:" + e.message;
+    console.log("isSecureElementPresent exception:" + e.message);
 }
 ```
 
@@ -319,20 +312,19 @@ try {
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaReader = null;
+let nfcOmaSession = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaSession = this.nfcOmaReader.openSession();
-    if (this.nfcOmaSession) {
-        this.result = "get session successfully";
+    nfcOmaSession = nfcOmaReader.openSession();
+    if (nfcOmaSession) {
+        console.log("get session successfully");
     } else {
-        this.result = "get session failed";
+        console.log("get session failed");
     }
 } catch (e) {
-    this.result = "OpenSession exception: " + e.message;
+    console.log("OpenSession exception: " + e.message);
 }
 ```
 
@@ -357,15 +349,14 @@ try {
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaReader.closeSessions();
-    this.result = "close Sessions successfully";
+    nfcOmaReader.closeSessions();
+    console.log("close Sessions successfully");
 } catch (e) {
-    this.result = "closeSessions exception:" + e.message;
+    console.log("closeSessions exception:" + e.message);
 }
 ```
 
@@ -388,20 +379,19 @@ getReader(): Reader
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaReader = null;
+let nfcOmaSession = null;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaReader = this.nfcOmaSession.getReader();
-    if (this.nfcOmaReader) {
-        this.result = "get reader successfully";
+    nfcOmaReader = nfcOmaSession.getReader();
+    if (nfcOmaReader) {
+        console.log("get reader successfully");
     } else {
-        this.result = "get reader failed";
+        console.log("get reader failed");
     }
 } catch (e) {
-    this.result = "getReader exception:" + e.message;
+    console.log("getReader exception:" + e.message);
 }
 ```
 
@@ -432,24 +422,25 @@ getATR(): number[]
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
+let str = ""; 
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.getATR();
+    let ret = nfcOmaSession.getATR();
     if (ret) {
-        this.result = "getATR result:[";
+       str = 'getATR result:[';
         for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+            str += ret[i];
+            str += ' ';
         }
-        this.result += ']';
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getATR result is null";
+        console.log("getATR result is null");
     }
 } catch (e) {
-    this.result = "getATR exception:" + e.message;
+    console.log("getATR exception:" + e.message);
 }
 ```
 
@@ -474,15 +465,14 @@ close(): void
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.close();
-    this.result = "session close successfully";
+    nfcOmaSession.close();
+    console.log("session close successfully");
 } catch (e) {
-    this.result = "session close exception:" + e.message;
+    console.log("session close exception:" + e.message);
 }
 ```
 
@@ -509,19 +499,18 @@ isClosed(): boolean
 ```Js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.isClosed();
+    let ret = nfcOmaSession.isClosed();
     if (ret) {
-        this.result = "session state is closed";
+        console.log("session state is closed");
     } else {
-        this.result = "session state is not closed";
+        console.log("session state is not closed");
     }
 } catch (e) {
-    this.result = "isClosed exception:" + e.message;
+    console.log("isClosed exception:" + e.message);
 }
 ```
 
@@ -546,15 +535,14 @@ closeChannels(): void
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.closeChannels();
-    this.result = "close Channels successfully";
+    nfcOmaSession.closeChannels();
+    console.log("close Channels successfully");
 } catch (e) {
-    this.result = "closeChannels exception:" + e.message;
+    console.log("closeChannels exception:" + e.message);
 }
 ```
 
@@ -568,9 +556,9 @@ openBasicChannel(aid: number[]): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                                     |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | 在此channel上选择的applet的AID数组或如果没有applet被选择时空的数组null。 |
+| **参数名** | **类型** | **必填** | **说明**                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | 是      |在此channel上选择的applet的AID数组或如果没有applet被选择时空的数组null。 |
 
 **返回值：**
 
@@ -594,21 +582,20 @@ openBasicChannel(aid: number[]): Promise<Channel>
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray);
+    let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel1 get channel successfully";
+        nfcOmaChannel = channel;
+        console.log("openBasicChannel1 get channel successfully");
     }).catch ((err) => {
-        this.result = "openBasicChannel1 exception:" + err.message;
+        console.log("openBasicChannel1 exception:" + err.message);
     });
 } catch (e) {
-    this.result = "OpenBasicChannel1 exception:" + e.message;
+    console.log("OpenBasicChannel1 exception:" + e.message);
 }
 ```
 
@@ -622,10 +609,10 @@ try {
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例。                            |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -643,23 +630,22 @@ try {
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openBasicChannel(this.aidArray, (error, data) => {
+    nfcOmaSession.openBasicChannel(aidArray, (error, data) => {
         if (error) {
-            this.result = "openBasicChannel2 failed:" + JSON.stringify(error);
+            console.log("openBasicChannel2 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel2 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openBasicChannel2 get channel successfully");
     });
 } catch (e) {
-    this.result = "openBasicChannel2 exception:" + e.message;
+    console.log("openBasicChannel2 exception:" + e.message);
 }
 ```
 
@@ -673,10 +659,10 @@ openBasicChannel(aid: number[], p2: number): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                                     |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| p2         | number   | 在该channel上执行的SELECT APDU的P2参数。                     |
+| **参数名** | **类型** | **必填** | **说明**                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | 是       | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| p2         | number   | 是       |在该channel上执行的SELECT APDU的P2参数。                     |
 
 **返回值：**
 
@@ -700,23 +686,22 @@ openBasicChannel(aid: number[], p2: number): Promise<Channel>
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2);
+    let getPromise = nfcOmaSession.openBasicChannel(aidArray, p2);
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel3 get channel successfully";
+        nfcOmaChannel = channel;
+        console.log("openBasicChannel3 get channel successfully");
     }).catch ((err) => {
-        this.result = "openBasicChannel3 exception";
+        console.log("openBasicChannel3 exception");
     });
 } catch (e) {
-    this.result = "openBasicChannel3 exception:" + e.message;
+    console.log("openBasicChannel3 exception:" + e.message);
 }
 ```
 
@@ -730,11 +715,11 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): vo
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| p2         | number                 | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例。                            |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
+| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -752,24 +737,24 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): vo
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2, (error, data) => {
+    nfcOmaSession.openBasicChannel(aidArray, p2, (error, data) => {
         if (error) {
-            this.result = "openBasicChannel4 failed:" + JSON.stringify(error);
+            console.log("openBasicChannel4 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel4 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openBasicChannel4 get channel successfully");
     });
 } catch (e) {
-    this.result = "openBasicChannel4 exception:" + e.message;
+    console.log("openBasicChannel4 exception:" + e.message);
 }
 ```
 
@@ -783,9 +768,9 @@ openLogicalChannel(aid: number[]): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                |
-| ---------- | -------- | --------------------------------------- |
-| aid        | number[] | 在该Channel对象上选择的applet AID数组。 |
+| **参数名** | **类型** | **必填** | **说明**                                |
+| ---------- | -------- | ------ | --------------------------------------- |
+| aid        | number[] | 是      | 在该Channel对象上选择的applet AID数组。 |
 
 **返回值：**
 
@@ -809,22 +794,21 @@ openLogicalChannel(aid: number[]): Promise<Channel>
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray)
+    let getPromise = nfcOmaSession.openLogicalChannel(aidArray)
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-   	    this.result = "openLogicChannel1 get channel successfully";
+        nfcOmaChannel = channel;
+   	    console.log("openLogicChannel1 get channel successfully");
     }).catch ((err) => {
-        this.result = "openLogicChannel1 exception:" + err.message;
+        console.log("openLogicChannel1 exception:" + err.message);
     });
 } catch (e) {
-    this.result = "openLogicChannel1 exception:" + e.message;
+    console.log("openLogicChannel1 exception:" + e.message);
 }
 ```
 
@@ -838,10 +822,10 @@ try {
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在该Channel对象上被选择的applet AID数组。                    |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
+| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
 
 **错误码：**
 
@@ -859,23 +843,22 @@ try {
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, (error, data) => {
+    nfcOmaSession.openLogicalChannel(aidArray, (error, data) => {
         if (error) {
-            this.result = "openLogicChannel2 failed:" + JSON.stringify(error);
+            console.log("openLogicChannel2 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel2 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openLogicChannel2 get channel successfully");
     });
 } catch (e) {
-    this.result = "openLogicChannel2 exception:" + e.message;
+    console.log("openLogicChannel2 exception:" + e.message);
 }
 ```
 
@@ -895,10 +878,10 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                  |
-| ---------- | -------- | ----------------------------------------- |
-| aid        | number[] | 在该Channel对象上被选择的applet AID数组。 |
-| p2         | number   | 此channel上执行SELECT APDU命令的P2参数。  |
+| **参数名** | **类型** | **必填** | **说明**                                  |
+| ---------- | -------- | ------ | ----------------------------------------- |
+| aid        | number[] | 是      | 在该Channel对象上被选择的applet AID数组。 |
+| p2         | number   | 是      | 此channel上执行SELECT APDU命令的P2参数。  |
 
 **错误码：**
 
@@ -916,24 +899,24 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
 
-if (this.nfcOmaSession) {
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
+
+if (nfcOmaSession) {
     try {
     // refer to Reader.openSession for this.nfcOmaSession
-        let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2);
+        let getPromise = nfcOmaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
-            this.nfcOmaChannel = channel;
-            this.result = "openLogicChannel3 get channel successfully";
+            nfcOmaChannel = channel;
+            console.log("openLogicChannel3 get channel successfully");
         }).catch ((err) => {
-            this.result = "openLogicChannel3 exception";
+            console.log("openLogicChannel3 exception");
         })
 } catch (e) {
-    this.result = "openLogicChannel3 exception:" + e.message;
+    console.log("openLogicChannel3 exception:" + e.message);
 }
 ```
 
@@ -953,11 +936,11 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在该Channel对象上被选择的applet AID数组。                    |
-| p2         | number                 | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
+| p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
+| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
 
 **错误码：**
 
@@ -975,24 +958,23 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2, (error, data) => {
+    nfcOmaSession.openLogicalChannel(aidArray, p2, (error, data) => {
         if (error) {
-            this.result = "openLogicChannel4 failed:" + JSON.stringify(error);
+            console.log("openLogicChannel4 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel4 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openLogicChannel4 get channel successfully");
     })
 } catch (e) {
-    this.result = "openLogicChannel4 exception:" + e.message;
+    console.log("openLogicChannel4 exception:" + e.message);
 }
 ```
 
@@ -1015,20 +997,19 @@ try {
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.getSession();
+    let ret = nfcOmaChannel.getSession();
     if (ret) {
-        this.result = "get session successfully";
+        console.log("get session successfully");
     } else {
-        this.result = "get session failed";
+        console.log("get session failed");
     }
 } catch (e) {
-    this.result = "getSession exception:" + e.message;
+    console.log("getSession exception:" + e.message);
 }
 ```
 
@@ -1045,16 +1026,15 @@ close(): void
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    this.nfcOmaChannel.close();
-    this.result = "channel close successfully";
+    nfcOmaChannel.close();
+    console.log("channel close successfully");
 } catch (e) {
-    this.result = "channel close exception:" + e.message;
+    console.log("channel close exception:" + e.message);
 }
 ```
 
@@ -1077,19 +1057,18 @@ isBasicChannel(): boolean
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaChannel = null;
 
 try {
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.isBasicChannel();
+    let ret = nfcOmaChannel.isBasicChannel();
     if (ret) {
-        this.result = "isBasicChannel TRUE";
+        console.log("isBasicChannel TRUE");
     } else {
-        this.result = "isBasicChannel FALSE";
+        console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    this.result = "isBasicChannel异常:" + e.message;
+    console.log("isBasicChannel异常:" + e.message);
 }
 ```
 
@@ -1112,19 +1091,18 @@ isClosed(): boolean
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaChannel = null;
 
 try {
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.isClosed();
+    let ret = nfcOmaChannel.isClosed();
     if (ret) {
-        this.result = "channel isClosed TRUE";
+        console.log("channel isClosed TRUE");
     } else {
-        this.result = "channel isClosed False";
+        console.log("channel isClosed False");
     }
 } catch (e) {
-    this.result = "Channel isClosed exception:" + e.message;
+    console.log("Channel isClosed exception:" + e.message);
 }
 ```
 
@@ -1151,24 +1129,25 @@ getSelectResponse():number[]
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let str = '';
+let nfcOmaChannel = null;
 
 try {
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.getSelectResponse();
+    let ret = nfcOmaChannel.getSelectResponse();
     if (ret) {
-        this.result = "getSelectResponse result:[";
+        str = "getSelectResponse result:[";
         for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+            str += ret[i];
+            str += ' ';
         }
-        this.result += ']';
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getSelectResponse result is null";
+        console.log("getSelectResponse result is null");
     }
 } catch (e) {
-    this.result = "getSelectResponse exception:" + e.message;
+    console.log("getSelectResponse exception:" + e.message);
 }
 ```
 
@@ -1182,9 +1161,9 @@ transmit(command: number[]): Promise<number[]>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                              |
-| ---------- | -------- | ------------------------------------- |
-| command    | number[] | 在该channel上被选择的applet AID数组。 |
+| **参数名** | **类型** | **必填** | **说明**                              |
+| ---------- | -------- | ------ | ------------------------------------- |
+| command    | number[] | 是      | 在该channel上被选择的applet AID数组。 |
 
 **返回值：**
 
@@ -1207,25 +1186,25 @@ transmit(command: number[]): Promise<number[]>
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
-
+let nfcOmaChannel = null;
+let str = "";
 try {
     let command: number[] = [100, 200];
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let getPromise = this.nfcOmaChannel.transmit(command);
+    let getPromise = nfcOmaChannel.transmit(command);
     getPromise.then((data) => {
-        this.result = "transmit1 result:[";
+        str = "transmit1 result:[";
         for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
+            str += data[i];
+            str += " ";
         }
-        this.result += "]";
+        str += "]";
+        console.log(str);
     }).catch ((err) => {
-        this.result = "transmit1 exception:" + err.code;
+        console.log("transmit1 exception:" + err.code);
     })
 } catch (e) {
-    this.result = "transit1 exception:" + e.message;
+    console.log("transit1 exception:" + e.message);
 }
 ```
 
@@ -1239,10 +1218,10 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 **参数：**
 
-| **参数名** | **类型**                | **说明**                              |
-| ---------- | ----------------------- | ------------------------------------- |
-| command    | number[]                | 在该Channel上被选择的applet AID数组。 |
-| callback   | AsyncCallback<number[]> | 返回接收到的响应的回调，number数组。  |
+| **参数名** | **类型**                | **必填** | **说明**                              |
+| ---------- | ----------------------- | ------ | ------------------------------------- |
+| command    | number[]                | 是      | 在该Channel上被选择的applet AID数组。 |
+| callback   | AsyncCallback<number[]> | 是      | 返回接收到的响应的回调，number数组。  |
 
 **错误码：**
 
@@ -1259,25 +1238,26 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let str = "";
+let nfcOmaChannel = null;
 
 try {
     let command: number[] = [100, 200];
     // refer to Session.openBasicChannel for this.nfcOmaChannel
-    this.nfcOmaChannel.transmit(command, (error, data) => {
+    nfcOmaChannel.transmit(command, (error, data) => {
         if (error) {
-            this.result = "transmit2 exception:" + JSON.stringify(error);
+            console.log("transmit2 exception:" + JSON.stringify(error));
             return;
         }
-        this.result = "transmit2 result:[";
+        str = "transmit2 result:[";
         for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
+            str += data[i];
+            str += " ";
         }
-        this.result += "]";
+        str += "]";
+        console.log(str)
     });
 } catch (e) {
-    this.result = "transit2 exception:" + e.message;
+    console.log("transit2 exception:" + e.message);
 }
 ```

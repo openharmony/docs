@@ -34,6 +34,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ACCESS_BLUETOOTH
+
+允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
@@ -2143,6 +2153,26 @@
 允许应用访问其他应用安装目录。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+
+允许应用采集语音下行音频。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+允许应用访问智能语音服务接口。
+
+**权限级别**: system_basic
 
 **授权方式**：system_grant
 

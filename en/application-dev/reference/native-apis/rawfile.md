@@ -1,13 +1,11 @@
 # Rawfile
 
 
-## Overview
+Provides APIs for operating the **rawfile** directory and its files, including traversing the **rawfile** directory and opening, searching for, reading, and closing a file in it.
 
-Provides the function of operating rawfile directories and rawfiles.
+**Since**
 
-These functions include traversing, opening, searching, reading, and closing rawfiles.
 
-**Since:**
 8
 
 
@@ -16,399 +14,506 @@ These functions include traversing, opening, searching, reading, and closing raw
 
 ### Files
 
-| Name | Description | 
-| -------- | -------- |
-| [raw_dir.h](raw__dir_8h.md) | Provides functions for operating rawfile directories. <br>File to Include: <rawfile/raw_dir.h> | 
-| [raw_file.h](raw__file_8h.md) | Provides functions for operating rawfiles.  <br>File to Include: <rawfile/raw_file.h>| 
-| [raw_file_manager.h](raw__file__manager_8h.md) | Provides functions for managing rawfile resources.  <br>File to Include: <rawfile/raw_file_manager.h>| 
+| Name                                    | Description                |
+| ---------------------------------------- | ------------------ |
+| [raw_dir.h](raw__dir_8h.md)              | Provides functions related to the **rawfile** directory.<br>File to include: \<rawfile/raw_dir.h>  |
+| [raw_file.h](raw__file_8h.md)            | Provides functions related to the files in the **rawfile** directory.<br>File to include: \<rawfile/raw_file.h> |
+| [raw_file_manager.h](raw__file__manager_8h.md) | Provides file management functions for the **rawfile** directory.<br>File to import: \<rawfile/raw_file_manager.h>|
 
 
 ### Structs
 
-| Name | Description | 
-| -------- | -------- |
-| [RawFileDescriptor](_raw_file_descriptor.md) | Provides rawfile descriptor information.  | 
+| Name                                   | Description               |
+| ---------------------------------------- | ----------------- |
+| [RawFileDescriptor](_raw_file_descriptor.md) | Defines the file descriptor (FD) information of a file in the **rawfile** directory. |
 
 
 ### Types
 
-| Name | Description | 
-| -------- | -------- |
-| [RawDir](#rawdir) | Provides the function of accessing rawfile directories.  | 
-| [RawFile](#rawfile) | Provides the function of accessing rawfiles.  | 
-| [NativeResourceManager](#nativeresourcemanager) | Implements the resource manager.  | 
+| Name                                  | Description                 |
+| ---------------------------------------- | ------------------- |
+| [RawDir](#rawdir)                        | Provides access to the **rawfile** directory.   |
+| [RawFile](#rawfile)                      | Provides access to the files in **rawfile**.   |
+| [NativeResourceManager](#nativeresourcemanager) | Represents the resource manager.|
 
 
 ### Functions
 
-| Name | Description | 
-| -------- | -------- |
-| [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | Obtains the rawfile name via an index.  | 
-| [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) |Obtains the number of rawfiles in [RawDir](#rawdir).  | 
-| [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | Closes an opened [RawDir](#rawdir) and releases all associated resources.  | 
-| [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) |Reads a rawfile.  | 
-| [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) |Seeks for the data read/write position in the rawfile based on the specified offset.  | 
-| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | Obtains the length of a rawfile in int32_t.  | 
-| [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | Closes an opened [RawFile](#rawfile) and releases all associated resources.  | 
-| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of the rawfile in int32_t.  | 
-| [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a rawfile descriptor.  | 
-| [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Closes a rawfile descriptor.  | 
-| [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | Obtains the native resource manager based on JavaScipt resource manager.  | 
-| [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | Releases a native resource manager.  | 
-| [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | Opens a rawfile directory.  | 
-| [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | Opens a rawfile.  | 
+| Name                                                         | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | Obtains the name of a file in **rawfile** based on the index. |
+| [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) | Obtains the number of files in a [RawDir](#rawdir).          |
+| [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | Closes a [RawDir](#rawdir) and releases all associated resources. |
+| [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | Reads data from a file in **rawfile**.                       |
+| [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | Seeks for the data read/write position in a file in **rawfile** based on the specified offset. |
+| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | Obtains the size of a file in **rawfile**.                   |
+| [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | Closes a [RawFile](#rawfile) and releases all associated resources. |
+| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of a file in **rawfile**.         |
+| [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a file in **rawfile** based on the offset and file length and obtains the FD. |
+| [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Releases an FD.                                               |
+| [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | Initializes a Native resource manager using the JavaScript resource manager. You can use the Native resource manager obtained to implement operations related to **rawfile**. |
+| [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | Releases a Native resource manager instance.                 |
+| [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | Opens a directory in the **rawfile** directory.              |
+| [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | Opens a file in the **rawfile** directory.                   |
 
 
-## Type Description
+## Description
 
 
-### NativeResourceManager
+### Type Description
 
-  
+
+#### NativeResourceManager
+
+
 ```
-typedef struct NativeResourceManagerNativeResourceManager
+typedef struct NativeResourceManager NativeResourceManager
 ```
-**Description**<br>
-Implements the resource manager.
 
-This class encapsulates the native implementation of the JavaScript resource manager. You can obtain the pointer to **ResourceManager** by calling [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).
+**Description**
+
+Represents the resource manager.
+
+This class encapsulates the native implementation of the JavaScript resource manager. The **ResourceManager** pointer can be obtained by using [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).
+
+**Since**
+
+8
 
 
-### RawDir
+#### RawDir
 
-  
+
 ```
-typedef struct RawDirRawDir
+typedef struct RawDir RawDir
 ```
-**Description**<br>
-Provides the function of accessing rawfile directories.
+
+**Description**
+
+Provides access to the **rawfile** directory.
+
+**Since**
+
+8
 
 
-### RawFile
+#### RawFile
 
-  
+
 ```
-typedef struct RawFileRawFile
+typedef struct RawFile RawFile
 ```
-**Description**<br>
-Provides the function of accessing rawfiles.
+
+**Description**
+
+Provides access to the files in **rawfile**.
+
+**Since**
+
+8
 
 
-## Function Description
+### Function Description
 
 
-### OH_ResourceManager_CloseRawDir()
+#### OH_ResourceManager_CloseRawDir()
 
-  
+
 ```
 void OH_ResourceManager_CloseRawDir (RawDir * rawDir)
 ```
-**Description**<br>
-Closes an opened [RawDir](#rawdir) and releases all associated resources.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| rawDir | Indicates the pointer to [RawDir](#rawdir).  | 
+Closes a [RawDir](#rawdir) opened and releases all associated resources.
 
- **See**
+**Parameters**
+
+| Name   | Description                       |
+| ------ | ------------------------- |
+| rawDir | Pointer to the [RawDir](#rawdir) to close.|
+
+**See**
 
 [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir)
 
+**Since**
 
-### OH_ResourceManager_CloseRawFile()
+8
 
-  
+
+#### OH_ResourceManager_CloseRawFile()
+
+
 ```
 void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 ```
-**Description**<br>
-Closes an opened [RawFile](#rawfile) and releases all associated resources.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
+Closes a [RawFile](#rawfile) and releases all associated resources.
 
- **See**
+**Parameters**
+
+| Name    | Description                         |
+| ------- | --------------------------- |
+| rawFile | Pointer to the [RawFile](#rawfile) to close.|
+
+**See**
 
 [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
+**Since**
 
-### OH_ResourceManager_GetRawFileCount()
+8
 
-  
+
+#### OH_ResourceManager_GetRawFileCount()
+
+
 ```
 int OH_ResourceManager_GetRawFileCount (RawDir * rawDir)
 ```
-**Description**<br>
-Obtains the number of rawfiles in [RawDir](#rawdir).
+
+**Description**
+
+Obtains the number of files in a [RawDir](#rawdir).
 
 You can use this function to obtain available indexes in [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename).
 
- **Parameters**
+**Parameters**
 
-| Name | Description | 
-| -------- | -------- |
-| rawDir | Indicates the pointer to [RawDir](#rawdir).  | 
+| Name   | Description                       |
+| ------ | ------------------------- |
+| rawDir | Pointer to the target [RawDir](#rawdir).|
 
- **See**
+**See**
 
 [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename)
 
+**Since**
 
-### OH_ResourceManager_GetRawFileDescriptor()
+8
 
-  
+
+#### OH_ResourceManager_GetRawFileDescriptor()
+
+
 ```
 bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDescriptor & descriptor )
 ```
-**Description**<br>
-Opens a rawfile descriptor.
 
-After the descriptor is opened, you can use it to read the rawfile based on the offset (in int32_t) and file length.
+**Description**
 
- **Parameters**
+Opens a file in the **rawfile** directory based on the offset and file length and obtains the FD.
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
-| descriptor | Indicates the rawfile descriptor, and the start position and length of the rawfile file in the HAP package.  | 
+The FD obtained can be used to read the file.
+
+**Parameters**
+
+| Name       | Description                                                |
+| ---------- | ---------------------------------------------------- |
+| rawFile    | Pointer to the [RawFile](#rawfile).                 |
+| descriptor | File descriptor of the file, start position of the file in the hAP, and length of the file.|
 
 **Returns**
 
-Returns **true** if the rawfile descriptor is opened successfully; returns **false** if the rawfile cannot be accessed.
+Returns <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_GetRawFileName()
+#### OH_ResourceManager_GetRawFileName()
 
-  
+
 ```
 const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 ```
-**Description**<br>
-Obtains the rawfile name via an index.
 
-You can use this function to traverse a rawfile directory.
+**Description**
 
- **Parameters**
+Obtains the name of a file in **rawfile** based on the index.
 
-| Name | Description | 
-| -------- | -------- |
-| rawDir | Indicates the pointer to [RawDir](#rawdir).  | 
-| index | Indicates the index of the file in [RawDir](#rawdir).  | 
+You can use this function to traverse the **rawfile** directory.
+
+**Parameters**
+
+| Name   | Description                           |
+| ------ | ----------------------------- |
+| rawDir | Pointer to the [RawDir](#rawdir).    |
+| index  | Index of the file in the [RawDir](#rawdir).|
 
 **Returns**
 
-Returns the rawfile name via an index. The return value can be used as the input parameter of [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile). If no rawfile is found after all rawfiles are traversed, **NULL** will be returned.
+Returns the file name obtained if the file exists in the directory; returns **null** otherwise. The file name returned can be used as the input parameter of [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile).
 
- **See**
+**See**
 
 [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
+**Since**
 
-### OH_ResourceManager_GetRawFileOffset()
+8
 
-  
+
+#### OH_ResourceManager_GetRawFileOffset()
+
+
 ```
 long OH_ResourceManager_GetRawFileOffset (const RawFile * rawFile)
 ```
-**Description**<br>
-Obtains the current offset of the rawfile in int32_t.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
+Obtains the current offset of a file in **rawfile**.
+
+The offset indicates the position of the file in the HAP.
+
+**Parameters**
+
+| Name    | Description                         |
+| ------- | --------------------------- |
+| rawFile | Pointer to the target [RawFile](#rawfile).|
 
 **Returns**
 
-Returns the current offset of the rawfile.
+Returns the file offset obtained.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_GetRawFileSize()
+#### OH_ResourceManager_GetRawFileSize()
 
-  
+
 ```
 long OH_ResourceManager_GetRawFileSize (RawFile * rawFile)
 ```
-**Description**<br>
-Obtains the length of a rawfile in int32_t.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
+Obtains the size of a file in **rawfile**.
+
+**Parameters**
+
+| Name    | Description                         |
+| ------- | --------------------------- |
+| rawFile | Pointer to the target [RawFile](#rawfile).|
 
 **Returns**
 
-Returns the total length of the rawfile.
+Returns the file size obtained.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_InitNativeResourceManager()
+#### OH_ResourceManager_InitNativeResourceManager()
 
-  
+
 ```
 NativeResourceManager* OH_ResourceManager_InitNativeResourceManager (napi_env env, napi_value jsResMgr )
 ```
-**Description**<br>
-Obtains the native resource manager based on JavaScipt resource manager.
 
-After obtaining a resource manager, you can use it complete various rawfile operations.
+**Description**
 
- **Parameters**
+Initializes a Native resource manager using the JavaScript resource manager.
 
-| Name | Description | 
-| -------- | -------- |
-| env | Indicates the pointer to the JavaScipt Native Interface (napi) environment.  | 
-| jsResMgr | Indicates the JavaScipt resource manager.  | 
+You can use the resource manager obtained to implement **rawfile** operations.
+
+**Parameters**
+
+| Name     | Description                                      |
+| -------- | ---------------------------------------- |
+| env      | Pointer to the JavaScript Native API (napi) environment.|
+| jsResMgr | JavaScript resource manager.          |
 
 **Returns**
 
-Returns the pointer to [NativeResourceManager](#nativeresourcemanager).
+Returns the pointer to the [NativeResourceManager](#nativeresourcemanager) obtained.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_OpenRawDir()
+#### OH_ResourceManager_OpenRawDir()
 
-  
+
 ```
 RawDir* OH_ResourceManager_OpenRawDir (const NativeResourceManager * mgr, const char * dirName )
 ```
-**Description**<br>
-Opens a rawfile directory.
 
-After opening a rawfile directory, you can traverse all the rawfile files in it.
+**Description**
 
- **Parameters**
+Opens a directory in **rawfile**.
 
-| Name | Description | 
-| -------- | -------- |
-| mgr | Indicates the pointer to [NativeResourceManager](#nativeresourcemanager). You can obtain this pointer by calling [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).  | 
-| dirName | Indicates the name of the rawfile directory to open. If this field is left empty, the root directory of rawfile will be opened.  | 
+After opening the directory, you can traverse all files in it.
+
+**Parameters**
+
+| Name    | Description                                      |
+| ------- | ---------------------------------------- |
+| mgr     | Pointer to the [NativeResourceManager](#nativeresourcemanager), which is obtained by using [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).|
+| dirName | Pointer to the name of the directory to open. If this field is left empty, the root directory will be opened.|
 
 **Returns**
 
-Returns the pointer to [RawDir](#rawdir). If this pointer is no longer needed after use, call [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) to release it.
+Returns the pointer to the [RawDir](#rawdir) opened. You can use [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) to close the directory and release resources.
 
- **See**
+**See**
 
 [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)
 
 [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir)
 
+**Since**
 
-### OH_ResourceManager_OpenRawFile()
+8
 
-  
+
+#### OH_ResourceManager_OpenRawFile()
+
+
 ```
 RawFile* OH_ResourceManager_OpenRawFile (const NativeResourceManager * mgr, const char * fileName )
 ```
-**Description**<br>
-Opens a rawfile.
 
-After a rawfile is opened, you can read the data in it.
+**Description**
 
- **Parameters**
+Opens a file in **rawfile**.
 
-| Name | Description | 
-| -------- | -------- |
-| mgr | Indicates the pointer to [NativeResourceManager](#nativeresourcemanager). You can obtain this pointer by calling [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).  | 
-| fileName | Indicates the file name in the relative path of the rawfile root directory.  | 
+After the file is opened, you can read data in it.
+
+**Parameters**
+
+| Name     | Description                                      |
+| -------- | ---------------------------------------- |
+| mgr      | Pointer to the [NativeResourceManager](#nativeresourcemanager), which is obtained by using [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager).|
+| fileName | Pointer to the name of the file in the relative path of the **rawfile** root directory.              |
 
 **Returns**
 
-Returns the pointer to [RawFile](#rawfile). If this pointer is no longer needed after use, call [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) to release it.
+Returns the pointer to the [RawFile](#rawfile) opened. You can use [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) to close the file and release resources.
 
- **See**
+**See**
 
 [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)
 
 [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)
 
+**Since**
 
-### OH_ResourceManager_ReadRawFile()
+8
 
-  
+
+#### OH_ResourceManager_ReadRawFile()
+
+
 ```
 int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t length )
 ```
-**Description**<br>
-Reads a rawfile.
+
+**Description**
+
+Reads a file in **rawfile**.
 
 You can use this function to read data of the specified length from the current position.
 
- **Parameters**
+**Parameters**
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
-| buf | Indicates the pointer to the buffer for storing the read data.  | 
-| length | Indicates the length of the read data, in bytes.  | 
+| Name    | Description                         |
+| ------- | --------------------------- |
+| rawFile | Pointer to the [RawFile](#rawfile) to read.|
+| buf     | Pointer to the buffer for receiving the read data.            |
+| length  | Length of the data to read.                 |
 
 **Returns**
 
-Returns the length of the read data in bytes. If the length is beyond the end of the rawfile, **0** will be returned.
+Returns the number of bytes read. If the read length exceeds the length of the file end, **0** will be returned.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_ReleaseNativeResourceManager()
+#### OH_ResourceManager_ReleaseNativeResourceManager()
 
-  
+
 ```
 void OH_ResourceManager_ReleaseNativeResourceManager (NativeResourceManager * resMgr)
 ```
-**Description**<br>
-Releases a native resource manager.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| resMgr | Indicates the pointer to [NativeResourceManager](#nativeresourcemanager).  | 
+Releases a Native resource manager instance.
+
+**Parameters**
+
+| Name   | Description                                      |
+| ------ | ---------------------------------------- |
+| resMgr | Pointer to the [NativeResourceManager](#nativeresourcemanager) instance to release.|
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_ReleaseRawFileDescriptor()
+#### OH_ResourceManager_ReleaseRawFileDescriptor()
 
-  
+
 ```
 bool OH_ResourceManager_ReleaseRawFileDescriptor (const RawFileDescriptor & descriptor)
 ```
-**Description**<br>
-Closes a rawfile descriptor.
 
-To prevent file descriptor leakage, you are advised to release a rawfile descriptor after use.
+**Description**
 
- **Parameters**
+Releases the FD of a file in **rawfile**.
 
-| Name | Description | 
-| -------- | -------- |
-| descriptor | Indicates the rawfile descriptor, and the start position and length of the rawfile file in the HAP package.  | 
+To prevent FD leakage, you are advised to release an FD immediately after use.
+
+**Parameters**
+
+| Name       | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| descriptor | File descriptor to close. It contains the FD, start position in the HAP, and file length. |
 
 **Returns**
 
-Returns **true** if the rawfile descriptor is closed successfully; returns **false** otherwise.
+Returns <b>true</b> if the FD is released; returns <b>false</b> otherwise.
+
+**Since**
+
+8
 
 
-### OH_ResourceManager_SeekRawFile()
+#### OH_ResourceManager_SeekRawFile()
 
-  
+
 ```
 int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int whence )
 ```
-**Description**<br>
-Seeks for the data read/write position in the rawfile based on the specified offset.
 
- **Parameters**
+**Description**
 
-| Name | Description | 
-| -------- | -------- |
-| rawFile | Indicates the pointer to [RawFile](#rawfile).  | 
-| offset | Indicates the specified offset.  | 
-| whence | Indicates the data read/write position. The options are as follows:<br/>**0**: The read/write position is **offset**.<br/>**1**: The read/write position is the current position plus **offset**.<br/>**2**: The read/write position is the end of the file (EOF) plus **offset**. | 
+Seeks for the data read/write position in a file in **rawfile** based on the specified offset.
+
+**Parameters**
+
+| Name    | Description                                      |
+| ------- | ---------------------------------------- |
+| rawFile | Pointer to the target [RawFile](#rawfile).             |
+| offset  | Offset.                            |
+| whence  | Read/Write position. The options are as follows:<br>**0**: The read/write position is the offset.<br>**1**: The read/write position is the current position plus the offset.<br>**2**: The read/write position is the end of the file (EOF) plus the offset.|
 
 **Returns**
 
-Returns the new data read/write position if the operation is successful; returns **(long) -1** otherwise.
+Returns the read/write position if the operation is successful; returns **(long) -1** otherwise.
+
+**Since**
+
+8

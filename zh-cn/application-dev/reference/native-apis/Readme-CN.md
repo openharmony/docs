@@ -31,6 +31,7 @@
   - [Memory](memory.md)
   - [UsbDdk](_usb_ddk.md)
   - [Hitrace](_hitrace.md)
+  - [Vulkan](_vulkan.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -92,6 +93,7 @@
   - [usb_ddk_api.h](usb__ddk__api_8h.md)
   - [usb_ddk_types.h](usb__ddk__types_8h.md)
   - [trace.h](trace_8h.md)
+  - [vulkan_ohos.h](vulkan__ohos_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -148,3 +150,10 @@
   - [UsbEndpointDescriptor](_usb_endpoint_descriptor.md)
   - [UsbInterfaceDescriptor](_usb_interface_descriptor.md)
   - [UsbRequestPipe](_usb_request_pipe.md)
+  - [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md)
+  - [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md)
+  - [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md)
+  - [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md)
+  - [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md)
+  - [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md)
+  - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)

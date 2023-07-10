@@ -37,16 +37,16 @@ import sensor from '@system.sensor';
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeAccelerometer({
   interval: 'normal',
-  success: function(ret) {
-    console.log('X-axis data: ' + ret.x);
-    console.log('Y-axis data: ' + ret.y);
-    console.log('Z-axis data: ' + ret.z);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. X-axis data: ' + ret.x);
+    console.info('Succeeded in subscribing. Y-axis data: ' + ret.y);
+    console.info('Succeeded in subscribing. Z-axis data: ' + ret.z);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -66,7 +66,7 @@ unsubscribeAccelerometer(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeAccelerometer();
 ```
 
@@ -86,13 +86,13 @@ sensor.unsubscribeAccelerometer();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeCompass({
-  success: function(ret) {
-    console.log('Get data direction:' + ret.direction);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get data direction:' + ret.direction);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -110,7 +110,7 @@ unsubscribeCompass(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeCompass();
 ```
 
@@ -130,13 +130,14 @@ sensor.unsubscribeCompass();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeProximity({
-  success: function(ret) {
-    console.log('Get data distance:' + ret.distance);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get data distance:' + ret.distance);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
+
   },
 });
 ```
@@ -154,7 +155,7 @@ unsubscribeProximity(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeProximity();
 ```
 
@@ -174,13 +175,13 @@ sensor.unsubscribeProximity();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeLight({
-  success: function(ret) {
-    console.log('Get data intensity:' + ret.intensity);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get data intensity:' + ret.intensity);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -198,7 +199,7 @@ unsubscribeLight(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeLight();
 ```
 
@@ -220,13 +221,13 @@ sensor.unsubscribeLight();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeStepCounter({
-  success: function(ret) {
-    console.log('Get step value:' + ret.steps);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get step value:' + ret.steps);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -246,7 +247,7 @@ unsubscribeStepCounter(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeStepCounter();
 ```
 
@@ -267,13 +268,13 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeBarometer({
-  success: function(ret) {
-    console.log('Get data value:' + ret.pressure);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get data value:' + ret.pressure);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -292,7 +293,7 @@ unsubscribeBarometer(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeBarometer();
 ```
 
@@ -315,13 +316,13 @@ sensor.unsubscribeBarometer();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeHeartRate({
-  success: function(ret) {
-    console.log('Get heartrate value:' + ret.heartRate);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get heartrate value:' + ret.heartRate);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -342,7 +343,7 @@ unsubscribeHeartRate(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeHeartRate();
 ```
 
@@ -362,13 +363,13 @@ sensor.unsubscribeHeartRate();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeOnBodyState({
-  success: function(ret) {
-    console.log('Get on-body state value:' + ret.value);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Get on-body state value:' + ret.value);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -386,7 +387,7 @@ unsubscribeOnBodyState(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeOnBodyState();
 ```
 
@@ -406,13 +407,13 @@ sensor.unsubscribeOnBodyState();
 
 **示例：**
 
-```js
+```ts
 sensor.getOnBodyState({
-  success: function(ret) {
-    console.log('On body state: ' + ret.value);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. On body state: ' + ret.value);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 });
 ```
@@ -435,17 +436,17 @@ sensor.getOnBodyState({
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeDeviceOrientation({
   interval: 'normal',
-  success: function(ret) {
-    console.log('Alpha data: ' + ret.alpha);
-    console.log('Beta data: ' + ret.beta);
-    console.log('Gamma data: ' + ret.gamma);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. Alpha data: ' + ret.alpha);
+    console.info('Succeeded in subscribing. Beta data: ' + ret.beta);
+    console.info('Succeeded in subscribing. Gamma data: ' + ret.gamma);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
-  }
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
+    }
 });
 ```
 
@@ -462,7 +463,7 @@ unsubscribeDeviceOrientation(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeDeviceOrientation();
 ```
 
@@ -486,16 +487,16 @@ sensor.unsubscribeDeviceOrientation();
 
 **示例：**
 
-```js
+```ts
 sensor.subscribeGyroscope({
   interval: 'normal',
-  success: function(ret) {
-    console.log('X-axis data: ' + ret.x);
-    console.log('Y-axis data: ' + ret.y);
-    console.log('Z-axis data: ' + ret.z);
+  success: function (ret) {
+    console.info('Succeeded in subscribing. X-axis data: ' + ret.x);
+    console.info('Succeeded in subscribing. Y-axis data: ' + ret.y);
+    console.info('Succeeded in subscribing. Z-axis data: ' + ret.z);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; data: ' + data);
+  fail: function (data, code) {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 });
 ```
@@ -515,7 +516,7 @@ unsubscribeGyroscope(): void
 
 **示例：**
 
-```js
+```ts
 sensor.unsubscribeGyroscope();
 ```
 

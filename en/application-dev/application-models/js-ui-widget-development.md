@@ -80,7 +80,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 - [Creating a FormExtensionAbility Instance](#creating-a-formextensionability-instance): Develop the lifecycle callback functions of FormExtensionAbility.
 
-- [Configuring the Widget Configuration File](#configuring-the-widget-configuration-file): Configure the application configuration file **module.json5** and profile configuration file.
+- [Configuring the Widget Configuration Files](#configuring-the-widget-configuration-files): Configure the application configuration file **module.json5** and profile configuration file.
 
 - [Persistently Storing Widget Data](#persistently-storing-widget-data): Manage widget data persistence.
 

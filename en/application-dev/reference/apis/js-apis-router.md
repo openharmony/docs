@@ -604,7 +604,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -645,7 +645,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -693,7 +693,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if can not get the delegate. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -735,7 +735,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **Example**
@@ -1054,7 +1054,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data.['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString()
         })
         .margin({ top: 20 })
       Text(`This is the data passed from the first page: ${this.secondData}`)

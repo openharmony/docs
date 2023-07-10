@@ -16,7 +16,7 @@ import matrix4 from '@ohos.matrix4'
 
 ## matrix4.init
 
-init(option: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
+init(options: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
 
 
 Matrix constructor, which is used to create a 4 x 4 matrix by using the input parameter. Column-major order is used.
@@ -27,7 +27,7 @@ Matrix constructor, which is used to create a 4 x 4 matrix by using the input pa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| option | [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **Description of a 4 x 4 matrix**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
+| option | [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **Description of a 4 x 4 matrix**.<br>Default value:<br>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br>0,&nbsp;1,&nbsp;0,&nbsp;0,<br>0,&nbsp;0,&nbsp;1,&nbsp;0,<br>0,&nbsp;0,&nbsp;0,&nbsp;1] |
 
 **Return value**
 
@@ -176,7 +176,7 @@ struct Test {
 
 ### combine
 
-combine(option: Matrix4Transit): Matrix4Transit
+combine(options: Matrix4Transit): Matrix4Transit
 
 
 Combines the effects of two matrices to generate a new matrix object.
@@ -273,7 +273,7 @@ struct Tests {
 
 ### translate
 
-translate(option: TranslateOption): Matrix4Transit
+translate(options: TranslateOption): Matrix4Transit
 
 Translates this matrix object along the x, y, and z axes.
 
@@ -317,7 +317,7 @@ struct Test {
 
 ### scale
 
-scale(option: ScaleOption): Matrix4Transit
+scale(options: ScaleOption): Matrix4Transit
 
 
 Scales this matrix object along the x, y, and z axes.
@@ -362,7 +362,7 @@ struct Test {
 
 ### rotate
 
-rotate(option: RotateOption): Matrix4Transit
+rotate(options: RotateOption): Matrix4Transit
 
 
 Rotates this matrix object along the x, y, and z axes.
@@ -408,7 +408,7 @@ struct Test {
 
 ### transformPoint
 
-transformPoint(option: [number, number]): [number, number]
+transformPoint(options: [number, number]): [number, number]
 
 
 Applies the current transformation effect to a coordinate point.
@@ -466,15 +466,19 @@ struct Test {
 
 ## TranslateOption
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type  | Mandatory| Description                                                       |
-| ------ | ------ | ---- | ----------------------------------------------------------- |
-| x      | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| y      | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| z      | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| ---- | ------ | ---- | ----------------------------------------------------------- |
+| x    | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| y    | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| z    | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
 
 ## ScaleOption
 
-| Name | Type  | Mandatory| Description                                                        |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | x       | number | No  | Scaling multiple along the x-axis. If the value is greater than 1, the image is scaled up along the x-axis. If the value is less than 1, the image is scaled down along the x-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
 | y       | number | No  | Scaling multiple along the y-axis. If the value is greater than 1, the image is scaled up along the y-axis. If the value is less than 1, the image is scaled down along the y-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
@@ -484,7 +488,9 @@ struct Test {
 
 ## RotateOption
 
-| Name | Type  | Mandatory| Description                                                   |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type  | Mandatory| Description                                                   |
 | ------- | ------ | ---- | ------------------------------------------------------- |
 | x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
 | y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
