@@ -40,7 +40,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 async function example() {
   try {
     let context = getContext(this);
-    let media = mediaLibrary.getmediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let albumId = 1;
     let getImageOp = {
@@ -66,7 +66,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 async function example() {
   try {
     let context = getContext(this);
-    let media = mediaLibrary.getmediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
@@ -102,14 +102,15 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 async function example() {
   try {
     let context = getContext(this);
-    let media = mediaLibrary.getmediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let AlbumNoArgsfetchOp = {
       selections: mediaLibrary.FileKey.ALBUM_NAME + ' = ?',
       selectionArgs: ['新建相册1'], // 获取albumName为新建相册1的相册。
     };
-    const fetchFileResult = await media.getAlbums(AlbumNoArgsfetchOp); // 查询失败，获取的fetchFileResult为空。
-    const album = await fetchFileResult.getFirstObject();
-    console.info('mediaLibrary album albumName: ' + album.albumName);
+    const albumList = await media.getAlbums(AlbumNoArgsfetchOp); // 查询失败，获取的fetchFileResult为空。
+    for (let i = 0; i < albumList.length; i++) {
+      console.info('mediaLibrary album albumName: ' + albumList[i].albumName);
+    }
   } catch (err) {
     console.error('mediaLibrary fail, err: ' + err);
   }
@@ -126,14 +127,15 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 async function example() {
   try {
     let context = getContext(this);
-    let media = mediaLibrary.getmediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let AlbumNoArgsfetchOp = {
       selections: mediaLibrary.FileKey.ALBUM_NAME + ' = ? OR ' + mediaLibrary.FileKey.ALBUM_NAME + ' = ?',
       selectionArgs: ['Camera', 'Screenshots'], // 获取相机相册和截屏录屏相册。
     };
-    const fetchFileResult = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = await fetchFileResult.getFirstObject();
-    console.info('mediaLibrary album albumName: ' + album.albumName);
+    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+    for (let i = 0; i < albumList.length; i++) {
+      console.info('mediaLibrary album albumName: ' + albumList[i].albumName);
+    }
   } catch (err) {
     console.error('mediaLibrary fail, err: ' + err);
   }
