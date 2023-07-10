@@ -1820,7 +1820,7 @@
 
 ## ohos.permission.APP_TRACKING_CONSENT
 
-允许应用读取广告标识符。
+允许应用读取开放匿名设备标识符。
 
 **权限级别**：normal
 
