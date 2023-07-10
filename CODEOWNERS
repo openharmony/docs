@@ -226,6 +226,7 @@ zh-cn/application-dev/work-scheduler/ @ningningW
 zh-cn/application-dev/internationalization/ @ningningW @Buda-Liu @mengjingzhimo @yangqing3
 zh-cn/application-dev/device/usb-overview.md @ge-yafang @Kevin-Lau @liuhonggang123
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/napi/usb-ddk-guidelines.md @ge-yafang @Kevin-Lau @liuhonggang123
 zh-cn/application-dev/device/device-location-overview.md @RayShih
 zh-cn/application-dev/device/device-location-info.md @RayShih
 zh-cn/application-dev/device/device-location-geocoding.md @RayShih
