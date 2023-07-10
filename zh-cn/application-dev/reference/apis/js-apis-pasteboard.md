@@ -1300,7 +1300,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
@@ -1343,7 +1343,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');
