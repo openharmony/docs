@@ -42,8 +42,8 @@
 4. 获取指定应用实时实时流量数据。
 
 ```js
-// 从@ohos.net.mdns中导入mdns命名空间
-import mdns from '@ohos.net.statistics'
+// 从@ohos.net.statistics中导入statistics命名空间
+import statistics from '@ohos.net.statistics'
 
 //获取指定网卡实时下行流量数据。
 statistics.getIfaceRxBytes("wlan0", (error, stats) => {
@@ -114,10 +114,6 @@ statistics.getTrafficStatsByIface(ifaceInfo), (error, statsInfo) => {
     console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
 });
 
-
-
-
-
 let uidInfo = {
     ifaceInfo: {
       iface: "wlan0",
@@ -149,7 +145,6 @@ let callback = data => {
 }
 //订阅流量改变事件通知。
 statistics.on('netStatsChange', callback);
-
 
 //取消订阅流量改变事件通知。可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 statistics.off('netStatsChange', callback);
