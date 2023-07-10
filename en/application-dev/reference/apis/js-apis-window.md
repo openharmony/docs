@@ -50,13 +50,13 @@ Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Mandatory| Description|
-| ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the window.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model<br>or a system window in the stage model.|
-| displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
-| parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
+| Name| Type| Mandatory| Description                                                                         |
+| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | Yes| Name of the window.                                                                      |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
+| displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
+| parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -177,7 +177,7 @@ Describes the callback for the current system bar.
 
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
+| displayId  | number                                              | Yes  | No  | ID of the current physical screen. The value must be an integer.            |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.|
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.|
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width, in pixels.|
-| height | number   | Yes  | Yes  | Window height, in pixels.|
+| width  | number   | Yes  | Yes  | Window width, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Window height, in pixels. The value must be an integer.|
 
 ## WindowProperties
 
@@ -224,21 +224,21 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Type                 | Readable| Writable| Description                                                        |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                  |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                  |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is **false**. The value **true** means that the window is displayed in full screen mode, and **false** means the opposite.|
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.|
-| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.|
-| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.|
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is –1.|
-| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.|
-| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.|
-| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0.0**.                                                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                                                                    |
+| ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                   |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is **-1**.                     |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the dimmest.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9. |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.                                                                  |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.                                                                 |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.      |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.                                                                  |
+| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0**. The value must be an integer.                                                                                   |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -259,12 +259,12 @@ Describes the scale parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The default value is **1.0**.                      |
-| y      | number   | No  | Yes  | Scale factor along the y-axis. The default value is **1.0**.                      |
-| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                        |
+| ------ | -------- | ---- | ---- |--------------------------------------------|
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                |
+| y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ Describes the rotation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The default value is **0.0**.                    |
-| y      | number   | No  | Yes  | Rotation angle around the y-axis. The default value is **0.0**.                    |
-| z      | number   | No  | Yes  | Rotation angle around the z-xis. The default value is **0.0**.                    |
-| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                         |
+| ------ | -------- | ---- | ---- |---------------------------------------------|
+| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                 |
+| y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -292,9 +292,9 @@ Describes the translation parameters.
 
 | Name| Type| Readable| Writable| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The default value is **0.0**.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The default value is **0.0**.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The default value is **0.0**.|
+| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, and the default value is **0.0**.|
+| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, and the default value is **0.0**.|
+| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, and the default value is **0.0**.|
 
 ## WindowEventType<sup>10+</sup>
 
@@ -544,7 +544,7 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
 
 **Error codes**
@@ -593,7 +593,7 @@ Minimizes all windows on a display. This API uses a promise to return the result
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 
 **Return value**
 
@@ -1719,8 +1719,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -1762,8 +1762,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -1815,8 +1815,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px.|
-| height   | number                    | Yes| New height of the window, in px.|
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -1864,8 +1864,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px.|
-| height | number | Yes| New height of the window, in px.|
+| width  | number | Yes| New width of the window, in px. The value must be an integer.|
+| height | number | Yes| New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -2063,7 +2063,9 @@ try {
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the window layout is immersive. This API uses an asynchronous callback to return the result.
+
 An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
 A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -2106,7 +2108,9 @@ try {
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 Sets whether the window layout is immersive. This API uses a promise to return the result.
+
 An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
 A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -2152,7 +2156,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2160,7 +2164,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2194,7 +2198,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2202,7 +2206,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type | Mandatory| Description|
 | ----- | ---------------------------- | -- | --------------------------------- |
-| names | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
@@ -2240,7 +2244,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the properties of the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2287,7 +2291,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2795,16 +2799,16 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-Enables listening for keyboard height changes.
+Enables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type               | Mandatory| Description                                                        |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type               | Mandatory| Description                                       |
+| -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer.                   |
 
 **Example**
 
@@ -2822,7 +2826,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-Disables listening for keyboard height changes.
+Disables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2831,7 +2835,7 @@ Disables listening for keyboard height changes.
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                              |
 
 **Example**
 
@@ -2884,10 +2888,10 @@ Disables listening for click events outside this window.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                        |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the click event outside this window.                              |
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- |----------------------| ---- |--------------------------------------|
+| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
+| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.            |
 
 **Example**
 
@@ -3019,8 +3023,6 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 Enables listening for window lifecycle changes.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -3047,8 +3049,6 @@ try {
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
 Disables listening for window lifecycle changes.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3240,15 +3240,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3265,18 +3260,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3317,15 +3300,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3341,18 +3319,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3579,10 +3545,10 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------------------------- | -- | --------------------------------- |
-| brightness | number                    | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                        |
+| Name| Type| Mandatory| Description                                       |
+| ---------- | ------------------------- | -- |-------------------------------------------|
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
 
@@ -3622,9 +3588,9 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | -- | --------------------------------- |
-| brightness | number | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name| Type| Mandatory| Description                                    |
+| ---------- | ------ | -- |----------------------------------------|
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** indicates the brightest.|
 
 **Return value**
 
@@ -4242,9 +4208,9 @@ Sets the opacity for this window. This API can be used only when you [customize 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                       |
-| ------- | ------ | ---- | ----------------------------------------------------------- |
-| opacity | number | Yes  | Opacity to set. The value ranges from 0.0 to 1.0. The value **0.0** means completely transparent, and **1.0** means completely opaque.|
+| Name | Type  | Mandatory| Description                                                |
+| ------- | ------ | ---- |----------------------------------------------------|
+| opacity | number | Yes  | Opacity. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means completely transparent, and **1.0** means completely opaque.|
 
 **Error codes**
 
@@ -4462,9 +4428,9 @@ Blurs this window.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | Yes  | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the window.|
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- |--------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window. |
 
 **Error codes**
 
@@ -4497,9 +4463,9 @@ Blurs the background of this window.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | Yes  | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the background of the window.|
+| Name| Type  | Mandatory| Description                                                   |
+| ------ | ------ | ---- |-------------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window. |
 
 **Error codes**
 
@@ -4567,12 +4533,12 @@ Sets the shadow for the window borders.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | Yes  | Radius of the shadow. The value is greater than or equal to 0. The value **0** means that the shadow is disabled for the window borders.|
+| Name | Type  | Mandatory| Description                                                         |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | Yes  | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders. |
 | color   | string | No  | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
-| offsetX | number | No  | Offset of the shadow along the x-axis, in pixels.                   |
-| offsetY | number | No  | Offset of the shadow along the y-axis, in pixels.                   |
+| offsetX | number | No  | Offset of the shadow along the x-axis, in pixels. The value is a floating point number.                             |
+| offsetY | number | No  | Offset of the shadow along the y-axis, in pixels. The value is a floating point number.                             |
 
 **Error codes**
 
@@ -4605,9 +4571,9 @@ Sets the radius of the rounded corners for this window.
 
 **Parameters**
 
-| Name     | Type   | Mandatory| Description                |
-| ----------- | ------- | ---- | -------------------- |
-| radius | number | Yes  | Radius of the rounded corners. The value is greater than or equal to 0. The value **0** means that the window does not use rounded corners.|
+| Name     | Type   | Mandatory| Description                                                |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners. |
 
 **Error codes**
 
@@ -4716,9 +4682,9 @@ This API is available only for the main window of the application. The aspect ra
 
 **Parameters**
 
-| Name            | Type   | Mandatory| Description                                                        |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value must be greater than 0.|
+| Name            | Type   | Mandatory| Description                                       |
+| ------------------ | ------- | ---- |-------------------------------------------|
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
 
 **Return value**
 
@@ -4763,10 +4729,10 @@ This API is available only for the main window of the application. The aspect ra
 
 **Parameters**
 
-| Name            | Type   | Mandatory| Description                                                        |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value must be greater than 0.|
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
+| Name            | Type   | Mandatory| Description                                        |
+| ------------------ | ------- | ---- |--------------------------------------------|
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -5103,8 +5069,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name  | Type                     | Mandatory| Description                                             |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                       |
 
 **Example**
@@ -5137,8 +5103,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type  | Mandatory| Description                                             |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -5181,8 +5147,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | Yes  | New width of the window, in px.|
-| height   | number                    | Yes  | New height of the window, in px.|
+| width    | number                    | Yes  | New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes  | New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
@@ -5221,8 +5187,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | Yes  | New width of the window, in px.|
-| height | number | Yes  | New height of the window, in px.|
+| width  | number | Yes  | New width of the window, in px. The value must be an integer.|
+| height | number | Yes  | New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -5444,7 +5410,11 @@ promise.then((data)=> {
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the full-screen mode for this window. This API uses an asynchronous callback to return the result.
+Sets whether the window is in full-screen mode. This API uses an asynchronous callback to return the result.
+
+In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+
+In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -5456,7 +5426,7 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 
 | Name      | Type                     | Mandatory| Description                                          |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden. The value **true** means to enable the full-screen mode, and **false** means the opposite.|
+| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                    |
 
 **Example**
@@ -5476,7 +5446,11 @@ windowClass.setFullScreen(isFullScreen, (err) => {
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the full-screen mode for this window. This API uses a promise to return the result.
+Sets whether the window is in full-screen mode. This API uses a promise to return the result.
+
+In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+
+In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -5488,7 +5462,7 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 | Name      | Type   | Mandatory| Description                                          |
 | ------------ | ------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden. The value **true** means to enable the full-screen mode, and **false** means the opposite.|
+| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
 
 **Return value**
 
@@ -5513,7 +5487,9 @@ promise.then(()=> {
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the window layout is immersive. This API uses an asynchronous callback to return the result.
+
 An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
 A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 > **NOTE**
@@ -5526,7 +5502,7 @@ A non-immersive layout means that the layout avoids the status bar and navigatio
 
 | Name            | Type                     | Mandatory| Description                                                        |
 | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | Yes  | Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite.|
+| isLayoutFullScreen | boolean                   | Yes  | Whether the window layout is immersive. This setting does not affect the display of the status bar and navigation bar. The value **true** means that the window layout is immersive, and **false** means the opposite.|
 | callback           | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -5547,7 +5523,9 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 Sets whether the window layout is immersive. This API uses a promise to return the result.
+
 An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
 A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 > **NOTE**
@@ -5560,7 +5538,7 @@ A non-immersive layout means that the layout avoids the status bar and navigatio
 
 | Name            | Type   | Mandatory| Description                                                        |
 | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | Yes  | Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite.|
+| isLayoutFullScreen | boolean | Yes  | Whether the window layout is immersive. This setting does not affect the display of the status bar and navigation bar. The value **true** means that the window layout is immersive, and **false** means the opposite.|
 
 **Return value**
 
@@ -5584,7 +5562,7 @@ promise.then(()=> {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5596,7 +5574,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names    | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -5617,7 +5595,7 @@ windowClass.setSystemBarEnable(names, (err) => {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5629,7 +5607,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| names  | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names  | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
@@ -5654,7 +5632,7 @@ promise.then(()=> {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the properties of the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5692,7 +5670,7 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6175,10 +6153,10 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                                |
-| ---------- | ------------------------- | ---- | ------------------------------------ |
-| brightness | number                    | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                          |
+| Name    | Type                     | Mandatory| Description                                   |
+| ---------- | ------------------------- | ---- |---------------------------------------|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
 
@@ -6209,9 +6187,9 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                                |
-| ---------- | ------ | ---- | ------------------------------------ |
-| brightness | number | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name    | Type  | Mandatory| Description                                      |
+| ---------- | ------ | ---- |------------------------------------------|
+| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 
 **Return value**
 
@@ -6245,10 +6223,10 @@ Sets the dimness of the window that is not on top. This API uses an asynchronous
 
 **Parameters**
 
-| Name        | Type                     | Mandatory| Description                                              |
-| -------------- | ------------------------- | ---- | -------------------------------------------------- |
-| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                        |
+| Name        | Type                     | Mandatory| Description                                    |
+| -------------- | ------------------------- | ---- |----------------------------------------|
+| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value range is [0.0, 1.0], and the value **1.0** means the dimmest.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                 |
 
 **Example**
 
@@ -7494,5 +7472,3 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     console.info('complete transition end');
 };
 ```
-
- <!--no_check--> 
