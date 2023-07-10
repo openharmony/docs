@@ -15,7 +15,7 @@
 import bundleManager from '@ohos.bundle.bundleManager';
 ```
 
-## cl.bundlemanager.2 包管理@ohos.bundle.bundleManager.d.ts中getAllApplicationInfo接口底层实现变更。
+## cl.bundlemanager.2 包管理@ohos.bundle.d.ts中getAllApplicationInfo接口底层实现变更。
 
 @ohos.bundle.d.ts中getAllApplicationInfo接口已标记废弃，在targetAPILevel为API9及之后的版本镜像上，返回数据列表为空。
 
