@@ -101,19 +101,19 @@ struct ImageExample1 {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
-          Image($r('app.media.ic_camera_master_ai_leaf'))
+          Image($r('app.media.example_png'))
             .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.dongxiao'))
+          Image($r('app.media.example_gif'))
             .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
 
         Row({ space: 5 }) {
-          Image($r('app.media.ic_camera_master_ai_clouded'))
+          Image($r('app.media.example_svg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_public_favor_filled'))
+          Image($r('app.media.example_jpg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25, bottom: 10 })
