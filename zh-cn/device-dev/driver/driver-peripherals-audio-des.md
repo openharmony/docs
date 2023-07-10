@@ -300,7 +300,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 
 #### Codec注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf-overview.md)指导。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-overview-foundation.md)指导。
 
 填充g_codecDriverEntry结构体，moduleName与device_info.hcs中的moduleName匹配，实现Bind、Init、Release函数指针。 
 
@@ -799,7 +799,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 
 #### Codec注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf-overview.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-overview-foundation.md)。
 
 填充g_tfa9879DriverEntry结构体，moduleName与device_info.hcs中的moduleName匹配，实现Bind、Init、Release函数指针。
 
@@ -927,7 +927,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, const enum AudioStreamType s
 
 #### Platform注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf-overview.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-overview-foundation.md)。
 
 - 填充g_platformDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
@@ -1091,7 +1091,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 
 #### Dai注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf-overview.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-overview-foundation.md)。
 
 - 填充g_daiDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
