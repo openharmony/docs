@@ -34,6 +34,12 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | id       | string                              | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
 
+**Error codes**
+
+| ID| Error Message           |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
 **Example**
 
 ```js
@@ -158,6 +164,12 @@ Renders a custom component in the application background and outputs its snapsho
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
 | callback | AsyncCallback&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
 
 **Example**
 

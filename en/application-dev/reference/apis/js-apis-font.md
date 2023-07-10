@@ -34,12 +34,14 @@ Registers a custom font with the font manager.
 
 ## FontOptions
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | familyName | string | Yes   | Name of the custom font to register.  |
 | familySrc  | string | Yes   | Path of the custom font to register.|
 
-## Example
+**Example**
 
 ```ts
 // xxx.ets
@@ -68,7 +70,7 @@ struct FontExample {
   }
 }
 ```
-## font.getSystemFontList
+## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
@@ -82,7 +84,7 @@ Obtains the list of supported fonts.
 | -------------------- | ----------------- |
 | Array\<string>       | List of supported fonts. |
 
-## Example
+**Example**
 
 ```ts
 // xxx.ets
@@ -105,7 +107,7 @@ struct FontExample {
 }
 ```
 
-## font.getFontByName
+## font.getFontByName<sup>10+</sup>
 
 getFontByName(fontName: string): FontInfo;
 
@@ -127,18 +129,22 @@ Obtains information about a system font based on the font name.
 
 ## FontInfo
 
-| Name           | Type   | Description                      |
-| -------------- | ------- | ------------------------- |
-| path           | string  | File path of the system font.       |
-| postScriptName | string  | PostScript name of the system font.|
-| fullName       | string  | Name of the system font.          |
-| family         | string  | Family of the system font.      |
-| subfamily      | string  | Subfamily of the system font.     |
-| weight         | number  | Weight of the system font.       |
-| width          | number  | Width of the system font.   |
-| italic         | boolean | Whether the system font is italic.         |
-| monoSpace      | boolean | Whether the system font is monospaced.        |
-| symbolic       | boolean | Whether the system font supports symbols. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| path           | string  | Yes| File path of the system font.       |
+| postScriptName | string  | Yes| PostScript name of the system font.|
+| fullName       | string  | Yes| Name of the system font.          |
+| family         | string  | Yes| Family of the system font.      |
+| subfamily      | string  | Yes| Subfamily of the system font.     |
+| weight         | number  | Yes| Weight of the system font.       |
+| width          | number  | Yes| Width of the system font.   |
+| italic         | boolean | Yes| Whether the system font is italic.         |
+| monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
+| symbolic       | boolean | Yes| Whether the system font supports symbols. |
+
+**Example**
 
 ```ts
 // xxx.ets
@@ -169,4 +175,3 @@ struct FontExample {
   }
 }
 ```
-
