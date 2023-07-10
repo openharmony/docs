@@ -74,8 +74,3 @@
       console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
     }
     ```
-## 相关实例
-
-针对传感器开发，有以下相关实例可供参考：
-
-- [`Sensor`：传感器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Sensor)
