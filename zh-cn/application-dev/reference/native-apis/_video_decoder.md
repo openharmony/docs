@@ -19,7 +19,7 @@ VideoDecoder模块提供用于视频解码的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md) | 声明用于视频解码的Native API。<br>引用文件：<multimedia/player_framework/native_avcodec_videodecoder.h>  | 
+| [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md) | 声明用于视频解码的Native API。<br>**引用文件**：<multimedia/player_framework/native_avcodec_videodecoder.h><br>**库**：libnative_media_vdec.so  | 
 
 
 ### 函数

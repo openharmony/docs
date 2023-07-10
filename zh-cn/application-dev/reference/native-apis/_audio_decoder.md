@@ -16,8 +16,8 @@ AudioDecoder模块提供用于音频解码的函数。该模块在部分设备�
 
 | 名称                                                                 | 描述                                                                                                        |
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)    | 声明用于音频解码的Native API。`<br>`引用文件：<multimedia/player_framework/native_avcodec_audiodecoder.h> |
-| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。`<br>`引用文件：<multimedia/avcodec_audio_channel_layout.h>                     |
+| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)    | 声明用于音频解码的Native API。<br>**引用文件**：<multimedia/player_framework/native_avcodec_audiodecoder.h> <br>**库**：libnative_media_adec.so|
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。<br>**引用文件**：<multimedia/player_framework/avcodec_audio_channel_layout.h> <br>**库**：libnative_media_codecbase.so                   |
 
 ### 枚举
 
