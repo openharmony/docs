@@ -19,7 +19,7 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明运行音视频编解码通用的结构体、字符常量、枚举。<br/>引用文件：<multimedia/player_framework/native_avcodec_base.h> | 
+| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明运行音视频编解码通用的结构体、字符常量、枚举。<br/>**引用文件**：<multimedia/player_framework/native_avcodec_base.h> <br>**库**：libnative_media_codecbase.so| 
 
 
 ### 结构体

@@ -16,7 +16,7 @@ AudioEncoder模块提供用于音频编码的函数。该模块在部分设备�
 
 | 名称                                                              | 描述                                                                                                        |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md) | 声明用于音频编码的Native API。`<br>`引用文件：<multimedia/player_framework/native_avcodec_audioencoder.h> |
+| [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md) | 声明用于音频编码的Native API。<br>**引用文件**：<multimedia/player_framework/native_avcodec_audioencoder.h><br>**库**：libnative_media_aenc.so |
 
 ### 函数
 

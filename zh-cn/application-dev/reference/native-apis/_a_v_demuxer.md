@@ -19,7 +19,7 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频解封装的Native API。<br>引用文件：<multimedia/native_avdemuxer.h> | 
+| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频解封装的Native API。<br>**引用文件**：<multimedia/player_framework/native_avdemuxer.h><br>**库**：libnative_media_avdemuxer.so | 
 
 
 ### 函数

@@ -19,7 +19,7 @@ VideoEncoder模块提供用于视频编码功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md) | 声明用于视频编码的Native API。<br>引用文件：<multimedia/player_framework/native_avcodec_videoencoder.h>  | 
+| [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md) | 声明用于视频编码的Native API。<br>**引用文件**：<multimedia/player_framework/native_avcodec_videoencoder.h><br> **库**：libnative_media_venc.so | 
 
 
 ### 类型定义
