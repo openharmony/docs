@@ -2127,12 +2127,12 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
 ```js
 try {
   inputMethodController.on('getLeftTextOfCursor', (length) => {
-    console.log(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
+    console.info(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
     let text:string = "";
-    retutn text;
+    return text;
   });
 } catch(err) {
-  console.error(`Failed to subscribe getLeftTextOfCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe getLeftTextOfCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -2156,12 +2156,12 @@ off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
 ```js
 try {
   inputMethodController.off('getLeftTextOfCursor', (length) => {
-    console.log(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
+    console.info(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
     let text:string = "";
-    retutn text;
+    return text;
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing getLeftTextOfCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing getLeftTextOfCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -2185,12 +2185,12 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
 ```js
 try {
   inputMethodController.on('getRightTextOfCursor', (length) => {
-    console.log(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
+    console.info(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
     let text:string = "";
-    retutn text;
+    return text;
   });
 } catch(err) {
-  console.error(`Failed to subscribe getRightTextOfCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe getRightTextOfCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -2214,12 +2214,12 @@ off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
 ```js
 try {
   inputMethodController.off('getRightTextOfCursor', (length) => {
-    console.log(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
+    console.info(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
     let text:string = "";
-    retutn text;
+    return text;
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing getRightTextOfCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing getRightTextOfCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -2243,12 +2243,12 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void;
 ```js
 try {
   inputMethodController.on('getTextIndexAtCursor', () => {
-    console.log(`Succeeded in subscribing getTextIndexAtCursor.`);
+    console.info(`Succeeded in subscribing getTextIndexAtCursor.`);
     let index:number = 0;
-    retutn index;
+    return index;
   });
 } catch(err) {
-  console.error(`Failed to subscribe getTextIndexAtCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe getTextIndexAtCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -2272,12 +2272,12 @@ off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 ```js
 try {
   inputMethodController.off('getTextIndexAtCursor', () => {
-    console.log(`Succeeded in unsubscribing getTextIndexAtCursor.`);
+    console.info(`Succeeded in unsubscribing getTextIndexAtCursor.`);
     let index:number = 0;
-    retutn index;
+    return index;
   });
 } catch(err) {
-  console.error(`Failed to unsubscribing getTextIndexAtCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to unsubscribing getTextIndexAtCursor. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
