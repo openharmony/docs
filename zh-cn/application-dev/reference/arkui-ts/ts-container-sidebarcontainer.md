@@ -78,15 +78,13 @@ SideBarContainer( type?: SideBarContainerType )
 | endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0 |
 >  **说明：** 
 >
->  针对侧边栏子组件设置[通用属性宽高](ts-universal-attributes-size.md)时，宽生效的前提是侧边栏容器不设置sideBarWidth，高度不生效。
+>  针对侧边栏子组件设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效。
 >  针对侧边栏内容区设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效，默认占满SideBarContainer的剩余空间。
 >
 >  当属性方法未设置时，依据组件大小进行自动显示：
 >
 >  - 小于520vp：默认不显示侧边栏。
 >  - 大于等于520vp：默认显示侧边栏。
->  - 小于520vp：不显示侧边栏。
->  - 大于等于520vp：显示侧边栏。
 
 ## 事件
 
