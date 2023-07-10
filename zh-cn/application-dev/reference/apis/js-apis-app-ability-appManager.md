@@ -1043,6 +1043,286 @@ try {
 }
 ```
 
+## appManager.getProcessMemoryByPid<sup>10+</sup>
+
+getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>);
+
+通过pid查询对应进程的内存大小。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 表示进程id。 |
+| callback | AsyncCallback\<number> | 是 | 以回调方式返回接口运行结果及进程内存大小（单位KB），可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let pid = 0;
+function getProcessMemoryByPidCallback(err, data) {
+    if (err) {
+        console.error('getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getProcessMemoryByPidCallback success.');
+    }
+}
+try {
+    appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getProcessMemoryByPid<sup>10+</sup>
+
+getProcessMemoryByPid(pid: number): Promise\<number>;
+
+通过pid查询对应进程的内存大小。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 表示进程id。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<number> | 以Promise方式返回接口运行结果及进程内存大小（单位KB），可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let pid = 0;
+try {
+    appManager.getProcessMemoryByPid(pid).then((data) => {
+        console.log('getProcessMemoryByPid success.');
+    }).catch((err) => {
+        console.error('getProcessMemoryByPid fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>);
+
+通过bundleName获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 表示Bundle名称。 |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+function getRunningProcessInfoByBundleNameCallback(err, data) {
+    if (err) {
+        console.error('getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getRunningProcessInfoByBundleNameCallback success.');
+    }
+}
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>;
+
+通过bundleName获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 表示Bundle名称。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
+        console.log('getRunningProcessInfoByBundleName success.');
+    }).catch((err) => {
+        console.error('getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>);
+
+通过bundleName和userId获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 表示Bundle名称。 |
+| userId | number | 是 | 表示用户Id。 |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+let userId = 0;
+function getRunningProcessInfoByBundleNameCallback(err, data) {
+    if (err) {
+        console.error('getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getRunningProcessInfoByBundleNameCallback success.');
+    }
+}
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>;
+
+通过bundleName和userId获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 表示Bundle名称。 |
+| userId | number | 是 | 表示用户Id。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+let userId = 0;
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
+        console.log('getRunningProcessInfoByBundleName success.');
+    }).catch((err) => {
+        console.error('getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
 ## ApplicationState
 
 应用状态，该类型为枚举，可配合[AbilityStateData](js-apis-inner-application-appStateData.md)返回相应的应用状态。
