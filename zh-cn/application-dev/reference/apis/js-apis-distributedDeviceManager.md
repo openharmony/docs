@@ -89,8 +89,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称        | 类型                   | 必填   | 说明         |
 | --------- | -------------------- | ---- | ---------- |
-| bindType  | number               | 是    | 认证类型。      |
-| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 |
+| bindType  | number               | 是    | 认证类型。默认会携带以下key值：<br />-1: PIN码。<br />-2: 二维码。<br />-3: NFC。<br />-4: 没有交互。     |
+| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 可携带以下key值:<br />- targetPkgName： 绑定目标的包名。<br />- appName: 尝试绑定目标的应用名称。<br />-appOperation : app要绑定目标包的原因。
 
 
 ## DeviceManager
@@ -473,8 +473,8 @@ startDiscovering(discoverParameter:string, filterOptions?: string): void;
 
   | 参数名            | 类型                        | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
-  | discoverParameter   | string                          | 是   | 发现标识。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。|
+  | discoverParameter   | string                          | 是   | 发现标识。 标识发现的目标类型。目前只支持一种类型。 发现附件设备，值为1。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br />-filter_op: 过滤设备的条件。值类型为字符串，如'or'或'and'。<br />-filters: 根据该参数过滤设备。如果filter_op为'or'，则发现满足其中一个过滤器的设备；如果filter_op为'and'，则查找满足所有过滤器的设备；过滤器的值类型为key-value，如：<br />-credible: 仅发现设备是可信的，取值为0或1。<br />-range： 仅发现范围内的设备，值小于1米。<br />-isTrusted: 仅发现受信任的设备，取值为0或1。<br />-authForm: 仅发现设备指定身份验证，取值范围为1~4。<br />-deviceType: 仅发现指定类型的设备，取值如下: <br />-0: 未知设备类型。<br />-8: 智能摄像机。<br />-10: 智能音箱。<br />-12: 智能PC。<br />-14: 智能手机。<br />-17: 智能PAD。<br />-109: 智能手表。<br />-131: 汽车。<br />-156: 智能电视。|
 
 **错误码：**
 
