@@ -1144,7 +1144,7 @@ let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 
 ## bluetooth.BLE
 
-### bluetooth.BLE.createGattServer<sup>(deprecated)</sup>
+createGattServer<sup>(deprecated)</sup>
 
 createGattServer(): GattServer
 
@@ -1168,7 +1168,7 @@ let gattServer = bluetooth.BLE.createGattServer();
 ```
 
 
-### bluetooth.BLE.createGattClientDevice<sup>(deprecated)</sup>
+createGattClientDevice<sup>(deprecated)</sup>
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1198,7 +1198,7 @@ let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### bluetooth.BLE.getConnectedBLEDevices<sup>(deprecated)</sup>
+getConnectedBLEDevices<sup>(deprecated)</sup>
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1224,7 +1224,7 @@ let result = bluetooth.BLE.getConnectedBLEDevices();
 ```
 
 
-### bluetooth.BLE.startBLEScan<sup>(deprecated)</sup>
+startBLEScan<sup>(deprecated)</sup>
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1270,7 +1270,7 @@ bluetooth.BLE.startBLEScan(
 ```
 
 
-### bluetooth.BLE.stopBLEScan<sup>(deprecated)</sup>
+stopBLEScan<sup>(deprecated)</sup>
 
 stopBLEScan(): void
 
@@ -1294,7 +1294,7 @@ bluetooth.BLE.stopBLEScan();
 ```
 
 
-### bluetooth.BLE.on('BLEDeviceFind')<sup>(deprecated)</sup>
+on('BLEDeviceFind')<sup>(deprecated)</sup>
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1328,7 +1328,7 @@ bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 ```
 
 
-### bluetooth.BLE.off('BLEDeviceFind')<sup>(deprecated)</sup>
+off('BLEDeviceFind')<sup>(deprecated)</sup>
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
