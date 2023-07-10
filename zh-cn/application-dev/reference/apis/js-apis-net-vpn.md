@@ -98,20 +98,20 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
 
 ```js
   let config = {
-      addresses: [{
-          address: {
-              address: "10.0.0.5",
-              family: 1
-          },
-          prefixLength: 24,
-      }],
-      routes: [],
-      mtu: 1400,
-      dnsAddresses:[
-          "8.8.8.8",  // 114.114.114.114
-      ],
-      trustedApplications:[],
-      blockedApplications:[]
+    addresses: [{
+      address: {
+        address: "10.0.0.5",
+        family: 1
+      },
+      prefixLength: 24,
+    }],
+    routes: [],
+    mtu: 1400,
+    dnsAddresses:[
+      "114.114.114.114"
+    ],
+    trustedApplications:[],
+    blockedApplications:[]
   }
   VpnConnection.setUp(config, (error, data) => {
     console.info(JSON.stringify(error));
@@ -162,25 +162,25 @@ setUp(config: VpnConfig): Promise\<number\>;
 
 ```js
   let config = {
-      addresses: [{
-          address: {
-              address: "10.0.0.5",
-              family: 1
-          },
-          prefixLength: 24,
-      }],
-      routes: [],
-      mtu: 1400,
-      dnsAddresses:[
-          "8.8.8.8",  // 114.114.114.114
-      ],
-      acceptedApplications:[],
-      refusedApplications:[]
+    addresses: [{
+      address: {
+        address: "10.0.0.5",
+        family: 1
+      },
+      prefixLength: 24,
+    }],
+    routes: [],
+    mtu: 1400,
+    dnsAddresses:[
+      "114.114.114.114"
+    ],
+    acceptedApplications:[],
+    refusedApplications:[]
   }
   VpnConnection.setUp(config).then((data) => {
-      console.info(TAG + "setUp success, tunfd: " + JSON.stringify(data))
+    console.info(TAG + "setUp success, tunfd: " + JSON.stringify(data))
   }).catch(err => {
-      console.info(TAG + "setUp fail" + JSON.stringify(err))
+    console.info(TAG + "setUp fail" + JSON.stringify(err))
   })
 ```
 
@@ -223,23 +223,23 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
   import socket from "@ohos.net.socket";
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
-      address: "0.0.0.0",
-      family: 1
+    address: "0.0.0.0",
+    family: 1
   })
   let connectAddress = {
-      address: "192.168.1.11",
-      port: 8888,
-      family: 1
+    address: "192.168.1.11",
+    port: 8888,
+    family: 1
   };
   tcp.connect({
-      address: connectAddress, timeout: 6000
+    address: connectAddress, timeout: 6000
   })
   tcp.getSocketFd().then((tunnelfd) => {
-      console.info("tunenlfd: " + tunnelfd);
-      VpnConnection.protect(tunnelfd, (error, data) => {
-        console.info(JSON.stringify(error));
-        console.info(JSON.stringify(data));
-      })
+    console.info("tunenlfd: " + tunnelfd);
+    VpnConnection.protect(tunnelfd, (error, data) => {
+      console.info(JSON.stringify(error));
+      console.info(JSON.stringify(data));
+    })
   })
 ```
 
@@ -287,24 +287,24 @@ protect(socketFd: number): Promise\<void\>;
   import socket from "@ohos.net.socket";
   var tcp = socket.constructTCPSocketInstance();  
   tcp.bind({
-      address: "0.0.0.0",
-      family: 1
+    address: "0.0.0.0",
+    family: 1
   })
   let connectAddress = {
-      address: "192.168.1.11",
-      port: 8888,
-      family: 1
+    address: "192.168.1.11",
+    port: 8888,
+    family: 1
   };
   tcp.connect({
-      address: connectAddress, timeout: 6000
+    address: connectAddress, timeout: 6000
   })
   tcp.getSocketFd().then((tunnelfd) => {
-      console.info("tunenlfd: " + tunnelfd);
-      VpnConnection.protect(tunnelfd).then((data) => {
-        console.info("protect success" + JSON.stringify(data))
-      }).catch(err => {
-        console.info("protect fail" + JSON.stringify(err))
-      })
+    console.info("tunenlfd: " + tunnelfd);
+    VpnConnection.protect(tunnelfd).then((data) => {
+      console.info("protect success" + JSON.stringify(data))
+    }).catch(err => {
+      console.info("protect fail" + JSON.stringify(err))
+    })
   })
 ```
 
@@ -381,9 +381,9 @@ destroy(): Promise\<void\>;
 
 ```js
   VpnConnection.destroy().then((data) => {
-      console.info("destroy success" + JSON.stringify(data))
+    console.info("destroy success" + JSON.stringify(data))
   }).catch(err => {
-      console.info("destroy fail" + JSON.stringify(err))
+    console.info("destroy fail" + JSON.stringify(err))
   });
 ```
 
