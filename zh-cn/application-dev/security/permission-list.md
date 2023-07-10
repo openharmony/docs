@@ -404,6 +404,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.UPDATE_MIGRATE
+
+允许调用升级迁移接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FACTORY_RESET
 
 允许调用恢复出厂接口。
