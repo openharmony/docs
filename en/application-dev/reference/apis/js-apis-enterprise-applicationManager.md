@@ -1,11 +1,12 @@
 # @ohos.enterprise.applicationManager (Application Management)
 
-The **applicationManager** module provides application management capabilities, including adding, removing, and obtaining the applications that are forbidden to run. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **applicationManager** module provides application management capabilities, including adding, removing, and obtaining the applications that are forbidden to run.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
@@ -37,7 +38,7 @@ Adds a list of applications that are forbidden to run by the current user throug
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -47,15 +48,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed running bundles');
 });
 ```
 
@@ -84,7 +87,7 @@ Adds a list of applications that are forbidden to run by a given user through th
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -93,15 +96,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed running bundles');
 });
 ```
 
@@ -135,7 +140,7 @@ Adds a list of applications that are forbiddedn to run by the specified user (if
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -144,15 +149,15 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+    console.info('Succeeded in adding disallowed running bundles');
+}).catch((err) => {
+    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -180,7 +185,7 @@ Removes a list of applications that are forbiddedn to run by the current user th
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -189,15 +194,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed running bundles');
 });
 ```
 
@@ -226,7 +233,7 @@ Removes a list of applications that are forbiddedn to run by the specified user 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -235,15 +242,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed running bundles');
 });
 ```
 
@@ -277,7 +286,7 @@ Removes a list of applications that are forbiddedn to run by the specified user 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -286,15 +295,15 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+    console.info('Succeeded in removing disallowed running bundles');
+}).catch((err) => {
+    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -321,7 +330,7 @@ Obtains the list of applications that are firbidded to run by the current user t
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -330,14 +339,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-applicationManager.getDisallowedRunningBundles(wantTemp, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -365,7 +376,7 @@ Obtains the list of applications that are firbidded to run by the specified user
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -374,14 +385,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -414,7 +427,7 @@ Obtains the list of applications that are firbidded to run by the specified user
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -423,12 +436,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-applicationManager.getDisallowedRunningBundles(wantTemp, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
+}).catch((err) => {
+  console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

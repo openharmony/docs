@@ -1,11 +1,12 @@
 # @ohos.enterprise.dateTimeManager (System Time Management)
 
-The **dateTimeManager** module provides APIs for system time management. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **dateTimeManager** module provides APIs for system time management.
 
 > **NOTE**
 > 
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
@@ -46,13 +47,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
+  if (err) {
+    console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting date time');
 })
 ```
 
@@ -94,12 +98,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting date time');
+}).catch((err) => {
+  console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -136,13 +142,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing modify date time');
 })
 ```
 
@@ -184,12 +193,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing modify date time');
+}).catch((err) => {
+  console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -225,13 +236,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
 })
 ```
 
@@ -272,11 +286,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```

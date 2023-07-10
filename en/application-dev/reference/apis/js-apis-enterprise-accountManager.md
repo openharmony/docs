@@ -1,11 +1,12 @@
 # @ohos.enterprise.accountManager (Account Management)
 
-The **accountManager** module provides APIs for account management of enterprise devices. Only the device administrator applications can call the APIs provided by this module.
+The **accountManager** module provides APIs for account management of enterprise devices.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
@@ -46,13 +47,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-accountManager.disallowAddLocalAccount(wantTemp, true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing add local account');
 });
 ```
 
@@ -94,12 +98,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing add local account');
+}).catch((err) => {
+  console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
 });
 ```
