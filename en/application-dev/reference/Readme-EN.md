@@ -9,5 +9,6 @@
 - [JavaScript Service Widget UI Component Reference](js-service-widget-ui/Readme-EN.md)
 - [Error Codes](errorcodes/Readme-EN.md)
 - Native API Reference
-  - [Native APIs](native-apis/Readme-EN.md)
+  - [Native API (NDK) Introduction](native-api-intro.md)
+  - [OpenHarmony Native APIs](native-apis/Readme-EN.md)
   - [Standard Libraries](native-lib/Readme-EN.md)
