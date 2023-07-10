@@ -90,7 +90,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称        | 类型                   | 必填   | 说明         |
 | --------- | -------------------- | ---- | ---------- |
 | bindType  | number               | 是    | 认证类型。默认会携带以下key值：<br />-1: PIN码。<br />-2: 二维码。<br />-3: NFC。<br />-4: 没有交互。     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 可携带以下key值:<br />- targetPkgName： 绑定目标的包名。<br />- appName: 尝试绑定目标的应用名称。<br />-appOperation : app要绑定目标包的原因。
+| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 可携带以下key值:<br />-targetPkgName： 绑定目标的包名。<br />-appName: 尝试绑定目标的应用名称。<br />-appOperation : app要绑定目标包的原因。
 
 
 ## DeviceManager
