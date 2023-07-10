@@ -54,6 +54,7 @@
    | formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。 | 字符串 | 可缺省，缺省值为空。 |
    | metadata | 表示卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
    | dataProxyEnabled | 表示卡片是否支持[卡片代理刷新](./arkts-ui-widget-update-by-proxy.md)，取值范围：<br/>-&nbsp;true：表示支持代理刷新。<br/>-&nbsp;false：表示不支持代理刷新。<br/>设置为true时，[定时刷新和下次刷新不生效，但不影响定点刷新](./arkts-ui-widget-update-by-time.md) | 布尔类型 | 可缺省，缺省值为false。 |
+   | isDynamic | 表示此卡片是否为动态卡片（仅针对ArkTS卡片生效）。<br/>-&nbsp;true：为动态卡片。<br/>-&nbsp;false：为静态卡片，当卡片添加成功后，将以静态图显示。 | 布尔类型 | 可缺省，缺省值为true。 |
 
    配置示例如下：
 

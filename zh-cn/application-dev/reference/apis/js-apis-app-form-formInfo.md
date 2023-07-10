@@ -26,7 +26,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | name        | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
-| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片。 |
+| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。               |
 | colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
@@ -38,6 +38,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | defaultDimension  | number | 是    | 否     | 表示卡片规格                                       |
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
 | customizeData    | {[key: string]: [value: string]}      | 是    | 否     | 卡片用户数据。         |
+| isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
 
 ## FormType
 
