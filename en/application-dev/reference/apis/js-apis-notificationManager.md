@@ -100,7 +100,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 // NotificationRequest object
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -217,7 +217,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```ts
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -3947,11 +3947,11 @@ try{
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | No  | Yes  | DND time type.|
-| begin | Date                                  | No  | Yes  | DND start time.|
-| end   | Date                                  | No  | Yes  | DND end time.|
+| Name | Type                                 | Mandatory| Description                  |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type.|
+| begin | Date                                  | Yes  | DND start time.|
+| end   | Date                                  | Yes  | DND end time.|
 
 ## DoNotDisturbType
 
@@ -4041,11 +4041,11 @@ try{
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| bundleName  | string                          | No  | Yes  | Bundle name.|
-| notificationId | number                       | No  | Yes  | Notification ID.    |
-| contentType   | [ContentType](#contenttype)   | No  | Yes  | Notification type.  |
+| Name | Type                                 | Mandatory| Description                  |
+| ----- | ------------------------------------- | --- | ---------------------- |
+| bundleName  | string                          | Yes  | Bundle name.|
+| notificationId | number                       | Yes  | Notification ID.    |
+| contentType   | [ContentType](#contenttype)   | Yes  | Notification type.  |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4055,7 +4055,7 @@ try{
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| code  | number                          | No  | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
-| message | string                       | No  | Yes  | Result.   |
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
+| message | string                               | Yes  | Result.   |

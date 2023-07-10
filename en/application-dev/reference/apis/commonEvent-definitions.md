@@ -880,10 +880,8 @@ Indicates that the airplane mode of the device has changed.
 - Required subscriber permissions: none
 
 
-## COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>
+## [COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>](./common_event/commonEvent-window.md)
 Indicates that the screen has been split.
-- Value: **usual.event.SPLIT_SCREEN**
-- Required subscriber permissions: none
 
 
 ## COMMON_EVENT_SLOT_CHANGE<sup>9+</sup>
@@ -907,3 +905,5 @@ Indicates the result of applying a quick fix to the application.
 Indicates that the user information has been updated.
 - Value: **usual.event.USER_INFO_UPDATED**
 - Required subscriber permissions: none
+## [COMMON_EVENT_SMS_RECEIVE_COMPLETED](./common_event/commonEvent-mms.md)
+Indicates that a new SMS message has been received.
