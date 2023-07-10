@@ -2150,7 +2150,7 @@
 
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-采集语音下行音频。
+允许应用采集语音下行音频。
 
 **权限级别**：system_basic
 
