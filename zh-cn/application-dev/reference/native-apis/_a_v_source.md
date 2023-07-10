@@ -19,7 +19,7 @@ AVSource模块提供用于构造音视频资源对象功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avsource.h](native__avsource_8h.md) | 声明用于构造音视频资源对象的Native API。<br>引用文件：<multimedia/native_avsource.h> | 
+| [native_avsource.h](native__avsource_8h.md) | 声明用于构造音视频资源对象的Native API。<br>**引用文件**：<multimedia/player_framework/native_avsource.h> <br>**库**：libnative_media_avsource.so| 
 
 
 ### 函数
