@@ -1780,7 +1780,7 @@ Allows a system application to obtain the authentication and networking capabili
 
 ## ohos.permission.APP_TRACKING_CONSENT
 
-Allows an application to read advertisement identifiers.
+Allows an application to read open anonymous device ID.
 
 **Permission level**: normal
 
