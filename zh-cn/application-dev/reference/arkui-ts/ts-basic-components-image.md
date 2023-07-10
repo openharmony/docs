@@ -21,15 +21,15 @@ Image(src: string | PixelMap | Resource)
 
 **参数：**
 
-| 参数名 | 参数类型                                                     | 必填 | 默认值 | 参数描述                                                     |
-| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](ts-types.md#resource) | 是   | -      | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
+| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](ts-types.md#resource) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
 
 ## 属性
 
 | 名称                    | 参数类型                                     | 默认值      | 描述                                       |
 | --------------------- | ---------------------------------------- | -------- | ---------------------------------------- |
-| alt                   | string \| [Resource](ts-types.md#resource) | -        | 加载时显示的占位图。仅支持本地图片。                   |
+| alt                   | string \| [Resource](ts-types.md#resource) | -        | 加载时显示的占位图。仅支持本地图片。                       |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit) | Cover    | 设置图片的缩放类型。                               |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | interpolation         | ImageInterpolation                       | None     | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
@@ -73,64 +73,29 @@ Image(src: string | PixelMap | Resource)
 ## 示例
 
 ```ts
-// Image1
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com' 
-  @State src: string = this.on
-
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.ic_png'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          Image($r('app.media.example_png'))
+            .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_gif'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          Image($r('app.media.example_gif'))
+            .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_svg'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image(this.src)
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25, bottom: 10 })
-      }
 
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.None).width(110).height(110)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Fill).width(110).height(110)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Cover).width(110).height(110)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Contain).width(110).height(110)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.ScaleDown).width(110).height(110)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25 })
+          Image($r('app.media.example_svg'))
+            .width(110).height(110).border({ width: 1 })
+            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.example_jpg'))
+            .width(110).height(110).border({ width: 1 })
+            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }.margin({ top: 25, bottom: 10 })
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
