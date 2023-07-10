@@ -15,5 +15,7 @@
 | Bundle management subsystem        | Mechanism changed    | [The HAP is no longer decompressed during HAP installation.](changelogs-bundlemanager.md)|
 | Globalization        | API added    | [The getStringSync and getStringByNameSync APIs are added.](changelogs-global.md)|
 | Globalization        | Behavior changed    | [The meaning of the return value for the API used to obtain the rawfile descriptor is changed.](changelogs-global.md)|
+| Security-HUKS | Behavior changed | [HuksKeyStorageType must be passed in for key derivation or key agreement.](changelogs-huks.md) |
+| Security-HUKS | Permission changed | [Permission is required for Using attestKeyItem.](changelogs-huks.md) |
 | Web            | Input parameter added | [The input parameter type Resource is added for the setResponseData API.](changelogs-web.md) |
 | Resource scheduler subsystem      | Behavior changed    | [The reminder agent allows you to customize buttons for system applications. Clicking a custom button will redirect you to the specified application page.](changelogs-resourceschedule.md)|
