@@ -2977,7 +2977,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  
+
   //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
@@ -3333,8 +3333,8 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
-            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
-              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs)
           })
       }
@@ -3409,6 +3409,41 @@ onRequestSelected(callback: () => void)
           .onRequestSelected(() => {
             console.log('onRequestSelected')
           })
+      }
+    }
+  }
+  ```
+
+### onOverScroll<sup>10+</sup>
+
+onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+通知网页过滚动偏移量。
+
+**参数：**
+
+| 参数名     | 参数类型   | 参数描述         |
+| ------- | ------ | ------------ |
+| xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
+| yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onOverScroll((event) => {
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
+        })
       }
     }
   }
