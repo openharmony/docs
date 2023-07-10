@@ -33,10 +33,11 @@
    
 2. 以下场景以加速度传感器ACCELEROMETER为例。展示持续监听传感器接口的调用结果。
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
-   sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
+
+   sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
+   console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
    });
    ```
    
@@ -44,7 +45,7 @@
 
 3. 注销传感器数据监听。
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
    sensor.off(sensor.SensorId.ACCELEROMETER);
    ```
@@ -53,10 +54,11 @@
 
 4. 获取一次传感器数据变化。
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
-   sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
+
+   sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+   console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
    });
    ```
    
@@ -64,15 +66,16 @@
 
    若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
 
-    ```js
+    ```ts
    import sensor from "@ohos.sensor";
-    try {
-      sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
-      });
-    } catch (error) {
-      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
-    }
+
+   try {
+   sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+      console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
+   });
+   } catch (error) {
+   console.error(`Failed to get sensor data. Code: ${error.code}, message: ${error.message}`);
+   }
     ```
 ## 相关实例
 
