@@ -693,9 +693,13 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 
 在communication_dsoftbus仓中，加入了-fPIC编译选项，这样会让编译器产生与位置无关代码，并使用相对地址，但是在LiteOS-M核中使用的是静态库，不推荐使用。
 建议开发者手动注释-fPIC编译选项，后续会推进OpenHarmony统一规划此编译选项的开关。修改方法是在如下的四个文件中，找到"-fPIC"选项，并全部注释：
+
 `//foundation/communication/dsoftbus/core/common/BUILD.gn`
+
 `//foundation/communication/dsoftbus/core/frame/BUILD.gn`
+
 `//foundation/communication/dsoftbus/sdk/BUILD.gn`
+
 `//foundation/communication/dsoftbus/components/nstackx_mini/nstackx_ctrl/BUILD.gn`
 
 软总线的组网需要通过设备认证，在研发阶段，可以把认证跳过，先行调试组网以及传输能力，需将文件`//foundation/communication/dsoftbus/core/authentication/src/auth_manager.c`中的HandleReceiveDeviceId函数替换为如下实现：

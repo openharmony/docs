@@ -76,7 +76,7 @@
    // 启动远程设备FA
    Want want = new Want(); // 封装启动远端FA的Want
    // 使用步骤2中获取的设备ID，并指定FA信息
-   ElementName name = new ElementName(remote_device_id, "com.huawei.remote_package_name", "remote_class_name"); 
+   ElementName name = new ElementName(remote_device_id, "com.example.remote_package_name", "remote_class_name"); 
    want.setElement(name); // 将待启动的FA信息添加到Want中
    want.setFlags(Want.FLAG_ABILITYSLICE_MULTI_DEVICE); // 设置分布式标记，若不设置将无法使用分布式能力
    startAbility(want); // 按照Want启动指定FA,Want参数命名以实际开发平台API为准

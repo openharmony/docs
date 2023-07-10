@@ -36,8 +36,8 @@ registerFont(options: FontOptions): void
 
 | 名称         | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string | 是    | 设置注册的字体名称。   |
-| familySrc  | string | 是    | 设置注册字体文件的路径。 |
+| familyName | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
+| familySrc  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
 
 **示例：**
 
@@ -51,9 +51,22 @@ struct FontExample {
   @State message: string = '你好，世界'
 
   aboutToAppear() {
+    // familyName和familySrc都支持string
     font.registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf'
+    })
+
+    // familyName和familySrc都支持系统Resource
+    font.registerFont({
+      familyName: $r('app.string.mediumFamilyName'),
+      familySrc: $r('app.string.mediumFamilySrc')
+    })
+
+    // familySrc支持RawFile
+    font.registerFont({
+      familyName: 'mediumRawFile',
+      familySrc: $rawfile('font/medium.ttf')
     })
   }
 
@@ -62,7 +75,7 @@ struct FontExample {
       Text(this.message)
         .align(Alignment.Center)
         .fontSize(20)
-        .fontFamily('medium') // medium：注册自定义字体的名字
+        .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
         .height('100%')
     }.width('100%')
   }

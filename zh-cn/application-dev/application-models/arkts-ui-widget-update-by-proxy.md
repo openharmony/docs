@@ -28,7 +28,7 @@
 1. 数据提供方以`key + subscriberId`作为数据的标识，将数据存储到数据库。
 2. 数据管理服务感知到数据库变化，将新的数据发布给当前注册的所有订阅实例。
 3. 卡片管理服务从订阅实例中解析出数据，发送给卡片渲染服务。
-4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](https://gitee.com/openharmony/docs/blob/fd489446c497c09d86ffa3beafd73dad90f1adb6/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-formcomponent.md)。
+4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-formcomponent.md)。
 
 数据提供方提供的共享数据有两种类型：
 
@@ -177,7 +177,7 @@
   }
   ```
 
-- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
+- 在卡片页面代码文件（一般为工程中卡片目录下pages目录中的.ets文件）中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)

@@ -12,6 +12,8 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 参数名           | 类型       | 必填   | 说明                        |
