@@ -801,7 +801,7 @@ try {
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取本地设备的profile uuid。
+获取本地设备的profile UUID。
 
 **系统接口**：此接口为系统接口。
 
@@ -813,7 +813,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取uuid成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -842,7 +842,7 @@ try {
 
 getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取本地设备的profile uuid。
+获取本地设备的profile UUID。
 
 **系统接口**：此接口为系统接口。
 
