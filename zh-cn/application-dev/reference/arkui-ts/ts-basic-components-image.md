@@ -50,7 +50,7 @@ Image(src: string | PixelMap | Resource)
 | syncLoad<sup>8+</sup>    | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>该接口支持在ArkTS卡片中使用。 |
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)  | 给图像设置颜色滤镜效果。<br/>该接口支持在ArkTS卡片中使用。       |
-| draggable<sup>9+</sup> | boolean | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false |
+| draggable<sup>9+</sup>   | boolean                                  | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false |
 
 >  **说明：**
 >
@@ -97,60 +97,26 @@ Image(src: string | PixelMap | Resource)
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com' 
-  @State src: string = this.on
-
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.ic_png'))
+          Image($r('app.media.example_png'))
             .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_gif'))
+          Image($r('app.media.example_gif'))
             .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_svg'))
+        }
+
+        Row({ space: 5 }) {
+          Image($r('app.media.example_svg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
+          Image($r('app.media.example_jpg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image(this.src)
-            .width(110).height(110).border({ width: 1 })
-            .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25, bottom: 10 })
-      }
-
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.None).width(110).height(110)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Fill).width(110).height(110)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Cover).width(110).height(110)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Contain).width(110).height(110)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.ScaleDown).width(110).height(110)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25 })
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
