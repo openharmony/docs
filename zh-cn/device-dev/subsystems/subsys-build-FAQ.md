@@ -105,8 +105,8 @@
 
 - **解决办法：**
 
-  1. 移除进程的critical字段或把critical字段第一位置0。修改原服务.cfg配置文件中的critical字段，非必需的场景下，不要使能critical字段。
+     移除进程的critical字段或把critical字段第一位置0。修改原服务.cfg配置文件中的critical字段，非必需的场景下，不要使能critical字段。
 
-     *关于critical字段的详细使用方法，请参考[服务配置](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-service.md)
-     *如果由于实现业务功能需要，进程必须要使能critical字段，只有在联系安全专家评审，通过安全审视后，方可修改产品的critical_reboot进程管控白名单，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/critical_reboot_process_list.json`"。*
-     *示例：rk3586的critical_reboot进程管控白名单位于`//vendor/hihope/rk3568/security_config/critical_reboot_process_list.json`*
+     关于critical字段的详细使用方法，请参考[服务配置](subsys-boot-init-service.md)。如果由于实现业务功能需要，进程必须要使能critical字段，只有在联系安全专家评审，通过安全审视后，方可修改产品的critical_reboot进程管控白名单`//vendor/{公司名称}/{产品名称}/security_config/critical_reboot_process_list.json`。
+
+     示例：rk3586的critical_reboot进程管控白名单为`//vendor/hihope/rk3568/security_config/critical_reboot_process_list.json`
