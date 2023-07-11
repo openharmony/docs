@@ -2200,7 +2200,7 @@
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许在企业设备上企业MDM应用可以自升级。
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
