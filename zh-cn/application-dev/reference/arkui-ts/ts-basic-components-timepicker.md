@@ -76,6 +76,9 @@ struct TimePickerExample {
           this.selectedTime.setHours(value.hour, value.minute)
           console.info('select current date is: ' + JSON.stringify(value))
         })
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
     }.width('100%')
   }
 }
