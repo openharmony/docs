@@ -196,7 +196,7 @@ let serviceCenter = '+861xxxxxxxxxx';
 let destinationPort = 1000;
 let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
 sms.sendMessage(options, (err) => {
-    console.log(`callback: err->${JSON.stringify(err)}.`);
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -252,7 +252,7 @@ let destinationPort = 1000;
 let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
 let promise = sms.sendShortMessage(options);
 promise.then(data => {
-    console.log(`sendShortMessage success, promise: data->${JSON.stringify(data)}`);
+    console.log(`sendShortMessage success`);
 }).catch(err => {
     console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
 });
