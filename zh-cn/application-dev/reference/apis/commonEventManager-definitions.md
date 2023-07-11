@@ -204,8 +204,8 @@
 - 值： usual.event.USER_STARTING
 - 订阅者所需权限： ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-## COMMON_EVENT_USER_UNLOCKED
-（预留事件，暂未支持）设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
+## [COMMON_EVENT_USER_UNLOCKED](./common_event/commonEvent-account.md)
+设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
 - 值： usual.event.USER_UNLOCKED
 - 订阅者所需权限： 无
 
