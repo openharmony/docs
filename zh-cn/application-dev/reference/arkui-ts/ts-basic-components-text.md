@@ -250,3 +250,64 @@ struct TextExample2 {
 }
 ```
 ![textExp1](figures/textExp2.png)
+
+### 示例3
+
+textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
+
+```ts
+@Entry
+@Component
+struct TextExample {
+  build() {
+    Column({ space: 8 }) {
+      Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text('textShadow')
+        .width('80%')
+        .height(55)
+        .fontSize(40)
+        .lineHeight(55)
+        .textAlign(TextAlign.Center)
+        .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
+        .borderWidth(1)
+      Divider()
+      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text('This is the text with the height adaptive policy set')
+        .width('80%')
+        .height(90)
+        .borderWidth(1)
+        .minFontSize(10)
+        .maxFontSize(30)
+        .maxLines(3)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+      Text('This is the text with the height adaptive policy set')
+        .width('80%')
+        .height(90)
+        .borderWidth(1)
+        .minFontSize(10)
+        .maxFontSize(30)
+        .maxLines(3)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+      Text('This is the text with the height adaptive policy set')
+        .width('80%')
+        .height(90)
+        .borderWidth(1)
+        .minFontSize(10)
+        .maxFontSize(30)
+        .maxLines(3)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+      Divider()
+      Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text('This is the text with the text overflow set marquee')
+        .width(300)
+        .borderWidth(1)
+        .textOverflow({ overflow: TextOverflow.MARQUEE })
+    }
+  }
+}
+```
+
+![](figures/text_3.gif)
