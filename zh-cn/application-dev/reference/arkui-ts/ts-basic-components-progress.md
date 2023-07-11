@@ -117,7 +117,8 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-
+### 示例1
+各进度条基础属性效果
 ```ts
 // xxx.ets
 @Entry
@@ -177,3 +178,74 @@ struct ProgressExample {
 ```
 
 ![progress](figures/arkts-progress.png)
+
+### 示例2
+环形进度条视觉属性
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
+                                                              { color: Color.Orange, offset: 1.0 }])
+  build() {
+    Column({ space: 15 }) {
+      Text('Gradient Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 70, total: 100, type: ProgressType.Ring })
+        .width(100).style({ strokeWidth: 20 })
+        .color(this.gradientColor)
+
+      Text('Shadow').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 70, total: 100, type: ProgressType.Ring })
+        .width(120).color(Color.Orange)
+        .style({ strokeWidth: 20, shadow: true })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
+
+### 示例3
+环形进度条动效
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
+                                                              { color: Color.Orange, offset: 1.0 }])
+  build() {
+    Column({ space: 15 }) {
+      Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 0, total: 100, type: ProgressType.Ring })
+        .width(100).color(Color.Blue)
+        .style({ strokeWidth: 20, status: ProgressStatus.LOADING })
+
+      Text('Scan Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 30, total: 100, type: ProgressType.Ring })
+        .width(100).color(Color.Orange)
+        .style({ strokeWidth: 20, enableScanEffect: true })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
+
+### 示例4
+胶囊形进度条视觉属性
+```ts
+@Entry
+@Component
+struct ProgressExample {
+
+  build() {
+    Column({ space: 15 }) {
+      Row({ space: 40 }) {
+        Progress({ value: 100, total: 100,type: ProgressType.Capsule }).width(100).height(50)
+          .style({borderColor: Color.Blue, borderWidth: 1, content: 'Installing...',
+                  font: {size: 13, style: FontStyle.Normal}, fontColor: Color.Gray,
+                  enableScanEffect: false, showDefaultPercentage: false})
+      }
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
