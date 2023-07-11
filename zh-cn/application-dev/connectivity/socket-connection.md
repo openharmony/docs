@@ -175,12 +175,12 @@ setTimeout(() => {
 
 1. import需要的socket模块。
 2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
-3. 绑定IP地址和端口，监听并接受与此套接字建立的TCPSocket连接。
-4. 订阅TCPSocketServer相关的connect事件，用于监听客户端的连接。
-5. 一旦客户端与服务端连接上，返回连接的TCPSocketConnection对象，用于与客户端的交互。
-6. 订阅TCPSocketConnection相关的事件。
-7. 通过返回的TCPSocketConnection对象调用相应接口发送数据给到客户端。
-8. 关闭与TCPSocket建立的连接，取消相关事件的订阅。
+3. 绑定本地IP地址和端口，监听并接受与此套接字建立的客户端TCPSocket连接。
+4. 订阅TCPSocketServer的connect事件，用于监听客户端的连接状态。
+5. 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
+6. 订阅TCPSocketConnection相关的事件，通过TCPSocketConnection向客户端发送数据。
+7. 主动关闭与客户端的连接。
+8. 取消TCPSocketConnection和TCPSocketServer相关事件的订阅。
 
 ```js
 import socket from '@ohos.net.socket'
@@ -217,7 +217,7 @@ tcpServer.on('connect', function(client) {
     console.log("received size--:" + value.remoteInfo.size);
   });
 
-  // 发送数据
+  // 向客户端发送数据
   client.send({data: 'Hello, client!'}, err => {
   if (err) {
     console.log('send fail');
