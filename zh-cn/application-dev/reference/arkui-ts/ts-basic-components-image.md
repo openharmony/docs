@@ -35,22 +35,22 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                       | 参数类型                                     | 描述                                       |
-| ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| alt                      | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| objectFit                | [ImageFit](ts-appendix-enums.md#imagefit) | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| objectRepeat             | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| interpolation            | [ImageInterpolation](#imageinterpolation) | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
-| renderMode               | [ImageRenderMode](#imagerendermode)      | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| sourceSize               | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>PixelMap资源和SVG图片不支持该属性。 |
-| matchTextDirection       | boolean                                  | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fitOriginalSize          | boolean                                  | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fillColor                | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| autoResize               | boolean                                  | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| syncLoad<sup>8+</sup>    | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>该接口支持在ArkTS卡片中使用。 |
-| colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)  | 给图像设置颜色滤镜效果。<br/>该接口支持在ArkTS卡片中使用。       |
-| draggable<sup>(deprecated)</sup>   | boolean                                  | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false<br/>该接口支持在ArkTS卡片中使用。 <br />**说明：**<br />从 API version 9 开始支持，从 API version 10 开始废弃，建议使用通用属性[draggable](ts-universal-events-drag-drop.md)替代。 |
+| 名称                               | 参数类型                                     | 描述                                       |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| alt                              | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit) | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| interpolation                    | [ImageInterpolation](#imageinterpolation) | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
+| renderMode                       | [ImageRenderMode](#imagerendermode)      | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| sourceSize                       | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>PixelMap资源和SVG图片不支持该属性。 |
+| matchTextDirection               | boolean                                  | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fitOriginalSize                  | boolean                                  | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fillColor                        | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| autoResize                       | boolean                                  | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| syncLoad<sup>8+</sup>            | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>该接口支持在ArkTS卡片中使用。 |
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)  | 给图像设置颜色滤镜效果。<br/>该接口支持在ArkTS卡片中使用。       |
+| draggable<sup>(deprecated)</sup> | boolean                                  | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false<br/>该接口支持在ArkTS卡片中使用。 <br />**说明：**<br />从 API version 9 开始支持，从 API version 10 开始废弃，建议使用通用属性[draggable](ts-universal-events-drag-drop.md)替代。 |
 
 >  **说明：**
 >
@@ -97,60 +97,26 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com' 
-  @State src: string = this.on
-
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.ic_png'))
+          Image($r('app.media.example_png'))
             .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_gif'))
+          Image($r('app.media.example_gif'))
             .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_svg'))
+        }
+
+        Row({ space: 5 }) {
+          Image($r('app.media.example_svg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
+          Image($r('app.media.example_jpg'))
             .width(110).height(110).border({ width: 1 })
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image(this.src)
-            .width(110).height(110).border({ width: 1 })
-            .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25, bottom: 10 })
-      }
-
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.None).width(110).height(110)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Fill).width(110).height(110)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Cover).width(110).height(110)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Contain).width(110).height(110)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.ScaleDown).width(110).height(110)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25 })
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
