@@ -85,7 +85,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为x轴时生效。 |
 | yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为y轴时生效。 |
-| animation | {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。<br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值： <br/>{<br/>duration:&nbsp;1000,<br/>curve:&nbsp;Curve.Ease<br/>}<br/>boolean:&nbsp;false<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>当前仅List组件支持boolean类型和ICurve曲线。 |
+| animation | {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。<br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值： <br/>{<br/>duration:&nbsp;1000,<br/>curve:&nbsp;Curve.Ease<br/>}<br/>boolean:&nbsp;false<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。 |
 
 
 ### scrollEdge
@@ -184,6 +184,8 @@ scrollBy(dx: Length, dy: Length): void
 
 ```ts
 // xxx.ets
+import Curves from '@ohos.curves'
+
 @Entry
 @Component
 struct ScrollExample {
@@ -224,7 +226,7 @@ struct ScrollExample {
       Button('scroll 150')
         .height('5%')
         .onClick(() => { // 点击后下滑指定距离150.0vp
-          this.scroller.scrollBy(0,150)
+          this.scroller.scrollBy(0, 150)
         })
         .margin({ top: 10, left: 20 })
       Button('scroll 100')
@@ -233,18 +235,25 @@ struct ScrollExample {
           this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 })
         })
         .margin({ top: 60, left: 20 })
+      Button('scroll 100')
+        .height('5%')
+        .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
+          let curve = Curves.interpolatingSpring(100, 1, 228, 30) //创建一个阶梯曲线
+          this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100, animation: { duration: 1000, curve: curve }})
+        })
+        .margin({ top: 110, left: 20 })
       Button('back top')
         .height('5%')
         .onClick(() => { // 点击后回到顶部
           this.scroller.scrollEdge(Edge.Top)
         })
-        .margin({ top: 110, left: 20 })
+        .margin({ top: 160, left: 20 })
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
           this.scroller.scrollPage({ next: true })
         })
-        .margin({ top: 170, left: 20 })
+        .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   }
 }
