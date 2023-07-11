@@ -407,9 +407,9 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 类型           | 说明                               |
-| -------------- | ---------------------------------- |
-| number\|string | 主键的类型可以是number或者string。 |
+| 类型             | 说明                               |
+| ---------------- | ---------------------------------- |
+| number \| string | 主键的类型可以是number或者string。 |
 
 ## UTCTime<sup>10+</sup>
 
@@ -572,7 +572,7 @@ class EntryAbility extends UIAbility {
 
 ## ProgressDetails<sup>10+</sup>
 
-描述数据库表执行端云同步任务上传和下载的统计信息。
+描述数据库整体执行端云同步任务上传和下载的统计信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3493,7 +3493,7 @@ promise.then((result) =>{
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行对所有分布式表的端云同步，使用callback异步回调。
+手动执行对所有分布式表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3503,7 +3503,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                             |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示分布式表的同步模式。                             |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。             |
 | callback | AsyncCallback&lt;void&gt;                             | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
@@ -3525,7 +3525,7 @@ relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, funct
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行对所有分布式表的端云同步，使用promise异步回调。
+手动执行对所有分布式表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3547,8 +3547,8 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 **示例：**
 
 ```js
-function Progess(ProgressDetail) {
-    console.info(`Progess: ${ProgressDetail}`);
+function Progess(progressDetail) {
+    console.info(`Progess: ${progressDetail}`);
 }
 
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, Progess).then(() => {
@@ -3562,7 +3562,7 @@ relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, Proge
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-手动执行对指定表的端云同步，使用callback异步回调。
+手动执行对指定表的端云同步，使用callback异步回调。使用该接口需要实现云服务功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3594,9 +3594,9 @@ relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, table
 
 ### cloudSync<sup>10+</sup>
 
-cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
+cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-手动执行对指定表的端云同步，使用promise异步回调。
+手动执行对指定表的端云同步，使用Promise异步回调。使用该接口需要实现云服务功能。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3618,10 +3618,10 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 
 **示例：**
 
-```
+```js
 const tables = ["table1", "table2"];
-function Progess(ProgressDetail) {
-    console.info(`Progess: ${ProgressDetail}`);
+function Progess(progressDetail) {
+    console.info(`Progess: ${progressDetail}`);
 }
 
 relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, Progess).then(() => {
@@ -3649,7 +3649,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **示例：**
 
-```
+```js
 function storeObserver(devices) {
   for (let i = 0; i < devices.length; i++) {
     console.info(`device= ${devices[i]} data changed`);
