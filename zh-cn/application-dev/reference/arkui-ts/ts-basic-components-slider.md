@@ -96,8 +96,9 @@ Slier组件滑块形状枚举。
 | End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -253,3 +254,52 @@ struct SliderExample {
 ```
 
 ![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
+
+### 示例2
+
+```ts
+@Entry
+@Component
+struct SliderExample {
+  @State tipsValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Text('block').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: 40, height: 40 })
+        .blockBorderColor(Color.Red)
+        .blockBorderWidth(5)
+      Divider()
+      Text('step').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40, step: 10 })
+        .showSteps(true)
+        .stepSize(8)
+        .stepColor(Color.Yellow)
+      Divider()
+      Text('track').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .trackBorderRadius(2)
+      Divider()
+      Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.DEFAULT })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: '60px', height: '60px' })
+        .blockColor(Color.Red)
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+      Divider()
+      Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: this.tipsValue })
+        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .onChange(value => {
+          this.tipsValue = value
+        })
+    }
+  }
+}
+```
+
+![](figures/slider_2.png)
