@@ -595,6 +595,41 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
   }
   ```
 
+### checkOsAccountVerified<sup>9+</sup>
+
+checkOsAccountVerified(): Promise&lt;boolean&gt;
+
+检查当前系统帐号是否已验证。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                               |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已验证；返回false表示当前帐号未验证。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```js
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.checkOsAccountVerified().then((isVerified) => {
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
+    }).catch((err) => {
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### removeOsAccount
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -1552,7 +1587,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | 12300002 | Invalid localName or type. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **示例：**
 
@@ -1601,7 +1636,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | 12300002 | Invalid localName or type. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **示例：**
 
@@ -1646,7 +1681,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | 12300002 | Invalid type or domainInfo. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **示例：**
 
@@ -1696,7 +1731,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | 12300002 | Invalid type or domainInfo. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **示例：**
 
@@ -4109,8 +4144,10 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
+| 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Authentication is canceled. |
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
@@ -4168,8 +4205,10 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300001 | System service exception. |
 | 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
+| 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Authentication is canceled. |
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
@@ -5319,6 +5358,9 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300101 | Token is invalid. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Operation is canceled. |
+| 12300111 | Operation timeout. |
+| 12300115 | The number of credentials reaches the upper limit. |
 
 **示例：**
   ```js
@@ -5375,7 +5417,10 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
 | 12300101 | Token is invalid. |
+| 12300102 | Credential not enrolled.|
 | 12300106 | Unsupported authType. |
+| 12300109 | Operation is canceled. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```js
@@ -5538,7 +5583,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | Token is invalid. |
-| 12300102 | Credential not found. |
+| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```js
@@ -5580,6 +5625,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
+| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```js
@@ -5619,6 +5665,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
+| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```js
@@ -5663,6 +5710,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
+| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```js
