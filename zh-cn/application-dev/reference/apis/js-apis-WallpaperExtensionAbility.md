@@ -33,6 +33,7 @@ onCreate(want: object): void
 **示例：**
 
 ```js
+import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 class WallpaperExt extends WallpaperExtensionAbility {
   onCreate(want) {
     console.log('onCreate, want:' + want.abilityName);
@@ -57,6 +58,7 @@ onWallpaperChange(wallpaperType: number): void
 **示例：**
 
 ```js
+import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 class WallpaperExt extends WallpaperExtensionAbility {
   onWallpaperChange(wallpaperType) {
     console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
@@ -75,6 +77,7 @@ onDestroy(): void
 **示例：**
 
 ```js
+import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 class WallpaperExt extends WallpaperExtensionAbility {
   onDestroy() {
     console.log('onDestroy');
