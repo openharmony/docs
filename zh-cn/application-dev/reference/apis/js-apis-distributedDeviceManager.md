@@ -41,7 +41,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
   | 名称                                        | 说明        |
   | ------------------------------------------- | --------- |
-  | [DeviceManager](#devicemanager); | 返回设备管理器对象实例。 |
+  | [DeviceManager](#devicemanager) | 返回设备管理器对象实例。 |
 
 **示例：**
 
@@ -53,7 +53,7 @@ createDeviceManager(bundleName: string): DeviceManager;
   }
   ```
 
-### deviceManager.releaseDeviceManager
+## deviceManager.releaseDeviceManager
 
 releaseDeviceManager(deviceManager: DeviceManager): void;
 
@@ -480,12 +480,14 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 **示例：**
 
   ```js
-  var discoverParam = "1";
+  var discoverParam = {
+    'discoverTargetType': 1
+  };
   var filterOptions = {
-    'availableStatus': '1',
-    'discoverDistance': '50',
-    'authenticationStatus': '0',
-    'authorizationType':'0'
+    'availableStatus': 1,
+    'discoverDistance': 50,
+    'authenticationStatus': 0,
+    'authorizationType': 0
   };
   try {
     dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
@@ -559,7 +561,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
           'bindType': 1,// 认证类型： 1 - 无帐号PIN码认证
           'targetPkgName': 'xxxx',
           'appName': 'xxxx',
-          'appDappOperationescription': 'xxxx',
+          'appOperation': 'xxxx',
           'customDescription': 'xxxx'
   }
   try {
