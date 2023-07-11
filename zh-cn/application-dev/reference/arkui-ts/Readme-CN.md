@@ -165,6 +165,7 @@
     - [页面间转场](ts-page-transition-animation.md)
     - [组件内转场](ts-transition-animation-component.md)
     - [共享元素转场](ts-transition-animation-shared-elements.md)
+    - [组件内隐式共享元素转场](ts-transition-animation-geometrytransition.md)
   - [路径动画](ts-motion-path-animation.md)
 - 全局UI方法
   - 弹窗
