@@ -24,6 +24,8 @@
         - [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
+- ArkUI
+    - [窗口标题栏定制](subsys-arkui-customize_titlebar.md)
 - 小型系统图形图像
     - [小型系统图形图像概述](subsys-graphics-overview.md)
       - [普通组件开发指导](subsys-graphics-common-guide.md)

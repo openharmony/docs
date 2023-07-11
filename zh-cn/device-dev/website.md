@@ -393,6 +393,8 @@
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler](subsystems/subsys-arkcompiler-guide.md)
+  -  ArkUI
+     - [窗口标题栏定制](subsystems/subsys-arkui-customize_titlebar.md) 
   -  图形图像
      - [图形图像概述](subsystems/subsys-graphics-overview.md)
      - [容器类组件开发指导](subsystems/subsys-graphics-container-guide.md)
