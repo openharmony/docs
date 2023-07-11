@@ -1738,7 +1738,7 @@ try {
 
 ## bluetoothManager.BLE
 
-createGattServer
+### createGattServer
 
 createGattServer(): GattServer
 
@@ -1759,7 +1759,7 @@ let gattServer = bluetoothManager.BLE.createGattServer();
 ```
 
 
-createGattClientDevice
+### createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1790,7 +1790,7 @@ try {
 ```
 
 
-getConnectedBLEDevices
+### getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1827,7 +1827,7 @@ try {
 ```
 
 
-startBLEScan
+### startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1880,7 +1880,7 @@ try {
 ```
 
 
-stopBLEScan
+### stopBLEScan
 
 stopBLEScan(): void
 
@@ -1911,7 +1911,7 @@ try {
 ```
 
 
-on('BLEDeviceFind')
+### on('BLEDeviceFind')
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1950,7 +1950,7 @@ try {
 ```
 
 
-off('BLEDeviceFind')
+### off('BLEDeviceFind')
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
