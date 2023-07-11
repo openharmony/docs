@@ -4,7 +4,9 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
 
 ## Modules to Import
 
@@ -47,19 +49,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -99,19 +102,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -156,16 +160,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100)
-.catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch((err) => {
+  console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -200,15 +204,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -244,15 +249,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, 100, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -293,11 +299,12 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.disableAdmin(wantTemp, 100).catch((err) => {
+  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -324,20 +331,21 @@ Disables a super device administrator application based on the specified bundle 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |   
+| ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
 **Example**
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableSuperAdmin success");
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling super admin');
 });
 ```
 
@@ -376,9 +384,10 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName).catch(error => {
-    console.log("error occurs" + error);
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName).catch((err) => {
+  console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -403,15 +412,16 @@ Checks whether a device administrator application of the current user is enabled
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -437,15 +447,16 @@ Checks whether a device administrator application of the user specified by **use
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -476,13 +487,14 @@ Checks whether a device administrator application of the specified user (if **us
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -506,13 +518,14 @@ Checks whether a super device administrator application is enabled based on the 
 **Example**
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.isSuperAdmin(bundleName, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+let bundleName = 'com.example.myapplication';
+
+adminManager.isSuperAdmin(bundleName, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
 });
 ```
 
@@ -541,11 +554,12 @@ Checks whether a super device administrator application is enabled based on the 
 **Example**
 
 ```js
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
+
 adminManager.isSuperAdmin(bundleName).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -581,19 +595,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("setEnterpriseInfo success");
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
+  if (err) {
+    console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting enterprise info');
 });
 ```
 
@@ -634,15 +649,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err) => {
+  console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -675,16 +691,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log(result.name);
-    console.log(result.description);
+
+adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
 });
 ```
 
@@ -722,14 +738,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
-    console.log(result.name);
-    console.log(result.description);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
+}).catch((err) => {
+  console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -766,14 +782,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in subscribe managed event');
 });
 ```
 
@@ -815,13 +834,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -858,14 +878,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unsubscribe managed event');
 });
 ```
 
@@ -907,13 +930,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -925,10 +949,10 @@ Defines the enterprise information of a device administrator application.
 
 **System API**: This is a system API.
 
-| Name        | Type    | Readable| Writable  | Description                           |
-| ----------- | --------| ---- | ----- | ------------------------------- |
-| name        | string   | Yes  | No   | Name of the enterprise to which the device administrator application belongs.|
-| description | string   | Yes  | No   | Description of the enterprise to which the device administrator application belongs.|
+| Name        | Type    | Mandatory| Description                           |
+| ----------- | --------| ---- | ------------------------------- |
+| name        | string   | Yes  | Name of the enterprise to which the device administrator application belongs.|
+| description | string   | Yes  | Description of the enterprise to which the device administrator application belongs.|
 
 ## AdminType
 

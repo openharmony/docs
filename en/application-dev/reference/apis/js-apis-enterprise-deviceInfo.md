@@ -1,11 +1,12 @@
 # @ohos.enterprise.deviceInfo (Device Information Management)
 
-The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
@@ -45,15 +46,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device serial, result : ${result}`);
 });
 ```
 
@@ -94,13 +96,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device serial, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -136,15 +139,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting display version, result : ${result}`);
 });
 ```
 
@@ -185,13 +189,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting display version, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -227,15 +232,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceName(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceName(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device name, result : ${result}`);
 });
 ```
 
@@ -276,12 +282,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceName(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device name, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
 });
 ```

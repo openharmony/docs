@@ -394,8 +394,10 @@
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
+  - [@ohos.enterprise.deviceSettings (Device Settings Management)](js-apis-enterprise-deviceSettings.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
 
 - Common Library
