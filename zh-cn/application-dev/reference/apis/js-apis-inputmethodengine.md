@@ -789,7 +789,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 | 参数名    | 类型  | 必填  | 说明  |
 | -------- | ---- | ---- | ----- |
-| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示订阅光标变化事件。 |
+| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示订阅光标变化事件。 |
 | callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。 |
 
 **示例：**
@@ -814,7 +814,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示光标变化。 |
+| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为‘cursorContextChange’时，表示光标变化。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。<br/> |
 
 
@@ -837,7 +837,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 | 参数名    | 类型   | 必填 | 说明   |
 | -------- | ----- | ---- | ---- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
 
 **示例：**
@@ -863,7 +863,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 | 参数名   | 类型  | 必填 | 说明     |
 | -------- | ------- | ---- | ------- |
-| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为‘selectionChange’时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。<br/> |
 
 **示例：**
@@ -887,7 +887,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为’textChange‘时，表示订阅文本变化事件。 |
+| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示订阅文本变化事件。 |
 | callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。|
 
 **示例：**
@@ -910,7 +910,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为’textChange‘时，表示取消订阅文本变化事件。 |
+| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘textChange’时，表示取消订阅文本变化事件。 |
 | callback | (text: string) => void | 否   | 回调函数，返回取消订阅的文本内容。 |
 
 **示例：**
@@ -919,6 +919,50 @@ off(type: 'textChange', callback?: (text: string) => void): void
 inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
   console.log('delete textChange notification. text:' + text);
 });
+```
+
+### on('editorAttributeChanged')<sup>10+</sup>
+
+on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): void
+
+订阅编辑框属性变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示订阅编辑框属性变化事件。 |
+| callback | (attr: EditorAttribute) => void | 是   | 用于接受编辑框属性变化的回调函数。|
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr) => {
+  console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
+});
+```
+
+### off('editorAttributeChanged')<sup>10+</sup>
+
+off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void): void
+
+取消订阅编辑框属性变化事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为‘editorAttributeChanged’时，表示取消订阅编辑框属性变化事件。 |
+| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数，和on接口参数对应。 |
+
+**示例：**
+
+```js
+inputMethodEngine.getKeyboardDelegate().off('editorAttributeChanged');
 ```
 
 ## Panel<sup>10+</sup>

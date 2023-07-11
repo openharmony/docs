@@ -596,9 +596,12 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 是 | 是 | 编辑框属性。|
+| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 是 | 编辑框属性。|
+| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 否 | 光标信息。|
+| selection<sup>10+</sup>  | [Range](#range10) | 否 | 否 | 文本选区范围。|
+| windowId<sup>10+</sup>  | number | 否 | 否 | 编辑控件所在的窗口Id。|
 
 ## CursorInfo<sup>10+</sup>
 
