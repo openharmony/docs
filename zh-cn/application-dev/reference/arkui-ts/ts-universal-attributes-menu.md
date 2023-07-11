@@ -27,13 +27,13 @@
 
 ## MenuOptions<sup>10+</sup>
 
-| 名称          | 类型                                       | 必填   | 描述                                       |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title       | string                                   | 否    | 菜单标题。                                    |
-| offset      | [Position](ts-types.md#position8)        | 否    | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。               |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | 否    | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按默认值[BottomLeft](ts-appendix-enums.md#placement8)处理，相对父组件区域弹出。 |
-| onAppear    | ()&nbsp;=&gt;&nbsp;void                  | 否    | 菜单弹出时的事件回调。                              |
-| onDisappear | ()&nbsp;=&gt;&nbsp;void                  | 否    | 菜单消失时的事件回调。                              |
+| 名称        | 类型                                         | 必填 | 描述                                                         |
+| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| title       | string                                       | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuItem](#menuitem)&gt; 时生效。 |
+| offset      | [Position](ts-types.md#position8)            | 否   | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。         |
+| placement   | [Placement](ts-appendix-enums.md#placement8) | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按默认值[BottomLeft](ts-appendix-enums.md#placement8)处理，相对父组件区域弹出。 |
+| onAppear    | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单弹出时的事件回调。                                       |
+| onDisappear | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单消失时的事件回调。                                       |
 
 ## ContextMenuOptions<sup>10+</sup>
 
