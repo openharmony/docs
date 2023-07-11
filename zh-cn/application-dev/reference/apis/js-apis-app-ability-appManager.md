@@ -1047,26 +1047,26 @@ try {
 
 getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>);
 
-通过pid查询对应进程的内存大小。
+通过pid查询对应进程占用的内存大小。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 表示进程id。 |
-| callback | AsyncCallback\<number> | 是 | 以回调方式返回接口运行结果及进程内存大小（单位KB），可进行错误处理或其他自定义处理。 |
+| pid | number | 是 | 表示进程id，详情参考[getRunningProcessInfoByBundleName](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinfobybundlename10)。 |
+| callback | AsyncCallback\<number> | 是 | 以回调方式返回接口运行结果及进程占用的内存大小（单位KB），可进行错误处理或其他自定义处理。 |
 
 **错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1092,31 +1092,31 @@ try {
 
 getProcessMemoryByPid(pid: number): Promise\<number>;
 
-通过pid查询对应进程的内存大小。
+通过pid查询对应进程占用的内存大小。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 表示进程id。 |
+| pid | number | 是 | 表示进程id，详情参考[getRunningProcessInfoByBundleName](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinfobybundlename10)。  |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise方式返回接口运行结果及进程内存大小（单位KB），可进行错误处理或其他自定义处理。 |
+| Promise\<number> | 以Promise方式返回接口运行结果及进程占用的内存大小（单位KB），可进行错误处理或其他自定义处理。 |
 
 **错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1143,7 +1143,7 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
@@ -1154,11 +1154,11 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1188,7 +1188,7 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
@@ -1204,11 +1204,11 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1235,7 +1235,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
@@ -1247,11 +1247,11 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1282,7 +1282,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数：**
 
@@ -1299,11 +1299,11 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
