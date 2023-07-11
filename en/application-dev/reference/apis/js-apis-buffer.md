@@ -1162,7 +1162,7 @@ let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 
 readInt8(offset?: number): number
 
-Reads a 8-bit signed integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit signed integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1449,7 +1449,7 @@ let result = buf1.writeIntLE(0x123456789011, 0, 6);
 
 readUInt8(offset?: number): number
 
-Reads a 8-bit unsigned integer from this **Buffer** instance at the specified offset.
+Reads an 8-bit unsigned integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2326,7 +2326,7 @@ let result = buf.writeFloatLE(0xcafebabe, 0);
 
 writeInt8(value: number, offset?: number): number
 
-Writes a 8-bit signed integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit signed integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2606,7 +2606,7 @@ let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 
 writeUInt8(value: number, offset?: number): number
 
-Writes a 8-bit unsigned integer to this **Buffer** instance at the specified offset.
+Writes an 8-bit unsigned integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 

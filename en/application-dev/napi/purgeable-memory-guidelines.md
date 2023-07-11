@@ -75,7 +75,7 @@ The following steps describe how to use the native purgeable memory APIs to appl
     OH_PurgeableMemory* pPurgmem = OH_PurgeableMemory_Create(DATASIZE, FactorialFunc, &pdata);
     ```
 
-3. Perfrom a read operation on the **PurgeableMemory** object.
+3. Perform a read operation on the **PurgeableMemory** object.
     ```c++
     // Define an object type based on the service requirements.
     class ReqObj;

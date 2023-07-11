@@ -1,7 +1,7 @@
 # Packing Tool
 ## Overview
 
-The packing tool packs compiled files for installation and release. The packing tool supports the generation of HAP (an application package), APP (application set to launch to the application market), HQF (quick fix package), APPQF (quick fix package to launch to the application market ), HAR (static shared library), and HSP (dynamic shared library) files. The unpacking tool is used to unpack the HAP, APP, HQF, APPQF, HAR, and HSP files and parse the HAP, HSP, APP, and APPQF files. Generally, the packing process is automatically carried out in DevEco Studio. However, you can also use the JAR package of the packing tool to pack files. The JAR package is stored in the **toolchains** directory in the SDK path.
+The packing tool packs compiled files for installation and release. The packing tool supports the generation of HAP (an application package), APP (application set to launch to the application market), HQF (quick fix package), APPQF (quick fix package to launch to the application market), HAR (statically shared library), and HSP (dynamically shared library) files. The unpacking tool is used to unpack the HAP, APP, HQF, APPQF, HAR, and HSP files and parse the HAP, HSP, APP, and APPQF files. Generally, the packing process is automatically carried out in DevEco Studio. However, you can also use the JAR package of the packing tool to pack files. The JAR package is stored in the **toolchains** directory in the SDK path.
 
 ## Packing Commands
 

@@ -75,7 +75,7 @@ The table below describes the main APIs used for cross-device migration. For det
    Configure the application launch type. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
 4. Implement [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) in the UIAbility of the initiator.
-   [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) is called on the initiator. You can save the  data in this method to implement application compatibility check and migration decision.
+   [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) is called on the initiator. You can save the data in this method to implement application compatibility check and migration decision.
    - Saving migrated data: You can save the data to be migrated in key-value pairs in **wantParam**.
 
    - Checking application compatibility: You can obtain the version number of the target application from **wantParam** and check the compatibility between the target application and the current application.

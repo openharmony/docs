@@ -2837,7 +2837,7 @@ Describes the color components of an image.
 ## Supplementary Information
 ### SVG Tags
 
-The SVG tags are supported since API verison 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
+The SVG tags are supported since API version 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
 - a
 - circla
 - clipPath
