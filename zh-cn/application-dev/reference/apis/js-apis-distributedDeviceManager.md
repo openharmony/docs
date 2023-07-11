@@ -8,7 +8,7 @@
 - 发现周边不可信设备
 - 认证和取消认证设备
 - 查询可信设备列表
-- 查询本地设备信息，包括设备名称，设备类型和设备标识
+- 查询本地设备信息，包括设备名称，设备类型和设备标识等。
 
 
 > **说明：**
@@ -25,7 +25,7 @@ import deviceManager from '@ohos.distributedDeviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
+createDeviceManager(bundleName: string): DeviceManager;
 
 创建一个设备管理器实例。
 
@@ -36,76 +36,38 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
+
+**返回值：**
+
+  | 名称                                        | 说明        |
+  | ------------------------------------------- | --------- |
+  | [DeviceManager](#devicemanager); | 返回设备管理器对象实例。 |
 
 **示例：**
 
   ```js
   try {
-    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {
-      if (err) { 
-        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
-        return;
-      }
-      console.info("createDeviceManager success");
-      let dmInstance = data;
-    });
+    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
     console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-## DeviceBasicInfo
+### deviceManager.releaseDeviceManager
 
-设备信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-| 名称                     | 类型                        | 必填   | 说明       |
-| ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | 是    | 设备的唯一标识。 |
-| deviceName             | string                    | 是    | 设备名称。    |
-| deviceType             | number                    | 是    | 设备类型。    |
-| networkId              | string                    | 是    | 设备网络标识。  |
-
-## DeviceStatusChange
-
-表示设备状态变化的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-| 名称         | 值  | 说明              |
-| ----------- | ---- | --------------- |
-| UNKNOWN     | 0    | 设备物理上线，此时状态未知。           |
-| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
-| UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
-
-
-## BindParam
-
-认证参数。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-| 名称        | 类型                   | 必填   | 说明         |
-| --------- | -------------------- | ---- | ---------- |
-| bindType  | number               | 是    | 认证类型。默认会携带以下key值：<br />-1: PIN码。<br />-2: 二维码。<br />-3: NFC。<br />-4: 没有交互。     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 可携带以下key值:<br />-targetPkgName： 绑定目标的包名。<br />-appName: 尝试绑定目标的应用名称。<br />-appOperation : app要绑定目标包的原因。
-
-
-## DeviceManager
-
-设备管理实例，用于获取可信设备和本地设备的相关信息。在调用DeviceManager的方法前，需要先通过createDeviceManager构建一个DeviceManager实例dmInstance。
-
-### releaseDeviceManager
-
-releaseDeviceManager(): void;
+releaseDeviceManager(deviceManager: DeviceManager): void;
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+| 参数名     | 类型                                                 | 必填 | 说明                                |
+| ---------- | ---------------------------------------------------- | ---- | --------------------------------- |
+| deviceManager | [DeviceManager](#devicemanager)    | 是   | 设备管理器对象实例。                                  |
 
 **错误码：**
 
@@ -119,11 +81,41 @@ releaseDeviceManager(): void;
 
   ```js
   try {
-    dmInstance.releaseDeviceManager();
+    deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     console.error("release device manager errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
+
+## DeviceBasicInfo
+
+分布式设备基本信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
+| 名称                     | 类型                        | 必填   | 说明       |
+| ---------------------- | ------------------------- | ---- | -------- |
+| deviceId               | string                    | 是    | 设备的唯一标识。 实际值是udid-hash与基于sha256的appid混淆。|
+| deviceName             | string                    | 是    | 设备名称。    |
+| deviceType             | number                    | 是    | 设备类型。目前仅支持以下设备类型：<br />-12: 智能PC。<br />-14: 智能手机。<br />-17: 智能PAD。    |
+| networkId              | string                    | 否    | 设备网络标识。  |
+
+## DeviceStateChange
+
+表示设备状态。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
+| 名称         | 值  | 说明              |
+| ----------- | ---- | --------------- |
+| UNKNOWN     | 0    | 设备物理上线，此时状态未知，在状态更改为可用之前，分布式业务无法使用。           |
+| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
+| UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
+
+
+## DeviceManager
+
+设备管理实例，用于获取可信设备和本地设备的相关信息。在调用DeviceManager的方法前，需要先通过createDeviceManager构建一个DeviceManager实例dmInstance。
 
 ### getAvailableDeviceListSync
 
@@ -233,11 +225,11 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
   });
   ```
 
-### getLocalDeviceNetworkIdSync
+### getLocalDeviceNetworkId
 
-getLocalDeviceNetworkIdSync(): string;
+getLocalDeviceNetworkId(): string;
 
-同步获取本地设备网络标识。
+获取本地设备网络标识。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -261,18 +253,18 @@ getLocalDeviceNetworkIdSync(): string;
 
   ```js
   try {
-    var deviceNetworkId = dmInstance.getLocalDeviceNetworkIdSync();
+    var deviceNetworkId = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
-    console.error("getLocalDeviceNetworkIdSync errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("getLocalDeviceNetworkId errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### getLocalDeviceNameSync
+### getLocalDeviceName
 
-getLocalDeviceNameSync(): string;
+getLocalDeviceName(): string;
 
-同步获取本地设备名称。
+获取本地设备名称。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -296,18 +288,18 @@ getLocalDeviceNameSync(): string;
 
   ```js
   try {
-    var deviceName = dmInstance.getLocalDeviceNameSync();
+    var deviceName = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
-    console.error("getLocalDeviceNameSync errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("getLocalDeviceName errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### getLocalDeviceTypeSync
+### getLocalDeviceType
 
-getLocalDeviceTypeSync(): number;
+getLocalDeviceType(): number;
 
-同步获取本地设备类型。
+获取本地设备类型。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -331,18 +323,18 @@ getLocalDeviceTypeSync(): number;
 
   ```js
   try {
-    var deviceType = dmInstance.getLocalDeviceTypeSync();
+    var deviceType = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
-    console.error("getLocalDeviceTypeSync errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("getLocalDeviceType errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### getLocalDeviceIdSync
+### getLocalDeviceId
 
-getLocalDeviceIdSync(): string;
+getLocalDeviceId(): string;
 
-同步获取本地设备id。
+获取本地设备id。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -366,18 +358,18 @@ getLocalDeviceIdSync(): string;
 
   ```js
   try {
-    var deviceId = dmInstance.getLocalDeviceIdSync();
+    var deviceId = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
-    console.error("getLocalDeviceIdSync errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("getLocalDeviceId errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### getDeviceNameSync
+### getDeviceName
 
-getDeviceNameSync(networkId: string): string;
+getDeviceName(networkId: string): string;
 
-通过指定设备的网络标识同步获取该设备名称。
+通过指定设备的网络标识获取该设备名称。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -409,18 +401,18 @@ getDeviceNameSync(networkId: string): string;
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx"
-    var deviceName = dmInstance.getDeviceNameSync(networkId);
+    var deviceName = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
     console.error("getDeviceName errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### getDeviceTypeSync
+### getDeviceType
 
-getDeviceTypeSync(networkId: string): number;
+getDeviceType(networkId: string): number;
 
-通过指定设备的网络标识同步获取该设备类型。
+通过指定设备的网络标识获取该设备类型。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -452,7 +444,7 @@ getDeviceTypeSync(networkId: string): number;
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx"
-    var deviceType = dmInstance.getDeviceTypeSync(networkId);
+    var deviceType = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
     console.error("getDeviceType errCode:" + err.code + ",errMessage:" + err.message);
@@ -461,7 +453,7 @@ getDeviceTypeSync(networkId: string): number;
 
 ### startDiscovering
 
-startDiscovering(discoverParameter:string, filterOptions?: string): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -473,8 +465,8 @@ startDiscovering(discoverParameter:string, filterOptions?: string): void;
 
   | 参数名            | 类型                        | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
-  | discoverParameter   | string                          | 是   | 发现标识。 标识发现的目标类型。目前只支持一种类型。 发现附件设备，值为1。|
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br />-filter_op: 过滤设备的条件。值类型为字符串，如'or'或'and'。<br />-filters: 根据该参数过滤设备。如果filter_op为'or'，则发现满足其中一个过滤器的设备；如果filter_op为'and'，则查找满足所有过滤器的设备；过滤器的值类型为key-value，如：<br />-credible: 仅发现设备是可信的，取值为0或1。<br />-range： 仅发现范围内的设备，值小于1米。<br />-isTrusted: 仅发现受信任的设备，取值为0或1。<br />-authForm: 仅发现设备指定身份验证，取值范围为1~4。<br />-deviceType: 仅发现指定类型的设备，取值如下: <br />-0: 未知设备类型。<br />-8: 智能摄像机。<br />-10: 智能音箱。<br />-12: 智能PC。<br />-14: 智能手机。<br />-17: 智能PAD。<br />-109: 智能手表。<br />-131: 汽车。<br />-156: 智能电视。|
+  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | 是   | 发现标识。 标识发现的目标类型。<br>discoverTargetType: 发现目标默认为设备，值为1。|
+  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br>availableStatus(0-1): 仅发现设备可信，值为0表示设备不可信。<br />-0: 设备离线，客户端需要通过调用bindTarget绑定设备。<br />-1: 设备已在线，客户可以进行连接。<br>discoverDistance(0-100): 发现距离本地一定距离内的设备，单位为cm。 <br>authenticationStatus(0-1): 根据不同的认证状态发现设备：<br />-0: 设备未认证。<br />-1：设备已认证。<br>authorizationType(0-2)：根据不同的授权类型发现设备：<br />-0: 根据临时协商的会话密钥认证的设备。<br />-1: 基于同账号密钥进行身份验证的设备。<br />-2: 基于不同账号凭据密钥认证的设备。|
 
 **错误码：**
 
@@ -483,23 +475,20 @@ startDiscovering(discoverParameter:string, filterOptions?: string): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery repeats.                                              |
 
 **示例：**
 
   ```js
-  var discoverParameter = "1";
+  var discoverParam = "1";
   var filterOptions = {
-    "filter_op": "OR", // 可选, 默认"OR"
-    "filters": [
-        {
-            "type": "range",
-            "value": 50 // 需过滤发现设备的距离，单位(cm)
-        }
-    ]
+    'availableStatus': '1',
+    'discoverDistance': '50',
+    'authenticationStatus': '0',
+    'authorizationType':'0'
   };
   try {
-    dmInstance.startDiscovering(discoverParameter, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
+    dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
     console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -522,6 +511,7 @@ stopDiscovering(): void;
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
+| 11600104 | Stop discovery repeats.                                         |
 
 **示例：**
 
@@ -535,7 +525,7 @@ stopDiscovering(): void;
 
 ### bindTarget
 
-bindTarget(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{deviceId: string}&gt;): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
 
 认证设备。
 
@@ -548,7 +538,7 @@ bindTarget(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{d
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
   | deviceId   | string                                              | 是    | 设备标识。   |
-  | bindParam  | [BindParam](#bindparam)                             | 是    | 认证参数。   |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值: <br>bindType 此值是绑定的类型。<br />-1 PIN码。<br />-2 二维码。<br />-3 NFC。 <br />-4 无交互。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | 是    | 认证结果回调 |
 
 **错误码：**
@@ -565,18 +555,15 @@ bindTarget(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{d
   ```js
   // 认证的设备信息，可以从发现的结果中获取
   var deviceId ="XXXXXXXX";
-  let extraInfo = {
-          'targetPkgName': 'ohos.samples.xxx',
-          'appName': 'xxx',
-          'appDescription': 'xxx',
-          'business': '0'
-  }
   let bindParam = {
-      'bindType': 1,// 认证类型： 1 - 无帐号PIN码认证
-      'extraInfo': extraInfo
+          'bindType': 1,// 认证类型： 1 - 无帐号PIN码认证
+          'targetPkgName': 'xxxx',
+          'appName': 'xxxx',
+          'appDappOperationescription': 'xxxx',
+          'customDescription': 'xxxx'
   }
   try {
-    dmInstance.bindTarget(deviceId, authParam, (err, data) => {
+    dmInstance.bindTarget(deviceId, bindParam, (err, data) => {
       if (err) {
           console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
           return;
@@ -625,9 +612,9 @@ unbindTarget(deviceId: string): void;
 
 ### replyUiAction
 
-replyUiAction(action: number, params: string): void;
+replyUiAction(action: number, actionResult: string): void;
 
-回复用户ui操作行为。
+回复用户ui操作行为。此接口只能被devicemanager的PIN码hap使用。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -640,7 +627,7 @@ replyUiAction(action: number, params: string): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | action        | number          | 是    | 用户操作动作。       |
-  | params        | string          | 是    | 表示用户的输入参数。 |
+  | actionResult        | string          | 是    | 表示用户操作结果。 |
 
 **示例：**
 
@@ -724,9 +711,9 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
   }
   ```
 
-### on('deviceStatusChange')
+### on('deviceStateChange')
 
-on(type: 'deviceStatusChange', callback: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
 注册设备状态回调。
 
@@ -739,23 +726,23 @@ on(type: 'deviceStatusChange', callback: Callback&lt;{ action: DeviceStatusChang
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStatusChange](#devicestatuschange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
 **示例：**
 
   ```js
   try {
-    dmInstance.on('deviceStatusChange', (data) => {
-      console.info("deviceStatusChange on:" + JSON.stringify(data));
+    dmInstance.on('deviceStateChange', (data) => {
+      console.info("deviceStateChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStatusChange errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### off('deviceStatusChange')
+### off('deviceStateChange')
 
-off(type: 'deviceStatusChange', callback?: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
 取消注册设备状态回调。
 
@@ -768,7 +755,7 @@ off(type: 'deviceStatusChange', callback?: Callback&lt;{ action: DeviceStatusCha
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调。        |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStatusChange](#devicestatuschange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **示例：**
 
@@ -898,9 +885,9 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
   }
   ```
 
-### on('discoverFail')
+### on('discoverFailure')
 
-on(type: 'discoverFail', callback: Callback&lt;{ reason: number }&gt;): void;
+on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -919,17 +906,17 @@ on(type: 'discoverFail', callback: Callback&lt;{ reason: number }&gt;): void;
 
   ```js
   try {
-    dmInstance.on('discoverFail', (data) => {
-        console.info("discoverFail on:" + JSON.stringify(data));
+    dmInstance.on('discoverFailure', (data) => {
+        console.info("discoverFailure on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### off('discoverFail')
+### off('discoverFailure')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ reason: number }&gt;): void;
+off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): void;
 
 取消注册设备发现失败回调。
 
@@ -948,17 +935,17 @@ off(type: 'discoverFail', callback?: Callback&lt;{ reason: number }&gt;): void;
 
   ```js
   try {
-    dmInstance.off('discoverFail', (data) => {
-      console.info('discoverFail' + JSON.stringify(data));
+    dmInstance.off('discoverFailure', (data) => {
+      console.info('discoverFailure' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void;
+on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 注册设备管理服务死亡监听。
 
@@ -971,7 +958,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void;
   | 参数名       | 类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
-  | callback | ()&nbsp;=&gt;&nbsp;void | 是    | 注册serviceDie的回调方法。                       |
+  | callback | Callback&lt;{}&gt; | 否    | 注册serviceDie的回调方法。                       |
 
 **示例：**
 
@@ -987,7 +974,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void;
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void;
+off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 取消注册设备管理服务死亡监听。
 
@@ -1000,7 +987,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void;
   | 参数名       | 类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
-  | callback | ()&nbsp;=&gt;&nbsp;void | 否    | 取消注册serviceDie的回调方法。                     |
+  | callback | Callback&lt;{}&gt; | 否    | 取消注册serviceDie的回调方法。                     |
 
 **示例：**
 
