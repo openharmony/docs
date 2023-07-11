@@ -2,14 +2,11 @@
 
 设置组件是否可以响应拖拽事件。
 
->  **说明：**
+> **说明：**
 > 
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  支持拖拽控制的组件：
->
->[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[Video](ts-media-components-video.md)、[List](ts-container-list.md)、
-[Grid](ts-container-grid.md)。
+> 支持拖拽控制的组件：[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[Video](ts-media-components-video.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。
 
 
 ## 属性
