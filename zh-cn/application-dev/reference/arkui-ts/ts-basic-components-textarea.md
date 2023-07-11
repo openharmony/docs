@@ -102,6 +102,48 @@ stopEditing(): void
 
 退出编辑态。
 
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): [RectResult](#rectresult)
+
+获取已编辑文本内容区域相对组件的位置和大小。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+
+> **说明：**
+>
+> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
+> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
+> - 有输入时返回信息中的宽度是组件编辑的固定宽度。
+
+### RectResult<sup>10+</sup>
+
+位置和大小。
+
+| 参数      | 类型     | 描述 |
+| ------- | ------ | ----------------------- |
+| x     | number | 水平方向横坐标。|
+| y     | number | 竖直方向纵坐标。|
+| width | number | 内容宽度大小。|
+| height | number | 内容高度大小。|
+
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+获取已编辑文本内容的行数。
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 已编辑文本内容行数。 |
+
 ## 示例
 
 ```ts
