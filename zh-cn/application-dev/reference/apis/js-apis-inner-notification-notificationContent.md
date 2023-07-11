@@ -67,11 +67,11 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型           | 可读 | 可写 | 说明                             |
-| -------------- | -------------- | ---- | --- | -------------------------------- |
-| title          | string         | 否  | 是  | 通知标题。                         |
-| text           | string         | 否  | 是  | 通知内容。                         |
+| 名称           | 类型           | 可读 | 可写 | 说明          |
+| -------------- | -------------- | ---- | --- |-------------|
+| title          | string         | 否  | 是  | 通知标题。       |
+| text           | string         | 否  | 是  | 通知内容。       |
 | additionalText | string         | 否  | 否  | 通知附加内容，是对通知内容的补充。 |
 | briefText      | string         | 否  | 是  | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | string         | 否  | 是  | 通知展开时的标题。                 |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 是  | 通知的图片内容。                   |
+| expandedTitle  | string         | 否  | 是  | 通知展开时的标题。   |
+| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。  |
