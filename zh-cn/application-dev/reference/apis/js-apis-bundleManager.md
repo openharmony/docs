@@ -3304,3 +3304,37 @@ try {
     console.error('getAdditionalInfo failed. Cause: ' + error.message);
 }
 ```
+
+### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+
+getBundleInfoForSelfSync(bundleFlags: number): BundleInfo;
+
+以同步方法根据给定的bundleFlags获取当前应用的BundleInfo。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+
+**返回值：**
+
+| 类型                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+try {
+    let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', err.message);
+}
+```
