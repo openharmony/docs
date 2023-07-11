@@ -2339,7 +2339,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 **示例：**
   ```js
   try {
-    let timeZoneCityItemArray = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    let timeZoneCityItemArray = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (var i = 0; i < timeZoneCityItemArray.length; i++) {
         console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName + 
                    ", " + timeZoneCityItemArray[i].offset + "\r\n");
