@@ -29,29 +29,29 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
     ```c++
     VkInstance instance = VK_NULL_HANDLE;
 
-	VkApplicationInfo appInfo = {};
-	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-	appInfo.pApplicationName = "vulkanExample";
-	appInfo.pEngineName = "vulkanExample";
-	appInfo.apiVersion = VK_API_VERSION_1_3;
+    VkApplicationInfo appInfo = {};
+    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    appInfo.pApplicationName = "vulkanExample";
+    appInfo.pEngineName = "vulkanExample";
+    appInfo.apiVersion = VK_API_VERSION_1_3;
     
-	VkInstanceCreateInfo instanceCreateInfo = {};
-	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-	instanceCreateInfo.pNext = NULL;
-	instanceCreateInfo.pApplicationInfo = &appInfo;
+    VkInstanceCreateInfo instanceCreateInfo = {};
+    instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    instanceCreateInfo.pNext = NULL;
+    instanceCreateInfo.pApplicationInfo = &appInfo;
 
-	std::vector<const char*> instanceExtensions = {
+    std::vector<const char*> instanceExtensions = {
         VK_KHR_SURFACE_EXTENSION_NAME,
-        VK_OHOS_SURFACE_EXTENSION_NAME
+        VK_OHOS_SURFACE_EXTENSION_NAME // OpenHarmony平台的Surface扩展
     };
-    instanceCreateInfo.enabledExtensionCount = (uint32_t)instanceExtensions.size();
+    instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.size());
     instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.data();
 
     vkCreateInstance(&instanceCreateInfo, nullptr, &instance);
     ```
 
 2. **获取OHNativeWindow**。
-    OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，具体XComponent模块接口的使用请参考XComponent模块的开发指导。
+    OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../ui/arkts-common-components-xcomponent.md)和[XComponent开发指导](xcomponent-guidelines.md)。
     1. ets/pages/Index.ets中增加一个XComponent组件
     ```ts
     XComponent({
@@ -59,9 +59,9 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
         type: 'surface',
         libraryname: 'entry'
     })
-        .margin({ bottom: 20 })
-        .width(360)
-        .height(360)
+    .margin({ bottom: 20 })
+    .width(360)
+    .height(360)
     ```
     2. 从XComponent组件中获取OHNativeWindow
     ```c++
@@ -100,12 +100,13 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 
 3. **创建VkSurfaceKHR对象**。
     ```c++
-	VkSurfaceCreateInfoOHOS surfaceCreateInfo = {};
-	surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_SURFACE_CREATE_INFO_OHOS;
-	surfaceCreateInfo.window = nativeWindow;
-	int err = vkCreateSurfaceOHOS(instance, &surfaceCreateInfo, NULL, &surface);
-	if (err != VK_SUCCESS) {
-		std::cout << "Could not create surface!" << std::endl;
-	}
+    VkSurfaceKHR surface = VK_NULL_HANDLE;
+    VkSurfaceCreateInfoOHOS surfaceCreateInfo = {};
+    surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_SURFACE_CREATE_INFO_OHOS;
+    surfaceCreateInfo.window = nativeWindow; // 这里的nativeWindow就是从上一步骤OnSurfaceCreatedCB回调函数中拿到的
+    int err = vkCreateSurfaceOHOS(instance, &surfaceCreateInfo, NULL, &surface);
+    if (err != VK_SUCCESS) {
+        std::cout << "Could not create surface!" << std::endl;
+    }
     ```
 后续更多vulkan的用法请参考[Vulkan官方网站](https://www.vulkan.org/)。
