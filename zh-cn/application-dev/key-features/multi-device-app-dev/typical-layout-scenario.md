@@ -512,7 +512,7 @@ struct NavigationSample {
 
 **实现方案**
 
-三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，详情可参考[NavigationMode](../../reference/arkui-ts/ts-basic-components-navigation.md#navigationmode枚举说明)的属性。
+三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、minContentWidth与Navigation组件的navBarWidth、minContentWidth等属性配置不同的值，即可实现目标效果。
 
 **参考代码**
 
@@ -547,12 +547,13 @@ struct Item {
         .textAlign(TextAlign.Center)
         .width('100%')
         .height('30%')
-        .margin(10)
       NavDestination() {
         Details({imageSrc: this.imageSrc})
       }.title(this.label)
+      .hideTitleBar(false)
       .backgroundColor('#FFFFFF')
     }
+    .margin(10)
   }
 }
 
@@ -609,12 +610,12 @@ struct TripleColumnSample {
         .navBarWidth(240)
         .hideToolBar(true)
         .title(this.NavigationTitle)
-        .minContextWidth(600-240)
+        .minContentWidth(600-240)
       }.width('100%').height('100%')
     }.sideBarWidth(240)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
-    .minContextWidth(600-240)
+    .minContentWidth(840-240)
   }
 }
 ```
