@@ -131,7 +131,7 @@ struct BasketModifier {
 
 ### \@Watch和自定义组件更新
 
-以下示例展示组件更新和\@Watch的处理步骤。count在两个组件中均由\@State装饰。
+以下示例展示组件更新和\@Watch的处理步骤。count在CountModifier中由\@State装饰，在TotalView中由\@Prop装饰。
 
 
 ```ts
