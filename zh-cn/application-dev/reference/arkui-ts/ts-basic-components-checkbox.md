@@ -53,6 +53,8 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -80,3 +82,51 @@ struct CheckboxExample {
 
 
 ![](figures/checkbox.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/checkbox2.gif)
