@@ -56,6 +56,9 @@
 | offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。 |
 
 ## 示例
+
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -133,3 +136,85 @@ struct PopupExample {
 ```
 
 ![figures/popup.gif](figures/popup.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+
+  build() {
+    Column() {
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          messageOptions: {
+            textColor: Color.Red,
+            font: {
+              size: '14vp',
+              style: FontStyle.Italic,
+              weight: FontWeight.Bolder
+            }
+          },
+          placement: Placement.Bottom,
+          enableArrow: false,
+          targetSpace: '15vp',
+          onStateChange: (e) => {
+            console.info(JSON.stringify(e.isVisible))
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          }
+        })
+    }.margin(20)
+  }
+}
+```
+
+![](figures/popup_2.png)
+
+### 示例3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State customPopup: boolean = false
+
+  // popup构造器定义弹框内容
+  @Builder popupBuilder() {
+    Row() {
+      Text('Custom Popup Message').fontSize(10)
+    }.height(50).padding(5)
+  }
+
+  build() {
+    Column() {
+      // CustomPopupOptions 类型设置弹框内容
+      Button('CustomPopupOptions')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          targetSpace: '15vp',
+          enableArrow: false,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
+        })
+    }.margin(20)
+  }
+}
+```
+
+![](figures/popup_3.png)
