@@ -115,7 +115,7 @@ stopEditing(): void
 
 getTextContentRect(): [RectResult](#rectresult)
 
-获取已编辑文本内容区域相对组件的位置和大小。
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
 **返回值：**
 
@@ -125,7 +125,8 @@ getTextContentRect(): [RectResult](#rectresult)
 
 > **说明：**
 >
-> - 始不输入文本时，返回值中有相对search组件的位置信息，大小为0。
+> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 不输入文本时，返回值中有相对Search组件的位置信息，但大小为0。
 > - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
 
 ### RectResult<sup>10+</sup>

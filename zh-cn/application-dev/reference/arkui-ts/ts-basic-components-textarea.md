@@ -106,7 +106,7 @@ stopEditing(): void
 
 getTextContentRect(): [RectResult](#rectresult)
 
-获取已编辑文本内容区域相对组件的位置和大小。
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
 **返回值：**
 
