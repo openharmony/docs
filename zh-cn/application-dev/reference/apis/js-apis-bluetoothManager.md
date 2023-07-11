@@ -722,7 +722,7 @@ getRemoteProfileUuids(device: string, callback: AsyncCallback&lt;Array&lt;Profil
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取uuid成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -2094,7 +2094,7 @@ setConnectionStrategy(device: string, strategy: ConnectionStrategy, callback: As
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |profile的连接策略。 |
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |Profile的连接策略。 |
 | callback | AsyncCallback&lt;void&gt;  | 是    | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -2138,7 +2138,7 @@ setConnectionStrategy(device: string, strategy: ConnectionStrategy): Promise&lt;
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |profile的连接策略。 |
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |Profile的连接策略。 |
 
 **返回值：**
 
