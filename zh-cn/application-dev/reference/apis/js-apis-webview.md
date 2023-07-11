@@ -208,7 +208,6 @@ postMessageEventExt(message: WebMessageExt): void
 | -------- | ------------------------------------- |
 | 17100010 | Can not post message using this port. |
 
-
 ### onMessageEventExt<sup>10+</sup>
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
@@ -4347,7 +4346,6 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
 | callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
-
 **示例：**
 
 ```ts
@@ -5739,7 +5737,6 @@ Web组件返回的请求/响应头对象。
 | ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
 | ARRAY        | 5 |数组类型|
 
-
 ## WebMessageType<sup>10+</sup>
 
 [webMessagePort](#webmessageport)接口所支持的数据类型。
@@ -5796,7 +5793,6 @@ getString(): string
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5841,7 +5837,6 @@ getBoolean(): boolean
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getArrayBuffer<sup>10+</sup>
 
 getArrayBuffer(): ArrayBuffer
@@ -5885,7 +5880,6 @@ getArray(): Array\<string | number | boolean\>
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ## WebMessageExt<sup>10+</sup>
 
 [webMessagePort](#webmessageport)接口接收、发送的的数据对象。
@@ -5903,7 +5897,6 @@ getType(): WebMessageType
 | 类型           | 说明                                                      |
 | --------------| --------------------------------------------------------- |
 | [WebMessageType](#webmessagetype10) | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
-
 
 ### getString<sup>10+</sup>
 
@@ -5927,7 +5920,6 @@ getString(): string
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5950,7 +5942,6 @@ getNumber(): number
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getBoolean<sup>10+</sup>
 
 getBoolean(): boolean
@@ -5972,7 +5963,6 @@ getBoolean(): boolean
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -6038,7 +6028,6 @@ getError(): Error
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### setType<sup>10+</sup>
 
@@ -6179,7 +6168,6 @@ setError(message: Error): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ## WebStorageOrigin
 

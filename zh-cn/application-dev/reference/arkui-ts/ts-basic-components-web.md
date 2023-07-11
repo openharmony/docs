@@ -670,11 +670,15 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
-### password
+### password<sup>(deprecated)</sup>
 
 password(password: boolean)
 
 设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### cacheMode
 
@@ -991,7 +995,6 @@ minLogicalFontSize(size: number)
   }
   ```
 
-
 ### webFixedFont<sup>9+</sup>
 
 webFixedFont(family: string)
@@ -1242,17 +1245,25 @@ forceDarkAccess(access: boolean)
   }
   ```
 
-### tableData
+### tableData<sup>(deprecated)</sup>
 
 tableData(tableData: boolean)
 
 设置是否应保存表单数据。该接口为空接口。
 
-### wideViewModeAccess
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+### wideViewModeAccess<sup>(deprecated)</sup>
 
 wideViewModeAccess(wideViewModeAccess: boolean)
 
 设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### pinchSmooth<sup>9+</sup>
 
@@ -1383,7 +1394,6 @@ mediaOptions(options: WebMediaOptions)
 | options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
 
 **示例：**
-
 
   ```ts
   // xxx.ets
@@ -1939,7 +1949,6 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 onPageBegin(callback: (event?: { url: string }) => void)
 
-
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **参数：**
@@ -1973,7 +1982,6 @@ onPageBegin(callback: (event?: { url: string }) => void)
 ### onPageEnd
 
 onPageEnd(callback: (event?: { url: string }) => void)
-
 
 网页加载完成时触发该回调，且只在主frame触发。
 
@@ -3667,7 +3675,6 @@ Web组件返回的请求/响应头对象。
 | ----------- | ------ | ------------- |
 | headerKey   | string | 请求/响应头的key。   |
 | headerValue | string | 请求/响应头的value。 |
-
 
 ## WebResourceResponse
 
