@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-USB DDK(USB Driver Develop Kit)是OpenHarmony为开发者提供的USB驱动程序开发套件，支持基于用户态、在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
+USB DDK（USB Driver Develop Kit）是OpenHarmony为开发者提供的USB驱动程序开发套件，支持基于用户态、在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
 ## 接口说明
 
@@ -11,7 +11,7 @@ USB DDK(USB Driver Develop Kit)是OpenHarmony为开发者提供的USB驱动程�
 | OH_Usb_Init(void) | 初始化DDK。 |
 | OH_Usb_Release(void) | 释放DDK。 |
 | OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc) | 获取设备描述符。 |
-| OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | 获取配置描述符。请在描述符使用完后使OH_Usb_FreeConfigDescriptor()释放描述符，否则会造成内存泄露。 |
+| OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | 获取配置描述符。请在描述符使用完后使用OH_Usb_FreeConfigDescriptor()释放描述符，否则会造成内存泄露。 |
 | OH_Usb_FreeConfigDescriptor(const struct UsbDdkConfigDescriptor *const config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
 | OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle) | 声明接口。 |
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | 释放接口。 |
