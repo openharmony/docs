@@ -104,11 +104,11 @@
       if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
         console.info('Not temp card, init db for:' + formId);
         let promise = dataPreferences.getPreferences(this.context, 'myStore');
-        promise.then((storeDB) => {
+        promise.then(async (storeDB) => {
           console.info("Succeeded to get preferences.");
-          storeDB.putSync('A' + formId, 'false');
-          storeDB.putSync('B' + formId, 'false');
-          storeDB.flush();
+          await storeDB.put('A' + formId, 'false');
+          await storeDB.put('B' + formId, 'false');
+          await storeDB.flush();
         }).catch((err) => {
           console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
         })
@@ -120,10 +120,10 @@
     onRemoveForm(formId) {
       console.info('onRemoveForm, formId:' + formId);
       let promise = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then((storeDB) => {
+      promise.then(async (storeDB) => {
         console.info("Succeeded to get preferences.");
-        storeDB.deleteSync('A' + formId);
-        storeDB.deleteSync('B' + formId);
+        await storeDB.delete('A' + formId);
+        await storeDB.delete('B' + formId);
       }).catch((err) => {
         console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
       })
@@ -133,11 +133,11 @@
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
       let promise = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then((storeDB) => {
+      promise.then(async (storeDB) => {
         console.info("Succeeded to get preferences.");
-        storeDB.putSync('A' + formId, 'false');
-        storeDB.putSync('B' + formId, 'false');
-        storeDB.flush();
+        await storeDB.put('A' + formId, 'false');
+        await storeDB.put('B' + formId, 'false');
+        await storeDB.flush();
       }).catch((err) => {
         console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
       })
@@ -145,19 +145,19 @@
   
     onUpdateForm(formId) {
       let promise = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then((storeDB) => {
+      promise.then(async (storeDB) => {
         console.info("Succeeded to get preferences.");
-        let stateA = storeDB.getSync('A' + formId, 'false').toString();
-        let stateB = storeDB.getSync('B' + formId, 'false').toString();
+        let stateA = await storeDB.get('A' + formId, 'false');
+        let stateB = await storeDB.get('B' + formId, 'false');
         // A状态选中则更新textA
         if (stateA === 'true') {
           let formInfo = formBindingData.createFormBindingData({'textA': 'AAA'});
-          formProvider.updateForm(formId, formInfo);
+          await formProvider.updateForm(formId, formInfo);
         }
         // B状态选中则更新textB
         if (stateB === 'true') {
           let formInfo = formBindingData.createFormBindingData({'textB': 'BBB'});
-          formProvider.updateForm(formId, formInfo);
+          await formProvider.updateForm(formId, formInfo);
         }
         console.info(`Update form success stateA:${stateA} stateB:${stateB}.`);
       }).catch((err) => {
@@ -169,18 +169,18 @@
       // 存放卡片状态
       console.info('onFormEvent formId:' + formId + 'msg:' + message);
       let promise = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then((storeDB) => {
+      promise.then(async (storeDB) => {
         console.info("Succeeded to get preferences.");
         let msg = JSON.parse(message);
         if (msg.selectA != undefined) {
           console.info('onFormEvent selectA info:' + msg.selectA);
-          storeDB.putSync('A' + formId, msg.selectA);
+          await storeDB.put('A' + formId, msg.selectA);
         }
         if (msg.selectB != undefined) {
           console.info('onFormEvent selectB info:' + msg.selectB);
-          storeDB.putSync('B' + formId, msg.selectB);
+          await storeDB.put('B' + formId, msg.selectB);
         }
-        storeDB.flush();
+        await storeDB.flush();
       }).catch((err) => {
         console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
       })
