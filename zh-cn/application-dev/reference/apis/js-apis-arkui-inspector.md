@@ -62,7 +62,7 @@ on(type: 'layout', callback: () => void): void
 
 ### off
 
-off(type: 'layout', callback: () => void): void
+off(type: 'layout', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件布局或者绘制完成时不在触发指定的回调。
 
@@ -83,16 +83,15 @@ import inspector from '@ohos.arkui.inspector';
 @Entry
 @Component
 struct ImageExample {
-    build() {
-      Column() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.  Start }) {
-          Row({ space: 5 }) {
-            Image($r('app.media.app_icon'))
-              .width(110)
-              .height(110)
-              .border({ width: 1 })
-              .key('1000')
-          }
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Image($r('app.media.app_icon'))
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('1000')
         }
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
@@ -103,7 +102,7 @@ struct ImageExample {
   aboutToAppear() {
     let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
     let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
-    
+
     this.listener.on('layout', FuncLayout)
     this.listener.on('draw', FuncDraw)
   }
@@ -111,7 +110,7 @@ struct ImageExample {
   onLayoutComplete() {
     // do something here
   }
-  
+
   onDrawComplete() {
     // do something here
   }
