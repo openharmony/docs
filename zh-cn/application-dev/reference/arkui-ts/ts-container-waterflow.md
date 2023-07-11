@@ -45,6 +45,7 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection.Column|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 
 layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
 

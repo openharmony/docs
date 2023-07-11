@@ -62,6 +62,7 @@ Grid(scroller?: Scroller)
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false |
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/> |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 
 Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为以下三种布局模式：
 

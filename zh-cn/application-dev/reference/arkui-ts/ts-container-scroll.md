@@ -36,6 +36,7 @@ Scroll(scroller?: Scroller)
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
@@ -54,7 +55,7 @@ Scroll(scroller?: Scroller)
 | onScrollEdge(event: (side: Edge) => void)                    | 滚动到边缘事件回调。<br/>触发该事件的条件 ：<br/>1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。 |
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | 滚动停止事件回调。<br>该事件从API version 9开始废弃，使用onScrollStop事件替代。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。 |
 | onScrollStart<sup>9+</sup>(event: () => void)                | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
-| onScrollStop<sup>9+</sup>(event: () => void)                 | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效，。 |
+| onScrollStop<sup>9+</sup>(event: () => void)                 | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 
 >  **说明：**
 >
@@ -178,6 +179,20 @@ scrollBy(dx: Length, dy: Length): void
 | CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
 | END  | 尾部对齐。指定item尾部与List尾部对齐。 |
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
+
+## NestedScrollOptions<sup>10+ </sup>对象说明
+| 名称   | 类型   | 描述              |
+| ----- | ------ | ----------------- |
+| scrollForward | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | NestedScrollMode |  可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollMode<sup>10+ </sup>枚举说明
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
+| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，人工有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## 示例
 ### 示例1
@@ -321,3 +336,63 @@ struct NestedScroll {
 ```
 
 ![NestedScroll](figures/NestedScroll.gif)
+
+### 示例3
+```ts
+@Entry
+@Component
+struct StickyNestedScroll {
+  @State message: string = 'Hello World'
+  @State arr: number[] = []
+
+  @Styles listCard() {
+    .backgroundColor(Color.White)
+    .height(72)
+    .width("100%")
+    .borderRadius(12)
+  }
+  build() {
+    Scroll() {
+      Column() {
+        Text("Scroll Area")
+          .width("100%")
+          .height("40%")
+          .backgroundColor('#0080DC')
+          .textAlign(TextAlign.Center)
+        Tabs({barPosition:BarPosition.Start}) {
+          TabContent() {
+            List({space:10}) {
+              ForEach(this.arr, (item) => {
+                ListItem() {
+                  Text("item" + item)
+                    .fontSize(16)
+                }.listCard()
+              }, item => item)
+            }.width("100%")
+            .edgeEffect(EdgeEffect.Spring)
+            .nestedScroll({
+              scrollForward:NestedScrollMode.PARENT_FIRST,
+              scrollBackward:NestedScrollMode.SELF_FIRST
+            })
+          }.tabBar("Tab1")
+          TabContent() {
+          }.tabBar("Tab2")
+        }
+        .vertical(false)
+        .height("100%")
+      }.width("100%")
+    }
+    .edgeEffect(EdgeEffect.Spring)
+    .backgroundColor('#DCDCDC')
+    .scrollBar(BarState.Off)
+    .width('100%')
+    .height('100%')
+  }
+  aboutToAppear() {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i)
+    }
+  }
+}
+```
+![NestedScroll2](figures/NestedScroll2.gif)
