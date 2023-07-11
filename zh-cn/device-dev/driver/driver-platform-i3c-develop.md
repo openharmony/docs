@@ -214,7 +214,7 @@ I3C模块适配包含以下五个步骤：
                     match_attr = "virtual_i3c";  // 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
                     template i3c_controller {    // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
                         busId = 0;               // 【必要】i3c总线号
-                        busMode = 0x0;           // 总线模式，0x0：纯净；0x1：混合高速：0x2：混合受限；0x3：混合低速。
+                        busMode = 0x0;           // 总线模式，0x0：纯净；0x1：混合高速；0x2：混合受限；0x3：混合低速。
                         regBasePhy = 0x120b0000; // 【必要】物理基地址
                         regSize = 0xd1;          // 【必要】寄存器位宽
                         IrqNum = 20;             // 【必要】中断号
@@ -232,13 +232,7 @@ I3C模块适配包含以下五个步骤：
         }
         ```
 
-       需要注意的是，新增i3c_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
-
-       例如：本例中i3c_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/i3c/i3c_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
-
-       ```c
-       #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/i3c/i3c_config.hcs" // 配置文件相对路径
-       ```
+        需要注意的是，新增i3c_config.hcs配置文件后，必须在对应的hdf.hcs文件中包含i3c_config.hcs所在路径信息，否则配置文件无法生效。
 
 3. 实例化I3C控制器对象
 
@@ -290,7 +284,7 @@ I3C模块适配包含以下五个步骤：
 
         **返回值：**
 
-        HDF_STATUS相关状态（表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
+        HDF_STATUS相关状态（表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS定义）。
 
         **表 3** HDF_STATUS相关状态说明
 

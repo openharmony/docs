@@ -121,7 +121,7 @@ Regulator模块适配包含以下四个步骤：
     | serviceName | 驱动对外发布服务的名称，Regulator管理器固定为HDF_PLATFORM_REGULATOR_MANAGER |
     | deviceMatchAttr | 驱动私有数据匹配的关键字，Regulator管理器设置为hdf_platform_regulator_manager |
 
-    从第二个节点开始配置具体Regulator控制器信息，此节点并不表示某一路Regulator控制器，而是代表一个资源性质设备，用于描述一类Regulator控制器的信息。本例只有一个Regulator设备，如有多个设备，则需要在device_info.hcs文件增加deviceNode信息，以及在regulator_config.hcs文件中增加对应的器件属性。
+    从第二个节点开始配置具体Regulator控制器信息，此节点并不表示某一路Regulator控制器，而是代表一个资源性质设备，用于描述一类Regulator控制器的信息。本例只有一个Regulator设备，如有多个设备，则需要在device_info.hcs文件增加deviceNode信息，以及在regulator_config_linux.hcs文件中增加对应的器件属性。
 
     - device_info.hcs 配置参考
 
@@ -153,14 +153,14 @@ Regulator模块适配包含以下四个步骤：
         }
         ```
 
-    - regulator_config.hcs配置参考
+    - regulator_config_linux.hcs配置参考
 
         ```c
         root {
             platform {
                 regulator_config {
                 match_attr = "linux_regulator_adapter";
-                template regulator_controller {    // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
+                template regulator_controller {   // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
                     device_num = 1;
                     name = "";
                     devName = "regulator_adapter_consumer01";
@@ -201,10 +201,10 @@ Regulator模块适配包含以下四个步骤：
 
         需要注意的是，新增regulator_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
 
-        例如：本例中regulator_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/regulator/regulator_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
+        例如：本例中regulator_config.hcs所在路径为//vendor/hisilicon/hispark_taurus_linux/hdf_config/device/regulator/regulator_config_linux.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
 
         ```c
-        #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/regulator/regulator_config.hcs" // 配置文件相对路径
+        #include "device/regulator/regulator_config_linux.hcs"
         ```
 
 3. 实例化核心层接口函数
@@ -272,7 +272,7 @@ Regulator模块适配包含以下四个步骤：
         
         返回值：
         
-        HDF_STATUS相关状态（表4为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
+        HDF_STATUS相关状态（表4为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS定义）。
         
         **表 3** HDF_STATUS相关状态说明
   
