@@ -168,7 +168,9 @@
 - [RichText](ts-basic-components-richtext.md)
 
     富文本组件，解析并显示HTML格式文本。
+- [RichEditor](ts-basic-components-richeditor.md)
 
+    支持图文混排和文本交互式编辑的组件。
 
 ## 图片视频与媒体
 
