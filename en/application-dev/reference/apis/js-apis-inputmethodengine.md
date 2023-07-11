@@ -504,7 +504,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Error Code ID  | Error Message                      |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **Example**
 
@@ -552,7 +552,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Error Code ID  | Error Message                      |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **Example**
 
@@ -1147,7 +1147,7 @@ This API does not work on panels in the FLG_FIXED state.
 
 ```js
 try {
-  let promise = windowClass.moveTo(300, 300);
+  let promise = panel.moveTo(300, 300);
   promise.then(() => {
     console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
@@ -2487,7 +2487,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -2523,7 +2523,7 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value. For detail, see [KeyCode](js-apis-keycode.md#keycode).|
+| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](js-apis-keycode.md#keycode).|
 | keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>

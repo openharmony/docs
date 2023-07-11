@@ -66,21 +66,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Description            |
 | ----------------------- | ---------------- |
-| CONSTANT<sup>10+</sup>  | The Cancel button is always displayed.|
-| INVISIBLE<sup>10+</sup> | The Cancel button is always hidden.|
-| INPUT<sup>10+</sup>     | The Cancel button is displayed when there is text input.|
+| CONSTANT  | The Cancel button is always displayed.|
+| INVISIBLE | The Cancel button is always hidden.|
+| INPUT     | The Cancel button is displayed when there is text input.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onSubmit(callback: (value: string) => void) | Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
-| onChange(callback: (value: string) => void) | Invoked when the input in the text box changes.<br> - **value**: current text input. |
-| onCopy(callback: (value: string) => void) | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.     |
-| onCut(callback: (value: string) => void)  | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.     |
-| onPaste(callback: (value: string) => void) | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.     |
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onSubmit(callback: (value: string) => void)                  | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
+| onChange(callback: (value: string) => void)                  | Triggered when the input in the text box changes.<br> - **value**: current text input.|
+| onCopy(callback: (value: string) => void)                    | Triggered when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.|
+| onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
+| onPaste(callback: (value: string) => void)                   | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.|
 
 ## SearchController
 
@@ -104,6 +104,8 @@ Sets the position of the caret.
 
 ##  Example
 
+### Example 1
+
 ```ts
 // xxx.ets
 @Entry
@@ -119,7 +121,7 @@ struct SearchExample {
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
         .searchButton('SEARCH')
-        .width(400)
+        .width('95%')
         .height(40)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
@@ -143,3 +145,43 @@ struct SearchExample {
 ```
 
 ![search](figures/search.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchButtoonExample {
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
+      Search({ placeholder: 'Type to search...' })
+        .searchButton('SEARCH')
+        .searchIcon({
+          src: $r('app.media.search')
+        })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: {
+            src: $r('app.media.cancel')
+          }
+        })
+        .width('90%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .onSubmit((value: string) => {
+          this.submitValue = value
+        })
+        .margin(20)
+    }.width('100%')
+  }
+}
+```
+
+![searchButton](figures/searchButton.gif)
