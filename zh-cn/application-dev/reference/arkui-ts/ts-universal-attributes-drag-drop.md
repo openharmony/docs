@@ -34,16 +34,6 @@ struct ImageExample {
   @State AVisible: Visibility = Visibility.Visible
   @State dragSuccess :Boolean = false
 
-  @Builder pixelMapBuilder() {
-    Column() {
-      Column()
-        .width(100)
-        .height(100)
-        .borderRadius(10)
-        .backgroundColor(Color.Yellow)
-    }
-  }
-
   build() {
     Column() {
       Text('Image拖拽')
@@ -55,12 +45,6 @@ struct ImageExample {
           .border({ width: 1 })
           .visibility(this.AVisible)
           .draggable(true)
-          .onDragStart((event: DragEvent, extraParams: string) => {
-            let image = new UDMF.Image();
-            let unifiedData = new UDMF.UnifiedData(image);
-            event.setData(unifiedData);
-            return this.pixelMapBuilder()
-          })
           .onDragEnd((event: DragEvent) => {
             let ret = event.getResult();
             if(ret == 0) {
