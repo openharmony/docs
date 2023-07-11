@@ -4221,6 +4221,103 @@ struct WebComponent {
 }
 ```
 
+### prefetchPage
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
+
+在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称              | 类型                             | 必填  | 说明                      |                            
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | 是    | 预加载的url。|
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
+            this.controller.prefetchPage('https://www.example.com');
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      // 需要将'www.example1.com'替换成一个真实的网站地址。
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### prepareForPageLoad
+
+static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
+
+预连接url，在加载url之前调用此API，对url只进行dns解析，socket建链操作，并不获取主资源子资源。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称           | 类型     | 必填  | 说明                                                   |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 预连接的url。|
+| preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
+| numSockets     | number  | 是   | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+| 171000013| The number of preconnect sockets is invalid.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
+        web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
