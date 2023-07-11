@@ -25,6 +25,7 @@
 | timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
+| getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt;| 获取当前帧所有的历史点（不同设备每帧的触摸事件频率不同，当前帧所有的触摸事件被称为历史点）。 |
 
 
 ## TouchObject对象说明
@@ -38,6 +39,14 @@
 | x       | number                                      | 触摸点相对于被触摸元素左上角的X坐标。 |
 | y       | number                                      | 触摸点相对于被触摸元素左上角的Y坐标。 |
 
+## HistoricalPoint<sup>10+</sup>对象说明
+
+| 名称         | 类型                                 | 描述                                      |
+| ----------- | ----------------------------------- | ------------------------------------------ |
+| touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。               |
+| size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。 |
+| force       | number                              | 历史点对应触摸事件的压力大小。                |
+| timestamp   | number                              | 历史点对应触摸事件的时间戳。                  |
 ## 示例
 
 ```ts
