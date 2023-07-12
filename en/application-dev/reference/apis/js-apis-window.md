@@ -50,13 +50,13 @@ Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Mandatory| Description|
-| ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the window.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
-| displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
-| parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
+| Name| Type| Mandatory| Description                                                                         |
+| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | Yes| Name of the window.                                                                      |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
+| displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
+| parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -108,10 +108,10 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type|  Mandatory| Description                                                        |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
+| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
-| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
+| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
 
@@ -164,7 +164,7 @@ Describes the callback for a single system bar.
 | type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed. The value **true** means that the system bar is displayed, and **false** means the opposite.|
 | region          | [Rect](#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -177,7 +177,7 @@ Describes the callback for the current system bar.
 
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
+| displayId  | number                                              | Yes  | No  | ID of the current physical screen. The value must be an integer.            |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.|
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.|
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width, in pixels.|
-| height | number   | Yes  | Yes  | Window height, in pixels.|
+| width  | number   | Yes  | Yes  | Window width, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Window height, in pixels. The value must be an integer.|
 
 ## WindowProperties
 
@@ -224,21 +224,21 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Type                 | Readable| Writable| Description                                                        |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                  |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                  |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is **false**. The value **true** means that the window is displayed in full screen mode, and **false** means the opposite.|
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.|
-| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.|
-| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.|
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is –1.|
-| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.|
-| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.|
-| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0.0**.                                                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                                                                    |
+| ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                    |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is **-1**.                     |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the dimmest.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9. |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.                                                                  |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.                                                                 |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.      |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.                                                                  |
+| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0**. The value must be an integer.                                                                                   |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -259,12 +259,12 @@ Describes the scale parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The default value is **1.0**.                      |
-| y      | number   | No  | Yes  | Scale factor along the y-axis. The default value is **1.0**.                      |
-| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                        |
+| ------ | -------- | ---- | ---- |--------------------------------------------|
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ Describes the rotation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The default value is **0.0**.                    |
-| y      | number   | No  | Yes  | Rotation angle around the y-axis. The default value is **0.0**.                    |
-| z      | number   | No  | Yes  | Rotation angle around the z-xis. The default value is **0.0**.                    |
-| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                         |
+| ------ | -------- | ---- | ---- |---------------------------------------------|
+| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -292,9 +292,9 @@ Describes the translation parameters.
 
 | Name| Type| Readable| Writable| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The default value is **0.0**.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The default value is **0.0**.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The default value is **0.0**.|
+| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, and the default value is **0.0**.|
+| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, and the default value is **0.0**.|
+| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, and the default value is **0.0**.|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -519,7 +519,7 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
 
 **Error codes**
@@ -568,7 +568,7 @@ Minimizes all windows on a display. This API uses a promise to return the result
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 
 **Return value**
 
@@ -1552,8 +1552,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -1595,8 +1595,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -1648,8 +1648,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px.|
-| height   | number                    | Yes| New height of the window, in px.|
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -1697,8 +1697,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px.|
-| height | number | Yes| New height of the window, in px.|
+| width  | number | Yes| New width of the window, in px. The value must be an integer.|
+| height | number | Yes| New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -2575,10 +2575,10 @@ Enables listening for keyboard height changes.
 
 **Parameters**
 
-| Name  | Type               | Mandatory| Description                                                        |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type               | Mandatory| Description                                       |
+| -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer.                   |
 
 **Example**
 
@@ -2605,7 +2605,7 @@ Disables listening for keyboard height changes.
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                              |
 
 **Example**
 
@@ -2661,7 +2661,7 @@ Disables listening for click events outside this window.
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the click event outside this window.                              |
+| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.                              |
 
 **Example**
 
@@ -3097,10 +3097,10 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------------------------- | -- | --------------------------------- |
-| brightness | number                    | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                        |
+| Name| Type| Mandatory| Description                                       |
+| ---------- | ------------------------- | -- |-------------------------------------------|
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
 
@@ -3140,9 +3140,9 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | -- | --------------------------------- |
-| brightness | number | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name| Type| Mandatory| Description                                    |
+| ---------- | ------ | -- |----------------------------------------|
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 
 **Return value**
 
@@ -3760,9 +3760,9 @@ Sets the opacity for this window. This API can be used only when you [customize 
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                       |
-| ------- | ------ | ---- | ----------------------------------------------------------- |
-| opacity | number | Yes  | Opacity to set. The value ranges from 0.0 to 1.0. The value **0.0** means completely transparent, and **1.0** means completely opaque.|
+| Name | Type  | Mandatory| Description                                                |
+| ------- | ------ | ---- |----------------------------------------------------|
+| opacity | number | Yes  | Opacity. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means completely transparent, and **1.0** means completely opaque.|
 
 **Error codes**
 
@@ -3980,9 +3980,9 @@ Blurs this window.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | Yes  | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the window.|
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- |--------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window.|
 
 **Error codes**
 
@@ -4015,9 +4015,9 @@ Blurs the background of this window.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | Yes  | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the background of the window.|
+| Name| Type  | Mandatory| Description                                                   |
+| ------ | ------ | ---- |-------------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window.|
 
 **Error codes**
 
@@ -4085,12 +4085,12 @@ Sets the shadow for the window borders.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | Yes  | Radius of the shadow. The value is greater than or equal to 0. The value **0** means that the shadow is disabled for the window borders.|
+| Name | Type  | Mandatory| Description                                                         |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | Yes  | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders.    |
 | color   | string | No  | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
-| offsetX | number | No  | Offset of the shadow along the x-axis, in pixels.                   |
-| offsetY | number | No  | Offset of the shadow along the y-axis, in pixels.                   |
+| offsetX | number | No  | Offset of the shadow along the x-axis, in pixels. The value is a floating point number.                             |
+| offsetY | number | No  | Offset of the shadow along the y-axis, in pixels. The value is a floating point number.                             |
 
 **Error codes**
 
@@ -4123,9 +4123,9 @@ Sets the radius of the rounded corners for this window.
 
 **Parameters**
 
-| Name     | Type   | Mandatory| Description                |
-| ----------- | ------- | ---- | -------------------- |
-| radius | number | Yes  | Radius of the rounded corners. The value is greater than or equal to 0. The value **0** means that the window does not use rounded corners.|
+| Name     | Type   | Mandatory| Description                                                |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners.|
 
 **Error codes**
 
@@ -4282,8 +4282,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name  | Type                     | Mandatory| Description                                             |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                       |
 
 **Example**
@@ -4316,8 +4316,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type  | Mandatory| Description                                             |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -4360,8 +4360,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | Yes  | New width of the window, in px.|
-| height   | number                    | Yes  | New height of the window, in px.|
+| width    | number                    | Yes  | New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes  | New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
@@ -4400,8 +4400,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | Yes  | New width of the window, in px.|
-| height | number | Yes  | New height of the window, in px.|
+| width  | number | Yes  | New width of the window, in px. The value must be an integer.|
+| height | number | Yes  | New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -5350,10 +5350,10 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                                |
-| ---------- | ------------------------- | ---- | ------------------------------------ |
-| brightness | number                    | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                          |
+| Name    | Type                     | Mandatory| Description                                   |
+| ---------- | ------------------------- | ---- |---------------------------------------|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
 
@@ -5384,9 +5384,9 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                                |
-| ---------- | ------ | ---- | ------------------------------------ |
-| brightness | number | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name    | Type  | Mandatory| Description                                      |
+| ---------- | ------ | ---- |------------------------------------------|
+| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 
 **Return value**
 
@@ -5420,10 +5420,10 @@ Sets the dimness of the window that is not on top. This API uses an asynchronous
 
 **Parameters**
 
-| Name        | Type                     | Mandatory| Description                                              |
-| -------------- | ------------------------- | ---- | -------------------------------------------------- |
-| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                        |
+| Name        | Type                     | Mandatory| Description                                    |
+| -------------- | ------------------------- | ---- |----------------------------------------|
+| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value range is [0.0, 1.0], and the value **1.0** means the dimmest.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                 |
 
 **Example**
 
