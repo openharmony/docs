@@ -63,11 +63,13 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
 ### 接口说明
 
+为了能够调整液晶显示屏的各项参数，与display建立显示通道，实现显示器的显示效果，LCD驱动需要通过`display :: host`注册PanelInfo结构体、接口信息，添加描述设备；LcdResetOn读取的pin脚信息，由SampleEntryInit初始化入口函数，并注册器件驱动接口，供平台驱动调用。
+
 表1 LCD驱动适配所需接口 
 
 | 接口名                                                  | 描述                |
 | :------------------------------------------------------ | ------------------- |
-| display :: host                                         | 设备描述配置        |
+| static int32_t MipiDsiInit(struct PanelInfo *info)      | 适配对应的芯片平台驱动 |
 | static int32_t LcdResetOn(void)                         | 设置Reset Pin脚状态 |
 | int32_t SampleEntryInit(struct HdfDeviceObject *object) | 器件驱动入口函数    |
 
