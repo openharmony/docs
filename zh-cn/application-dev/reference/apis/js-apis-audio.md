@@ -2995,20 +2995,20 @@ isVolumeUnadjustable(): boolean
 
 | 类型                   | 说明                                                   |
 | ---------------------- | ------------------------------------------------------ |
-| boolean            | 同步回调返回固定音量模式开关状态，true为固定音量模式，false为非固定音量模式。 |
+| boolean            | 同步接口，返回固定音量模式开关状态，true为固定音量模式，false为非固定音量模式。 |
 
 **示例：**
 
 ```js
 bool switch = audioVolumeGroupManager.isVolumeUnadjustable();
-console.info(`Whether it is volume unadjustable: ${switch} `);
+console.info(`Whether it is volume unadjustable: ${switch}.`);
 ```
 
 ### adjustVolumeByStep<sup>10+</sup>
 
 adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
 
-调节当前最高优先级的流的音量，使音量值加一或减一，使用callback方式异步返回结果。
+调节当前最高优先级的流的音量，使音量值按步长加或减，使用callback方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -3032,8 +3032,9 @@ audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (er
   if (err) {
     console.error(`Failed to adjust the volume by step. ${err}`);
     return;
+  } else {
+    console.info('Success to adjust the volume by step.');
   }
-  console.info('Success to adjust the volume by step.');
 });
 ```
 ### adjustVolumeByStep<sup>10+</sup>
@@ -3067,7 +3068,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 ```js
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
-}).catch((error)=>{
+}).catch((error) => {
   console.info('Fail to adjust the volume by step.');
 });
 ```
@@ -3099,10 +3100,10 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 ```js
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err) => {
   if (err) {
-    console.error(`Failed to adjust the system volume by step. ${err}`);
-    return;
+    console.error(`Failed to adjust the system volume by step ${err}`);
+  } else {
+    console.info('Success to adjust the system volume by step.');
   }
-  console.info('Success to adjust the system volume by step.');
 });
 ```
 ### adjustSystemVolumeByStep<sup>10+</sup>
@@ -3137,7 +3138,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 ```js
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
-}).catch((error)=>{
+}).catch((error) => {
   console.info('Fail to adjust the system volume by step.');
 });
 ```
@@ -3167,9 +3168,9 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err, dB) => {
   if (err) {
     console.error(`Failed to get the volume DB. ${err}`);
-    return;
+  } else {
+    console.info(`Success to get the volume DB. ${dB}`);
   }
-  console.info(`Success to get the volume DB. ${dB}`);
 });
 ```
 ### getSystemVolumeInDb<sup>10+</sup>
@@ -3201,7 +3202,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 ```js
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((dB) => {
   console.info(`Success to get the volume DB. ${dB}`);
-}).catch((error)=>{
+}).catch((error) => {
   console.info(`Fail to adjust the system volume by step. ${error}`);
 });
 ```
@@ -5495,10 +5496,11 @@ getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 audioRenderer.getMinStreamVolume((err, minVolume) => {
-  if(err){
-    console.error(`Get min stream volume Fail: ${err}`);
+  if (err) {
+    console.error(`getMinStreamVolume error: ${err}`);
+  } else {
+    console.info(`getMinStreamVolume Success! ${minVolume}`);
   }
-  console.info(`Get min stream volume Success! ${minVolume}`);
 });
 ```
 ### getMinStreamVolume<sup>10+</sup>
@@ -5543,10 +5545,11 @@ getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 audioRenderer.getMaxStreamVolume((err, maxVolume) => {
-  if(err){
-    console.error(`Get max stream volume Fail: ${err}`);
+  if (err) {
+    console.error(`getMaxStreamVolume Fail: ${err}`);
+  } else {
+    console.info(`getMaxStreamVolume Success! ${maxVolume}`);
   }
-  console.info(`Get max stream volume Success! ${maxVolume}`);
 });
 ```
 ### getMaxStreamVolume<sup>10+</sup>
@@ -5591,10 +5594,11 @@ getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 audioRenderer.getUnderflowCount((err, underflowCount) => {
-  if(err){
-    console.error(`Get underflow count Fail: ${err}`);
+  if (err) {
+    console.error(`getUnderflowCount Fail: ${err}`);
+  } else {
+    console.info(`getUnderflowCount Success! ${underflowCount}`);
   }
-  console.info(`Get underflow count Success! ${underflowCount}`);
 });
 ```
 ### getUnderflowCount<sup>10+</sup>
@@ -5639,17 +5643,18 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 
 ```js
 audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
-  if(err){
-    console.error(`Get underflow count Fail: ${err}`);
+  if (err) {
+      console.error(`getCurrentOutputDevices Fail: ${err}`);
+  } else {
+      console.info(`DeviceInfo id: ${deviceInfo.id}`);
+      console.info(`DeviceInfo type: ${descriptor.deviceType}`);
+      console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
+      console.info(`DeviceInfo name: ${descriptor.name}`);
+      console.info(`DeviceInfo address: ${descriptor.address}`);
+      console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
+      console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
+      console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
   }
-  console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-  console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-  console.info(`DeviceInfo name: ${descriptor.name}`);
-  console.info(`DeviceInfo address: ${descriptor.address}`);
-  console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
 });
 ```
 ### getCurrentOutputDevices<sup>10+</sup>
@@ -5927,10 +5932,11 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 
 ```js
 audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
-  if(err){
+  if (err) {
       console.error(`Subscribes output device change event callback Fail: ${err}`);
+    } else {
+      console.info(`Subscribes output device change event callback Success!`);
     }
-    console.info(`Subscribes output device change event callback Success!`);
 });
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -5959,10 +5965,11 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 
 ```js
 audioRenderer.off('outputDeviceChange', (deviceChangeInfo) => {
-  if(err){
+  if (err) {
       console.error(`Unsubscribes output device change event callback Fail: ${err}`);
+    } else {
+      console.info(`Unsubscribes output device change event callback Success!`);
     }
-    console.info(`Unsubscribes output device change event callback Success!`);
 });
 ```
 
