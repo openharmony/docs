@@ -21,7 +21,8 @@ In the following example, two copies of the weather widget are added to the home
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true,"scheduledUpdateTime": "07:00",
+        "updateEnabled": true,
+        "scheduledUpdateTime": "07:00",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
@@ -95,7 +96,7 @@ In the following example, two copies of the weather widget are added to the home
   import formProvider from '@ohos.app.form.formProvider';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import dataStorage from '@ohos.data.storage'
+  import dataPreferences from '@ohos.data.preferences';
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want) {
@@ -103,10 +104,15 @@ In the following example, two copies of the weather widget are added to the home
       let isTempCard: boolean = want.parameters[formInfo.FormParam.TEMPORARY_KEY];
       if (isTempCard === false) {// If the widget is a normal one, the widget information is persisted.
         console.info('Not temp card, init db for:' + formId);
-        let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-        storeDB.putSync('A' + formId, 'false');
-        storeDB.putSync('B' + formId, 'false');
-        storeDB.flushSync();
+        let promise = dataPreferences.getPreferences(this.context, 'myStore');
+        promise.then(async (storeDB) => {
+          console.info("Succeeded to get preferences.");
+          await storeDB.put('A' + formId, 'false');
+          await storeDB.put('B' + formId, 'false');
+          await storeDB.flush();
+        }).catch((err) => {
+          console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+        })
       }
       let formData = {};
       return formBindingData.createFormBindingData(formData);
@@ -114,54 +120,71 @@ In the following example, two copies of the weather widget are added to the home
   
     onRemoveForm(formId) {
       console.info('onRemoveForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.deleteSync('A' + formId);
-      storeDB.deleteSync('B' + formId);
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB) => {
+        console.info("Succeeded to get preferences.");
+        await storeDB.delete('A' + formId);
+        await storeDB.delete('B' + formId);
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     // If the widget is a temporary one, it is recommended that the widget information be persisted when the widget is converted to a normal one.
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.putSync('A' + formId, 'false');
-      storeDB.putSync('B' + formId, 'false');
-      storeDB.flushSync();
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB) => {
+        console.info("Succeeded to get preferences.");
+        await storeDB.put('A' + formId, 'false');
+        await storeDB.put('B' + formId, 'false');
+        await storeDB.flush();
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     onUpdateForm(formId) {
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      let stateA = storeDB.getSync('A' + formId, 'false').toString()
-      let stateB = storeDB.getSync('B' + formId, 'false').toString()
-      // Update textA in state A.
-      if (stateA === 'true') {
-        let formInfo = formBindingData.createFormBindingData({
-          'textA': 'AAA'
-        })
-        formProvider.updateForm(formId, formInfo)
-      }
-      // Update textB in state B.
-      if (stateB === 'true') {
-        let formInfo = formBindingData.createFormBindingData({
-          'textB': 'BBB'
-        })
-        formProvider.updateForm(formId, formInfo)
-      }
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB) => {
+        console.info("Succeeded to get preferences.");
+        let stateA = await storeDB.get('A' + formId, 'false');
+        let stateB = await storeDB.get('B' + formId, 'false');
+        // Update textA in state A.
+        if (stateA === 'true') {
+          let formInfo = formBindingData.createFormBindingData({'textA': 'AAA'});
+          await formProvider.updateForm(formId, formInfo);
+        }
+        // Update textB in state B.
+        if (stateB === 'true') {
+          let formInfo = formBindingData.createFormBindingData({'textB': 'BBB'});
+          await formProvider.updateForm(formId, formInfo);
+        }
+        console.info(`Update form success stateA:${stateA} stateB:${stateB}.`);
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   
     onFormEvent(formId, message) {
       // Store the widget state.
       console.info('onFormEvent formId:' + formId + 'msg:' + message);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      let msg = JSON.parse(message)
-      if (msg.selectA != undefined) {
-        console.info('onFormEvent selectA info:' + msg.selectA);
-        storeDB.putSync('A' + formId, msg.selectA);
-      }
-      if (msg.selectB != undefined) {
-        console.info('onFormEvent selectB info:' + msg.selectB);
-        storeDB.putSync('B' + formId, msg.selectB);
-      }
-      storeDB.flushSync();
+      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB) => {
+        console.info("Succeeded to get preferences.");
+        let msg = JSON.parse(message);
+        if (msg.selectA != undefined) {
+          console.info('onFormEvent selectA info:' + msg.selectA);
+          await storeDB.put('A' + formId, msg.selectA);
+        }
+        if (msg.selectB != undefined) {
+          console.info('onFormEvent selectB info:' + msg.selectB);
+          await storeDB.put('B' + formId, msg.selectB);
+        }
+        await storeDB.flush();
+      }).catch((err) => {
+        console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
+      })
     }
   };
   ```

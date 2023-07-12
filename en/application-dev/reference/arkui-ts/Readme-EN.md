@@ -40,7 +40,6 @@
     - [restoreId](ts-universal-attributes-restoreId.md)
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
     - Touch Interactions
-      - [Click Control](ts-universal-attributes-click.md)
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
     - Transition
@@ -177,3 +176,5 @@
 - [Types](ts-types.md)
 - Components No Longer Maintained
   - [GridContainer](ts-container-gridcontainer.md)
+- APIs No Longer Maintained
+  - [Click Control](ts-universal-attributes-click.md)
