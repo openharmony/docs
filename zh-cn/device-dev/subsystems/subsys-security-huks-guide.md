@@ -1347,99 +1347,106 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
 2. 使用generateKey接口生成密钥。
 
    ```js
-   var alias = 'testAlias';
-   var properties = new Array();
-   properties[0] = {
-     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HuksKeyAlg.HUKS_ALG_ECC
-   };
-   properties[1] = {
-     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-     value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_224
-   };
-   properties[2] = {
-     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-   };
-   properties[3] = {
-     tag: huks.HuksTag.HUKS_TAG_DIGEST,
-     value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-   };
-   var options = {
-     properties: properties
-   }
-   var resultA = huks.generateKey(alias, options);
-   ```
-
-3. 使用Init接口进行init操作。
-
-   ```js
-   var alias = 'test001'
-   var properties = new Array();
-   properties[0] = {
-     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HuksKeyAlg.HUKS_ALG_DH
-   };
-   properties[1] = {
-     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-   };
-   properties[2] = {
-     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
-   };
-   var options = {
-     properties: properties
-   };
-   huks.init(alias, options, function(err, data) {
-       if (err.code !== 0) {
-           console.log("test init err information: " + JSON.stringify(err));
-       } else {
-           console.log(`test init data: ${JSON.stringify(data)}`);
-       }
-   })
-   ```
    
-4. 使用Update接口进行update操作。
+    let aesKeyAlias = 'test_aesKeyAlias';
+    let handle;
+    let IV = '001122334455';
+    let cipherData:Uint8Array;
+    let plainData:Uint8Array;
 
-   ```js
-   var properties = new Array();
-   properties[0] = {
-     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HuksKeyAlg.HUKS_ALG_DH
-   };
-   properties[1] = {
-     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-   };
-   properties[2] = {
-     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
-   };
-   var options = {
-     properties: properties
-   };
-   var result = huks.update(handle, options)
+    
+    function GetAesGenerateProperties() {
+      var properties = new Array();
+      var index = 0;
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+      };
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+      };
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+               huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+      }
+      return properties;
+    }
+
+    
+    async function GenerateAesKey() {
+      var genProperties = GetAesGenerateProperties();
+      var options = {
+        properties: genProperties
+      }
+      await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
+        console.log("generateKeyItem success");
+      }).catch((err)=>{
+        console.log("generateKeyItem failed");
+      })
+    }
    ```
-   
-5. 使用Finish接口进行finish操作。
+
+3. 使用huks.initSession，huks.finishSession进行加密。
 
    ```js
-   var properties = new Array();
-   properties[0] = {
-     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HuksKeyAlg.HUKS_ALG_DH
-   };
-   properties[1] = {
-     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-   };
-   properties[2] = {
-     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
-   };
-   var options = {
-     properties: properties
-   };
-   var result = huks.finish(handle, options) 
+    let plainText = '123456';
+
+    function StringToUint8Array(str) {
+      let arr = [];
+      for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+      }
+      return new Uint8Array(arr);
+    }
+
+    function GetAesEncryptProperties() {
+      var properties = new Array();
+      var index = 0;
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+      };
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+      };
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+      }
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+      }
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_CBC
+      }
+      properties[index++] = {
+        tag: huks.HuksTag.HUKS_TAG_IV,
+        value: StringToUint8Array(IV)
+      }
+      return properties;
+    }
+    
+    async function EncryptData() {
+        var encryptProperties = GetAesEncryptProperties();
+        var options = {
+            properties:encryptProperties,
+            inData: StringToUint8Array(plainText)
+        }
+        await huks.initSession(aesKeyAlias, options).then((data) => {
+          handle = data.handle;
+        }).catch((err)=>{
+            console.log("initSession failed");
+        })
+        await huks.finishSession(handle, options).then((data) => {
+          console.log("finishSession success");
+          cipherData = data.outData
+        }).catch((err)=>{
+          console.log("finishSession failed");
+        })
+    }
    ```
