@@ -215,73 +215,73 @@ struct GridExample {
 
 3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，在[onDrag](#事件)回调中完成交换数组位置逻辑。
 
-    ```ts
-    @Entry
-    @Component
-    struct GridExample {
-      @State numbers: String[] = []
-      scroller: Scroller = new Scroller()
-      @State text: string = 'drag'
-    
-      @Builder pixelMapBuilder() { //拖拽过程样式
-        Column() {
-          Text(this.text)
-            .fontSize(16)
-            .backgroundColor(0xF9CF93)
-            .width(80)
-            .height(80)
-            .textAlign(TextAlign.Center)
-        }
-      }
-    
-      aboutToAppear() {
-        for (let i = 1;i <= 15; i++) {
-          this.numbers.push(i + '')
-        }
-      }
-    
-      changeIndex(index1: number, index2: number) { //交换数组位置
-        [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
-      }
-    
-      build() {
-        Column({ space: 5 }) {
-          Grid(this.scroller) {
-            ForEach(this.numbers, (day: string) => {
-              GridItem() {
-                Text(day)
-                  .fontSize(16)
-                  .backgroundColor(0xF9CF93)
-                  .width(80)
-                  .height(80)
-                  .textAlign(TextAlign.Center)
-                  .onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Up) {
-                      this.text = day
-                    }
-                  })
-              }
-            })
-          }
-          .columnsTemplate('1fr 1fr 1fr')
-          .columnsGap(10)
-          .rowsGap(10)
-          .onScrollIndex((first: number) => {
-            console.info(first.toString())
-          })
-          .width('90%')
-          .backgroundColor(0xFAEEE0)
-          .height(300)
-          .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
-          .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
-            return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
-          })
-          .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
-            console.info('beixiang' + itemIndex + '', insertIndex + '') //itemIndex拖拽起始位置，insertIndex拖拽插入位置
-            this.changeIndex(itemIndex, insertIndex)
-          })
-        }.width('100%').margin({ top: 5 })
-      }
+```ts
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = []
+  scroller: Scroller = new Scroller()
+  @State text: string = 'drag'
+
+  @Builder pixelMapBuilder() { //拖拽过程样式
+    Column() {
+      Text(this.text)
+        .fontSize(16)
+        .backgroundColor(0xF9CF93)
+        .width(80)
+        .height(80)
+        .textAlign(TextAlign.Center)
     }
-    ```
+  }
+
+  aboutToAppear() {
+    for (let i = 1;i <= 15; i++) {
+      this.numbers.push(i + '')
+    }
+  }
+
+  changeIndex(index1: number, index2: number) { //交换数组位置
+    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        ForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width(80)
+              .height(80)
+              .textAlign(TextAlign.Center)
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Up) {
+                  this.text = day
+                }
+              })
+          }
+        })
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .onScrollIndex((first: number) => {
+        console.info(first.toString())
+      })
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+      .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
+      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
+        return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
+      })
+      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
+        console.info('beixiang' + itemIndex + '', insertIndex + '') //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        this.changeIndex(itemIndex, insertIndex)
+      })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
