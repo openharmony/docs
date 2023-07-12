@@ -78,4 +78,4 @@
 
 针对传感器开发，有以下相关实例可供参考：
 
-- [`Sensor`：传感器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Sensor)
+- [`Sensor`：传感器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/DeviceManagement/Sensor)

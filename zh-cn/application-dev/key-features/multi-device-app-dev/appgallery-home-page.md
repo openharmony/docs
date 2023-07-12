@@ -272,5 +272,5 @@ export default struct Home {
 
 针对应用市场首页开发，有以下相关实例可供参考：
 
-应用市场首页：[应用市场首页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
+应用市场首页：[应用市场首页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/SuperFeature/MultiDeviceAppDev/AppMarket)
 <!--no_check-->

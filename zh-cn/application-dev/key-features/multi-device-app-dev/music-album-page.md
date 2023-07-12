@@ -247,5 +247,5 @@ struct Index {
 
 针对音乐专辑页应用开发，有以下相关实例可供参考：
 
-音乐专辑页：[音乐专辑页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
+音乐专辑页：[音乐专辑页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
 

@@ -46,8 +46,8 @@ FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](h
 
 针对FA模型下的Ability开发，有以下相关实例可供参考：
 
-- [`ArkTSDistributedCalc`：分布式计算器（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
-- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+- [`ArkTSDistributedCalc`：分布式计算器（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/Solutions/Game/DistributedDataGobang)
 - [分布式调度启动远程FA（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
 - [分布式新闻客户端（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（ArkTS）（Full SDK）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)

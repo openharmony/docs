@@ -335,5 +335,5 @@ reqPermissions() {
 
 针对访问控制，有以下相关实例可供参考：
 
-- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
+- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/SystemFeature/Security/AbilityAccessCtrl)
 - [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
