@@ -58,9 +58,9 @@ Obtains the default active data network. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If the default activated data network is obtained successfully, err is undefined and data is the default activated data network. Otherwise, err is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If the default activated data network is obtained successfully, **error** is **undefined** and **data** is the default activated data network. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -156,9 +156,9 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **err** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **err** is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -227,10 +227,10 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | Yes  | Global HTTP proxy configuration of the network.|
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name   | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| httpProxy | [HttpProxy](#httpproxy) | Yes  | Global HTTP proxy configuration of the network.                                    |
+| callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -310,6 +310,71 @@ connection.setGlobalHttpProxy(httpProxy).then(() => {
 })
 ```
 
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
+
+Obtains the default HTTP proxy configuration of the network.
+If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**Example**
+
+```js
+connection.getDefaultHttpProxy((error, data) => {
+  console.info(JSON.stringify(error));
+  console.info(JSON.stringify(data));
+})
+```
+
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(): Promise\<HttpProxy>;
+
+Obtains the default proxy configuration of the network.
+If the global proxy is set, the global proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                            | Description                                     |
+| -------------------------------- | ----------------------------------------- |
+| Promise<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**Example**
+
+```js
+connection.getDefaultHttpProxy().then((data) => {
+  console.info(JSON.stringify(data));
+}).catch(error => {
+  console.info(JSON.stringify(error));
+})
+```
+
 ## connection.getAppNet<sup>9+</sup>
 
 getAppNet(callback: AsyncCallback\<NetHandle>): void
@@ -320,9 +385,9 @@ Obtains information about the network bound to an application. This API uses an 
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If information about the network bound to the application is successfully obtained, **err** is **undefined** and **data** is the obtained network information. Otherwise, **err** is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If information about the network bound to the application is successfully obtained, **error** is **undefined** and **data** is the obtained network information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -385,10 +450,10 @@ Binds an application to the specified network, so that the application can acces
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application is successfully bound to the specified network, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name   | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the application is successfully bound to the specified network, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -469,7 +534,7 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result. If the list of all connected networks is obtained successfully, **err** is **undefined** and **data** is the list of activated data networks. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result. If the list of all connected networks is obtained successfully, **error** is **undefined** and **data** is the list of activated data networks. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -534,10 +599,10 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | Yes  | Callback used to return the result. If the connection properties of the network corresponding to the **netHandle** is obtained successfully, **err** is **undefined** and **data** is the obtained network connection information. Otherwise, **err** is an error object.|
+| Name   | Type                                                        | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | Yes  | Callback used to return the result. If the connection properties of the network corresponding to the **netHandle** is obtained successfully, **error** is **undefined** and **data** is the obtained network connection information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -614,10 +679,10 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Parameters**
 
-| Name   | Type                                               | Mandatory| Description            |
-| --------- | --------------------------------------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                             | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | Yes  | Callback used to return the result. If the capability information of the network corresponding to the **netHandle** is obtained successfully, **err** is **undefined** and **data** is the obtained network capability information. Otherwise, **err** is an error object.      |
+| Name   | Type                                               | Mandatory| Description                                                        |
+| --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                             | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | Yes  | Callback used to return the result. If the capability information of the network corresponding to the **netHandle** is obtained successfully, **error** is **undefined** and **data** is the obtained network capability information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -904,7 +969,7 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 
 | Name  | Type                                             | Mandatory| Description              |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the airplane mode is disabled successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the airplane mode is disabled successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -975,7 +1040,7 @@ Reports connection of the data network to the network management module. This AP
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1053,7 +1118,7 @@ Reports disconnection of the data network to the network management module. This
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1128,10 +1193,10 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description              |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **err** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **err** is an error object.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1215,9 +1280,9 @@ Registers a listener for network status changes.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is registered successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is registered successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1248,9 +1313,9 @@ Unregisters the listener for network status changes.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is unregistered successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is unregistered successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1532,7 +1597,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 | Name     | Type                    | Mandatory| Description                           |
 | ----------- | ------------------------ | ---- | -------------------------------|
 | socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes| **TCPSocket** or **UDPSocket** object.|
-| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the **TCPSocket** or **UDPSocket** object is successfully bound to the current network, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the **TCPSocket** or **UDPSocket** object is successfully bound to the current network, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1684,10 +1749,10 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description              |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **err** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **err** is an error object.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1766,10 +1831,10 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description              |
-| -------- | ----------------------------------------- | ---- | ------------------ |
-| host     | string                                    | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the first IP address is obtained successfully, **err** is **undefined**, and **data** is the first obtained IP address. Otherwise, **err** is an error object.        |
+| Name  | Type                                     | Mandatory| Description                                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                    | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the first IP address is obtained successfully, **error** is **undefined**, and **data** is the first obtained IP address. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1864,7 +1929,7 @@ Enumerates network types.
 
 ## HttpProxy<sup>10+</sup>
 
-Defines the global HTTP proxy configuration of the network.
+Represents the HTTP proxy configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1872,7 +1937,7 @@ Defines the global HTTP proxy configuration of the network.
 | ------ | ------ | --- |------------------------- |
 | host  | string | No |  Host name of the proxy server.|
 | port  | number | No |  Host port.|
-| exclusionList  | Array<string> | No |  Exclusion list of hosts that do not use the proxy server. The length of the combined elements in the list cannot exceed 96 bytes.<br>For example, the length of **baidu.com,zhihu.com** is 20 bytes.|
+| exclusionList  | Array<string> | No | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.|
 
 ## NetSpecifier<sup>8+</sup>
 
