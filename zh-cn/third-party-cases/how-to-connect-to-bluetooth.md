@@ -12,6 +12,9 @@
 | ![](figures/bluetooth_list.png) | ![](figures/bluetooth_dialog.png) | ![](figures/bluetooth_delete.png) |
 
 ## 运行环境
+
+本例基于以下环境开发，开发者也可以基于其他适配的版本进行开发。
+
 - IDE：DevEco Studio 3.1.1 Release
 - SDK：Ohos_sdk_full 4.0.8.5(API Version 10 Beta1)
 
@@ -87,6 +90,7 @@
           }
         ]
     ```
+   
 2. 构建UI框架，整体的UI框架分为TitleBar（页面名称），PinDialog（配对蓝牙弹框），index（主页面）三个部分。
 
     ```ts
@@ -315,6 +319,7 @@
       }
     }
     ```
+    
 3. 蓝牙开关打开关闭操作，需要打开蓝牙开关才能进行后续操作：
     ```ts
     initBluetooth() {
@@ -341,6 +346,7 @@
         bluetooth.enableBluetooth()
       }
     ```
+
 4. 设置蓝牙扫描模式并开启扫描去发现设备，并订阅蓝牙设备发现上报时间获取设备列表
     ```ts
      foundDevices() {
@@ -402,5 +408,6 @@
 
 ## 参考
 - [权限申请指导](../application-dev/security/accesstoken-guidelines.md)
+- [@ohos.bluetooth](../application-dev/reference/apis/js-apis-bluetooth.md)
 
 ​	
