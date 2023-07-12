@@ -328,9 +328,3 @@ reqPermissions() {
   }
 ]
 ```
-
-## 相关实例
-
-针对访问控制，有以下相关实例可供参考：
-
-- [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
