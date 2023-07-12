@@ -25,7 +25,11 @@ RichEditor(value: RichEditorOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+支持[通用属性](ts-universal-attributes-size.md)。
+
+## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -35,10 +39,6 @@ RichEditor(value: RichEditorOptions)
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。 |
-
-## 事件
-
-支持[通用事件](ts-universal-events-click.md)。
 
 ## RichEditorInsertValue
 
