@@ -13,7 +13,7 @@
 | ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** release(): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt; | ohos.permission.ACCESS_SERVICE_DM     |
-| @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(isRefresh: boolean): Array<DeviceInfo>; | ohos.permission.ACCESS_SERVICE_DM     |
+| @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;; | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt; | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getLocalDeviceInfoSync(): DeviceInfo | ohos.permission.ACCESS_SERVICE_DM     |
@@ -67,10 +67,10 @@
 
 | 接口、枚举或变量名 | 类型 | 是否为SystemApi |
 | -------- | -------- | ------- |
-| createDeviceManager(bundleName: string, callback: AsyncCallback<DeviceManager>): void;                 | interface | 是 |
+| createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;                 | interface | 是 |
 | release(): void                                                                                        | interface | 是 |
 | getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;                                                    | interface | 是 |
-| getTrustedDeviceListSync(isRefresh: boolean): Array<DeviceInfo>;                                       | interface | 是 |
+| getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;                                       | interface | 是 |
 | getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void                      | interface | 是 |
 | getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;                                         | interface | 是 |
 | getLocalDeviceInfoSync(): DeviceInfo                                                                   | interface | 是 |
