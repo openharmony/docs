@@ -33,6 +33,25 @@ getFont(): Font
 ```ts
 uiContext.getFont();
 ```
+### getComponentUtils
+
+getComponentUtils(): ComponentUtils
+
+获取ComponentUtils对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型  | 说明          |
+| ----- | ----------------- |
+| [ComponentUtils](#componentutils) | 返回ComponentUtils实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getComponentUtils();
+```
 
 ### getUIInspector
 
@@ -508,6 +527,38 @@ font.registerFont({
   familyName: 'medium',
   familySrc: '/font/medium.ttf'
 });
+```
+## ComponentUtils
+
+以下API需先使用UIContext中的[getComponentUtils()](#getcomponentutils)方法获取到ComponentUtils对象，再通过该对象调用对应方法。
+
+### getRectangleById
+
+getRectangleById(key: string): ComponentInfo
+
+获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| key    | string | 是   | 组件唯一标识id。 |
+
+**返回值：**
+
+| 类型                                                     | 说明                                             |
+| -------------------------------------------------------- | ------------------------------------------------ |
+| [ComponentInfo](js-apis-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
+
+**示例：**
+
+```ts
+let componentUtils = uiContext.getComponentUtils();
+let modePosition = componentUtils.getRectangleById("onClick");
+let localOffsetWidth = modePosition.size.width;
+let localOffsetHeight = modePosition.size.height;
 ```
 
 ## UIInspector
