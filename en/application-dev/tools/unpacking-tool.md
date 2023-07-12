@@ -1,7 +1,7 @@
 # Unpacking Tool
 
 
-The unpacking tool is a commissioning tool used to unpack HAP (an application package), HAR (static shared library), HSP (dynamic shared library), and APP (application set to launch to the application market) files. It also provides Java APIs to parse the HAP, APP, and HSP files.
+The unpacking tool is a commissioning tool used to unpack HAP (an application package), HAR (statically shared library), HSP (dynamically shared library), and APP (application set to launch to the application market) files. It also provides Java APIs to parse the HAP, APP, and HSP files.
 
 
 The **app_unpacking_tool.jar** package can be found in the OpenHarmony SDK downloaded locally.
