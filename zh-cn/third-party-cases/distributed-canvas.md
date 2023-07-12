@@ -1,20 +1,20 @@
-# 分布式文件场景
+# 分布式画布流转场景
 
 ## 场景说明
 
-两台设备组网，实现修改文件时两个设备同时修改的分布式文件场景有助于加快工作效率，减少工作中的冗余，本例将为大家介绍如何实现上述功能。
+两台设备组网，实现修改文件时两个设备同时绘制的分布式画布场景有助于加快工作效率，减少工作中的冗余，本例将为大家介绍如何实现上述功能。
 
 ## 效果呈现
 
 本例效果如下：
 
-| 设置分布式权限                         | 进行分布式连接                           | 连接后状态显示                          |
-| -------------------------------------- | ---------------------------------------- | --------------------------------------- |
-| ![](figures/disributed_permission.png) | ![](figures/disributed_note_connect.png) | ![](figures/disributed_note-before.png) |
+| 设置分布式权限                         | 进行分布式连接                             | 连接后状态显示                            |
+| -------------------------------------- | ------------------------------------------ | ----------------------------------------- |
+| ![](figures/disributed_permission.png) | ![](figures/disributed_canvas_connect.png) | ![](figures/disributed_canvas-before.png) |
 
-| 点击添加进入编辑界面                  | 保存后本机显示                         | 另外一台机器分布式应用显示             |
-| ------------------------------------- | -------------------------------------- | -------------------------------------- |
-| ![](figures/disributed_note-edit.png) | ![](figures/disributed_note-after.png) | ![](figures/disributed_note-after.png) |
+| 点击rect和ellipse按钮后后本机显示        | 另外一台机器分布式应用显示               |
+| ---------------------------------------- | ---------------------------------------- |
+| ![](figures/disributed_canvas-after.png) | ![](figures/disributed_canvas-after.png) |
 
 ## 运行环境
 
@@ -42,7 +42,7 @@
 
 1.申请所需权限
 
-   在model.json5中添加以下配置：
+​	在model.json5中添加以下配置：
 
 ```json
 "requestPermissions": [
@@ -57,10 +57,9 @@
 
 2.构建UI框架
 
-indexNote页面：
+indexCanvas页面：
 
 ```typescript
-
 build() {
     Column() {
       TitleBar({ rightBtn: $r('app.media.trans'), onRightBtnClicked: this.showDialog })
@@ -68,197 +67,157 @@ build() {
       Row() {
         Text($r('app.string.state'))
           .fontSize(30)
-        Image(this.isOnline ? $r('app.media.green') : $r('app.media.red'))//两台设备组网成功后状态显示为绿色、否则为红色
+        Image(this.isOnline ? $r('app.media.green') : $r('app.media.red'))
           .size({ width: 30, height: 30 })
           .objectFit(ImageFit.Contain)
       }
       .width('100%')
       .padding(16)
-		//通过数据懒加载的方式从数据源中每次迭代一个文件进行展示，可用列表被放置在滚动容器中，被划出可视区域外的资源会被回收
-      List({ space: 10 }) {
-        LazyForEach(this.noteDataSource, (item: Note, index) => {
-          ListItem() {
-            NoteItem({ note: item, index: index })//NoteItem引入自common/NoteItem.ets,负责主页文件信息的呈现
-              .id(`${item.title}`)
-          }
-        }, item => JSON.stringify(item))
-      }
-      .width('95%')
-      .margin(10)
-      .layoutWeight(1)
-
-      Row() {
-        Column() {
-          Image($r('app.media.clear'))//清除按钮
-            .size({ width: 40, height: 40 })
-          Text($r('app.string.clear'))
-            .fontColor(Color.Red)
-            .fontSize(20)
-        }.layoutWeight(1)
-        .id('clearNote')
-        .onClick(() => {
-            //点击清除按钮清除所有文件
-          Logger.info(TAG, 'clear notes')
-          this.noteDataSource['dataArray'] = []
-          this.noteDataSource.notifyDataReload()
-          this.globalObject.clear()
-          AppStorage.SetOrCreate('sessionId', this.sessionId)
-        })
-
-        Column() {
-          Image($r('app.media.add'))//添加按钮
-            .size({ width: 40, height: 40 })
-          Text($r('app.string.add'))
-            .fontColor(Color.Black)
-            .fontSize(20)
-        }.layoutWeight(1)
-        .id('addNote')
-        .onClick(() => {
-            //点击添加按钮跳转到编辑页面
-          router.push({
-            url: 'pages/Edit',
-            params: {
-              note: new Note('', '', -1),
-              isAdd: true
+	  //通过懒加载模式遍历绘制的图形，将每个图形绘制在画布上
+      LazyForEach(this.canvasDataSource, (item: CanvasPath, index) => {
+        Canvas(this.context)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#00ffff')
+          .onReady(() => {
+            if (item.path === 'rect') {
+              this.context.save();
+              this.path2Df.rect(80, 80, 100, 100);
+              this.context.stroke(this.path2Df);
+              this.context.restore();
+            }
+            if (item.path === 'ellipse') {
+              this.context.restore();
+              this.path2De.ellipse(100, 100, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI);
+              this.context.stroke(this.path2De);
+              this.context.save();
             }
           })
-        })
-      }
+      }, item => JSON.stringify(item))
+
+      Row() {
+        Button('ellipse')//绘制ellipse图形的按钮
+          .width(130)
+          .height(45)
+          .key('ellipse')
+          .onClick(() => {
+            if (this.globalObject.isContainString('ellipse') === -1) {
+              this.globalObject.add('ellipse');  //将绘制信息保存在持久全局数据中
+            }
+            this.onPageShow();
+          })
+        Button('rect')//绘制rect图形的按钮
+          .width(130)
+          .height(45)
+          .key('rect')
+          .onClick(() => {
+            if (this.globalObject.isContainString('rect') === -1) {
+              this.globalObject.add('rect');
+            }
+            this.onPageShow();
+          })
+      }.margin({ top: 10 })
       .width('100%')
-      .padding(10)
-      .backgroundColor('#F0F0F0')
+      .justifyContent(FlexAlign.SpaceAround)
+
+      Row() {
+        Button('back')
+          .width(130)
+          .height(45)
+          .key('back')
+          .backgroundColor(Color.Orange)
+          .onClick(() => {
+            router.back()
+          })
+        Button('delete')//删除图形
+          .width(130)
+          .height(45)
+          .key('delete')
+          .onClick(() => {
+            this.globalObject.clear();
+            this.canvasDataSource['pathArray'] = [];
+            this.canvasDataSource.notifyDataReload();
+            this.context.clearRect(0, 0, 950, 950)
+          })
+      }.margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F5F5')
-  }
-}
-....................................
-//common/NoteItem.ets
-import router from '@ohos.router'
-import { MARKS } from '../model/Const'
-import Note from '../model/Note'
-
-@Component
-export default struct NoteItem {
-  @State note: Note | undefined = undefined
-  private index: number = 0
-
-  build() {
-    Row() {
-      Image(this.note.mark >= 0 ? MARKS[this.note.mark] : $r('app.media.note'))//文件标志图片
-        .size({ width: 30, height: 30 })
-        .objectFit(ImageFit.Contain)
-      Column() {
-        Text(this.note.title)//文件标题
-          .fontColor(Color.Black)
-          .fontSize(30)
-          .maxLines(1)
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text(this.note.content)//文件内容
-          .fontColor(Color.Gray)
-          .margin({ top: 10 })
-          .fontSize(25)
-          .maxLines(1)//在列表中最多展示一行
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-      }
-      .alignItems(HorizontalAlign.Start)
-      .margin({ left: 20 })
-    }
-    .padding(16)
-    .width('100%')
-    .borderRadius(16)
-    .backgroundColor(Color.White)
-    .onClick(() => {
-        //点击文件进入此文件编辑页面
-      router.push({
-        url: 'pages/Edit',
-        params: {
-          index: this.index,
-          note: this.note,
-          isAdd: false
-        }
-      })
-    })
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
 
-Edit页面：
+2.数据model
 
-```typescript
-build() {
-    Column() {
-      TitleBar({ title: this.note.title === '' ? $r('app.string.add_note') : this.note.title })
-      Column() {
-        Row() {
-          Image(this.note.mark >= 0 ? MARKS[this.note.mark] : $r('app.media.mark'))
-            .width(30)
-            .aspectRatio(1)
-            .margin({ left: 16, top: 16 })
-            .objectFit(ImageFit.Contain)
-            .alignSelf(ItemAlign.Start)
-          Select([{ value: '   ', icon: MARKS[0] },
-                  { value: '   ', icon: MARKS[1] },
-                  { value: '   ', icon: MARKS[2] },
-                  { value: '   ', icon: MARKS[3] },
-                  { value: '   ', icon: MARKS[4] }])
-            .selected(this.note.mark)
-            .margin({ top: 5 })
-            .onSelect((index: number) => {
-              this.note.mark = index
-            })
-        }
-        .width('100%')
+```
+//BasicDataSource.ets
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
 
-        TextInput({ placeholder: 'input the title', text: this.note.title })//文件标题输入框
-          .id('titleInput')
-          .placeholderColor(Color.Gray)
-          .fontSize(30)
-          .margin({ left: 15, right: 15, top: 15 })
-          .height(60)
-          .backgroundColor(Color.White)
-          .onChange((value: string) => {
-            this.note.title = value
-          })
-        TextArea({ placeholder: 'input the content', text: this.note.content })//文件内容输入区域
-          .id('contentInput')
-          .placeholderColor(Color.Gray)
-          .backgroundColor(Color.White)
-          .fontSize(30)
-          .height('35%')
-          .margin({ left: 16, right: 16, top: 16 })
-          .textAlign(TextAlign.Start)
-          .onChange((value: string) => {
-            this.note.content = value
-          })
+  public totalCount(): number {
+    return 0
+  }
 
-        Button() {
-            //保存按钮
-          Text($r('app.string.save'))
-            .fontColor(Color.White)
-            .fontSize(17)
-        }
-        .id('saveNote')
-        .backgroundColor('#0D9FFB')
-        .height(50)
-        .width(200)
-        .margin({ top: 20 })
-        .onClick(() => {
-            //点击按钮时调用model/DistributedObjectModel.ts定义的类globalObject中的方法
-          if (!this.isAdd) {
-            let index = router.getParams()['index']
-            this.globalObject.update(index, this.note.title, this.note.content, this.note.mark)//编辑时更新内容
-          } else {
-            this.globalObject.add(this.note.title, this.note.content, this.note.mark)//新建时添加内容
-          }
-          router.back()//返回主页
-        })
-      }
+  public getData(index: number): any {
+    return undefined
+  }
+
+  //注册数据变动的监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener')
+      this.listeners.push(listener)
     }
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#F5F5F5')
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener')
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+//数据reloaded，分布式数据数值变化需要调用这个接口重载下
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+ ....
+
+export class CanvasDataSource extends BasicDataSource {
+  //监听的数据类型
+  private pathArray: Canvas[] = []
+
+  //重载接口
+  public totalCount(): number {
+    return this.pathArray.length
+  }
+
+  public getData(index: number): any {
+    return this.pathArray[index]
+  }
+
+  public addData(index: number, data: Canvas): void {
+    this.pathArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(data: Canvas): void {
+    this.pathArray.push(data)
+    this.notifyDataAdd(this.pathArray.length - 1)
   }
 }
 ```
@@ -436,6 +395,8 @@ share() {
 
 ## 参考
 
-[权限列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
+[权限列表](../application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
+
+[Path2D对象](../application-dev/reference/arkui-ts/ts-components-canvas-path2d.md)
 
 [分布式数据对象](../application-dev/reference/apis/js-apis-data-distributedobject.md)
