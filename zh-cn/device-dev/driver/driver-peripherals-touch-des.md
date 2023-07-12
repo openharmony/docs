@@ -136,7 +136,7 @@ Input HDF驱动提供给系统服务Input Service调用的HDI驱动能力接口�
 
 1. 设备描述配置
 
-   如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs。具体原理可参考[HDF驱动开发流程](driver-hdf-manage.md.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+   如下配置主要包含Input驱动模型各模块层级信息，配置文件路径为vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs。具体原理可参考[HDF驱动开发流程](driver-hdf-manage.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
    ```c
    input :: host {
