@@ -97,7 +97,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 | ---------------------- | ------------------------- | ---- | -------- |
 | deviceId               | string                    | 是    | 设备的唯一标识。 实际值是udid-hash与基于sha256的appid混淆。|
 | deviceName             | string                    | 是    | 设备名称。    |
-| deviceType             | number                    | 是    | 设备类型。目前仅支持以下设备类型：<br />-12: 智能PC。<br />-14: 智能手机。<br />-17: 智能PAD。    |
+| deviceType             | number                    | 是    | 设备类型。    |
 | networkId              | string                    | 否    | 设备网络标识。  |
 
 ## DeviceStateChange
