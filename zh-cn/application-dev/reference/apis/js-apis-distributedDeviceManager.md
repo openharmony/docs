@@ -27,7 +27,7 @@ import deviceManager from '@ohos.distributedDeviceManager';
 
 createDeviceManager(bundleName: string): DeviceManager;
 
-创建一个设备管理器实例。
+创建一个设备管理实例。设备管理实例是分布式设备管理方法的调用入口。用于获取可信设备和本地设备的相关信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
