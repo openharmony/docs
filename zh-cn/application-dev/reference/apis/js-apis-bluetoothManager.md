@@ -5108,13 +5108,13 @@ try {
 
 | 名称                                   | 值    | 说明              |
 | ------------------------------------| ------ | --------------- |
-| PROFILE_UUID_HFP_AG <sup>10+</sup> | 0000111F-0000-1000-8000-00805F9B34FB | 代表HFPAG Profile的UUID。<br/>此接口为系统接口。 |
-| PROFILE_UUID_HFP_HF <sup>10+</sup>  | 0000111E-0000-1000-8000-00805F9B34FB | 代表HFPHF Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_HSP_AG <sup>10+</sup>  | 00001112-0000-1000-8000-00805F9B34FB | 代表HSPAG Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_HSP_HS <sup>10+</sup>  | 00001108-0000-1000-8000-00805F9B34FB | 代表HSPHS Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_A2DP_SRC <sup>10+</sup>   | 0000110A-0000-1000-8000-00805F9B34FB | 代表A2DPSRC Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_A2DP_SINK <sup>10+</sup>    | 0000110B-0000-1000-8000-00805F9B34FB | 代表A2DPSINK Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_AVRCP_CT <sup>10+</sup>    | 0000110E-0000-1000-8000-00805F9B34FB | 代表AVRCPCT Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_AVRCP_TG <sup>10+</sup>    | 0000110C-0000-1000-8000-00805F9B34FB | 代表AVRCPTG Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_HID  <sup>10+</sup>    | 00001124-0000-1000-8000-00805F9B34FB | 代表HID Profile的UUID。<br/>此接口为系统接口。  |
-| PROFILE_UUID_HOGP  <sup>10+</sup>    | 00001812-0000-1000-8000-00805F9B34FB | 代表HOGP Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HFP_AG <sup>10+</sup> | '0000111F-0000-1000-8000-00805F9B34FB' | 代表HFPAG Profile的UUID。<br/>此接口为系统接口。 |
+| PROFILE_UUID_HFP_HF <sup>10+</sup>  | '0000111E-0000-1000-8000-00805F9B34FB' | 代表HFPHF Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HSP_AG <sup>10+</sup>  | '00001112-0000-1000-8000-00805F9B34FB' | 代表HSPAG Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HSP_HS <sup>10+</sup>  | '00001108-0000-1000-8000-00805F9B34FB' | 代表HSPHS Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_A2DP_SRC <sup>10+</sup>   | '0000110A-0000-1000-8000-00805F9B34FB' | 代表A2DPSRC Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_A2DP_SINK <sup>10+</sup>    | '0000110B-0000-1000-8000-00805F9B34FB' | 代表A2DPSINK Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_AVRCP_CT <sup>10+</sup>    | '0000110E-0000-1000-8000-00805F9B34FB' | 代表AVRCPCT Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_AVRCP_TG <sup>10+</sup>    | '0000110C-0000-1000-8000-00805F9B34FB' | 代表AVRCPTG Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HID  <sup>10+</sup>    | '00001124-0000-1000-8000-00805F9B34FB' | 代表HID Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HOGP  <sup>10+</sup>    | '00001812-0000-1000-8000-00805F9B34FB' | 代表HOGP Profile的UUID。<br/>此接口为系统接口。  |
