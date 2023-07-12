@@ -326,6 +326,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 **错误码**：
 
 | 错误码ID | 错误信息 |
+| ------- | -------- |
 | 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -367,6 +368,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 **错误码**：
 
 | 错误码ID | 错误信息 |
+| ------- | -------- |
 | 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
