@@ -2320,6 +2320,34 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
   }
   ```
 
+### getTimeZoneCityItemArray<sup>10+</sup>
+
+static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
+
+获取时区城市组合信息的数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息的数组。 |
+
+**示例：**
+  ```js
+  try {
+    let timeZoneCityItemArray = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    for (var i = 0; i < timeZoneCityItemArray.length; i++) {
+        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName + 
+                   ", " + timeZoneCityItemArray[i].offset + "\r\n");
+    }
+  } catch(error) {
+    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
 
 ## LocaleItem<sup>10+</sup>
 
@@ -2333,6 +2361,21 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
 | displayName     | string          |  是   | id在SystemLocaleManager的Locale下的表示。|
 | localName       | string          |  否   | id的本地名称。                           |
+
+## TimeZoneCityItem<sup>10+</sup>
+
+封装时区城市组合信息的类型。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| zoneId          | string          |   是    | 时区Id，例如Asia/Shanghai。              |
+| cityId          | string          |   是    | 城市Id，例如Shanghai。                   |
+| cityDisplayName | string          |   是    | 城市Id在系统Locale下显示的名称。          |
+| offset          | int             |   是    | 时区Id的偏移量。                         |
+| zoneDisplayName | string          |   是    | 时区Id在系统Locale下显示的名称。          |
+| rawOffset       | int             |   否    | 时区Id的行偏移量。                       |
 
 
 ## SuggestionType<sup>10+</sup>
