@@ -1640,7 +1640,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 - **清除锁屏密码后密钥永久无效。** 设置此模式的前提是当前用户已经设置了锁屏密码，在生成/导入密钥后，一旦清除了锁屏密码，此类密钥将永久失效。注意，修改密码不会导致失效情况发生。此模式适合那些需要锁屏密码授权访问或用户强相关的数据保护的场景。
 - **用户新录入生物特征后永久无效。** 此模式需要当前用户至少录入了一个生物特征（如指纹）才能生效，在生成/导入密钥后，一旦录入新的生物特征，这些密钥将永久失效。注意，仅删除生物特征不会导致失效情况发生。如果您不希望新录入的生物特征后，用户还可以授权访问原有数据（密钥保护的数据），那么可以使用此模式，如免密登录，免密支付等场景。
 
-此外，为了保证密钥使用时用户认证结果的有效性（不可重放），HUKS支持挑战值校验：在身份认证前，需要从HUKS获取挑战值（调用[huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9)返回的[HuksSessionHandle](../reference/apis/js-apis-huks.md#hukssessionhandle9)中）传给用户身份认证方法（[userIAM_userAuth.getAuthInstance](../reference/apis/js-apis-useriam-userauth.md#authinstance9)），然后在密钥操作时校验认证令牌的挑战值。
+此外，为了保证密钥使用时用户认证结果的有效性（不可重放），HUKS支持挑战值校验：在身份认证前，需要从HUKS获取挑战值（调用[huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9)返回的[HuksSessionHandle](../reference/apis/js-apis-huks.md#hukssessionhandle9)中）传给用户身份认证方法（userIAM_userAuth.getAuthInstance），然后在密钥操作时校验认证令牌的挑战值。
 
 **开发流程**
 
@@ -2697,4 +2697,7 @@ async function AttestKeyTest() {
    不能在huks库中找到finishSession，finishSession是API9版本的，请更新SDK版本或替换新版本的security.huks.d.ts文件。
 
 ## 相关实例
-[通用密钥库系统](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks): 本示例使用huks相关接口实现了对任意输入内容进行加密和解密的功能
+
+针对通用密钥库开发，有以下相关实例可供参考：
+
+- [`Huks`：通用密钥库系统（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks)
