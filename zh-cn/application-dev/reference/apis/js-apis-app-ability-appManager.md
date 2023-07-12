@@ -1045,7 +1045,7 @@ try {
 
 ## appManager.getProcessMemoryByPid<sup>10+</sup>
 
-getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>);
+getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
 
 通过pid查询对应进程占用的内存大小。
 
@@ -1137,7 +1137,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>);
+getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 通过bundleName获取有关运行进程的信息。
 
@@ -1229,7 +1229,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>);
+getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 通过bundleName和userId获取有关运行进程的信息。
 
