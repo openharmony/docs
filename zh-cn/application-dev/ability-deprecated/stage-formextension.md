@@ -414,4 +414,4 @@ onUpdate(formId) {
 ## 相关实例
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/SuperFeature/Widget/FormExtAbility)

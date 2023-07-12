@@ -10,7 +10,7 @@
 
 如图所示，用户程序通过JS接口调用用户首选项读写对应的数据文件。开发者可以将用户首选项持久化文件的内容加载到Preferences实例，每个文件唯一对应到一个Preferences实例，系统会通过静态容器将该实例存储在内存中，直到主动从内存中移除该实例或者删除该文件。
 
-应用首选项的持久化文件保存在应用沙箱内部，可以通过context获取其路径。具体可见[获取应用开发路径](../application-models/application-context-stage.md#获取应用开发路径)。
+应用首选项的持久化文件保存在应用沙箱内部，可以通过context获取其路径。具体可见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
 **图1** 用户首选项运作机制  
 
@@ -253,6 +253,6 @@
 
 针对用户首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
+- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/DataManagement/Preferences)
 
 - [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)
