@@ -34,6 +34,5 @@
 
 兼容JS的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
-- [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)
