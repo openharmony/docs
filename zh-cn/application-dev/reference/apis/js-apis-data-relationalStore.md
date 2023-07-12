@@ -2489,6 +2489,51 @@ promise.then((resultSet) => {
 
 ### querySql
 
+querySql(sql: string, callback: AsyncCallback<ResultSet>): void;
+
+根据指定SQL语句查询数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```js
+store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
+})
+```
+
+### querySql
+
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，使用callback异步回调。
@@ -2580,6 +2625,43 @@ promise.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+})
+```
+
+### executeSql
+
+executeSql(sql: string, callback: AsyncCallback<void>): void;
+
+执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**示例：**
+
+```js
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+store.executeSql(SQL_DELETE_TABLE, function(err) {
+  if (err) {
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`Delete table done.`);
 })
 ```
 
