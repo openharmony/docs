@@ -78,7 +78,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
 2. 在SoC平台驱动适配层中适配对应的芯片平台驱动。
 
-3. 添加器件驱动，并在驱动入口函数Init中注册Panel驱动数据，驱动数据接口主要包括如下接口：
+3. 添加器件驱动，并在驱动入口函数Init中注册Panel驱动数据，驱动数据接口主要实现下述特性：
    - LCD上下电
 
       根据LCD硬件连接，使用Platform接口层提供的GPIO操作接口操作对应LCD管脚，例如复位管脚、IOVCC管脚，上电时序参考LCD供应商提供的SPEC。
@@ -87,7 +87,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
       根据LCD硬件接口，使用Platform接口层提供的I2C、SPI、MIPI等接口，下载LCD初始化序列，初始化参数序列可以参考LCD供应商提供的SPEC。
 
-4. （可选）根据需求实现HDF框架其他接口，比如Release接口。
+4. （可选）根据需求实现HDF框架其他接口。
 
 5. （可选）根据需求使用HDF框架可创建其他设备节点，用于业务逻辑或者调试功能。
 
@@ -180,9 +180,9 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
    }
    ```
 
-3. 添加器件（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
+3. 添加器件
 
-   - 驱动定义相关接口信息
+   - 驱动定义相关接口信息（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      #define RESET_GPIO                5
@@ -204,7 +204,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      #define FRAME_RATE                60
      ```
 
-   - 定义PanelInfo结构体
+   - 定义PanelInfo结构体（drivers/display/hal/lcd_abs_if.h）
 
      ```c++
      struct PanelInfo {
@@ -225,7 +225,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      };
      ```
 
-   - 初始化LCD屏
+   - 初始化LCD屏（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      static uint8_t g_payLoad0[] = { 0xF0, 0x5A, 0x5A };
@@ -257,7 +257,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      static DevHandle g_pwmHandle = NULL;
      ```
 
-   - 设置Reset Pin脚状态
+   - 设置Reset Pin脚状态（/drivers_hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      static int32_t LcdResetOn(void)
@@ -281,7 +281,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      }
      ```
 
-   - 器件驱动入口函数
+   - 器件驱动入口函数（/drivers_hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      /*初始化入口函数*/
