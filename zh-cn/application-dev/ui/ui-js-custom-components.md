@@ -104,5 +104,3 @@
 针对自定义组件开发，有以下相关实例可供参考：
 
 - [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/UI/JsComponentClollection/JsComponentCollection)
-
-- [自定义组件（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)

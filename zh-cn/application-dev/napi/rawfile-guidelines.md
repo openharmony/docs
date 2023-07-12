@@ -379,6 +379,3 @@
     }
     ```
 
-## 相关实例
-- [`NdkRawfile`：获取Rawfile资源](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Native/NdkRawfile)
-
