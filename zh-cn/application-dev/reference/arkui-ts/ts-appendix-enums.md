@@ -540,3 +540,23 @@
 | BOTTOM | 窗口的下边缘 |
 | START  | 窗口的左边缘 |
 | END    | 窗口的右边缘 |
+
+## ImageSmoothingQuality<sup>8+</sup>
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| low      | 低画质 |
+| medium   | 中画质 |
+| high     | 高画质 |
+
+## CanvasDirection<sup>8+</sup>
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述             |
+| -------- | -------------- |
+| inherit | 继承canvas组件已设定的文本方向 |
+| ltr     | 从左往右 |
+| rtl     | 从右往左 |
