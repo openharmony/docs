@@ -548,7 +548,7 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[]): Promise<Channel>
+openBasicChannel(aid: number[]): Promise\<Channel>
 
 获取基本channel，参考[ISO 7816-4]协议，返回Channel实例对象，SE不能提供新逻辑Channel或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -601,7 +601,7 @@ try {
 
 ## Session.openBasicChannel
 
- openBasicChannel(aid: number[], callback: AsyncCallback<Channel>): void
+ openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
 获取基本channel，参考[ISO 7816-4]协议，返回channel实例对象，SE不能提供新逻辑Channel或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -612,7 +612,7 @@ try {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例。                            |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -651,7 +651,7 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2: number): Promise<Channel>
+openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 获取基本channel，参考[ISO 7816-4]协议，返回Channel实例对象，SE不能提供新逻辑Channel对象或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -707,7 +707,7 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): void
+openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
 获取基本channel，参考[ISO 7816-4]协议，返回channel实例对象，SE不能提供新逻辑Channel对象或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -719,7 +719,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): vo
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
 | p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例。                            |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -760,7 +760,7 @@ try {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[]): Promise<Channel>
+openLogicalChannel(aid: number[]): Promise\<Channel>
 
 打开指定SE的逻辑Channel对象。
 
@@ -814,7 +814,7 @@ try {
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid:number[], callback: AsyncCallback<Channel>): void
+ openLogicalChannel(aid:number[], callback: AsyncCallback\<Channel>): void
 
 打开指定SE的逻辑Channel对象。
 
@@ -825,7 +825,7 @@ try {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
-| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
 
 **错误码：**
 
@@ -864,7 +864,7 @@ try {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[], p2: number): Promise<Channel>
+openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
 
@@ -922,7 +922,7 @@ if (nfcOmaSession) {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback<Channel>):void
+openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
 使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
 
@@ -940,7 +940,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
 | p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
 
 **错误码：**
 
