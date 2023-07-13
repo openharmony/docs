@@ -3188,7 +3188,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
+Unregisters the observer of the specified type from the RDB store.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
