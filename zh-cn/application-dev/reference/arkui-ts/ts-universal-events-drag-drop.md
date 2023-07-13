@@ -52,6 +52,9 @@
 | setResult(dragRect: [DragRet](#dragret10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
 | getResult()<sup>10+</sup> | [DragRet](#dragret10枚举说明) | 从DragEvent中获取拖拽结果。 |
 | getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。 |
+| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。 |
+| getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
+| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。 |
 
 ## DragRet<sup>10+</sup>枚举说明
 
