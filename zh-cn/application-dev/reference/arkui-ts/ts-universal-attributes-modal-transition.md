@@ -11,7 +11,7 @@
 
 | 名称  | 参数 | 参数描述 |
 | ----- | ----- | ----- |
-| bindContentCover | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [ContentCoverOptions](#contentcoveroptions) | 给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，显示方式可设置无动画过渡，上下切换过渡以及透明渐变过渡方式。<br> isShow: 必填，是否显示全屏模态页面。<br>builder: 必填，配置全屏模态页面内容。<br> options: 非必填，配置全屏模态页面的可选属性。 |
+| bindContentCover | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [ContentCoverOptions](#contentcoveroptions) | 给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，显示方式可设置无动画过渡，上下切换过渡以及透明渐变过渡方式。<br> isShow: 必填，是否显示全屏模态页面。<br>从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量<br>builder: 必填，配置全屏模态页面内容。<br> options: 非必填，配置全屏模态页面的可选属性。 |
 ## ContentCoverOptions
 | 名称 | 类型 | 必填 | 描述 |
 |-----|-----|-----|-----|
