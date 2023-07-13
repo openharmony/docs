@@ -151,6 +151,45 @@ Obtains the **ResourceManager** object of an application based on the specified 
   ```
 
 
+## resourceManager.getSystemResourceManager<sup>10+</sup>
+
+getSystemResourceManager(): ResourceManager
+
+Obtains a **ResourceManager** object.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                                      | Description                |
+| ---------------------------------------- | ------------------ |
+| Resourcemanager | **ResourceManager** object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001009  | If application can't access system resource.                       |
+
+**Example**
+  ```js
+import resourceManager from '@ohos.resourceManager';
+
+try {
+    let systemResourceManager = resourceManager.getSystemResourceManager();
+    systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("systemResourceManager getStringValue promise error is " + error);
+    });
+} catch (error) {
+    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+}
+  ```
+
+
 ## Direction
 
 Enumerates the screen directions.
@@ -3246,6 +3285,451 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the color value corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resId    | number                      | Yes   | Resource ID.          |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the module resId invalid.             |
+| 9001002  | If the resource not found by resId.      |
+| 9001006  | If the resource re-ref too much.         |
+
+**Example (stage)**
+  ```ts
+    try {
+        this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let str = value;
+          }
+      });
+    } catch (error) {
+        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resId: number): Promise&lt;number&gt;
+
+Obtains the color value corresponding to the specified resource ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;number&gt; | Color value corresponding to the resource ID (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getColor($r('app.color.test').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the color value corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resource | [Resource](#resource9)      | Yes   | Resource object.           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource): Promise&lt;number&gt;;
+
+Obtains the color value corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+
+| Type                   | Description              |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Color value corresponding to the resource object (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource).then(value => {
+      let str = value;
+    }).catch(error => {
+      console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the color value corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resName  | string                      | Yes   | Resource name.           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test", (error, value) => {
+        if (error != null) {
+             console.log("error is " + error);
+        } else {
+            let string = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getStringByName(resName: string): Promise&lt;number&gt;
+
+Obtains the color value corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+
+| Type                   | Description        |
+| --------------------- | ---------- |
+| Promise&lt;number&gt; | Color value corresponding to the resource name (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test").then(value => {
+        let string = value;
+    }).catch(error => {
+        console.log("getColorByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resId: number) : number;
+
+Obtains the color value corresponding to the specified resource ID. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| number | Color value corresponding to the resource ID (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getColorSync($r('app.color.test').id);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resource: Resource): number
+
+Obtains the color value corresponding to the specified resource object. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+
+| Type    | Description              |
+| ------ | ---------------- |
+| number | Color value corresponding to the resource object (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColorSync(resource);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByNameSync<sup>10+</sup>
+
+getColorByNameSync(resName: string) : number;
+
+Obtains the color value corresponding to the specified resource name. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| number | Color value corresponding to the resource name (decimal).|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByNameSync("test");
+  } catch (error) {
+    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### addResource<sup>10+</sup>
+
+addResource(path: string) : void;
+
+Loads resources from the specified path.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| path | string | Yes   | Resource path.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001010  | If the overlay path is invalid.            |
+
+**Example**
+  ```ts
+  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  try {
+      this.context.resourceManager.addResource(path);
+  } catch (error) {
+      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`)
+        }
+  ```
+
+### removeResource<sup>10+</sup>
+
+removeResource(path: string) : void;
+
+Removes the resources loaded from the specified path to restore the original resources.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type           | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| path | string | Yes   | Resource path.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001010  | If the overlay path is invalid.            |
+
+**Example**
+  ```ts
+  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  try {
+      this.resmgr.removeResource(path);
+  } catch (error) {
+      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
 
