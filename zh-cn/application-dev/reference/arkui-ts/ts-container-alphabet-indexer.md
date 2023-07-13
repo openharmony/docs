@@ -139,6 +139,10 @@ struct AlphabetIndexerSample {
           .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
           .itemSize(28) // 每一项的尺寸大小
           .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
+          .popupSelectedColor(0x00FF00)
+          .popupUnselectedColor(0x0000FF)
+          .popupItemFont({ size: 30, style: FontStyle.Normal })
+          .popupItemBackgroundColor(0xCCCCCC)
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })
