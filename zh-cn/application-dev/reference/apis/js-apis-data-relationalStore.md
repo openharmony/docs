@@ -2487,9 +2487,9 @@ promise.then((resultSet) => {
 })
 ```
 
-### querySql
+### querySql<sup>10+</sup>
 
-querySql(sql: string, callback: AsyncCallback<ResultSet>): void;
+querySql(sql: string, callback: AsyncCallback<ResultSet>):void
 
 根据指定SQL语句查询数据库中的数据，使用callback异步回调。
 
@@ -2628,9 +2628,9 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql
+### executeSql<sup>10+</sup>
 
-executeSql(sql: string, callback: AsyncCallback<void>): void;
+executeSql(sql: string, callback: AsyncCallback<void>):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
