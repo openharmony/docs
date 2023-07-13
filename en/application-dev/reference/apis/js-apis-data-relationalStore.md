@@ -1,12 +1,12 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. With the underlying SQLite database, the RDB store provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+The relational database (RDB) store manages data based on relational models. The RDB store provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
 The **relationalStore** module provides the following functions:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
-- [Resultset](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
+- [ResultSet](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
 
 > **NOTE**
 > 
@@ -323,7 +323,7 @@ Enumerates the RDB store security levels.
 
 > **NOTE**
 >
-> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Synchronization Mechanism]( ../../database/sync-app-data-across-devices-overview.md#cross-device-data-synchronization-mechanism).
+> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see [Access Control Mechanism in Cross-Device Synchronization]( ../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -373,12 +373,10 @@ Defines the subscription type.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1    | Subscribe to cloud data changes.|
+| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -    | Subscribe to cloud data changes. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -3116,7 +3114,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
+Unregisters the observer of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3562,7 +3560,7 @@ Obtains the value of the Long type based on the specified column and the current
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Value obtained.<br>The value range supported by API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
+| number | Value obtained.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
 
 **Error codes**
 
