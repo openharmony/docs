@@ -149,11 +149,11 @@ The following provides an example of how to use C++ APIs of **HiSysEvent**.
    ```
 
 2. Configure the **BUILD.gn** file.
-   In the **BUILD.gn** file, add the **libhisysevent** and **libhisyseventmanager** libraries that depend on the **hisysevent_native** component.
+   In the **BUILD.gn** file, add the **libhisysevent** and **libhisyseventmanager** libraries that depend on the **hisysevent** component.
 
    ```
    external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
+     "hisysevent:libhisysevent",
+     "hisysevent:libhisyseventmanager",
    ]
    ```

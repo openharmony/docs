@@ -149,11 +149,11 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
    ```
 
 2. 编译配置
-   在BUILD.gn编译文件中，需要添加依赖hisysevent_native组件的libhisysevent及libhisyseventmanager库：
+   在BUILD.gn编译文件中，需要添加依赖hisysevent组件的libhisysevent及libhisyseventmanager库：
 
    ```
    external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
+     "hisysevent:libhisysevent",
+     "hisysevent:libhisyseventmanager",
    ]
    ```
