@@ -56,17 +56,17 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function generateAsyKey() {
   // 创建非对称密钥生成器
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
   // 通过非对称密钥生成器，随机生成非对称密钥
   let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     // 获取非对称密钥的二进制数据
     let pkBlob = pubKey.getEncoded();
     let skBlob = priKey.getEncoded();
-    AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
-    AlertDialog.show({ message : "sk bin data" + skBlob.data} );
+    AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
+    AlertDialog.show({ message: 'sk bin data' + skBlob.data });
   })
 }
 ```
@@ -96,8 +96,8 @@ function testGenerateAesKey() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
   // 通过密钥生成器随机生成对称密钥
   let promiseSymKey = symKeyGenerator.generateSymKey();
-  promiseSymKey.then( key => {
-    // 获取对称密钥的二进制数据，输出长度为256bit的字节流
+  promiseSymKey.then(key => {
+    // 获取对称密钥的二进制数据，输出长度为256bit,以16进制表示，长度为64，即32字节
     let encodedKey = key.getEncoded();
     console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
   })
@@ -115,14 +115,14 @@ function testGenerateAesKey() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
-  let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
-  let pkBlob = {data : pkval};
-  rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
-    if (keyPair == null) {
-      AlertDialog.show({message : "Convert keypair fail"});
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let pkVal = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 174, 203, 113, 83, 113, 3, 143, 213, 194, 79, 91, 9, 51, 142, 87, 45, 97, 65, 136, 24, 166, 35, 5, 179, 42, 47, 212, 79, 111, 74, 134, 120, 73, 67, 21, 19, 235, 80, 46, 152, 209, 133, 232, 87, 192, 140, 18, 206, 27, 106, 106, 169, 106, 46, 135, 111, 118, 32, 129, 27, 89, 255, 183, 116, 247, 38, 12, 7, 238, 77, 151, 167, 6, 102, 153, 126, 66, 28, 253, 253, 216, 64, 20, 138, 117, 72, 15, 216, 178, 37, 208, 179, 63, 204, 39, 94, 244, 170, 48, 190, 21, 11, 73, 169, 156, 104, 193, 3, 17, 100, 28, 60, 50, 92, 235, 218, 57, 73, 119, 19, 101, 164, 192, 161, 197, 106, 105, 73, 2, 3, 1, 0, 1]);
+  let pkBlob = { data: pkVal };
+  rsaGenerator.convertKey(pkBlob, null, (err, keyPair) => {
+    if (err) {
+      AlertDialog.show({ message: 'Convert keyPair fail' });
     }
-    AlertDialog.show({message : "Convert KeyPair success"});
+    AlertDialog.show({ message: 'Convert keyPair success' });
   })
 }
 ```
@@ -142,17 +142,17 @@ function convertAsyKey() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertEccAsyKey() {
-    let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
-    let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
-    let pubKeyBlob = { data: pubKeyArray };
-    let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
-    generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
-        if (error) {
-            AlertDialog.show({message : "Convert keypair fail"});
-        }
-        AlertDialog.show({message : "Convert KeyPair success"});
-    })
+  let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+  let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
+  let pubKeyBlob = { data: pubKeyArray };
+  let priKeyBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
+  generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
+    if (error) {
+      AlertDialog.show({ message: 'Convert keyPair fail' });
+    }
+    AlertDialog.show({ message: 'Convert keyPair success' });
+  })
 }
 ```
 
@@ -180,28 +180,28 @@ function genKeyMaterialBlob() {
   let arr = [
     0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
     0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
-    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72];    // keyLen = 192 (24 bytes)
+    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
   let keyMaterial = new Uint8Array(arr);
-  return {data : keyMaterial};
+  return { data: keyMaterial };
 }
 
-function testConvertAesKey() {
+function testConvertSymKey() {
   // 生成对称密钥生成器
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
   // 根据用户指定的数据，生成对称密钥
   let keyMaterialBlob = genKeyMaterialBlob();
   try {
     symKeyGenerator.convertKey(keyMaterialBlob, (error, key) => {
-      if (error) {    // 业务逻辑执行错误通过callback的第一个参数返回错误信息
+      if (error) { // 业务逻辑执行错误通过callback的第一个参数返回错误信息,即抛出异步异常
         console.error(`convertKey error, ${error.code}, ${error.message}`);
         return;
       }
       console.info(`key algName: ${key.algName}`);
       console.info(`key format: ${key.format}`);
-      let encodedKey = key.getEncoded();    // 获取对称密钥的二进制数据，输出长度为192bit的字节流
+      let encodedKey = key.getEncoded(); // 获取对称密钥的二进制数据，输出长度为192bit的字节流，以16进制表示，长度为48，即24字节
       console.info('key getEncoded hex: ' + uint8ArrayToShowStr(encodedKey.data));
     })
-  } catch (error) {    // 参数检查的错误以同步的方式立即抛出异常
+  } catch (error) { // 参数检查的错误以同步的方式立即抛出异常
     console.error(`convertKey failed, ${error.code}, ${error.message}`);
     return;
   }
@@ -230,14 +230,14 @@ function generateAsyKey() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   // 通过非对称密钥生成器，随机生成非对称密钥
   let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     // 获取非对称密钥的二进制数据
     let pkBlob = pubKey.getEncoded();
     let skBlob = priKey.getEncoded();
-    AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
-    AlertDialog.show({ message : "sk bin data" + skBlob.data} );
+    AlertDialog.show({ message: "pk bin data" + pkBlob.data });
+    AlertDialog.show({ message: "sk bin data" + skBlob.data });
   })
 }
 ```
@@ -266,13 +266,13 @@ function uint8ArrayToShowStr(uint8Array) {
     .join('');
 }
 
-function testGenerateAesKey() {
+function testGenerateSM4Key() {
   // 创建对称密钥生成器
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("SM4_128");
   // 通过密钥生成器随机生成对称密钥
   let promiseSymKey = symKeyGenerator.generateSymKey();
-  promiseSymKey.then( key => {
-    // 获取对称密钥的二进制数据，输出长度为256bit的字节流
+  promiseSymKey.then(key => {
+    // 获取对称密钥的二进制数据，输出长度为128bit的字节流，以16进制表示，长度为32，即16字节
     let encodedKey = key.getEncoded();
     console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
   })
@@ -362,24 +362,24 @@ function showBigIntInfo(bnName, bnValue) {
 // 根据密钥参数属性，构造ECC公私钥共有参数的sepc结构体
 function genEccCommonSpec() {
   let fieldFp = {
-    fieldType : "Fp",
-    p : BigInt("0xffffffffffffffffffffffffffffffff000000000000000000000001")
+    fieldType: "Fp",
+    p: BigInt("0xffffffffffffffffffffffffffffffff000000000000000000000001")
   }
 
   let G = {
-    x : BigInt("0xb70e0cbd6bb4bf7f321390b94a03c1d356c21122343280d6115c1d21"),
-    y : BigInt("0xbd376388b5f723fb4c22dfe6cd4375a05a07476444d5819985007e34")
+    x: BigInt("0xb70e0cbd6bb4bf7f321390b94a03c1d356c21122343280d6115c1d21"),
+    y: BigInt("0xbd376388b5f723fb4c22dfe6cd4375a05a07476444d5819985007e34")
   }
 
   let eccCommonSpec = {
-    algName : "ECC",
-    specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-    field : fieldFp,
-    a : BigInt("0xfffffffffffffffffffffffffffffffefffffffffffffffffffffffe"),
-    b : BigInt("0xb4050a850c04b3abf54132565044b0b7d7bfd8ba270b39432355ffb4"),
-    g : G,
-    n : BigInt("0xffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d"),
-    h : 1
+    algName: "ECC",
+    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
+    field: fieldFp,
+    a: BigInt("0xfffffffffffffffffffffffffffffffefffffffffffffffffffffffe"),
+    b: BigInt("0xb4050a850c04b3abf54132565044b0b7d7bfd8ba270b39432355ffb4"),
+    g: G,
+    n: BigInt("0xffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d"),
+    h: 1
   }
   return eccCommonSpec;
 }
@@ -434,20 +434,21 @@ function showEccSpecDetailInfo(key, keyType) {
 }
 
 // 测试根据ECC公私钥公共密钥参数生成ECC密钥对，并获得其密钥参数属性
-function testEccUseCommKeySpecGet()
-{
+function testEccUseCommKeySpecGet() {
   try {
     let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象
     let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器
     let keyPairPromise = generatorBySpec.generateKeyPair(); // 使用生成器创建ECC密钥对
-    keyPairPromise.then( keyPair => {
+    keyPairPromise.then(keyPair => {
       showEccSpecDetailInfo(keyPair.priKey, "priKey"); // 对私钥获取相关密钥参数属性
       showEccSpecDetailInfo(keyPair.pubKey, "pubKey"); // 对公钥获取相关密钥参数属性
     }).catch(error => {
+      // 逻辑错误等异步异常在此捕获
       console.error("generateComm error");
       console.error("error code: " + error.code + ", message is: " + error.message);
     })
-  } catch(error) {
+  } catch (error) {
+    // 参数错误等同步异常在此捕获
     console.error("testEccUseCommSpec error");
     console.error("error code: " + error.code + ", message is: " + error.message);
   }
@@ -464,12 +465,15 @@ function testEccUseCommKeySpecGet()
 
 以使用Callback方式根据密钥参数生成RSA公钥为例：
 ```js
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
 // RSA公钥密钥参数生成函数
-function genRsaPubKeySpec(nIn : bigint, eIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaPubKeySpec = { params: rsaCommSpec, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC };
+function genRsaPubKeySpec(nIn: bigint, eIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaPubKeySpec = {
+    params: rsaCommSpec,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC
+  };
   return rsaPubKeySpec;
 }
 
@@ -500,7 +504,7 @@ function rsaUsePubKeySpecGetCallback() {
     let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
     let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
     if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-      AlertDialog.show({ message : "error pub key big number"} );
+      AlertDialog.show({ message: "error pub key big number" });
     } else {
       console.info("n, e in the pubKey are same as the spec.");
     }
@@ -561,19 +565,19 @@ var globalKey;
 var globalCipherText;
 
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0 , 0, 0]; // 12 bytes
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
   let dataIv = new Uint8Array(arr);
-  let ivBlob = {data : dataIv};
+  let ivBlob = { data: dataIv };
 
-  arr = [0, 0, 0, 0 , 0, 0, 0, 0]; // 8 bytes
+  arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
   let dataAad = new Uint8Array(arr);
-  let aadBlob = {data : dataAad};
+  let aadBlob = { data: dataAad };
 
-  arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
   let dataTag = new Uint8Array(arr);
-  let tagBlob = {data : dataTag};  // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+  let tagBlob = { data: dataTag }; // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
 
-  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
+  let gcmParamsSpec = { iv: ivBlob, aad: aadBlob, authTag: tagBlob, algName: "GcmParamsSpec" };
   return gcmParamsSpec;
 }
 
@@ -633,45 +637,45 @@ function testAesGcm() {
     }
     return promiseSymKey;
   }).then(key => {
-      let encodedKey = key.getEncoded();
-      console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
-      globalKey = key;
-      return key;
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+    globalKey = key;
+    return key;
   }).then(key => {
-      // 初始化加解密操作环境:开始加密
-      let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
-      let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
-      return promiseInit;
+    // 初始化加解密操作环境:开始加密
+    let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, key, globalGcmParams); // init
+    return promiseInit;
   }).then(() => {
-      let plainText = {data : stringToUint8Array('this is test!')};
-      let promiseUpdate = globalCipher.update(plainText);   // update
-      return promiseUpdate;
+    let plainText = {data : stringToUint8Array('this is test!')};
+    let promiseUpdate = globalCipher.update(plainText); // update
+    return promiseUpdate;
   }).then(updateOutput => {
-      globalCipherText = updateOutput;
-      let promiseFinal = globalCipher.doFinal(null);    // doFinal
-      return promiseFinal;
+    globalCipherText = updateOutput;
+    let promiseFinal = globalCipher.doFinal(null); // doFinal
+    return promiseFinal;
   }).then(authTag => {
-      // GCM模式需要从doFinal的输出中取出加密后的认证信息并填入globalGcmParams，在解密时传入init()
-      globalGcmParams.authTag = authTag;
-      return;
+    // GCM模式需要从doFinal的输出中取出加密后的认证信息并填入globalGcmParams，在解密时传入init()
+    globalGcmParams.authTag = authTag;
+    return;
   }).then(() => {
-      // 初始化加解密操作环境:开始解密
-      let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-      let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
-      return promiseInit;
+    // 初始化加解密操作环境:开始解密
+    let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams); // init
+    return promiseInit;
   }).then(() => {
-      let promiseUpdate = globalCipher.update(globalCipherText);    // update
-      return promiseUpdate;
+    let promiseUpdate = globalCipher.update(globalCipherText); // update
+    return promiseUpdate;
   }).then(updateOutput => {
-      console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
-      let promiseFinal = globalCipher.doFinal(null);    // doFinal
-      return promiseFinal;
+    console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
+    let promiseFinal = globalCipher.doFinal(null); // doFinal
+    return promiseFinal;
   }).then(finalOutput => {
-      if (finalOutput == null) {  // 使用finalOutput.data前，先判断结果是否为null
-          console.info('GCM finalOutput is null');
-      }
+    if (finalOutput == null) { // 使用finalOutput.data前，先判断结果是否为null
+      console.info('GCM finalOutput is null');
+    }
   }).catch(error => {
-      console.error(`catch error, ${error.code}, ${error.message}`);
+    console.error(`catch error, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -765,8 +769,8 @@ function test3DesEcb() {
       // 初始化加解密操作环境:开始加密
       let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
       // init
-      globalCipher.init(mode, key, null, (err, ) => {
-        let plainText = {data : stringToUint8Array('this is test!')};
+      globalCipher.init(mode, key, null, (err,) => {
+        let plainText = { data: stringToUint8Array('this is test!') };
         // update
         globalCipher.update(plainText, (err, updateOutput) => {
           globalCipherText = updateOutput;
@@ -781,19 +785,19 @@ function test3DesEcb() {
               finalOutput = Array.from(finalOutput.data);
               globalCipherText = globalCipherText.concat(finalOutput);
               globalCipherText = new Uint8Array(globalCipherText);
-              globalCipherText = {data : globalCipherText};
+              globalCipherText = { data: globalCipherText };
             }
             // 初始化加解密操作环境:开始解密
             let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
             // init
-            globalCipher.init(mode, globalKey, null, (err, ) => {
+            globalCipher.init(mode, globalKey, null, (err,) => {
               // update
               globalCipher.update(globalCipherText, (err, updateOutput) => {
                 console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
                 // doFinal
                 globalCipher.doFinal(null, (error, finalOutput) => {
-                  if (finalOutput != null) {  // 使用finalOutput.data前，先判断结果是否为null
-                    console.info("decrypt plainText:" + uint8ArrayToString(finalOutput.data));
+                  if (finalOutput != null) { // 使用finalOutput.data前，先判断结果是否为null
+                    console.info('decrypt plainText: ' + uint8ArrayToString(finalOutput.data));
                   }
                 })
               })
@@ -891,72 +895,82 @@ function testAesMultiUpdate() {
       return;
     }
     return promiseSymKey;
-  }).then(key => {
-    let encodedKey = key.getEncoded();
-    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
-    globalKey = key;
-    return key;
-  }).then(key => {
-    // 初始化加解密操作环境:开始加密
-    let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
-    let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
-    return promiseInit;
-  }).then(async () => {
-    let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";   // 假设明文总共43字节
-    let messageArr = [];
-    let updateLength = 20;  // 假设每20字节分段update一次
-    globalCipherText = [];
-
-    for (let i = 0; i <= plainText.length; i++) {
-      if ((i % updateLength == 0 || i == plainText.length) && messageArr.length != 0) {
-        let message = new Uint8Array(messageArr);
-        let messageBlob = { data : message };
-        let updateOutput = await globalCipher.update(messageBlob);    // 分段update
-        // 把update的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式
-        // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）
-        globalCipherText = globalCipherText.concat(Array.from(updateOutput.data));
-        messageArr = [];
-      }
-      if (i < plainText.length) {
-        messageArr.push(plainText.charCodeAt(i));
-      }
-    }
-    return;
-  }).then(() => {
-    let promiseFinal = globalCipher.doFinal(null);    // doFinal
-    return promiseFinal;
-  }).then(authTag => {
-    // 获取加密后的认证信息
-    globalGcmParams.authTag = authTag;
-    return;
-  }).then(() => {
-    // 初始化加解密操作环境:开始解密
-    let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-    let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
-    return promiseInit;
-  }).then(async () => {
-    let updateLength = 20;
-    let updateTimes = Math.ceil(globalCipherText.length / updateLength);  // 上取整
-    globalPlainText = "";
-    for (let i = 0; i < updateTimes; i++) {
-      let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
-      let message = new Uint8Array(messageArr);
-      let messageBlob = { data : message };
-      let updateOutput = await globalCipher.update(messageBlob);    // 分段update
-      globalPlainText += uint8ArrayToString(updateOutput.data);     // 恢复出原始明文
-    }
-    return;
-  }).then(() => {
-    let promiseFinal = globalCipher.doFinal(null);      // doFinal
-    return promiseFinal;
-  }).then(finalOutput => {
-    if (finalOutput == null) {
-      console.info('GCM finalOutput is null');
-    }
-    console.info(`decrypt output: ${globalPlainText}`);
-  }).catch(error => {
-      console.error(`catch error, ${error.code}, ${error.message}`);
   })
+    .then(key => {
+      let encodedKey = key.getEncoded();
+      console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+      globalKey = key;
+      return key;
+    })
+    .then(key => {
+      // 初始化加解密操作环境:开始加密
+      let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+      let promiseInit = globalCipher.init(mode, key, globalGcmParams); // init
+      return promiseInit;
+    })
+    .then(async () => {
+      let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设明文总共43字节
+      let messageArr = [];
+      let updateLength = 20; // 假设每20字节分段update一次
+      globalCipherText = [];
+
+      for (let i = 0; i <= plainText.length; i++) {
+        if ((i % updateLength == 0 || i == plainText.length) && messageArr.length != 0) {
+          let message = new Uint8Array(messageArr);
+          let messageBlob = { data: message };
+          let updateOutput = await globalCipher.update(messageBlob); // 分段update
+          // 把update的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式
+          // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）
+          globalCipherText = globalCipherText.concat(Array.from(updateOutput.data));
+          messageArr = [];
+        }
+        if (i < plainText.length) {
+          messageArr.push(plainText.charCodeAt(i));
+        }
+      }
+      return;
+    })
+    .then(() => {
+      let promiseFinal = globalCipher.doFinal(null); // doFinal
+      return promiseFinal;
+    })
+    .then(authTag => {
+      // 获取加密后的认证信息
+      globalGcmParams.authTag = authTag;
+      return;
+    })
+    .then(() => {
+      // 初始化加解密操作环境:开始解密
+      let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+      let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams); // init
+      return promiseInit;
+    })
+    .then(async () => {
+      let updateLength = 20;
+      let updateTimes = Math.ceil(globalCipherText.length / updateLength); // 上取整
+      globalPlainText = "";
+      for (let i = 0; i < updateTimes; i++) {
+        let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
+        let message = new Uint8Array(messageArr);
+        let messageBlob = { data: message };
+        let updateOutput = await globalCipher.update(messageBlob); // 分段update
+        globalPlainText += uint8ArrayToString(updateOutput.data); // 恢复出原始明文
+      }
+      return;
+    })
+    .then(() => {
+      let promiseFinal = globalCipher.doFinal(null); // doFinal
+      return promiseFinal;
+    })
+    .then(finalOutput => {
+      if (finalOutput == null) {
+        console.info('GCM finalOutput is null');
+      }
+      console.info(`decrypt output: ${globalPlainText}`);
+    })
+    .catch(error => {
+      console.error(`catch error, ${error.code}, ${error.message}`);
+    })
 }
 ```
 
@@ -996,7 +1010,7 @@ function encryptMessagePromise() {
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
     // doFinal
-    let input = { data : stringToUint8Array(plan) };
+    let input = { data: stringToUint8Array(plan) };
     return cipher.doFinal(input);
   }).then(dataBlob => {
     // 获取加密后的信息
@@ -1015,7 +1029,7 @@ function encryptMessageCallback() {
     let pubKey = keyPair.pubKey;
     // 初始化加解密操作环境:使用公钥开始加密
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
-      let input = {data : stringToUint8Array(plan) };
+      let input = { data: stringToUint8Array(plan) };
       // doFinal
       cipher.doFinal(input, function (err, data) {
         // 获取加密后的信息
@@ -1037,32 +1051,36 @@ function decryptMessagePromise() {
   let keyGenPromise = rsaGenerator.generateKeyPair();
   let keyPair;
   let cipherDataBlob;
-  let input = { data : stringToUint8Array(plan) };
+  let input = { data: stringToUint8Array(plan) };
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
     // 初始化加解密操作环境:使用公钥开始加密
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-  }).then(() => {
-    // 加密doFinal
-    return cipher.doFinal(input);
-  }).then(dataBlob => {
-    // 获取加密后的信息，并用于解密的入参
-    console.info("EncryptOutPut is " + dataBlob.data);
-    AlertDialog.show({message : "output" + dataBlob.data});
-    cipherDataBlob = dataBlob;
-    // 初始化加解密操作环境:使用私钥开始解密
-    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
-  }).then(() => {
-    // 解密doFinal
-    return decoder.doFinal(cipherDataBlob);
-  }).then(decodeData => {
-    // 验证解密后，数据与原先数据是否保持一致
-    if (decodeData.data.toString() === input.data.toString()) {
-      AlertDialog.show({message : "decrypt success"});
-      return;
-    }
-    AlertDialog.show({message : "decrypt fail"});
-  });
+  })
+    .then(() => {
+      // 加密doFinal
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      // 获取加密后的信息，并用于解密的入参
+      console.info("EncryptOutPut is " + dataBlob.data);
+      AlertDialog.show({ message: "output" + dataBlob.data });
+      cipherDataBlob = dataBlob;
+      // 初始化加解密操作环境:使用私钥开始解密
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      // 解密doFinal
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // 验证解密后，数据与原先数据是否保持一致
+      if (decodeData.data.toString() === input.data.toString()) {
+        AlertDialog.show({ message: "decrypt success" });
+        return;
+      }
+      AlertDialog.show({ message: "decrypt fail" });
+    });
 }
 
 // 以Callback方式加解密
@@ -1074,7 +1092,7 @@ function decryptMessageCallback() {
   // 生成加解密生成器，用于解密
   let decoder = cryptoFramework.createCipher("RSA1024|PKCS1");
   let plainText = "this is cipher text";
-  let input = {data : stringToUint8Array(plainText) };
+  let input = { data: stringToUint8Array(plainText) };
   let cipherData;
   let keyPair;
   // 通过非对称秘钥生成器生成非对称密钥对
@@ -1085,7 +1103,7 @@ function decryptMessageCallback() {
       // 加密doFinal
       cipher.doFinal(input, function (err, data) {
         // 获取加密后的信息，并用于解密的入参
-        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
         // 初始化加解密操作环境:使用私钥开始解密
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
@@ -1093,10 +1111,10 @@ function decryptMessageCallback() {
           decoder.doFinal(cipherData, function (err, data) {
             // 验证解密后，数据与原先数据是否保持一致
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message : "decrype success"} );
+              AlertDialog.show({ message: "decrype success" });
               return;
             }
-            AlertDialog.show({ message : "decrype fail"} );
+            AlertDialog.show({ message: "decrype fail" });
           });
         });
       });
@@ -1224,9 +1242,15 @@ function stringToUint8Array(str) {
 }
 
 // 根据密钥参数属性构造RSA非对称密钥对密钥参数
-function genRsaKeyPairSpec(nIn : bigint, eIn : bigint, dIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaKeyPairSpec = { params: rsaCommSpec, sk : dIn, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC };
+function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaKeyPairSpec = {
+    params: rsaCommSpec,
+    sk: dIn,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
+  };
   return rsaKeyPairSpec;
 }
 
@@ -1250,63 +1274,67 @@ function rsaUseSpecDecryptOAEPPromise() {
   let keyPair;
   let cipherDataBlob;
   // RSA加解密PKCS1-OAEP模式填充字节流P
-  let pSource = new Uint8Array([1,2,3,4]);
-  let input = { data : stringToUint8Array(plan) };
+  let pSource = new Uint8Array([1, 2, 3, 4]);
+  let input = { data: stringToUint8Array(plan) };
   // 生成密钥
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
     // 进行加密操作初始化
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-  }).then(() => {
-    // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
-    cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-    let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
-      AlertDialog.show({message : "error init pSource" + retP});
-    } else {
-      console.info("pSource changed ==" + retP);
-    }
-    // 进行OAEP其他参数的get操作
-    let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
-    console.info("md == " + md);
-    let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
-    console.info("mgf == " + mgf);
-    let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
-    console.info("mgf1Md == " + mgf1Md);
-    return cipher.doFinal(input);
-  }).then(dataBlob => {
-    console.info("EncryptOutPut is " + dataBlob.data);
-    cipherDataBlob = dataBlob;
-    // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作
-    decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-    let retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
-      AlertDialog.show({message : "error init pSource" + retP});
-    } else {
-      console.info("pSource changed ==" + retP);
-    }
-    // 进行OAEP其他参数的get操作
-    let md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
-    console.info("md == " + md);
-    let mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
-    console.info("mgf == " + mgf);
-    let mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
-    console.info("mgf1Md == " + mgf1Md);
-    // 初始化解密操作
-    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
-  }).then(() => {
-    return decoder.doFinal(cipherDataBlob);
-  }).then(decodeData => {
-    // 解密成功
-    if (decodeData.data.toString() === input.data.toString()) {
-      console.info("oaep decrypt success");
-      AlertDialog.show({message : " oaep decrypt success"});
-    } else {
-      AlertDialog.show({message : "oeap decrypt fail"});
-    }
-  });
+  })
+    .then(() => {
+      // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
+      cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+      let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+      // 比较get出来的P字节流与set进去的P字节流是否一致
+      if (retP.toString() != pSource.toString()) {
+        AlertDialog.show({ message: "error init pSource" + retP });
+      } else {
+        console.info("pSource changed ==" + retP);
+      }
+      // 进行OAEP其他参数的get操作
+      let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
+      console.info("md == " + md);
+      let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
+      console.info("mgf == " + mgf);
+      let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
+      console.info("mgf1Md == " + mgf1Md);
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      console.info("EncryptOutPut is " + dataBlob.data);
+      cipherDataBlob = dataBlob;
+      // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作
+      decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+      let retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+      // 比较get出来的P字节流与set进去的P字节流是否一致
+      if (retP.toString() != pSource.toString()) {
+        AlertDialog.show({ message: "error init pSource" + retP });
+      } else {
+        console.info("pSource changed ==" + retP);
+      }
+      // 进行OAEP其他参数的get操作
+      let md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
+      console.info("md == " + md);
+      let mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
+      console.info("mgf == " + mgf);
+      let mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
+      console.info("mgf1Md == " + mgf1Md);
+      // 初始化解密操作
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // 解密成功
+      if (decodeData.data.toString() === input.data.toString()) {
+        console.info("oaep decrypt success");
+        AlertDialog.show({ message: " oaep decrypt success" });
+      } else {
+        AlertDialog.show({ message: "oeap decrypt fail" });
+      }
+    });
 }
 ```
 
@@ -1350,7 +1378,7 @@ function encryptMessagePromise() {
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null);
   }).then(() => {
     // doFinal
-    let input = { data : stringToUint8Array(plan) };
+    let input = { data: stringToUint8Array(plan) };
     return cipher.doFinal(input);
   }).then(dataBlob => {
     // 获取加密后的信息
@@ -1369,7 +1397,7 @@ function encryptMessageCallback() {
     let pubKey = keyPair.pubKey;
     // 初始化加解密操作环境:使用公钥开始加密
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, function (err, data) {
-      let input = {data : stringToUint8Array(plan) };
+      let input = { data: stringToUint8Array(plan) };
       // doFinal
       cipher.doFinal(input, function (err, data) {
         // 获取加密后的信息
@@ -1382,64 +1410,68 @@ function encryptMessageCallback() {
 // 以Promise方式加解密
 function decryptMessagePromise() {
   // 生成非对称密钥生成器
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   // 生成加解密生成器，用于加密
   let cipher = cryptoFramework.createCipher("SM2_256|SM3");
   // 生成加解密生成器，用于解密
   let decoder = cryptoFramework.createCipher("SM2_256|SM3");
   // 通过非对称秘钥生成器生成非对称密钥对
-  let keyGenPromise = rsaGenerator.generateKeyPair();
+  let keyGenPromise = sm2Generator.generateKeyPair();
   let keyPair;
   let cipherDataBlob;
-  let input = { data : stringToUint8Array(plan) };
+  let input = { data: stringToUint8Array(plan) };
   keyGenPromise.then(rsaKeyPair => {
     keyPair = rsaKeyPair;
     // 初始化加解密操作环境:使用公钥开始加密
     return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-  }).then(() => {
-    // 加密doFinal
-    return cipher.doFinal(input);
-  }).then(dataBlob => {
-    // 获取加密后的信息，并用于解密的入参
-    console.info("EncryptOutPut is " + dataBlob.data);
-    AlertDialog.show({message : "output" + dataBlob.data});
-    cipherDataBlob = dataBlob;
-    // 初始化加解密操作环境:使用私钥开始解密
-    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
-  }).then(() => {
-    // 解密doFinal
-    return decoder.doFinal(cipherDataBlob);
-  }).then(decodeData => {
-    // 验证解密后，数据与原先数据是否保持一致
-    if (decodeData.data.toString() === input.data.toString()) {
-      AlertDialog.show({message : "decrypt success"});
-      return;
-    }
-    AlertDialog.show({message : "decrypt fail"});
-  });
+  })
+    .then(() => {
+      // 加密doFinal
+      return cipher.doFinal(input);
+    })
+    .then(dataBlob => {
+      // 获取加密后的信息，并用于解密的入参
+      console.info("EncryptOutPut is " + dataBlob.data);
+      AlertDialog.show({ message: "output" + dataBlob.data });
+      cipherDataBlob = dataBlob;
+      // 初始化加解密操作环境:使用私钥开始解密
+      return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+    })
+    .then(() => {
+      // 解密doFinal
+      return decoder.doFinal(cipherDataBlob);
+    })
+    .then(decodeData => {
+      // 验证解密后，数据与原先数据是否保持一致
+      if (decodeData.data.toString() === input.data.toString()) {
+        AlertDialog.show({ message: "decrypt success" });
+        return;
+      }
+      AlertDialog.show({ message: "decrypt fail" });
+    });
 }
 
 // 以Callback方式加解密
 function decryptMessageCallback() {
   // 生成非对称密钥生成器
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   // 生成加解密生成器，用于加密
   let cipher = cryptoFramework.createCipher("SM2_256|SM3");
   // 生成加解密生成器，用于解密
   let decoder = cryptoFramework.createCipher("SM2_256|SM3");
   let plainText = "this is cipher text";
-  let input = {data : stringToUint8Array(plainText) };
+  let input = { data: stringToUint8Array(plainText) };
   let cipherData;
   let keyPair;
   // 通过非对称秘钥生成器生成非对称密钥对
-  rsaGenerator.generateKeyPair(function (err, newKeyPair) {
+  sm2Generator.generateKeyPair(function (err, newKeyPair) {
     keyPair = newKeyPair;
     // 初始化加解密操作环境:使用公钥开始加密
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, function (err, data) {
       // 加密doFinal
       cipher.doFinal(input, function (err, data) {
         // 获取加密后的信息，并用于解密的入参
-        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
         // 初始化加解密操作环境:使用私钥开始解密
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
@@ -1447,10 +1479,10 @@ function decryptMessageCallback() {
           decoder.doFinal(cipherData, function (err, data) {
             // 验证解密后，数据与原先数据是否保持一致
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message : "decrype success"} );
+              AlertDialog.show({ message: "decrype success" });
               return;
             }
-            AlertDialog.show({ message : "decrype fail"} );
+            AlertDialog.show({ message: "decrype fail" });
           });
         });
       });
@@ -1495,24 +1527,24 @@ function uint8ArrayToString(array) {
 // SM4 ECB模式示例，callback写法
 function testSM4Ecb() {
   // 生成非对称密钥生成器
-  let rsaGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
+  let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
   // 生成加解密生成器，用于加密
   let cipher = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
   // 生成加解密生成器，用于解密
   let decoder = cryptoFramework.createCipher("SM4_128|ECB|PKCS7");
   let plainText = "this is cipher text";
-  let input = {data : stringToUint8Array(plainText) };
+  let input = { data: stringToUint8Array(plainText) };
   let cipherData;
   let key;
   // 通过非对称秘钥生成器生成非对称密钥对
-  rsaGenerator.generateSymKey(function (err, newKey) {
+  sm4Generator.generateSymKey(function (err, newKey) {
     key = newKey;
     // 初始化加解密操作环境:使用公钥开始加密
     cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, key, null, function (err, data) {
       // 加密doFinal
       cipher.doFinal(input, function (err, data) {
         // 获取加密后的信息，并用于解密的入参
-        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        AlertDialog.show({ message: "EncryptOutPut is " + data.data });
         cipherData = data;
         // 初始化加解密操作环境:使用私钥开始解密
         decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, key, null, function (err, data) {
@@ -1520,10 +1552,10 @@ function testSM4Ecb() {
           decoder.doFinal(cipherData, function (err, data) {
             // 验证解密后，数据与原先数据是否保持一致
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message : "decrype success"} );
+              AlertDialog.show({ message: "decrype success" });
               return;
             }
-            AlertDialog.show({ message : "decrype fail"} );
+            AlertDialog.show({ message: "decrype fail" });
           });
         });
       });
@@ -1598,14 +1630,14 @@ let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
-let input1 = { data : stringToUint8Array(plan1) };
-let input2 = { data : stringToUint8Array(plan2) };
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
 
 function signMessagePromise() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
   let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // API version 10开始，支持"RSA|PKCS1|SHA256"
   let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
@@ -1637,9 +1669,9 @@ function signMessageCallback() {
   rsaGenerator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
-        signer.sign(input2, function (err, data) {
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
+        signer.sign(input2, (err, data) => {
           SignMessageBlob = data;
           console.info("sign output is " + SignMessageBlob.data);
         });
@@ -1650,9 +1682,9 @@ function signMessageCallback() {
 
 function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-  verifyer.init(globalKeyPair.pubKey, function (err, data) {
-    verifyer.update(input1, function(err, data) {
-      verifyer.verify(input2, SignMessageBlob, function(err, data) {
+  verifyer.init(globalKeyPair.pubKey, err => {
+    verifyer.update(input1, err => {
+      verifyer.verify(input2, SignMessageBlob, function (err, data) {
         console.info("verify result is " + data);
       });
     });
@@ -1686,14 +1718,14 @@ let globalKeyPair;
 let SignMessageBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan1";
-let input1 = { data : stringToUint8Array(plan1) };
-let input2 = { data : stringToUint8Array(plan2) };
+let input1 = { data: stringToUint8Array(plan1) };
+let input2 = { data: stringToUint8Array(plan2) };
 
 function signMessagePromise() {
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let signer = cryptoFramework.createSign("ECC256|SHA256");
   let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
@@ -1725,9 +1757,9 @@ function signMessageCallback() {
   eccGenerator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
-        signer.sign(input2, function (err, data) {
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
+        signer.sign(input2, (err, data) => {
           SignMessageBlob = data;
           console.info("sign output is " + SignMessageBlob.data);
         });
@@ -1738,9 +1770,9 @@ function signMessageCallback() {
 
 function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("ECC256|SHA256");
-  verifyer.init(globalKeyPair.pubKey, function (err, data) {
-    verifyer.update(input1, function(err, data) {
-      verifyer.verify(input2, SignMessageBlob, function(err, data) {
+  verifyer.init(globalKeyPair.pubKey, err => {
+    verifyer.update(input1, err => {
+      verifyer.verify(input2, SignMessageBlob, function (err, data) {
         console.info("verify result is " + data);
       });
     });
@@ -1847,9 +1879,15 @@ function stringToUint8Array(str) {
 }
 
 // 根据密钥参数属性构造RSA非对称密钥对密钥参数
-function genRsaKeyPairSpec(nIn : bigint, eIn : bigint, dIn : bigint) {
-  let rsaCommSpec = { n : nIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-  let rsaKeyPairSpec = { params: rsaCommSpec, sk : dIn, pk : eIn, algName : "RSA", specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC };
+function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
+  let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+  let rsaKeyPairSpec = {
+    params: rsaCommSpec,
+    sk: dIn,
+    pk: eIn,
+    algName: "RSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
+  };
   return rsaKeyPairSpec;
 }
 
@@ -1864,8 +1902,8 @@ function genRsa2048KeyPairSpec() {
 function verifyMessageCallbackPSS() {
   let plan1 = "This is Sign test plan1";
   let plan2 = "This is Sign test plan1";
-  let input1 = { data : stringToUint8Array(plan1) };
-  let input2 = { data : stringToUint8Array(plan2) };
+  let input1 = { data: stringToUint8Array(plan1) };
+  let input2 = { data: stringToUint8Array(plan2) };
   let globalKeyPair;
   let signMessageBlob;
   // 获得RSA密钥对密钥参数对象
@@ -1877,7 +1915,7 @@ function verifyMessageCallbackPSS() {
   let verifyer = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
   rsaGeneratorSpec.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
-    signer.init(globalKeyPair.priKey, function (err, data) {
+    signer.init(globalKeyPair.priKey, err => {
       // 在签名初始化后，对PSS参数进行set和get操作
       let setN = 32;
       signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
@@ -1891,11 +1929,11 @@ function verifyMessageCallbackPSS() {
       console.info("mgf == " + mgf);
       let mgf1Md = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
       console.info("mgf1Md == " + mgf1Md);
-      signer.update(input1, function (err, data) {
+      signer.update(input1, err => {
         signer.sign(input2, function (err, data) {
           // 在验签初始化前，对PSS参数进行set和get操作，功能与初始化后一致
           signMessageBlob = data;
-          AlertDialog.show({message : "res" +  signMessageBlob.data});
+          AlertDialog.show({ message: "res" + signMessageBlob.data });
           let setN = 32;
           verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
           let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
@@ -1908,10 +1946,10 @@ function verifyMessageCallbackPSS() {
           console.info("mgf == " + mgf);
           let mgf1Md = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
           console.info("mgf1Md == " + mgf1Md);
-          verifyer.init(globalKeyPair.pubKey, function (err, data) {
-            verifyer.update(input1, function(err, data) {
-              verifyer.verify(input2, signMessageBlob, function(err, data) {
-                AlertDialog.show({message : "res " + data});
+          verifyer.init(globalKeyPair.pubKey, err => {
+            verifyer.update(input1, err => {
+              verifyer.verify(input2, signMessageBlob, function (err, data) {
+                AlertDialog.show({ message: "res " + data });
               })
             });
           });
@@ -1949,30 +1987,30 @@ function stringToUint8Array(str) {
     return tmpArray;
 }
 
-let globalKeyPair;
-let SignMessageBlob;
 let plan1 = "This is Sign test plan1";
 let plan2 = "This is Sign test plan2";
 let input1 = { data: stringToUint8Array(plan1) };
 let input2 = { data: stringToUint8Array(plan2) };
 
 function signAndVerify() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("SM2_256");
+  let signMessageBlob;
+  let globalKeyPair;
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   let signer = cryptoFramework.createSign("SM2_256|SM3");
-  rsaGenerator.generateKeyPair(function (err, keyPair) {
+  sm2Generator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) {
+    signer.init(priKey, err => {
+      signer.update(input1, err => {
         signer.sign(input2, function (err, data) {
-          SignMessageBlob = data;
-          console.info("sign output is " + SignMessageBlob.data);
+          signMessageBlob = data;
+          console.info("sign output is " + signMessageBlob.data);
           let verifyer = cryptoFramework.createVerify("SM2_256|SM3");
-          verifyer.init(globalKeyPair.pubKey, function (err, data) {
-            verifyer.update(input1, function (err, data) {
-              verifyer.verify(input2, SignMessageBlob, function (err, data) {
+          verifyer.init(globalKeyPair.pubKey, err => {
+            verifyer.update(input1, err => {
+              verifyer.verify(input2, signMessageBlob, function (err, data) {
                 console.info("verify result is " + data);
-                AlertDialog.show({message:"decrype success"})
+                AlertDialog.show({ message: "verify success" })
               });
             });
           })
@@ -2019,7 +2057,7 @@ function ecdhPromise() {
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256"); // API version 10开始，支持输入"ECC"来进行密钥协商
   let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
+  keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
     return eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
   }).then((secret) => {
@@ -2186,7 +2224,7 @@ async function doLoopMdPromise() {
   for (let i = 0; i <= messageText.length; i++) {
     if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
       let message = new Uint8Array(messageArr);
-      let messageBlob = { data : message };
+      let messageBlob = { data: message };
       // 使用await处理for循环里的update
       try {
         await md.update(messageBlob); // 分段update
@@ -2273,7 +2311,7 @@ function doHmacByPromise() {
   console.info("[Promise]: Mac algName is: " + mac.algName);
   let KeyBlob = {
     // 128位密钥
-    data : stringToUint8Array("12345678abcdefgh")
+    data: stringToUint8Array("12345678abcdefgh")
   }
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
   // 将二进制密钥转换为算法库密钥
@@ -2313,7 +2351,7 @@ function doHmacByCallback() {
   console.info("[Promise]: Mac algName is: " + mac.algName);
   let KeyBlob = {
     // 128位密钥
-    data : stringToUint8Array("12345678abcdefgh")
+    data: stringToUint8Array("12345678abcdefgh")
   }
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
   // 将二进制密钥转换为算法库密钥
@@ -2396,7 +2434,7 @@ function doLoopHmacPromise() {
     for (let i = 0; i <= messageText.length; i++) {
       if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
         let message = new Uint8Array(messageArr);
-        let messageBlob = { data : message };
+        let messageBlob = { data: message };
         // 使用await处理for循环里的update
         try {
           promiseMacUpdate = await mac.update(messageBlob); // 分段update
@@ -2457,29 +2495,31 @@ function doLoopHmacPromise() {
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 通过Promise方式生成随机数
-function doRandByPromise(len) {
-  var rand;
+function doRandByPromise() {
+  let rand;
+  let len = 4; // 生成长度4字节的随机数
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
   }
-  var promiseGenerateRand = rand.generateRandom(len);
+  let promiseGenerateRand = rand.generateRandom(len);
   promiseGenerateRand.then(randData => {
-    console.error("[Promise]: rand result: " + randData.data);
-      try {
-          rand.setSeed(randData);
-      } catch (error) {
-          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
-      }
+    console.info("[Promise]: rand result: " + randData.data);
+    try {
+      rand.setSeed(randData);
+    } catch (error) {
+      console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+    }
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 
 // 通过Callback方式生成随机数
-function doRandByCallback(len) {
-  var rand;
+function doRandByCallback() {
+  let rand;
+  let len = 4; // 生成长度4字节的随机数
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {
@@ -2489,19 +2529,20 @@ function doRandByCallback(len) {
     if (err) {
       console.error("[Callback]: err: " + err.code);
     } else {
-      console.error("[Callback]: generate random result: " + randData.data);
+      console.info("[Callback]: generate random result: " + randData.data);
       try {
-          rand.setSeed(randData);
+        rand.setSeed(randData);
       } catch (error) {
-          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+        console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
       }
     }
   });
 }
 
 // 通过同步接口生成随机数
-function doRandBySync(len) {
-  var rand;
+function doRandBySync() {
+  let rand;
+  let len = 24; // 生成长度24字节的随机数
   try {
     rand = cryptoFramework.createRandom();
   } catch (error) {
