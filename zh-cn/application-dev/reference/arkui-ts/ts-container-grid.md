@@ -285,3 +285,16 @@ struct GridExample {
 }
 ```
 
+示例图：
+
+网格子组件开始拖拽：
+
+![gridDrag](figures/gridDrag.png)
+
+网格子组件拖拽过程中：
+
+![gridDrag](figures/gridDrag1.png)
+
+网格子组件1与子组件6拖拽交换位置后：
+
+![gridDrag](figures/gridDrag2.png)
