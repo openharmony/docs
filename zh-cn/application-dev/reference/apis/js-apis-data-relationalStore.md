@@ -3503,15 +3503,15 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | 是   | 表示分布式表的同步模式。                             |
+| mode     | [SyncMode](#syncmode)                                 | 是   | 表示数据库的同步模式。                             |
 | progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。             |
 | callback | AsyncCallback&lt;void&gt;                             | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
 **示例：**
 
 ```js
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (ProgressDetails) {
-    console.info(`Progess: ${ProgressDetails}`);
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+    console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
          console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -3547,11 +3547,11 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 **示例：**
 
 ```js
-function Progess(progressDetail) {
-    console.info(`Progess: ${progressDetail}`);
+function progress(progressDetail) {
+    console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, Progess).then(() => {
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
@@ -3581,8 +3581,8 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (ProgressDetails) {
-    console.info(`Progess: ${ProgressDetails}`);
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+    console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
          console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -3620,11 +3620,11 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-function Progess(progressDetail) {
-    console.info(`Progess: ${progressDetail}`);
+function progress(progressDetail) {
+    console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, Progess).then(() => {
+relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
