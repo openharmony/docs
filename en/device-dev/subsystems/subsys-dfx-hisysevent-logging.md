@@ -257,7 +257,7 @@ Assume that a service module needs to trigger event logging during application s
 1. Add the HiSysEvent component dependency to the **BUILD.gn** file of the service module.
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisysevent" ]
+   external_deps = [ "hisysevent:libhisysevent" ]
    ```
 
 2. In the application startup function **StartAbility()** of the service module, call the event logging API with event parameters passed in.
@@ -280,7 +280,7 @@ Assume that a service module needs to trigger event logging during application s
 1. Add the HiSysEvent component dependency to the **BUILD.gn** file of the service module.
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisysevent" ]
+   external_deps = [ "hisysevent:libhisysevent" ]
    ```
 
 2. In the application startup function **StartAbility()** of the service module, call the event logging API with event parameters passed in.

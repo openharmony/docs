@@ -252,12 +252,12 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisysevent及libhisyseventmanager依赖。
+1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent部件的libhisysevent及libhisyseventmanager依赖。
 
    ```c++
    external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
+     "hisysevent:libhisysevent",
+     "hisysevent:libhisyseventmanager",
    ]
    ```
 
@@ -320,10 +320,10 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisyseventmanager依赖。
+1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent部件的libhisyseventmanager依赖。
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisyseventmanager" ]
+   external_deps = [ "hisysevent:libhisyseventmanager" ]
    
    // for strcpy_s
    deps = [ "//third_party/bounds_checking_function:libsec_shared" ]

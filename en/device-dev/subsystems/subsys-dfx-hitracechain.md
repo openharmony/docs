@@ -208,7 +208,7 @@ The process is as follows:
 2. Configure compilation information. Specifically, add the subsystem SDK dependency to **BUILD.gn**.
    
    ```
-   external_deps = [ "hiviewdfx:libhitracechain" ]
+   external_deps = [ "hitrace:libhitracechain" ]
    ```
 
 
@@ -232,5 +232,5 @@ The process is as follows:
 2. Configure compilation information. Specifically, add the subsystem SDK dependency to **BUILD.gn**.
    
    ```
-   external_deps = [ "hiviewdfx:libhitracechain" ]
+   external_deps = [ "hitrace:libhitracechain" ]
    ```

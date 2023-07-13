@@ -252,12 +252,12 @@ The return values of the HiSysEventRecord APIs are described as follows:
 
 Assume that you need to query all **PLUGIN_LOAD** events that are generated for the **HIVIEWDFX** domain until the current time on a service module. The development procedure is as follows:
 
-1. Add the **libhisysevent** and **libhisyseventmanager** dependencies of the **hisysevent_native** component to **BUILD.gn** of the service module.
+1. Add the **libhisysevent** and **libhisyseventmanager** dependencies of the **hisysevent** component to **BUILD.gn** of the service module.
 
    ```c++
    external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
+     "hisysevent:libhisysevent",
+     "hisysevent:libhisyseventmanager",
    ]
    ```
 
@@ -320,10 +320,10 @@ Assume that you need to query all **PLUGIN_LOAD** events that are generated for 
 
 Assume that you need to query all **PLUGIN_LOAD** events that are generated for the **HIVIEWDFX** domain until the current time on a service module. The development procedure is as follows:
 
-1. Add the **libhisyseventmanager** dependency of the **hisysevent_native** component to the **BUILD.gn** file of the service module.
+1. Add the **libhisyseventmanager** dependency of the **hisysevent** component to the **BUILD.gn** file of the service module.
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisyseventmanager" ]
+   external_deps = [ "hisysevent:libhisyseventmanager" ]
    
    // for strcpy_s
    deps = [ "//third_party/bounds_checking_function:libsec_shared" ]
