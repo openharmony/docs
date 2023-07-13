@@ -671,7 +671,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data.['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString()
         })
         .margin({ top: 20 })
       Text(`This is the data passed from the first page: ${this.secondData}`)
