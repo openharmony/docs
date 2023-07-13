@@ -47,7 +47,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
 
     ![image](figures/TTL接口.png "TTL接口")
 
-    ​ TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
+    ​TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
 
     TTL接口是并行方式传输数据的接口，有数据信号、时钟信号和控制信号（行同步、帧同步、数据有效信号等），在控制信号控制下完成数据传输。通常TTL接口的LCD，内部寄存器读写需要额外的外设接口，比如SPI接口、I2C接口等。
 
@@ -206,7 +206,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      #define FRAME_RATE                60
      ```
 
-   - 定义PanelInfo结构体（drivers/display/hal/lcd_abs_if.h）
+   - 定义PanelInfo结构体（drivers/hdf_core/framework/model/display/driver/hdf_disp.h）
 
      ```c++
      struct PanelInfo {
