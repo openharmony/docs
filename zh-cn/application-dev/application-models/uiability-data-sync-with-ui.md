@@ -4,15 +4,15 @@
 基于OpenHarmony的应用模型，可以通过以下几种方式来实现UIAbility组件与UI之间的数据同步。
 
 - [使用EventHub进行数据通信](#使用eventhub进行数据通信)：在基类Context中提供了EventHub对象，可以通过发布订阅方式来实现事件的传递。在事件传递前，订阅者需要先进行订阅，当发布者发布事件时，订阅者将接收到事件并进行相应处理。
-- [使用globalThis进行数据同步](#使用globalthis进行数据同步)：在ArkTS引擎实例内部，globalThis是一个全局对象，可以被UIAbility、ExtensionAbility、Page等组件访问。
+- [使用globalThis进行数据同步](#使用globalthis进行数据同步)：在ArkTS引擎实例内部，globalThis是一个全局对象，可以被ArkTS引擎实例内的UIAbility组件、ExtensionAbility组件和ArkUI页面（Page）访问。
 - [使用AppStorage/LocalStorage进行数据同步](#使用appstorage/localstorage进行数据同步)：ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。
 
 
 ## 使用EventHub进行数据通信
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)为UIAbility组件/ExtensionAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
+[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)为UIAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
 
-在[基类Context](application-context-stage.md)中，提供了EventHub对象，使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象。本章节将以此为例进行说明。
+在[基类Context](application-context-stage.md)中，提供了EventHub对象，可用于在UIAbility组件实例内通信。使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象，本章节将以此为例进行说明。
 
 1. 在UIAbility中调用[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
@@ -89,7 +89,7 @@
 
 globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对象，引擎内部的UIAbility/ExtensionAbility/Page都可以使用，因此可以使用globalThis对象进行数据同步。
 
-**图1** 使用globalThis进行数据同步  
+**图1** 使用globalThis进行数据同步
 ![globalThis1](figures/globalThis1.png)
 
 
@@ -123,14 +123,14 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    let entryAbilityWant;
-   
+
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-   
+
      // 页面展示
      build() {
        ...
@@ -160,7 +160,7 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-   
+
    export default class UIAbilityB extends UIAbility {
      onCreate(want, launch) {
        // UIAbilityB从globalThis读取name并输出
@@ -193,7 +193,7 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-   
+
    export default class ServiceExtAbility extends Extension {
      onCreate(want) {
        // ServiceExtAbility从globalThis读取name并输出
@@ -206,10 +206,12 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
 ### globalThis使用的注意事项
 
-**图2** globalThis注意事项  
+**图2** globalThis注意事项
 ![globalThis2](figures/globalThis2.png)
 
 - Stage模型下进程内的UIAbility组件共享ArkTS引擎实例，使用globalThis时需要避免存放相同名称的对象。例如UIAbilityA和UIAbilityB可以使用globalThis共享数据，在存放相同名称的对象时，先存放的对象会被后存放的对象覆盖。
+
+- globalThis不支持跨进程使用，不同进程的UIAbility组件和ExtensionAbility组件无法使用globalThis共享数据，进程模型及进程间通信机制见[进程模型概述](./process-model-stage.md#进程模型概述)。
 
 - FA模型因为每个UIAbility组件之间引擎隔离，不会存在该问题。
 
