@@ -87,7 +87,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0vp |
 | shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false                                                             |
-| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 进度条状态，当设置为LOADING时会开启检查更新动效，此时设置进度值不生效。<br/>默认值： ProgressStatus.PROGRESSING |
+| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 进度条状态，当设置为LOADING时会开启检查更新动效，此时设置进度值不生效。当从LOADING设置为PROGRESSING，检查更新动效会执行到终点再停止。<br/>默认值： ProgressStatus.PROGRESSING |
 | enableScanEffect | boolean | 否 | 进度条扫光效果的开关。<br/>默认值： false |
 
 ## LinearStyleOptions<sup>10+</sup>
