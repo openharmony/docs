@@ -179,7 +179,7 @@ This development guide is applicable to standard-system devices \(reference memo
 2.  Configure compilation information. Specifically, add the subsystem SDK dependency to  **BUILD.gn**.
 
     ```
-    external_deps = [ "hilog_native:libhilog" ]
+    external_deps = [ "hilog:libhilog" ]
     ```
 
 
