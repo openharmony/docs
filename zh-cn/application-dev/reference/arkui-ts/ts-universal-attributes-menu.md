@@ -168,3 +168,46 @@ struct ContextMenuExample {
   }
 }
 ```
+
+### 示例4
+
+指向性菜单(右键触发显示)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DirectiveMenuExample {
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Options')
+      Divider().strokeWidth(2).margin(5).color('#F0F0F0')
+      Text('Hide')
+      Divider().strokeWidth(2).margin(5).color('#F0F0F0')
+      Text('Exit')
+    }
+    .width(200)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Column() {
+        Text("DirectiveMenuExample")
+          .fontSize(20)
+          .width('100%')
+          .height("25%")
+          .backgroundColor('#F0F0F0')
+          .textAlign(TextAlign.Center)
+          .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
+            enableArrow: true,
+            placement: Placement.Bottom
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
