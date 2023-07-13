@@ -171,6 +171,22 @@ scrollBy(dx: Length, dy: Length): void
 | dx | Length | 是    | 水平方向滚动距离，不支持百分比形式。 |
 | dy | Length | 是    | 竖直方向滚动距离，不支持百分比形式。 |
 
+### isAtEnd<sup>10+</sup>
+
+isAtEnd(): boolean
+
+查询组件是否滚动到底部。
+
+>  **说明：**
+>
+>  支持Scroll、List、Grid、WaterFlow组件。
+
+**返回值**
+
+| 类型         | 描述          |
+| ------- | -------- |
+| boolean | true表示组件已经滚动到底部，false表示组件还没滚动到底部。 |
+
 ## ScrollAlign枚举说明<sup>10+ </sup>
 
 | 名称     | 描述                             |
