@@ -14,7 +14,7 @@ import base from '@ohos.base';
 
 ## Callback
 
-Callback<T> {
+Callback\<T> {
 
 (data: T): void;
 
@@ -32,7 +32,7 @@ Callback<T> {
 
 ## ErrorCallback
 
-ErrorCallback<T extends Error = BusinessError> {
+ErrorCallback\<T extends Error = BusinessError> {
 
 (err: T): void;
 
@@ -52,7 +52,7 @@ ErrorCallback<T extends Error = BusinessError> {
 
 ## AsyncCallback
 
-AsyncCallback<T, E = void> {
+AsyncCallback\<T, E = void> {
 
 (err: BusinessError, data: T): void;
 
@@ -73,7 +73,7 @@ AsyncCallback<T, E = void> {
 
 ## BusinessError
 
-BusinessError<T = void> extends Error {
+BusinessError\<T = void> extends Error {
 
 code: number;
 

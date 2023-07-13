@@ -329,12 +329,12 @@ function convertSM2AsyKey() {
 
 |实例名|接口名|描述|
 |---|---|---|
-|AsyKeyGeneratorBySpec|generateKeyPair(callback: AsyncCallback<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称密钥对象KeyPair
-|AsyKeyGeneratorBySpec|generateKeyPair(): Promise<KeyPair>;|使用Promise方式，根据密钥参数生成非对称密钥对象KeyPair
-|AsyKeyGeneratorBySpec|generatePriKey(callback: AsyncCallback<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称私钥对象PriKey
-|AsyKeyGeneratorBySpec|generatePriKey(): Promise<KeyPair>;|使用Promise方式，根据密钥参数生成非对称私钥对象PriKey
-|AsyKeyGeneratorBySpec|generatePubKey(callback: AsyncCallback<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称公钥对象PubKey
-|AsyKeyGeneratorBySpec|generatePubKey(): Promise<KeyPair>;|使用Promise方式，根据密钥参数生成非对称公钥对象PubKey
+|AsyKeyGeneratorBySpec|generateKeyPair(callback: AsyncCallback\<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称密钥对象KeyPair
+|AsyKeyGeneratorBySpec|generateKeyPair(): Promise\<KeyPair>;|使用Promise方式，根据密钥参数生成非对称密钥对象KeyPair
+|AsyKeyGeneratorBySpec|generatePriKey(callback: AsyncCallback\<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称私钥对象PriKey
+|AsyKeyGeneratorBySpec|generatePriKey(): Promise\<KeyPair>;|使用Promise方式，根据密钥参数生成非对称私钥对象PriKey
+|AsyKeyGeneratorBySpec|generatePubKey(callback: AsyncCallback\<KeyPair>): void;|使用callback方式，根据密钥参数生成非对称公钥对象PubKey
+|AsyKeyGeneratorBySpec|generatePubKey(): Promise\<KeyPair>;|使用Promise方式，根据密钥参数生成非对称公钥对象PubKey
 | PriKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | 获取非对称密钥私钥对象的密钥参数属性 |
 | PubKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | 获取非对称密钥公钥对象的密钥参数属性 |
 
