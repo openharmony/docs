@@ -34,7 +34,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Embed | 侧边栏嵌入到组件内，和内容区并列显示。 |
 | Overlay | 侧边栏浮在内容区上面。 |
-| AUTO | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。|
+| AUTO | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。<br/>未设置minSideBarWidth或minContentWidth时，会使用未设置接口的默认值进行计算，若计算的值小于600vp，则使用600vp做为模式切换的断点值。|
 
 ## 属性
 
