@@ -319,3 +319,23 @@ Swiper组件动画相关信息集合。
 | currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+## SafeAreaType<sup>10+</sup>
+
+扩展安全区域的枚举类型。
+
+| 名称     | 描述                                       |
+| -------- | ------------------------------------------ |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
+| KEYBOARD | 软键盘区域。                               |
+
+## SafeAreaEdge<sup>10+</sup>
+
+扩展安全区域的方向。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TOP    | 上方区域。 |
+| BOTTOM | 下方区域。 |
+| START  | 前部区域。 |
+| END    | 尾部区域。 |
