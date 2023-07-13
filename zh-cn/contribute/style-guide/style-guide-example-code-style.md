@@ -15,6 +15,75 @@
 
 API参考中，每个接口（包括方法和组件）均需要提供示例代码。如果多个API存在关联关系，则需要在一个场景化的代码示例中体现。
 
+### 【规则】每个接口提供的示例代码中无须增加`try...catch...`
+
+【描述】
+
+在接口示例代码中，为了保持示例代码的简洁性和易读性，不需要为每个接口调用添加`try...catch...`语句来捕获异常。
+
+示例代码主要用于演示如何正确地使用接口，并提供了正确的处理方式。添加异常处理代码可能会使示例代码变得冗长且难以理解。
+
+【正例】
+
+```ts
+// 正例1：
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+this.context.startAbility(want)
+  .then(() => {
+    // 执行正常业务
+    console.info('Succeeded in starting ability.');
+  })
+  .catch((err) => {
+    // 处理业务逻辑错误
+    console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+  });
+
+// 正例2：
+let pathDir = ...; // 应用文件路径
+let filePath = pathDir + '/test.txt';
+let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
+console.info(`Succeed in reading text, str is ${str}`);
+```
+
+【反例】
+
+```ts
+// 反例1：
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startAbility(want)
+    .then(() => {
+      // 执行正常业务
+      console.info('Succeeded in starting ability.');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+}
+
+// 反例2：
+let pathDir = ...; // 应用文件路径
+let filePath = pathDir + '/test.txt';
+try {
+  let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
+  console.info(`Succeed in reading text, str is ${str}`);
+} catch (err) {
+  console.error(`Failed to read text. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ### 【规则】示例代码中的变量需要包含定义、使用方法或者来源链接参考或者说明
 
 【描述】
@@ -527,4 +596,3 @@ function createFile() {
   fileio.closeSync(fileFD);
 }
 ```
-
