@@ -1932,21 +1932,6 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
 
 
-### getTransform
-
-getTransform(): Matrix2D
-
-获取当前被应用到上下文的转换矩阵。该接口为空接口。
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**返回值：**
-
-| 类型                                       | 说明    |
-| ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
-
-
 ### resetTransform
 
 resetTransform(): void
@@ -2164,7 +2149,7 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 setTransform(transform?: Matrix2D): void
 
-以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。该接口为空接口。
+以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2174,6 +2159,66 @@ setTransform(transform?: Matrix2D): void
 | --------- | ---------------------------------------- | ---- | ---- | ----- |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否    | null | 变换矩阵。 |
 
+### getTransform
+
+getTransform(): Matrix2D
+
+获取当前被应用到上下文的转换矩阵。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**返回值：**
+
+| 类型                                       | 说明    |
+| ---------------------------------------- | ----- |
+| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct TransFormDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private context2: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Text('context1');
+        Canvas(this.context1)
+          .width('230vp')
+          .height('120vp')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context1.fillRect(50, 50, 50, 50);
+            this.context1.setTransform(1.2, Math.PI/8, Math.PI/6, 0.5, 30, -25);
+            this.context1.fillRect(50, 50, 50, 50);
+          })
+        Text('context2');
+        Canvas(this.context2)
+          .width('230vp')
+          .height('120vp')
+          .backgroundColor('#0ffff0')
+          .onReady(() =>{
+            this.context2.fillRect(50, 50, 50, 50);
+            let storedTransform = this.context1.getTransform();
+            console.log("Matrix [scaleX = " + storedTransform.scaleX + ", scaleY = " + storedTransform.scaleY +
+            ", rotateX = " + storedTransform.rotateX + ", rotateY = " + storedTransform.rotateY +
+            ", translateX = " + storedTransform.translateX + ", translateY = " + storedTransform.translateY + "]")
+            this.context2.setTransform(storedTransform);
+            this.context2.fillRect(50,50,50,50);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001219982726.png](figures/zh-cn_image_0000001219982726.png)
+  
 ### translate
 
 translate(x: number, y: number): void
