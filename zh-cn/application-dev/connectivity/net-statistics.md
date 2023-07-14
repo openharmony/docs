@@ -2,13 +2,13 @@
 
 ## 简介
 
-流量管理实现了基于物理网络的流量数据统计，支持基于网卡/UID的流量统计输入/处理/输出。
+流量管理提供了基于物理网络的数据流量统计能力，支持基于网卡/UID的流量统计。
 
 流量管理主要实现功能有：
 
 - 支持基于网卡/UID的实时流量统计。
 - 支持基于网卡/UID的历史流量统计。
-- 支持基于网卡/UID的流量变化监听。
+- 支持基于网卡/UID的流量变化订阅。
 
 > **说明：**
 > 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-statistics.md)。
@@ -82,13 +82,15 @@ statistics.getAllTxBytes((error, stats) => {
 })
 
 //获取指定应用实时下行流量数据。
-statistics.getUidRxBytes(20010038, (error, stats) => {
+let uid = 20010038;
+statistics.getUidRxBytes(uid, (error, stats) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(stats))
 })
 
 //获取指定应用实时上行流量数据。
-statistics.getUidTxBytes(20010038, (error, stats) => {
+let uid = 20010038;
+statistics.getUidTxBytes(uid, (error, stats) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(stats))
 })
@@ -133,7 +135,7 @@ statistics.getTrafficStatsByUid(uidInfo), (error, statsInfo) => {
 
 ```
 
-## 监听流量变化事件
+## 订阅流量变化事件
 
 1. 订阅流量改变事件通知。
 2. 取消订阅流量改变事件通知。
