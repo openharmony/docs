@@ -1,8 +1,6 @@
-## 应用质量提升案例-稳定性测试常见JS_ERROR问题分析与定位
+# 应用质量提升案例-稳定性测试常见JS_ERROR问题分析与定位
 
-
-
-### 问题描述：
+## 问题描述
 
 本文案例分析OpenHarmony开发的应用进行稳定性测试遇到的JS_ERROR，对其产生的原因进行分析与定位，并给出解决方案。
 
@@ -16,13 +14,13 @@
 
  
 
-### 案例分析：
+## 案例分析
 
-#### 一、 softwareUpdate.js出现JS_ERROR
+### softwareUpdate.js出现JS_ERROR
 
 问题描述：
 
-系统稳定性测试10000分钟，com.ohos.settings 出现 17次JS_ERROR(softwareUpdate.js)
+系统稳定性测试10000分钟，com.ohos.settings 出现 17次JS_ERROR(softwareUpdate.js)。
 
 堆栈异常信息：
 
@@ -60,7 +58,7 @@ Stacktrace:
 
  
 
-#### 二、notificationManage.js出现JS_ERROR
+### notificationManage.js出现JS_ERROR
 
 问题描述：
 
@@ -100,7 +98,7 @@ Stacktrace:
 
 
 
-#### 三、softwareUDiskUpdate.js出现JS_ERROR
+### softwareUDiskUpdate.js出现JS_ERROR
 
 问题描述：
 
@@ -136,11 +134,11 @@ Stacktrace:
 
 
 
-#### 四、wifiPsd.js出现JS_ERROR
+### wifiPsd.js出现JS_ERROR
 
 问题描述：
 
-系统稳定性测试72小时，com.ohos.settings出现1次JS_ERROR:ohos_router_1.back
+系统稳定性测试72小时，com.ohos.settings出现1次JS_ERROR:ohos_router_1.back。
 
 堆栈信息：
 
@@ -182,7 +180,7 @@ Stacktrace:
 
 
 
-### 总结：
+## 总结
 
 随着OpenHarmony生态的推广，对应的应用开发IDE、测试工具等也会不断完善，应用层面的错误信息也会披露的越来越清晰。大家在应用开发的过程中如果遇到JS_ERROR，可以通过阅读给出的堆栈或者log信息，结合代码来定位问题。
 
