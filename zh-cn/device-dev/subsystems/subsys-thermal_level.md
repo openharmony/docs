@@ -111,7 +111,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
         "subsystem": "product_hihope"
     }
     ```
-    “//vendor/hihope/rk3568/thermal/”为文件夹路径，“profile”为创建的文件夹名字，“thermal_hdf_config”为编译目标。
+    “//vendor/hihope/rk3568/thermal/”为文件夹路径，“profile”为创建的文件夹名字，“thermal_service_config”为编译目标。
 
 6. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
 
