@@ -141,187 +141,275 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
    (1) 定义surface创建成功，发生改变，销毁和XComponent的touch事件回调接口。
 
    ```c++
-    // 定义一个函数OnSurfaceCreatedCB()，封装初始化环境与绘制背景
-    void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
-    {
-        // ...
-        // 获取XComponent的id，即JS侧XComponent组件构造中的id参数
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-                "OnSurfaceCreatedCB: Unable to get XComponent id");
-            return;
-        }
-    
-        // 初始化环境与绘制背景
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        uint64_t width;
-        uint64_t height;
-        // 获取XComponent拥有的surface的大小
-        int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-        if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-            if (render->eglCore_->EglContextInit(window, width, height)) {
-                render->eglCore_->Background();
-            }
-        }
-    }
-    
-    // 定义一个函数OnSurfaceChangedCB()
-    void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window)
-    {
-        // ...
-        // 获取XComponent的id
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-                "OnSurfaceChangedCB: Unable to get XComponent id");
-            return;
-        }
-    
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render != nullptr) {
-            // 封装OnSurfaceChanged方法
-            render->OnSurfaceChanged(component, window);
-        }
-    }
-    
-    // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
-    void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
-    {
-        // ...
-        // 获取XComponent的id
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-                "OnSurfaceDestroyedCB: Unable to get XComponent id");
-            return;
-        }
-    
-        std::string id(idStr);
-        // 释放资源
-        PluginRender::Release(id);
-    }
-    
-    // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
-    void DispatchTouchEventCB(OH_NativeXComponent *component, void *window)
-    {
-        // ...
-        // 获取XComponent的id
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-                "DispatchTouchEventCB: Unable to get XComponent id");
-            return;
-        }
-    
-        std::string id(idStr);
-        PluginRender *render = PluginRender::GetInstance(id);
-        if (render != nullptr) {
-            // 封装OnTouchEvent方法
-            render->OnTouchEvent(component, window);
-        }
-    }
-    
-    // 定义一个函数DispatchMouseEventCB()，响应鼠标事件时触发该回调
-    void DispatchMouseEventCB(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchMouseEventCB");
-        int32_t ret;
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-        if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            return;
-        }
-    
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render) {
-            // 封装OnMouseEvent方法
-            render->OnMouseEvent(component, window);
-        }
-    }
-    
-    // 定义一个函数DispatchHoverEventCB()，响应鼠标悬停事件时触发该回调
-    void DispatchHoverEventCB(OH_NativeXComponent *component, bool isHover) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchHoverEventCB");
-        int32_t ret;
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-        if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            return;
-        }
-    
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render) {
-            // 封装OnHoverEvent方法
-            render->OnHoverEvent(component, isHover);
-        }
-    }
-    
-    // 定义一个函数OnFocusEventCB()，响应获焦事件时触发该回调
-    void OnFocusEventCB(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnFocusEventCB");
-        int32_t ret;
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-        if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            return;
-        }
-    
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render) {
-            // 封装OnFocusEvent方法
-            render->OnFocusEvent(component, window);
-        }
-    }
-    
-    // 定义一个函数OnBlurEventCB()，响应失去焦点事件时触发该回调
-    void OnBlurEventCB(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnBlurEventCB");
-        int32_t ret;
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-        if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            return;
-        }
-    
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render) {
-            // 封装OnBlurEvent方法
-            render->OnBlurEvent(component, window);
-        }
-    }
-    
-    // 定义一个函数OnKeyEventCB()，响应按键事件时触发该回调
-    void OnKeyEventCB(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnKeyEventCB");
-        int32_t ret;
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-        if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            return;
-        }
-        std::string id(idStr);
-        auto render = PluginRender::GetInstance(id);
-        if (render) {
-            // 封装OnKeyEvent方法
-            render->OnKeyEvent(component, window);
-        }
-    }
-    ```
+   // 定义一个函数OnSurfaceCreatedCB()，封装初始化环境与绘制背景
+   void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
+   {
+   	// ...
+   	// 获取XComponent的id，即JS侧XComponent组件构造中的id参数
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			"OnSurfaceCreatedCB: Unable to get XComponent id");
+   		return;
+   	}
+   
+   	// 初始化环境与绘制背景
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	uint64_t width;
+   	uint64_t height;
+   	// 获取XComponent拥有的surface的大小
+   	int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+   	if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
+   		if (render->eglCore_->EglContextInit(window, width, height)) {
+   			render->eglCore_->Background();
+   		}
+   	}
+   }
+   
+   // 定义一个函数OnSurfaceChangedCB()
+   void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window)
+   {
+   	// ...
+   	// 获取XComponent的id
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			"OnSurfaceChangedCB: Unable to get XComponent id");
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render != nullptr) {
+   		// 封装OnSurfaceChanged方法
+   		render->OnSurfaceChanged(component, window);
+   	}
+   }
+   
+   // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
+   void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
+   {
+   	// ...
+   	// 获取XComponent的id
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			"OnSurfaceDestroyedCB: Unable to get XComponent id");
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	// 释放资源
+   	PluginRender::Release(id);
+   }
+   
+   // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
+   void DispatchTouchEventCB(OH_NativeXComponent *component, void *window)
+   {
+   	// ...
+   	// 获取XComponent的id
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
+   			"DispatchTouchEventCB: Unable to get XComponent id");
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	PluginRender *render = PluginRender::GetInstance(id);
+   	if (render != nullptr) {
+   		// 封装OnTouchEvent方法
+   		render->OnTouchEvent(component, window);
+   	}
+   }
+   
+   // 定义一个函数DispatchMouseEventCB()，响应鼠标事件时触发该回调
+   void DispatchMouseEventCB(OH_NativeXComponent *component, void *window) {
+   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchMouseEventCB");
+   	int32_t ret;
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render) {
+   		// 封装OnMouseEvent方法
+   		render->OnMouseEvent(component, window);
+   	}
+   }
+   
+   // 定义一个函数DispatchHoverEventCB()，响应鼠标悬停事件时触发该回调
+   void DispatchHoverEventCB(OH_NativeXComponent *component, bool isHover) {
+   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "DispatchHoverEventCB");
+   	int32_t ret;
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render) {
+   		// 封装OnHoverEvent方法
+   		render->OnHoverEvent(component, isHover);
+   	}
+   }
+   
+   // 定义一个函数OnFocusEventCB()，响应获焦事件时触发该回调
+   void OnFocusEventCB(OH_NativeXComponent *component, void *window) {
+   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnFocusEventCB");
+   	int32_t ret;
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render) {
+   		// 封装OnFocusEvent方法
+   		render->OnFocusEvent(component, window);
+   	}
+   }
+   
+   // 定义一个函数OnBlurEventCB()，响应失去焦点事件时触发该回调
+   void OnBlurEventCB(OH_NativeXComponent *component, void *window) {
+   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnBlurEventCB");
+   	int32_t ret;
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		return;
+   	}
+   
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render) {
+   		// 封装OnBlurEvent方法
+   		render->OnBlurEvent(component, window);
+   	}
+   }
+   
+   // 定义一个函数OnKeyEventCB()，响应按键事件时触发该回调
+   void OnKeyEventCB(OH_NativeXComponent *component, void *window) {
+   	OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnKeyEventCB");
+   	int32_t ret;
+   	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+   	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+   	ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
+   	if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   		return;
+   	}
+   	std::string id(idStr);
+   	auto render = PluginRender::GetInstance(id);
+   	if (render) {
+   		// 封装OnKeyEvent方法
+   		render->OnKeyEvent(component, window);
+   	}
+   }
+   
+   // 定义一个OnSurfaceChanged()方法
+   void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
+   {
+   	// ...
+       std::string id(idStr);
+       PluginRender* render = PluginRender::GetInstance(id);
+       double offsetX;
+       double offsetY;
+       // 获取XComponent持有的surface相对窗口左上角的偏移量
+       OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
+           "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);
+       uint64_t width;
+       uint64_t height;
+       OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+       if (render != nullptr) {
+           render->eglCore_->UpdateSize(width, height);
+       }
+   }
+   
+   // 定义一个OnTouchEvent()方法
+   void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
+   {
+       // ...
+       OH_NativeXComponent_TouchEvent touchEvent;
+       // 获取由XComponent触发的触摸事件
+       OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
+       std::string id(idStr);
+       PluginRender* render = PluginRender::GetInstance(id);
+       if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
+           render->eglCore_->ChangeColor();
+           hasChangeColor_ = 1;
+       }
+       float tiltX = 0.0f;
+       float tiltY = 0.0f;
+       OH_NativeXComponent_TouchPointToolType toolType =
+           OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
+       // 获取XComponent触摸点的工具类型
+       OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
+       // 获取XComponent触摸点处相对X轴的倾斜角度
+       OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
+       // 获取XComponent触摸点处相对Y轴的倾斜角度
+       OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
+   }
+   
+   // 定义一个OnMouseEvent()方法
+   void PluginRender::OnMouseEvent(OH_NativeXComponent *component, void *window) {
+      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
+      OH_NativeXComponent_MouseEvent mouseEvent;
+      // 获取由XComponent触发的鼠标事件
+      int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
+      if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+   	   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "MouseEvent Info: x = %{public}f, y = %{public}f, action = %{public}d, button = %{public}d", mouseEvent.x, mouseEvent.y, mouseEvent.action, mouseEvent.button);
+      } else {
+   	   OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetMouseEvent error");
+      }
+   }
+   
+   // 定义一个OnMouseEvent()方法
+   void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
+      OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
+   
+      OH_NativeXComponent_KeyEvent *keyEvent = nullptr;
+      // 获取由XComponent触发的按键事件。
+      if (OH_NativeXComponent_GetKeyEvent(component, &keyEvent) >= 0) {
+   	   OH_NativeXComponent_KeyAction action;
+          // 获取按键事件的动作
+   	   OH_NativeXComponent_GetKeyEventAction(keyEvent, &action);
+   	   OH_NativeXComponent_KeyCode code;
+          // 获取按键事件的键码值
+   	   OH_NativeXComponent_GetKeyEventCode(keyEvent, &code);
+   	   OH_NativeXComponent_EventSourceType sourceType;
+          // 获取按键事件的输入源类型
+   	   OH_NativeXComponent_GetKeyEventSourceType(keyEvent, &sourceType);
+   	   int64_t deviceId;
+          // 获取按键事件的设备ID
+   	   OH_NativeXComponent_GetKeyEventDeviceId(keyEvent, &deviceId);
+   	   int64_t timeStamp;
+          // 获取按键事件的时间戳
+   	   OH_NativeXComponent_GetKeyEventTimestamp(keyEvent, &timeStamp);
+   	   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "KeyEvent Info: action=%{public}d, code=%{public}d, sourceType=%{public}d, deviceId=%{public}ld, timeStamp=%{public}ld", action, code, sourceType, deviceId, timeStamp);
+      } else {
+   	   OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetKeyEvent error");
+      }
+   }
+   ```
 
    (2) 注册XComponent事件回调函数，在XComponent事件触发时调用3.1步骤中定义的方法。
 
