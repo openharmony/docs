@@ -2884,6 +2884,29 @@ PixelMap的初始化选项。
 | SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。     |
 | ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400     |
 | F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8     |
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间               |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPS_TIME_STAMP"       | GPS_TIME_STAMP        |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPSDateStamp          |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像描述               |
+| MAKE<sup>10+</sup>                       | "Make"                 | Make                  |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式              |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型             |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度    |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数    |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级    |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值    |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 暴露偏差值    |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式    |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源    |
+| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光    |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距长度    |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户评论    |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | x轴像素尺寸    |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | y轴像素尺寸    |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡    |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片    |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | "HwMnote捕获模式    |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | HwMnotePhysicalAperture   |
 
 
 ## ImageFormat<sup>9+</sup>
