@@ -1746,7 +1746,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -1756,7 +1756,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.STORAGE_MANAGER
 
