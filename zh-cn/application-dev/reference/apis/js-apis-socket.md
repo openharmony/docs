@@ -2042,6 +2042,9 @@ tcpServer.off('error');
 
 TCPSocketConnection连接，即TCPSocket客户端与服务端的连接。在调用TCPSocketConnection的方法前，需要先获取TCPSocketConnection对象。
 
+> **说明：**
+> 客户端与服务端成功建立连接后，才能通过返回的TCPSocketConnection对象调用相应的接口。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 ### 属性
@@ -2331,7 +2334,7 @@ tcpServer.on('connect', function(client) {
     for (var i = 0; i < value.message.length; i++) {
       let messages = value.message[i];
       let message = String.fromCharCode(messages);
-      messageView += item;
+      messageView += message;
     }
     console.log('on message message: ' + JSON.stringify(messageView));
     console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -2371,7 +2374,7 @@ let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i];
     let message = String.fromCharCode(messages);
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -3789,4 +3792,1375 @@ TLS通信的协议版本。
 存储证书的数据。
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+## socket.constructTLSSocketServerInstance<sup>10+</sup>
+
+constructTLSSocketServerInstance(): TLSSocketServer
+
+创建并返回一个TLSSocketServer对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值:**
+
+| 类型                                  | 说明                          |
+| :------------------------------------ | :---------------------------- |
+| [TLSSocketServer](#tlssocketserver10) | 返回一个TLSSocketServer对象。 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+```
+
+## TLSSocketServer<sup>10+</sup>
+
+TLSSocketServer连接。在调用TLSSocketServer的方法前，需要先通过[socket.constructTLSSocketServerInstance](#socketconstructtlssocketserverinstance10)创建TLSSocketServer对象。
+
+### listen<sup>10+</sup>
+
+listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
+
+绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                             |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------ |
+| options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocketServer连接所需要的参数。                |
+| callback | AsyncCallback\<void>                     | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+| 2303501  | SSL is null.                                |
+| 2303502  | Error in tls reading.                       |
+| 2303503  | Error in tls writing                        |
+| 2303505  | Error occurred in the tls system call.      |
+| 2303506  | Error clearing tls connection.              |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, (err, data) => {
+  console.error("listen callback error" + err);
+  console.log(JSON.stringify(data));
+});
+```
+
+### listen<sup>10+</sup>
+
+listen(options: TLSConnectOptions): Promise\<void\>
+
+绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，并创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明               |
+| ------- | ---------------------------------------- | ---- | ------------------ |
+| options | [TLSConnectOptions](#tlsconnectoptions9) | 是   | 连接所需要的参数。 |
+
+**返回值：**
+
+| 类型            | 说明                                                      |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+| 2303501  | SSL is null.                                |
+| 2303502  | Error in tls reading.                       |
+| 2303503  | Error in tls writing                        |
+| 2303505  | Error occurred in the tls system call.      |
+| 2303506  | Error clearing tls connection.              |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.error(err);
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+在TLSSocketServer的listen成功之后，获取TLSSocketServer状态。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase7)> | 是   | 回调函数。成功返回TLSSocketServer状态，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, (err, data) => {
+  console.error("listen callback error" + err);
+  console.log(JSON.stringify(data));
+});
+
+tlsServer.getState((err, data) => {
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+在TLSSocketServer的listen成功之后，获取TLSSocketServer状态。使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase7)> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.error(err);
+});
+let promise = tlsServer.getState();
+promise.then(() => {
+  console.log('getState success');
+}).catch(err => {
+  console.log('getState fail');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
+
+在TLSSocketServer的listen成功之后，设置TLSSocketServer连接的其他属性。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                             |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions7) | 是   | TLSSocketServer连接的其他属性。                  |
+| callback | AsyncCallback\<void\>                | 是   | 回调函数。成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, (err, data) => {
+  console.error("listen callback error" + err);
+  console.log(JSON.stringify(data));
+});
+tlsServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+}, err => {
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
+
+在TLSSocketServer的listen成功之后，设置TLSSocketServer连接的其他属性，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                 | 必填 | 说明                            |
+| ------- | ------------------------------------ | ---- | ------------------------------- |
+| options | [TCPExtraOptions](#tcpextraoptions7) | 是   | TLSSocketServer连接的其他属性。 |
+
+**返回值：**
+
+| 类型            | 说明                                                      |
+| :-------------- | :-------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.error(err);
+});
+let promise = tlsServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+});
+promise.then(() => {
+  console.log('setExtraOptions success');
+}).catch(err => {
+  console.log('setExtraOptions fail');
+});
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
+
+在TLSSocketServer通信连接成功之后，获取本地的数字证书，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                     |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------------- |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，成功返回本地的证书，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2303504  | Error looking up x509. |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.getCertificate((err, data) => {
+  if (err) {
+    console.log("getCertificate callback error = " + err);
+  } else {
+    console.log("getCertificate callback = " + data);
+  }
+});
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
+
+在TLSSocketServer通信连接之后，获取本地的数字证书，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                            | 说明                                                         |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | 以Promise形式返回本地的数字证书的结果。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2303504  | Error looking up x509. |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.getCertificate().then(data => {
+  console.log(data);
+}).catch(err => {
+  console.error(err);
+});
+```
+
+### getProtocol<sup>10+</sup>
+
+getProtocol(callback: AsyncCallback\<string\>): void
+
+在TLSSocketServer通信连接成功之后，获取通信的协议版本，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                 |
+| -------- | ----------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback\<string\> | 是   | 回调函数，返回通信的协议。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.getProtocol((err, data) => {
+  if (err) {
+    console.log("getProtocol callback error = " + err);
+  } else {
+    console.log("getProtocol callback = " + data);
+  }
+});
+```
+
+### getProtocol<sup>10+</sup>
+
+getProtocol():Promise\<string\>
+
+在TLSSocketServer通信连接成功之后，获取通信的协议版本，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型              | 说明                                                    |
+| ----------------- | ------------------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回通信的协议。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.getProtocol().then(data => {
+  console.log(data);
+}).catch(err => {
+  console.error(err);
+});
+```
+
+### on('connect')
+
+on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
+
+订阅TLSSocketServer的连接事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                  |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                  | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | 是   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(data) {
+  console.log(JSON.stringify(data))
+});
+```
+
+### off('connect')
+
+off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
+
+取消订阅TLSSocketServer的连接事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                  |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                  | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | 否   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let callback = data => {
+  console.log('on connect message: ' + JSON.stringify(data));
+}
+tlsServer.on('connect', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tlsServer.off('connect', callback);
+tlsServer.off('connect');
+```
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅TLSSocketServer连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅TLSSocketServer连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+tlsServer.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tlsServer.off('error', callback);
+tlsServer.off('error');
+```
+
+## TLSSocketConnection<sup>10+</sup>
+
+TLSSocketConnection连接，即TLSSocket客户端与服务端的连接。在调用TLSSocketConnection的方法前，需要先获取TLSSocketConnection对象。
+
+> **说明：**
+> 客户端与服务端成功建立连接后，才能通过返回的TLSSocketConnection对象调用相应的接口。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+### 属性
+
+| 名称     | 类型   | 必填 | 说明                                  |
+| -------- | ------ | ---- | ------------------------------------- |
+| clientId | number | 是   | 客户端与TLSSocketServer建立连接的id。 |
+
+### send<sup>10+</sup>
+
+send(data: string, callback: AsyncCallback\<void\>): void
+
+在TLSSocketServer通信连接成功之后，向客户端发送消息，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                             |
+| -------- | --------------------- | ---- | ------------------------------------------------ |
+| data     | string                | 是   | TLSSocketServer发送数据所需要的参数。            |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303503  | Error in tls writing.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.send({data: 'Hello, client!'}, err => {
+    if (err) {
+        console.log('send fail');
+        return;
+    }
+    console.log('send success');
+  });
+});
+```
+
+### send<sup>10+</sup>
+
+send(data: string): Promise\<void\>
+
+在TLSSocketServer通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| data   | string | 是   | TLSSocketServer发送数据所需要的参数。 |
+
+**返回值：**
+
+| 类型            | 说明                                                      |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303503  | Error in tls writing.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  let promise = client.send({data: 'Hello, client!'});
+  promise.then(() => {
+    console.log('send success');
+  }).catch(err => {
+    console.log('send fail');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(callback: AsyncCallback\<void\>): void
+
+在与TLSSocketServer通信连接成功之后，断开连接，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                             |
+| -------- | --------------------- | ---- | ------------------------------------------------ |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(): Promise\<void\>
+
+在与TLSSocketServer通信连接成功之后，断开连接，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                                      |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  let promise = client.close();
+  promise.then(() => {
+    console.log('close success');
+  }).catch(err => {
+    console.log('close fail');
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
+
+在TLSSocketServer通信连接成功之后，获取对端Socket地址。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetAddress](#netaddress7)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getRemoteAddress((err, data) => {
+    if (err) {
+      console.log('getRemoteAddress fail');
+      return;
+    }
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(): Promise\<NetAddress\>
+
+在TLSSocketServer通信连接成功之后，获取对端Socket地址。使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                 | 说明                                                         |
+| :----------------------------------- | :----------------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress7)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getRemoteAddress().then(data => {
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getRemoteCertificate<sup>10+</sup>
+
+getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
+
+在TLSSocketServer通信连接成功之后，获取对端的数字证书，该接口只适用于客户端向服务端发送证书时，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，返回对端的证书。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getRemoteCertificate((err, data) => {
+    if (err) {
+      console.log("getRemoteCertificate callback error = " + err);
+    } else {
+      console.log("getRemoteCertificate callback = " + data);
+    }
+  });
+});
+```
+
+### getRemoteCertificate<sup>10+</sup>
+
+getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
+
+在TLSSocketServer通信连接成功之后，获取对端的数字证书，该接口只适用于客户端向服务端发送证书时，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                            | 说明                                                         |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | 以Promise形式返回对端的数字证书的结果。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getRemoteCertificate().then(data => {
+    console.log('getRemoteCertificate success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getCipherSuite<sup>10+</sup>
+
+getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
+
+在TLSSocketServer通信连接成功之后，获取通信双方协商后的加密套件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                         |
+| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<string\>\> | 是   | 回调函数，返回通信双方支持的加密套件。 失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303502  | Error in tls reading.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getCipherSuite((err, data) => {
+    if (err) {
+      console.log("getCipherSuite callback error = " + err);
+    } else {
+      console.log("getCipherSuite callback = " + data);
+    }
+  });
+});
+```
+
+### getCipherSuite<sup>10+</sup>
+
+getCipherSuite(): Promise\<Array\<string\>\>
+
+在TLSSocketServer通信连接成功之后，获取通信双方协商后的加密套件，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                       | 说明                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<string\>\> | 以Promise形式返回通信双方支持的加密套件。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303502  | Error in tls reading.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getCipherSuite().then(data => {
+    console.log('getCipherSuite success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getSignatureAlgorithms<sup>10+</sup>
+
+getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
+
+在TLSSocketServer通信连接成功之后，获取通信双方协商后签名算法，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                               |
+| -------- | -------------------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | 是   | 回调函数，返回双方支持的签名算法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getSignatureAlgorithms((err, data) => {
+    if (err) {
+      console.log("getSignatureAlgorithms callback error = " + err);
+    } else {
+      console.log("getSignatureAlgorithms callback = " + data);
+    }
+  });
+});
+```
+
+### getSignatureAlgorithms<sup>10+</sup>
+
+getSignatureAlgorithms(): Promise\<Array\<string\>\>
+
+在TLSSocketServer通信连接成功之后，获取通信双方协商后的签名算法，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                       | 说明                                          |
+| -------------------------- | --------------------------------------------- |
+| Promise\<Array\<string\>\> | 以Promise形式返回获取到的双方支持的签名算法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.getSignatureAlgorithms().then(data => {
+    console.log("getSignatureAlgorithms success" + data);
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### on('message')<sup>10+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅TLSSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 是   | 回调函数。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('message', value => {
+    let messageView = '';
+    for (var i = 0; i < value.message.length; i++) {
+      let messages = value.message[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
+});
+```
+
+### off('message')<sup>10+</sup>
+
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅TLSSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 否   | 回调函数。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = value => {
+  let messageView = '';
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('message', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('message', callback);
+  client.off('message');
+});
+```
+
+### on('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+订阅TLSSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+取消订阅TLSSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = () => {
+  console.log("on close success");
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('close', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('close', callback);
+  client.off('close');
+});
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅TLSSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('error', err => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅TLSSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```js
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+tlsServer.on('connect', function(client) {
+  client.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('error', callback);
+  client.off('error');
+});
+```
 
