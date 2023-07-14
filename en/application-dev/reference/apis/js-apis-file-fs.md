@@ -64,7 +64,7 @@ Obtains detailed file information. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -94,7 +94,7 @@ Obtains detailed file information. This API uses an asynchronous callback to ret
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -130,7 +130,7 @@ Obtains detailed file information synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -161,7 +161,7 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -193,7 +193,7 @@ Checks whether a file exists. This API uses an asynchronous callback to return t
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -232,7 +232,7 @@ Synchronously checks whether a file exists.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -251,7 +251,7 @@ Synchronously checks whether a file exists.
 
 ## fs.close
 
-close(file: File|number): Promise&lt;void&gt;
+close(file: number|File): Promise&lt;void&gt;
 
 Closes a file. This API uses a promise to return the result.
 
@@ -261,7 +261,7 @@ Closes a file. This API uses a promise to return the result.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Return value**
 
@@ -271,7 +271,7 @@ Closes a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -280,7 +280,6 @@ Closes a file. This API uses a promise to return the result.
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
       console.info("File closed");
-      fs.closeSync(file);
   }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -288,7 +287,7 @@ Closes a file. This API uses a promise to return the result.
 
 ## fs.close
 
-close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
+close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
 
 Closes a file. This API uses an asynchronous callback to return the result.
 
@@ -298,12 +297,12 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | [File](#file)\|number                  | Yes   | File object or FD of the file to close.|
+  | file       | number\|[File](#file)                  | Yes   | File object or FD of the file to close.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -321,7 +320,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 ## fs.closeSync
 
-closeSync(file: File|number): void
+closeSync(file: number|File): void
 
 Synchronously closes a file.
 
@@ -331,11 +330,11 @@ Synchronously closes a file.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -369,7 +368,7 @@ Copies a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -402,7 +401,7 @@ Copies a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -437,7 +436,7 @@ Synchronously copies a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -461,7 +460,7 @@ Copies a directory to the specified directory. This API uses a promise to return
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
@@ -471,7 +470,7 @@ Copies a directory to the specified directory. This API uses a promise to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -507,12 +506,12 @@ Copies a directory to the specified directory. This API uses an asynchronous cal
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -556,7 +555,7 @@ Creates a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -586,7 +585,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -617,7 +616,7 @@ Synchronously creates a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -649,7 +648,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -676,11 +675,11 @@ Opens a file. This API uses an asynchronous callback to return the result. File 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -708,7 +707,7 @@ Synchronously opens a file. File URIs are supported.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -718,7 +717,7 @@ Synchronously opens a file. File URIs are supported.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -753,7 +752,7 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -789,7 +788,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -832,7 +831,7 @@ Synchronously reads data from a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -866,7 +865,7 @@ Deletes a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -896,7 +895,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -927,7 +926,7 @@ Synchronously deletes a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -958,7 +957,7 @@ Deletes a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -988,7 +987,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1019,7 +1018,7 @@ Synchronously deletes a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1043,7 +1042,7 @@ Writes data into a file. This API uses a promise to return the result.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported currently.|
 
 **Return value**
 
@@ -1053,7 +1052,7 @@ Writes data into a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1082,12 +1081,12 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | FD of the file.                            |
   | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported currently.|
   | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1118,7 +1117,7 @@ Synchronously writes data into a file.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported currently.|
 
 **Return value**
 
@@ -1128,7 +1127,7 @@ Synchronously writes data into a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1163,7 +1162,7 @@ Truncates a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1195,7 +1194,7 @@ Truncates a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1228,7 +1227,7 @@ Synchronously truncates a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1251,7 +1250,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
@@ -1261,7 +1260,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1292,7 +1291,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1320,17 +1319,17 @@ Synchronously reads the text of a file.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
   | Type  | Description                |
   | ------ | -------------------- |
-  | string | Promise used to return the content of the file read.|
+  | string | Returns the content of the file read.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1362,7 +1361,7 @@ Obtains information about a symbolic link. This API uses a promise to return the
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1392,7 +1391,7 @@ Obtains information about a symbolic link. This API uses an asynchronous callbac
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1429,7 +1428,7 @@ Obtains information about a symbolic link synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1461,7 +1460,7 @@ Renames a file or folder. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1493,7 +1492,7 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1526,7 +1525,7 @@ Renames a file or folder synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1558,7 +1557,7 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1589,7 +1588,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1623,7 +1622,7 @@ Flushes data of a file to disk synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1656,7 +1655,7 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1688,7 +1687,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1721,7 +1720,7 @@ Synchronizes data in a file synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1755,7 +1754,7 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1787,7 +1786,7 @@ Creates a symbolic link based on a file path. This API uses an asynchronous call
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1820,7 +1819,7 @@ Synchronously creates a symbolic link based on a file path.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1864,7 +1863,7 @@ Lists all files in a folder. This API uses a promise to return the result.<br>Th
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1898,6 +1897,8 @@ listFile(path: string, options?: {
 
 Lists all files in a folder. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
@@ -1916,7 +1917,7 @@ Lists all files in a folder. This API uses an asynchronous callback to return th
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -1953,6 +1954,8 @@ listFileSync(path: string, options?: {
 
 Lists all files in a folder synchronously. This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
@@ -1976,7 +1979,7 @@ Lists all files in a folder synchronously. This API supports recursive listing o
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2012,7 +2015,7 @@ Moves a directory. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to move.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br>If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
 
 **Return value**
 
@@ -2022,7 +2025,7 @@ Moves a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2058,12 +2061,12 @@ Moves a directory. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source directory.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the directory is moved.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2109,7 +2112,7 @@ Moves a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2137,12 +2140,12 @@ Moves a file. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. <br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2160,7 +2163,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
 
 ## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void
+moveFileSync(src: string, dest: string, mode?: number): void
 
 Moves a file synchronously.
 
@@ -2172,11 +2175,11 @@ Moves a file synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. <br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2205,11 +2208,11 @@ Creates a temporary directory. This API uses a promise to return the result.
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the unique directory generated.|
+  | Promise&lt;string&gt; | Promise used to return the directory created.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2238,7 +2241,7 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2274,7 +2277,7 @@ Synchronously creates a temporary directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2305,7 +2308,7 @@ Creates a stream based on the file path. This API uses a promise to return the r
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2337,7 +2340,7 @@ Creates a stream based on the file path. This API uses an asynchronous callback 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2375,7 +2378,7 @@ Synchronously creates a stream based on the file path.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2408,7 +2411,7 @@ Opens a stream based on the file descriptor. This API uses a promise to return t
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2441,7 +2444,7 @@ Opens a stream based on the file descriptor. This API uses an asynchronous callb
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2481,7 +2484,7 @@ Synchronously opens a stream based on the file descriptor.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2507,7 +2510,7 @@ Creates a **Watcher** object to observe file or directory changes.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
-  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (&#124;)|.<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is changed.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory not opened for writing is closed.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (&#124;).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory opened is closed without being written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
   | listener   | WatchEventListener | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
 
 **Return value**
@@ -2518,7 +2521,7 @@ Creates a **Watcher** object to observe file or directory changes.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2603,7 +2606,7 @@ Checks whether this file is a block special file. A block special file supports 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2628,7 +2631,7 @@ Checks whether this file is a character special file. A character special file s
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2653,7 +2656,7 @@ Checks whether this file is a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2674,11 +2677,11 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the file is a FIFO.|
+  | boolean | Whether the file is an FIFO.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2703,7 +2706,7 @@ Checks whether this file is a regular file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2728,7 +2731,7 @@ Checks whether this file is a socket.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2753,7 +2756,7 @@ Checks whether this file is a symbolic link.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2778,11 +2781,11 @@ Closes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream close result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2812,7 +2815,7 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2838,7 +2841,7 @@ Synchronously closes the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2860,11 +2863,11 @@ Flushes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2894,7 +2897,7 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2920,7 +2923,7 @@ Synchronously flushes the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2943,7 +2946,7 @@ Writes data into the stream. This API uses a promise to return the result.
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
@@ -2953,7 +2956,7 @@ Writes data into the stream. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -2980,12 +2983,12 @@ Writes data into the stream. This API uses an asynchronous callback to return th
   | Name  | Type                           | Mandatory| Description                                                        |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
   | buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
-  | options  | Object                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options  | Object                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.|
   | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3016,7 +3019,7 @@ Synchronously writes data into the stream.
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
 
@@ -3026,7 +3029,7 @@ Synchronously writes data into the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3059,7 +3062,7 @@ Reads data from the stream. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3093,7 +3096,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3134,7 +3137,7 @@ Synchronously reads data from the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3178,12 +3181,12 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
     console.log("lock file successful");
   }).catch((err) => {
@@ -3208,12 +3211,12 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err) => {
     if (err) {
       console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
@@ -3239,12 +3242,12 @@ Applies an exclusive lock or a shared lock on this file in non-blocking mode.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
   ```
@@ -3259,12 +3262,12 @@ Unlocks this file synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
@@ -3286,7 +3289,7 @@ Starts listening.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -3309,7 +3312,7 @@ Stops listening.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
