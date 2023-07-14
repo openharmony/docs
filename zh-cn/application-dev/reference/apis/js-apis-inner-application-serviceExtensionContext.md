@@ -1418,7 +1418,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
-## UIAbilityContext.startRecentAbility
+## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
@@ -1483,7 +1483,7 @@ try {
   console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
-## UIAbilityContext.startRecentAbility
+## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
@@ -1554,7 +1554,7 @@ try {
   console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
-## UIAbilityContext.startRecentAbility
+## ServiceExtensionContext.startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
