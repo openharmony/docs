@@ -3260,7 +3260,7 @@ call.setCallRestriction(0, callRestrictionInfo).then(() => {
 
 setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string, callback: AsyncCallback\<void\>\): void
 
-设置呼叫限制密码。使用callback异步回调。
+修改呼叫限制密码。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3303,7 +3303,7 @@ call.setCallRestrictionPassword(0, "123456", "654321", (err) => {
 
 setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string\): Promise\<void\>
 
-设置呼叫限制密码。使用Promise异步回调。
+修改呼叫限制密码。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
