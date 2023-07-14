@@ -20,8 +20,6 @@
     - [色彩](visual-colors.md)
     - [字体](visual-fonts.md)
     - [图标](visual-icons.md)
-    - [卡片化](visual-widgets.md)
-    - [光影材质](visual-shade-shadow.md)
 - 动效
     - [概述](animation-overview.md)
     - [设计原则](animation-design-principles.md)
