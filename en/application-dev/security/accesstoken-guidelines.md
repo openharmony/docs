@@ -125,7 +125,7 @@ User authorization is required when an application needs to access user privacy 
 
 > **NOTE**
 >
-> Each time before an API protected by a **user_grant** permission is called, **requestPermissionsFromUser()** will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previous authorization status cannot be persistent.
+> Each time before an API protected by a **user_grant** permission is called, **[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)** will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 ### Stage Model
 
