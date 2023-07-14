@@ -1860,7 +1860,7 @@
 
 ## ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-允许应用调用锁屏服务的系统API。
+允许应用使用锁屏服务的锁定屏幕、发送锁屏事件、系统事件回调功能。
 
 **权限级别**：system_core
 
