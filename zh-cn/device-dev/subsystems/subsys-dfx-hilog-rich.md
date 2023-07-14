@@ -66,7 +66,7 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
      
    ```
-   external_deps = [ "hilog_native:libhilog" ]
+   external_deps = [ "hilog:libhilog" ]
    ```
 
 
