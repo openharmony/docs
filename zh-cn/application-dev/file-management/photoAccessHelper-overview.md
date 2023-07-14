@@ -20,9 +20,9 @@ PhotoAccessHelper提供相册管理模块相关能力，包括创建相册以及
   - 收藏夹
   - 视频相册
   - 截屏和录屏相册
-- [媒体资源变更通知相关](photoAccessHelper-notify-guidelines.md)，包括：
-  - 打开对指定URI的监听
-  - 关闭指定URI的监听
+- [媒体资源（图片、视频和相册）变更通知相关](photoAccessHelper-notify-guidelines.md)，包括：
+  - 注册对指定URI的监听
+  - 取消指定URI的监听
 
 > **说明：**
 > 本开发指导基于API Version 10，仅适用于Stage模型。
