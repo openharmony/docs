@@ -132,9 +132,9 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 ### How to Use<a name="section954619433333"></a>
 
 1.  Search for distributions.
-    1.  Access [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), and click **Equipment Bundle**. Then go to the **Open Source Distribution** page.
+    1.  Access [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), and click **Device**. Then go to the **Open Source Distribution** page.
     2.  Enter a keyword \(for example: **camera**\) in the search box. All matched distributions are found.
-    3.  Specify filter criteria, such as the bundle type \(for example: **Board support** or **Kernel support**\), to further filter the distributions.
+    3.  Specify filter criteria, such as the bundle type \(for example: **Board Support** or **Kernel Support**\), to further filter the distributions.
     4.  Find your desired distribution and click it to view details.
 
         **Figure 1**  HPM page<a name="fig349416264520"></a> 
