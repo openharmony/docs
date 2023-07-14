@@ -295,7 +295,7 @@ Obtains the space (in bytes) of this third-party application. This API uses a pr
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.     |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
 
 **Error codes**
 
@@ -373,7 +373,7 @@ Obtains the total size (in bytes) of the built-in storage. This API uses a promi
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the built-in storage size obtained.  |
+  | Promise&lt;number&gt; | Promise used to return the total built-in storage size obtained.  |
 
 **Error codes**
 
@@ -604,7 +604,7 @@ Obtains the storage statistics (in bytes) of this user. This API uses a promise 
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
 
 **Error codes**
 
@@ -683,13 +683,13 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | number | Yes  | User ID.|
+  | userId | number | Yes  | User ID|
 
 **Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
 
 **Error codes**
 
