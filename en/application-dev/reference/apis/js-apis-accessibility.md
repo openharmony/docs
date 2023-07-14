@@ -1,4 +1,4 @@
-# @ohos.accessibility
+# @ohos.accessibility (Accessibility)
 
 The **Accessibility** module implements the accessibility functions, including obtaining the accessibility application list, accessibility application enabled status, and captions configuration.
 
@@ -134,14 +134,14 @@ Describes the style of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | Yes| No| Font family of captions.|
-| fontScale | number | Yes| No| Font scale of captions.|
-| fontColor | number \| string | Yes| No| Font color of captions.|
-| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes| No| Font edge type of captions.|
-| backgroundColor | number \| string | Yes| No| Background color of captions.|
-| windowColor | number \| string | Yes| No| Window color of captions.|
+| Name             | Type                                      | Readable  | Writable  | Description         |
+| --------------- | ---------------------------------------- | ---- | ---- | ----------- |
+| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | Yes   | No   | Font family of captions.    |
+| fontScale       | number                                   | Yes   | No   | Font scale factor of captions, in percentage. The value ranges from 1 to 200.|
+| fontColor       | number \| string                         | Yes   | No   | Font color of captions. For example, red corresponds to #FF0000.  |
+| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes   | No   | Font edge type of captions.  |
+| backgroundColor | number \| string                         | Yes   | No   | Background color of captions. For example, red corresponds to #FF0000.  |
+| windowColor     | number \| string                         | Yes   | No   | Window color of captions. For example, red corresponds to #FF0000.  |
 
 ## CaptionsManager<sup>8+</sup>
 

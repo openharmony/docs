@@ -219,7 +219,7 @@ The **metadata** tag represents the custom metadata of the HAP file. The tag val
 
 ## abilities
 
-UIAbility configuration of the module, which is valid only for the current UIAbility component.
+The **abilities** tag represents the UIAbility configuration of the module, which is valid only for the current UIAbility component.
 
   **Table 6** abilities
 
