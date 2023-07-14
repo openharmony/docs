@@ -251,7 +251,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.close
 
-close(file: File|number): Promise&lt;void&gt;
+close(file: number|File): Promise&lt;void&gt;
 
 Closes a file. This API uses a promise to return the result.
 
@@ -261,7 +261,7 @@ Closes a file. This API uses a promise to return the result.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Return value**
 
@@ -288,7 +288,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.close
 
-close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
+close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
 
 Closes a file. This API uses an asynchronous callback to return the result.
 
@@ -298,7 +298,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | [File](#file)\|number                  | Yes   | File object or FD of the file to close.|
+  | file       | number\|[File](#file)                  | Yes   | File object or FD of the file to close.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
 
 **Error codes**
@@ -321,7 +321,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.closeSync
 
-closeSync(file: File|number): void
+closeSync(file: number|File): void
 
 Synchronously closes a file.
 
@@ -331,7 +331,7 @@ Synchronously closes a file.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Error codes**
 
@@ -543,7 +543,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 open(path: string, mode?: number): Promise&lt;File&gt;
 
-Opens a file. This API uses a promise to return the result. File uniform resource identifiers (URIs) are supported. 
+Opens a file. This API uses a promise to return the result. File uniform resource identifiers (URIs) are supported.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -580,7 +580,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
 
-Opens a file. This API uses an asynchronous callback to return the result. File URIs are supported. 
+Opens a file. This API uses an asynchronous callback to return the result. File URIs are supported.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -612,7 +612,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 openSync(path: string, mode?: number): File
 
-Synchronously opens a file. File URIs are supported. 
+Synchronously opens a file. File URIs are supported.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1239,7 +1239,7 @@ Synchronously reads the text of a file.
 
   | Type  | Description                |
   | ------ | -------------------- |
-  | string | Promise used to return the content of the file read.|
+  | string | Returns the content of the file read.|
 
 **Error codes**
 
@@ -1811,6 +1811,8 @@ listFile(path: string, options?: {
 
 Lists all files in a directory. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subdirectories) and file filtering.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
@@ -1865,6 +1867,8 @@ listFileSync(path: string, options?: {
 }): string[]
 
 Lists all files in a directory synchronously. This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
@@ -1986,7 +1990,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 ## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void
+moveFileSync(src: string, dest: string, mode?: number): void
 
 Moves a file synchronously.
 
@@ -2933,7 +2937,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
     console.log("lock file successful");
   }).catch((err) => {
@@ -2963,7 +2967,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err) => {
     if (err) {
       console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2994,7 +2998,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
   ```
@@ -3014,7 +3018,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
