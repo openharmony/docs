@@ -506,15 +506,15 @@ Defines the distributed information about an OS account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name| Type| Read-only| Mandatory| Description|
-| -------- | -------- | -------- |-------- | -------- |
-| name | string | No|Yes| Name of the distributed account. It must be a non-null string.|
-| id | string | No|Yes| UID of the distributed account. It must be a non-null string.|
-| event | string | No|Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string | No|No| Nickname of the distributed account. By default, no value is passed.|
-| avatar<sup>9+</sup> | string | No|No| Avatar of the distributed account. By default, no value is passed.|
-| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | Yes|No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
-| scalableData<sup>8+</sup> | object | No|No| Extended information about the distributed account, passed in key-value (KV) pairs based on service requirements. By default, no value is passed.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string |Yes| Name of the distributed account. It must be a non-null string.|
+| id | string |Yes| UID of the distributed account. It must be a non-null string.|
+| event | string |Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string |No| Nickname of the distributed account. By default, no value is passed.|
+| avatar<sup>9+</sup> | string |No| Avatar of the distributed account. By default, no value is passed.|
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
+| scalableData<sup>8+</sup> | object |No| Extended information about the distributed account, passed in key-value (KV) pairs based on service requirements. By default, no value is passed.|
 
 ## DistributedAccountStatus<sup>10+</sup>
 
