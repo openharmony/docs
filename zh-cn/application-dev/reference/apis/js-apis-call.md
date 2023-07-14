@@ -1723,7 +1723,7 @@ call.combineConference(1).then(() => {
 
 kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
-踢出电话会议，将指定通话从会议电话中挂断。使用callback异步回调。
+移出电话会议，将指定通话从会议电话中挂断。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1744,6 +1744,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
@@ -1762,7 +1763,7 @@ call.kickOutFromConference(1, (err) => {
 
 kickOutFromConference\(callId: number\): Promise\<void\>
 
-踢出电话会议，将指定通话从会议电话中挂断。使用Promise异步回调。
+移出电话会议，将指定通话从会议电话中挂断。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1788,6 +1789,7 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
