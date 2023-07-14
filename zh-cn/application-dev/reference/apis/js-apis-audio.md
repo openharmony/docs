@@ -3066,7 +3066,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
+audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then((value) => {
   console.info('Success to adjust the volume by step.');
 }).catch((error) => {
   console.info('Fail to adjust the volume by step.');
@@ -3136,7 +3136,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 **示例：**
 
 ```js
-audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
+audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then((value) => {
   console.info('Success to adjust the system volume by step.');
 }).catch((error) => {
   console.info('Fail to adjust the system volume by step.');
@@ -3200,8 +3200,8 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 **示例：**
 
 ```js
-audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((dB) => {
-  console.info(`Success to get the volume DB. ${dB}`);
+audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value) => {
+  console.info(`Success to get the volume DB. ${value}`);
 }).catch((error) => {
   console.info(`Fail to adjust the system volume by step. ${error}`);
 });
@@ -5520,8 +5520,8 @@ getMinStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMinStreamVolume().then(minVolume => {
-  console.info(`Get min stream volume Success! ${minVolume}`);
+audioRenderer.getMinStreamVolume().then(value => {
+  console.info(`Get min stream volume Success! ${value}`);
 }).catch((err) => {
   console.error(`Get min stream volume Fail: ${err}`);
 });
@@ -5569,8 +5569,8 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMaxStreamVolume().then(maxVolume => {
-  console.info(`Get max stream volume Success! ${maxVolume}`);
+audioRenderer.getMaxStreamVolume().then(value => {
+  console.info(`Get max stream volume Success! ${value}`);
 }).catch((err) => {
   console.error(`Get max stream volume Fail: ${err}`);
 });
@@ -5618,8 +5618,8 @@ getUnderflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getUnderflowCount().then(underflowCount => {
-  console.info(`Get underflow count Success! ${underflowCount}`);
+audioRenderer.getUnderflowCount().then(value => {
+  console.info(`Get underflow count Success! ${value}`);
 }).catch((err) => {
   console.error(`Get underflow count Fail: ${err}`);
 });
