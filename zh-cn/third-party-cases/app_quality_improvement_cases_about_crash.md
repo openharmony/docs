@@ -24,7 +24,7 @@ jsThread-1 crash：
 
 ![img](figures/crash_3.png) 
 
- Crash报错均为堆栈问题，但是每次具体原因不一致
+ Crash报错的其中两次堆栈信息如下，可以看到两次堆栈信息并不一致：
 
 ![img](figures/crash_4.png) 
 
