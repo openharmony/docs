@@ -6,7 +6,7 @@
 使用Camera采集视频码流。
 
 
-### 接口说明
+## 接口说明
 
 参考[拍照开发指导](subsys-multimedia-camera-photo-guide.md)的“接口说明”。
 
