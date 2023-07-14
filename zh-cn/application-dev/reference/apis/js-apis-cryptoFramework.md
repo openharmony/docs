@@ -342,7 +342,7 @@ buffer数组。
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -426,7 +426,7 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -475,7 +475,7 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -494,7 +494,7 @@ clearMem(): void
 
 ```js
 let key; // key为使用非对称密钥生成器生成的非对称密钥的私钥对象，此处省略生成过程
-key.clearMem();
+key.clearMem(); // 非对称密钥私钥clearMem会释放内部密钥结构体，clearMem后不支持getEncoded操作
 ```
 
 ### getAsyKeySpec<sup>10+</sup>
@@ -915,8 +915,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\
 ```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
-let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
+let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
 let pubKeyBlob = { data: pubKeyArray }; // 公钥的密钥数据
 let priKeyBlob = { data: priKeyArray }; // 私钥的密钥数据
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
@@ -963,8 +963,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
 ```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
-let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
+let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
 let pubKeyBlob = { data: pubKeyArray }; // 公钥的密钥数据
 let priKeyBlob = { data: priKeyArray }; // 私钥的密钥数据
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
@@ -1572,7 +1572,7 @@ doFinal(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 （2）在RSA、SM2非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
-> **说明：** 
+> **说明：**
 >
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
@@ -1843,11 +1843,11 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 
-let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
+let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
 
-let singer3 = cryptoFramework.createSign("ECC224|SHA256");
+let signer3 = cryptoFramework.createSign("ECC224|SHA256");
 
-let singer4 = cryptoFramework.createSign("DSA2048|SHA256");
+let signer4 = cryptoFramework.createSign("DSA2048|SHA256");
 ```
 
 ## Sign
@@ -2070,8 +2070,8 @@ function signMessageCallback() {
   rsaGenerator.generateKeyPair(function (err, keyPair) {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
-    signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) { // add first segment of data
+    signer.init(priKey, err => {
+      signer.update(input1, err => { // add first segment of data
         signer.sign(input2, function (err, data) { // add second segment of data, sign input1 and input2
           SignMessageBlob = data;
           AlertDialog.show({message: "res" +  SignMessageBlob.data});
@@ -2713,7 +2713,7 @@ try {
     // 参数选择请参考上述算法支持范围
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 ```
 
@@ -2764,7 +2764,7 @@ var md;
 try {
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Md algName is: " + md.algName);
 
@@ -2814,7 +2814,7 @@ var md;
 try {
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Md algName is: " + md.algName);
 
@@ -2855,7 +2855,7 @@ var md;
 try {
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Md algName is: " + md.algName);
 
@@ -2904,7 +2904,7 @@ var md;
 try {
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Md algName is: " + md.algName);
 
@@ -2949,7 +2949,7 @@ var md;
 try {
     md = cryptoFramework.createMd("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Md algName is: " + md.algName);
 
@@ -3004,7 +3004,7 @@ try {
     // 参数选择请参考上述算法支持范围
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 ```
 
@@ -3051,7 +3051,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 var KeyBlob;
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
@@ -3103,7 +3103,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -3155,7 +3155,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
 symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
@@ -3216,7 +3216,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -3267,7 +3267,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);  
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
 symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
@@ -3325,7 +3325,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);  
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -3378,7 +3378,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -3432,7 +3432,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 try {
     var rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message); 
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 ```
 
@@ -3480,7 +3480,7 @@ var rand;
 try {
     rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);    
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 rand.generateRandom(12, (err, randData) => {
     if (err) {
@@ -3528,7 +3528,7 @@ var rand;
 try {
     rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 
 var promiseGenerateRand = rand.generateRandom(12);
@@ -3576,7 +3576,7 @@ var rand;
 try {
     rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 
 try {
@@ -3618,18 +3618,18 @@ var rand;
 try {
     rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
+    console.error("[Sync]: error code: " + error.code + ", message is: " + error.message);
 }
 
 rand.generateRandom(12, (err, randData) => {
     if (err) {
         console.error("[Callback] err: " + err.code);
     } else {
-        console.error("[Callback]: generate random result: " + randData.data);
+        console.info("[Callback]: generate random result: " + randData.data);
         try {
             rand.setSeed(randData);
         } catch (error) {
-            console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+            console.error("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
         }
     }
 });
