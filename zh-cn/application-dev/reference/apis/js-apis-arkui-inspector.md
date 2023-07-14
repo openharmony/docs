@@ -76,42 +76,42 @@ off(type: 'layout', callback?: () => void): void
 
 **示例：**
 
-  ```js
-import inspector from '@ohos.arkui.inspector';
+  ```ts
+  import inspector from '@ohos.arkui.inspector'
 
-@Entry
-@Component
-struct ImageExample {
-  build() {
-    Column() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Row({ space: 5 }) {
-          Image($r('app.media.app_icon'))
-            .width(110)
-            .height(110)
-            .border({ width: 1 })
-            .id('IMAGE_ID')
+  @Entry
+  @Component
+  struct ImageExample {
+    build() {
+      Column() {
+        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+          Row({ space: 5 }) {
+            Image($r('app.media.app_icon'))
+              .width(110)
+              .height(110)
+              .border({ width: 1 })
+              .id('IMAGE_ID')
+          }
         }
-      }
-    }.height(320).width(360).padding({ right: 10, top: 10 })
+      }.height(320).width(360).padding({ right: 10, top: 10 })
+    }
+
+    listener = inspector.createComponentObserver('IMAGE_ID')
+
+    aboutToAppear() {
+      let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
+      let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
+
+      this.listener.on('layout', FuncLayout)
+      this.listener.on('draw', FuncDraw)
+    }
+
+    onLayoutComplete() {
+      // do something here
+    }
+
+    onDrawComplete() {
+      // do something here
+    }
   }
-
-  listener = inspector.createComponentObserver('IMAGE_ID')
-
-  aboutToAppear() {
-    let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
-    let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
-
-    this.listener.on('layout', FuncLayout)
-    this.listener.on('draw', FuncDraw)
-  }
-
-  onLayoutComplete() {
-    // do something here
-  }
-
-  onDrawComplete() {
-    // do something here
-  }
-}
   ```
