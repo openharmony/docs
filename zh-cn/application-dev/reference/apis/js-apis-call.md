@@ -1719,6 +1719,93 @@ call.combineConference(1).then(() => {
 });
 ```
 
+## call.kickOutFromConference<sup>10+</sup>
+
+kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
+
+移出电话会议，将指定通话从会议电话中挂断。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callId   | number                    | 是   | 呼叫Id。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+call.kickOutFromConference(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.kickOutFromConference<sup>10+</sup>
+
+kickOutFromConference\(callId: number\): Promise\<void\>
+
+移出电话会议，将指定通话从会议电话中挂断。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| callId | number | 是   | 呼叫Id。 |
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+call.kickOutFromConference(1).then(() => {
+    console.log(`kickOutFromConference success.`);
+}).catch((err) => {
+    console.error(`kickOutFromConference fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## call.getMainCallId<sup>7+</sup>
 
 getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
@@ -1998,6 +2085,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2044,6 +2132,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2088,6 +2177,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2135,6 +2225,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2999,6 +3090,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3046,6 +3138,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3090,6 +3183,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3142,6 +3236,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3158,6 +3253,99 @@ call.setCallRestriction(0, callRestrictionInfo).then(() => {
     console.log(`setCallRestriction success.`);
 }).catch((err) => {
     console.error(`setCallRestriction fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setCallRestrictionPassword<sup>10+</sup>
+
+setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string, callback: AsyncCallback\<void\>\): void
+
+修改呼叫限制密码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名          | 类型                                        | 必填 | 说明                                   |
+| --------------- | ------------------------------------------- | ---- | ------------------------------------ |
+| slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
+| newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
+| callback        | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+call.setCallRestrictionPassword(0, "123456", "654321", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setCallRestrictionPassword<sup>10+</sup>
+
+setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string\): Promise\<void\>
+
+修改呼叫限制密码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名          | 类型                                        | 必填 | 说明                                   |
+| --------------- | ------------------------------------------- | ---- | ------------------------------------ |
+| slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
+| newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```js
+call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
+    console.log(`setCallRestrictionPassword success.`);
+}).catch((err) => {
+    console.error(`setCallRestrictionPassword fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3190,6 +3378,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3237,6 +3426,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3281,6 +3471,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3333,6 +3524,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
