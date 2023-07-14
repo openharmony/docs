@@ -137,11 +137,11 @@ Describes the style of captions.
 | Name             | Type                                      | Readable  | Writable  | Description         |
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
 | fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | Yes   | No   | Font family of captions.    |
-| fontScale       | number                                   | Yes   | No   | Font scale of captions.|
-| fontColor       | number \| string                         | Yes   | No   | Font color of captions.  |
+| fontScale       | number                                   | Yes   | No   | Font scale factor of captions, in percentage. The value ranges from 1 to 200.|
+| fontColor       | number \| string                         | Yes   | No   | Font color of captions. For example, red corresponds to #FF0000.  |
 | fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes   | No   | Font edge type of captions.  |
-| backgroundColor | number \| string                         | Yes   | No   | Background color of captions.  |
-| windowColor     | number \| string                         | Yes   | No   | Window color of captions.  |
+| backgroundColor | number \| string                         | Yes   | No   | Background color of captions. For example, red corresponds to #FF0000.  |
+| windowColor     | number \| string                         | Yes   | No   | Window color of captions. For example, red corresponds to #FF0000.  |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -161,6 +161,8 @@ Implements configuration management for captions. Before calling any API of **Ca
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 Enables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 **Parameters**
 
@@ -187,6 +189,8 @@ try {
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 Enables listening for captions style changes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 **Parameters**
 
@@ -216,6 +220,8 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 Disables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
+
 **Parameters**
 
 | Name     | Type                     | Mandatory  | Description                                      |
@@ -241,6 +247,8 @@ try {
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 Disables listening for captions style changes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 **Parameters**
 
@@ -573,7 +581,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 Enables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
 
- 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Parameters**
 
@@ -600,7 +608,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 Enables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
 
- 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
 **Parameters**
 
@@ -627,13 +635,13 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 Disables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
 
- 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Parameters**
 
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | No   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
 
 **Example**
@@ -654,13 +662,13 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 Disables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
 
- 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Parameters**
 
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | No   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
 
 **Example**

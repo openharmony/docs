@@ -241,6 +241,14 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 | isAccessibilityFocus | boolean                                  | Yes   | Whether the obtained focus element is an accessibility focus.   |
 | callback             | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the current focus element.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
+| 9300003 | Do not have accessibility right for this operation. |
+
 **Example**
 
 ```ts
