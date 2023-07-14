@@ -3507,6 +3507,70 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
   }
   ```
 
+### onControllerAttached<sup>10+</sup>
+
+onControllerAttached(callback: () => void)
+
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
+
+**示例：**
+
+在该回调中使用loadUrl加载网页
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: '', controller: this.controller })
+          .onControllerAttached(() => {
+            this.controller.loadUrl($rawfile("index.html"));
+          })
+      }
+    }
+  }
+  ```
+在该回调中使用getWebId
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onControllerAttached(() => {
+            try {
+                let id = this.controller.getWebId();
+                console.log("id: " + id);
+            } catch (error) {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            }
+          })
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
