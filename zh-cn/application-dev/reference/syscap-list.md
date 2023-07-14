@@ -527,6 +527,14 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
+## SystemCapability.Multimedia.AVSession.AVCast
+
+媒体投播能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 否   | 是     | 否           | 否     |
+
 ## SystemCapability.Multimedia.Audio.Core
 
 音频基础能力

@@ -161,6 +161,8 @@
   - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
+- 高级组件
+  - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
 - 动画
   - [属性动画](ts-animatorproperty.md)
   - [显式动画](ts-explicit-animation.md)
