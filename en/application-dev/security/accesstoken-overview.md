@@ -39,9 +39,13 @@ The figure below illustrates the process.
 
 ![](figures/permission-workflow.png)
 
+**NOTE**
+
 1. Refer to the figure below to determine whether an application can apply for a permission.
 
 ![](figures/permission-application-process.png)
+
+**NOTE**
 
 1. See [Permission Levels](#permission-levels) for details about the mapping between the application Ability Privilege Level (APL) and the permission level.
 
@@ -57,6 +61,8 @@ The API can be called only after the permission verification is successful.
 The figure below shows the permission verification process.
 
 ![](figures/permission-verify-process.png)
+
+**NOTE**
 
 1: An application permission can be used to control the access to an API that has sensitive data involved or security threats on core abilities.
 
