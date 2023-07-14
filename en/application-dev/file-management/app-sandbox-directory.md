@@ -10,8 +10,7 @@ The application sandbox is an isolation mechanism to prevent data from being acc
 
 The following figure illustrates the file access scope and modes for an application in an application sandbox.
 
-**Figure 1** File access in an application sandbox
-
+**Figure 1** File access in an application sandbox 
 ![Application sandbox file access relationship](figures/application-sandbox-file-access-relationship.png)
 
 ## Application Sandbox Directory and Application Sandbox Path
@@ -22,10 +21,9 @@ With the application sandbox mechanism, an application cannot learn the location
 
 - You can view the real application paths (the directory view visible to a system process) in the HDC shell environment. For details about the mappings between the application sandbox paths and real application paths, see [Mappings Between Application Sandbox Paths and Physical Paths](send-file-to-app-sandbox.md#mappings-between-application-sandbox-paths-and-physical-paths).
 
-- The application sandbox paths and physical paths are not in one-to-one mappings. The application sandbox paths are always less than the physical paths. You may not obtain the the application sandbox path based on a physical path in certain cases, but you can obtain the physical path based on an application sandbox path.
+- The application sandbox paths and physical paths are not in one-to-one mappings. The application sandbox paths are always less than the physical paths. You may not obtain the application sandbox path based on a physical path in certain cases, but you can obtain the physical path based on an application sandbox path.
 
-**Figure 2** Different directory views to processes and applications
-
+**Figure 2** Different directory views to processes and applications 
 ![Application sandbox path](figures/application-sandbox-path.png)
 
 ## Application File Directory and Application File Path
@@ -36,8 +34,7 @@ The system file directories visible to an application are preset by OpenHarmony.
 
 The following figure shows the application file directories. The path of a file or a folder in the application file directory is called the application file path. The file paths in the application file directory have different attributes and characteristics.
 
-**Figure 3** Application file directory structure
-
+**Figure 3** Application file directory structure 
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
 1. Level 1 directory **data/**: indicates the application file directory.
@@ -68,7 +65,7 @@ The following figure shows the application file directories. The path of a file 
    | Folder| Context Attribute Name| Type| Description|
    | -------- | -------- | -------- | -------- |
    | bundle | bundleCodeDir | Installation file directory| Directory for saving the HAPs of the application after an application is installed.<br>This directory is cleared when the application is uninstalled.<br> Do not access resource files by concatenating paths. Use [@ohos.resourceManager](../reference/apis/js-apis-resource-manager.md) instead. |
-   | base | NA | Directory for local device files| Directory for saving the application's persistent data on the device. Subdirectories include **files/**, **cache/**, **temp/**, and **haps/**.<br>This directory is cleared when the application is uninstalled. |
+   | base | NA | Directory for local device files| Directory for saving the application's persistent data on the device. Subdirectories include **files/**, **cache/**, **temp/**, and **haps/**.<br>This directory is cleared when the application is uninstalled.|
    | database | databaseDir | Database directory| Directory in **el1** for saving the files operated by the distributed database service.<br>This directory is cleared when the application is uninstalled.|
    | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.|
    | files | filesDir | Application file directory| Directory for saving the application's persistent files on the device.<br>This directory is cleared when the application is uninstalled.|
