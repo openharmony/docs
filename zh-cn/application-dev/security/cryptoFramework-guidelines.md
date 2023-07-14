@@ -121,6 +121,7 @@ function convertAsyKey() {
   rsaGenerator.convertKey(pkBlob, null, (err, keyPair) => {
     if (err) {
       AlertDialog.show({ message: 'Convert keyPair fail' });
+      return;
     }
     AlertDialog.show({ message: 'Convert keyPair success' });
   })
@@ -150,6 +151,7 @@ function convertEccAsyKey() {
   generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
     if (error) {
       AlertDialog.show({ message: 'Convert keyPair fail' });
+      return;
     }
     AlertDialog.show({ message: 'Convert keyPair success' });
   })
@@ -302,6 +304,7 @@ function convertSM2AsyKey() {
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
+            return;
         }
         AlertDialog.show({message : "Convert KeyPair success"});
     })
@@ -389,7 +392,7 @@ function showEccSpecDetailInfo(key, keyType) {
   console.info("show detail of " + keyType + ":");
   try {
     let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-    showBigIntInfo("--- p", p); //length is 224, hex : ffffffffffffffffffffffffffffffff000000000000000000000001
+    showBigIntInfo("--- p", p); // length is 224, hex : ffffffffffffffffffffffffffffffff000000000000000000000001
 
     let a = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
     showBigIntInfo("--- a", a); // length is 224, hex : fffffffffffffffffffffffffffffffefffffffffffffffffffffffe
@@ -407,7 +410,7 @@ function showEccSpecDetailInfo(key, keyType) {
     showBigIntInfo("--- n", n); // length is 224, hex : ffffffffffffffffffffffffffff16a2e0b8f03e13dd29455c5c2a3d
 
     let h = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
-    console.warn("--- h: " + h); //key h: 1
+    console.warn("--- h: " + h); // key h: 1
 
     let fieldType = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
     console.warn("--- field type: " + fieldType); // key field type: Fp
@@ -1651,6 +1654,7 @@ function signMessagePromise() {
   });
 }
 
+// 调用完sign操作后调用verify
 function verifyMessagePromise() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
   let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
@@ -1680,6 +1684,7 @@ function signMessageCallback() {
   });
 }
 
+// 调用完sign操作后调用verify
 function verifyMessageCallback() {
   let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
   verifyer.init(globalKeyPair.pubKey, err => {
