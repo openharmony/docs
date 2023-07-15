@@ -43,6 +43,8 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
+| 14801001     | Only supported in Stage mode.                               |
+| 14801002     | The dataGroupId not valid.                                  |
 
 **示例：**
 
@@ -127,6 +129,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
+| 14801001     | Only supported in Stage mode.                               |
+| 14801002     | The dataGroupId not valid.                                  |
 
 **示例：**
 
@@ -229,7 +233,80 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
+
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
+      if (err) {
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info(`Delete RdbStore successfully.`);
+    })
+  }
+}
+```
+
+## relationalStore.deleteRdbStore
+
+function deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<void>): void;
+
+删除数据库，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| config   | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
+| callback | AsyncCallback&lt;void&gt;   | 是   | 指定callback回调函数。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
+| 14801001     | Only supported in Stage mode.                               |
+| 14801002     | The dataGroupId not valid.                                  |
+
+**示例：**
+
+FA模型示例：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
+let context = featureAbility.getContext()
+const STORE_CONFIG = {
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+
+relationalStore.deleteRdbStore(context, STORE_CONFIG, function (err) {
+  if (err) {
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`Delete RdbStore successfully.`);
+})
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG, function (err) {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
@@ -305,6 +382,81 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## relationalStore.deleteRdbStore
+
+deleteRdbStore(context: Context, config: StoreConfig): Promise<void>;
+
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数**
+
+| 参数名  | 类型                        | 必填 | 说明                                                         |
+| ------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
+| 14801001     | Only supported in Stage mode.                               |
+| 14801002     | The dataGroupId not valid.                                  |
+
+**示例：**
+
+FA模型示例：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+
+// 获取context
+let context = featureAbility.getContext();
+const STORE_CONFIG = {
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+
+let promise = relationalStore.deleteRdbStore(context, STORE_CONFIG);
+promise.then(()=>{
+  console.info(`Delete RdbStore successfully.`);
+}).catch((err) => {
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility'
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
+    let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
+    promise.then(()=>{
+      console.info(`Delete RdbStore successfully.`);
+    }).catch((err) => {
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+  }
+}
+```
+
 ## StoreConfig
 
 管理关系数据库配置。
@@ -316,6 +468,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
+| dataGroupId | string | 否 | 应用组ID。<br/>**模型约束：** 此属性仅可在Stage模型下可用。 |
 
 ## SecurityLevel
 
@@ -3775,6 +3928,45 @@ try {
 }
 ```
 
+### on<sup>10+</sup>
+
+on(event: string, supportShared: boolean, observer: Callback): void;
+
+注册数据库的数据变更的事件监听。当调用[emit](#emit10)接口时，将调用回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填 | 说明                                                         |
+| ------------- | -------- | ---- | ------------------------------------------------------------ |
+| event         | string   | 是   | 订阅事件名称。                                               |
+| supportShared | boolean  | 是   | 指定是进程间还是本进程订阅。<br/> true:进程间。<br/> false:本进程。 |
+| observer      | Callback | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 801          | Capability not supported.              |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**示例：**
+
+```js
+function storeObserver() {
+    console.info(`storeObserver`);
+}
+try {
+  store.on('storeObserver', false, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
 ### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -3835,6 +4027,75 @@ try {
 } catch (err) {
   console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
+```
+
+### off<sup>10+</sup>
+
+off(event: string, supportShared: boolean, observer?: Callback<void>): void;
+
+取消数据变更的事件监听。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填 | 说明                                                         |
+| ------------- | -------- | ---- | ------------------------------------------------------------ |
+| event         | string   | 是   | 取消订阅事件名称。                                           |
+| supportShared | boolean  | 是   | 指定是进程间还是本进程取消订阅。<br/> true:进程间。<br/> false:本进程。 |
+| observer      | Callback | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 801          | Capability not supported.              |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**示例：**
+
+```js
+function storeObserver() {
+    console.info(`storeObserver`);
+}
+try {
+  store.off('storeObserver', false, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### emit<sup>10+</sup>
+
+emit(event: string): void;
+
+通知数据变更的事件监听。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | string | 是   | 通知订阅事件的名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 801          | Capability not supported.              |
+| 14800000     | Inner error.                           |
+| 14800050     | Failed to obtain subscription service. |
+
+**示例：**
+
+```js
+store.emit(storeObserver);
 ```
 
 ## ResultSet
