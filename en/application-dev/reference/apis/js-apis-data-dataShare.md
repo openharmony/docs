@@ -7,10 +7,8 @@ The **DataShare** module allows an application to manage its own data and share 
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 >
-> - The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs and can be used only in the stage model.
 >
->
-> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -51,7 +49,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-app-ability-uiAbility.md)        | Yes  | Context of an application.                                          |
+| context  | [Context](js-apis-app-ability-uiAbility.md)        | Yes  | Context of the application.                                       |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -72,7 +70,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
 try {
     dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
             return;
         }
@@ -96,7 +94,7 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-app-ability-uiAbility.md) | Yes  | Context of an application.            |
+| context | [Context](js-apis-app-ability-uiAbility.md) | Yes  | Context of the application.          |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
 
 **Return value**
@@ -262,7 +260,7 @@ const valueBucket = {
 }
 try {
     dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
+        console.info("insert succeed, data : " + data);
     }). catch((err) => {
         console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -298,7 +296,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`delete error: code: ${err.code}, message: ${err.message} `);
             return;
         }
@@ -341,7 +339,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
+        console.info("delete succeed, data : " + data);
     }). catch((err) => {
         console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
@@ -379,11 +377,11 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`query error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     });
 } catch (err) {
     console.error(`query error: code: ${err.code}, message: ${err.message} `);
@@ -424,7 +422,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns).then((data) =>  {
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     }). catch((err) => {
         console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
@@ -467,11 +465,11 @@ const va = {
 }
 try {
     dataShareHelper.update(uri, da, va, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`update error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     });
 } catch (err) {
     console.error(`update error: code: ${err.code}, message: ${err.message} `);
@@ -517,7 +515,7 @@ const va = {
 }
 try {
     dataShareHelper.update(uri, da, va).then((data) =>  {
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     }). catch((err) => {
         console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
@@ -552,11 +550,11 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
 try {
     dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     });
 } catch (err) {
     console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
@@ -594,7 +592,7 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
 try {
     dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     }). catch((err) => {
         console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -624,10 +622,10 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("normalizeUri failed, error message : " + err);
+    if (err !== undefined) {
+        console.error("normalizeUri failed, error message : " + err);
     }else{
-        console.log("normalizeUri = " + data);
+        console.info("normalizeUri = " + data);
     }
 });
 ```
@@ -658,9 +656,9 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
-    console.log("normalizeUri = " + data);
+    console.info("normalizeUri = " + data);
 }).catch((err) => {
-    console.log("normalizeUri failed, error message : " + err);
+    console.error("normalizeUri failed, error message : " + err);
 });
 ```
 
@@ -685,10 +683,10 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("denormalizeUri failed, error message : " + err);
+    if (err !== undefined) {
+        console.error("denormalizeUri failed, error message : " + err);
     }else{
-        console.log("denormalizeUri = " + data);
+        console.info("denormalizeUri = " + data);
     }
 });
 ```
@@ -719,9 +717,9 @@ Denormalizes a URI. This API uses a promise to return the result.
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
-    console.log("denormalizeUri = " + data);
+    console.info("denormalizeUri = " + data);
 }).catch((err) => {
-    console.log("denormalizeUri failed, error message : " + err);
+    console.error("denormalizeUri failed, error message : " + err);
 });
 ```
 
@@ -746,7 +744,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
-    console.log("***** notifyChange *****");
+    console.info("***** notifyChange *****");
 });
 ```
 

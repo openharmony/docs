@@ -1,4 +1,4 @@
-# @ohos.application.DataShareExtensionAbility (DataShare Extension Ability)
+# @ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility)
 
 The **DataShareExtensionAbility** module provides data share services based on the ExtensionAbility.
 
@@ -41,7 +41,7 @@ Example:
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare Extension ability.| 
 
@@ -57,7 +57,7 @@ Called by the server to initialize service logic when the DataShare client conne
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | Yes | **Want** information, including the ability name and bundle name.|
+| want | [Want](js-apis-application-want.md#want) | Yes | Want information, including the ability name and bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
@@ -78,10 +78,10 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             name: DB_NAME,
             securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
-            console.log('getRdbStore done, data : ' + data);
+            console.info(`getRdbStore done, data : ${data}`);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.log('executeSql done, error message : ' + err);
+                console.error(`executeSql done, error message : ${err}`);
             });
             if (callback) {
                 callback();
@@ -122,11 +122,11 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
         if (valueBucket === null) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
         rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
-            console.info('callback ret:' + ret);
+            console.info(`callback ret: ${ret}`);
             if (callback !== undefined) {
                 callback(err, ret);
             }
@@ -256,7 +256,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
         }
         rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
             if (resultSet !== undefined) {
-                console.info('resultSet.rowCount: ' + resultSet.rowCount);
+                console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
             }
             if (callback !== undefined) {
                 callback(err, resultSet);
@@ -297,14 +297,12 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     batchInsert(uri, valueBuckets, callback) {
         if (valueBuckets === null || valueBuckets.length === undefined) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
-        let resultNum = valueBuckets.length;
-        valueBuckets.forEach(vb => {
-            rdbStore.insert(TBL_NAME, vb, function (err, ret) {
+        rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
                 if (callback !== undefined) {
-                    callback(err, resultNum);
+                    callback(err, ret);
                 }
             });
         });
@@ -333,7 +331,7 @@ Normalizes a URI. This API can be overridden as required.
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     normalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'normalize+' + uri;
+        let ret = `normalize: ${uri}`;
         callback(err, ret);
     }
 };
@@ -360,7 +358,7 @@ Denormalizes a URI. This API can be overridden as required.
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     denormalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'denormalize+' + uri;
+        let ret = `denormalize ${uri}`;
         callback(err, ret);
     }
 };
