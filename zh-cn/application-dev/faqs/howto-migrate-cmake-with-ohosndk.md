@@ -10,7 +10,7 @@
 
 2. IDE OpenHarmony SDK Manager中下载
 
-3. 从每日构建中下载，下载地址 http://ci.openharmony.cn/dailys/dailybuilds ，形态组件选择ohos-sdk
+3. 从每日构建中下载，下载地址 http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist ，形态组件选择ohos-sdk
 
 ![](figures/ci_download.png)
 
