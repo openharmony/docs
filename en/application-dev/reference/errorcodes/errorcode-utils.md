@@ -100,7 +100,7 @@ Use a supported API.
 
 **Error Message**
 
-Serializing an uncaught exception failed.
+An exception occurred during serialization.
 
 **Description**
 
@@ -246,7 +246,7 @@ Check the functions required by the tasks executed by the task pool and add the 
 
 **Error Message**
 
-The task is not exist when cancel it.
+The task does not exist when it is canceled.
 
 **Description**
 
@@ -258,13 +258,13 @@ The task to cancel does not exist in the task pool.
 
 **Solution**
 
-Before canceling a task, ensure that the task is placed into the task pool by calling **taskpool.execute**.
+Before canceling a task, ensure that the task has been placed in the task pool by calling **taskpool.execute** and is not finishing. If you are not sure, capture exceptions.
 
 ## 10200016 Failed to Cancel a Task Being Executed
 
 **Error Message**
 
-The task is running when cancel it.
+The task is executing when it is canceled.
 
 **Description**
 
@@ -276,7 +276,7 @@ The task to cancel is being executed.
 
 **Solution**
 
-Before canceling a task, ensure that the task finishes execution.
+Before canceling a task, ensure that the task has been placed in the task pool by calling **taskpool.execute** and has not started execution. If you are not sure, capture exceptions.
 
 ## 10200017 Failed to Delete an Element That Does Not Exist
 
@@ -295,3 +295,21 @@ The element to delete does not exist in the container.
 **Solution**
 
 Before deleting an element, ensure that the element exists in this container.
+
+## 10200018 Failed to Cancel a Task Group That Does Not Exist
+
+**Error Message**
+
+The task group does not exist when it is canceled.
+
+**Description**
+
+This error code is reported when you attempt to cancel a task group that does not exist.
+
+**Possible Causes**
+
+The task group to cancel does not exist in the task pool.
+
+**Solution**
+
+Before canceling a task group, ensure that the task group is placed in the task pool by calling **taskpool.execute** and is not finishing. If you are not sure, capture exceptions.
