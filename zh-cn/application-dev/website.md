@@ -540,10 +540,10 @@
     - 跨应用数据共享
       - [跨应用数据共享概述](database/data-share-overview.md)
       - [标准化数据定义](database/unified-data-definition.md)
-      - 一对多数据共享（仅对系统应用开放）
+      - 一对多跨应用数据共享（仅对系统应用开放）
         - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
         - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
-      - 多对多数据共享
+      - 多对多跨应用数据共享
         - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
   - 文件管理
     - [文件管理概述](file-management/file-management-overview.md)
