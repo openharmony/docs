@@ -1,6 +1,6 @@
-# @ohos.application.DataShareExtensionAbility (DataShare Extension Ability)
+# @ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility)
 
-The **DataShareExtensionAbility** module provides data share services based on the Extension ability.
+The **DataShareExtensionAbility** module provides data share services based on the ExtensionAbility.
 
 >**NOTE**
 >
@@ -23,7 +23,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare Extension ability.|
+| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|DataShareExtensionAbility context, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md).|
 
 ## onCreate
 
@@ -215,7 +215,7 @@ Queries data from the database. This API can be overridden as required.
 | uri | string | Yes | URI of the data to query.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is empty, all columns will be queried.|
-| callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set.|
+| callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set obtained.|
 
 **Example**
 
@@ -275,18 +275,17 @@ let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    batchInsert(uri, valueBuckets, callback) {
-        if (valueBuckets === null || valueBuckets.length === undefined) {
-            console.error('invalid valueBuckets');
-            return;
-        }
-        rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
-                if (callback !== undefined) {
-                    callback(err, ret);
-                }
-            });
-        });
+  batchInsert(uri, valueBuckets, callback) {
+    if (valueBuckets === null || valueBuckets.length === undefined) {
+      console.error('invalid valueBuckets');
+      return;
     }
+    rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
+      if (callback !== undefined) {
+        callback(err, ret);
+      }
+    });
+  };
 };
 ```
 
