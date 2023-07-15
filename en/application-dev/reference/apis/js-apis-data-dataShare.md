@@ -17,6 +17,27 @@ The **DataShare** module allows an application to manage its own data and share 
 import dataShare from '@ohos.data.dataShare'
 ```
 
+## URI Naming Rule
+
+The URIs are in the following format:
+
+**Scheme://authority/path** 
+- *Scheme*: scheme name, which has a fixed value of **datashare** for the **DataShare** module.
+- *authority*: [userinfo@]host[:port]
+    - *userinfo*: login information, which can be left unspecified.
+    - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
+    - *port*: port number of the server, which can be left unspecified.
+- *path*: **DataShare** identifier and the resource path. The **DataShare** identifier is mandatory, and the resource path is optional.
+
+Example:
+
+- URI without the resource path:<br>**datashare:///com.samples.datasharetest.DataShare**
+
+- URI with the resource path:<br>**datashare:///com.samples.datasharetest.DataShare/DB00/TBL00**
+
+**com.samples.datasharetest.DataShare** is the data share identifier, and **DB00/TBL00** is the resource path.
+
+
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
