@@ -25,8 +25,8 @@ Describes screenshot options.
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.                      |
 | imageSize              | [Size](#size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.                      |
-| rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**.    |
-| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured.|
+| rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**. The value must be an integer.    |
+| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 
 
 ## Rect
@@ -37,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture, in pixels.|
-| top    | number | Yes  | Top boundary of the screen region to capture, in pixels.|
-| width  | number | Yes  | Width of the screen region to capture, in pixels.|
-| height | number | Yes  | Height of the screen region to capture, in pixels.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in pixels. The value must be an integer.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in pixels. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
 
 
 ## Size
@@ -51,8 +51,8 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture, in pixels.|
-| height | number | Yes  | Height of the screen region to capture, in pixels.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
 
 ## screenshot.save
 

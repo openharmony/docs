@@ -49,10 +49,10 @@ Describes a rectangle on the display.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.  |
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.  |
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -196,7 +196,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display.|
+| id     | number                    | Yes  | ID of the display. The value must be an integer.|
 
 **Return value**
 
@@ -248,10 +248,10 @@ Subscribes to display changes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
+| Name| Type| Mandatory| Description                                                                                                                             |
+| -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display, which is an integer.                                                                                                    |
 
 **Example**
 
@@ -279,7 +279,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display, which is an integer.|
 
 **Example**
 
@@ -335,7 +335,7 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating the event of display private mode changes.|
+| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating the event of display privacy mode changes.|
 | callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Example**
@@ -479,22 +479,22 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| id | number | Yes| No| ID of the display.|
-| name | string | Yes| No| Name of the display.|
-| alive | boolean | Yes| No| Whether the display is alive.|
-| state | [DisplayState](#displaystate) | Yes| No| State of the display.|
-| refreshRate | number | Yes| No| Refresh rate of the display.|
+| Name| Type| Readable| Writable| Description                                                                                                           |
+| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
+| id | number | Yes| No| ID of the display. The value must be an integer.                                                                                            |
+| name | string | Yes| No| Name of the display.                                                                                                     |
+| alive | boolean | Yes| No| Whether the display is alive.                                                                                                    |
+| state | [DisplayState](#displaystate) | Yes| No| State of the display.                                                                                                     |
+| refreshRate | number | Yes| No| Refresh rate of the display. The value must be an integer.                                                                                            |
 | rotation | number | Yes| No| Screen rotation angle of the display.<br>The value **0** indicates that the screen of the display rotates by 0°.<br>The value **1** indicates that the screen of the display rotates by 90°.<br>The value **2** indicates that the screen of the display rotates by 180°.<br>The value **3** indicates that the screen of the display rotates by 270°.|
-| width | number | Yes| No| Width of the display, in pixels.|
-| height | number | Yes| No| Height of the display, in pixels.|
-| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. Generally, the value is **160** or **480**.|
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.|
-| densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. Generally, the value is **1** or **3**.|
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. Generally, the value is the same as that of **densityPixels**.|
-| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
-| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
+| width | number | Yes| No| Width of the display, in pixels. The value must be an integer.                                                                                       |
+| height | number | Yes| No| Height of the display, in pixels. The value must be an integer.                                                                                       |
+| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. The value must be a floating point number. Generally, the value is **160.0** or **480.0**.                                                                  |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.                                                                                                 |
+| densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. The value must be a floating point number. Generally, the value is **1.0** or **3.0**.                                                                 |
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.                                                                   |
+| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction. The value must be a floating point number.                                                                                   |
+| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction. The value must be a floating point number.                                                                                   |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
