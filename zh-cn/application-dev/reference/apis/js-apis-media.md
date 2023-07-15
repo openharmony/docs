@@ -3354,12 +3354,13 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 | 名称            | 类型                                           | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)           | 否   | 视频录制的音频源类型，选择音频录制时必填。                      |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
 | url             | string                   | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](#avrecorder9)或[AudioRecorder](#audiorecorderdeprecated)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -3371,10 +3372,10 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 | 名称             | 类型                                         | 必填 | 说明             |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
-| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
-| audioChannels    | number                                       | 是   | 音频采集声道数。 |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 音频编码格式。   |
-| audioSampleRate  | number                                       | 是   | 音频采样率。     |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。 |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。   |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。     |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
 | videoBitrate     | number                                       | 是   | 视频编码比特率。 |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
