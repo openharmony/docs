@@ -1,20 +1,17 @@
 # 开发屏幕录制功能
 
-屏幕录制功能主要有主屏幕录屏、指定物理屏录屏和应用内录屏三个子功能。
+屏幕录制功能主要有主屏幕录屏、指定物理屏录屏和应用内录屏。
 
-录屏（AVScreenCapture）以单独的原子能力构建，北向给开发者提供能力接口，视频采集南向对接窗口子系统和图形子系统，语音采集和编码后码流横向在媒体子系统内部对接AudioService和AVCodecService。AVScreenCapture采用client-server设计结构，用openharmony IPC进行通信，图中绿色为新增模块。proxy和stub，负责IPC接口通信，npi提供kit层级的接口，client负责权限校验以及接口能力。server负责音视频的采集，以及buffer管理等。
+录屏（AVScreenCapture）以单独的原子能力构建，给开发者提供能力接口，视频采集功能对接窗口和图形模块，语音采集和编码后码流对接AudioService和AVCodecService。AVScreenCapture采用client-server设计结构，用openharmony IPC进行通信。proxy和stub，负责IPC接口通信，npi提供kit层级的接口，client负责权限校验以及接口能力。server负责音视频的采集，以及buffer管理等。
 
-主屏幕录屏：录屏框架在makeMirror时默认使用主屏；图形默认根据主屏produce surface到BufferQueue；录屏框架从BufferQueue consumer数据进行相应处理。
-
-指定物理屏录屏：app从窗口子系统获取所有displayId；app根据用户选择，在调用录屏框架接口init时，带入用户选择 共享的屏幕；录屏框架在makeMirror时，传入displayId给窗口子系统； 窗口子系统向图形那边设置图层白名单；图形根据设置的白名单图层produce surface到BufferQueue； 录屏框架从BufferQueue consumer数据进行相应处理。(api 10对此功能暂仅作参数预留，未做实际实现)
-
-应用内录屏：app从missionManger获取全局的mission；app根据用户选择，在调用录屏框架接口init时，带入用户选择 的missionId（可以是多个）；录屏框架在createVirtualScreen时，传入missionId给窗口子系统；窗口子系统向图形那边设置图层白名单；图形根据设置的白名单图层produce surface到BufferQueue；录屏框架从BufferQueue consumer数据进行相应处理。(api 10对此功能暂仅作参数预留，未做实际实现)
+主屏幕录屏：录屏框架在制作录屏镜像时默认使用主屏；图形默认根据主屏生产录屏帧数据到显示数据缓冲队列；录屏框架从显示数据缓冲队列获取数据进行相应消费处理。
 
 ## 开发指导
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。本开发指导将以一次录制屏幕数据的过程为例，向开发者讲解如何使用AVScreenCapturer进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../reference/native-apis/_a_v_screen_capture.md)。
 
-使用AVScreenCapture时要注意状态的变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。需要注意的是在确定的状态执行不合适的方法可能导致AVScreenCapture发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
+使用AVScreenCapture时要明确其状态的变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。
+在确定的状态下执行不合适的方法会导致AVScreenCapture发生错误，开发者需要在调用状态转换的方法前进行状态检查，避免程序运行异常。
 
 ### 开发步骤及注意事项
 
@@ -27,7 +24,7 @@
     ```
 
 2. 配置屏幕录制参数。
-      创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数，可以参考下面的案例。
+      创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
     ```c++
     OH_AudioCaptureInfo miccapinfo = {
@@ -99,7 +96,7 @@
     OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
     ```
 
-8. 调用AcquireVideoBuffer()方法停止录制。
+8. 调用AcquireVideoBuffer()获取音频原始码流数据。
      
     ```c++
     OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
@@ -111,7 +108,7 @@
     OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
     ```
 
-10. 调用ReleaseVideoBuffer()方法停止录制。
+10. 调用ReleaseVideoBuffer()释放视频数据。
      
     ```c++
     OH_ScreenCapture_ReleaseVideoBuffer(capture);

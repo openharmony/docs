@@ -32,21 +32,21 @@ AVScreenCaptureBase模块提供运行录屏通用的结构体、字符常量、�
 ### 类型定义
 | 名称 | 描述 | 
 | -------- | -------- |
-| (\*[OH_AVScreenCaptureOnError](#oh_avscreencaptureonerror)) (OH_AVScreenCapture \*capture, int32_t errorCode)| 当screencapture在运行过程中执行某一流程出现错误，则调用该函数指针并上报错误码。 |
-| (\*[OH_AVScreenCaptureOnAudioBufferAvailable](#oh_avscreencaptureonaudiobufferavailable)) (OH_AVScreenCapture \*capture, bool isReady， OH_AudioCaptureSourceType type)| 当screencapture在运行，音频缓冲可用时，调用该函数指针并更新状态信息。 |
-| (\*[OH_AVScreenCaptureOnVideoBufferAvailable](#oh_avscreencaptureonvideobufferavailable)) (OH_AVScreenCapture \*capture, bool isReady)| 当screencapture在运行，视频缓冲可用时，调用该函数指针并更新状态信息。 |
+| (\*[OH_AVScreenCaptureOnError](#oh_avscreencaptureonerror)) (OH_AVScreenCapture \*capture， int32_t errorCode)| 当screencapture在运行过程中执行某一流程出现错误，则调用该函数指针并上报错误码。 |
+| (\*[OH_AVScreenCaptureOnAudioBufferAvailable](#oh_avscreencaptureonaudiobufferavailable)) (OH_AVScreenCapture \*capture， bool isReady， OH_AudioCaptureSourceType type)| 当screencapture在运行，音频缓冲可用时，调用该函数指针并更新状态信息。 |
+| (\*[OH_AVScreenCaptureOnVideoBufferAvailable](#oh_avscreencaptureonvideobufferavailable)) (OH_AVScreenCapture \*capture， bool isReady)| 当screencapture在运行，视频缓冲可用时，调用该函数指针并更新状态信息。 |
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_CaptureMode](#oh_capturemode) {<br/>**OH_CAPTURE_HOME_SCREEN** = 0，**OH_CAPTURE_SPECIFIED_SCREEN** = 1, **OH_CAPTURE_SPECIFIED_WINDOW** = 2, **OH_CAPTURE_INVAILD** = -1<br/>} | 屏幕录制的不同模式。 |
-| [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) {<br/>**OH_SOURCE_INVALID** = -1, **OH_SOURCE_DEFAULT** = 0, **OH_MIC** = 1, **OH_ALL_PLAYBACK** = 2, **OH_APP_PLAYBACK** = 3<br/>} | 屏幕录制音频的不同source类型。 |
-| [OH_AudioCodecFormat](#oh_audiocodecformat) {<br/>**OH_AUDIO_DEFAULT** = 0, **OH_AAC_LC** = 3, **OH_AUDIO_CODEC_FORMAT_BUTT**,<br/>} | 屏幕录制音频的不同的编码格式。 |
-| [OH_VideoCodecFormat](#oh_videocodecformat) {<br/>**OH_VIDEO_DEFAULT** = 0, **OH_H264** = 2, **OH_H265** = 4, **OH_MPEG4** = 6, **OH_VP8** = 8, **OH_VP9** = 10, **OH_VIDEO_CODEC_FORMAT_BUTT**<br/>} | 屏幕录制视频的不同编码格式。 |
-| [OH_DataType](#oh_datatype) {<br/>**OH_ORIGINAL_STREAM** = 0, **OH_ENCODED_STREAM** = 1, **OH_CAPTURE_FILE** = 2, **OH_INVAILD** = -1<br/>} | 屏幕录制流的数据格式，编码格式，以及保存文件格式等参数。 |
-| [OH_VideoSourceType](#oh_videosourcetype) {<br/>**OH_VIDEO_SOURCE_SURFACE_YUV** = 0, **OH_VIDEO_SOURCE_SURFACE_ES**, **OH_VIDEO_SOURCE_SURFACE_RGBA**, **OH_VIDEO_SOURCE_BUTT**<br/>} | 屏幕录制视频的不同source类型。 |
-| [OH_ContainerFormatType](#oh_containerformattype) {<br/>**CFT_MPEG_4A** = 0, **CFT_MPEG_4** = 1<br/>} | 屏幕录制生成物的不同音视频格式类型。 |
+| [OH_CaptureMode](#oh_capturemode) {<br/>**OH_CAPTURE_HOME_SCREEN** = 0，**OH_CAPTURE_SPECIFIED_SCREEN** = 1， **OH_CAPTURE_SPECIFIED_WINDOW** = 2， **OH_CAPTURE_INVAILD** = -1<br/>} | 屏幕录制的不同模式，包括主屏幕录制，特殊屏幕录制，特殊屏幕内的特殊窗口录制模式。 |
+| [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) {<br/>**OH_SOURCE_INVALID** = -1， **OH_SOURCE_DEFAULT** = 0， **OH_MIC** = 1， **OH_ALL_PLAYBACK** = 2， **OH_APP_PLAYBACK** = 3<br/>} | 屏幕录制音频的不同source类型，包括麦克风录制的外部音频流，系统播放的所有音频的内部音频流和指定应用播放音频的内部音频流类型。 |
+| [OH_AudioCodecFormat](#oh_audiocodecformat) {<br/>**OH_AUDIO_DEFAULT** = 0， **OH_AAC_LC** = 3， **OH_AUDIO_CODEC_FORMAT_BUTT**，<br/>} | 屏幕录制音频的不同的编码格式，包括AAC_LC音频编码格式。 |
+| [OH_VideoCodecFormat](#oh_videocodecformat) {<br/>**OH_VIDEO_DEFAULT** = 0， **OH_H264** = 2， **OH_H265** = 4， **OH_MPEG4** = 6， **OH_VP8** = 8， **OH_VP9** = 10， **OH_VIDEO_CODEC_FORMAT_BUTT**<br/>} | 屏幕录制视频的不同编码格式，包括h264，h265，mpeg4，vp8，vp9视频编码格式。 |
+| [OH_DataType](#oh_datatype) {<br/>**OH_ORIGINAL_STREAM** = 0， **OH_ENCODED_STREAM** = 1， **OH_CAPTURE_FILE** = 2， **OH_INVAILD** = -1<br/>} | 屏幕录制流的数据格式，编码格式，以及保存文件格式等参数。 |
+| [OH_VideoSourceType](#oh_videosourcetype) {<br/>**OH_VIDEO_SOURCE_SURFACE_YUV** = 0， **OH_VIDEO_SOURCE_SURFACE_ES**， **OH_VIDEO_SOURCE_SURFACE_RGBA**， **OH_VIDEO_SOURCE_BUTT**<br/>} | 屏幕录制视频的不同source类型，包括YUV，ES，RGBA资源类型。 |
+| [OH_ContainerFormatType](#oh_containerformattype) {<br/>**CFT_MPEG_4A** = 0， **CFT_MPEG_4** = 1<br/>} | 屏幕录制生成物的不同音视频格式类型，包括MPEG_4A，MPEG_4格式类型。 |
 
 ### 变量
 
@@ -466,7 +466,7 @@ int32_t videoFrameRate
 ```
 
 **描述：**
-录屏视频数据的帧率信息。
+录屏视频数据的帧率信息，需要根据设备刷新率和编码帧率性能约束进行设置。
 
 **起始版本：**
 
@@ -853,7 +853,7 @@ OH_AudioCaptureSourceType type
 
   
 ```
-typedef void (*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture, int32_t errorCode)
+typedef void (*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture， int32_t errorCode)
 ```
 
 **描述：**
@@ -873,7 +873,7 @@ typedef void (*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture, int32_t e
 
   
 ```
-typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)
+typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *capture， bool isReady， OH_AudioCaptureSourceType type)
 ```
 
 **描述：**
@@ -894,7 +894,7 @@ typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *cap
 
   
 ```
-typedef void (*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *capture, bool isReady)
+typedef void (*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *capture， bool isReady)
 ```
 
 **描述：**

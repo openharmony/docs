@@ -23,9 +23,9 @@ OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onError](#onerror) | 监控录屏调用操作错误，请参见[OH_AVScreenCaptureOnError](_a_v_screen_capture_base.md#oh_avscreencaptureonerror) | 
-| [onAudioBufferAvailable](#onaudiobufferavailable) | 监控音频码流是否有数据产生[OH_AVScreenCaptureOnAudioBufferAvailable](_a_v_screen_capture_base.md#oh_avscreencaptureonaudiobufferavailable) | 
-| [onVideoBufferAvailable](#onvideobufferavailable) | 监控视频码流是否有数据产生[OH_AVScreenCaptureOnVideoBufferAvailable](_a_v_screen_capture_base.md#oh_avscreencaptureonvideobufferavailable) |
+| [onError](#onerror) | 监控录屏调用操作错误，请参见[OH_AVScreenCaptureOnError](_a_v_screen_capture_base.md#oh_avscreencaptureonerror)。 | 
+| [onAudioBufferAvailable](#onaudiobufferavailable) | 监控音频码流是否有数据产生[OH_AVScreenCaptureOnAudioBufferAvailable](_a_v_screen_capture_base.md#oh_avscreencaptureonaudiobufferavailable)。 | 
+| [onVideoBufferAvailable](#onvideobufferavailable) | 监控视频码流是否有数据产生[OH_AVScreenCaptureOnVideoBufferAvailable](_a_v_screen_capture_base.md#oh_avscreencaptureonvideobufferavailable)。 |
 
 
 ## 结构体成员变量说明
