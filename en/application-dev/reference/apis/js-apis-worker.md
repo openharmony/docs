@@ -83,9 +83,9 @@ import worker from '@ohos.worker';
 // Create a Worker instance.
 
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
-const workerFAModel01 = new worker.ThreadWorker("workers/worker.js", {name:"first worker in FA model"});
+const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
-const workerFAModel02 = new worker.ThreadWorker("../workers/worker.js");
+const workerFAModel02 = new worker.ThreadWorker("../workers/worker.ts");
 
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
@@ -115,7 +115,7 @@ In the FA model:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }
@@ -161,9 +161,9 @@ In the stage model:
 
 ### postMessage<sup>9+</sup>
 
-postMessage(message: Object, transfer: ArrayBuffer[]): void;
+postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -171,8 +171,8 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                                        |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
 
 **Error codes**
 
@@ -181,7 +181,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -196,7 +196,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -204,8 +204,8 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
 
 **Error codes**
 
@@ -214,7 +214,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -617,7 +617,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+// The event listener created by addEventListener will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -792,7 +792,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+// The event listener created by addEventListener will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -849,16 +849,16 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                   |
-| -------- | ------------- | ---- | ------------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the host thread.                                 |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Error codes**
 
@@ -867,18 +867,18 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
-    console.log("receive data from worker.js");
+    console.log("receive data from worker.ts");
 }
 ```
 
@@ -897,7 +897,7 @@ workerPort.onmessage = function(e){
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -905,8 +905,8 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Error codes**
 
@@ -915,18 +915,18 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
-    console.log("receive data from worker.js");
+    console.log("receive data from worker.ts");
 }
 ```
 
@@ -936,7 +936,7 @@ import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e){
     // let data = e.data;
-    workerPort.postMessage("receive data from main.js");
+    workerPort.postMessage("receive data from main thread");
 }
 ```
 
@@ -960,7 +960,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
@@ -1002,7 +1002,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
@@ -1013,7 +1013,7 @@ workerInstance.postMessage("hello world");
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e) {
-    console.log("receive main.js message");
+    console.log("receive main thread message");
 }
 ```
 
@@ -1045,7 +1045,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
@@ -1055,7 +1055,7 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 parentPort.onmessageerror = function(e) {
-    console.log("worker.js onmessageerror")
+    console.log("worker.ts onmessageerror")
 }
 ```
 
@@ -1130,7 +1130,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
@@ -1140,7 +1140,7 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort
 workerPort.onerror = function(e){
-    console.log("worker.js onerror")
+    console.log("worker.ts onerror")
 }
 ```
 
@@ -1193,9 +1193,9 @@ import worker from '@ohos.worker';
 // Create a Worker instance.
 
 // In the FA model, the workers directory is at the same level as the pages directory.
-const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker in FA model"});
+const workerFAModel01 = new worker.Worker("workers/worker.ts", {name:"first worker in FA model"});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory.
-const workerFAModel02 = new worker.Worker("../workers/worker.js");
+const workerFAModel02 = new worker.Worker("../workers/worker.ts");
 
 // In the stage model, the workers directory is at the same level as the pages directory.
 const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
@@ -1216,7 +1216,7 @@ In the FA model:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }
@@ -1256,9 +1256,9 @@ In the stage model:
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(message: Object, transfer: ArrayBuffer[]): void;
+postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9) instead.
@@ -1267,15 +1267,15 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                           |
-| -------- | ------------- | ---- | ----------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                           |
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instances that can be transferred.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
 
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -1285,7 +1285,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1) instead.
@@ -1296,13 +1296,13 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
 
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
@@ -1332,7 +1332,7 @@ Adds an event listener for the worker thread. This API provides the same functio
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1360,7 +1360,7 @@ Adds an event listener for the worker thread and removes the event listener afte
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1388,7 +1388,7 @@ Removes an event listener for the worker thread. This API provides the same func
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 // Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
@@ -1408,7 +1408,7 @@ Terminates the worker thread to stop it from receiving messages.
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.terminate();
 ```
 
@@ -1433,7 +1433,7 @@ Defines the event handler to be called when the worker thread exits. The handler
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
@@ -1467,7 +1467,7 @@ Defines the event handler to be called when an exception occurs during worker ex
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onerror = function(e) {
     console.log("onerror");
 }
@@ -1489,12 +1489,12 @@ Defines the event handler to be called when the host thread receives a message s
 
 | Name| Type                          | Mandatory| Description                  |
 | ------ | ------------------------------ | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
+| event  | [MessageEvent](#messageeventt)| Yes  | Message received.|
 
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = function(e) {
     // e: MessageEvent. The usage is as follows:
     // let data = e.data;
@@ -1518,12 +1518,12 @@ Defines the event handler to be called when the worker thread receives a message
 
 | Name| Type                          | Mandatory| Description      |
 | ------ | ------------------------------ | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
+| event  | [MessageEvent](#messageeventt)| Yes  | Error data.|
 
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessageerror= function(e) {
     console.log("onmessageerror");
 }
@@ -1555,7 +1555,7 @@ Adds an event listener for the worker thread. This API provides the same functio
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1583,7 +1583,7 @@ Removes an event listener for the worker thread. This API provides the same func
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1617,7 +1617,7 @@ Dispatches the event defined for the worker thread.
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
 ```
@@ -1625,7 +1625,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
@@ -1677,7 +1677,7 @@ Removes all event listeners for the worker thread.
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1696,7 +1696,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: Transferable[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2).
@@ -1707,14 +1707,14 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | Yes  | Message to be sent to the host thread.                                      |
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer| Transferable[]                            | Yes  | Currently, this parameter is not supported.                                        |
 
 ### postMessage<sup>9+</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 > **NOTE**
 >
@@ -1724,25 +1724,25 @@ Sends a message to the host thread from the worker thread.
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                 |
-| -------- | ------------- | ---- | ----------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the host thread.                               |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
-    console.log("receive data from worker.js");
+    console.log("receive data from worker.ts");
 }
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e){
@@ -1756,7 +1756,7 @@ parentPort.onmessage = function(e){
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3).
@@ -1767,28 +1767,28 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
-    console.log("receive data from worker.js");
+    console.log("receive data from worker.ts");
 }
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e){
     // let data = e.data;
-    parentPort.postMessage("receive data from main.js");
+    parentPort.postMessage("receive data from main thread");
 }
 ```
 
@@ -1806,12 +1806,12 @@ Terminates the worker thread to stop it from receiving messages.
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e) {
@@ -1836,22 +1836,22 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageeventt)                             | Yes  | Message received.|
+| ev     | [MessageEvent](#messageeventt)                              | Yes  | Message received.|
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e) {
-    console.log("receive main.js message");
+    console.log("receive main thread message");
 }
 ```
 
@@ -1872,28 +1872,28 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                          | Mandatory| Description      |
 | ------ | ------------------------------ | ---- | ---------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageeventt) | Yes  | Error data.|
+| ev     | [MessageEvent](#messageeventt)| Yes  | Error data.|
 
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = function(e) {
-    console.log("worker.js onmessageerror")
+    console.log("worker.ts onmessageerror")
 }
 ```
 
 
 ## PostMessageOptions
 
-Specifies the object whose ownership needs to be transferred during data transfer. The object must be **ArrayBuffer**.
+Defines the object for which the ownership is to be transferred during data transfer. The object must be an **ArrayBuffer** instance. After the ownership is transferred, the object becomes unavailable in the sender and can be used only in the receiver.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1940,7 +1940,7 @@ Implements event listening.
 **Example**
 
 ```js
-const workerInstance = new worker.Worker("workers/worker.js");
+const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -2010,16 +2010,16 @@ Defines the event handler to be called when an exception occurs during worker ex
 **Example**
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
+const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
 parentPort.onerror = function(e){
-    console.log("worker.js onerror")
+    console.log("worker.ts onerror")
 }
 ```
 
@@ -2045,17 +2045,17 @@ Exception: When an object created through a custom class is passed, no serializa
 > An FA project of API version 9 is used as an example.
 
 ```js
-// main.js
+// Main thread
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.postMessage("message from main to worker");
+const workerInstance = new worker.ThreadWorker("workers/worker.ts");
+workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = function(d) {
   // When the worker thread passes obj2, data contains obj2, excluding the Init or SetName method.
   let data = d.data;
 }
 ```
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 class MyModel {
@@ -2065,7 +2065,7 @@ class MyModel {
     }
 }
 workerPort.onmessage = function(d) {
-    console.log("worker.js onmessage");
+    console.log("worker.ts onmessage");
     let data = d.data;
     let func1 = function() {
         console.log("post message is function");
@@ -2083,27 +2083,28 @@ workerPort.onmessage = function(d) {
     workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
 }
 workerPort.onmessageerror = function(e) {
-    console.log("worker.js onmessageerror");
+    console.log("worker.ts onmessageerror");
 }
 workerPort.onerror = function(e) {
-    console.log("worker.js onerror");
+    console.log("worker.ts onerror");
 }
 ```
 
 ### Memory Model
-The worker thread is implemented based on the actor model. In the worker interaction process, the JS main thread can create multiple worker threads, each of which are isolated and transfer data through sequentialization. They complete computing tasks and return the result to the main thread.
+The worker thread is implemented based on the actor model. In the worker interaction process, the JS main thread can create multiple worker threads, each of which are isolated and transfer data through serialization. They complete computing tasks and return the result to the main thread.
 
 Each actor concurrently processes tasks of the main thread. For each actor, there is a message queue and a single-thread execution module. The message queue receives requests from the main thread and other actors; the single-thread execution module serially processes requests, sends requests to other actors, and creates new actors. These isolated actors use the asynchronous mode and can run concurrently.
 
 ### Precautions
-- Currently, a maximum of seven workers can co-exist.
+- Currently, a maximum of eight workers can co-exist.
 - In API version 8 and earlier versions, when the number of **Worker** instances exceeds the upper limit, the error "Too many workers, the number of workers exceeds the maximum." is thrown.
-- Since API version 9, when the number of **Worker** instances exceeds the upper limit, the business error "Worker initialization failure, the number of workers exceeds the maximum" is thrown.
+- Since API version 9, when the number of **Worker** instances exceeds the upper limit, the business error "Worker initialization failure, the number of workers exceeds the maximum." is thrown.
 - To proactively destroy a worker thread, you can call **terminate()** or **parentPort.close()** of the newly created **Worker** instance.
 - Since API version 9, if a **Worker** instance in a non-running state (such as destroyed or being destroyed) calls an API, a business error is thrown.
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them.
 - Do not use both **new worker.Worker** and **new worker.ThreadWorker** to create a **Worker** project. Otherwise, **Worker** functions abnormally. Since API version 9, you are advised to use [new worker.ThreadWorker](#constructor9). In API version 8 and earlier versions, you are advised to use [new worker.Worker](#constructordeprecated).
 - When creating a **Worker** project, do not import any UI construction method (such as .ets file) to the worker thread file (for example, **worker.ts** used in this document). Otherwise, the worker module becomes invalid. To check whether any UI construction method has been imported, decompress the generated HAP file, find **worker.js** in the directory where the worker thread is created, and search for the keyword **View** globally. If the keyword exists, a UI construction method has been packaged in **worker.js**. If this is your case, change the directory level of **src** in the statement **import "xxx" from src** in the worker thread file.
+- A maximum of 16 MB data can be transferred during inter-thread communication.
 
 ## Sample Code
 > **NOTE**<br>
@@ -2111,15 +2112,10 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 ### FA Model
 
 ```js
-// main.js (The following assumes that the workers directory and pages directory are at the same level.)
+// Main thread (The following assumes that the workers directory and pages directory are at the same level.)
 import worker from '@ohos.worker';
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
-// Create either a .json or .ts file.
-// const workerInstance = new worker.ThreadWorker("workers/worker.js");
-
-// In versions earlier than API version 9, use the following to create a Worker instance in the main thread.
-// const workerInstance = new worker.Worker("workers/worker.js");
 
 // The main thread transfers information to the worker thread.
 workerInstance.postMessage("123");
@@ -2128,7 +2124,7 @@ workerInstance.postMessage("123");
 workerInstance.onmessage = function(e) {
     // data carries the information sent by the worker thread.
     let data = e.data;
-    console.log("main.js onmessage");
+    console.log("main thread onmessage");
 
     // Terminate the Worker instance.
     workerInstance.terminate();
@@ -2136,7 +2132,7 @@ workerInstance.onmessage = function(e) {
 
 // Call onexit().
 workerInstance.onexit = function() {
-    console.log("main.js terminate");
+    console.log("main thread terminate");
 }
 ```
 ```js
@@ -2145,9 +2141,6 @@ import worker from '@ohos.worker';
 
 // Create an object in the worker thread for communicating with the main thread.
 const workerPort = worker.workerPort
-
-// In versions earlier than API version 9, use the following to create an object in the worker thread for communicating with the main thread.
-// const parentPort = worker.parentPort
 
 // The worker thread receives information from the main thread.
 workerPort.onmessage = function(e) {
@@ -2169,20 +2162,18 @@ Configuration of the **build-profile.json5** file:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/MainAbility/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ts"
       ]
     }
   }
 ```
 ### Stage Model
 ```js
-// main.js (The following assumes that the workers directory and pages directory are at different levels.)
+// Main thread (The following assumes that the workers directory and pages directory are at different levels.)
 import worker from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
-// Create either a .json or .ts file.
-// const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.js");
 
 // The main thread transfers information to the worker thread.
 workerInstance.postMessage("123");
@@ -2191,14 +2182,14 @@ workerInstance.postMessage("123");
 workerInstance.onmessage = function(e) {
     // data carries the information sent by the worker thread.
     let data = e.data;
-    console.log("main.js onmessage");
+    console.log("main thread onmessage");
 
     // Terminate the Worker instance.
     workerInstance.terminate();
 }
 // Call onexit().
 workerInstance.onexit = function() {
-    console.log("main.js terminate");
+    console.log("main thread terminate");
 }
 ```
 ```js

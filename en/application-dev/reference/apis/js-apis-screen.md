@@ -95,10 +95,10 @@ Subscribes to events related to the screen state.
 
 **Parameters**
 
-| Name   | Type                  | Mandatory| Description                                                        |
-| --------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| Name   | Type                  | Mandatory| Description                                                       |
+| --------- | ---------------------- | ---- | ----------------------------------------------------------- |
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
-| callback  | Callback&lt;number&gt; | Yes  | Callback used to return the screen ID.                                    |
+| callback  | Callback&lt;number&gt; | Yes  | Callback used to return the screen ID, which is an integer.                                   |
 
 **Example**
 
@@ -126,7 +126,7 @@ Unsubscribes from events related to the screen state.
 | Name   | Type                  | Mandatory| Description                                                        |
 | --------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
-| callback  | Callback&lt;number&gt; | No  | Callback used to return the screen ID.                                    |
+| callback  | Callback&lt;number&gt; | No  | Callback used to return the screen ID, which is an integer.                                    |
 
 **Example**
 
@@ -151,10 +151,10 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                            |
-| -------- | ------------------------------------------ | ---- | -------------------------------- |
-| options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.        |
-| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens.|
+| Name  | Type                                      | Mandatory| Description                        |
+| -------- | ------------------------------------------ | ---- |----------------------------|
+| options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.              |
+| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens, which is an integer.|
 
 **Error codes**
 
@@ -198,9 +198,9 @@ Sets the screen to the expanded mode. This API uses a promise to return the resu
 
 **Return value**
 
-| Type                 | Description                               |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group ID of the expanded screens.|
+| Type                 | Description                             |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise used to return the group ID of the expanded screens, which is an integer.|
 
 **Error codes**
 
@@ -234,11 +234,11 @@ Sets screen mirroring. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name      | Type                       | Mandatory| Description             |
-| ------------ | --------------------------- | ---- |-----------------|
-| mainScreen   | number                      | Yes  | ID of the primary screen.         |
-| mirrorScreen | Array&lt;number&gt;         | Yes  | IDs of secondary screens.      |
-| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens.|
+| Name      | Type                       | Mandatory| Description                |
+| ------------ | --------------------------- | ---- |--------------------|
+| mainScreen   | number                      | Yes  | ID of the primary screen. The value must be an integer. |
+| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer.|
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens, which is an integer. |
 
 **Error codes**
 
@@ -276,16 +276,16 @@ Sets screen mirroring. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name      | Type               | Mandatory| Description       |
-| ------------ | ------------------- | ---- |-----------|
-| mainScreen   | number              | Yes  | ID of the primary screen.   |
-| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens.|
+| Name      | Type               | Mandatory| Description                |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreen   | number              | Yes  | ID of the primary screen. The value must be an integer. |
+| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens. Each ID must be an integer.|
 
 **Return value**
 
-| Type                 | Description                               |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens.|
+| Type                 | Description                             |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, which is an integer.|
 
 **Error codes**
 
@@ -424,7 +424,7 @@ Destroys a virtual screen. This API uses an asynchronous callback to return the 
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId | number                    | Yes  | Screen ID.                                                  |
+| screenId | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen is destroyed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -464,7 +464,7 @@ Destroys a virtual screen. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description      |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | Yes  | Screen ID.|
+| screenId | number | Yes  | Screen ID. The value must be an integer.|
 
 **Return value**
 
@@ -509,7 +509,7 @@ Sets the surface for a virtual screen. This API uses an asynchronous callback to
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | Yes  | Screen ID.                                                  |
+| screenId  | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
 | surfaceId | string                    | Yes  | Surface ID.                                               |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen surface is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
@@ -553,7 +553,7 @@ Sets the surface for a virtual screen. This API uses a promise to return the res
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | Yes  | Screen ID.   |
+| screenId  | number | Yes  | Screen ID. The value must be an integer.   |
 | surfaceId | string | Yes  | Surface ID.|
 
 **Return value**
@@ -711,9 +711,9 @@ Defines the parameters for expanding a screen.
 
 | Name    | Type| Readable| Writable| Description               |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | Yes  | Yes  | Screen ID.         |
-| startX   | number   | Yes  | Yes  | Start X coordinate of the screen.|
-| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen.|
+| screenId | number   | Yes  | Yes  | Screen ID. The value must be an integer.         |
+| startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The value must be an integer.|
+| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The value must be an integer.|
 
 ## VirtualScreenOption
 
@@ -721,13 +721,13 @@ Defines virtual screen parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type| Readable| Writable| Description                     |
-| --------- | -------- | ---- | ---- | ------------------------- |
-| name      | string   | Yes  | Yes  | Name of a virtual screen.     |
-| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels.|
-| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels.|
-| density   | number   | Yes  | Yes  | Density of the virtual screen.     |
-| surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.|
+| Name     | Type| Readable| Writable| Description                      |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | Yes  | Yes  | Name of a virtual screen.              |
+| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels. The value must be an integer.|
+| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels. The value must be an integer.|
+| density   | number   | Yes  | Yes  | Density of the virtual screen. The value must be a floating point number.      |
+| surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.       |
 
 ## Screen
 
@@ -737,13 +737,13 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name             | Type                                      | Readable| Writable| Description                  |
-| ----------------- | ---------------------------------------------- | ---- | ---- | ---------------------- |
-| id                | number                                         | Yes  | No  | Screen ID.            |
-| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs.    |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.  |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
-| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.            |
+| Name             | Type                                      | Readable| Writable| Description                                                         |
+| ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
+| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.                                             |
+| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.                                         |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.                                                 |
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
+| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.                                                      |
 
 ### setOrientation
 
@@ -833,7 +833,7 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
+| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the active mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -871,7 +871,7 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 | Name   | Type  | Mandatory| Description      |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
+| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 
 **Return value**
 
@@ -911,9 +911,9 @@ Sets the pixel density of the screen. This API uses an asynchronous callback to 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type                     | Mandatory| Description                                                        |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | Yes  | Pixel density. The value ranges from 80 to 640.                          |
+| Name    | Type                     | Mandatory| Description                                      |
+| ---------- | ------------------------- | ---- |------------------------------------------|
+| densityDpi | number                    | Yes  | Pixel density. The value must be an integer in the range [80, 640].      |
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the pixel density is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -949,9 +949,9 @@ Sets the pixel density of the screen. This API uses a promise to return the resu
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type  | Mandatory| Description                              |
-| ---------- | ------ | ---- | ---------------------------------- |
-| densityDpi | number | Yes  | Pixel density. The value ranges from 80 to 640.|
+| Name    | Type  | Mandatory| Description                                |
+| ---------- | ------ | ---- |------------------------------------|
+| densityDpi | number | Yes  | Pixel density. The value must be an integer in the range [80, 640].|
 
 **Return value**
 
@@ -1005,7 +1005,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate.|
-| width       | number   | Yes  | Yes  | Width of the screen, in pixels.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in pixels.                               |
-| refreshRate | number   | Yes  | Yes  | Screen refresh rate.                                    |
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
+| width       | number   | Yes  | Yes  | Width of the screen, in pixels. The value must be an integer.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in pixels. The value must be an integer.                               |
+| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen. The value must be an integer.                                    |
