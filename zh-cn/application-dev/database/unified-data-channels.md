@@ -1,4 +1,4 @@
-# 标准化数据通路
+# 通过标准化数据通路实现数据共享
 
 
 ## 场景介绍
@@ -22,7 +22,7 @@ UDMF定义了安全、标准化的数据接入与读取通路，为各种业务�
 
 以一次统一数据对象的插入、更新、查询和删除为例，说明开发步骤，示例代码均采用Callback形式，Promise形式请见。
 
-1. 导入`@ohos.data.UDMF`模块
+1. 导入`@ohos.data.UDMF`模块。
 
    ```js
    import UDMF from '@ohos.data.UDMF';
