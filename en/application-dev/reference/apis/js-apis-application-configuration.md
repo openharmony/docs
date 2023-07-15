@@ -3,8 +3,15 @@
 The **Configuration** module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This module is deprecated since API version 9. You are advised to use [@ohos.app.ability.Configuration](js-apis-app-ability-configuration.md) instead.
+
+## Modules to Import
+
+```ts
+import Configuration from '@ohos.app.application.Configuration';
+```
 
 **System capability**: SystemCapability.Ability.AbilityBase
 

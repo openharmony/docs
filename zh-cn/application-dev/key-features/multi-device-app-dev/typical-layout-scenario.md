@@ -11,6 +11,7 @@
 | [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 |
 | [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 |
 | [单/双栏](#单/双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
+| [三分栏](#三分栏) | SiderBar组件&nbsp;+&nbsp;Navigation组件&nbsp;+&nbsp;响应式布局 |
 | [自定义弹窗](#自定义弹窗) | CustomDialogController组件&nbsp;+&nbsp;响应式布局 |
 | [大图浏览](#大图浏览) | Image组件 |
 | [操作入口](#操作入口) | Scroll组件+Row组件横向均分 |
@@ -494,6 +495,127 @@ struct NavigationSample {
     .navBarWidth(360)
     .hideToolBar(true)
     .title('Sample')
+  }
+}
+```
+
+
+
+## 三分栏
+
+**布局效果**
+
+| sm                                           | md                                      | lg                                      |
+| -------------------------------------------- | --------------------------------------- | --------------------------------------- |
+| 单栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击首页的选项可以进入到内容区，内容区点击返回按钮可返回首页。| 双栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。 | 三分栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏，来回切换二分/三分栏显示。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。<br> 窗口宽度变化时，优先变化右侧内容区的宽度大小。 |
+| ![](figures/tripleColumn_sm.png)            | ![](figures/tripleColumn_md.png)       | ![](figures/tripleColumn_lg.png)       |
+
+**实现方案**
+
+三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、minContentWidth与Navigation组件的navBarWidth、minContentWidth等属性配置不同的值，即可实现目标效果。
+
+**参考代码**
+
+```
+@Component
+struct Details {
+  private imageSrc: Resource
+  build() {
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Item {
+  private imageSrc: Resource
+  private label: string
+
+  build() {
+    NavRouter() {
+      Text(this.label)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#66000000')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .height('30%')
+      NavDestination() {
+        Details({imageSrc: this.imageSrc})
+      }.title(this.label)
+      .hideTitleBar(false)
+      .backgroundColor('#FFFFFF')
+    }
+    .margin(10)
+  }
+}
+
+@Entry
+@Component
+struct TripleColumnSample {
+  @State arr: number[] = [1, 2, 3]
+
+  @Builder NavigationTitle() {
+    Column() {
+      Text('Sample')
+        .fontColor('#000000')
+        .fontSize(24)
+        .width('100%')
+        .height('100%')
+        .align(Alignment.BottomStart)
+        .margin({left:'5%'})
+    }.alignItems(HorizontalAlign.Start)
+  }
+
+  build() {
+    SideBarContainer() {
+      Column() {
+        List() {
+          ForEach(this.arr, (item, index) => {
+            ListItem() {
+              Text('A'+item)
+                .width('100%').height("20%").fontSize(24)
+                .fontWeight(FontWeight.Bold)
+                .textAlign(TextAlign.Center).backgroundColor('#66000000')
+            }
+          }, item => item)
+        }.divider({ strokeWidth: 5, color: '#F1F3F5' })
+      }.width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .backgroundColor('#F1F3F5')
+
+      Column() {
+        Navigation() {
+          List(){
+            ListItem() {
+              Column() {
+                Item({ label: 'B1', imageSrc: $r('app.media.right') })
+                Item({ label: 'B2', imageSrc: $r('app.media.wrong') })
+              }
+            }.width('100%')
+          }
+        }
+        .mode(NavigationMode.Auto)
+        .backgroundColor('#FFFFFF')
+        .height('100%')
+        .width('100%')
+        .navBarWidth(240)
+        .hideToolBar(true)
+        .title(this.NavigationTitle)
+        .minContentWidth(600-240)
+      }.width('100%').height('100%')
+    }.sideBarWidth(240)
+    .minSideBarWidth(50)
+    .maxSideBarWidth(300)
+    .minContentWidth(840-240)
   }
 }
 ```

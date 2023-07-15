@@ -21,30 +21,36 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置无输入时的提示文本。      |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。     |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。 |
 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
 | type                     | [InputType](#inputtype枚举说明)     | 设置输入框类型。<br/>默认值：InputType.Normal        |
-| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。|
+| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。<br/>默认值跟随主题。   |
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
 | enterKeyType             | [EnterKeyType](#enterkeytype枚举说明) | 设置输入法回车键类型，目前仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
-| caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。                               |
+| caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                                |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。 |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
-| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) | 设置输入框为默认风格或内联输入风格。<br/>默认值：TextInputStyle.Default |
-| textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置输入文本在输入框中的对齐方式。<br/>默认值：TextAlign.Start  |
-| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。 |
+| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | 设置输入框为默认风格或内联输入风格。<br/>默认值：TextInputStyle.Default |
+| textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。  |
+| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。<br/>如果未设置透明度，默认为不透明（例如：“0x80000000”为50%透明度黑色）。 |
 | caretStyle<sup>10+</sup> | {<br/>width:&nbsp;[Length](ts-types.md#length)<br/>} | 设置光标风格。                                        |
 | caretPosition<sup>10+</sup> | number | 设置光标位置。 |
+| showUnit<sup>10+</sup>                | &nbsp;[CustomBuilder](ts-types.md#CustomBuilder8)         | 设置控件作为文本框单位。<br/>默认无单位。 |
+| showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。<br/>默认值：false |
+| passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
+| selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
 
 >  **说明：**
 >
@@ -77,6 +83,13 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Default   | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。   |
 | Inline    | 内联输入风格。文本选中底板高度与输入框高度相同。      |
 
+## PasswordIcon<sup>10+</sup>对象说明
+
+| 名称       | 类型                                               | 必填 | 描述                                               |
+| ---------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
+| onIconSrc  | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -90,6 +103,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
 | onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>value：剪切的文本内容。 |
 | onPaste(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>value：粘贴的文本内容。 |
+| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -123,6 +138,53 @@ setTextSelection(selectionStart:&nbsp;number, selectionStart:&nbsp;number): void
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。 |
 
+### stopEditing<sup>10+</sup>
+
+stopEditing(): void
+
+退出编辑态。
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): [RectResult](#rectresult)
+
+获取已编辑文本内容区域相对组件的位置和大小。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+
+> **说明：**
+>
+> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
+> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
+
+### RectResult<sup>10+</sup>
+
+位置和大小。
+
+| 参数      | 类型     | 描述 |
+| ------- | ------ | ----------------------- |
+| x     | number | 水平方向横坐标。|
+| y     | number | 竖直方向纵坐标。|
+| width | number | 内容宽度大小。|
+| height | number | 内容高度大小。|
+
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+获取已编辑文本内容的行数。
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 已编辑文本内容行数。 |
+
 ## 示例
 
 ```ts
@@ -144,6 +206,9 @@ struct TextInputExample {
         .margin(20)
         .fontSize(14)
         .fontColor(Color.Black)
+        .inputFilter('[a-z]', (e) => {
+          console.log(JSON.stringify(e))
+        })
         .onChange((value: string) => {
           this.text = value
         })

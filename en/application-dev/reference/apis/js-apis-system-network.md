@@ -1,8 +1,6 @@
 # @system.network (Network State)
 
 > **NOTE**
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.telephony.observer`](js-apis-observer.md).
->
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -21,9 +19,13 @@ ohos.permission.GET_WIFI_INFO
 ohos.permission.GET_NETWORK_INFO
 
 
-## network.getType
+## network.getType<sup>3+</sup>
 
-getType(Object): void
+getType(options?: {<br>
+&nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+&nbsp;&nbsp;complete?: () => void;<br>
+}): void
 
 Obtains the network type.
 
@@ -61,9 +63,12 @@ export default {
 ```
 
 
-## network.subscribe
+## network.subscribe<sup>3+</sup>
 
-subscribe(Object): void
+subscribe(options?:{<br>
+&nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+  }): void
 
 Listens to the network connection state. If this method is called multiple times, the last call takes effect.
 
@@ -101,7 +106,7 @@ export default {
 ```
 
 
-## network.unsubscribe
+## network.unsubscribe<sup>3+</sup>
 
 unsubscribe(): void
 
@@ -120,7 +125,7 @@ export default {
 ```
 
 
-## NetworkResponse
+## NetworkResponse<sup>3+</sup>
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

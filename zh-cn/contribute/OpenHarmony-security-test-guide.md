@@ -8,7 +8,7 @@
 
 2、通过OpenHarmony代码门禁安全扫描工具测试，扫描告警结果清零。
 
-3、依据[OpenHarmony编译规范](https://gitee.com/openharmony/community/blob/master/sig/sig-buildsystem/编译规范.md)，使用编译选项扫描工具检查二进制文件编译选项开启情况，二进制文件编译选项均需要符合规范要求。
+3、依据[OpenHarmony编译规范](https://gitee.com/openharmony/community/blob/master/sig/sig_buildsystem/%E7%BC%96%E8%AF%91%E8%A7%84%E8%8C%83.md)，使用编译选项扫描工具检查二进制文件编译选项开启情况，二进制文件编译选项均需要符合规范要求。
 
 4、针对接收并处理用户态参数模块，开发人员需依据[Fuzz测试框架](https://gitee.com/openharmony/test_developertest/tree/master/libs/fuzzlib)开发灰白盒Fuzz测试套，并完成灰白盒Fuzz测试验证。
 

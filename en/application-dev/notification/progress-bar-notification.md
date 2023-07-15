@@ -3,7 +3,7 @@
 
 The progress notification is a commonly used notification type, mainly used to display the progress of an ongoing operation, such as file downloading. When publishing a progress notification through the notification subsystem, you can use the readily available template by specifying the related attributes, such as the template name and template data.
 
-In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#notificationtemplate), which can only be of the progress type, **data** indicates custom template data.
+In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
 ## Available APIs
 
@@ -27,13 +27,14 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
      console.info(`[ANS] isSupportTemplate success`);
+     console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
      // ...
    }).catch((err) => {
-     console.error(`[ANS] isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
+     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
-
+   
    > **NOTE**
    >
    > Proceed with the step below only when the specified template is supported.
@@ -61,9 +62,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
    // Publish the notification.
    notificationManager.publish(notificationRequest, (err) => {
      if (err) {
-       console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] publish success `);
+     console.info('Succeeded in publishing notification.');
    });
    ```

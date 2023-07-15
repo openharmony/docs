@@ -190,7 +190,7 @@ struct FlexibleCapabilitySample2 {
 @Entry
 @Component
 struct EquipartitionCapabilitySample {
-  const list: number [] = [0, 1, 2, 3]
+  readonly list: number [] = [0, 1, 2, 3]
   @State rate: number = 0.6
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
@@ -269,7 +269,7 @@ struct EquipartitionCapabilitySample {
 
 - 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)。
   - 当父容器尺寸确定时，其子组件按照开发者配置的权重比例分配父容器中主轴方向的空间。
-  - 仅当父容器是Row、Colomn或者Flex时，layoutWeight属性才会生效。
+  - 仅当父容器是Row、Column或者Flex时，layoutWeight属性才会生效。
   - 设置layoutWeight属性后，组件本身的尺寸会失效。比如同时设置了.width('40%')和.layoutWeight(1)，那么只有.layoutWeight(1)会生效。
 
 
@@ -424,8 +424,8 @@ struct ScaleCapabilitySample {
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")
-      .height(this.sliderWidth)
-      .width(this.sliderHeight)
+      .height(this.sliderHeight)
+      .width(this.sliderWidth)
 
       this.slider()
     }.width('100%')
@@ -479,7 +479,7 @@ struct ScaleCapabilitySample {
 @Component
 struct ExtensionCapabilitySample1 {
   @State rate: number = 0.60
-  const appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
+  readonly appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
@@ -709,7 +709,7 @@ struct HiddenCapabilitySample {
 @Component
 struct WrapCapabilitySample {
   @State rate: number = 0.7
-  const imageList: Resource [] = [
+  readonly imageList: Resource [] = [
     $r('app.media.flexWrap1'),
     $r('app.media.flexWrap2'),
     $r('app.media.flexWrap3'),

@@ -25,7 +25,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | color | &lt;color&gt; | - | No| Font color.|
-| font-size | &lt;length&gt; | 30px | No| Font size.|
+| font-size | &lt;length&gt; | 16px | No| Font size.|
 | letter-spacing | &lt;length&gt; | 0px | No| Character spacing (px).|
 | font-style | string | normal | No| Font style. Available values are as follows:<br>- **normal**: standard font style<br>- **italic**: italic font style|
 | font-weight | number \| string | normal | No| Font weight. For the number type, the value ranges from 100 to 900. The default value is 400. A larger value indicates a heavier font weight.<br>The value of the number type must be an integer multiple of 100.<br>The value of the string type can be **lighter**, **normal**, **bold**, or **bolder**.|

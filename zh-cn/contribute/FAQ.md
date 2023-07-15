@@ -44,7 +44,7 @@ OS\(操作系统\)开发时，经常会遇到多个代码仓的修改具有编�
 
    **解决办法**：
 
-   点击[这里](https://dco.openharmony.io/sign/Z2l0ZWUlMkZvcGVuX2hhcm1vbnk=)签署、查看签署状态。
+   点击[这里](https://dco.openharmony.cn/sign)签署、查看签署状态。
 
    在PR的评论框输入`check dco`后，单击”评论”，系统将再次进行DCO校验。
 

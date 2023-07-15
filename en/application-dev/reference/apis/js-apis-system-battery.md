@@ -21,13 +21,13 @@ getStatus(options?: GetStatusOptions): void;
 
 Obtains the current charging state and battery level.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result.|
+| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -46,19 +46,19 @@ battery.getStatus({
 
 Object that contains the API calling result.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
-| fail     | (data: string, code: number) => void                | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                                          | No  | Called when API call is complete.                                    |
+| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
+| fail     | (data: string, code: number) => void                | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                                          | No  | Called when an API call is complete.                                    |
 
 ## BatteryResponse
 
 Defines a response that returns the charging status and remaining power of the device.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |

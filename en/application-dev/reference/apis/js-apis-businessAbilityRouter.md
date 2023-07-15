@@ -1,0 +1,130 @@
+# @ohos.app.businessAbilityRouter (Business Ability Router)
+
+The **businessAbilityRouter** module provides APIs for you to query the business ability information of applications installed on the device. It provides a unified template for you to register standard services by type. Based on the information, a system application or third-party application can obtain services that meet certain criteria and select a proper service. The module also provides unified rules to manage redirection between applications and services. It prevents arbitrary switching between the foreground and background and avoids the distribution of third-party applications by means of redirection.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+The APIs provided by this module are system APIs.
+
+## Modules to Import
+
+``` ts
+import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
+```
+
+## Required Permissions
+
+| Permission                                      | Permission Level    | Description                |
+| ------------------------------------------ | ------------ | -------------------- |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
+
+For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+
+## BusinessType
+
+Enumerates the types of business abilities.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name       | Value  | Description                                |
+| ----------- | ---- | ------------------------------------ |
+| SHARE       | 0    | Business ability of the share type.|
+| UNSPECIFIED | 255  | Business ability of an unspecified type.  |
+
+## BusinessAbilityFilter
+
+Describes the criteria for filtering business abilities.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name        | Type        | Readable| Writable| Description                                  |
+| ------------ | ------------ | ---- | ---- | -------------------------------------- |
+| businessType | BusinessType | Yes  | No  | Type of the business ability.          |
+| mimeType     | string       | Yes  | No  | MIME type supported by the business ability.|
+| uri          | string       | Yes  | No  | URI supported by the business ability.       |
+
+## businessAbilityRouter.queryBusinessAbilityInfo
+
+queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\<Array\<BusinessAbilityInfo\>\>): void;
+
+Obtains the business ability information based on the specified filter criteria. This API uses an asynchronous callback to return the result. If the operation is successful, the business ability information is returned; otherwise, an error object is returned.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| filter | [BusinessAbilityFilter](#businessabilityfilter) | Yes   | Object used to filter the business abilities.|
+| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Yes| Callback used to return the result. If the operation is successful, the business ability information that meets the filter criteria is returned; otherwise, an error object is returned.|
+
+**Example**
+
+```ts
+import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
+let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+
+try {
+    businessAbilityRouter.queryBusinessAbilityInfo(filter)
+        .then(() => {
+            console.info('queryBusinessAbilityInfo success');
+        }).catch((error) => {
+            console.error('queryBusinessAbilityInfo failed ' + error.message);
+        });
+} catch (error) {
+    console.error('queryBusinessAbilityInfo failed ' + error.message);
+}
+```
+
+## businessAbilityRouter.queryBusinessAbilityInfo
+
+queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<BusinessAbilityInfo\>\>;
+
+Obtains the business ability information based on the specified filter criteria. This API uses a promise to return the result. If the operation is successful, the business ability information is returned; otherwise, an error object is returned.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                             | Mandatory  | Description                                   |
+| ----------- | ------------------------------- | ---- | --------------------------------------- |
+| filter | [BusinessAbilityFilter](#businessabilityfilter) | Yes   | Object used to filter the business abilities. |
+
+**Return value**
+
+| Type                                                        | Description                                       |
+| ------------------------------------------------------------ | ------------------------------------------- |
+| Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Promise used to return the business ability information that meets the filter criteria.|
+
+**Example**
+
+```ts
+import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
+let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+
+try {
+    businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
+        if (error) {
+            console.error('queryBusinessAbilityInfo failed ' + error.message);
+            return;
+        }
+        console.info('queryBusinessAbilityInfo success');
+    });
+} catch (error) {
+    console.error('queryBusinessAbilityInfo failed ' + error.message);
+}
+```

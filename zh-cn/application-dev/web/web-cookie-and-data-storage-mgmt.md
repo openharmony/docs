@@ -43,7 +43,7 @@ struct WebComponent {
 
 ### Cache
 
-使用[cacheMode()](../reference/arkui-ts/ts-basic-components-web.md#cachemode%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)配置页面资源的缓存模式，Web组件为开发者提供四种缓存模式，分别为：
+使用[cacheMode()](../reference/arkui-ts/ts-basic-components-web.md#cachemode)配置页面资源的缓存模式，Web组件为开发者提供四种缓存模式，分别为：
 
 - Default : 优先使用未过期的缓存，如果缓存不存在，则从网络获取。
 

@@ -1,4 +1,4 @@
-# 使用画布绘制自定义图形
+# 使用画布绘制自定义图形（Canvas）
 
 
 Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制，绘制对象可以是基础形状、文本、图片等。
@@ -53,8 +53,8 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   //用来配置CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。true表明开启抗锯齿
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  //用来创建OffscreenCanvasRenderingContext2D对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  //用来创建OffscreenCanvas对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
    
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -63,10 +63,11 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
+            var offContext = this.offCanvas.getContext("2d", this.settings)
             //可以在这里绘制内容
-            this.offContext.strokeRect(50, 50, 200, 150);
+            offContext.strokeRect(50, 50, 200, 150);
             //将离屏绘值渲染的图像在普通画布上显示
-            let image = this.offContext.transferToImageBitmap();
+            let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
       }
@@ -89,11 +90,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie'
   ```
 
-  具体接口参考[Lottie](../reference/arkui-ts/ts-components-canvas-lottie.md)，相关实例请参考[Lottie实例](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)。
-
-  >**说明：**
-  >
-  >在第一次使用Lottie之前，需要在Terminal窗口运行ohpm install \@ohos/lottieETS命令下载Lottie。
+  具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
 
 
 ## 初始化画布组件
@@ -215,7 +212,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   struct GetImageData {
    private settings: RenderingContextSettings = new RenderingContextSettings(true)
    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
     build() {
@@ -225,14 +222,15 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
+            var offContext = this.offCanvas.getContext("2d", this.settings)
             // 使用drawImage接口将图片画在（0，0）为起点，宽高130的区域
-            this.offContext.drawImage(this.img,0,0,130,130);
+            offContext.drawImage(this.img,0,0,130,130);
             // 使用getImageData接口，获得canvas组件区域中，（50，50）为起点，宽高130范围内的绘制内容
-            let imagedata = this.offContext.getImageData(50,50,130,130);
+            let imagedata = offContext.getImageData(50,50,130,130);
             // 使用putImageData接口将得到的ImageData画在起点为（150， 150）的区域中
-            this.offContext.putImageData(imagedata,150,150);
+            offContext.putImageData(imagedata,150,150);
             // 将离屏绘制的内容画到canvas组件上
-            let image = this.offContext.transferToImageBitmap();
+            let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
       }
@@ -245,6 +243,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   ![drawimage](figures/drawimage.PNG)
 
 - 其他方法。
+
   Canvas中还提供其他类型的方法。渐变（[CanvasGradient对象](../reference/arkui-ts/ts-components-canvas-canvasgradient.md)）相关的方法：[createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
 
   ```ts
@@ -270,7 +269,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 ## 场景示例
 
-- 规则基础形状绘制：
+- 规则基础形状绘制。
 
   ```ts
   @Entry
@@ -343,4 +342,8 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023032422159](figures/2023032422159.jpg)
 
-  ​
+## 相关实例
+
+使用画布绘制自定义图形，有以下相关实例可供参考：
+
+- [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)

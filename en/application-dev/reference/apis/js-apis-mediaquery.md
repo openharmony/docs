@@ -5,6 +5,12 @@ The **mediaquery** module provides different styles for different media types.
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be used only after a component instance is created, and it cannot be used in the [UIAbility](./js-apis-app-ability-uiAbility.md).
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [getMediaQuery](./js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](./js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
 
 
 ## Modules to Import
@@ -26,7 +32,7 @@ Sets the media query condition. This API returns the corresponding media query l
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Media query condition. For details, see [Syntax of Media Query Conditions](../../ui/ui-ts-layout-mediaquery.md#syntax-of-media-query-conditions).|
+| condition | string | Yes   | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
 
 **Return value**
 
@@ -146,7 +152,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) // Bind the current JS instance.
+    let portraitFunc = this.onPortrait.bind(this) // Bind the JS instance.
     this.listener.on('change', portraitFunc)
   }
 

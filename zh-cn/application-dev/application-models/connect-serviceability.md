@@ -17,14 +17,14 @@ PageAbility创建连接本地ServiceAbility回调实例的代码以及连接本�
 
 ```ts
 import rpc from "@ohos.rpc"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 import featureAbility from '@ohos.ability.featureAbility'
 
 let option = {
   onConnect: function onConnectCallback(element, proxy) {
     console.info(`onConnectLocalService onConnectDone`)
     if (proxy === null) {
-      prompt.showToast({
+      promptAction.showToast({
         message: "Connect service failed"
       })
       return
@@ -34,19 +34,19 @@ let option = {
     let option = new rpc.MessageOption()
     data.writeInterfaceToken("connect.test.token")
     proxy.sendRequest(0, data, reply, option)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Connect service success"
     })
   },
   onDisconnect: function onDisconnectCallback(element) {
     console.info(`onConnectLocalService onDisconnectDone element:${element}`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Disconnect service success"
     })
   },
   onFailed: function onFailedCallback(code) {
     console.info(`onConnectLocalService onFailed errCode:${code}`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Connect local service onFailed"
     })
   }

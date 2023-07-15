@@ -1,9 +1,7 @@
-# 使用router事件跳转到指定页面
+# 使用router事件跳转到指定UIAbility
 
 
-在卡片中使用**postCardAction**接口的router能力，能够快速拉起卡片提供方应用，因此页面较多的应用往往会通过卡片提供不同的跳转按钮，实现一键直达的效果。例如相机卡片，卡片上提供拍照、录像等按钮，点击不同按钮将拉起相机应用的不同页面，从而提高用户的体验。
-
-
+在卡片中使用**postCardAction**接口的router能力，能够快速拉起卡片提供方应用的指定UIAbility，因此UIAbility较多的应用往往会通过卡片提供不同的跳转按钮，实现一键直达的效果。例如相机卡片，卡片上提供拍照、录像等按钮，点击不同按钮将拉起相机应用的不同UIAbility，从而提高用户的体验。
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
 

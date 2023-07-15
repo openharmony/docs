@@ -1,22 +1,22 @@
 # Display
 
 
-## **汇总**
-
-
-## **概述**
+## 概述
 
 显示模块驱动接口定义。
 
 提供给图形系统使用的驱动接口，包括图层管理、设备控制、图形硬件加速、显示内存管理和回调接口等。
 
-**Since**:
+**Since:**
 
 1.0
 
-**Version**:。
+**Version:**
 
 2.0
+
+
+## 汇总
 
 
 ### 文件
@@ -35,50 +35,50 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DeviceFuncs](_device_funcs.md) | 显示设备控制接口结构体，定义显示设备控制接口函数指针。 | 
-| [GfxFuncs](_gfx_funcs.md) | 显示硬件加速驱动接口结构体，定义硬件加速驱动接口函数指针。 | 
-| [GrallocFuncs](_gralloc_funcs.md) | 显示内存驱动接口结构体，定义显示内存驱动接口函数指针。 | 
-| [LayerFuncs](_layer_funcs.md) | 显示图层驱动接口结构体，定义显示图层驱动接口函数指针。 | 
-| [DisplayInfo](_display_info.md) | 定义显示信息结构体 | 
-| [LayerInfo](_layer_info.md) | 定义图层信息结构体 | 
-| [LayerAlpha](_layer_alpha.md) | 定义图层Alpha信息的结构体 | 
-| [BufferData](_buffer_data.md) | 定义一层的缓冲区数据，包括虚拟和物理内存地址。 | 
-| [LayerBuffer](_layer_buffer.md) | 图层Buffer，用于存放图层数据。 | 
-| [IRect](_i_rect.md) | 定义矩形信息。 | 
-| [ISurface](_i_surface.md) | 用于存放窗口相关信息的结构体定义，提供给硬件加速使用，例如图像合成，位图搬移等操作。 | 
-| [ILine](_i_line.md) | 线条描述结构体定义，用于硬件加速绘制直线。 | 
-| [ICircle](_i_circle.md) | 圆形描述结构体定义，用于硬件加速绘制圆形。 | 
-| [Rectangle](_rectangle.md) | 矩形描述结构体定义，用于硬件加速绘制矩形。 | 
-| [GfxOpt](_gfx_opt.md) | 图像硬件加速相关的操作选项结构体定义，用于图像硬件加速时的操作选项。 | 
-| [PropertyObject](_property_object.md) | 定义包含名称、属性ID和值的属性对象。 | 
-| [DisplayCapability](_display_capability.md) | 定义输出性能。 | 
-| [DisplayModeInfo](_display_mode_info.md) | 定义输出模式信息。 | 
-| [AllocInfo](_alloc_info.md) | 定义关于要分配的内存的信息。 | 
-| [HDRCapability](_h_d_r_capability.md) | HDR属性结构体定义。 | 
-| [HDRMetaData](_h_d_r_meta_data.md) | HDR元数据结构体定义。 | 
-| [VerifyAllocInfo](_verify_alloc_info.md) | 用于验证内存分配信息的结构体定义。 | 
-| [PresentTimestamp](_present_timestamp.md) | 上屏时间戳结构体定义。 | 
-| [ExtDataHandle](_ext_data_handle.md) | 扩展数据句柄结构体定义。 | 
-| [YUVDescInfo](_yun_desc_info_.md) | YUV描述信息结构体定义。 | 
-| [VGUPoint](_v_g_u_point.md) | 坐标点对象。 | 
-| [VGURect](_v_g_u_rect.md) | 矩形对象。 | 
-| [VGUPath](_v_g_u_path.md) | 路径对象，存放路径命令和坐标数据。 | 
-| [VGUMatrix3](_v_g_u_matrix3.md) | 变换矩阵。 | 
-| [VGUBuffer](_v_g_u_buffer.md) | 硬件加速渲染位图缓存。 | 
-| [VGUMaskLayer](_v_g_u_mask_layer.md) | 定义蒙版图层。 | 
-| [VGUSurface](_v_g_u_surface.md) | 2D硬件加速绘制目标表面。 | 
-| [VGUColorStop](_v_g_u_color_stop.md) | 渐变颜色分布位置。 | 
-| [VGULinear](_v_g_u_linear.md) | 线性渐变。 | 
-| [VGURadial](_v_g_u_radial.md) | 辐射渐变。 | 
-| [VGUConic](_v_g_u_conic.md) | 圆锥渐变。 | 
-| [VGUImage](_v_g_u_image.md) | 图像对象。 | 
-| [VGUPattern](_v_g_u_pattern.md) | 图片模式对象。 | 
-| [VGUGradient](_v_g_u_gradient.md) | 渐变对象。 | 
-| [VGUSolid](_v_g_u_solid.md) | 颜色对象。 | 
-| [VGUPaintStyle](_v_g_u_paint_style.md) | 填充或描边路径的渲染风格。 | 
-| [VGUFillAttr](_v_g_u_fill_attr.md) | 填充路径的属性。 | 
-| [VGUStrokeAttr](_v_g_u_stroke_attr.md) | 描边路径的属性。 | 
-| [VGUFuncs](_v_g_u_funcs.md) | 定义2D硬件加速驱动函数。 | 
+| [DeviceFuncs](_device_funcs.md) | struct<br/>显示设备控制接口结构体，定义显示设备控制接口函数指针。 | 
+| [ExtDataHandle](_ex_data_handle.md) | struct<br/>扩展数据句柄结构体定义。 | 
+| [GfxFuncs](_gfx_funcs.md) | struct<br/>显示硬件加速驱动接口结构体，定义硬件加速驱动接口函数指针。 | 
+| [GrallocFuncs](_gralloc_funcs.md) | struct<br/>显示内存驱动接口结构体，定义显示内存驱动接口函数指针。 | 
+| [LayerFuncs](_layer_funcs.md) | struct<br/>显示图层驱动接口结构体，定义显示图层驱动接口函数指针。 | 
+| [DisplayInfo](_display_info.md) | struct<br/>定义显示信息结构体 | 
+| [LayerInfo](_layer_info.md) | struct<br/>定义图层信息结构体 | 
+| [LayerAlpha](_layer_alpha.md) | struct<br/>定义图层Alpha信息的结构体 | 
+| [BufferData](_buffer_data.md) | struct<br/>定义一层的缓冲区数据，包括虚拟和物理内存地址。 | 
+| [LayerBuffer](_layer_buffer.md) | struct<br/>图层Buffer，用于存放图层数据。 | 
+| [IRect](_i_rect.md) | struct<br/>定义矩形信息 | 
+| [ISurface](_i_surface.md) | struct<br/>用于存放窗口相关信息的结构体定义，提供给硬件加速使用，例如图像合成，位图搬移等操作。 | 
+| [ILine](_i_line.md) | struct<br/>线条描述结构体定义，用于硬件加速绘制直线。 | 
+| [ICircle](_i_circle.md) | struct<br/>圆形描述结构体定义，用于硬件加速绘制圆形。 | 
+| [Rectangle](_rectangle.md) | struct<br/>矩形描述结构体定义，用于硬件加速绘制矩形。 | 
+| [GfxOpt](_gfx_opt.md) | struct<br/>图像硬件加速相关的操作选项结构体定义，用于图像硬件加速时的操作选项。 | 
+| [PropertyObject](_property_object.md) | struct<br/>定义包含名称、属性ID和值的属性对象。 | 
+| [DisplayCapability](_display_capability.md) | struct<br/>定义输出性能。 | 
+| [DisplayModeInfo](_display_mode_info.md) | struct<br/>定义输出模式信息。 | 
+| [AllocInfo](_alloc_info.md) | struct<br/>定义关于要分配的内存的信息。 | 
+| [HDRCapability](_h_d_r_capability.md) | struct<br/>HDR属性结构体定义 | 
+| [HDRMetaData](_h_d_r_meta_data.md) | struct<br/>HDR元数据结构体定义 | 
+| [VerifyAllocInfo](_verify_alloc_info.md) | struct<br/>用于验证内存分配信息的结构体定义 | 
+| [PresentTimestamp](_present_timestamp.md) | struct<br/>上屏时间戳结构体定义 | 
+| [VGUPoint](_v_g_u_point.md) | struct<br/>坐标点对象。 | 
+| [VGURect](_v_g_u_rect.md) | struct<br/>矩形对象。 | 
+| [VGUPath](_v_g_u_path.md) | struct<br/>路径对象，存放路径命令和坐标数据。 | 
+| [VGUMatrix3](_v_g_u_matrix3.md) | struct<br/>变换矩阵。 | 
+| [VGUBuffer](_v_g_u_buffer.md) | struct<br/>硬件加速渲染位图缓存。 | 
+| [VGUMaskLayer](_v_g_u_mask_layer.md) | struct<br/>定义蒙版图层。 | 
+| [VGUSurface](_v_g_u_surface.md) | struct<br/>2D硬件加速绘制目标表面。 | 
+| [VGUColorStop](_v_g_u_color_stop.md) | struct<br/>渐变颜色分布位置。 | 
+| [VGULinear](_v_g_u_linear.md) | struct<br/>线性渐变。 | 
+| [VGURadial](_v_g_u_radial.md) | struct<br/>辐射渐变。 | 
+| [VGUConic](_v_g_u_conic.md) | struct<br/>圆锥渐变。 | 
+| [VGUImage](_v_g_u_image.md) | struct<br/>图像对象。 | 
+| [VGUPattern](_v_g_u_pattern.md) | struct<br/>图片模式对象。 | 
+| [VGUGradient](_v_g_u_gradient.md) | struct<br/>渐变对象。 | 
+| [VGUSolid](_v_g_u_solid.md) | struct<br/>颜色对象 | 
+| [VGUPaintStyle](_v_g_u_paint_style.md) | struct<br/>填充或描边路径的渲染风格。 | 
+| [VGUFillAttr](_v_g_u_fill_attr.md) | struct<br/>填充路径的属性。 | 
+| [VGUStrokeAttr](_v_g_u_stroke_attr.md) | struct<br/>描边路径的属性。 | 
+| [VGUFuncs](_v_g_u_funcs.md) | struct<br/>定义2D硬件加速驱动函数。 | 
+| [YUVDescInfo](_yuv_desc_info.md) | struct<br/>YUV描述信息结构体定义 | 
 
 
 ### 宏定义
@@ -86,317 +86,325 @@
   | 名称 | 描述 | 
 | -------- | -------- |
 | [PROPERTY_NAME_LEN](#property_name_len)&nbsp;&nbsp;&nbsp;50 | 属性名字长度。 | 
-| [HDI_VGU_SCALAR_IS_FLOAT](#hdi_vgu_scalar_is_float)&nbsp;&nbsp;&nbsp;1 | VGU标量是否为浮点型 | 
+| [HDI_VGU_SCALAR_IS_FLOAT](#hdi_vgu_scalar_is_float)&nbsp;&nbsp;&nbsp;1 | VGU标量是否为浮点型。 | 
 
 
 ### 类型定义
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([HotPlugCallback](#hotplugcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;bool&nbsp;connected,&nbsp;void&nbsp;\*data) | 热插拔事件回调&nbsp;。 | 
-| ([VBlankCallback](#vblankcallback))&nbsp;(unsigned&nbsp;int&nbsp;sequence,&nbsp;uint64_t&nbsp;ns,&nbsp;void&nbsp;\*data) | VBlank&nbsp;事件回调。 | 
-| ([RefreshCallback](#refreshcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;void&nbsp;\*data) | 刷新请求回调&nbsp;。 | 
-| [VGUScalar](#vguscalar) | VGU标量。 | 
-| [VGUPixelFormat](#vgupixelformat) | 像素格式。 | 
-| [VGUBlendType](#vgublendtype) | 混合操作类型。 | 
+| (\*&nbsp;[HotPlugCallback](#hotplugcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;bool&nbsp;connected,&nbsp;void&nbsp;\*data) | typedef&nbsp;void<br/>热插拔事件回调 | 
+| (\*&nbsp;[VBlankCallback](#vblankcallback))&nbsp;(unsigned&nbsp;int&nbsp;sequence,&nbsp;uint64_t&nbsp;ns,&nbsp;void&nbsp;\*data) | typedef&nbsp;void<br/>VBlank事件回调。 | 
+| (\*&nbsp;[RefreshCallback](#refreshcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;void&nbsp;\*data) | typedef&nbsp;void<br/>刷新请求回调 | 
+| [VGUScalar](#vguscalar) | typedef&nbsp;float<br/>VGU标量。 | 
+| [VGUPixelFormat](#vgupixelformat) | typedef&nbsp;[PixelFormat](#pixelformat)<br/>像素格式。 | 
+| [VGUBlendType](#vgublendtype) | typedef&nbsp;[BlendType](#blendtype)<br/>混合操作类型。 | 
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DispErrCode](#disperrcode){&nbsp;DISPLAY_SUCCESS&nbsp;=&nbsp;0,&nbsp;DISPLAY_FAILURE&nbsp;=&nbsp;-1,&nbsp;DISPLAY_FD_ERR&nbsp;=&nbsp;-2,&nbsp;DISPLAY_PARAM_ERR&nbsp;=&nbsp;-3,&nbsp;&nbsp;&nbsp;DISPLAY_NULL_PTR&nbsp;=&nbsp;-4,&nbsp;DISPLAY_NOT_SUPPORT&nbsp;=&nbsp;-5,&nbsp;DISPLAY_NOMEM&nbsp;=&nbsp;-6,&nbsp;DISPLAY_SYS_BUSY&nbsp;=&nbsp;-7,&nbsp;&nbsp;&nbsp;DISPLAY_NOT_PERM&nbsp;=&nbsp;-8&nbsp;} | 返回值类型定义。 | 
-| [LayerType](#layertype){&nbsp;LAYER_TYPE_GRAPHIC,&nbsp;LAYER_TYPE_OVERLAY,&nbsp;LAYER_TYPE_SDIEBAND,&nbsp;LAYER_TYPE_CURSOR,&nbsp;&nbsp;&nbsp;LAYER_TYPE_BUTT&nbsp;} | 图层类型定义。 | 
+| [DispErrCode](#disperrcode)&nbsp;{&nbsp;DISPLAY_SUCCESS&nbsp;=&nbsp;0,&nbsp;DISPLAY_FAILURE&nbsp;=&nbsp;-1,&nbsp;DISPLAY_FD_ERR&nbsp;=&nbsp;-2,&nbsp;DISPLAY_PARAM_ERR&nbsp;=&nbsp;-3,&nbsp;&nbsp;&nbsp;DISPLAY_NULL_PTR&nbsp;=&nbsp;-4,&nbsp;DISPLAY_NOT_SUPPORT&nbsp;=&nbsp;-5,&nbsp;DISPLAY_NOMEM&nbsp;=&nbsp;-6,&nbsp;DISPLAY_SYS_BUSY&nbsp;=&nbsp;-7,&nbsp;&nbsp;&nbsp;DISPLAY_NOT_PERM&nbsp;=&nbsp;-8&nbsp;} | 返回值类型定义。 | 
+| [LayerType](#layertype)&nbsp;{&nbsp;LAYER_TYPE_GRAPHIC,&nbsp;LAYER_TYPE_OVERLAY,&nbsp;LAYER_TYPE_SDIEBAND,&nbsp;LAYER_TYPE_CURSOR,&nbsp;LAYER_TYPE_BUTT&nbsp;} | 图层类型定义。 | 
 | {&nbsp;HBM_USE_CPU_READ&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;HBM_USE_CPU_WRITE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;HBM_USE_MEM_MMZ&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;HBM_USE_MEM_DMA&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3),&nbsp;&nbsp;&nbsp;HBM_USE_MEM_SHARE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;4),&nbsp;HBM_USE_MEM_MMZ_CACHE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;5),&nbsp;HBM_USE_MEM_FB&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;6),&nbsp;HBM_USE_ASSIGN_SIZE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;7)&nbsp;} | 定义缓冲区使用。 | 
-| [PixelFormat](#pixelformat){&nbsp;PIXEL_FMT_CLUT8&nbsp;=&nbsp;0,&nbsp;PIXEL_FMT_CLUT1,&nbsp;PIXEL_FMT_CLUT4,&nbsp;PIXEL_FMT_RGB_565,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_5658,&nbsp;PIXEL_FMT_RGBX_4444,&nbsp;PIXEL_FMT_RGBA_4444,&nbsp;PIXEL_FMT_RGB_444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBX_5551,&nbsp;PIXEL_FMT_RGBA_5551,&nbsp;PIXEL_FMT_RGB_555,&nbsp;PIXEL_FMT_RGBX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_8888,&nbsp;PIXEL_FMT_RGB_888,&nbsp;PIXEL_FMT_BGR_565,&nbsp;PIXEL_FMT_BGRX_4444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_4444,&nbsp;PIXEL_FMT_BGRX_5551,&nbsp;PIXEL_FMT_BGRA_5551,&nbsp;PIXEL_FMT_BGRX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_8888,&nbsp;PIXEL_FMT_YUV_422_I,&nbsp;PIXEL_FMT_YCBCR_422_SP,&nbsp;PIXEL_FMT_YCRCB_422_SP,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_SP,&nbsp;PIXEL_FMT_YCRCB_420_SP,&nbsp;PIXEL_FMT_YCBCR_422_P,&nbsp;PIXEL_FMT_YCRCB_422_P,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_P,&nbsp;PIXEL_FMT_YCRCB_420_P,&nbsp;PIXEL_FMT_YUYV_422_PKG,&nbsp;PIXEL_FMT_UYVY_422_PKG,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YVYU_422_PKG,&nbsp;PIXEL_FMT_VYUY_422_PKG,&nbsp;PIXEL_FMT_VENDER_MASK&nbsp;=&nbsp;0X7FFF0000,&nbsp;PIXEL_FMT_BUTT&nbsp;=&nbsp;0X7FFFFFFF&nbsp;} | 像素格式类型定义。 | 
-| [TransformType](#transformtype){&nbsp;ROTATE_NONE&nbsp;=&nbsp;0,&nbsp;ROTATE_90,&nbsp;ROTATE_180,&nbsp;ROTATE_270,&nbsp;&nbsp;&nbsp;ROTATE_BUTT&nbsp;} | 图层变换类型定义。 | 
-| [BlendType](#blendtype){&nbsp;BLEND_NONE&nbsp;=&nbsp;0,&nbsp;BLEND_CLEAR,&nbsp;BLEND_SRC,&nbsp;BLEND_SRCOVER,&nbsp;&nbsp;&nbsp;BLEND_DSTOVER,&nbsp;BLEND_SRCIN,&nbsp;BLEND_DSTIN,&nbsp;BLEND_SRCOUT,&nbsp;&nbsp;&nbsp;BLEND_DSTOUT,&nbsp;BLEND_SRCATOP,&nbsp;BLEND_DSTATOP,&nbsp;BLEND_ADD,&nbsp;&nbsp;&nbsp;BLEND_XOR,&nbsp;BLEND_DST,&nbsp;BLEND_AKS,&nbsp;BLEND_AKD,&nbsp;&nbsp;&nbsp;BLEND_BUTT&nbsp;} | 支持的图像混合类型。 | 
-| [RopType](#roptype){&nbsp;ROP_BLACK&nbsp;=&nbsp;0,&nbsp;ROP_NOTMERGEPEN,&nbsp;ROP_MASKNOTPEN,&nbsp;ROP_NOTCOPYPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPENNOT,&nbsp;ROP_NOT,&nbsp;ROP_XORPEN,&nbsp;ROP_NOTMASKPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPEN,&nbsp;ROP_NOTXORPEN,&nbsp;ROP_NOP,&nbsp;ROP_MERGENOTPEN,&nbsp;&nbsp;&nbsp;ROP_COPYPE,&nbsp;ROP_MERGEPENNOT,&nbsp;ROP_MERGEPEN,&nbsp;ROP_WHITE,&nbsp;&nbsp;&nbsp;ROP_BUTT&nbsp;} | 硬件加速支持的ROP操作类型。 | 
+| [PixelFormat](#pixelformat)&nbsp;{&nbsp;PIXEL_FMT_CLUT8&nbsp;=&nbsp;0,&nbsp;PIXEL_FMT_CLUT1,&nbsp;PIXEL_FMT_CLUT4,&nbsp;PIXEL_FMT_RGB_565,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_5658,&nbsp;PIXEL_FMT_RGBX_4444,&nbsp;PIXEL_FMT_RGBA_4444,&nbsp;PIXEL_FMT_RGB_444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBX_5551,&nbsp;PIXEL_FMT_RGBA_5551,&nbsp;PIXEL_FMT_RGB_555,&nbsp;PIXEL_FMT_RGBX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_8888,&nbsp;PIXEL_FMT_RGB_888,&nbsp;PIXEL_FMT_BGR_565,&nbsp;PIXEL_FMT_BGRX_4444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_4444,&nbsp;PIXEL_FMT_BGRX_5551,&nbsp;PIXEL_FMT_BGRA_5551,&nbsp;PIXEL_FMT_BGRX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_8888,&nbsp;PIXEL_FMT_YUV_422_I,&nbsp;PIXEL_FMT_YCBCR_422_SP,&nbsp;PIXEL_FMT_YCRCB_422_SP,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_SP,&nbsp;PIXEL_FMT_YCRCB_420_SP,&nbsp;PIXEL_FMT_YCBCR_422_P,&nbsp;PIXEL_FMT_YCRCB_422_P,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_P,&nbsp;PIXEL_FMT_YCRCB_420_P,&nbsp;PIXEL_FMT_YUYV_422_PKG,&nbsp;PIXEL_FMT_UYVY_422_PKG,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YVYU_422_PKG,&nbsp;PIXEL_FMT_VYUY_422_PKG,&nbsp;PIXEL_FMT_VENDER_MASK&nbsp;=&nbsp;0X7FFF0000,&nbsp;PIXEL_FMT_BUTT&nbsp;=&nbsp;0X7FFFFFFF&nbsp;} | 像素格式类型定义。 | 
+| [TransformType](#transformtype)&nbsp;{&nbsp;ROTATE_NONE&nbsp;=&nbsp;0,&nbsp;ROTATE_90,&nbsp;ROTATE_180,&nbsp;ROTATE_270,&nbsp;ROTATE_BUTT&nbsp;} | 图层变换类型定义。 | 
+| [BlendType](#blendtype)&nbsp;{&nbsp;BLEND_NONE&nbsp;=&nbsp;0,&nbsp;BLEND_CLEAR,&nbsp;BLEND_SRC,&nbsp;BLEND_SRCOVER,&nbsp;&nbsp;&nbsp;BLEND_DSTOVER,&nbsp;BLEND_SRCIN,&nbsp;BLEND_DSTIN,&nbsp;BLEND_SRCOUT,&nbsp;&nbsp;&nbsp;BLEND_DSTOUT,&nbsp;BLEND_SRCATOP,&nbsp;BLEND_DSTATOP,&nbsp;BLEND_ADD,&nbsp;&nbsp;&nbsp;BLEND_XOR,&nbsp;BLEND_DST,&nbsp;BLEND_AKS,&nbsp;BLEND_AKD,&nbsp;&nbsp;&nbsp;BLEND_BUTT&nbsp;} | 支持的图像混合类型。 | 
+| [RopType](#roptype)&nbsp;{&nbsp;ROP_BLACK&nbsp;=&nbsp;0,&nbsp;ROP_NOTMERGEPEN,&nbsp;ROP_MASKNOTPEN,&nbsp;ROP_NOTCOPYPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPENNOT,&nbsp;ROP_NOT,&nbsp;ROP_XORPEN,&nbsp;ROP_NOTMASKPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPEN,&nbsp;ROP_NOTXORPEN,&nbsp;ROP_NOP,&nbsp;ROP_MERGENOTPEN,&nbsp;&nbsp;&nbsp;ROP_COPYPE,&nbsp;ROP_MERGEPENNOT,&nbsp;ROP_MERGEPEN,&nbsp;ROP_WHITE,&nbsp;&nbsp;&nbsp;ROP_BUTT&nbsp;} | 硬件加速支持的ROP操作类型。 | 
 | [ColorKey](#colorkey)&nbsp;{&nbsp;CKEY_NONE&nbsp;=&nbsp;0,&nbsp;CKEY_SRC,&nbsp;CKEY_DST,&nbsp;CKEY_BUTT&nbsp;} | Color&nbsp;key操作类型定义，即硬件加速支持的Color&nbsp;key操作类型。 | 
-| [MirrorType](#mirrortype){&nbsp;MIRROR_NONE&nbsp;=&nbsp;0,&nbsp;MIRROR_LR,&nbsp;MIRROR_TB,&nbsp;MIRROR_BUTT&nbsp;} | 硬件加速支持的镜像操作类型定义。 | 
-| [Connection](#connection){&nbsp;CON_INVALID&nbsp;=&nbsp;0,&nbsp;CONNECTED,&nbsp;DISCONNECTED&nbsp;} | 热插拔连接类型定义。 | 
-| [InterfaceType](#interfacetype){&nbsp;DISP_INTF_HDMI&nbsp;=&nbsp;0,&nbsp;DISP_INTF_LCD,&nbsp;DISP_INTF_BT1120,&nbsp;DISP_INTF_BT656,&nbsp;&nbsp;&nbsp;DISP_INTF_YPBPR,&nbsp;DISP_INTF_RGB,&nbsp;DISP_INTF_CVBS,&nbsp;DISP_INTF_SVIDEO,&nbsp;&nbsp;&nbsp;DISP_INTF_VGA,&nbsp;DISP_INTF_MIPI,&nbsp;DISP_INTF_PANEL,&nbsp;DISP_INTF_BUTT&nbsp;} | 枚举接口类型。 | 
-| [DispPowerStatus](#disppowerstatus){&nbsp;POWER_STATUS_ON,&nbsp;POWER_STATUS_STANDBY,&nbsp;POWER_STATUS_SUSPEND,&nbsp;POWER_STATUS_OFF,&nbsp;&nbsp;&nbsp;POWER_STATUS_BUTT&nbsp;} | 枚举显示状态。 | 
-| [CompositionType](#compositiontype){&nbsp;COMPOSITION_CLIENT,&nbsp;COMPOSITION_DEVICE,&nbsp;COMPOSITION_CURSOR,&nbsp;COMPOSITION_VIDEO,&nbsp;&nbsp;&nbsp;COMPOSITION_DEVICE_CLEAR,&nbsp;COMPOSITION_CLIENT_CLEAR,&nbsp;COMPOSITION_TUNNEL,&nbsp;COMPOSITION_BUTT&nbsp;} | 枚举特殊层的组合类型。 | 
-| [ColorGamut](#colorgamut){&nbsp;COLOR_GAMUT_INVALID&nbsp;=&nbsp;-1,&nbsp;COLOR_GAMUT_NATIVE&nbsp;=&nbsp;0,&nbsp;COLOR_GAMUT_SATNDARD_BT601&nbsp;=&nbsp;1,&nbsp;COLOR_GAMUT_STANDARD_BT709&nbsp;=&nbsp;2,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_DCI_P3&nbsp;=&nbsp;3,&nbsp;COLOR_GAMUT_SRGB&nbsp;=&nbsp;4,&nbsp;COLOR_GAMUT_ADOBE_RGB&nbsp;=&nbsp;5,&nbsp;COLOR_GAMUT_DISPLAY_P3&nbsp;=&nbsp;6,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_BT2020&nbsp;=&nbsp;7,&nbsp;COLOR_GAMUT_BT2100_PQ&nbsp;=&nbsp;8,&nbsp;COLOR_GAMUT_BT2100_HLG&nbsp;=&nbsp;9,&nbsp;COLOR_GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;10&nbsp;} | 色域类型枚举值。 | 
-| [GamutMap](#gamutmap){&nbsp;GAMUT_MAP_CONSTANT&nbsp;=&nbsp;0,&nbsp;GAMUT_MAP_EXPANSION&nbsp;=&nbsp;1,&nbsp;GAMUT_MAP_HDR_CONSTANT&nbsp;=&nbsp;2,&nbsp;GAMUT_MAP_HDR_EXPANSION&nbsp;=&nbsp;3&nbsp;} | 枚举色域的映射类型。 | 
-| [ColorDataSpace](#colordataspace){&nbsp;&nbsp;COLOR_DATA_SPACE_UNKNOWN&nbsp;=&nbsp;0,&nbsp;GAMUT_BT601&nbsp;=&nbsp;0x00000001,&nbsp;GAMUT_BT709&nbsp;=&nbsp;0x00000002,&nbsp;GAMUT_DCI_P3&nbsp;=&nbsp;0x00000003,&nbsp;&nbsp;&nbsp;GAMUT_SRGB&nbsp;=&nbsp;0x00000004,&nbsp;GAMUT_ADOBE_RGB&nbsp;=&nbsp;0x00000005,&nbsp;GAMUT_DISPLAY_P3&nbsp;=&nbsp;0x00000006,&nbsp;GAMUT_BT2020&nbsp;=&nbsp;0x00000007,&nbsp;&nbsp;&nbsp;GAMUT_BT2100_PQ&nbsp;=&nbsp;0x00000008,&nbsp;GAMUT_BT2100_HLG&nbsp;=&nbsp;0x00000009,&nbsp;GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;0x0000000a,&nbsp;TRANSFORM_FUNC_UNSPECIFIED&nbsp;=&nbsp;0x00000100,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;=&nbsp;0x00000200,&nbsp;TRANSFORM_FUNC_SRGB&nbsp;=&nbsp;0x00000300,&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;=&nbsp;0x00000400,&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;=&nbsp;0x00000500,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;=&nbsp;0x00000600,&nbsp;TRANSFORM_FUNC_GM2_8&nbsp;=&nbsp;0x00000700,&nbsp;TRANSFORM_FUNC_ST2084&nbsp;=&nbsp;0x00000800,&nbsp;TRANSFORM_FUNC_HLG&nbsp;=&nbsp;0x00000900,&nbsp;&nbsp;&nbsp;PRECISION_UNSPECIFIED&nbsp;=&nbsp;0x00010000,&nbsp;PRECISION_FULL&nbsp;=&nbsp;0x00020000,&nbsp;PRESION_LIMITED&nbsp;=&nbsp;0x00030000,&nbsp;PRESION_EXTENDED&nbsp;=&nbsp;0x00040000,&nbsp;&nbsp;&nbsp;BT601_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT601_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;BT709_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_LINEAR_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;&nbsp;&nbsp;BT709_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_SRGB_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;BT709_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;DCI_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;DCI_P3_GAMMA26_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DISPLAY_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DISPLAY_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DCI_P3_SRGB_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;ADOBE_RGB_GAMMA22_FULL&nbsp;=&nbsp;GAMUT_ADOBE_RGB&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_HLG_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_HLG&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_LIMITED&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRESION_LIMITED&nbsp;} | 枚举颜色空间的类型。 | 
-| [HDRFormat](#hdrformat){&nbsp;NOT_SUPPORT_HDR&nbsp;=&nbsp;0,&nbsp;DOLBY_VISION&nbsp;=&nbsp;1,&nbsp;HDR10&nbsp;=&nbsp;2,&nbsp;HLG&nbsp;=&nbsp;3,&nbsp;&nbsp;&nbsp;HDR10_PLUS&nbsp;=&nbsp;4,&nbsp;HDR_VIVID&nbsp;=&nbsp;5&nbsp;} | 枚举HDR格式。 | 
-| [HDRMetadataKey](#hdrmetadatakey){&nbsp;&nbsp;MATAKEY_RED_PRIMARY_X&nbsp;=&nbsp;0,&nbsp;MATAKEY_RED_PRIMARY_Y&nbsp;=&nbsp;1,&nbsp;MATAKEY_GREEN_PRIMARY_X&nbsp;=&nbsp;2,&nbsp;MATAKEY_GREEN_PRIMARY_Y&nbsp;=&nbsp;3,&nbsp;&nbsp;&nbsp;MATAKEY_BLUE_PRIMARY_X&nbsp;=&nbsp;4,&nbsp;MATAKEY_BLUE_PRIMARY_Y&nbsp;=&nbsp;5,&nbsp;MATAKEY_WHITE_PRIMARY_X&nbsp;=&nbsp;6,&nbsp;MATAKEY_WHITE_PRIMARY_Y&nbsp;=&nbsp;7,&nbsp;&nbsp;&nbsp;MATAKEY_MAX_LUMINANCE&nbsp;=&nbsp;8,&nbsp;MATAKEY_MIN_LUMINANCE&nbsp;=&nbsp;9,&nbsp;MATAKEY_MAX_CONTENT_LIGHT_LEVEL&nbsp;=&nbsp;10,&nbsp;MATAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL&nbsp;=&nbsp;11,&nbsp;&nbsp;&nbsp;MATAKEY_HDR10_PLUS&nbsp;=&nbsp;12,&nbsp;MATAKEY_HDR_VIVID&nbsp;=&nbsp;13&nbsp;} | 枚举HDR元数据关键字。 | 
-| [PresentTimestampType](#presenttimestamptype){&nbsp;HARDWARE_DISPLAY_PTS_UNSUPPORTED&nbsp;=&nbsp;0,&nbsp;HARDWARE_DISPLAY_PTS_DELAY&nbsp;=&nbsp;1&nbsp;&lt;&lt;&nbsp;0,&nbsp;HARDWARE_DISPLAY_PTS_TIMESTAMP&nbsp;=&nbsp;1&nbsp;&lt;&lt;&nbsp;1&nbsp;} | 上屏时间戳类型枚举值。 | 
-| [VGUPathDataType](#vgupathdatatype){&nbsp;VGU_DATA_TYPE_S16&nbsp;=&nbsp;0,&nbsp;VGU_DATA_TYPE_S32,&nbsp;VGU_DATA_TYPE_F32&nbsp;} | 路径坐标数据类型。 | 
-| [VGUCapability](#vgucapability){&nbsp;VGU_CAP_BLIT&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;VGU_CAP_BLIT_NUM&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;VGU_CAP_PATH&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;VGU_CAP_FILTER_BLUR&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3)&nbsp;} | 硬件加速能力。 | 
-| [VGUResult](#vguresult){&nbsp;&nbsp;&nbsp;VGU_SUCCESS&nbsp;=&nbsp;0,&nbsp;VGU_NO_SUPPORT&nbsp;=&nbsp;-1,&nbsp;VGU_OPERATION_FAILED&nbsp;=&nbsp;-2,&nbsp;VGU_OUT_OF_MEMORY&nbsp;=&nbsp;-3,&nbsp;&nbsp;&nbsp;VGU_TIMEOUT&nbsp;=&nbsp;-4,&nbsp;VGU_INVALID_PARAMETER&nbsp;=&nbsp;-5,&nbsp;VGU_BUSY&nbsp;=&nbsp;-6,&nbsp;VGU_NO_CONTEXT&nbsp;=&nbsp;-7&nbsp;} | 错误码定义。 | 
-| [VGULineCap](#vgulinecap){&nbsp;VGU_LINECAP_BUTT&nbsp;=&nbsp;0,&nbsp;VGU_LINECAP_ROUND,&nbsp;VGU_LINECAP_SQUARE&nbsp;} | 线帽。 | 
-| [VGUJointType](#vgujointtype){&nbsp;VGU_LINE_JOIN_MITER&nbsp;=&nbsp;0,&nbsp;VGU_LINE_JOIN_ROUND,&nbsp;VGU_LINE_JOIN_BEVEL,&nbsp;VGU_LINE_JOIN_BUTT&nbsp;} | 联接类型。 | 
-| [VGUFilter](#vgufilter){&nbsp;VGU_FILTER_BILINEAR&nbsp;=&nbsp;0,&nbsp;VGU_FILTER_NEAREST,&nbsp;VGU_FILTER_LINEAR,&nbsp;VGU_FILTER_BUTT&nbsp;} | 图像滤波类型。 | 
-| [VGUFillRule](#vgufillrule){&nbsp;VGU_RULE_WINDING&nbsp;=&nbsp;0,&nbsp;VGU_RULE_EVEN_ODD,&nbsp;VGU_RULE_BUTT&nbsp;} | 填充规则定义。 | 
-| [VGUFillSpread](#vgufillspread){&nbsp;VGU_SPREAD_PAD&nbsp;=&nbsp;0,&nbsp;VGU_SPREAD_REFLECT,&nbsp;VGU_SPREAD_REPEAT,&nbsp;VGU_SPREAD_BUTT&nbsp;} | 渐变填充区域外的延展类型。 | 
-| [VGUWrapType](#vguwraptype){&nbsp;VGU_WRAP_REFLECT&nbsp;=&nbsp;0,&nbsp;VGU_WRAP_REPEAT,&nbsp;VGU_WRAP_BUTT&nbsp;} | 图像模式填充延展类型。 | 
-| [VGUPathCmd](#vgupathcmd){&nbsp;&nbsp;&nbsp;VGU_PATH_CMD_CLOSE&nbsp;=&nbsp;0,&nbsp;VGU_PATH_CMD_MOVE,&nbsp;VGU_PATH_CMD_LINE,&nbsp;VGU_PATH_CMD_HLINE,&nbsp;&nbsp;&nbsp;VGU_PATH_CMD_VLINE,&nbsp;VGU_PATH_CMD_QUAD,&nbsp;VGU_PATH_CMD_CUBIC,&nbsp;VGU_PATH_CMD_SQUAD,&nbsp;&nbsp;&nbsp;VGU_PATH_CMD_SCUBIC,&nbsp;VGU_PATH_CMD_BUTT&nbsp;} | 路径绘制指令类型。 | 
-| [VGUTransformType](#vgutransformtype){&nbsp;VGU_TRANSFORM_TRANSLATE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;VGU_TRANSFORM_SCALE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;VGU_TRANSFORM_ROTATE_90&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;VGU_TRANSFORM_ROTATE_180&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3),&nbsp;&nbsp;&nbsp;VGU_TRANSFORM_ROTATE_270&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;4),&nbsp;VGU_TRANSFORM_OTHER&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;16)&nbsp;} | 变换类型。 | 
-| [VGUClipType](#vgucliptype){&nbsp;VGU_CLIP_RECT&nbsp;=&nbsp;0,&nbsp;VGU_CLIP_PATH,&nbsp;VGU_CLIP_BUTT&nbsp;} | 绘制表面剪切类型。 | 
-| [VGUGradientType](#vgugradienttype){&nbsp;VGU_GRADIENT_LINEAR&nbsp;=&nbsp;0,&nbsp;VGU_GRADIENT_RADIAL,&nbsp;VGU_GRADIENT_CONIC,&nbsp;VGU_GRADIENT_BUTT&nbsp;} | 渐变类型。 | 
-| [VGUPaintType](#vgupainttype){&nbsp;VGU_PAINT_SOLID&nbsp;=&nbsp;0,&nbsp;VGU_PAINT_GRADIENT,&nbsp;VGU_PAINT_PATTERN,&nbsp;VGU_PAINT_BUTT&nbsp;} | 渲染对象。 | 
+| [MirrorType](#mirrortype)&nbsp;{&nbsp;MIRROR_NONE&nbsp;=&nbsp;0,&nbsp;MIRROR_LR,&nbsp;MIRROR_TB,&nbsp;MIRROR_BUTT&nbsp;} | 硬件加速支持的镜像操作类型定义 | 
+| [Connection](#connection)&nbsp;{&nbsp;CON_INVALID&nbsp;=&nbsp;0,&nbsp;CONNECTED,&nbsp;DISCONNECTED&nbsp;} | 热插拔连接类型定义 | 
+| [InterfaceType](#interfacetype)&nbsp;{&nbsp;DISP_INTF_HDMI&nbsp;=&nbsp;0,&nbsp;DISP_INTF_LCD,&nbsp;DISP_INTF_BT1120,&nbsp;DISP_INTF_BT656,&nbsp;&nbsp;&nbsp;DISP_INTF_YPBPR,&nbsp;DISP_INTF_RGB,&nbsp;DISP_INTF_CVBS,&nbsp;DISP_INTF_SVIDEO,&nbsp;&nbsp;&nbsp;DISP_INTF_VGA,&nbsp;DISP_INTF_MIPI,&nbsp;DISP_INTF_PANEL,&nbsp;DISP_INTF_BUTT&nbsp;} | 枚举接口类型。 | 
+| [DispPowerStatus](#disppowerstatus)&nbsp;{&nbsp;POWER_STATUS_ON,&nbsp;POWER_STATUS_STANDBY,&nbsp;POWER_STATUS_SUSPEND,&nbsp;POWER_STATUS_OFF,&nbsp;&nbsp;&nbsp;POWER_STATUS_BUTT&nbsp;} | 枚举显示状态 | 
+| [CompositionType](#compositiontype)&nbsp;{&nbsp;COMPOSITION_CLIENT,&nbsp;COMPOSITION_DEVICE,&nbsp;COMPOSITION_CURSOR,&nbsp;COMPOSITION_VIDEO,&nbsp;&nbsp;&nbsp;COMPOSITION_DEVICE_CLEAR,&nbsp;COMPOSITION_CLIENT_CLEAR,&nbsp;COMPOSITION_TUNNEL,&nbsp;COMPOSITION_BUTT&nbsp;} | 枚举特殊层的组合类型。 | 
+| [ColorGamut](#colorgamut)&nbsp;{&nbsp;COLOR_GAMUT_INVALID&nbsp;=&nbsp;-1,&nbsp;COLOR_GAMUT_NATIVE&nbsp;=&nbsp;0,&nbsp;COLOR_GAMUT_SATNDARD_BT601&nbsp;=&nbsp;1,&nbsp;COLOR_GAMUT_STANDARD_BT709&nbsp;=&nbsp;2,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_DCI_P3&nbsp;=&nbsp;3,&nbsp;COLOR_GAMUT_SRGB&nbsp;=&nbsp;4,&nbsp;COLOR_GAMUT_ADOBE_RGB&nbsp;=&nbsp;5,&nbsp;COLOR_GAMUT_DISPLAY_P3&nbsp;=&nbsp;6,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_BT2020&nbsp;=&nbsp;7,&nbsp;COLOR_GAMUT_BT2100_PQ&nbsp;=&nbsp;8,&nbsp;COLOR_GAMUT_BT2100_HLG&nbsp;=&nbsp;9,&nbsp;COLOR_GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;10&nbsp;} | 色域类型枚举值 | 
+| [GamutMap](#gamutmap)&nbsp;{&nbsp;GAMUT_MAP_CONSTANT&nbsp;=&nbsp;0,&nbsp;GAMUT_MAP_EXPANSION&nbsp;=&nbsp;1,&nbsp;GAMUT_MAP_HDR_CONSTANT&nbsp;=&nbsp;2,&nbsp;GAMUT_MAP_HDR_EXPANSION&nbsp;=&nbsp;3&nbsp;} | 枚举色域的映射类型 | 
+| [ColorDataSpace](#colordataspace)&nbsp;{&nbsp;COLOR_DATA_SPACE_UNKNOWN&nbsp;=&nbsp;0,&nbsp;GAMUT_BT601&nbsp;=&nbsp;0x00000001,&nbsp;GAMUT_BT709&nbsp;=&nbsp;0x00000002,&nbsp;GAMUT_DCI_P3&nbsp;=&nbsp;0x00000003,&nbsp;&nbsp;&nbsp;GAMUT_SRGB&nbsp;=&nbsp;0x00000004,&nbsp;GAMUT_ADOBE_RGB&nbsp;=&nbsp;0x00000005,&nbsp;GAMUT_DISPLAY_P3&nbsp;=&nbsp;0x00000006,&nbsp;GAMUT_BT2020&nbsp;=&nbsp;0x00000007,&nbsp;&nbsp;&nbsp;GAMUT_BT2100_PQ&nbsp;=&nbsp;0x00000008,&nbsp;GAMUT_BT2100_HLG&nbsp;=&nbsp;0x00000009,&nbsp;GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;0x0000000a,&nbsp;TRANSFORM_FUNC_UNSPECIFIED&nbsp;=&nbsp;0x00000100,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;=&nbsp;0x00000200,&nbsp;TRANSFORM_FUNC_SRGB&nbsp;=&nbsp;0x00000300,&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;=&nbsp;0x00000400,&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;=&nbsp;0x00000500,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;=&nbsp;0x00000600,&nbsp;TRANSFORM_FUNC_GM2_8&nbsp;=&nbsp;0x00000700,&nbsp;TRANSFORM_FUNC_ST2084&nbsp;=&nbsp;0x00000800,&nbsp;TRANSFORM_FUNC_HLG&nbsp;=&nbsp;0x00000900,&nbsp;&nbsp;&nbsp;PRECISION_UNSPECIFIED&nbsp;=&nbsp;0x00010000,&nbsp;PRECISION_FULL&nbsp;=&nbsp;0x00020000,&nbsp;PRESION_LIMITED&nbsp;=&nbsp;0x00030000,&nbsp;PRESION_EXTENDED&nbsp;=&nbsp;0x00040000,&nbsp;&nbsp;&nbsp;BT601_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT601_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;BT709_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_LINEAR_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;&nbsp;&nbsp;BT709_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_SRGB_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;BT709_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;DCI_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;DCI_P3_GAMMA26_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DISPLAY_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DISPLAY_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DCI_P3_SRGB_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;ADOBE_RGB_GAMMA22_FULL&nbsp;=&nbsp;GAMUT_ADOBE_RGB&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_HLG_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_HLG&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_LIMITED&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRESION_LIMITED&nbsp;} | 枚举颜色空间的类型 | 
+| [HDRFormat](#hdrformat)&nbsp;{&nbsp;NOT_SUPPORT_HDR&nbsp;=&nbsp;0,&nbsp;DOLBY_VISION&nbsp;=&nbsp;1,&nbsp;HDR10&nbsp;=&nbsp;2,&nbsp;HLG&nbsp;=&nbsp;3,&nbsp;&nbsp;&nbsp;HDR10_PLUS&nbsp;=&nbsp;4,&nbsp;HDR_VIVID&nbsp;=&nbsp;5&nbsp;} | 枚举HDR格式 | 
+| [HDRMetadataKey](#hdrmetadatakey)&nbsp;{&nbsp;MATAKEY_RED_PRIMARY_X&nbsp;=&nbsp;0,&nbsp;MATAKEY_RED_PRIMARY_Y&nbsp;=&nbsp;1,&nbsp;MATAKEY_GREEN_PRIMARY_X&nbsp;=&nbsp;2,&nbsp;MATAKEY_GREEN_PRIMARY_Y&nbsp;=&nbsp;3,&nbsp;&nbsp;&nbsp;MATAKEY_BLUE_PRIMARY_X&nbsp;=&nbsp;4,&nbsp;MATAKEY_BLUE_PRIMARY_Y&nbsp;=&nbsp;5,&nbsp;MATAKEY_WHITE_PRIMARY_X&nbsp;=&nbsp;6,&nbsp;MATAKEY_WHITE_PRIMARY_Y&nbsp;=&nbsp;7,&nbsp;&nbsp;&nbsp;MATAKEY_MAX_LUMINANCE&nbsp;=&nbsp;8,&nbsp;MATAKEY_MIN_LUMINANCE&nbsp;=&nbsp;9,&nbsp;MATAKEY_MAX_CONTENT_LIGHT_LEVEL&nbsp;=&nbsp;10,&nbsp;MATAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL&nbsp;=&nbsp;11,&nbsp;&nbsp;&nbsp;MATAKEY_HDR10_PLUS&nbsp;=&nbsp;12,&nbsp;MATAKEY_HDR_VIVID&nbsp;=&nbsp;13&nbsp;} | 枚举HDR元数据关键字 | 
+| [PresentTimestampType](#presenttimestamptype)&nbsp;{&nbsp;HARDWARE_DISPLAY_PTS_UNSUPPORTED&nbsp;=&nbsp;0,&nbsp;HARDWARE_DISPLAY_PTS_DELAY&nbsp;=&nbsp;1&nbsp;&lt;&lt;&nbsp;0,&nbsp;HARDWARE_DISPLAY_PTS_TIMESTAMP&nbsp;=&nbsp;1&nbsp;&lt;&lt;&nbsp;1&nbsp;} | 上屏时间戳类型枚举值 | 
+| [VGUPathDataType](#vgupathdatatype)&nbsp;{&nbsp;VGU_DATA_TYPE_S16&nbsp;=&nbsp;0,&nbsp;VGU_DATA_TYPE_S32,&nbsp;VGU_DATA_TYPE_F32&nbsp;} | 路径坐标数据类型。 | 
+| [VGUCapability](#vgucapability)&nbsp;{&nbsp;VGU_CAP_BLIT&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;VGU_CAP_BLIT_NUM&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;VGU_CAP_PATH&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;VGU_CAP_FILTER_BLUR&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3)&nbsp;} | 硬件加速能力。 | 
+| [VGUResult](#vguresult)&nbsp;{&nbsp;VGU_SUCCESS&nbsp;=&nbsp;0,&nbsp;VGU_NO_SUPPORT&nbsp;=&nbsp;-1,&nbsp;VGU_OPERATION_FAILED&nbsp;=&nbsp;-2,&nbsp;VGU_OUT_OF_MEMORY&nbsp;=&nbsp;-3,&nbsp;&nbsp;&nbsp;VGU_TIMEOUT&nbsp;=&nbsp;-4,&nbsp;VGU_INVALID_PARAMETER&nbsp;=&nbsp;-5,&nbsp;VGU_BUSY&nbsp;=&nbsp;-6,&nbsp;VGU_NO_CONTEXT&nbsp;=&nbsp;-7&nbsp;} | 错误码定义。 | 
+| [VGULineCap](#vgulinecap)&nbsp;{&nbsp;VGU_LINECAP_BUTT&nbsp;=&nbsp;0,&nbsp;VGU_LINECAP_ROUND,&nbsp;VGU_LINECAP_SQUARE&nbsp;} | 线帽。 | 
+| [VGUJointType](#vgujointtype)&nbsp;{&nbsp;VGU_LINE_JOIN_MITER&nbsp;=&nbsp;0,&nbsp;VGU_LINE_JOIN_ROUND,&nbsp;VGU_LINE_JOIN_BEVEL,&nbsp;VGU_LINE_JOIN_BUTT&nbsp;} | 联接类型。 | 
+| [VGUFilter](#vgufilter)&nbsp;{&nbsp;VGU_FILTER_BILINEAR&nbsp;=&nbsp;0,&nbsp;VGU_FILTER_NEAREST,&nbsp;VGU_FILTER_LINEAR,&nbsp;VGU_FILTER_BUTT&nbsp;} | 图像滤波类型。 | 
+| [VGUFillRule](#vgufillrule)&nbsp;{&nbsp;VGU_RULE_WINDING&nbsp;=&nbsp;0,&nbsp;VGU_RULE_EVEN_ODD,&nbsp;VGU_RULE_BUTT&nbsp;} | 填充规则定义。 | 
+| [VGUFillSpread](#vgufillspread)&nbsp;{&nbsp;VGU_SPREAD_PAD&nbsp;=&nbsp;0,&nbsp;VGU_SPREAD_REFLECT,&nbsp;VGU_SPREAD_REPEAT,&nbsp;VGU_SPREAD_BUTT&nbsp;} | 渐变填充区域外的延展类型。 | 
+| [VGUWrapType](#vguwraptype)&nbsp;{&nbsp;VGU_WRAP_REFLECT&nbsp;=&nbsp;0,&nbsp;VGU_WRAP_REPEAT,&nbsp;VGU_WRAP_BUTT&nbsp;} | 图像模式填充延展类型。 | 
+| [VGUPathCmd](#vgupathcmd)&nbsp;{&nbsp;VGU_PATH_CMD_CLOSE&nbsp;=&nbsp;0,&nbsp;VGU_PATH_CMD_MOVE,&nbsp;VGU_PATH_CMD_LINE,&nbsp;VGU_PATH_CMD_HLINE,&nbsp;&nbsp;&nbsp;VGU_PATH_CMD_VLINE,&nbsp;VGU_PATH_CMD_QUAD,&nbsp;VGU_PATH_CMD_CUBIC,&nbsp;VGU_PATH_CMD_SQUAD,&nbsp;&nbsp;&nbsp;VGU_PATH_CMD_SCUBIC,&nbsp;VGU_PATH_CMD_BUTT&nbsp;} | 路径绘制指令类型。 | 
+| [VGUTransformType](#vgutransformtype)&nbsp;{&nbsp;VGU_TRANSFORM_TRANSLATE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;VGU_TRANSFORM_SCALE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;VGU_TRANSFORM_ROTATE_90&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;VGU_TRANSFORM_ROTATE_180&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3),&nbsp;&nbsp;&nbsp;VGU_TRANSFORM_ROTATE_270&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;4),&nbsp;VGU_TRANSFORM_OTHER&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;16)&nbsp;} | 变换类型。 | 
+| [VGUClipType](#vgucliptype)&nbsp;{&nbsp;VGU_CLIP_RECT&nbsp;=&nbsp;0,&nbsp;VGU_CLIP_PATH,&nbsp;VGU_CLIP_BUTT&nbsp;} | 绘制表面剪切类型。 | 
+| [VGUGradientType](#vgugradienttype)&nbsp;{&nbsp;VGU_GRADIENT_LINEAR&nbsp;=&nbsp;0,&nbsp;VGU_GRADIENT_RADIAL,&nbsp;VGU_GRADIENT_CONIC,&nbsp;VGU_GRADIENT_BUTT&nbsp;} | 渐变类型。 | 
+| [VGUPaintType](#vgupainttype)&nbsp;{&nbsp;VGU_PAINT_SOLID&nbsp;=&nbsp;0,&nbsp;VGU_PAINT_GRADIENT,&nbsp;VGU_PAINT_PATTERN,&nbsp;VGU_PAINT_BUTT&nbsp;} | 渲染对象 | 
 
 
 ### 函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [DeviceInitialize](#deviceinitialize)(DeviceFuncs&nbsp;\*\*funcs) | 实现显示设备控制接口的初始化，申请操作显示设备控制接口的资源，并获取对应的操作接口。 | 
-| [DeviceUninitialize](#deviceuninitialize)(DeviceFuncs&nbsp;\*funcs) | 取消显示设备控制接口的初始化，释放控制接口使用到的资源。 | 
-| [GfxInitialize](#gfxinitialize)(GfxFuncs&nbsp;\*\*funcs) | 获取硬件加速相关的操作接口指针。 | 
-| [GfxUninitialize](#gfxuninitialize)(GfxFuncs&nbsp;\*funcs) | 释放硬件加速相关的操作接口指针。 | 
-| [GrallocInitialize](#grallocinitialize)(GrallocFuncs&nbsp;\*\*funcs) | 初始化内存模块，并获取内存提供的操作接口。 | 
-| [GrallocUninitialize](#grallocuninitialize)(GrallocFuncs&nbsp;\*funcs) | 取消初始化内存模块，并释放内存操作接口指针。 | 
-| [LayerInitialize](#layerinitialize)(LayerFuncs&nbsp;\*\*funcs) | 实现图层初始化功能，申请图层使用的资源，并获取图层提供的操作接口。 | 
-| [LayerUninitialize](#layeruninitialize)(LayerFuncs&nbsp;\*funcs) | 取消图层初始化功能，释放图层使用到的资源，并释放图层操作接口指针。 | 
-| [VGUPathInit](#vgupathinit)(VGUPath&nbsp;\*path,&nbsp;VGUPathDataType&nbsp;type,&nbsp;const&nbsp;uint8_t&nbsp;\*segments,&nbsp;int&nbsp;numSegments,&nbsp;const&nbsp;uint8_t&nbsp;\*data,&nbsp;bool&nbsp;enAlias,&nbsp;VGURect&nbsp;boundBox) | 初始化路径对象。 | 
-| [VGUPathAppend](#vgupathappend)(VGUPath&nbsp;\*path,&nbsp;const&nbsp;VGUPath&nbsp;\*subpath) | 添加子路径到当前路径中。 | 
-| [VGUPathClear](#vgupathclear)(VGUPath&nbsp;\*path) | 清除路径对象内存。 | 
-| [VGUMatrixIdentity](#vgumatrixidentity)(VGUMatrix3&nbsp;\*matrix) | 初始化矩阵对象为单位矩阵。 | 
-| [VGUMatrixScale](#vgumatrixscale)(VGUMatrix3&nbsp;\*matrix,&nbsp;float&nbsp;xScale,&nbsp;float&nbsp;yScale) | 矩阵变换缩放。 | 
-| [VGUMatrixRotate](#vgumatrixrotate)(VGUMatrix3&nbsp;\*matrix,&nbsp;float&nbsp;degree) | 矩阵变换旋转。 | 
-| [VGUMatrixTranslate](#vgumatrixtranslate)(VGUMatrix3&nbsp;\*matrix,&nbsp;float&nbsp;x,&nbsp;float&nbsp;y) | 矩阵变换平移。 | 
-| [VGUGradientColorStop](#vgugradientcolorstop)(VGUGradient&nbsp;\*gradient,&nbsp;const&nbsp;VGUColorStop&nbsp;\*colorStop,&nbsp;uint32_t&nbsp;count) | 对渐变添加ColorStop。 | 
-| [VGUGradientClearStop](#vgugradientclearstop)(VGUGradient&nbsp;\*gradient) | 清除ColorStop。 | 
-| [VGUGradientMatrix](#vgugradientmatrix)(VGUGradient&nbsp;\*gradient,&nbsp;const&nbsp;VGUMatrix3&nbsp;\*matrix) | 设置渐变对象的变换矩阵。 | 
-| [VGUGradientLinear](#vgugradientlinear)(VGUGradient&nbsp;\*gradient,&nbsp;const&nbsp;VGUPoint&nbsp;\*p1,&nbsp;const&nbsp;VGUPoint&nbsp;\*p2) | 创建线性渐变对象。 | 
-| [VGUGradientRadial](#vgugradientradial)(VGUGradient&nbsp;\*gradient,&nbsp;const&nbsp;VGUPoint&nbsp;\*p1,&nbsp;VGUScalar&nbsp;r1,&nbsp;const&nbsp;VGUPoint&nbsp;\*p2,&nbsp;VGUScalar&nbsp;r2) | 创建辐射渐变对象 | 
-| [VGUGradientConic](#vgugradientconic)(VGUGradient&nbsp;\*gradient,&nbsp;VGUScalar&nbsp;cx,&nbsp;VGUScalar&nbsp;cy) | 创建圆锥渐变对象。 | 
-| [VGUInitialize](#vguinitialize)(VGUFuncs&nbsp;\*\*funcs) | 获取硬件加速相关的操作接口指针。 | 
-| [VGUUninitialize](#vguuninitialize)(VGUFuncs&nbsp;\*funcs) | 去初始化硬件加速模块，同时释放硬件加速模块操作函数指针。 | 
+| [DeviceInitialize](#deviceinitialize)&nbsp;([DeviceFuncs](_device_funcs.md)&nbsp;\*\*funcs) | int32_t<br/>实现显示设备控制接口的初始化，申请操作显示设备控制接口的资源，并获取对应的操作接口。 | 
+| [DeviceUninitialize](#deviceuninitialize)&nbsp;([DeviceFuncs](_device_funcs.md)&nbsp;\*funcs) | int32_t<br/>取消显示设备控制接口的初始化，释放控制接口使用到的资源。 | 
+| [GfxInitialize](#gfxinitialize)&nbsp;([GfxFuncs](_gfx_funcs.md)&nbsp;\*\*funcs) | int32_t<br/>获取硬件加速相关的操作接口指针。 | 
+| [GfxUninitialize](#gfxuninitialize)&nbsp;([GfxFuncs](_gfx_funcs.md)&nbsp;\*funcs) | int32_t<br/>释放硬件加速相关的操作接口指针。 | 
+| [GrallocInitialize](#grallocinitialize)&nbsp;([GrallocFuncs](_gralloc_funcs.md)&nbsp;\*\*funcs) | int32_t<br/>初始化内存模块，并获取内存提供的操作接口。 | 
+| [GrallocUninitialize](#grallocuninitialize)&nbsp;([GrallocFuncs](_gralloc_funcs.md)&nbsp;\*funcs) | int32_t<br/>取消初始化内存模块，并释放内存操作接口指针。 | 
+| [LayerInitialize](#layerinitialize)&nbsp;([LayerFuncs](_layer_funcs.md)&nbsp;\*\*funcs) | int32_t<br/>实现图层初始化功能，申请图层使用的资源，并获取图层提供的操作接口。 | 
+| [LayerUninitialize](#layeruninitialize)&nbsp;([LayerFuncs](_layer_funcs.md)&nbsp;\*funcs) | int32_t<br/>取消图层初始化功能，释放图层使用到的资源，并释放图层操作接口指针。 | 
+| [VGUPathInit](#vgupathinit)&nbsp;([VGUPath](_v_g_u_path.md)&nbsp;\*path,&nbsp;[VGUPathDataType](#vgupathdatatype)&nbsp;type,&nbsp;const&nbsp;uint8_t&nbsp;\*segments,&nbsp;int&nbsp;numSegments,&nbsp;const&nbsp;uint8_t&nbsp;\*data,&nbsp;bool&nbsp;enAlias,&nbsp;[VGURect](_v_g_u_rect.md)&nbsp;boundBox) | [VGUResult](#vguresult)<br/>初始化路径对象。 | 
+| [VGUPathAppend](#vgupathappend)&nbsp;([VGUPath](_v_g_u_path.md)&nbsp;\*path,&nbsp;const&nbsp;[VGUPath](_v_g_u_path.md)&nbsp;\*subpath) | [VGUResult](#vguresult)<br/>添加子路径到当前路径中。 | 
+| [VGUPathClear](#vgupathclear)&nbsp;([VGUPath](_v_g_u_path.md)&nbsp;\*path) | [VGUResult](#vguresult)<br/>清除路径对象内存。 | 
+| [VGUMatrixIdentity](#vgumatrixidentity)&nbsp;([VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix) | [VGUResult](#vguresult)<br/>初始化矩阵对象为单位矩阵。 | 
+| [VGUMatrixScale](#vgumatrixscale)&nbsp;([VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix,&nbsp;float&nbsp;xScale,&nbsp;float&nbsp;yScale) | [VGUResult](#vguresult)<br/>矩阵变换缩放。 | 
+| [VGUMatrixRotate](#vgumatrixrotate)&nbsp;([VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix,&nbsp;float&nbsp;degree) | [VGUResult](#vguresult)<br/>矩阵变换旋转。 | 
+| [VGUMatrixTranslate](#vgumatrixtranslate)&nbsp;([VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix,&nbsp;float&nbsp;x,&nbsp;float&nbsp;y) | [VGUResult](#vguresult)<br/>矩阵变换平移。 | 
+| [VGUGradientColorStop](#vgugradientcolorstop)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient,&nbsp;const&nbsp;[VGUColorStop](_v_g_u_color_stop.md)&nbsp;\*colorStop,&nbsp;uint32_t&nbsp;count) | [VGUResult](#vguresult)<br/>对渐变添加ColorStop。 | 
+| [VGUGradientClearStop](#vgugradientclearstop)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient) | [VGUResult](#vguresult)<br/>清除ColorStop。 | 
+| [VGUGradientMatrix](#vgugradientmatrix)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient,&nbsp;const&nbsp;[VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix) | [VGUResult](#vguresult)<br/>设置渐变对象的变换矩阵。 | 
+| [VGUGradientLinear](#vgugradientlinear)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient,&nbsp;const&nbsp;[VGUPoint](_v_g_u_point.md)&nbsp;\*p1,&nbsp;const&nbsp;[VGUPoint](_v_g_u_point.md)&nbsp;\*p2) | [VGUResult](#vguresult)<br/>创建线性渐变对象。 | 
+| [VGUGradientRadial](#vgugradientradial)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient,&nbsp;const&nbsp;[VGUPoint](_v_g_u_point.md)&nbsp;\*p1,&nbsp;[VGUScalar](#vguscalar)&nbsp;r1,&nbsp;const&nbsp;[VGUPoint](_v_g_u_point.md)&nbsp;\*p2,&nbsp;[VGUScalar](#vguscalar)&nbsp;r2) | [VGUResult](#vguresult)<br/>创建辐射渐变对象 | 
+| [VGUGradientConic](#vgugradientconic)&nbsp;([VGUGradient](_v_g_u_gradient.md)&nbsp;\*gradient,&nbsp;[VGUScalar](#vguscalar)&nbsp;cx,&nbsp;[VGUScalar](#vguscalar)&nbsp;cy) | [VGUResult](#vguresult)<br/>创建圆锥渐变对象。 | 
+| [VGUInitialize](#vguinitialize)&nbsp;([VGUFuncs](_v_g_u_funcs.md)&nbsp;\*\*funcs) | [VGUResult](#vguresult)<br/>获取硬件加速相关的操作接口指针。 | 
+| [VGUUninitialize](#vguuninitialize)&nbsp;([VGUFuncs](_v_g_u_funcs.md)&nbsp;\*funcs) | [VGUResult](#vguresult)<br/>去初始化硬件加速模块，同时释放硬件加速模块操作函数指针。 | 
 
 
 ### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([DeviceFuncs::RegHotPlugCallback](#reghotplugcallback)&nbsp;)(HotPlugCallback&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册热插拔事件回调。 | 
-| ([DeviceFuncs::RegDisplayVBlankCallback](#regdisplayvblankcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;VBlankCallback&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册VBlank事件回调。 | 
-| ([DeviceFuncs::RegDisplayRefreshCallback](#regdisplayrefreshcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;RefreshCallback&nbsp;callback,&nbsp;void&nbsp;\*data) | 刷新请求回调。 | 
-| ([DeviceFuncs::GetDisplayCapability](#getdisplaycapability)&nbsp;)(uint32_t&nbsp;devId,&nbsp;DisplayCapability&nbsp;\*info) | 获取显示设备能力集。 | 
-| ([DeviceFuncs::GetDisplaySupportedModes](#getdisplaysupportedmodes)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;DisplayModeInfo&nbsp;\*modes) | 获取显示设备支持的显示模式信息。 | 
-| ([DeviceFuncs::GetDisplayMode](#getdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*modeId) | 获取显示设备当前的显示模式。 | 
-| ([DeviceFuncs::SetDisplayMode](#setdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;modeId) | 设置显示设备的显示模式。 | 
-| ([DeviceFuncs::GetDisplayPowerStatus](#getdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;DispPowerStatus&nbsp;\*status) | 获取显示设备当前的电源状态。 | 
-| ([DeviceFuncs::SetDisplayPowerStatus](#setdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;DispPowerStatus&nbsp;status) | 设置显示设备当前的电源状态。 | 
-| ([DeviceFuncs::GetDisplayBacklight](#getdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*level) | 获取显示设备当前的背光值。 | 
-| ([DeviceFuncs::SetDisplayBacklight](#setdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;level) | 设置显示设备当前的背光值。 | 
-| ([DeviceFuncs::GetDisplayProperty](#getdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;\*value) | 获取显示设备属性值。 | 
-| ([DeviceFuncs::SetDisplayProperty](#setdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;value) | 设置显示设备属性值。 | 
-| ([DeviceFuncs::PrepareDisplayLayers](#preparedisplaylayers)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;\*needFlushFb) | 显示设备合成前准备。 | 
-| ([DeviceFuncs::GetDisplayCompChange](#getdisplaycompchange)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*Layers,&nbsp;int32_t&nbsp;\*type) | 获取显示设备合成类型有变化的layer。 | 
-| ([DeviceFuncs::SetDisplayClientCrop](#setdisplayclientcrop)&nbsp;)(uint32_t&nbsp;devId,&nbsp;IRect&nbsp;\*rect) | 设置显示设备的裁剪区域。 | 
-| ([DeviceFuncs::SetDisplayClientDestRect](#setdisplayclientdestrect)&nbsp;)(uint32_t&nbsp;devId,&nbsp;IRect&nbsp;\*rect) | 设置显示设备的显示区域。 | 
-| ([DeviceFuncs::SetDisplayClientBuffer](#setdisplayclientbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置显示设备的显示缓存。 | 
-| ([DeviceFuncs::SetDisplayClientDamage](#setdisplayclientdamage)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;num,&nbsp;IRect&nbsp;\*rect) | 设置显示设备的显示脏区。 | 
-| ([DeviceFuncs::SetDisplayVsyncEnabled](#setdisplayvsyncenabled)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;enabled) | 使能垂直同步信号。 | 
-| ([DeviceFuncs::GetDisplayReleaseFence](#getdisplayreleasefence)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*layers,&nbsp;int32_t&nbsp;\*fences) | 获取显示图层fence。 | 
-| ([DeviceFuncs::GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;ColorGamut&nbsp;\*gamuts) | 获取显示设备支持的色域信息。 | 
-| ([DeviceFuncs::GetDisplayColorGamut](#getdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;ColorGamut&nbsp;\*gamut) | 获取显示设备当前的色域模式。 | 
-| ([DeviceFuncs::SetDisplayColorGamut](#setdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;ColorGamut&nbsp;gamut) | 设置显示设备当前的色域模式。 | 
-| ([DeviceFuncs::GetDisplayGamutMap](#getdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;GamutMap&nbsp;\*gamutMap) | 获取显示设备当前的色域映射模式。 | 
-| ([DeviceFuncs::SetDisplayGamutMap](#setdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;GamutMap&nbsp;gamutMap) | 设置显示设备当前的色域映射模式。 | 
-| ([DeviceFuncs::SetDisplayColorTransform](#setdisplaycolortransform)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;float&nbsp;\*matrix) | 设置显示设备当前的4x4的颜色转换矩阵。 | 
-| ([DeviceFuncs::GetHDRCapabilityInfos](#gethdrcapabilityinfos)&nbsp;)(uint32_t&nbsp;devId,&nbsp;HDRCapability&nbsp;\*info) | 获取显示设备支持的HDR属性信息。 | 
-| ([DeviceFuncs::GetSupportedMetadataKey](#getsupportedmetadatakey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;DisplayInfo::widthHDRMetadataKey&nbsp;\*keys) | 获取显示设备支持的&nbsp;HDRMetadataKey。 | 
-| ([DeviceFuncs::Commit](#commit)&nbsp;)(uint32_t&nbsp;devId,&nbsp;int32_t&nbsp;\*fence) | 提交合成送显请求。 | 
-| ([DeviceFuncs::InvokeDisplayCmd](#invokedisplaycmd)&nbsp;)(uint32_t&nbsp;devId,...) | 调用显示设备命令。 | 
-| ([DeviceFuncs::CreateVirtualDisplay](#createvirtualdisplay)&nbsp;)(uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format,&nbsp;uint32_t&nbsp;\*devId) | 创建虚拟显示设备。 | 
-| ([DeviceFuncs::DestroyVirtualDisplay](#destroyvirtualdisplay)&nbsp;)(uint32_t&nbsp;devId) | 销毁虚拟显示设备。 | 
-| ([DeviceFuncs::SetVirtualDisplayBuffer](#setvirtualdisplaybuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置虚拟屏的输出缓存。 | 
-| ([DeviceFuncs::GetWriteBackFrame](#getwritebackframe)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;\*fence) | 获取显示设备的回写帧。 | 
-| [DisplayInfo::width](#width-19) | 显示屏宽度 | 
-| [DisplayInfo::height](#height-18) | 显示屏高度 | 
-| [DisplayInfo::rotAngle](#rotangle) | 显示屏旋转角度 | 
-| [LayerInfo::width](#width-29) | 图层宽度 | 
-| [LayerInfo::height](#height-28) | 图层高度 | 
-| [LayerInfo::type](#type-17) | 图层类型，包括图形层、视频层和媒体播放模式。 | 
-| [LayerInfo::bpp](#bpp) | 每像素所占bit数 | 
-| [LayerInfo::pixFormat](#pixformat-12) | 图层像素格式 | 
-| [LayerAlpha::enGlobalAlpha](#englobalalpha-12) | 全局Alpha使能标志 | 
-| [LayerAlpha::enPixelAlpha](#enpixelalpha-12) | 像素Alpha使能标志 | 
-| [LayerAlpha::alpha0](#alpha0-12) | Alpha0值，取值范围：[0,&nbsp;255] | 
-| [LayerAlpha::alpha1](#alpha1-12) | Alpha1值，取值范围：[0,&nbsp;255] | 
-| [LayerAlpha::gAlpha](#galpha) | 全局alpha值，取值范围：[0,&nbsp;255] | 
-| [BufferData::phyAddr](#phyaddr-13) | 物理内存地址 | 
-| [BufferData::virAddr](#viraddr-12) | 虚拟内存地址 | 
-| [LayerBuffer::fenceId](#fenceid) | buffer&nbsp;的fence号 | 
-| [LayerBuffer::width](#width-39) | buffer宽度 | 
-| [LayerBuffer::height](#height-38) | buffer高度 | 
-| [LayerBuffer::pitch](#pitch) | 一行数据所占字节数 | 
-| [LayerBuffer::pixFormat](#pixformat-22) | buffer像素格式 | 
-| [LayerBuffer::data](#data-12) | 图层buffer数据 | 
-| [LayerBuffer::hdl](#hdl) | 图层buffer句柄 | 
-| [IRect::x](#x-14) | 矩形框起始x坐标 | 
-| [IRect::y](#y-14) | 矩形框起始y坐标 | 
-| [IRect::w](#w-12) | 矩形框宽度 | 
-| [IRect::h](#h-12) | 矩形框高度 | 
-| [ISurface::phyAddr](#phyaddr-23) | 图像首地址 | 
-| [ISurface::height](#height-48) | 图像高度 | 
-| [ISurface::width](#width-49) | 图像宽度 | 
-| [ISurface::stride](#stride-12) | 图像跨度 | 
-| [ISurface::enColorFmt](#encolorfmt) | 图像格式 | 
-| [ISurface::bYCbCrClut](#bycbcrclut) | CLUT表是否位于YCbCr&nbsp;空间 | 
-| [ISurface::bAlphaMax255](#balphamax255) | 图像Alpha最大值为255还是128 | 
-| [ISurface::bAlphaExt1555](#balphaext1555) | 是否使能1555的Alpha扩展 | 
-| [ISurface::alpha0](#alpha0-22) | Alpha0值，取值范围：[0,255] | 
-| [ISurface::alpha1](#alpha1-22) | Alpha1值，取值范围：[0,255] | 
-| [ISurface::cbcrPhyAddr](#clutphyaddr) | CbCr分量地址 | 
-| [ISurface::cbcrStride](#cbcrstride) | CbCr分量跨度 | 
-| [ISurface::clutPhyAddr](#clutphyaddr) | CLUT表首地址，用作颜色扩展或颜色校正。 | 
-| [ILine::x0](#x0-12) | 线条起点的x坐标 | 
-| [ILine::y0](#y0-12) | 线条起点的y坐标 | 
-| [ILine::x1](#x1-13) | 线条终点的x坐标 | 
-| [ILine::y1](#y1-13) | 线条终点的y坐标 | 
-| [ILine::color](#color-15) | 线条颜色 | 
-| [ICircle::x](#x-24) | 圆心x坐标 | 
-| [ICircle::y](#y-24) | 圆心y坐标r | 
-| [ICircle::r](#r) | 圆的半径 | 
-| [ICircle::color](#color-25) | 圆的颜色 | 
-| [Rectangle::rect](#rect-13) | 矩形区域 | 
-| [Rectangle::color](#color-35) | 矩形颜色 | 
-| [GfxOpt::enGlobalAlpha](#englobalalpha-22) | 全局Alpha使能位 | 
-| [GfxOpt::globalAlpha](#globalalpha) | 全局Alpha的值 | 
-| [GfxOpt::enPixelAlpha](#enpixelalpha-22) | 像素Alpha使能位 | 
-| [GfxOpt::blendType](#blendtype) | 混合方式 | 
-| [GfxOpt::colorKeyFrom](#colorkeyfrom) | 色键模式 | 
-| [GfxOpt::enableRop](#enablerop) | Rop功能使能位 | 
-| [GfxOpt::colorRopType](#colorroptype) | 颜色的Rop类型 | 
-| [GfxOpt::alphaRopType](#alpharoptype) | Alpha的Rop类型 | 
-| [GfxOpt::enableScale](#enablescale) | 缩放功能使能位 | 
-| [GfxOpt::rotateType](#rotatetype) | 旋转类型 | 
-| [GfxOpt::mirrorType](#mirrortype) | 镜像类型 | 
-| [PropertyObject::name](#name-12) | 属性名称 | 
-| [PropertyObject::propId](#propid) | 属性ID | 
-| [PropertyObject::value](#value-12) | 属性值 | 
-| [DisplayCapability::name](#name-22) | 显示设备名称 | 
-| [DisplayCapability::type](#type-27) | 显示屏接口类型 | 
-| [DisplayCapability::phyWidth](#phywidth) | 物理宽度 | 
-| [DisplayCapability::phyHeight](#phyheight) | 物理高度 | 
-| [DisplayCapability::supportLayers](#supportlayers) | 支持的图层数 | 
-| [DisplayCapability::virtualDispCount](#virtualdispcount) | 支持的虚拟屏数 | 
-| [DisplayCapability::supportWriteBack](#supportwriteback) | 是否支持回写 | 
-| [DisplayCapability::propertyCount](#propertycount) | 属性数组大小 | 
-| [DisplayCapability::props](#props) | 属性数组 | 
-| [DisplayModeInfo::width](#width-59) | 像素宽度 | 
-| [DisplayModeInfo::height](#height-58) | 像素高度 | 
-| [DisplayModeInfo::freshRate](#freshrate) | 刷新速率 | 
-| [DisplayModeInfo::id](#id) | 模式ID | 
-| [AllocInfo::width](#width-69) | 申请内存宽度 | 
-| [AllocInfo::height](#height-68) | 申请内存高度 | 
-| [AllocInfo::usage](#usage-12) | 申请内存的使用场景 | 
-| [AllocInfo::format](#format-12) | 申请内存格式 | 
-| [AllocInfo::expectedSize](#expectedsize) | 申请内存大小 | 
-| [HDRCapability::formatCount](#formatcount) | 支持的HDR格式的数量 | 
-| [HDRCapability::formats](#formats) | 支持的HDR格式的数组首地址 | 
-| [HDRCapability::maxLum](#maxlum) | 最大的光亮度luminance值 | 
-| [HDRCapability::maxAverageLum](#maxaveragelum) | 最大的平均光亮度luminance值 | 
-| [HDRCapability::minLum](#minlum) | 最小的光亮度luminance值 | 
-| [HDRMetaData::key](#key) | HDR元数据关键字 | 
-| [HDRMetaData::value](#value-22) | 关键字对应的值 | 
-| [VerifyAllocInfo::width](#width-79) | 分配内存的宽度 | 
-| [VerifyAllocInfo::height](#height-78) | 分配内存的高度 | 
-| [VerifyAllocInfo::usage](#usage-22) | 内存的用处 | 
-| [VerifyAllocInfo::format](#format-22) | 分配内存的像素格式 | 
-| [PresentTimestamp::type](#type-37) | 上屏时间戳类型 | 
-| [PresentTimestamp::time](#time) | 类型对应的值 | 
-| [ExtDataHandle::fd](#fd) | 句柄&nbsp;fd，-1代表不支持 | 
-| [ExtDataHandle::reserveInts](#reserveints) | reserve数组的个数 | 
-| [ExtDataHandle::reserve](#reserve)&nbsp;[0] | reserve数组 | 
-| [YUVDescInfo::baseAddr](#baseaddr) | 内存的初始地址 | 
-| [YUVDescInfo::yOffset](#yoffset) | Y的偏移量 | 
-| [YUVDescInfo::uOffset](#uoffset) | U的偏移量 | 
-| [YUVDescInfo::vOffset](#voffset) | V的偏移量 | 
-| [YUVDescInfo::yStride](#ystride) | Y的stride信息 | 
-| [YUVDescInfo::uvStride](#uvstride) | UV的stride信息 | 
-| [YUVDescInfo::uvStep](#uvstep) | UV的step信息 | 
-| [VGUPoint::x](#x-34) | 点水平坐标 | 
-| [VGUPoint::y](#y-34) | 点垂直坐标 | 
-| [VGURect::x](#x-44) | 矩形水平起始坐标 | 
-| [VGURect::y](#y-44) | 矩形垂直起始坐标 | 
-| [VGURect::w](#w-22) | 矩形宽度 | 
-| [VGURect::h](#h-22) | 矩形高度 | 
-| [VGUPath::segment](#segment) | 存放路径命令数据 | 
-| [VGUPath::numSegments](#numsegments) | 路径命令总数 | 
-| [VGUPath::data](#data-22) | 存放路径命令对应坐标数据 | 
-| [VGUPath::type](#type-47) | 路径数据存储类型 | 
-| [VGUPath::enAlias](#enalias) | 抗锯齿开关 | 
-| [VGUPath::boundBox](#boundbox) | 路径最大边界 | 
-| [VGUMatrix3::m](#m)&nbsp;[3][3] | 3x3变换矩阵 | 
-| [VGUMatrix3::type](#type-57) | 矩阵变换类型，简单变换为缩放，平移，90度倍数旋转。 | 
-| [VGUBuffer::pixelFormat](#pixelformat) | 像素格式 | 
-| [VGUBuffer::width](#width-89) | 位图宽度 | 
-| [VGUBuffer::height](#height-88) | 位图高度 | 
-| [VGUBuffer::stride](#stride-22) | 位图stride | 
-| [VGUBuffer::virAddr](#viraddr-22) | 位图缓存的虚拟地址 | 
-| [VGUBuffer::phyAddr](#phyaddr-33) | 位图缓存的物理地址 | 
-| [VGUMaskLayer::buffer](#buffer-13) | 蒙版缓存 | 
-| [VGUMaskLayer::rect](#rect-23) | 蒙版矩形 | 
-| [VGUSurface::buffer](#buffer-23) | 位图缓存 | 
-| [VGUSurface::clipRect](#cliprect) | 矩形剪切域，如果为空，整个表面直接渲染。 | 
-| [VGUSurface::clipPath](#clippath) | 路径剪切域，如果为空，整个表面直接渲染。 | 
-| [VGUSurface::clipType](#cliptype) | 表面剪切类型 | 
-| [VGUSurface::mask](#mask) | 蒙版图层,&nbsp;可以为空。 | 
-| [VGUSurface::blend](#blend) | 混合叠加模式 | 
-| [VGUSurface::filter](#filter) | 图像滤波类型 | 
-| [VGUColorStop::stop](#stop) | 颜色偏移位置,&nbsp;值范围是&nbsp;0.0&nbsp;~&nbsp;1.0。 | 
-| [VGUColorStop::color](#color-45) | 偏移位置对应颜色 | 
-| [VGULinear::x1](#x1-23) | 线性渐变起点水平坐标 | 
-| [VGULinear::y1](#y1-23) | 线性渐变起点垂直坐标 | 
-| [VGULinear::x2](#x2) | 线性渐变终点水平坐标 | 
-| [VGULinear::y2](#y2) | 线性渐变起点垂直坐标 | 
-| [VGURadial::x0](#x0-22) | 内圈圆心水平坐标 | 
-| [VGURadial::y0](#y0-22) | 内圈圆心垂直坐标 | 
-| [VGURadial::r0](#r0) | 内圈圆半径 | 
-| [VGURadial::x1](#x1-33) | 外圈圆心水平坐标 | 
-| [VGURadial::y1](#y1-33) | 外圈圆心垂直坐标 | 
-| [VGURadial::r1](#r1) | 外圈圆半径 | 
-| [VGUConic::cx](#cx) | 圆弧中心x坐标 | 
-| [VGUConic::cy](#cy) | 圆弧中心y坐标 | 
-| [VGUImage::buffer](#buffer-33) | 图像存储缓存 | 
-| [VGUImage::matrix](#matrix-12) | 图像矩阵变换，该参数为空，则内部使用单位变换矩阵。 | 
-| [VGUImage::rect](#rect-33) | 图像截取矩形，该参数为空，则截取整个图像。 | 
-| [VGUImage::opacity](#opacity-13) | 透明度，范围0~255。 | 
-| [VGUPattern::image](#image) | 图像对象 | 
-| [VGUPattern::wrapx](#wrapx) | 图像水平方向平铺类型 | 
-| [VGUPattern::wrapy](#wrapy) | 图像垂直方向平铺类型 | 
-| [VGUGradient::matrix](#matrix-22) | 针对渐变对象的变换矩阵 | 
-| [VGUGradient::colorStops](#colorstops) | 渐变停止颜色数组指针 | 
-| [VGUGradient::stopCount](#stopcount) | 渐变停止颜色个数 | 
-| [VGUGradient::linear](#linear) | 线性渐变对象 | 
-| [VGUGradient::radial](#radial) | 辐射渐变对象 | 
-| [VGUGradient::conic](#conic) | 圆锥渐变对象 | 
-| [VGUGradient::type](#type-67) | 渐变类型 | 
-| [VGUGradient::spread](#spread) | 渐变延伸模式 | 
-| [VGUGradient::opacity](#opacity-23) | 透明度，范围0~255。 | 
-| [VGUSolid::color](#color-55) | 颜色值 | 
-| [VGUSolid::opacity](#opacity-33) | 透明度.&nbsp;值范围&nbsp;0&nbsp;~&nbsp;255。 | 
-| [VGUPaintStyle::gradient](#gradient) | 渐变对象 | 
-| [VGUPaintStyle::pattern](#pattern) | 图片模式对象 | 
-| [VGUPaintStyle::solid](#solid) | 颜色对象 | 
-| [VGUPaintStyle::type](#type-77) | 渲染类型 | 
-| [VGUFillAttr::rule](#rule) | 填充规格 | 
-| [VGUStrokeAttr::cap](#cap) | 线帽类型 | 
-| [VGUStrokeAttr::join](#join) | 联结类型 | 
-| [VGUStrokeAttr::miterLimit](#miterlimit) | 最大斜切长度 | 
-| [VGUStrokeAttr::width](#width-99) | 线宽 | 
-| ([VGUFuncs::InitVgu](#initvgu)&nbsp;)(void) | 初始化硬件加速。 | 
-| ([VGUFuncs::DeinitVgu](#deinitvgu)&nbsp;)(void) | 去初始化硬件加速。 | 
-| ([VGUFuncs::QueryCapability](#querycapability))(uint32_t&nbsp;cap) | 查询硬件能力集。 | 
-| ([VGUFuncs::RenderFill](#renderfill))(VGUSurface&nbsp;\*target,&nbsp;const&nbsp;VGUPath&nbsp;\*path,&nbsp;const&nbsp;VGUMatrix3&nbsp;\*matrix,&nbsp;const&nbsp;VGUFillAttr&nbsp;\*attr,&nbsp;const&nbsp;VGUPaintStyle&nbsp;\*style) | 使用指定的渲染对象来填充路径。 | 
-| ([VGUFuncs::RenderStroke](#renderstroke)&nbsp;)(VGUSurface&nbsp;\*target,&nbsp;const&nbsp;VGUPath&nbsp;\*path,&nbsp;const&nbsp;VGUMatrix3&nbsp;\*matrix,&nbsp;const&nbsp;VGUStrokeAttr&nbsp;\*attr,&nbsp;const&nbsp;VGUPaintStyle&nbsp;\*style) | 使用指定的渲染对象来描边路径。 | 
-| ([VGUFuncs::RenderBlur](#renderblur)&nbsp;)(VGUSurface&nbsp;\*target,&nbsp;uint16_t&nbsp;blur) | 对目标表面进行模糊处理。 | 
-| ([VGUFuncs::RenderBlit](#renderblit)&nbsp;)(VGUSurface&nbsp;\*target,&nbsp;const&nbsp;VGUImage&nbsp;\*src,&nbsp;uint32_t&nbsp;color) | 对图像进行搬移操作。 | 
-| ([VGUFuncs::RenderBlitN](#renderblitn)&nbsp;)(VGUSurface&nbsp;\*target,&nbsp;const&nbsp;VGUImage&nbsp;\*src,&nbsp;uint16_t&nbsp;count,&nbsp;uint32_t&nbsp;color) | 对多个源图像进行叠加操作。 | 
-| ([VGUFuncs::RenderClearRect](#renderclearrect)&nbsp;)(VGUSurface&nbsp;\*target,&nbsp;const&nbsp;VGURect&nbsp;\*rect,&nbsp;uint32_t&nbsp;color,&nbsp;uint8_t&nbsp;opacity) | 对指定矩形进行颜色清除操作。 | 
-| ([VGUFuncs::RenderCancel](#rendercancel)&nbsp;)() | 取消硬件加速渲染。 | 
-| ([VGUFuncs::RenderSync](#rendersync)&nbsp;)(int32_t&nbsp;timeOut) | 同步硬件加速模块绘制或搬移操作。 | 
+| (\*&nbsp;[DeviceFuncs::RegHotPlugCallback](#reghotplugcallback)&nbsp;)([HotPlugCallback](#hotplugcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | int32_t<br/>注册热插拔事件回调。 | 
+| (\*&nbsp;[DeviceFuncs::RegDisplayVBlankCallback](#regdisplayvblankcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[VBlankCallback](#vblankcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | int32_t<br/>注册VBlank事件回调。 | 
+| (\*&nbsp;[DeviceFuncs::RegDisplayRefreshCallback](#regdisplayrefreshcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[RefreshCallback](#refreshcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | int32_t<br/>刷新请求回调。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayCapability](#getdisplaycapability)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DisplayCapability](_display_capability.md)&nbsp;\*info) | int32_t<br/>获取显示设备能力集。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplaySupportedModes](#getdisplaysupportedmodes)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[DisplayModeInfo](_display_mode_info.md)&nbsp;\*modes) | int32_t<br/>获取显示设备支持的显示模式信息。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayMode](#getdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*modeId) | int32_t<br/>获取显示设备当前的显示模式。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayMode](#setdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;modeId) | int32_t<br/>设置显示设备的显示模式。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayPowerStatus](#getdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;\*status) | int32_t<br/>获取显示设备当前的电源状态。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayPowerStatus](#setdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;status) | int32_t<br/>设置显示设备当前的电源状态。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayBacklight](#getdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*level) | int32_t<br/>获取显示设备当前的背光值。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayBacklight](#setdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;level) | int32_t<br/>设置显示设备当前的背光值。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayProperty](#getdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;\*value) | int32_t<br/>获取显示设备属性值。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayProperty](#setdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;value) | int32_t<br/>设置显示设备属性值。 | 
+| (\*&nbsp;[DeviceFuncs::PrepareDisplayLayers](#preparedisplaylayers)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;\*needFlushFb) | int32_t<br/>显示设备合成前准备。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayCompChange](#getdisplaycompchange)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*Layers,&nbsp;int32_t&nbsp;\*type) | int32_t<br/>获取显示设备合成类型有变化的layer。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayClientCrop](#setdisplayclientcrop)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置显示设备的裁剪区域。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayClientDestRect](#setdisplayclientdestrect)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置显示设备的显示区域。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayClientBuffer](#setdisplayclientbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | int32_t<br/>设置显示设备的显示缓存。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayClientDamage](#setdisplayclientdamage)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;num,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置显示设备的显示脏区。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayVsyncEnabled](#setdisplayvsyncenabled)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;enabled) | int32_t<br/>使能垂直同步信号。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayReleaseFence](#getdisplayreleasefence)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*layers,&nbsp;int32_t&nbsp;\*fences) | int32_t<br/>获取显示图层fence。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamuts) | int32_t<br/>获取显示设备支持的色域信息。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayColorGamut](#getdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamut) | int32_t<br/>获取显示设备当前的色域模式。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayColorGamut](#setdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;gamut) | int32_t<br/>设置显示设备当前的色域模式。 | 
+| (\*&nbsp;[DeviceFuncs::GetDisplayGamutMap](#getdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[GamutMap](#gamutmap)&nbsp;\*gamutMap) | int32_t<br/>获取显示设备当前的色域映射模式。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayGamutMap](#setdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[GamutMap](#gamutmap)&nbsp;gamutMap) | int32_t<br/>设置显示设备当前的色域映射模式。 | 
+| (\*&nbsp;[DeviceFuncs::SetDisplayColorTransform](#setdisplaycolortransform)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;float&nbsp;\*matrix) | int32_t<br/>设置显示设备当前的4x4的颜色转换矩阵。 | 
+| (\*&nbsp;[DeviceFuncs::GetHDRCapabilityInfos](#gethdrcapabilityinfos)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[HDRCapability](_h_d_r_capability.md)&nbsp;\*info) | int32_t<br/>获取显示设备支持的HDR属性信息。 | 
+| (\*&nbsp;[DeviceFuncs::GetSupportedMetadataKey](#getsupportedmetadatakey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[HDRMetadataKey](#hdrmetadatakey)&nbsp;\*keys) | int32_t<br/>获取显示设备支持的HDRMetadataKey。 | 
+| (\*&nbsp;[DeviceFuncs::Commit](#commit)&nbsp;)(uint32_t&nbsp;devId,&nbsp;int32_t&nbsp;\*fence) | int32_t<br/>提交合成送显请求。 | 
+| (\*&nbsp;[DeviceFuncs::InvokeDisplayCmd](#invokedisplaycmd)&nbsp;)(uint32_t&nbsp;devId,...) | int32_t<br/>调用显示设备命令。 | 
+| (\*&nbsp;[DeviceFuncs::CreateVirtualDisplay](#createvirtualdisplay)&nbsp;)(uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format,&nbsp;uint32_t&nbsp;\*devId) | int32_t<br/>创建虚拟显示设备。 | 
+| (\*&nbsp;[DeviceFuncs::DestroyVirtualDisplay](#destroyvirtualdisplay)&nbsp;)(uint32_t&nbsp;devId) | int32_t<br/>销毁虚拟显示设备。 | 
+| (\*&nbsp;[DeviceFuncs::SetVirtualDisplayBuffer](#setvirtualdisplaybuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | int32_t<br/>设置虚拟屏的输出缓存。 | 
+| (\*&nbsp;[DeviceFuncs::GetWriteBackFrame](#getwritebackframe)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;\*fence) | int32_t<br/>获取显示设备的回写帧。 | 
+| [DisplayInfo::width](#width-19) | uint32_t<br/>显示屏宽度 | 
+| [DisplayInfo::height](#height-18) | uint32_t<br/>显示屏高度 | 
+| [DisplayInfo::rotAngle](#rotangle) | int32_t<br/>显示屏旋转角度 | 
+| [LayerInfo::width](#width-29) | int32_t<br/>图层宽度 | 
+| [LayerInfo::height](#height-28) | int32_t<br/>图层高度 | 
+| [LayerInfo::type](#type-17) | [LayerType](#layertype)<br/>图层类型，包括图形层、视频层和媒体播放模式 | 
+| [LayerInfo::bpp](#bpp) | int32_t<br/>每像素所占bit数 | 
+| [LayerInfo::pixFormat](#pixformat-12) | [PixelFormat](#pixelformat)<br/>图层像素格式 | 
+| [LayerAlpha::enGlobalAlpha](#englobalalpha-12) | bool<br/>全局alpha使能标志 | 
+| [LayerAlpha::enPixelAlpha](#enpixelalpha-12) | bool<br/>像素alpha使能标志 | 
+| [LayerAlpha::alpha0](#alpha0-12) | uint8_t<br/>alpha0值，取值范围：[0,&nbsp;255] | 
+| [LayerAlpha::alpha1](#alpha1-12) | uint8_t<br/>alpha1值，取值范围：[0,&nbsp;255] | 
+| [LayerAlpha::gAlpha](#galpha) | uint8_t<br/>全局alpha值，取值范围：[0,&nbsp;255] | 
+| [BufferData::phyAddr](#phyaddr-13) | uint64_t<br/>物理内存地址 | 
+| [BufferData::virAddr](#viraddr-12) | void&nbsp;\*<br/>虚拟内存地址 | 
+| [LayerBuffer::fenceId](#fenceid) | int32_t<br/>buffer的fence号 | 
+| [LayerBuffer::width](#width-39) | int32_t<br/>buffer宽度 | 
+| [LayerBuffer::height](#height-38) | int32_t<br/>buffer高度 | 
+| [LayerBuffer::pitch](#pitch) | int32_t<br/>一行数据所占字节数 | 
+| [LayerBuffer::pixFormat](#pixformat-22) | [PixelFormat](#pixelformat)<br/>buffer像素格式r | 
+| [LayerBuffer::data](#data-12) | [BufferData](_buffer_data.md)<br/>图层buffer数据 | 
+| [LayerBuffer::hdl](#hdl) | BufferHandle&nbsp;\*<br/>图层buffer句柄 | 
+| [IRect::x](#x-14) | int32_t<br/>矩形框起始x坐标 | 
+| [IRect::y](#y-14) | int32_t<br/>矩形框起始y坐标 | 
+| [IRect::w](#w-12) | int32_t<br/>矩形框宽度 | 
+| [IRect::h](#h-12) | int32_t<br/>矩形框高度 | 
+| [ISurface::phyAddr](#phyaddr-23) | uint64_t<br/>图像首地址 | 
+| [ISurface::height](#height-48) | int32_t<br/>图像高度 | 
+| [ISurface::width](#width-49) | int32_t<br/>图像宽度 | 
+| [ISurface::stride](#stride-12) | int32_t<br/>图像跨度 | 
+| [ISurface::enColorFmt](#encolorfmt) | [PixelFormat](#pixelformat)<br/>图像格式 | 
+| [ISurface::bYCbCrClut](#bycbcrclut) | bool<br/>CLUT表是否位于&nbsp;YCbCr&nbsp;空间 | 
+| [ISurface::bAlphaMax255](#balphamax255) | bool<br/>图像alpha最大值为255还是128 | 
+| [ISurface::bAlphaExt1555](#balphaext1555) | bool<br/>是否使能1555的Alpha扩展 | 
+| [ISurface::alpha0](#alpha0-22) | uint8_t<br/>Alpha0值，取值范围：[0,255] | 
+| [ISurface::alpha1](#alpha1-22) | uint8_t<br/>Alpha1值，取值范围：[0,255] | 
+| [ISurface::cbcrPhyAddr](#cbcrphyaddr) | uint64_t<br/>CbCr分量地址 | 
+| [ISurface::cbcrStride](#cbcrstride) | int32_t<br/>CbCr分量跨度 | 
+| [ISurface::clutPhyAddr](#clutphyaddr) | uint64_t<br/>Clut表首地址，用作颜色扩展或颜色校正 | 
+| [ILine::x0](#x0-12) | int32_t<br/>线条起点的x坐标 | 
+| [ILine::y0](#y0-12) | int32_t<br/>线条起点的y坐标 | 
+| [ILine::x1](#x1-13) | int32_t<br/>线条终点的x坐标 | 
+| [ILine::y1](#y1-13) | int32_t<br/>线条终点的y坐标 | 
+| [ILine::color](#color-15) | uint32_t<br/>线条颜色 | 
+| [ICircle::x](#x-24) | int32_t<br/>圆心x坐标 | 
+| [ICircle::y](#y-24) | int32_t<br/>圆心y坐标r | 
+| [ICircle::r](#r) | int32_t<br/>圆的半径 | 
+| [ICircle::color](#color-25) | uint32_t<br/>圆的颜色 | 
+| [Rectangle::rect](#rect-13) | [IRect](_i_rect.md)<br/>矩形区域 | 
+| [Rectangle::color](#color-35) | uint32_t<br/>矩形颜色 | 
+| [GfxOpt::enGlobalAlpha](#englobalalpha-22) | bool<br/>全局alpha使能位 | 
+| [GfxOpt::globalAlpha](#globalalpha) | uint32_t<br/>全局alpha的值 | 
+| [GfxOpt::enPixelAlpha](#enpixelalpha-22) | bool<br/>像素alpha使能位 | 
+| [GfxOpt::blendType](#blendtype) | [BlendType](#blendtype)<br/>混合方式 | 
+| [GfxOpt::colorKeyFrom](#colorkeyfrom) | [ColorKey](#colorkey)<br/>色键模式 | 
+| [GfxOpt::enableRop](#enablerop) | bool<br/>Rop功能使能位 | 
+| [GfxOpt::colorRopType](#colorroptype) | [RopType](#roptype)<br/>颜色的Rop类型 | 
+| [GfxOpt::alphaRopType](#alpharoptype) | [RopType](#roptype)<br/>Alpha的Rop类型 | 
+| [GfxOpt::enableScale](#enablescale) | bool<br/>缩放功能使能位 | 
+| [GfxOpt::rotateType](#rotatetype) | [TransformType](#transformtype)<br/>旋转类型 | 
+| [GfxOpt::mirrorType](#mirrortype) | [MirrorType](#mirrortype)<br/>镜像类型 | 
+| [PropertyObject::name](#name-12)&nbsp;[[PROPERTY_NAME_LEN](#property_name_len)] | char<br/>属性名称 | 
+| [PropertyObject::propId](#propid) | uint32_t<br/>属性ID | 
+| [PropertyObject::value](#value-12) | uint64_t<br/>属性值 | 
+| [DisplayCapability::name](#name-22)&nbsp;[[PROPERTY_NAME_LEN](#property_name_len)] | char<br/>显示设备名称 | 
+| [DisplayCapability::type](#type-27) | [InterfaceType](#interfacetype)<br/>显示屏接口类型 | 
+| [DisplayCapability::phyWidth](#phywidth) | uint32_t<br/>物理宽度 | 
+| [DisplayCapability::phyHeight](#phyheight) | uint32_t<br/>物理高度 | 
+| [DisplayCapability::supportLayers](#supportlayers) | uint32_t<br/>支持的图层数 | 
+| [DisplayCapability::virtualDispCount](#virtualdispcount) | uint32_t<br/>支持的虚拟屏数 | 
+| [DisplayCapability::supportWriteBack](#supportwriteback) | bool<br/>是否支持回写 | 
+| [DisplayCapability::propertyCount](#propertycount) | uint32_t<br/>属性数组大小 | 
+| [DisplayCapability::props](#props) | [PropertyObject](_property_object.md)&nbsp;\*<br/>属性数组 | 
+| [DisplayModeInfo::width](#width-59) | int32_t<br/>像素宽度 | 
+| [DisplayModeInfo::height](#height-58) | int32_t<br/>像素高度 | 
+| [DisplayModeInfo::freshRate](#freshrate) | uint32_t<br/>刷新速率 | 
+| [DisplayModeInfo::id](#id) | int32_t<br/>模式ID | 
+| [AllocInfo::width](#width-69) | uint32_t<br/>申请内存宽度 | 
+| [AllocInfo::height](#height-68) | uint32_t<br/>申请内存高度 | 
+| [AllocInfo::usage](#usage-12) | uint64_t<br/>申请内存的使用场景 | 
+| [AllocInfo::format](#format-12) | [PixelFormat](#pixelformat)<br/>申请内存格式 | 
+| [AllocInfo::expectedSize](#expectedsize) | uint32_t<br/>申请内存大小 | 
+| [HDRCapability::formatCount](#formatcount) | uint32_t<br/>支持的HDR格式的数量 | 
+| [HDRCapability::formats](#formats) | [HDRFormat](#hdrformat)&nbsp;\*<br/>支持的HDR格式的数组首地址 | 
+| [HDRCapability::maxLum](#maxlum) | float<br/>最大的光亮度luminance值 | 
+| [HDRCapability::maxAverageLum](#maxaveragelum) | float<br/>最大的平均光亮度luminance值 | 
+| [HDRCapability::minLum](#minlum) | float<br/>最小的光亮度luminance值 | 
+| [HDRMetaData::key](#key) | [HDRMetadataKey](#hdrmetadatakey)<br/>HDR元数据关键字 | 
+| [HDRMetaData::value](#value-22) | float<br/>关键字对应的值 | 
+| [VerifyAllocInfo::width](#width-79) | uint32_t<br/>分配内存的宽度 | 
+| [VerifyAllocInfo::height](#height-78) | uint32_t<br/>分配内存的高度 | 
+| [VerifyAllocInfo::usage](#usage-22) | uint64_t<br/>内存的用处 | 
+| [VerifyAllocInfo::format](#format-22) | [PixelFormat](#pixelformat)<br/>分配内存的像素格式 | 
+| [PresentTimestamp::type](#type-37) | [PresentTimestampType](#presenttimestamptype)<br/>上屏时间戳类型 | 
+| [PresentTimestamp::time](#time) | int64_t<br/>类型对应的值 | 
+| [ExtDataHandle::fd](#fd) | int32_t<br/>句柄&nbsp;fd,&nbsp;-1代表不支持 | 
+| [ExtDataHandle::reserveInts](#reserveints) | uint32_t<br/>reserve数组的个数 | 
+| [ExtDataHandle::reserve[0]](#reserve0) | int32_t<br/>reserve数组 | 
+| [YUVDescInfo::baseAddr](#baseaddr) | void&nbsp;\*<br/>内存的初始地址 | 
+| [YUVDescInfo::yOffset](#yoffset) | size_t<br/>Y的偏移量 | 
+| [YUVDescInfo::uOffset](#uoffset) | size_t<br/>U的偏移量 | 
+| [YUVDescInfo::vOffset](#voffset) | size_t<br/>V的偏移量 | 
+| [YUVDescInfo::yStride](#ystride) | size_t<br/>Y的stride信息 | 
+| [YUVDescInfo::uvStride](#uvstride) | size_t<br/>UV的stride信息 | 
+| [YUVDescInfo::uvStep](#uvstep) | size_t<br/>UV的step信息 | 
+| [VGUPoint::x](#x-34) | [VGUScalar](#vguscalar)<br/>点水平坐标 | 
+| [VGUPoint::y](#y-34) | [VGUScalar](#vguscalar)<br/>点垂直坐标 | 
+| [VGURect::x](#x-44) | [VGUScalar](#vguscalar)<br/>矩形水平起始坐标 | 
+| [VGURect::y](#y-44) | [VGUScalar](#vguscalar)<br/>矩形垂直起始坐标 | 
+| [VGURect::w](#w-22) | [VGUScalar](#vguscalar)<br/>矩形宽度 | 
+| [VGURect::h](#h-22) | [VGUScalar](#vguscalar)<br/>矩形高度 | 
+| [VGUPath::segment](#segment) | uint8_t&nbsp;\*<br/>存放路径命令数据 | 
+| [VGUPath::numSegments](#numsegments) | int32_t<br/>路径命令总数 | 
+| [VGUPath::data](#data-22) | uint8_t&nbsp;\*<br/>存放路径命令对应坐标数据 | 
+| [VGUPath::type](#type-47) | [VGUPathDataType](#vgupathdatatype)<br/>路径数据存储类型 | 
+| [VGUPath::enAlias](#enalias) | bool<br/>抗锯齿开关 | 
+| [VGUPath::boundBox](#boundbox) | [VGURect](_v_g_u_rect.md)<br/>路径最大边界 | 
+| [VGUMatrix3::m](#m)&nbsp;[3][3] | float<br/>3x3变换矩阵 | 
+| [VGUMatrix3::type](#type-57) | uint32_t<br/>矩阵变换类型，简单变换为缩放，平移，90度倍数旋转 | 
+| [VGUBuffer::pixelFormat](#pixelformat) | [VGUPixelFormat](#pixelformat)<br/>像素格式 | 
+| [VGUBuffer::width](#width-89) | uint32_t<br/>位图宽度 | 
+| [VGUBuffer::height](#height-88) | uint32_t<br/>位图高度 | 
+| [VGUBuffer::stride](#stride-22) | uint32_t<br/>位图stride | 
+| [VGUBuffer::virAddr](#viraddr-22) | void&nbsp;\*<br/>位图缓存的虚拟地址 | 
+| [VGUBuffer::phyAddr](#phyaddr-33) | uint64_t<br/>位图缓存的物理地址 | 
+| [VGUMaskLayer::buffer](#buffer-13) | [VGUBuffer](_v_g_u_buffer.md)&nbsp;\*<br/>蒙版缓存 | 
+| [VGUMaskLayer::rect](#rect-23) | [VGURect](_v_g_u_rect.md)&nbsp;\*<br/>蒙版矩形 | 
+| [VGUSurface::buffer](#buffer-23) | [VGUBuffer](_v_g_u_buffer.md)&nbsp;\*<br/>位图缓存 | 
+| [VGUSurface::clipRect](#cliprect) | [VGURect](_v_g_u_rect.md)&nbsp;\*<br/>矩形剪切域，如果为空，整个表面直接渲染。 | 
+| [VGUSurface::clipPath](#clippath) | [VGUPath](_v_g_u_path.md)&nbsp;\*<br/>路径剪切域，如果为空，整个表面直接渲染。 | 
+| [VGUSurface::clipType](#cliptype) | [VGUClipType](#vgucliptype)<br/>表面剪切类型 | 
+| [VGUSurface::mask](#mask) | [VGUMaskLayer](_v_g_u_mask_layer.md)&nbsp;\*<br/>蒙版图层,&nbsp;可以为空 | 
+| [VGUSurface::blend](#blend) | [VGUBlendType](#blendtype)<br/>混合叠加模式 | 
+| [VGUSurface::filter](#filter) | [VGUFilter](#vgufilter)<br/>图像滤波类型 | 
+| [VGUColorStop::stop](#stop) | float<br/>颜色偏移位置，值范围是&nbsp;0.0&nbsp;~&nbsp;1.0 | 
+| [VGUColorStop::color](#color-45) | uint32_t<br/>偏移位置对应颜色 | 
+| [VGULinear::x1](#x1-23) | [VGUScalar](#vguscalar)<br/>线性渐变起点水平坐标 | 
+| [VGULinear::y1](#y1-23) | [VGUScalar](#vguscalar)<br/>线性渐变起点垂直坐标 | 
+| [VGULinear::x2](#x2) | [VGUScalar](#vguscalar)<br/>线性渐变终点水平坐标 | 
+| [VGULinear::y2](#y2) | [VGUScalar](#vguscalar)<br/>线性渐变终点垂直坐标 | 
+| [VGURadial::x0](#x0-22) | [VGUScalar](#vguscalar)<br/>内圈圆心水平坐标 | 
+| [VGURadial::y0](#y0-22) | [VGUScalar](#vguscalar)<br/>内圈圆心垂直坐标 | 
+| [VGURadial::r0](#r0) | [VGUScalar](#vguscalar)<br/>内圈圆半径 | 
+| [VGURadial::x1](#x1-33) | [VGUScalar](#vguscalar)<br/>外圈圆心水平坐标 | 
+| [VGURadial::y1](#y1-33) | [VGUScalar](#vguscalar)<br/>外圈圆心垂直坐标 | 
+| [VGURadial::r1](#r1) | [VGUScalar](#vguscalar)<br/>外圈圆半径 | 
+| [VGUConic::cx](#cx) | [VGUScalar](#vguscalar)<br/>圆弧中心x坐标 | 
+| [VGUConic::cy](#cy) | [VGUScalar](#vguscalar)<br/>圆弧中心y坐标 | 
+| [VGUImage::buffer](#buffer-33) | [VGUBuffer](_v_g_u_buffer.md)&nbsp;\*<br/>图像存储缓存 | 
+| [VGUImage::matrix](#matrix-12) | [VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*<br/>图像矩阵变换，该参数为空，则内部使用单位变换矩阵 | 
+| [VGUImage::rect](#rect-33) | [VGURect](_v_g_u_rect.md)&nbsp;\*<br/>图像截取矩形，该参数为空，则截取整个图像 | 
+| [VGUImage::opacity](#opacity-13) | uint8_t<br/>透明度，范围0~255 | 
+| [VGUPattern::image](#image) | [VGUImage](_v_g_u_image.md)&nbsp;\*<br/>图像对象 | 
+| [VGUPattern::wrapx](#wrapx) | [VGUWrapType](#vguwraptype)<br/>图像水平方向平铺类型 | 
+| [VGUPattern::wrapy](#wrapy) | [VGUWrapType](#vguwraptype)<br/>图像垂直方向平铺类型 | 
+| [VGUGradient::matrix](#matrix-22) | [VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*<br/>针对渐变对象的变换矩阵 | 
+| [VGUGradient::colorStops](#colorstops) | [VGUColorStop](_v_g_u_color_stop.md)&nbsp;\*<br/>渐变停止颜色数组指针 | 
+| [VGUGradient::stopCount](#stopcount) | uint16_t<br/>渐变停止颜色个数 | 
+| [VGUGradient::linear](#linear) | [VGULinear](_v_g_u_linear.md)<br/>线性渐变对象 | 
+| [VGUGradient::radial](#radial) | [VGURadial](_v_g_u_radial.md)<br/>辐射渐变对象 | 
+| [VGUGradient::conic](#conic) | [VGUConic](_v_g_u_conic.md)<br/>圆锥渐变对象 | 
+| [VGUGradient::type](#type-67) | [VGUGradientType](#vgugradienttype)<br/>渐变类型 | 
+| [VGUGradient::spread](#spread) | [VGUFillSpread](#vgufillspread)<br/>渐变延伸模式 | 
+| [VGUGradient::opacity](#opacity-23) | uint8_t<br/>透明度，范围0~255 | 
+| [VGUSolid::color](#color-55) | uint32_t<br/>颜色值 | 
+| [VGUSolid::opacity](#opacity-33) | uint8_t<br/>透明度.&nbsp;值范围&nbsp;0&nbsp;~&nbsp;255 | 
+| [VGUPaintStyle::gradient](#gradient) | [VGUGradient](_v_g_u_gradient.md)&nbsp;\*<br/>渐变对象 | 
+| [VGUPaintStyle::pattern](#pattern) | [VGUPattern](_v_g_u_pattern.md)&nbsp;\*<br/>图片模式对象 | 
+| [VGUPaintStyle::solid](#solid) | [VGUSolid](_v_g_u_solid.md)&nbsp;\*<br/>颜色对象 | 
+| [VGUPaintStyle::type](#type-77) | [VGUPaintType](#vgupainttype)<br/>渲染类型 | 
+| [VGUFillAttr::rule](#rule) | [VGUFillRule](#vgufillrule)<br/>填充规格 | 
+| [VGUStrokeAttr::cap](#cap) | [VGULineCap](#vgulinecap)<br/>线帽类型 | 
+| [VGUStrokeAttr::join](#join) | [VGUJointType](#vgujointtype)<br/>联结类型 | 
+| [VGUStrokeAttr::miterLimit](#miterlimit) | float<br/>最大斜切长度 | 
+| [VGUStrokeAttr::width](#width-99) | float<br/>线宽 | 
+| (\*&nbsp;[VGUFuncs::InitVgu](#initvgu)&nbsp;)(void) | [VGUResult](#vguresult)<br/>初始化硬件加速。 | 
+| (\*&nbsp;[VGUFuncs::DeinitVgu](#deinitvgu)&nbsp;)(void) | [VGUResult](#vguresult)<br/>去初始化硬件加速。 | 
+| (\*&nbsp;[VGUFuncs::QueryCapability](#querycapability)&nbsp;)(uint32_t&nbsp;cap) | int32_t<br/>查询硬件能力集。 | 
+| (\*&nbsp;[VGUFuncs::RenderFill](#renderfill)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;const&nbsp;[VGUPath](_v_g_u_path.md)&nbsp;\*path,&nbsp;const&nbsp;[VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix,&nbsp;const&nbsp;[VGUFillAttr](_v_g_u_fill_attr.md)&nbsp;\*attr,&nbsp;const&nbsp;[VGUPaintStyle](_v_g_u_paint_style.md)&nbsp;\*style) | [VGUResult](#vguresult)<br/>使用指定的渲染对象来填充路径。 | 
+| (\*&nbsp;[VGUFuncs::RenderStroke](#renderstroke)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;const&nbsp;[VGUPath](_v_g_u_path.md)&nbsp;\*path,&nbsp;const&nbsp;[VGUMatrix3](_v_g_u_matrix3.md)&nbsp;\*matrix,&nbsp;const&nbsp;[VGUStrokeAttr](_v_g_u_stroke_attr.md)&nbsp;\*attr,&nbsp;const&nbsp;[VGUPaintStyle](_v_g_u_paint_style.md)&nbsp;\*style) | [VGUResult](#vguresult)<br/>使用指定的渲染对象来描边路径。 | 
+| (\*&nbsp;[VGUFuncs::RenderBlur](#renderblur)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;uint16_t&nbsp;blur) | [VGUResult](#vguresult)<br/>对目标表面进行模糊处理。 | 
+| (\*&nbsp;[VGUFuncs::RenderBlit](#renderblit)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;const&nbsp;[VGUImage](_v_g_u_image.md)&nbsp;\*src,&nbsp;uint32_t&nbsp;color) | [VGUResult](#vguresult)<br/>对图像进行搬移操作。 | 
+| (\*&nbsp;[VGUFuncs::RenderBlitN](#renderblitn)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;const&nbsp;[VGUImage](_v_g_u_image.md)&nbsp;\*src,&nbsp;uint16_t&nbsp;count,&nbsp;uint32_t&nbsp;color) | [VGUResult](#vguresult)<br/>对多个源图像进行叠加操作。 | 
+| (\*&nbsp;[VGUFuncs::RenderClearRect](#renderclearrect)&nbsp;)([VGUSurface](_v_g_u_surface.md)&nbsp;\*target,&nbsp;const&nbsp;[VGURect](_v_g_u_rect.md)&nbsp;\*rect,&nbsp;uint32_t&nbsp;color,&nbsp;uint8_t&nbsp;opacity) | [VGUResult](#vguresult)<br/>对指定矩形进行颜色清除操作。 | 
+| (\*&nbsp;[VGUFuncs::RenderCancel](#rendercancel)&nbsp;)() | [VGUResult](#vguresult)<br/>取消硬件加速渲染。 | 
+| (\*&nbsp;[VGUFuncs::RenderSync](#rendersync)&nbsp;)(int32_t&nbsp;timeOut) | [VGUResult](#vguresult)<br/>同步硬件加速模块绘制或搬移操作。 | 
 
 
-## **宏定义说明**
+## 宏定义说明
+
+
+### HDI_VGU_SCALAR_IS_FLOAT
+
+
+```
+#define HDI_VGU_SCALAR_IS_FLOAT   1
+```
 
 
 ### PROPERTY_NAME_LEN
@@ -406,62 +414,12 @@
 #define PROPERTY_NAME_LEN   50
 ```
 
-**描述：**
+**描述:**
 
 属性名称长度
 
-### HDI_VGU_SCALAR_IS_FLOAT 
 
-
-```
-#define HDI_VGU_SCALAR_IS_FLOAT   1
-```
-
-**描述：**
-
-VGU标量是否为浮点型
-
-
-## **类型定义说明**
-
-
-### VGUPixelFormat
-
-
-```
-typedef PixelFormat VGUPixelFormat; 
-```
-
-**描述：**
-
-像素格式
-
-
-### VGUBlendType
-
-
-```
-typedef BlendType VGUBlendType; 
-```
-
-**描述：**
-
-混合操作类型
-
-### VGUScalar
-
-
-```
-#ifdef HDI_VGU_SCALAR_IS_FLOAT
-typedef float VGUScalar;
-#else
-typedef int32_t VGUScalar;
-#endif
-```
-
-**描述：**
-
-VGU标量
+## 类型定义说明
 
 
 ### HotPlugCallback
@@ -471,9 +429,9 @@ VGU标量
 typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 ```
 
-**描述：**
+**描述:**
 
-热插拔事件回调。
+热插拔事件回调
 
 当有热插拔事件发生时，会回调该接口，需要通过[RegHotPlugCallback](#reghotplugcallback)注册该回调接口。
 
@@ -482,8 +440,8 @@ typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
   | 名称 | 描述 | 
 | -------- | -------- |
 | devId | 输入参数，显示设备ID，此ID由HDI实现层生成，并通过当前回调接口传递给图形服务使用，用以标记当前连接的显示设备。 | 
-| connected | 输入参数，指明设备的连接状态，true代表连接，false代表断开。 | 
-| data | 输出参数，图形服务携带的私有数据，该参数携带的是[RegHotPlugCallback](#reghotplugcallback)接口注册时传递的私有数据地址。 | 
+| connected | 输入参数，指明设备的连接状态，ture代表连接，false代表断开。 | 
+| data | 输出参数，图形服务携带的私有数据，该参数携带的是RegHotPlugCallback接口注册时传递的私有数据地址，&nbsp;详情参考[RegHotPlugCallback](#reghotplugcallback)接口注册时传递的地址。 | 
 
 
 ### RefreshCallback
@@ -493,9 +451,9 @@ typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 typedef void(* RefreshCallback) (uint32_t devId, void *data)
 ```
 
-**描述：**
+**描述:**
 
-刷新请求回调。
+刷新请求回调
 
 当接口实现层需要图形服务刷新数据帧时会回调该接口，需要通过[RegDisplayRefreshCallback](#regdisplayrefreshcallback)注册该回调接口。
 
@@ -514,7 +472,7 @@ typedef void(* RefreshCallback) (uint32_t devId, void *data)
 typedef void(* VBlankCallback) (unsigned int sequence, uint64_t ns, void *data)
 ```
 
-**描述：**
+**描述:**
 
 VBlank 事件回调。
 
@@ -529,7 +487,31 @@ VBlank 事件回调。
 | data | 输出参数，图形服务携带的私有数据，该参数携带的是[RegDisplayVBlankCallback](#regdisplayvblankcallback)接口注册时传递的地址。 | 
 
 
-## **枚举类型说明**
+### VGUBlendType
+
+
+```
+typedef BlendTypeVGUBlendType
+```
+
+
+### VGUPixelFormat
+
+
+```
+typedef PixelFormatVGUPixelFormat
+```
+
+
+### VGUScalar
+
+
+```
+typedef float VGUScalar
+```
+
+
+## 枚举类型说明
 
 
 ### anonymous enum
@@ -539,7 +521,7 @@ VBlank 事件回调。
 anonymous enum
 ```
 
-**描述：**
+**描述:**
 
 定义缓冲区使用。
 
@@ -562,7 +544,7 @@ anonymous enum
 enum BlendType
 ```
 
-**描述：**
+**描述:**
 
 支持的图像混合类型。
 
@@ -596,7 +578,7 @@ enum BlendType
 enum ColorDataSpace
 ```
 
-**描述：**
+**描述:**
 
 枚举颜色空间的类型
 
@@ -653,7 +635,7 @@ enum ColorDataSpace
 enum ColorGamut
 ```
 
-**描述：**
+**描述:**
 
 色域类型枚举值
 
@@ -680,7 +662,7 @@ enum ColorGamut
 enum ColorKey
 ```
 
-**描述：**
+**描述:**
 
 Color key操作类型定义，即硬件加速支持的Color key操作类型。
 
@@ -699,20 +681,20 @@ Color key操作类型定义，即硬件加速支持的Color key操作类型。
 enum CompositionType
 ```
 
-**描述：**
+**描述:**
 
 枚举特殊层的组合类型。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| COMPOSITION_CLIENT | Client&nbsp;合成类型，使用CPU或者GPU合成 | 
-| COMPOSITION_DEVICE | Device&nbsp;合成类型，使用Device合成 | 
+| COMPOSITION_CLIENT | Client&nbsp;合成类型,使用CPU或者GPU合成 | 
+| COMPOSITION_DEVICE | Device合成类型，使用Device合成 | 
 | COMPOSITION_CURSOR | Cursor合成类型，用于光标合成 | 
 | COMPOSITION_VIDEO | Video合成类型，用于视频层合成 | 
-| COMPOSITION_DEVICE_CLEAR | Device&nbsp;clear&nbsp;合成类型，device会清除目标区域 | 
-| COMPOSITION_CLIENT_CLEAR | Client&nbsp;clear&nbsp;合成类型，service会清除目标区域 | 
-| COMPOSITION_TUNNEL | Tunnel&nbsp;合成类型，用于tunnel | 
-| COMPOSITION_BUTT | 合成类型，一个不可用类型，用于默认初始化 | 
+| COMPOSITION_DEVICE_CLEAR | Device&nbsp;clear&nbsp;合成类型,&nbsp;device会清除目标区域 | 
+| COMPOSITION_CLIENT_CLEAR | Client&nbsp;clear&nbsp;合成类型,&nbsp;service会清除目标区域 | 
+| COMPOSITION_TUNNEL | Tunnel&nbsp;合成类型,&nbsp;用于tunnel. | 
+| COMPOSITION_BUTT | 合成类型,&nbsp;一个不可用类型,&nbsp;用于默认初始化 | 
 
 
 ### Connection
@@ -722,7 +704,7 @@ enum CompositionType
 enum Connection
 ```
 
-**描述：**
+**描述:**
 
 热插拔连接类型定义
 
@@ -740,7 +722,7 @@ enum Connection
 enum DispErrCode
 ```
 
-**描述：**
+**描述:**
 
 返回值类型定义。
 
@@ -764,7 +746,7 @@ enum DispErrCode
 enum DispPowerStatus
 ```
 
-**描述：**
+**描述:**
 
 枚举显示状态
 
@@ -784,7 +766,7 @@ enum DispPowerStatus
 enum GamutMap
 ```
 
-**描述：**
+**描述:**
 
 枚举色域的映射类型
 
@@ -793,7 +775,7 @@ enum GamutMap
 | GAMUT_MAP_CONSTANT | 不变 | 
 | GAMUT_MAP_EXPANSION | 映射增强 | 
 | GAMUT_MAP_HDR_CONSTANT | 不变，用于HDR | 
-| GAMUT_MAP_HDR_EXPANSION | 映射增强，用于HDR | 
+| GAMUT_MAP_HDR_EXPANSION | 映射增强,&nbsp;用于HDR | 
 
 
 ### HDRFormat
@@ -803,7 +785,7 @@ enum GamutMap
 enum HDRFormat
 ```
 
-**描述：**
+**描述:**
 
 枚举HDR格式
 
@@ -824,7 +806,7 @@ enum HDRFormat
 enum HDRMetadataKey
 ```
 
-**描述：**
+**描述:**
 
 枚举HDR元数据关键字
 
@@ -853,7 +835,7 @@ enum HDRMetadataKey
 enum InterfaceType
 ```
 
-**描述：**
+**描述:**
 
 枚举接口类型。
 
@@ -870,7 +852,7 @@ enum InterfaceType
 | DISP_INTF_VGA | VGA&nbsp;接口 | 
 | DISP_INTF_MIPI | MIPI&nbsp;接口 | 
 | DISP_INTF_PANEL | PANEL&nbsp;接口 | 
-| DISP_INTF_BUTT | BUTT&nbsp;接口，一个不可用类型，用于默认初始化。 | 
+| DISP_INTF_BUTT | BUTT&nbsp;接口,&nbsp;一个不可用类型,&nbsp;用于默认初始化 | 
 
 
 ### LayerType
@@ -880,7 +862,7 @@ enum InterfaceType
 enum LayerType
 ```
 
-**描述：**
+**描述:**
 
 图层类型定义。
 
@@ -900,7 +882,7 @@ enum LayerType
 enum MirrorType
 ```
 
-**描述：**
+**描述:**
 
 硬件加速支持的镜像操作类型定义
 
@@ -919,7 +901,7 @@ enum MirrorType
 enum PixelFormat
 ```
 
-**描述：**
+**描述:**
 
 像素格式类型定义。
 
@@ -970,7 +952,7 @@ enum PixelFormat
 enum PresentTimestampType
 ```
 
-**描述：**
+**描述:**
 
 上屏时间戳类型枚举值
 
@@ -988,11 +970,11 @@ enum PresentTimestampType
 enum RopType
 ```
 
-**描述：**
+**描述:**
 
 硬件加速支持的ROP操作类型。
 
-硬件加速支持的ROP操作类型，在将前景位图的RGB颜色分量和Alpha分量值与背景位图的RGB颜色分量值和Alpha分量值进行按位的布尔运算（包括按位与，按位或等），将结果输出。
+在将前景位图的RGB颜色分量和Alpha分量值与背景位图的RGB颜色分量值和Alpha分量值进行按位的布尔运算（包括按位与，按位或等），将结果输出。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1022,7 +1004,7 @@ enum RopType
 enum TransformType
 ```
 
-**描述：**
+**描述:**
 
 图层变换类型定义。
 
@@ -1042,7 +1024,7 @@ enum TransformType
 enum VGUCapability
 ```
 
-**描述：**
+**描述:**
 
 硬件加速能力。
 
@@ -1061,7 +1043,7 @@ enum VGUCapability
 enum VGUClipType
 ```
 
-**描述：**
+**描述:**
 
 绘制表面剪切类型。
 
@@ -1079,7 +1061,7 @@ enum VGUClipType
 enum VGUFillRule
 ```
 
-**描述：**
+**描述:**
 
 填充规则定义。
 
@@ -1097,7 +1079,7 @@ enum VGUFillRule
 enum VGUFillSpread
 ```
 
-**描述：**
+**描述:**
 
 渐变填充区域外的延展类型。
 
@@ -1116,7 +1098,7 @@ enum VGUFillSpread
 enum VGUFilter
 ```
 
-**描述：**
+**描述:**
 
 图像滤波类型。
 
@@ -1135,7 +1117,7 @@ enum VGUFilter
 enum VGUGradientType
 ```
 
-**描述：**
+**描述:**
 
 渐变类型。
 
@@ -1154,7 +1136,7 @@ enum VGUGradientType
 enum VGUJointType
 ```
 
-**描述：**
+**描述:**
 
 联接类型。
 
@@ -1173,7 +1155,7 @@ enum VGUJointType
 enum VGULineCap
 ```
 
-**描述：**
+**描述:**
 
 线帽。
 
@@ -1191,7 +1173,7 @@ enum VGULineCap
 enum VGUPaintType
 ```
 
-**描述：**
+**描述:**
 
 渲染对象
 
@@ -1210,21 +1192,21 @@ enum VGUPaintType
 enum VGUPathCmd
 ```
 
-**描述：**
+**描述:**
 
 路径绘制指令类型。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| VGU_PATH_CMD_CLOSE | 线段关闭，坐标数据：none | 
-| VGU_PATH_CMD_MOVE | 移动到指定位置，坐标数据：x0,&nbsp;y0 | 
-| VGU_PATH_CMD_LINE | 线条，坐标数据：x0,&nbsp;y0 | 
-| VGU_PATH_CMD_HLINE | 水平线，坐标数据：x0 | 
-| VGU_PATH_CMD_VLINE | 垂直线，坐标数据：y0 | 
-| VGU_PATH_CMD_QUAD | 二次贝塞尔曲线，坐标数据：x0,&nbsp;y0,&nbsp;x1,&nbsp;y1 | 
-| VGU_PATH_CMD_CUBIC | 三次贝塞尔曲线，坐标数据：x0,&nbsp;y0,&nbsp;x1,&nbsp;y1,&nbsp;x2,&nbsp;y2 | 
-| VGU_PATH_CMD_SQUAD | 平滑二次贝塞尔曲线，坐标数据：x1,&nbsp;y1 | 
-| VGU_PATH_CMD_SCUBIC | 平滑三次贝塞尔曲线，坐标数据：x1,&nbsp;y1,&nbsp;x2,&nbsp;y2 | 
+| VGU_PATH_CMD_CLOSE | 线段关闭，坐标数据:&nbsp;none | 
+| VGU_PATH_CMD_MOVE | 移动到指定位置，坐标数据:&nbsp;x0,&nbsp;y0 | 
+| VGU_PATH_CMD_LINE | 线条，坐标数据:&nbsp;x0,&nbsp;y0 | 
+| VGU_PATH_CMD_HLINE | 水平线，坐标数据:&nbsp;x0 | 
+| VGU_PATH_CMD_VLINE | 垂直线，坐标数据:&nbsp;y0 | 
+| VGU_PATH_CMD_QUAD | 二次贝塞尔曲线，坐标数据:&nbsp;x0,&nbsp;y0,&nbsp;x1,&nbsp;y1 | 
+| VGU_PATH_CMD_CUBIC | 三次贝塞尔曲线，坐标数据:&nbsp;x0,&nbsp;y0,&nbsp;x1,&nbsp;y1,&nbsp;x2,&nbsp;y2 | 
+| VGU_PATH_CMD_SQUAD | 平滑二次贝塞尔曲线，坐标数据:&nbsp;x1,&nbsp;y1 | 
+| VGU_PATH_CMD_SCUBIC | 平滑三次贝塞尔曲线，坐标数据:&nbsp;x1,&nbsp;y1,&nbsp;x2,&nbsp;y2 | 
 | VGU_PATH_CMD_BUTT | 无效定义 | 
 
 
@@ -1235,7 +1217,7 @@ enum VGUPathCmd
 enum VGUPathDataType
 ```
 
-**描述：**
+**描述:**
 
 路径坐标数据类型。
 
@@ -1253,7 +1235,7 @@ enum VGUPathDataType
 enum VGUResult
 ```
 
-**描述：**
+**描述:**
 
 错误码定义。
 
@@ -1276,7 +1258,7 @@ enum VGUResult
 enum VGUTransformType
 ```
 
-**描述：**
+**描述:**
 
 变换类型。
 
@@ -1297,7 +1279,7 @@ enum VGUTransformType
 enum VGUWrapType
 ```
 
-**描述：**
+**描述:**
 
 图像模式填充延展类型。
 
@@ -1308,7 +1290,7 @@ enum VGUWrapType
 | VGU_WRAP_BUTT | 无效定义 | 
 
 
-## **函数说明**
+## 函数说明
 
 
 ### DeviceInitialize()
@@ -1318,7 +1300,7 @@ enum VGUWrapType
 int32_t DeviceInitialize (DeviceFuncs ** funcs)
 ```
 
-**描述：**
+**描述:**
 
 实现显示设备控制接口的初始化，申请操作显示设备控制接口的资源，并获取对应的操作接口。
 
@@ -1342,7 +1324,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t DeviceUninitialize (DeviceFuncs * funcs)
 ```
 
-**描述：**
+**描述:**
 
 取消显示设备控制接口的初始化，释放控制接口使用到的资源。
 
@@ -1366,7 +1348,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t GfxInitialize (GfxFuncs ** funcs)
 ```
 
-**描述：**
+**描述:**
 
 获取硬件加速相关的操作接口指针。
 
@@ -1390,7 +1372,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t GfxUninitialize (GfxFuncs * funcs)
 ```
 
-**描述：**
+**描述:**
 
 释放硬件加速相关的操作接口指针。
 
@@ -1414,7 +1396,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t GrallocInitialize (GrallocFuncs ** funcs)
 ```
 
-**描述：**
+**描述:**
 
 初始化内存模块，并获取内存提供的操作接口。
 
@@ -1438,7 +1420,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t GrallocUninitialize (GrallocFuncs * funcs)
 ```
 
-**描述：**
+**描述:**
 
 取消初始化内存模块，并释放内存操作接口指针。
 
@@ -1462,7 +1444,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t LayerInitialize (LayerFuncs ** funcs)
 ```
 
-**描述：**
+**描述:**
 
 实现图层初始化功能，申请图层使用的资源，并获取图层提供的操作接口。
 
@@ -1490,7 +1472,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t LayerUninitialize (LayerFuncs * funcs)
 ```
 
-**描述：**
+**描述:**
 
 取消图层初始化功能，释放图层使用到的资源，并释放图层操作接口指针。
 
@@ -1518,7 +1500,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUResult VGUGradientClearStop (VGUGradient * gradient)
 ```
 
-**描述：**
+**描述:**
 
 清除ColorStop。
 
@@ -1542,7 +1524,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUGradientColorStop (VGUGradient * gradient, const VGUColorStop * colorStop, uint32_t count )
 ```
 
-**描述：**
+**描述:**
 
 对渐变添加ColorStop。
 
@@ -1568,7 +1550,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUGradientConic (VGUGradient * gradient, VGUScalar cx, VGUScalar cy )
 ```
 
-**描述：**
+**描述:**
 
 创建圆锥渐变对象。
 
@@ -1594,7 +1576,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUGradientLinear (VGUGradient * gradient, const VGUPoint * p1, const VGUPoint * p2 )
 ```
 
-**描述：**
+**描述:**
 
 创建线性渐变对象。
 
@@ -1620,7 +1602,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUGradientMatrix (VGUGradient * gradient, const VGUMatrix3 * matrix )
 ```
 
-**描述：**
+**描述:**
 
 设置渐变对象的变换矩阵。
 
@@ -1645,7 +1627,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUGradientRadial (VGUGradient * gradient, const VGUPoint * p1, VGUScalar r1, const VGUPoint * p2, VGUScalar r2 )
 ```
 
-**描述：**
+**描述:**
 
 创建辐射渐变对象
 
@@ -1673,7 +1655,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUInitialize (VGUFuncs ** funcs)
 ```
 
-**描述：**
+**描述:**
 
 获取硬件加速相关的操作接口指针。
 
@@ -1697,7 +1679,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUMatrixIdentity (VGUMatrix3 * matrix)
 ```
 
-**描述：**
+**描述:**
 
 初始化矩阵对象为单位矩阵。
 
@@ -1721,7 +1703,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUMatrixRotate (VGUMatrix3 * matrix, float degree )
 ```
 
-**描述：**
+**描述:**
 
 矩阵变换旋转。
 
@@ -1746,7 +1728,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUMatrixScale (VGUMatrix3 * matrix, float xScale, float yScale )
 ```
 
-**描述：**
+**描述:**
 
 矩阵变换缩放。
 
@@ -1772,7 +1754,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUMatrixTranslate (VGUMatrix3 * matrix, float x, float y )
 ```
 
-**描述：**
+**描述:**
 
 矩阵变换平移。
 
@@ -1798,7 +1780,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUPathAppend (VGUPath * path, const VGUPath * subpath )
 ```
 
-**描述：**
+**描述:**
 
 添加子路径到当前路径中。
 
@@ -1823,7 +1805,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUPathClear (VGUPath * path)
 ```
 
-**描述：**
+**描述:**
 
 清除路径对象内存。
 
@@ -1847,7 +1829,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUPathInit (VGUPath * path, VGUPathDataType type, const uint8_t * segments, int numSegments, const uint8_t * data, bool enAlias, VGURect boundBox )
 ```
 
-**描述：**
+**描述:**
 
 初始化路径对象。
 
@@ -1877,7 +1859,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult VGUUninitialize (VGUFuncs * funcs)
 ```
 
-**描述：**
+**描述:**
 
 去初始化硬件加速模块，同时释放硬件加速模块操作函数指针。
 
@@ -1894,7 +1876,7 @@ VGU_SUCCESS 表示执行成功。
 其他值表示执行失败，具体错误码查看[VGUResult](#vguresult)。
 
 
-## **变量说明**
+## 变量说明
 
 
 ### alpha0 [1/2]
@@ -1904,7 +1886,7 @@ VGU_SUCCESS 表示执行成功。
 uint8_t LayerAlpha::alpha0
 ```
 
-**描述：**
+**描述:**
 
 alpha0值，取值范围：[0, 255]
 
@@ -1916,7 +1898,7 @@ alpha0值，取值范围：[0, 255]
 uint8_t ISurface::alpha0
 ```
 
-**描述：**
+**描述:**
 
 Alpha0值，取值范围：[0,255]
 
@@ -1928,7 +1910,7 @@ Alpha0值，取值范围：[0,255]
 uint8_t LayerAlpha::alpha1
 ```
 
-**描述：**
+**描述:**
 
 alpha1值，取值范围：[0, 255]
 
@@ -1940,7 +1922,7 @@ alpha1值，取值范围：[0, 255]
 uint8_t ISurface::alpha1
 ```
 
-**描述：**
+**描述:**
 
 Alpha1值，取值范围：[0,255]
 
@@ -1952,7 +1934,7 @@ Alpha1值，取值范围：[0,255]
 RopType GfxOpt::alphaRopType
 ```
 
-**描述：**
+**描述:**
 
 Alpha的Rop类型
 
@@ -1964,7 +1946,7 @@ Alpha的Rop类型
 bool ISurface::bAlphaExt1555
 ```
 
-**描述：**
+**描述:**
 
 是否使能1555的Alpha扩展
 
@@ -1976,7 +1958,7 @@ bool ISurface::bAlphaExt1555
 bool ISurface::bAlphaMax255
 ```
 
-**描述：**
+**描述:**
 
 图像alpha最大值为255还是128
 
@@ -1988,7 +1970,7 @@ bool ISurface::bAlphaMax255
 void* YUVDescInfo::baseAddr
 ```
 
-**描述：**
+**描述:**
 
 内存的初始地址
 
@@ -2000,7 +1982,7 @@ void* YUVDescInfo::baseAddr
 VGUBlendType VGUSurface::blend
 ```
 
-**描述：**
+**描述:**
 
 混合叠加模式
 
@@ -2012,7 +1994,7 @@ VGUBlendType VGUSurface::blend
 BlendType GfxOpt::blendType
 ```
 
-**描述：**
+**描述:**
 
 混合方式
 
@@ -2024,7 +2006,7 @@ BlendType GfxOpt::blendType
 VGURect VGUPath::boundBox
 ```
 
-**描述：**
+**描述:**
 
 路径最大边界
 
@@ -2036,7 +2018,7 @@ VGURect VGUPath::boundBox
 int32_t LayerInfo::bpp
 ```
 
-**描述：**
+**描述:**
 
 每像素所占bit数
 
@@ -2048,7 +2030,7 @@ int32_t LayerInfo::bpp
 VGUBuffer* VGUMaskLayer::buffer
 ```
 
-**描述：**
+**描述:**
 
 蒙版缓存
 
@@ -2060,11 +2042,9 @@ VGUBuffer* VGUMaskLayer::buffer
 VGUBuffer* VGUSurface::buffer
 ```
 
-**描述：**
+**描述:**
 
 位图缓存
-
-VGUSurface::clipRect
 
 
 ### buffer [3/3]
@@ -2074,7 +2054,7 @@ VGUSurface::clipRect
 VGUBuffer* VGUImage::buffer
 ```
 
-**描述：**
+**描述:**
 
 图像存储缓存
 
@@ -2086,7 +2066,7 @@ VGUBuffer* VGUImage::buffer
 bool ISurface::bYCbCrClut
 ```
 
-**描述：**
+**描述:**
 
 CLUT表是否位于 YCbCr 空间
 
@@ -2098,7 +2078,7 @@ CLUT表是否位于 YCbCr 空间
 VGULineCap VGUStrokeAttr::cap
 ```
 
-**描述：**
+**描述:**
 
 线帽类型
 
@@ -2110,7 +2090,7 @@ VGULineCap VGUStrokeAttr::cap
 uint64_t ISurface::cbcrPhyAddr
 ```
 
-**描述：**
+**描述:**
 
 CbCr分量地址
 
@@ -2122,7 +2102,7 @@ CbCr分量地址
 int32_t ISurface::cbcrStride
 ```
 
-**描述：**
+**描述:**
 
 CbCr分量跨度
 
@@ -2134,7 +2114,7 @@ CbCr分量跨度
 VGUPath* VGUSurface::clipPath
 ```
 
-**描述：**
+**描述:**
 
 路径剪切域，如果为空，整个表面直接渲染
 
@@ -2146,7 +2126,7 @@ VGUPath* VGUSurface::clipPath
 VGURect* VGUSurface::clipRect
 ```
 
-**描述：**
+**描述:**
 
 矩形剪切域，如果为空，整个表面直接渲染
 
@@ -2158,7 +2138,7 @@ VGURect* VGUSurface::clipRect
 VGUClipType VGUSurface::clipType
 ```
 
-**描述：**
+**描述:**
 
 表面剪切类型
 
@@ -2170,7 +2150,7 @@ VGUClipType VGUSurface::clipType
 uint64_t ISurface::clutPhyAddr
 ```
 
-**描述：**
+**描述:**
 
 Clut表首地址，用作颜色扩展或颜色校正
 
@@ -2182,7 +2162,7 @@ Clut表首地址，用作颜色扩展或颜色校正
 uint32_t ILine::color
 ```
 
-**描述：**
+**描述:**
 
 线条颜色
 
@@ -2194,7 +2174,7 @@ uint32_t ILine::color
 uint32_t ICircle::color
 ```
 
-**描述：**
+**描述:**
 
 圆的颜色
 
@@ -2206,7 +2186,7 @@ uint32_t ICircle::color
 uint32_t Rectangle::color
 ```
 
-**描述：**
+**描述:**
 
 矩形颜色
 
@@ -2218,7 +2198,7 @@ uint32_t Rectangle::color
 uint32_t VGUColorStop::color
 ```
 
-**描述：**
+**描述:**
 
 偏移位置对应颜色
 
@@ -2230,7 +2210,7 @@ uint32_t VGUColorStop::color
 uint32_t VGUSolid::color
 ```
 
-**描述：**
+**描述:**
 
 颜色值
 
@@ -2242,7 +2222,7 @@ uint32_t VGUSolid::color
 ColorKey GfxOpt::colorKeyFrom
 ```
 
-**描述：**
+**描述:**
 
 色键模式
 
@@ -2254,7 +2234,7 @@ ColorKey GfxOpt::colorKeyFrom
 RopType GfxOpt::colorRopType
 ```
 
-**描述：**
+**描述:**
 
 颜色的Rop类型
 
@@ -2266,7 +2246,7 @@ RopType GfxOpt::colorRopType
 VGUColorStop* VGUGradient::colorStops
 ```
 
-**描述：**
+**描述:**
 
 渐变停止颜色数组指针
 
@@ -2278,7 +2258,7 @@ VGUColorStop* VGUGradient::colorStops
 int32_t(* DeviceFuncs::Commit) (uint32_t devId, int32_t *fence)
 ```
 
-**描述：**
+**描述:**
 
 提交合成送显请求。
 
@@ -2305,7 +2285,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUConic VGUGradient::conic
 ```
 
-**描述：**
+**描述:**
 
 圆锥渐变对象
 
@@ -2317,7 +2297,7 @@ VGUConic VGUGradient::conic
 int32_t(* DeviceFuncs::CreateVirtualDisplay) (uint32_t width, uint32_t height, int32_t *format, uint32_t *devId)
 ```
 
-**描述：**
+**描述:**
 
 创建虚拟显示设备。
 
@@ -2346,7 +2326,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUScalar VGUConic::cx
 ```
 
-**描述：**
+**描述:**
 
 圆弧中心x坐标
 
@@ -2358,7 +2338,7 @@ VGUScalar VGUConic::cx
 VGUScalar VGUConic::cy
 ```
 
-**描述：**
+**描述:**
 
 圆弧中心y坐标
 
@@ -2370,7 +2350,7 @@ VGUScalar VGUConic::cy
 BufferData LayerBuffer::data
 ```
 
-**描述：**
+**描述:**
 
 图层buffer数据
 
@@ -2382,7 +2362,7 @@ BufferData LayerBuffer::data
 uint8_t* VGUPath::data
 ```
 
-**描述：**
+**描述:**
 
 存放路径命令对应坐标数据
 
@@ -2394,7 +2374,7 @@ uint8_t* VGUPath::data
 VGUResult(* VGUFuncs::DeinitVgu) (void)
 ```
 
-**描述：**
+**描述:**
 
 去初始化硬件加速。
 
@@ -2416,7 +2396,7 @@ VGU_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::DestroyVirtualDisplay) (uint32_t devId)
 ```
 
-**描述：**
+**描述:**
 
 销毁虚拟显示设备。
 
@@ -2442,7 +2422,7 @@ DISPLAY_SUCCESS 表示执行成功。
 bool GfxOpt::enableRop
 ```
 
-**描述：**
+**描述:**
 
 Rop功能使能位
 
@@ -2454,7 +2434,7 @@ Rop功能使能位
 bool GfxOpt::enableScale
 ```
 
-**描述：**
+**描述:**
 
 缩放功能使能位
 
@@ -2466,7 +2446,7 @@ bool GfxOpt::enableScale
 bool VGUPath::enAlias
 ```
 
-**描述：**
+**描述:**
 
 抗锯齿开关
 
@@ -2478,7 +2458,7 @@ bool VGUPath::enAlias
 PixelFormat ISurface::enColorFmt
 ```
 
-**描述：**
+**描述:**
 
 图像格式
 
@@ -2490,7 +2470,7 @@ PixelFormat ISurface::enColorFmt
 bool LayerAlpha::enGlobalAlpha
 ```
 
-**描述：**
+**描述:**
 
 全局alpha使能标志
 
@@ -2502,7 +2482,7 @@ bool LayerAlpha::enGlobalAlpha
 bool GfxOpt::enGlobalAlpha
 ```
 
-**描述：**
+**描述:**
 
 全局alpha使能位
 
@@ -2514,7 +2494,7 @@ bool GfxOpt::enGlobalAlpha
 bool LayerAlpha::enPixelAlpha
 ```
 
-**描述：**
+**描述:**
 
 像素alpha使能标志
 
@@ -2526,7 +2506,7 @@ bool LayerAlpha::enPixelAlpha
 bool GfxOpt::enPixelAlpha
 ```
 
-**描述：**
+**描述:**
 
 像素alpha使能位
 
@@ -2538,7 +2518,7 @@ bool GfxOpt::enPixelAlpha
 uint32_t AllocInfo::expectedSize
 ```
 
-**描述：**
+**描述:**
 
 申请内存大小
 
@@ -2550,7 +2530,7 @@ uint32_t AllocInfo::expectedSize
 int32_t ExtDataHandle::fd
 ```
 
-**描述：**
+**描述:**
 
 句柄 fd, -1代表不支持
 
@@ -2562,9 +2542,9 @@ int32_t ExtDataHandle::fd
 int32_t LayerBuffer::fenceId
 ```
 
-**描述：**
+**描述:**
 
-buffer 的fence号r
+buffer 的fence号。
 
 
 ### filter
@@ -2574,7 +2554,7 @@ buffer 的fence号r
 VGUFilter VGUSurface::filter
 ```
 
-**描述：**
+**描述:**
 
 图像滤波类型
 
@@ -2586,7 +2566,7 @@ VGUFilter VGUSurface::filter
 PixelFormat AllocInfo::format
 ```
 
-**描述：**
+**描述:**
 
 申请内存格式
 
@@ -2598,7 +2578,7 @@ PixelFormat AllocInfo::format
 PixelFormat VerifyAllocInfo::format
 ```
 
-**描述：**
+**描述:**
 
 分配内存的像素格式
 
@@ -2610,7 +2590,7 @@ PixelFormat VerifyAllocInfo::format
 uint32_t HDRCapability::formatCount
 ```
 
-**描述：**
+**描述:**
 
 支持的HDR格式的数量
 
@@ -2622,7 +2602,7 @@ uint32_t HDRCapability::formatCount
 HDRFormat* HDRCapability::formats
 ```
 
-**描述：**
+**描述:**
 
 支持的HDR格式的数组首地址
 
@@ -2634,7 +2614,7 @@ HDRFormat* HDRCapability::formats
 uint32_t DisplayModeInfo::freshRate
 ```
 
-**描述：**
+**描述:**
 
 刷新速率
 
@@ -2646,7 +2626,7 @@ uint32_t DisplayModeInfo::freshRate
 uint8_t LayerAlpha::gAlpha
 ```
 
-**描述：**
+**描述:**
 
 全局alpha值，取值范围：[0, 255]
 
@@ -2658,7 +2638,7 @@ uint8_t LayerAlpha::gAlpha
 int32_t(* DeviceFuncs::GetDisplayBacklight) (uint32_t devId, uint32_t *level)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备当前的背光值。
 
@@ -2685,7 +2665,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayCapability) (uint32_t devId, DisplayCapability *info)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备能力集。
 
@@ -2696,7 +2676,7 @@ int32_t(* DeviceFuncs::GetDisplayCapability) (uint32_t devId, DisplayCapability 
   | 名称 | 描述 | 
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
-| info | 输出参数，设备支持的能力级信息，详情参考[DisplayCapability](_display_capability.md)。 | 
+| info | 输出参数，设备支持的能力级信息，详情参考&nbsp;[DisplayCapability](_display_capability.md)。 | 
 
 **返回:**
 
@@ -2712,7 +2692,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayColorGamut) (uint32_t devId, ColorGamut *gamut)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备当前的色域模式。
 
@@ -2737,7 +2717,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayCompChange) (uint32_t devId, uint32_t *num, uint32_t *Layers, int32_t *type)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备合成类型有变化的layer。
 
@@ -2766,7 +2746,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayGamutMap) (uint32_t devId, GamutMap *gamutMap)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备当前的色域映射模式。
 
@@ -2791,7 +2771,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayMode) (uint32_t devId, uint32_t *modeId)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备当前的显示模式。
 
@@ -2818,7 +2798,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayPowerStatus) (uint32_t devId, DispPowerStatus *status)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备当前的电源状态。
 
@@ -2845,7 +2825,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t *value)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备属性值。
 
@@ -2873,7 +2853,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplayReleaseFence) (uint32_t devId, uint32_t *num, uint32_t *layers, int32_t *fences)
 ```
 
-**描述：**
+**描述:**
 
 获取显示图层fence。
 
@@ -2902,7 +2882,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplaySupportedColorGamuts) (uint32_t devId, uint32_t *num, ColorGamut *gamuts)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备支持的色域信息。
 
@@ -2928,7 +2908,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetDisplaySupportedModes) (uint32_t devId, uint32_t *num, DisplayModeInfo *modes)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备支持的显示模式信息。
 
@@ -2956,7 +2936,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetHDRCapabilityInfos) (uint32_t devId, HDRCapability *info)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备支持的HDR属性信息。
 
@@ -2981,7 +2961,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetSupportedMetadataKey) (uint32_t devId, uint32_t *num, HDRMetadataKey *keys)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备支持的 HDRMetadataKey。
 
@@ -2991,7 +2971,7 @@ int32_t(* DeviceFuncs::GetSupportedMetadataKey) (uint32_t devId, uint32_t *num, 
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | num | 输出参数，设备支持的HDRMetadataKey数组个数。 | 
-| keys | 输出参数，HDRMetadataKey首地址,&nbsp;指向HDRMetadataKey数组首地址。 | 
+| keys | 输出参数，HDRMetadataKey首地址，指向HDRMetadataKey数组首地址。 | 
 
 **返回:**
 
@@ -3007,7 +2987,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::GetWriteBackFrame) (uint32_t devId, BufferHandle *buffer, int32_t *fence)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备的回写帧。
 
@@ -3035,7 +3015,7 @@ DISPLAY_SUCCESS 表示执行成功。
 uint32_t GfxOpt::globalAlpha
 ```
 
-**描述：**
+**描述:**
 
 全局alpha的值
 
@@ -3047,7 +3027,7 @@ uint32_t GfxOpt::globalAlpha
 VGUGradient* VGUPaintStyle::gradient
 ```
 
-**描述：**
+**描述:**
 
 渐变对象
 
@@ -3059,7 +3039,7 @@ VGUGradient* VGUPaintStyle::gradient
 int32_t IRect::h
 ```
 
-**描述：**
+**描述:**
 
 矩形框高度
 
@@ -3071,7 +3051,7 @@ int32_t IRect::h
 VGUScalar VGURect::h
 ```
 
-**描述：**
+**描述:**
 
 矩形高度
 
@@ -3083,7 +3063,7 @@ VGUScalar VGURect::h
 BufferHandle* LayerBuffer::hdl
 ```
 
-**描述：**
+**描述:**
 
 图层buffer句柄
 
@@ -3095,7 +3075,7 @@ BufferHandle* LayerBuffer::hdl
 uint32_t DisplayInfo::height
 ```
 
-**描述：**
+**描述:**
 
 显示屏高度
 
@@ -3107,7 +3087,7 @@ uint32_t DisplayInfo::height
 int32_t LayerInfo::height
 ```
 
-**描述：**
+**描述:**
 
 图层高度
 
@@ -3119,7 +3099,7 @@ int32_t LayerInfo::height
 int32_t LayerBuffer::height
 ```
 
-**描述：**
+**描述:**
 
 buffer高度
 
@@ -3131,7 +3111,7 @@ buffer高度
 int32_t ISurface::height
 ```
 
-**描述：**
+**描述:**
 
 图像高度
 
@@ -3143,7 +3123,7 @@ int32_t ISurface::height
 int32_t DisplayModeInfo::height
 ```
 
-**描述：**
+**描述:**
 
 像素高度
 
@@ -3155,7 +3135,7 @@ int32_t DisplayModeInfo::height
 uint32_t AllocInfo::height
 ```
 
-**描述：**
+**描述:**
 
 申请内存高度
 
@@ -3167,7 +3147,7 @@ uint32_t AllocInfo::height
 uint32_t VerifyAllocInfo::height
 ```
 
-**描述：**
+**描述:**
 
 分配内存的高度
 
@@ -3179,7 +3159,7 @@ uint32_t VerifyAllocInfo::height
 uint32_t VGUBuffer::height
 ```
 
-**描述：**
+**描述:**
 
 位图高度
 
@@ -3191,7 +3171,7 @@ uint32_t VGUBuffer::height
 int32_t DisplayModeInfo::id
 ```
 
-**描述：**
+**描述:**
 
 模式ID
 
@@ -3203,7 +3183,7 @@ int32_t DisplayModeInfo::id
 VGUImage* VGUPattern::image
 ```
 
-**描述：**
+**描述:**
 
 图像对象
 
@@ -3215,7 +3195,7 @@ VGUImage* VGUPattern::image
 VGUResult(* VGUFuncs::InitVgu) (void)
 ```
 
-**描述：**
+**描述:**
 
 初始化硬件加速。
 
@@ -3237,11 +3217,11 @@ VGU_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::InvokeDisplayCmd) (uint32_t devId,...)
 ```
 
-**描述：**
+**描述:**
 
 调用显示设备命令。
 
-该接口用于图形服务和接口实现层之间的接口扩展，如果由临时接口新增可以通过该接口进行扩展，不用增加新的接口定义。
+该接口用于图形服务和接口实现层之间的的接口扩展，如果由临时接口新增可以通过该接口进行扩展，不用增加新的接口定义。
 
 **参数:**
 
@@ -3263,7 +3243,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUJointType VGUStrokeAttr::join
 ```
 
-**描述：**
+**描述:**
 
 联结类型
 
@@ -3275,7 +3255,7 @@ VGUJointType VGUStrokeAttr::join
 HDRMetadataKey HDRMetaData::key
 ```
 
-**描述：**
+**描述:**
 
 HDR元数据关键字
 
@@ -3287,7 +3267,7 @@ HDR元数据关键字
 VGULinear VGUGradient::linear
 ```
 
-**描述：**
+**描述:**
 
 线性渐变对象
 
@@ -3299,7 +3279,7 @@ VGULinear VGUGradient::linear
 float VGUMatrix3::m[3][3]
 ```
 
-**描述：**
+**描述:**
 
 3x3变换矩阵
 
@@ -3311,7 +3291,7 @@ float VGUMatrix3::m[3][3]
 VGUMaskLayer* VGUSurface::mask
 ```
 
-**描述：**
+**描述:**
 
 蒙版图层，可以为空
 
@@ -3323,7 +3303,7 @@ VGUMaskLayer* VGUSurface::mask
 VGUMatrix3* VGUImage::matrix
 ```
 
-**描述：**
+**描述:**
 
 图像矩阵变换，该参数为空，则内部使用单位变换矩阵
 
@@ -3335,7 +3315,7 @@ VGUMatrix3* VGUImage::matrix
 VGUMatrix3* VGUGradient::matrix
 ```
 
-**描述：**
+**描述:**
 
 针对渐变对象的变换矩阵
 
@@ -3347,7 +3327,7 @@ VGUMatrix3* VGUGradient::matrix
 float HDRCapability::maxAverageLum
 ```
 
-**描述：**
+**描述:**
 
 最大的平均光亮度luminance值
 
@@ -3359,7 +3339,7 @@ float HDRCapability::maxAverageLum
 float HDRCapability::maxLum
 ```
 
-**描述：**
+**描述:**
 
 最大的光亮度luminance值
 
@@ -3371,7 +3351,7 @@ float HDRCapability::maxLum
 float HDRCapability::minLum
 ```
 
-**描述：**
+**描述:**
 
 最小的光亮度luminance值
 
@@ -3383,7 +3363,7 @@ float HDRCapability::minLum
 MirrorType GfxOpt::mirrorType
 ```
 
-**描述：**
+**描述:**
 
 镜像类型
 
@@ -3395,7 +3375,7 @@ MirrorType GfxOpt::mirrorType
 float VGUStrokeAttr::miterLimit
 ```
 
-**描述：**
+**描述:**
 
 最大斜切长度
 
@@ -3407,7 +3387,7 @@ float VGUStrokeAttr::miterLimit
 char PropertyObject::name[PROPERTY_NAME_LEN]
 ```
 
-**描述：**
+**描述:**
 
 属性名称
 
@@ -3419,7 +3399,7 @@ char PropertyObject::name[PROPERTY_NAME_LEN]
 char DisplayCapability::name[PROPERTY_NAME_LEN]
 ```
 
-**描述：**
+**描述:**
 
 显示设备名称
 
@@ -3431,7 +3411,7 @@ char DisplayCapability::name[PROPERTY_NAME_LEN]
 int32_t VGUPath::numSegments
 ```
 
-**描述：**
+**描述:**
 
 路径命令总数
 
@@ -3443,7 +3423,7 @@ int32_t VGUPath::numSegments
 uint8_t VGUImage::opacity
 ```
 
-**描述：**
+**描述:**
 
 透明度，范围0~255
 
@@ -3455,7 +3435,7 @@ uint8_t VGUImage::opacity
 uint8_t VGUGradient::opacity
 ```
 
-**描述：**
+**描述:**
 
 透明度，范围0~255
 
@@ -3467,9 +3447,9 @@ uint8_t VGUGradient::opacity
 uint8_t VGUSolid::opacity
 ```
 
-**描述：**
+**描述:**
 
-透明度，取值范围 0 ~ 255。
+透明度，值范围 0 ~ 255
 
 
 ### pattern
@@ -3479,7 +3459,7 @@ uint8_t VGUSolid::opacity
 VGUPattern* VGUPaintStyle::pattern
 ```
 
-**描述：**
+**描述:**
 
 图片模式对象
 
@@ -3491,7 +3471,7 @@ VGUPattern* VGUPaintStyle::pattern
 uint64_t BufferData::phyAddr
 ```
 
-**描述：**
+**描述:**
 
 物理内存地址
 
@@ -3503,7 +3483,7 @@ uint64_t BufferData::phyAddr
 uint64_t ISurface::phyAddr
 ```
 
-**描述：**
+**描述:**
 
 图像首地址
 
@@ -3515,7 +3495,7 @@ uint64_t ISurface::phyAddr
 uint64_t VGUBuffer::phyAddr
 ```
 
-**描述：**
+**描述:**
 
 位图缓存的物理地址
 
@@ -3527,7 +3507,7 @@ uint64_t VGUBuffer::phyAddr
 uint32_t DisplayCapability::phyHeight
 ```
 
-**描述：**
+**描述:**
 
 物理高度
 
@@ -3539,7 +3519,7 @@ uint32_t DisplayCapability::phyHeight
 uint32_t DisplayCapability::phyWidth
 ```
 
-**描述：**
+**描述:**
 
 物理宽度
 
@@ -3551,7 +3531,7 @@ uint32_t DisplayCapability::phyWidth
 int32_t LayerBuffer::pitch
 ```
 
-**描述：**
+**描述:**
 
 一行数据所占字节数
 
@@ -3563,7 +3543,7 @@ int32_t LayerBuffer::pitch
 VGUPixelFormat VGUBuffer::pixelFormat
 ```
 
-**描述：**
+**描述:**
 
 像素格式
 
@@ -3575,7 +3555,7 @@ VGUPixelFormat VGUBuffer::pixelFormat
 PixelFormat LayerInfo::pixFormat
 ```
 
-**描述：**
+**描述:**
 
 图层像素格式
 
@@ -3587,7 +3567,7 @@ PixelFormat LayerInfo::pixFormat
 PixelFormat LayerBuffer::pixFormat
 ```
 
-**描述：**
+**描述:**
 
 buffer像素格式r
 
@@ -3599,7 +3579,7 @@ buffer像素格式r
 int32_t(* DeviceFuncs::PrepareDisplayLayers) (uint32_t devId, bool *needFlushFb)
 ```
 
-**描述：**
+**描述:**
 
 显示设备合成前准备。
 
@@ -3626,7 +3606,7 @@ DISPLAY_SUCCESS 表示执行成功。
 uint32_t DisplayCapability::propertyCount
 ```
 
-**描述：**
+**描述:**
 
 属性数组大小
 
@@ -3638,7 +3618,7 @@ uint32_t DisplayCapability::propertyCount
 uint32_t PropertyObject::propId
 ```
 
-**描述：**
+**描述:**
 
 属性ID
 
@@ -3650,7 +3630,7 @@ uint32_t PropertyObject::propId
 PropertyObject* DisplayCapability::props
 ```
 
-**描述：**
+**描述:**
 
 属性数组
 
@@ -3662,7 +3642,7 @@ PropertyObject* DisplayCapability::props
 int32_t(* VGUFuncs::QueryCapability) (uint32_t cap)
 ```
 
-**描述：**
+**描述:**
 
 查询硬件能力集。
 
@@ -3670,7 +3650,7 @@ int32_t(* VGUFuncs::QueryCapability) (uint32_t cap)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| cap | 输入参数，待查询能力。该参数类型定义参考&nbsp;[VGUCapability](#vgucapability)。 | 
+| cap | 输入参数，待查询能力。该参数类型定义参考[VGUCapability](#vgucapability)。 | 
 
 **返回:**
 
@@ -3686,7 +3666,7 @@ VGU_SUCCESS 表示执行成功。
 int32_t ICircle::r
 ```
 
-**描述：**
+**描述:**
 
 圆的半径
 
@@ -3698,7 +3678,7 @@ int32_t ICircle::r
 VGUScalar VGURadial::r0
 ```
 
-**描述：**
+**描述:**
 
 内圈圆半径
 
@@ -3710,7 +3690,7 @@ VGUScalar VGURadial::r0
 VGUScalar VGURadial::r1
 ```
 
-**描述：**
+**描述:**
 
 外圈圆半径
 
@@ -3722,7 +3702,7 @@ VGUScalar VGURadial::r1
 VGURadial VGUGradient::radial
 ```
 
-**描述：**
+**描述:**
 
 辐射渐变对象
 
@@ -3734,7 +3714,7 @@ VGURadial VGUGradient::radial
 IRect Rectangle::rect
 ```
 
-**描述：**
+**描述:**
 
 矩形区域
 
@@ -3746,7 +3726,7 @@ IRect Rectangle::rect
 VGURect* VGUMaskLayer::rect
 ```
 
-**描述：**
+**描述:**
 
 蒙版矩形
 
@@ -3758,7 +3738,7 @@ VGURect* VGUMaskLayer::rect
 VGURect* VGUImage::rect
 ```
 
-**描述：**
+**描述:**
 
 图像截取矩形，该参数为空，则截取整个图像
 
@@ -3770,7 +3750,7 @@ VGURect* VGUImage::rect
 int32_t(* DeviceFuncs::RegDisplayRefreshCallback) (uint32_t devId, RefreshCallback callback, void *data)
 ```
 
-**描述：**
+**描述:**
 
 刷新请求回调。
 
@@ -3798,7 +3778,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::RegDisplayVBlankCallback) (uint32_t devId, VBlankCallback callback, void *data)
 ```
 
-**描述：**
+**描述:**
 
 注册VBlank事件回调。
 
@@ -3826,7 +3806,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::RegHotPlugCallback) (HotPlugCallback callback, void *data)
 ```
 
-**描述：**
+**描述:**
 
 注册热插拔事件回调。
 
@@ -3853,7 +3833,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderBlit) (VGUSurface *target, const VGUImage *src, uint32_t color)
 ```
 
-**描述：**
+**描述:**
 
 对图像进行搬移操作。
 
@@ -3881,14 +3861,15 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderBlitN) (VGUSurface *target, const VGUImage *src, uint16_t count, uint32_t color)
 ```
 
-**描述：**
+**描述:**
 
 对多个源图像进行叠加操作。
 
-搬移过程中同时进行颜色空间转换，矩阵变换操作。该接口支持多个源图形同时叠加到目标表面， 对于硬件支持源图像数目可以通过[QueryCapability](#querycapability)接口查询**。**
+搬移过程中同时进行颜色空间转换，矩阵变换操作。该接口支持多个源图形同时叠加到目标表面，
 
-**参数**：
+对于硬件支持源图像数目可以通过[QueryCapability](#querycapability)接口查询。
 
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -3897,12 +3878,9 @@ VGUResult(* VGUFuncs::RenderBlitN) (VGUSurface *target, const VGUImage *src, uin
 | count | 输入参数，待叠加源图像个数。 | 
 | color | 输入参数，参与混合的颜色值。如果颜色值为0，则不参与混合操作。 | 
 
-
-**返回**：
-
+**返回:**
 
 VGU_SUCCESS 表示执行成功。
-
 
 其他值表示执行失败，具体错误码查看[VGUResult](#vguresult)。
 
@@ -3914,7 +3892,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderBlur) (VGUSurface *target, uint16_t blur)
 ```
 
-**描述：**
+**描述:**
 
 对目标表面进行模糊处理。
 
@@ -3939,7 +3917,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderCancel) ()
 ```
 
-**描述：**
+**描述:**
 
 取消硬件加速渲染。
 
@@ -3957,7 +3935,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderClearRect) (VGUSurface *target, const VGURect *rect, uint32_t color, uint8_t opacity)
 ```
 
-**描述：**
+**描述:**
 
 对指定矩形进行颜色清除操作。
 
@@ -3984,7 +3962,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderFill) (VGUSurface *target, const VGUPath *path, const VGUMatrix3 *matrix, const VGUFillAttr *attr, const VGUPaintStyle *style)
 ```
 
-**描述：**
+**描述:**
 
 使用指定的渲染对象来填充路径。
 
@@ -4012,7 +3990,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderStroke) (VGUSurface *target, const VGUPath *path, const VGUMatrix3 *matrix, const VGUStrokeAttr *attr, const VGUPaintStyle *style)
 ```
 
-**描述：**
+**描述:**
 
 使用指定的渲染对象来描边路径。
 
@@ -4040,7 +4018,7 @@ VGU_SUCCESS 表示执行成功。
 VGUResult(* VGUFuncs::RenderSync) (int32_t timeOut)
 ```
 
-**描述：**
+**描述:**
 
 同步硬件加速模块绘制或搬移操作。
 
@@ -4059,14 +4037,14 @@ VGU_SUCCESS 表示执行成功。
 其他值表示执行失败，具体错误码查看[VGUResult](#vguresult)。
 
 
-### reserve
+### reserve[0]
 
 
 ```
 int32_t ExtDataHandle::reserve[0]
 ```
 
-**描述：**
+**描述:**
 
 reserve数组
 
@@ -4078,7 +4056,7 @@ reserve数组
 uint32_t ExtDataHandle::reserveInts
 ```
 
-**描述：**
+**描述:**
 
 reserve数组的个数
 
@@ -4090,7 +4068,7 @@ reserve数组的个数
 int32_t DisplayInfo::rotAngle
 ```
 
-**描述：**
+**描述:**
 
 显示屏旋转角度
 
@@ -4102,7 +4080,7 @@ int32_t DisplayInfo::rotAngle
 TransformType GfxOpt::rotateType
 ```
 
-**描述：**
+**描述:**
 
 旋转类型
 
@@ -4114,7 +4092,7 @@ TransformType GfxOpt::rotateType
 VGUFillRule VGUFillAttr::rule
 ```
 
-**描述：**
+**描述:**
 
 填充规格
 
@@ -4126,7 +4104,7 @@ VGUFillRule VGUFillAttr::rule
 uint8_t* VGUPath::segment
 ```
 
-**描述：**
+**描述:**
 
 存放路径命令数据
 
@@ -4138,7 +4116,7 @@ uint8_t* VGUPath::segment
 int32_t(* DeviceFuncs::SetDisplayBacklight) (uint32_t devId, uint32_t level)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备当前的背光值。
 
@@ -4165,7 +4143,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayClientBuffer) (uint32_t devId, const BufferHandle *buffer, int32_t fence)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备的显示缓存。
 
@@ -4193,7 +4171,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayClientCrop) (uint32_t devId, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备的裁剪区域。
 
@@ -4220,7 +4198,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayClientDamage) (uint32_t devId, uint32_t num, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备的显示脏区。
 
@@ -4248,7 +4226,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayClientDestRect) (uint32_t devId, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备的显示区域。
 
@@ -4275,7 +4253,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayColorGamut) (uint32_t devId, ColorGamut gamut)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备当前的色域模式。
 
@@ -4300,7 +4278,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayColorTransform) (uint32_t devId, const float *matrix)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备当前的4x4的颜色转换矩阵。
 
@@ -4325,7 +4303,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayGamutMap) (uint32_t devId, GamutMap gamutMap)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备当前的色域映射模式。
 
@@ -4350,7 +4328,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayMode) (uint32_t devId, uint32_t modeId)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备的显示模式。
 
@@ -4377,7 +4355,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayPowerStatus) (uint32_t devId, DispPowerStatus status)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备当前的电源状态。
 
@@ -4404,7 +4382,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t value)
 ```
 
-**描述：**
+**描述:**
 
 设置显示设备属性值。
 
@@ -4432,7 +4410,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetDisplayVsyncEnabled) (uint32_t devId, bool enabled)
 ```
 
-**描述：**
+**描述:**
 
 使能垂直同步信号。
 
@@ -4459,7 +4437,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* DeviceFuncs::SetVirtualDisplayBuffer) (uint32_t devId, BufferHandle *buffer, int32_t fence)
 ```
 
-**描述：**
+**描述:**
 
 设置虚拟屏的输出缓存。
 
@@ -4487,7 +4465,7 @@ DISPLAY_SUCCESS 表示执行成功。
 VGUSolid* VGUPaintStyle::solid
 ```
 
-**描述：**
+**描述:**
 
 颜色对象
 
@@ -4499,7 +4477,7 @@ VGUSolid* VGUPaintStyle::solid
 VGUFillSpread VGUGradient::spread
 ```
 
-**描述：**
+**描述:**
 
 渐变延伸模式
 
@@ -4511,9 +4489,9 @@ VGUFillSpread VGUGradient::spread
 float VGUColorStop::stop
 ```
 
-**描述：**
+**描述:**
 
-颜色偏移位置，取值范围是 0.0 ~ 1.0。
+颜色偏移位置，值范围是 0.0 ~ 1.0
 
 
 ### stopCount
@@ -4523,7 +4501,7 @@ float VGUColorStop::stop
 uint16_t VGUGradient::stopCount
 ```
 
-**描述：**
+**描述:**
 
 渐变停止颜色个数
 
@@ -4535,7 +4513,7 @@ uint16_t VGUGradient::stopCount
 int32_t ISurface::stride
 ```
 
-**描述：**
+**描述:**
 
 图像跨度
 
@@ -4547,7 +4525,7 @@ int32_t ISurface::stride
 uint32_t VGUBuffer::stride
 ```
 
-**描述：**
+**描述:**
 
 位图stride
 
@@ -4559,7 +4537,7 @@ uint32_t VGUBuffer::stride
 uint32_t DisplayCapability::supportLayers
 ```
 
-**描述：**
+**描述:**
 
 支持的图层数
 
@@ -4571,7 +4549,7 @@ uint32_t DisplayCapability::supportLayers
 bool DisplayCapability::supportWriteBack
 ```
 
-**描述：**
+**描述:**
 
 是否支持回写
 
@@ -4583,7 +4561,7 @@ bool DisplayCapability::supportWriteBack
 int64_t PresentTimestamp::time
 ```
 
-**描述：**
+**描述:**
 
 类型对应的值
 
@@ -4595,7 +4573,7 @@ int64_t PresentTimestamp::time
 LayerType LayerInfo::type
 ```
 
-**描述：**
+**描述:**
 
 图层类型，包括图形层、视频层和媒体播放模式
 
@@ -4607,7 +4585,7 @@ LayerType LayerInfo::type
 InterfaceType DisplayCapability::type
 ```
 
-**描述：**
+**描述:**
 
 显示屏接口类型
 
@@ -4619,7 +4597,7 @@ InterfaceType DisplayCapability::type
 PresentTimestampType PresentTimestamp::type
 ```
 
-**描述：**
+**描述:**
 
 上屏时间戳类型
 
@@ -4631,7 +4609,7 @@ PresentTimestampType PresentTimestamp::type
 VGUPathDataType VGUPath::type
 ```
 
-**描述：**
+**描述:**
 
 路径数据存储类型
 
@@ -4643,7 +4621,7 @@ VGUPathDataType VGUPath::type
 uint32_t VGUMatrix3::type
 ```
 
-**描述：**
+**描述:**
 
 矩阵变换类型，简单变换为缩放，平移，90度倍数旋转
 
@@ -4655,7 +4633,7 @@ uint32_t VGUMatrix3::type
 VGUGradientType VGUGradient::type
 ```
 
-**描述：**
+**描述:**
 
 渐变类型
 
@@ -4667,7 +4645,7 @@ VGUGradientType VGUGradient::type
 VGUPaintType VGUPaintStyle::type
 ```
 
-**描述：**
+**描述:**
 
 渲染类型
 
@@ -4679,7 +4657,7 @@ VGUPaintType VGUPaintStyle::type
 size_t YUVDescInfo::uOffset
 ```
 
-**描述：**
+**描述:**
 
 U的偏移量
 
@@ -4691,7 +4669,7 @@ U的偏移量
 uint64_t AllocInfo::usage
 ```
 
-**描述：**
+**描述:**
 
 申请内存的使用场景
 
@@ -4703,7 +4681,7 @@ uint64_t AllocInfo::usage
 uint64_t VerifyAllocInfo::usage
 ```
 
-**描述：**
+**描述:**
 
 内存的用处
 
@@ -4715,7 +4693,7 @@ uint64_t VerifyAllocInfo::usage
 size_t YUVDescInfo::uvStep
 ```
 
-**描述：**
+**描述:**
 
 UV的step信息
 
@@ -4724,10 +4702,10 @@ UV的step信息
 
 
 ```
-size_t __attribute__::uvStride
+size_t YUVDescInfo::uvStride
 ```
 
-**描述：**
+**描述:**
 
 UV的stride信息
 
@@ -4739,7 +4717,7 @@ UV的stride信息
 uint64_t PropertyObject::value
 ```
 
-**描述：**
+**描述:**
 
 属性值
 
@@ -4751,7 +4729,7 @@ uint64_t PropertyObject::value
 float HDRMetaData::value
 ```
 
-**描述：**
+**描述:**
 
 关键字对应的值
 
@@ -4763,7 +4741,7 @@ float HDRMetaData::value
 void* BufferData::virAddr
 ```
 
-**描述：**
+**描述:**
 
 虚拟内存地址
 
@@ -4775,7 +4753,7 @@ void* BufferData::virAddr
 void* VGUBuffer::virAddr
 ```
 
-**描述：**
+**描述:**
 
 位图缓存的虚拟地址
 
@@ -4787,7 +4765,7 @@ void* VGUBuffer::virAddr
 uint32_t DisplayCapability::virtualDispCount
 ```
 
-**描述：**
+**描述:**
 
 支持的虚拟屏数
 
@@ -4799,7 +4777,7 @@ uint32_t DisplayCapability::virtualDispCount
 size_t YUVDescInfo::vOffset
 ```
 
-**描述：**
+**描述:**
 
 V的偏移量
 
@@ -4811,7 +4789,7 @@ V的偏移量
 int32_t IRect::w
 ```
 
-**描述：**
+**描述:**
 
 矩形框宽度
 
@@ -4823,7 +4801,7 @@ int32_t IRect::w
 VGUScalar VGURect::w
 ```
 
-**描述：**
+**描述:**
 
 矩形宽度
 
@@ -4835,7 +4813,7 @@ VGUScalar VGURect::w
 uint32_t DisplayInfo::width
 ```
 
-**描述：**
+**描述:**
 
 显示屏宽度
 
@@ -4847,7 +4825,7 @@ uint32_t DisplayInfo::width
 int32_t LayerInfo::width
 ```
 
-**描述：**
+**描述:**
 
 图层宽度
 
@@ -4859,7 +4837,7 @@ int32_t LayerInfo::width
 int32_t LayerBuffer::width
 ```
 
-**描述：**
+**描述:**
 
 buffer宽度
 
@@ -4871,7 +4849,7 @@ buffer宽度
 int32_t ISurface::width
 ```
 
-**描述：**
+**描述:**
 
 图像宽度
 
@@ -4883,7 +4861,7 @@ int32_t ISurface::width
 int32_t DisplayModeInfo::width
 ```
 
-**描述：**
+**描述:**
 
 像素宽度
 
@@ -4895,7 +4873,7 @@ int32_t DisplayModeInfo::width
 uint32_t AllocInfo::width
 ```
 
-**描述：**
+**描述:**
 
 申请内存宽度
 
@@ -4907,7 +4885,7 @@ uint32_t AllocInfo::width
 uint32_t VerifyAllocInfo::width
 ```
 
-**描述：**
+**描述:**
 
 分配内存的宽度
 
@@ -4919,7 +4897,7 @@ uint32_t VerifyAllocInfo::width
 uint32_t VGUBuffer::width
 ```
 
-**描述：**
+**描述:**
 
 位图宽度
 
@@ -4931,7 +4909,7 @@ uint32_t VGUBuffer::width
 float VGUStrokeAttr::width
 ```
 
-**描述：**
+**描述:**
 
 线宽
 
@@ -4943,7 +4921,7 @@ float VGUStrokeAttr::width
 VGUWrapType VGUPattern::wrapx
 ```
 
-**描述：**
+**描述:**
 
 图像水平方向平铺类型
 
@@ -4955,7 +4933,7 @@ VGUWrapType VGUPattern::wrapx
 VGUWrapType VGUPattern::wrapy
 ```
 
-**描述：**
+**描述:**
 
 图像垂直方向平铺类型
 
@@ -4967,7 +4945,7 @@ VGUWrapType VGUPattern::wrapy
 int32_t IRect::x
 ```
 
-**描述：**
+**描述:**
 
 矩形框起始x坐标
 
@@ -4979,7 +4957,7 @@ int32_t IRect::x
 int32_t ICircle::x
 ```
 
-**描述：**
+**描述:**
 
 圆心x坐标
 
@@ -4991,7 +4969,7 @@ int32_t ICircle::x
 VGUScalar VGUPoint::x
 ```
 
-**描述：**
+**描述:**
 
 点水平坐标
 
@@ -5003,7 +4981,7 @@ VGUScalar VGUPoint::x
 VGUScalar VGURect::x
 ```
 
-**描述：**
+**描述:**
 
 矩形水平起始坐标
 
@@ -5015,7 +4993,7 @@ VGUScalar VGURect::x
 int32_t ILine::x0
 ```
 
-**描述：**
+**描述:**
 
 线条起点的x坐标
 
@@ -5027,7 +5005,7 @@ int32_t ILine::x0
 VGUScalar VGURadial::x0
 ```
 
-**描述：**
+**描述:**
 
 内圈圆心水平坐标
 
@@ -5039,7 +5017,7 @@ VGUScalar VGURadial::x0
 int32_t ILine::x1
 ```
 
-**描述：**
+**描述:**
 
 线条终点的x坐标
 
@@ -5051,7 +5029,7 @@ int32_t ILine::x1
 VGUScalar VGULinear::x1
 ```
 
-**描述：**
+**描述:**
 
 线性渐变起点水平坐标
 
@@ -5063,7 +5041,7 @@ VGUScalar VGULinear::x1
 VGUScalar VGURadial::x1
 ```
 
-**描述：**
+**描述:**
 
 外圈圆心水平坐标
 
@@ -5075,7 +5053,7 @@ VGUScalar VGURadial::x1
 VGUScalar VGULinear::x2
 ```
 
-**描述：**
+**描述:**
 
 线性渐变终点水平坐标
 
@@ -5087,7 +5065,7 @@ VGUScalar VGULinear::x2
 int32_t IRect::y
 ```
 
-**描述：**
+**描述:**
 
 矩形框起始y坐标
 
@@ -5099,7 +5077,7 @@ int32_t IRect::y
 int32_t ICircle::y
 ```
 
-**描述：**
+**描述:**
 
 圆心y坐标r
 
@@ -5111,7 +5089,7 @@ int32_t ICircle::y
 VGUScalar VGUPoint::y
 ```
 
-**描述：**
+**描述:**
 
 点垂直坐标
 
@@ -5123,7 +5101,7 @@ VGUScalar VGUPoint::y
 VGUScalar VGURect::y
 ```
 
-**描述：**
+**描述:**
 
 矩形垂直起始坐标
 
@@ -5135,7 +5113,7 @@ VGUScalar VGURect::y
 int32_t ILine::y0
 ```
 
-**描述：**
+**描述:**
 
 线条起点的y坐标
 
@@ -5147,7 +5125,7 @@ int32_t ILine::y0
 VGUScalar VGURadial::y0
 ```
 
-**描述：**
+**描述:**
 
 内圈圆心垂直坐标
 
@@ -5159,7 +5137,7 @@ VGUScalar VGURadial::y0
 int32_t ILine::y1
 ```
 
-**描述：**
+**描述:**
 
 线条终点的y坐标
 
@@ -5171,7 +5149,7 @@ int32_t ILine::y1
 VGUScalar VGULinear::y1
 ```
 
-**描述：**
+**描述:**
 
 线性渐变起点垂直坐标
 
@@ -5183,7 +5161,7 @@ VGUScalar VGULinear::y1
 VGUScalar VGURadial::y1
 ```
 
-**描述：**
+**描述:**
 
 外圈圆心垂直坐标
 
@@ -5195,7 +5173,7 @@ VGUScalar VGURadial::y1
 VGUScalar VGULinear::y2
 ```
 
-**描述：**
+**描述:**
 
 线性渐变终点垂直坐标
 
@@ -5207,7 +5185,7 @@ VGUScalar VGULinear::y2
 size_t YUVDescInfo::yOffset
 ```
 
-**描述：**
+**描述:**
 
 Y的偏移量
 
@@ -5219,6 +5197,6 @@ Y的偏移量
 size_t YUVDescInfo::yStride
 ```
 
-**描述：**
+**描述:**
 
 Y的stride信息

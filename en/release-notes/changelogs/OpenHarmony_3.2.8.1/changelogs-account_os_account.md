@@ -6,7 +6,7 @@ To solve the issues that error code definitions of the account subsystem APIs we
 
 - Added the following unified error code definitions:
   - [Account Error Codes](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/errorcodes/errorcode-account.md)
-  - [App Account Error Codes](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/errorcodes/errorcode-app-account.md)
+  - [App Account Error Codes](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/errorcodes/errorcode-account.md)
 
 - Returned an error code in either of the following ways, according to the API type:
   - Asynchronous API: An error message is returned via **AsyncCallback** or the **error** object of **Promise**. An error message related to the parameter type or quantity is returned via an exception.

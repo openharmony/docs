@@ -1,4 +1,4 @@
-# Using Explicit Want to Start an Ability
+# Using Explicit Want to Start an Application Component
 
 When a user touches a button in an application, the application often needs to start a UIAbility component to complete a specific task. If the **abilityName** and **bundleName** parameters are specified when starting a UIAbility, then the explicit Want is used. 
 

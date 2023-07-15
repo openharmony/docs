@@ -5,7 +5,7 @@
 
 The agent-powered reminder feature provides APIs for publishing background reminders. You can call these APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. The APIs are encapsulated in the [reminderAgentManager](../reference/apis/js-apis-reminderAgentManager.md) class.
 
-  **Table 1** Major APIs in reminderAgentManager
+**Table 1** Major APIs in reminderAgentManager
 
 | API                                     | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
@@ -19,7 +19,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
 
 ## How to Develop
 
-1. Request the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Request the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 2. [Enable the notification feature](../notification/notification-enable.md).
 
@@ -37,7 +37,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // The reminder type is countdown timer.
         triggerTimeInSeconds: 10,
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -73,7 +73,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         repeatMonths: [1], // Month in which the reminder repeats.
         repeatDays: [1], // Date on which the reminder repeats.
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -93,9 +93,9 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 300, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
-        content:'this is content', // Reminder content.
+        content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
         snoozeContent: 'remind later', // Content to be displayed when the reminder is snoozed.
         notificationId: 100, // Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.
@@ -110,7 +110,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         hour: 23, // Hour portion of the reminder time.
         minute: 9, // Minute portion of the reminder time.
         daysOfWeek: [2], // Days of a week when the reminder repeats..
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -130,7 +130,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 300, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.

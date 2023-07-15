@@ -81,30 +81,32 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 ### 接口说明
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/pin_auth/v1_0/）。
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/pin_auth）。
 在本文中，口令凭据的录入、认证和删除相关的HDI接口如表1所示，表2中的回调函数分别用于口令执行器返回操作结果给框架和获取用户输入的口令信息。
 
 **表1** 接口功能介绍
 
 |    接口名称    |   功能介绍   |
 | ------------------------------- | ------------------------------------------- |
-| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。 |
-| GetExecutorInfo(ExecutorInfo& info)      | 获取执行器信息。                         |
+| GetExecutorList(std::vector\<sptr\<V1_0::IExecutor>>& executorList)  | 获取V1_0执行器列表。 |
+| GetExecutorListV1_1(std::vector\<sptr\<V1_1::IExecutor>>& executorList)      | 获取V1_1版本执行器列表。                         |
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)  | 获取指定templateId的模板信息。   |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>const std::vector<uint8_t>& frameworkPublicKey,<br/>const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
-| OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data) | 回调函数，返回用户录入的口令子类型和录入的口令脱敏数据。       |
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。      |
-| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。      |
+| OnRegisterFinish(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<uint8_t>& frameworkPublicKey,<br/>const std::vector\<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
+| OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector\<uint8_t> &data) | 回调函数，返回用户录入的口令子类型和录入的口令脱敏数据。       |
+| Enroll(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br/>const sptr\<IExecutorCallback>& callbackObj) | 录入pin码。      |
+| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | pin码认证。      |
 | Delete(uint64_t templateId)       | 删除pin码模板。       |
 | Cancel(uint64_t scheduleId)     | 通过scheduleId取消指定操作。  |
-| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 预留接口。  |
+| SendCommand(int32_t commandId, const std::vector\<uint8_t>& extraInfo,<br/>const sptr\<IExecutorCallback>& callbackObj) | 预留接口。  |
+| GetProperty(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<GetPropertyType>& propertyTypes, Property& property) | 获取执行器属性信息。 |
+
 
 **表2** 回调函数介绍
 
 | 接口名称                                                       | 功能介绍             |
 | ------------------------------------------------------------ | -------------------- |
-| IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。 |
-| IExecutorCallback::OnGetData(uint64_t scheduleId, const std::vector<uint8_t>& salt,<br/> uint64_t authSubType)| 返回获取pin码数据信息。  |
+| IExecutorCallback::OnResult(int32_t code, const std::vector\<uint8_t>& extraInfo) | 返回操作的最终结果。 |
+| IExecutorCallback::OnGetData(uint64_t scheduleId, const std::vector\<uint8_t>& salt,<br/> uint64_t authSubType)| 返回获取pin码数据信息。  |
 
 ### 开发步骤
 
@@ -139,18 +141,18 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
    };
-   
+
    // 服务接口调用响应接口
    static int32_t PinAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,  struct HdfSBuf *reply)
    {
        IAM_LOGI("start");
        auto *hdfPinAuthInterfaceHost = CONTAINER_OF(client->device->service,
            struct HdfPinAuthInterfaceHost, ioService);
-   
+
        OHOS::MessageParcel *dataParcel = nullptr;
        OHOS::MessageParcel *replyParcel = nullptr;
        OHOS::MessageOption option;
-   
+
        if (SbufToParcel(data, &dataParcel) != HDF_SUCCESS) {
            IAM_LOGE("%{public}s:invalid data sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
@@ -159,10 +161,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("%{public}s:invalid reply sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
        }
-   
+
        return hdfPinAuthInterfaceHost->stub->SendRequest(cmdId, *dataParcel, *replyParcel, option);
    }
-   
+
    // 初始化接口
    static int HdfPinAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
@@ -176,7 +178,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        }
        return HDF_SUCCESS;
    }
-   
+
    // PinAuth驱动对外提供的服务绑定到HDF框架
    static int HdfPinAuthInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
    {
@@ -186,29 +188,29 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("%{public}s: failed to create create HdfPinAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfPinAuthInterfaceHost->ioService.Dispatch = PinAuthInterfaceDriverDispatch;
        hdfPinAuthInterfaceHost->ioService.Open = NULL;
        hdfPinAuthInterfaceHost->ioService.Release = NULL;
-   
+
        auto serviceImpl = IPinAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
            IAM_LOGE("%{public}s: failed to get of implement service", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfPinAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
            IPinAuthInterface::GetDescriptor());
        if (hdfPinAuthInterfaceHost->stub == nullptr) {
            IAM_LOGE("%{public}s: failed to get stub object", __func__);
            return HDF_FAILURE;
        }
-   
+
        deviceObject->service = &hdfPinAuthInterfaceHost->ioService;
        IAM_LOGI("success");
        return HDF_SUCCESS;
    }
-   
+
    // 释放PinAuth驱动中的资源
    static void HdfPinAuthInterfaceDriverRelease(struct HdfDeviceObject *deviceObject)
    {
@@ -218,7 +220,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        delete hdfPinAuthInterfaceHost;
        IAM_LOGI("success");
    }
-   
+
    static struct HdfDriverEntry g_pinAuthInterfaceDriverEntry = {
        .moduleVersion = 1,
        .moduleName = "pinauth_interface_service",
@@ -226,18 +228,18 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        .Init = HdfPinAuthInterfaceDriverInit,
        .Release = HdfPinAuthInterfaceDriverRelease,
    };
-   
+
    // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
    HDF_INIT(g_pinauthinterfaceDriverEntry);
    ```
 
-   
-   
+
+
 1. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
-   class ExecutorImpl : public IExecutor, public NoCopyable {
+   class ExecutorImpl : public V1_1::IExecutor, public NoCopyable {
    public:
        explicit ExecutorImpl(std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi);
        virtual ~ExecutorImpl() {}
@@ -254,7 +256,9 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        int32_t Cancel(uint64_t scheduleId) override;
        int32_t SendCommand(int32_t commandId, const std::vector<uint8_t> &extraInfo,
            const sptr<IExecutorCallback> &callbackObj) override;
-   
+       int32_t GetProperty(const std::vector<uint64_t> &templateIdList, const std::vector<GetPropertyType> &propertyTypes,
+           Property &property) override;
+
    private:
        class ScheduleMap {
        public:
@@ -263,7 +267,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            uint32_t GetScheduleInfo(const uint64_t scheduleId, uint32_t &commandId, sptr<IExecutorCallback> &callback,
                uint64_t &templateId, std::vector<uint8_t> &salt);
            uint32_t DeleteScheduleId(const uint64_t scheduleId);
-   
+
        private:
            struct ScheduleInfo {
                uint32_t commandId;
@@ -271,20 +275,20 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
                uint64_t templateId;
                std::vector<uint8_t> salt;
            };
-   
+
            std::mutex mutex_;
            std::map<uint64_t, struct ScheduleInfo> scheduleInfo_;
        };
-   
+
    private:
        uint32_t NewSalt(std::vector<uint8_t> &salt);
        void CallError(const sptr<IExecutorCallback> &callbackObj, const uint32_t errorCode);
        std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi_;
        ScheduleMap scheduleMap_;
    };
-   
-   // 获取执行器列表实现，创建执行器（仅作示例）
-   int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<IExecutor>> &executorList)
+
+   // 获取V1_1执行器列表实现，创建执行器（仅作示例）
+   int32_t PinAuthInterfaceService::GetExecutorListV1_1(std::vector<sptr<V1_1::IExecutor>> &executorList)
    {
        IAM_LOGI("start");
        std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi =
@@ -302,10 +306,21 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        IAM_LOGI("end");
        return HDF_SUCCESS;
    }
+
+   // 获取V1_0执行器列表实现，使用V1_1版本执行器实现V1_0版本执行器的功能
+   int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<V1_0::IExecutor>> &executorList)
+   {
+       std::vector<sptr<V1_1::IExecutor>> executorListV1_1;
+       int32_t result = GetExecutorListV1_1(executorListV1_1);
+       for (auto &executor : executorListV1_1) {
+           executorList.push_back(executor);
+       }
+       return result;
+   }
    ```
-   
-   
-   
+
+
+
 1. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl.cpp)文件。
 
    ```c++
@@ -329,10 +344,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            return result;
        }
        info.esl = static_cast<ExecutorSecureLevel>(eslRet);
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现获取指定templateId的模板信息接口
    int32_t ExecutorImpl::GetTemplateInfo(uint64_t templateId, TemplateInfo &info)
    {
@@ -353,14 +368,14 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("copy subType to extraInfo fail!");
            return HDF_FAILURE;
        }
-   
+
        info.executorType = EXECUTOR_TYPE;
        info.remainAttempts = infoRet.remainTimes;
        info.lockoutDuration = infoRet.freezingTime;
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口，将公钥信息保存，template列表用于和本地的template做对账
    int32_t ExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
        const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
@@ -377,10 +392,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("Verify templateData failed");
            return result;
        }
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现口令录入接口
    int32_t ExecutorImpl::Enroll(uint64_t scheduleId, const std::vector<uint8_t> &extraInfo,
        const sptr<IExecutorCallback> &callbackObj)
@@ -412,10 +427,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            }
            return result;
        }
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现回调数据获取的接口
    int32_t ExecutorImpl::OnSetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data)
    {
@@ -451,7 +466,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            default:
                IAM_LOGE("Error commandId");
        }
-   
+
        if (callback->OnResult(result, resultTlv) != SUCCESS) {
            IAM_LOGE("callbackObj Pin failed");
        }
@@ -459,7 +474,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
            IAM_LOGI("delete scheduleId failed");
        }
-   
+
        return HDF_SUCCESS;
    }
    // 实现口令认证接口
@@ -499,10 +514,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            }
            return result;
        }
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现删除口令模板接口
    int32_t ExecutorImpl::Delete(uint64_t templateId)
    {
@@ -516,10 +531,10 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("Verify templateData failed, fail code : %{public}d", result);
            return result;
        }
-   
+
        return HDF_SUCCESS;
    }
-   
+
    // 实现通过scheduleId取消指定操作接口
    int32_t ExecutorImpl::Cancel(uint64_t scheduleId)
    {
@@ -530,7 +545,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        }
        return HDF_SUCCESS;
    }
-   
+
    // 口令预留接口
    int32_t ExecutorImpl::SendCommand(int32_t commandId, const std::vector<uint8_t> &extraInfo,
        const sptr<IExecutorCallback> &callbackObj)
@@ -541,8 +556,37 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        static_cast<void>(callbackObj);
        return HDF_SUCCESS;
    }
+
+   // 获取执行器属性信息接口
+   int32_t ExecutorImpl::GetProperty(
+       const std::vector<uint64_t> &templateIdList, const std::vector<GetPropertyType> &propertyTypes, Property &property)
+   {
+       IAM_LOGI("start");
+       if (pinHdi_ == nullptr) {
+           IAM_LOGE("pinHdi_ is nullptr");
+           return HDF_FAILURE;
+       }
+
+       if (templateIdList.size() != 1) {
+           IAM_LOGE("templateIdList size is not 1");
+           return HDF_FAILURE;
+       }
+
+       uint64_t templateId = templateIdList[0];
+       OHOS::UserIam::PinAuth::PinCredentialInfo infoRet = {};
+       int32_t result = pinHdi_->QueryPinInfo(templateId, infoRet);
+       if (result != SUCCESS) {
+           IAM_LOGE("Get TemplateInfo failed, fail code : %{public}d", result);
+           return HDF_FAILURE;
+       }
+
+       property.authSubType = infoRet.subType;
+       property.remainAttempts = infoRet.remainTimes;
+       property.lockoutDuration = infoRet.freezingTime;
+       return HDF_SUCCESS;
+   }
    ```
-   
+
 
 ### 调测验证
 驱动开发完成后，可基于RK3568平台验证, 通过设备的设置和锁屏功能验证口令认证功能是否正常，测试步骤如下：

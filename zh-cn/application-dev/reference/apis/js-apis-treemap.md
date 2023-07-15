@@ -4,19 +4,20 @@ TreeMap可用于存储具有关联关系的key-value键值对集合，存储元�
 
 TreeMap底层使用红黑树实现，可以利用二叉树特性快速查找键值对。key值有序存储，可以实现快速的插入和删除。
 
-TreeMap和[HashMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
+TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-文档中存在泛型的使用，涉及以下泛型标记符:
+文档中存在泛型的使用，涉及以下泛型标记符：
 
-- K: Key, 键
+- K：Key，键
 
-- V: Value, 值
+- V：Value，值
 
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -47,7 +48,7 @@ TreeMap的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
 
 **错误码：**
 
@@ -126,9 +127,8 @@ hasKey(key: K): boolean
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasKey("squirrel");
+let result = treeMap.hasKey("squirrel");
 ```
 
 
@@ -164,9 +164,8 @@ hasValue(value: V): boolean
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasValue(123);
+let result = treeMap.hasValue(123);
 ```
 
 
@@ -304,7 +303,7 @@ let map = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value, key) => {
-    console.log("test" + value, key); // 打印结果 12 demo、356 sparrow、123 squirrel
+  console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
 })
 ```
 
@@ -380,7 +379,7 @@ remove(key: K): V
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-treeMap.remove("sparrow");
+let result = treeMap.remove("sparrow");
 ```
 
 
@@ -612,14 +611,14 @@ forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 否 | 当前遍历到的元素键值对的值。 |
-| key | K | 否 | 当前遍历到的元素键值对的键。 |
-| map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+| value | V | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
+| key | K | 否 | 当前遍历到的元素键值对的键，默认值为首个键值对的键。 |
+| map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

@@ -15,7 +15,7 @@ import observer from '@ohos.telephony.observer';
 
 ## observer.on('networkStateChange')
 
-on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
+on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void;
 
 Registers an observer for network status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -54,7 +54,7 @@ observer.on('networkStateChange', data => {
 
 ## observer.on('networkStateChange')
 
-on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback<NetworkState\>\): void;
+on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback\<NetworkState\>\): void;
 
 Registers an observer for network status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -94,7 +94,7 @@ observer.on('networkStateChange', {slotId: 0}, data => {
 
 ## observer.off('networkStateChange')
 
-off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
+off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void;
 
 Unregisters the observer for network status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -110,6 +110,10 @@ Unregisters the observer for network status change events. This API uses an asyn
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | Yes  | Network status change event. This field has a fixed value of **networkStateChange**.                |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | No  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -133,7 +137,7 @@ observer.off('networkStateChange');
 
 ## observer.on('signalInfoChange')
 
-on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>): void;
+on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>): void;
 
 Registers an observer for signal status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -144,15 +148,14 @@ Registers an observer for signal status change events. This API uses an asynchro
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
 
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
-| ID|                  Error Message                   |
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -170,7 +173,7 @@ observer.on('signalInfoChange', data => {
 
 ## observer.on('signalInfoChange')
 
-on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<Array<SignalInformation\>\>): void;
+on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\<Array\<SignalInformation\>\>): void;
 
 Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -182,7 +185,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
 
@@ -190,7 +193,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -208,7 +210,7 @@ observer.on('signalInfoChange', {slotId: 0}, data => {
 
 ## observer.off('signalInfoChange')
 
-off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>): void;
+off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>\>): void;
 
 Unregisters the observer for signal status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -223,7 +225,7 @@ Unregisters the observer for signal status change events. This API uses an async
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | No  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | No  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
 
@@ -251,7 +253,7 @@ observer.off('signalInfoChange');
 
 ## observer.on('cellInfoChange')<sup>8+</sup>
 
-on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
+on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): void;
 
 Registers an observer for cell information change events. This API uses an asynchronous callback to return the result.
 
@@ -263,16 +265,19 @@ Registers an observer for cell information change events. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                        |
-| -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
-| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.             |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | Yes  | Callback used to return the result.|
+| Name  | Type                                                     | Mandatory| Description                                     |
+| -------- | --------------------------------------------------------- | ---- |------------------------------------------|
+| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.|
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | Yes  | Callback used to return the result.               |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -290,7 +295,7 @@ observer.on('cellInfoChange', data => {
 
 ## observer.on('cellInfoChange')<sup>8+</sup>
 
-on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<CellInformation\>\): void;
+on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback\<Array\<CellInformation\>\>\): void;
 
 Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -302,17 +307,20 @@ Registers an observer for signal status change events of the SIM card in the spe
 
 **Parameters**
 
-| Name| Type                                              | Mandatory| Description                                                        |
-| ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
-| type     | string                                           | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                                  |
-| slotId | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                             |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | Yes  | Callback used to return the result.|
+| Name| Type                                              | Mandatory| Description                                     |
+| ------ |--------------------------------------------------| ---- |--------------------------------------------|
+| type     | string                                           | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.|
+| slotId | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2     |
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | Yes  | Callback used to return the result.      |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -330,7 +338,7 @@ observer.on('cellInfoChange', {slotId: 0}, data => {
 
 ## observer.off('cellInfoChange')<sup>8+</sup>
 
-off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
+off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\): void;
 
 Unregisters the observer for cell information change events. This API uses an asynchronous callback to return the result.
 
@@ -347,10 +355,15 @@ Unregisters the observer for cell information change events. This API uses an as
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                           |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | No  | Callback used to return the result.|
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | No  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |

@@ -7,6 +7,12 @@ The **Context** module provides context for abilities or applications. It allows
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -20,10 +26,10 @@ The **Context** module provides context for abilities or applications. It allows
 | filesDir | string | Yes   | No   | File directory.|
 | databaseDir | string | Yes   | No   | Database directory.|
 | preferencesDir | string | Yes   | No   | Preferences directory.|
-| bundleCodeDir | string | Yes   | No   | Bundle code directory.|
+| bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Area in which the file to be access is located.|
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory. |
 
 ## Context.createBundleContext
 
@@ -34,6 +40,8 @@ Creates the context based on the bundle name.
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -47,18 +55,10 @@ Creates the context based on the bundle name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let bundleContext;
+let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
@@ -86,18 +86,10 @@ Creates the context based on the module name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let moduleContext;
+let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
@@ -113,6 +105,8 @@ Creates the context based on the bundle name and module name.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Type                    | Mandatory  | Description           |
@@ -126,18 +120,10 @@ Creates the context based on the bundle name and module name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let moduleContext;
+let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
@@ -162,7 +148,7 @@ Obtains the context of this application.
 **Example**
 
 ```ts
-let applicationContext;
+let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {

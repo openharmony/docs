@@ -3,7 +3,7 @@
 ## Purpose
 
 In OpenHarmony, software that meets [The Open Source Definition](https://opensource.org/docs/osd) is recognized as open-source software.
-Providing easy-to-use and quality open-source software for developers across the globe from a wide range of backgrounds is an important goal of the OpenHarmony community. To ensure the overall quality of the OpenHarmony project, this guide is specially formulated for the contributors' reference.
+Providing easy-to-use and quality open-source software for developers across the globe from a wide range of backgrounds is an important goal of the OpenHarmony community. To ensure the overall quality of the OpenHarmony project, this guide is specially formulated for your reference.
 
 ## Scope
 
@@ -11,8 +11,8 @@ This guide applies to all third-party open-source software to be introduced to t
 
 ## Improvements and Revisions
 
-1. This document is drafted and maintained by the OpenHarmony SIG QA. What you are reading now is the latest version of this document.
-     
+1. This document is drafted and maintained by the OpenHarmony QA SIG. What you are reading now is the latest version of this document.
+   
 2. Any addition, modification, or deletion of the principles mentioned in this document can be traced in the tracing system.
 3. The PMC reviews and finalizes the principles after thorough discussion in the community.
 
@@ -40,6 +40,22 @@ For easier maintenance and evolution, comply with the following principles when 
 12. If the software you introduce depends on other open-source software, do not nest the dependency software in the subdirectory of the software you introduce. Instead, remove all dependency software items from the software you introduce and place them in an independent repository named in the format of **third_party_*****dependencySoftwareName***. If you nest the dependency software, the same software may have multiple versions, security vulnerabilities in earlier versions may fail to be resolved in a timely manner, and open source compliance issues may arise.
     - Prefix the component names of the dependency software in the **BUILD.gn** file with the name of the software you introduce, for example, part_name = "introducedSoftwareName_dependencySoftwareName".
     - The software you introduce and dependency software are built separately. Use **external_deps** to resolve the inter-component dependency between the two pieces of software.
+13. Comply with the following requirements when archiving third-party open-source software:
+    - In principle, third-party open-source software that meets the OpenHarmony license introduction requirements should be stored in the **third_party** root directory. You can store it in another directory only if you have sufficient reasons.
+    - For third-party open-source software that is introduced by the development board and cannot be incorporated into the OpenHarmony system platform, you can request to create a directory with the name of the open-source software and archive the **README.OpenSource** file in the directory. In addition, the software should use the BUILD.gn mode for independent build and support automatic collection of open-source obligation declaration information.
+
+      ```
+       device/soc/$(SOC_COMPANY)/third_party
+       device/board/$(BOARD_COMPANY)/third_party
+       vendor/$(PRODUCT_COMPANY)/third_party
+      ```
+
+14. Comply with the following requirements for the precompiled binary or toolchain used in the OpenHarmony platform version or version building:
+    - The source code corresponding to the precompiled binary or toolchain must be hosted in the OpenHarmony community, and the corresponding build guide and open-source obligation fulfillment guide must be provided.
+    - Open-source third-party software introduced in the precompiled binary or toolchain must comply with principles 1 to 13.
+    - The file [Prebuilts for Clang/LLVM-based Tools Used in OpenHarmony](./prebuilts-readme-template.md) provides the methods for obtaining the source code, building the source code, and updating the prebuilts. It is archived to the root directory of the corresponding module with the OpenHarmony version or toolchain.
+    - A complete open-source obligation fulfillment statement must be provided in the root directory corresponding to the precompiled binary or toolchain.
+    - If the precompiled file comes from a binary file (such as npm) of the upstream community hosting platform, proceed as follows: In the directory where the binary file is archived, place a **README** file to provide the background description and official hosting address, and a **NOTICE** file to provide the open-source obligation fulfillment statement, including the name, version number, and open-source license agreement of each involved open source software.
 
 ### Software Introduction Process
 
@@ -61,69 +77,69 @@ Follow the process described in the [SIG Management Regulations](https://gitee.c
 
 1. Self-check list
 
-| Check Item| Description| Self-Check Result Example| 
+| Check Item| Description| Self-Check Result Example|
 | :----- | :----- | :----- |
 | Software name| Provide the official name of the software and the repository name to which the software is introduced. The repository name is in the format of **third_party_*****softwareName***.| third_party_**softwarename** |
-| Official website| Provide the official website link of the software.| https://softwaresite |
+| Official website| Provide the official website link of the software.| <https://softwaresite> |
 | Software version| Provide the version number of the software to be introduced. The version number must be an official version number released by the community. Do not modify the version number or introduce a version that is not officially released.| 1.0.0 |
 | Software version release date| Provide the official release date of the software version.| 2021.01.01 |
-| Software version address| Provide the official download URL of the version. Note that the URL must be able to locate the release package of the specific version.| https://gitee.com/softwarecodesite/v1.0.0.zip |
+| Software version address| Provide the official download URL of the version. Note that the URL must be able to locate the release package of the specific version.| <https://gitee.com/softwarecodesite/v1.0.0.zip> |
 | Software license| Provide the official license name of the version and the relative path of the license file. If there are multiple licenses, list them all and describe their relationship, for example, And, Or, or different licenses for different directories.| Apache-2.0 |
 | Software lifecycle| Describe whether the software has an LTS version, how frequent a version is released, code submitted to the community in the last year, issue resolution status, and whether end of maintenance or evolution is notified.| No LTS version; one version released every six months; 10 code submissions in the last six months|
 | Security vulnerabilities| List disclosed security vulnerabilities in the software, including the vulnerability number, severity, link, and whether patches or solutions are available.| No disclosed vulnerabilities.|
 | Service scenario| Describe the repositories where the software is used and the service scenarios where the software is used.| Used by the static link of the *XX* repository to improve the *YYY* capability.|
 | Normalization| Describe whether the likes of the software exist in the OpenHarmony community, what similar software is in the industry, and why the software or version is introduced.| This software has not been introduced to the OpenHarmony community. Similar software in the industry includes B and C. Only this software is license-friendly and has a good ecosystem. Companies such as *X* and *Y* are also using this software.|
 | License compatibility| 1. Describe the processes that use the software, the license of each process, and whether these licenses are compatible with the license of the software to be introduced.<br>2. Use the OAT tool to scan the source code of the software. Attach the scanning report (with all found errors rectified) and the **LicenseFile.txt** file in the request.| 1. This software is used in the user-mode *X* process in static link mode. The process is licensed under Apache-2.0, which is consistent with the software license. There is no compatibility issue.<br>2. **Result.txt** generated by the OAT tool and **LicenseFile.txt**<br> |
-| Owner| Provide the name of the SIG responsible for the software management and the Gitee username and email address of the maintenance owner.| SIG XXX, James, James@example.com|
+| Owner| Provide the name of the SIG responsible for the software management and the Gitee username and email address of the maintenance owner.| SIG XXX, username, username@example.com|
 
 Note:
 
 - For details about how to use the OAT tool, see [OSS Audit Tool](https://gitee.com/openharmony-sig/tools_oat). If you have any suggestions on the tool, submit an issue in the community. You can also fork the repository and improve the tool through pull requests.
 - In principle, the OAT report should contain no errors. The format is as follows:
 
-```
-Invalid File Type Total Count: 0
-License Not Compatible Total Count: 0
-License Header Invalid Total Count: 0
-Copyright Header Invalid Total Count: 0
-No License File Total Count: 0
-No Readme.OpenSource Total Count: 0
-No Readme Total Count: 0
-```
+  ```
+  Invalid File Type Total Count: 0
+  License Not Compatible Total Count: 0
+  License Header Invalid Total Count: 0
+  Copyright Header Invalid Total Count: 0
+  No License File Total Count: 0
+  No Readme.OpenSource Total Count: 0
+  No Readme Total Count: 0
+  ```
 
 - The **LicenseFile.txt** file is located in the **log** directory of the OAT tool running directory. This file records all suspected license files in the scan directory. The format is as follows:
 
-```
-third_party_abcde/ LICENSEFILE LICENSE Apache-2.0
-third_party_abcde/doc/ LICENSEFILE LICENSE Apache-2.0
-```
+  ```
+  third_party_abcde/ LICENSEFILE LICENSE Apache-2.0
+  third_party_abcde/doc/ LICENSEFILE LICENSE Apache-2.0
+  ```
 
 2. **OAT.xml** file
 
-Confirm the issues found by the OAT tool and configure the **OAT.xml** file. For details, see [OSS Audio Tool](https://gitee.com/openharmony-sig/tools_oat/blob/master/README.md). Attach the file in the request. If no issue needs to be confirmed, you do not have to configure the file.
+   Confirm the issues found by the OAT tool and configure the **OAT.xml** file. For details, see [OSS Audio Tool](https://gitee.com/openharmony-sig/tools_oat/blob/master/README.md). Attach the file in the request. If no issue needs to be confirmed, you do not have to configure the file.
 
 3. **README.OpenSource** file of the repository. The format is as follows:
 
-```
-[
-  {
-    "Name": "softwarename",
-    "License": "Apache-2.0",
-    "License File": "LICENSE",
-    "Version Number": "1.0.0",
-    "Owner": "James@example.com",
-    "Upstream URL": "https://gitee.com/softwarecodesite/v1.0.0.zip",
-    "Description": "...."
-  },
-  {
-  ...
-  }// If there are multiple licenses, list them one by one.
-]
-```
+   ```
+   [
+     {
+       "Name": "softwarename",
+       "License": "Apache-2.0",
+       "License File": "LICENSE",
+       "Version Number": "1.0.0",
+       "Owner": "James@example.com",
+       "Upstream URL": "https://gitee.com/softwarecodesite/v1.0.0.zip",
+       "Description": "...."
+     },
+     {
+     ...
+     }// If there are multiple licenses, list them one by one.
+   ]
+   ```
 
-#### PMC Review
+#### Reviewing New Third-Party Open-Source Software
 
-Refer to the [SIG Management Regulations](https://gitee.com/openharmony/community/tree/master/sig). The PMC will arrange the SIG request review and repository construction based on the received PR.
+The [Architecture SIG](https://gitee.com/openharmony/community/blob/master/sig/sig_architecture/sig_architecture.md) will arrange the construction and review of the repository.
 
 ### License Requirements for Third-Party Open-Source Software
 
@@ -131,66 +147,66 @@ Refer to the [SIG Management Regulations](https://gitee.com/openharmony/communit
 2. The software license must be compatible with the license for the code repository.
 3. The following licenses for third-party open-source software are recommended in the OpenHarmony project:
 
-* Apache License 2.0
-* Mulan Permissive Software License, Version 2
-* BSD 2-clause
-* BSD 3-clause
-* DOM4J License
-* PostgreSQL License
-* Eclipse Distribution License 1.0
-* MIT
-* ISC
-* ICU
-* University of Illinois/NCSA
-* W3C Software License
-* zlib/libpng
-* Academic Free License 3.0
-* Python Software Foundation License
-* Python Imaging Library Software License
-* Boost Software License Version 1.0
-* WTF Public License
-* UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
-* Zope Public License 2.0
+- Apache License 2.0
+- Mulan Permissive Software License, Version 2
+- BSD 2-clause
+- BSD 3-clause
+- DOM4J License
+- PostgreSQL License
+- Eclipse Distribution License 1.0
+- MIT
+- ISC
+- ICU
+- University of Illinois/NCSA
+- W3C Software License
+- zlib/libpng
+- Academic Free License 3.0
+- Python Software Foundation License
+- Python Imaging Library Software License
+- Boost Software License Version 1.0
+- WTF Public License
+- UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
+- Zope Public License 2.0
 
 4. The following licenses for third-party open-source software are not recommended in the OpenHarmony project:
 
-* GNU GPL 1, 2, 3
-* GNU Affero GPL 3
-* GNU LGPL 2, 2.1, 3
-* QPL
-* Sleepycat License
-* Server Side Public License (SSPL) version 1
-* Code Project Open License (CPOL)
-* BSD-4-Clause/BSD-4-Clause (University of California-Specific)
-* Facebook BSD+Patents license
-* NPL 1.0/NPL 1.1
-* The Solipsistic Eclipse Public License
-* The "Don't Be A Dick" Public License
-* JSON License
-* Binary Code License (BCL)
-* Intel Simplified Software License
-* JSR-275 License
-* Microsoft Limited Public License
-* Amazon Software License (ASL)
-* Java SDK for Satori RTM license
-* Redis Source Available License (RSAL)
-* Booz Allen Public License
-* Creative Commons Non-Commercial
-* Sun Community Source License 3.0
-* Common Development and Distribution Licenses: CDDL 1.0 and CDDL 1.1
-* Common Public License: CPL 1.0
-* Eclipse Public License: EPL 1.0
-* IBM Public License: IPL 1.0
-* Mozilla Public Licenses: MPL 1.0, MPL 1.1, and MPL 2.0
-* Sun Public License: SPL 1.0
-* Open Software License 3.0
-* Erlang Public License
-* UnRAR License
-* SIL Open Font License
-* Ubuntu Font License Version 1.0
-* IPA Font License Agreement v1.0
-* Ruby License
-* Eclipse Public License 2.0: EPL 2.0
+- GNU GPL 1, 2, 3
+- GNU Affero GPL 3
+- GNU LGPL 2, 2.1, 3
+- QPL
+- Sleepycat License
+- Server Side Public License (SSPL) version 1
+- Code Project Open License (CPOL)
+- BSD-4-Clause/BSD-4-Clause (University of California-Specific)
+- Facebook BSD+Patents license
+- NPL 1.0/NPL 1.1
+- The Solipsistic Eclipse Public License
+- The "Don't Be A Dick" Public License
+- JSON License
+- Binary Code License (BCL)
+- Intel Simplified Software License
+- JSR-275 License
+- Microsoft Limited Public License
+- Amazon Software License (ASL)
+- Java SDK for Satori RTM license
+- Redis Source Available License (RSAL)
+- Booz Allen Public License
+- Creative Commons Non-Commercial
+- Sun Community Source License 3.0
+- Common Development and Distribution Licenses: CDDL 1.0 and CDDL 1.1
+- Common Public License: CPL 1.0
+- Eclipse Public License: EPL 1.0
+- IBM Public License: IPL 1.0
+- Mozilla Public Licenses: MPL 1.0, MPL 1.1, and MPL 2.0
+- Sun Public License: SPL 1.0
+- Open Software License 3.0
+- Erlang Public License
+- UnRAR License
+- SIL Open Font License
+- Ubuntu Font License Version 1.0
+- IPA Font License Agreement v1.0
+- Ruby License
+- Eclipse Public License 2.0: EPL 2.0
 
 If you want to introduce the software that complies with the unrecommended licenses listed in **4** or other licenses that are not mentioned, send an email to oh-legal@openatom.io.
 

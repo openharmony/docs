@@ -4,7 +4,9 @@ The **\<Menu>** component is a vertical list of items presented to the user.
 
 > **NOTE**
 >
-> This component is supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The **\<Menu>** component must be used together with the [bindMenu](ts-universal-attributes-menu.md) or [bindContextMenu](ts-universal-attributes-menu.md) method. It does not work when used alone.
 
 ## Child Components
 
@@ -22,7 +24,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name    | Type                 | Description                                                            |
 | -------- | ------------------------- | ---------------------------------------------------------------- |
-| fontSize | [Length](ts-types.md#length) | Font size that applies to all texts in the menu. When **Length** is of the number type, the unit is fp.|
+| fontSize<sup>deprecated</sup> | [Length](ts-types.md#length) | Font size of the menu text. When **Length** is of the number type, the unit is fp.<br>This API is deprecated since API version 10. You are advised to use **font** instead.|
+| font<sup>10+</sup> | [Font](ts-types.md#font) | Font style of the menu text.|
+| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Font color of the menu text.|
 
 ## Example
 

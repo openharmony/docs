@@ -28,7 +28,7 @@ Converts an XML text into a JavaScript object.
 | Name | Type                             | Mandatory| Description           |
 | ------- | --------------------------------- | ---- | --------------- |
 | xml     | string                            | Yes  | XML text to convert.|
-| options | [ConvertOptions](#convertoptions) | No  | Options for conversion.     |
+| options | [ConvertOptions](#convertoptions) | No  | Options for conversion. The default value is a **ConvertOptions** object, which consists of the default values of the attributes in the object. |
 
 **Return value**
 
@@ -89,7 +89,7 @@ Converts an XML text into a JavaScript object.
 | Name | Type                             | Mandatory| Description           |
 | ------- | --------------------------------- | ---- | --------------- |
 | xml     | string                            | Yes  | XML text to convert.|
-| options | [ConvertOptions](#convertoptions) | No  | Options for conversion.     |
+| options | [ConvertOptions](#convertoptions) | No  | Options for conversion. The default value is a **ConvertOptions** object, which consists of the default values of the attributes in the object. |
 
 **Return value**
 

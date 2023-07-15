@@ -1,6 +1,6 @@
-# Transition of Shared Elements
+# Shared Element Transition
 
-Shared element transition can be used for transition between pages, for example, transition from an image on the current page to the next page.
+A shared element transition is a transition animation applied to a component that is present on two pages. This component is called the shared element and can be set in the **sharedTransition** attribute.
 
 > **NOTE**
 >
@@ -10,14 +10,14 @@ Shared element transition can be used for transition between pages, for example,
 ## Attributes
 
 
-| Name            | Parameters                                                        | Description                                                    |
+| Name            | Parameter                                                        | Description                                                    |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| sharedTransition | id: string,<br>{<br> duration?: number,<br> curve?: Curve \| string,<br> delay?: number,<br> motionPath?: <br>{<br> path: string,<br> form?: number,<br> to?: number,<br> rotatable?: boolean<br>},<br>zIndex?: number,<br>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br>} | Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.<br>- **id**: component ID.<br>- **duration**: animation duration, in ms. The default duration is 1000 ms.<br>- **curve**: animation curve. The default curve is **Linear**. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>- **delay**: Delay of animation playback, in ms. By default, the playback is not delayed.<br>- **motionPath**: motion path information. For details, see [Motion Path Animation](ts-motion-path-animation.md).<br>- **path**: path.<br>- **from**: start value.<br>- **to**: end value.<br>- **rotatable**: whether to rotate.<br>- **zIndex**: z-axis.<br>- **type**: animation type.|
+| sharedTransition | id: string,<br>{<br> duration?: number,<br> curve?: Curve \| string,<br> delay?: number,<br> motionPath?: <br>{<br> path: string,<br> form?: number,<br> to?: number,<br> rotatable?: boolean<br>},<br>zIndex?: number,<br>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br>} | Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.<br>- **id**: component ID.<br>- **duration**: animation duration.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +∞)<br>The value **0** indicates that no animation is applied. A value less than 0 evaluates to the value **0**.<br>- **curve**: animation curve. The default curve is **Linear**. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>- **delay**: animation delay.<br>Default value: **0**<br>Unit: ms<br>Value range: [0, +∞)<br>A value less than 0 evaluates to the value **0**.<br>- **motionPath**: motion path information. For details, see [Motion Path Animation](ts-motion-path-animation.md).<br>- **path**: path.<br>- **from**: start value.<br>- **to**: end value.<br>- **rotatable**: whether to rotate.<br>- **zIndex**: z-axis.<br>- **type**: animation type.|
 
 
 ## Example
 
-  The example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
+This example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
 
 ```ts
 // xxx.ets

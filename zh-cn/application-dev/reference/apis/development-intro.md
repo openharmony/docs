@@ -29,8 +29,8 @@ OpenHarmony中提供的接口，部分是仅供OEM厂商使用的system api，�
 普通应用即在HarmonyAppProvision配置文件中应用程序类型为hos_normal_app的应用。工程新建时，该字段默认为hos_normal_app。
 
 随DevEco下载的SDK为public-SDK，不包括系统接口。如需使用系统接口，需要：
-- 参考[full-SDK替换指南](../../quick-start/full-sdk-switch-guide.md)将SDK替换为full-SDK。
-- 参考[HarmonyAppProvision配置文件的说明](../../security/app-provision-structure.md#harmonyappprovision配置文件的说明)修改HarmonyAppProvision配置文件中的app-feature字段为hos_system_app（系统应用）。
+- 参考[full-SDK替换指南](../../faqs/full-sdk-switch-guide.md)将SDK替换为full-SDK。
+- 参考[HarmonyAppProvision配置文件的说明](../../security/app-provision-structure.md)修改HarmonyAppProvision配置文件中的app-feature字段为hos_system_app（系统应用）。
 
 ## 权限说明
 

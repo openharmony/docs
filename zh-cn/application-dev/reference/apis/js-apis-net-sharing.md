@@ -12,7 +12,7 @@
 import sharing from '@ohos.net.sharing'
 ```
 
-## sharing.isSharingSupported
+## sharing.isSharingSupported<sup>9+</sup>
 
 isSharingSupported(callback: AsyncCallback\<boolean>): void
 
@@ -35,6 +35,7 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -43,12 +44,12 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 ```js
 sharing.isSharingSupported((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.isSharingSupported
+## sharing.isSharingSupported<sup>9+</sup>
 
 isSharingSupported(): Promise\<boolean>
 
@@ -71,6 +72,7 @@ isSharingSupported(): Promise\<boolean>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -79,13 +81,13 @@ isSharingSupported(): Promise\<boolean>
 
 ```js
 sharing.isSharingSupported().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.isSharing
+## sharing.isSharing<sup>9+</sup>
 
 isSharing(callback: AsyncCallback\<boolean>): void
 
@@ -108,19 +110,21 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **示例：**
 
 ```js
 sharing.isSharing((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.isSharing
+## sharing.isSharing<sup>9+</sup>
 
 isSharing(): Promise\<boolean>
 
@@ -143,20 +147,22 @@ isSharing(): Promise\<boolean>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **示例：**
 
 ```js
 sharing.isSharing().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.startSharing
+## sharing.startSharing<sup>9+</sup>
 
 startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -180,6 +186,7 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                             |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -194,13 +201,14 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.startSharing
+## sharing.startSharing<sup>9+</sup>
 
 startSharing(type: SharingIfaceType): Promise\<void>
 
@@ -228,6 +236,7 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
+| 202     | Non-system applications use system APIs.                             |
 | 201     | Permission denied.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
@@ -243,15 +252,16 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI).then(() => {
-    console.log("start wifi sharing successful");
+  console.log("start wifi sharing successful");
 }).catch(error => {
-    console.log("start wifi sharing failed");
+  console.log("start wifi sharing failed");
 });
 ```
 
-## sharing.stopSharing
+## sharing.stopSharing<sup>9+</sup>
 
 stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -275,10 +285,12 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -287,13 +299,14 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.stopSharing
+## sharing.stopSharing<sup>9+</sup>
 
 stopSharing(type: SharingIfaceType): Promise\<void>
 
@@ -322,10 +335,12 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -334,15 +349,16 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI).then(() => {
-    console.log("stop wifi sharing successful");
+  console.log("stop wifi sharing successful");
 }).catch(error => {
-    console.log("stop wifi sharing failed");
+  console.log("stop wifi sharing failed");
 });
 ```
 
-## sharing.getStatsRxBytes
+## sharing.getStatsRxBytes<sup>9+</sup>
 
 getStatsRxBytes(callback: AsyncCallback\<number>): void
 
@@ -365,6 +381,8 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -372,12 +390,12 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsRxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsRxBytes
+## sharing.getStatsRxBytes<sup>9+</sup>
 
 getStatsRxBytes(): Promise\<number>
 
@@ -400,6 +418,8 @@ getStatsRxBytes(): Promise\<number>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -407,13 +427,13 @@ getStatsRxBytes(): Promise\<number>
 
 ```js
 sharing.getStatsRxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.getStatsTxBytes
+## sharing.getStatsTxBytes<sup>9+</sup>
 
 getStatsTxBytes(callback: AsyncCallback\<number>): void
 
@@ -436,6 +456,8 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -443,12 +465,12 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsTxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsTxBytes
+## sharing.getStatsTxBytes<sup>9+</sup>
 
 getStatsTxBytes(): Promise\<number>
 
@@ -471,6 +493,8 @@ getStatsTxBytes(): Promise\<number>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -478,13 +502,13 @@ getStatsTxBytes(): Promise\<number>
 
 ```js
 sharing.getStatsTxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.getStatsTotalBytes
+## sharing.getStatsTotalBytes<sup>9+</sup>
 
 getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
@@ -507,6 +531,8 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -514,12 +540,12 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsTotalBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsTotalBytes
+## sharing.getStatsTotalBytes<sup>9+</sup>
 
 getStatsTotalBytes(): Promise\<number>
 
@@ -542,6 +568,8 @@ getStatsTotalBytes(): Promise\<number>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -549,13 +577,13 @@ getStatsTotalBytes(): Promise\<number>
 
 ```js
 sharing.getStatsTotalBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.getSharingIfaces
+## sharing.getSharingIfaces<sup>9+</sup>
 
 getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void
 
@@ -579,6 +607,7 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -588,14 +617,15 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getSharingIfaces
+## sharing.getSharingIfaces<sup>9+</sup>
 
 getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
@@ -624,6 +654,7 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -633,15 +664,16 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.getSharingState
+## sharing.getSharingState<sup>9+</sup>
 
 getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void
 
@@ -665,6 +697,7 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -674,14 +707,15 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getSharingState
+## sharing.getSharingState<sup>9+</sup>
 
 getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
@@ -704,6 +738,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -719,15 +754,16 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.getSharableRegexes
+## sharing.getSharableRegexes<sup>9+</sup>
 
 getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void
 
@@ -751,6 +787,7 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -760,14 +797,15 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getSharableRegexes
+## sharing.getSharableRegexes<sup>9+</sup>
 
 getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
@@ -796,6 +834,7 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -805,15 +844,16 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
-## sharing.on('sharingStateChange')
+## sharing.on('sharingStateChange')<sup>9+</sup>
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
@@ -837,17 +877,18 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
-   sharing.on('sharingStateChange', (data) => {
-    console.log('on sharingStateChange：' + JSON.stringify(data));
+sharing.on('sharingStateChange', (data) => {
+  console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('sharingStateChange')
+## sharing.off('sharingStateChange')<sup>9+</sup>
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
@@ -871,19 +912,21 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
 sharing.off('sharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.on('interfaceSharingStateChange')
+## sharing.on('interfaceSharingStateChange')<sup>9+</sup>
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 注册网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
@@ -905,19 +948,21 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIface
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
- sharing.on('interfaceSharingStateChange', (data) => {
-    console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+sharing.on('interfaceSharingStateChange', (data) => {
+  console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('interfaceSharingStateChange')
+## sharing.off('interfaceSharingStateChange')<sup>9+</sup>
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 注销网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
@@ -939,17 +984,18 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfa
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
 sharing.off('interfaceSharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.on('sharingUpstreamChange')
+## sharing.on('sharingUpstreamChange')<sup>9+</sup>
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
@@ -973,17 +1019,18 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
-  sharing.on('sharingUpstreamChange', (data) => {
-    console.log('on sharingUpstreamChange：' + JSON.stringify(data));
+sharing.on('sharingUpstreamChange', (data) => {
+  console.log('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('sharingUpstreamChange')
+## sharing.off('sharingUpstreamChange')<sup>9+</sup>
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
@@ -1007,17 +1054,18 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 
 **示例：**
 
 ```js
 sharing.off('sharingUpstreamChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
-## SharingIfaceState
+## SharingIfaceState<sup>9+</sup>
 
 网络共享状态。
 
@@ -1031,7 +1079,7 @@ sharing.off('sharingUpstreamChange', (data) => {
 | SHARING_NIC_CAN_SERVER | 2 | 可提供网络共享。 |
 | SHARING_NIC_ERROR      | 3 | 网络共享错误。 |
 
-## SharingIfaceType
+## SharingIfaceType<sup>9+</sup>
 
 网络共享类型。
 

@@ -232,7 +232,6 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -415,7 +414,6 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
@@ -574,7 +572,6 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**

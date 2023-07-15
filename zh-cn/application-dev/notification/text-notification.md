@@ -3,8 +3,7 @@
 
 基础类型通知主要应用于发送短信息、提示信息、广告推送等，支持普通文本类型、长文本类型、多行文本类型和图片类型。
 
-
-  **表1** 基础类型通知中的内容分类
+**表1** 基础类型通知中的内容分类
 
 | 类型 | 描述 |
 | -------- | -------- |
@@ -13,8 +12,7 @@
 | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型。 |
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
 
-
-目前系统仅通知栏订阅了通知，将通知显示在通知栏里。基础类型通知呈现效果示意图如下所示。
+目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
 
 **图1** 基础类型通知呈现效果示意图  
 ![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
@@ -22,7 +20,7 @@
 
 ## 接口说明
 
-通知发布接口如下表所示，不同发布类型通知由[NotificationRequest](../reference/apis/js-apis-notificationManager.md#notificationrequest)的字段携带不同的信息。
+通知发布接口如下表所示，不同发布类型通知由[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的字段携带不同的信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -48,21 +46,21 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
-      	normal: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
+          normal: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+          }
         }
-      }
+      };
       
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-              return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -74,25 +72,25 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
-      	longText: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	  longText: 'test_longText',
-      	  briefText: 'test_briefText',
-      	  expandedTitle: 'test_expandedTitle',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
+          longText: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            longText: 'test_longText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+          }
         }
-      }
+      };
       
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-              return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -104,24 +102,24 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
-      	multiLine: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  briefText: 'test_briefText',
-      	  longTitle: 'test_longTitle',
-      	  lines: ['line_01', 'line_02', 'line_03', 'line_04'],
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
+          multiLine: {
+            title: 'test_title',
+            text: 'test_text',
+            briefText: 'test_briefText',
+            longTitle: 'test_longTitle',
+            lines: ['line_01', 'line_02', 'line_03', 'line_04'],
+          }
         }
-      }
+      };
       
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
         if (err) {
-      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-      	return;
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
         }
-        console.info(`[ANS] publish success`);
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -132,27 +130,27 @@
       ```ts
       let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
       let notificationRequest: notificationManager.NotificationRequest = {
-          id: 1,
-          content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-              picture: {
-                title: 'test_title',
-                text: 'test_text',
-                additionalText: 'test_additionalText',
-                briefText: 'test_briefText',
-                expandedTitle: 'test_expandedTitle',
-                picture: imagePixelMap
-              }
+        id: 1,
+        content: {
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+          picture: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+            picture: imagePixelMap
           }
-      }
+        }
+      };
       
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-      	return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    

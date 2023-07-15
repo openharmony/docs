@@ -376,7 +376,7 @@ If an API implements too many features and cannot be named in a few words, it us
 
 Do not assume that developers have the same background information as you do.
 
-For example, you may name a field **language** and believe all the readers know that you are talking about the programming language. In fact, someone might wonder whether you are talking about the language of speech. Name it **programmingLanuage** will eliminate the misunderstanding.
+For example, you may name a field **language** and believe all the readers know that you are talking about the programming language. In fact, someone might wonder whether you are talking about the language of speech. Name it **programmingLanguage** will eliminate the misunderstanding.
 
 However, do not go to another extreme. If the class name or namespace name contains a prefix, do not repeat it in the function.  
 
@@ -497,7 +497,7 @@ Certain APIs are available only for specific devices. Example:
 * Health sensor APIs are available only for wearables.
 * Vehicle control APIs are available only for telematics devices.
 
-You can calibrate the API application scenarios by referring to [SysCap](../application-dev/quick-start/syscap.md).
+You can calibrate the API application scenarios by referring to [SysCap](../application-dev/reference/syscap.md).
 
 ### Consistency
 

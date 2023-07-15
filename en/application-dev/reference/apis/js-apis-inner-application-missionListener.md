@@ -2,6 +2,16 @@
 
 The **MissionListener** module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager.md#missionmanageron).
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name       | Type                | Mandatory| Description                                                        |
@@ -10,9 +20,9 @@ The **MissionListener** module defines the listeners used to observe the mission
 | onMissionDestroyed   | function               | No  | Called when the system destroys the mission.|
 | onMissionSnapshotChanged   | function               | No  | Called when the system updates the mission snapshot.|
 | onMissionMovedToFront   | function               | No  | Called when the system moves the mission to the foreground.|
-| onMissionLabelUpdated   | function               | No  | Called when the system updates the mission label.|
-| onMissionIconUpdated   | function               | No  | Called when the system updates the mission icon.|
-| onMissionClosed   | function               | No  | Called when the system closes the mission.|
+| onMissionLabelUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission label.|
+| onMissionIconUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission icon.|
+| onMissionClosed<sup>9+</sup>   | function               | No  | Called when the system closes the mission.|
 
 **Example**
 ```ts

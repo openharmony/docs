@@ -122,6 +122,14 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -209,6 +217,14 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -295,32 +311,35 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+    import missionManager from '@ohos.app.ability.missionManager';
 
-  let testMissionId = 1;
-  try {
-    let allMissions=await missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
-    if (allMissions && allMissions.length > 0) {
-        testMissionId = allMissions[0].missionId;
-    }
+    let testMissionId = 1;
 
-    missionManager.getMissionInfo('', testMissionId, (error, mission) => {
-        if (error) {
+    missionManager.getMissionInfos('',10)
+    .then((allMissions) => {
+        try {
+        if (allMissions && allMissions.length > 0) {
+            testMissionId = allMissions[0].missionId;
+        }
+
+        missionManager.getMissionInfo('', testMissionId, (error, mission) => {
+            if (error) {
             console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
-        } else {
+            } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
             console.log('mission.lockedState = ${mission.lockedState}');
             console.log('mission.timestamp = ${mission.timestamp}');
             console.log('mission.label = ${mission.label}');
             console.log('mission.iconPath = ${mission.iconPath}');
+            }
+        });
+        } catch (paramError) {
+        console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
         }
-    });
-  } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+    })
+    .catch(function(err){console.log(err);});
   ```
-
 
 ## missionManager.getMissionInfo
 
@@ -624,6 +643,14 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -667,6 +694,14 @@ lockMission(missionId: number): Promise&lt;void&gt;;
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
@@ -701,6 +736,14 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 任务ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -743,6 +786,14 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -895,8 +946,8 @@ clearAllMissions(): Promise&lt;void&gt;;
 import missionManager from '@ohos.app.ability.missionManager';
 
 try {
-    missionManager.clearAllMissions(bundleName).then(() => {
-        console.info('clearAllMissions successfully.');
+    missionManager.clearAllMissions().then((data) => {
+        console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
     }).catch(err => {
         console.error('clearAllMissions failed: ${err.message}');
     });
@@ -923,6 +974,14 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -962,6 +1021,14 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | missionId | number | 是 | 任务ID。 |
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1007,6 +1074,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -1022,4 +1097,316 @@ try {
 } catch (error) {
     console.error('moveMissionToFront failed. Cause: ${error.message}');
 }
+```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void;
+
+将指定任务批量切到前台，以回调函数的方式返回。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, (err, data) => {
+            if (err) {
+                console.error('moveMissionsToForeground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void;
+
+将指定任务批量切换到前台，并将任务ID等于topMission的任务移动到最顶层，以回调函数的方式返回。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
+  | topMission | number | 是 | 待移动到最顶层的任务ID |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, toShows[0], (err, data) => {
+            if (err) {
+                console.error('moveMissionsToForeground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;；
+
+将指定任务批量切到前台，并将任务ID等于topMission的任务移动到最顶层，以promise的方式返回。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
+  | topMission | number | 否 | 待移动到最顶层的任务ID |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
+            console.log("moveMissionsToForeground is called" );
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToBackground<sup>10+</sup>
+
+moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void;
+
+将指定任务批量切到后台，以回调函数的方式返回, 返回的结果任务ID按被隐藏时的任务层级排序。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
+  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+
+        let toHides = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+            toHides.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToBackground(toHides, (err, data) => {
+            if (err) {
+                console.error('moveMissionsToBackground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToBackground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## missionManager.moveMissionsToBackground<sup>10+</sup>
+
+moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+
+将指定任务批量切到后台，以promise的方式返回, 返回的结果按被隐藏时的任务层级排序。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+
+        let toHides = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+            toHides.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToBackground(toHides).then((hideRes) => {
+            console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
 ```

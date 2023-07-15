@@ -70,7 +70,7 @@ struct Index {
 ```
 
 
-当PageAbility的启动模式设置为标准模式或为首次启动单例模式的PageAbility时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)），在调用方PageAbility中，通过want中的parameters参数传递要启动的指定页面的pages信息，调用startAbility()方法启动PageAbility。被调用方可以在onCreate中使用featureAbility的getWant方法获取want，再通过调用router.push实现启动指定页面。
+当PageAbility的启动模式设置为多实例模式或为首次启动单例模式的PageAbility时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)），在调用方PageAbility中，通过want中的parameters参数传递要启动的指定页面的pages信息，调用startAbility()方法启动PageAbility。被调用方可以在onCreate中使用featureAbility的getWant方法获取want，再通过调用router.push实现启动指定页面。
 
 
 调用方的页面中实现按钮点击触发startAbility方法启动目标端PageAbility，startAbility方法的入参want中携带指定页面信息，示例代码如下：
@@ -83,7 +83,7 @@ struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    // ...
+    ...
     Button("startAbility")
       .onClick(() => {
         featureAbility.startAbility({
@@ -98,7 +98,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
     Button("page2")
       .onClick(() => {
         featureAbility.startAbility({
@@ -113,7 +113,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
   }
 }
 ```
@@ -136,7 +136,7 @@ export default {
     })
   },
   onDestroy() {
-    // ...
+    ...
   },
 }
 ```

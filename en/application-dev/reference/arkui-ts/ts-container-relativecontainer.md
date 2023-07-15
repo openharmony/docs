@@ -15,7 +15,7 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
    * Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **VerticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** attributes of the container, respectively.
  * A child component can set the container or another child component as the anchor. 
    * To show in the **\<RelativeContainer>**, child components must have an ID. The container ID is fixed at **__container__**. 
-   * Three positions of the child component in a direction can use three positions of the container or another child components in the same direction as anchors. If anchors are set for more than two positions in a single direction, the third position is skipped. 
+   * Three positions on the child component in a specific direction can use as anchors three positions on the container or another child component in the same direction. If anchors are set for more than two positions in a single direction, then: Start and Center are preferred in the horizontal direction, and Top and Center are preferred in the vertical direction.
    * The child component size set on the frontend page is not affected by the **\<RelativeContainer>** rules. If two or more **alignRules** values are set for one direction of the child component, you are not advised to set the size for this direction.
    * If offset is required after the alignment, it can be set through **offset**. 
  * Exceptions

@@ -1,6 +1,6 @@
 # JS Service Widget UI Components
 
-- JS Service Widget UI Framework
+- Framework Overview
   - [File Organization](js-service-widget-file.md)
   - Syntax
     - [HML](js-service-widget-syntax-hml.md)
@@ -8,8 +8,7 @@
   - [Multi-Language Capability](js-service-widget-multiple-languages.md)
   - [Version Compatibility Adaptation](js-service-widget-version-compatibility.md)
   - [Theme Configuration](js-service-widget-theme.md)
-- Components
-  - Universal
+- Universal Component Information
     - [Universal Attributes](js-service-widget-common-attributes.md)
     - [Universal Styles](js-service-widget-common-styles.md)
     - [Universal Events](js-service-widget-common-events.md)

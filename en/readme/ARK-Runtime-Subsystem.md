@@ -72,7 +72,7 @@ The ArkCompiler runtime consists of four subsystems:
 
 ## Usage
 
-[Ark Runtime User Guide](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/ARK-Runtime-Usage-Guide.md)
+[Ark Runtime User Guide](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/README.md)
 
 ## Repositories Involved
 

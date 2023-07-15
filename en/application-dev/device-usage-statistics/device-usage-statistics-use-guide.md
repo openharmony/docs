@@ -1,4 +1,4 @@
-# Device Usage Statistics Development (API Version 9)
+# Device Usage Statistics Development
 
 ## When to Use
 
@@ -38,7 +38,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 ## How to Develop
 
 1. Before obtaining the device usage statistics, check whether the **ohos.permission.BUNDLE_ACTIVE_INFO** permission is configured. For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
-   
+    
 2. Query events of all applications based on the specified start time and end time. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
 
     ```js

@@ -94,7 +94,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -130,7 +130,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -150,6 +150,8 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -164,7 +166,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -186,6 +188,8 @@ Locks the screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Return value**
@@ -200,7 +204,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -216,9 +220,11 @@ screenlock.lock().then((data) => {
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
+Registers a callback for system events related to screen locking. This API can be called only by screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -240,7 +246,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -258,9 +264,11 @@ try {
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Sends an event to the screen lock service. This API uses an asynchronous callback to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -278,7 +286,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  |the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -296,9 +304,11 @@ screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-Sends an event to the screen lock service. This API uses a promise to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -314,6 +324,14 @@ Sends an event to the screen lock service. This API uses a promise to return the
 | Type              | Description                                          |
 | ----------------- | ---------------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 

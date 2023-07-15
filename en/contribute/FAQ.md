@@ -41,7 +41,7 @@ The possible causes for a verification failure include:
 
    **Solution**
 
-   Click [https://dco.openharmony.io/sign/Z2l0ZWUlMkZvcGVuX2hhcm1vbnk=) to sign the DCO or check the signing status. 
+   Click [here](https://dco.openharmony.cn/sign) to sign the DCO or check the signing status. 
 
    Enter **check dco** in the Pull Requests comment box and click **Comment**. The system will check the DCO signing status again.
 

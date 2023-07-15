@@ -179,15 +179,15 @@ Click the **&lt;toggle&gt;** component to change the text color and select the *
 ```html
 <!-- xxx.hml-->
 <div class="container">
-  <div class="contentToggle">
-    <toggle class="toggle" for="{{item in togglesList}}" onclick="toggleClick({{$idx}})" checked="{{item.checked}}">{{item.name}}</toggle>
-  </div>
-  <text class="size" style="color: {{color}};">width:{{width}},height:{{height}}</text>
-  <div style="width: {{width}}'px';height: {{height}}px;background:linear-gradient(to right,#FF0000,#0000FF);"></div>
-  <text id="menuId" class="text">change size</text>
-  <menu onselected="select" oncancel="cancel" target="menuId">
-    <option value="{{item.value}}" for="item in optionList">{{item.text}}</option>
-  </menu>
+    <div class="contentToggle">
+        <toggle class="toggle" for="{{item in togglesList}}" onclick="toggleClick({{$idx}})" checked="{{item.checked}}">{{item.name}}</toggle>
+    </div>
+    <text class="size" style="color: {{color}};">width:{{width}},height:{{height}}</text>
+    <div style="width: {{width}}px;height: {{height}}px; background-color: cornflowerblue;"></div>
+    <text id="menuId" class="text">change size</text>
+    <menu onselected="select" oncancel="cancel" target="menuId">
+        <option value="{{item.value}}" for="item in optionList">{{item.text}}</option>
+    </menu>
 </div>
 ```
 
@@ -242,7 +242,6 @@ option{
 
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
 export default {
   data:{
     fresh: false,
@@ -277,4 +276,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001276003485](figures/en-us_image_0000001276003485.gif)
+![en-us_image_0000001226815403](figures/en-us_image_0000001226815403.gif)

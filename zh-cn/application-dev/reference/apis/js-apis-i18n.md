@@ -32,7 +32,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
 | locale       | string  | 是    | 显示指定国家的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：** 
 
@@ -46,7 +46,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -71,7 +71,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
 | locale       | string  | 是    | 显示指定语言的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：** 
 
@@ -85,7 +85,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -116,7 +116,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -153,7 +153,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -177,7 +177,7 @@ static isSuggested(language: string, region?: string): boolean
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN  |
+| region   | string | 否    | 合法的地区ID，例如CN。默认值：使用SIM卡国家或地区。  |
 
 **返回值：** 
 
@@ -191,7 +191,7 @@ static isSuggested(language: string, region?: string): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -222,7 +222,7 @@ static getSystemLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -239,7 +239,7 @@ static setSystemLanguage(language: string): void
 
 设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -257,7 +257,7 @@ static setSystemLanguage(language: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -288,7 +288,7 @@ static getSystemRegion(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -305,7 +305,7 @@ static setSystemRegion(region: string): void
 
 设置系统区域。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -323,7 +323,7 @@ static setSystemRegion(region: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -354,7 +354,7 @@ static getSystemLocale(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -371,7 +371,7 @@ static setSystemLocale(locale: string): void
 
 设置系统Locale。
 
-此接口为系统接口。 
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -389,7 +389,7 @@ static setSystemLocale(locale: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -420,7 +420,7 @@ static is24HourClock(): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -435,9 +435,9 @@ static is24HourClock(): boolean
 
 static set24HourClock(option: boolean): void
 
-修改系统时间的24小时制设置。
+设置系统时间为24小时。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -455,7 +455,7 @@ static set24HourClock(option: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -473,7 +473,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 在系统偏好语言列表中的指定位置添加偏好语言。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -484,7 +484,7 @@ static addPreferredLanguage(language: string, index?: number): void
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
 | language | string | 是    | 待添加的偏好语言。  |
-| index    | number | 否    | 偏好语言的添加位置。 |
+| index    | number | 否    | 偏好语言的添加位置。默认值：系统偏好语言列表长度。 |
 
 **错误码：**
 
@@ -492,7 +492,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -512,7 +512,7 @@ static removePreferredLanguage(index: number): void
 
 删除系统偏好语言列表中指定位置的偏好语言。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -530,7 +530,7 @@ static removePreferredLanguage(index: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -563,7 +563,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -578,7 +578,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 static getFirstPreferredLanguage(): string
 
-获取偏好语言列表中的第一个偏好语言。
+获取系统偏好语言列表中的第一个偏好语言。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -594,7 +594,7 @@ static getFirstPreferredLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -625,7 +625,7 @@ static getAppPreferredLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -642,7 +642,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 设置系统是否使用本地数字。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -660,7 +660,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```ts
@@ -691,7 +691,7 @@ static getUsingLocalDigit(): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```ts
@@ -707,7 +707,7 @@ static getUsingLocalDigit(): boolean
 
 isRTL(locale: string): boolean
 
-获取是否为从右至左显示语言。
+获取该区域是否为从右至左显示语言。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -743,7 +743,7 @@ getCalendar(locale: string, type? : string): Calendar
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | 合法的locale值，例如zh-Hans-CN。                 |
-| type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。当type没有给出时，采用区域默认的日历类型。 |
+| type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。默认值：区域默认的日历类型。 |
 
 **返回值：** 
 
@@ -818,9 +818,9 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | year   | number | 是    | 设置的年。  |
 | month  | number | 是    | 设置的月。  |
 | date   | number | 是    | 设置的日。  |
-| hour   | number | 否    | 设置的小时。 |
-| minute | number | 否    | 设置的分钟。 |
-| second | number | 否    | 设置的秒。  |
+| hour   | number | 否    | 设置的小时。默认值：系统小时。 |
+| minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
+| second | number | 否    | 设置的秒。默认值：系统秒。 |
 
 **示例：** 
   ```js
@@ -990,7 +990,7 @@ get(field: string): number
 
 getDisplayName(locale: string): string
 
-获取日历对象在locale所指定的区域的名字。
+获取日历对象在该区域的名字。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -998,7 +998,7 @@ getDisplayName(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | locale指定获取哪个区域下该calendar的名字，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
+| locale | string | 是    | locale用于指定区域，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
 
 **返回值：** 
 
@@ -1017,7 +1017,7 @@ getDisplayName(locale: string): string
 
 isWeekend(date?: Date): boolean
 
-判断给定的日期是否在日历中是周末。
+判断指定的日期在日历中是否为周末。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1025,13 +1025,13 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 判断日期在日历中是否是周末。如果不传日期参数，则判断当前日期是否为周末。 |
+| date | Date | 否    | 指定的日期。若不填，则判断当前日期是否为周末。默认值：系统日期。 |
 
 **返回值：** 
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
-| boolean | 当所判断的日期为周末时，返回&nbsp;true，否则返回false。 |
+| boolean | 若判断指定日期为周末时，返回true，否则返回false。 |
 
 **示例：** 
   ```js
@@ -1059,7 +1059,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | 否    | 电话号码格式化对象的相关选项。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。默认值：NATIONAL。  |
 
 **示例：** 
   ```js
@@ -1149,7 +1149,7 @@ getLocationName(number: string, locale: string): string
   ```
 
 
-## PhoneNumberFormatOptions<sup>9+</sup>
+## PhoneNumberFormatOptions<sup>8+</sup>
 
 表示电话号码格式化对象可设置的属性。
 
@@ -1157,7 +1157,7 @@ getLocationName(number: string, locale: string): string
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1184,7 +1184,7 @@ getInstance(locale?:string): IndexUtil
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 否    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| locale | string | 否    | 区域设置信息字符串，包括语言以及可选的脚本和区域。默认值：系统Locale。 |
 
 **返回值：** 
 
@@ -1205,7 +1205,7 @@ getInstance(locale?:string): IndexUtil
 
 getIndexList(): Array&lt;string&gt;
 
-获取当前locale对应的索引列表。
+获取当前区域对应的索引列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1228,7 +1228,7 @@ getIndexList(): Array&lt;string&gt;
 
 addLocale(locale: string): void
 
-将新的locale对应的索引加入当前索引列表。
+在当前索引列表中添加新的区域。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1236,7 +1236,7 @@ addLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| locale | string | 是    | 区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 
 **示例：** 
   ```js
@@ -1305,7 +1305,7 @@ getLineInstance(locale: string): BreakIterator
 
 setLineBreakText(text: string): void
 
-设置[BreakIterator](#breakiterator8)要处理的文本。
+设置BreakIterator要处理的文本。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1326,7 +1326,7 @@ setLineBreakText(text: string): void
 
 getLineBreakText(): string
 
-获取[BreakIterator](#breakiterator8)当前处理的文本。
+获取BreakIterator当前处理的文本。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1348,7 +1348,7 @@ getLineBreakText(): string
 
 current(): number
 
-获取[BreakIterator](#breakiterator8)对象在当前处理的文本中的位置。
+获取BreakIterator对象在当前处理的文本中的位置。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1370,7 +1370,7 @@ current(): number
 
 first(): number
 
-将[BreakIterator](#breakiterator8)对象设置到第一个可断句的分割点。第一个分割点总是被处理的文本的起始位置。
+将BreakIterator对象设置到第一个可断句的分割点。第一个分割点总是被处理的文本的起始位置。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1392,7 +1392,7 @@ first(): number
 
 last(): number
 
-将[BreakIterator](#breakiterator8)对象的位置设置到最后一个可断句的分割点。最后一个分割点总是被处理文本末尾的下一个位置。
+将BreakIterator对象的位置设置到最后一个可断句的分割点。最后一个分割点总是被处理文本末尾的下一个位置。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1414,7 +1414,7 @@ last(): number
 
 next(index?: number): number
 
-如果index给出，并且index是一个正数将[BreakIterator](#breakiterator8)向后移动number个可断句的分割点，如果n是一个负数，向前移动相应个分割点。若index没有给出，则相当于index = 1。
+将BreakIterator向后移动相应个分割点。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1422,13 +1422,13 @@ next(index?: number): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否    | [BreakIterator](#breakiterator8)将要移动的分割点数，正数代表向后移动，负数代表向前移动。若index没有给出，则按照index=1处理。 |
+| index | number | 否    | BreakIterator将要移动的分割点数。正数代表向后移动，即将BreakIterator向后移动number个可断句的分割点；负数代表向前移动，即向前移动相应个分割点。默认值：1。 |
 
 **返回值：** 
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回移动了index个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 返回移动了index个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：** 
   ```js
@@ -1444,7 +1444,7 @@ next(index?: number): number
 
 previous(): number
 
-将[BreakIterator](#breakiterator8)移动到前一个分割点处。
+将BreakIterator向前移动一个分割点。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1452,7 +1452,7 @@ previous(): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回移动到前一个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 返回移动到前一个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：** 
   ```js
@@ -1468,7 +1468,7 @@ previous(): number
 
 following(offset: number): number
 
-将[BreakIterator](#breakiterator8)设置到由offset指定的位置的后面一个分割点。返回移动后[BreakIterator](#breakiterator8)的位置。
+将BreakIterator设置到指定位置的后面一个分割点。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1476,13 +1476,13 @@ following(offset: number): number
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | 是    | 将[BreakIterator](#breakiterator8)对象的位置设置到由offset所指定的位置的下一个分割点。 |
+| offset | number | 是    | 将BreakIterator设置到指定位置的后面一个分割点。 |
 
 **返回值：** 
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回[BreakIterator](#breakiterator8)移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
+| number | 返回BreakIterator移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
 
 **示例：** 
   ```js
@@ -1498,7 +1498,7 @@ following(offset: number): number
 
 isBoundary(offset: number): boolean
 
-如果offset所指定的文本位置是一个分割点，那么返回true，否则返回false。如果返回true, 将[BreakIterator](#breakiterator8)对象设置到offset所指定的位置, 否则相当于调用[following](#following8)(offset)。
+判断文本指定位置是否为分割点。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1506,7 +1506,7 @@ isBoundary(offset: number): boolean
 
 | 参数名    | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | ----------- |
-| offset | number | 是    | 指定需要进行判断的位置 |
+| offset | number | 是    | 若offset指定的文本位置是一个分割点，则返回true，否则返回false。返回true时，将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
 
 **返回值：** 
 
@@ -1535,7 +1535,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| zondID | string | 否    | 时区ID。 |
+| zondID | string | 否    | 时区ID。默认值：系统时区。 |
 
 **返回值：** 
 
@@ -1577,7 +1577,7 @@ getID(): string
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
-获取时区的本地化表示。
+获取时区对象的本地化表示。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1585,8 +1585,8 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | 否    | 区域ID。                |
-| isDST  | boolean | 否    | 表示获取时区对象的表示时是否考虑夏令时。 |
+| locale | string  | 否    | 区域ID。默认值：系统Locale。                |
+| isDST  | boolean | 否    | 时区对象本地化表示时是否考虑夏令时。默认值：false。 |
 
 **返回值：** 
 
@@ -1634,7 +1634,7 @@ getOffset(date?: number): number
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
 
 **示例：** 
   ```js
@@ -1689,7 +1689,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 static getCityDisplayName(cityID: string, locale: string): string
 
-获取某时区城市在locale下的本地化显示。
+获取某时区城市在该区域的本地化显示。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1737,6 +1737,35 @@ static getTimezoneFromCity(cityID: string): TimeZone
   let timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
+### getTimezonesByLocation<sup>10+</sup>
+
+static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
+
+创建某经纬度对应的时区对象数组。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明     |
+| --------- | ------ | ---- | ------ |
+| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值 |
+| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值 |
+
+**返回值：** 
+
+| 类型       | 说明          |
+| -------- | ----------- |
+| Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
+
+**示例：** 
+  ```js
+  let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  for (var i = 0; i < timezoneArray.length; i++) {
+     let tzId = timezoneArray[i].getID();
+  }
+  ```
+
 
 ## Transliterator<sup>9+</sup>
 
@@ -1757,8 +1786,8 @@ static getAvailableIDs(): string[]
 
 **示例：** 
   ```ts
-  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...]，共支持671个id
-  // 每一个id由使用中划线分割的两部分组成，格式为 source-destination
+  // ids共支持671个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
+  // 更多使用信息可以参考ISO-15924。
   let ids = I18n.Transliterator.getAvailableIDs();
   ```
 
@@ -2068,11 +2097,11 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 | 参数名      | 类型                     | 必填   | 说明                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
-| fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
-| toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
-| value    | number                 | 是    | 要被转换的单位的数量值。                             |
+| fromUnit | [UnitInfo](#unitinfo8) | 是    | 需要转换的单位。                                 |
+| toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
+| value    | number                 | 是    | 需要转换的单位的数量值。                             |
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
 
 **返回值：** 
 
@@ -2090,7 +2119,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 static getDateOrder(locale: string): string
 
-获取某一区域的日期的年、月、日排列顺序。
+获取该区域日期中年、月、日的排列顺序。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2104,7 +2133,7 @@ static getDateOrder(locale: string): string
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回某一区域的日期的年、月、日排列顺序 |
+| string | 返回该区域年、月、日的排列顺序。 |
 
 **示例：** 
   ```js
@@ -2181,6 +2210,206 @@ normalize(text: string): string
 | NFKD | 4 | NFKD范式。 |
 
 
+## SystemLocaleManager<sup>10+</sup>
+
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+创建SystemLocaleManager对象。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**示例：**
+  ```js
+  let systemLocaleManager= new I18n.SystemLocaleManager();
+  ```
+
+
+### getLanguageInfoArray<sup>10+</sup>
+
+getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+获取语言排序数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| languages | Array&lt;string&gt; | 是   | 待排序语言列表。|
+| options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**示例：**
+  ```js
+  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var languages = ["zh-Hans", "en-US", "pt", "ar"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  try {
+    // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
+    let sortedLanguages = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+### getRegionInfoArray<sup>10+</sup>
+
+getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+获取国家或地区排序数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| regions   | Array&lt;string&gt; | 是   | 待排序的国家或地区列表。|
+| options   | [SortOptions](#sortoptions10)   | 否   | 国家或地区排序选项。默认值：locale的默认值为系统Locale，isUseLocalName的默认值为false，isSuggestedFirst的默认值为true。 |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**示例：**
+  ```js
+  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var regions = ["CN", "US", "PT", "EG"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  try {
+    // 排序后的地区顺序为: [CN, EG, US, PT]
+    let sortedRegions = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getTimeZoneCityItemArray<sup>10+</sup>
+
+static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
+
+获取时区城市组合信息的数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息的数组。 |
+
+**示例：**
+  ```js
+  try {
+    let timeZoneCityItemArray = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    for (var i = 0; i < timeZoneCityItemArray.length; i++) {
+        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName + 
+                   ", " + timeZoneCityItemArray[i].offset + "\r\n");
+    }
+  } catch(error) {
+    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+## LocaleItem<sup>10+</sup>
+
+SystemLocaleManager对语言或国家地区列表的排序结果信息项。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型            |  必填   |  说明                                   |
+| --------------- | --------------- | ------ | --------------------------------------- |
+| id              | string          |   是   | 语言代码或国家地区代码，如"zh"、"CN"。    |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
+| displayName     | string          |  是   | id在SystemLocaleManager的Locale下的表示。|
+| localName       | string          |  否   | id的本地名称。                           |
+
+## TimeZoneCityItem<sup>10+</sup>
+
+封装时区城市组合信息的类型。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| zoneId          | string          |   是    | 时区Id，例如Asia/Shanghai。              |
+| cityId          | string          |   是    | 城市Id，例如Shanghai。                   |
+| cityDisplayName | string          |   是    | 城市Id在系统Locale下显示的名称。          |
+| offset          | int             |   是    | 时区Id的偏移量。                         |
+| zoneDisplayName | string          |   是    | 时区Id在系统Locale下显示的名称。          |
+| rawOffset       | int             |   否    | 时区Id的行偏移量。                       |
+
+
+## SuggestionType<sup>10+</sup>
+
+语言或国家地区的推荐类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称                   | 值  | 说明   |
+| ---------------------- | ---- | ---- |
+| SUGGESTION_TYPE_NONE   | 0x00 | 非推荐语言或国家地区。 |
+| SUGGESTION_TYPE_RELATED| 0x01 | 系统语言推荐的国家地区或系统国家地区推荐的语言。 |
+| SUGGESTION_TYPE_SIM    | 0x02 | Sim卡国家地区推荐的语言。 |
+
+
+## SortOptions<sup>10+<sup>
+
+语言或国家地区排序选项。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型            |  必填 |   说明                                 |
+| --------------- | --------------- | ---- | --------------------------------------- |
+| locale          | string          |  否  | 区域代码，如"zh-Hans-CN"。locale属性默认值为系统Locale。    |
+| isUseLocalName  | boolean         |  否  | 表示是否使用本地名称进行排序。若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
+| isSuggestedFirst | boolean        |  否  | 表示是否将推荐语言或国家地区在排序结果中置顶。isSuggestedFirst属性默认值为true。  |
+
+
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
@@ -2197,7 +2426,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
 | locale       | string  | 是    | 显示指定国家的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：** 
 
@@ -2228,7 +2457,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
 | locale       | string  | 是    | 显示指定语言的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：** 
 
@@ -2379,7 +2608,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
 | language | string | 是    | 待添加的偏好语言。  |
-| index    | number | 否    | 偏好语言的添加位置。 |
+| index    | number | 否    | 偏好语言的添加位置。默认值：系统偏好语言列表长度。 |
 
 **返回值：** 
 
@@ -2493,7 +2722,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
 | value    | number                 | 是    | 要被转换的单位的数量值。                             |
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
 
 **返回值：** 
 

@@ -21,9 +21,9 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 ```js
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 class EntryAbility extends InputMethodExtensionAbility {
-    onCreate() {
-        let context = this.context;
-    }
+  onCreate() {
+    let context = this.context;
+  }
 }
 ```
 
@@ -44,8 +44,8 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-this.context.destroy((err) => {
-    console.log('destroy result:' + JSON.stringify(err));
+this.context.destroy(() => {
+  console.log('Succeeded in destroying context.');
 });
 ```
 
@@ -67,8 +67,6 @@ destroy(): Promise\<void>;
 
 ```js
 this.context.destroy().then(() => {
-    console.log('Succeed in destoring context.');
-}).catch((error) => {
-    console.log('Failed to destory context: ' + JSON.stringify(error));
+  console.log('Succeed in destroying context.');
 });
 ```

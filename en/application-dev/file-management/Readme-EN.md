@@ -1,10 +1,27 @@
 # File Management
-- MediaLibrary Management
-  - [MediaLibrary Overview](medialibrary-overview.md)
-  - [Media Asset Management](medialibrary-resource-guidelines.md)
-  - [File Path Management](medialibrary-filepath-guidelines.md)
-  - [Album Management](medialibrary-album-guidelines.md)
 
-- File Access Framework
-  - [File Access Framework Overview](file-access-framework-overview.md)
-- [FilePicker Guide](filepicker-guidelines.md)
+- [File Management Overview](file-management-overview.md)
+- Application File
+  - [Application File Overview](app-file-overview.md)
+  - [Application Sandbox Directory](app-sandbox-directory.md)
+  - Application File Access and Management
+    - [Accessing Application Files](app-file-access.md)
+    - [Uploading and Downloading Application Files](app-file-upload-download.md)
+    - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
+  - [Sending Files to an Application Sandbox](send-file-to-app-sandbox.md)
+  - [Sharing an Application File](share-app-file.md)
+  - Application Data Backup and Restoration
+    - [Application Data Backup and Restoration Overview](app-file-backup-overview.md)
+    - [Backing Up and Restoring Application Access Data](app-file-backup-extension.md)
+    - [Backing Up and Restoring Application-triggered Data (for System Applications Only)](app-file-backup.md)
+- User File
+  - [User File Overview](user-file-overview.md)
+  - Selecting and Saving User Files (FilePicker)
+    - [Selecting User Files](select-user-file.md)
+    - [Saving User Files](save-user-file.md)
+  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
+- Distributed File System
+  - [Distributed File System Overview](distributed-fs-overview.md)
+  - [Setting the Security Level of a Distributed File](set-security-label.md)
+  - [Accessing Files Across Devices](file-access-across-devices.md)

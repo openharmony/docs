@@ -6,7 +6,7 @@
 
 ## 搭建编译环境
 
-开展移植前请参考[开发环境准备](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md)完成环境搭建工作。
+开展移植前请参考[开发环境准备](../quick-start/quickstart-ide-env-win.md)完成环境搭建工作。
 
 
 ## 获取源码
@@ -14,7 +14,7 @@
 
 ### 获取操作
 
-请参考[获取源码](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)完成源码下载并进行编译。
+请参考[获取源码](../get-code/sourcecode-acquire.md)完成源码下载并进行编译。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本文档仅适用于OpenHarmony LTS 3.0.1及之前版本，所以请获取对应版本的源码。

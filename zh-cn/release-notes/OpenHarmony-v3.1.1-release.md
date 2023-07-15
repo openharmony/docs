@@ -36,7 +36,7 @@
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.1&nbsp;Release | NA |
 | Public SDK | Ohos_sdk_public&nbsp;3.1.6.6 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>DevEco Studio 3.0 Beta4版本起，通过DevEco Studio获取的SDK默认为Public SDK。<br/>该版本Public SDK于7月6日单独更新发布。 |
-| Full SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用。 |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
@@ -142,7 +142,7 @@ repo forall -c 'git lfs pull'
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 ## 修复缺陷列表
 
@@ -151,7 +151,7 @@ repo forall -c 'git lfs pull'
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | 本地编译构建Hi3516开发板版本镜像                             |
-| [I4WDD3](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4WDD3) | 【RK3568】录像后无法查看视频                                 |
+| I4WDD3 | 【RK3568】录像后无法查看视频                                 |
 | [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB)   | 【Hi3516烧录】标准系统Hi3516镜像无法通过IDE烧录              |
 
 

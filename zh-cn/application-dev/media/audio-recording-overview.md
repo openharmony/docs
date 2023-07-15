@@ -6,9 +6,9 @@
 
 - [AVRecorder](using-avrecorder-for-recording.md)：功能较完善的音频、视频录制ArkTS/JS API，集成了音频输入录制、音频编码和媒体封装的功能。开发者可以直接调用设备硬件如麦克风录音，并生成m4a音频文件。
 
-- [AudioCapturer](using-audiocapturer-for-recording.md)：用于音频输入的的ArkTS/JS API，仅支持PCM格式，需要应用持续读取音频数据进行工作。应用可以在音频输出后添加数据处理，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体播放应用开发。
+- [AudioCapturer](using-audiocapturer-for-recording.md)：用于音频输入的的ArkTS/JS API，仅支持PCM格式，需要应用持续读取音频数据进行工作。应用可以在音频输出后添加数据处理，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体录制应用开发。
 
-- [OpenSLES](using-opensl-es-for-recording.md)：一套跨平台标准化的音频Native API，目前阶段唯一的音频类Native API，同样提供音频输入原子能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输入功能的录音应用使用。
+- [OpenSL ES](using-opensl-es-for-recording.md)：一套跨平台标准化的音频Native API，目前阶段唯一的音频类Native API，同样提供音频输入原子能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输入功能的录音应用使用。
 
 ## 开发音频录制应用须知
 

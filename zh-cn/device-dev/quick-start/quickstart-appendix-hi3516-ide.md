@@ -184,11 +184,16 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
    
    ![zh-cn_image_0000001274745038](figures/zh-cn_image_0000001274745038.png)
 
-2. 在**Tool Chain**页签中，DevEco Device Tool会自动检测依赖的编译工具链是否完备，如果提示部分工具缺失，可点击**Install**，自动安装所需工具链。
-   
-   ![zh-cn_image_0000001292531862](figures/zh-cn_image_0000001292531862.png)
+2. 在**Tool Chain**页签中，DevEco Device Tool会自动检测依赖的编译工具链是否完备。
 
-3. 安装Hi3516DV300相关工具链，部分工具安装需要使用root权限，请在**TERMINAL**窗口输入用户密码进行安装。
+   - 如工具为“uninstalled”状态（![status_uninstall](figures/status_uninstall.png)），可单击**Download Uninstalled Tools**，自动安装所需工具，或单击工具后方的**Download**安装指定工具。
+   - 如当前识别到的工具类型有缺失，需要补充，可单击**Add Utility**添加。
+   - 如工具无法通过**Download**方式安装，表示该工具未被DevEco Device Tool收录，需要开发者自行下载到本地后单击**Import**导入。
+   - 如“OpenHarmony Environment Dependency”的状态异常（![status_uninstall](figures/status_uninstall.png)），请单击**Install**安装。
+   
+   ![3516_standard_false](figures/3516_standard_false.png)
+
+   部分工具安装需要使用root权限，请在**TERMINAL**窗口输入用户密码进行安装。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    >
@@ -197,9 +202,7 @@ DevEco Device Tool支持Hi3516DV300开发板的源码一键编译功能，提供
 
    ![zh-cn_image_0000001274748606](figures/zh-cn_image_0000001274748606.png)
 
-   工具链自动安装完成后如下图所示。
-
-   ![zh-cn_image_0000001296270098](figures/zh-cn_image_0000001296270098.png)
+   安装完成后，工具和环境依赖的状态显示为![status_install](figures/status_install.png)。
 
 4. 在**hispark_taurus_standard**配置页签中，设置源码的编译类型**build_type**，默认为“debug”类型，请根据需要进行修改。
    
@@ -246,9 +249,12 @@ Hi3516DV300开发板标准系统的烧录方式包括USB烧录、网口烧录两
    
    ![zh-cn_image_0000001275752808](figures/zh-cn_image_0000001275752808.png)
 
-4. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
-   
-   ![Phoenix-upload](figures/Phoenix-upload.png)
+4. 在“Tool Chain”页签，检查Uploader烧录器工具是否已安装。
+
+   - 如工具为“uninstalled”状态（![status_uninstall](figures/status_uninstall.png)），可单击**Download Uninstalled Tools**，自动安装所需工具，或单击工具后方的**Download**安装指定工具。
+   - 如工具无法通过**Download**方式安装，表示该工具未被DevEco Device Tool收录，需要开发者自行下载到本地后单击**Import**导入。
+
+   ![3516_standard_false](figures/3516_standard_false.png)
 
 5. 在“hispark_taurus_standard”页签，设置烧录选项，包括upload_partitions_profile、upload_port和upload_protocol。配置完成后工程将自动保存。
 

@@ -66,7 +66,7 @@ Opens NFC.
 
 ## controller.enableNfc<sup>9+</sup>
 
-enableNfc(): boolean
+enableNfc(): void
 
 Enables NFC.
 
@@ -104,7 +104,7 @@ Closes NFC.
 
 ## controller.disableNfc<sup>9+</sup>
 
-disableNfc(): boolean
+disableNfc(): void
 
 Disables NFC.
 
@@ -176,7 +176,7 @@ Unsubscribes from the NFC state changes. The subscriber will not receive NFC sta
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type to unsubscribe from. The value is **nfcStateChange**.|
-| callback | Callback&lt;[NfcState](#nfcstate)&gt; | No| Callback for the NFC state changes. This parameter can be left blank.|
+| callback | Callback&lt;[NfcState](#nfcstate)&gt; | No| Callback for the NFC state changes. This parameter can be left blank. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
   
 **Example**
 

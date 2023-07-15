@@ -31,7 +31,7 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle对象说明) | 设置单选框选中状态和非选中状态的样式。 <br/>从API version 10开始，该接口支持在ArkTS组件中使用。|
 
 ## 事件
@@ -62,6 +62,9 @@ struct RadioExample {
       Column() {
         Text('Radio1')
         Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -71,6 +74,9 @@ struct RadioExample {
       Column() {
         Text('Radio2')
         Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -80,6 +86,9 @@ struct RadioExample {
       Column() {
         Text('Radio3')
         Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -90,4 +99,4 @@ struct RadioExample {
   }
 }
 ```
-![](figures/radio.gif)
+![radio](figures/radio.gif)

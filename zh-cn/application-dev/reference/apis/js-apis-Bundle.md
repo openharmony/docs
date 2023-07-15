@@ -904,7 +904,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo)替代。
 
-getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void;
 
 获取调用方所在用户下已安装的应用信息，使用callback异步回调。
 

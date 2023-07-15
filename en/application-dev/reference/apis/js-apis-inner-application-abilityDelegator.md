@@ -6,6 +6,12 @@ The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** in
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## Usage
 
 An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**.
@@ -30,10 +36,18 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | Yes      | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
@@ -70,10 +84,18 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -105,10 +127,18 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -145,10 +175,18 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 - Example
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -180,10 +218,18 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -196,7 +242,7 @@ let monitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
@@ -220,10 +266,18 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | timeout  | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {
@@ -268,10 +322,18 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | ----------------------------------------------------------- | -------------------------- |
 | Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -305,7 +367,7 @@ Obtains the application context.
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let context = abilityDelegator.getAppContext();
@@ -334,7 +396,7 @@ Obtains the lifecycle state of an ability.
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -360,10 +422,18 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | GetCurrentTopAbility failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -387,10 +457,18 @@ Obtains the top ability of this application. This API uses a promise to return t
 | ----------------------------------------------------------- | -------------------------------------- |
 | Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Promise used to return the top ability.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | GetCurrentTopAbility failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -415,10 +493,30 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | want     | [Want](js-apis-application-want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -450,10 +548,30 @@ Starts an ability. This API uses a promise to return the result.
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -480,10 +598,18 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | ability  | UIAbility               | Yes  | Target ability.                                        |
 | callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | DoAbilityForeground failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -516,10 +642,18 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | DoAbilityForeground failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -547,10 +681,18 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | ability  | UIAbility                 | Yes  | Target ability.                                        |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | DoAbilityBackground failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -583,10 +725,18 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | DoAbilityBackground failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -616,7 +766,7 @@ Prints log information to the unit test console.
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -641,7 +791,7 @@ Prints log information to the unit test console. This API uses an asynchronous c
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -673,7 +823,7 @@ Prints log information to the unit test console. This API uses a promise to retu
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -700,7 +850,7 @@ Executes a shell command. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -728,7 +878,7 @@ Executes a shell command with the timeout period specified. This API uses an asy
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -762,7 +912,7 @@ Executes a shell command with the timeout period specified. This API uses a prom
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -788,10 +938,18 @@ Finishes the test and prints log information to the unit test console. This API 
 | code     | number               | Yes  | Log code.            |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | FinishTest failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -821,10 +979,18 @@ Finishes the test and prints log information to the unit test console. This API 
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | FinishTest failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -848,10 +1014,18 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -884,10 +1058,18 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -915,10 +1097,18 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -951,10 +1141,18 @@ Removes an **AbilityStageMonitor** object from the application memory. This API 
 | -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -982,10 +1180,18 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1023,10 +1229,18 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | -------------- | ------------------- |
 | Promise\<AbilityStage> | Promise used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1059,10 +1273,18 @@ Waits a period of time for an **AbilityStage** instance that matches the conditi
 | timeout | number | No  | Maximum waiting time, in milliseconds.|
 | callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {

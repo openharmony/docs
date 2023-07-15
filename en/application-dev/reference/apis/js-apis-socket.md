@@ -12,7 +12,7 @@ The **socket** module implements data transfer over TCPSocket, UDPSocket, WebSoc
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance
+## socket.constructUDPSocketInstance<sup>7+</sup>
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -26,19 +26,17 @@ Creates a **UDPSocket** object.
 | :--------------------------------- | :---------------------- |
 | [UDPSocket](#udpsocket) | **UDPSocket** object.|
 
-
 **Example**
 
 ```js
 let udp = socket.constructUDPSocketInstance();
 ```
 
-
-## UDPSocket
+## UDPSocket<sup>7+</sup>
 
 Defines a **UDPSocket** connection. Before invoking UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -68,15 +66,14 @@ Binds the IP address and port number. The port number can be specified or random
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
-	console.log('bind fail');
-	return;
+    console.log('bind fail');
+    return;
   }
   console.log('bind success');
 })
 ```
 
-
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -109,16 +106,15 @@ Binds the IP address and port number. The port number can be specified or random
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
-promise .then(() => {
+let promise = udp.bind({ address: '192.168.xx.xxx', port: 8080, family: 1 });
+promise.then(() => {
   console.log('bind success');
 }).catch(err => {
   console.log('bind fail');
 });
 ```
 
-
-### send
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -149,23 +145,22 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.send({
-  data:'Hello, server!',
+  data: 'Hello, server!',
   address: {
-	address:'192.168.xx.xxx',
-	port:xxxx,
-	family:1
+    address: '192.168.xx.xxx',
+    port: xxxx,
+    family: 1
   }
-}, err=> {
-	if (err) {
-	  console.log('send fail');
-	  return;
-	}
-	console.log('send success');
+}, err => {
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
 })
 ```
 
-
-### send
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -201,11 +196,11 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 ```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.send({
-  data:'Hello, server!',
+  data: 'Hello, server!',
   address: {
-	address:'192.168.xx.xxx',
-	port:xxxx,
-	family:1
+    address: '192.168.xx.xxx',
+    port: xxxx,
+    family: 1
   }
 });
 promise.then(() => {
@@ -215,8 +210,7 @@ promise.then(() => {
 });
 ```
 
-
-### close
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -238,15 +232,14 @@ Closes a UDPSocket connection. This API uses an asynchronous callback to return 
 let udp = socket.constructUDPSocketInstance();
 udp.close(err => {
   if (err) {
-	console.log('close fail');
-	return;
+    console.log('close fail');
+    return;
   }
   console.log('close success');
 })
 ```
 
-
-### close
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -274,15 +267,14 @@ promise.then(() => {
 });
 ```
 
-
-### getState
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **bind** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -306,29 +298,28 @@ Obtains the status of the UDPSocket connection. This API uses an asynchronous ca
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
-	console.log('bind fail');
-	return;
+    console.log('bind fail');
+    return;
   }
   console.log('bind success');
   udp.getState((err, data) => {
-	if (err) {
-	  console.log('getState fail');
-	  return;
-	}
-	console.log('getState success:' + JSON.stringify(data));
+    if (err) {
+      console.log('getState fail');
+      return;
+    }
+    console.log('getState success:' + JSON.stringify(data));
   })
 })
 ```
 
-
-### getState
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the UDPSocket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **bind** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -344,30 +335,30 @@ Obtains the status of the UDPSocket connection. This API uses a promise to retur
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promise.then(err => {
   if (err) {
-	console.log('bind fail');
-	return;
+    console.log('bind fail');
+    return;
   }
   console.log('bind success');
   let promise = udp.getState();
   promise.then(data => {
-	console.log('getState success:' + JSON.stringify(data));
+    console.log('getState success:' + JSON.stringify(data));
   }).catch(err => {
-	console.log('getState fail');
+    console.log('getState fail');
   });
-})
+});
 ```
 
-
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other attributes of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **bind** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -391,37 +382,36 @@ Sets other attributes of the UDPSocket connection. This API uses an asynchronous
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
+udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
-	console.log('bind fail');
-	return;
+    console.log('bind fail');
+    return;
   }
   console.log('bind success');
   udp.setExtraOptions({
-	receiveBufferSize:1000,
-	sendBufferSize:1000,
-	reuseAddress:false,
-	socketTimeout:6000,
-	broadcast:true
-  }, err=> {
-	if (err) {
-	  console.log('setExtraOptions fail');
-	  return;
-	}
-	console.log('setExtraOptions success');
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
+  }, err => {
+    if (err) {
+      console.log('setExtraOptions fail');
+      return;
+    }
+    console.log('setExtraOptions success');
   })
 })
 ```
 
-
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 Sets other attributes of the UDPSocket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **bind** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -450,28 +440,27 @@ Sets other attributes of the UDPSocket connection. This API uses a promise to re
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1});
+let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
   let promise1 = udp.setExtraOptions({
-	receiveBufferSize:1000,
-	sendBufferSize:1000,
-	reuseAddress:false,
-	socketTimeout:6000,
-	broadcast:true
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
   });
   promise1.then(() => {
-	console.log('setExtraOptions success');
+    console.log('setExtraOptions success');
   }).catch(err => {
-	console.log('setExtraOptions fail');
+    console.log('setExtraOptions fail');
   });
 }).catch(err => {
   console.log('bind fail');
 });
 ```
 
-
-### on('message')
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -483,27 +472,33 @@ Enables listening for message receiving events of the UDPSocket connection. This
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
 ```js
 let udp = socket.constructUDPSocketInstance();
+let messageView = '';
 udp.on('message', value => {
-	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
 
-
-### off('message')
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Disables listening for message receiving events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -511,15 +506,22 @@ Disables listening for message receiving events of the UDPSocket connection. Thi
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let callback = value =>{
-	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+let messageView = '';
+let callback = value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 udp.on('message', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -527,8 +529,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-
-### on('listening' | 'close')
+### on('listening' | 'close')<sup>7+</sup>
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -540,7 +541,7 @@ Enables listening for data packet message events or close events of the UDPSocke
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **listening**: data packet message event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -548,22 +549,21 @@ Enables listening for data packet message events or close events of the UDPSocke
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
-	console.log("on listening success");
+  console.log("on listening success");
 });
 udp.on('close', () => {
-	console.log("on close success" );
+  console.log("on close success");
 });
 ```
 
-
-### off('listening' | 'close')
+### off('listening' | 'close')<sup>7+</sup>
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Disables listening for data packet message events or close events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -578,15 +578,15 @@ Disables listening for data packet message events or close events of the UDPSock
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let callback1 = () =>{
-	console.log("on listening, success");
+let callback1 = () => {
+  console.log("on listening, success");
 }
 udp.on('listening', callback1);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('listening', callback1);
 udp.off('listening');
-let callback2 = () =>{
-	console.log("on close, success");
+let callback2 = () => {
+  console.log("on close, success");
 }
 udp.on('close', callback2);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -594,8 +594,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-
-### on('error')
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -607,7 +606,7 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br /> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -615,19 +614,18 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
-	console.log("on error, err:" + JSON.stringify(err))
+  console.log("on error, err:" + JSON.stringify(err))
 });
 ```
 
-
-### off('error')
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
 Disables listening for error events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -635,15 +633,15 @@ Disables listening for error events of the UDPSocket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br /> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let callback = err =>{
-	console.log("on error, err:" + JSON.stringify(err));
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -651,8 +649,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-
-## NetAddress
+## NetAddress<sup>7+</sup>
 
 Defines the destination address.
 
@@ -664,7 +661,7 @@ Defines the destination address.
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
 | family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
 
-## UDPSendOptions
+## UDPSendOptions<sup>7+</sup>
 
 Defines the parameters for sending data over the UDPSocket connection.
 
@@ -675,7 +672,7 @@ Defines the parameters for sending data over the UDPSocket connection.
 | data    | string \| ArrayBuffer<sup>7+</sup>                          | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
-## UDPExtraOptions
+## UDPExtraOptions<sup>7+</sup>
 
 Defines other properties of the UDPSocket connection.
 
@@ -684,12 +681,12 @@ Defines other properties of the UDPSocket connection.
 | Name           | Type   | Mandatory| Description                            |
 | ----------------- | ------- | ---- | -------------------------------- |
 | broadcast         | boolean | No  | Whether to send broadcast messages. The default value is **false**. |
-| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.  |
-| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.  |
+| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.  |
+| sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.  |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
-| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.|
+| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms. The default value is **0**.|
 
-## SocketStateBase
+## SocketStateBase<sup>7+</sup>
 
 Defines the status of the socket connection.
 
@@ -701,7 +698,7 @@ Defines the status of the socket connection.
 | isClose     | boolean | Yes  | Whether the connection is in the closed state.|
 | isConnected | boolean | Yes  | Whether the connection is in the connected state.|
 
-## SocketRemoteInfo
+## SocketRemoteInfo<sup>7+</sup>
 
 Defines information about the socket connection.
 
@@ -720,7 +717,7 @@ The UDP error code mapping is in the format of 2301000 + Linux kernel error code
 
 For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
 
-## socket.constructTCPSocketInstance
+## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -730,9 +727,9 @@ Creates a **TCPSocket** object.
 
 **Return value**
 
-  | Type                              | Description                   |
+| Type                              | Description                   |
   | :--------------------------------- | :---------------------- |
-  | [TCPSocket](#tcpsocket) | **TCPSocket** object.|
+| [TCPSocket](#tcpsocket) | **TCPSocket** object.|
 
 **Example**
 
@@ -740,12 +737,11 @@ Creates a **TCPSocket** object.
 let tcp = socket.constructTCPSocketInstance();
 ```
 
-
-## TCPSocket
+## TCPSocket<sup>7+</sup>
 
 Defines a TCPSocket connection. Before invoking TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance) to create a **TCPSocket** object.
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -775,15 +771,14 @@ Binds the IP address and port number. The port number can be specified or random
 let tcp = socket.constructTCPSocketInstance();
 tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
-	console.log('bind fail');
-	return;
+    console.log('bind fail');
+    return;
   }
   console.log('bind success');
 })
 ```
 
-
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -816,7 +811,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = tcp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -824,15 +819,14 @@ promise.then(() => {
 });
 ```
 
-
-### connect
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 Sets up a connection to the specified IP address and port number. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **bind** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -856,17 +850,16 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000}, err => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, err => {
   if (err) {
-	console.log('connect fail');
-	return;
+    console.log('connect fail');
+    return;
   }
   console.log('connect success');
 })
 ```
 
-
-### connect
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
@@ -899,7 +892,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success')
 }).catch(err => {
@@ -907,15 +900,14 @@ promise.then(() => {
 });
 ```
 
-
-### send
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -939,32 +931,29 @@ Sends data over a TCPSocket connection. This API uses an asynchronous callback t
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
-promise.then(() => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.send({
-	data:'Hello, server!'
-  },err => {
-	if (err) {
-	  console.log('send fail');
-	  return;
-	}
-	console.log('send success');
+    data: 'Hello, server!'
+    // Encoding is omitted here. The UTF-8 encoding format is used by default.
+  }, err => {
+    if (err) {
+      console.log('send fail');
+      return;
+    }
+    console.log('send success');
   })
-}).catch(err => {
-  console.log('connect fail');
-});
+})
 ```
 
-
-### send
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a TCPSocket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -993,24 +982,23 @@ Sends data over a TCPSocket connection. This API uses a promise to return the re
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.send({
-	data:'Hello, server!'
+    data: 'Hello, server!'
   });
   promise2.then(() => {
-	console.log('send success');
+    console.log('send success');
   }).catch(err => {
-	console.log('send fail');
+    console.log('send fail');
   });
 }).catch(err => {
   console.log('connect fail');
 });
 ```
 
-
-### close
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1038,15 +1026,14 @@ Closes a TCPSocket connection. This API uses an asynchronous callback to return 
 let tcp = socket.constructTCPSocketInstance();
 tcp.close(err => {
   if (err) {
-	console.log('close fail');
-	return;
+    console.log('close fail');
+    return;
   }
   console.log('close success');
 })
 ```
 
-
-### close
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -1080,15 +1067,14 @@ promise.then(() => {
 });
 ```
 
-
-### getRemoteAddress
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1110,30 +1096,26 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
-promise.then(() => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.getRemoteAddress((err, data) => {
-	if (err) {
-	  console.log('getRemoteAddressfail');
-	  return;
-	}
-	console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
+    if (err) {
+      console.log('getRemoteAddressfail');
+      return;
+    }
+    console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
   })
-}).catch(err => {
-  console.log('connect fail');
 });
 ```
 
-
-### getRemoteAddress
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1155,29 +1137,28 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.getRemoteAddress();
   promise2.then(() => {
-	console.log('getRemoteAddress success');
+    console.log('getRemoteAddress success');
   }).catch(err => {
-	console.log('getRemoteAddressfail');
+    console.log('getRemoteAddressfail');
   });
 }).catch(err => {
   console.log('connect fail');
 });
 ```
 
-
-### getState
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **bind** or **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1199,30 +1180,26 @@ Obtains the status of the TCPSocket connection. This API uses an asynchronous ca
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
-promise.then(() => {
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.getState((err, data) => {
-	if (err) {
-	  console.log('getState fail');
-	  return;
-	}
-	console.log('getState success:' + JSON.stringify(data));
+    if (err) {
+      console.log('getState fail');
+      return;
+    }
+    console.log('getState success:' + JSON.stringify(data));
   });
-}).catch(err => {
-  console.log('connect fail');
 });
 ```
 
-
-### getState
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TCPSocket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **bind** or **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1244,29 +1221,28 @@ Obtains the status of the TCPSocket connection. This API uses a promise to retur
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.getState();
   promise1.then(() => {
-	console.log('getState success');
+    console.log('getState success');
   }).catch(err => {
-	console.log('getState fail');
+    console.log('getState fail');
   });
 }).catch(err => {
   console.log('connect fail');
 });
 ```
 
-
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API can be called only after **bind** or **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1290,39 +1266,35 @@ Sets other properties of the TCPSocket connection. This API uses an asynchronous
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
-promise.then(() => {
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.setExtraOptions({
-	keepAlive: true,
-	OOBInline: true,
-	TCPNoDelay: true,
-	socketLinger: { on:true, linger:10 },
-	receiveBufferSize: 1000,
-	sendBufferSize: 1000,
-	reuseAddress: true,
-	socketTimeout: 3000,
-  },err => {
-	if (err) {
-	  console.log('setExtraOptions fail');
-	  return;
-	}
-	console.log('setExtraOptions success');
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: { on: true, linger: 10 },
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000,
+  }, err => {
+    if (err) {
+      console.log('setExtraOptions fail');
+      return;
+    }
+    console.log('setExtraOptions success');
   });
-}).catch(err => {
-  console.log('connect fail');
 });
 ```
 
-
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCPSocket connection. This API uses a promise to return the result.
 
->**NOTE**
->This API can be called only after **bind** or **connect** is successfully called.
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1351,31 +1323,30 @@ Sets other properties of the TCPSocket connection. This API uses a promise to re
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.setExtraOptions({
-	keepAlive: true,
-	OOBInline: true,
-	TCPNoDelay: true,
-	socketLinger: { on:true, linger:10 },
-	receiveBufferSize: 1000,
-	sendBufferSize: 1000,
-	reuseAddress: true,
-	socketTimeout: 3000,
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: { on: true, linger: 10 },
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000,
   });
   promise1.then(() => {
-	console.log('setExtraOptions success');
+    console.log('setExtraOptions success');
   }).catch(err => {
-	console.log('setExtraOptions fail');
+    console.log('setExtraOptions fail');
   });
 }).catch(err => {
   console.log('connect fail');
 });
 ```
 
-
-### on('message')
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1387,27 +1358,33 @@ Enables listening for message receiving events of the TCPSocket connection. This
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
+let messageView = '';
 tcp.on('message', value => {
-	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
 
-
-### off('message')
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Disables listening for message receiving events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1415,15 +1392,22 @@ Disables listening for message receiving events of the TCPSocket connection. Thi
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let callback = value =>{
-	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+let messageView = '';
+let callback = value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 tcp.on('message', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -1431,8 +1415,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-
-### on('connect' | 'close')
+### on('connect' | 'close')<sup>7+</sup>
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1444,7 +1427,7 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1452,22 +1435,21 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
-	console.log("on connect success")
+  console.log("on connect success")
 });
-tcp.on('close', data => {
-	console.log("on close success")
+tcp.on('close', () => {
+  console.log("on close success")
 });
 ```
 
-
-### off('connect' | 'close')
+### off('connect' | 'close')<sup>7+</sup>
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Disables listening for connection or close events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1475,22 +1457,22 @@ Disables listening for connection or close events of the TCPSocket connection. T
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let callback1 = () =>{
-	console.log("on connect success");
+let callback1 = () => {
+  console.log("on connect success");
 }
 tcp.on('connect', callback1);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('connect', callback1);
 tcp.off('connect');
-let callback2 = () =>{
-	console.log("on close success");
+let callback2 = () => {
+  console.log("on close success");
 }
 tcp.on('close', callback2);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -1498,8 +1480,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-
-### on('error')
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1511,7 +1492,7 @@ Enables listening for error events of the TCPSocket connection. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br /> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -1519,19 +1500,18 @@ Enables listening for error events of the TCPSocket connection. This API uses an
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('error', err => {
-	console.log("on error, err:" + JSON.stringify(err))
+  console.log("on error, err:" + JSON.stringify(err))
 });
 ```
 
-
-### off('error')
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
 Disables listening for error events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1539,15 +1519,15 @@ Disables listening for error events of the TCPSocket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br /> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let callback = err =>{
-	console.log("on error, err:" + JSON.stringify(err));
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -1555,8 +1535,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-
-## TCPConnectOptions
+## TCPConnectOptions<sup>7+</sup>
 
 Defines TCPSocket connection parameters.
 
@@ -1567,7 +1546,7 @@ Defines TCPSocket connection parameters.
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
 | timeout | number                             | No  | Timeout duration of the TCPSocket connection, in ms.|
 
-## TCPSendOptions
+## TCPSendOptions<sup>7+</sup>
 
 Defines the parameters for sending data over the TCPSocket connection.
 
@@ -1578,7 +1557,7 @@ Defines the parameters for sending data over the TCPSocket connection.
 | data     | string\| ArrayBuffer<sup>7+</sup>  | Yes  | Data to send.                                                |
 | encoding | string | No  | Character encoding format. The options are as follows: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-16**, **US-AECII**, and **ISO-8859-1**. The default value is **UTF-8**.|
 
-## TCPExtraOptions
+## TCPExtraOptions<sup>7+</sup>
 
 Defines other properties of the TCPSocket connection.
 
@@ -1590,10 +1569,963 @@ Defines other properties of the TCPSocket connection.
 | OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
 | TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCPSocket connection. The default value is **false**.                      |
 | socketLinger      | Object  | Yes  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
-| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.                              |
-| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.                              |
+| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.                              |
+| sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
-| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.                            |
+| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms. The default value is **0**.                            |
+
+## socket.constructTCPSocketServerInstance<sup>10+</sup>
+
+constructTCPSocketServerInstance(): TCPSocketServer
+
+Creates a **TCPSocketServer** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                               | Description                         |
+| :---------------------------------- | :---------------------------- |
+| [TCPSocketServer](#tcpsocketserver10) | **TCPSocketServer** object.|
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+```
+
+## TCPSocketServer<sup>10+</sup>
+
+Defines a TCPSocketServer connection. Before invoking TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
+
+### listen<sup>10+</sup>
+
+listen(address: NetAddress, callback: AsyncCallback\<void\>): void
+
+Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCPSocket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> The server uses this API to perform the bind, listen, and accept operations.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                         |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| address  | [NetAddress](#netaddress7) | Yes  | Destination address.|
+| callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.                                   |
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+```
+
+### listen<sup>10+</sup>
+
+listen(address: NetAddress): Promise\<void\>
+
+Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCPSocket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
+
+> **NOTE**
+> The server uses this API to perform the bind, listen, and accept operations.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                     | Mandatory| Description                                         |
+| ------- | ------------------------- | ---- | --------------------------------------------- |
+| address | [NetAddress](#netaddress7) | Yes  | Destination address.|
+
+**Return value**
+
+| Type           | Description                                                        |
+| :-------------- | :----------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promise = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promise.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+Obtains the status of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description      |
+| -------- | -------------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+tcpServer.getState((err, data) => {
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
+})
+```
+
+### getState<sup>10+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+Obtains the status of the TCPSocketServer connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                        | Description                                      |
+| :------------------------------------------- | :----------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase7)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promiseListen.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+let promise = tcpServer.getState();
+promise.then(() => {
+  console.log('getState success');
+}).catch(err => {
+  console.log('getState fail');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
+
+Sets other properties of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description                                                        |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+| callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+tcpServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+}, err => {
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
+
+Sets other properties of the TCPSocketServer connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                               | Mandatory| Description                                                        |
+| ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+
+**Return value**
+
+| Type           | Description                                                      |
+| :-------------- | :--------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let promiseListen = tcpServer.listen({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promiseListen.then(() => {
+  console.log('listen success');
+}).catch(err => {
+  console.log('listen fail');
+});
+let promise = tcpServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+});
+promise.then(() => {
+  console.log('setExtraOptions success');
+}).catch(err => {
+  console.log('setExtraOptions fail');
+});
+```
+
+### on('connect')<sup>10+</sup>
+
+on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
+
+Enables listening for TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                 |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event|
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | Yes  | Callback used to return the result.                           |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(data) {
+  console.log(JSON.stringify(data))
+});
+```
+
+### off('connect')<sup>10+</sup>
+
+off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
+
+Disables listening for TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                 |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event|
+| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | No  | Callback used to return the result.                           |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let callback = data => {
+  console.log('on connect message: ' + JSON.stringify(data));
+}
+tcpServer.on('connect', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tcpServer.off('connect', callback);
+tcpServer.off('connect');
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Enables listening for error events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Disables listening for error events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | No  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+tcpServer.on('error', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tcpServer.off('error', callback);
+tcpServer.off('error');
+```
+
+## TCPSocketConnection<sup>10+</sup>
+
+Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before invoking TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+### Attributes
+
+| Name    | Type  | Mandatory| Description                                     |
+| -------- | ------ | ---- | ----------------------------------------- |
+| clientId | number | Yes  | ID of the connection between the client and TCPSocketServer.|
+
+### send<sup>10+</sup>
+
+send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
+
+Sends data over a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after a connection with the client is set up.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                             | Mandatory| Description                                                        |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.send({data: 'Hello, client!'}, err => {
+    if (err) {
+        console.log('send fail');
+        return;
+    }
+    console.log('send success');
+  });
+});
+```
+
+### send<sup>10+</sup>
+
+send(options: TCPSendOptions): Promise\<void\>
+
+Sends data over a **TCPSocketConnection** object. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after a connection with the client is set up.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+
+**Return value**
+
+| Type           | Description                                                        |
+| :-------------- | :----------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.send({data: 'Hello, client!'});
+  promise.then(() => {
+    console.log('send success');
+  }).catch(err => {
+    console.log('send fail');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(callback: AsyncCallback\<void\>): void
+
+Closes a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(): Promise\<void\>
+
+Closes a **TCPSocketConnection** object. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                        |
+| :-------------- | :------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 201      | Permission denied.     |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.close();
+  promise.then(() => {
+  	console.log('close success');
+  }).catch(err => {
+  	console.log('close fail');
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
+
+Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after a connection with the client is set up.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description      |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback<[NetAddress](#netaddress7)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.getRemoteAddress((err, data) => {
+    if (err) {
+      console.log('getRemoteAddress fail');
+      return;
+    }
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(): Promise\<NetAddress\>
+
+Obtains the remote address of a socket connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after a connection with the client is set up.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                              | Description                                       |
+| :--------------------------------- | :------------------------------------------ |
+| Promise<[NetAddress](#netaddress7)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 201      | Permission denied.              |
+| 2300002  | System internal error.          |
+| 2303188  | Socket operation on non-socket. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  let promise = client.getRemoteAddress();
+  promise.then(() => {
+    console.log('getRemoteAddress success');
+  }).catch(err => {
+    console.log('getRemoteAddress fail');
+  });
+});
+```
+
+### on('message')<sup>10+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Enables listening for **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('message', value => {
+    let messageView = '';
+    for (var i = 0; i < value.message.length; i++) {
+      let messages = value.message[i];
+      let message = String.fromCharCode(messages);
+      messageView += item;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
+});
+```
+
+### off('message')<sup>10+</sup>
+
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Disables listening for **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = value => {
+  let messageView = '';
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i];
+    let message = String.fromCharCode(messages);
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('message', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  client.off('message', callback);
+  client.off('message');
+});
+```
+
+### on('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+Enables listening for **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event|
+| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+Disables listening for **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event|
+| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = () => {
+  console.log("on close success");
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('close', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  client.off('close', callback);
+  client.off('close');
+});
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Enables listening for **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('error', err => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Disables listening for **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | No  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+let tcpServer = socket.constructTCPSocketServerInstance();
+tcpServer.on('connect', function(client) {
+  client.on('error', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  client.off('error', callback);
+  client.off('error');
+});
+```
 
 ## Description of TCP Error Codes
 
@@ -1654,7 +2586,7 @@ Binds the IP address and port number. This API uses an asynchronous callback to 
 **Example**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1697,7 +2629,7 @@ Binds the IP address and port number. This API uses a promise to return the resu
 **Example**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -1729,7 +2661,7 @@ Obtains the status of the TLSSocket connection. This API uses an asynchronous ca
 **Example**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1769,12 +2701,11 @@ Obtains the status of the TLSSocket connection. This API uses a promise to retur
 **Example**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
+let promiseBind = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
+promiseBind.then(() => {
   console.log('bind success');
+}).catch((err) => {
+  console.log('bind fail');
 });
 let promise = tls.getState();
 promise.then(() => {
@@ -1788,7 +2719,7 @@ promise.then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1810,7 +2741,7 @@ Sets other properties of the TCPSocket connection after successful binding of th
 **Example**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1822,12 +2753,12 @@ tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on:true, linger:10 },
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
   socketTimeout: 3000,
-},err => {
+}, err => {
   if (err) {
     console.log('setExtraOptions fail');
     return;
@@ -1840,7 +2771,7 @@ tls.setExtraOptions({
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses a promise to return the result.
+Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1867,7 +2798,7 @@ Sets other properties of the TCPSocket connection after successful binding of th
 **Example**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1878,7 +2809,7 @@ let promise = tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on:true, linger:10 },
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -1889,6 +2820,191 @@ promise.then(() => {
 }).catch(err => {
   console.log('setExtraOptions fail');
 });
+```
+
+### on('message')<sup>9+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+Enables listening for **message** events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let messageView = '';
+tls.on('message', value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+});
+```
+
+### off('message')<sup>9+</sup>
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Disables listening for **message** events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.|
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let messageView = '';
+let callback = value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+tls.on('message', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tls.off('message', callback);
+```
+### on('connect' | 'close')<sup>9+</sup>
+
+on(type: 'connect' | 'close', callback: Callback\<void\>): void
+
+Enables listening for connection or close events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                                                        |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+tls.on('connect', () => {
+  console.log("on connect success")
+});
+tls.on('close', () => {
+  console.log("on close success")
+});
+```
+
+### off('connect' | 'close')<sup>9+</sup>
+
+off(type: 'connect' | 'close', callback?: Callback\<void\>): void
+
+Disables listening for connection or close events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                                                        |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let callback1 = () => {
+  console.log("on connect success");
+}
+tls.on('connect', callback1);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tls.off('connect', callback1);
+tls.off('connect');
+let callback2 = () => {
+  console.log("on close success");
+}
+tls.on('close', callback2);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tls.off('close', callback2);
+```
+
+### on('error')<sup>9+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Enables listening for error events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+tls.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>9+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Disables listening for error events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| callback | ErrorCallback | No  | Callback used to return the result.                          |
+
+**Example**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+tls.on('error', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+tls.off('error', callback);
 ```
 
 ### connect<sup>9+</sup>
@@ -1930,7 +3046,7 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1956,12 +3072,12 @@ let options = {
   },
 };
 tlsTwoWay.connect(options, (err, data) => {
-  console.error("connect callback error"+err);
+  console.error("connect callback error" + err);
   console.log(JSON.stringify(data));
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-  tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1975,12 +3091,12 @@ let oneWayOptions = {
     family: 1,
   },
   secureOptions: {
-    ca: ["xxxx","xxxx"],
+    ca: ["xxxx", "xxxx"],
     cipherSuite: "AES256-SHA256",
   },
 };
 tlsOneWay.connect(oneWayOptions, (err, data) => {
-  console.error("connect callback error"+err);
+  console.error("connect callback error" + err);
   console.log(JSON.stringify(data));
 });
 ```
@@ -2029,7 +3145,7 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2061,7 +3177,7 @@ tlsTwoWay.connect(options).then(data => {
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2075,7 +3191,7 @@ let oneWayOptions = {
     family: 1,
   },
   secureOptions: {
-    ca: ["xxxx","xxxx"],
+    ca: ["xxxx", "xxxx"],
     cipherSuite: "AES256-SHA256",
   },
 };
@@ -2500,7 +3616,7 @@ Sends a message to the server after a TLSSocket connection is established. This 
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2537,7 +3653,7 @@ Sends a message to the server after a TLSSocket connection is established. This 
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2551,7 +3667,7 @@ Sends a message to the server after a TLSSocket connection is established. This 
 **Example**
 
 ```js
-tls.send("xxxx").then(() =>{
+tls.send("xxxx").then(() => {
   console.log("send success");
 }).catch(err => {
   console.error(err);
@@ -2576,6 +3692,7 @@ Closes a TLSSocket connection. This API uses an asynchronous callback to return 
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2611,6 +3728,7 @@ Closes a TLSSocket connection. This API uses a promise to return the result.
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2619,9 +3737,9 @@ Closes a TLSSocket connection. This API uses a promise to return the result.
 **Example**
 
 ```js
-tls.close().then(() =>{
+tls.close().then(() => {
   console.log("close success");
-}).catch(err => {
+}).catch((err) => {
   console.error(err);
 });
 ```
@@ -2636,7 +3754,7 @@ Defines TLS connection options.
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
-| ALPNProtocols  | Array\<string\>                         | No| Application Layer Protocol Negotiation (ALPN) protocols.     |
+| ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -2650,10 +3768,10 @@ Defines TLS security options. The CA certificate is mandatory, and other paramet
 | cert                  | string                                                  | No| Digital certificate of the local client.                |
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
 | password                | string                                                  | No| Password for reading the private key.                     |
-| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version.                 |
-| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.         |
-| signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication.              |
-| cipherSuite           | string                                                 | No| Cipher suite used during communication.              |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version. The default value is **TLSv1.2**.                 |
+| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.       |
+| signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication. The default value is **""**.             |
+| cipherSuite           | string                                                 | No| Cipher suite used during communication. The default value is **""**.             |
 
 ## Protocol<sup>9+</sup>
 
@@ -2671,7 +3789,3 @@ Enumerates TLS protocol versions.
 Defines the certificate raw data.
 
 **System capability**: SystemCapability.Communication.NetStack
-
-| Type                                                                  | Description                  |
-| --------------------------------------------------------------------- | --------------------- |
-|[cert.EncodingBlob](js-apis-cert.md#datablob) | Data and encoding format of the certificate.|

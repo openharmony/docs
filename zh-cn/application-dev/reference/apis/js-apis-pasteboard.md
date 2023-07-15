@@ -16,14 +16,14 @@ import pasteboard from '@ohos.pasteboard';
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 值 | 说明 |
-| -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 单个PasteData中所能包含的最大条目数。 |
-| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
-| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | Want内容的MIME类型定义。 |
-| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。 |
-| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri' | URI内容的MIME类型定义。 |
-| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap' | PixelMap内容的MIME类型定义。 |
+| 名称 | 类型 | 值            | 说明                                                                                                                                        |
+| -------- | -------- |--------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| MAX_RECORD_NUM<sup>7+</sup> | number | -            | API version 10之前，此常量值为512，表示单个PasteData中所能包含的最大条目数为512。当剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。<br>从API version 10开始，不再限制单个PasteData中所能包含的最大条目数。 |
+| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html'  | HTML内容的MIME类型定义。                                                                                                                          |
+| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want'  | Want内容的MIME类型定义。                                                                                                                          |
+| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。                                                                                                                           |
+| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri'   | URI内容的MIME类型定义。                                                                                                                           |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap'   | PixelMap内容的MIME类型定义。                                                                                                                      |
 
 ## ValueType<sup>9+</sup>
 
@@ -370,18 +370,19 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等。
+定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
+该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                         |
-| -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。                                                                               |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                     |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                   |
-| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                        |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。暂不支持，推荐使用shareOption属性。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                              |
+| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
+| -------- | -------- | -------- | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。                                                                                                                                                                                                                              |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                                                                                                                                                                   |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                                                                                                                                                                 |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                                                                                                                                                                      |
+| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -483,9 +484,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-剪贴板内容对象。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createData()](#pasteboardcreatedata9)或[getData()](#getdata9)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -617,8 +618,6 @@ addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -642,8 +641,6 @@ pasteData.addRecord(htmlRecord);
 addRecord(mimeType: string, value: ValueType): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -737,7 +734,7 @@ let property = pasteData.getProperty();
 
 setProperty(property: PasteDataProperty): void
 
-设置剪贴板内容的属性描述对象，当前仅支持设置shareOption属性。
+设置剪贴板内容的属性描述对象[PasteDataProperty](#pastedataproperty7)。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -753,7 +750,28 @@ setProperty(property: PasteDataProperty): void
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.additions['TestOne'] = 123;
+prop.additions['TestTwo'] = {'Test' : 'additions'};
+prop.tag = 'TestTag';
 pasteData.setProperty(prop);
+```
+[PasteDataProperty](#pastedataproperty7)的localOnly与shareOption属性互斥，最终结果以shareOption为准，shareOption会影响localOnly的值。
+```js
+prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
+prop.localOnly = true;
+pasteData.setProperty(prop);
+pasteData.localOnly //false
+
 ```
 
 ### getRecord<sup>9+</sup>
@@ -925,7 +943,6 @@ addHtmlRecord(htmlText: string): void
 
 向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -952,7 +969,6 @@ addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -982,7 +998,6 @@ addTextRecord(text: string): void
 
 向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -1008,7 +1023,6 @@ addUriRecord(uri: string): void
 
 向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
@@ -1286,7 +1300,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
@@ -1329,7 +1343,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');

@@ -244,7 +244,7 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         // 创建编译实例，用于将模型传递至底层硬件编译
         OH_NNCompilation* compilation = OH_NNCompilation_Construct(model);
         if (compilation == nullptr) {
-            std::cout << "CreateCompilation failed, error happended when creating compilation." << std::endl;
+            std::cout << "CreateCompilation failed, error happened when creating compilation." << std::endl;
             return OH_NN_MEMORY_ERROR;
         }
 

@@ -7,13 +7,11 @@ The **AbilityLifecycleCallback** module defines the callbacks to receive lifecyc
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
-
 ## Modules to Import
 
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 ```
-
 
 ## AbilityLifecycleCallback.onAbilityCreate
 

@@ -16,7 +16,7 @@ import Curves from '@ohos.curves'
 
 ## Curves.initCurve<sup>9+</sup>
 
-initCurve(curve?: Curve)：ICurve
+initCurve(curve?: Curve): ICurve
 
 
 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。
@@ -25,15 +25,37 @@ initCurve(curve?: Curve)：ICurve
 
 **参数：**
 
-| 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
-| ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  | [Curve](../arkui-ts/ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
+| 参数名 | 类型            | 必填 | 说明                                |
+| ------ | --------------- | ---- | ----------------------------------- |
+| curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
 **返回值：**
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
 |  [ICurve](#icurve) | 曲线的插值对象。 |
+
+## Curve
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                | 描述                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Linear              | 表示动画从头到尾的速度都是相同的。                           |
+| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25, 0.1, 0.25, 1.0)。 |
+| EaseIn              | 表示动画以低速开始，CubicBezier(0.42, 0.0, 1.0, 1.0)。       |
+| EaseOut             | 表示动画以低速结束，CubicBezier(0.0, 0.0, 0.58, 1.0)。       |
+| EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42, 0.0, 0.58, 1.0)。 |
+| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。                 |
+| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。                 |
+| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。                 |
+| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。                 |
+| Sharp               | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。               |
+| Rhythm              | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。                 |
+| Smooth              | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。                 |
+| Friction            | 阻尼曲线，CubicBezier(0.2, 0.0, 0.2, 1.0)。                  |
 
 **示例：**
 
@@ -45,7 +67,7 @@ Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 
 ##  Curves.stepsCurve<sup>9+</sup>
 
-stepsCurve(count: number, end: boolean)：ICurve
+stepsCurve(count: number, end: boolean): ICurve
 
 
 构造阶梯曲线对象。
@@ -75,7 +97,7 @@ Curves.stepsCurve(9, true)  //创建一个阶梯曲线
 
 ## Curves.cubicBezierCurve<sup>9+</sup>
 
-cubicBezierCurve(x1: number, y1: number, x2: number, y2: number)：ICurve
+cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
 
 构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
@@ -108,7 +130,7 @@ Curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 
 ##  Curves.springCurve<sup>9+</sup>
 
-springCurve(velocity: number, mass: number, stiffness: number, damping: number)：ICurve
+springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
 
 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animation、animateTo中的duration参数控制。
@@ -160,7 +182,7 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -193,7 +215,7 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1、弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2、[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1、弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2、[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -203,9 +225,9 @@ Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 ```
 
 
-##  Curves.interpolatingSpringCurve<sup>10+</sup>
+##  Curves.interpolatingSpring<sup>10+</sup>
 
-interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number)：ICurve
+interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
 
 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
@@ -215,18 +237,16 @@ interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: 
 **参数：**
 | 参数名       | 类型     | 必填   | 说明    |
 | --------- | ------ | ---- | ----- |
-| velocity  | number | 是    | 初始速度。外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑的过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
+| velocity  | number | 是    | 初始速度。外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
 | mass      | number | 是    | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。 |
 | stiffness | number | 是    | 刚度。表示物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。 |
 | damping   | number | 是    | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。 |
-
 
 **返回值：**
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
 |  [ICurve](#icurve)| 曲线的插值对象。 |
-
 
 **示例：**
 
@@ -235,11 +255,42 @@ import Curves from '@ohos.curves'
 Curves.interpolatingSpring(100, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
 ```
 
+## Curves.customCurve<sup>10+</sup>
+
+customCurve(interpolate: (fraction: number) => number): ICurve
+
+构造自定义曲线对象。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                                         |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| interpolate | (fraction: number) => number | 是   | 用户自定义的插值回调函数。<br/>fraction为动画开始时的插值输入x值。取值范围：[0,1]<br/>返回值为曲线的y值。取值范围：[0,1]<br />**说明：**<br />fraction等于0时，返回值为0对应动画起点，返回不为0，动画在起点处有跳变效果。<br/>fraction等于1时，返回值为1对应动画终点，返回值不为1将导致动画的终值不是状态变量的值，出现大于或者小于状态变量值，再跳变到状态变量值的效果。 |
+
+**返回值：**
+
+| 类型              | 说明             |
+| ----------------- | ---------------- |
+| [ICurve](#icurve) | 曲线的插值对象。 |
+
+**示例：**
+
+```ts
+import Curves from '@ohos.curves'
+interpolate(fraction) {
+    return Math.sqrt(fraction);
+  }
+private curve = Curves.customCurve(this.interpolate) // 创建一个用户自定义插值曲线
+```
+
+
 
 ## ICurve
 
 
-### interpolate
+### interpolate<sup>9+</sup>
 
 interpolate(fraction:&nbsp;number): number
 
@@ -281,9 +332,9 @@ init(curve?: Curve): string
 
 **参数：**
 
-| 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
-| ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  |[Curve](../arkui-ts/ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
+| 参数名 | 类型            | 必填 | 说明                                |
+| ------ | --------------- | ---- | ----------------------------------- |
+| curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
 
 ## Curves.steps<sup>(deprecated)</sup>
@@ -334,7 +385,7 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 | 参数名       | 类型     | 必填   | 说明    |
 | --------- | ------ | ---- | ----- |
-| velocity  | number | 是    | 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑的过渡到弹性动效。 |
+| velocity  | number | 是    | 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑地过渡到弹性动效。 |
 | mass      | number | 是    | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。 |
 | stiffness | number | 是    | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。 |
 | damping   | number | 是    | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。 |

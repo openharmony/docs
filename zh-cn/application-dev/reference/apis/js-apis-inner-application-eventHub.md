@@ -7,6 +7,12 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 >  - 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 使用说明
 
 在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
@@ -118,7 +124,7 @@ emit(event: string, ...args: Object[]): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
-| ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 |
+| ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
 **示例：**
 

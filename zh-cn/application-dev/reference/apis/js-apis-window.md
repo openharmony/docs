@@ -50,13 +50,13 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | 是 | 窗口名字。                         |
-| windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                         |
+| 名称 | 类型 | 必填 | 说明                                                                          |
+| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | 是 | 窗口名字。                                                                       |
+| windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
 | ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
-| displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1。 |
-| parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1。      |
+| displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
+| parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -66,7 +66,7 @@ import window from '@ohos.window';
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏和Dock栏，各设备系统定义可能不同。 |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
 | TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
@@ -177,7 +177,7 @@ import window from '@ohos.window';
 
 | 名称       | 类型                                            | 可读 | 可写 | 说明                         |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | 是   | 否   | 当前物理屏幕id。             |
+| displayId  | number                                              | 是   | 否   | 当前物理屏幕id，该参数应为整数。             |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 否   | 当前已改变的所有系统栏信息。 |
 
 ## Rect<sup>7+</sup>
@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数应为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数应为整数。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数应为整数。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
-| height | number   | 是   | 是   | 窗口高度，单位为px。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
 ## WindowProperties
 
@@ -224,21 +224,21 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                         |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                   |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                   |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。 |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。 |
-| focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 |
-| touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。                  |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。 |
-| isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。 |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。 |
-| isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。 |
-| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0.0。                                                  |
+| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
+| ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
+| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
+| focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
+| touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。                      |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
+| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。                                                                   |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。                                                                  |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
+| isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
+| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。                                                                                    |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -259,12 +259,12 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                               |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | 否   | 是   | X轴的缩放参数，默认值为1.0。                       |
-| y      | number   | 否   | 是   | Y轴的缩放参数，默认值为1.0。                       |
-| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
-| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
+| 名称   | 类型 | 可读 | 可写 | 说明                                         |
+| ------ | -------- | ---- | ---- |--------------------------------------------|
+| x      | number   | 否   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| y      | number   | 否   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                               |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | 否   | 是   | 绕X轴的旋转角度，默认值为0.0。                     |
-| y      | number   | 否   | 是   | 绕Y轴的旋转角度，默认值为0.0。                     |
-| z      | number   | 否   | 是   | 绕Z轴的旋转角度，默认值为0.0。                     |
-| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
-| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
+| 名称   | 类型 | 可读 | 可写 | 说明                                          |
+| ------ | -------- | ---- | ---- |---------------------------------------------|
+| x      | number   | 否   | 是   | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 是   | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 是   | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -292,15 +292,13 @@ import window from '@ohos.window';
 
 | 名称 | 类型 | 可读 | 可写 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数，默认值为0.0。 |
-| y    | number   | 否   | 是   | Y轴的平移参数，默认值为0.0。 |
-| z    | number   | 否   | 是   | Z轴的平移参数，默认值为0.0。 |
+| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0。 |
 
 ## WindowEventType<sup>10+</sup>
 
 窗口生命周期。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -334,6 +332,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -383,6 +383,8 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -421,6 +423,14 @@ findWindow(name: string): Window
 | 类型 | 说明 |
 | ----------------- | ------------------- |
 | [Window](#window) | 当前查找的窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 
@@ -534,7 +544,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号。 |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
 
 **错误码：**
@@ -583,7 +593,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号。 |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -820,7 +830,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 | 参数名   | 类型                                                       | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。                 |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | 否   | 回调函数。返回当前的状态栏、导航栏信息集合。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有状态栏、导航栏属性变化的监听。                |
 
 **示例：**
 
@@ -829,6 +839,148 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.on('gestureNavigationEnabledChange')<sup>10+</sup>
+
+on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
+
+添加手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                                          |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | 是   | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。    |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前手势导航的启用状态。true表示手势导航状态变化为启用；false表示手势导航状态变化为禁用。 |
+
+**示例：**
+
+```js
+try {
+    window.on('gestureNavigationEnabledChange', (data) => {
+        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('gestureNavigationEnabledChange')<sup>10+</sup>
+
+off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
+
+移除手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                        |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | 是 | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有手势导航启用状态变化的监听。 |
+
+**示例：**
+
+```js
+try {
+    window.off('gestureNavigationEnabledChange');
+} catch (exception) {
+    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置手势导航启用状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| enable   | boolean                  | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    window.setGestureNavigationEnabled(true, (err) => {
+        if(err.code) {
+            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting gesture navigation enabled.');
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
+
+设置手势导航启用状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填  | 说明                 |
+| ------ | ------- | ---- | -------------------- |
+| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    let promise = window.setGestureNavigationEnabled(true);
+    promise.then(()=> {
+        console.info('Succeeded in setting gesture navigation enabled.');
+    }).catch((err)=>{
+        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1567,8 +1719,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -1610,8 +1762,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1663,8 +1815,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | 是 | 目标窗口的宽度，单位为px。 |
-| height   | number                    | 是 | 目标窗口的高度，单位为px。 |
+| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                |
 
 **错误码：**
@@ -1712,8 +1864,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | -- | ------------------------ |
-| width  | number | 是 | 目标窗口的宽度，单位为px。 |
-| height | number | 是 | 目标窗口的高度，单位为px。 |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1910,7 +2062,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1918,7 +2072,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -1951,7 +2105,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1959,7 +2115,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为全屏显示状态(该全屏状态下状态栏、导航栏仍然显示)。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
@@ -1996,7 +2152,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置导航栏、状态栏的可见模式，使用callback异步回调。
+设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2004,7 +2160,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names    | Array<'status'\|'navigation'> | 是 | 设置窗口全屏模式时状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -2038,7 +2194,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置导航栏、状态栏的可见模式，使用Promise异步回调。
+设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2046,7 +2202,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| names | Array<'status'\|'navigation'> | 是 | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names | Array<'status'\|'navigation'> | 是 | 设置窗口全屏模式时状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -2084,7 +2240,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2131,7 +2287,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2262,6 +2418,61 @@ try {
 }
 ```
 
+### getUIContext<sup>10+</sup>
+
+getUIContext(): UIContext
+
+获取UIContext实例。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型       | 说明                   |
+| ---------- | ---------------------- |
+| [UIContext](./js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let windowClass = null;
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            windowClass = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 获取UIContext实例。
+            globalThis.uiContext = windowClass.getUIContext();
+        })
+    }
+};
+```
+
 ### setUIContent<sup>9+</sup>
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -2361,7 +2572,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2407,7 +2618,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -2515,7 +2726,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | Callback&lt;[Size](#size7)&gt; | 否   | 回调函数。返回当前的窗口尺寸。                           |
+| callback | Callback&lt;[Size](#size7)&gt; | 否   | 回调函数。返回当前的窗口尺寸。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口尺寸变化的监听。                           |
 
 **示例：**
 
@@ -2557,7 +2768,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -2568,7 +2779,7 @@ off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt
 | 参数名   | 类型                                                                          | 必填  | 说明                                 |
 | -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
 | type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。|
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
 
 **示例：**
 
@@ -2584,16 +2795,16 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启键盘高度变化的监听。
+开启固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                                                         |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度。                               |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数。                    |
 
 **示例：**
 
@@ -2611,7 +2822,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭键盘高度变化的监听。
+关闭固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2620,7 +2831,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态输入法窗口软键盘高度变化的监听。                               |
 
 **示例：**
 
@@ -2673,10 +2884,10 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- |----------------------| ---- |--------------------------------------|
+| type     | string               | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口区域范围外的点击事件的监听。            |
 
 **示例：**
 
@@ -2728,7 +2939,7 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
-| callback | Callback&lt;void&gt; | 否   | 回调函数。发生截屏事件时的回调。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。发生截屏事件时的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有截屏事件的监听。 |
 
 **示例：**
 
@@ -2790,7 +3001,7 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                    | 必填 | 说明                                                          |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有模态窗口目标窗口的点击事件的监听。 |
 
 **示例：**
 
@@ -2807,8 +3018,6 @@ try {
 on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 开启窗口生命周期变化的监听。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2837,8 +3046,6 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
 关闭窗口生命周期变化的监听。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -2846,7 +3053,7 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 | 参数名   | 类型                                                       | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | 是   | 监听事件，固定为'windowEvent'，即窗口生命周期变化事件。 |
-| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 否   | 回调函数。返回当前的窗口生命周期状态。                 |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 否   | 回调函数。返回当前的窗口生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口生命周期变化的监听。                 |
 
 **示例：**
 
@@ -3029,15 +3236,10 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3054,18 +3256,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3106,15 +3296,10 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3130,18 +3315,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3327,7 +3500,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 setWindowBackgroundColor(color: string): void
 
-设置窗口的背景色。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
+设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3362,14 +3535,16 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---------- | ------------------------- | -- | --------------------------------- |
-| brightness | number                    | 是 | 屏幕亮度值，值为0-1之间。1表示最亮。 |
-| callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                         |
+| 参数名 | 类型 | 必填 | 说明                                        |
+| ---------- | ------------------------- | -- |-------------------------------------------|
+| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。其取1.0时表示最亮。 |
+| callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
 
@@ -3403,13 +3578,15 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---------- | ------ | -- | --------------------------------- |
-| brightness | number | 是 | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+| 参数名 | 类型 | 必填 | 说明                                     |
+| ---------- | ------ | -- |----------------------------------------|
+| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。1.0表示最亮。 |
 
 **返回值：**
 
@@ -4019,7 +4196,7 @@ promise.then((pixelMap)=> {
 
 opacity(opacity: number): void
 
-设置窗口透明度。
+设置窗口不透明度。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4027,9 +4204,9 @@ opacity(opacity: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                  |
-| ------- | ------ | ---- | --------------------- |
-| opacity | number | 是   | 透明度，范围0.0~1.0。 |
+| 参数名  | 类型   | 必填 | 说明                                                 |
+| ------- | ------ | ---- |----------------------------------------------------|
+| opacity | number | 是   | 不透明度。该参数为浮点数，取值范围为[0.0, 1.0]。0.0表示完全透明，1.0表示完全不透明。 |
 
 **错误码：**
 
@@ -4054,7 +4231,7 @@ try {
 
 scale(scaleOptions: ScaleOptions): void
 
-设置窗口缩放参数。
+设置窗口缩放参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4095,7 +4272,7 @@ try {
 
 rotate(rotateOptions: RotateOptions): void
 
-设置窗口旋转参数。
+设置窗口旋转参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4137,7 +4314,7 @@ try {
 
 translate(translateOptions: TranslateOptions): void
 
-设置窗口平移参数。
+设置窗口平移参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4145,9 +4322,9 @@ translate(translateOptions: TranslateOptions): void
 
 **参数：**
 
-| 参数名           | 类型                                   | 必填 | 说明       |
-| ---------------- | -------------------------------------- | ---- | ---------- |
-| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数。 |
+| 参数名           | 类型                                   | 必填 | 说明                 |
+| ---------------- | -------------------------------------- | ---- | -------------------- |
+| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数，单位为px。 |
 
 **错误码：**
 
@@ -4247,9 +4424,9 @@ setBlur(radius: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | 是   | 表示窗口模糊的半径值，取值范围为大于等于0，0表示关闭窗口模糊。 |
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- |--------------------------------------------------|
+| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
 
 **错误码：**
 
@@ -4282,9 +4459,9 @@ setBackdropBlur(radius: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | 是   | 表示窗口背景模糊的半径值，取值范围为大于等于0，0表示关闭窗口背景模糊。 |
+| 参数名 | 类型   | 必填 | 说明                                                    |
+| ------ | ------ | ---- |-------------------------------------------------------|
+| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
 
 **错误码：**
 
@@ -4352,12 +4529,12 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
+| 参数名  | 类型   | 必填 | 说明                                                          |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
 | color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
-| offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
+| offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量。该参数为浮点数，单位为px。                              |
+| offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量。该参数为浮点数，单位为px。                              |
 
 **错误码：**
 
@@ -4390,9 +4567,9 @@ setCornerRadius(cornerRadius: number): void
 
 **参数：**
 
-| 参数名      | 类型    | 必填 | 说明                 |
-| ----------- | ------- | ---- | -------------------- |
-| radius | number | 是   | 表示窗口圆角的半径值，取值范围为大于等于0，0表示没有窗口圆角。 |
+| 参数名      | 类型    | 必填 | 说明                                                 |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
 
 **错误码：**
 
@@ -4501,9 +4678,9 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名             | 类型    | 必填 | 说明                                                         |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
+| 参数名             | 类型    | 必填 | 说明                                        |
+| ------------------ | ------- | ---- |-------------------------------------------|
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
 
 **返回值：**
 
@@ -4548,10 +4725,10 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名             | 类型    | 必填 | 说明                                                         |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+| 参数名             | 类型    | 必填 | 说明                                         |
+| ------------------ | ------- | ---- |--------------------------------------------|
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **错误码：**
 
@@ -4888,8 +5065,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                              |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                        |
 
 **示例：**
@@ -4922,8 +5099,8 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -4966,8 +5143,8 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名   | 类型                      | 必填 | 说明                       |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | 是   | 目标窗口的宽度，单位为px。 |
-| height   | number                    | 是   | 目标窗口的高度，单位为px。 |
+| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                 |
 
 **示例：**
@@ -5006,8 +5183,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | 是   | 目标窗口的宽度，单位为px。 |
-| height | number | 是   | 目标窗口的高度，单位为px。 |
+| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -5229,7 +5406,9 @@ promise.then((data)=> {
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否为全屏状态，使用callback异步回调。
+设置窗口的布局是否为全屏布局，使用callback异步回调。
+全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
+非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
 > **说明：**
 >
@@ -5241,7 +5420,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                      | 必填 | 说明                                           |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏)。true表示全屏；false表示非全屏。 |
+| isFullScreen | boolean                   | 是   | 是否设为全屏布局（该全屏布局影响状态栏导航栏显示）。true表示全屏；false表示非全屏。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
 
 **示例：**
@@ -5261,7 +5440,9 @@ windowClass.setFullScreen(isFullScreen, (err) => {
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置是否为全屏状态，使用Promise异步回调。
+设置窗口的布局是否为全屏布局，使用Promise异步回调。
+全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
+非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
 > **说明：**
 >
@@ -5273,7 +5454,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名       | 类型    | 必填 | 说明                                           |
 | ------------ | ------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏）。true表示全屏；false表示非全屏。 |
+| isFullScreen | boolean | 是   | 是否设为全屏布局（该全屏布局影响状态栏导航栏显示）。true表示全屏；false表示非全屏。 |
 
 **返回值：**
 
@@ -5297,7 +5478,9 @@ promise.then(()=> {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5309,7 +5492,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 | 参数名             | 类型                      | 必填 | 说明                                                         |
 | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局不影响状态栏、导航栏显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5329,7 +5512,9 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5341,7 +5526,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                                         |
 | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局不影响状态栏、导航栏显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
@@ -5365,7 +5550,7 @@ promise.then(()=> {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置导航栏、状态栏的可见模式，使用callback异步回调。
+设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
 > **说明：**
 >
@@ -5377,7 +5562,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names    | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5398,7 +5583,7 @@ windowClass.setSystemBarEnable(names, (err) => {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置导航栏、状态栏的可见模式，使用Promise异步回调。
+设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
 > **说明：**
 >
@@ -5410,7 +5595,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| names  | Array<'status'\|'navigation'> | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
+| names  | Array<'status'\|'navigation'> | 是   | 设置窗口全屏模式时状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -5435,7 +5620,7 @@ promise.then(()=> {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 > **说明：**
 >
@@ -5473,7 +5658,7 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 > **说明：**
 >
@@ -5680,7 +5865,7 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 否   | 回调函数。返回当前规避区。                            |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 否   | 回调函数。返回当前规避区。若传入参数，则关闭该监听。若未传入参数，则关闭所有系统规避区变化的监听。           |
 
 **示例：**
 
@@ -5876,7 +6061,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >
@@ -5908,7 +6093,7 @@ windowClass.setBackgroundColor(color, (err) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >
@@ -5946,6 +6131,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 > **说明：**
 >
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
@@ -5954,10 +6141,10 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                                 |
-| ---------- | ------------------------- | ---- | ------------------------------------ |
-| brightness | number                    | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                           |
+| 参数名     | 类型                      | 必填 | 说明                                    |
+| ---------- | ------------------------- | ---- |---------------------------------------|
+| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。,1表示最亮。 |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                 |
 
 **示例：**
 
@@ -5978,6 +6165,8 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 > **说明：**
 >
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9-1)。
@@ -5986,9 +6175,9 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                                 |
-| ---------- | ------ | ---- | ------------------------------------ |
-| brightness | number | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+| 参数名     | 类型   | 必填 | 说明                                       |
+| ---------- | ------ | ---- |------------------------------------------|
+| brightness | number | 是   | 屏幕亮度值。该参数为浮点数。取值范围为[0.0, 1.0],取1.0时表示最亮。 |
 
 **返回值：**
 
@@ -6022,10 +6211,10 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名         | 类型                      | 必填 | 说明                                               |
-| -------------- | ------------------------- | ---- | -------------------------------------------------- |
-| dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
-| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                         |
+| 参数名         | 类型                      | 必填 | 说明                                     |
+| -------------- | ------------------------- | ---- |----------------------------------------|
+| dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为[0.0, 1.0]，取1.0时表示最暗。 |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                  |
 
 **示例：**
 
@@ -6788,7 +6977,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -6843,7 +7032,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -7002,7 +7191,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。                |
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。若传入参数，则关闭该监听。若未传入参数，则关闭所有WindowStage生命周期变化的监听。                |
 
 **错误码：**
 

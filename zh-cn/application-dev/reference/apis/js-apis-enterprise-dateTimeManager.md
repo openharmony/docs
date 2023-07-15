@@ -1,10 +1,12 @@
 # @ohos.enterprise.dateTimeManager (系统时间管理)
 
-本模块提供系统时间管理能力。仅企业设备管理员应用才能调用。
+本模块提供系统时间管理能力。
 
 > **说明**：
 > 
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -16,7 +18,7 @@ import dateTimeManager from '@ohos.enterprise.dateTimeManager'
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-设置系统时间。使用callback异步回调。
+指定设备管理员应用设置系统时间。使用callback形式返回设置结果。 
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -30,7 +32,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | time  | number | 是 | 时间戳(ms)。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -45,13 +47,16 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
+  if (err) {
+    console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting date time');
 })
 ```
 
@@ -59,7 +64,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-设置系统时间。使用Promise异步回调。
+指定设备管理员应用设置系统时间。使用Promise形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -93,12 +98,14 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting date time');
+}).catch((err) => {
+  console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -106,7 +113,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
-禁止修改系统时间。使用callback异步回调。
+指定设备管理员应用禁止修改系统时间。使用callback形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -120,7 +127,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | disallow  | boolean | 是 | true 表示禁止修改系统时间，false表示允许修改系统时间。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当禁止修改系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -135,13 +142,16 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing modify date time');
 })
 ```
 
@@ -149,7 +159,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
-禁止修改系统时间。使用Promise异步回调。
+指定设备管理员应用禁止修改系统时间。使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -168,7 +178,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理员应用禁止修改系统时间失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -183,12 +193,14 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing modify date time');
+}).catch((err) => {
+  console.error(`Failed to disallow modify date time. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -196,7 +208,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
-查询是否允许修改系统时间。使用callback异步回调。
+指定设备管理员应用查询是否允许修改系统时间。使用callback形式返回是否禁止修改系统时间策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -209,7 +221,7 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数。callbac方式返回是否禁止修改系统时间策略。true表示禁止修改系统时间，否则表示允许修改系统时间。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，callbac方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
 
 **错误码**：
 
@@ -224,13 +236,16 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
 })
 ```
 
@@ -238,7 +253,7 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
-查询是否允许修改系统时间。使用Promise异步回调。
+指定设备管理员应用查询是否允许修改系统时间。使用Promise形式返回是否禁止修改系统时间策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -256,7 +271,7 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise对象。promise方式返回是否禁止修改系统时间策略。true表示禁止修改系统时间，否则表示允许修改系统时间。 |
+| Promise\<boolean> | Promise对象。promise方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
 
 **错误码**：
 
@@ -271,11 +286,13 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-dateTimeManager.disallowModifyDateTime(wantTemp).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {
+  console.info(`Succeeded in querying modify date time is disallowed : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query modify date time is disallowed or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```

@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl)。
+以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
 
 checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
 

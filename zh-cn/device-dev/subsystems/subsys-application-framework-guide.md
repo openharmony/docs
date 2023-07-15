@@ -111,11 +111,14 @@
    }
    ```
 
-3. 实现Service相关的生命周期方法。Service也是一种Ability，Ability为服务提供了以下生命周期方法，用户可以重写这些方法来添加自己的处理。用户在重写的方法里，需要调用父类对应的方法。
-   - OnStart()
-      该方法在创建Service的时候调用，用于做一些Service初始化且耗时较短的工作，在Service的整个生命周期只会调用一次。
+3. 实现Service相关的生命周期方法。
 
-        
+   Service也是一种Ability，Ability为服务提供了以下生命周期方法，用户可以重写这些方法来添加自己的处理。用户在重写的方法里，需要调用父类对应的方法。
+
+   - OnStart()
+     
+     该方法在创建Service的时候调用，用于做一些Service初始化且耗时较短的工作，在Service的整个生命周期只会调用一次。
+   
       ```
       void MyServiceAbility::OnStart(const Want& want)
       {
@@ -124,8 +127,8 @@
       }
       ```
    - OnConnect​()
-      在组件和服务连接时调用，该方法返回SvcIdentity，组件可以通过它与服务交互。
-
+      
+     在组件和服务连接时调用，该方法返回SvcIdentity，组件可以通过它与服务交互。
         
       ```
       const SvcIdentity *MyServiceAbility::OnConnect(const Want &want)
@@ -135,14 +138,17 @@
       }
       ```
    - OnDisconnect​()
-      在组件与绑定的Service断开连接时调用。
+      
+     在组件与绑定的Service断开连接时调用。
+
    - OnStop()
-      在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。
+     
+     在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。
 
 4. 重写消息处理方法。
-   MsgHandle是Service用来处理客户端消息的方法。其中funcId是客户端传过来的消息类型，request是客户端传过来的序列化请求参数。如果用户在处理完成之后想要把结果传回去，需要把结果序列化后写入reply中。
 
-     
+   MsgHandle是Service用来处理客户端消息的方法。其中funcId是客户端传过来的消息类型，request是客户端传过来的序列化请求参数。如果用户在处理完成之后想要把结果传回去，需要把结果序列化后写入reply中。
+ 
    ```
    void ServiceAbility::MsgHandle(uint32_t funcId, IpcIo *request, IpcIo *reply)
    {
@@ -157,6 +163,7 @@
    ```
 
 5. 注册Service。
+  
    Service也需要在应用清单文件config.json中进行注册，注册类型type需要设置为service。
 
      
@@ -173,8 +180,10 @@
    ```
 
 6. 启动Service。
+
    - Ability为用户提供了StartAbility()方法来启动另外一个Ability，因为Service也是Ability的一种，开发者同样可以通过将Want传递给该方法来启动Service。
-        开发者可以通过Want的SetWantElement ()来设置目标服务信息。ElementName结构体的两个主要参数：第一个参数为包名称；第二个参数为目标Ability。
+        
+     开发者可以通过Want的SetWantElement ()来设置目标服务信息。ElementName结构体的两个主要参数：第一个参数为包名称；第二个参数为目标Ability。
         
       ```
       {
@@ -191,10 +200,14 @@
 
       StartAbility() 方法会立即执行，如果Service尚未运行，则系统首先会调用OnStart()。
    - 停止Service。
-      Service一旦创建就会一直保持在后台运行，开发者可以通过调用StopAbility()来停止Service。
+     
+     Service一旦创建就会一直保持在后台运行，开发者可以通过调用StopAbility()来停止Service。
 
 7. 连接Service。
-   - 如果Service需要与Page Ability或其他应用组件中的Service进行交互，则应创建用于连接的Service。Service支持其他Ability通过ConnectAbility()与其进行连接，ConnectAbility()需要传入目标Service的Want，以及IAbilityConnection的实例来处理回调。IAbilityConnection提供了两个方法供用户实现，OnAbilityConnectDone()用来处理连接的回调，OnAbilityDisconnectDone()用来处理断开连接的回调。
+
+   - 如果Service需要与Page Ability或其他应用组件中的Service进行交互，则应创建用于连接的Service。
+
+     Service支持其他Ability通过ConnectAbility()与其进行连接，ConnectAbility()需要传入目标Service的Want，以及IAbilityConnection的实例来处理回调。IAbilityConnection提供了两个方法供用户实现，OnAbilityConnectDone()用来处理连接的回调，OnAbilityDisconnectDone()用来处理断开连接的回调。
         
       ```
       {
@@ -264,12 +277,18 @@
 
 
   安装接口只能给内置的系统应用使用。根据应用的安装路径，可以在安装应用时进行选择：
+
 - 将应用安装到系统默认的文件目录/storage/app/。
 
 - 将应用安装到系统外挂的存储介质中，例如micro sdcard。
 
 
-这两种选择可以在创建InstallParam实例的时候指定，当InstallParam的成员变量installLocation为 INSTALL_LOCATION_INTERNAL_ONLY时，意味着应用将会被安装到/storage/app/目录下；当InstallParam的成员变量installLocation为INSTALL_LOCATION_PREFER_EXTERNAL时，意味着应用将被安装到存储介质，其安装目录是/sdcard/app/。由于安装应用的过程是异步的，所以需要使用类似信号量的机制来确保安装的回调可以被执行。
+这两种选择可以在创建InstallParam实例的时候指定，
+
+- 当InstallParam的成员变量installLocation为 INSTALL_LOCATION_INTERNAL_ONLY时，意味着应用将会被安装到/storage/app/目录下。
+- 当InstallParam的成员变量installLocation为INSTALL_LOCATION_PREFER_EXTERNAL时，意味着应用将被安装到存储介质，其安装目录是/sdcard/app/。
+
+由于安装应用的过程是异步的，所以需要使用类似信号量的机制来确保安装的回调可以被执行。
 
 
   安装应用的步骤如下（示例代码以安装到系统目录为例）：
@@ -384,8 +403,10 @@
 
 
   打包工具一般集成到开发工具或者IDE中，开发者一般不涉及直接使用该工具，下面的介绍开发者可以作为了解。打包工具的jar包在开源代码中的位置：developtools/packing_tool/jar。
+
 - 打包命令行参数
-    **表2** 打包所需要的资源文件描述
+    
+   **表2** 打包所需要的资源文件描述
   
   | 命令参数 | 对应的资源文件 | 说明 | 是否可缺省 | 
   | -------- | -------- | -------- | -------- |

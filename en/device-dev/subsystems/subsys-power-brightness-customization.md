@@ -30,9 +30,9 @@ Development board running the standard system, for example, the DAYU200 or Hi351
 
 For details about the requirements on the Linux environment, see [Quick Start](../quick-start/Readme-EN.md).
 
-### How to Develop
+### Getting Started with Development
 
-1. In the target directory, create a target folder by referring to the [default brightness value configuration folder](https://gitee.com/openharmony/powermgr_display_manager/tree/master/service/etc). The file format is as follows:
+1. In the target directory, create a target folder by referring to the [default brightness value configuration folder](https://gitee.com/openharmony/powermgr_display_manager/tree/master/service/etc). The content is as follows:
      
     ```text
     etc

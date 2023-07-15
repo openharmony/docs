@@ -50,13 +50,13 @@ Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Mandatory| Description|
-| ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the window.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
-| displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
-| parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
+| Name| Type| Mandatory| Description                                                                         |
+| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | Yes| Name of the window.                                                                      |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
+| displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
+| parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -66,7 +66,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 | Name                            | Value  | Description                                                        |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | Default area of the system. Generally, the status bar, navigation bar, and Dock bar are included. The default area may vary according to the device in use.|
+| TYPE_SYSTEM                      | 0    | Default area of the system. Generally, the status bar and navigation bar are included. The default area may vary according to the device in use.|
 | TYPE_CUTOUT                      | 1    | Notch.                                            |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | Gesture area.                                              |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | Soft keyboard area.                                            |
@@ -108,10 +108,10 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type|  Mandatory| Description                                                        |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
-| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
 
@@ -164,7 +164,7 @@ Describes the callback for a single system bar.
 | type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed. The value **true** means that the system bar is displayed, and **false** means the opposite.|
 | region          | [Rect](#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -177,7 +177,7 @@ Describes the callback for the current system bar.
 
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
+| displayId  | number                                              | Yes  | No  | ID of the current physical screen. The value must be an integer.            |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.|
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.|
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width, in pixels.|
-| height | number   | Yes  | Yes  | Window height, in pixels.|
+| width  | number   | Yes  | Yes  | Window width, in pixels. The value must be an integer.|
+| height | number   | Yes  | Yes  | Window height, in pixels. The value must be an integer.|
 
 ## WindowProperties
 
@@ -224,21 +224,21 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Type                 | Readable| Writable| Description                                                        |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                  |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                  |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is **false**. The value **true** means that the window is displayed in full screen mode, and **false** means the opposite.|
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.|
-| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.|
-| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.|
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness.                 |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.|
-| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
-| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.|
-| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0.0**.                                                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                                                                    |
+| ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                   |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is **-1**.                     |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the dimmest.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9. |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.                                                                  |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.                                                                 |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.      |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.                                                                  |
+| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0**. The value must be an integer.                                                                                   |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -259,12 +259,12 @@ Describes the scale parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The default value is **1.0**.                      |
-| y      | number   | No  | Yes  | Scale factor along the y-axis. The default value is **1.0**.                      |
-| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                        |
+| ------ | -------- | ---- | ---- |--------------------------------------------|
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                |
+| y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ Describes the rotation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                              |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The default value is **0.0**.                    |
-| y      | number   | No  | Yes  | Rotation angle around the y-axis. The default value is **0.0**.                    |
-| z      | number   | No  | Yes  | Rotation angle around the z-xis. The default value is **0.0**.                    |
-| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value ranges from 0.0 to 1.0, and the default value is **0.5**.|
+| Name  | Type| Readable| Writable| Description                                         |
+| ------ | -------- | ---- | ---- |---------------------------------------------|
+| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                 |
+| y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -292,15 +292,13 @@ Describes the translation parameters.
 
 | Name| Type| Readable| Writable| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The default value is **0.0**.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The default value is **0.0**.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The default value is **0.0**.|
+| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, and the default value is **0.0**.|
+| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, and the default value is **0.0**.|
+| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, and the default value is **0.0**.|
 
 ## WindowEventType<sup>10+</sup>
 
 Enumerates the window lifecycle states.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -334,6 +332,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -383,6 +383,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -421,6 +423,14 @@ Finds a window based on the name.
 | Type| Description|
 | ----------------- | ------------------- |
 | [Window](#window) | Window found.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 1300002 | This window state is abnormal. |
 
 **Example**
 
@@ -534,7 +544,7 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
 
 **Error codes**
@@ -583,7 +593,7 @@ Minimizes all windows on a display. This API uses a promise to return the result
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). The value must be an integer.|
 
 **Return value**
 
@@ -829,6 +839,148 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.on('gestureNavigationEnabledChange')<sup>10+</sup>
+
+on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
+
+Enables listening for gesture navigation status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                                         |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.   |
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the gesture navigation status. The value **true** means that the gesture navigation status is changed to enabled, and **false** means that the gesture navigation status is changed to disabled.|
+
+**Example**
+
+```js
+try {
+    window.on('gestureNavigationEnabledChange', (data) => {
+        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('gestureNavigationEnabledChange')<sup>10+</sup>
+
+off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables the listening for gesture navigation status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                       |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | Yes| Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.|
+| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If this parameter is passed in, only the listener registered using this callback function is removed; otherwise, all gesture navigation status change listeners are removed.|
+
+**Example**
+
+```js
+try {
+    window.off('gestureNavigationEnabledChange');
+} catch (exception) {
+    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Enables or disables gesture navigation. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description          |
+| -------- | ------------------------- | ---- | -------------- |
+| enable   | boolean                  | Yes  | Whether to enable gesture navigation. The value **true** means to enable gesture navigation, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+try {
+    window.setGestureNavigationEnabled(true, (err) => {
+        if(err.code) {
+            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting gesture navigation enabled.');
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
+
+Enables or disables gesture navigation. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type    | Mandatory | Description                |
+| ------ | ------- | ---- | -------------------- |
+| enable | boolean | Yes  | Whether to enable gesture navigation. The value **true** means to enable gesture navigation, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+try {
+    let promise = window.setGestureNavigationEnabled(true);
+    promise.then(()=> {
+        console.info('Succeeded in setting gesture navigation enabled.');
+    }).catch((err)=>{
+        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1567,8 +1719,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -1610,8 +1762,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -1663,8 +1815,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px.|
-| height   | number                    | Yes| New height of the window, in px.|
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -1712,8 +1864,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px.|
-| height | number | Yes| New height of the window, in px.|
+| width  | number | Yes| New width of the window, in px. The value must be an integer.|
+| height | number | Yes| New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -1910,7 +2062,11 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the full-screen mode for the window layout. This API uses an asynchronous callback to return the result.
+Sets whether the window layout is immersive. This API uses an asynchronous callback to return the result.
+
+An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
+A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1918,7 +2074,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 | Name| Type| Mandatory| Description|
 | ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | Yes| Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed. The value **true** means to enable the full-screen mode for the window layout, and **false** means the opposite.|
+| isLayoutFullScreen | boolean                   | Yes| Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite.|
 | callback           | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1951,7 +2107,11 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the full-screen mode for the window layout. This API uses a promise to return the result.
+Sets whether the window layout is immersive. This API uses a promise to return the result.
+
+An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
+A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1959,7 +2119,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 | Name| Type| Mandatory| Description|
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | Yes| Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed. The value **true** means to enable the full-screen mode for the window layout, and **false** means the opposite.|
+| isLayoutFullScreen | boolean | Yes| Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite.|
 
 **Return value**
 
@@ -1996,7 +2156,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2004,7 +2164,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2038,7 +2198,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2046,7 +2206,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type | Mandatory| Description|
 | ----- | ---------------------------- | -- | --------------------------------- |
-| names | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
@@ -2084,7 +2244,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the properties of the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2131,7 +2291,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2262,6 +2422,61 @@ try {
 }
 ```
 
+### getUIContext<sup>10+</sup>
+
+getUIContext(): UIContext
+
+Obtain a **UIContext** instance.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type      | Description                  |
+| ---------- | ---------------------- |
+| [UIContext](./js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let windowClass = null;
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            windowClass = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // Obtain a UIContext instance.
+            globalThis.uiContext = windowClass.getUIContext();
+        })
+    }
+};
+```
+
 ### setUIContent<sup>9+</sup>
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -2361,7 +2576,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2407,7 +2622,7 @@ Loads content from a page associated with a local storage to this window. This A
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -2557,7 +2772,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
 Disables listening for changes to the area where the window cannot be displayed.
 
@@ -2584,16 +2799,16 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-Enables listening for keyboard height changes.
+Enables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type               | Mandatory| Description                                                        |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type               | Mandatory| Description                                       |
+| -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer.                   |
 
 **Example**
 
@@ -2611,7 +2826,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-Disables listening for keyboard height changes.
+Disables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2620,7 +2835,7 @@ Disables listening for keyboard height changes.
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                              |
 
 **Example**
 
@@ -2673,10 +2888,10 @@ Disables listening for click events outside this window.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                                        |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the click event outside this window.                              |
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- |----------------------| ---- |--------------------------------------|
+| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
+| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.            |
 
 **Example**
 
@@ -2808,8 +3023,6 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 Enables listening for window lifecycle changes.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -2836,8 +3049,6 @@ try {
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
 Disables listening for window lifecycle changes.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3029,15 +3240,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3054,18 +3260,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3106,15 +3300,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import window from '@ohos.window';
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('onCreate');
-    }
-
     onRequest(want, startId) {
         console.info('onRequest');
         try {
@@ -3130,18 +3319,6 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         } catch(err) {
             console.error('getRequestInfo err = ' + JSON.stringify(err))
         }
-    }
-
-    onConnect(want) {
-        console.info('onConnect');
-    }
-
-    onDisconnect(want) {
-        console.info('onDisconnect');
-    }
-
-    onDestroy() {
-        console.info('onDestroy');
     }
 }
 ```
@@ -3327,7 +3504,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 setWindowBackgroundColor(color: string): void
 
-Sets the background color for this window. In the stage model, this API must be used after [loadContent](#loadcontent9).
+Sets the background color for this window. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3335,7 +3512,7 @@ Sets the background color for this window. In the stage model, this API must be 
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | Yes| Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| color | string | Yes| Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 
 **Error codes**
 
@@ -3362,14 +3539,16 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
 
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------------------------- | -- | --------------------------------- |
-| brightness | number                    | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                        |
+| Name| Type| Mandatory| Description                                       |
+| ---------- | ------------------------- | -- |-------------------------------------------|
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
 
@@ -3403,13 +3582,15 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
 
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | -- | --------------------------------- |
-| brightness | number | Yes| Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name| Type| Mandatory| Description                                    |
+| ---------- | ------ | -- |----------------------------------------|
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** indicates the brightest.|
 
 **Return value**
 
@@ -3956,15 +4137,15 @@ Captures this window. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                         |
-| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
+| Name     | Type                     | Mandatory| Description                |
+| ----------- | ------------------------- | ---- | -------------------- |
+| callback    | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -3991,15 +4172,15 @@ Captures this window. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                                        | Description                                   |
-| ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the window screenshot. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the window screenshot.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -4019,7 +4200,7 @@ promise.then((pixelMap)=> {
 
 opacity(opacity: number): void
 
-Sets the opacity for this window.
+Sets the opacity for this window. This API can be used only when you [customize an animation to be played during the display or hiding of a system window](../../windowmanager/system-window-stage.md#customizing-an-animation-to-be-played-during-the-display-or-hiding-of-a-system-window).
 
 **System API**: This is a system API.
 
@@ -4027,18 +4208,18 @@ Sets the opacity for this window.
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                                       |
-| ------- | ------ | --------- | ------------------------------------------------- |
-| opacity | number | Yes       | Opacity to set. The value ranges from 0.0 to 1.0. |
+| Name | Type  | Mandatory| Description                                                |
+| ------- | ------ | ---- |----------------------------------------------------|
+| opacity | number | Yes  | Opacity. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means completely transparent, and **1.0** means completely opaque.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4054,7 +4235,7 @@ try {
 
 scale(scaleOptions: ScaleOptions): void
 
-Sets the scale parameters for this window.
+Sets the scale parameters for this window. This API can be used only when you [customize an animation to be played during the display or hiding of a system window](../../windowmanager/system-window-stage.md#customizing-an-animation-to-be-played-during-the-display-or-hiding-of-a-system-window).
 
 **System API**: This is a system API.
 
@@ -4062,18 +4243,18 @@ Sets the scale parameters for this window.
 
 **Parameters**
 
-| Name         | Type                           | Mandatory | Description              |
-| ------------ | ------------------------------ | --------- | ------------------------ |
-| scaleOptions | [ScaleOptions](#scaleoptions9) | Yes       | Scale parameters to set. |
+| Name      | Type                          | Mandatory| Description      |
+| ------------ | ------------------------------ | ---- | ---------- |
+| scaleOptions | [ScaleOptions](#scaleoptions9) | Yes  | Scale parameters to set.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4095,7 +4276,7 @@ try {
 
 rotate(rotateOptions: RotateOptions): void
 
-Sets the rotation parameters for this window.
+Sets the rotation parameters for this window. This API can be used only when you [customize an animation to be played during the display or hiding of a system window](../../windowmanager/system-window-stage.md#customizing-an-animation-to-be-played-during-the-display-or-hiding-of-a-system-window).
 
 **System API**: This is a system API.
 
@@ -4103,18 +4284,18 @@ Sets the rotation parameters for this window.
 
 **Parameters**
 
-| Name          | Type                             | Mandatory | Description                 |
-| ------------- | -------------------------------- | --------- | --------------------------- |
-| rotateOptions | [RotateOptions](#rotateoptions9) | Yes       | Rotation parameters to set. |
+| Name       | Type                            | Mandatory| Description      |
+| ------------- | -------------------------------- | ---- | ---------- |
+| rotateOptions | [RotateOptions](#rotateoptions9) | Yes  | Rotation parameters to set.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4137,7 +4318,7 @@ try {
 
 translate(translateOptions: TranslateOptions): void
 
-Sets the translation parameters for this window.
+Sets the translation parameters for this window. This API can be used only when you [customize an animation to be played during the display or hiding of a system window](../../windowmanager/system-window-stage.md#customizing-an-animation-to-be-played-during-the-display-or-hiding-of-a-system-window).
 
 **System API**: This is a system API.
 
@@ -4145,18 +4326,18 @@ Sets the translation parameters for this window.
 
 **Parameters**
 
-| Name             | Type                                   | Mandatory | Description                    |
-| ---------------- | -------------------------------------- | --------- | ------------------------------ |
-| translateOptions | [TranslateOptions](#translateoptions9) | Yes       | Translation parameters to set. |
+| Name          | Type                                  | Mandatory| Description                |
+| ---------------- | -------------------------------------- | ---- | -------------------- |
+| translateOptions | [TranslateOptions](#translateoptions9) | Yes  | Translation parameters. The unit is pixels.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4185,18 +4366,18 @@ Obtains the transition animation controller.
 
 **Return value**
 
-| Type                                           | Description                      |
-| ---------------------------------------------- | -------------------------------- |
-| [TransitionController](#transitioncontroller9) | Transition animation controller. |
+| Type                                          | Description            |
+| ---------------------------------------------- | ---------------- |
+| [TransitionController](#transitioncontroller9) | Transition animation controller.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4247,18 +4428,18 @@ Blurs this window.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                  |
-| ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the window. |
+| Name| Type  | Mandatory| Description                                              |
+| ------ | ------ | ---- |--------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window. |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4282,18 +4463,18 @@ Blurs the background of this window.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                  |
-| ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the blur. The value is greater than or equal to 0. The value **0** means that the blur is disabled for the background of the window. |
+| Name| Type  | Mandatory| Description                                                   |
+| ------ | ------ | ---- |-------------------------------------------------------|
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window. |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4303,7 +4484,6 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4318,18 +4498,18 @@ Sets the blur style for the background of this window.
 
 **Parameters**
 
-| Name      | Type                     | Mandatory | Description                                         |
-| --------- | ------------------------ | --------- | --------------------------------------------------- |
-| blurStyle | [BlurStyle](#blurstyle9) | Yes       | Blur style to set for the background of the window. |
+| Name   | Type     | Mandatory| Description                  |
+| --------- | --------- | ---- | ---------------------- |
+| blurStyle | [BlurStyle](#blurstyle9) | Yes  | Blur style to set for the background of the window.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4339,7 +4519,6 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setShadow<sup>9+</sup>
@@ -4354,21 +4533,21 @@ Sets the shadow for the window borders.
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                                                  |
-| ------- | ------ | --------- | ------------------------------------------------------------ |
-| radius  | number | Yes       | Radius of the shadow. The value is greater than or equal to 0. The value **0** means that the shadow is disabled for the window borders. |
-| color   | string | No        | Color of the shadow. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
-| offsetX | number | No        | Offset of the shadow along the x-axis, in pixels.            |
-| offsetY | number | No        | Offset of the shadow along the y-axis, in pixels.            |
+| Name | Type  | Mandatory| Description                                                         |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | Yes  | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders. |
+| color   | string | No  | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| offsetX | number | No  | Offset of the shadow along the x-axis, in pixels. The value is a floating point number.                             |
+| offsetY | number | No  | Offset of the shadow along the y-axis, in pixels. The value is a floating point number.                             |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4378,7 +4557,6 @@ try {
 } catch (exception) {
     console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -4393,18 +4571,18 @@ Sets the radius of the rounded corners for this window.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                  |
-| ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the rounded corners. The value is greater than or equal to 0. The value **0** means that the window does not use rounded corners. |
+| Name     | Type   | Mandatory| Description                                                |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners. |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4414,7 +4592,6 @@ try {
 } catch (exception) {
     console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -4429,20 +4606,20 @@ Raises the application subwindow to the top layer of the application. This API u
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                         |
-| -------- | ------------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                                 |
-| ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -4454,7 +4631,6 @@ windowClass.raiseToAppTop((err) => {
     }
     console.info('Succeeded in raising the window to app top.');
 });
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -4469,20 +4645,20 @@ Raises the application subwindow to the top layer of the application. This API u
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                                 |
-| ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -4493,9 +4669,7 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
-
 ```
-
 ### setAspectRatio<sup>10+</sup>
 
 setAspectRatio(ratio: number): Promise&lt;void&gt;
@@ -4508,24 +4682,24 @@ This API is available only for the main window of the application. The aspect ra
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                                  |
-| ----- | ------ | --------- | ------------------------------------------------------------ |
-| ratio | number | Yes       | Aspect ratio of the window content layout except border decoration. The value must be greater than 0. |
+| Name            | Type   | Mandatory| Description                                       |
+| ------------------ | ------- | ---- |-------------------------------------------|
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -4541,7 +4715,6 @@ try {
 } catch (exception) {
     console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setAspectRatio<sup>10+</sup>
@@ -4556,19 +4729,19 @@ This API is available only for the main window of the application. The aspect ra
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| ratio    | number                    | Yes       | Aspect ratio of the window content layout except border decoration. The value must be greater than 0. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name            | Type   | Mandatory| Description                                        |
+| ------------------ | ------- | ---- |--------------------------------------------|
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -4585,7 +4758,6 @@ try {
 } catch (exception) {
     console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -4600,18 +4772,18 @@ This API is available only for the main window of the application. After this AP
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -4626,7 +4798,6 @@ try {
 } catch (exception) {
     console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -4641,18 +4812,18 @@ This API is available only for the main window of the application. After this AP
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                         |
-| -------- | ------------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name            | Type   | Mandatory| Description                                                        |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -4668,7 +4839,6 @@ try {
 } catch (exception) {
     console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -4683,25 +4853,25 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 
 **Parameters**
 
-| Name   | Type    | Mandatory | Description                                                  |
-| ------ | ------- | --------- | ------------------------------------------------------------ |
-| enable | boolean | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
+| Name| Type    | Mandatory| Description                                           |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                                 |
-| ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300008 | The operation is on invalid display.          |
+| ID| Error Message|
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
 
 **Example**
 
@@ -4717,7 +4887,6 @@ try {
 } catch (exception) {
     console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -4732,20 +4901,20 @@ Adds or deletes the watermark flag for this window. This API uses an asynchronou
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| enable   | boolean                   | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name  | Type                      | Mandatory| Description                                             |
+| -------- | ------------------------- | ---  | ----------------------------------------------- |
+| enable   | boolean                   | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                                 |
-| ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300008 | The operation is on invalid display.          |
+| ID| Error Message|
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
 
 **Example**
 
@@ -4762,7 +4931,6 @@ try {
 } catch (exception) {
     console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4779,9 +4947,9 @@ Shows this window. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                         |
-| -------- | ------------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4793,7 +4961,6 @@ windowClass.show((err) => {
     }
     console.info('Succeeded in showing the window.');
 });
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4810,9 +4977,9 @@ Shows this window. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4823,7 +4990,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4840,9 +5006,9 @@ Destroys this window. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                         |
-| -------- | ------------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4854,7 +5020,6 @@ windowClass.destroy((err) => {
     }
     console.info('Succeeded in destroying the window.');
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4871,9 +5036,9 @@ Destroys this window. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4884,7 +5049,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4903,11 +5067,11 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| x        | number                    | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. |
-| y        | number                    | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name  | Type                     | Mandatory| Description                                             |
+| -------- | ------------------------- | ---- | ------------------------------------------------- |
+| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                       |
 
 **Example**
 
@@ -4919,7 +5083,6 @@ windowClass.moveTo(300, 300, (err)=>{
     }
     console.info('Succeeded in moving the window.');
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4938,16 +5101,16 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                  |
-| ---- | ------ | --------- | ------------------------------------------------------------ |
-| x    | number | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. |
-| y    | number | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. |
+| Name| Type  | Mandatory| Description                                             |
+| ------ | ------ | ---- | ------------------------------------------------- |
+| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4958,7 +5121,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4983,11 +5145,11 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                         |
-| -------- | ------------------------- | --------- | ----------------------------------- |
-| width    | number                    | Yes       | New width of the window, in px.     |
-| height   | number                    | Yes       | New height of the window, in px.    |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| width    | number                    | Yes  | New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes  | New height of the window, in px. The value must be an integer.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -4999,7 +5161,6 @@ windowClass.resetSize(500, 1000, (err) => {
     }
     console.info('Succeeded in changing the window size.');
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -5024,16 +5185,16 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                      |
-| ------ | ------ | --------- | -------------------------------- |
-| width  | number | Yes       | New width of the window, in px.  |
-| height | number | Yes       | New height of the window, in px. |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| width  | number | Yes  | New width of the window, in px. The value must be an integer.|
+| height | number | Yes  | New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5044,7 +5205,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -5063,10 +5223,10 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                         |
-| -------- | -------------------------- | --------- | ----------------------------------- |
-| type     | [WindowType](#windowtype7) | Yes       | Window type.                        |
-| callback | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| type     | [WindowType](#windowtype7) | Yes  | Window type.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -5079,7 +5239,6 @@ windowClass.setWindowType(type, (err) => {
   }
   console.info('Succeeded in setting the window type.');
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -5098,15 +5257,15 @@ Sets the type of this window. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                       | Mandatory | Description  |
-| ---- | -------------------------- | --------- | ------------ |
-| type | [WindowType](#windowtype7) | Yes       | Window type. |
+| Name| Type                     | Mandatory| Description      |
+| ------ | ------------------------- | ---- | ---------- |
+| type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5118,7 +5277,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -5135,9 +5293,9 @@ Obtains the properties of this window. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name     | Type                                                       | Mandatory | Description                                    |
-| -------- | ---------------------------------------------------------- | --------- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | Yes       | Callback used to return the window properties. |
+| Name  | Type                                                      | Mandatory| Description                        |
+| -------- | ---------------------------------------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | Yes  | Callback used to return the window properties.|
 
 **Example**
 
@@ -5149,7 +5307,6 @@ windowClass.getProperties((err, data) => {
     }
     console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -5166,9 +5323,9 @@ Obtains the properties of this window. This API uses a promise to return the res
 
 **Return value**
 
-| Type                                                 | Description                                   |
-| ---------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;[WindowProperties](#windowproperties)&gt; | Promise used to return the window properties. |
+| Type                                                | Description                           |
+| ---------------------------------------------------- | ------------------------------- |
+| Promise&lt;[WindowProperties](#windowproperties)&gt; | Promise used to return the window properties.|
 
 **Example**
 
@@ -5179,7 +5336,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -5196,10 +5352,10 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                       |
-| -------- | --------------------------------------------- | --------- | --------------------------------- |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.                 |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area. |
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes  | Type of the area.|
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
 
@@ -5212,7 +5368,6 @@ windowClass.getAvoidArea(type, (err, data) => {
     }
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -5229,15 +5384,15 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description       |
-| ---- | -------------------------------- | --------- | ----------------- |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. |
+| Name| Type                              | Mandatory| Description                                                        |
+| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
+| type   | [AvoidAreaType](#avoidareatype7) | Yes  | Type of the area.|
 
 **Return value**
 
-| Type                                    | Description                      |
-| --------------------------------------- | -------------------------------- |
-| Promise&lt;[AvoidArea](#avoidarea7)&gt; | Promise used to return the area. |
+| Type                                     | Description                               |
+|-----------------------------------------| ----------------------------------- |
+| Promise&lt;[AvoidArea](#avoidarea7)&gt; | Promise used to return the area.|
 
 **Example**
 
@@ -5249,14 +5404,17 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the full-screen mode for this window. This API uses an asynchronous callback to return the result.
+Sets whether the window is in full-screen mode. This API uses an asynchronous callback to return the result.
+
+In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+
+In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -5266,10 +5424,10 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 
 **Parameters**
 
-| Name         | Type                      | Mandatory | Description                                                  |
-| ------------ | ------------------------- | --------- | ------------------------------------------------------------ |
-| isFullScreen | boolean                   | Yes       | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden. The value **true** means to enable the full-screen mode, and **false** means the opposite. |
-| callback     | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name      | Type                     | Mandatory| Description                                          |
+| ------------ | ------------------------- | ---- | ---------------------------------------------- |
+| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                    |
 
 **Example**
 
@@ -5282,14 +5440,17 @@ windowClass.setFullScreen(isFullScreen, (err) => {
     }
     console.info('Succeeded in enabling the full-screen mode.');
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the full-screen mode for this window. This API uses a promise to return the result.
+Sets whether the window is in full-screen mode. This API uses a promise to return the result.
+
+In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+
+In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -5299,15 +5460,15 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 **Parameters**
 
-| Name         | Type    | Mandatory | Description                                                  |
-| ------------ | ------- | --------- | ------------------------------------------------------------ |
-| isFullScreen | boolean | Yes       | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden. The value **true** means to enable the full-screen mode, and **false** means the opposite. |
+| Name      | Type   | Mandatory| Description                                          |
+| ------------ | ------- | ---- | ---------------------------------------------- |
+| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5319,14 +5480,17 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the full-screen mode for the window layout. This API uses an asynchronous callback to return the result.
+Sets whether the window layout is immersive. This API uses an asynchronous callback to return the result.
+
+An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
+A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 > **NOTE**
 >
@@ -5336,10 +5500,10 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 **Parameters**
 
-| Name               | Type                      | Mandatory | Description                                                  |
-| ------------------ | ------------------------- | --------- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | Yes       | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed. The value **true** means to enable the full-screen mode for the window layout, and **false** means the opposite. |
-| callback           | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name            | Type                     | Mandatory| Description                                                        |
+| ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean                   | Yes  | Whether the window layout is immersive. This setting does not affect the display of the status bar and navigation bar. The value **true** means that the window layout is immersive, and **false** means the opposite.|
+| callback           | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -5352,14 +5516,17 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
     }
     console.info('Succeeded in setting the window layout to full-screen mode.');
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the full-screen mode for the window layout. This API uses a promise to return the result.
+Sets whether the window layout is immersive. This API uses a promise to return the result.
+
+An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+
+A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
 > **NOTE**
 >
@@ -5369,15 +5536,15 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 **Parameters**
 
-| Name               | Type    | Mandatory | Description                                                  |
-| ------------------ | ------- | --------- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | Yes       | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed. The value **true** means to enable the full-screen mode for the window layout, and **false** means the opposite. |
+| Name            | Type   | Mandatory| Description                                                        |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean | Yes  | Whether the window layout is immersive. This setting does not affect the display of the status bar and navigation bar. The value **true** means that the window layout is immersive, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5389,14 +5556,13 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5406,10 +5572,10 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **Parameters**
 
-| Name     | Type                          | Mandatory | Description                                                  |
-| -------- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
-| callback | AsyncCallback&lt;void&gt;     | Yes       | Callback used to return the result.                          |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| names    | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -5423,14 +5589,13 @@ windowClass.setSystemBarEnable(names, (err) => {
     }
     console.info('Succeeded in setting the system bar to be invisible.');
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets whether to display the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5440,15 +5605,15 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                  |
-| ----- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| Name| Type | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------ |
+| names  | Array<'status'\|'navigation'> | Yes  | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5461,14 +5626,13 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the properties of the status bar and navigation bar in this window. This API uses an asynchronous callback to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5478,10 +5642,10 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 **Parameters**
 
-| Name                | Type                                        | Mandatory | Description                                      |
-| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------ |
-| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the status bar and navigation bar. |
-| callback            | AsyncCallback&lt;void&gt;                   | Yes       | Callback used to return the result.              |
+| Name             | Type                                       | Mandatory| Description                  |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
+| callback            | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.            |
 
 **Example**
 
@@ -5500,14 +5664,13 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
     }
     console.info('Succeeded in setting the system bar properties.');
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar in this window. This API uses a promise to return the result.
+Sets the properties of the status bar and navigation bar when the window is in full-screen mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5517,15 +5680,15 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 **Parameters**
 
-| Name                | Type                                        | Mandatory | Description                                      |
-| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------ |
-| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the status bar and navigation bar. |
+| Name             | Type                                       | Mandatory| Description                  |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5543,7 +5706,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -5560,10 +5722,10 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Example**
 
@@ -5575,7 +5737,6 @@ windowClass.loadContent('pages/page2/page2', (err) => {
    }
   console.info('Succeeded in loading the content.');
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -5592,15 +5753,15 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                             |
-| ---- | ------ | --------- | ------------------------------------------------------- |
-| path | string | Yes       | Path of the page from which the content will be loaded. |
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| path   | string | Yes  | Path of the page from which the content will be loaded.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5611,7 +5772,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -5628,9 +5788,9 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory | Description                                                  |
-| -------- | ---------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes       | Callback used to return the result. The value **true** means that the window is displayed, and **false** means the opposite. |
+| Name  | Type                        | Mandatory| Description                                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the window is displayed, and **false** means the opposite.|
 
 **Example**
 
@@ -5642,7 +5802,6 @@ windowClass.isShowing((err, data) => {
     }
     console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -5659,9 +5818,9 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 **Return value**
 
-| Type                   | Description                                                  |
+| Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the window is displayed, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the window is displayed, and **false** means the opposite.|
 
 **Example**
 
@@ -5672,7 +5831,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5689,10 +5847,10 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                                                  |
-| -------- | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                   | Yes       | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
 
@@ -5700,7 +5858,6 @@ Enables listening for changes to the area where the window cannot be displayed.
 windowClass.on('systemAvoidAreaChange', (data) => {
     console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5717,16 +5874,15 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                                                  |
-| -------- | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                   | Yes       | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No        | Callback used to return the area.                            |
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No  | Callback used to return the area.                           |
 
 **Example**
 
 ```js
 windowClass.off('systemAvoidAreaChange');
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -5743,9 +5899,9 @@ Checks whether this window supports the wide-gamut color space. This API uses an
 
 **Parameters**
 
-| Name     | Type                         | Mandatory | Description                                                  |
-| -------- | ---------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes       | Callback used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite. |
+| Name  | Type                        | Mandatory| Description                                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -5757,7 +5913,6 @@ windowClass.isSupportWideGamut((err, data) => {
     }
     console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -5774,9 +5929,9 @@ Checks whether this window supports the wide-gamut color space. This API uses a 
 
 **Return value**
 
-| Type                   | Description                                                  |
+| Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -5787,7 +5942,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5804,10 +5958,10 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name       | Type                       | Mandatory | Description                         |
-| ---------- | -------------------------- | --------- | ----------------------------------- |
-| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
-| callback   | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
+| Name    | Type                     | Mandatory| Description        |
+| ---------- | ------------------------- | ---- | ------------ |
+| colorSpace | [ColorSpace](#colorspace8) | Yes  | Color space to set.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -5819,7 +5973,6 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
     }
     console.info('Succeeded in setting window colorspace.');
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5836,15 +5989,15 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Parameters**
 
-| Name       | Type                       | Mandatory | Description         |
-| ---------- | -------------------------- | --------- | ------------------- |
-| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
+| Name    | Type                     | Mandatory| Description          |
+| ---------- | ------------------------- | ---- | -------------- |
+| colorSpace | [ColorSpace](#colorspace8) | Yes  | Color space to set.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5855,7 +6008,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -5872,9 +6024,9 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name     | Type                                            | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
+| Name  | Type                                          | Mandatory| Description                                                      |
+| -------- | ---------------------------------------------- | ---- | ---------------------------------------------------------- |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes  | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space.|
 
 **Example**
 
@@ -5886,7 +6038,6 @@ windowClass.getColorSpace((err, data) => {
     }
     console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -5903,9 +6054,9 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 **Return value**
 
-| Type                                      | Description                                     |
-| ----------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
+| Type                                    | Description                           |
+| ---------------------------------------- | ------------------------------- |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space.|
 
 **Example**
 
@@ -5916,14 +6067,13 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the background color for this window. This API uses an asynchronous callback to return the result. In the stage model, this API must be used after [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9).
+Sets the background color for this window. This API uses an asynchronous callback to return the result. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 > **NOTE**
 >
@@ -5933,10 +6083,10 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                  |
-| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| color    | string                    | Yes       | Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -5949,14 +6099,13 @@ windowClass.setBackgroundColor(color, (err) => {
     }
     console.info('Succeeded in setting the background color.');
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-Sets the background color for this window. This API uses a promise to return the result. In the stage model, this API must be used after [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9).
+Sets the background color for this window. This API uses a promise to return the result. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 > **NOTE**
 >
@@ -5966,15 +6115,15 @@ Sets the background color for this window. This API uses a promise to return the
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                                  |
-| ----- | ------ | --------- | ------------------------------------------------------------ |
-| color | string | Yes       | Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| color  | string | Yes  | Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -5986,7 +6135,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -5994,6 +6142,8 @@ promise.then(()=> {
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 > **NOTE**
 >
@@ -6003,10 +6153,10 @@ Sets the screen brightness for this window. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description                                                  |
-| ---------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| brightness | number                    | Yes       | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest. |
-| callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name    | Type                     | Mandatory| Description                                   |
+| ---------- | ------------------------- | ---- |---------------------------------------|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
 
@@ -6019,7 +6169,6 @@ windowClass.setBrightness(brightness, (err) => {
     }
     console.info('Succeeded in setting the brightness.');
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -6027,6 +6176,8 @@ windowClass.setBrightness(brightness, (err) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 > **NOTE**
 >
@@ -6036,15 +6187,15 @@ Sets the screen brightness for this window. This API uses a promise to return th
 
 **Parameters**
 
-| Name       | Type   | Mandatory | Description                                                  |
-| ---------- | ------ | --------- | ------------------------------------------------------------ |
-| brightness | number | Yes       | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest. |
+| Name    | Type  | Mandatory| Description                                      |
+| ---------- | ------ | ---- |------------------------------------------|
+| brightness | number | Yes  | Brightness to set. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6056,7 +6207,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -6073,10 +6223,10 @@ Sets the dimness of the window that is not on top. This API uses an asynchronous
 
 **Parameters**
 
-| Name           | Type                      | Mandatory | Description                                                  |
-| -------------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| dimBehindValue | number                    | Yes       | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest. |
-| callback       | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name        | Type                     | Mandatory| Description                                    |
+| -------------- | ------------------------- | ---- |----------------------------------------|
+| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value range is [0.0, 1.0], and the value **1.0** means the dimmest.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                 |
 
 **Example**
 
@@ -6088,7 +6238,6 @@ windowClass.setDimBehind(0.5, (err) => {
     }
     console.info('Succeeded in setting the dimness.');
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -6105,15 +6254,15 @@ Sets the dimness of the window that is not on top. This API uses a promise to re
 
 **Parameters**
 
-| Name           | Type   | Mandatory | Description                                                  |
-| -------------- | ------ | --------- | ------------------------------------------------------------ |
-| dimBehindValue | number | Yes       | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest. |
+| Name        | Type  | Mandatory| Description                                              |
+| -------------- | ------ | ---- | -------------------------------------------------- |
+| dimBehindValue | number | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6124,7 +6273,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -6141,10 +6289,10 @@ Sets whether this window can gain focus. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name        | Type                      | Mandatory | Description                                                  |
-| ----------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| isFocusable | boolean                   | Yes       | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
-| callback    | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name     | Type                     | Mandatory| Description                        |
+| ----------- | ------------------------- | ---- | ---------------------------- |
+| isFocusable | boolean                   | Yes  | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 **Example**
 
@@ -6157,7 +6305,6 @@ windowClass.setFocusable(isFocusable, (err) => {
     }
     console.info('Succeeded in setting the window to be focusable.');
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -6174,15 +6321,15 @@ Sets whether this window can gain focus. This API uses a promise to return the r
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description                                                  |
-| ----------- | ------- | --------- | ------------------------------------------------------------ |
-| isFocusable | boolean | Yes       | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
+| Name     | Type   | Mandatory| Description                        |
+| ----------- | ------- | ---- | ---------------------------- |
+| isFocusable | boolean | Yes  | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6194,7 +6341,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -6211,10 +6357,10 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name           | Type                      | Mandatory | Description                                                  |
-| -------------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| isKeepScreenOn | boolean                   | Yes       | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
-| callback       | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name        | Type                     | Mandatory| Description                    |
+| -------------- | ------------------------- | ---- | ------------------------ |
+| isKeepScreenOn | boolean                   | Yes  | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.              |
 
 **Example**
 
@@ -6227,7 +6373,6 @@ windowClass.setKeepScreenOn(isKeepScreenOn, (err) => {
     }
     console.info('Succeeded in setting the screen to be always on.');
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -6244,15 +6389,15 @@ Sets whether to keep the screen always on. This API uses a promise to return the
 
 **Parameters**
 
-| Name           | Type    | Mandatory | Description                                                  |
-| -------------- | ------- | --------- | ------------------------------------------------------------ |
-| isKeepScreenOn | boolean | Yes       | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
+| Name        | Type   | Mandatory| Description                    |
+| -------------- | ------- | ---- | ------------------------ |
+| isKeepScreenOn | boolean | Yes  | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6264,7 +6409,6 @@ promise.then(() => {
 }).catch((err)=>{
     console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -6281,10 +6425,10 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 
 **Parameters**
 
-| Name      | Type                      | Mandatory | Description                                                  |
-| --------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| touchable | boolean                   | Yes       | Whether the area outside the subwindow is touchable. The value **true** means the area outside the subwindow is touchable, and **false** means the opposite. |
-| callback  | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name   | Type                     | Mandatory| Description            |
+| --------- | ------------------------- | ---- | ---------------- |
+| touchable | boolean                   | Yes  | Whether the area outside the subwindow is touchable. The value **true** means the area outside the subwindow is touchable, and **false** means the opposite.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.      |
 
 **Example**
 
@@ -6296,7 +6440,6 @@ windowClass.setOutsideTouchable(true, (err) => {
     }
     console.info('Succeeded in setting the area to be touchable.');
 });
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -6313,15 +6456,15 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 **Parameters**
 
-| Name      | Type    | Mandatory | Description                                                  |
-| --------- | ------- | --------- | ------------------------------------------------------------ |
-| touchable | boolean | Yes       | Whether the area outside the subwindow is touchable. The value **true** means the area outside the subwindow is touchable, and **false** means the opposite. |
+| Name   | Type   | Mandatory| Description            |
+| --------- | ------- | ---- | ---------------- |
+| touchable | boolean | Yes  | Whether the area outside the subwindow is touchable. The value **true** means the area outside the subwindow is touchable, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6332,7 +6475,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -6349,10 +6491,10 @@ Sets whether this window is in privacy mode. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name          | Type                      | Mandatory | Description                                                  |
-| ------------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| isPrivacyMode | boolean                   | Yes       | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
-| callback      | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name       | Type                     | Mandatory| Description                |
+| ------------- | ------------------------- | ---- | -------------------- |
+| isPrivacyMode | boolean                   | Yes  | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
+| callback      | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Example**
 
@@ -6365,7 +6507,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err) => {
     }
     console.info('Succeeded in setting the window to privacy mode.');
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -6382,15 +6523,15 @@ Sets whether this window is in privacy mode. This API uses a promise to return t
 
 **Parameters**
 
-| Name          | Type    | Mandatory | Description                                                  |
-| ------------- | ------- | --------- | ------------------------------------------------------------ |
-| isPrivacyMode | boolean | Yes       | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| Name       | Type   | Mandatory| Description                |
+| ------------- | ------- | ---- | -------------------- |
+| isPrivacyMode | boolean | Yes  | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6402,7 +6543,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -6419,10 +6559,10 @@ Sets whether this window is touchable. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name        | Type                      | Mandatory | Description                                                  |
-| ----------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| isTouchable | boolean                   | Yes       | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite. |
-| callback    | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+| Name     | Type                     | Mandatory| Description                |
+| ----------- | ------------------------- | ---- | -------------------- |
+| isTouchable | boolean                   | Yes  | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Example**
 
@@ -6435,7 +6575,6 @@ windowClass.setTouchable(isTouchable, (err) => {
     }
     console.info('Succeeded in setting the window to be touchable.');
 });
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -6452,15 +6591,15 @@ Sets whether this window is touchable. This API uses a promise to return the res
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description                                                  |
-| ----------- | ------- | --------- | ------------------------------------------------------------ |
-| isTouchable | boolean | Yes       | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite. |
+| Name     | Type   | Mandatory| Description                |
+| ----------- | ------- | ---- | -------------------- |
+| isTouchable | boolean | Yes  | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -6472,7 +6611,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ## WindowStageEventType<sup>9+</sup>
@@ -6483,12 +6621,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Value | Description                                    |
-| -------- | ----- | ---------------------------------------------- |
-| SHOWN    | 1     | The window stage is running in the foreground. |
-| ACTIVE   | 2     | The window stage gains focus.                  |
-| INACTIVE | 3     | The window stage loses focus.                  |
-| HIDDEN   | 4     | The window stage is running in the background. |
+| Name      | Value| Description      |
+| ---------- | ------ | ---------- |
+| SHOWN      | 1      | The window stage is running in the foreground.|
+| ACTIVE     | 2      | The window stage gains focus.|
+| INACTIVE   | 3      | The window stage loses focus.|
+| HIDDEN     | 4      | The window stage is running in the background.|
 
 ## WindowStage<sup>9+</sup>
 
@@ -6508,15 +6646,15 @@ Obtains the main window of this window stage. This API uses an asynchronous call
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description                              |
-| -------- | -------------------------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the main window. |
+| Name  | Type                                  | Mandatory| Description                                         |
+| -------- | -------------------------------------- | ---- | --------------------------------------------- |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6542,7 +6680,6 @@ export default class EntryAbility extends UIAbility {
         });
     }
 };
-
 ```
 
 ### getMainWindow<sup>9+</sup>
@@ -6557,15 +6694,15 @@ Obtains the main window of this window stage. This API uses a promise to return 
 
 **Return value**
 
-| Type                             | Description                             |
-| -------------------------------- | --------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the main window. |
+| Type                            | Description                                            |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6590,7 +6727,6 @@ export default class EntryAbility extends UIAbility {
         });
     }
 };
-
 ```
 
 ### getMainWindowSync<sup>9+</sup>
@@ -6605,15 +6741,15 @@ Obtains the main window of this window stage.
 
 **Return value**
 
-| Type              | Description             |
-| ----------------- | ----------------------- |
-| [Window](#window) | return the main window. |
+| Type| Description|
+| ----------------- | --------------------------------- |
+| [Window](#window) | return the main window.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6635,7 +6771,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -6650,16 +6785,16 @@ Creates a subwindow for this window stage. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description                            |
-| -------- | -------------------------------------- | --------- | -------------------------------------- |
-| name     | string                                 | Yes       | Name of the subwindow.                 |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the subwindow. |
+| Name  | Type                                  | Mandatory| Description                                         |
+| -------- | -------------------------------------- | ---- | --------------------------------------------- |
+| name     | string                                 | Yes  | Name of the subwindow.                               |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6690,9 +6825,7 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
-
 ### createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
@@ -6705,21 +6838,21 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description            |
-| ---- | ------ | --------- | ---------------------- |
-| name | string | Yes       | Name of the subwindow. |
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| name   | string | Yes  | Name of the subwindow.|
 
 **Return value**
 
-| Type                             | Description                           |
-| -------------------------------- | ------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow. |
+| Type                            | Description                                            |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6748,7 +6881,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -6763,15 +6895,15 @@ Obtains all the subwindows of this window stage. This API uses an asynchronous c
 
 **Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                 |
-| -------- | --------------------------------------------------- | --------- | ------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes       | Callback used to return all the subwindows. |
+| Name  | Type                                               | Mandatory| Description                                             |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300005 | This window stage is abnormal. |
 
@@ -6796,9 +6928,7 @@ export default class EntryAbility extends UIAbility {
         });
     }
 };
-
 ```
-
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
@@ -6811,15 +6941,15 @@ Obtains all the subwindows of this window stage. This API uses a promise to retu
 
 **Return value**
 
-| Type                                          | Description                                |
-| --------------------------------------------- | ------------------------------------------ |
-| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows. |
+| Type                                         | Description                                                |
+| --------------------------------------------- | ---------------------------------------------------- |
+| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300005 | This window stage is abnormal. |
 
@@ -6843,9 +6973,7 @@ export default class EntryAbility extends UIAbility {
         })
     }
 };
-
 ```
-
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
@@ -6858,17 +6986,17 @@ Loads content from a page associated with a local storage to the main window in 
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| path     | string                                                       | Yes       | Path of the page from which the content will be loaded.      |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
-| callback | AsyncCallback&lt;void&gt;                                    | Yes       | Callback used to return the result.                          |
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6899,7 +7027,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6914,22 +7041,22 @@ Loads content from a page associated with a local storage to the main window in 
 
 **Parameters**
 
-| Name    | Type                                                         | Mandatory | Description                                                  |
-| ------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| path    | string                                                       | Yes       | Path of the page from which the content will be loaded.      |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| Name | Type                                           | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------- | ------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -6959,7 +7086,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6974,16 +7100,16 @@ Loads content from a page to this window stage. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -7011,7 +7137,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### on('windowStageEvent')<sup>9+</sup>
@@ -7026,16 +7151,16 @@ Enables listening for window stage lifecycle changes.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes       | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event. |
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes       | Callback used to return the window stage lifecycle state.    |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the window stage lifecycle state.               |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -7061,7 +7186,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### off('windowStageEvent')<sup>9+</sup>
@@ -7076,16 +7200,16 @@ Disables listening for window stage lifecycle changes.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes       | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event. |
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No        | Callback used to return the window stage lifecycle state.    |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the window stage lifecycle state.               |
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -7108,7 +7232,6 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
 
 ### disableWindowDecor()<sup>9+</sup>
@@ -7127,7 +7250,7 @@ Disables window decorators.
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -7145,7 +7268,6 @@ export default class EntryAbility extends UIAbility {
         windowStage.disableWindowDecor();
     }
 };
-
 ```
 
 ### setShowOnLockScreen()<sup>9+</sup>
@@ -7162,15 +7284,15 @@ Sets whether to display the window of the application on the lock screen.
 
 **Parameters**
 
-| Name             | Type    | Mandatory | Description                                                  |
-| ---------------- | ------- | --------- | ------------------------------------------------------------ |
-| showOnLockScreen | boolean | Yes       | Whether to display the window on the lock screen. The value **true** means to display the window on the lock screen, and **false** means the opposite. |
+| Name          | Type   | Mandatory| Description                        |
+| ---------------- | ------- | ---- | ---------------------------- |
+| showOnLockScreen | boolean | Yes  | Whether to display the window on the lock screen. The value **true** means to display the window on the lock screen, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID      | Error Message                  |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
@@ -7192,9 +7314,7 @@ export default class EntryAbility extends UIAbility {
         };
     }
 };
-
 ```
-
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -7205,9 +7325,9 @@ Provides the context for the transition animation.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                  | Type              | Readable | Writable | Description                             |
-| --------------------- | ----------------- | -------- | -------- | --------------------------------------- |
-| toWindow<sup>9+</sup> | [Window](#window) | Yes      | Yes      | Target window to display the animation. |
+| Name                 | Type         | Readable| Writable| Description            |
+| --------------------- | ----------------- | ---- | ---- | ---------------- |
+| toWindow<sup>9+</sup> | [Window](#window) | Yes  | Yes  | Target window to display the animation.|
 
 ### completeTransition<sup>9+</sup>
 
@@ -7221,9 +7341,9 @@ Completes the transition. This API can be called only after [animateTo()](../ark
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description                                                  |
-| ----------- | ------- | --------- | ------------------------------------------------------------ |
-| isCompleted | boolean | Yes       | Whether the transition is complete. The value **true** means that the transition is complete, and **false** means the opposite. |
+| Name     | Type   | Mandatory| Description                                                        |
+| ----------- | ------- | ---- | ------------------------------------------------------------ |
+| isCompleted | boolean | Yes  | Whether the transition is complete. The value **true** means that the transition is complete, and **false** means the opposite.|
 
 **Example**
 
@@ -7255,7 +7375,6 @@ controller.animationForShown = (context : window.TransitionContext) => {
     }
     console.info('complete transition end');
 };
-
 ```
 
 ## TransitionController<sup>9+</sup>
@@ -7274,9 +7393,9 @@ Customizes the animation for the scenario when the window is shown.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory | Description                          |
-| ------- | ---------------------------------------- | --------- | ------------------------------------ |
-| context | [TransitionContext](#transitioncontext9) | Yes       | Context of the transition animation. |
+| Name | Type                                    | Mandatory| Description                |
+| ------- | ---------------------------------------- | ---- | -------------------- |
+| context | [TransitionContext](#transitioncontext9) | Yes  | Context of the transition animation.|
 
 **Example**
 
@@ -7306,7 +7425,6 @@ controller.animationForShown = (context : window.TransitionContext) => {
     );
     console.info('complete transition end');
 };
-
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -7321,9 +7439,9 @@ Customizes the animation for the scenario when the window is hidden.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory | Description                          |
-| ------- | ---------------------------------------- | --------- | ------------------------------------ |
-| context | [TransitionContext](#transitioncontext9) | Yes       | Context of the transition animation. |
+| Name | Type                                    | Mandatory| Description                |
+| ------- | ---------------------------------------- | ---- | -------------------- |
+| context | [TransitionContext](#transitioncontext9) | Yes  | Context of the transition animation.|
 
 **Example**
 

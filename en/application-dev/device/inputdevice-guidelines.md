@@ -29,7 +29,6 @@ When a user enters text, the input method determines whether to launch the virtu
 
 1. Call the **getDeviceList** API to obtain the list of connected input devices. Call the **getKeyboardType** API to traverse all connected devices to check whether a physical keyboard exists. If a physical keyboard exists, mark the physical keyboard as connected. This step ensures that your application detects all inserted input devices before listening for device hot swap events.
 2. Call the **on** API to listen for device hot swap events. If a physical keyboard is inserted, mark the physical keyboard as connected. If a physical keyboard is removed, mark the physical keyboard as disconnected.
-3. When a user enters text, check whether a physical keyboard is connected. If a physical keyboard is not connected, launch the virtual keyboard.
 
 
 ```js
@@ -65,6 +64,4 @@ try {
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-  // 3. Determine whether to launch the virtual keyboard based on the value of isPhysicalKeyboardExist.
-  // TODO
 ```

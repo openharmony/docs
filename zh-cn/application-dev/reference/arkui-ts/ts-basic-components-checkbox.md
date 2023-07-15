@@ -30,7 +30,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 | 名称          | 参数类型 | 描述 |
 | ------------- | ------- | -------- |
-| select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
@@ -41,7 +41,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。（只有手动触发且Checkbox状态改变时才会触发onChange回调）<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -52,6 +52,8 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -80,3 +82,51 @@ struct CheckboxExample {
 
 
 ![](figures/checkbox.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/checkbox2.gif)

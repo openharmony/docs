@@ -5,10 +5,10 @@
   - [HTTP Data Request](http-request.md)
   - [WebSocket Connection](websocket-connection.md)
   - [Socket Connection](socket-connection.md)
-  - [Network Policy Management](net-policy-management.md)
   - [Network Sharing](net-sharing.md)
   - [Ethernet Connection](net-ethernet.md)
   - [Network Connection Management](net-connection-manager.md)
+  - [mDNS Management](net-mdns.md)
 - IPC & RPC
   - [IPC & RPC Overview](ipc-rpc-overview.md)
   - [IPC & RPC Development](ipc-rpc-development-guideline.md)

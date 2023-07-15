@@ -5,21 +5,21 @@
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
             "entities": [
               "entity.system.home",
               "entity.system.browsable"
-              // ...
+              ...
             ],
             "actions": [
               "action.system.home",
               "ohos.want.action.viewData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -31,9 +31,9 @@
               },
               {
                 "scheme": "http",
-                // ...
+                ...
               }
-              // ...
+              ...
             ]
           }
         ]
@@ -59,19 +59,18 @@ function implicitStartAbility() {
     'uri': 'https://www.test.com:8080/query/student'
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
 
 匹配过程分析：
 
-1. 调用方传入的want参数的action不为空，待匹配Ability的skills配置中的actions不为空且包含调用方传入的want参数的action，action匹配成功。
-2. 调用方传入的want参数的entities不为空，待匹配Ability的skills配置中的entities不为空且包含调用方传入的want参数的entities，entities匹配成功。
-3. 待匹配Ability的skills配置中内uris拼接为`https://www.test.com:8080/query*` （其中*表示通配符），包含调用方传入的want参数的uri，uri匹配成功。
-4. 调用方传入的want参数的type不为空，待匹配Ability的skills配置中的type不为空且包含调用方传入的want参数的type，type匹配成功。
+1. 调用方传入的want参数的action不为空，待匹配目标应用组件的skills配置中的actions不为空且包含调用方传入的want参数的action，action匹配成功。
+2. 调用方传入的want参数的entities不为空，待匹配目标应用组件的skills配置中的entities不为空且包含调用方传入的want参数的entities，entities匹配成功。
+3. 待匹配目标应用组件的skills配置中内uris拼接为`https://www.test.com:8080/query*`（其中*表示通配符），包含调用方传入的want参数的uri，uri匹配成功。
 
 当存在多个匹配的应用时，系统将弹出应用选择框供用户选择。示意效果如下图所示。  
 ![](figures/ability-startup-with-implicit-want1.png)

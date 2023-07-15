@@ -137,11 +137,11 @@ import accessibility from '@ohos.accessibility';
 | 名称              | 类型                                       | 可读   | 可写   | 说明          |
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
 | fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 是    | 否    | 描述字幕字体。     |
-| fontScale       | number                                   | 是    | 否    | 描述字幕字体缩放系数。 |
-| fontColor       | number \| string                         | 是    | 否    | 描述字幕字体颜色。   |
+| fontScale       | number                                   | 是    | 否    | 描述字幕字体缩放系数，单位%，参数范围1~200。 |
+| fontColor       | number \| string                         | 是    | 否    | 描述字幕字体颜色，例如red对应#FF0000。   |
 | fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 是    | 否    | 描述字幕字体边缘。   |
-| backgroundColor | number \| string                         | 是    | 否    | 描述字幕背景颜色。   |
-| windowColor     | number \| string                         | 是    | 否    | 描述字幕窗口颜色。   |
+| backgroundColor | number \| string                         | 是    | 否    | 描述字幕背景颜色，例如red对应#FF0000。   |
+| windowColor     | number \| string                         | 是    | 否    | 描述字幕窗口颜色，例如red对应#FF0000。   |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -161,6 +161,8 @@ import accessibility from '@ohos.accessibility';
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 监听字幕配置启用状态变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -187,6 +189,8 @@ try {
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 监听字幕风格变化事件，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 **参数：**
 
@@ -216,12 +220,14 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 取消监听字幕配置启用状态变化事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | 是    | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在字幕配置启用状态变化时将状态通过此函数进行通知。           |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
@@ -242,12 +248,14 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 取消字幕风格变化监听事件，使用callback异步回调。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，在字幕风格变化时通过此函数进行通知。              |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，回调函数，取消指定callback对象的事件响应。              |
 
 **示例：**
 
@@ -573,7 +581,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -600,7 +608,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听触摸浏览功能启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
 **参数：**
 
@@ -627,14 +635,14 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 取消监听辅助应用启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。           |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
@@ -654,14 +662,14 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 取消监听触摸浏览启用状态变化事件，使用callback异步回调。
 
-**系统能力**：以下各项对应的系统能力有所不同，详见下表。
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 否    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在触摸浏览启用状态变化时将状态通过此函数进行通知。           |
+| type     | string                  | 是    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 

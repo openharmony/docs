@@ -33,11 +33,14 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001275752808](figures/zh-cn_image_0000001275752808.png)
 
-4. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
+4. 在“Tool Chain”页签，检查Uploader烧录器工具是否已安装。
 
-   ![Phoenix-upload](figures/Phoenix-upload.png)
+   - 如工具为“uninstalled”状态（![status_uninstall](figures/status_uninstall.png)），可单击**Download Uninstalled Tools**，自动安装所需工具，或单击工具后方的**Download**安装指定工具。
+   - 如工具无法通过**Download**方式安装，表示该工具未被DevEco Device Tool收录，需要开发者自行下载到本地后单击**Import**导入。
 
-5. 在“hi3516dv300”页签，设置烧录选项，包括upload_partitions、upload_port和upload_protocol。配置完成后工程将自动保存。
+   ![3516_false](figures/3516_false.png)
+
+5. 在“ipcamea_hispark_taurus”页签，设置烧录选项，包括upload_partitions、upload_port和upload_protocol。配置完成后工程将自动保存。
    - upload_partitions：选择待烧录的文件，默认情况下会同时烧录fastboot、kernel、rootfs和userfs。DevEco Device Tool已预置默认的烧录文件信息，包括起始地址、分区大小、待烧录文件地址等，开发者可根据实际情况进行调整，点击每个待烧录文件后的![zh-cn_image_0000001275592884](figures/zh-cn_image_0000001275592884.png)按钮进行修改。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
       > 在设置烧录分区起始地址和分区长度时，应根据实际待烧录文件的大小进行设置，要求设置的烧录分区大小，要大于待烧录文件的大小；同时，各烧录文件的分区地址设置不能出现重叠。
@@ -49,7 +52,7 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
       ![3516-small-usb](figures/3516-small-usb.png)
 
-6. 点击hi3516dv300下的**Upload**按钮。
+6. 点击ipcamera_hispark_taurus下的**Upload**按钮。
 
    ![zh-cn_image_0000001326234609](figures/zh-cn_image_0000001326234609.png)
 
@@ -57,7 +60,9 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001275835836](figures/zh-cn_image_0000001275835836.png)
 
-7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
+7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键（位置如下图），插拔USB线，最后松开Update键启动烧录。
+
+   ![3516_button](figures/3516_button.png)
 
    ![zh-cn_image_0000001326412233](figures/zh-cn_image_0000001326412233.png)
 

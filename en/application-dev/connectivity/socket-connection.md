@@ -87,81 +87,81 @@ The implementation is similar for UDP Socket and TCP Socket connections. The fol
 
 7. Enable the TCP Socket connection to be automatically closed after use.
 
-   ```js
-   import socket from '@ohos.net.socket'
+```js
+import socket from '@ohos.net.socket'
 
-   // Create a TCPSocket object.
-   let tcp = socket.constructTCPSocketInstance();
+// Create a TCPSocket object.
+let tcp = socket.constructTCPSocketInstance();
 
-   // Subscribe to TCP Socket connection events.
-   tcp.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tcp.on('connect', () => {
-       console.log("on connect")
-   });
-   tcp.on('close', () => {
-       console.log("on close")
-   });
+// Subscribe to TCP Socket connection events.
+tcp.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tcp.on('connect', () => {
+  console.log("on connect")
+});
+tcp.on('close', () => {
+  console.log("on close")
+});
 
-   // Bind the local IP address and port number.
-   let bindAddress = {
-       address: '192.168.xx.xx',
-       port: 1234, // Bound port, for example, 1234.
-       family: 1
-   };
-   tcp.bind(bindAddress, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
+// Bind the local IP address and port number.
+let bindAddress = {
+  address: '192.168.xx.xx',
+  port: 1234, // Bound port, for example, 1234.
+  family: 1
+};
+tcp.bind(bindAddress, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 
-       // Set up a connection to the specified IP address and port number.
-       let connectAddress = {
-           address: '192.168.xx.xx',
-           port: 5678, // Connection port, for example, 5678.
-           family: 1
-       };
-       tcp.connect({
-           address: connectAddress, timeout: 6000
-       }, err => {
-           if (err) {
-               console.log('connect fail');
-               return;
-           }
-           console.log('connect success');
+  // Set up a connection to the specified IP address and port number.
+  let connectAddress = {
+    address: '192.168.xx.xx',
+    port: 5678, // Connection port, for example, 5678.
+    family: 1
+  };
+  tcp.connect({
+    address: connectAddress, timeout: 6000
+  }, err => {
+    if (err) {
+      console.log('connect fail');
+      return;
+    }
+    console.log('connect success');
 
-           // Send data.
-           tcp.send({
-               data: 'Hello, server!'
-           }, err => {
-               if (err) {
-                   console.log('send fail');
-                   return;
-               }
-               console.log('send success');
-           })
-       });
-   });
+    // Send data.
+    tcp.send({
+      data: 'Hello, server!'
+    }, err => {
+      if (err) {
+        console.log('send fail');
+        return;
+      }
+      console.log('send success');
+    })
+  });
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   setTimeout(() => {
-       tcp.close((err) => {
-           console.log('close socket.')
-       });
-       tcp.off('message');
-       tcp.off('connect');
-       tcp.off('close');
-   }, 30 * 1000);
-   ```
+// Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+setTimeout(() => {
+  tcp.close((err) => {
+    console.log('close socket.')
+  });
+  tcp.off('message');
+  tcp.off('connect');
+  tcp.off('close');
+}, 30 * 1000);
+```
 
 ## Implementing Encrypted Data Transmission over TLS Socket Connections
 
@@ -184,138 +184,146 @@ TLS Socket connection process on the client:
 7. Enable the TLS Socket connection to be automatically closed after use.
 
 ```js
-   import socket from '@ohos.net.socket'
+import socket from '@ohos.net.socket'
 
-   // Create a TLS Socket connection (for two-way authentication).
-   let tlsTwoWay = socket.constructTLSSocketInstance();
+// Create a TLS Socket connection (for two-way authentication).
+let tlsTwoWay = socket.constructTLSSocketInstance();
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0; i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Subscribe to TLS Socket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Bind the local IP address and port number.
-   tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Bind the local IP address and port number.
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Set the communication parameters.
-   let options = {
-       ALPNProtocols: ["spdy/1", "http/1.1"],
+// Set the communication parameters.
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
 
-       // Set up a connection to the specified IP address and port number.
-       address: {
-           address: "192.168.xx.xxx",
-           port: xxxx, // Port
-           family: 1,
-       },
+  // Set up a connection to the specified IP address and port number.
+  address: {
+    address: "192.168.xx.xxx",
+    port: xxxx, // Port
+    family: 1,
+  },
 
-       // Set the parameters used for authentication during communication.
-       secureOptions: {
-           key: "xxxx",                            // Key
-           cert: "xxxx",                           // Digital certificate
-           ca: ["xxxx"],                           // CA certificate
-           passwd: "xxxx",                         // Password for generating the key
-           protocols: [socket.Protocol.TLSv12],    // Communication protocol
-           useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
-           signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
-           cipherSuite: "AES256-SHA256",           // Cipher suite
-       },
-   };
+  // Set the parameters used for authentication during communication.
+  secureOptions: {
+    key: "xxxx",                            // Key
+    cert: "xxxx",                           // Digital certificate
+    ca: ["xxxx"],                           // CA certificate
+    passwd: "xxxx",                         // Password for generating the key
+    protocols: [socket.Protocol.TLSv12],    // Communication protocol
+    useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
+    cipherSuite: "AES256-SHA256",           // Cipher suite
+  },
+};
 
-   // Set up a connection.
-   tlsTwoWay.connect(options, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// Set up a connection.
+tlsTwoWay.connect(options, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 
-   // Create a TLS Socket connection (for one-way authentication).
-   let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+// Create a TLS Socket connection (for one-way authentication).
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Subscribe to TLS Socket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Bind the local IP address and port number.
-   tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Bind the local IP address and port number.
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Set the communication parameters.
-   let oneWayOptions = {
-       address: {
-           address: "192.168.xxx.xxx",
-           port: xxxx,
-           family: 1,
-       },
-       secureOptions: {
-           ca: ["xxxx","xxxx"],            // CA certificate
-           cipherSuite: "AES256-SHA256",   // Cipher suite
-       },
-   };
+// Set the communication parameters.
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: xxxx,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx","xxxx"],            // CA certificate
+    cipherSuite: "AES256-SHA256",   // Cipher suite
+  },
+};
 
-   // Set up a connection.
-   tlsOneWay.connect(oneWayOptions, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// Set up a connection.
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 ```
+
+## Samples
+
+The following samples are provided to help you better understand how to develop Socket connection features:
+
+- [`Socket`: Socket Connection (ArkTS) (API9)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+- [UDP Socket (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/UdpDemoOH)
+- [TCP Socket (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/TcpSocketDemo)

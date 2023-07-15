@@ -33,8 +33,8 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         "icon": "$media:icon",
         "description": "service",
         "type": "service",
-        "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "exported": true,
+        "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 
@@ -76,5 +76,5 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
-- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityConnectServiceExtension)
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)
+- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)

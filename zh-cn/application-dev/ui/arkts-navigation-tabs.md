@@ -373,6 +373,4 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
 如需详细了解Tabs的更多实现，请参考以下示例：
 
-- [健康生活](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Healthy_life)
-
 - [常用组件与布局](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)

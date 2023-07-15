@@ -39,6 +39,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -92,13 +93,14 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
 // 通知Request对象
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -147,6 +149,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -208,12 +211,13 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
 ```ts
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -439,6 +443,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -485,6 +490,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -522,6 +528,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -560,6 +567,7 @@ addSlot(type: SlotType): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -597,6 +605,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -647,6 +656,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -745,7 +755,7 @@ notificationManager.getSlot(slotType).then((data) => {
 
 ## notificationManager.getSlots
 
-getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取此应用程序的所有通知通道（callback形式）。
 
@@ -783,7 +793,7 @@ notificationManager.getSlots(getSlotsCallback);
 
 ## notificationManager.getSlots
 
-getSlots(): Promise\<Array\<NotificationSlot\>>
+getSlots(): Promise\<Array\<NotificationSlot>>
 
 获取此应用程序的所有通知通道（Promise形式）。
 
@@ -1054,7 +1064,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。            |
-| callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
 
 **错误码：**
 
@@ -1145,7 +1155,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
 
 **错误码：**
 
@@ -1183,11 +1193,93 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+
+**示例：**
+
+```ts
+notificationManager.isNotificationEnabled().then((data) => {
+	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+});
+```
+
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
+
+获取制定用户ID下的通知使能状态（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                     |
+| -------- | --------------------- | ---- | ------------------------ |
+| userId   | number                | 是   | 指定的用户ID。 |
+| callback | AsyncCallback\<boolean\> | 是   | 获取通知使能状态回调函数。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
+**示例：**
+
+```ts
+function isNotificationEnabledCallback(err, data) {
+    if (err) {
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("isNotificationEnabled success");
+    }
+}
+
+let userId = 1;
+
+notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
+```
+
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabled(userId: number): Promise\<boolean\>
+
+获取制定用户下的通知使能状态（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| userId | number       | 是   | 指定的用户ID。 |
 
 **返回值：**
 
@@ -1204,12 +1296,14 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 17700001 | The specified bundle name was not found. |
+| 1600008  | The user is not exist..                  |
 
 **示例：**
 
 ```ts
-notificationManager.isNotificationEnabled().then((data) => {
+let userId = 1;
+
+notificationManager.isNotificationEnabled(userId).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -1415,7 +1509,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -1450,7 +1544,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -1563,7 +1657,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 ## notificationManager.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取指定应用的所有通知通道（Callback形式）。
 
@@ -1578,7 +1672,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 是   | 获取通知通道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知通道回调函数。 |
 
 **错误码：**
 
@@ -1609,7 +1703,7 @@ notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ## notificationManager.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
+getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 获取指定应用的所有通知通道（Promise形式）。
 
@@ -1629,7 +1723,7 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知通道。 |
 
 **错误码：**
 
@@ -1748,7 +1842,7 @@ notificationManager.getSlotNumByBundle(bundle).then((data) => {
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 获取当前未删除的所有通知（Callback形式）。
 
@@ -1762,7 +1856,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
@@ -1894,7 +1988,7 @@ notificationManager.getActiveNotificationCount().then((data) => {
 
 ## notificationManager.getActiveNotifications
 
-getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 获取当前应用未删除的通知列表（Callback形式）。
 
@@ -1904,7 +1998,7 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取当前应用通知列表回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取当前应用通知列表回调函数。 |
 
 **错误码：**
 
@@ -2152,6 +2246,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2200,6 +2295,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2245,6 +2341,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2297,6 +2394,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2342,6 +2440,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2384,6 +2483,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2423,6 +2523,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2474,6 +2575,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2586,7 +2688,6 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600011  | Read template config failed.        |
 
 **示例：**
 
@@ -2632,7 +2733,6 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600011  | Read template config failed.        |
 
 **示例：**
 
@@ -3182,6 +3282,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -3248,6 +3349,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -3757,6 +3859,87 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 });
 ```
 
+## notificationManager.on<sup>10+</sup>
+
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | string | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)    | 是   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.on("checkNotification", OnCheckNotification);
+} catch (error){
+    console.info(`notificationManager.on error: ${JSON.stringify(error)}`);
+}
+function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    if(info.notificationId == 1){
+        return { code: 1, message: "testMsg1"}
+    } else {
+        return { code: 0, message: "testMsg0"}
+    }
+}
+```
+
+## notificationManager.off<sup>10+</sup>
+
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+取消通知监听回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.off("checkNotification");
+} catch (error){
+    console.info(`notificationManager.off error: ${JSON.stringify(error)}`);
+}
+```
 
 ## DoNotDisturbDate
 
@@ -3764,11 +3947,11 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称  | 类型                                  | 可读 | 可写 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 是   | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 是   | 是   | 免打扰设置的终点时间。 |
+| 名称  | 类型                                  | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 免打扰设置的时间类型。 |
+| begin | Date                                  | 是   | 免打扰设置的起点时间。 |
+| end   | Date                                  | 是   | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 
@@ -3789,12 +3972,12 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
-| --------------------------------- | ----------- | ------------------ |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | 普通类型通知。     |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型通知。   |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。     |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知。     |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。 |
+| --------------------------------- | ----------- |------------------|
+| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | 普通类型通知。          |
+| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型通知。         |
+| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
+| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
+| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
 
 ## SlotLevel
 
@@ -3849,3 +4032,30 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 | TYPE_NORMAL          | 0   | 一般通知。            |
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
+
+## NotificationCheckInfo<sup>10+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+| 名称  | 类型                                  | 必填 | 说明                   |
+| ----- | ------------------------------------- | --- | ---------------------- |
+| bundleName  | string                          | 是   | bundle名称。 |
+| notificationId | number                       | 是   | 通知Id。     |
+| contentType   | [ContentType](#contenttype)   | 是   | 通知类型。   |
+
+## NotificationCheckResult<sup>10+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+| 名称    | 类型                                  | 必填 | 说明                   |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| code    | number                               | 是   | 0-display, 1-no display。 |
+| message | string                               | 是   | 结果信息。    |

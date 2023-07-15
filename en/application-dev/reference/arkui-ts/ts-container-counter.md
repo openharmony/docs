@@ -2,7 +2,7 @@
 
 The **\<Counter>** component provides an operation to increase or decrease the number.
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -18,10 +18,18 @@ Counter()
 
 Since API version 9, this API is supported in ArkTS widgets.
 
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                         | Type                              | Description                                      |
+| --------------------------- | ---------------------------------------- | ---------------------------------------- |
+| enableInc<sup>10+</sup>              | boolean                            | Whether the plus button is enabled.<br>Default value: **true**  |
+| enableDec<sup>10+</sup>           | boolean                                  | Whether the minus button is enabled.<br>Default value: **true**|
 
 ## Events
 
-The universal events and gestures are not supported. Only the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |

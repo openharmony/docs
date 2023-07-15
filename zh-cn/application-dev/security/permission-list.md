@@ -34,6 +34,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ACCESS_BLUETOOTH
+
+允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
@@ -394,6 +404,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.UPDATE_MIGRATE
+
+允许升级过程中进行数据迁移。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FACTORY_RESET
 
 允许调用恢复出厂接口。
@@ -428,7 +448,7 @@
 
 允许应用读取其他应用的敏感权限的状态。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -496,7 +516,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用。
+允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。
 
 **权限级别**：system_core
 
@@ -653,6 +673,36 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_VPN
+
+允许应用程序启动或停止VPN功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.MANAGE_NET_STRATEGY
+
+允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_NETWORK_STATS
+
+允许应用程序获取历史流量信息和监听流量变化。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -967,6 +1017,106 @@
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 允许设备管理员设置包安装管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
+
+允许设备管理员设置应用运行管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+允许设备管理员设置系统休眠时间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+允许设备管理员安装和卸载包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_SETTINGS
+
+允许设备管理员查询“设置”应用数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+允许设备管理员管理证书。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_RESTRICT_POLICY
+
+允许设备管理员下发和获取限制类策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_USB
+
+允许设备管理员管理USB。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+允许设备管理员管理网络。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
+
+允许设备设置/取消浏览器策略。
 
 **权限级别**：system_basic
 
@@ -1436,7 +1586,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1456,7 +1606,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -1486,7 +1636,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1596,7 +1746,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -1606,7 +1756,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.STORAGE_MANAGER
 
@@ -1621,6 +1771,26 @@
 ## ohos.permission.BACKUP
 
 允许应用拥有备份恢复能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+允许应用获取端云同步管理能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+允许应用使用端云同步能力。
 
 **权限级别**：system_basic
 
@@ -1660,7 +1830,7 @@
 
 ## ohos.permission.APP_TRACKING_CONSENT
 
-允许应用读取广告标识符。
+允许应用读取开放匿名设备标识符。
 
 **权限级别**：normal
 
@@ -1690,7 +1860,7 @@
 
 ## ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-允许应用调用锁屏服务的系统API。
+允许应用使用锁屏服务的锁定屏幕、发送锁屏事件、系统事件回调功能。
 
 **权限级别**：system_core
 
@@ -1757,3 +1927,293 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+允许应用安装、卸载其他企业InHouse应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+允许应用代理授权URI。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+允许应用管理系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+允许应用查询系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+允许应用查询系统本地帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+允许应用访问hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+允许应用修改hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+允许应用获取配置数据库端云信息能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_SENSOR
+
+允许不直接使用传感器的应用打开和关闭传感器。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.DEVICE_STANDBY_EXEMPTION
+
+允许应用在系统待机模式正常使用资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.RESTRICT_APPLICATION_ACTIVE
+
+允许待机续航部件发布一个自定义的限网事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.UPLOAD_SESSION_MANAGER
+
+允许应用管理上传任务会话。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PREPARE_APP_TERMINATE
+
+允许应用关闭前执行自定义的预关闭动作。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_ECOLOGICAL_RULE
+
+允许为管控服务设置场景值生成规则和配套的体验。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_SCENE_CODE
+
+允许应用获取指定应用当前的场景值。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.FILE_GUARD_MANAGER
+
+允许应用进行公共目录扫描及设置文件扩展属性。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.SET_FILE_GUARD_POLICY
+
+允许应用下发文件管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.securityguard.SET_MODEL_STATE
+
+允许应用控制设备风险管理平台模型开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.hsdr.HSDR_ACCESS
+
+允许应用访问安全检测与响应框架。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+允许应用与用户认证框架交互和注册扩展能力。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.ACCESS_BUNDLE_DIR
+
+允许应用访问其他应用安装目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+
+允许应用采集语音下行音频。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+允许应用访问智能语音服务接口。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
+
+允许在企业设备上安装企业MDM应用包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE
+
+允许在企业设备上安装企业NORMAL应用包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.INSTALL_SELF_BUNDLE
+
+允许企业MDM应用在企业设备上自升级。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

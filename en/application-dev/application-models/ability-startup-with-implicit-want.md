@@ -5,21 +5,21 @@ This section uses the operation of using a browser to open a website as an examp
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
             "entities": [
               "entity.system.home",
               "entity.system.browsable"
-              // ...
+              ...
             ],
             "actions": [
               "action.system.home",
               "ohos.want.action.viewData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -27,14 +27,13 @@ This section uses the operation of using a browser to open a website as an examp
                 "host": "www.test.com",
                 "port": "8080",
                 // Prefix matching is used.
-                "pathStartWith": "query",
-                "type": "text/*"
+                "pathStartWith": "query"
               },
               {
                 "scheme": "http",
-                // ...
+                ...
               }
-              // ...
+              ...
             ]
           }
         ]
@@ -53,28 +52,26 @@ function implicitStartAbility() {
   let context = getContext(this) as common.UIAbilityContext;
   let wantInfo = {
     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-    // bundleName: "com.example.myapplication",
-    "action": "ohos.want.action.viewData",
+    // bundleName: 'com.example.myapplication',
+    'action': 'ohos.want.action.viewData',
     // entities can be omitted.
-    "entities": ["entity.system.browsable"],
-    "uri": "https://www.test.com:8080/query/student",
-    "type": "text/plain"
+    'entities': ['entity.system.browsable'],
+    'uri': 'https://www.test.com:8080/query/student'
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
 
 The matching process is as follows:
 
-1. If **action** in the passed **want** parameter is specified and is included in **actions** under **skills** of the ability to match, the matching is successful.
-2. If **entities** in the passed **want** parameter is specified and is included in **entities** under **skills** of the ability to match, the matching is successful.
-3. If **uri** in the passed **want** parameter is included in **uris** under **skills** of the ability to match, which is concatenated into https://www.test.com:8080/query* (where * is a wildcard), the matching is successful.
-4. If **type** in the passed **want** parameter is specified and is included in **type** under **skills** of the ability to match, the matching is successful.
+1. If **action** in the passed **want** parameter is specified and is included in **actions** under **skills** of the application component to match, the matching is successful.
+2. If **entities** in the passed **want** parameter is specified and is included in **entities** under **skills** of the application component to match, the matching is successful.
+3. If **uri** in the passed **want** parameter is included in **uris** under **skills** of the application component to match, which is concatenated into https://www.test.com:8080/query* (where * is a wildcard), the matching is successful.
 
-When there are multiple matching applications, a dialog box is displayed for you to select one of them. The following figure shows an example. 
+If there are multiple matching applications, the system displays a dialog box for you to select one of them. The following figure shows an example. 
 
 ![](figures/ability-startup-with-implicit-want1.png)

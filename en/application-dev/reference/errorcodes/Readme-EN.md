@@ -33,7 +33,7 @@
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
-  - [Application Access Control Error Codes](errorcode-access-token.md)
+  - [Access Token Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
@@ -55,18 +55,20 @@
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
-  - [Policy Management Error Codes](errorcode-net-policy.md)
+  - [mDNS Error Codes](errorcode-net-mdns.md)
 - Connectivity
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)  
   - [NFC Error Codes](errorcode-nfc.md)
+  - [SE Error Codes](errorcode-se.md)
   - [RPC Error Codes](errorcode-rpc.md)
- - Basic Features
+- Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [Application Event Logging Error Codes](errorcode-hiappevent.md)
   - [HiSysEvent Error Codes](errorcode-hisysevent.md)
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [Log Library Error Codes](errorcode-loglibrary.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
   - [Screen Lock Management Error Codes](errorcode-screenlock.md)
@@ -82,7 +84,8 @@
   - [Thermal Manager Error Codes](errorcode-thermal.md)
   - [Device Management Error Codes](errorcode-device-manager.md)
   - [Location Subsystem Error Codes](errorcode-geoLocationManager.md)
-  - [Screen Hopping Error Codes](errorcode-multimodalinput.md)
+  - [Screen Hopping Error Codes](errorcode-devicestatus.md)
+  - [Screen Hopping Error Codes (to Be Deprecated)](errorcode-multimodalinput.md)
   - [Sensor Error Codes](errorcode-sensor.md)
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
@@ -90,7 +93,7 @@
   - [Update Error Codes](errorcode-update.md)
 - Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Language Base Class Library
-  - [Utils Error Codes](errorcode-utils.md)
+- Common Library Library
+  - [Common Library Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

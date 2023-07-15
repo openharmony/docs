@@ -1,4 +1,4 @@
-# subsystems
+# 子系统开发
 
 - 编译构建
     - [编译构建指导](subsys-build-all.md)
@@ -18,15 +18,22 @@
       - [加快本地编译的一些参数](subsys-build-reference.md)
       - [查看NinjaTrace](subsys-build-reference.md)
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
+      - Rust编译构建指导
+        - [Rust模块配置规则和指导](subsys-build-rust-compilation.md)
+        - [交互工具使用指导](subsys-build-bindgen-cxx-guide.md)
+        - [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
-- [分布式远程启动](subsys-remote-start.md)
-- 图形图像
-    - [图形图像概述](subsys-graphics-overview.md)
-    - [容器类组件开发指导](subsys-graphics-container-guide.md)
-    - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
-    - [普通组件开发指导](subsys-graphics-common-guide.md)
-    - [动画开发指导](subsys-graphics-animation-guide.md)
+- ArkUI
+    - [窗口标题栏定制](subsys-arkui-customize_titlebar.md)
+- 小型系统图形图像
+    - [小型系统图形图像概述](subsys-graphics-overview.md)
+      - [普通组件开发指导](subsys-graphics-common-guide.md)
+      - [容器类组件开发指导](subsys-graphics-container-guide.md)
+      - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
+      - [动画开发指导](subsys-graphics-animation-guide.md)
+      - [Windows QT 模拟器使用指导](subsys-graphics-simulator-guide.md)
+      - [如何对接图形框架](subsys-graphics-porting-guide.md)
 - 媒体
     - 相机
         - [相机开发概述](subsys-multimedia-camera-overview.md)
@@ -74,6 +81,8 @@
       - [插件](subsys-boot-init-plugin.md)
       - [组件化启动](subsys-boot-init-sub-unit.md)
       - [init运行日志规范化](subsys-boot-init-log.md)
+      - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
+      - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)
@@ -100,7 +109,7 @@
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
     - [HiDumper使用指导](subsys-dfx-hidumper.md)
-- 电源管理
+- 电源
     - 显示管理
         - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)
     - 电池管理
@@ -110,3 +119,17 @@
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
+    - 耗电统计
+        - [耗电统计定制开发指导](subsys-power-stats-power-average-customization.md)
+    - 热管理
+        - [充电空闲状态定制开发指导](subsys-thermal_charging_idle_state.md)
+        - [热管控定制开发指导](subsys-thermal_control.md)
+        - [热检测定制开发指导](subsys-thermal_detection.md)
+        - [热等级定制开发指导](subsys-thermal_level.md)
+        - [热日志定制开发指导](subsys-thermal_log.md)
+        - [热策略定制开发指导](subsys-thermal_policy.md)
+        - [热场景定制开发指导](subsys-thermal_scene.md)
+    - 电源管理
+        - [电源模式定制开发指导](subsys-power-mode-customization.md)
+        - [电源默认休眠行为定制开发指导](subsys-power-default-sleep-behavior-customization.md)
+        - [唤醒源定制开发指导](subsys-power-wakeup-source-customization.md)

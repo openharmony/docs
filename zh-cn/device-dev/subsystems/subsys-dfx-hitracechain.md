@@ -208,7 +208,7 @@ OpenHarmony系统内置部分通信机制（如ZIDL）已经支持传递traceid�
 2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
    
    ```
-   external_deps = [ "hiviewdfx:libhitracechain" ]
+   external_deps = [ "hitrace:libhitracechain" ]
    ```
 
 
@@ -232,5 +232,5 @@ OpenHarmony系统内置部分通信机制（如ZIDL）已经支持传递traceid�
 2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
    
    ```
-   external_deps = [ "hiviewdfx:libhitracechain" ]
+   external_deps = [ "hitrace:libhitracechain" ]
    ```

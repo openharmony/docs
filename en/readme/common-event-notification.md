@@ -14,7 +14,7 @@ Each application can subscribe to common events as required. After your applicat
 
 ### Architecture
 
-![]( figures/cesfwk_architecture_diagram.png "CES Architecture")
+![](figures/cesfwk_architecture_diagram.png "CES Architecture")
 
 ## Directory Structure
 
@@ -36,10 +36,10 @@ Each application can subscribe to common events as required. After your applicat
 
 ## How to Use
 
-For details, see [Common Event Development](../application-dev/notification/common-event.md).
+For details, see [Common Event Development](../application-dev/application-models/common-event-overview.md).
 
 ## Repositories Involved
 
 Common Event and Notification
 
-[**notification_ces_standard**](https://gitee.com/openharmony/notification_ces_standard)
+**notification_ces_standard**

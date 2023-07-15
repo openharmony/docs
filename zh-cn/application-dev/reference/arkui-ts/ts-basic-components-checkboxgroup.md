@@ -30,7 +30,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的[Checkbox](ts-basic-components-checkbox.md)设置了select属性，则Checkbox的优先级高。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。 |
+| selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的[Checkbox](ts-basic-components-checkbox.md)设置了select属性，则Checkbox的优先级高。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
@@ -41,7 +41,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。（只有手动触发且Checkbox或CheckboxGroup状态改变时才会触发onChange回调）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## CheckboxGroupResult对象说明
 
@@ -71,6 +71,8 @@ CheckboxGroup(options?: { group?: string })
 | strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -125,3 +127,77 @@ struct CheckboxExample {
 }
 ```
 ![checkboxGroup](figures/checkboxGroup.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          CheckboxGroup({ group: 'checkboxGroup' })
+            .selectedColor(Color.Orange)
+            .onChange((itemName: CheckboxGroupResult) => {
+              console.info("checkbox group content" + JSON.stringify(itemName))
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 40,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Select All').fontSize(20)
+        }.margin({right:15})
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox3 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox3').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![checkboxGroup](figures/checkboxGroup2.gif)
+

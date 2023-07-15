@@ -244,7 +244,7 @@ The development process of the Neural Network Runtime consists of three phases: 
         // Create a compilation instance to pass the model to the underlying hardware for compilation.
         OH_NNCompilation* compilation = OH_NNCompilation_Construct(model);
         if (compilation == nullptr) {
-            std::cout << "CreateCompilation failed, error happended when creating compilation." << std::endl;
+            std::cout << "CreateCompilation failed, error happened when creating compilation." << std::endl;
             return OH_NN_MEMORY_ERROR;
         }
 

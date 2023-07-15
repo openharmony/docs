@@ -12,11 +12,11 @@ The **PermissionDef** module provides permission details defined in the configur
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name          | Type  | Readable| Writable| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
 | grantMode      | number | Yes  | No  | Grant mode of the permission. The value **0** means that the system automatically grants the permission after the application installation, and **1** means that the application needs to dynamically request the permission from the user.|
-| labelId        | number | Yes  | No  | ID of the permission label. |
-| descriptionId  | number | Yes  | No  | ID of the permission description. |
+| labelId        | number | Yes  | No  | ID of the permission label.  |
+| descriptionId  | number | Yes  | No  | ID of the permission description.  |

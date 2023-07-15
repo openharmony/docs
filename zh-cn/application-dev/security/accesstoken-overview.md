@@ -39,9 +39,13 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 ![](figures/permission-workflow.jpg)
 
+上图的数字标注，请参考以下说明：
+
 1：开发者可以参考下图，判断应用能否申请目标权限。
 
 ![](figures/permission-application-process.png)
+
+上图的数字标注，请参考以下说明：
 
 1：应用APL等级与权限等级的匹配关系请参考[权限等级说明](#权限等级说明)。
 
@@ -57,6 +61,8 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 应用使用权限校验的工作流程如图所示。
 
 ![](figures/permission-verify-process.png)
+
+上图的数字标注，请参考以下说明：
 
 1：根据应用当前提供的接口是否涉及敏感的数据或者功能，使用应用权限对当前接口进行访问控制。
 

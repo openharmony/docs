@@ -266,8 +266,7 @@ export default {
 ```js
 // xxx.js
 var info = null;
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     curYear:'',
@@ -290,7 +289,7 @@ export default {
     this.$element('datedialog').show()
   },
   canceldialog(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
@@ -299,7 +298,7 @@ export default {
   },
   cancelschedule(e) {
     this.$element('datedialog').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
@@ -327,4 +326,4 @@ export default {
 
 - [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [Dialog（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)
+- [弹窗基本使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

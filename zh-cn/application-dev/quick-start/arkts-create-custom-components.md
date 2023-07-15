@@ -106,9 +106,41 @@ struct ParentComponent {
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
+  >
+  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryOptions)参数。
 
   ```ts
   @Entry
+  @Component
+  struct MyComponent {
+  }
+  ```
+
+  ### EntryOptions<sup>10+</sup>
+
+  命名路由跳转选项。
+
+  | 名称   | 类型   | 必填 | 说明                                                         |
+  | ------ | ------ | ---- | ------------------------------------------------------------ |
+  | routeName | string | 否 | 表示作为命名路由页面的名字。 |
+  | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
+
+  ```ts
+  @Entry({ routeName : 'myPage' })
+  @Component
+  struct MyComponent {
+  }
+  ```
+
+
+- \@Recycle：\@Recycle装饰的自定义组件具备可复用能力
+
+  > **说明：**
+  >
+  > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
+
+  ```ts
+  @Recycle
   @Component
   struct MyComponent {
   }
@@ -122,7 +154,7 @@ struct ParentComponent {
 
 - 不支持静态函数。
 
-- 成员函数的访问始终是私有的，仅能定义private。定义访问权限是可选的，其他访问权限会带来语法错误。
+- 成员函数的访问始终是私有的。
 
 
 自定义组件可以包含成员变量，成员变量具有以下约束：

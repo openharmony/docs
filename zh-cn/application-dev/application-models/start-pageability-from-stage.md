@@ -21,7 +21,7 @@ export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
+            ...
         });
         let want = {
             bundleName: "com.ohos.fa",
@@ -66,7 +66,7 @@ export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
+            ...
         });
         let want = {
             bundleName: "com.ohos.fa",

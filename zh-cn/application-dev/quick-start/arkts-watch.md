@@ -1,4 +1,4 @@
-# \@Watch：状态变量更改通知
+# \@Watch装饰器：状态变量更改通知
 
 
 \@Watch应用于对状态变量的监听。如果开发者需要关注某个状态变量的值是否改变，可以使用\@Watch为状态变量设置回调函数。
@@ -131,7 +131,7 @@ struct BasketModifier {
 
 ### \@Watch和自定义组件更新
 
-以下示例展示组件更新和\@Watch的处理步骤。count在两个组件中均由\@State装饰。
+以下示例展示组件更新和\@Watch的处理步骤。count在CountModifier中由\@State装饰，在TotalView中由\@Prop装饰。
 
 
 ```ts

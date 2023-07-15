@@ -257,7 +257,7 @@ kernel事件打点开发能力如下：具体API详见接口文件（/kernel/lin
 1. 首先，需要在业务模块的在BUILD.gn里增加HiSysEvent部件依赖。
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisysevent" ]
+   external_deps = [ "hisysevent:libhisysevent" ]
    ```
 
 2. 在业务模块的应用启动函数StartAbility()中，调用打点接口并传入对应事件参数。
@@ -280,7 +280,7 @@ kernel事件打点开发能力如下：具体API详见接口文件（/kernel/lin
 1. 首先，需要在业务模块的在BUILD.gn里增加HiSysEvent部件依赖。
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisysevent" ]
+   external_deps = [ "hisysevent:libhisysevent" ]
    ```
 
 2. 在业务模块的应用启动函数StartAbility()中，调用打点接口并传入对应事件参数。

@@ -49,11 +49,11 @@ The following example illustrates how to log and subscribe to button click event
 
    ```js
    import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Ability from '@ohos.application.Ability'
    import Window from '@ohos.window'
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    
-   export default class EntryAbility extends UIAbility {
+   export default class EntryAbility extends Ability {
        onCreate(want, launchParam) {
            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
            hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
@@ -146,9 +146,3 @@ The following example illustrates how to log and subscribe to button click event
    HiAppEvent eventPkg.size=124
    HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1670268234523,"tz_":"+0800","pid_":3295,"tid_":3309,"click_time":100}
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the application event logging feature:
-
-- [`JsDotTest`: Event Logging (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)

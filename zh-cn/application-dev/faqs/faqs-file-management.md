@@ -1,113 +1,110 @@
 # 文件管理开发常见问题
 
-## fileio.rmdir是递归删除吗？
+## 如何获取系统截屏图片的保存路径
 
-适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+适用于OpenHarmony 3.2 Beta5  API 9
 
-是递归删除。
+**解决措施**
 
-## 如何实现如果文件不存在则创建文件
+截图图片保存路径：/storage/media/100/local/files/Pictures/Screenshots/
 
-适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+## 如何修改设备中文件目录为可读写权限
 
-可以通过调用函数fileio.open(filePath, 0o100, 0o666)来实现，第二个参数0o100表示若文件不存在，则创建文件。使用该选项时必须指定第三个参数 mode。
+适用于OpenHarmony 3.2 Beta5  API 9
 
-## 使用fileio进行文件复制，传入沙箱路径报错call fail callback fail, code: 202, data: json arguments illegal）
+**问题现象**
 
-适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+使用hdc命令向设备上发送文件时，报错：权限不足。
 
-使用fileio模块进行文件复制时，文件路径前缀中不能以“file:///”开头。
+**解决措施**
 
-## fileIo将数据写入流文件writeSync接口，length传参问题
+输入命令 hdc shell mount -o remount,rw /，正确执行无提示信息。
 
-适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
+## 如何实现文件不存在则创建文件
 
-一个中文字符length为3，英文字符为1，当前buffer为string类型时，length项需要开发者手动换算；如果要写入全部内容，可直接忽略length项，length长度超长时会导致接口报错。
+适用于：OpenHarmony 3.2 版本  API 9
 
-## 如何读取应用沙箱之外的文件
+**解决措施**
 
-适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
+可以通过调用函数fs.open来实现，open\(path: string, mode?: number\)，指定第二个参数mode为fs.OpenMode.CREATE，表示若文件不存在，则创建文件。
 
-fileio中接口入参为path时只能是从context获取到的本应用沙箱路径，若要访问其他路径的数据，如公共数据图片视频等，需要通过数据所有者打开文件返回fd进行操作。
+## 如何解决文件的中文乱码问题
 
-比如向mediaLibrary请求读取/写入某文件，然后通过打开代表特定文件的URI后返回的fd进行操作，操作步骤如下：
+适用于：OpenHarmony 3.2 版本  API 9
 
-1. 通过媒体查询获取文件fileAsset对象；
+**解决措施**
 
-2. 通过fileAsset.open方法返回的fd；
-
-3. 将fd作为fileIo接口参数进行文件读写操作；
-
-## 如何解决文件的中文内容乱码
-
-适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
-
-读取文件内容的buffer数据后，通过util.TextDecoder对文件内容进行解码。
-
-示例：
+读取文件内容的buffer数据后，通过@ohos.util的TextDecoder对文件内容进行解码。
 
 ```
-import util from '@ohos.util' 
-async function readFile(path) { 
-  let stream = fileio.createStreamSync(path, "r+"); 
-  let readOut = await stream.read(new ArrayBuffer(4096)); 
-  let textDecoder = new util.TextDecoder("utf-8", { ignoreBOM: true }); 
-  let buffer = new Uint8Array(readOut.buffer)
-  let readString = textDecoder.decode(buffer, { stream: false }); 
-  console.log("[Demo] 读取的文件内容：" + readString); 
-}
+let filePath = getContext(this).filesDir + "/test0.txt";
+let stream = fs.createStreamSync(filePath, "r+");
+let buffer = new ArrayBuffer(4096)
+let readOut = stream.readSync(buffer);
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
+let readString = textDecoder.decodeWithStream(new Uint8Array(buffer), { stream: false });
+console.log("读取的文件内容：" + readString);
 ```
 
-## 调用媒体库getAlbums方法，没有收到返回，也没有捕获到异常是为什么
+## “datashare://”路径使用fs.open可以打开，但使用fs.copyFile会报错
 
-适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
+适用于：OpenHarmony 3.2 版本  API 9
 
-getAlbums方法需要权限：ohos.permission.READ_MEDIA，从[OpenHarmony权限定义列表](../security/permission-list.md)查询知道ohos.permission.READ_MEDIA权限是需要用户授权。
+**解决措施**
 
-1. 在module.json5中配置权限：
-     
-   ```
-   "requestPermissions": [
-     {
-       "name": "ohos.permission.READ_MEDIA"
-     }
-   ]
-   ```
+copyfile不支持uri，可以先使用open接口打开datashare uri后，拿到fd后再调用copyfile接口。
 
-2. 在MainAbility.ts -&gt; onWindowStageCreate页面加载前需要增加用户授权代码：
-     
-   ```
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
-   
-   private requestPermissions() {
-   let permissionList: Array<string> = [
-     "ohos.permission.READ_MEDIA"
-   ];
-   let atManager = abilityAccessCtrl.createAtManager();
-   atManager.requestPermissionsFromUser(this.context, permissionList)
-     .then(data => {
-       console.info(`request permission data result = ${data.authResults}`)
-     })
-     .catch(err => {
-       console.error(`fail to request permission error:${err}`)
-     })
-   }
-   ```
+```
+let file = fs.openSync("datashare://...")
+fs.copyFile(file.fd, 'dstPath', 0).then(() => {
+  console.info('copyFile success')
+}).catch((err) => {
+  console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+})
+```
 
-## 如何解决多次通过媒体库FetchFileResult获取文件应用崩溃 
+## 如何修改沙箱路径下json文件的指定内容
 
-适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
+适用于：OpenHarmony 3.2 版本  API 9
 
-通过FetchFileResult.close()方法，在FetchFileResult对象每次调用完，释放并使其失效。
+**解决措施**
 
-## 在Stage模型下调用mediaLibrary.getMediaLibrary()接口，IDE报错
+可以通过以下步骤来完成：
 
-适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
+1、使用fs.openSyn获取json文件的fd。
 
-Stage模型下，获取媒体库实例应该调用mediaLibrary.getMediaLibrary(context: Context)。
+```
+import fs from '@ohos.file.fs';  
+let sanFile = fs.open(basePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let fd = sanFile.fd;
+```
 
-## 调用mediaLibrary.getFileAssets()接口返回的内容如何排序
+2、通过fs.readSync读取json文件内容。
 
-适用于：OpenHarmonySDK 3.2.5.5版本，API9 Stage模型
+```
+let content = fs.readSync(basePath);
+```
 
-通过[MediaFetchOptions](../reference/apis/js-apis-medialibrary.md#mediafetchoptions7)对象参数里面的order属性进行排序。
+3、修改内容。
+
+```
+obj.name = 'new name';
+```
+
+4、重新写入json文件。
+
+```
+fs.writeSync(file.fd, JSON.stringify(obj));
+```
+
+fs的具体使用可以参考：[@ohos.file.fs](../reference/apis/js-apis-file-fs.md)
+
+## 通过fileAccess模块获取的文件路径对应的实际路径是什么
+
+适用于：OpenHarmony 3.2 版本 API 9 Stage模型
+
+**解决措施**
+
+此类文件是保存在/storage/media/100/local/files目录下，具体位置与文件类型和来源有关。知道文件名时，可在此目录下通过如下命令查找：find . -name \[filename\]
+
+[应用文件上传下载](../file-management/app-file-upload-download.md)

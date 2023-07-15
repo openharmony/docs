@@ -119,9 +119,8 @@ hasKey(key: K): boolean
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.hasKey("squirrel");
 hashMap.set("squirrel", 123);
-let result1 = hashMap.hasKey("squirrel");
+let result = hashMap.hasKey("squirrel");
 ```
 
 
@@ -157,9 +156,8 @@ hasValue(value: V): boolean
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.hasValue(123);
 hashMap.set("squirrel", 123);
-let result1 = hashMap.hasValue(123);
+let result = hashMap.hasValue(123);
 ```
 
 
@@ -230,6 +228,7 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
+newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
 ```
 
@@ -460,14 +459,14 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 否 | 当前遍历到的元素键值对的值。 |
-| key | K | 否 | 当前遍历到的元素键值对的键。 |
-| map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+| value | V | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
+| key | K | 否 | 当前遍历到的元素键值对的键，默认值为首个键值对的键。 |
+| map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

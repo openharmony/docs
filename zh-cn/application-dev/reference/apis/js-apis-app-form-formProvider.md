@@ -31,22 +31,28 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let formId = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider setFormNextRefreshTime success`);
+      return;
     }
+    console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -78,14 +84,20 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -118,24 +130,30 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let formId = '12400633174999288';
 try {
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error, data) => {
+  formProvider.updateForm(formId, obj, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider updateForm success`);
+      return;
     }
+    console.log(`formProvider updateForm success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -167,14 +185,20 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let formId = '12400633174999288';
 let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
@@ -204,25 +228,26 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 | callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
-
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -247,14 +272,17 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -264,9 +292,9 @@ try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -285,7 +313,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | 否 | 卡片信息过滤器。 |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | 否 | 卡片信息过滤器, 默认为空，不进行过滤。 |
 
 **返回值：**
 
@@ -297,14 +325,17 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -343,14 +374,18 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
   abilityName: 'FormAbility',
@@ -365,9 +400,9 @@ try {
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -395,14 +430,17 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -415,9 +453,9 @@ try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -439,7 +477,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
-| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据，默认为空，不提供创建卡片数据。                                      |
 
 **返回值：**
 
@@ -451,14 +489,17 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -494,11 +535,20 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回是否支持发布一张卡片到使用方。|
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | If the application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
     if (error) {
@@ -517,9 +567,9 @@ try {
           formProvider.requestPublishForm(want, (error, data) => {
             if (error) {
               console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-            } else {
-              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+              return;
             }
+            console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
           });
         } catch (error) {
           console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -548,11 +598,19 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 | :------------ | :---------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回是否支持发布一张卡片到使用方。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | If the application is not a system application. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 **示例：**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {

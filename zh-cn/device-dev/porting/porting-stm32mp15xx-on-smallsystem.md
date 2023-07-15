@@ -2,7 +2,7 @@
 
 # 小型系统STM32MP1芯片移植案例
 
-本文章基于意法半导体`STM32MP157`芯片的小熊派[BearPi-HM Micro开发板](https://gitee.com/openharmony/device_board_bearpi)，进行小型带屏开发板的移植，实现了`ace_engine_lite`、`graphic_ui`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-A`内核的适配。移植架构上采用`Board`与`SoC`分离的方案。
+本文章基于意法半导体`STM32MP157`芯片的小熊派[BearPi-HM Micro开发板](https://gitee.com/openharmony/device_board_bearpi)，进行小型带屏开发板的移植，实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-A`内核的适配。移植架构上采用`Board`与`SoC`分离的方案。
 
 ## 编译构建
 
@@ -547,13 +547,13 @@ vendor
 `graphic`配置文件见 `//vendor/bearpi/bearpi_hm_micro/graphic_config/product_graphic_lite_config.h`。
 
 
-#### ACE开发框架子系统适配
+#### ArkUI开发框架子系统适配
 
-进行`ACE`开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
+进行ArkUI开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
 
 ```
     {
-        "subsystem": "ace",
+        "subsystem": "arkui",
         "components": [
         {
             "component": "ace_engine_lite",

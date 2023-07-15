@@ -53,7 +53,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Checking workInfo failed.
+Check workInfo failed.
 
 **Possible Causes**
 

@@ -26,14 +26,27 @@ GridItem()
 | columnStart | number | Start column number of the component.|
 | columnEnd | number | End column number of the component.|
 | forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the current grid item is selectable by the mouse.<br>> **NOTE**<br>> This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
+| selectable<sup>8+</sup> | boolean | Whether the current grid item is selectable by the mouse.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true** |
+
+>  **NOTE**
+>
+>  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
+>
+>  - The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1.
+>
+>  - Settings outside of the valid ranges do not take effect.
+>
+>  - In the grid that has both **columnTemplate** and **rowTemplate** set, a grid item takes up the specified number of rows (rowEnd – rowStart + 1) or columns (columnEnd – columnStart + 1), depending on whether **rowStart**/**rowEnd** or **columnStart**/**columnEnd** is set.
+>- In the grid that has only **columnTemplate** set, a grid item takes up the specified number of columns.
+>  - In the grid that has only **rowTemplate** set, a grid item takes up the specified number of rows.
+>- In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: Returns **true** if the grid item is selected by the mouse; returns **false** otherwise.|
+| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise. |
 
 
 ## Example
@@ -57,7 +70,7 @@ struct GridItemExample {
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-        }.rowStart(1).rowEnd(4)
+        }.rowStart(1).rowEnd(2).columnStart(1).columnEnd(2) // Set valid row and column numbers.
 
         ForEach(this.numbers, (item) => {
           GridItem() {
@@ -77,7 +90,7 @@ struct GridItemExample {
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-        }.columnStart(1).columnEnd(5)
+        }.columnStart(1).columnEnd(4) // Set only the column numbers. The layout does not start from the first column.
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -87,4 +100,4 @@ struct GridItemExample {
 }
 ```
 
-![en-us_image_0000001256858433](figures/en-us_image_0000001256858433.gif)
+![en-us_image_0000001174582870](figures/en-us_image_0000001174582870.gif)

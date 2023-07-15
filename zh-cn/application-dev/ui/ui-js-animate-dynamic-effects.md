@@ -3,9 +3,6 @@
 
 通过设置插值器来实现动画效果。
 
-> **说明：**
-> 从API Version 6 开始支持。
-
 
 ## 创建动画对象
 
@@ -153,7 +150,7 @@ button{
 ```js
 // xxx.js
 import animator from '@ohos.animator';
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     scaleVal:1,
@@ -175,7 +172,7 @@ export default {
     var _this= this;
     //添加动画重放事件
     this.animation.onrepeat = function() {
-      prompt.showToast({
+      promptAction.showToast({
         message: 'repeat'
       });
       var repeatoptions = {
@@ -217,7 +214,7 @@ export default {
     var _this= this;
    //添加动画完成事件
     this.animation.onfinish = function() {
-      prompt.showToast({
+      promptAction.showToast({
         message: 'finish'
       })
     };

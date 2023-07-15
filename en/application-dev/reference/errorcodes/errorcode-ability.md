@@ -204,7 +204,7 @@ The system has a large number of concurrent requests.
 
 No action is required. Wait for the previous abilities to finish startup.
 
-## 100001 Internal Error
+## 16000050 Internal Error
 
 **Error Message**
 
@@ -519,7 +519,7 @@ The method has registered.
 
 **Description**
 
-THis error code is reported when the method has been registered.
+This error code is reported when the method has been registered.
 
 **Possible Causes**
 
@@ -583,6 +583,24 @@ The mission listener does not exist.
 
 Check the mission listener ID.
 
+## 16300003 Target Application Is Not the Invoker Application
+
+**Error Message**
+
+The target application is not self application.
+
+**Description**
+
+This error code is reported when the application to start is not the application that calls the API.
+
+**Possible Causes**
+
+The application to start and the invoker application are not the same application.
+
+**Solution**
+
+Ensure that the application to start is the invoker application.
+
 ## 18500001 Invalid Bundle Name
 
 **Error Message**
@@ -638,7 +656,7 @@ This error code is reported when the patch package fails to be deployed.
 4. If a patch package has been deployed, the **versionCode** of the new patch package is not later than that of the previous patch package.
 5. If the **type** field is set to **patch**, the signature information is different from that of the application.
 6. If the **type** field is set to **patch** and a debug version is to be installed, a **hotreload** patch is in use.
-7. If the **type** field is set to **hotreload** and a debug version is to be installed, a **patch** patch is in use. If the **type** field is set to **hotreload**, a release version is to be installed.
+7. If the **type** field is set to **hotreload** and a debug version is to be installed, a **patch** package is in use. If the **type** field is set to **hotreload**, a release version is to be installed.
 
 **Solution**
 
@@ -656,7 +674,7 @@ This error code is reported when the patch package fails to be enabled.
 
 **Possible Causes**
 
-The patch package is in an incorect state.
+The patch package is in an incorrect state.
 
 **Solution**
 
@@ -706,7 +724,7 @@ Failed to unload the patch.
 
 **Description**
 
-This error code is reported when when the Ark engine fails to uninstall the patch.
+This error code is reported when the Ark engine fails to uninstall the patch.
 
 **Possible Causes**
 
@@ -733,3 +751,21 @@ Common kernel errors such as memory application and multi-thread processing erro
 **Solution**
 
 Ensure sufficient sytem memory.
+
+## 18500009 Application Has a Quick Fix Task Being Processed
+
+**Error Message**
+
+The application has a apply quick fix task that is being processed.
+
+**Description**
+
+This error code is reported when the application has a quick fix task that is under processing.
+
+**Possible Causes**
+
+When you try to cancel a quick fix task for an application, the application has a quick repair task that is under processing.
+
+**Solution**
+
+Wait until the quick fix task is complete.

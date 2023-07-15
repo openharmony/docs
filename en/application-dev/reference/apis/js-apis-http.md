@@ -2,7 +2,7 @@
 
 The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
->**NOTE**
+> **NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -16,7 +16,7 @@ import http from '@ohos.net.http';
 ## Examples
 
 ```js
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -24,52 +24,61 @@ let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-    "EXAMPLE_URL",
-    {
-        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-        // You can add header fields based on service requirements.
-        header: {
-            'Content-Type': 'application/json'
-        },
-        // This field is used to transfer data when the POST request is used.
-        extraData: {
-            "data": "data to send",
-        },
-        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
-        usingCache: true, // Optional. The default value is true.
-        priority: 1, // Optional. The default value is 1.
-        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
-        readTimeout: 60000, // Optional. The default value is 60000, in ms.
-        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
-    }, (err, data) => {
-        if (!err) {
-            // data.result carries the HTTP response. Parse the response based on service requirements.
-            console.info('Result:' + JSON.stringify(data.result));
-            console.info('code:' + JSON.stringify(data.responseCode));
-            // data.header carries the HTTP response header. Parse the content based on service requirements.
-            console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-        } else {
-            console.info('error:' + JSON.stringify(err));
-            // Unsubscribe from HTTP Response Header events.
-            httpRequest.off('headersReceive');
-            // Call the destroy() method to release resources after HttpRequest is complete.
-            httpRequest.destroy();
-        }
+  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  "EXAMPLE_URL",
+  {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // You can add header fields based on service requirements.
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // This parameter is used to transfer data when the POST request is used.
+    extraData: {
+      "data": "data to send",
+    },
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+    caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
+  }, (err, data) => {
+    if (!err) {
+      // data.result carries the HTTP response. Parse the response based on service requirements.
+      console.info('Result:' + JSON.stringify(data.result));
+      console.info('code:' + JSON.stringify(data.responseCode));
+      // data.header carries the HTTP response header. Parse the content based on service requirements.
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+      // Call the destroy() method to release resources after the HttpRequest is complete.
+      httpRequest.destroy();
+    } else {
+      console.info('error:' + JSON.stringify(err));
+      // Unsubscribe from HTTP Response Header events.
+      httpRequest.off('headersReceive');
+      // Call the destroy() method to release resources after the HttpRequest is complete.
+      httpRequest.destroy();
     }
+  }
 );
 ```
 
-## http.createHttp
+> **NOTE**
+> If the data in **console.info()** contains a newline character, the data will be truncated.
+
+## http.createHttp<sup>6+</sup>
 
 createHttp(): HttpRequest
 
 Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An **HttpRequest** object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+
+> **NOTE**
+> Call the **destroy()** method to release resources after the HttpRequest is complete.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -83,6 +92,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 ```js
 import http from '@ohos.net.http';
+
 let httpRequest = http.createHttp();
 ```
 
@@ -90,14 +100,14 @@ let httpRequest = http.createHttp();
 
 Defines an HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp()](#httpcreatehttp) to create an **HttpRequestTask** object.
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result. 
 
->**NOTE**
->This API supports only transfer of data not greater than 5 MB.
+> **NOTE**
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -116,13 +126,37 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
@@ -130,25 +164,25 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 ```js
 httpRequest.request("EXAMPLE_URL", (err, data) => {
-    if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + JSON.stringify(data.header));
-        console.info('cookies:' + data.cookies); // 8+
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 8+
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
->**NOTE**
->This API supports only transfer of data not greater than 5 MB.
+> **NOTE**
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -198,7 +232,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
@@ -206,35 +240,35 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 ```js
 httpRequest.request("EXAMPLE_URL",
-{
+  {
     method: http.RequestMethod.GET,
     header: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err, data) => {
+  }, (err, data) => {
     if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + JSON.stringify(data.header));
-        console.info('cookies:' + data.cookies); // 8+
-        console.info('header.Content-Type:' + data.header['Content-Type']);
-        console.info('header.Status-Line:' + data.header['Status-Line']);
+      console.info('Result:' + data.result);
+      console.info('code:' + data.responseCode);
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + data.cookies); // 8+
+      console.info('header.Content-Type:' + data.header['Content-Type']);
+      console.info('header.Status-Line:' + data.header['Status-Line']);
     } else {
-        console.info('error:' + JSON.stringify(err));
+      console.info('error:' + JSON.stringify(err));
     }
-});
+  });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
->**NOTE**
->This API supports only transfer of data not greater than 5 MB.
+> **NOTE**
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -289,7 +323,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
@@ -297,22 +331,22 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 ```js
 let promise = httpRequest.request("EXAMPLE_URL", {
-    method: http.RequestMethod.GET,
-    connectTimeout: 60000,
-    readTimeout: 60000,
-    header: {
-        'Content-Type': 'application/json'
-    }
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: {
+    'Content-Type': 'application/json'
+  }
 });
 promise.then((data) => {
-    console.info('Result:' + data.result);
-    console.info('code:' + data.responseCode);
-    console.info('header:' + JSON.stringify(data.header));
-    console.info('cookies:' + data.cookies); // 8+
-    console.info('header.Content-Type:' + data.header['Content-Type']);
-    console.info('header.Status-Line:' + data.header['Status-Line']);
+  console.info('Result:' + data.result);
+  console.info('code:' + data.responseCode);
+  console.info('header:' + JSON.stringify(data.header));
+  console.info('cookies:' + data.cookies); // 8+
+  console.info('header.Content-Type:' + data.header['Content-Type']);
+  console.info('header.Status-Line:' + data.header['Status-Line']);
 }).catch((err) => {
-    console.info('error:' + JSON.stringify(err));
+  console.info('error:' + JSON.stringify(err));
 });
 ```
 
@@ -334,7 +368,7 @@ httpRequest.destroy();
 
 request2(url: string, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -353,13 +387,37 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
@@ -367,11 +425,11 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 ```js
 httpRequest.request2("EXAMPLE_URL", (err, data) => {
-    if (!err) {
-        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
-    } else {
-        console.info("request2 ERROR : err = " + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+  } else {
+    console.info("request2 ERROR : err = " + JSON.stringify(err));
+  }
 })
 ```
 
@@ -379,7 +437,7 @@ httpRequest.request2("EXAMPLE_URL", (err, data) => {
 
 request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -429,7 +487,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
@@ -437,21 +495,22 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 ```js
 httpRequest.request2("EXAMPLE_URL",
-{
+  {
     method: http.RequestMethod.GET,
     header: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err, data) => {
+  }, (err, data) => {
     if (!err) {
-        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
-        console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
-})
+  })
 ```
+
 ### request2<sup>10+</sup>
 
 request2(url: string, options? : HttpRequestOptions): Promise\<number\>
@@ -511,36 +570,36 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**NOTE**
+> **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
-> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see:
+> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
 
 ```js
-let promise = httpRequest.request("EXAMPLE_URL", {
-    method: http.RequestMethod.GET,
-    connectTimeout: 60000,
-    readTimeout: 60000,
-    header: {
-        'Content-Type': 'application/json'
-    }
+let promise = httpRequest.request2("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: {
+    'Content-Type': 'application/json'
+  }
 });
 promise.then((data) => {
-    console.info("request2 OK!" + JSON.stringify(data));
+  console.info("request2 OK!" + JSON.stringify(data));
 }).catch((err) => {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
 ```
 
-### on('headerReceive')
+### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 Registers an observer for HTTP Response Header events.
 
->**NOTE**
->This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8) instead.
+> **NOTE**
+> This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -555,19 +614,19 @@ Registers an observer for HTTP Response Header events.
 
 ```js
 httpRequest.on('headerReceive', (data) => {
-    console.info('error:' + JSON.stringify(data));
+  console.info('error:' + JSON.stringify(data));
 });
 ```
 
-### off('headerReceive')
+### off('headerReceive')<sup>(deprecated)</sup>
 
 off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 Unregisters the observer for HTTP Response Header events.
 
->**NOTE**
+> **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8) instead.
+>1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -605,7 +664,7 @@ Registers an observer for HTTP Response Header events.
 
 ```js
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 ```
 
@@ -615,8 +674,8 @@ off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 Unregisters the observer for HTTP Response Header events.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -652,14 +711,18 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 
 ```js
 httpRequest.once('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 ```
+
 ### on('dataReceive')<sup>10+</sup>
 
 on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
+
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -674,7 +737,7 @@ Registers an observer for events indicating receiving of HTTP streaming response
 
 ```js
 httpRequest.on('dataReceive', (data) => {
-    console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
+  console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
 
@@ -684,8 +747,8 @@ off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 Unregisters the observer for events indicating receiving of HTTP streaming responses.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -708,6 +771,9 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -720,8 +786,8 @@ Registers an observer for events indicating completion of receiving HTTP streami
 **Example**
 
 ```js
-httpRequest.on('dataReceive', () => {
-    console.info('Receive dataEnd! ');
+httpRequest.on('dataEnd', () => {
+  console.info('Receive dataEnd !');
 });
 ```
 
@@ -731,8 +797,8 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 Unregisters the observer for events indicating completion of receiving HTTP streaming responses.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -751,9 +817,12 @@ httpRequest.off('dataEnd');
 
 ### on('dataProgress')<sup>10+</sup>
 
- on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
+
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -762,13 +831,13 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataProgress**.|
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>**receiveSize**: number of received bytes.<br>**totalSize**: total number of bytes to be received.|
+| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **receiveSize**: number of received bytes.<br>- **totalSize**: total number of bytes to be received.|
 
 **Example**
 
 ```js
 httpRequest.on('dataProgress', (data) => {
-    console.info('dataProgress:' + JSON.stringify(data));
+  console.info('dataProgress:' + JSON.stringify(data));
 });
 ```
 
@@ -778,8 +847,8 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
->**NOTE**
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -795,7 +864,8 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 ```js
 httpRequest.off('dataProgress');
 ```
-## HttpRequestOptions
+
+## HttpRequestOptions<sup>6+</sup>
 
 Specifies the type and value range of the optional parameters in the HTTP request.
 
@@ -803,18 +873,19 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| method         | [RequestMethod](#requestmethod)               | No  | Request method.                                                  |
-| extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | No  | Additional data of the request.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request.<br>- If the HTTP request uses a GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter is a supplement to the HTTP request parameters and will be added to the URL when the request is sent.<sup>6+</sup><br>- To pass in a string object, you first need to encode the object on your own.<sup>6+</sup> |
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the return data. If this parameter is set, the system returns the specified type of data preferentially.|
+| method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding. - If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
-| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is \[1,1000]. The default value is **1**.                          |
+| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'Content-Type': 'application/json'}**.  |
-| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.             |
+| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.                               |
+| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.
+| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.                            |
 
-## RequestMethod
+## RequestMethod<sup>6+</sup>
 
 Defines an HTTP request method.
 
@@ -831,7 +902,7 @@ Defines an HTTP request method.
 | TRACE   | "TRACE"   | TRACE method.  |
 | CONNECT | "CONNECT" | CONNECT method.|
 
-## ResponseCode
+## ResponseCode<sup>6+</sup>
 
 Enumerates the response codes for an HTTP request.
 
@@ -839,7 +910,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | "OK." The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |
@@ -875,7 +946,7 @@ Enumerates the response codes for an HTTP request.
 | GATEWAY_TIMEOUT   | 504  | "Gateway Timeout." The server acting as a gateway or proxy does not receive requests from the remote server within the timeout period.        |
 | VERSION           | 505  | "HTTP Version Not Supported." The server does not support the HTTP protocol version used in the request.                                 |
 
-## HttpResponse
+## HttpResponse<sup>6+</sup>
 
 Defines the response to an HTTP request.
 
@@ -883,10 +954,10 @@ Defines the response to an HTTP request.
 
 | Name              | Type                                        | Mandatory| Description                                                        |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string \| Object \| ArrayBuffer<sup>6+</sup> | Yes  | Response content returned based on **Content-type** in the response header:<br>- application/json: a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content.<br>- application/octet-stream: ArrayBuffer<br>- Others: string|
+| result               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header:<br>- application/json: a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content.<br>- application/octet-stream: ArrayBuffer<br>- Others: string|
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.|
-| header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- Content-Type: header['Content-Type'];<br>- Status-Line: header['Status-Line'];<br>- Date: header.Date/header['Date'];<br>- Server: header.Server/header['Server'];|
+| header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];|
 | cookies<sup>8+</sup> | string                                       | Yes  | Cookies returned by the server.                                      |
 
 ## http.createHttpResponseCache<sup>9+</sup>
@@ -913,6 +984,7 @@ Creates a default object to store responses to HTTP access requests.
 
 ```js
 import http from '@ohos.net.http';
+
 let httpResponseCache = http.createHttpResponseCache();
 ```
 
@@ -995,6 +1067,7 @@ httpResponseCache.delete(err => {
   console.info('delete success');
 });
 ```
+
 ### delete<sup>9+</sup>
 
 delete(): Promise\<void\>

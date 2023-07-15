@@ -45,7 +45,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 **示例：**
 
@@ -97,7 +97,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified userId is not found.       |
+| 17700004 | The specified user ID is not found.       |
 
 **示例：**
 
@@ -145,7 +145,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 示例：
 
@@ -194,7 +194,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 **示例：**
 

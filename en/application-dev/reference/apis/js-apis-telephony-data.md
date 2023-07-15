@@ -105,6 +105,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -152,6 +153,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -325,8 +327,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -428,7 +428,7 @@ promise.then((data) => {
 
 ## data.enableCellularData
 
-enableCellularData(callback: AsyncCallback<void\>): void
+enableCellularData(callback: AsyncCallback\<void\>): void
 
 Enables the cellular data service. This API uses an asynchronous callback to return the result.
 
@@ -451,6 +451,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -467,7 +468,7 @@ data.enableCellularData((err) => {
 
 ## data.enableCellularData
 
-enableCellularData(): Promise<void\>
+enableCellularData(): Promise\<void\>
 
 Enables the cellular data service. This API uses a promise to return the result.
 
@@ -490,8 +491,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
+| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -509,7 +509,7 @@ promise.then(() => {
 
 ## data.disableCellularData
 
-disableCellularData(callback: AsyncCallback<void\>): void
+disableCellularData(callback: AsyncCallback\<void\>): void
 
 Disables the cellular data service. This API uses an asynchronous callback to return the result.
 
@@ -532,6 +532,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -548,7 +549,7 @@ data.disableCellularData((err) => {
 
 ## data.disableCellularData
 
-disableCellularData(): Promise<void\>
+disableCellularData(): Promise\<void\>
 
 Disables the cellular data service. This API uses a promise to return the result.
 
@@ -571,8 +572,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
+| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -590,7 +590,7 @@ promise.then(() => {
 
 ## data.enableCellularDataRoaming
 
-enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 
 Enables the cellular data roaming service. This API uses an asynchronous callback to return the result.
 
@@ -614,6 +614,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -630,7 +631,7 @@ data.enableCellularDataRoaming(0, (err) => {
 
 ## data.enableCellularDataRoaming
 
-enableCellularDataRoaming(slotId: number): Promise<void\>
+enableCellularDataRoaming(slotId: number): Promise\<void\>
 
 Enables the cellular data roaming service. This API uses a promise to return the result.
 
@@ -659,6 +660,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -678,7 +680,7 @@ promise.then(() => {
 
 ## data.disableCellularDataRoaming
 
-disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 
 Disables the cellular data roaming service. This API uses an asynchronous callback to return the result.
 
@@ -702,6 +704,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -718,7 +721,7 @@ data.disableCellularDataRoaming(0, (err) => {
 
 ## data.disableCellularDataRoaming
 
-disableCellularDataRoaming(slotId: number): Promise<void\>
+disableCellularDataRoaming(slotId: number): Promise\<void\>
 
 Disables the cellular data roaming service. This API uses a promise to return the result.
 
@@ -747,6 +750,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |

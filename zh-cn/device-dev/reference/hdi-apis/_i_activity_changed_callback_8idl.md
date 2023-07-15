@@ -1,33 +1,33 @@
 # IActivityChangedCallback.idl
 
 
-## **概述**
+## 概述
 
 定义行为识别数据上报回调函数接口。
 
 在行为识别用户订阅行为识别数据时需要注册这个回调函数接口的实例。
 
-**Since**:
+**Since:**
 
 3.2
 
-**Version**:
+**Version:**
 
 1.0
 
 **相关模块:**
 
-[HdiActivityRecognition](activity_recognition.md)
+[HdiActivityRecognition](_hdi_activity_recognition.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IActivityChangedCallback](interface_i_activity_changed_callback.md) | 定义上报行为事件的回调函数 | 
+| [IActivityChangedCallback](interface_i_activity_changed_callback.md) | interface<br/>定义上报行为事件的回调函数 | 
 
 
 ### 关键字

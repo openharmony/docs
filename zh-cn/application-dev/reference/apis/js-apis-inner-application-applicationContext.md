@@ -7,12 +7,18 @@ ApplicationContext模块提供开发者应用级别的的上下文的能力，�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 使用说明
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
@@ -116,7 +122,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
             } else {
                 console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
@@ -128,7 +134,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: **number**): **void**;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 
 取消监听应用内生命周期
 
@@ -233,7 +239,7 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
             } else {
                 console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
@@ -273,17 +279,118 @@ export default class MyAbility extends Ability {
 }
 ```
 
+## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+
+注册对当前应用前后台变化的监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明             |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| type     | string                                     | 是   | 监听事件类型，必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onCreate() {
+        console.log('MyAbility onCreate');
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+
+        globalThis.applicationContext = this.context.getApplicationContext();
+        // 1.获取applicationContext
+        let applicationContext = globalThis.applicationContext;
+        // 2.通过applicationContext注册应用前后台状态监听
+        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        console.log('Resgiter applicationStateChangeCallback');
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange', callback: AsyncCallback\<void>)<sup>10+</sup>
+
+off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
+
+取消当前应用指定的前后台变化的监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                             |
+| -------- | ------------------------ | ---- | -------------------------------- |
+| type     | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。             |
+| callback | AsyncCallback\<void>     | 否   | 删除指定callback对应的注册监听。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onDestroy() {
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+
+off(type: 'applicationStateChange'): **void**;
+
+取消当前应用注册的前后台变化的全部监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange');
+    }
+}
+```
+
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -291,10 +398,18 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
@@ -308,11 +423,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -320,12 +431,20 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
-    if (err.code !== 0) {
+    if (err) {
         console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
@@ -347,10 +466,17 @@ killAllProcesses(): Promise\<void\>;
 | -------- | -------- |
 | Promise\<void\> | 以Promise方式返回杀死应用所在的进程结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses();
 ```
 
@@ -368,12 +494,19 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 | -------- | -------- |
 |AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 });

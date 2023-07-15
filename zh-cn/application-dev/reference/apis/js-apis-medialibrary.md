@@ -1,12 +1,14 @@
 # @ohos.multimedia.medialibrary (媒体库管理)
 
 > **说明：**
+>
 > - 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 从API Version 9开始废弃。保留至API Version 13版本。
 > - 部分功能变更为系统接口，仅供系统应用使用，请使用[@ohos.filemanagement.userFileManager](js-apis-userFileManager.md)相应接口替代。
 > - 媒体资源选择和保存功能仍开放给普通应用，请使用[@ohos.file.picker](js-apis-file-picker.md)相应接口替代。
 
 ## 导入模块
+
 ```js
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
@@ -21,7 +23,7 @@ getMediaLibrary(context: Context): MediaLibrary
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -31,12 +33,12 @@ getMediaLibrary(context: Context): MediaLibrary
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [MediaLibrary](#medialibrary) | 媒体库实例 |
+| [MediaLibrary](#medialibrary) | 媒体库实例。 |
 
 **示例：（从API Version 9开始）**
 
 ```ts
-// 获取mediaLibrary实例，后续用到此实例均采用此处获取的实例
+// 获取mediaLibrary实例，后续用到此实例均采用此处获取的实例。
 const context = getContext(this);
 let media = mediaLibrary.getMediaLibrary(context);
 ```
@@ -64,7 +66,7 @@ getMediaLibrary(): MediaLibrary
 
 | 类型                          | 说明       |
 | ----------------------------- | :--------- |
-| [MediaLibrary](#medialibrary) | 媒体库实例 |
+| [MediaLibrary](#medialibrary) | 媒体库实例。 |
 
 **示例：**
 
@@ -76,10 +78,12 @@ let media = mediaLibrary.getMediaLibrary();
 
 ### getFileAssets<sup>7+</sup>
 
-
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
 
 获取文件资源，使用callback方式返回异步结果。
+
+> **说明：**
+> 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -89,57 +93,57 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 | 参数名   | 类型                                                | 必填 | 说明                              |
 | -------- | --------------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 文件获取选项                      |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | 异步获取FetchFileResult之后的回调 |
+| options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 文件检索选项。                      |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回文件检索结果集。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    };
-    // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
-        // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
-        if (fetchFileResult == undefined) {
-            console.error('get fetchFileResult failed with error: ' + error);
-            return;
-        }
-        // 获取文件检索结果集中的总数
-        const count = fetchFileResult.getCount();
-        // 判断结果集中的数量是否小于0，小于0时表示接口调用失败
-        if (count < 0) {
-            console.error('get count from fetchFileResult failed, count: ' + count);
-            return;
-        }
-        // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件
-        if (count == 0) {
-            console.info('The count of fetchFileResult is zero');
-            return;
-        }
-        console.info('Get fetchFileResult successfully, count: ' + count);
-        // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果
-        fetchFileResult.getFirstObject((error, fileAsset) => {
-            // 检查获取的第一个资源是否为undefined，若为undefined则接口调用失败
-            if (fileAsset == undefined) {
-                console.error('get first object failed with error: ' + error);
-                return;
-            }
-            console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
-            // 调用 getNextObject 接口获取下一个资源，直到最后一个
-            for (let i = 1; i < count; i++) {
-                let fileAsset = await fetchFileResult.getNextObject();
-                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-            }
-            // 释放FetchFileResult实例并使其失效。无法调用其他方法
-            fetchFileResult.close();
-        });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  // 创建文件获取选项，此处参数为获取image类型的文件资源。
+  let imagesFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+  };
+  // 获取文件资源，使用callback方式返回异步结果。
+  media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
+    // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败。
+    if (fetchFileResult == undefined) {
+      console.error('get fetchFileResult failed with error: ' + error);
+      return;
+    }
+    // 获取文件检索结果集中的总数。
+    const count = fetchFileResult.getCount();
+    // 判断结果集中的数量是否小于0，小于0时表示接口调用失败。
+    if (count < 0) {
+      console.error('get count from fetchFileResult failed, count: ' + count);
+      return;
+    }
+    // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件。
+    if (count == 0) {
+      console.info('The count of fetchFileResult is zero');
+      return;
+    }
+    console.info('Get fetchFileResult successfully, count: ' + count);
+    // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果，文件数量较多时请使用getAllObject接口。
+    fetchFileResult.getFirstObject(async (error, fileAsset) => {
+      // 检查获取的第一个资源是否为undefined，若为undefined则接口调用失败。
+      if (fileAsset == undefined) {
+        console.error('get first object failed with error: ' + error);
+        return;
+      }
+      console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
+      // 调用 getNextObject 接口获取下一个资源，直到最后一个。
+      for (let i = 1; i < count; i++) {
+        let fileAsset = await fetchFileResult.getNextObject();
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }
+      // 释放FetchFileResult实例并使其失效。无法调用其他方法。
+      fetchFileResult.close();
     });
+  });
 }
 ```
 
@@ -149,6 +153,9 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 获取文件资源，使用Promise方式返回结果。
 
+> **说明：**
+> 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -157,58 +164,58 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 | 参数名  | 类型                                     | 必填 | 说明         |
 | ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 文件检索选项 |
+| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 文件检索选项。 |
 
-**返回值**
+**返回值：**
 
 | 类型                                 | 说明           |
 | ------------------------------------ | -------------- |
-| [FetchFileResult](#fetchfileresult7) | 文件数据结果集 |
+| Promise&lt;[FetchFileResult](#fetchfileresult7)&gt; | Promise对象，返回文件检索结果集。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    };
-    // 获取文件资源，使用Promise方式返回结果
-    media.getFileAssets(imagesFetchOp).then((fetchFileResult) => {
-        // 获取文件检索结果集中的总数
-        const count = fetchFileResult.getCount();
-        // 判断结果集中的数量是否小于0，小于0时表示接口调用失败
-        if (count < 0) {
-            console.error('get count from fetchFileResult failed, count: ' + count);
-            return;
-        }
-        // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件
-        if (count == 0) {
-            console.info('The count of fetchFileResult is zero');
-            return;
-        }
-        console.info('Get fetchFileResult successfully, count: ' + count);
-        // 获取文件检索结果集中的第一个资源，使用Promise方式返回异步结果
-        fetchFileResult.getFirstObject().then((fileAsset) => {
-            console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
-            // 调用 getNextObject 接口获取下一个资源，直到最后一个
-            for (let i = 1; i < count; i++) {
-                let fileAsset = await fetchFileResult.getNextObject();
-                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-            }
-            // 释放FetchFileResult实例并使其失效。无法调用其他方法
-            fetchFileResult.close();
-        }).catch((error) => {
-            // 调用getFirstObject接口失败
-            console.error('get first object failed with error: ' + error);
-        });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  // 创建文件获取选项，此处参数为获取image类型的文件资源。
+  let imagesFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+  };
+  // 获取文件资源，使用Promise方式返回结果。
+  media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {
+    // 获取文件检索结果集中的总数。
+    const count = fetchFileResult.getCount();
+    // 判断结果集中的数量是否小于0，小于0时表示接口调用失败。
+    if (count < 0) {
+      console.error('get count from fetchFileResult failed, count: ' + count);
+      return;
+    }
+    // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件。
+    if (count == 0) {
+      console.info('The count of fetchFileResult is zero');
+      return;
+    }
+    console.info('Get fetchFileResult successfully, count: ' + count);
+    // 获取文件检索结果集中的第一个资源，使用Promise方式返回异步结果，文件数量较多时请使用getAllObject接口。
+    fetchFileResult.getFirstObject().then(async (fileAsset) => {
+      console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
+      // 调用 getNextObject 接口获取下一个资源，直到最后一个。
+      for (let i = 1; i < count; i++) {
+        let fileAsset = await fetchFileResult.getNextObject();
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }
+      // 释放FetchFileResult实例并使其失效。无法调用其他方法。
+      fetchFileResult.close();
     }).catch((error) => {
-        // 调用getFileAssets接口失败
-        console.error('get file assets failed with error: ' + error);
+      // 调用getFirstObject接口失败。
+      console.error('get first object failed with error: ' + error);
     });
+  }).catch((error) => {
+    // 调用getFileAssets接口失败。
+    console.error('get file assets failed with error: ' + error);
+  });
 }
 ```
 
@@ -224,16 +231,17 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 是    | 回调返回空                                    |
+| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 是    | callbac返回空。                                    |
 
 **示例：**
 
 ```js
 media.on('imageChange', () => {
-    // image file had changed, do something
-})
+  // image file had changed, do something.
+});
 ```
+
 ### off<sup>8+</sup>
 
 off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
@@ -246,15 +254,15 @@ off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange
 
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 否    | 回调返回空                                    |
+| type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 否    | callback返回空。                                    |
 
 **示例：**
 
 ```js
 media.off('imageChange', () => {
-    // stop listening successfully
-})
+  // stop listening successfully.
+});
 ```
 
 ### createAsset<sup>8+</sup>
@@ -262,6 +270,9 @@ media.off('imageChange', () => {
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 创建媒体资源，使用callback方式返回结果。
+
+> **说明：**
+> 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -271,26 +282,26 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 | 参数名       | 类型                                    | 必填 | 说明                                                         |
 | ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#mediatype8)                | 是   | 媒体类型                                                     |
-| displayName  | string                                  | 是   | 展示文件名                                                   |
-| relativePath | string                                  | 是   | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径 |
-| callback     | AsyncCallback<[FileAsset](#fileasset7)> | 是   | 异步获取媒体数据FileAsset之后的回调                          |
+| mediaType    | [MediaType](#mediatype8)                | 是   | 媒体类型。                                                     |
+| displayName  | string                                  | 是   | 展示文件名。                                                   |
+| relativePath | string                                  | 是   | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径。 |
+| callback     | AsyncCallback<[FileAsset](#fileasset7)> | 是   | callback返回创建的媒体资源FileAsset对象。                          |
 
 **示例：**
 
 ```js
 async function example() {
-    // 使用Callback方式创建Image类型文件
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (error, fileAsset) => {
-        if (fileAsset != undefined) {
-            console.info('createAsset successfully, message');
-        } else {
-            console.error('createAsset failed with error: ' + error);
-        }
-    });
+  // 使用Callback方式创建Image类型文件。
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (error, fileAsset) => {
+    if (fileAsset != undefined) {
+      console.info('createAsset successfully, message');
+    } else {
+      console.error('createAsset failed with error: ' + error);
+    }
+  });
 }
 ```
 
@@ -300,6 +311,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 创建媒体资源，使用Promise方式返回结果。
 
+> **说明：**
+> 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -308,29 +322,29 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 | 参数名       | 类型                     | 必填 | 说明                                                         |
 | ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#mediatype8) | 是   | 媒体类型                                                     |
-| displayName  | string                   | 是   | 展示文件名                                                   |
-| relativePath | string                   | 是   | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
+| mediaType    | [MediaType](#mediatype8) | 是   | 媒体类型。                                                     |
+| displayName  | string                   | 是   | 展示文件名。                                                   |
+| relativePath | string                   | 是   | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path。 |
 
-**返回值**
+**返回值：**
 
 | 类型                     | 说明              |
 | ------------------------ | ----------------- |
-| [FileAsset](#fileasset7) | 媒体数据FileAsset |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回创建媒体数据的FileAsset。 |
 
 **示例：**
 
 ```js
 async function example() {
-    // 使用Promise方式创建Image类型文件
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
-        console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
-    }).catch((error) => {
-        console.error('createAsset failed with error: ' + error);
-    });
+  // 使用Promise方式创建Image类型文件。
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
+    console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
+  }).catch((error) => {
+    console.error('createAsset failed with error: ' + error);
+  });
 }
 ```
 
@@ -338,54 +352,7 @@ async function example() {
 
 deleteAsset(uri: string): Promise\<void>
 
-删除媒体文件资源
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
-**参数：**
-
-| 参数名      | 类型                           | 必填   | 说明              |
-| -------- | ---------------------------- | ---- | --------------- |
-| uri | string | 是    | 需要删除的媒体文件资源的uri |
-
-**返回值：**
-| 类型                  | 说明                   |
-| ------------------- | -------------------- |
-| Promise&lt;void&gt; | Promise回调返回删除的结果。 |
-
-**示例：**
-
-```js
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-        console.error('asset not exist');
-        return;
-    }
-    media.deleteAsset(asset.uri).then(() => {
-        console.info('deleteAsset successfully');
-    }).catch((error) => {
-        console.error('deleteAsset failed with error: ' + error);
-    });
-    fetchFileResult.close();
-}
-```
-
-### deleteAsset<sup>8+</sup>
-deleteAsset(uri: string, callback: AsyncCallback\<void>): void
-
-删除媒体文件资源
+删除媒体文件资源。
 
 **系统接口**：此接口为系统接口。
 
@@ -398,32 +365,81 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 | 参数名      | 类型                           | 必填   | 说明              |
 | -------- | ---------------------------- | ---- | --------------- |
 | uri | string | 是    | 需要删除的媒体文件资源的uri。 |
-|callback |AsyncCallback\<void>| 是  |回调函数，用于获取删除的结果。|
+
+**返回值：**
+
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise对象，返回删除的结果。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-        console.error('asset not exist');
-        return;
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.FILE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset == undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  media.deleteAsset(asset.uri).then(() => {
+    console.info('deleteAsset successfully');
+  }).catch((error) => {
+    console.error('deleteAsset failed with error: ' + error);
+  });
+  fetchFileResult.close();
+}
+```
+
+### deleteAsset<sup>8+</sup>
+
+deleteAsset(uri: string, callback: AsyncCallback\<void>): void
+
+删除媒体文件资源。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名      | 类型                           | 必填   | 说明              |
+| -------- | ---------------------------- | ---- | --------------- |
+| uri | string | 是    | 需要删除的媒体文件资源的uri。 |
+|callback |AsyncCallback\<void>| 是  |callback返回空。|
+
+**示例：**
+
+```js
+async function example() {
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.FILE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset == undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  media.deleteAsset(asset.uri, (error) => {
+    if (error != undefined) {
+      console.error('deleteAsset failed with error: ' + error);
+    } else {
+      console.info('deleteAsset successfully');
     }
-    media.deleteAsset(asset.uri, (error) => {
-        if (error != undefined) {
-            console.error('deleteAsset failed with error: ' + error);
-        } else {
-            console.info('deleteAsset successfully');
-        }
-    });
-    fetchFileResult.close();
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -439,19 +455,19 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名   | 类型                             | 必填 | 说明                      |
 | -------- | -------------------------------- | ---- | ------------------------- |
-| type     | [DirectoryType](#directorytype8) | 是   | 公共目录类型              |
-| callback | AsyncCallback&lt;string&gt;      | 是   | callback 返回公共目录路径 |
+| type     | [DirectoryType](#directorytype8) | 是   | 公共目录类型。              |
+| callback | AsyncCallback&lt;string&gt;      | 是   | callback返回公共目录路径。 |
 
 **示例：**
 
 ```js
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
-    if (dicResult == 'Camera/') {
-        console.info('getPublicDirectory DIR_CAMERA successfully');
-    } else {
-        console.error('getPublicDirectory DIR_CAMERA failed with error: ' + error);
-    }
+  if (dicResult == 'Camera/') {
+    console.info('getPublicDirectory DIR_CAMERA successfully');
+  } else {
+    console.error('getPublicDirectory DIR_CAMERA failed with error: ' + error);
+  }
 });
 ```
 
@@ -467,28 +483,28 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 | 参数名 | 类型                             | 必填 | 说明         |
 | ------ | -------------------------------- | ---- | ------------ |
-| type   | [DirectoryType](#directorytype8) | 是   | 公共目录类型 |
+| type   | [DirectoryType](#directorytype8) | 是   | 公共目录类型。 |
 
 **返回值：**
 
 | 类型             | 说明             |
 | ---------------- | ---------------- |
-| Promise\<string> | 返回公共目录路径 |
+| Promise\<string> | Promise对象，返回公共目录路径。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-    media.getPublicDirectory(DIR_CAMERA).then((dicResult) => {
-        if (dicResult == 'Camera/') {
-            console.info('getPublicDirectory DIR_CAMERA successfully');
-        } else {
-            console.error('getPublicDirectory DIR_CAMERA failed');
-        }
-    }).catch((error) => {
-        console.error('getPublicDirectory failed with error: ' + error);
-    });
+  let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+  media.getPublicDirectory(DIR_CAMERA).then((dicResult) => {
+    if (dicResult == 'Camera/') {
+      console.info('getPublicDirectory DIR_CAMERA successfully');
+    } else {
+      console.error('getPublicDirectory DIR_CAMERA failed');
+    }
+  }).catch((error) => {
+    console.error('getPublicDirectory failed with error: ' + error);
+  });
 }
 ```
 
@@ -498,32 +514,35 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 获取相册列表，使用callback 方式返回结果。
 
+> **说明：**
+> 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件，当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**
+**参数：**
 
 | 参数名   | 类型                                         | 必填 | 说明                        |
 | -------- | -------------------------------------------- | ---- | --------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions7)     | 是   | 相册获取条件                |
-| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | 是   | 异步获取Album列表之后的回调 |
+| options  | [MediaFetchOptions](#mediafetchoptions7)     | 是   | 相册检索条件。                |
+| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | 是   | callback返回获取的Album结果集。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
-        if (albumList != undefined) {
-            console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-        } else {
-            console.error('getAlbums failed with error: ' + error);
-        }
-    })
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['Camera'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+    if (albumList != undefined) {
+      console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+    } else {
+      console.error('getAlbums failed with error: ' + error);
+    }
+  });
 }
 ```
 
@@ -533,6 +552,9 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 获取相册列表，使用 promise 方式返回结果。
 
+> **说明：**
+> 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件.当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -541,27 +563,27 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 | 参数名  | 类型                                     | 必填 | 说明         |
 | ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 相册获取条件 |
+| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 相册获取条件。 |
 
 **返回值：**
 
 | 类型                             | 说明          |
 | -------------------------------- | ------------- |
-| Promise<Array<[Album](#album7)>> | 返回Album列表 |
+| Promise<Array<[Album](#album7)>> | Promise对象，返回获取的Album结果集。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
-        console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-    }).catch((error) => {
-        console.error('getAlbums failed with error: ' + error);
-    });
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['Camera'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+    console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+  }).catch((error) => {
+    console.error('getAlbums failed with error: ' + error);
+  });
 }
 ```
 
@@ -578,13 +600,13 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明         |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是    | 无返回值 |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
 
 **示例：**
 
 ```js
 media.release(() => {
-    // do something
+  // do something.
 });
 ```
 
@@ -601,12 +623,12 @@ release(): Promise&lt;void&gt;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
 **示例：**
 
 ```js
-media.release()
+media.release();
 ```
 
 ### storeMediaAsset
@@ -624,26 +646,25 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 | 参数名      | 类型                                    | 必填   | 说明                      |
 | -------- | ------------------------------------- | ---- | ----------------------- |
 | option   | [MediaAssetOption](#mediaassetoption) | 是    | 媒体资源选项。                 |
-| callback | AsyncCallback&lt;string&gt;           | 是    | 媒体资源保存回调，返回保存成功后得到的URI。 |
+| callback | AsyncCallback&lt;string&gt;           | 是    | callback返回保存媒体资源成功后得到的URI。 |
 
 **示例：**
 
 ```js
 let option = {
-    src : '/data/storage/el2/base/haps/entry/image.png',
-    mimeType : 'image/*',
-    relativePath : 'Pictures/'
+  src : '/data/storage/el2/base/haps/entry/image.png',
+  mimeType : 'image/*',
+  relativePath : 'Pictures/'
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option, (error, value) => {
-    if (error) {
-        console.error('storeMediaAsset failed with error: ' + error);
-        return;
-    }
-    console.info('Media resources stored. ');
-    // Obtain the URI that stores media resources.
+  if (error) {
+    console.error('storeMediaAsset failed with error: ' + error);
+    return;
+  }
+  console.info('Media resources stored. ');
+  // Obtain the URI that stores media resources.
 });
 ```
-
 
 ### storeMediaAsset
 
@@ -665,24 +686,23 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 | 类型                    | 说明                           |
 | --------------------- | ---------------------------- |
-| Promise&lt;string&gt; | Promise实例，用于异步获取保存成功后得到的URI。 |
+| Promise&lt;string&gt; | Promise对象，返回保存媒体资源成功后得到的URI。 |
 
 **示例：**
 
 ```js
 let option = {
-    src : '/data/storage/el2/base/haps/entry/image.png',
-    mimeType : 'image/*',
-    relativePath : 'Pictures/'
+  src : '/data/storage/el2/base/haps/entry/image.png',
+  mimeType : 'image/*',
+  relativePath : 'Pictures/'
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
-    console.info('Media resources stored.');
-    // Obtain the URI that stores media resources.
+  console.info('Media resources stored.');
+  // Obtain the URI that stores media resources.
 }).catch((error) => {
-    console.error('storeMediaAsset failed with error: ' + error);
+  console.error('storeMediaAsset failed with error: ' + error);
 });
 ```
-
 
 ### startImagePreview
 
@@ -690,7 +710,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 
+> **说明**：
 > 此接口为API Version 6开始支持，只支持FA模型使用。
 > 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -702,31 +722,30 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
-| callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
 **示例：**
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+  'file://media/xxxx/2',
+  'file://media/xxxx/3'
 ];
-/* 网络图片使用方式
+/* 网络图片使用方式。
 let images = [
-    'https://media.xxxx.com/image1.jpg',
-    'https://media.xxxx.com/image2.jpg'
+  'https://media.xxxx.com/image1.jpg',
+  'https://media.xxxx.com/image2.jpg'
 ];
 */
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
-    if (error) {
-        console.error('startImagePreview failed with error: ' + error);
-        return;
-    }
-    console.info('Succeeded in previewing the images.');
+  if (error) {
+    console.error('startImagePreview failed with error: ' + error);
+    return;
+  }
+  console.info('Succeeded in previewing the images.');
 });
 ```
-
 
 ### startImagePreview
 
@@ -745,30 +764,29 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 图片预览回调，失败时返回错误信息。                        |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
 **示例：**
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+  'file://media/xxxx/2',
+  'file://media/xxxx/3'
 ];
-/* 网络图片使用方式
+/* 网络图片使用方式。
 let images = [
-    'https://media.xxxx.com/image1.jpg',
-    'https://media.xxxx.com/image2.jpg'
+  'https://media.xxxx.com/image1.jpg',
+  'https://media.xxxx.com/image2.jpg'
 ];
 */
 mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
-    if (error) {
-        console.error('startImagePreview failed with error: ' + error);
-        return;
-    }
-    console.info('Succeeded in previewing the images.');
+  if (error) {
+    console.error('startImagePreview failed with error: ' + error);
+    return;
+  }
+  console.info('Succeeded in previewing the images.');
 });
 ```
-
 
 ### startImagePreview
 
@@ -776,7 +794,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**： 
+> **说明**：
 > 此接口为API Version 6开始支持，只支持FA模型使用。
 > 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
@@ -793,29 +811,28 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 | 类型                  | 说明                              |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise实例，用于异步获取预览结果，失败时返回错误信息。 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
 **示例：**
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+  'file://media/xxxx/2',
+  'file://media/xxxx/3'
 ];
-/* 网络图片使用方式
+/* 网络图片使用方式。
 let images = [
-    'https://media.xxxx.com/image1.jpg',
-    'https://media.xxxx.com/image2.jpg'
+  'https://media.xxxx.com/image1.jpg',
+  'https://media.xxxx.com/image2.jpg'
 ];
 */
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
-    console.info('Succeeded in previewing the images.');
+  console.info('Succeeded in previewing the images.');
 }).catch((error) => {
-    console.error('startImagePreview failed with error: ' + error);
+  console.error('startImagePreview failed with error: ' + error);
 });
 ```
-
 
 ### startMediaSelect
 
@@ -823,7 +840,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： 
+> **说明**：
 > 此接口为API Version 6开始支持，只支持FA模型使用。
 > 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
@@ -834,25 +851,24 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | option   | [MediaSelectOption](#mediaselectoption)  | 是    | 媒体选择选项。                              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（datashare://）列表。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | callback返回选择的媒体URI列表。 |
 
 **示例：**
 
 ```js
 let option : mediaLibrary.MediaSelectOption = {
-    type : 'media',
-    count : 2
+  type : 'media',
+  count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option, (error, value) => {
-    if (error) {
-        console.error('startMediaSelect failed with error: ' + error);
-        return;
-    }
-    console.info('Media resources selected.');
-    // Obtain the media selection value.
+  if (error) {
+    console.error('startMediaSelect failed with error: ' + error);
+    return;
+  }
+  console.info('Media resources selected.');
+  // Obtain the media selection value.
 });
 ```
-
 
 ### startMediaSelect
 
@@ -860,7 +876,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： 
+> **说明**：
 > 此接口为API Version 6开始支持，只支持FA模型使用。
 > 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
@@ -876,28 +892,28 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明                                       |
 | ---------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（datashare://）列表。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回选择的媒体URI列表。 |
 
 **示例：**
 
 ```js
 let option : mediaLibrary.MediaSelectOption = {
-    type : 'media',
-    count : 2
+  type : 'media',
+  count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
-    console.info('Media resources selected.');
-    // Obtain the media selection value.
+  console.info('Media resources selected.');
+  // Obtain the media selection value.
 }).catch((error) => {
-    console.error('startMediaSelect failed with error: ' + error);
+  console.error('startMediaSelect failed with error: ' + error);
 });
-
 ```
+
 ### getActivePeers<sup>8+</sup>
 
 getActivePeers(): Promise\<Array\<PeerInfo>>;
 
-获取在线对端设备的信息，使用Promise方式返回异步结果
+获取在线对端设备的信息，使用Promise方式返回异步结果。
 
 **系统接口**：此接口为系统接口。
 
@@ -909,21 +925,21 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有在线对端设备的PeerInfo。 |
 
 **示例：**
 
 ```js
 async function example() {
-    media.getActivePeers().then((devicesInfo) => {
-        if (devicesInfo != undefined) {
-            console.info('get distributed info ' + JSON.stringify(devicesInfo));
-        } else {
-            console.info('get distributed info is undefined!');
-        }
-    }).catch((error) => {
-        console.error('get distributed info failed with error: ' + error);
-    });
+  media.getActivePeers().then((devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.info('get distributed info ' + JSON.stringify(devicesInfo));
+    } else {
+      console.info('get distributed info is undefined!');
+    }
+  }).catch((error) => {
+    console.error('get distributed info failed with error: ' + error);
+  });
 }
 ```
 
@@ -943,28 +959,27 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有在线对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有在线对端设备的PeerInfo对象。 |
 
 **示例：**
 
 ```js
 async function example() {
-    media.getActivePeers((error, devicesInfo) => {
-        if (devicesInfo != undefined) {
-            console.info('get distributed info ' + JSON.stringify(devicesInfo));
-        } else {
-            console.error('get distributed failed with error: ' + error);
-        }
-    });
+  media.getActivePeers((error, devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.info('get distributed info ' + JSON.stringify(devicesInfo));
+    } else {
+      console.error('get distributed failed with error: ' + error);
+    }
+  });
 }
 ```
-
 
 ### getAllPeers<sup>8+</sup>
 
 getAllPeers(): Promise\<Array\<PeerInfo>>;
 
-获取所有对端设备的信息，使用Promise方式返回异步结果
+获取所有对端设备的信息，使用Promise方式返回异步结果。
 
 **系统接口**：此接口为系统接口。
 
@@ -976,21 +991,21 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有对端设备的PeerInfo。 |
 
 **示例：**
 
 ```js
 async function example() {
-    media.getAllPeers().then((devicesInfo) => {
-        if (devicesInfo != undefined) {
-            console.info('get distributed info ' + JSON.stringify(devicesInfo));
-        } else {
-            console.info('get distributed info is undefined!');
-        }
-    }).catch((error) => {
-        console.error('get distributed info failed with error: ' + error);
-    });
+  media.getAllPeers().then((devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.info('get distributed info ' + JSON.stringify(devicesInfo));
+    } else {
+      console.info('get distributed info is undefined!');
+    }
+  }).catch((error) => {
+    console.error('get distributed info failed with error: ' + error);
+  });
 }
 ```
 
@@ -1010,19 +1025,19 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | 返回获取的所有对端设备的PeerInfo |
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有对端设备的PeerInfo对象。 |
 
 **示例：**
 
 ```js
 async function example() {
-    media.getAllPeers((error, devicesInfo) => {
-        if (devicesInfo != undefined) {
-            console.info('get distributed info ' + JSON.stringify(devicesInfo));
-        } else {
-            console.error('get distributed failed with error: ' + error);
-        }
-    });
+  media.getAllPeers((error, devicesInfo) => {
+    if (devicesInfo != undefined) {
+      console.info('get distributed info ' + JSON.stringify(devicesInfo));
+    } else {
+      console.error('get distributed failed with error: ' + error);
+    }
+  });
 }
 ```
 
@@ -1031,6 +1046,7 @@ async function example() {
 提供封装文件属性的方法。
 
 > **说明：**
+>
 > 1. title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
 > 2. orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
 
@@ -1040,28 +1056,27 @@ async function example() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| id                        | number                   | 是   | 否   | 文件资源编号                                           |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：datashare:///media/image/2)         |
-| mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
-| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型                                               |
-| displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |
-| title                     | string                   | 是   | 是   | 文件标题                                               |
-| relativePath<sup>8+</sup> | string                   | 是   | 是   | 相对公共目录路径                                       |
-| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id                                               |
-| size                      | number                   | 是   | 否   | 文件大小（单位：字节）                                 |
-| dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
-| dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）|
-| dateTaken                 | number                   | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
-| artist<sup>8+</sup>       | string                   | 是   | 否   | 作者                                                   |
-| audioAlbum<sup>8+</sup>   | string                   | 是   | 否   | 专辑                                                   |
-| width                     | number                   | 是   | 否   | 图片宽度（单位：像素）                                 |
-| height                    | number                   | 是   | 否   | 图片高度（单位：像素）                                 |
-| orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）                                   |
-| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号                                   |
-| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri                                      |
-| albumName                 | string                   | 是   | 否   | 文件所归属相册名称                                     |
-
+| id                        | number                   | 是   | 否   | 文件资源编号。                                           |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/image/2)。         |
+| mimeType                  | string                   | 是   | 否   | 文件扩展属性。                                           |
+| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型。                                               |
+| displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
+| title                     | string                   | 是   | 是   | 文件标题。                                               |
+| relativePath<sup>8+</sup> | string                   | 是   | 是   | 相对公共目录路径。                                       |
+| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                        |
+| size                      | number                   | 是   | 否   | 文件大小（单位：字节）。                                 |
+| dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）。         |
+| dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。|
+| dateTaken                 | number                   | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）。         |
+| artist<sup>8+</sup>       | string                   | 是   | 否   | 作者。                                                   |
+| audioAlbum<sup>8+</sup>   | string                   | 是   | 否   | 专辑。                                                   |
+| width                     | number                   | 是   | 否   | 图片宽度（单位：像素）。                                 |
+| height                    | number                   | 是   | 否   | 图片高度（单位：像素）。                                 |
+| orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度）。 |
+| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）。                                   |
+| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                   |
+| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                      |
+| albumName                 | string                   | 是   | 否   | 文件所归属相册名称。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                     |
 
 ### isDirectory<sup>8+</sup>
 
@@ -1077,29 +1092,29 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                           | 必填   | 说明                  |
 | -------- | ---------------------------- | ---- | ------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 当前FileAsset是否是目录的回调 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则是目录，值为false则非目录。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isDirectory((error, isDirectory) => {
-        if (error) {
-            console.error('isDirectory failed with error: ' + error);
-        } else {
-            console.info('isDirectory result:' + isDirectory);
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isDirectory((error, isDirectory) => {
+    if (error) {
+      console.error('isDirectory failed with error: ' + error);
+    } else {
+      console.info('isDirectory result:' + isDirectory);
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1117,27 +1132,27 @@ isDirectory():Promise&lt;boolean&gt;
 
 | 类型                     | 说明                           |
 | ---------------------- | ---------------------------- |
-| Promise&lt;boolean&gt; | Promise实例，返回当前FileAsset是否是目录 |
+| Promise&lt;boolean&gt; | Promise对象，返回boolean值，值为true则是目录，值为false则非目录。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isDirectory().then((isDirectory) => {
-        console.info('isDirectory result:' + isDirectory);
-    }).catch((error) => {
-        console.error('isDirectory failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isDirectory().then((isDirectory) => {
+    console.info('isDirectory result:' + isDirectory);
+  }).catch((error) => {
+    console.error('isDirectory failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1147,6 +1162,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 修改文件的元数据，使用callback方式返回异步结果。
 
+> **说明：**
+> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1155,26 +1173,26 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调返回空 |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.title = 'newtitle';
-    asset.commitModify(() => {
-        console.info('commitModify successfully');   
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.title = 'newtitle';
+  asset.commitModify(() => {
+    console.info('commitModify successfully');
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1184,6 +1202,9 @@ commitModify(): Promise&lt;void&gt;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
+> **说明：**
+> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1192,24 +1213,24 @@ commitModify(): Promise&lt;void&gt;
 
 | 类型                  | 说明         |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise返回空 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.title = 'newtitle';
-    await asset.commitModify();
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.title = 'newtitle';
+  await asset.commitModify();
+  fetchFileResult.close();
 }
 ```
 
@@ -1225,28 +1246,28 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**
+**参数：**
 
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件描述符                            |
+| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
 
 **示例：**
 
 ```js
 async function example() {
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
-    asset.open('rw', (error, fd) => {
-        if (fd > 0) {
-            asset.close(fd);
-        } else {
-            console.error('File Open failed with error: ' + error);
-        }
-    });
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
+  asset.open('rw', (error, fd) => {
+    if (fd > 0) {
+      asset.close(fd);
+    } else {
+      console.error('File Open failed with error: ' + error);
+    }
+  });
 }
 ```
 
@@ -1266,27 +1287,27 @@ open(mode: string): Promise&lt;number&gt;
 
 | 参数名  | 类型     | 必填   | 说明                                  |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
+| mode | string | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 
 **返回值：**
 
 | 类型                    | 说明            |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise返回文件描述符 |
+| Promise&lt;number&gt; | Promise对象，返回文件描述符。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
-    asset.open('rw').then((fd) => {
-        console.info('File open fd: ' + fd);
-    }).catch((error) => {
-        console.error('File open failed with error: ' + error);
-    });
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
+  asset.open('rw').then((fd) => {
+    console.info('File open fd: ' + fd);
+  }).catch((error) => {
+    console.error('File open failed with error: ' + error);
+  });
 }
 ```
 
@@ -1304,35 +1325,35 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | 是    | 文件描述符 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调返回空 |
+| fd       | number                    | 是    | 文件描述符。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.open('rw').then((fd) => {
-        console.info('File open fd: ' + fd);
-        asset.close(fd, (error) => {
-            if (error) {
-                console.error('asset.close failed with error: ' + error);
-            } else {
-                console.info('asset.close successfully');
-            }
-        });
-    }).catch((error) => {
-        console.error('File open failed with error: ' + error);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.open('rw').then((fd) => {
+    console.info('File open fd: ' + fd);
+    asset.close(fd, (error) => {
+      if (error) {
+        console.error('asset.close failed with error: ' + error);
+      } else {
+        console.info('asset.close successfully');
+      }
     });
-    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('File open failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1350,38 +1371,38 @@ close(fd: number): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| fd   | number | 是    | 文件描述符 |
+| fd   | number | 是    | 文件描述符。 |
 
 **返回值：**
 
 | 类型                  | 说明         |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise返回空 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.open('rw').then((fd) => {
-        console.info('File fd!' + fd);
-        asset.close(fd).then(() => {
-            console.info('asset.close successfully');
-        }).catch((closeErr) => {
-            console.error('asset.close fail, closeErr: ' + closeErr);
-        });
-    }).catch((error) => {
-        console.error('open File failed with error: ' + error);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.open('rw').then((fd) => {
+    console.info('File fd!' + fd);
+    asset.close(fd).then(() => {
+      console.info('asset.close successfully');
+    }).catch((closeErr) => {
+      console.error('asset.close fail, closeErr: ' + closeErr);
     });
-    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('open File failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1399,29 +1420,29 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 回调返回缩略图的PixelMap |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.getThumbnail((error, pixelmap) => {
-        if (error) {
-            console.error('mediaLibrary getThumbnail failed with error: ' + error);
-        } else {
-            console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.getThumbnail((error, pixelmap) => {
+    if (error) {
+      console.error('mediaLibrary getThumbnail failed with error: ' + error);
+    } else {
+      console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1439,31 +1460,31 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [Size](#size8)                      | 是    | 缩略图尺寸            |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 回调返回缩略图的PixelMap |
+| size     | [Size](#size8)                      | 是    | 缩略图尺寸。            |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let size = { width: 720, height: 720 };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.getThumbnail(size, (error, pixelmap) => {
-        if (error) {
-            console.error('mediaLibrary getThumbnail failed with error: ' + error);
-        } else {
-            console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let size = { width: 720, height: 720 };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.getThumbnail(size, (error, pixelmap) => {
+    if (error) {
+      console.error('mediaLibrary getThumbnail failed with error: ' + error);
+    } else {
+      console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1481,34 +1502,34 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | [Size](#size8) | 否    | 缩略图尺寸 |
+| size | [Size](#size8) | 否    | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;image.PixelMap&gt; | Promise返回缩略图的PixelMap |
+| Promise&lt;image.PixelMap&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let size = { width: 720, height: 720 };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.getThumbnail(size).then((pixelmap) => {
-        console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-    }).catch((error) => {
-        console.error('mediaLibrary getThumbnail failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let size = { width: 720, height: 720 };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.getThumbnail(size).then((pixelmap) => {
+    console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
+  }).catch((error) => {
+    console.error('mediaLibrary getThumbnail failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1526,30 +1547,30 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型                        | 必填   | 说明                                 |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调返回空                              |
+| isFavorite | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| callback   | AsyncCallback&lt;void&gt; | 是    | callback返回空。                              |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.favorite(true,(error) => {
-        if (error) {
-            console.error('mediaLibrary favorite failed with error: ' + error);
-        } else {
-            console.info('mediaLibrary favorite Successful');
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.favorite(true,(error) => {
+    if (error) {
+      console.error('mediaLibrary favorite failed with error: ' + error);
+    } else {
+      console.info('mediaLibrary favorite Successful');
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1567,33 +1588,33 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
+| isFavorite | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
 
 **返回值：**
 
 | 类型                  | 说明         |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise返回空 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.favorite(true).then(() => {
-        console.info('mediaLibrary favorite Successful');
-    }).catch((error) => {
-        console.error('mediaLibrary favorite failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.favorite(true).then(() => {
+    console.info('mediaLibrary favorite Successful');
+  }).catch((error) => {
+    console.error('mediaLibrary favorite failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1611,29 +1632,29 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                           | 必填   | 说明          |
 | -------- | ---------------------------- | ---- | ----------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调表示是否为收藏文件 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则为已收藏，值为false则为未收藏。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isFavorite((error, isFavorite) => {
-        if (error) {
-            console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
-        } else {
-            console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isFavorite((error, isFavorite) => {
+    if (error) {
+      console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
+    } else {
+      console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1651,27 +1672,27 @@ isFavorite():Promise&lt;boolean&gt;
 
 | 类型                     | 说明                 |
 | ---------------------- | ------------------ |
-| Promise&lt;boolean&gt; | Promise回调表示是否是收藏文件 |
+| Promise&lt;boolean&gt; | Promise对象，返回boolean值，值为true则为已收藏，值为false则为未收藏。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isFavorite().then((isFavorite) => {
-        console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
-    }).catch((error) => {
-        console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isFavorite().then((isFavorite) => {
+    console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
+  }).catch((error) => {
+    console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1691,30 +1712,30 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明        |
 | -------- | ------------------------- | ---- | --------- |
-| isTrash  | boolean                   | 是    | 是否设置为垃圾文件 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调返回空     |
+| isTrash  | boolean                   | 是    | 是否设置为垃圾文件。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。     |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.trash(true, (error) => {
-        if (error) {
-            console.error('mediaLibrary trash failed with error: ' + error);
-        } else {
-            console.info('mediaLibrary trash Successful');
-        }
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.trash(true, (error) => {
+    if (error) {
+      console.error('mediaLibrary trash failed with error: ' + error);
+    } else {
+      console.info('mediaLibrary trash Successful');
+    }
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1734,33 +1755,33 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 | 参数名     | 类型      | 必填   | 说明        |
 | ------- | ------- | ---- | --------- |
-| isTrash | boolean | 是    | 是否设置为垃圾文件 |
+| isTrash | boolean | 是    | 是否设置为垃圾文件。 |
 
 **返回值：**
 
 | 类型                  | 说明         |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise返回空 |
+| Promise&lt;void&gt; | Promise对象，返回空 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.trash(true).then(() => {
-        console.info('trash successfully');
-    }).catch((error) => {
-        console.error('trash failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.trash(true).then(() => {
+    console.info('trash successfully');
+  }).catch((error) => {
+    console.error('trash failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1778,29 +1799,29 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                           | 必填   | 说明              |
 | -------- | ---------------------------- | ---- | --------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调返回表示文件是否为垃圾文件 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则为垃圾文件，值为false则为非垃圾文件。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isTrash((error, isTrash) => {
-        if (error) {
-            console.error('Failed to get trash state failed with error: ' + error);
-            return;
-        }
-        console.info('Get trash state successfully, isTrash result: ' + isTrash);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isTrash((error, isTrash) => {
+    if (error) {
+      console.error('Failed to get trash state failed with error: ' + error);
+      return;
+    }
+    console.info('Get trash state successfully, isTrash result: ' + isTrash);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1818,27 +1839,27 @@ isTrash():Promise&lt;boolean&gt;
 
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
-| Promise&lt;void&gt; | Promise回调表示文件是否为垃圾文件 |
+| Promise&lt;void&gt; | Promise对象，返回boolean值，值为true则为垃圾文件，值为false则为非垃圾文件。 |
 
 **示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    const fetchFileResult = await media.getFileAssets(getImageOp);
-    const asset = await fetchFileResult.getFirstObject();
-    asset.isTrash().then((isTrash) => {
-        console.info('isTrash result: ' + isTrash);
-    }).catch((error) => {
-        console.error('isTrash failed with error: ' + error);
-    });
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  const fetchFileResult = await media.getFileAssets(getImageOp);
+  const asset = await fetchFileResult.getFirstObject();
+  asset.isTrash().then((isTrash) => {
+    console.info('isTrash result: ' + isTrash);
+  }).catch((error) => {
+    console.error('isTrash failed with error: ' + error);
+  });
+  fetchFileResult.close();
 }
 ```
 
@@ -1854,27 +1875,27 @@ getCount(): number
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
-| number | 检索到的文件总数 |
+| number | 检索到的文件总数。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let getFileCountOneOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getFileCountOneOp);
-    const fetchCount = fetchFileResult.getCount();
-    console.info('fetchCount result: ' + fetchCount);
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.FILE;
+  let getFileCountOneOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getFileCountOneOp);
+  const fetchCount = fetchFileResult.getCount();
+  console.info('fetchCount result: ' + fetchCount);
+  fetchFileResult.close();
 }
 ```
 
@@ -1886,35 +1907,35 @@ isAfterLast(): boolean
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
 | boolean | 当读到最后一条记录后，后续没有记录返回true，否则返回false。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    const fetchCount = fetchFileResult.getCount();
-    console.info('mediaLibrary fetchFileResult.getCount, count:' + fetchCount);
-    let fileAsset = await fetchFileResult.getFirstObject();
-    for (var i = 1; i < fetchCount; i++) {
-        fileAsset = await fetchFileResult.getNextObject();
-        if(i == fetchCount - 1) {
-            var result = fetchFileResult.isAfterLast();
-            console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
-            fetchFileResult.close();
-        }
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  const fetchCount = fetchFileResult.getCount();
+  console.info('mediaLibrary fetchFileResult.getCount, count:' + fetchCount);
+  let fileAsset = await fetchFileResult.getFirstObject();
+  for (var i = 1; i < fetchCount; i++) {
+    fileAsset = await fetchFileResult.getNextObject();
+    if(i == fetchCount - 1) {
+      var result = fetchFileResult.isAfterLast();
+      console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
+      fetchFileResult.close();
     }
+  }
 }
 ```
 
@@ -1926,19 +1947,19 @@ close(): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.close();
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.close();
 }
 ```
 
@@ -1950,32 +1971,32 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名   | 类型                                          | 必填 | 说明                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步获取结果集中第一个FileAsset完成后的回调 |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中第一个FileAsset对象。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getFirstObject((error, fileAsset) => {
-        if (error) {
-            console.error('fetchFileResult getFirstObject failed with error: ' + error);
-            return;
-        }
-        console.info('getFirstObject successfully, displayName : ' + fileAsset.displayName);
-        fetchFileResult.close();
-    })
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getFirstObject((error, fileAsset) => {
+    if (error) {
+      console.error('fetchFileResult getFirstObject failed with error: ' + error);
+      return;
+    }
+    console.info('getFirstObject successfully, displayName : ' + fileAsset.displayName);
+    fetchFileResult.close();
+  })
 }
 ```
 
@@ -1987,36 +2008,36 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise方式返回FileAsset。 |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中第一个FileAsset。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getFirstObject().then((fileAsset) => {
-        console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('getFirstObject failed with error: ' + error);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('getFirstObject failed with error: ' + error);
+  });
 }
 ```
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
+getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的下一个文件资产，此方法使用callback形式返回结果。
 
@@ -2024,42 +2045,43 @@ async function example() {
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步返回结果集中下一个FileAsset之后的回调 |
+| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中下一个FileAsset对象。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
-        fetchFileResult.getNextObject((error, fileAsset) => {
-            if (error) {
-                console.error('fetchFileResult getNextObject failed with error: ' + error);
-                return;
-            }
-            console.log('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
-            fetchFileResult.close();
-        })
-    }
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  let fileAsset = await fetchFileResult.getFirstObject();
+  console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+  if (!fetchFileResult.isAfterLast()) {
+    fetchFileResult.getNextObject((error, fileAsset) => {
+      if (error) {
+        console.error('fetchFileResult getNextObject failed with error: ' + error);
+        return;
+      }
+      console.log('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+      fetchFileResult.close();
+    })
+  }
 }
 
 ```
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(): Promise&lt;FileAsset&gt;
+getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
@@ -2067,33 +2089,34 @@ async function example() {
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中下一个FileAsset。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
-        fetchFileResult.getNextObject().then((fileAsset) => {
-            console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
-            fetchFileResult.close();
-        }).catch((error) => {
-            console.error('fetchFileResult getNextObject failed with error: ' + error);
-        })
-    }
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  let fileAsset = await fetchFileResult.getFirstObject();
+  console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+  if (!fetchFileResult.isAfterLast()) {
+    fetchFileResult.getNextObject().then((fileAsset) => {
+      console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+      fetchFileResult.close();
+    }).catch((error) => {
+      console.error('fetchFileResult getNextObject failed with error: ' + error);
+    })
+  }
 }
 ```
 
@@ -2105,32 +2128,32 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名   | 类型                                          | 必填 | 说明                        |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步返回FileAsset之后的回调 |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中最后一个FileAsset对象。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getLastObject((error, fileAsset) => {
-        if (error) {
-            console.error('getLastObject failed with error: ' + error);
-            return;
-        }
-        console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
-        fetchFileResult.close();
-    })
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getLastObject((error, fileAsset) => {
+    if (error) {
+      console.error('getLastObject failed with error: ' + error);
+      return;
+    }
+    console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+    fetchFileResult.close();
+  })
 }
 ```
 
@@ -2142,30 +2165,30 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中最后一个FileAsset。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getLastObject().then((fileAsset) => {
-        console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('getLastObject failed with error: ' + error);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getLastObject().then((fileAsset) => {
+    console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('getLastObject failed with error: ' + error);
+  });
 }
 ```
 
@@ -2177,33 +2200,33 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名       | 类型                                       | 必填   | 说明                 |
 | -------- | ---------------------------------------- | ---- | ------------------ |
-| index    | number                                   | 是    | 要获取的文件的索引，从0开始(注意该值要小于文件检索集的count值)     |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是    | 异步返回FileAsset之后的回调 |
+| index    | number                                   | 是    | 要获取的文件的索引，从0开始(注意该值要小于文件检索集的count值)。     |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是    | callback返回文件检索结果集中指定索引处的FileAsset对象。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(0, (error, fileAsset) => {
-        if (error) {
-            console.error('getPositionObject failed with error: ' + error);
-            return;
-        }
-        console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
-        fetchFileResult.close();
-    })
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getPositionObject(0, (error, fileAsset) => {
+    if (error) {
+      console.error('getPositionObject failed with error: ' + error);
+      return;
+    }
+    console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+    fetchFileResult.close();
+  })
 }
 ```
 
@@ -2215,36 +2238,36 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明             |
 | ----- | ------ | ---- | -------------- |
-| index | number | 是    | 要获取的文件的索引，从0开始(注意该值要小于文件检索集的count值) |
+| index | number | 是    | 要获取的文件的索引，从0开始(注意该值要小于文件检索集的count值)。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中指定索引处的FileAsset。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(0).then((fileAsset) => {
-        console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('getPositionObject failed with error: ' + error);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getPositionObject(0).then((fileAsset) => {
+    console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('getPositionObject failed with error: ' + error);
+  });
 }
 ```
 
@@ -2256,34 +2279,34 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名       | 类型                                       | 必填   | 说明                   |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | 是    | 异步返回FileAsset列表之后的回调 |
+| callback | AsyncCallback&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | 是    | callback返回文件检索结果集中所有的FileAsset对象。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getAllObject((error, fileAssetList) => {
-        if (error) {
-           console.error('getAllObject failed with error: ' + error);
-           return;
-        }
-        for (let i = 0; i < fetchFileResult.getCount(); i++) {
-            console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
-        }
-        fetchFileResult.close();
-    })
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getAllObject((error, fileAssetList) => {
+    if (error) {
+      console.error('getAllObject failed with error: ' + error);
+      return;
+    }
+    for (let i = 0; i < fetchFileResult.getCount(); i++) {
+      console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
+    }
+    fetchFileResult.close();
+  })
 }
 ```
 
@@ -2295,32 +2318,32 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                     | 说明                  |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | 返回FileAsset对象列表 |
+| Promise&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | Promise对象，返回文件检索结果集中所有的FileAsset。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + ' DESC',
-    };
-    let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getAllObject().then((fileAssetList) => {
-        for (let i = 0; i < fetchFileResult.getCount(); i++) {
-            console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
-        } 
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('getAllObject failed with error: ' + error);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let getImageOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+    order: fileKeyObj.DATE_ADDED + ' DESC',
+  };
+  let fetchFileResult = await media.getFileAssets(getImageOp);
+  fetchFileResult.getAllObject().then((fileAssetList) => {
+    for (let i = 0; i < fetchFileResult.getCount(); i++) {
+      console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
+    } 
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('getAllObject failed with error: ' + error);
+  });
 }
 ```
 
@@ -2334,13 +2357,13 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumId | number | 是    | 否    | 相册编号    |
-| albumName | string | 是    | 是    | 相册名称    |
-| albumUri<sup>8+</sup> | string | 是    | 否    | 相册Uri   |
-| dateModified | number | 是    | 否    | 修改日期    |
-| count<sup>8+</sup> | number | 是    | 否    | 相册中文件数量 |
-| relativePath<sup>8+</sup> | string | 是    | 否    | 相对路径    |
-| coverUri<sup>8+</sup> | string | 是    | 否    | 封面文件Uri |
+| albumId | number | 是    | 否    | 相册编号。    |
+| albumName | string | 是    | 是    | 相册名称。    |
+| albumUri<sup>8+</sup> | string | 是    | 否    | 相册Uri。   |
+| dateModified | number | 是    | 否    | 修改日期。    |
+| count<sup>8+</sup> | number | 是    | 否    | 相册中文件数量。 |
+| relativePath<sup>8+</sup> | string | 是    | 否    | 相对路径。    |
+| coverUri<sup>8+</sup> | string | 是    | 否    | 封面文件Uri。 |
 
 ### commitModify<sup>8+</sup>
 
@@ -2352,30 +2375,31 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回空。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify((error) => {
-        if (error) {
-            console.error('commitModify failed with error: ' + error);
-            return;
-        }
-        console.info('commitModify successful.');
-    })
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify((error) => {
+    if (error) {
+      console.error('commitModify failed with error: ' + error);
+      return;
+    }
+    console.info('commitModify successful.');
+  });
 }
 ```
 
@@ -2389,28 +2413,70 @@ commitModify(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
-| Promise&lt;void&gt; | Promise调用返回空 |
+| Promise&lt;void&gt; | Promise对象，返回空。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify().then(() => {
-        console.info('commitModify successfully');
-    }).catch((error) => {
-        console.error('commitModify failed with error: ' + error);
-    });
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify().then(() => {
+    console.info('commitModify successfully');
+  }).catch((error) => {
+    console.error('commitModify failed with error: ' + error);
+  });
+}
+```
+
+### getFileAssets<sup>7+</sup>
+
+getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
+
+按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回相册中的文件检索结果集。 |
+
+**示例：**
+
+```js
+async function example() {
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  // 获取符合检索要求的相册，返回相册列表。
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
+  album.getFileAssets((error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
+    }
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2424,38 +2490,39 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名   | 类型                                                | 必填 | 说明                                |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 媒体检索选项。                      |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | 异步返回FetchFileResult之后的回调。 |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回相册中的文件检索结果集。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  // 获取符合检索要求的相册，返回相册列表。
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
+  album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
     }
-    // 获取符合检索要求的相册，返回相册列表
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
-    album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
-        if (error) {
-            console.error('album getFileAssets failed with error: ' + error);
-            return;
-        }
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    });
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2469,41 +2536,42 @@ async function example() {
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数**：
+**参数：**
 
 | 参数名  | 类型                                     | 必填 | 说明           |
 | ------- | ---------------------------------------- | ---- | -------------- |
 | options | [MediaFetchOptions](#mediafetchoptions7) | 否   | 媒体检索选项。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                                          | 说明                      |
 | --------------------------------------------- | ------------------------- |
-| Promise<[FetchFileResult](#fetchfileresult7)> | 返回FetchFileResult对象。 |
+| Promise<[FetchFileResult](#fetchfileresult7)> | Promise对象，返回相册中的文件检索结果集。 |
 
-**示例**：
+**示例：**
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    // 获取符合检索要求的相册，返回相册列表
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
-    album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('album getFileAssets failed with error: ' + error);
-    });
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  // 获取符合检索要求的相册，返回相册列表。
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
+  album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('album getFileAssets failed with error: ' + error);
+  });
 }
 ```
 
@@ -2517,12 +2585,10 @@ async function example() {
 
 | 名称       | 类型                       | 可读 | 可写 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
-| deviceName | string                     | 是   | 否   | 注册设备的名称   |
-| networkId  | string                     | 是   | 否   | 注册设备的网络ID |
-| deviceType | [DeviceType](#devicetype8) | 是   | 否   | 设备类型         |
-| isOnline   | boolean                    | 是   | 否   | 是否在线         |
-
-
+| deviceName | string                     | 是   | 否   | 注册设备的名称。   |
+| networkId  | string                     | 是   | 否   | 注册设备的网络ID。 |
+| deviceType | [DeviceType](#devicetype8) | 是   | 否   | 设备类型。         |
+| isOnline   | boolean                    | 是   | 否   | 是否在线。         |
 
 ## MediaType<sup>8+</sup>
 
@@ -2532,10 +2598,10 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| FILE  |  0 | 文件 |
-| IMAGE |  1 | 图片 |
-| VIDEO |  2 | 视频 |
-| AUDIO |  3 | 音频 |
+| FILE  |  0 | 文件。 |
+| IMAGE |  1 | 图片。 |
+| VIDEO |  2 | 视频。|
+| AUDIO |  3 | 音频。 |
 
 ## FileKey<sup>8+</sup>
 
@@ -2548,25 +2614,25 @@ async function example() {
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | 'file_id'             | 文件编号                                                   |
-| RELATIVE_PATH | 'relative_path'       | 相对公共目录路径                                           |
-| DISPLAY_NAME  | 'display_name'        | 显示名字                                                   |
-| PARENT        | 'parent'              | 父目录id                                                   |
-| MIME_TYPE     | 'mime_type'           | 文件扩展属性(如：image/*、video/*、file/*)                                             |
-| MEDIA_TYPE    | 'media_type'          | 媒体类型                                                   |
-| SIZE          | 'size'                | 文件大小（单位：字节）                                     |
-| DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新） |
-| DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
-| TITLE         | 'title'               | 文件标题                                                   |
-| ARTIST        | 'artist'              | 作者                                                       |
-| AUDIOALBUM    | 'audio_album'         | 专辑                                                       |
-| DURATION      | 'duration'            | 持续时间（单位：毫秒）                                       |
-| WIDTH         | 'width'               | 图片宽度（单位：像素）                                     |
-| HEIGHT        | 'height'              | 图片高度（单位：像素）                                     |
-| ORIENTATION   | 'orientation'         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
-| ALBUM_ID      | 'bucket_id'           | 文件所归属的相册编号                                       |
-| ALBUM_NAME    | 'bucket_display_name' | 文件所归属相册名称                                         |
+| ID            | 'file_id'             | 文件编号。                                                   |
+| RELATIVE_PATH | 'relative_path'       | 相对公共目录路径。                                           |
+| DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
+| PARENT        | 'parent'              | 父目录id。                                                   |
+| MIME_TYPE     | 'mime_type'           | 文件扩展属性(如：image/*、video/*、file/*)。                                             |
+| MEDIA_TYPE    | 'media_type'          | 媒体类型。                                                   |
+| SIZE          | 'size'                | 文件大小（单位：字节）。                                     |
+| DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间到1970年1月1日的秒数值）。             |
+| DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
+| DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）。             |
+| TITLE         | 'title'               | 文件标题。                                                   |
+| ARTIST        | 'artist'              | 作者。                                                       |
+| AUDIOALBUM    | 'audio_album'         | 专辑。                                                       |
+| DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                       |
+| WIDTH         | 'width'               | 图片宽度（单位：像素）。                                     |
+| HEIGHT        | 'height'              | 图片高度（单位：像素）。                                     |
+| ORIENTATION   | 'orientation'         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度）。 |
+| ALBUM_ID      | 'bucket_id'           | 文件所归属的相册编号。                                       |
+| ALBUM_NAME    | 'bucket_display_name' | 文件所归属相册名称。                                         |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2576,12 +2642,12 @@ async function example() {
 
 | 名称          | 值 |  说明               |
 | ------------- | --- | ------------------ |
-| DIR_CAMERA    |  0 | 表示Camera文件路径 |
-| DIR_VIDEO     |  1 |  表示视频路径       |
-| DIR_IMAGE     |  2 | 表示图片路径       |
-| DIR_AUDIO     |  3 | 表示音频路径       |
-| DIR_DOCUMENTS |  4 | 表示文档路径       |
-| DIR_DOWNLOAD  |  5 |  表示下载路径       |
+| DIR_CAMERA    |  0 | 表示Camera文件路径。 |
+| DIR_VIDEO     |  1 |  表示视频路径。       |
+| DIR_IMAGE     |  2 | 表示图片路径。       |
+| DIR_AUDIO     |  3 | 表示音频路径。       |
+| DIR_DOCUMENTS |  4 | 表示文档路径。       |
+| DIR_DOWNLOAD  |  5 |  表示下载路径。       |
 
 ## DeviceType<sup>8+</sup>
 
@@ -2593,13 +2659,13 @@ async function example() {
 
 | 名称         |  值 | 说明       |
 | ------------ | --- | ---------- |
-| TYPE_UNKNOWN |  0 | 未识别设备 |
-| TYPE_LAPTOP  |  1 | 笔记本电脑 |
-| TYPE_PHONE   |  2 | 手机       |
-| TYPE_TABLET  |  3 | 平板电脑   |
-| TYPE_WATCH   |  4 | 智能手表   |
-| TYPE_CAR     |  5 | 车载设备   |
-| TYPE_TV      |  6 | 电视设备   |
+| TYPE_UNKNOWN |  0 | 未识别设备。 |
+| TYPE_LAPTOP  |  1 | 笔记本电脑。 |
+| TYPE_PHONE   |  2 | 手机。       |
+| TYPE_TABLET  |  3 | 平板电脑。   |
+| TYPE_WATCH   |  4 | 智能手表。   |
+| TYPE_CAR     |  5 | 车载设备。   |
+| TYPE_TV      |  6 | 电视设备。   |
 
 ## MediaFetchOptions<sup>7+</sup>
 
@@ -2612,9 +2678,9 @@ async function example() {
 | selections              | string              | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br/>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
 | selectionArgs           | Array&lt;string&gt; | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br/>示例：<br/>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
 | order                   | string              | 是   | 是   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br/>升序排列：order: mediaLibrary.FileKey.DATE_ADDED + ' ASC'<br/>降序排列：order: mediaLibrary.FileKey.DATE_ADDED + ' DESC' |
-| uri<sup>8+</sup>        | string              | 是   | 是   | 文件URI                                                      |
-| networkId<sup>8+</sup>  | string              | 是   | 是   | 注册设备网络ID                                               |
-| extendArgs<sup>8+</sup> | string              | 是   | 是   | 扩展的检索参数，目前没有扩展检索参数                         |
+| uri<sup>8+</sup>        | string              | 是   | 是   | 文件URI。                                                      |
+| networkId<sup>8+</sup>  | string              | 是   | 是   | 注册设备网络ID。                                               |
+| extendArgs<sup>8+</sup> | string              | 是   | 是   | 扩展的检索参数，目前没有扩展检索参数。                         |
 
 ## Size<sup>8+</sup>
 
@@ -2624,15 +2690,14 @@ async function example() {
 
 | 名称     | 类型     | 可读   | 可写   | 说明       |
 | ------ | ------ | ---- | ---- | -------- |
-| width  | number | 是    | 是    | 宽（单位：像素） |
-| height | number | 是    | 是    | 高（单位：像素） |
+| width  | number | 是    | 是    | 宽（单位：像素）。 |
+| height | number | 是    | 是    | 高（单位：像素）。 |
 
 ## MediaAssetOption
 
 媒体资源选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
-
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -2648,6 +2713,5 @@ async function example() {
 
 | 名称    | 类型     | 可读 | 可写 | 说明                   |
 | ----- | ------ | ---- | ---- | -------------------- |
-| type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
+| type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型。 |
 | count | number | 是    | 是  | 可以选择媒体数量的最大值，count = 1表示单选，count大于1表示多选。            |
-

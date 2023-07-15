@@ -25,7 +25,7 @@ Carry out the following operations to develop the widget provider based on the [
 1. Implement lifecycle callbacks by using the **LifecycleForm** APIs.
 2. Create a **FormBindingData** instance.
 3. Update a widget by using the **FormProvider** APIs.
-4. Develop the widget UI pages.
+4. Develop the widget UI page.
 
 ## Available APIs
 
@@ -231,7 +231,7 @@ You should override **onDestroy** to implement widget data deletion.
        }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Data Persistence by User Preferences](../database/data-persistence-by-preferences.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -402,3 +402,5 @@ The code snippet is as follows:
      }
    }
    ```
+
+ <!--no_check--> 

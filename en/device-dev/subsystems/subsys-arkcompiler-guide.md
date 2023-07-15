@@ -32,26 +32,26 @@ Ubuntu 18.04 or later is recommended.
 
 ## How to Develop
 
-1. Create the build products **ark_js_vm** and **ts2panda**.
+1. Create the build products **ark_js_vm** and **es2panda**.
     ```shell
     python ark.py x64.release
     ```
     - **ark_js_vm**: executable program for running .abc files.
-    - **ts2panda**: tool that converts ArkTS files into ArkCompiler bytecode files.
+    - **es2panda**: tool that converts ArkTS files into ArkCompiler bytecode files.
 
-2. Use **ts2panda** to convert a TypeScript file to an .abc file.
+2. Use **es2panda** to convert a TypeScript file to an .abc file.
     ```shell
-    prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/bin/node --expose-gc out/x64.release/clang_x64/obj/arkcompiler/ets_frontend/ts2panda/build/src/index.js helloworld.ts --opt-level 0
+    out/x64.release/arkcompiler/ets_frontend/es2abc helloworld.ts
     ```
     Code snippet of the TypeScript case file **helloworld.ts**:
     ```JavaScript
-    declare function print(arg:any):string;
-    print("Hello world!");
+    declare function print(arg:string):string;
+    print('Hello world!');
     ```
 
 3. Run the generated .abc file.
     ```shell
-    out/x64.release/clang_x64/arkcompiler/ets_runtime/ark_js_vm helloworld.abc
+    out/x64.release/arkcompiler/ets_runtime/ark_js_vm helloworld.abc
     ```
     .abc file: ArkCompiler bytecode file.
     

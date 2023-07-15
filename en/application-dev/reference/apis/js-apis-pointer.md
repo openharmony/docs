@@ -258,6 +258,386 @@ try {
 }
 ```
 
+## pointer.setHoverScrollState<sup>10+</sup>
+
+setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the status of the mouse hover scroll switch. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state    | boolean                    | Yes   | Status of the mouse hover scroll switch.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setHoverScrollState(true, (error) => {
+    if (error) {
+      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set the mouse hover scroll success`);
+  });
+} catch (error) {
+  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setHoverScrollState<sup>10+</sup>
+
+setHoverScrollState(state: boolean): Promise&lt;void&gt;
+
+Sets the status of the mouse hover scroll switch. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean | Yes   | Status of the mouse hover scroll switch.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setHoverScrollState(true).then(() => {
+    console.log(`Set the mouse hover scroll success`);
+  });
+} catch (error) {
+  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getHoverScrollState<sup>10+</sup>
+
+getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
+
+Obtains the status of the mouse hover scroll switch. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getHoverScrollState((error, state) => {
+    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getHoverScrollState<sup>10+</sup>
+
+getHoverScrollState(): Promise&lt;boolean&gt;
+
+Obtains the status of the mouse hover scroll switch. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getHoverScrollState().then((state) => {
+    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMousePrimaryButton<sup>10+</sup>
+
+setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the primary button of the mouse. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type                     | Mandatory | Description                                   |
+| -------- | ------------------------- | ----  | ------------------------------------- |
+| primary  | [PrimaryButton](#primarybutton10)   | Yes   | ID of the primary mouse button.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error) => {
+    if (error) {
+      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set mouse primary button success`);
+  });
+} catch (error) {
+  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMousePrimaryButton<sup>10+</sup>
+
+setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
+
+Sets the primary button of the mouse. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| primary | [PrimaryButton](#primarybutton10) | Yes   | ID of the primary mouse button.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT).then(() => {
+    console.log(`Set mouse primary button success`);
+  });
+} catch (error) {
+  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMousePrimaryButton<sup>10+</sup>
+
+getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
+
+Obtains the primary button of the mouse. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;[PrimaryButton](#primarybutton10)&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getMousePrimaryButton((error, primary) => {
+    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+  });
+} catch (error) {
+  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMousePrimaryButton<sup>10+</sup>
+
+getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
+
+Obtains the primary button of the mouse. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;[PrimaryButton](#primarybutton10)&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getMousePrimaryButton().then((primary) => {
+    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+  });
+} catch (error) {
+  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## PrimaryButton<sup>10+</sup>
+
+Type of the primary mouse button.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name                              | Value   | Description    |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | Left mouse button.    |
+| RIGHT                             | 1    | Right mouse button.  |
+
+## pointer.setMouseScrollRows<sup>10+</sup>
+
+setMouseScrollRows(rows: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the number of mouse scroll rows. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| rows     | number                    | Yes   | Number of mouse scroll rows. The value ranges from 1 to 100. The default value is **3**.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setMouseScrollRows(1, (error) => {
+    if (error) {
+      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setMouseScrollRows success`);
+  });
+} catch (error) {
+  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMouseScrollRows<sup>10+</sup>
+
+setMouseScrollRows(rows: number): Promise&lt;void&gt;
+
+Sets the number of mouse scroll rows. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| rows  | number | Yes   | Number of mouse scroll rows. The value ranges from 1 to 100. The default value is **3**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setMouseScrollRows(20).then(() => {
+    console.log(`setMouseScrollRows success`);
+  });
+} catch (error) {
+  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMouseScrollRows<sup>10+</sup>
+
+getMouseScrollRows(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the number of mouse scroll rows. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getMouseScrollRows((error, rows) => {
+    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+  });
+} catch (error) {
+  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMouseScrollRows<sup>10+</sup>
+
+getMouseScrollRows(): Promise&lt;number&gt;
+
+Obtains the mouse movement speed. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getMouseScrollRows().then((rows) => {
+    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+  });
+} catch (error) {
+  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## pointer.getPointerStyle<sup>9+</sup>
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void

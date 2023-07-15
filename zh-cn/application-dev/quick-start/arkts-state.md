@@ -1,4 +1,4 @@
-# \@State：组件内状态
+# \@State装饰器：组件内状态
 
 
 \@State装饰的变量，或称为状态变量，一旦变量拥有了状态属性，就和自定义组件的渲染绑定起来。当状态改变时，UI会发生对应的渲染改变。
@@ -29,8 +29,7 @@
 | ------------ | ---------------------------------------- |
 | 装饰器参数        | 无                                        |
 | 同步类型         | 不与父组件中任何类型的变量同步。                         |
-| 允许装饰的变量类型    | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>建议不要装饰Date类型，应用可能会产生异常行为。<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
-| 被装饰变量的初始值    | 必须指定。                                    |
+| 允许装饰的变量类型    | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
 
 
 ## 变量的传递/访问规则说明
@@ -153,6 +152,45 @@
   this.title.push(new Model(12))
   ```
 
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+
+  ```ts
+  @Entry
+  @Component
+  struct DatePickerExample {
+    @State selectedDate: Date = new Date('2021-08-08')
+  
+    build() {
+      Column() {
+        Button('set selectedDate to 2023-07-08')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08')
+          })
+        Button('increase the year by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+          })
+        Button('increase the month by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1)
+          })
+        Button('increase the day by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+          })
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        })
+      }.width('100%')
+    }
+  }
+  ```
 
 ### 框架行为
 
@@ -170,7 +208,7 @@
 
 以下示例为\@State装饰的简单类型，count被\@State装饰成为状态变量，count的改变引起Button组件的刷新：
 
-- 当状态变量count改变时，查询到只有Buttont组件关联了它；
+- 当状态变量count改变时，查询到只有Button组件关联了它；
 
 - 执行Button组件的更新方法，实现按需刷新。
 
@@ -231,11 +269,11 @@ struct MyComponent {
       Text(`${this.title.value}`)
       Button(`Click to change title`).onClick(() => {
         // @State变量的更新将触发上面的Text组件内容更新
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'HelloArkUI';
+        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
       })
 
       Button(`Click to increase count=${this.count}`).onClick(() => {
-        // @State变量的更新将触发上面的Text组件内容更新
+        // @State变量的更新将触发该Button组件的内容更新
         this.count += this.increaseBy;
       })
     }

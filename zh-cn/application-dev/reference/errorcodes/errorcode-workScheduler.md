@@ -53,7 +53,7 @@ System service operation failed.
 
 **错误信息**
 
-Checking workInfo failed.
+Check workInfo failed.
 
 **可能原因**
 

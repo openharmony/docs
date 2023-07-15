@@ -9,7 +9,7 @@ vibrator模块提供控制马达振动启、停的能力。
 
 ## 导入模块
 
-```js
+```ts
 import vibrator from '@ohos.vibrator';
 ```
 
@@ -41,24 +41,25 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 示例：
 
-```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -95,24 +96,25 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -129,44 +131,45 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式。                                     |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 按照固定时长振动
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  // 按照固定时长振动
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 
 try {
-    // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
-        if (error) {
-            console.log('error.code' + error.code + 'error.message' + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate successful.');
-    })
+  // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
 } catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -192,36 +195,37 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 按照固定时长振动
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  // 按照固定时长振动
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 
 try {
-    // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-        console.log('Promise returned to indicate a successful vibration.');
-    }, (error) => {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    });
+  // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -237,44 +241,45 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 按照固定时长振动
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  // 按照固定时长振动
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (error) {
-    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 
 try {
-    // 停止所有模式的马达振动
-    vibrator.stopVibration(function (error) {
-        if (error) {
-            console.log('error.code' + error.code + 'error.message' + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate successful.');
-    })
+  // 停止所有模式的马达振动
+  vibrator.stopVibration(function (error) {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
 } catch (error) {
-    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -294,36 +299,37 @@ stopVibration(): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 按照固定时长振动
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  // 按照固定时长振动
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (error) {
-    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 
 try {
-    // 停止所有模式的马达振动
-    vibrator.stopVibration().then(() => {
-        console.log('Promise returned to indicate a successful vibration.');
-    }, (error) => {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    });
+  // 停止所有模式的马达振动
+  vibrator.stopVibration().then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (error) {
-    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -338,44 +344,45 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明                                                   |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | 是   | 振动效果id                                             |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当返回true则表示支持该effectId，否则不支持。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 查询是否支持'haptic.clock.timer'
-    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
-        if (err) {
-            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
-            return;
-        }
-        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-        if (state) {
-            try {
-                vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
-                    type: 'preset',
-                    effectId: 'haptic.clock.timer',
-                    count: 1,
-                }, {
-                    usage: 'unknown'
-                }, (error) => {
-                    if(error) {
-                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
-                    } else {
-                        console.log('haptic.clock.timer vibrator success');
-                    }
-                });
-            } catch (error) {
-                console.error('Exception in, error:' + JSON.stringify(error));
-            }
-        }
-    })
+  // 查询是否支持'haptic.clock.timer'
+  vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+    if (err) {
+      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeed in querying effect');
+    if (state) {
+      try {
+        vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'unknown'
+        }, (error) => {
+          if (error) {
+            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+          } else {
+            console.info('Succeed in starting vibration');
+          }
+        });
+      } catch (error) {
+        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+      }
+    }
+  })
 } catch (error) {
-    console.error('Exception in, error:' + JSON.stringify(error));
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -399,42 +406,43 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **示例：** 
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // 查询是否支持'haptic.clock.timer'
-    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
-        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-        if (state) {
-            try {
-                vibrator.startVibration({
-                    type: 'preset',
-                    effectId: 'haptic.clock.timer',
-                    count: 1,
-                }, {
-                    usage: 'unknown'
-                }).then(()=>{
-                    console.log('Promise returned to indicate a successful vibration');
-                }).catch((error)=>{
-                    console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
-                });
-            } catch (error) {
-                console.error('exception in, error:' + JSON.stringify(error));
-            }
-        }
-    }, (error) => {
-        console.error('isSupportEffect failed, error:' + JSON.stringify(error));
-    })
+  // 查询是否支持'haptic.clock.timer'
+  vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+    console.info(`The query result is ${state}`);
+    if (state) {
+      try {
+        vibrator.startVibration({
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'unknown'
+        }).then(() => {
+          console.info('Succeed in starting vibration');
+        }).catch((error) => {
+          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+        });
+      } catch (error) {
+        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+      }
+    }
+  }, (error) => {
+    console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
+  })
 } catch (error) {
-    console.error('Exception in, error:' + JSON.stringify(error));
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## EffectId
 
 预置的振动效果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
@@ -445,7 +453,7 @@ try {
 
 停止的振动模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
@@ -456,52 +464,76 @@ try {
 
 马达振动效果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
 | [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
+| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
 马达振动时长。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 值 | 说明                           |
-| -------- | ------ | ------------------------------ |
-| type     | "time" | 按照指定持续时间触发马达振动。 |
-| duration | -      | 马达持续振动时长, 单位ms。         |
+| 名称     | 类型    | 必填 | 说明                           |
+| -------- | ------ | ----- | ------------------------------ |
+| type     | string |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
 
 马达预置振动类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 值       | 说明                           |
-| -------- | -------- | ------------------------------ |
-| type     | "preset" | 按照预置振动效果触发马达振动。 |
-| effectId | -        | 预置的振动效果ID。             |
-| count    | -        | 重复振动的次数。               |
+| 名称     | 类型      | 必填 | 说明                           |
+| -------- | -------- | ---- |------------------------------ |
+| type     | string   |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| effectId | string   |  是  | 预置的振动效果ID。             |
+| count    | number   |  是  | 重复振动的次数。               |
+
+## VibrateFromFile<sup>10+</sup>
+
+自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcodes/errorcode-universal.md)。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+| 名称     | 类型       | 必填 | 说明                           |
+| -------- | --------  | ---- | ------------------------------ |
+| type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 是 | 振动配置文件的描述符。|
+
+## HapticFileDescriptor<sup>10+</sup>
+
+自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动格式)。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+| 名称     | 类型      |  必填  | 说明                           |
+| -------- | -------- |--------| ------------------------------|
+| fd       | number   |  是    | 资源文件描述符。                |
+| offset   | number   |  否    | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。|
+| length   | number   |  否    | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。|
 
 ## VibrateAttribute<sup>9+</sup>
 
 马达振动属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 值 | 说明           |
-| ----- | ------ | -------------- |
-| id    | 0      | 振动器id。     |
-| usage | -      | 马达振动的使用场景。 |
+| 名称  | 类型 | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| id    | number      |  否 | 默认值为0，振动器id。     |
+| usage | [Usage](#usage9)      | 是 | 马达振动的使用场景。 |
 
 ## Usage<sup>9+</sup>
 
 振动使用场景。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称             | 类型   | 说明                           |
 | ---------------- | ------ | ------------------------------ |
@@ -541,13 +573,13 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+```ts
 vibrator.vibrate(1000).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in vibrating');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
@@ -566,19 +598,19 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
-  ```js
+```ts
 vibrator.vibrate(1000, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
-  ```
+```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -607,13 +639,13 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+```ts
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in vibrating');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -633,19 +665,19 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
-  ```js
+```ts
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
-  ```
+```
 
 ## vibrator.stop<sup>(deprecated)</sup>
 
@@ -673,22 +705,22 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **示例：** 
 
-  ```js
+```ts
 // 按照effectId类型启动振动
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
 // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in stopping');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 
 ## vibrator.stop<sup>(deprecated)</sup>
@@ -708,25 +740,25 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。                                     |
-| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
-  ```js
+```ts
 // 按照effectId类型启动振动
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
 // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate successful.');
-    }
+  if (error) {
+    console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    onsole.info('Succeed in stopping');
+  }
 })
-  ```
+```

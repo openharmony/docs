@@ -47,7 +47,7 @@ You can specify the launch type by setting **launchType** in the **config.json**
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
-| standard    | Multi-instance  | A new instance is started each time an ability starts.|
+| standard | Multi-instance  | A new instance is started each time an ability starts.|
 | singleton   | Singleton  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 
 By default, **singleton** is used.

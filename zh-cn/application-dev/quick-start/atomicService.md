@@ -44,7 +44,6 @@
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-    "distributedNotificationEnabled": true,
     "targetAPIVersion": 9
   }
 }
@@ -78,7 +77,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -98,13 +97,13 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -170,7 +169,7 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
     Row() {
@@ -200,19 +199,20 @@ struct Index {
             }).catch(err => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
-        }
-        .width('100%')
+        })
+      .width('100%')
     }
     .height('100%')
     }
+  }
 }
 ```
 
 其中`router.pushUrl`方法的入参中`url`的内容为：
-```ets
+```ts
 '@bundle:com.example.hmservice/library/ets/pages/menu'
 ```
 `url`内容的模板为：
-```ets
+```ts
 '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
 ```

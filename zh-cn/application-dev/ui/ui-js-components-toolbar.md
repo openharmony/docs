@@ -108,10 +108,6 @@ toolbar-item{
 toolbar-item{
   font-size: 35px;
 }
-.toolbarActive{
-  color: red;
-  background-color: #daebef;
-}
 ```
 
 
@@ -186,9 +182,8 @@ export default {
 <div class="container">
   <image src="{{imgList[active]}}"></image>
   <toolbar style="position: fixed;bottom: 5%;width: 100%;background-color: #F1F3F5;">
-    <toolbar-item value="{{ item.option}}" icon="{{item.icon}}" style="color: {{active == $idx?'red':'black'}};background-color: {{active
-      == $idx?'#dbe7f1':'#F1F3F5'}};" for="{{item in itemList}}" onclick="itemClick({{$idx}})"></toolbar-item>
-  </toolbar>
+    <toolbar-item value="{{ item.option}}" icon="{{item.icon}}" style="color: {{active == $idx?'red':'black'}};background-color: {{active== $idx?'#dbe7f1':'#F1F3F5'}};" for="{{item in itemList}}" onclick="itemClick({{$idx}})"></toolbar-item>
+    </toolbar>
 </div>
 ```
 
@@ -234,4 +229,4 @@ export default {
 
 针对toolbar开发，有以下相关实例可供参考：
 
-- [`Toolbar`：工具栏（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Toolbar)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)

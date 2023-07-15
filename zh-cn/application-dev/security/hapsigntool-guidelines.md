@@ -241,7 +241,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
    ```
    
-   > **说明：** 请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续生成应用  签名证书和对Hap包进行签名操作会使用到。
+   > **说明：** 
+   > 
+   > 请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续生成应用  签名证书和对Hap包进行签名操作会使用到。
 
    该命令的参数说明：
 
@@ -319,7 +321,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    ```shell
    java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
    ```
-   > **说明**：以下参数说明默认为无应用签名证书场景，当开发场景为有应用签名证书场景时，下列参数需要修改：
+   > **说明**：
+   >
+   > 以下参数说明默认为无应用签名证书场景，当开发场景为有应用签名证书场景时，下列参数需要修改：
    > -keyAlias：密钥别名，填写已有应用签名证书对应的密钥别名，参数必填。
    > -appCertFile：应用签名证书，填写已有的应用签名证书，参数必填。
    > -keystoreFile：密钥库文件，填写已有应用签名证书对应的密钥库文件，参数必填。

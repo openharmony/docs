@@ -1,10 +1,12 @@
 # @ohos.enterprise.deviceInfo (Device Information Management)
 
-The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. These APIs can only be called by device administrator applications.
+The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
@@ -16,7 +18,7 @@ import deviceInfo from '@ohos.enterprise.deviceInfo';
 
 getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device serial number. This API uses an asynchronous callback to return the result.
+Obtains the device serial number through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -29,7 +31,7 @@ Obtains the device serial number. This API uses an asynchronous callback to retu
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the device serial number.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device serial number obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -44,15 +46,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device serial, result : ${result}`);
 });
 ```
 
@@ -60,7 +63,7 @@ deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-Obtains the device serial number. This API uses a promise to return the result.
+Obtains the device serial number through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -93,13 +96,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device serial, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -107,7 +111,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
-Obtains the device version number. This API uses an asynchronous callback to return the result.
+Obtains the device version number through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -120,7 +124,7 @@ Obtains the device version number. This API uses an asynchronous callback to ret
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the device version number.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device version number obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -135,15 +139,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting display version, result : ${result}`);
 });
 ```
 
@@ -151,7 +156,7 @@ deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-Obtains the device version number. This API uses a promise to return the result.
+Obtains the device version number through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -169,7 +174,7 @@ Obtains the device version number. This API uses a promise to return the result.
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the device version number. |
+| Promise&lt;string&gt; | Promise used to return the device version number.|
 
 **Error codes**
 
@@ -184,13 +189,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting display version, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -198,7 +204,7 @@ deviceInfo.getDisplayVersion(wantTemp).then((result) => {
 
 getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device name. This API uses an asynchronous callback to return the result.
+Obtains the device name through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -211,7 +217,7 @@ Obtains the device name. This API uses an asynchronous callback to return the re
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;              | Yes   | Callback used to return the device name.      |
+| callback | AsyncCallback&lt;string&gt;              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device name obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -226,15 +232,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceInfo.getDeviceName(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceInfo.getDeviceName(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device name, result : ${result}`);
 });
 ```
 
@@ -242,7 +249,7 @@ deviceInfo.getDeviceName(wantTemp, (error, result) => {
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
-Obtains the device name. This API uses a promise to return the result.
+Obtains the device name through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -260,7 +267,7 @@ Obtains the device name. This API uses a promise to return the result.
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the device name. |
+| Promise&lt;string&gt; | Promise used to return the device name.|
 
 **Error codes**
 
@@ -275,12 +282,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceInfo.getDeviceName(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting device name, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
 });
 ```

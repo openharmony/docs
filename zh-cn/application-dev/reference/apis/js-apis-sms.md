@@ -14,7 +14,7 @@ import sms from '@ohos.telephony.sms';
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback\<ShortMessage\>\): void
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用callback异步回调。
 
@@ -27,6 +27,18 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
 | specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
 | callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -42,7 +54,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<ShortMessage\>
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用Promise异步回调。
 
@@ -61,6 +73,18 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortM
 | -------------------------------------------- | --------------------------------- |
 | Promise&lt;[ShortMessage](#shortmessage)&gt; | 以Promise形式返回创建的短信实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -75,11 +99,15 @@ promise.then(data => {
 });
 ```
 
-## sms.sendMessage
+## sms.sendMessage<sup>(deprecated)</sup>
 
-sendMessage(options: SendMessageOptions): void
+sendMessage\(options: SendMessageOptions\): void
 
 发送短信。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -93,7 +121,7 @@ sendMessage(options: SendMessageOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -122,6 +150,114 @@ let options = {slotId, content, destinationHost, serviceCenter, destinationPort,
 sms.sendMessage(options);
 ```
 
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&gt;\): void
+
+发送短信。使用callback异步回调。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content = '短信内容';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
+
+发送短信。使用Promise异步回调。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | 以Promise形式返回发送短信的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content = '短信内容';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let promise = sms.sendShortMessage(options);
+promise.then(() => {
+    console.log(`sendShortMessage success`);
+}).catch(err => {
+    console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
+});
+
+```
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
@@ -192,11 +328,12 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -239,11 +376,12 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -264,7 +402,7 @@ promise.then(() => {
 
 ## sms.setSmscAddr<sup>7+</sup>
 
-setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
+setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\): void
 
 设置短信服务中心（SMSC）地址。使用callback异步回调。
 
@@ -284,11 +422,12 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -333,11 +472,12 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -360,7 +500,7 @@ promise.then(() => {
 
 ## sms.getSmscAddr<sup>7+</sup>
 
-getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
+getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取短信服务中心（SMSC）地址。使用callback异步回调。
 
@@ -379,11 +519,12 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -402,7 +543,7 @@ sms.getSmscAddr(slotId, (err, data) => {
 
 ## sms.getSmscAddr<sup>7+</sup>
 
-getSmscAddr\(slotId: number\): Promise<string\>
+getSmscAddr\(slotId: number\): Promise\<string\>
 
 获取短信服务中心（SMSC）地址。使用Promise异步回调。
 
@@ -426,11 +567,12 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -451,7 +593,7 @@ promise.then(data => {
 
 ## sms.hasSmsCapability<sup>7+</sup>
 
-hasSmsCapability(): boolean
+hasSmsCapability\(\): boolean
 
 检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
 
@@ -470,7 +612,7 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 
 ## sms.splitMessage<sup>8+</sup>
 
-splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
+splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): void
 
 将长短信拆分为多个片段。使用callback异步回调。
 
@@ -489,11 +631,12 @@ splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -512,7 +655,7 @@ sms.splitMessage(content, (err, data) => {
 
 ## sms.splitMessage<sup>8+</sup>
 
-splitMessage(content: string): Promise<Array<string\>>
+splitMessage\(content: string\): Promise\<Array\<string\>\>
 
 将长短信拆分为多个片段。使用Promise异步回调。
 
@@ -536,11 +679,12 @@ splitMessage(content: string): Promise<Array<string\>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -561,7 +705,7 @@ promise.then(data => {
 
 ## sms.addSimMessage<sup>7+</sup>
 
-addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
+addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): void
 
 添加SIM卡消息。使用callback异步回调。
 
@@ -580,11 +724,12 @@ addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -608,7 +753,7 @@ sms.addSimMessage(simMessageOptions, (err) => {
 
 ## sms.addSimMessage<sup>7+</sup>
 
-addSimMessage(options: SimMessageOptions): Promise<void\>
+addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
 添加SIM卡消息。使用Promise异步回调。
 
@@ -632,11 +777,12 @@ addSimMessage(options: SimMessageOptions): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -662,7 +808,7 @@ promise.then(() => {
 
 ## sms.delSimMessage<sup>7+</sup>
 
-delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
+delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>\): void
 
 删除SIM卡消息。使用callback异步回调。
 
@@ -682,11 +828,12 @@ delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -706,7 +853,7 @@ sms.delSimMessage(slotId, msgIndex, (err) => {
 
 ## sms.delSimMessage<sup>7+</sup>
 
-delSimMessage(slotId: number, msgIndex: number): Promise<void\>
+delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
 删除SIM卡信息。使用Promise异步回调。
 
@@ -731,11 +878,12 @@ delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -757,7 +905,7 @@ promise.then(() => {
 
 ## sms.updateSimMessage<sup>7+</sup>
 
-updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
+updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<void\>\): void
 
 更新SIM卡消息。使用callback异步回调。
 
@@ -776,11 +924,12 @@ updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -805,7 +954,7 @@ sms.updateSimMessage(updateSimMessageOptions, (err) => {
 
 ## sms.updateSimMessage<sup>7+</sup>
 
-updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
+updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 
 更新SIM卡消息。使用Promise异步回调。
 
@@ -829,11 +978,12 @@ updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -860,7 +1010,7 @@ promise.then(() => {
 
 ## sms.getAllSimMessages<sup>7+</sup>
 
-getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
+getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessage\>\>\): void
 
 获取所有SIM卡消息。使用callback异步回调。
 
@@ -879,11 +1029,12 @@ getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -902,7 +1053,7 @@ sms.getAllSimMessages(slotId, (err, data) => {
 
 ## sms.getAllSimMessages<sup>7+</sup>
 
-getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
+getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 
 获取所有SIM卡消息。使用Promise异步回调。
 
@@ -926,11 +1077,12 @@ getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -951,7 +1103,7 @@ promise.then(data => {
 
 ## sms.setCBConfig<sup>7+</sup>
 
-setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
+setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 
 设置小区广播配置。使用callback异步回调。
 
@@ -970,11 +1122,12 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -999,7 +1152,7 @@ sms.setCBConfig(cbConfigOptions, (err) => {
 
 ## sms.setCBConfig<sup>7+</sup>
 
-setCBConfig(options: CBConfigOptions): Promise<void\>
+setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 
 设置小区广播配置。使用Promise异步回调。
 
@@ -1023,11 +1176,12 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1054,7 +1208,7 @@ promise.then(() => {
 
 ## sms.getSmsSegmentsInfo<sup>8+</sup>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
+getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback\<SmsSegmentsInfo\>\): void
 
 获取短信段信息。使用callback异步回调。
 
@@ -1073,10 +1227,11 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1095,7 +1250,7 @@ sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
 
 ## sms.getSmsSegmentsInfo<sup>8+</sup>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
+getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promise\<SmsSegmentsInfo\>
 
 获取短信段信息。使用Promise异步回调。
 
@@ -1119,10 +1274,11 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1143,7 +1299,7 @@ promise.then(data => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
+isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
@@ -1160,10 +1316,11 @@ isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1182,7 +1339,7 @@ sms.isImsSmsSupported(slotId, (err, data) => {
 
 ## sms.isImsSmsSupported<sup>8+</sup>
 
-isImsSmsSupported(slotId: number): Promise<boolean\>
+isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
@@ -1204,10 +1361,11 @@ isImsSmsSupported(slotId: number): Promise<boolean\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1228,7 +1386,7 @@ promise.then(data => {
 
 ## sms.getImsShortMessageFormat<sup>8+</sup>
 
-getImsShortMessageFormat(callback: AsyncCallback<string\>): void
+getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
 获取IMS上支持的SMS格式。使用callback异步回调。
 
@@ -1244,10 +1402,11 @@ getImsShortMessageFormat(callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1265,7 +1424,7 @@ sms.getImsShortMessageFormat((err, data) => {
 
 ## sms.getImsShortMessageFormat<sup>8+</sup>
 
-getImsShortMessageFormat(): Promise<string\>
+getImsShortMessageFormat\(\): Promise\<string\>
 
 获取IMS上支持的SMS格式。使用Promise异步回调。
 
@@ -1281,12 +1440,11 @@ getImsShortMessageFormat(): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
+| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -1304,7 +1462,7 @@ promise.then(data => {
 
 ## sms.decodeMms<sup>8+</sup>
 
-decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
+decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<MmsInformation\>\): void
 
 彩信解码。使用callback异步回调。
 
@@ -1321,10 +1479,11 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1343,7 +1502,7 @@ sms.decodeMms(mmsFilePathName, (err, data) => {
 
 ## sms.decodeMms<sup>8+</sup>
 
-decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
+decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\>
 
 彩信解码。使用Promise异步回调。
 
@@ -1365,10 +1524,11 @@ decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1389,7 +1549,7 @@ promise.then(data => {
 
 ## sms.encodeMms<sup>8+</sup>
 
-encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
+encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): void
 
 彩信编码。使用callback异步回调。
 
@@ -1406,10 +1566,11 @@ encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1436,7 +1597,7 @@ sms.encodeMms(mmsInformation, (err, data) => {
 
 ## sms.encodeMms<sup>8+</sup>
 
-encodeMms(mms: MmsInformation): Promise<Array<number\>>
+encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 
 彩信编码。使用Promise异步回调。
 
@@ -1458,10 +1619,11 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1485,6 +1647,81 @@ promise.then(data => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
+
+获取发送短信的默认SIM卡ID。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+sms.getDefaultSmsSimId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(\): Promise&lt;number&gt;
+
+获取发送短信的默认SIM卡ID。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+let promise = sms.getDefaultSmsSimId();
+promise.then(data => {
+    console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

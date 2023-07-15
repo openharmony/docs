@@ -421,7 +421,7 @@ The fields in the response message are described as follows:
 
 ### Tool
 
-The DSLM module provides a [credential tool](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/dslm_cred_tool.py) to help you better understand the issuing and verification of credentials. This tool is a Python script encapsulated with OpenSSL commands.
+The DSLM module provides a [credential tool](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/standard/dslm_cred_tool.py) to help you better understand the issuing and verification of credentials. This tool is a Python script encapsulated with OpenSSL commands.
 You can use the tool as follows:
 
 1. Initialize the signature key.

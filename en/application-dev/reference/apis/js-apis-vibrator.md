@@ -52,7 +52,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -145,7 +145,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -253,7 +253,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -338,7 +338,7 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 | Name  | Type                        | Mandatory| Description                                                  |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | Yes  | Vibration effect ID.                                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -395,7 +395,7 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 | Type                  | Description                                                     |
 | ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -419,7 +419,7 @@ try {
                     console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
                 });
             } catch (error) {
-                console.error('exception in, error:' + JSON.stringify(error));
+                console.error('Exception in, error:' + JSON.stringify(error));
             }
         }
     }, (error) => {
@@ -460,8 +460,9 @@ Describes the vibration effect.
 
 | Type                            | Description                          |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)     | Triggers vibration with the specified duration. This API uses a promise to return the result.|
+| [VibrateTime](#vibratetime9)     | Vibration with the specified duration.|
 | [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
+| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
 
 ## VibrateTime<sup>9+</sup>
 
@@ -469,10 +470,10 @@ Describes the vibration with the specified duration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name    | Value| Description                          |
-| -------- | ------ | ------------------------------ |
-| type     | "time" | Vibration with the specified duration.|
-| duration | -      | Vibration duration, in ms.        |
+| Name    | Type   | Mandatory| Description                          |
+| -------- | ------ | ----- | ------------------------------ |
+| type     | string |  Yes  | The value **time** means vibration with the specified duration.|
+| duration | number |  Yes  | Vibration duration, in ms.        |
 
 ## VibratePreset<sup>9+</sup>
 
@@ -480,11 +481,34 @@ Describes the vibration with a preset effect.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name    | Value      | Description                          |
-| -------- | -------- | ------------------------------ |
-| type     | "preset" | Vibration with the specified effect.|
-| effectId | -        | Preset vibration effect ID.            |
-| count    | -        | Number of vibrations to repeat.              |
+| Name    | Type     | Mandatory| Description                          |
+| -------- | -------- | ---- |------------------------------ |
+| type     | string   |  Yes | The value **preset** means vibration with the specified effect.|
+| effectId | string   |  Yes | Preset vibration effect ID.            |
+| count    | number   |  Yes | Number of vibrations to repeat.              |
+
+## VibrateFromFile<sup>10+</sup>
+
+Describes the custom vibration type, which is supported only by certain devices.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name    | Type      | Mandatory| Description                          |
+| -------- | --------  | ---- | ------------------------------ |
+| type     | string    |  Yes | The value **file** means vibration according to a vibration configuration file.|
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | Yes| File descriptor (FD) of the vibration configuration file.|
+
+## HapticFileDescriptor<sup>10+</sup>
+
+Describes the FD of a custom vibration configuration file. Ensure that the file is available, and the parameters in it can be obtained from the sandbox path through the [file management API](js-apis-file-fs.md#fsopen) or from the HAP resource through the [resource management API](js-apis-resource-manager.md#getrawfd9). The use case is as follows: The system triggers vibration according to the sequence set in a configuration file, based on the specified offset and length. For details about the storage format of the vibration sequence, see [Custom Vibration Format](../../device/vibrator-guidelines.md#custom-vibration-format).
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name    | Type     |  Mandatory | Description                          |
+| -------- | -------- |--------| ------------------------------|
+| fd       | number   |  Yes   | FD of the custom vibration configuration file.               |
+| offset   | number   |  No   | Offset from the start position of the file, in bytes. The default value is the start position of the file, and the value cannot exceed the valid range of the file.|
+| length   | number   |  No   | Resource length, in bytes. The default value is the length from the offset position to the end of the file, and the value cannot exceed the valid range of the file.|
 
 ## VibrateAttribute<sup>9+</sup>
 
@@ -492,10 +516,10 @@ Describes the vibration attribute.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name | Value| Description          |
-| ----- | ------ | -------------- |
-| id    | 0      | Vibrator ID.    |
-| usage | -      | Vibration scenario.|
+| Name | Type| Mandatory| Description          |
+| ----- | ------ | ---- | -------------- |
+| id    | number      |  No| Vibrator ID. The default value is 0.    |
+| usage | [Usage](#usage9)      | Yes| Vibration scenario.|
 
 ## Usage<sup>9+</sup>
 

@@ -12,7 +12,7 @@
 
 > **说明：**
 >
-> 本文档涉及系统接口的使用，请使用full-SDK进行开发。具体使用可见[full-SDK替换指南](../quick-start/full-sdk-switch-guide.md)。
+> 本文档涉及系统接口的使用，请使用full-SDK进行开发。具体使用可见[full-SDK替换指南](../faqs/full-sdk-switch-guide.md)。
 
 
 ## 接口说明

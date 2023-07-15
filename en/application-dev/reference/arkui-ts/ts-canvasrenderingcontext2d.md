@@ -10,13 +10,15 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 
 ## APIs
 
-CanvasRenderingContext2D(setting: RenderingContextSetting)
+CanvasRenderingContext2D(settings?: RenderingContextSettings)
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory  | Description                                    |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | Yes   | See [RenderingContextSettings](#renderingcontextsettings).|
+| Name     | Type                                    | Mandatory  | Description                                    |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | See [RenderingContextSettings](#renderingcontextsettings).|
 
 
 ### RenderingContextSettings
@@ -25,34 +27,41 @@ RenderingContextSettings(antialias?: boolean)
 
 Configures the settings of a **CanvasRenderingContext2D** object, including whether to enable antialiasing.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name      | Type   | Mandatory  | Description                         |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false** |
+| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false**|
 
 
 ## Attributes
 
-| Name                                                 | Type                                                        | Description                                                        |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineWidth](#linewidth)                               | number                                                       | Line width.                                        |
-| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'**|
-| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**|
-| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**|
-| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'**|
-| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'left'**|
-| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'**|
-| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.                |
-| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>Default value: **0.0**     |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'**|
-| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**|
-| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                  |
-| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.                      |
-| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.                      |
-| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**|
+| Name                                      | Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle)                  | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>- When the type is number, this attribute indicates the color of the fill area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [lineWidth](#linewidth)                  | number                                   | Line width.                              |
+| [strokeStyle](#strokestyle)              | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>- When the type is number, this attribute indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [lineCap](#linecap)                      | CanvasLineCap                            | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [lineJoin](#linejoin)                    | CanvasLineJoin                           | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and row height. The unit must be specified and can only be px or vp.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [textAlign](#textalign)                  | CanvasTextAlign                          | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'left'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>Default value: **0.0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [shadowColor](#shadowcolor)              | string                                   | Shadow color.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [height](#height)                        | number                                   | Component height.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [width](#width)                          | number                                   | Component width.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [imageSmoothingQuality](#imagesmoothingquality) | ImageSmoothingQuality                    | Quality of image smoothing. This attribute works only when **imageSmoothingEnabled** is set to **true**. Available values are as follows:<br>- **'low'**: low quality.<br>- **'medium'**: medium quality.<br>- **'high'**: high quality.<br>Default value: **'low'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [direction](#direction)                  | CanvasDirection                          | Text direction used for drawing text. Available values are as follows:<br>- **'inherit'**: The text direction is inherited from the **\<Canvas>** component.<br>- **'ltr'**: The text direction is from left to right.<br>- **'rtl'**: The text direction is from right to left.<br>Default value: **'inherit'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [filter](#filter)                        | string                                   | Filter effect. Available values are as follows:<br>- **'none'**: no filter effect.<br>- **'blur'**: applies the Gaussian blur for the image.<br>- **'brightness'**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **'contrast'**: adjusts the image contrast.<br>- **'grayscale'**: converts the image to a grayscale image.<br>- **'hue-rotate'**: applies hue rotation to the image.<br>- **'invert'**: inverts the input image.<br>- **'opacity'**: sets the opacity of the image.<br>- **'saturate'**: sets the saturation of the image.<br>- **'sepia'**: converts the image to dark brown.<br>Default value: **'none'**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 > **NOTE**
 >
@@ -77,7 +86,7 @@ struct FillStyleExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.context.fillStyle = '#0000ff'
-          this.context.fillRect(20, 160, 150, 100)
+          this.context.fillRect(20, 20, 150, 100)
         })
     }
     .width('100%')
@@ -648,6 +657,68 @@ struct ImageSmoothingEnabled {
 ![en-us_image_0000001211898472](figures/en-us_image_0000001211898472.png)
 
 
+### height
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct HeightExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, 300, h/2)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_height](figures/en-us_image_canvas_height.png)
+
+
+### width
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct WidthExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, w/2, 300)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_width](figures/en-us_image_canvas_width.png)
+
+
 ## Methods
 
 
@@ -656,6 +727,8 @@ struct ImageSmoothingEnabled {
 fillRect(x: number, y: number, w: number, h: number): void
 
 Fills a rectangle on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -701,6 +774,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 Draws an outlined rectangle on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description          |
@@ -744,6 +819,8 @@ Draws an outlined rectangle on the canvas.
 clearRect(x: number, y: number, w: number, h: number): void
 
 Clears the content in a rectangle on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -791,14 +868,16 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 Draws filled text on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name    | Type  | Mandatory| Default Value| Description                         |
-| -------- | ------ | ---- | ------ | ----------------------------- |
-| text     | string | Yes  | ''     | Text to draw.         |
-| x        | number | Yes  | 0      | X-coordinate of the lower left corner of the text.|
-| y        | number | Yes  | 0      | Y-coordinate of the lower left corner of the text.|
-| maxWidth | number | No  | -      | Maximum width allowed for the text.     |
+| Name      | Type    | Mandatory  | Default Value | Description             |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | Yes   | ''   | Text to draw.     |
+| x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
+| y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
+| maxWidth | number | No   | -    | Maximum width allowed for the text.   |
 
 **Example**
 
@@ -836,14 +915,16 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
 
 Draws a text stroke on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name    | Type  | Mandatory| Default Value| Description                         |
-| -------- | ------ | ---- | ------ | ----------------------------- |
-| text     | string | Yes  | ''     | Text to draw.         |
-| x        | number | Yes  | 0      | X-coordinate of the lower left corner of the text.|
-| y        | number | Yes  | 0      | Y-coordinate of the lower left corner of the text.|
-| maxWidth | number | No  | -      | Maximum width of the text to be drawn.  |
+| Name      | Type    | Mandatory  | Default Value | Description             |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | Yes   | ''   | Text to draw.     |
+| x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
+| y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
+| maxWidth | number | No   | -    | Maximum width of the text to be drawn. |
 
 **Example**
 
@@ -881,17 +962,19 @@ measureText(text: string): TextMetrics
 
 Measures the specified text to obtain its width. This API returns a **TextMetrics** object.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name| Type  | Mandatory| Default Value| Description                |
-| ---- | ------ | ---- | ------ | -------------------- |
-| text | string | Yes  | ''     | Text to be measured.|
+| Name  | Type    | Mandatory  | Default Value | Description        |
+| ---- | ------ | ---- | ---- | ---------- |
+| text | string | Yes   | ''   | Text to be measured.|
 
 **Return value**
 
-| Type       | Description            |
-| ----------- | ---------------- |
-| TextMetrics | **TextMetrics** object.|
+| Type         | Description                                      |
+| ----------- | ---------------------------------------- |
+| TextMetrics | **TextMetrics** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **TextMetrics**
 
@@ -951,6 +1034,8 @@ stroke(path?: Path2D): void
 
 Strokes a path.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type                                      | Mandatory  | Default Value | Description          |
@@ -997,6 +1082,8 @@ beginPath(): void
 
 Creates a drawing path.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Example**
 
   ```ts
@@ -1036,6 +1123,8 @@ Creates a drawing path.
 moveTo(x: number, y: number): void
 
 Moves a drawing path to a target position on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1082,6 +1171,8 @@ lineTo(x: number, y: number): void
 
 Connects the current point to a target position using a straight line.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description       |
@@ -1127,6 +1218,8 @@ closePath(): void
 
 Draws a closed path.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Example**
 
   ```ts
@@ -1167,18 +1260,20 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name      | Type                                              | Mandatory| Description                                                        |
-| ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes  | Source image. For details, see **ImageBitmap**.                         |
-| repetition | string                                             | Yes  | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**.<br>Default value: **''**|
+| Name        | Type                                      | Mandatory  | Description                                      |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes   | Source image. For details, see **ImageBitmap**.                 |
+| repetition | string                                   | Yes   | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, **'no-repeat'**, **'clamp'**, or **'mirror'**.<br>Default value: **''**|
 
 **Return value**
 
-| Type                             | Description                     |
-| ------------------------------- | ----------------------- |
-| [CanvasPattern](#canvaspattern) | Created pattern for image filling based on a specified source image and repetition mode.|
+| Type                                      | Description                     |
+| ---------------------------------------- | ----------------------- |
+| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Created pattern for image filling based on a specified source image and repetition mode.|
 
 **Example**
 
@@ -1217,6 +1312,8 @@ Creates a pattern for image filling based on a specified source image and repeti
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
 Draws a cubic bezier curve on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1267,6 +1364,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 Draws a quadratic curve on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description         |
@@ -1313,6 +1412,8 @@ Draws a quadratic curve on the canvas.
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 Draws an arc on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1362,6 +1463,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name    | Type    | Mandatory  | Default Value | Description             |
@@ -1409,18 +1512,20 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 Draws an ellipse in the specified rectangular region on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name              | Type     | Mandatory  | Default Value  | Description               |
-| ---------------- | ------- | ---- | ----- | ----------------- |
-| x                | number  | Yes   | 0     | X-coordinate of the ellipse center.       |
-| y                | number  | Yes   | 0     | Y-coordinate of the ellipse center.       |
-| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis.       |
-| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis.       |
-| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.   |
-| startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.|
-| endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
-| counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.    |
+| Name              | Type     | Mandatory  | Default Value  | Description                                      |
+| ---------------- | ------- | ---- | ----- | ---------------------------------------- |
+| x                | number  | Yes   | 0     | X-coordinate of the ellipse center.                              |
+| y                | number  | Yes   | 0     | Y-coordinate of the ellipse center.                              |
+| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis.                              |
+| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis.                              |
+| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.                          |
+| startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.                       |
+| endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.                       |
+| counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.|
 
 **Example**
 
@@ -1458,6 +1563,8 @@ Draws an ellipse in the specified rectangular region on the canvas.
 rect(x: number, y: number, w: number, h: number): void
 
 Creates a rectangle on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1504,6 +1611,8 @@ fill(fillRule?: CanvasFillRule): void
 
 Fills the area inside a closed path on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name      | Type            | Mandatory  | Default Value      | Description                                      |
@@ -1544,6 +1653,8 @@ Fills the area inside a closed path on the canvas.
 fill(path: Path2D, fillRule?: CanvasFillRule): void
 
 Fills the area inside a closed path on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1598,6 +1709,8 @@ clip(fillRule?: CanvasFillRule): void
 
 Sets the current path to a clipping area.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name      | Type            | Mandatory  | Default Value      | Description                                      |
@@ -1641,6 +1754,8 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 
 Sets the current path to a clipping path.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name      | Type            | Mandatory  | Default Value      | Description                                      |
@@ -1653,35 +1768,35 @@ Sets the current path to a clipping path.
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct Clip {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          let region = new Path2D()
-          region.moveTo(30, 90)
-          region.lineTo(110, 20)
-          region.lineTo(240, 130)
-          region.lineTo(60, 130)
-          region.lineTo(190, 20)
-          region.lineTo(270, 90)
-          region.closePath()
-          this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(0,255,0)"
-          this.context.fillRect(0, 0, this.context.width, this.context.height)
-        })
+  @Entry
+  @Component
+  struct Clip {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let region = new Path2D()
+            region.moveTo(30, 90)
+            region.lineTo(110, 20)
+            region.lineTo(240, 130)
+            region.lineTo(60, 130)
+            region.lineTo(190, 20)
+            region.lineTo(270, 90)
+            region.closePath()
+            this.context.clip(region,"evenodd")
+            this.context.fillStyle = "rgb(0,255,0)"
+            this.context.fillRect(0, 0, this.context.width, this.context.height)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![en-us_image_000000127777779](figures/en-us_image_000000127777779.png)
@@ -1691,13 +1806,76 @@ struct Clip {
 
 filter(filter: string): void
 
-Provides filter effects. This API is a void API.
+Provides filter effects.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description          |
-| ------ | ------ | ---- | ---- | ------------ |
-| filter | string | Yes   | -    | Filter functions.|
+| Name    | Type    | Mandatory  | Default Value | Description                                      |
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| filter | string | Yes   | -    | Filter functions. Available values are as follows:<br>- **'none'**: no filter effect.<br>- **'blur'**: applies the Gaussian blur for the image.<br>- **'brightness'**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **'contrast'**: adjusts the image contrast.<br>- **'grayscale'**: converts the image to a grayscale image.<br>- **'hue-rotate'**: applies hue rotation to the image.<br>- **'invert'**: inverts the input image.<br>- **'opacity'**: sets the opacity of the image.<br>- **'saturate'**: sets the saturation of the image.<br>- **'sepia'**: converts the image to dark brown.<br>Default value: **'none'**|
+
+**Example**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct FilterDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            let img = this.img
+
+            ctx.drawImage(img, 0, 0, 100, 100);
+
+            ctx.filter = 'grayscale(50%)';
+            ctx.drawImage(img, 100, 0, 100, 100);
+
+            ctx.filter = 'sepia(60%)';
+            ctx.drawImage(img, 200, 0, 100, 100);
+
+            ctx.filter = 'saturate(30%)';
+            ctx.drawImage(img, 0, 100, 100, 100);
+
+            ctx.filter = 'hue-rotate(90degree)';
+            ctx.drawImage(img, 100, 100, 100, 100);
+
+            ctx.filter = 'invert(100%)';
+            ctx.drawImage(img, 200, 100, 100, 100);
+
+            ctx.filter = 'opacity(25%)';
+            ctx.drawImage(img, 0, 200, 100, 100);
+
+            ctx.filter = 'brightness(0.4)';
+            ctx.drawImage(img, 100, 200, 100, 100);
+
+            ctx.filter = 'contrast(200%)';
+            ctx.drawImage(img, 200, 200, 100, 100);
+
+            ctx.filter = 'blur(5px)';
+            ctx.drawImage(img, 0, 300, 100, 100);
+
+            let result = ctx.toDataURL()
+            console.info(result)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![filterDemo](figures/filterDemo.jpeg)
 
 
 ### getTransform
@@ -1706,6 +1884,14 @@ getTransform(): Matrix2D
 
 Obtains the current transformation matrix being applied to the context. This API is a void API.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Return value**
+
+| Type                                      | Description   |
+| ---------------------------------------- | ----- |
+| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | **Matrix2D** object.|
+
 
 ### resetTransform
 
@@ -1713,19 +1899,57 @@ resetTransform(): void
 
 Resets the current transform to the identity matrix. This API is a void API.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 
 ### direction
 
 direction(direction: CanvasDirection): void
 
-Sets the current text direction used to draw text. This API is a void API.
+Sets the current text direction used to draw text.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Example**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct DirectionDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            ctx.font = '48px serif';
+            ctx.textAlign = 'start'
+            ctx.fillText("Hi ltr!", 200, 50);
+
+            ctx.direction = "rtl";
+            ctx.fillText("Hi rtl!", 200, 100);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![directionDemo](figures/directionDemo.jpeg)
 
 ### rotate
 
 rotate(angle: number): void
 
 Rotates a canvas clockwise around its coordinate axes.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1768,6 +1992,8 @@ Rotates a canvas clockwise around its coordinate axes.
 scale(x: number, y: number): void
 
 Scales the canvas based on the given scale factors.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1813,6 +2039,8 @@ Scales the canvas based on the given scale factors.
 transform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 > **NOTE**
 >
@@ -1875,6 +2103,8 @@ setTransform(a: number, b: number, c: number, d: number, e: number, f: number): 
 
 Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** API.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description                  |
@@ -1918,6 +2148,7 @@ Resets the existing transformation matrix and creates a new transformation matri
 
   ![en-us_image_0000001256858395](figures/en-us_image_0000001256858395.png)
 
+### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -1925,12 +2156,19 @@ Resets the current transformation to the identity matrix, and then creates a new
 
 Since API version 9, this API is supported in ArkTS widgets.
 
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Default Value | Description   |
+| --------- | ---------------------------------------- | ---- | ---- | ----- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No   | null | Transformation matrix.|
 
 ### translate
 
 translate(x: number, y: number): void
 
 Moves the origin of the coordinate system.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -1980,7 +2218,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 Draws an image on the canvas.
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 9, this API is supported in ArkTS widgets, except that **PixelMap** objects are not supported.
 
 **Parameters**
 
@@ -2033,6 +2271,8 @@ createImageData(sw: number, sh: number): ImageData
 
 Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the specified dimensions.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value  | Description           |
@@ -2044,6 +2284,8 @@ Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the sp
 createImageData(imageData: ImageData): ImageData
 
 Creates an **[ImageData](ts-components-canvas-imagedata.md)** object.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -2085,6 +2327,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description             |
@@ -2105,29 +2349,29 @@ Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created wi
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct GetImageData {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+  @Entry
+  @Component
+  struct GetImageData {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.drawImage(this.img,0,0,130,130)
-          var imagedata = this.context.getImageData(50,50,130,130)
-          this.context.putImageData(imagedata,150,150)
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.drawImage(this.img,0,0,130,130)
+            var imagedata = this.context.getImageData(50,50,130,130)
+            this.context.putImageData(imagedata,150,150)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![en-us_image_000000127777780](figures/en-us_image_000000127777780.png)
@@ -2135,23 +2379,25 @@ struct GetImageData {
 
 ### putImageData
 
-putImageData(imageData: ImageData, dx: number, dy: number): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
-putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth: number, dirtyHeight: number): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
 | Name         | Type                                      | Mandatory  | Default Value         | Description                           |
 | ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
 | imagedata   | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null         | **ImageData** object with pixels to put onto the canvas.           |
-| dx          | number                                   | Yes   | 0            | X-axis offset of the rectangular area on the canvas.               |
-| dy          | number                                   | Yes   | 0            | Y-axis offset of the rectangular area on the canvas.               |
-| dirtyX      | number                                   | No   | 0            | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-| dirtyY      | number                                   | No   | 0            | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-| dirtyWidth  | number                                   | No   | Width of the **ImageData** object| Width of the rectangular area to crop the source image.              |
-| dirtyHeight | number                                   | No   | Height of the **ImageData** object| Height of the rectangular area to crop the source image.              |
+| dx          | number \| string<sup>10+</sup> | Yes   | 0            | X-axis offset of the rectangular area on the canvas.               |
+| dy          | number \| string<sup>10+</sup> | Yes   | 0            | Y-axis offset of the rectangular area on the canvas.               |
+| dirtyX      | number \| string<sup>10+</sup> | No   | 0            | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
+| dirtyY      | number \| string<sup>10+</sup> | No   | 0            | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
+| dirtyWidth  | number \| string<sup>10+</sup> | No   | Width of the **ImageData** object| Width of the rectangular area to crop the source image.              |
+| dirtyHeight | number \| string<sup>10+</sup> | No   | Height of the **ImageData** object| Height of the rectangular area to crop the source image.              |
 
 **Example**
 
@@ -2194,6 +2440,8 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
 setLineDash(segments: number[]): void
 
 Sets the dash line style.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -2238,6 +2486,8 @@ getLineDash(): number[]
 
 Obtains the dash line style.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Return value**
 
 | Type      | Description                      |
@@ -2249,40 +2499,40 @@ Obtains the dash line style.
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct CanvasGetLineDash {
-  @State message: string = 'Hello World'
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @Entry
+  @Component
+  struct CanvasGetLineDash {
+    @State message: string = 'Hello World'
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
-            console.error('before getlinedash clicked')
-            let res = this.context.getLineDash()
-            console.error(JSON.stringify(res))
-          })
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() => {
-            this.context.arc(100, 75, 50, 0, 6.28)
-            this.context.setLineDash([10,20])
-            this.context.stroke()
-            let res = this.context.getLineDash()
-          })
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(()=>{
+              console.error('before getlinedash clicked')
+              let res = this.context.getLineDash()
+              console.error(JSON.stringify(res))
+            })
+          Canvas(this.context)
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#ffff00')
+            .onReady(() => {
+              this.context.arc(100, 75, 50, 0, 6.28)
+              this.context.setLineDash([10,20])
+              this.context.stroke()
+              let res = this.context.getLineDash()
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
   ```
 ![en-us_image_000000127777778](figures/en-us_image_000000127777778.png) 
 
@@ -2292,21 +2542,54 @@ struct CanvasGetLineDash {
 
 imageSmoothingQuality(quality: imageSmoothingQuality)
 
-Sets the quality of image smoothing. This API is a void API.
+Sets the quality of image smoothing.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
  **Parameters**
 
 | Name     | Type                   | Description                                      |
 | ------- | --------------------- | ---------------------------------------- |
-| quality | imageSmoothingQuality | The options are as follows: '**low'**, **'medium'**, and **'high'**.|
+| quality | imageSmoothingQuality | Quality of image smoothing.<br>- **'low'**: low quality.<br>- **'medium'**: medium quality.<br>- **'high'**: high quality.|
 
+**Example**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageSmoothingQualityDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            ctx.imageSmoothingEnabled = true
+            ctx.imageSmoothingQuality = 'high'
+            ctx.drawImage(this.img, 0, 0, 400, 200)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![ImageSmoothingQualityDemo](figures/ImageSmoothingQualityDemo.jpeg)
 
 ### transferFromImageBitmap
 
 transferFromImageBitmap(bitmap: ImageBitmap): void
 
 Displays the specified **ImageBitmap** object.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -2377,26 +2660,26 @@ Since API version 9, this API is supported in ArkTS widgets.
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct ToDataURL {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @Entry
+  @Component
+  struct ToDataURL {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var dataURL = this.context.toDataURL()
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            var dataURL = this.context.toDataURL()
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
 
@@ -2405,6 +2688,8 @@ struct ToDataURL {
 restore(): void
 
 Restores the saved drawing context.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Example**
 
@@ -2444,6 +2729,8 @@ save(): void
 
 Saves all states of the canvas in the stack. This API is usually called when the drawing state needs to be saved.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Example**
 
   ```ts
@@ -2482,6 +2769,8 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
 Creates a linear gradient.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Default Value | Description      |
@@ -2513,7 +2802,7 @@ Creates a linear gradient.
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
-            this.context.fillRect(0, 0, 500, 500)
+            this.context.fillRect(0, 0, 400, 400)
           })
       }
       .width('100%')
@@ -2530,6 +2819,8 @@ Creates a linear gradient.
 createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): void
 
 Creates a linear gradient.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -2564,7 +2855,7 @@ Creates a linear gradient.
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
-            this.context.fillRect(0, 0, 500, 500)
+            this.context.fillRect(0, 0, 440, 440)
           })
       }
       .width('100%')
@@ -2575,7 +2866,49 @@ Creates a linear gradient.
 
   ![en-us_image_0000001257058405](figures/en-us_image_0000001257058405.png)
 
+### createConicGradient<sup>10+</sup>
 
-## CanvasPattern
+createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
-Defines an object created using the **[createPattern](#createpattern)** API.
+Creates a conic gradient.
+
+**Parameters**
+
+| Name        | Type    | Mandatory  | Default Value | Description                                 |
+| ---------- | ------ | ---- | ---- | ----------------------------------- |
+| startAngle | number | Yes   | 0    | Angle at which the gradient starts, in radians. The angle measurement starts horizontally from the right side of the center and moves clockwise.|
+| x          | number | Yes   | 0    | X-coordinate of the center of the conic gradient, in vp.                  |
+| y          | number | Yes   | 0    | X-coordinate of the center of the conic gradient, in vp.                  |
+
+**Example**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffffff')
+        .onReady(() => {
+          var grad = this.context.createConicGradient(0, 50, 80)
+          grad.addColorStop(0.0, '#ff0000')
+          grad.addColorStop(0.5, '#ffffff')
+          grad.addColorStop(1.0, '#00ff00')
+          this.context.fillStyle = grad
+          this.context.fillRect(0, 30, 100, 100)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+  ![en-us_image_0000001239032419](figures/en-us_image_0000001239032420.png)

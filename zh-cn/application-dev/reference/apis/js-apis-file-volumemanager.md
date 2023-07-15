@@ -6,7 +6,6 @@
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口。
-> - 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
@@ -28,7 +27,19 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -56,6 +67,18 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
   | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷设备信息之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900032 | Unknown error. |
+
 **示例：**
 
   ```js
@@ -65,12 +88,11 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
   });
   ```
 
-
 ## volumemanager.mount
 
 mount(volumeId: string): Promise&lt;void&gt;
 
-异步挂载指定卷设备，以promise方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
+异步挂载指定卷设备，以promise方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -86,7 +108,23 @@ mount(volumeId: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 挂载指定卷设备 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600003 | Failed to mount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -103,7 +141,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 
 mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
-异步挂载指定卷设备，以callback方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
+异步挂载指定卷设备，以callback方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -115,6 +153,22 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷设备id                 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷设备之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600003 | Failed to mount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -145,7 +199,23 @@ unmount(volumeId: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 卸载指定卷设备 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600004 | Failed to unmount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -174,6 +244,22 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷设备id                 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷设备之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600004 | Failed to unmount. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -204,7 +290,20 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -233,6 +332,19 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | 是   | 卷设备uuid                 |
   | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷设备信息之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -263,7 +375,20 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -292,6 +417,19 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | 是   | 卷设备id                |
   | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷设备信息之后的回调  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -323,7 +461,22 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
   | 类型                    | 说明                       |
   | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | 设置卷设备信息                  |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -354,6 +507,21 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   | uuid       | string                                  | 是   | 卷设备uuid            |
   | description | string                                 | 是   | 卷设备描述            |
   | callback   | AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -386,7 +554,22 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 对指定卷设备进行格式化 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -417,6 +600,21 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
   | volumeId | string                    | 是   | 卷设备id                |
   | fsType    | string | 是   | 文件系统类型(vfat或者exfat) |
   | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷设备格式化后的回调  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600002 | Not supported filesystem. |
+| 13600005 | Incorrect volume state. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -449,7 +647,20 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 
   | 类型                      | 说明                       |
    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | 对磁盘进行分区              |
+  | Promise&lt;void&gt;   | 无返回结果的Promise对象              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
 
 **示例：**
 
@@ -481,6 +692,19 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   | type     | number                                  | 是   | 分区类型           |
   | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘设备进行分区      |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13600008 | No such object. |
+| 13900032 | Unknown error. |
+
 **示例：**
 
   ```js
@@ -500,9 +724,9 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | 名称         | 类型    | 可读   | 可写   | 说明                 |
 | ----------- | ------- | ------- | ----- | -------------------- |
 | id          | string  | 是 | 否 | 卷设备ID的格式为vol-{主设备号}-{次设备号}，主设备号用来区分不同种类的设备，次设备号用来区分同一类型的多个设备，卷设备ID会随着插卡顺序不同而变化。                 |
-| uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid               |
-| diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID好格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
-| description | string  | 是 | 否 | 卷设备描述、           |
-| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备、 |
+| uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid。               |
+| diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID的格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
+| description | string  | 是 | 否 | 卷设备描述。           |
+| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。 |
 | state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
 | path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/external/{uuid}         |

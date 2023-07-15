@@ -48,7 +48,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+  metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
       console.info(`metadata output metadataObjectsAvailable`);
   })
   ```
@@ -57,7 +57,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   >
   > 当前的元数据类型仅支持人脸检测（FACE_DETECTION）功能。元数据信息对象为识别到的人脸区域的矩形信息（Rect），包含矩形区域的左上角x坐标、y坐标和矩形的宽高数据。
 
-- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口。使用错误时返回对应错误码，错误码类型参见CameraErrorCode。
+- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   metadataOutput.on('error', (metadataOutputError) => {

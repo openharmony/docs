@@ -17,7 +17,7 @@ import huks from '@ohos.security.huks'
 
 Defines the **param** in the **properties** array of **options** used in the APIs.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name| Type                               | Mandatory| Description        |
 | ------ | ----------------------------------- | ---- | ------------ |
@@ -28,7 +28,7 @@ Defines the **param** in the **properties** array of **options** used in the API
 
 Defines the **options** used in the APIs. 
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name    | Type             | Mandatory| Description                    |
 | ---------- | ----------------- | ---- | ------------------------ |
@@ -39,7 +39,7 @@ Defines the **options** used in the APIs.
 
 Defines the HUKS handle structure.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name   | Type      | Mandatory| Description                                                |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
@@ -48,9 +48,9 @@ Defines the HUKS handle structure.
 
 ## HuksReturnResult<sup>9+</sup>
 
-Defines the **HuksResult** structure.
+Defines the **HuksResult** struct.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 
 
@@ -67,7 +67,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 Generates a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -75,7 +75,26 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
-| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If no error is captured, the key is successfully generated. In this case, the API does not return the key content because the key is always protected in a TEE. If an error is captured, an exception occurs in the generation process.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -121,9 +140,9 @@ try {
 
 generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
-Generates a key. This API uses a promise to return the result.
+Generates a key. This API uses a promise to return the result. Because the key is always protected in an trusted environment (such as a TEE), the promise does not return the key content. It returns only the information indicating whether the API is successfully called.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -131,6 +150,25 @@ Generates a key. This API uses a promise to return the result.
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key.              |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -178,7 +216,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 Deletes a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -187,6 +225,20 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | keyAlias | string                      | Yes  | Key alias passed in when the key was generated.          |
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).                     |
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -215,7 +267,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 Deletes a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -223,6 +275,20 @@ Deletes a key. This API uses a promise to return the result.
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Key alias passed in when the key was generated.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).           |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -251,7 +317,7 @@ getSdkVersion(options: HuksOptions) : string
 
 Obtains the SDK version of the current system.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -281,7 +347,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 Imports a key in plaintext. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -290,6 +356,26 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 | keyAlias | string                      | Yes  | Alias of the key.                                   |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -349,7 +435,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 Imports a key in plaintext. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -357,6 +443,26 @@ Imports a key in plaintext. This API uses a promise to return the result.
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                         |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -418,7 +524,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 Obtains the certificate used to verify a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -427,6 +533,25 @@ Obtains the certificate used to verify a key. This API uses an asynchronous call
 | keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -540,7 +665,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 Obtains the certificate used to verify a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -554,6 +679,25 @@ Obtains the certificate used to verify a key. This API uses a promise to return 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -667,7 +811,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 Imports a wrapped key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -677,6 +821,26 @@ Imports a wrapped key. This API uses an asynchronous callback to return the resu
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
 | callback         | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -883,7 +1047,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 Imports a wrapped key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -892,6 +1056,26 @@ Imports a wrapped key. This API uses a promise to return the result.
 | keyAlias         | string                      | Yes  | Alias of the wrapped key to import.             |
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -918,7 +1102,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 Exports a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -927,6 +1111,24 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. **outData** contains the public key exported.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -955,7 +1157,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 Exports a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -969,6 +1171,24 @@ Exports a key. This API uses a promise to return the result.
 | Type                                          | Description                                                        |
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -997,7 +1217,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 Obtains key properties. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1006,6 +1226,24 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1034,7 +1272,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 Obtains key properties. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1048,6 +1286,24 @@ Obtains key properties. This API uses a promise to return the result.
 | Type                                           | Description                                                        |
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1076,7 +1332,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 Checks whether a key exists. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1084,27 +1340,48 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key to check.                 |
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).               |
-| callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. The value **TRUE** means that the key exists; **FALSE** means the opposite.|
+| callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. If the key does not exist, **error** is the error code.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
 ```js
+import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
+
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
 let emptyOptions = {
     properties: []
 };
-try {
-    huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
-        if (error) {
-            console.error(`callback: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
-        } else {
-            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        }
-    });
-} catch (error) {
-    console.error(`promise: isKeyItemExist input arg invalid, code: ${error.code}, msg: ${error.message}`);
-}
+huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
+    if (data) {
+      promptAction.showToast({
+        message: "keyAlias: " + keyAlias +"is existed! ",
+        duration: 2500,
+      })
+    } else {
+      promptAction.showToast({
+        message: "find key failed, error code: " + error.code + " error msg: " + error.message,
+        duration: 2500,
+      })
+    }
+});
 ```
 
 ## huks.isKeyItemExist<sup>9+</sup>
@@ -1113,7 +1390,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 Checks whether a key exists. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1126,27 +1403,46 @@ Checks whether a key exists. This API uses a promise to return the result.
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **TRUE** means that the key exists; **FALSE** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. If the key exists, then() performs subsequent operations. If the key does not exist, error() performs the related service operations.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
 ```js
+import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
+
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
 let emptyOptions = {
     properties: []
 };
-try {
-    huks.isKeyItemExist(keyAlias, emptyOptions)
-        .then ((data) => {
-            console.info(`promise: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        })
-        .catch(error => {
-            console.error(`promise: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
-        });
-} catch (error) {
-    console.error(`promise: isKeyItemExist input arg invalid, code: ${error.code}, msg: ${error.message}`);
-}
+huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
+    promptAction.showToast({
+      message: "keyAlias: " + keyAlias +"is existed! ",
+      duration: 500,
+    })
+  }).catch((err)=>{
+    promptAction.showToast({
+      message: "find key failed, error code: " + err.code + " error message: " + err.message,
+      duration: 6500,
+    })
+  })
 ```
 
 ## huks.initSession<sup>9+</sup>
@@ -1155,7 +1451,7 @@ initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Initializes the data for a key operation. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1165,13 +1461,32 @@ Initializes the data for a key operation. This API uses an asynchronous callback
 | options  | [HuksOptions](#huksoptions)                             | Yes  | Parameter set used for the **initSession** operation.                                |
 | callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle9)> | Yes  | Callback invoked to return a session handle for subsequent operations.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.initSession<sup>9+</sup>
 
 initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
 
 Initializes the data for a key operation. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1186,13 +1501,32 @@ Initializes the data for a key operation. This API uses a promise to return the 
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksSessionHandle](#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1202,6 +1536,26 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **updateSession** operation.                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **updateSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
 
@@ -1209,7 +1563,7 @@ updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1220,13 +1574,34 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | token    | Uint8Array                                           | Yes  | Token of the **updateSession** operation.                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **updateSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
 Updates the key operation by segment. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1242,13 +1617,34 @@ Updates the key operation by segment. This API uses a promise to return the resu
 | ----------------------------------- | -------------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the **updateSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1257,7 +1653,28 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | handle   | number                                               | Yes  | Handle for the **finishSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **finishSession** operation.                          |
 | token    | Uint8Array                                           | Yes  | Token of the **finishSession** operation.                         |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result. |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -1265,7 +1682,7 @@ finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1274,7 +1691,28 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | handle   | number                                                | Yes  | Handle for the **finishSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                           | Yes  | Parameter set used for the **finishSession** operation.                          |
 | token    | Uint8Array                                            | Yes  | Token of the **finishSession** operation.                         |
-| callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result. |
+| callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -1282,7 +1720,7 @@ finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promis
 
 Completes the key operation and releases resources. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1298,13 +1736,34 @@ Completes the key operation and releases resources. This API uses a promise to r
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.abortSession<sup>9+</sup>
 
 abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
 Aborts a key operation. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1313,6 +1772,20 @@ Aborts a key operation. This API uses an asynchronous callback to return the res
 | handle   | number                      | Yes  | Handle for the **abortSession** operation.                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set used for the **abortSession** operation.                      |
 | callback | AsyncCallback\<void>        | Yes  | Callback that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1449,7 +1922,7 @@ abortSession(handle: number, options: HuksOptions) : Promise\<void>;
 
 Aborts a key operation. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1463,6 +1936,20 @@ Aborts a key operation. This API uses a promise to return the result.
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<void>             | Promise used to return the **abortSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1600,7 +2087,7 @@ Enumerates the error codes.
 
 For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcode-huks.md).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                                          | Value|  Description                       |
 | ---------------------------------------------- | -------- |--------------------------- |
@@ -1627,25 +2114,25 @@ For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcod
 
 Enumerates the key purposes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt the plaintext.|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text.|
-| HUKS_KEY_PURPOSE_SIGN    | 4    | Used for signing.    |
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signature.  |
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | Used for an encrypted export.          |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for an encrypted import.              |
-| HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC). |
-| HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.      |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt the plaintext.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_SIGN    | 4    | Used for signing.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signature.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_WRAP    | 32   | Used for an encrypted export.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for an encrypted import.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyDigest
 
 Enumerates the digest algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
@@ -1662,89 +2149,89 @@ Enumerates the digest algorithms.
 
 Enumerates the padding algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_PADDING_NONE | 0    | No padding algorithm|
-| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP)|
-| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS)|
-| HUKS_PADDING_PKCS1_V1_5 | 3    | Public Key Cryptography Standards (PKCS) #1 v1.5|
-| HUKS_PADDING_PKCS5 | 4   | PKCS #5|
-| HUKS_PADDING_PKCS7 | 5   | PKCS #7|
+| HUKS_PADDING_NONE | 0    | No padding algorithm<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP)<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS)<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS1_V1_5 | 3    | Public Key Cryptography Standards (PKCS) #1 v1.5<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS5 | 4   | PKCS #5<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS7 | 5   | PKCS #7<br>**System capability**: SystemCapability.Security.Huks.Core|
 
 ## HuksCipherMode
 
 Enumerates the cipher modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name         | Value  | Description                 |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode|
-| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode|
-| HUKS_MODE_CTR | 3    | Counter (CTR) mode|
-| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode|
-| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode|
-| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode|
+| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CTR | 3    | Counter (CTR) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
 
 ## HuksKeySize
 
 Enumerates the key sizes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                              | Value  | Description                                      |
 | ---------------------------------- | ---- | ------------------------------------------ |
-| HUKS_RSA_KEY_SIZE_512              | 512  | Rivest-Shamir-Adleman (RSA) key of 512 bits       |
-| HUKS_RSA_KEY_SIZE_768              | 768  | RSA key of 768 bits       |
-| HUKS_RSA_KEY_SIZE_1024             | 1024 | RSA key of 1024 bits      |
-| HUKS_RSA_KEY_SIZE_2048             | 2048 | RSA key of 2048 bits      |
-| HUKS_RSA_KEY_SIZE_3072             | 3072 | RSA key of 3072 bits      |
-| HUKS_RSA_KEY_SIZE_4096             | 4096 | RSA key of 4096 bits      |
-| HUKS_ECC_KEY_SIZE_224              | 224  | Elliptic Curve Cryptography (ECC) key of 224 bits       |
-| HUKS_ECC_KEY_SIZE_256              | 256  | ECC key of 256 bits       |
-| HUKS_ECC_KEY_SIZE_384              | 384  | ECC key of 384 bits       |
-| HUKS_ECC_KEY_SIZE_521              | 521  | ECC key of 521 bits       |
-| HUKS_AES_KEY_SIZE_128              | 128  | Advanced Encryption Standard (AES) key of 128 bits       |
-| HUKS_AES_KEY_SIZE_192              | 192  | AES key of 192 bits       |
-| HUKS_AES_KEY_SIZE_256              | 256  | AES key of 256 bits       |
-| HUKS_AES_KEY_SIZE_512              | 512  | AES key of 512 bits       |
-| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits|
-| HUKS_DH_KEY_SIZE_2048              | 2048 | Diffie-Hellman (DH) key of 2048 bits       |
-| HUKS_DH_KEY_SIZE_3072              | 3072 | DH key of 3072 bits       |
-| HUKS_DH_KEY_SIZE_4096              | 4096 | DH key of 4096 bits       |
-| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | ShangMi2 (SM2) key of 256 bits           |
-| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | ShangMi4 (SM4) key of 128 bits           |
+| HUKS_RSA_KEY_SIZE_512              | 512  | Rivest-Shamir-Adleman (RSA) key of 512 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_768              | 768  | RSA key of 768 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_1024             | 1024 | RSA key of 1024 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_2048             | 2048 | RSA key of 2048 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_3072             | 3072 | RSA key of 3072 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_4096             | 4096 | RSA key of 4096 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_224              | 224  | Elliptic Curve Cryptography (ECC) key of 224 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_256              | 256  | ECC key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_384              | 384  | ECC key of 384 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_521              | 521  | ECC key of 521 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_AES_KEY_SIZE_128              | 128  | Advanced Encryption Standard (AES) key of 128 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_192              | 192  | AES key of 192 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_256              | 256  | AES key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_512              | 512  | AES key of 512 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_2048              | 2048 | Diffie-Hellman (DH) key of 2048 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_3072              | 3072 | DH key of 3072 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_4096              | 4096 | DH key of 4096 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | ShangMi2 (SM2) key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | ShangMi4 (SM4) key of 128 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyAlg
 
 Enumerates the key algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                     | Value  | Description                 |
 | ------------------------- | ---- | --------------------- |
-| HUKS_ALG_RSA              | 1    | RSA    |
-| HUKS_ALG_ECC              | 2    | ECC    |
-| HUKS_ALG_DSA              | 3    | DSA    |
-| HUKS_ALG_AES              | 20   | AES    |
-| HUKS_ALG_HMAC             | 50   | HMAC   |
-| HUKS_ALG_HKDF             | 51   | HKDF   |
-| HUKS_ALG_PBKDF2           | 52   | PBKDF2 |
-| HUKS_ALG_ECDH             | 100  | ECDH   |
-| HUKS_ALG_X25519           | 101  | X25519  |
-| HUKS_ALG_ED25519          | 102  | ED25519|
-| HUKS_ALG_DH               | 103  | DH     |
-| HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2    |
-| HUKS_ALG_SM3<sup>9+</sup> | 151  | SM3    |
-| HUKS_ALG_SM4<sup>9+</sup> | 152  | SM4    |
+| HUKS_ALG_RSA              | 1    | RSA<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECC              | 2    | ECC<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DSA              | 3    | DSA<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_AES              | 20   | AES<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_ALG_HMAC             | 50   | HMAC<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_HKDF             | 51   | HKDF<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_PBKDF2           | 52   | PBKDF2<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECDH             | 100  | ECDH<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_X25519           | 101  | X25519 <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ED25519          | 102  | ED25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DH               | 103  | DH<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM3<sup>9+</sup> | 151  | SM3<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM4<sup>9+</sup> | 152  | SM4<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyGenerateType
 
 Enumerates the key generation types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                          | Value  | Description            |
 | ------------------------------ | ---- | ---------------- |
@@ -1756,7 +2243,7 @@ Enumerates the key generation types.
 
 Enumerates the key generation modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                      | Value  | Description                                |
 | -------------------------- | ---- | ------------------------------------ |
@@ -1769,18 +2256,20 @@ Enumerates the key generation modes.
 
 Enumerates the key storage modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
-| Name                   | Value  | Description                          |
-| ----------------------- | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP       | 0    | The key is managed locally.    |
-| HUKS_STORAGE_PERSISTENT | 1    | The key is managed by the HUKS service.|
+| Name                                         | Value  | Description                          |
+| --------------------------------------------  | ---- | ------------------------------ |
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | The key is managed locally.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | The key is managed by the HUKS service.<br>**NOTE**: This tag is discarded since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key derived from the master key is stored in the HUKS and managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key derived from the master key is exported to the service, and not managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksSendType
 
 Enumerates the tag transfer modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                | Value  | Description             |
 | -------------------- | ---- | ----------------- |
@@ -1791,7 +2280,7 @@ Enumerates the tag transfer modes.
 
 Enumerates the algorithm suites used for importing an encrypted key.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                                          | Value  | Description                                                 |
 | ---------------------------------------------- | ---- | ----------------------------------------------------- |
@@ -1802,7 +2291,7 @@ Enumerates the algorithm suites used for importing an encrypted key.
 
 Enumerates the types of keys to import. By default, a public key is imported. This field is not required when a symmetric key is imported.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                     | Value  | Description                          |
 | ------------------------- | ---- | ------------------------------ |
@@ -1810,11 +2299,22 @@ Enumerates the types of keys to import. By default, a public key is imported. Th
 | HUKS_KEY_TYPE_PRIVATE_KEY | 1    | Private key    |
 | HUKS_KEY_TYPE_KEY_PAIR    | 2    | Public and private key pair|
 
+## HuksRsaPssSaltLenType<sup>10+</sup>
+
+Enumerates the **salt_len** types to set when PSS padding is used in RSA signing or signature verification.
+
+**System capability**: SystemCapability.Security.Huks.Extension
+
+| Name                                      | Value  | Description                        |
+| ------------------------------------------ | ---- | ---------------------------- |
+| HUKS_RSA_PSS_SALT_LEN_DIGEST<sup>10+</sup> | 0    | **salt_len** is set to the digest length.|
+| HUKS_RSA_PSS_SALT_LEN_MAX<sup>10+</sup>    | 1    | **salt_len** is set to the maximum length.|
+
 ## HuksUserAuthType<sup>9+</sup>
 
 Enumerates the user authentication types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                     |
 | ------------------------------- | ---- | ------------------------- |
@@ -1826,7 +2326,7 @@ Enumerates the user authentication types.
 
 Enumerates the access control types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                                   | Value  | Description                                            |
 | --------------------------------------- | ---- | ------------------------------------------------ |
@@ -1837,7 +2337,7 @@ Enumerates the access control types.
 
 Enumerates the types of the challenges generated when a key is used.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                          |
 | ------------------------------- | ---- | ------------------------------ |
@@ -1849,7 +2349,7 @@ Enumerates the types of the challenges generated when a key is used.
 
 Enumerates the positions of the 8-byte valid value in a custom challenge generated.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                          |
 | ------------------------------- | ---- | ------------------------------ |
@@ -1862,7 +2362,7 @@ Enumerates the positions of the 8-byte valid value in a custom challenge generat
 
 Defines the signature type of the key generated or imported.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                          | Value  | Description                                                        |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
@@ -1872,7 +2372,7 @@ Defines the signature type of the key generated or imported.
 
 Enumerates the tag data types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                 | Value     | Description                                   |
 | --------------------- | ------- | --------------------------------------- |
@@ -1887,92 +2387,95 @@ Enumerates the tag data types.
 
 Enumerates the tags used to invoke parameters.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
-| Name                                         | Value                                    | Description                                                  |
-| -------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                                                 |
-| HUKS_TAG_ALGORITHM                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1      | Algorithm.                                                   |
-| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of the key.                                          |
-| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.                                                    |
-| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.                                            |
-| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.                                           |
-| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.                                                 |
-| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.                                                    |
-| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.                              |
-| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.                     |
-| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.                                                          |
-| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.                 |
-| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.                          |
-| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.                            |
-| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.                     |
-| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.                                         |
-| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.                                 |
-| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.                                   |
-| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.               |
-| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.                |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.                      |
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.                     |
-| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                            |
-| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                                                   |
-| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                                     |
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.                                    |
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite required for encrypted imports.              |
-| HUKS_TAG_ACTIVE_DATETIME                     | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Reserved.                                                    |
-| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Reserved.                                                    |
-| HUKS_TAG_USAGE_EXPIRE_DATETIME               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Reserved.                                                    |
-| HUKS_TAG_CREATION_DATETIME                   | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Reserved.                                                    |
-| HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301    | Reserved.                                                    |
-| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | Reserved.                                                    |
-| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.                                                    |
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE**. |
-| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Reserved.                                                    |
-| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Reserved.                                                    |
-| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>   | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9). |
-| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup>   | HuksTagType.HUKS_TAG_TYPE_UINT \| 308    | Signature type of the key generated or imported.             |
-| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>         | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9). |
-| HUKS_TAG_CHALLENGE_POS<sup>9+</sup>          | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9). |
-| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.                     |
-| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.                      |
-| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.                                         |
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | ID of the device.                                            |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.                                  |
-| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | SN of the device.                                            |
-| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | International mobile equipment identity (IMEI) of the device. |
-| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Mobile equipment identity (MEID) of the device.              |
-| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Manufacturer of the device.                                  |
-| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.                                                |
-| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.                           |
-| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | System-on-a-chip (SoCID) of the device.                      |
-| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Unique device identifier (UDID) of the device.               |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security level used in the attestation.                      |
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.                 |
-| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.    |
-| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.                                            |
-| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                                    |
-| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                                    |
-| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.                                                    |
-| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.                                                    |
-| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.                                             |
-| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.                                                    |
-| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.                                                    |
-| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.                                                    |
-| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.                                                    |
-| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.                                                |
-| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.                                                    |
-| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.                                                    |
-| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.                                                    |
-| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.                                                    |
-| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.                                                    |
-| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.                                                 |
-| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.                                                    |
-| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Reserved.                                                    |
-| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.                                                    |
-| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.                                                  |
-| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.                                              |
-| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.                                                    |
-| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.                                                    |
-| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.                                                    |
+| Name                                        | Value                                      | Description                                  |
+| -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
+| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ALGORITHM                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of the key.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite required for encrypted imports.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | Storage type of the derived key or agreed key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | Type of the **rsa_pss_salt_length**.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT   <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | Signature type of the key generated or imported.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | Key authentication purpose.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | ID of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | SN of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | International mobile equipment identity (IMEI) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Mobile equipment identity (MEID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Manufacturer of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | System-on-a-chip (SoCID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Unique device identifier (UDID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security level used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Used to pass in the AEAD in GCM mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## huks.generateKey<sup>(deprecated)</sup>
 
@@ -1982,7 +2485,7 @@ Generates a key. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2034,7 +2537,7 @@ Generates a key. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2087,7 +2590,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2116,7 +2619,7 @@ Deletes a key. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2150,7 +2653,7 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2210,7 +2713,7 @@ Imports a key in plaintext. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2277,7 +2780,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2285,7 +2788,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned and **outData** contains the public key exported. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2306,7 +2809,7 @@ Exports a key. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2319,7 +2822,7 @@ Exports a key. This API uses a promise to return the result.
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned and **outData** contains the public key exported. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2340,7 +2843,7 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2369,7 +2872,7 @@ Obtains key properties. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2403,7 +2906,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2432,7 +2935,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2466,7 +2969,7 @@ Initializes the data for a key operation. This API uses an asynchronous callback
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2484,7 +2987,7 @@ Initializes the data for a key operation. This API uses a promise to return the 
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2507,7 +3010,7 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2516,7 +3019,7 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | handle   | number                                    | Yes  | Handle for the **update** operation.                        |
 | token    | Uint8Array                                | No  | Token of the **update** operation.                         |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Parameter set used for the **update** operation.                      |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the **update** operation result. |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the **update** operation result.|
 
 ## huks.update<sup>(deprecated)</sup>
 
@@ -2526,7 +3029,7 @@ Updates the key operation by segment. This API uses a promise to return the resu
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-2).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2540,7 +3043,7 @@ Updates the key operation by segment. This API uses a promise to return the resu
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the **update** operation result. |
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the **update** operation result.|
 
 ## huks.finish<sup>(deprecated)</sup>
 
@@ -2550,7 +3053,7 @@ Completes the key operation and releases resources. This API uses an asynchronou
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2568,7 +3071,7 @@ Completes the key operation and releases resources. This API uses a promise to r
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2591,7 +3094,7 @@ Aborts the use of the key. This API uses an asynchronous callback to return the 
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2599,7 +3102,7 @@ Aborts the use of the key. This API uses an asynchronous callback to return the 
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle for the **abort** operation.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set used for the **abort** operation.|
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes| Callback invoked to return the **abort** operation result. |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes| Callback invoked to return the **abort** operation result.|
 
 **Example**
 
@@ -2702,7 +3205,7 @@ Aborts the use of the key. This API uses a promise to return the result.
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2820,7 +3323,8 @@ function huksAbort() {
 
 Defines the HUKS handle structure.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9).
 
 | Name    | Type            | Mandatory| Description    |
 | ---------- | ---------------- | ---- | -------- |
@@ -2832,7 +3336,9 @@ Defines the HUKS handle structure.
 
 Defines the **HuksResult** structure.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
+
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksReturnResult<sup>9+</sup>](#huksreturnresult9).
 
 | Name    | Type                           | Mandatory| Description            |
 | ---------- | ------------------------------- | ---- | ---------------- |
@@ -2846,7 +3352,8 @@ Defines the **HuksResult** structure.
 
 Enumerates the error codes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9).
 
 | Name                      | Value   | Description|
 | -------------------------- | ----- | ---- |

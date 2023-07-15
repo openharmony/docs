@@ -6,13 +6,14 @@ TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放�
 
 **推荐使用场景：** 一般需要存储有序集合的场景，可以使用TreeSet。
 
-文档中存在泛型的使用,涉及以下泛型标记符:
+文档中存在泛型的使用，涉及以下泛型标记符：
 
-- T: Type, 类
+- T：Type，类
 
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -43,7 +44,7 @@ TreeSet的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
 
 **错误码：**
 
@@ -122,9 +123,8 @@ has(value: T): boolean
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.has(123);
 treeSet.add(123);
-let result1 = treeSet.has(123);
+let result = treeSet.has(123);
 ```
 
 
@@ -484,14 +484,14 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的value元素。 |
-| key | T | 否 | 当前遍历到的key元素。 |
-| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| value | T | 否 | 当前遍历到的value元素，默认值为首个键值对的值。 |
+| key | T | 否 | 当前遍历到的key元素，默认值为首个键值对的键。 |
+| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

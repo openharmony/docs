@@ -13,6 +13,14 @@ The **StaticSubscriberExtensionAbility** module provides Extension abilities for
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
 ```
 
+## Attributes
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| Name   | Type                                                        | Readable| Writable| Description    |
+| ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
+| context | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | Yes  | No  | Context.|
+
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
 onReceiveEvent(event: CommonEventData): void;
@@ -30,7 +38,6 @@ Callback of the common event of a static subscriber.
 | event | [CommonEventData](js-apis-commonEventManager.md#commoneventdata) | Yes| Common event of a static subscriber.|
 
 **Example**
-    
   ```ts
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event) {

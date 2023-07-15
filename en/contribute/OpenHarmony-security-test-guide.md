@@ -8,7 +8,7 @@ With reference to industry standards and best practices, this document provides 
 
 - Use the OpenHarmony gated check-in to scan your code and clear all alarms.
 
-- Use the compilation option scanning tool to scan your binary file and ensure that the settings of all the compilation options comply with the [OpenHarmony Compilation Specifications].
+- Use the compilation option scanning tool to scan your binary file and ensure that the settings of all the compilation options comply with the OpenHarmony Compilation Specifications.
 
 - For the module that receives and processes user-mode parameters, develop gray-box and white-box fuzz testing suites according to the [Fuzz Testing Guide](https://gitee.com/openharmony/test_developertest/tree/master/libs/fuzzlib) and complete the tests.
 

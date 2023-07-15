@@ -6,6 +6,12 @@ The **Configuration** module defines environment change information. **Configura
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import Configuration from '@ohos.app.ability.Configuration';
+```
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name| Type| Readable| Writable| Description|

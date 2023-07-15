@@ -7,6 +7,14 @@
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口均为系统接口，三方应用不支持调用
 
+## 导入模块
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -26,8 +34,8 @@
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+      if (error) {
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -35,8 +43,8 @@
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err.code) {
-          console.error('getMissionInfos failed, err.code: ${err.code}, err.message: ${err.message}');
+        if (err) {
+          console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
           return;
         }
 

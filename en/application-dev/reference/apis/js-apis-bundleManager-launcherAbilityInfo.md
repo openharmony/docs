@@ -10,7 +10,7 @@ The **LauncherAbilityInfo** module defines the ability information of the home s
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name           | Type                                                       | Readable| Writable| Description                                |
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |

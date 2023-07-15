@@ -31,7 +31,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 模块声明
   使用import方法引入功能模块：
 
-    
+
   ```
   import router from '@system.router';
   ```
@@ -39,7 +39,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 代码引用
   使用import方法导入js代码：
 
-    
+
   ```
   import utils from '../../common/utils.js';
   ```
@@ -48,25 +48,25 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 ## 对象
 
 - 页面对象
-    | 属性 | 类型 | 描述 | 
-  | -------- | -------- | -------- |
-  | data | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/> | 
-  | $refs | Object | 持有注册过ref&nbsp;属性的DOM元素或子组件实例的对象。示例见[获取DOM元素](#获取dom元素)。 |
+    | 属性    | 类型              | 描述                                       |
+    | ----- | --------------- | ---------------------------------------- |
+    | data  | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/> |
+    | $refs | Object          | 持有注册过ref&nbsp;属性的DOM元素或子组件实例的对象。示例见[获取DOM元素](#获取dom元素)。 |
 
 
 ## 获取DOM元素
 
 1. 通过$refs获取DOM元素
-     
-   ```
+
+   ```html
    <!-- index.hml -->
    <div class="container">
      <image-animator class="image-player" ref="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
 
-     
-   ```
+
+   ```js
    // index.js
    export default {
      data: {
@@ -94,29 +94,29 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 ## 生命周期接口
 
 - 页面生命周期
-    | 属性 | 类型 | 参数 | 返回值 | 描述 | 触发时机 | 
-  | -------- | -------- | -------- | -------- | -------- | -------- |
-  | onInit | Function | 无 | 无 | 页面初始化 | 页面数据初始化完成时触发，只触发一次。 | 
-  | onReady | Function | 无 | 无 | 页面创建完成 | 页面创建完成时触发，只触发一次。 | 
-  | onShow | Function | 无 | 无 | 页面显示 | 页面显示时触发。 | 
-  | onHide | Function | 无 | 无 | 页面消失 | 页面消失时触发。 | 
-  | onDestroy | Function | 无 | 无 | 页面销毁 | 页面销毁时触发。 |
-  
+    | 属性        | 类型       | 参数   | 返回值  | 描述     | 触发时机                |
+    | --------- | -------- | ---- | ---- | ------ | ------------------- |
+    | onInit    | Function | 无    | 无    | 页面初始化  | 页面数据初始化完成时触发，只触发一次。 |
+    | onReady   | Function | 无    | 无    | 页面创建完成 | 页面创建完成时触发，只触发一次。    |
+    | onShow    | Function | 无    | 无    | 页面显示   | 页面显示时触发。            |
+    | onHide    | Function | 无    | 无    | 页面消失   | 页面消失时触发。            |
+    | onDestroy | Function | 无    | 无    | 页面销毁   | 页面销毁时触发。            |
+
     页面A的生命周期接口的调用顺序：
   - 打开页面A：onInit() -&gt; onReady() -&gt; onShow()
-  
+
   - 在页面A打开页面B：onHide() -&gt; onDestroy()
-  
+
   - 从页面B返回页面A：onInit() -&gt; onReady() -&gt; onShow()
-  
+
   - 退出页面A：onHide() -&gt; onDestroy()
-  
+
   - 页面隐藏到后台运行：onHide()
-  
+
   - 页面从后台运行恢复到前台：onShow()
 
 - 应用生命周期
-    | 属性 | 类型 | 参数 | 返回值 | 描述 | 触发时机 | 
-  | -------- | -------- | -------- | -------- | -------- | -------- |
-  | onCreate | Function | 无 | 无 | 应用创建 | 当应用创建时调用。 | 
-  | onDestroy | Function | 无 | 无 | 应用退出 | 当应用退出时触发。 | 
+    | 属性        | 类型       | 参数   | 返回值  | 描述   | 触发时机      |
+    | --------- | -------- | ---- | ---- | ---- | --------- |
+    | onCreate  | Function | 无    | 无    | 应用创建 | 当应用创建时调用。 |
+    | onDestroy | Function | 无    | 无    | 应用退出 | 当应用退出时触发。 |

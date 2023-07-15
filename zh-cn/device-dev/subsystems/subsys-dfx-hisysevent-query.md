@@ -81,10 +81,6 @@ C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hivie
         "and":[
             {"param":"type_","op":">","value":0},
             {"param":"uid_","op":"=","value":1201}
-        ],
-        "or":[
-            {"param":"NAME","op":"=","value":"SysEventService"},
-            {"param":"NAME","op":"=","value":"SysEventSource"}
         ]
     }
 }
@@ -93,7 +89,6 @@ C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hivie
 - version字段是必选字段，表示传入条件的支持版本，当前只支持V1版本。
 - condition字段是必选字段，表示传入条件的具体内容。
   - and字段是可选字段，表示条件之间是与的关系。
-  - or字段是可选字段，表示条件之间是或的关系。
     - param字段是必选字段，表示条件匹配的参数名称，必须为字符串类型。
     - op字段是必选字段，表示条件匹配的参数比较符，必须为字符串类型，支持的比较符包括=、>、<、>=、<=。
     - value字段是必选字段，表示条件匹配的参数值，必须为字符串类型或整型。
@@ -257,12 +252,12 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisysevent及libhisyseventmanager依赖。
+1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent部件的libhisysevent及libhisyseventmanager依赖。
 
    ```c++
    external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
+     "hisysevent:libhisysevent",
+     "hisysevent:libhisyseventmanager",
    ]
    ```
 
@@ -325,10 +320,10 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisyseventmanager依赖。
+1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent部件的libhisyseventmanager依赖。
 
    ```c++
-   external_deps = [ "hisysevent_native:libhisyseventmanager" ]
+   external_deps = [ "hisysevent:libhisyseventmanager" ]
    
    // for strcpy_s
    deps = [ "//third_party/bounds_checking_function:libsec_shared" ]

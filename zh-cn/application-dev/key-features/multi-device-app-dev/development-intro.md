@@ -1,97 +1,114 @@
 # 功能开发的一多能力介绍
+应用开发至少包含两部分工作： UI页面开发和底层功能开发（部分需要联网的应用还会涉及服务端开发）。前面章节介绍了如何解决页面适配的问题，本章节主要介绍应用如何解决设备系统能力差异的兼容问题。
 
+## 系统能力
 
-应用开发至少包含两部分工作：UI页面开发和底层功能开发（部分需要联网的应用还会涉及服务端开发）。如“打开设备NFC”功能，除了开发页面，还需要调用系统API开启NFC。前面章节主要介绍了如何解决页面适配的问题，本章节主要介绍应用如何解决设备系统能力差异的兼容问题。
+[系统能力](../../reference/syscap.md)（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。
 
+![系统能力图解](../../reference/figures/image-20220326064841782.png)
 
-我们以一个简单例子说明：一个具有NFC功能的应用，如何兼容运行在有NFC和无NFC系统能力的设备上。
+与系统能力相关的，有支持能力集、联想能力集和要求能力集三个核心概念。
 
+- **支持能力集**：设备具备的系统能力集合，在设备配置文件中配置。
+- **要求能力集**：应用需要的系统能力集合，在应用配置文件中配置。
+- **联想能力集**：开发应用时IDE可联想的API所在的系统能力集合，在应用配置文件中配置。
 
-应用从开发到用户可以使用，一般要经历几个阶段：应用分发和下载-&gt;应用安装-&gt;应用运行，要解决上面提到的兼容问题，一般有如下几种解决思路：
+>  **说明：**
+>
+> - 只有当应用要求能力集是设备支持能力集的子集的时候，应用才可以在该设备上分发、安装和运行。
+> - 可以访问[系统能力列表](../../reference/syscap-list.md)了解OpenHarmony全量的系统能力。
+> - OpenHarmony支持的设备类型分为两大类： 典型设备和厂商自定义设备。默认设备、平板等常用的设备类型属于典型设备，其它的属于厂商自定义设备。对于典型设备，系统已经预定义了相应的系统能力集合；对于厂商自定义设备，需要厂商给出其系统能力集合的定义。
 
+## 开发指导
+ ### 设备要求能力集的获取及导入
 
-1. 分发和下载：有NFC设备的用户才能在应用市场可见该应用，提供用户下载能力。
+对于厂商自定义设备，需要开发者自行从厂商处获取该设备的要求能力集并导入到IDE中。
 
-2. 安装：有NFC能力的设备才允许安装该应用。
+在工程目录右键后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
 
-3. 运行：在运行阶段通过动态判断方式，在NFC设备上功能运行正常，在无NFC设备上运行不发生Crash。
+![20220329-103626](../../reference/figures/20220329-103626.gif)
+### 多设备应用开发
+开发多设备应用时，工程中默认的要求能力集是多个设备支持能力集的交集，默认的联想能力集是多个设备支持能力集的并集。
 
+- 开发者可以在运行时动态判断某设备是否支持特定的系统能力。
 
-所以，对应的解决方案就有：
+- 开发者可以自行修改联想能力集和要求能力集。
 
+**动态逻辑判断**
 
-1. 在分发阶段，核心分发逻辑：上架的应用使用的系统能力是设备系统能力的子集。满足这个条件，用户才能在应用市场看到该应用。
+如果某个系统能力没有写入应用的要求能力集中，那么在使用前需要判断设备是否支持该系统能力。
 
-2. 在安装阶段，核心安装逻辑：安装的应用调用的系统能力是设备系统能力的子集。满足这个条件，用户才能安装该应用。
+- 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
 
-3. If/Else的动态逻辑判断。伪代码简单示例如下：
-   
-   ```
-   if (该设备有系统能力1) {
-       运行系统能力1相关的代码;
-   } else {
-       提示用户该设备不支持;
-   }
-   ```
-
-
-OpenHarmony支持的设备类型分为两大类：
-
-
-1. 典型设备类型，如默认设备、平板等。系统已经定义好了这些设备的系统能力集合，对应用开发者来说，只需要感知在IDE中创建Module时设备类型的选择，如下图所示：
-   ![zh-cn_image_0000001267573986](figures/zh-cn_image_0000001267573986.png)
-
-   或者module.json文件中的deviceTypes，如下图所示：
-
-   ![zh-cn_image_0000001266934142](figures/zh-cn_image_0000001266934142.png)
-
-   简单来说，应用开发者基于典型设备类型的应用开发，仅需选择设备类型，系统完成分发或者安装的匹配逻辑。
-
-2. 厂家自定义设备类型。由于厂家提供的系统能力千差万别，OpenHarmony允许厂家自己自定义设备的系统能力，但需要通过标准的格式形成一个ID，称为PCID（产品兼容性标识，Product Compatibility ID），并对外发布这个PCID，一般通过设备认证中心发布。应用开发者如果希望应用可以分发和安装到厂家自定义的设备上，就必须拿到对应的自定义设备PCID，否则就无法声明应用使用或调用的系统能力集（也是通过一个ID表示，称为RPCID，英文全名：Required Product Compatibility ID，中文名：要求的产品兼容性标识）。
-
-
-鉴于当前OpenHarmony版本还不具备设备认证中心，本章节仅讨论典型设备类型下多设备应用开发的场景。
-
-
-## 编码时的API联想
-
-IDE中提供了API的联想功能，方便开发者使用系统能力。当开发者选择多个设备类型时，API的联想范围就是选择类型设备提供的API的并集，如同时支撑默认设备和平板，API的联想范围就是默认设备和平板支持的API的并集。API的联想效果如下：
-
-![Video_20220408101413](figures/Video_20220408101413.gif)
-
-
-## 动态逻辑判断
-
-开发者可以通过canIUse接口，判断目标设备是否支持某系统能力，进而执行不同的业务逻辑。
-
-
-```
-import geolocation from'@ohos.geolocation';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'unknown';
-  aboutToAppear() {
-    if (canIUse('SystemCapability.Location.Location')) {
-      geolocation.getCurrentLocation().then((location) => {
-        this.message = 'current location: ' + JSON.stringify(location)
-      })
-    } else {
-      this.message = 'This device does not have the ability to get location.'
-    }
+  ```typescript
+  if (canIUse("SystemCapability.Communication.NFC.Core")) {
+  	   console.log("该设备支持SystemCapability.Communication.NFC.Core");
+  } else {
+      console.log("该设备不支持SystemCapability.Communication.NFC.Core");
   }
+  ```
 
-  build() {
-    Row() {
-      Text(this.message).fontSize(24)
-    }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
+
+- 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。 
+
+  ```typescript
+  import controller from '@ohos.nfc.controller';
+     try {
+      controller.enableNfc();
+      console.log("controller enableNfc success");
+  } catch (busiError) {
+      console.log("controller enableNfc busiError: " + busiError);
   }
+  ```
+
+> **说明：**
+>
+> - 如果某系统能力是应用运行必须的，则要将其写入到应用的要求能力集中，以确保应用不会分发和安装到不符合要求的设备上。
+> - 如果某系统能力不是应用运行必须的，则可以在运行时做动态判断，这样可以最大程度扩大应用的适用范围。
+
+**配置联想能力集和要求能力集**
+
+IDE会根据创建的工程所支持的设备自动配置联想能力集和要求能力集，同时也支持开发者修改。 
+
+```json5
+// syscap.json
+{
+	"devices": {
+		"general": [            // 每一个典型设备对应一个syscap支持能力集，可配置多个典型设备
+			"default",
+			"tablet"
+		],
+		"custom": [             // 厂家自定义设备
+			{
+				"某自定义设备": [
+					"SystemCapability.Communication.SoftBus.Core"
+				]
+			}
+		]
+	},
+	"development": {             // addedSysCaps内的sycap集合与devices中配置的各设备支持的syscap集合的并集共同构成联想能力集
+		"addedSysCaps": [
+			"SystemCapability.Communication.NFC.Core"
+		]
+	},
+	"production": {              // 用于生成rpcid，慎重添加，可能导致应用无法分发到目标设备上
+		"addedSysCaps": [],      // devices中配置的各设备支持的syscap集合的交集，添加addedSysCaps集合再除去removedSysCaps集合，共同构成要求能力集
+		"removedSysCaps": []     // 当该要求能力集为某设备的子集时，应用才可被分发到该设备上
+	}
 }
 ```
 
 > **说明：**
-> 开发者通过 import 方式导入的模块，若当前设备不支持该模块，import 的结果为 undefined。故开发者在使用 API 时，需要判断其是否存在。
+>
+> - 对于要求能力集，开发者修改时要十分慎重，修改不当会导致应用无法分发和安装到目标设备上。
+> - 对于联想能力集，通过增加系统能力可以扩大IDE可联想的API范围。但要注意这些API可能在某些设备上不支持，使用前需要判断。 
+
+## 总结
+
+从应用开发到用户使用，通常要经历应用分发和下载、应用安装、应用运行等环节。借助SysCap机制，可以在各个环节中加以拦截或管控，保证应用可以在设备上正常安装和使用。
+
+- 应用分发和下载：只有当应用要求能力集是设备支持能力集的子集时（即设备满足应用运行要求），应用才可以分发到该设备。
+- 应用安装：只有当应用要求能力集是设备支持能力集的子集时，应用才可以安装到该设备。
+- 应用运行：应用在使用要求能力集之外的能力前，需要动态判断相应系统能力的有效性，防止崩溃或功能异常等问题。
+
+SysCap机制可以帮助开发者仅关注设备的系统能力，而不用考虑成百上千种具体的设备类型，降低多设备应用开发难度。

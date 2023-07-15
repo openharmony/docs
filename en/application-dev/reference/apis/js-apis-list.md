@@ -13,6 +13,7 @@ This topic uses the following to identify the use of generics:
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 ## Modules to Import
 
 ```ts
@@ -160,9 +161,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let list = new List();
-let result = list.has("squirrel");
 list.add("squirrel");
-let result1 = list.has("squirrel");
+let result = list.has("squirrel");
 ```
 
 ### get
@@ -288,7 +288,6 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-list.getIndexOf(2);
 let result = list.getIndexOf(2);
 ```
 
@@ -327,14 +326,11 @@ let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
-list.add(2);
-let obj1 = new List();
-obj1.add(2);
-obj1.add(4);
-obj1.add(5);
-list.equal(obj1);
-let obj2 = {name : "Dylon", age : "13"};
-let result = list.equal(obj2);
+let obj = new List();
+obj.add(2);
+obj.add(4);
+obj.add(5);
+let result = list.equal(obj);
 ```
 
 ### removeByIndex
@@ -431,15 +427,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| list | List&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| list | List&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. The default value is this instance.|
 
 **Error codes**
 
@@ -457,11 +453,9 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-list.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+list.replaceAllElements((value) => {
+  // Add the user operation logic based on the actual scenario.
+  return value;
 });
 ```
 
@@ -479,15 +473,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| List | List&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| List | List&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
@@ -589,9 +583,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-let result = list.getSubList(2, 4);
-let result1 = list.getSubList(4, 3);
-let result2 = list.getSubList(2, 6);
+let result = list.getSubList(1, 3);
 ```
 
 ### clear
@@ -659,7 +651,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.set(2, "b");
+let result = list.set(2, "b");
 ```
 
 ### convertToArray

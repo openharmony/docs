@@ -7,7 +7,7 @@
 ## 15500010 删除用户首选项持久化文件失败
 **错误信息**
 
-Failed to delete preferences.
+Failed to delete preferences file.
 
 **错误描述**
 

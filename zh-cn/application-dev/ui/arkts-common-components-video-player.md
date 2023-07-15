@@ -1,4 +1,4 @@
-# 视频播放
+# 视频播放（Video）
 
 
 Video组件用于播放视频文件并控制其播放状态，常用于为短视频应用和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/arkui-ts/ts-media-components-video.md)。
@@ -24,6 +24,7 @@ Video组件支持加载本地视频和网络视频。
 ### 加载本地视频
 
 - 普通本地视频。
+
   加载本地视频时，首先在本地rawfile目录指定对应的文件，如下图所示。
 
   ![zh-cn_image_0000001562700409](figures/zh-cn_image_0000001562700409.png)
@@ -68,6 +69,27 @@ Video组件支持加载本地视频和网络视频。
    }
   }
   ```
+
+### 加载沙箱路径视频
+
+支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+
+```ts
+@Component
+export struct VideoPlayer {
+  private controller: VideoController;
+  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+
+  build() {
+    Column() {
+      Video({
+        src: this.videosrc,
+        controller: this.controller
+      })
+    }
+  }
+}
+```
 
 
 ### 加载网络视频
@@ -158,6 +180,7 @@ struct VideoPlayer{
 Video控制器主要用于控制视频的状态，包括播放、暂停、停止以及设置进度等，详细的使用请参考[VideoController使用说明](../reference/arkui-ts/ts-media-components-video.md#videocontroller)。
 
 - 默认控制器
+
   默认的控制器支持视频的开始、暂停、进度调整、全屏显示四项基本功能。
 
   ```ts
@@ -184,6 +207,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
   ```
 
 - 自定义控制器
+
   使用自定义的控制器，先将默认控制器关闭掉，之后可以使用button以及slider等组件进行自定义的控制与显示，适合自定义较强的场景下使用。
 
   ```ts

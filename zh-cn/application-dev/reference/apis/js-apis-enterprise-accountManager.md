@@ -1,10 +1,12 @@
 # @ohos.enterprise.accountManager（帐户管理）
 
-本模块提供设备帐户管理能力，包括禁止创建本地用户等。仅企业设备管理员应用才能调用。
+本模块提供设备帐户管理能力，包括禁止创建本地用户等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -16,7 +18,7 @@ import accountManager from '@ohos.enterprise.accountManager';
 
 disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-是否禁止创建本地用户接口，使用callback异步回调。
+指定设备管理员应用禁止创建本地用户接口，使用callback形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -28,9 +30,9 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止，false表示解除禁止。                  |
-| callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功err为null，否则为错误对象。       |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建本地用户，false表示允许创建本地用户。                  |
+| callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
 
@@ -45,13 +47,16 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-accountManager.disallowAddLocalAccount(admin, true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing add local account');
 });
 ```
 
@@ -59,7 +64,7 @@ accountManager.disallowAddLocalAccount(admin, true, (error) => {
 
 disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
-是否禁止创建本地用户，使用promise异步回调。
+指定设备管理员应用禁止创建本地用户，使用Promise形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
@@ -71,14 +76,14 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
-| disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止，false表示解除禁止。                  |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建本地用户，false表示允许创建本地用户。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当禁止创建本地用户失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -93,12 +98,13 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing add local account');
+}).catch((err) => {
+  console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
 });
 ```

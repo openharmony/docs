@@ -1,0 +1,49 @@
+# Audio Call Development
+
+Typically, audio calls are classified into VoIP calls and cellular calls.
+
+- Voice over Internet Protocol (VoIP) is a technology that enables you to make voice calls using a broadband Internet connection. During a VoIP call, call information is packed into data packets and transmitted over the network. Therefore, the VoIP call has high requirements on the network quality, and the call quality is closely related to the network connection speed.
+  
+- Cellular call refers to the traditional telephony service provided by carriers. Currently, APIs for developing cellular calling are available only for system applications.
+
+When developing the audio call service, you must use a proper audio processing policy based on the [audio scene](#audio-scene) and [ringer mode](#ringer-mode).
+
+## Audio Scene
+
+When an application uses the audio call service, the system switches to the call-related audio scene (specified by [AudioScene](../reference/apis/js-apis-audio.md#audioscene8)). The system has preset multiple audio scenes, including ringing, cellular call, and voice chat, and uses a scene-specific policy to process audio.
+
+For example, in the cellular call audio scene, the system prioritizes voice clarity. To deliver a crystal clear voice during calls, the system uses the 3A algorithm to preprocess audio data, suppress echoes, eliminates background noise, and adjusts the volume range. The 3A algorithm refers to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Control (ANC), and Automatic Gain Control (AGC).
+
+Currently, the following audio scenes are preset:
+
+- **AUDIO_SCENE_DEFAULT**: default audio scene, which can be used in all scenarios except audio calls.
+
+- **AUDIO_SCENE_RINGING**: ringing audio scene, which is used when a call is coming and is open only to system applications.
+
+- **AUDIO_SCENE_PHONE_CALL**: cellular call audio scene, which is used for cellular calls and is open only to system applications.
+
+- **AUDIO_SCENE_VOICE_CHAT**: voice chat scene, which is used for VoIP calls.
+
+The application can call **getAudioScene** in the [AudioManager](../reference/apis/js-apis-audio.md#audiomanager) class to obtain the audio scene in use. Before starting or stopping using the audio call service, the application can call this API to check whether the system has switched to the suitable audio scene.
+
+## Ringer Mode
+
+When an audio call is coming, the application notifies the user by playing a ringtone or vibrating, depending on the setting of [AudioRingMode](../reference/apis/js-apis-audio.md#audioringmode).
+
+The system has preset the following ringer modes:
+
+- **RINGER_MODE_SILENT**: silent mode, in which no sound is played when a call is coming in.
+
+- **RINGER_MODE_VIBRATE**: vibration mode, in which no sound is played but the device vibrates when a call is coming in.
+
+- **RINGER_MODE_NORMAL**: normal mode, in which a ringtone is played when a call is coming in.
+
+The application can call **getRingerMode** in the [AudioVolumeGroupManager](../reference/apis/js-apis-audio.md#audiovolumegroupmanager9) class to obtain the ringer mode in use so as to use a proper policy to notify the user.
+
+If the application wants to obtain the ringer mode changes in time, it can call **on('ringerModeChange')** in the **AudioVolumeGroupManager** class to listen for the changes. When the ringer mode changes, it will receive a notification and can make adjustment accordingly.
+
+## Audio Device Switching During a Call
+
+When a call is coming, the system selects an appropriate audio device based on the default priority. The application can switch the call to another audio device as required.
+
+The audio devices that can be used for the audio call are specified by [CommunicationDeviceType](../reference/apis/js-apis-audio.md#communicationdevicetype9). The application can call **isCommunicationDeviceActive** in the [AudioRoutingManager](../reference/apis/js-apis-audio.md#audioroutingmanager9) class to check whether a communication device is active. It can also call **setCommunicationDevice** in the **AudioRoutingManager** class to set a communication device to the active state so that the device can be used for the call.

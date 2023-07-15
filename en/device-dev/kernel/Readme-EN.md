@@ -62,6 +62,7 @@
             - [Dynamic Loading and Linking](kernel-small-bundles-linking.md)
             - [Virtual Dynamic Shared Object](kernel-small-bundles-share.md)
             - [LiteIPC](kernel-small-bundles-ipc.md)
+            - [Container](kernel-small-bundles-container.md)
             - File Systems
                 - [Virtual File System](kernel-small-bundles-fs-virtual.md)
                 - [Supported File Systems](kernel-small-bundles-fs-support.md)

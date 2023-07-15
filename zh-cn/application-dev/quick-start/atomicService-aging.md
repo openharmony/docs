@@ -4,7 +4,7 @@
 
 ## 原子化服务数据目录配额管理
 
-对原子化服务的数据沙箱目录设置存储配额上限，可通过系统参数persist.sys.bms.aging.policy.atomicservice.datasize.threshold获得，默认值1024MB，当超过该配额限制时，写入数据返回失败。
+对原子化服务的数据沙箱目录设置存储配额上限，可通过系统参数persist.sys.bms.aging.policy.atomicservice.datasize.threshold获得，默认值50MB，当超过该配额限制时，写入数据返回失败。
 
 查看和设置系统参数可使用[param get/set](../../device-dev/subsystems/subsys-boot-init-plugin.md)命令
 

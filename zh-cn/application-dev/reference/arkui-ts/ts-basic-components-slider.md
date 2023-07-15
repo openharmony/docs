@@ -22,7 +22,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：0 |
+| value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
@@ -47,7 +47,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的属性值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距，或者边距比较小时，tip会被截断。 |
+| showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
 | trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。 |
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。 |
@@ -79,11 +79,11 @@ Slier组件滑块形状枚举。
 
 ## 事件
 
-通用事件仅支持挂载卸载事件：OnAppear，OnDisAppear。
+支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖到或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变换时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖动或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用number.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变化时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
 
 ## SliderChangeMode枚举说明
 
@@ -96,8 +96,9 @@ Slier组件滑块形状枚举。
 | End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -253,3 +254,52 @@ struct SliderExample {
 ```
 
 ![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
+
+### 示例2
+
+```ts
+@Entry
+@Component
+struct SliderExample {
+  @State tipsValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Text('block').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: 40, height: 40 })
+        .blockBorderColor(Color.Red)
+        .blockBorderWidth(5)
+      Divider()
+      Text('step').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40, step: 10 })
+        .showSteps(true)
+        .stepSize(8)
+        .stepColor(Color.Yellow)
+      Divider()
+      Text('track').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .trackBorderRadius(2)
+      Divider()
+      Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.DEFAULT })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: '60px', height: '60px' })
+        .blockColor(Color.Red)
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+      Divider()
+      Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: this.tipsValue })
+        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .onChange(value => {
+          this.tipsValue = value
+        })
+    }
+  }
+}
+```
+
+![](figures/slider_2.png)

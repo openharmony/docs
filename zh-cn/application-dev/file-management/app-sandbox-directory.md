@@ -10,7 +10,7 @@
 
 下图展示了应用沙箱下，应用可访问的文件范围和方式。
 
-**图1** 应用沙箱文件访问关系图  
+**图1** 应用沙箱文件访问关系图  
 ![Application sandbox file access relationship](figures/application-sandbox-file-access-relationship.png)
 
 ## 应用沙箱目录与应用沙箱路径
@@ -23,7 +23,7 @@
 
 - 从实际物理路径推导物理路径与沙箱路径并不是1：1的映射关系，沙箱路径总是少于系统进程视角可见的物理路径。有些调试进程视角下的物理路径在对应的应用沙箱目录是无法找到的，而沙箱路径总是能够找到其对应的物理路径。
 
-**图2** 应用沙箱路径（不同权限与角色的进程下可见的文件路径不同）  
+**图2** 应用沙箱路径（不同权限与角色的进程下可见的文件路径不同）  
 ![Application sandbox path](figures/application-sandbox-path.png)
 
 ## 应用文件目录与应用文件路径
@@ -34,7 +34,7 @@
 
 在此主要介绍应用文件目录，如下图所示。应用文件目录下某个文件或某个具体目录的路径称为应用文件路径。应用文件目录下的各个文件路径，具备不同的属性和特征。
 
-**图3** 应用文件目录结构图  
+**图3** 应用文件目录结构图  
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
 1. 一级目录data/：代表应用文件目录。
@@ -49,29 +49,29 @@
 4. 四级、五级目录：
    通过ApplicationContext可以获取base下的files、cache、preferences、temp、distributedfiles等目录的应用文件路径，应用全局信息可以存放在这些目录下。
 
-   通过UIAbilityContext、AbilityStageContext、ExtensionContext可以获取hap级别应用文件路径。HAP信息可以存放在这些目录下，存放在此目录的文件会跟随HAP的卸载而删除，不会影响app级别目录下的文件。在开发态，一个应用包含一个或者多个HAP，详见[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
+   通过UIAbilityContext、AbilityStageContext、ExtensionContext可以获取HAP级别应用文件路径。HAP信息可以存放在这些目录下，存放在此目录的文件会跟随HAP的卸载而删除，不会影响App级别目录下的文件。在开发态，一个应用包含一个或者多个HAP，详见[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
 
    Context上下文获取及上述应用文件路径的获取，详见[应用上下文Context](../application-models/application-context-stage.md)。
 
    > **说明：**
+   >
    > - 禁止直接使用上图中四级目录之前的目录名组成的路径字符串，否则可能导致后续应用版本因应用文件路径变化导致不兼容问题。
-   > 
    > - 应通过Context属性获取应用文件路径，包括但不限于上图中绿色背景的路径。
 
    应用文件路径具体说明及生命周期如下表所示。
 
    **表1** 应用文件路径详细说明
-   
-   | 目录名 | Context属性名称 | 类型 | 说明 | 
+
+   | 目录名 | Context属性名称 | 类型 | 说明 |
    | -------- | -------- | -------- | -------- |
-   | bundle | bundleCodeDir | 安装文件路径 | 应用安装后的app的hap资源包所在目录；随应用卸载而清理。 | 
-   | base | NA | 本设备文件路径 | 应用在本设备上存放持久化数据的目录，子目录包含files/、cache/、temp/和haps/；随应用卸载而清理。 | 
-   | database | databaseDir | 数据库路径 | 应用在el1加密条件下存放通过分布式数据库服务操作的文件目录；随应用卸载而清理。 | 
-   | distributedfiles | distributedFilesDir | 分布式文件路径 | 应用在el2加密条件下存放分布式文件的目录，应用将文件放入该目录可分布式跨设备直接访问；随应用卸载而清理。 | 
-   | files | filesDir | 应用通用文件路径 | 应用在本设备内部存储上通用的存放默认长期保存的文件路径；随应用卸载而清理。 | 
-   | cache | cacheDir | 应用缓存文件路径 | 应用在本设备内部存储上用于缓存下载的文件或可重新生成的缓存文件的路径，应用cache目录大小超过配额或者系统空间达到一定条件，自动触发清理该目录下文件；用户通过系统空间管理类应用也可能触发清理该目录。应用需判断文件是否仍存在，决策是否需重新缓存该文件。 | 
-   | preferences | preferencesDir | 应用首选项文件路径 | 应用在本设备内部存储上通过数据库API存储配置类或首选项的目录；随应用卸载而清理。 | 
-   | temp | tempDir | 应用临时文件路径 | 应用在本设备内部存储上仅在应用运行期间产生和需要的文件，应用退出后即清理。 | 
+   | bundle | bundleCodeDir | 安装文件路径 | 应用安装后的App的HAP资源包所在目录；随应用卸载而清理。不能拼接路径访问资源文件，请使用[资源管理接口](../reference/apis/js-apis-resource-manager.md)访问资源。 |
+   | base | NA | 本设备文件路径 | 应用在本设备上存放持久化数据的目录，子目录包含files/、cache/、temp/和haps/；随应用卸载而清理。 |
+   | database | databaseDir | 数据库路径 | 应用在el1加密条件下存放通过分布式数据库服务操作的文件目录；随应用卸载而清理。 |
+   | distributedfiles | distributedFilesDir | 分布式文件路径 | 应用在el2加密条件下存放分布式文件的目录，应用将文件放入该目录可分布式跨设备直接访问；随应用卸载而清理。 |
+   | files | filesDir | 应用通用文件路径 | 应用在本设备内部存储上通用的存放默认长期保存的文件路径；随应用卸载而清理。 |
+   | cache | cacheDir | 应用缓存文件路径 | 应用在本设备内部存储上用于缓存下载的文件或可重新生成的缓存文件的路径，应用cache目录大小超过配额或者系统空间达到一定条件，自动触发清理该目录下文件；用户通过系统空间管理类应用也可能触发清理该目录。应用需判断文件是否仍存在，决策是否需重新缓存该文件。 |
+   | preferences | preferencesDir | 应用首选项文件路径 | 应用在本设备内部存储上通过数据库API存储配置类或首选项的目录；应用在本设备内部存储上通过数据库API存储配置类或首选项的目录；随应用卸载而清理。详见[通过用户首选项实现数据持久化](../database/data-persistence-by-preferences.md)。 |
+   | temp | tempDir | 应用临时文件路径 | 应用在本设备内部存储上仅在应用运行期间产生和需要的文件，应用退出后即清理。 |
 
    对于上述各类应用文件路径，常见使用场景如下：
 

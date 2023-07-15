@@ -1,6 +1,6 @@
 # Blank
 
-空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力。仅当父组件为Row/Column时生效。
+空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力。仅当父组件为Row/Column/Flex时生效。
 
 >  **说明：**
 >
@@ -15,6 +15,11 @@
 ## 接口
 
 Blank(min?: number&nbsp;|&nbsp;string)
+
+从API version 10开始：  
+ - Blank在父容器Row、Column、Flex主轴方向上未设置大小时会自动拉伸、压缩，设置了大小或容器自适应子节点大小时不会自动拉伸、压缩。  
+ - Blank设置主轴方向大小（size）与min时约束关系为max(min, size)。  
+ - Blank在父容器交叉轴上设置大小时不会撑满父容器交叉轴，交叉轴不设置大小时alignSelf默认值为ItemAlign.Stretch，会撑满容器交叉轴。  
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -50,7 +55,7 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank()
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
     }.backgroundColor(0xEFEFEF).padding(20)
   }
@@ -80,16 +85,16 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
 
       Row() {
         Text('Bluetooth').fontSize(18)
         // 设置最小宽度为160
         Blank('160').color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
-      
+
     }.backgroundColor(0xEFEFEF).padding(20).width('100%')
   }
 }

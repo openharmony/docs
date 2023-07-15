@@ -1,8 +1,9 @@
 # @ohos.thermal (Thermal Management)
 
-The **thermal** module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
+This module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -29,9 +30,9 @@ Subscribes to thermal level changes.
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4800101 | Operation failed. Cannot connect to service.|
+| 4800101 | If connecting to the service failed. |
 
 **Example**
 
@@ -58,15 +59,15 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                | Mandatory| Description                                          |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | No  | Callback used to return the result. No value is returned. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
 
 **Error codes**
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4800101 | Operation failed. Cannot connect to service.|
+| 4800101 | If connecting to the service failed. |
 
 **Example**
 
@@ -89,19 +90,19 @@ Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**
+**Return value**:
 
 | Type        | Description        |
 | ------------ | ------------ |
-| ThermalLevel | Thermal level obtained.|
+| ThermalLevel | Thermal level.|
 
 **Error codes**
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4800101 | Operation failed. Cannot connect to service.|
+| 4800101 | If connecting to the service failed. |
 
 **Example**
 
@@ -118,8 +119,7 @@ try {
 
 subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [thermal.registerThermalLevelCallback](#thermalregisterthermallevelcallback9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [thermal.registerThermalLevelCallback](#thermalregisterthermallevelcallback9).
 
 Subscribes to thermal level changes.
 
@@ -143,8 +143,7 @@ thermal.subscribeThermalLevel((level) => {
 
 unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [thermal.unregisterThermalLevelCallback](#thermalunregisterthermallevelcallback9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [thermal.unregisterThermalLevelCallback](#thermalunregisterthermallevelcallback9).
 
 Unsubscribes from thermal level changes.
 
@@ -154,7 +153,7 @@ Unsubscribes from thermal level changes.
 
 | Name  | Type                     | Mandatory| Description                                          |
 | -------- | ------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. No value is returned. If this parameter is not set, this API unsubscribes from all callbacks.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, this API unsubscribes from all callbacks.|
 
 **Example**
 
@@ -168,14 +167,13 @@ thermal.unsubscribeThermalLevel(() => {
 
 getThermalLevel(): ThermalLevel
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [thermal.getLevel](#thermalgetlevel9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [thermal.getLevel](#thermalgetlevel9).
 
 Obtains the current thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
-**Return value**
+**Return value**:
 
 | Type          | Description    |
 | ------------ | ------ |

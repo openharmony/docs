@@ -1,7 +1,7 @@
 # LayerFuncs
 
 
-## **概述**
+## 概述
 
 显示图层驱动接口结构体，定义显示图层驱动接口函数指针。
 
@@ -10,58 +10,58 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([InitDisplay](#initdisplay))(uint32_t&nbsp;devId) | 初始化显示设备。 | 
-| ([DeinitDisplay](#deinitdisplay))(uint32_t&nbsp;devId) | 取消初始化显示设备。 | 
-| ([GetDisplayInfo](#getdisplayinfo))(uint32_t&nbsp;devId,&nbsp;DisplayInfo&nbsp;\*dispInfo) | 获取显示设备相关信息。 | 
-| ([CreateLayer](#createlayer))(uint32_t&nbsp;devId,&nbsp;const&nbsp;LayerInfo&nbsp;\*layerInfo,&nbsp;uint32_t&nbsp;\*layerId) | 打开图层。 | 
-| ([CloseLayer](#closelayer))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId) | 关闭图层。 | 
-| ([SetLayerVisible](#setlayervisible))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;visible) | 设置图层是否可见。 | 
-| ([GetLayerVisibleState](#getlayervisiblestate))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*visible) | 获取图层是否可见状态。 | 
-| ([SetLayerSize](#setlayersize))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;IRect&nbsp;\*rect) | 设置图层大小。 | 
-| ([GetLayerSize](#getlayersize))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;IRect&nbsp;\*rect) | 获取图层大小。 | 
-| ([SetLayerCrop](#setlayercrop))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;IRect&nbsp;\*rect) | 设置图层裁剪区域。 | 
-| ([SetLayerZorder](#setlayerzorder))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;zorder) | 设置图层Z轴次序。 | 
-| ([GetLayerZorder](#getlayerzorder))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*zorder) | 获取图层Z轴次序。 | 
-| ([SetLayerPreMulti](#setlayerpremulti))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;preMul) | 设置图层预乘。 | 
-| ([GetLayerPreMulti](#getlayerpremulti))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*preMul) | 获取图层预乘标识。 | 
-| ([SetLayerAlpha](#setlayeralpha))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;LayerAlpha&nbsp;\*alpha) | 设置图层Alpha值。 | 
-| ([GetLayerAlpha](#getlayeralpha))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;LayerAlpha&nbsp;\*alpha) | 获取图层Alpha值。 | 
-| ([SetLayerColorKey](#setlayercolorkey))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;enable,&nbsp;uint32_t&nbsp;key) | 设置图层colorkey属性,在图层叠加时使用。 | 
-| ([GetLayerColorKey](#getlayercolorkey))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*enable,&nbsp;uint32_t&nbsp;\*key) | 获取图层colorkey。 | 
-| ([SetLayerPalette](#setlayerpalette))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*palette,&nbsp;uint32_t&nbsp;len) | 设置图层调色板。 | 
-| ([GetLayerPalette](#getlayerpalette))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*palette,&nbsp;uint32_t&nbsp;len) | 获取图层调色板。 | 
-| ([SetTransformMode](#settransformmode))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;TransformType&nbsp;type) | 设置图层变换模式，根据不同的场景设置图层的旋转、缩放、移位等。 | 
-| ([SetLayerCompression](#setlayercompression))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;compType) | 设置图层压缩功能。 | 
-| ([GetLayerCompression](#getlayercompression))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;\*compType) | 获取图层压缩功能是否打开。 | 
-| ([SetLayerDirtyRegion](#setlayerdirtyregion))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;IRect&nbsp;\*region) | 设置图层刷新区域。 | 
-| ([GetLayerBuffer](#getlayerbuffer))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;LayerBuffer&nbsp;\*buffer) | 获取图层的buffer。 | 
-| ([Flush](#flush))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;LayerBuffer&nbsp;\*buffer) | 刷新图层。 | 
-| ([WaitForVBlank](#waitforvblank))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;timeOut) | 实现等待帧消隐期到来功能。 | 
-| ([SnapShot](#snapshot))(uint32_t&nbsp;devId,&nbsp;LayerBuffer&nbsp;\*buffer) | 实现抓图功能。 | 
-| ([SetLayerVisibleRegion](#setlayervisibleregion))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;num,&nbsp;IRect&nbsp;\*rect) | 设置一个图层的可见区域。 | 
-| ([SetLayerBuffer](#setlayerbuffer))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置一个层的缓冲区。 | 
-| ([InvokeLayerCmd](#invokelayercmd))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;cmd,...) | 扩展接口。 | 
-| ([SetLayerCompositionType](#setlayercompositiontype))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;CompositionType&nbsp;type) | 设置客户端期望的组合类型。 | 
-| ([SetLayerBlendType](#setlayerblendtype))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;BlendType&nbsp;type) | 设置混合类型。 | 
-| ([SetLayerColorTransform](#setlayercolortransform))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;const&nbsp;float&nbsp;\*matrix) | 设置图层当前的颜色转换矩阵。 | 
-| ([SetLayerColorDataSpace](#setlayercolordataspace))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;ColorDataSpace&nbsp;colorSpace) | 设置图层的颜色数据空间。 | 
-| ([GetLayerColorDataSpace](#getlayercolordataspace))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;ColorDataSpace&nbsp;\*colorSpace) | 获取图层当前的颜色数据空间。 | 
-| ([SetLayerMetaData](#setlayermetadata))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;num,&nbsp;const&nbsp;HDRMetaData&nbsp;\*metaData) | 设置图层的HDRmetaData。 | 
-| ([SetLayerMetaDataSet](#setlayermetadataset))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;HDRMetadataKey&nbsp;key,&nbsp;uint32_t&nbsp;num,&nbsp;const&nbsp;uint8_t&nbsp;\*metaData) | 设置图层的metaData&nbsp;set。 | 
-| ([GetSupportedPresentTimestamp](#getsupportedpresenttimestamp))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;PresentTimestampType&nbsp;\*type) | 获取图层支持的上屏时间戳类型。 | 
-| ([GetHwPresentTimestamp](#gethwpresenttimestamp))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;PresentTimestamp&nbsp;\*pts) | 获取图层的上屏时间戳信息。 | 
-| ([SetLayerTunnelHandle](#setlayertunnelhandle))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;ExtDataHandle&nbsp;\*handle) | 设置图层的tunnel句柄。 | 
-| ([GetLayerReleaseFence](#getlayerreleasefence))(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;\*fence) | 获取图层的同步栅栏。 | 
+| (\*&nbsp;[InitDisplay](#initdisplay)&nbsp;)(uint32_t&nbsp;devId) | int32_t<br/>初始化显示设备。 | 
+| (\*&nbsp;[DeinitDisplay](#deinitdisplay)&nbsp;)(uint32_t&nbsp;devId) | int32_t<br/>取消初始化显示设备。 | 
+| (\*&nbsp;[GetDisplayInfo](#getdisplayinfo)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DisplayInfo](_display_info.md)&nbsp;\*dispInfo) | int32_t<br/>获取显示设备相关信息。 | 
+| (\*&nbsp;[CreateLayer](#createlayer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;[LayerInfo](_layer_info.md)&nbsp;\*layerInfo,&nbsp;uint32_t&nbsp;\*layerId) | int32_t<br/>打开图层。 | 
+| (\*&nbsp;[CloseLayer](#closelayer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId) | int32_t<br/>关闭图层。 | 
+| (\*&nbsp;[SetLayerVisible](#setlayervisible)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;visible) | int32_t<br/>设置图层是否可见。 | 
+| (\*&nbsp;[GetLayerVisibleState](#getlayervisiblestate)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*visible) | int32_t<br/>获取图层是否可见状态。 | 
+| (\*&nbsp;[SetLayerSize](#setlayersize)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置图层大小。 | 
+| (\*&nbsp;[GetLayerSize](#getlayersize)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>获取图层大小。 | 
+| (\*&nbsp;[SetLayerCrop](#setlayercrop)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置图层裁剪区域。 | 
+| (\*&nbsp;[SetLayerZorder](#setlayerzorder)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;zorder) | int32_t<br/>设置图层Z轴次序。 | 
+| (\*&nbsp;[GetLayerZorder](#getlayerzorder)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*zorder) | int32_t<br/>获取图层Z轴次序。 | 
+| (\*&nbsp;[SetLayerPreMulti](#setlayerpremulti)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;preMul) | int32_t<br/>设置图层预乘。 | 
+| (\*&nbsp;[GetLayerPreMulti](#getlayerpremulti)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*preMul) | int32_t<br/>获取图层预乘标识。 | 
+| (\*&nbsp;[SetLayerAlpha](#setlayeralpha)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[LayerAlpha](_layer_alpha.md)&nbsp;\*alpha) | int32_t<br/>设置图层alpha值。 | 
+| (\*&nbsp;[GetLayerAlpha](#getlayeralpha)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[LayerAlpha](_layer_alpha.md)&nbsp;\*alpha) | int32_t<br/>获取图层alpha值。 | 
+| (\*&nbsp;[SetLayerColorKey](#setlayercolorkey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;enable,&nbsp;uint32_t&nbsp;key) | int32_t<br/>设置图层colorkey属性,在图层叠加时使用。 | 
+| (\*&nbsp;[GetLayerColorKey](#getlayercolorkey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;bool&nbsp;\*enable,&nbsp;uint32_t&nbsp;\*key) | int32_t<br/>获取图层colorkey。 | 
+| (\*&nbsp;[SetLayerPalette](#setlayerpalette)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*palette,&nbsp;uint32_t&nbsp;len) | int32_t<br/>设置图层调色板。 | 
+| (\*&nbsp;[GetLayerPalette](#getlayerpalette)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;\*palette,&nbsp;uint32_t&nbsp;len) | int32_t<br/>获取图层调色板。 | 
+| (\*&nbsp;[SetTransformMode](#settransformmode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[TransformType](_display.md#transformtype)&nbsp;type) | int32_t<br/>设置图层变换模式，根据不同的场景设置图层的旋转、缩放、移位等。 | 
+| (\*&nbsp;[SetLayerCompression](#setlayercompression)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;compType) | int32_t<br/>设置图层压缩功能 | 
+| (\*&nbsp;[GetLayerCompression](#getlayercompression)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;\*compType) | int32_t<br/>获取图层压缩功能是否打开。 | 
+| (\*&nbsp;[SetLayerDirtyRegion](#setlayerdirtyregion)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[IRect](_i_rect.md)&nbsp;\*region) | int32_t<br/>设置图层刷新区域。 | 
+| (\*&nbsp;[GetLayerBuffer](#getlayerbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[LayerBuffer](_layer_buffer.md)&nbsp;\*buffer) | int32_t<br/>获取图层的buffer。 | 
+| (\*&nbsp;[Flush](#flush)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[LayerBuffer](_layer_buffer.md)&nbsp;\*buffer) | int32_t<br/>刷新图层。 | 
+| (\*&nbsp;[WaitForVBlank](#waitforvblank)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;timeOut) | int32_t<br/>实现等待帧消隐期到来功能。 | 
+| (\*&nbsp;[SnapShot](#snapshot)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[LayerBuffer](_layer_buffer.md)&nbsp;\*buffer) | int32_t<br/>实现抓图功能。 | 
+| (\*&nbsp;[SetLayerVisibleRegion](#setlayervisibleregion)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;num,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | int32_t<br/>设置一个图层的可见区域 | 
+| (\*&nbsp;[SetLayerBuffer](#setlayerbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | int32_t<br/>设置一个层的缓冲区。 | 
+| (\*&nbsp;[InvokeLayerCmd](#invokelayercmd)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;cmd,...) | int32_t<br/>扩展接口 | 
+| (\*&nbsp;[SetLayerCompositionType](#setlayercompositiontype)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[CompositionType](_display.md#compositiontype)&nbsp;type) | int32_t<br/>设置客户端期望的组合类型 | 
+| (\*&nbsp;[SetLayerBlendType](#setlayerblendtype)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[BlendType](_display.md#blendtype)&nbsp;type) | int32_t<br/>设置混合类型 | 
+| (\*&nbsp;[SetLayerColorTransform](#setlayercolortransform)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;const&nbsp;float&nbsp;\*matrix) | int32_t<br/>设置图层当前的颜色转换矩阵。 | 
+| (\*&nbsp;[SetLayerColorDataSpace](#setlayercolordataspace)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[ColorDataSpace](_display.md#colordataspace)&nbsp;colorSpace) | int32_t<br/>设置图层的颜色数据空间。 | 
+| (\*&nbsp;[GetLayerColorDataSpace](#getlayercolordataspace)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[ColorDataSpace](_display.md#colordataspace)&nbsp;\*colorSpace) | int32_t<br/>获取图层当前的颜色数据空间。 | 
+| (\*&nbsp;[SetLayerMetaData](#setlayermetadata)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;uint32_t&nbsp;num,&nbsp;const&nbsp;[HDRMetaData](_h_d_r_meta_data.md)&nbsp;\*metaData) | int32_t<br/>设置图层的HDRmetaData。 | 
+| (\*&nbsp;[SetLayerMetaDataSet](#setlayermetadataset)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[HDRMetadataKey](_display.md#hdrmetadatakey)&nbsp;key,&nbsp;uint32_t&nbsp;num,&nbsp;const&nbsp;uint8_t&nbsp;\*metaData) | int32_t<br/>设置图层的metaData&nbsp;set。 | 
+| (\*&nbsp;[GetSupportedPresentTimestamp](#getsupportedpresenttimestamp)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[PresentTimestampType](_display.md#presenttimestamptype)&nbsp;\*type) | int32_t<br/>获取图层支持的上屏时间戳类型。 | 
+| (\*&nbsp;[GetHwPresentTimestamp](#gethwpresenttimestamp)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;[PresentTimestamp](_present_timestamp.md)&nbsp;\*pts) | int32_t<br/>获取图层的上屏时间戳信息。 | 
+| (\*&nbsp;[SetLayerTunnelHandle](#setlayertunnelhandle)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;ExtDataHandle&nbsp;\*handle) | int32_t<br/>设置图层的tunnel句柄。 | 
+| (\*&nbsp;[GetLayerReleaseFence](#getlayerreleasefence)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;layerId,&nbsp;int32_t&nbsp;\*fence) | int32_t<br/>获取图层的同步栅栏。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### CloseLayer
@@ -71,7 +71,7 @@
 int32_t(* LayerFuncs::CloseLayer) (uint32_t devId, uint32_t layerId)
 ```
 
-**描述：**
+**描述:**
 
 关闭图层。
 
@@ -102,7 +102,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::CreateLayer) (uint32_t devId, const LayerInfo *layerInfo, uint32_t *layerId)
 ```
 
-**描述：**
+**描述:**
 
 打开图层。
 
@@ -134,7 +134,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::DeinitDisplay) (uint32_t devId)
 ```
 
-**描述：**
+**描述:**
 
 取消初始化显示设备。
 
@@ -162,7 +162,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::Flush) (uint32_t devId, uint32_t layerId, LayerBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 刷新图层。
 
@@ -190,7 +190,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetDisplayInfo) (uint32_t devId, DisplayInfo *dispInfo)
 ```
 
-**描述：**
+**描述:**
 
 获取显示设备相关信息。
 
@@ -215,7 +215,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetHwPresentTimestamp) (uint32_t devId, uint32_t layerId, PresentTimestamp *pts)
 ```
 
-**描述：**
+**描述:**
 
 获取图层的上屏时间戳信息。
 
@@ -225,7 +225,7 @@ int32_t(* LayerFuncs::GetHwPresentTimestamp) (uint32_t devId, uint32_t layerId, 
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | layerId | 输入参数，指示需要操作的图层ID。 | 
-| pts | 输出参数，保存图层的上屏时间戳信息,&nbsp;由接口实现层进行写入。 | 
+| pts | 输出参数，保存图层的上屏时间戳信息，由接口实现层进行写入。 | 
 
 **返回:**
 
@@ -241,7 +241,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerAlpha) (uint32_t devId, uint32_t layerId, LayerAlpha *alpha)
 ```
 
-**描述：**
+**描述:**
 
 获取图层alpha值。
 
@@ -271,7 +271,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerBuffer) (uint32_t devId, uint32_t layerId, LayerBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 获取图层的buffer。
 
@@ -303,7 +303,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerColorDataSpace) (uint32_t devId, uint32_t layerId, ColorDataSpace *colorSpace)
 ```
 
-**描述：**
+**描述:**
 
 获取图层当前的颜色数据空间。
 
@@ -329,7 +329,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerColorKey) (uint32_t devId, uint32_t layerId, bool *enable, uint32_t *key)
 ```
 
-**描述：**
+**描述:**
 
 获取图层colorkey。
 
@@ -360,7 +360,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerCompression) (uint32_t devId, uint32_t layerId, int32_t *compType)
 ```
 
-**描述：**
+**描述:**
 
 获取图层压缩功能是否打开。
 
@@ -390,7 +390,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerPalette) (uint32_t devId, uint32_t layerId, uint32_t *palette, uint32_t len)
 ```
 
-**描述：**
+**描述:**
 
 获取图层调色板。
 
@@ -421,7 +421,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerPreMulti) (uint32_t devId, uint32_t layerId, bool *preMul)
 ```
 
-**描述：**
+**描述:**
 
 获取图层预乘标识。
 
@@ -451,7 +451,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerReleaseFence) (uint32_t devId, uint32_t layerId, int32_t *fence)
 ```
 
-**描述：**
+**描述:**
 
 获取图层的同步栅栏。
 
@@ -461,7 +461,7 @@ int32_t(* LayerFuncs::GetLayerReleaseFence) (uint32_t devId, uint32_t layerId, i
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | layerId | 输入参数，指示需要操作的图层ID。 | 
-| fence | 输出参数，保存图层的&nbsp;release&nbsp;fence,&nbsp;由接口实现层进行写入。 | 
+| fence | 输出参数，保存图层的&nbsp;release&nbsp;fence，由接口实现层进行写入。 | 
 
 **返回:**
 
@@ -477,7 +477,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerSize) (uint32_t devId, uint32_t layerId, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 获取图层大小。
 
@@ -507,7 +507,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerVisibleState) (uint32_t devId, uint32_t layerId, bool *visible)
 ```
 
-**描述：**
+**描述:**
 
 获取图层是否可见状态。
 
@@ -537,7 +537,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetLayerZorder) (uint32_t devId, uint32_t layerId, uint32_t *zorder)
 ```
 
-**描述：**
+**描述:**
 
 获取图层Z轴次序。
 
@@ -567,7 +567,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::GetSupportedPresentTimestamp) (uint32_t devId, uint32_t layerId, PresentTimestampType *type)
 ```
 
-**描述：**
+**描述:**
 
 获取图层支持的上屏时间戳类型。
 
@@ -577,7 +577,7 @@ int32_t(* LayerFuncs::GetSupportedPresentTimestamp) (uint32_t devId, uint32_t la
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | layerId | 输入参数，指示需要操作的图层ID。 | 
-| type | 输出参数，保存图层支持的上屏时间戳类型,&nbsp;由接口实现层进行写入。 | 
+| type | 输出参数，保存图层支持的上屏时间戳类型，由接口实现层进行写入。 | 
 
 **返回:**
 
@@ -593,7 +593,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::InitDisplay) (uint32_t devId)
 ```
 
-**描述：**
+**描述:**
 
 初始化显示设备。
 
@@ -621,7 +621,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::InvokeLayerCmd) (uint32_t devId, uint32_t layerId, uint32_t cmd,...)
 ```
 
-**描述：**
+**描述:**
 
 扩展接口
 
@@ -647,7 +647,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerAlpha) (uint32_t devId, uint32_t layerId, LayerAlpha *alpha)
 ```
 
-**描述：**
+**描述:**
 
 设置图层alpha值。
 
@@ -677,7 +677,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerBlendType) (uint32_t devId, uint32_t layerId, BlendType type)
 ```
 
-**描述：**
+**描述:**
 
 设置混合类型
 
@@ -703,7 +703,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerBuffer) (uint32_t devId, uint32_t layerId, const BufferHandle *buffer, int32_t fence)
 ```
 
-**描述：**
+**描述:**
 
 设置一个层的缓冲区。
 
@@ -730,7 +730,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerColorDataSpace) (uint32_t devId, uint32_t layerId, ColorDataSpace colorSpace)
 ```
 
-**描述：**
+**描述:**
 
 设置图层的颜色数据空间。
 
@@ -756,9 +756,9 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerColorKey) (uint32_t devId, uint32_t layerId, bool enable, uint32_t key)
 ```
 
-**描述：**
+**描述:**
 
-设置图层colorkey属性,在图层叠加时使用。
+设置图层colorkey属性，在图层叠加时使用。
 
 **参数:**
 
@@ -787,7 +787,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerColorTransform) (uint32_t devId, uint32_t layerId, const float *matrix)
 ```
 
-**描述：**
+**描述:**
 
 设置图层当前的颜色转换矩阵。
 
@@ -813,9 +813,9 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerCompositionType) (uint32_t devId, uint32_t layerId, CompositionType type)
 ```
 
-**描述：**
+**描述:**
 
-设置客户端期望的组合类型。
+设置客户端期望的组合类型
 
 **参数:**
 
@@ -839,9 +839,9 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerCompression) (uint32_t devId, uint32_t layerId, int32_t compType)
 ```
 
-**描述：**
+**描述:**
 
-设置图层压缩功能。
+设置图层压缩功能
 
 在特定场景下，需要对图像数据进行压缩，可设置启动或关闭图层压缩功能。
 
@@ -871,7 +871,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerCrop) (uint32_t devId, uint32_t layerId, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置图层裁剪区域。
 
@@ -897,7 +897,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerDirtyRegion) (uint32_t devId, uint32_t layerId, IRect *region)
 ```
 
-**描述：**
+**描述:**
 
 设置图层刷新区域。
 
@@ -925,7 +925,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerMetaData) (uint32_t devId, uint32_t layerId, uint32_t num, const HDRMetaData *metaData)
 ```
 
-**描述：**
+**描述:**
 
 设置图层的HDRmetaData。
 
@@ -952,7 +952,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerMetaDataSet) (uint32_t devId, uint32_t layerId, HDRMetadataKey key, uint32_t num, const uint8_t *metaData)
 ```
 
-**描述：**
+**描述:**
 
 设置图层的metaData set。
 
@@ -962,9 +962,9 @@ int32_t(* LayerFuncs::SetLayerMetaDataSet) (uint32_t devId, uint32_t layerId, HD
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | layerId | 输入参数，指示需要操作的图层ID。 | 
-| key | 输入参数，表示需要设置的[HDRMetadataKey](_display.md#hdrmetadatakey)。 | 
+| key | 输入参数，表示需要设置的&nbsp;HDRMetadataKey。 | 
 | num | 输入参数，metadata&nbsp;数组个数。 | 
-| metaData | 输入参数，表示需要设置的&nbsp;metadata&nbsp;数组首地址,&nbsp;数据类型为uint8_t。 | 
+| metaData | 输入参数，表示需要设置的&nbsp;metadata&nbsp;数组首地址，数据类型为uint8_t。 | 
 
 **返回:**
 
@@ -980,7 +980,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerPalette) (uint32_t devId, uint32_t layerId, uint32_t *palette, uint32_t len)
 ```
 
-**描述：**
+**描述:**
 
 设置图层调色板。
 
@@ -1011,7 +1011,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerPreMulti) (uint32_t devId, uint32_t layerId, bool preMul)
 ```
 
-**描述：**
+**描述:**
 
 设置图层预乘。
 
@@ -1041,7 +1041,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerSize) (uint32_t devId, uint32_t layerId, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置图层大小。
 
@@ -1071,7 +1071,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerTunnelHandle) (uint32_t devId, uint32_t layerId, ExtDataHandle *handle)
 ```
 
-**描述：**
+**描述:**
 
 设置图层的tunnel句柄。
 
@@ -1097,7 +1097,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerVisible) (uint32_t devId, uint32_t layerId, bool visible)
 ```
 
-**描述：**
+**描述:**
 
 设置图层是否可见。
 
@@ -1129,7 +1129,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerVisibleRegion) (uint32_t devId, uint32_t layerId, uint32_t num, IRect *rect)
 ```
 
-**描述：**
+**描述:**
 
 设置一个图层的可见区域
 
@@ -1156,7 +1156,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetLayerZorder) (uint32_t devId, uint32_t layerId, uint32_t zorder)
 ```
 
-**描述：**
+**描述:**
 
 设置图层Z轴次序。
 
@@ -1188,7 +1188,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SetTransformMode) (uint32_t devId, uint32_t layerId, TransformType type)
 ```
 
-**描述：**
+**描述:**
 
 设置图层变换模式，根据不同的场景设置图层的旋转、缩放、移位等。
 
@@ -1214,13 +1214,11 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::SnapShot) (uint32_t devId, LayerBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 实现抓图功能。
 
 本函数将显示设备上的图像数据截图保存到buffer中，用于调试、应用截图等场景。
-
-otherwise.
 
 **参数:**
 
@@ -1243,7 +1241,7 @@ DISPLAY_SUCCESS 表示执行成功。
 int32_t(* LayerFuncs::WaitForVBlank) (uint32_t devId, uint32_t layerId, int32_t timeOut)
 ```
 
-**描述：**
+**描述:**
 
 实现等待帧消隐期到来功能。
 

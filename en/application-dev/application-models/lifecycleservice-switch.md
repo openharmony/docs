@@ -1,7 +1,7 @@
 # LifecycleService Switching
 
 
-  | API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model| 
+  | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
 | -------- | -------- | -------- |
 | onStart?(): void; | \@ohos.app.ability.ServiceExtensionAbility.d.ts | [onCreate(want: Want): void;](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityoncreate) |
 | onCommand?(want: Want, startId: number): void; | \@ohos.app.ability.ServiceExtensionAbility.d.ts | [onRequest(want: Want, startId: number): void;](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) |  |

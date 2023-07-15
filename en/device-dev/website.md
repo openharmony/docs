@@ -93,40 +93,62 @@
     - [Porting Verification](porting/porting-minichip-verification.md)
 
     - [FAQs](porting/porting-chip-faqs.md)
-- Small System SoC Porting Guide
+  - Small System SoC Porting Guide
   
-  - Porting Preparation
+    - Porting Preparation
   
-    - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+      - [Before You Start](porting/porting-smallchip-prepare-needs.md)
   
-    - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+      - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
   
-  - Kernel Porting
+    - Kernel Porting
   
-    - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+      - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
   
-    - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+      - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
   
-  - Driver Porting
+    - Driver Porting
   
-    - [Porting Overview](porting/porting-smallchip-driver-overview.md)
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
   
-    - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+      - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
   
-    - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+      - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+
   - Standard System SoC Porting Guide
 
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
 
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
--  Third-Party Library Porting Guide for Mini and Small Systems
+
+  - Third-Party Library Porting Guide for Mini and Small Systems
   
-  - [Overview](porting/porting-thirdparty-overview.md)
-  - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
-  - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
-- Mini System SoC Porting Cases
-  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
-  - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+    - [Overview](porting/porting-thirdparty-overview.md)
+
+    - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+
+    - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+
+  - Mini System SoC Porting Cases
+
+      - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+      - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
+      - [IoT Solution - Chipsea CST85 Chip Porting Case](porting/porting-cst85f01-combo-demo.md)
+
+      - [Mini System STM32F407 SoC Porting Case](porting/porting-stm32f407-on-minisystem-eth.md)
+
+      - [Combo Solution – W800 Chip Porting Case](porting/porting-w800-combo-demo.md)
+
+  - Small System SoC Porting Cases
+
+      - [Small System STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
+
+  - Standard System SoC Porting Cases
+
+      - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md)
+      - [Standard System Solution – Rockchip RK3566 Porting Case](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+      - [Standard System Solution – Yangfan Porting Case](porting/porting-yangfan-on_standard-demo.md)
 - Subsystem Development
 
   -  Kernel
@@ -155,6 +177,7 @@
          - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
          - [Trace](kernel/kernel-mini-memory-trace.md)
          - [LMS](kernel/kernel-mini-memory-lms.md)
+         - [Shell](kernel/kernel-mini-debug-shell.md)
        - Appendix
          - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
          - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
@@ -190,10 +213,12 @@
          - [Dynamic Loading and Linking](kernel/kernel-small-bundles-linking.md)
          - [Virtual Dynamic Shared Object](kernel/kernel-small-bundles-share.md)
          - [LiteIPC](kernel/kernel-small-bundles-ipc.md)
+         - [Container](kernel/kernel-small-bundles-container.md)
          - File Systems
            - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
            - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
            - [File System Adaptation](kernel/kernel-small-bundles-fs-new.md)
+           - [plimits](kernel/kernel-small-plimits.md)
        - Debugging and Tools
          - Shell
            - [Introduction to the Shell](kernel/kernel-small-debug-shell-overview.md)
@@ -292,13 +317,7 @@
            - [Lightweight CPU Isolation](kernel/kernel-standard-sched-cpuisolation.md)
   -  Drivers
      - [Driver Overview](driver/driver-overview-foundation.md)
-     - HDF
-       - [HDF Overview](driver/driver-hdf-overview.md)
-       - [Driver Development](driver/driver-hdf-development.md)
-       - [Driver Service Management](driver/driver-hdf-servicemanage.md)
-       - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
-       - [Driver Configuration Management](driver/driver-hdf-manage.md)
-       - [HDF Development Example](driver/driver-hdf-sample.md)
+     - [Configuration Management](driver/driver-hdf-manage.md)
      - Platform Driver Development
        - [ADC](driver/driver-platform-adc-develop.md)
        - [DAC](driver/driver-platform-dac-develop.md)
@@ -359,6 +378,7 @@
        - [Building a Product](subsystems/subsys-build-product.md)
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
+       - [Component Building Specifications](subsystems/subsys-build-component-building-rules.md)
        - [Building a Module](subsystems/subsys-build-module.md)
        - [Building a Chipset Solution](subsystems/subsys-build-chip_solution.md)
        - [Configuring Features](subsystems/subsys-build-feature.md)
@@ -369,6 +389,7 @@
        - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
+  -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
   -  [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
@@ -387,22 +408,13 @@
        - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
        - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
   -  [Utils Development](subsystems/subsys-utils-guide.md)  
-  -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
-  -  Data Management
-     - RDB
-       - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
-       - [RDB Development](subsystems/subsys-data-relational-database-guide.md)
-     - Lightweight Data Store
-       - [Lightweight Data Store Overview](subsystems/subsys-data-storage-overview.md)
-       - [Lightweight Data Store Development](subsystems/subsys-data-storage-guide.md)
+  - AI
+     - [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsystems/subsys-ai-nnrt-guide.md)
   -  Sensor
      - [Sensor Overview](subsystems/subsys-sensor-overview.md)
      - [Sensor Usage Guidelines](subsystems/subsys-sensor-guide.md)
      - [Sensor Usage Example](subsystems/subsys-sensor-demo.md)
-  -  USB
-     - [USB Overview](subsystems/subsys-usbservice-overview.md)
-     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
-     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   -  Application Framework
      - [Overview](subsystems/subsys-application-framework-overview.md)
      - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
@@ -430,6 +442,10 @@
        - [Parameter Management](subsystems/subsys-boot-init-sysparam.md)
        - [Sandbox Management](subsystems/subsys-boot-init-sandbox.md)
        - [Plug-in Management](subsystems/subsys-boot-init-plugin.md)
+       - [omponent-based Startup](subsystems/subsys-boot-init-sub-unit.md)
+       - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
+       - [Seccomp Policy Development](subsystems/subsys-boot-init-seccomp.md)
+       - [DeviceInfo Adaptation](subsystems/subsys-boot-init-deviceInfo.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
      - [FAQs](subsystems/subsys-boot-faqs.md)
@@ -452,7 +468,30 @@
      - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
      - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview Development](subsystems/subsys-dfx-hiview.md)
-  
+  -  Power
+     - Display Management
+       - [System Brightness Customization](subsystems/subsys-power-brightness-customization.md)
+     - Battery Management
+       - [Battery Level and LED Color Mapping Customization](subsystems/subsys-power-level-LED-color.md)
+       - [Battery Temperature Protection Customization](subsystems/subsys-power-temperature-protection.md)
+       - [Battery Level Customization](subsystems/subsys-power-battery-level-customization.md)
+       - [Charging Current and Voltage Limit Customization](subsystems/subsys-power-charge-current-voltage-limit.md)
+       - [Charging Type Customization](subsystems/subsys-power-charge-type-customization.md)
+       - [Power-off Charging Animation Customization](subsystems/subsys-power-poweroff-charge-animation.md)
+     - Power Consumption Statistics
+       - [Power Consumption Statistics Customization](subsystems/subsys-power-stats-power-average-customization.md)
+     - Thermal Management
+       - [Charging Idle State Customization](subsystems/subsys-thermal_charging_idle_state.md)
+       - [Thermal Control Customization](subsystems/subsys-thermal_control.md)
+       - [Thermal Detection Customization](subsystems/subsys-thermal_detection.md)
+       - [Thermal Level Customization](subsystems/subsys-thermal_level.md)
+       - [Thermal Log Customization](subsystems/subsys-thermal_log.md)
+       - [Thermal Policy Customization](subsystems/subsys-thermal_policy.md)
+       - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)
+     - Power Management
+       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)
+       - [Default Hibernation Behavior Customization](subsystems/subsys-power-default-sleep-behavior-customization.md) 
+       - [Wakeup Source Customization](subsystems/subsys-power-wakeup-source-customization.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -491,12 +530,14 @@
 
 
 - Debugging
+  - [Development Self-Test Framework User Guide](device-test/developer_test.md)
+  - [xDevice User Guide](device-test/xdevice.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf](subsystems/subsys-toolchain-hiperf.md)
+- [XTS Test Case Development Guide](device-test/xts.md)
 - Tools
-
   - [Tool Overview](get-code/gettools-overview.md)
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
@@ -513,5 +554,6 @@
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
     - [System Applications](faqs/faqs-system-applications.md)
+- [Disclaimer Notice](disclaimer.md)
   
    

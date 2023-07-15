@@ -39,15 +39,6 @@ Creates a **DeviceManager** instance.
 | bundleName | string                                               | Yes  | Bundle name of the application.                                 |
 | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created.|
 
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
-
 **Example**
 
   ```js
@@ -73,12 +64,12 @@ Defines device information.
 
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique identifier of a device.|
+| deviceId               | string                    | Yes   | Unique identifier of the device.|
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | [DeviceType](#devicetype) | Yes   | Device type.   |
 | networkId<sup>8+</sup> | string                    | Yes   | Network ID of the device. |
 | range<sup>9+</sup>     | number                    | Yes   | Distance between the device (discovered device) and the device that initiates device discovery. |
-| authForm<sup>10+</sup> | [AuthForm](#authform)     | Yes   | Authentication type of the device. |
+| authForm<sup>10+</sup> | [AuthForm](#authform10)     | Yes   | Authentication type of the device. |
 
 ## DeviceType
 
@@ -199,7 +190,7 @@ Defines the authentication parameters.
 | Name       | Type                  | Mandatory  | Description        |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field.|
+| extraInfo | {[key:string] : any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## AuthInfo
 
@@ -211,7 +202,7 @@ Defines authentication information.
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
 | token     | number               | Yes   | Authentication token.  |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field.|
+| extraInfo | {[key:string] : any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## PublishInfo<sup>9+</sup>
 
@@ -302,14 +293,6 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
   | -------- | ---------------------------------------- | ---- | --------------------- |
   | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
 
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-
 **Example**
 
   ```js
@@ -338,7 +321,7 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -404,14 +387,6 @@ Obtains local device information. This API uses an asynchronous callback to retu
   | -------- | ---------------------------------------- | ---- | --------- |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
 
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-
 **Example**
 
   ```js
@@ -440,7 +415,7 @@ Obtains local device information. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -460,11 +435,76 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   });
   ```
 
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
+
+Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device.|
+
+**Example**
+
+  ```js
+  try {
+    // Network ID of the device, which can be obtained from the trusted device list
+    let networkId = "xxxxxxx"
+    dmInstance.getDeviceInfo(networkId, (err, data) => {
+    if (err) {
+      console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+      return;
+    }
+      console.log('get device info: ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
+
+Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name  | Type                                    | Mandatory| Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
+  
+**Return value**
+
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+  // Network ID of the device, which can be obtained from the trusted device list
+  let networkId = "xxxxxxx"
+  dmInstance.getDeviceInfo(networkId).then((data) => {
+    console.log('get device info: ' + JSON.stringify(data));
+  }).catch((err) => {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  });
+  ```
+
 ### startDeviceDiscovery<sup>8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
-Starts to discover peripheral devices.
+Starts to discover peripheral devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -491,14 +531,14 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   var subscribeInfo = {
       "subscribeId": subscribeId,
       "mode": 0xAA, // Active discovery
-      "medium": 0, // Automatic. Multiple media can be used for device discovery.
-      "freq": 2, // High frequency
+      "medium": 0,  // Automatic. Multiple media can be used for device discovery.
+      "freq": 2,    // High frequency
       "isSameAccount": false,
       "isWakeRemote": false,
       "capability": 1
   };
   try {
-    dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is invoked to notify the application when a device is discovered.
+    dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is called to notify the application when a device is discovered.
   } catch (err) {
     console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -508,7 +548,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
-Starts to discover peripheral devices and filters discovered devices.
+Starts to discover peripheral devices and filters discovered devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -517,7 +557,7 @@ Starts to discover peripheral devices and filters discovered devices.
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-  | filterOptions | string                          | No  | Options for filtering discovered devices.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, indicating that discovery of offline devices.|
 
 **Error codes**
 
@@ -536,8 +576,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   var subscribeInfo = {
       "subscribeId": subscribeId,
       "mode": 0xAA, // Active discovery
-      "medium": 0, // Automatic. Multiple media can be used for device discovery.
-      "freq": 2, // High frequency
+      "medium": 0,  // Automatic. Multiple media can be used for device discovery.
+      "freq": 2,    // High frequency
       "isSameAccount": false,
       "isWakeRemote": false,
       "capability": 1
@@ -596,7 +636,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-Publishes device information for discovery purposes.
+Publishes device information for discovery purposes. The publish process automatically stops when 2 minutes have elapsed.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -604,7 +644,7 @@ Publishes device information for discovery purposes.
 
   | Name         | Type                       | Mandatory| Description   |
   | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
+  | publishInfo   | [PublishInfo](#publishinfo9)     | Yes  | Device information to publish.|
 
 **Error codes**
 
@@ -623,7 +663,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   var publishInfo = {
       "publishId": publishId,
       "mode": 0xAA, // Active discovery
-      "freq": 2, // High frequency
+      "freq": 2,    // High frequency
       "ranging": true  // The device supports reporting the distance to the discovery initiator.
   };
   try {
@@ -681,16 +721,7 @@ Authenticates a device.
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
   | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result.|
-
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-| 11600103 | Authentication invalid.                                         |
+  | callback   | AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt; | Yes   | Callback used to return the authentication result.|
 
 **Example**
 
@@ -779,15 +810,7 @@ Verifies authentication information.
   | Name      | Type                                    | Mandatory  | Description     |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result.|
-
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
+  | callback | AsyncCallback&lt;{deviceId: string, level: number}&gt; | Yes   | Callback used to return the verification result.|
 
 **Example**
 
@@ -867,11 +890,11 @@ Obtains the registration information of the credential.
     "userId" : "123"
   }
   try {
-    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info.push("requestCredentialRegisterInfo result: data is null");
+          console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -918,11 +941,11 @@ Imports credential information.
     ]
   }
   try {
-    dmClass.importCredential(credentialInfo, (data) => {
+    dmInstance.importCredential(credentialInfo, (data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("importCredential result: data is null");
+          console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -954,11 +977,11 @@ Deletes credential information.
     "userId" : "123"
   }
   try {
-    dmClass.deleteCredential(queryInfo, (data) => {
+    dmInstance.deleteCredential(queryInfo, (data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("deleteCredential result: data is null");
+          console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {
@@ -979,7 +1002,7 @@ Subscribes to UI status changes.
   | Name     | Type                            | Mandatory| Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
   | type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates a UI status change event.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status.       |
+  | callback | Callback&lt;{ param: string}&gt; | Yes | Callback used to return the UI status.       |
 
 **Example**
 
@@ -1009,7 +1032,7 @@ Unsubscribes from UI status changes.
   | Name     | Type                             | Mandatory| Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
   | type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates a UI status change event.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback used to return the UI status.|
+  | callback | Callback&lt;{ param: string}&gt; | No  | Callback used to return the UI status.|
 
 **Example**
 
@@ -1088,7 +1111,7 @@ Subscribes to device discovery events.
   | Name      | Type                                    | Mandatory  | Description                        |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used for device discovery.              |
+  | callback | Callback&lt;{ subscribeId: number, device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback used for device discovery.              |
 
 **Example**
 
@@ -1115,7 +1138,7 @@ Unsubscribes from device discovery events.
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback used to return the device information and state.|
+  | callback | Callback&lt;{ subscribeId: number, device: [DeviceInfo](#deviceinfo) }&gt; | No   | Callback used to return the device information and state.|
 
 **Example**
 
@@ -1142,7 +1165,7 @@ Subscribes to device discovery failures.
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.                |
+  | callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.                |
 
 **Example**
 
@@ -1169,7 +1192,7 @@ Unsubscribes from device discovery failures.
   | Name      | Type                                    | Mandatory  | Description               |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback used for the device discovery failure.|
+  | callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | No   | Callback used for the device discovery failure.|
 
 **Example**
 
@@ -1196,7 +1219,7 @@ Subscribes to device information publication success events.
   | Name    | Type                                | Mandatory| Description                      |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback used to return the publish ID.              |
+  | callback | Callback&lt;{ publishId: number }&gt;    | Yes  | Callback used to return the publish ID.              |
 
 
 **Example**
@@ -1224,7 +1247,7 @@ Unsubscribes from device information publication success events.
   | Name    | Type                                | Mandatory| Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.                |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback used to return the publish ID.|
+  | callback | Callback&lt;{ publishId: number }&gt;    | No  | Callback used to return the publish ID.|
 
 **Example**
 
@@ -1251,7 +1274,7 @@ Subscribes to device information publication failures.
   | Name    | Type                                             | Mandatory| Description                            |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
   | type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.|
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used for the publication failure.                |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | Yes  | Callback used for the publication failure.                |
 
 **Example**
 
@@ -1278,7 +1301,7 @@ Unsubscribes from device information publication failures.
   | Name    | Type                                             | Mandatory| Description               |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
   | type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.    |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback used for the device discovery failure.|
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | No  | Callback used for the device discovery failure.|
 
 **Example**
 
@@ -1305,7 +1328,7 @@ Subscribes to dead events of the **DeviceManager** service.
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+  | callback | () =&gt; void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
 
 **Example**
 
@@ -1332,7 +1355,7 @@ Unsubscribes from dead events of the **DeviceManager** service.
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
+  | callback | () =&gt; void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
 
 **Example**
 

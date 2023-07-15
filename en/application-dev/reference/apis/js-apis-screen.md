@@ -224,6 +224,89 @@ try {
 };
 ```
 
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Stops the expanded mode. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
+| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the expanded screens.                                              |
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the expanded mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping expand screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+Stops the expanded mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------- | --- | --------------- |
+| expandScreen | Array&lt;number&gt; | Yes  | IDs of the expanded screens.|
+
+**Return value**
+
+| Type| Description|
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds).then(() => {
+      console.info('Succeeded in stopping expand screens.');
+    }).catch((err) => {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+};
+```
+
 ## screen.makeMirror
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -308,6 +391,89 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Stops screen mirroring. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
+| mirrorScreen | Array&lt;number&gt;         | Yes  | IDs of secondary screens.                                              |
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If screen mirroring is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping mirror screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+Stops screen mirroring. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------- | --- | --------------- |
+| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens.|
+
+**Return value**
+
+| Type| Description|
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds).then(() => {
+      console.info('Succeeded in stopping mirror screens.');
+    }).catch((err) => {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -744,7 +910,7 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 | id                | number                                         | Yes  | No  | Screen ID.            |
 | parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs.    |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.  |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode.|
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.            |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.            |
 
@@ -836,7 +1002,7 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | Yes  | Index of the mode to set.                                                  |
+| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the active mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -874,7 +1040,7 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 | Name   | Type  | Mandatory| Description      |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | Yes  | Index of the mode to set.|
+| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 
 **Return value**
 

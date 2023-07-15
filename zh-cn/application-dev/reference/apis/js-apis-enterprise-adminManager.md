@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
 
 ## 导入模块
 
@@ -16,7 +18,7 @@ import adminManager from '@ohos.enterprise.adminManager';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
+激活当前用户下的指定设备管理员应用，使用callback形式返回是否激活成功。其中超级管理员应用只能在管理员用户下被激活。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -28,10 +30,10 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 | 参数名            | 类型                                  | 必填   | 说明                 |
 | -------------- | ----------------------------------- | ---- | ------------------ |
-| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用            |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息       |
-| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型         |
-| callback       | AsyncCallback\<void>                | 是    | callback方式返回是否激活成功 |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。            |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息。      |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型。         |
+| callback       | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -47,19 +49,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -67,7 +70,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
-以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
+激活指定用户（通过userId指定）下的指定设备管理员应用，使用callback形式返回是否激活成功。其中超级管理员应用只能在管理员用户下被激活。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -79,11 +82,11 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
-| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                      |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息。                 |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型。                   |
 | userId         | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| callback       | AsyncCallback\<void>                | 是    | callback方式返回是否激活成功           |
+| callback       | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**:
 
@@ -99,19 +102,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -119,7 +123,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
-以异步方法根据给定的包名和类名激活设备管理员应用，使用Promise形式返回是否激活成功。
+如果调用接口时传入了可选参数userId，则激活指定用户下的指定设备管理员应用，否则激活当前用户下的指定设备管理员应用，使用Promise形式返回是否激活成功。其中超级管理员应用只能在管理员用户下被激活。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -131,16 +135,16 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
-| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                      |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息。                 |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型。                   |
 | userId         | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | Promise形式返回是否激活成功 |
+| Promise\<void>    | 无返回结果的Promise对象。当激活设备管理员应用失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -156,16 +160,16 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100)
-.catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch((err) => {
+  console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -173,7 +177,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
-以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
+将当前用户下的指定普通管理员应用去激活，使用callback形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -185,8 +189,8 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                  |
 | -------- | ----------------------------------- | ---- | ------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用           |
-| callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功 |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用。           |
+| callback | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**:
 
@@ -200,15 +204,16 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -216,7 +221,7 @@ adminManager.disableAdmin(wantTemp, error => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
+将指定用户（通过userId指定）下的指定普通管理员应用去激活，使用callback形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -228,9 +233,9 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用                    |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用。                    |
 | userId   | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| callback | AsyncCallback\<void>                | 是    | callback方式返回是否去激活成功          |
+| callback | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。        |
 
 **错误码**:
 
@@ -244,15 +249,16 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, 100, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -260,7 +266,7 @@ adminManager.disableAdmin(wantTemp, 100, error => {
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Promise形式返回是否去激活成功。
+如果调用接口时传入了可选参数userId，则将指定用户下的指定普通管理员应用去激活，否则将当前用户下的指定普通管理员应用去激活，使用Promise形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -272,14 +278,14 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用                    |
+| admin  | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理员应用。                    |
 | userId | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | Promise形式返回是否激活成功 |
+| Promise\<void>    | 无返回结果的Promise对象。当去激活普通管理员应用失败时会抛出错误对象。 |
 
 **错误码**:
 
@@ -293,11 +299,12 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.disableAdmin(wantTemp, 100).catch((err) => {
+  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -305,7 +312,7 @@ adminManager.disableAdmin(wantTemp, 100).catch(error => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-以异步方法根据给定的包名将设备超级管理员应用去激活，使用Callback形式返回是否去激活成功。
+根据bundleName将管理员用户下的超级管理员应用去激活，使用callback形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -317,8 +324,8 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                      | 必填   | 说明                  |
 | ---------- | ----------------------- | ---- | ------------------- |
-| bundleName | String                  | 是    | 超级设备管理员应用的包名        |
-| callback   | AsyncCallback\<void>    | 是    | callback方式返回是否去激活成功 |
+| bundleName | String                  | 是    | 超级设备管理员应用的包名。        |
+| callback   | AsyncCallback\<void>    | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**:
 
@@ -331,13 +338,14 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableSuperAdmin success");
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling super admin');
 });
 ```
 
@@ -345,7 +353,7 @@ adminManager.disableSuperAdmin(bundleName, error => {
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
-以异步方法根据给定的包名将设备超级管理员应用去激活，使用Promise形式返回是否去激活成功。
+根据bundleName将管理员用户下的超级管理员应用去激活，使用Promise形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -357,13 +365,13 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 | 参数名        | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
-| bundleName | String | 是    | 超级设备管理员应用的包名 |
+| bundleName | String | 是    | 超级设备管理员应用的包名。 |
 
 **返回值：**
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | Promise形式返回是否激活成功 |
+| Promise\<void>    | 无返回结果的Promise对象。当去激活超级管理员应用失败时会抛出错误对象。 |
 
 **错误码**:
 
@@ -376,9 +384,10 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName).catch(error => {
-    console.log("error occurs" + error);
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName).catch((err) => {
+  console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -386,7 +395,7 @@ adminManager.disableSuperAdmin(bundleName).catch(error => {
 
 isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
+查询当前用户下的指定设备管理员应用是否被激活，使用callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -396,22 +405,23 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                   |
 | -------- | ----------------------------------- | ---- | -------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用              |
-| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态 |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。             |
+| callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下的指定设备管理员应用被激活，false表示当前用户下的指定设备管理员应用未激活，否则err为错误对象。 |
 
 **示例**：
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -419,7 +429,7 @@ adminManager.isAdminEnabled(wantTemp, (error, result) => {
 
 isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
+查询指定用户（通过userId指定）下的指定设备管理员应用是否被激活，使用callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -429,23 +439,24 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
+| admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                      |
 | userId   | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态         |
+| callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下的指定设备管理员应用被激活，false表示当前用户下的指定设备管理员应用未激活，否则err为错误对象。      |
 
 **示例**：
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -453,7 +464,7 @@ adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
 
 isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
-以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
+如果调用接口时传入参数userId，则查询指定用户下的设备管理员应用是否被激活，否则判断当前用户下的设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -463,26 +474,27 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                      |
+| admin  | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                      |
 | userId | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
 | 类型               | 说明                |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise形式返回是否处于激活状态 |
+| Promise\<boolean> | Promise对象, 返回true表示指定的管理员应用被激活，返回false表示指定的管理员应用未激活。|
 
 **示例**：
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -490,7 +502,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
+根据bundleName查询管理员用户下的超级管理员应用是否被激活，使用callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -500,19 +512,20 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 | 参数名        | 类型                      | 必填   | 说明                   |
 | ---------- | ----------------------- | ---- | -------------------- |
-| bundleName | String                  | 是    | 设备管理员应用              |
-| callback   | AsyncCallback\<boolean> | 是    | callback方式返回是否处于激活状态 |
+| bundleName | String                  | 是    | 设备管理员应用。              |
+| callback   | AsyncCallback\<boolean> | 是    | 回调函数，当接口调用成功，err为null，data为boolean类型值，true表示当前用户下的指定设备管理员应用被激活，false表示当前用户下的指定设备管理员应用未激活，否则err为错误对象。 |
 
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.isSuperAdmin(bundleName, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+let bundleName = 'com.example.myapplication';
+
+adminManager.isSuperAdmin(bundleName, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
 });
 ```
 
@@ -520,7 +533,7 @@ adminManager.isSuperAdmin(bundleName, (error, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
+根据bundleName查询管理员用户下的超级管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -530,22 +543,23 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 | 参数名        | 类型     | 必填   | 说明        |
 | ---------- | ------ | ---- | --------- |
-| bundleName | String | 是    | 超级设备管理员应用 |
+| bundleName | String | 是    | 超级设备管理员应用。 |
 
 **返回值：**
 
 | 错误码ID           | 错误信息               |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise形式返回是否处于激活状态 |
+| Promise\<boolean> | Promise对象, 返回true表示指定的超级管理员应用被激活，返回false表示指定的超级管理员应用未激活。 |
 
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
+
 adminManager.isSuperAdmin(bundleName).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -553,7 +567,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
 
-设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
+设置指定设备管理员应用的企业信息，使用callback形式返回是否设置成功。
 
 **需要权限：** ohos.permission.SET_ENTERPRISE_INFO
 
@@ -565,9 +579,9 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 | 参数名            | 类型                                  | 必填   | 说明                     |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用                |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息           |
-| callback       | AsyncCallback\<void>;               | 是    | callback方式返回是否设置企业信息成功 |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息。           |
+| callback       | AsyncCallback\<void>;               | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -581,19 +595,20 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("setEnterpriseInfo success");
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
+  if (err) {
+    console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting enterprise info');
 });
 ```
 
@@ -601,7 +616,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
-设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
+设置指定设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
 
 **需要权限：** ohos.permission.SET_ENTERPRISE_INFO
 
@@ -620,7 +635,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 | 类型                | 说明                    |
 | ----------------- | --------------------- |
-| Promise\<void>    | Promise方式返回是否设置企业信息成功 |
+| Promise\<void>    | 无返回结果的Promise对象。当设置设备管理员应用企业信息失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -634,15 +649,16 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err) => {
+  console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -650,7 +666,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
 
 getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): void
 
-获取设备管理员应用的企业信息，使用callback形式返回设备管理员应用的企业信息。
+获取指定设备管理员应用的企业信息，使用callback形式返回设备管理员应用的企业信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -661,7 +677,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
+| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | 回调函数，当接口调用成功，err为null，data为设备管理员应用的企业信息，否则err为错误对象。 |
 
 **错误码**：
 
@@ -675,16 +691,16 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log(result.name);
-    console.log(result.description);
+
+adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
 });
 ```
 
@@ -692,7 +708,7 @@ adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
 
 getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
-获取设备管理员应用的企业信息，使用Promise形式返回设备管理员应用的企业信息。
+获取指定设备管理员应用的企业信息，使用Promise形式返回设备管理员应用的企业信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -708,7 +724,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise方式返回设备管理员应用的企业信息对象 |
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise对象，返回指定设备管理员应用的企业信息。 |
 
 **错误码**：
 
@@ -722,14 +738,14 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
-    console.log(result.name);
-    console.log(result.description);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
+}).catch((err) => {
+  console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -737,7 +753,7 @@ adminManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-订阅系统管理事件。使用callback异步回调。
+指定设备管理员应用订阅系统管理事件。使用callback形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -751,7 +767,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件订阅成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -766,14 +782,17 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in subscribe managed event');
 });
 ```
 
@@ -781,7 +800,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-订阅系统管理事件。使用Promise异步回调。
+指定设备管理员应用订阅系统管理事件。使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -800,7 +819,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理员应用订阅系统事件失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -815,13 +834,14 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -829,7 +849,7 @@ adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-取消订阅系统管理事件。使用callback异步回调。
+指定设备管理员应用取消订阅系统管理事件。使用callback形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -843,7 +863,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件取消订阅成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -858,14 +878,17 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unsubscribe managed event');
 });
 ```
 
@@ -873,7 +896,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-取消订阅系统管理事件。使用callback异步回调。
+指定设备管理员应用取消订阅系统管理事件。使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -892,7 +915,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理员应用取消订阅系统管理时间失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -907,13 +930,14 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -925,10 +949,10 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 **系统API**: 此接口为系统接口。
 
-| 名称         | 类型     | 可读 | 可写   | 说明                            |
-| ----------- | --------| ---- | ----- | ------------------------------- |
-| name        | string   | 是   | 否    | 表示设备管理员应用所属企业的名称。 |
-| description | string   | 是   | 否    | 表示设备管理员应用所属企业的描述。 |
+| 名称         | 类型     | 必填 | 说明                            |
+| ----------- | --------| ---- | ------------------------------- |
+| name        | string   | 是   | 表示设备管理员应用所属企业的名称。 |
+| description | string   | 是   | 表示设备管理员应用所属企业的描述。 |
 
 ## AdminType
 
@@ -955,6 +979,6 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
-| MANAGED_EVENT_APP_START | 2    | 应用启动事件。 |
-| MANAGED_EVENT_APP_STOP | 3  | 应用停止事件。 |
+| MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | 应用启动事件。 |
+| MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | 应用停止事件。 |
 

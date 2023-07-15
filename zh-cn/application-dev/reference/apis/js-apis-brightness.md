@@ -36,7 +36,7 @@ setValue(value: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4700101 | 连接服务失败。 |
+| 4700101 | If connecting to the service failed. |
 
 **示例：**
 

@@ -10,11 +10,21 @@
     - [应用及文件系统空间统计](app-fs-space-statistics.md)
   - [向应用沙箱推送文件](send-file-to-app-sandbox.md)
   - [应用文件分享](share-app-file.md)
+  - 应用数据备份恢复
+    - [应用数据备份恢复概述](app-file-backup-overview.md)
+    - [应用接入数据备份恢复](app-file-backup-extension.md)
+    - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
+  - 相册管理（photoAccessHelper）
+    - [相册管理模块开发概述](photoAccessHelper-overview.md)
+    - [媒体资源（图片、视频）相关](photoAccessHelper-resource-guidelines.md)
+    - [用户相册相关](photoAccessHelper-userAlbum-guidelines.md)
+    - [系统相册相关](photoAccessHelper-systemAlbum-guidelines.md)
+    - [媒体资源变更通知相关](photoAccessHelper-notify-guidelines.md)
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
 - 分布式文件系统

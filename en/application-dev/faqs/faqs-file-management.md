@@ -1,107 +1,112 @@
 # File Management Development
 
-## Does fileio.rmdir Delete Files Recursively?
+## How do I obtain the path of system screenshots?
 
-Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
-Yes. **fileio.rmdir** deletes files recursively.
+**Solution**
 
-## How Do I Create a File That Does Not Exist?
+The screenshots are stored in **/storage/media/100/local/files/Pictures/Screenshots/**.
 
-Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+## How do I change the permissions on a directory to read/write on a device?
 
-You can use **fileio.open(filePath, 0o100, 0o666)**. The second parameter **0o100** means to create a file if it does not exist. The third parameter **mode** must also be specified.
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
-## What If "call fail callback fail, code: 202, data: json arguments illegal" Is Displayed?
+**Symptom**
 
-Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+When the hdc command is used to send a file to a device, "permission denied" is displayed.
 
-When the **fileio** module is used to copy files, the file path cannot start with "file:///".
+**Solution**
 
-## How Do I Read Files Outside the App Sandbox?
+Run the **hdc shell mount -o remount,rw /** command to grant the read/write permissions.
 
-Applicable to: OpenHarmony SDK 3.2.6.5, stage model of API version 9
+## What is the best way to create a file if the file to open does not exist?
 
-If the input parameter of the **fileio** API is **path**, only the sandbox directory of the current app obtained from the context can be accessed. To access data in other directories such as the user data, images, and videos, open the file as the data owner and operate with the file descriptor (FD) returned.
+Applicable to: OpenHarmony 3.2 (API version 9)
 
-For example, to read or write a file in Media Library, perform the following steps:
+**Solution**
 
-1. Use **getFileAssets()** to obtain the **fileAsset** object.
+Use **fs.open(path: string, mode?: number)** with **mode** set to **fs.OpenMode.CREATE**. **fs.OpenMode.CREATE** creates a file if it does not exist.
 
-2. Use **fileAsset.open()** to obtain the FD.
+## How do I solve the problem of garbled Chinese characters in a file?
 
-3. Use the obtained FD as the **fileIo** API parameter to read and write the file.
+Applicable to: OpenHarmony 3.2 (API version 9)
 
-## What If the File Contains Garbled Characters?
+**Solution**
 
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
-
-Read the file content from the buffer, and decode the file content using **util.TextDecoder**.
-
-Example:
+After the buffer data of the file content is read, use **TextDecoder** of @ohos.util to decode the file content.
 
 ```
-import util from '@ohos.util' 
-async function readFile(path) { 
-  let stream = fileio.createStreamSync(path, "r+"); 
-  let readOut = await stream.read(new ArrayBuffer(4096)); 
-  let textDecoder = new util.TextDecoder("utf-8", { ignoreBOM: true }); 
-  let buffer = new Uint8Array(readOut.buffer)
-  let readString = textDecoder.decode(buffer, { stream: false }); 
-  console.log ("[Demo] File content read: "+ readString);
-}
+let filePath = getContext(this).filesDir + "/test0.txt";
+let stream = fs.createStreamSync(filePath, "r+");
+let buffer = new ArrayBuffer(4096)
+let readOut = stream.readSync(buffer);
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
+let readString = textDecoder.decodeWithStream(new Uint8Array(buffer), { stream: false });
+console.log ("File content read: "+ readString);
 ```
 
-## What Should I Do If There Is No Return Value or Error Captured After getAlbums Is Called?
+## Why is an error reported when **fs.copyFile** is used to copy a **datashare://** file opened by **fs.open()**?
 
-Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
+Applicable to: OpenHarmony 3.2 (API version 9)
 
-The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In addition, this permission needs user authorization. For details, see [OpenHarmony Permission List](../security/permission-list.md).
+**Solution**
 
-1. Configure the required permission in the **module.json5** file.
-  
-   ```
-   "requestPermissions": [
-     {
-       "name": "ohos.permission.READ_MEDIA"
-     }
-   ]
-   ```
+**fs.copyFile** does not support URIs. You can use **fs.open()** to obtain the URI, obtain the file descriptor (FD) based on the URI, and then use **fs.copyFile** to copy the file based on the FD.
 
-2. Add the code for user authorization before the **MainAbility.ts -> onWindowStageCreate** page is loaded.
-  
-   ```
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
-   
-   private requestPermissions() {
-   let permissionList: Array<string> = [
-     "ohos.permission.READ_MEDIA"
-   ];
-   let atManager = abilityAccessCtrl.createAtManager();
-   atManager.requestPermissionsFromUser(this.context, permissionList)
-     .then(data => {
-       console.info(`request permission data result = ${data.authResults}`)
-     })
-     .catch(err => {
-       console.error(`fail to request permission error:${err}`)
-     })
-   }
-   ```
+```
+let file = fs.openSync("datashare://...")
+fs.copyFile(file.fd, 'dstPath', 0).then(() => {
+  console.info('copyFile success')
+}).catch((err) => {
+  console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+})
+```
 
-## What Do I Do If the App Crashes When FetchFileResult() Is Called Multiple Times?
+## How do I modify the specified content of a JSON file in the sandbox?
 
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
+Applicable to: OpenHarmony 3.2 (API version 9)
 
-Each time after the **FetchFileResult** object is called, call **FetchFileResult.close()** to release and invalidate the **FetchFileResult** object .
+**Solution**
 
-## What If An Error Is Reported by IDE When mediaLibrary.getMediaLibrary() Is Called in the Stage Model?
+Perform the following steps:
 
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
+1. Use **fs.openSyn** to obtain the FD of the JSON file.
 
-In the stage model, use **mediaLibrary.getMediaLibrary(context: Context)** to obtain the media library instance.
+```
+import fs from '@ohos.file.fs';  
+let sanFile = fs.open(basePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let fd = sanFile.fd;
+```
 
-## How Do I Sort the Data Returned by mediaLibrary.getFileAssets()?
+2. Use **fs.readSync** to read the file content.
 
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
+```
+let content = fs.readSync(basePath);
+```
 
-Use the **order** attribute in **[MediaFetchOptions](../reference/apis/js-apis-medialibrary.md#mediafetchoptions7)** to sort the data returned.
+3. Modify the file content.
+
+```
+obj.name = 'new name';
+```
+
+4. Write the JSON file again.
+
+```
+fs.writeSync(file.fd, JSON.stringify(obj));
+```
+
+For more information, see [@ohos.file.fs](../reference/apis/js-apis-file-fs.md).
+
+## What is the actual path corresponding to the file path obtained through the FileAccess module?
+
+Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+
+**Solution**
+
+The files are stored in the **/storage/media/100/local/files** directory. The specific file path varies with the file type and source. To obtain the actual file path, run the following command in the **/storage/media/100/local/files** directory:
+
+**-name \[filename\]**
+
+For more information, see [Uploading and Downloading an Application File](../file-management/app-file-upload-download.md).

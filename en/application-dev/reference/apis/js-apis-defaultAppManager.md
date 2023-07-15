@@ -109,7 +109,7 @@ Obtains the default application based on a system-defined application type or a 
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -165,7 +165,7 @@ Obtains the default application of a user based on a system-defined application 
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -217,7 +217,7 @@ Obtains the default application based on a system-defined application type or a 
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -232,7 +232,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -266,7 +265,7 @@ Sets the default application based on a system-defined application type or a fil
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -338,7 +337,7 @@ Sets the default application for a user based on a system-defined application ty
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -399,7 +398,7 @@ Sets the default application based on a system-defined application type or a fil
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -415,7 +414,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
@@ -458,7 +456,7 @@ Resets the default application based on a system-defined application type or a f
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -508,7 +506,7 @@ Resets the default application for a user based on a system-defined application 
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -559,7 +557,7 @@ Resets the default application based on a system-defined application type or a f
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -574,7 +572,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**

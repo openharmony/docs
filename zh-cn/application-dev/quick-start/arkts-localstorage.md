@@ -9,7 +9,7 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接受的参�
 
 > **说明：**
 >
-> 本模块从API version 9开始支持。
+> LocalStorage从API version 9开始支持。
 
 
 ## 概述
@@ -26,7 +26,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 应用程序决定LocalStorage对象的生命周期。当应用释放最后一个指向LocalStorage的引用时，比如销毁最后一个自定义组件，LocalStorage将被JS Engine垃圾回收。
 
-LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供了两个装饰器：
+LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
 - [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单行同步关系。
 
@@ -35,7 +35,8 @@ LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供
 
 ## 限制条件
 
-LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+- LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared9)接口仅能获取当前stage，通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -43,7 +44,7 @@ LocalStorage创建后，命名属性的类型不可更改。后续调用Set时�
 在上文中已经提到，如果要建立LocalStorage和自定义组件的联系，需要使用\@LocalStorageProp和\@LocalStorageLink装饰器。使用\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰组件内的变量，key标识了LocalStorage的属性。
 
 
-当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定在LocalStorage对应是属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑，是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
+当自定义组件初始化的时候，\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰的变量会通过给定的key，绑定在LocalStorage对应的属性，完成初始化。本地初始化是必要的，因为无法保证LocalStorage一定存在给定的key（这取决于应用逻辑，是否在组件初始化之前在LocalStorage实例中存入对应的属性）。
 
 
 > **说明：**
@@ -59,7 +60,7 @@ LocalStorage创建后，命名属性的类型不可更改。后续调用Set时�
 | \@LocalStorageProp变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，且必须和LocalStorage中对应属性相同。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型                    | 单向同步：从LocalStorage的对应属性到组件的状态变量。组件本地的修改是允许的，但是LocalStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -117,7 +118,7 @@ LocalStorage创建后，命名属性的类型不可更改。后续调用Set时�
 | \@LocalStorageLink变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，且必须和LocalStorage中对应属性相同。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型                    | 双向同步：从LocalStorage的对应属性到自定义组件，从自定义组件到LocalStorage对应属性。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -305,7 +306,7 @@ struct CompA {
 
 先看Parent自定义组件中发生的变化：
 
-1. 点击“countStorage ${this.playCount} incr by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新；
+1. 点击“playCount ${this.playCount} dec by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新；
 
 2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新；
 
@@ -418,7 +419,6 @@ struct CompA {
   }
 }
 ```
-
 
 > **说明：**
 >

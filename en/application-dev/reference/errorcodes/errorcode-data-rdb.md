@@ -4,11 +4,29 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
+##  14800000 Internal Error
+
+**Error Message**
+
+Inner error.
+
+**Description**
+
+An error occurs at the underlying database.
+
+**Possible Causes**
+
+Invalid SQL statement is passed in.
+
+**Solution**
+
+Determine the cause of the error based on the log information.
+
 ## 14800010 Invalid RDB Name
 
 **Error Message**
 
-Invalid database name.
+Failed to open or delete database by invalid database path.
 
 **Description**
 
@@ -16,17 +34,17 @@ The RDB store name is invalid.
 
 **Possible Causes**
 
-The RDB store name is empty or exceeds 1024 bytes.
+The RDB store path is invalid.
 
 **Solution**
 
-Check that the RDB store name is not empty and does not exceed 1024 bytes.
+Check the RDB store path.
 
 ## 14800011 Database File Corrupted
 
 **Error Message**
 
-Database corrupted.
+Failed to open database by database corrupted.
 
 **Description**
 
@@ -81,3 +99,22 @@ The column value is null, or the column data type is incompatible with the API c
 1. Check whether the result set is empty.
 2. Check whether the row number and column number of the result set are out of range.
 3. Check whether the column data type is supported.
+
+## 14800047 WAL File Size Exceeds the Default Limit
+
+**Error Message**
+
+The WAL file size exceeds the default limit.
+
+**Description**
+
+The WAL file size exceeds 200 MB, which is the default limit.
+
+**Possible Causes**
+
+Data is added, deleted, and modified continuously without closing the read transaction or result set.
+
+**Solution**
+
+1. Check for unclosed result sets or transactions.
+2. Closes all result sets or transactions.

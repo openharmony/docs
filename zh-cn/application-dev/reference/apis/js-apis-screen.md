@@ -95,10 +95,10 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 **参数：**
 
-| 参数名    | 类型                   | 必填 | 说明                                                         |
-| --------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| 参数名    | 类型                   | 必填 | 说明                                                        |
+| --------- | ---------------------- | ---- | ----------------------------------------------------------- |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id。                                     |
+| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id，该参数应为整数。                                    |
 
 **示例：**
 
@@ -126,7 +126,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | --------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id。                                     |
+| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id，该参数应为整数。                                     |
 
 **示例：**
 
@@ -151,10 +151,10 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **参数：**
 
-| 参数名   | 类型                                       | 必填 | 说明                             |
-| -------- | ------------------------------------------ | ---- | -------------------------------- |
-| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。         |
-| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
+| 参数名   | 类型                                       | 必填 | 说明                         |
+| -------- | ------------------------------------------ | ---- |----------------------------|
+| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。               |
+| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -198,9 +198,9 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id。 |
+| 类型                  | 说明                              |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -224,6 +224,89 @@ try {
 };
 ```
 
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+停止屏幕的扩展模式，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                      |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id应为整数。                      |
+| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping expand screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+停止屏幕的扩展模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------------ | ------------------- | --- |--------------------|
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id应为整数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds).then(() => {
+      console.info('Succeeded in stopping expand screens.');
+    }).catch((err) => {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+};
+```
+
 ## screen.makeMirror
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -234,11 +317,11 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **参数：**
 
-| 参数名       | 类型                        | 必填 | 说明              |
-| ------------ | --------------------------- | ---- |-----------------|
-| mainScreen   | number                      | 是   | 主屏幕id。          |
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。       |
-| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id。 |
+| 参数名       | 类型                        | 必填 | 说明                 |
+| ------------ | --------------------------- | ---- |--------------------|
+| mainScreen   | number                      | 是   | 主屏幕id，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id，其中id应为整数。  |
 
 **错误码：**
 
@@ -276,16 +359,16 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **参数：**
 
-| 参数名       | 类型                | 必填 | 说明        |
-| ------------ | ------------------- | ---- |-----------|
-| mainScreen   | number              | 是   | 主屏幕id。    |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。 |
+| 参数名       | 类型                | 必填 | 说明                 |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreen   | number              | 是   | 主屏幕id，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为整数。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id。 |
+| 类型                  | 说明                              |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -308,6 +391,89 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+停止屏幕的镜像模式，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                      |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。                      |
+| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕镜像模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping mirror screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+停止屏幕的镜像模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------------ | ------------------- | --- |--------------------|
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合，其中id应为整数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds).then(() => {
+      console.info('Succeeded in stopping mirror screens.');
+    }).catch((err) => {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -424,7 +590,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId | number                    | 是   | 屏幕的id。                                                   |
+| screenId | number                    | 是   | 屏幕的id，该参数仅支持整数输入。                                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当销毁虚拟屏幕成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -464,7 +630,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 参数名   | 类型   | 必填 | 说明       |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | 是   | 屏幕的id。 |
+| screenId | number | 是   | 屏幕的id，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -509,7 +675,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | 是   | 屏幕的id。                                                   |
+| screenId  | number                    | 是   | 屏幕的id，该参数仅支持整数输入。                                                   |
 | surfaceId | string                    | 是   | surface的id。                                                |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
 
@@ -553,7 +719,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的id。    |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
 | surfaceId | string | 是   | surface的id。 |
 
 **返回值：**
@@ -711,9 +877,9 @@ try {
 
 | 名称     | 类型 | 可读 | 可写 | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | 是   | 是   | 屏幕的id。          |
-| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标。 |
-| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标。 |
+| screenId | number   | 是   | 是   | 屏幕的id，该参数应为整数。          |
+| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标，该参数应为整数。 |
+| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标，该参数应为整数。 |
 
 ## VirtualScreenOption
 
@@ -721,13 +887,13 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                      |
-| --------- | -------- | ---- | ---- | ------------------------- |
-| name      | string   | 是   | 是   | 指定虚拟屏幕的名称。      |
-| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为像素。 |
-| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为像素。 |
-| density   | number   | 是   | 是   | 指定虚拟屏幕的密度。      |
-| surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。 |
+| 名称      | 类型 | 可读 | 可写 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | 是   | 是   | 指定虚拟屏幕的名称。               |
+| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为像素，该参数应为整数。 |
+| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为像素，该参数应为整数。 |
+| density   | number   | 是   | 是   | 指定虚拟屏幕的密度，该参数为浮点数。       |
+| surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
 
 ## Screen
 
@@ -739,14 +905,14 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 类型                                       | 可读 | 可写 | 说明                   |
-| ----------------- | ---------------------------------------------- | ---- | ---- | ---------------------- |
-| id                | number                                         | 是   | 否   | 屏幕的id。             |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。             |
+| 名称              | 类型                                       | 可读 | 可写 | 说明                                                          |
+| ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
+| id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。                                              |
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。                                          |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。                                                  |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
 
 ### setOrientation
 
@@ -836,7 +1002,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | 是   | 模式索引。                                                   |
+| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -874,7 +1040,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明       |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | 是   | 模式索引。 |
+| modeIndex | number | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -914,9 +1080,9 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型                      | 必填 | 说明                                                         |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
+| 参数名     | 类型                      | 必填 | 说明                                       |
+| ---------- | ------------------------- | ---- |------------------------------------------|
+| densityDpi | number                    | 是   | 像素密度。支持的输入范围为[80, 640]，该参数仅支持整数输入。       |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -952,9 +1118,9 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型   | 必填 | 说明                               |
-| ---------- | ------ | ---- | ---------------------------------- |
-| densityDpi | number | 是   | 像素密度。支持的输入范围为80-640。 |
+| 参数名     | 类型   | 必填 | 说明                                 |
+| ---------- | ------ | ---- |------------------------------------|
+| densityDpi | number | 是   | 像素密度。支持的输入范围为[80, 640]，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1021,7 +1187,7 @@ try {
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定。 |
-| width       | number   | 是   | 是   | 屏幕的宽度，单位为像素。                                |
-| height      | number   | 是   | 是   | 屏幕的高度，单位为像素。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率。                                     |
+| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
+| width       | number   | 是   | 是   | 屏幕的宽度，单位为像素，该参数应为整数。                                |
+| height      | number   | 是   | 是   | 屏幕的高度，单位为像素，该参数应为整数。                                |
+| refreshRate | number   | 是   | 是   | 屏幕的刷新率，该参数应为整数，该参数应为整数。                                     |

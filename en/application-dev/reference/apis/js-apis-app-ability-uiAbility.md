@@ -132,6 +132,7 @@ Called when this UIAbility is destroyed to clear resources.
 
 **Example**
     
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDestroy() {
@@ -140,6 +141,16 @@ Called when this UIAbility is destroyed to clear resources.
   }
   ```
 
+After the **onDestroy** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDestroy** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDestroy** is complete.
+
+  ```ts
+class MyUIAbility extends UIAbility {
+    async onDestroy() {
+        console.log('onDestroy');
+        // Call the asynchronous function.
+    }
+}
+  ```
 
 ## UIAbility.onForeground
 
@@ -300,7 +311,79 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
+## UIAbility.onShare<sup>10+</sup>
 
+onShare(wantParam:{ [key: string]: Object }): void;
+
+Called when this UIAbility sets data to share. **ohos.extra.param.key.contentTitle** indicates the title of the content to share in the sharing box, **ohos.extra.param.key.shareAbstract** provides an abstract description of the content, and **ohos.extra.param.key.shareUrl** indicates the online address of the service. You need to set these three items as objects, with the key set to **title**, **abstract**, and **url**, respectively.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
+
+**Example**
+    
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+class MyUIAbility extends UIAbility {
+    onShare(wantParams) {
+        console.log('onShare');
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "OA"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for company employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "oa.example.com"};
+    }
+}
+  ```
+
+## UIAbility.onPrepareToTerminate<sup>10+</sup>
+
+onPrepareToTerminate(): boolean;
+
+Triggered when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Return value**
+
+| Type| Description|
+| -- | -- |
+| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled and the UIAbility is not terminated. The value **false** means to continue terminating the UIAbility.|
+
+**Example**
+
+  ```ts
+  export default class EntryAbility extends UIAbility {
+    onPrepareToTerminate() {
+      // Define a pre-termination operation,
+      // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
+      let want:Want = {
+        bundleName: "com.example.myapplication",
+        moduleName: "entry",
+        abilityName: "SecondAbility"
+      }
+      this.context.startAbilityForResult(want)
+        .then((result)=>{
+          // Obtain the startup result and terminate the current UIAbility when resultCode in the return value is 0.
+          console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+          if (result.resultCode === 0) {
+            this.context.terminateSelf();
+          }
+        }).catch((err)=>{
+          // Exception handling.
+          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          this.context.terminateSelf();
+        })
+
+      return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
+    }
+  }
+  ```
 
 ## Caller
 
@@ -331,7 +414,9 @@ Sends sequenceable data to the target ability.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -410,7 +495,9 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -478,10 +565,10 @@ Releases the caller interface of the target ability.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -515,6 +602,14 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -538,7 +633,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
         console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
@@ -547,9 +642,61 @@ Registers a callback that is invoked when the stub on the target ability is disc
   }
   ```
 
+## Caller.onRemoteStateChange<sup>10+</sup>
+
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+
+Registers a callback that is invoked when the remote ability state changes in the collaboration scenario.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+    
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+
+  let caller;
+  let dstDeviceId: string;
+  export default class MainAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+          this.context.startAbilityByCall({
+              bundleName: 'com.example.myservice',
+              abilityName: 'MainUIAbility',
+              deviceId: dstDeviceId
+          }).then((obj) => {
+              caller = obj;
+              try {
+                  caller.onRemoteStateChange((str) => {
+                      console.log('Remote state changed ' + str);
+                  });
+              } catch (error) {
+                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+              }
+          }).catch((err) => {
+              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+          })
+      }
+  }
+  ```
+
 ## Caller.on
 
- on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -567,6 +714,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -616,7 +764,6 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -659,13 +806,6 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -718,7 +858,8 @@ Registers a caller notification callback, which is invoked when the target abili
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -783,7 +924,8 @@ Deregisters a caller notification callback, which is invoked when the target abi
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -813,6 +955,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | Yes| No| function | Prototype of the listener function registered by the caller.|
+
+## OnRemoteStateChangeCallback<sup>10+</sup>
+
+(msg: string): void;
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| Name| Readable| Writable| Type| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | Yes| No| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
 
 ## CalleeCallback
 

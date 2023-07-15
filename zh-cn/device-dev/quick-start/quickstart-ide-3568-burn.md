@@ -9,7 +9,7 @@ RK3568的镜像烧录通过Windows环境进行烧录，开发者启动烧录操�
 
 ## 前提条件
 
-[下载](https://gitee.com/hihope_iot/docs/blob/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97/windows/DriverAssitant_v5.1.1.zip)并安装驱动DriverInstall.exe。
+[下载](https://gitee.com/hihope_iot/docs/blob/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97/windows/DriverAssitant_v5.1.1.zip)并安装驱动DriverInstall.exe。当安装窗口显示“安装驱动成功”时，即表示驱动已安装完成，可进入后续烧录步骤。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 如果已经安装旧版本的烧写工具，请先点击"驱动卸载"按钮卸载驱动，然后再点击"驱动安装"按钮安装驱动。
@@ -30,9 +30,12 @@ RK3568的镜像烧录通过Windows环境进行烧录，开发者启动烧录操�
 
    ![zh-cn_image_0000001330777737](figures/zh-cn_image_0000001330777737.png)
 
-4. 在**Tool Chain**页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的**Install**按钮在线安装。
+4. 在**Tool Chain**页签，检查Uploader烧录器工具是否已安装。
 
-   ![3865-uploader](figures/3865-uploader.png)
+   - 如工具为“uninstalled”状态（![status_uninstall](figures/status_uninstall.png)），可单击**Download Uninstalled Tools**，自动安装所需工具，或单击工具后方的**Download**安装指定工具。
+   - 如工具无法通过**Download**方式安装，表示该工具未被DevEco Device Tool收录，需要开发者自行下载到本地后单击**Import**导入。
+
+   ![rk3568_false](figures/rk3568_false.png)
 
 5. 在**rk3568**页签，设置烧录选项，包括upload_partitions和upload_protocol。配置完成后工程将自动保存。
 

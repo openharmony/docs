@@ -80,6 +80,8 @@
 支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -137,3 +139,71 @@ struct ButtonExample {
 ```
 
 ![button](figures/button.gif)
+
+### 示例2 
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SwipeGestureExample {
+  @State count: number = 0
+
+  build() {
+    Column() {
+      Text(`${this.count}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+        })
+      if (this.count <= 0) {
+        Button('count is negative').fontSize(30).height(50)
+      } else if (this.count % 2 === 0) {
+        Button('count is even').fontSize(30).height(50)
+      } else {
+        Button('count is odd').fontSize(30).height(50)
+      }
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![ifButton](figures/ifButton.gif)
+
+### 示例3 
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct buttonTestDemo {
+  @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
+  @State widthShortSize: number = 200;
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.txt)
+          .width(this.widthShortSize)
+          .height(100)
+          .labelStyle({ overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 20,
+            maxFontSize: 20,
+            font: {
+              size: 20,
+              weight: FontWeight.Bolder,
+              family: 'cursive',
+              style: FontStyle.Italic
+            }
+          })
+          .fontSize(40)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![image-20230711171138661](figures/imageButtonLabelStyle.png)

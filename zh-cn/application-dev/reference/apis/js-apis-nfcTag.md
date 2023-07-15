@@ -34,15 +34,17 @@
                     {
                         "name": "tag-tech",
                         "value": "IsoDep"
-                    },
+                    }
                     // add other technology if neccessary,
                     // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
                 ]
             }
         ],
         "requestPermissions": [
-            "name": "ohos.permission.NFC_TAG",
-            "reason": "tag",
+            {
+                "name": "ohos.permission.NFC_TAG",
+                "reason": "tag",
+            }
         ]
     }
 }
@@ -64,59 +66,61 @@ import tag from '@ohos.nfc.tag';
 在对相关Tag类型卡片进行读写之前，必须先获取TagInfo相关属性值，以确认设备读取到的Tag卡片支持哪些技术类型。这样Tag应用程序才能调用正确的接口和所读取到的Tag卡片进行通信。
 ```js
 import tag from '@ohos.nfc.tag';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-onCreate(want, launchParam) {
-    // add other code here...
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // add other code here...
 
-    // want is initialized by nfc service, contains tag info for this found tag
-    var tagInfo;
-    try {
-        tagInfo = tag.getTagInfo(want);
-    } catch (error) {
-        console.log("tag.getTagInfo catched error: " + error);
-    }
-    if (tagInfo == null || tagInfo == undefined) {
-        console.log("no TagInfo to be created, ignore it.");
-        return;
-    }
-
-    // get the supported technologies for this found tag.
-    var isNfcATag =  false;
-    var isIsoDepTag =  false;
-    for (var i = 0; i < tagInfo.technology.length; i++) {
-        if (tagInfo.technology[i] == tag.NFC_A) {
-            isNfcATag = true;
-        }
-
-        if (tagInfo.technology[i] == tag.ISO_DEP) {
-            isIsoDepTag = true;
-        }
-        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
-    }
-
-    // use NfcA APIs to access the found tag.
-    if (isNfcATag) {
-        var nfcA;
+        // want is initialized by nfc service, contains tag info for this found tag
+        var tagInfo;
         try {
-            nfcA = tag.getNfcATag(taginfo);
+            tagInfo = tag.getTagInfo(want);
         } catch (error) {
-            console.log("tag.getNfcATag catched error: " + error);
+             console.log("tag.getTagInfo catched error: " + error);
         }
-        // other code to read or write this found tag.
-    }
-
-    // use getIsoDep APIs to access the found tag.
-    if (isIsoDepTag) {
-        var isoDep;
-        try {
-            isoDep = tag.getIsoDep(taginfo);
-        } catch (error) {
-            console.log("tag.getIsoDep catched error: " + error);
+        if (tagInfo == null || tagInfo == undefined) {
+            console.log("no TagInfo to be created, ignore it.");
+            return;
         }
-        // other code to read or write this found tag.
-    }
 
-    // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+        // get the supported technologies for this found tag.
+        var isNfcATag =  false;
+        var isIsoDepTag =  false;
+        for (var i = 0; i < tagInfo.technology.length; i++) {
+            if (tagInfo.technology[i] == tag.NFC_A) {
+                isNfcATag = true;
+            }
+
+            if (tagInfo.technology[i] == tag.ISO_DEP) {
+                isIsoDepTag = true;
+            }
+            // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        }
+
+        // use NfcA APIs to access the found tag.
+        if (isNfcATag) {
+            var nfcA;
+            try {
+                nfcA = tag.getNfcATag(tagInfo);
+            } catch (error) {
+                console.log("tag.getNfcATag catched error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
+
+        // use getIsoDep APIs to access the found tag.
+        if (isIsoDepTag) {
+            var isoDep;
+            try {
+                isoDep = tag.getIsoDep(tagInfo);
+            } catch (error) {
+                console.log("tag.getIsoDep catched error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
+        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+    }
 }
 ```
 
@@ -133,14 +137,14 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明** |
-| -------- | -------- |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | NFC A类型Tag对象。 |
 
 ## tag.getNfcA<sup>9+</sup>
@@ -153,23 +157,23 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明** |
-| -------- | -------- |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | NFC A类型Tag对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcBTag
 
@@ -184,15 +188,15 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | NFC B类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag) | NFC B类型Tag对象。 |
 
 ## tag.getNfcB<sup>9+</sup>
 
@@ -204,23 +208,23 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | NFC B类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag) | NFC B类型Tag对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcFTag
 
@@ -235,15 +239,15 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcFTag](js-apis-nfctech.md#nfcftag)  | NFC F类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcFTag](js-apis-nfctech.md#nfcftag) | NFC F类型Tag对象。 |
 
 ## tag.getNfcF<sup>9+</sup>
 
@@ -255,23 +259,23 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcFTag](js-apis-nfctech.md#nfcftag)  | NFC F类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcFTag](js-apis-nfctech.md#nfcftag) | NFC F类型Tag对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcVTag
 
@@ -286,15 +290,15 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | NFC V类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag) | NFC V类型Tag对象。 |
 
 ## tag.getNfcV<sup>9+</sup>
 
@@ -306,23 +310,23 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**         |
-| -------- | ---------------- |
-| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | NFC V类型Tag对象。 |
+| **类型**                              | **说明**           |
+| ------------------------------------- | ------------------ |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag) | NFC V类型Tag对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
 
@@ -334,23 +338,23 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是 | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。                              |
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**            |
-| ---------- | ------------------|
-| [IsoDepTag](js-apis-nfctech.md#isodeptag9)  | IsoDep类型Tag对象，通过该对象访问IsoDep类型的相关接口。 |
+| **类型**                                   | **说明**                                                |
+| ------------------------------------------ | ------------------------------------------------------- |
+| [IsoDepTag](js-apis-nfctech.md#isodeptag9) | IsoDep类型Tag对象，通过该对象访问IsoDep类型的相关接口。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
 
@@ -362,27 +366,27 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是    | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。                              |
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**        |
-| ---------| -------------- |
-| [NdefTag](js-apis-nfctech.md#ndeftag9)  | NDEF类型Tag对象，通过该对象访问NDEF类型的相关接口。|
+| **类型**                               | **说明**                                            |
+| -------------------------------------- | --------------------------------------------------- |
+| [NdefTag](js-apis-nfctech.md#ndeftag9) | NDEF类型Tag对象，通过该对象访问NDEF类型的相关接口。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
 
-getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)
+getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
 
 获取MIFARE Classic类型Tag对象，通过该对象访问支持MIFARE Classic技术类型的Tag。
 
@@ -390,23 +394,23 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是    | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。                              |
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**                          |
-| ----------------- | ------------------------|
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
+| **类型**                                                  | **说明**                                                                |
+| --------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9) | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
 
@@ -417,23 +421,23 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **参数：**
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | 是    | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。                              |
+| 参数名  | 类型                | 必填 | 说明                                                          |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
-| **类型** | **说明**                                |
-| -------------------- | ---------------------------|
-| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)  | MIFARE Ultralight类型Tag对象，通过该对象访问MIFARE Ultralight类型的相关接口。 |
+| **类型**                                                       | **说明**                                                                      |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9) | MIFARE Ultralight类型Tag对象，通过该对象访问MIFARE Ultralight类型的相关接口。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
 
@@ -445,17 +449,17 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag)  | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
+| **类型**                                                  | **说明**                                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
 
-| 错误码ID | 错误信息|
-| ------- | -------|
-| 3100201 | Tag running state is abnormal in service. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
 
@@ -467,14 +471,14 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 **参数：**
 
-| 参数名       | 类型                        | 必填   | 说明                                       |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](js-apis-app-ability-want.md#Want)                   | 是    | 分发Ability时，在系统onCreate入口函数的参数中获取。                              |
+| 参数名 | 类型                                     | 必填 | 说明                                                |
+| ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
+| want   | [Want](js-apis-app-ability-want.md#Want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**            | **说明**                                     |
+| ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | TagInfo对象，用于获取不同技术类型的Tag对象。 |
 
 
@@ -488,14 +492,14 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| uri | string | 是 | 写入到NDEF Record里面的数据内容。 |
+| 参数名 | 类型   | 必填 | 说明                              |
+| ------ | ------ | ---- | --------------------------------- |
+| uri    | string | 是   | 写入到NDEF Record里面的数据内容。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
@@ -527,15 +531,15 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| text | string | 是   | 写入到NDEF Record里面的文本数据内容。 |
-| locale | string | 是   | 文本数据内容的编码方式。 |
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| text   | string | 是   | 写入到NDEF Record里面的文本数据内容。 |
+| locale | string | 是   | 文本数据内容的编码方式。              |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
@@ -569,15 +573,15 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| mimeType | string | 是   | 符合RFC规则的MIME类型，比如"text/plain"或"image/jpeg"。 |
+| 参数名   | 类型     | 必填 | 说明                                                    |
+| -------- | -------- | ---- | ------------------------------------------------------- |
+| mimeType | string   | 是   | 符合RFC规则的MIME类型，比如"text/plain"或"image/jpeg"。 |
 | mimeData | number[] | 是   | MIME数据内容，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
@@ -609,16 +613,16 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| domainName | string | 是   | 外部数据发布组织的域名，一般是应用程序的包名。 |
-| type | string | 是   | 外部数据的指定类型。 |
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| domainName   | string   | 是   | 外部数据发布组织的域名，一般是应用程序的包名。          |
+| type         | string   | 是   | 外部数据的指定类型。                                    |
 | externalData | number[] | 是   | 外部数据内容，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
@@ -652,14 +656,14 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
+| 参数名      | 类型                                           | 必填 | 说明               |
+| ----------- | ---------------------------------------------- | ---- | ------------------ |
 | ndefMessage | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | 是   | NDEF消息数据对象。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型** | **说明**                                                                              |
+| -------- | ------------------------------------------------------------------------------------- |
 | number[] | NDEF消息数据对象，所转换成的字节格式的数据。每个number十六进制表示，范围是0x00~0xFF。 |
 
 **示例：**
@@ -693,14 +697,14 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 **参数：**
 
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 原始字节，每个number十六进制表示，范围是0x00~0xFF。要求必须满足NDEF Record的格式。 |
+| **参数名** | **类型** | **必填** | **说明**                                                                           |
+| ---------- | -------- | -------- | ---------------------------------------------------------------------------------- |
+| data       | number[] | 是       | 原始字节，每个number十六进制表示，范围是0x00~0xFF。要求必须满足NDEF Record的格式。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
+| **类型**                                       | **说明**                                                      |
+| ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
@@ -727,15 +731,15 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 
 **参数：**
 
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | 是 | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+| **参数名**  | **类型**                                      | **必填** | **说明**                                                         |
+| ----------- | --------------------------------------------- | -------- | ---------------------------------------------------------------- |
+| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | 是       | NDEF标签的Record列表，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **返回值：**
 
-| **类型** | **说明**                             |
-| ------------------ | --------------------------|
-| [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
+| **类型**                                       | **说明**                                                      |
+| ---------------------------------------------- | ------------------------------------------------------------- |
+| [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
 **示例：**
 
@@ -762,113 +766,113 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 **需要权限：** ohos.permission.NFC_TAG
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- | -------- |
-| uid<sup>9+</sup> | number[] | 是 | 否 | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。|
-| technology<sup>9+</sup> | number[] | 是 | 否 | 支持的技术类型，每个number值表示所支持技术类型的常量值。 |
-| supportedProfiles | number[] | 是 | 否 |  支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。|
-| extrasData<sup>9+</sup> | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | 是 | 否 |  标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。|
-| tagRfDiscId<sup>9+</sup> | number | 是 | 否 |  标签发现时分配的ID值。<br>**系统接口：** 此接口为系统接口。|
-| remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是 | 否 | NFC服务进程的远端对象，用于客户端和服务之间的接口通信。<br>**系统接口：** 此接口为系统接口。|
+| **名称**                      | **类型**                                                      | **可读** | **可写** | **说明**                                                                                     |
+| ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
+| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。                                     |
+| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。                                     |
+| supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#tagtaginfo)替代。            |
+| extrasData<sup>9+</sup>       | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | 是       | 否       | 标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。                            |
+| tagRfDiscId<sup>9+</sup>      | number                                                        | 是       | 否       | 标签发现时分配的ID值。<br>**系统接口：** 此接口为系统接口。                                  |
+| remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject)               | 是       | 否       | NFC服务进程的远端对象，用于客户端和服务之间的接口通信。<br>**系统接口：** 此接口为系统接口。 |
 ## NdefRecord<sup>9+</sup>
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- | -------- |
-| tnf | number | 是 | 否 | NDEF Record的TNF(Type Name Field)。 |
-| rtdType| number[] | 是 | 否 | NDEF Record的RTD(Record Type Definition)类型值，每个number十六进制表示，范围是0x00~0xFF。 |
-| id | number[] | 是 | 否 | NDEF Record的ID，每个number十六进制表示，范围是0x00~0xFF。|
-| payload | number[] | 是 | 否 | NDEF Record的PAYLOAD，每个number十六进制表示，范围是0x00~0xFF。 |
+| **名称** | **类型** | **可读** | **可写** | **说明**                                                                                  |
+| -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
+| tnf      | number   | 是       | 否       | NDEF Record的TNF(Type Name Field)。                                                       |
+| rtdType  | number[] | 是       | 否       | NDEF Record的RTD(Record Type Definition)类型值，每个number十六进制表示，范围是0x00~0xFF。 |
+| id       | number[] | 是       | 否       | NDEF Record的ID，每个number十六进制表示，范围是0x00~0xFF。                                |
+| payload  | number[] | 是       | 否       | NDEF Record的PAYLOAD，每个number十六进制表示，范围是0x00~0xFF。                           |
 
 ## 技术类型定义
 NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| NFC_A | 1 | NFC-A (ISO 14443-3A)技术。|
-| NFC_B  | 2 | NFC-A (ISO 14443-3B)技术。|
-| ISO_DEP | 3 | ISO-DEP (ISO 14443-4)技术。|
-| NFC_F  | 4 | NFC-F (JIS 6319-4)技术。|
-| NFC_V | 5 | NFC-V (ISO 15693)技术。|
-| NDEF  | 6 | NDEF技术。|
-| NDEF_FORMATABLE<sup>9+</sup> | 7 | 可以格式化的NDEF技术。|
-| MIFARE_CLASSIC | 8 | MIFARE Classic技术。|
-| MIFARE_ULTRALIGHT | 9 | MIFARE Utralight技术。|
+| **名称**                     | **值** | **说明**                    |
+| ---------------------------- | ------ | --------------------------- |
+| NFC_A                        | 1      | NFC-A (ISO 14443-3A)技术。  |
+| NFC_B                        | 2      | NFC-A (ISO 14443-3B)技术。  |
+| ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4)技术。 |
+| NFC_F                        | 4      | NFC-F (JIS 6319-4)技术。    |
+| NFC_V                        | 5      | NFC-V (ISO 15693)技术。     |
+| NDEF                         | 6      | NDEF技术。                  |
+| NDEF_FORMATABLE<sup>9+</sup> | 7      | 可以格式化的NDEF技术。      |
+| MIFARE_CLASSIC               | 8      | MIFARE Classic技术。        |
+| MIFARE_ULTRALIGHT            | 9      | MIFARE Utralight技术。      |
 
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| TNF_EMPTY | 0x0 | Empty。|
-| TNF_WELL_KNOWN  | 0x1 | NFC Forum well-known type [NFC RTD]。|
-| TNF_MEDIA | 0x2 | Media-type as defined in RFC 2046 [RFC 2046]。|
-| TNF_ABSOLUTE_URI  | 0x3 | Absolute URI as defined in RFC 3986 [RFC 3986]。|
-| TNF_EXT_APP | 0x4 | NFC Forum external type [NFC RTD]。|
-| TNF_UNKNOWN  | 0x5 | Unknown。|
-| TNF_UNCHANGED | 0x6 | Unchanged (see section 2.3.3)。|
+| **名称**         | **值** | **说明**                                         |
+| ---------------- | ------ | ------------------------------------------------ |
+| TNF_EMPTY        | 0x0    | Empty。                                          |
+| TNF_WELL_KNOWN   | 0x1    | NFC Forum well-known type [NFC RTD]。            |
+| TNF_MEDIA        | 0x2    | Media-type as defined in RFC 2046 [RFC 2046]。   |
+| TNF_ABSOLUTE_URI | 0x3    | Absolute URI as defined in RFC 3986 [RFC 3986]。 |
+| TNF_EXT_APP      | 0x4    | NFC Forum external type [NFC RTD]。              |
+| TNF_UNKNOWN      | 0x5    | Unknown。                                        |
+| TNF_UNCHANGED    | 0x6    | Unchanged (see section 2.3.3)。                  |
 
 ## NDEF Record RTD类型定义
 NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。|
-| RTD_URI<sup>9+</sup>  | [0x55] | URI类型的NDEF Record。|
+| **名称**              | **值** | **说明**                |
+| --------------------- | ------ | ----------------------- |
+| RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。 |
+| RTD_URI<sup>9+</sup>  | [0x55] | URI类型的NDEF Record。  |
 
 ## NfcForumType<sup>9+</sup>
 NFC Forum标准里面Tag类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| NFC_FORUM_TYPE_1 | 1 |  NFC论坛类型1。 |
-| NFC_FORUM_TYPE_2 | 2 |  NFC论坛类型2。 |
-| NFC_FORUM_TYPE_3  | 3 |  NFC论坛类型3。 |
-| NFC_FORUM_TYPE_4  | 4 |  NFC论坛类型4。 |
-| MIFARE_CLASSIC  | 101 |   MIFARE Classic类型。 |
+| **名称**         | **值** | **说明**             |
+| ---------------- | ------ | -------------------- |
+| NFC_FORUM_TYPE_1 | 1      | NFC论坛类型1。       |
+| NFC_FORUM_TYPE_2 | 2      | NFC论坛类型2。       |
+| NFC_FORUM_TYPE_3 | 3      | NFC论坛类型3。       |
+| NFC_FORUM_TYPE_4 | 4      | NFC论坛类型4。       |
+| MIFARE_CLASSIC   | 101    | MIFARE Classic类型。 |
 
 ## MifareClassicType<sup>9+</sup>
 MIFARE Classic标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| TYPE_UNKNOWN | 0 |  未知的MIFARE类型。 |
-| TYPE_CLASSIC | 1 |  MIFARE Classic类型。|
-| TYPE_PLUS   | 2 |  MIFARE Plus类型。|
-| TYPE_PRO  | 3 |  MIFARE Pro类型。 |
+| **名称**     | **值** | **说明**             |
+| ------------ | ------ | -------------------- |
+| TYPE_UNKNOWN | 0      | 未知的MIFARE类型。   |
+| TYPE_CLASSIC | 1      | MIFARE Classic类型。 |
+| TYPE_PLUS    | 2      | MIFARE Plus类型。    |
+| TYPE_PRO     | 3      | MIFARE Pro类型。     |
 
 ## MifareClassicSize<sup>9+</sup>
 MIFARE Classic标签存储大小的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| MC_SIZE_MINI | 320 |  每个标签5个扇区，每个扇区4个块。 |
-| MC_SIZE_1K  | 1024 |  每个标签16个扇区，每个扇区4个块。|
-| MC_SIZE_2K   | 2048 |  每个标签32个扇区，每个扇区4个块。 |
-| MC_SIZE_4K   | 4096 |  每个标签40个扇区，每个扇区4个块。|
+| **名称**     | **值** | **说明**                          |
+| ------------ | ------ | --------------------------------- |
+| MC_SIZE_MINI | 320    | 每个标签5个扇区，每个扇区4个块。  |
+| MC_SIZE_1K   | 1024   | 每个标签16个扇区，每个扇区4个块。 |
+| MC_SIZE_2K   | 2048   | 每个标签32个扇区，每个扇区4个块。 |
+| MC_SIZE_4K   | 4096   | 每个标签40个扇区，每个扇区4个块。 |
 
 ## MifareUltralightType<sup>9+</sup>
 MIFARE Ultralight标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-| **名称** | **值** |  **说明** |
-| -------- | -------- | -------- |
-| TYPE_UNKNOWN  | 0 |  未知的 MIFARE 类型。 |
-| TYPE_ULTRALIGHT   | 1 |  MIFARE Ultralight类型。|
-| TYPE_ULTRALIGHT_C    | 2 |  MIFARE UltralightC 类型。 |
+| **名称**          | **值** | **说明**                  |
+| ----------------- | ------ | ------------------------- |
+| TYPE_UNKNOWN      | 0      | 未知的 MIFARE 类型。      |
+| TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight类型。   |
+| TYPE_ULTRALIGHT_C | 2      | MIFARE UltralightC 类型。 |
 <!--no_check-->

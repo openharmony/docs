@@ -2,7 +2,7 @@
 
 ## Overview<a name="section11522349121115"></a>
 
-This document describes how to quickly set up a development environment \(using the Hi3516D V300 development board\) and develop a clock app running on OpenHarmony. You can click [here](https://gitee.com/openharmony/app_samples/tree/master/common/Clock) to obtain the sample code.
+This document describes how to quickly set up a development environment \(using the Hi3516D V300 development board\) and develop a clock app running on OpenHarmony. You can click [here](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock) to obtain the sample code.
 
 The clock app displays the current time, as shown in the following figure.
 

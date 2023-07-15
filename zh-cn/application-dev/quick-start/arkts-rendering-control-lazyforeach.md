@@ -75,15 +75,17 @@ interface DataChangeListener {
 }
 ```
 
-| 接口声明                                     | 参数类型                                   | 说明                                       |
-| ---------------------------------------- | -------------------------------------- | ---------------------------------------- |
-| onDataReloaded():&nbsp;void              | -                                      | 通知组件重新加载所有数据。                            |
-| onDataAdded(index:&nbsp;number):void     | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值  |
-| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
-| onDataChanged(index:&nbsp;number):&nbsp;void | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化监听器。   |
-| onDataAdd(index:&nbsp;number):&nbsp;void | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值  |
-| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
-| onDataChanged(index:&nbsp;number):&nbsp;void | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值 |
+| 接口声明                                                     | 参数类型                               | 说明                                                         |
+| ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------ |
+| onDataReloaded():&nbsp;void                                  | -                                      | 通知组件重新加载所有数据。                                   |
+| onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值 |
+| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>从API 8开始，建议使用onDataMove。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
+| onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值 |
+| onDataChanged(index:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | number                                 | 通知组件index的位置有数据有变化。<br/>从API 8开始，建议使用onDataChange。<br/>index：数据变化监听器。 |
+| onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值 |
+| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
+| onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
+| onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值 |
 
 
 ## 使用限制

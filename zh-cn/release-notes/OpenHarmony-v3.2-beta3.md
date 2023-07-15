@@ -54,7 +54,7 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta3 | NA |
 | Public SDK | Ohos_sdk_public&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_public&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.2.7.5&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Release | OpenHarmony应用开发推荐使用 |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
@@ -181,7 +181,7 @@ API变更请参考：
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -193,7 +193,7 @@ API变更请参考：
 | ArkUI | [HealthyDiet：健康饮食](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/HealthyDiet) | 这是一个记录饮食和查看食物信息的应用，主要用于管理饮食健康。可以添加饮食信息，包括食物的种类、重量以及用餐时间，如早餐、&nbsp;午餐、晚餐和夜宵，并能统计得到相应用餐时间的总热量值、总蛋白质、总脂肪和总碳水值，并且用柱状图的形式展示出来。 | ArkTS |
 | ArkUI | [MusicAlbum：一多音乐专辑主页](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum) | 本示例展示了音乐专辑主页，使用一次开发多端部署中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | ArkTS |
 | 元能力、文件管理 | [CustomShare：自定义分享](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) | 分享的主要工作是实现：发送方将文本，链接，图片文件三种类型分享给三方应用,同时能够在三方应用中分别呈现出来。 | ArkTS |
-| 元能力 | [GalleryForm：图库卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/GalleryForm) | 本示例是模拟图库卡片，实现对图库中的照片在卡片中显示，定时刷新卡片内容等功能。 | ArkTS |
+| 元能力 | [FormExtAbility：Stage模型卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility) | 本示例展示了Stage模型卡片提供方的创建与使用。 | ArkTS |
 | ArkUI | [AppMarket：一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。 | ArkTS |
 | ArkUI | [Weather：一多天气](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather) | 本示例展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。 | ArkTS |
 | 媒体 | [MediaCollections：媒体管理合集](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections) | 本示例展示了网络流播放能力、音视频播控能力、音量调节能力等。 | ArkTS |

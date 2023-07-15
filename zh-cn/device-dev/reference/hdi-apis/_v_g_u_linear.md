@@ -1,7 +1,7 @@
 # VGULinear
 
 
-## **概述**
+## 概述
 
 线性渐变。
 
@@ -10,14 +10,14 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [x1](_display.md#x1-23) | 线性渐变起点水平坐标 | 
-| [y1](_display.md#y1-23) | 线性渐变起点垂直坐标 | 
-| [x2](_display.md#x2) | 线性渐变终点水平坐标 | 
-| [y2](_display.md#y2) | 线性渐变终点垂直坐标 | 
+| [x1](_display.md#x1-23) | [VGUScalar](_display.md#vguscalar)<br/>线性渐变起点水平坐标 | 
+| [y1](_display.md#y1-23) | [VGUScalar](_display.md#vguscalar)<br/>线性渐变起点垂直坐标 | 
+| [x2](_display.md#x2) | [VGUScalar](_display.md#vguscalar)<br/>线性渐变终点水平坐标 | 
+| [y2](_display.md#y2) | [VGUScalar](_display.md#vguscalar)<br/>线性渐变终点垂直坐标 | 

@@ -173,24 +173,24 @@ Obtains system service information.
 **Example**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import featureAbility from '@ohos.ability.featureAbility'
 
 let context = featureAbility.getContext();
 context.getFilesDir().then((data) => {
-  var path = data + "/serviceInfo.txt"
-  console.info("output path: " + path)
-  let fd = fileio.openSync(path, 0o102, 0o666)
-  var serviceId = 10
-  var args = new Array("allInfo")
+  var path = data + "/serviceInfo.txt";
+  console.info("output path: " + path);
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  var serviceId = 10;
+  var args = new Array("allInfo");
   try {
-    hidebug.getServiceDump(serviceId, fd, args)
+    hidebug.getServiceDump(serviceId, file.fd, args);
   } catch (error) {
-    console.info(error.code)
-    console.info(error.message)
+    console.info(error.code);
+    console.info(error.message);
   }
-  fileio.closeSync(fd);
+  fs.closeSync(file);
 })
 ```
 
@@ -283,7 +283,7 @@ try {
 
 startProfiling(filename : string) : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9).
 
 Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
@@ -309,7 +309,7 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9).
 
 Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
@@ -329,7 +329,7 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9).
 
 Exports the heap data.
 

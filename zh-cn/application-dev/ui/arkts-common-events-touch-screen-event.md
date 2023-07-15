@@ -4,7 +4,7 @@
 触屏事件指当手指/手写笔在组件上按下、滑动、抬起时触发的回调事件。包括[点击事件](#点击事件)、[拖拽事件](#拖拽事件)和[触摸事件](#触摸事件)。
 
 
-**图1 ** 触摸事件原理
+**图1**  触摸事件原理
 
 
 ![zh-cn_image_0000001562700461](figures/zh-cn_image_0000001562700461.png)
@@ -87,11 +87,7 @@ import image from '@ohos.multimedia.image';
 @Entry
 @Component
 struct Index {
-  @State text: string = ''
-  @State bool1: boolean = false
-  @State bool2: boolean = false
   @State visible: Visibility = Visibility.Visible
-  @State pixelMap: PixelMap = undefined
   private pixelMapReader = undefined
 
   aboutToAppear() {
@@ -115,7 +111,6 @@ struct Index {
     const promise = image.createPixelMap(color, opts);
     promise.then((data) => {
       console.info('create pixmap has info message: ' + JSON.stringify(data))
-      this.pixelMap = data;
       this.pixelMapReader = data;
     })
   }
@@ -151,8 +146,6 @@ struct Index {
         .visibility(this.visible)
         .onDragStart(() => {                    //启动跨窗口拖拽
           console.info('Text onDrag start')
-          this.bool1 = true
-          this.text = 'TextDrag'
           return { pixelMap: this.pixelMapReader, extraInfo: 'custom extra info.' }
         })
         .onDrop((event: DragEvent, extraParams: string) => {

@@ -372,6 +372,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -380,7 +381,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -1174,7 +1174,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql8)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql8)接口初始化数据库表结构和相关数据。
 
 ### insert
 
@@ -1634,7 +1634,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-rdbStore.executeSql(SQL_CREATE_TABLE, ['zhangsan'], function(err) {
+rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
     if (err) {
         console.info("ExecuteSql failed, err: " + err)
         return
@@ -1851,6 +1851,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1859,7 +1860,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 
@@ -1904,6 +1905,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1912,7 +1914,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
@@ -1946,6 +1948,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1954,7 +1957,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2002,6 +2004,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2010,7 +2013,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2043,7 +2045,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
 | type | [SubscribeType](#subscribetype8) | 是 | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2074,7 +2076,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
 | type | [SubscribeType](#subscribetype8)    | 是 | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 

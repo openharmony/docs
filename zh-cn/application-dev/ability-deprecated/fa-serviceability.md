@@ -267,7 +267,7 @@ featureAbility.startAbility(
 > 说明：
 > (1) 由于DeviceManager的getTrustedDeviceList等接口仅对系统应用开放，当前仅系统应用支持连接远程Service。
 > (2) API定义可见：[deviceManager模块](..\reference\apis\js-apis-device-manager.md)
-> (3) 参考Demo可见：[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+> (3) 参考Demo可见：[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
 
 在跨设备场景下，需要向用户申请数据同步的权限，首先在config.json里配置权限：
 
@@ -336,8 +336,3 @@ let connectId = featureAbility.connectAbility(want, option);
 ```
 
 其余实现均与本地连接Service相同，参考[连接本地Service](fa-serviceability.md#连接本地service)的示例代码即可。
-
-## 相关实例
-
-针对ServiceAbility开发，有以下相关实例可供参考：
-- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

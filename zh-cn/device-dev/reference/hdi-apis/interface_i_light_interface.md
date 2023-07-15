@@ -1,39 +1,35 @@
 # ILightInterface
 
 
-## **概述**
+## 概述
 
 提供灯模块基本操作接口。
 
 操作包括获取灯的信息、打开或关闭灯、设置灯的亮度或闪烁模式。
 
 **Since:**
-
 3.1
-
 **Version:**
-
 1.0
-
 **相关模块:**
 
-[Light](light.md)
+[Light](_light.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [GetLightInfo](#getlightinfo)&nbsp;([out]&nbsp;struct&nbsp;[HdfLightInfo](_hdf_light_info.md)[]&nbsp;info) | 获取当前系统中所有类型的灯信息。 | 
-| [TurnOnLight](#turnonlight)&nbsp;([in]&nbsp;int&nbsp;lightId,&nbsp;[in]&nbsp;struct&nbsp;[HdfLightEffect](_hdf_light_effect.md)&nbsp;effect) | 根据指定的灯类型ID打开列表中的可用灯。 | 
-| [TurnOnMultiLights](#turnonmultilights)&nbsp;([in]&nbsp;int&nbsp;lightId,&nbsp;[in]&nbsp;struct&nbsp;[HdfLightColor](_hdf_light_color.md)[]&nbsp;colors) | 根据指定的灯类型ID打开相应灯中包含的多个子灯。 | 
-| [TurnOffLight](#turnofflight)&nbsp;([in]&nbsp;int&nbsp;lightId) | 根据指定的灯类型ID关闭列表中的可用灯。 | 
+| [GetLightInfo](#getlightinfo)&nbsp;([out]&nbsp;struct&nbsp;[HdfLightInfo](_hdf_light_info.md)[]&nbsp;info) | 获取当前系统中所有类型的灯信息。&nbsp; | 
+| [TurnOnLight](#turnonlight)&nbsp;([in]&nbsp;int&nbsp;lightId,&nbsp;[in]&nbsp;struct&nbsp;[HdfLightEffect](_hdf_light_effect.md)&nbsp;effect) | 根据指定的灯类型ID打开列表中的可用灯。&nbsp; | 
+| [TurnOnMultiLights](#turnonmultilights)&nbsp;([in]&nbsp;int&nbsp;lightId,&nbsp;[in]&nbsp;struct&nbsp;[HdfLightColor](_hdf_light_color.md)[]&nbsp;colors) | 根据指定的灯类型ID打开相应灯中包含的多个子灯。&nbsp; | 
+| [TurnOffLight](#turnofflight)&nbsp;([in]&nbsp;int&nbsp;lightId) | 根据指定的灯类型ID关闭列表中的可用灯。&nbsp; | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### GetLightInfo()
@@ -42,9 +38,7 @@
 ```
 ILightInterface::GetLightInfo ([out] struct HdfLightInfo[] info)
 ```
-
-**描述：**
-
+**描述:**
 获取当前系统中所有类型的灯信息。
 
 **参数:**
@@ -66,16 +60,14 @@ ILightInterface::GetLightInfo ([out] struct HdfLightInfo[] info)
 ```
 ILightInterface::TurnOffLight ([in] int lightId)
 ```
-
-**描述：**
-
+**描述:**
 根据指定的灯类型ID关闭列表中的可用灯。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| lightId | 表示灯类型ID，详见[HdfLightId](light.md#hdflightid)。 | 
+| lightId | 表示灯类型ID，详见[HdfLightId](_light.md#hdflightid)。 | 
 
 **返回:**
 
@@ -90,16 +82,14 @@ ILightInterface::TurnOffLight ([in] int lightId)
 ```
 ILightInterface::TurnOnLight ([in] int lightId, [in] struct HdfLightEffect effect )
 ```
-
-**描述：**
-
+**描述:**
 根据指定的灯类型ID打开列表中的可用灯。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| lightId | 表示灯类型ID。详见[HdfLightId](light.md#hdflightid)。 | 
+| lightId | 表示灯类型ID。详见[HdfLightId](_light.md#hdflightid)。&nbsp; | 
 | effect | 表示指向灯效果的指针，如果lightbrightness字段为0时，&nbsp;灯的亮度根据HCS配置的默认亮度进行设置。详见[HdfLightEffect](_hdf_light_effect.md)。 | 
 
 **返回:**
@@ -119,16 +109,14 @@ ILightInterface::TurnOnLight ([in] int lightId, [in] struct HdfLightEffect effec
 ```
 ILightInterface::TurnOnMultiLights ([in] int lightId, [in] struct HdfLightColor[] colors )
 ```
-
-**描述：**
-
+**描述:**
 根据指定的灯类型ID打开相应灯中包含的多个子灯。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| lightId | 表示灯类型ID，详见[HdfLightId](light.md#hdflightid)。 | 
+| lightId | 表示灯类型ID，详见[HdfLightId](_light.md#hdflightid)。&nbsp; | 
 | colors | 多个子灯对应的颜色和亮度,&nbsp;详见[HdfLightColor](_hdf_light_color.md)。 | 
 
 **返回:**

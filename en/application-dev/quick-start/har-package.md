@@ -2,7 +2,7 @@
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resources, and configuration files. It enables modules and projects to share code related to ArkUI components, resources, and more. Unlike a Harmony Ability Package (HAP), a HAR cannot be independently installed on a device. Instead, it can be referenced only as the dependency of an application module.
 
 ## Creating a HAR Module
-You can kickstart your HAR module development with the module template of the **Library** type in DevEco Studio. By default, obfuscation is disabled for the HAR module. To enable this feature, set **artifactType** in the **build-profile.json5** file of the HAR module to **obfuscation** as follows:
+You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612). To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building. To enable obfuscation, open the **build-profile.json5** file of the HAR module and set **artifactType** to **obfuscation** as follows:
 
 ```json
 {
@@ -12,15 +12,13 @@ You can kickstart your HAR module development with the module template of the **
   }
 }
 ```
-The value options of **artifactType** are as follows, and the default value is **original**:
+The value options of **artifactType** are as follows, with the default value being **original**:
 - **original**: Code is not obfuscated.
 - **obfuscation**: Code is obfuscated using Uglify.
 
-When obfuscation is enabled, DevEco Studio compiles, obfuscates, and compresses code during HAR building, thereby protecting your code assets.
-
 > **NOTE**
 >
-> If **artifactType** is set to **obfuscation**, **apiType** must be set to **stageMode**, because obfuscation is available only in the stage model.
+> Obfuscation is available only in the stage model. Therefore, if **artifactType** is set to **obfuscation**, **apiType** must be set to **stageMode**.
 
 ## Precautions for HAR Development
 - The HAR does not support the declaration of **abilities** and **extensionAbilities** in its configuration file.
@@ -88,12 +86,12 @@ export { func2 } from './src/main/ts/test'
 ```
 ### Resources
 Resources are packed into the HAR when it is being compiled and packaged. During compilation and building of a HAP, DevEco Studio collects resource files from the HAP module and its dependent modules. If the resource files of different modules have the same name, DevEco Studio overwrites the resource files based on the following priorities (in descending order):
-- AppScope (supported only by the stage model of API version 9)
+- AppScope (only for the stage model of API version 9)
 - Modules in the HAP file
 - If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence. (The module that is higher in the dependency sequence list has higher priority.)
 
 ## Referencing ArkUI Components, APIs, and Resources in the HAR
-To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391) on the HAR.
+To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153) on the HAR.
 
 ### Reference ArkUI Components in the HAR
 
@@ -170,3 +168,7 @@ struct Index {
   }
 }
 ```
+
+## Releasing a HAR
+
+Follow the [instructions](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512) to release a HAR.

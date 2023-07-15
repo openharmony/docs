@@ -28,7 +28,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name| Type                         | Mandatory| Description                                                        |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| GridColColumnOption | No  | Number of occupied columns. If it is set to **0**, the element is not involved in layout calculation, that is, the element is not rendered.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| offset | number \| GridColColumnOption | No  | Number of offset columns relative to the previous child component of the grid<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| gridColOffset | number \| GridColColumnOption | No  | Number of offset columns relative to the previous child component of the grid<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | order  | number \| GridColColumnOption | No  | Sequence number of the element. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## GridColColumnOption

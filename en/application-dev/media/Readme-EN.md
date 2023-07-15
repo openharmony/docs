@@ -1,29 +1,62 @@
 # Media
 
+- [Media Application Overview](media-application-overview.md)
 - Audio and Video
-  - [Audio Overview](audio-overview.md)
-  - [Audio Rendering Development](audio-renderer.md)
-  - [Audio Stream Management Development](audio-stream-manager.md)
-  - [Audio Capture Development](audio-capturer.md)
-  - [OpenSL ES Audio Playback Development](opensles-playback.md)
-  - [OpenSL ES Audio Recording Development](opensles-capture.md)
-  - [Audio Interruption Mode Development](audio-interruptmode.md)
-  - [Volume Management Development](audio-volume-manager.md)
-  - [Audio Routing and Device Management Development](audio-routing-manager.md)
-  - [AVPlayer Development (Recommended)](avplayer-playback.md)
-  - [AVRecorder Development (Recommended)](avrecorder.md)
-  - [Audio Playback Development (To Be Deprecated Soon)](audio-playback.md) 
-  - [Audio Recording Development (To Be Deprecated Soon)](audio-recorder.md) 
-  - [Video Playback Development (To Be Deprecated Soon)](video-playback.md)
-  - [Video Recording Development (To Be Deprecated Soon)](video-recorder.md)
-
+  - [Audio and Video Overview](av-overview.md)
+  - [AVPlayer and AVRecorder](avplayer-avrecorder-overview.md)
+  - Audio Playback
+    - [Audio Playback Overview](audio-playback-overview.md)
+    - [Using AVPlayer for Audio Playback](using-avplayer-for-playback.md)
+    - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)
+    - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
+    - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
+    - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
+    - [Volume Management](volume-management.md)
+    - [Audio Effect Management](audio-effect-management.md)
+    - [Audio Playback Stream Management](audio-playback-stream-management.md)
+    - [Audio Output Device Management](audio-output-device-management.md)
+    - [Distributed Audio Playback (for System Applications Only)](distributed-audio-playback.md)
+  - Audio Recording
+    - [Audio Recording Overview](audio-recording-overview.md)
+    - [Using AVRecorder for Audio Recording](using-avrecorder-for-recording.md)
+    - [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md)
+    - [Using OpenSL ES for Audio Recording](using-opensl-es-for-recording.md)
+    - [Microphone Management](mic-management.md)
+    - [Audio Recording Stream Management](audio-recording-stream-management.md)
+    - [Audio Input Device Management](audio-input-device-management.md)
+  - Audio Call
+    - [Audio Call Overview](audio-call-overview.md)
+    - [Developing Audio Call](audio-call-development.md)
+  - [Video Playback](video-playback.md)
+  - [Video Recording](video-recording.md)
 - AVSession
   - [AVSession Overview](avsession-overview.md)
-  - [AVSession Development](avsession-guidelines.md)
-
-- Image
-  - [Image Development](image.md)
-
+  - Local AVSession
+    - [Local AVSession Overview](local-avsession-overview.md)
+    - [AVSession Provider](using-avsession-developer.md)
+    - [AVSession Controller](using-avsession-controller.md)
+  - Distributed AVSession
+    - [Distributed AVSession Overview](distributed-avsession-overview.md)
+    - [Using Distributed AVSession](using-distributed-avsession.md)
 - Camera
-  - [Camera Development](camera.md)
-  - [Distributed Camera Development](remote-camera.md)
+  - [Camera Overview](camera-overview.md)
+  - Camera Development
+    - [Camera Development Preparations](camera-preparation.md)
+    - [Device Input Management](camera-device-input.md)
+    - [Session Management](camera-session-management.md)
+    - [Camera Preview](camera-preview.md)
+    - [Camera Photographing](camera-shooting.md)
+    - [Camera Recording](camera-recording.md)
+    - [Camera Metadata](camera-metadata.md)
+  - Best Practices
+    - [Camera Photographing Sample](camera-shooting-case.md)
+    - [Camera Recording Sample](camera-recording-case.md)
+- Image
+  - [Image Overview](image-overview.md)
+  - [Image Decoding](image-decoding.md)
+  - Image Processing
+    - [Image Transformation (ArkTS)](image-transformation.md)
+    - [Image Transformation (Native)](image-transformation-native.md)
+    - [Pixel Map Operation](image-pixelmap-operation.md)
+  - [Image Encoding](image-encoding.md)
+  - [Image Tool](image-tool.md)

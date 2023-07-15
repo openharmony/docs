@@ -29,8 +29,9 @@ The application model is the abstraction of capabilities required by OpenHarmony
 
 Along its evolution, OpenHarmony has provided two application models:
 
-- Feature Ability (FA) model. This model is supported by OpenHarmony API version 7 and 8. It is no longer recommended. For details about development based on the FA model, see [FA Model Development Overview](../application-models/fa-model-development-overview.md).
-- Stage model. This model is supported since OpenHarmony API version 9. It is recommended and will evolve for a long time. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model. For details about development based on the stage model, see [Stage Model Development Overview](../application-models/fa-model-development-overview.md).
+- **Stage model**: This model is supported since API version 9. It is recommended. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model. For details about development based on the stage model, see [Stage Model Development Overview](../application-models/stage-model-development-overview.md). The examples in this document are all based on the stage model.
+
+- **Feature Ability (FA) model**: This model is supported since API version 7. It is no longer recommended. For details about development based on the FA model, see [FA Model Development Overview](../application-models/fa-model-development-overview.md).
 
 For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
@@ -39,8 +40,8 @@ To help you better understand the preceding basic concepts and application devel
 
 ## Tool Preparation
 
-1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio).
+1. Download the latest version of [DevEco Studio](../../release-notes/OpenHarmony-v4.0-beta1.md#version-mapping).
 
-2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
+2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3).
 
-When you are done, follow the instructions in [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md), [Getting Started with ArkTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](start-with-js-fa.md).
+When you are done, follow the instructions in [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md).

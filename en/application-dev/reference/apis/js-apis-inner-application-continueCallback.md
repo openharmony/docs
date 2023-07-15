@@ -2,6 +2,10 @@
 
 The **ContinueCallback** module defines the callback function that indicates the result of mission continuation. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission).
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## ContinueCallback.onContinueDone
 
 onContinueDone(result: number): void;
@@ -10,11 +14,13 @@ Called when the mission continuation is complete.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | result |  number | No| Mission continuation result.|
+  | result |  number | Yes| Mission continuation result.|
 
 **Example**
 

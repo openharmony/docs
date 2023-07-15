@@ -163,6 +163,22 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
     ```
     hidumper --mem [pid]
     ```
+    当携带pid参数时输出结果中第一列标题的详细说明如下：
+    | 名称             | 描述 |
+    |----------------|----|
+    | GL             | GPU内存   |
+    | Graph          | 图形内存  |
+    | ark ts heap    | ArkTS堆的内存占用  |
+    | guard          | 保护段所占内存   |
+    | native heap    | 堆内存   |
+    | AnonPage other | 其它没有被映射到文件的页所占内存  |
+    | stack          | 栈内存   |
+    | .hap           | 应用程序所占内存   |
+    | .db            | 进程加载的.db数据文件所占内存   |
+    | .so            | 进程加载的.so动态库所占内存   |
+    | .ttf           | 进程加载的.ttf字体文件所占内存   |
+    | dev            | 进程加载的以/dev开头的文件所占内存   |
+    | FilePage other | 其它有被映射到文件的页所占内存   |
 
 17. 运行 hidumper --zip 命令压缩信息数据到/data/dumper目录下。
      

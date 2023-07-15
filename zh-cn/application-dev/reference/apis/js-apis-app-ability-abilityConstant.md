@@ -30,7 +30,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
@@ -59,13 +59,19 @@ class MyAbility extends UIAbility {
 
 Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| ABILITY_NOT_RESPONDING          | 1    | ability未响应。 |
-| NORMAL | 2    | 正常退出。 |
+| ABILITY_NOT_RESPONDING | 1    | ability未响应。从API version 9 开始支持，从API version 10 开始废弃，建议使用APP_FREEZE替代。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。 |
+| CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。 |
+| JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。 |
+| APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。 |
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 由于系统资源违规使用（超过CPU、I/O、内存的使用量），导致应用程序退出。 |
+| UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。 |
 
 **示例：**
 
@@ -85,7 +91,7 @@ class MyAbility extends UIAbility {
 
 Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)方法进完成相应的返回。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
@@ -217,4 +223,25 @@ class MyAbility extends UIAbility {
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
+```
+
+## AbilityConstant.ContinueState<sup>10+</sup>
+
+ContinueState说明枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称           | 值       | 说明                                                         |
+| ------------- | --------- | ------------------------------------------------------------ |
+| ACTIVE        | 0         | 指示当前应用任务流转处于激活状态。                              |
+| INACTIVE      | 1         | 指示当前应用任务流转处于未激活状态。                            |
+
+**示例：**
+
+```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
 ```

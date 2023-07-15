@@ -22,7 +22,7 @@
 
  - OpenHarmony 3.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.1-release.md)了解版本详情。
 
-    该版本已更新至OpenHarmony 3.1.3 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.1.3-release.md)了解版本详情。
+    该版本已更新至OpenHarmony 3.1.7 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.1.7-release.md)了解版本详情。
 
  - OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。
 

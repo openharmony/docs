@@ -146,7 +146,7 @@
 
 示例：
 
-[内核子系统](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%86%85%E6%A0%B8%E5%AD%90%E7%B3%BB%E7%BB%9F.md)
+[内核子系统](../../readme/内核子系统.md)
 
 [drivers\_liteos](https://gitee.com/openharmony/drivers_liteos/blob/master/README_zh.md)
 

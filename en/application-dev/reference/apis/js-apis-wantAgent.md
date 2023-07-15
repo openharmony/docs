@@ -20,6 +20,8 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Type                      | Mandatory| Description                   |
@@ -91,6 +93,8 @@ Obtains the Want in a **WantAgent** object. This API uses a promise to return th
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type         | Mandatory| Description         |
@@ -155,7 +159,7 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
+Creates a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -163,7 +167,7 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object to obtain.          |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object.          |
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Example**
@@ -214,7 +218,7 @@ WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
+Creates a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -222,7 +226,7 @@ Obtains a **WantAgent** object. This API uses a promise to return the result. If
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the **WantAgent** object to obtain.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the **WantAgent** object.|
 
 **Return value**
 

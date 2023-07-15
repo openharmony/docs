@@ -9,7 +9,7 @@ Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能
 **推荐使用场景：** 需要频繁在集合两端进行增删元素的操作时，推荐使用Deque。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
-- T：Type, 类
+- T：Type，类
 
 > **说明：**
 >
@@ -156,9 +156,8 @@ has(element: T): boolean
 
 ```ts
 let deque = new Deque();
-let result = deque.has("squirrel");
 deque.insertFront("squirrel");
-let result1 = deque.has("squirrel");
+let result = deque.has("squirrel");
 ```
 
 ### popFirst
@@ -243,15 +242,15 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值。 |
-| deque | Deque&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
+| deque | Deque&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

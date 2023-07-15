@@ -1,7 +1,7 @@
 # ICameraDeviceCallback.idl
 
 
-## **概述**
+## 概述
 
 Camera设备的回调接口，主要包含Camera设备发生错误时和上报metadata的回调函数。
 
@@ -15,20 +15,20 @@ Camera设备的回调接口，主要包含Camera设备发生错误时和上报me
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ICameraDeviceCallback](interface_i_camera_device_callback.md) | 定义Camera设备回调操作。 | 
+| [ICameraDeviceCallback](interface_i_camera_device_callback.md) | interface<br/>定义Camera设备回调操作。 | 
 
 
-### 关键字
+### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |

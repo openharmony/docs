@@ -18,7 +18,7 @@
 | ECC    |        8+         | 256、384、521 |是|
 | ED25519 |        8+         | 256    |是|
 | X25519  |        8+         | 256    |是|
-| DSA    |        8+         | 8-1024（含），8的倍数    |否|
+| DSA    |        8+         | 512-1024（含），8的倍数    |否|
 | DH    |        8+         | 2048                |是|
 | DH    |        8+         | 3072、4096                |否|
 | SM2    |        9+         | 256                |是|
@@ -52,7 +52,6 @@
 | ECC/NoDigest     |  9+   |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
 | ED25519/NoDigest     |  8+       | NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |是|
 | SM2/SM3|9+      | |是|
-| SM2/NoDigest |9+      | |否|
 
 ### 密钥协商算法
 
@@ -95,7 +94,7 @@
 
 以RSA密钥为例，应用需要申请一个Uint8Array，按照RSA密钥对材料内存格式，将各个变量赋值到对应的位置：
 
-**图4** RSA密钥材料内存结构
+**图1** RSA密钥材料内存结构
 
 ![huks_keymaterial_struct](figures/huks_keymaterial_struct.png)
 

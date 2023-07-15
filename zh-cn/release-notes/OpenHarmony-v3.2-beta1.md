@@ -177,7 +177,7 @@ _[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -186,14 +186,12 @@ _[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent) | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | ArkTS |
 | ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | ArkTS |
 | DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger) | 本示例展示了在ArkTS中如何获取应用故障相关信息。 | ArkTS |
-| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery) | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | ArkTS |
-| 图形 | [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL) | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
+| ArkUI | [ComponentCollection](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection) | 本示例为ArkUI中组件、通用、动画、全局方法的集合 | ArkTS |
 | ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock) | 本示例使用ArkTS&nbsp;UI能力实现一个简单的时钟应用。 | ArkTS |
 | 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | ArkTS |
-| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | ArkTS |
+| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | ArkTS |
 | 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb) | 本示例展示了在ArkTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | ArkTS |
 | 元能力 | [WorkScheduler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例模拟下载更新包 、保存更新包、发送通知 、安装更新包实现升级，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | ArkTS |
 | 元能力 | [AbilityStartMode](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 | ArkTS |
@@ -205,7 +203,6 @@ _[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 | ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | ArkTS |
 | 一多设置典型页面 | [Settings](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings) | 本示例展示了设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTS |
 | 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | ArkTS |
-| ArkUI | [NativeAPI](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI) | 本示例展示了在ArkTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，ArkTS完成界面绘制和刷新。 | ArkTS/C++ |
 | 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International) | 本示例展示了i18n，intl，resourceManager在ArkTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。

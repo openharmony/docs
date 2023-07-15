@@ -19,13 +19,14 @@ import CommonEvent from '@ohos.commonEvent';
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./commonEvent-definitions.md)。
 
-## CommonEvent.publish
+## CommonEvent.publish<sup>(deprecated)</sup>
 
-```ts
-publish(event: string, callback: AsyncCallback<void>): void
-```
+publish(event: string, callback: AsyncCallback\<void>): void
 
 发布公共事件（回调形式）。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.publish](js-apis-commonEventManager.md#commoneventmanagerpublish)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -52,13 +53,14 @@ function publishCB(err) {
 CommonEvent.publish("event", publishCB);
 ```
 
-## CommonEvent.publish
+## CommonEvent.publish<sup>(deprecated)</sup>
 
-```ts
-publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
+publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 以回调的形式发布公共事件。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.publish](js-apis-commonEventManager.md#commoneventmanagerpublish-1)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -68,7 +70,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
-| callback | syncCallback\<void>   | 是   | 表示被指定的回调方法。  |
+| callback | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **示例：**
 
@@ -94,13 +96,14 @@ function publishCB(err) {
 CommonEvent.publish("event", options, publishCB);
 ```
 
-## CommonEvent.publishAsUser<sup>8+</sup>
+## CommonEvent.publishAsUser<sup>(deprecated)</sup>
 
-```ts
-publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): void
-```
+publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
 以回调的形式向指定用户发布公共事件。
+
+> **说明：**
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager.md#commoneventmanagerpublishasuser)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -133,13 +136,14 @@ let userId = 100;
 CommonEvent.publishAsUser("event", userId, publishCB);
 ```
 
-## CommonEvent.publishAsUser<sup>8+</sup>
+## CommonEvent.publishAsUser<sup>(deprecated)</sup>
 
-```ts
-publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
+publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 以回调形式向指定用户发布公共事件并指定发布信息。
+
+> **说明：**
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager.md#commoneventmanagerpublishasuser-1)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -180,13 +184,14 @@ let userId = 100;
 CommonEvent.publishAsUser("event", userId, options, publishCB);
 ```
 
-## CommonEvent.createSubscriber
+## CommonEvent.createSubscriber<sup>(deprecated)</sup>
 
-```ts
-createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void
-```
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
 以回调形式创建订阅者。
+
+> **说明：** 
+>从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.createSubscriber](js-apis-commonEventManager.md#commoneventmanagercreatesubscriber)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -222,13 +227,14 @@ function createCB(err, commonEventSubscriber) {
 CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
-## CommonEvent.createSubscriber
+## CommonEvent.createSubscriber<sup>(deprecated)</sup>
 
-```ts
-createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>
-```
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
 以Promise形式创建订阅者。
+
+> **说明：** 
+>从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.createSubscriber](js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -262,13 +268,14 @@ CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
 });
 ```
 
-## CommonEvent.subscribe
+## CommonEvent.subscribe<sup>(deprecated)</sup>
 
-```ts
-subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void
-```
+subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
 以回调形式订阅公共事件。
+
+> **说明：** 
+>从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.subscribe](js-apis-commonEventManager.md#commoneventmanagersubscribe)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -314,13 +321,14 @@ function createCB(err, commonEventSubscriber) {
 CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
-## CommonEvent.unsubscribe
+## CommonEvent.unsubscribe<sup>(deprecated)</sup>
 
-```ts
-unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): void
-```
+unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
 以回调形式取消订阅公共事件。
+
+> **说明：** 
+>从 API version 7开始支持，从API version 9开始废弃。建议使用[commonEventManager.subscribe](js-apis-commonEventManager.md#commoneventmanagerunsubscribe)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 

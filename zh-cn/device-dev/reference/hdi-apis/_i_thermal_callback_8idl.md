@@ -1,7 +1,7 @@
 # IThermalCallback.idl
 
 
-## **概述**
+## 概述
 
 设备发热状态的回调。
 
@@ -20,14 +20,14 @@
 [Thermal](thermal.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IThermalCallback](interface_i_thermal_callback.md) | 订阅设备发热状态的回调。 | 
+| [IThermalCallback](interface_i_thermal_callback.md) | interface<br/>订阅设备发热状态的回调。 | 
 
 
 ### 关键字

@@ -31,6 +31,8 @@ import config from '@ohos.accessibility.config';
 | shortkeyTarget | [Config](#config)\<string>| 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
+| audioMono| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。True表示打开单声道，False表示关闭单声道。 |
+| audioBalance| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
 
 ## enableAbility
 
@@ -247,7 +249,7 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
-| callback | Callback&lt;void&gt; | 否 | 要取消的监听回调函数。 |
+| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。 |
 
 **示例：**
 
@@ -425,7 +427,7 @@ off(callback?: Callback&lt;T&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | 否 | 要取消的监听回调函数。 |
+| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。 |
 
 **示例：**
 

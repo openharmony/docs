@@ -1,8 +1,6 @@
 # @system.network (网络状态)
 
 > **说明：**
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.telephony.observer`](js-apis-observer.md)。
->
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -21,9 +19,13 @@ ohos.permission.GET_WIFI_INFO
 ohos.permission.GET_NETWORK_INFO
 
 
-## network.getType
+## network.getType<sup>3+</sup>
 
-getType(Object): void
+getType(options?: {<br>
+&nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+&nbsp;&nbsp;complete?: () => void;<br>
+}): void
 
 获取当前设备的网络类型。
 
@@ -61,9 +63,12 @@ export default {
 ```
 
 
-## network.subscribe
+## network.subscribe<sup>3+</sup>
 
-subscribe(Object): void
+subscribe(options?:{<br>
+&nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+  }): void
 
 订阅当前设备的网络连接状态。如果多次调用，会覆盖前一次调用。
 
@@ -101,7 +106,7 @@ export default {
 ```
 
 
-## network.unsubscribe
+## network.unsubscribe<sup>3+</sup>
 
 unsubscribe(): void
 
@@ -120,7 +125,7 @@ export default {
 ```
 
 
-## NetworkResponse
+## NetworkResponse<sup>3+</sup>
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 

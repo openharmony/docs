@@ -259,6 +259,103 @@ try {
 ```
 
 
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当发起配对成功，err为undefined，否则为错误对象。   |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 1, err => {
+        if (err) {
+            console.error("errCode:" + err.code + ",errMessage:" + err.message);
+            return;
+        }
+        console.info("pairCredibleDevice,err:" + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+
+**返回值：**
+
+| 类型                                              | 说明                |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 0).then(() => {
+        console.info("PairCredibleDevice");
+    }, err => {
+        console.error("PairCredibleDevice:errCode" + err.code + ",errMessage:" + err.message);
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
@@ -608,6 +705,182 @@ try {
 ```
 
 
+## bluetoothManager.getRemoteProfileUuids<sup>10+</sup><a name="getRemoteProfileUuids"></a>
+
+getRemoteProfileUuids(device: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
+
+获取对端蓝牙设备支持的Profile UUID。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.getRemoteProfileUuids("XX:XX:XX:XX:XX:XX", (err, data) => {
+        console.info("getRemoteProfileUuids, err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+
+```
+
+
+## bluetoothManager.getRemoteProfileUuids<sup>10+</sup><a name="getRemoteProfileUuids"></a>
+
+getRemoteProfileUuids(device: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
+
+获取对端蓝牙设备支持的Profile UUID。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+|   Promise&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.getRemoteProfileUuids("XX:XX:XX:XX:XX:XX").then(() => {
+        console.info("getRemoteProfileUuids");
+    }, err => {
+        console.error("getRemoteProfileUuids: errCode" + err.code + ", errMessage: " + err.message);
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+
+## bluetoothManager.getLocalProfileUuids<sup>10+</sup><a name="getLocalProfileUuids"></a>
+
+getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
+
+获取本地设备的profile UUID。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.getLocalProfileUuids("XX:XX:XX:XX:XX:XX", (err, data) => {
+        console.info("getLocalProfileUuids, err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+
+## bluetoothManager.getLocalProfileUuids<sup>10+</sup><a name="getLocalProfileUuids"></a>
+
+getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
+
+获取本地设备的profile UUID。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+|   Promise&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.getLocalProfileUuids("XX:XX:XX:XX:XX:XX").then(() => {
+        console.info("getLocalProfileUuids");
+    }, err => {
+        console.error("getLocalProfileUuids: errCode" + err.code + ", errMessage: " + err.message);
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+
 ## bluetoothManager.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
 
 setDevicePairingConfirmation(device: string, accept: boolean): void
@@ -694,7 +967,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode-1"></a>
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 
@@ -985,7 +1258,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙连接状态改变事件。
+订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1024,7 +1297,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-取消订阅蓝牙连接状态改变事件。
+取消订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1465,7 +1738,7 @@ try {
 
 ## bluetoothManager.BLE
 
-### bluetoothManager.BLE.createGattServer
+### createGattServer
 
 createGattServer(): GattServer
 
@@ -1486,7 +1759,7 @@ let gattServer = bluetoothManager.BLE.createGattServer();
 ```
 
 
-### bluetoothManager.BLE.createGattClientDevice
+### createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1517,7 +1790,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.getConnectedBLEDevices
+### getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1554,7 +1827,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.startBLEScan
+### startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1607,7 +1880,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.stopBLEScan
+### stopBLEScan
 
 stopBLEScan(): void
 
@@ -1638,7 +1911,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.on('BLEDeviceFind')
+### on('BLEDeviceFind')
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1677,7 +1950,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.off('BLEDeviceFind')
+### off('BLEDeviceFind')
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1801,6 +2074,194 @@ try {
     let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+## bluetoothManager.setConnectionStrategy<sup>10+</sup><a name="setConnectionStrategy"></a>
+
+setConnectionStrategy(device: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
+
+设置该设备Profile的连接策略。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |Profile的连接策略。 |
+| callback | AsyncCallback&lt;void&gt;  | 是    | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let setRet = a2dpSrc.setConnectionStrategy("XX:XX:XX:XX:XX:XX", 0, (err, data) => {
+        console.info("setConnectionStrategy, err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+## bluetoothManager.setConnectionStrategy<sup>10+</sup><a name="setConnectionStrategy"></a>
+
+setConnectionStrategy(device: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
+
+设置该设备Profile的连接策略。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | 是    |Profile的连接策略。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let setRet = a2dpSrc.setConnectionStrategy("XX:XX:XX:XX:XX:XX", 1).then((data) => {
+        console.info("setConnectionStrategy");
+    }, (error) => {
+        console.error("setConnectionStrategy errCode: " + err.code + ", errMessage: " + err.message);
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+## bluetoothManager.getConnectionStrategy<sup>10+</sup><a name="getConnectionStrategy"></a>
+
+getConnectionStrategy(device: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
+
+获取该Profile的连接策略。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;[ConnectionStrategy](#connectionstrategy10)&gt; | 是    | 回调函数。当获取策略成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let setRet = a2dpSrc.getConnectionStrategy("XX:XX:XX:XX:XX:XX", 0, (err, data) => {
+        console.info("getConnectionStrategy, err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
+}
+```
+
+## bluetoothManager.getConnectionStrategy<sup>10+</sup><a name="getConnectionStrategy"></a>
+
+getConnectionStrategy(device: string): Promise&lt;ConnectionStrategy&gt;
+
+获取该Profile的连接策略。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| device | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+|   Promise&lt;[ConnectionStrategy](#connectionstrategy10)&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let setRet = a2dpSrc.getConnectionStrategy("XX:XX:XX:XX:XX:XX", 1).then((data) => {
+        console.info("getConnectionStrategy");
+    }, (error) => {
+        console.error("getConnectionStrategy errCode: " + err.code + ", errMessage: " + err.message);
+    });
+} catch (err) {
+    console.error("errCode: " + err.code + ", errMessage: " + err.message);
 }
 ```
 
@@ -2167,7 +2628,7 @@ connect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2208,7 +2669,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2237,7 +2698,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2263,7 +2724,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2307,7 +2768,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2336,7 +2797,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2362,7 +2823,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2401,7 +2862,7 @@ setTethering(enable: boolean): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2429,7 +2890,7 @@ isTetheringOn(): boolean
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -4355,6 +4816,7 @@ try {
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
+| includeDeviceName<sup>10+</sup> | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。        |
 
 
 ## ManufactureData
@@ -4391,7 +4853,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
-| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。   |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4424,13 +4886,13 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 类型   | 只读   | 必填   | 说明          |
-| -------- | ------ | ---- | ---- | ----------- |
-| write<sup>10+</sup>    | boolean | 是   | 是    | 表示该特征支持写操作，需要对端设备的回复。 |
-| writeNoResponse<sup>10+</sup> | boolean | 是    | 是    | 表示该特征支持写操作，无需对端设备回复。 |
-| read<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征支持读操作。 |
-| notify<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备。 |
-| indicate<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+| 名称       | 类型  | 必填   | 说明          |
+| -------- | ------ |---- | ----------- |
+| write<sup>10+</sup>    | boolean | 是  | 表示该特征支持写操作，需要对端设备的回复。 |
+| writeNoResponse<sup>10+</sup> | boolean | 是    | 表示该特征支持写操作，无需对端设备回复。 |
+| read<sup>10+</sup> | boolean   |  是    | 表示该特征支持读操作。 |
+| notify<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备。 |
+| indicate<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
 ## DeviceClass<a name="DeviceClass"></a>
@@ -4589,19 +5051,70 @@ try {
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
 
 
-## PinType<sup>10+</sup><a name="PinType"></a>
+## BluetoothTransport<sup>10+</sup><a name="BluetoothTransport"></a>
 
-枚举，蓝牙配对类型。
+枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。 |
-| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。  |
-| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。  |
-| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。  |
-| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。  |
-| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。  |
-| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。  |
-| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。  |
+| TRANSPORT_BR_EDR<sup>10+</sup>   | 0 | 表示传统蓝牙(BR/EDR)设备。 |
+| TRANSPORT_LE<sup>10+</sup>  | 1 | 表示低功耗蓝牙(BLE)设备。  |
+
+
+## ConnectionStrategy<sup>10+</sup><a name="ConnectionStrategy"></a>
+
+枚举，表示Profile的连接策略。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| CONNECT_STRATEGY_UNSUPPORTED <sup>10+</sup>   | 0 | 当设备未配对时的默认连接策略。<br/>此接口为系统接口。 |
+| CONNECT_STRATEGY_ALLOWED <sup>10+</sup>  | 1 |  设备允许接受或发起配对时的连接策略。<br/>此接口为系统接口。 |
+| CONNECT_STRATEGY_FORBIDDEN  <sup>10+</sup>  | 2 | 设备不允许接受或发起配对时的连接策略。<br/>此接口为系统接口。  |
+
+
+## PinType<sup>10+</sup><a name="PinType"></a>
+
+枚举，蓝牙配对类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。 |
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。  |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。<br/>此接口为系统接口。  |
+
+
+## ProfileUuids<sup>10+</sup><a name="ProfileUuids"></a>
+
+枚举，表示Profile的UUID。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                                   | 值    | 说明              |
+| ------------------------------------| ------ | --------------- |
+| PROFILE_UUID_HFP_AG <sup>10+</sup> | '0000111F-0000-1000-8000-00805F9B34FB' | 代表HFPAG Profile的UUID。<br/>此接口为系统接口。 |
+| PROFILE_UUID_HFP_HF <sup>10+</sup>  | '0000111E-0000-1000-8000-00805F9B34FB' | 代表HFPHF Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HSP_AG <sup>10+</sup>  | '00001112-0000-1000-8000-00805F9B34FB' | 代表HSPAG Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HSP_HS <sup>10+</sup>  | '00001108-0000-1000-8000-00805F9B34FB' | 代表HSPHS Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_A2DP_SRC <sup>10+</sup>   | '0000110A-0000-1000-8000-00805F9B34FB' | 代表A2DPSRC Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_A2DP_SINK <sup>10+</sup>    | '0000110B-0000-1000-8000-00805F9B34FB' | 代表A2DPSINK Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_AVRCP_CT <sup>10+</sup>    | '0000110E-0000-1000-8000-00805F9B34FB' | 代表AVRCPCT Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_AVRCP_TG <sup>10+</sup>    | '0000110C-0000-1000-8000-00805F9B34FB' | 代表AVRCPTG Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HID  <sup>10+</sup>    | '00001124-0000-1000-8000-00805F9B34FB' | 代表HID Profile的UUID。<br/>此接口为系统接口。  |
+| PROFILE_UUID_HOGP  <sup>10+</sup>    | '00001812-0000-1000-8000-00805F9B34FB' | 代表HOGP Profile的UUID。<br/>此接口为系统接口。  |

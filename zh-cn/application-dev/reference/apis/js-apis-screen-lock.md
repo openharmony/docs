@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import screenlock from '@ohos.screenLock';
+import screenLock from '@ohos.screenLock';
 ```
 
 ## EventType<sup>9+</sup>
@@ -50,7 +50,7 @@ import screenlock from '@ohos.screenLock';
 | eventType   | [EventType](#eventtype9) | 是   | 系统事件类型。 |
 | params | string | 是   | 系统事件参数。 |
 
-## screenlock.isLocked<sup>9+</sup>
+## screenLock.isLocked<sup>9+</sup>
 
 isLocked(): boolean
 
@@ -69,10 +69,10 @@ isLocked(): boolean
 **示例：** 
 
 ```js
-let isLocked = screenlock.isLocked();
+let isLocked = screenLock.isLocked();
 ```
 
-## screenlock.unlock<sup>9+</sup>
+## screenLock.unlock<sup>9+</sup>
 
 unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -94,21 +94,21 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-screenlock.unlock((err, data) => {      
+  ```js
+  screenLock.unlock((err, data) => {
     if (err) {
-        console.error(`Failed to unlock the screen, because: ${err.message}`);
-        return;    
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;
     }
-    console.info(`unlock the screen successfully. result: ${data}`);
-});
-```
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
+  });
+  ```
 
-## screenlock.unlock<sup>9+</sup>
+## screenLock.unlock<sup>9+</sup>
 
 unlock(): Promise&lt;boolean&gt;
 
@@ -130,19 +130,19 @@ unlock(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-screenlock.unlock().then((data) => {
-    console.info(`unlock the screen successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to unlock the screen, because: ${err.message}`);
-});
-```
+  ```js
+  screenLock.unlock().then((data) => {
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
+  }).catch((err) => {
+    console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
-## screenlock.lock<sup>9+</sup>
+## screenLock.lock<sup>9+</sup>
 
 lock(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -166,21 +166,21 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-screenlock.lock((err, data) => {      
+  ```js
+  screenLock.lock((err, data) => {
     if (err) {
-        console.error(`Failed to lock the screen, because: ${err.message}`);
-        return;    
+      console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;
     }
-    console.info(`lock the screen successfully. result: ${data}`);
-});
-```
+    console.info(`Succeeded in locking the screen. result: ${data}`);
+  });
+  ```
 
-## screenlock.lock<sup>9+</sup>
+## screenLock.lock<sup>9+</sup>
 
 lock(): Promise&lt;boolean&gt;
 
@@ -204,23 +204,23 @@ lock(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-screenlock.lock().then((data) => {
-    console.info(`lock the screen successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to lock the screen, because: ${err.message}`);
-});
-```
+  ```js
+  screenLock.lock().then((data) => {
+    console.info(`Succeeded in locking the screen. result: ${data}`);
+  }).catch((err) => {
+    console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
-## screenlock.onSystemEvent<sup>9+</sup>
+## screenLock.onSystemEvent<sup>9+</sup>
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-注册锁屏相关的系统事件，仅系统锁屏应用可调用。
+注册锁屏相关的系统事件，仅支持锁屏应用使用。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -246,25 +246,25 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-try {
-    let isSuccess = screenlock.onSystemEvent((event) => {
-        console.log(`Register the system event which related to screenlock successfully. eventType: ${event.eventType}`)
+  ```js
+  try {
+    let isSuccess = screenLock.onSystemEvent((event) => {
+      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
     });
-} catch (err) {
-    console.error(`Failed to register the system event which related to screenlock, because: ${err.message}`)
-}
-```
+  } catch (err) {
+    console.error(`Failed to register the system event which related to screenlock, Code: ${err.code}, message: ${err.message}`)
+  }
+  ```
 
-## screenlock.sendScreenLockEvent<sup>9+</sup>
+## screenLock.sendScreenLockEvent<sup>9+</sup>
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-应用发送事件到锁屏服务。使用callback异步回调。
+应用发送事件到锁屏服务，仅支持锁屏应用使用。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -286,25 +286,25 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  |the screenlock management service is abnormal.         |
 
 **示例：** 
 
-```js
-screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
+  ```js
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
     if (err) {
-        console.error(`Failed to send screenlock event, because: ${err.message}`);
-        return;
+      console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
+      return;
     }
-    console.info(`Send screenlock event successfully. result: ${result}`);
-});
-```
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
+  });
+  ```
 
-## screenlock.sendScreenLockEvent<sup>9+</sup>
+## screenLock.sendScreenLockEvent<sup>9+</sup>
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-应用发送事件到锁屏服务。使用Promise异步回调。
+应用发送事件到锁屏服务，仅支持锁屏应用使用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -325,17 +325,25 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 | ----------------- | ---------------------------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示发送事件成功；返回false表示发送事件失败。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
+
 **示例：** 
 
-```js
-screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
-    console.info(`Send screenlock event successfully. result: ${result}`);
-}).catch((err) => {
-    console.error(`Failed to send screenlock event, because: ${err.message}`);
-});
-```
+  ```js
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
+  }).catch((err) => {
+    console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
-## screenlock.isScreenLocked<sup>(deprecated)</sup>
+## screenLock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -355,17 +363,17 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-screenlock.isScreenLocked((err, data)=>{      
+  ```js
+  screenLock.isScreenLocked((err, data)=>{      
     if (err) {
-        console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
-        return;    
+      console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
+      return;    
     }
-    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
-});
-```
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
+  });
+  ```
 
-## screenlock.isScreenLocked<sup>(deprecated)</sup>
+## screenLock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(): Promise&lt;boolean&gt;
 
@@ -385,15 +393,15 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.isScreenLocked().then((data) => {
-    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
-});
-```
+  ```js
+  screenLock.isScreenLocked().then((data) => {
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
+  }).catch((err) => {
+    console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
-## screenlock.isSecureMode<sup>(deprecated)</sup>
+## screenLock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -413,17 +421,17 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-```js
-screenlock.isSecureMode((err, data)=>{
+  ```js
+  screenLock.isSecureMode((err, data)=>{
     if (err) {
-        console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
-        return;
+      console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
+      return;
     }
-    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
-});
-```
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
+  });
+  ```
 
-## screenlock.isSecureMode<sup>(deprecated)</sup>
+## screenLock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(): Promise&lt;boolean&gt;
 
@@ -443,14 +451,15 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.isSecureMode().then((data) => {
-    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
-});
-```
-## screenlock.unlockScreen<sup>(deprecated)</sup>
+  ```js
+  screenLock.isSecureMode().then((data) => {
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
+  }).catch((err) => {
+    console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
@@ -470,17 +479,17 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：** 
 
-```js
-screenlock.unlockScreen((err) => {      
+  ```js
+  screenLock.unlockScreen((err) => {      
     if (err) {
-        console.error(`Failed to unlock the screen, because: ${err.message}`);
-        return;    
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;    
     }
-    console.info('unlock the screen successfully.');
-});
-```
+    console.info(`Succeeded unlocking the screen.`);
+  });
+  ```
 
-## screenlock.unlockScreen<sup>(deprecated)</sup>
+## screenLock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(): Promise&lt;void&gt;
 
@@ -500,10 +509,10 @@ unlockScreen(): Promise&lt;void&gt;
 
 **示例：** 
 
-```js
-screenlock.unlockScreen().then(() => {
-    console.info('unlock the screen successfully.');
-}).catch((err) => {
-    console.error(`Failed to unlock the screen, because: ${err.message}`);
-});
-```
+  ```js
+  screenLock.unlockScreen().then(() => {
+    console.info('Succeeded unlocking the screen.');
+  }).catch((err) => {
+    console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```

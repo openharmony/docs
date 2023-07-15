@@ -24,6 +24,7 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 
 当持久化更改的过程变得太繁重时，PersistentStorage实现可能会限制持久化属性更改的频率。
 
+PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用，可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法持久化数据。
 
 ## 使用场景
 
@@ -77,7 +78,7 @@ struct Index {
 ```
 
 - 新应用安装后首次启动运行：
-  1. 调用PersistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。；
+  1. 调用PersistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装；
   2. 接着查询属性“aProp”在AppStorage中是否存在，依旧不存在；
   3. 在AppStorge中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47；
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化；

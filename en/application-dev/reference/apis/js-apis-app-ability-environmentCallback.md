@@ -45,8 +45,7 @@ Called when the system memory level changes.
 
 **Example**
     
-
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.Ability';
 
 let callbackId;
@@ -58,7 +57,7 @@ export default class MyAbility extends UIAbility {
         let environmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
-            }
+            },
 
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${JSON.stringify(level)}');
@@ -81,4 +80,4 @@ export default class MyAbility extends UIAbility {
         });
     }
 }
-  ```
+```

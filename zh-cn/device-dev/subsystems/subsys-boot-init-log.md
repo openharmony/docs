@@ -5,15 +5,14 @@
 - 基于日志可以定位故障问题，可以查看各子系统启动时长，命令执行时长等。
 - 可以查看不同模块的日志tag，如param、uevent、module等。
 - 输出关键阶段日志，如第一阶段启动日志、required partition设备节点、uevent创建日志、服务启动日志等。
-- 日志等级可控，根据需要输出不同级别日志，目前日志级别分为INIT_DEBUG,
-INIT_INFO,INIT_WARN,INIT_ERROR,INIT_FATAL。
+- 日志等级可控，根据需要输出不同级别日志，目前日志级别分为INIT_DEBUG、INIT_INFO、INIT_WARN、INIT_ERROR、INIT_FATAL。
 
 ### 基本概念
 
 init日志根据OpenHarmony版本不同实现方式不同。
-- 对于OpenHarmony标准版本，init日志采用内核的dmesg log实现。
-- 对于OpenHarmony liteos L1版本init日志采用hilog接口实现。
-- 对于OpenHarmony liteos L0版本init日志采用printf接口实现。
+- 对于OpenHarmony标准系统版本，init日志采用内核的dmesg log实现。
+- 对于OpenHarmony LiteOS小型系统版本init日志采用hilog接口实现。
+- 对于OpenHarmony LiteOS轻量系统版本init日志采用printf接口实现。
 
 ### 约束与限制
 无

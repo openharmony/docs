@@ -63,42 +63,6 @@ struct WebComponent {
 
 通过WebMessagePort可以进行消息的发送以及接收。
 
-### close
-
-close(): void
-
-关闭该消息端口。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = null;
-
-  build() {
-    Column() {
-      Button('close')
-        .onClick(() => {
-          if (this.msgPort && this.msgPort[1]) {
-            this.msgPort[1].close();
-          } else {
-            console.error("msgPort is null, Please initialize first");
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
@@ -234,7 +198,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 参数名  | 类型   | 必填 | 说明           |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](#webmessageext) | 是   | 要发送的消息。 |
+| message | [WebMessageExt](#webmessageext10) | 是   | 要发送的消息。 |
 
 **错误码：**
 
@@ -243,7 +207,6 @@ postMessageEventExt(message: WebMessageExt): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100010 | Can not post message using this port. |
-
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -364,6 +327,7 @@ struct WebComponent {
 }
 ```
 
+加载的html文件。
 ```html
 <!--index.html-->
 <!DOCTYPE html>
@@ -448,6 +412,56 @@ function postStringToApp() {
 }
 ```
 
+### close
+
+close(): void
+
+关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  msgPort: web_webview.WebMessagePort[] = null;
+
+  build() {
+    Column() {
+      // 先使用createWebMessagePorts创建端口。
+      Button('createWebMessagePorts')
+        .onClick(() => {
+          try {
+            this.msgPort = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.msgPort.length)
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Button('close')
+        .onClick(() => {
+          try {
+            if (this.msgPort && this.msgPort.length == 2) {
+              this.msgPort[1].close();
+            } else {
+              console.error("msgPort is null, Please initialize first");
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }      
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebviewController
 
 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
@@ -473,7 +487,6 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
-        globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
 }
@@ -491,7 +504,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | 是   | 使用HTTPDNS的模式。|
+| secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
 **示例：**
@@ -504,7 +517,6 @@ import web_webview from '@ohos.web.webview';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
         try {
             web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
         } catch(error) {
@@ -517,30 +529,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### 创建对象
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### setWebDebuggingAccess
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。
+设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -618,7 +611,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //需要加载的URL是string类型
+            // 需要加载的URL是string类型。
             this.controller.loadUrl('www.example.com');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -644,7 +637,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //带参数headers
+            // 带参数headers。
             this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -657,6 +650,7 @@ struct WebComponent {
 ```
 
 加载本地网页，加载本地资源文件有三种方式。
+
 1.$rawfile方式。
 ```ts
 // xxx.ets
@@ -672,8 +666,8 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //通过$rawfile加载本地资源文件
-            this.controller.loadUrl($rawfile('xxx.html'));
+            // 通过$rawfile加载本地资源文件。
+            this.controller.loadUrl($rawfile('index.html'));
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -683,6 +677,7 @@ struct WebComponent {
   }
 }
 ```
+
 2.resources协议。
 ```ts
 // xxx.ets
@@ -698,8 +693,8 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //通过resource协议加载本地资源文件
-            this.controller.loadUrl("resource://rawfile/xxx.html");
+            // 通过resource协议加载本地资源文件。
+            this.controller.loadUrl("resource://rawfile/index.html");
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -712,8 +707,9 @@ struct WebComponent {
 
 3.通过沙箱路径加载本地文件，可以参考[web](../arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
+加载的html文件。
 ```html
-<!-- xxx.html -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
   <body>
@@ -739,6 +735,11 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
+
+> **说明：**
+> 
+> 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+> 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 
 **错误码：**
 
@@ -1339,6 +1340,24 @@ struct Index {
 }
 ```
 
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+        Hello world!
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+        str = objName.test("test function")
+        console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
+```
+
 ### runJavaScript
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
@@ -1402,6 +1421,24 @@ struct WebComponent {
 }
 ```
 
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
+```
+
 ### runJavaScript
 
 runJavaScript(script: string): Promise\<string>
@@ -1440,11 +1477,9 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State webResult: string = '';
 
   build() {
     Column() {
-      Text(this.webResult).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
         .onPageEnd(e => {
@@ -1466,6 +1501,23 @@ struct WebComponent {
 }
 ```
 
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
+```
 
 ### runJavaScriptExt<sup>10+</sup>
 
@@ -1565,8 +1617,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+加载的html文件。
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -1677,8 +1732,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+加载的html文件。
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -1755,7 +1813,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
 
 **错误码：**
 
@@ -2038,7 +2096,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
 
 **返回值：**
 
@@ -2138,24 +2196,24 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof(result) == "string") {
-                  console.log("received string message from html5, string is:" + result);
-                  msg = msg + result;
-                } else if (typeof(result) == "object") {
-                  if (result instanceof ArrayBuffer) {
-                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                    msg = msg + "lenght is " + result.byteLength;
-                  } else {
-                    console.log("not support");
-                  }
+              let msg = 'Got msg from HTML:';
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
-                this.receivedFromHtml = msg;
-              })
-              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.log("not support");
+              }
+              this.receivedFromHtml = msg;
+            })
+            // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2174,14 +2232,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
-      Web({ src: $rawfile('xxx.html'), controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -2524,6 +2583,37 @@ struct WebComponent {
 }
 ```
 
+支持开发者基于默认的UserAgent去定制UserAgent。
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State ua: string = ""
+
+  aboutToAppear():void {
+    web_webview.once('webInited', () => {
+      try {
+        // 应用侧用法示例，定制UserAgent。
+        this.ua = this.controller.getUserAgent() + 'xxx';
+      } catch(error) {
+        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .userAgent(this.ua)
+    }
+  }
+}
+```
+
 ### getTitle
 
 getTitle(): string
@@ -2638,7 +2728,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
 | autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
-| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保持网页失败会返回null。                   |
+| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
 
@@ -2662,7 +2752,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
@@ -2727,7 +2817,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true)
@@ -2848,6 +2938,8 @@ backOrForward(step: number): void
 
 按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
 
+前进或者后退页面时，直接使用已加载过的网页，无需重新加载网页。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2936,14 +3028,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3008,14 +3101,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3080,14 +3174,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3190,7 +3285,7 @@ import image from "@ohos.multimedia.image"
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap = undefined;
 
   build() {
     Column() {
@@ -3296,12 +3391,12 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage((error, data) => {
-                if (error) {
-                  console.info(`hasImage error: ` + JSON.stringify(error))
-                  return;
-                }
-                console.info("hasImage: " + data);
-              });
+              if (error) {
+                console.info(`hasImage error: ` + JSON.stringify(error))
+                return;
+              }
+              console.info("hasImage: " + data);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3351,11 +3446,11 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage().then((data) => {
-                console.info('hasImage: ' + data);
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+              console.info('hasImage: ' + data);
+            })
+            .catch(function (error) {
+              console.error("error: " + error);
+            })
           } catch (error) {
             console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
           }
@@ -3586,10 +3681,11 @@ serializeWebState(): Uint8Array
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3602,11 +3698,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从EntryAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
-            fileio.writeSync(fd, state.buffer);
-            fileio.closeSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, state.buffer);
+            fs.closeSync(file.fd);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3614,6 +3712,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改EntryAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3641,10 +3754,11 @@ restoreWebState(state: Uint8Array): void
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3656,17 +3770,22 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从EntryAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o002, 0o666);
-            let stat = fileio.fstatSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+            let stat = fs.statSync(path);
             let size = stat.size;
             let buf = new ArrayBuffer(size);
-            fileio.read(fd, buf, (err, data) => {
-              if (data) {
-                this.controller.restoreWebState(new Uint8Array(data.buffer));
+            fs.read(file.fd, buf, (err, readLen) => {
+              if (err) {
+                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              } else {
+                console.info("read file data succeed");
+                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                fs.closeSync(file);
               }
-              fileio.closeSync(fd);
             });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3675,6 +3794,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改EntryAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -4087,11 +4221,108 @@ struct WebComponent {
 }
 ```
 
+### prefetchPage
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
+
+在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称              | 类型                             | 必填  | 说明                      |                            
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | 是    | 预加载的url。|
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
+            this.controller.prefetchPage('https://www.example.com');
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      // 需要将'www.example1.com'替换成一个真实的网站地址。
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### prepareForPageLoad
+
+static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
+
+预连接url，在加载url之前调用此API，对url只进行dns解析，socket建链操作，并不获取主资源子资源。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称           | 类型     | 必填  | 说明                                                   |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 预连接的url。|
+| preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
+| numSockets     | number  | 是   | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+| 171000013| The number of preconnect sockets is invalid.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
+        web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
 
-###  getCookie
+### getCookie
 
 static getCookie(url: string): string
 
@@ -4147,7 +4378,7 @@ struct WebComponent {
 }
 ```
 
-###  setCookie
+### setCookie
 
 static setCookie(url: string, value: string): void
 
@@ -4198,7 +4429,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
@@ -4210,8 +4441,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                               |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
-
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
 **示例：**
 
@@ -4244,7 +4474,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(): Promise\<void>
 
@@ -4291,7 +4521,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptCookieEnabled
+### putAcceptCookieEnabled
 
 static putAcceptCookieEnabled(accept: boolean): void
 
@@ -4332,7 +4562,7 @@ struct WebComponent {
 }
 ```
 
-###  isCookieAllowed
+### isCookieAllowed
 
 static isCookieAllowed(): boolean
 
@@ -4370,7 +4600,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptThirdPartyCookieEnabled
+### putAcceptThirdPartyCookieEnabled
 
 static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
@@ -4411,7 +4641,7 @@ struct WebComponent {
 }
 ```
 
-###  isThirdPartyCookieAllowed
+### isThirdPartyCookieAllowed
 
 static isThirdPartyCookieAllowed(): boolean
 
@@ -4449,7 +4679,7 @@ struct WebComponent {
 }
 ```
 
-###  existCookie
+### existCookie
 
 static existCookie(): boolean
 
@@ -4487,7 +4717,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteEntireCookie
+### deleteEntireCookie
 
 static deleteEntireCookie(): void
 
@@ -4518,7 +4748,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteSessionCookie
+### deleteSessionCookie
 
 static deleteSessionCookie(): void
 
@@ -5604,7 +5834,6 @@ Web组件返回的请求/响应头对象。
 | ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
 | ARRAY        | 5 |数组类型|
 
-
 ## WebMessageType<sup>10+</sup>
 
 [webMessagePort](#webmessageport)接口所支持的数据类型。
@@ -5661,7 +5890,6 @@ getString(): string
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5706,7 +5934,6 @@ getBoolean(): boolean
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getArrayBuffer<sup>10+</sup>
 
 getArrayBuffer(): ArrayBuffer
@@ -5750,7 +5977,6 @@ getArray(): Array\<string | number | boolean\>
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ## WebMessageExt<sup>10+</sup>
 
 [webMessagePort](#webmessageport)接口接收、发送的的数据对象。
@@ -5768,7 +5994,6 @@ getType(): WebMessageType
 | 类型           | 说明                                                      |
 | --------------| --------------------------------------------------------- |
 | [WebMessageType](#webmessagetype10) | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
-
 
 ### getString<sup>10+</sup>
 
@@ -5792,7 +6017,6 @@ getString(): string
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5815,7 +6039,6 @@ getNumber(): number
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getBoolean<sup>10+</sup>
 
 getBoolean(): boolean
@@ -5837,7 +6060,6 @@ getBoolean(): boolean
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -5903,7 +6125,6 @@ getError(): Error
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### setType<sup>10+</sup>
 
@@ -6045,7 +6266,6 @@ setError(message: Error): void
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ## WebStorageOrigin
 
 提供Web SQL数据库的使用信息。
@@ -6154,6 +6374,9 @@ Web組件使用HTTPDNS的模式。
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
-| Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| Auto          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
-| SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
+| Off<sup>(deprecated)</sup>           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。|
+| Auto<sup>(deprecated)</sup>          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。|
+| SecureOnly<sup>(deprecated)</sup>    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。|
+| OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
+| AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
+| SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|

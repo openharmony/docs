@@ -14,13 +14,13 @@
 
 | 接口名 | 说明 | 
 | -------- | -------- |
-| castAudio(session: SessionToken \| ‘all’, audioDevices: Array&lt;audio.AudioDeviceDescriptor&gt;, callback: AsyncCallback&lt;void&gt;): void | 投播会话到指定设备列表。 | 
+| castAudio(session: SessionToken \| 'all', audioDevices: Array&lt;audio.AudioDeviceDescriptor&gt;, callback: AsyncCallback&lt;void&gt;): void | 投播会话到指定设备列表。 | 
 
 ## 开发步骤
 
 系统应用作为媒体会话控制方接入媒体会话时，根据需要使用分布式媒体会话进行投播的步骤如下所示：
 
-1. 导入模块接口。由于在进行投播之前，需要从audio模块获取音频设备描述符AudioDeviceDescriptor，所以除了导入avsession模块外，还需要导入audio模块。
+1. 导入模块接口。由于在进行投播之前，需要从audio模块获取音频设备描述符AudioDeviceDescriptor，所以除了导入AVSessionManager模块外，还需要导入audio模块。
      
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
@@ -36,15 +36,15 @@
    let audioDevices;
    await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
       audioDevices = data;
-      console.info('Promise returned to indicate that the device list is obtained.');
+      console.info(`Promise returned to indicate that the device list is obtained.`);
    }).catch((err) => {
-      console.info(`getDevices : ERROR : ${err.message}`);
+      console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
    });
    
    AVSessionManager.castAudio('all', audioDevices).then(() => {
-      console.info('createController : SUCCESS');
+      console.info(`createController : SUCCESS`);
    }).catch((err) => {
-      console.info(`createController : ERROR : ${err.message}`);
+      console.error(`Failed to cast audio. Code: ${err.code}, message: ${err.message}`);
    });
    ```
 

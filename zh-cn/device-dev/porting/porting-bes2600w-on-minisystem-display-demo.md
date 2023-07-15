@@ -2,7 +2,7 @@
 
 # 轻量带屏解决方案之恒玄芯片移植案例
 
-本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`graphic_ui`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
+本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
 
 ## 编译构建
 
@@ -1230,10 +1230,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
     {
       "component": "histreamer",
       "features": [
-        "multimedia_histreamer_enable_plugin_hdi_adapter = true",
-        "multimedia_histreamer_enable_plugin_minimp3_adapter = true",
-        "multimedia_histreamer_enable_plugin_ffmpeg_adapter = false",
-        "config_ohos_multimedia_histreamer_stack_size = 65536"
+        "histreamer_enable_plugin_hdi_adapter = true",
+        "histreamer_enable_plugin_minimp3_adapter = true",
+        "histreamer_enable_plugin_ffmpeg_adapter = false",
+        "config_ohos_histreamer_stack_size = 65536"
       ]
     }
   ]
@@ -1242,12 +1242,12 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 `histreamer`部件配置项说明如下：
 
-| 配置项                                              | 说明                            |
-| --------------------------------------------------- | ------------------------------- |
-| multimedia_histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
-| multimedia_histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
-| multimedia_histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
-| config_ohos_multimedia_histreamer_stack_size        | histreamer栈大小设置            |
+| 配置项                                   | 说明                            |
+| ---------------------------------------- | ------------------------------- |
+| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
+| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
+| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
+| config_ohos_histreamer_stack_size        | histreamer栈大小设置            |
 
 #### 公共基础库子系统适配
 
@@ -1313,7 +1313,7 @@ aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
 ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE,JS引擎及其依赖)
       |
-graphic_ui + graphic_utils      (图形框架)
+arkui_ui_lite + graphic_utils      (图形框架)
       |
 giflib + libjpeg + libpng + qrcodegen + freetype... (图形第三方库)
 ```

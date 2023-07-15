@@ -20,8 +20,41 @@
 
 ## 接口
 
-NavRouter()
+**方法1：** NavRouter()
 
+**方法2：** NavRouter(value: RouteInfo)<sup>10+</sup>
+
+  提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
+
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 参数描述          |
+| ------- | ----------------------------------- | ---- | ------------- |
+| value   | [RouteInfo](#routeinfo10对象说明) | 否    | 路由信息 |
+
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称                            | 参数类型                                     | 描述                                       |
+| ----------------------------- | ---------------------------------------- | ---------------------------------------- |
+| mode                  | [NavRouteMode](#navroutemode枚举类型说明)                                  | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE<br/> |
+
+## RouteInfo<sup>10+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| name             | string            | 是   | 点击NavRouter跳转到的NavDestination页面的名称。 |
+| param             | unknown            | 否   | 点击NavRouter跳转到NavDestination页面时，传递的参数。 |
+
+## NavRouteMode枚举类型说明
+
+| 名称    | 描述               |
+| ----- | ---------------- |
+| PUSH_WITH_RECREATE | 跳转到新的NavDestination页面时，替换当前显示的NavDestination页面，页面销毁，但该页面信息仍保留在路由栈中。 |
+| PUSH   | 跳转到新的NavDestination页面时，覆盖当前显示的NavDestination页面，该页面不销毁，且页面信息保留在路由栈中。 |
+| REPLACE   | 跳转到新的NavDestination页面时，替换当前显示的NavDestination页面，页面销毁，且该页面信息从路由栈中清除。 |
 
 ## 事件
 

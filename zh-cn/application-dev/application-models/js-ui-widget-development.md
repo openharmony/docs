@@ -57,13 +57,6 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | 当系统配置更新时调用。 |
 | onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;any&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
 
-FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-inner-application-formExtensionContext.md)。
-
-| 接口名 | 描述 |
-| -------- | -------- |
-| startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 回调形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
-| startAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt; | Promise形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
-
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
@@ -88,7 +81,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 - [配置卡片配置文件](#配置卡片配置文件)：配置应用配置文件module.json5和profile配置文件。
 
-- [卡片数据交互](#卡片数据交互)：对卡片信息进行持久化管理。
+- [卡片信息的持久化](#卡片数据交互)：对卡片信息进行持久化管理。
 
 - [卡片数据交互](#卡片数据交互)：通过updateForm更新卡片显示的信息。
 
@@ -109,7 +102,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataStorage from '@ohos.data.storage';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. 在EntryFormAbility.ts中，实现FormExtension生命周期接口。
@@ -181,7 +174,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEntrance": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
@@ -262,7 +255,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         "updateCount": 0
     };
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // put form info
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
@@ -301,7 +294,7 @@ export default class EntryFormAbility extends FormExtension {
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // del form info
         await storage.delete(formId);
         console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
@@ -324,7 +317,7 @@ export default class EntryFormAbility extends FormExtension {
 }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[轻量级数据存储开发指导](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 

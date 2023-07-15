@@ -52,11 +52,11 @@ try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
         .then(() => {
             console.info('setOverlayEnabled success');
-        }).catch((error) => {
-            console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+        }).catch((err) => {
+            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
-    console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -92,15 +92,15 @@ var moduleName = "feature";
 var isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled, (error, data) => {
-        if (error) {
-            console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+    overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
+        if (err) {
+            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabled success');
     });
-} catch (error) {
-    console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -145,18 +145,18 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
-        }).catch((error) => {
-            console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+        }).catch((err) => {
+            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
-    console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -196,19 +196,19 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
-    overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (error, data) => {
-        if (error) {
-            console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+    overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (err, data) => {
+        if (err) {
+            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabledByBundleName successfully');
     });
-} catch (error) {
-    console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -239,20 +239,20 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
-| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
         console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
     } catch(err) {
-        console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -279,23 +279,23 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
-| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 try {
-    overlay.getOverlayModuleInfo(moduleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfo(moduleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -331,14 +331,14 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -370,17 +370,17 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 try {
-    overlay.getTargetOverlayModuleInfos(targetModuleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -401,7 +401,7 @@ Obtains the information about a module with the overlay feature in another appli
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| moduleName | string | No   | HAP name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
+| moduleName | string | No   | HAP name of the module with the overlay feature. By default, no value is passed, and the API obtains the information of all modules with the overlay feature in that application.    |
 
 **Return value**
 
@@ -415,7 +415,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -424,14 +424,14 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -462,7 +462,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -471,18 +471,18 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
-    overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -511,10 +511,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified module name is not found. |
+| 17700001 | The specified bundleName is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
-| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -522,15 +520,15 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 var bundleName = "com.example.myapplication_xxxxx";
 
 try {
-    overlay.getOverlayModuleInfoByBundleName(bundleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfoByBundleName(bundleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -551,13 +549,13 @@ Obtains the information about modules with the overlay feature in another applic
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| moduleName | string | No   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
+| moduleName | string | No   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. By default, no value is passed, and the API obtains the information associated with all modules in that application.    |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the array of overlay module information obtained.|
+| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the result, which is an array of **OverlayModuleInfo** objects.|
 
 **Error codes**
 
@@ -565,7 +563,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |
@@ -574,21 +572,21 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
 
 Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -612,7 +610,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |
@@ -621,24 +619,24 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
-    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
 
 Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -661,9 +659,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified module name is not found. |
-| 17700034 | The specified module is an overlay module. |
+| 17700001 | The specified bundleName is not found. |
 | 17700035 | The specified bundle is an overlay bundle. |
 
 **Example**
@@ -672,15 +668,15 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 var targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
-    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 

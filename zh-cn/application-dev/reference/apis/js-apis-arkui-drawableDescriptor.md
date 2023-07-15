@@ -1,4 +1,4 @@
-# @ohos.arkui.drawableDescriptor  (DrawableDescriptor)
+# @ohos.arkui.drawableDescriptor (DrawableDescriptor)
 
 本模块提供获取pixelMap的能力，包括前景、背景、蒙版和分层图标。
 
@@ -31,17 +31,38 @@ constructor()
 
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。
 
+drawble.json文件如下：
+
+```json
+{
+  "layered-image":
+  {
+    "background" : "$media:background",
+    "foreground" : "$media:foreground"
+  }
+}
+```
+
 **示例：**
-```js
+```ts
+// xxx.ets
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+
 @Entry
 @Component
 struct Index {
   private resManager = getContext().resourceManager
-  let drawable1 = resManager.getDrawableDescriptor($r('app.media.icon').id)
-  let drawable2 = resManager.getDrawableDescriptorByName(icon)
-  let layeredDrawable1 = resManager.getDrawableDescriptor($r('app.media.file').id)
-  let layeredDrawable1 = resManager.getDrawableDescriptor(file)
- }
+
+  build() {
+    Row() {
+      Column() {
+        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+          .id))).getForeground()).getPixelMap())
+      }.height('50%')
+    }.width('50%')
+  }
+}
 ```
 
 ## DrawableDescriptor.getPixelMap
@@ -53,13 +74,14 @@ getPixelMap(): image.PixelMap;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
-  ```js
-  @State pixmap: PixelMap = drawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = (<DrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+    .id))).getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -71,13 +93,14 @@ getPixelMap(): image.PixelMap;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
-  ```js
-  @State pixmap: PixelMap = layeredDrawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+          .id))).getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -89,13 +112,14 @@ getForeground(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getForeground();
+  ```ts
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getForeground();
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -107,13 +131,14 @@ getBackground(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getBackground();
+  ```ts
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getBackground();
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -125,11 +150,12 @@ getMask(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getMask();
+  ```ts
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+    .id))).getMask();
   ```

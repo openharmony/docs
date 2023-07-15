@@ -7,6 +7,12 @@ The **StartAbilityParameter** module defines the parameters for starting an abil
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the FA model.
 
+## Modules to Import
+
+```ts
+import ability from '@ohos.ability.ability';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name              |   Type  | Mandatory  | Description                                   |
@@ -30,7 +36,7 @@ let abilityStartSetting ={
     [featureAbility.AbilityStartSetting.DISPLAY_ID_KEY] : 1,
 };
 
-let startAbilityParameter = {
+let startAbilityParameter: ability.StartAbilityParameter = {
     want : Want,
     abilityStartSetting : abilityStartSetting
 };

@@ -10,7 +10,7 @@ fd: 访问rawfile文件的文件描述符；
 
 offset: 访问rawfile文件的偏移量，此时为0；
 
-length: 访问rawfile文件访的大小。
+length: 访问rawfile文件的大小。
 
 **新增不解压特性后**：
 
@@ -18,7 +18,7 @@ fd: 访问rawfile文件所在hap的文件描述符；
 
 offset: 访问rawfile文件相对于hap的偏移量；
 
-length: 访问rawfile文件访的大小。
+length: 访问rawfile文件的大小。
 
 **变更影响**
 

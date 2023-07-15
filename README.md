@@ -18,7 +18,7 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
- - OpenHarmony 3.2 Beta5. [Learn more](en/release-notes/OpenHarmony-v3.2-beta5.md)
+ - OpenHarmony 3.2 Release. [Learn more](en/release-notes/OpenHarmony-v3.2-release.md)
 
  - OpenHarmony 3.1 Release. [Learn more](en/release-notes/OpenHarmony-v3.1-release.md)
 

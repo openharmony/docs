@@ -1,6 +1,6 @@
 # RowSplit
 
-The **\<RowSplit>** lays out child components horizontally and inserts a vertical divider between every two child components.
+The **\<RowSplit>** lays out child components horizontally and inserts a vertical divider between child components.
 
 >  **NOTE**
 >
@@ -23,9 +23,11 @@ RowSplit()
 
 >  **NOTE**
 >
->  Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
+> Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
+> 
+> Dragging is not supported in the Previewer. Check the drag effect on a real device.
 >
->  Dragging is not supported in the Previewer. Check the drag effect on a real device.
+> The universal attributes **clip** and **margin** are not supported.
 
 
 ## Example

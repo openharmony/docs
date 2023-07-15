@@ -6,7 +6,7 @@
 
 - 新增统一的错误码定义：
   - [帐号公共错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-account.md)
-  - [应用帐号错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-app-account.md)
+  - [应用帐号错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-account.md)
 
 - 按以下方式返回错误码：
   - 异步接口：错误信息通过AsyncCallback或Promise的error对象返回。其中，参数类型和数量错误信息，通过抛出异常的方式返回。

@@ -1,4 +1,4 @@
-# UIAbility Component Usage
+# UIAbility Usage
 
 
 When using the UIAbility component, you must specify a startup page and obtain the context, [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md).
@@ -6,7 +6,7 @@ When using the UIAbility component, you must specify a startup page and obtain t
 
 ## Specifying the Startup Page of UIAbility
 
-If no startup page is specified, a white screen occurs after the application is started. You can use **loadContent()** of [WindowStage](../reference/apis/js-apis-window.md#windowstage9) to set the startup page in the **onWindowStageCreate()** callback of the UIAbility instance.
+You can use **loadContent()** of [WindowStage](../reference/apis/js-apis-window.md#windowstage9) to set the startup page in the **onWindowStageCreate()** callback of the UIAbility instance. If no startup page is specified, a white screen occurs after the application is started.
 
 
 ```ts
@@ -14,20 +14,20 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created. Set a main page for this ability.
-        windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created. Set a main page for this ability.
+    windowStage.loadContent('pages/Index', (err, data) => {
+      ...
+    });
+  }
 
-    // ...
+  ...
 }
 ```
 
 > **NOTE**
 >
-> When you create UIAbility in DevEco Studio, the UIAbility instance loads the **Index** page by default. Therefore, you only need to replace the **Index** page path with the required startup page path.
+> When you create UIAbility in DevEco Studio, the UIAbility instance loads the **Index** page as its startup page. Therefore, you only need to replace the **Index** page path with the required startup page path.
 
 
 ## Obtaining the Context of UIAbility
@@ -40,15 +40,14 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          // Obtain the context of the UIAbility instance.
-          let context = this.context;
-  
-          // ...
-      }
+    onCreate(want, launchParam) {
+      // Obtain the context of the UIAbility instance.
+      let context = this.context;
+      ...
+    }
   }
   ```
-
+  
 - Import the context module and define the **context** variable in the component.
   
   ```ts
@@ -68,7 +67,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
     // Page display.
     build() {
-      // ...
+      ...
     }
   }
   ```
@@ -93,7 +92,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
     // Page display.
     build() {
-      // ...
+      ...
     }
   }
   ```

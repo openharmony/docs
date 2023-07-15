@@ -1,10 +1,11 @@
-# \@Observed和\@ObjectLink：嵌套类对象属性变化
+# \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
 
 上文所述的装饰器仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 
 > **说明：**
+>
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 
 
@@ -14,10 +15,14 @@
 
 - 被\@Observed装饰的类，可以被观察到属性的变化；
 
-- 子组件中\@ObjectLink装饰器装饰的状态变量用于接受\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中是属性，这个属性同样也需要被\@Observed装饰。
+- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中是属性，这个属性同样也需要被\@Observed装饰。
 
 - 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
 
+
+## 限制条件
+
+使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
 
 ## 装饰器说明
 
@@ -49,7 +54,7 @@ this.objLink= ...
 >
 > - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖；
 >
-> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
+> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink修饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
 
 
 ## 变量的传递/访问规则说明
@@ -110,7 +115,7 @@ this.b.b = 5
 this.b.a.c = 5
 ```
 
-\@ObjectLink：\@ObjectLink只能接受被\@Observed装饰class的实例，可以观察到：
+\@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，可以观察到：
 
 - 其属性的数值的变化，其中属性是指Object.keys(observedObject)返回的所有属性，示例请参考[嵌套对象](#嵌套对象)。
 
@@ -121,7 +126,7 @@ this.b.a.c = 5
 
 1. 初始渲染：
    1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
-   2. 子组件中\@ObjectLink装饰的从父组件初始化，接受被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
+   2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会走到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
@@ -211,7 +216,7 @@ ViewB中的事件句柄：
 
 - this.b.a = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
 
-- this.b.a.c = ... ：该变化属于第二次的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.b.a.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
 ViewA中的事件句柄：

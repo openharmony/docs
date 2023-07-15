@@ -1,7 +1,7 @@
 # 使能通知开关
 
 
-应用需要开启通知开关才能发送通知。开发者可以在通知发布前调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)方法，弹窗让用户选择是否开启使能开关，仅弹窗一次，后续调用该接口不再弹窗。
+应用需要开启通知开关才能发送通知。开发者可以在通知发布前调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法，弹窗让用户选择是否开启使能开关，仅弹窗一次，后续调用该接口不再弹窗。
 
   **图1** 使能通知开关示意图  
 ![zh-cn_image_0000001416585590](figures/zh-cn_image_0000001416585590.png)
@@ -9,7 +9,7 @@
 
 - 点击“允许”后，则表示允许应用发送通知。
 
-- 点击“取消”后，再次调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)方法，则不再弹窗。此时如需要手动使能通知开关，操作步骤如下所示。
+- 点击“取消”后，再次调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法，则不再弹窗。此时如需要手动使能通知开关，操作步骤如下所示。
   
   | ①从设备左上方下拉，进入通知界面                              | ②点击右上角“设置”图标，进入通知界面，找到需要打开通知开关的应用 | ③打开“允许通知”开关                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |

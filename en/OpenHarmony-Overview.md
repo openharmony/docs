@@ -189,7 +189,7 @@ For details about how to obtain the source code of OpenHarmony, see [Source Code
 
 ## How to Participate
 
-For details about how to join in the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README-EN.md)
+For details about how to join in the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README_EN.md)
 
 For details about how to contribute, see [How to contribute](contribute/how-to-contribute.md).
 

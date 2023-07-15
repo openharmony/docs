@@ -17,11 +17,11 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 ## Constraints
 
-- Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
+Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference](../reference/apis/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 

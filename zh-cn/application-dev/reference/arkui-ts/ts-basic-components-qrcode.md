@@ -24,7 +24,7 @@ QRCode(value: string)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 二维码内容字符串。最大支持256个字符，若超出，则截取前256个字符。 |
+| value | string | 是 | 二维码内容字符串。最大支持256个字符，若超出，则截取前256个字符。<br/>**说明：** <br/>该字符串内容确保有效，不支持null、undefined以及空内容。 |
 
 ## 属性
 
@@ -33,7 +33,7 @@ QRCode(value: string)
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当设置[通用属性backgroundColor](./ts-universal-attributes-background.md)时，设置二维码内容区的背景颜色，而不是组件的背景颜色。 |
 
 
 ## 事件

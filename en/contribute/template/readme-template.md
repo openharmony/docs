@@ -140,7 +140,7 @@ The table below describes the writing requirements. After finishing the writing,
 
 Example:
 
-[Kernel](https://gitee.com/openharmony/docs/blob/master/en/readme/kernel-subsystem.md)
+[Kernel](../../readme/kernel.md)
 
 [drivers\_liteos](https://gitee.com/openharmony/drivers_liteos/blob/master/README.md)
 

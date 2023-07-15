@@ -1,10 +1,10 @@
 # Stage模型应用程序包结构
 
 
-基于[Stage模型](application-configuration-file-overview-stage.md)开发的应用，经编译打包后，其应用程序包结构如下图**应用程序包结构（Stage模型）**所示。开发者需要熟悉应用程序包结构相关的基本概念。
+基于[Stage模型](application-configuration-file-overview-stage.md)开发的应用，经编译打包后，其应用程序包结构如下图“应用程序包结构（Stage模型）”所示。开发者需要熟悉应用程序包结构相关的基本概念。
 
 
-- 在开发态，一个应用包含一个或者多个Module，可以在[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/)工程中[创建一个或者多个Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3)。Module是OpenHarmony应用/服务的基本功能单元，包含了源代码、资源文件、第三方库及应用/服务配置文件，每一个Module都可以独立进行编译和运行。Module分为“Ability”和“Library”两种类型，“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）；“Library”类型的Module对应于[HAR](har-package.md)（Harmony Archive），或者[HSP](shared-guide.md)（Harmony Shared Package）。
+- 在开发态，一个应用包含一个或者多个Module，可以在[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/)工程中[创建一个或者多个Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3)。Module是OpenHarmony应用/服务的基本功能单元，包含了源代码、资源文件、第三方库及应用/服务配置文件，每一个Module都可以独立进行编译和运行。Module分为“Ability”和“Library”两种类型，“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）；“Library”类型的Module对应于[HAR](har-package.md)（Harmony Archive），或者[HSP](shared-guide.md)（Harmony Shared Package）。
   一个Module可以包含一个或多个[UIAbility](../application-models/uiability-overview.md)组件，如**Module与UIAbility组件关系示意图**所示。
 
     **图1** Module与UIAbility组件关系示意图  

@@ -2,6 +2,16 @@
 
 The **MissionInfo** module defines detailed information about a mission. The information can be obtained through [getMissionInfo](js-apis-app-ability-missionManager.md#missionmanagergetmissioninfo).
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -16,6 +26,7 @@ The **MissionInfo** module defines detailed information about a mission. The inf
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
 | continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|
+| unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted.|
 
 **Example**
 ```ts
@@ -23,7 +34,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 try {
   missionManager.getMissionInfo('', 1, (error, data) => {
-    if (error.code) {
+    if (error) {
         // Process service logic errors.
         console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
@@ -37,6 +48,7 @@ try {
     console.log('getMissionInfo label is: ${JSON.stringify(data.label)}');
     console.log('getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}');
     console.log('getMissionInfo continuable is: ${JSON.stringify(data.continuable)}');
+    console.log('getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}');
     });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');

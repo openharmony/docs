@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -60,7 +60,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        //通过$rawfile加载本地资源文件
+        // 通过$rawfile加载本地资源文件。
         Web({ src: $rawfile("index.html"), controller: this.controller })
       }
     }
@@ -77,7 +77,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        //通过resource协议加载本地资源文件
+        // 通过resource协议加载本地资源文件。
         Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
@@ -90,7 +90,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  let url = 'file://' + globalThis.filesDir + '/xxx.html'
+  let url = 'file://' + globalThis.filesDir + '/index.html'
 
   @Entry
   @Component
@@ -105,8 +105,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  2.修改MainAbility.ts。
-  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
+  2.修改EntryAbility.ts。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -121,6 +121,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -241,7 +242,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -408,7 +409,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，默认使用该方式。
+设置是否使用概览模式加载网页，默认使用该方式。当前仅支持移动设备。
 
 **参数：**
 
@@ -585,15 +586,16 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .horizontalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  加载的html文件。
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -638,15 +640,16 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .verticalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  加载的html文件。
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -667,6 +670,15 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
+### password<sup>(deprecated)</sup>
+
+password(password: boolean)
+
+设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### cacheMode
 
@@ -695,6 +707,38 @@ cacheMode(cacheMode: CacheMode)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .cacheMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比，默认为100%。
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
       }
     }
   }
@@ -951,7 +995,6 @@ minLogicalFontSize(size: number)
   }
   ```
 
-
 ### webFixedFont<sup>9+</sup>
 
 webFixedFont(family: string)
@@ -1142,7 +1185,7 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefer-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
 
 **参数：**
 
@@ -1201,6 +1244,26 @@ forceDarkAccess(access: boolean)
     }
   }
   ```
+
+### tableData<sup>(deprecated)</sup>
+
+tableData(tableData: boolean)
+
+设置是否应保存表单数据。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+### wideViewModeAccess<sup>(deprecated)</sup>
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### pinchSmooth<sup>9+</sup>
 
@@ -1311,6 +1374,44 @@ allowWindowOpenMethod(flag: boolean)
   }
   ```
 
+### mediaOptions<sup>10+</sup>
+
+mediaOptions(options: WebMediaOptions)
+
+设置Web媒体播放的策略，其中包括：Web中的音频在重新获焦后能够自动续播的有效期、应用内多个Web实例的音频是否独占。
+
+> **说明：**
+>
+> - 同一Web实例中的多个音频均视为同一音频。
+> - 该媒体播放策略将同时管控有声视频。
+> - 属性参数更新后需重新播放音频方可生效。
+> - 建议为所有Web组件设置相同的audioExclusive值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mediaOptions(this.options)
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持通用事件。
@@ -1347,8 +1448,10 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
+            console.log("event.url:" + event.url)
+            console.log("event.message:" + event.message)
             AlertDialog.show({
               title: 'onAlert',
               message: 'text',
@@ -1373,6 +1476,26 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <h1>WebView onAlert Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <script>
+      function myFunction() {
+        alert("Hello World");
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onBeforeUnload
@@ -1408,7 +1531,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1436,6 +1559,26 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body onbeforeunload="return myFunction()">
+    <h1>WebView onBeforeUnload Demo</h1>
+    <a href="https://www.example.com">Click here</a>
+    <script>
+      function myFunction() {
+        return "onBeforeUnload Event";
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConfirm
@@ -1471,11 +1614,10 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
-            console.log("event.result:" + event.result)
             AlertDialog.show({
               title: 'onConfirm',
               message: 'text',
@@ -1500,6 +1642,35 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onConfirm Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let x;
+        let r = confirm("click button!");
+        if (r == true) {
+          x = "ok";
+        } else {
+          x = "cancel";
+        }
+        document.getElementById("demo").innerHTML = x;
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onPrompt<sup>9+</sup>
@@ -1533,7 +1704,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             console.log("url:" + event.url)
             console.log("message:" + event.message)
@@ -1550,7 +1721,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  event.result.handleConfirm()
+                  event.result.handlePromptConfirm(event.value)
                 }
               },
               cancel: () => {
@@ -1562,6 +1733,31 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onPrompt Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let message = prompt("Message info", "Hello World");
+        if (message != null && message != "") {
+          document.getElementById("demo").innerHTML = message;
+        }
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConsole
@@ -1612,11 +1808,14 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
 
+通知主应用开始下载一个文件。
+
 **参数：**
 
 | 参数名                | 参数类型          | 参数描述                                |
 | ------------------ | ------------- | ----------------------------------- |
 | url                | string        | 文件下载的URL。                           |
+| userAgent          | string        | 用于下载的用户代理。                           |
 | contentDisposition | string        | 服务器返回的 Content-Disposition响应头，可能为空。 |
 | mimetype           | string        | 服务器返回内容媒体类型（MIME）信息。                |
 | contentLength      | contentLength | 服务器返回文件的长度。                         |
@@ -1750,7 +1949,6 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 onPageBegin(callback: (event?: { url: string }) => void)
 
-
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
 **参数：**
@@ -1784,7 +1982,6 @@ onPageBegin(callback: (event?: { url: string }) => void)
 ### onPageEnd
 
 onPageEnd(callback: (event?: { url: string }) => void)
-
 
 网页加载完成时触发该回调，且只在主frame触发。
 
@@ -1895,7 +2092,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh](#refresh)接口），false表示该页面是新加载的。 |
+| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
 
@@ -1918,6 +2115,26 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
     }
   }
   ```
+
+### onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+### onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
 
 ### onRenderExited<sup>9+</sup>
 
@@ -2085,7 +2302,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
-从API version 10开始不在维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **参数：**
 
@@ -2304,7 +2521,6 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
                 event.handler.handleCancel()
               }
             })
-            return true
           })
       }
     }
@@ -2359,7 +2575,6 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
                 event.handler.ignore()
               }
             })
-            return true
           })
       }
     }
@@ -2770,7 +2985,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  
+
   //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
@@ -3057,7 +3272,7 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onFaviconReceived((event) => {
-          console.log('onFaviconReceived:' + JSON.stringify(event))
+          console.log('onFaviconReceived');
           this.icon = event.favicon;
         })
       }
@@ -3126,8 +3341,8 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
-            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
-              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs)
           })
       }
@@ -3145,7 +3360,7 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ------- | ---------------------------------------- | --------- |
-| request | [Webresourcerequest](#webresourcerequest) | url请求的相关信息。 |
+| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
 
 **返回值：**
 
@@ -3179,6 +3394,183 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
   }
   ```
 
+### onRequestSelected
+
+onRequestSelected(callback: () => void)
+
+当Web组件获得焦点时触发该回调。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRequestSelected(() => {
+            console.log('onRequestSelected')
+          })
+      }
+    }
+  }
+  ```
+### onScreenCaptureRequest<sup>10+</sup>
+
+onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+
+通知收到屏幕捕获请求。
+
+**参数：**
+
+| 参数名     | 参数类型                                     | 参数描述           |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | 通知Web组件用户操作行为。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScreenCaptureRequest((event) => {
+            AlertDialog.show({
+              title: 'title: ' + event.handler.getOrigin(),
+              message: 'text',
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.handler.deny()
+                }
+              },
+              secondaryButton: {
+                value: 'onConfirm',
+                action: () => {
+                  event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                }
+              },
+              cancel: () => {
+                event.handler.deny()
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onOverScroll<sup>10+</sup>
+
+onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+通知网页过滚动偏移量。
+
+**参数：**
+
+| 参数名     | 参数类型   | 参数描述         |
+| ------- | ------ | ------------ |
+| xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
+| yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onOverScroll((event) => {
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
+        })
+      }
+    }
+  }
+  ```
+
+### onControllerAttached<sup>10+</sup>
+
+onControllerAttached(callback: () => void)
+
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
+
+**示例：**
+
+在该回调中使用loadUrl加载网页
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: '', controller: this.controller })
+          .onControllerAttached(() => {
+            this.controller.loadUrl($rawfile("index.html"));
+          })
+      }
+    }
+  }
+  ```
+在该回调中使用getWebId
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onControllerAttached(() => {
+            try {
+                let id = this.controller.getWebId();
+                console.log("id: " + id);
+            } catch (error) {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            }
+          })
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3398,7 +3790,6 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 请求/响应头的key。   |
 | headerValue | string | 请求/响应头的value。 |
 
-
 ## WebResourceResponse
 
 web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
@@ -3477,7 +3868,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number)
+setResponseData(data: string | number \| Resource)
 
 设置资源响应数据。
 
@@ -3485,7 +3876,7 @@ setResponseData(data: string | number)
 
 | 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
 | ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number | 是   | -      | 要设置的资源响应数据。string表示输入类型是字符串，number表示输入类型是文件句柄。 |
+| data   | string \| number \| [Resource](ts-types.md)<sup>10+</sup>| 是   | -      | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -3772,6 +4163,42 @@ grant(resources: Array\<string\>): void
 | 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
+
+## ScreenCaptureHandler<sup>10+</sup>
+
+Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
+
+### deny<sup>10+</sup>
+
+deny(): void
+
+拒绝网页所请求的屏幕捕获操作。
+
+### getOrigin<sup>10+</sup>
+
+getOrigin(): string
+
+获取网页来源。
+
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 当前请求权限网页的来源。 |
+
+### grant<sup>10+</sup>
+
+grant(config: ScreenCaptureConfig): void
+
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+
+对网页访问的屏幕捕获操作进行授权。
+
+**参数：**
+
+| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
+| --------- | --------------- | ---- | ---- | ------------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 | 名称                   | 描述         |
@@ -4089,6 +4516,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称        | 描述            | 备注                         |
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+| VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。 | |
+| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 | |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 | 名称      | 描述                                   |
@@ -4096,6 +4525,29 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | Off     | Web深色模式关闭。                     |
 | On      | Web深色模式开启。                     |
 | Auto    | Web深色模式跟随系统。                 |
+
+## WebCaptureMode<sup>10+</sup>枚举说明
+
+| 名称        | 描述            |
+| --------- | ------------- |
+| HOME_SCREEN | 主屏捕获模式。 |
+
+## WebMediaOptions<sup>10+</sup>
+
+Web媒体策略的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
+| audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Web屏幕捕获的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4128,7 +4580,7 @@ resend(): void
   }
   ```
 
-###  cancel<sup>9+</sup>
+### cancel<sup>9+</sup>
 
 cancel(): void
 
@@ -4177,7 +4629,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
+| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
 
 **示例：**
 
@@ -4406,7 +4858,7 @@ forward(): void
 
 deleteJavaScriptRegister(name: string)
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refreshdeprecated)接口。
 
 从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister)代替。
 
@@ -4687,7 +5139,7 @@ refresh()
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refreshdeprecated)接口生效。
 
 从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)代替。
 
@@ -4733,6 +5185,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   }
   ```
 
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4793,7 +5246,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
     }
   }
   ```
-
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4809,7 +5262,6 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
     }
     </script>
   </html>
-
   ```
 
 ### stop<sup>(deprecated)</sup>
@@ -4875,17 +5327,12 @@ clearHistory(): void
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
 ### setCookie<sup>(deprecated)</sup>
-setCookie(url: string, value: string): boolean
+
+setCookie(): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
-从API version 9开始不在维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
-**参数：**
-
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url，建议使用完整的url。 |
-| value | string | 是    | -    | cookie的值。         |
+从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
 **返回值：**
 
@@ -4893,57 +5340,16 @@ setCookie(url: string, value: string): boolean
 | ------- | ------------- |
 | boolean | 设置cookie是否成功。 |
 
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('setCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 ### saveCookie<sup>(deprecated)</sup>
+
 saveCookie(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
-从API version 9开始不在维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
+
+从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 **返回值：**
 
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 同步内存cookie到磁盘操作是否成功。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('saveCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookie()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```

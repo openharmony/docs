@@ -9,37 +9,7 @@ During application development, you must declare the required permission in the 
 
 To declare a permission in **config.json**, add **reqPermissions** under **module** and list the permission.
 
+For example, to request the permission to access the calendar, perform the following steps:
 
-For example, to declare the permission to access the calendar, request the **ohos.permission.READ_CALENDAR** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-
-
-The sample code in the **config.json** file is as follows:
-
-```json
-{
-  "module": {
-    // ...
-    "reqPermissions": [
-      {
-        "name": "ohos.permission.READ_CALENDAR"
-        // ...
-      }
-    ]
-  }
-}
-```
-
-
-Request the permission from uses in the form of a dialog box:
-
-```ts
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();  
-let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
-context.requestPermissionsFromUser(permissions, 1).then((data) => {    
-    console.info("Succeed to request permission from user with data: " + JSON.stringify(data))
-}).catch((error) => {    
-    console.info("Failed to request permission from user with error: " + JSON.stringify(error))
-})
-```
+1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).

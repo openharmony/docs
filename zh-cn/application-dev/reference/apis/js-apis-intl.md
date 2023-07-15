@@ -14,7 +14,6 @@
 ```js
 import Intl from '@ohos.intl';
 ```
-未正确导入包可能产生不明确的接口行为。
 
 ## Locale
 
@@ -25,7 +24,7 @@ import Intl from '@ohos.intl';
 
 | 名称              | 类型      | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
-| language        | string  | 是    | 否    | 与区域设置关联的语，&nbsp;如：zh。                    |
+| language        | string  | 是    | 否    | 与区域设置相关的语言，如：zh。                    |
 | script          | string  | 是    | 否    | 语言的书写方式，如：Hans。                          |
 | region          | string  | 是    | 否    | 与区域设置相关的地区，如：CN。                         |
 | baseName        | string  | 是    | 否    | Locale的基本核心信息（由语言脚本与地区组成），如：zh-Hans-CN。  |
@@ -34,7 +33,7 @@ import Intl from '@ohos.intl';
 | collation       | string  | 是    | 否    | 区域的排序规则，取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
 | hourCycle       | string  | 是    | 否    | 区域的时制信息，取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
 | numberingSystem | string  | 是    | 否    | 区域使用的数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| numeric         | boolean | 是    | 否    | 是否对数字字符具有特殊的排序规则处理。                      |
+| numeric         | boolean | 是    | 否    | 是否对数字字符具有特殊的排序规则处理。默认值：false。                      |
 
 
 ### constructor<sup>8+</sup>
@@ -66,8 +65,8 @@ constructor(locale: string, options?: LocaleOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | 是    | 包含区域信息的字符串，包括语言以、脚本、国家或地区。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
+| locale               | string                           | 是    | 区域信息的字符串，由语言、脚本、国家或地区组成。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
+| options             | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。 |
 
 **示例：** 
   ```js
@@ -159,9 +158,10 @@ minimize(): Locale
   ```
 
 
-## LocaleOptions<sup>9+</sup>
+## LocaleOptions<sup>6+</sup>
 
 表示区域初始化选项。
+从API9开始，LocaleOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -171,7 +171,7 @@ minimize(): Locale
 | collation       | string  | 是    | 是    | 排序参数，取值包括："big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
 | hourCycle       | string  | 是    | 是    | 时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | numberingSystem | string  | 是    | 是    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| numeric         | boolean | 是    | 是    | 是否使用12小时制。                               |
+| numeric         | boolean | 是    | 是    | 是否使用12小时制。默认值：false。                               |
 | caseFirst       | string  | 是    | 是    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
 
 
@@ -206,7 +206,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
+| options              | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：** 
   ```js
@@ -298,7 +298,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js
@@ -310,9 +310,10 @@ resolvedOptions(): DateTimeOptions
   ```
 
 
-## DateTimeOptions<sup>9+</sup>
+## DateTimeOptions<sup>6+</sup>
 
 表示时间日期格式化选项。
+从API9开始，DateTimeOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -324,7 +325,7 @@ resolvedOptions(): DateTimeOptions
 | hourCycle       | string  | 是    | 是    | 时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | timeZone        | string  | 是    | 是    | 使用的时区（合法的IANA时区ID）。                      |
 | numberingSystem | string  | 是    | 是    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| hour12          | boolean | 是    | 是    | 是否使用12小时制。                               |
+| hour12          | boolean | 是    | 是    | 是否使用12小时制。若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。         |
 | weekday         | string  | 是    | 是    | 工作日的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 | era             | string  | 是    | 是    | 时代的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 | year            | string  | 是    | 是    | 年份的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
@@ -370,7 +371,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
+| options              | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```js
@@ -420,7 +421,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions6) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
@@ -433,33 +434,34 @@ resolvedOptions(): NumberOptions
   ```
 
 
-## NumberOptions<sup>9+</sup>
+## NumberOptions<sup>6+</sup>
 
 表示设备支持的能力。
+从API9开始，NumberOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                       | 类型      | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
-| locale                   | string  | 是    | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。               |
+| locale                   | string  | 是    | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。locale属性默认值为系统Locale。               |
 | currency                 | string  | 是    | 是    | 货币单位，&nbsp;如："EUR"，"CNY"，"USD"等。         |
-| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"symbol"，"narrowSymbol"，"code"，"name"&nbsp;。 |
-| currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
+| currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"symbol"，"narrowSymbol"，"code"，"name"&nbsp;。currencySign属性默认值为standard。 |
+| currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
-| unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| unitUsage                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
-| signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
-| compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
-| notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。 |
-| localeMatcher            | string  | 是    | 是    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。 |
-| style                    | string  | 是    | 是    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。 |
-| numberingSystem          | string  | 是    | 是    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| useGrouping              | boolean | 是    | 是    | 是否分组显示。                                  |
-| minimumIntegerDigits     | number  | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。                  |
-| minimumFractionDigits    | number  | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。                  |
-| maximumFractionDigits    | number  | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。                  |
-| minimumSignificantDigits | number  | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。                  |
-| maximumSignificantDigits | number  | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。                  |
+| unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。unitDisplay属性默认值为short。 |
+| unitUsage<sup>8+</sup>   | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。unitUsage属性默认值为default。 |
+| signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。signDisplay属性默认值为auto。 |
+| compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。compactDisplay属性默认值为short。      |
+| notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。notation属性默认值为standard。 |
+| localeMatcher            | string  | 是    | 是    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。localeMatcher属性默认值为best fit。 |
+| style                    | string  | 是    | 是    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。style属性默认值为decimal。 |
+| numberingSystem          | string  | 是    | 是    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。numberingSystem属性默认值为locale的默认数字系统。 |
+| useGrouping              | boolean | 是    | 是    | 是否分组显示。useGrouping属性默认值为auto。                                  |
+| minimumIntegerDigits     | number  | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。minimumIntegerDigits属性默认值为1。                  |
+| minimumFractionDigits    | number  | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。minimumFractionDigits属性默认值为0。                  |
+| maximumFractionDigits    | number  | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。maximumFractionDigits属性默认值为3。                  |
+| minimumSignificantDigits | number  | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。minimumSignificantDigits属性默认值为1。                  |
+| maximumSignificantDigits | number  | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。maximumSignificantDigits属性默认值为21。                  |
 
 
 ## Collator<sup>8+</sup>
@@ -493,7 +495,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
+| options              | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。       |
 
 **示例：** 
   ```js
@@ -544,7 +546,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
 
 **示例：** 
   ```js
@@ -556,21 +558,22 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>9+</sup>
+## CollatorOptions<sup>8+</sup>
 
 表示Collator可设置的属性。
+从API9中，CollatorOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                | 类型      | 可读   | 可写   | 说明                                       |
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | 是    | 是    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。 |
-| usage             | string  | 是    | 是    | 比较的用途，取值范围："sort",&nbsp;"search"。        |
-| sensitivity       | string  | 是    | 是    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。 |
-| ignorePunctuation | boolean | 是    | 是    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。        |
-| collation         | string  | 是    | 是    | 排序规则，取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
-| numeric           | boolean | 是    | 是    | 是否使用数字排序，取值范围：true,&nbsp;false。          |
-| caseFirst         | string  | 是    | 是    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
+| localeMatcher     | string  | 是    | 是    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
+| usage             | string  | 是    | 是    | 比较的用途，取值范围："sort",&nbsp;"search"。usage属性默认值为sort。        |
+| sensitivity       | string  | 是    | 是    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。sensitivity属性默认值为variant。 |
+| ignorePunctuation | boolean | 是    | 是    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。ignorePunctuation属性默认值为false。        |
+| collation         | string  | 是    | 是    | 排序规则，取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。collation属性默认值为default。 |
+| numeric           | boolean | 是    | 是    | 是否使用数字排序，取值范围：true,&nbsp;false。numeric属性默认值为false。          |
+| caseFirst         | string  | 是    | 是    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。caseFirst属性默认值为false |
 
 
 ## PluralRules<sup>8+</sup>
@@ -604,7 +607,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
+| options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。       |
 
 **示例：** 
   ```js
@@ -647,21 +650,22 @@ select(n: number): string
   ```
 
 
-## PluralRulesOptions<sup>9+</sup>
+## PluralRulesOptions<sup>8+</sup>
 
 表示PluralRules对象可设置的属性。
+从API9开始，PluralRulesOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                       | 类型     | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher            | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。 |
-| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal"。   |
-| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。                  |
-| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。                  |
-| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。                  |
-| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。                  |
-| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。                  |
+| localeMatcher            | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
+| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal"。type属性默认值为cardinal。   |
+| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。minimumIntegerDigits属性默认值为1。                  |
+| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。minimumFractionDigits属性默认值为0。                  |
+| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。maximumFractionDigits属性默认值为3。                  |
+| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。minimumSignificantDigits属性默认值为1。                  |
+| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。maximumSignificantDigits属性默认值为21。                  |
 
 
 ## RelativeTimeFormat<sup>8+</sup>
@@ -695,7 +699,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
+| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
   ```js
@@ -787,17 +791,17 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>9+</sup>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
+从API9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
-
 | 名称            | 类型     | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。 |
-| numeric       | string | 是    | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。      |
-| style         | string | 是    | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| localeMatcher | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
+| numeric       | string | 是    | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。numeric属性默认值为always。      |
+| style         | string | 是    | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。style属性默认值为long。 |
 
 
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>

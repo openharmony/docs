@@ -38,7 +38,7 @@ The input method process is suspended.
 
 **Solution**
 
-Check whether the input method process is running properly. For example, click the input text box in an appliccation and check whether the input keyboard is displayed.
+Check whether the input method process is running properly. For example, click the input text box in an application and check whether the input keyboard is displayed.
 
 ## 12800003 Input Method Client Error
 
@@ -58,23 +58,23 @@ The input method is disconnected from the third-party application due to a servi
 
 Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch an input text box. If the keyboard is displayed properly, the issue is resolved.
 
-## 12800004 Key Event Processing Error
+## 12800004 Not an Input Method.
 
 **Error Message**
 
-Key event processing error.
+Not an input method extension.
 
 **Description**
 
-This error code is reported when a key event error occurs.
+This error code is reported when an API exclusive to input methods is called by an application of another type.
 
 **Possible Causes**
 
-An exception occurs during key event distribution, consumption, or listening.
+An API that can be called only by an input method is called by an application of another type.
 
 **Solution**
 
-None
+Call the API only in an input method.
 
 ## 12800005 Configuration Persistence Error
 
@@ -147,3 +147,21 @@ The input method manager service fails to be obtained.
 **Solution**
 
 Run the **ps -A|grep inputmethod** command to check for the process ID of the input method service. If the process ID is found, the service is working properly.
+
+## 12800009 Input Method Client Detached
+
+**Error Message**
+
+Input method client is detached.
+
+**Description**
+
+This error code is reported when the current application is not attached to an input method.
+
+**Possible Causes**
+
+The current application calls **showTextInput** or **hideTextInput** when not attached to an input method.
+
+**Solution**
+
+Call the **attach** API and then try again.

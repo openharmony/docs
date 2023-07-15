@@ -26,7 +26,7 @@ import vibrator from '@system.vibrator';
 
 **需要权限**：ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
 **参数：**
 
@@ -36,17 +36,17 @@ import vibrator from '@system.vibrator';
 
 **示例：**
 
-```js
+```ts
 vibrator.vibrate({
   mode: 'short',
   success: function() {
-    console.log('vibrate is successful');
+    console.info('Succeed in vibrating');
   },
   fail: function(data, code) {
-    console.log("vibrate is failed, data: " + data + ", code: " + code);
+    console.info(`Failed to vibrate. Data: ${data}, code: ${code}`);
   },
   complete: function() {
-    console.log('vibrate is completed');
+    console.info('completed in vibrating');
   }
 });
 ```
@@ -57,7 +57,7 @@ vibrator.vibrate({
 
 **需要权限**：ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
 
 | 名称     | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |

@@ -426,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Return value**
 
@@ -462,7 +462,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -499,7 +499,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -540,7 +540,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -584,7 +584,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -626,7 +626,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -671,7 +671,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -699,7 +699,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -754,7 +754,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -794,7 +794,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -904,7 +904,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
 
-getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void;
 
 Obtains the information about all applications of the current user. This API uses an asynchronous callback to return the result.
 

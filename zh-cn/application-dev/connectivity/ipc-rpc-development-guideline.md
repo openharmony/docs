@@ -29,7 +29,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    external_deps = [
      "ipc:ipc_single",
    ]
-   
+
    #rpc场景
    external_deps = [
      "ipc:ipc_core",
@@ -50,12 +50,12 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    ```c++
    #include "iremote_broker.h"
-   
+
    //定义消息码
-   const int TRANS_ID_PING_ABILITY = 5
-   
+   const int TRANS_ID_PING_ABILITY = 5;
+
    const std::string DESCRIPTOR = "test.ITestAbility";
-   
+
    class ITestAbility : public IRemoteBroker {
    public:
        // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
@@ -71,13 +71,13 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```c++
    #include "iability_test.h"
    #include "iremote_stub.h"
-   
+
    class TestAbilityStub : public IRemoteStub<ITestAbility> {
    public:
        virtual int OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option) override;
        int TestPingAbility(const std::u16string &dummy) override;
     };
-   
+
    int TestAbilityStub::OnRemoteRequest(uint32_t code,
        MessageParcel &data, MessageParcel &reply, MessageOption &option)
    {
@@ -98,12 +98,12 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    ```c++
    #include "iability_server_test.h"
-   
+
    class TestAbility : public TestAbilityStub {
    public:
        int TestPingAbility(const std::u16string &dummy);
    }
-   
+
    int TestAbility::TestPingAbility(const std::u16string &dummy) {
        return 0;
    }
@@ -117,7 +117,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    #include "iability_test.h"
    #include "iremote_proxy.h"
    #include "iremote_object.h"
-   
+
    class TestAbilityProxy : public IRemoteProxy<ITestAbility> {
    public:
        explicit TestAbilityProxy(const sptr<IRemoteObject> &impl);
@@ -125,12 +125,12 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    private:
        static inline BrokerDelegator<TestAbilityProxy> delegator_; // 方便后续使用iface_cast宏
    }
-   
+
    TestAbilityProxy::TestAbilityProxy(const sptr<IRemoteObject> &impl)
        : IRemoteProxy<ITestAbility>(impl)
    {
    }
-   
+
    int TestAbilityProxy::TestPingAbility(const std::u16string &dummy){
        MessageOption option;
        MessageParcel dataParcel, replyParcel;
@@ -149,7 +149,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    // 注册到本设备内
    auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    samgr->AddSystemAbility(saId, new TestAbility());
-   
+
    // 在组网场景下，会被同步到其他设备上
    auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    ISystemAbilityManager::SAExtraProp saExtra;
@@ -166,10 +166,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // 使用iface_cast宏转换成具体类型
-   
+
    // 获取其他设备注册的SA的proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   
+
    // networkId是组网场景下对应设备的标识符，可以通过GetLocalNodeDeviceInfo获取
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
@@ -180,59 +180,97 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 1. 添加依赖
 
    ```ts
-   import rpc from "@ohos.rpc"
-   import featureAbility from "@ohos.ability.featureAbility"
+   import rpc from "@ohos.rpc";
+   // 仅FA模型需要导入@ohos.ability.featureAbility
+   // import featureAbility from "@ohos.ability.featureAbility";
    ```
 
-   
+   Stage模型需要获取context
+
+   ```ts
+   import Ability from "@ohos.app.ability.UIAbility";
+
+   export default class MainAbility extends Ability {
+       onCreate(want, launchParam) {
+           console.log("[Demo] MainAbility onCreate");
+           globalThis.context = this.context;
+       }
+       onDestroy() {
+           console.log("[Demo] MainAbility onDestroy");
+       }
+       onWindowStageCreate(windowStage) {
+           // Main window is created, set main page for this ability
+           console.log("[Demo] MainAbility onWindowStageCreate");
+       }
+       onWindowStageDestroy() {
+           // Main window is destroyed, release UI related resources
+           console.log("[Demo] MainAbility onWindowStageDestroy");
+       }
+       onForeground() {
+           // Ability has brought to foreground
+           console.log("[Demo] MainAbility onForeground");
+       }
+       onBackground() {
+           // Ability has back to background
+           console.log("[Demo] MainAbility onBackground");
+       }
+   }
+   ```
 
 2. 绑定Ability
 
-   首先，构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要绑定目标设备NetworkId（组网场景下对应设备的标识符，可以使用deviceManager获取目标设备的NetworkId）；然后，构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数；最后，使用featureAbility提供的接口绑定Ability。
+   首先，构造变量want，指定要绑定的Ability所在应用的包名、组件名，如果是跨设备的场景，还需要绑定目标设备NetworkId（组网场景下对应设备的标识符，可以使用deviceManager获取目标设备的NetworkId）；然后，构造变量connect，指定绑定成功、绑定失败、断开连接时的回调函数；最后，FA模型使用featureAbility提供的接口绑定Ability，Stage模型通过context获取服务后用提供的接口绑定Ability。
 
    ```ts
-   import rpc from "@ohos.rpc"
-   import featureAbility from "@ohos.ability.featureAbility"
-   
-   let proxy = null
-   let connectId = null
-   
+   import rpc from "@ohos.rpc";
+   // 仅FA模型需要导入@ohos.ability.featureAbility
+   // import featureAbility from "@ohos.ability.featureAbility";
+
+   let proxy = null;
+   let connectId = null;
+
    // 单个设备绑定Ability
    let want = {
        // 包名和组件名写实际的值
        "bundleName": "ohos.rpc.test.server",
        "abilityName": "ohos.rpc.test.server.ServiceAbility",
-   }
+   };
    let connect = {
        onConnect:function(elementName, remote) {
-           proxy = remote
+           proxy = remote;
        },
        onDisconnect:function(elementName) {
        },
        onFailed:function() {
-           proxy = null
+           proxy = null;
        }
-   }
-   connectId = featureAbility.connectAbility(want, connect)
-   
+   };
+   // FA模型使用此方法连接服务
+   // connectId = featureAbility.connectAbility(want, connect);
+
+   connectId = globalThis.context.connectServiceExtensionAbility(want,connect);
+
    // 如果是跨设备绑定，可以使用deviceManager获取目标设备NetworkId
-   import deviceManager from '@ohos.distributedHardware.deviceManager'
+   import deviceManager from '@ohos.distributedHardware.deviceManager';
    function deviceManagerCallback(deviceManager) {
-       let deviceList = deviceManager.getTrustedDeviceListSync()
-       let networkId = deviceList[0].networkId
+       let deviceList = deviceManager.getTrustedDeviceListSync();
+       let networkId = deviceList[0].networkId;
        let want = {
            "bundleName": "ohos.rpc.test.server",
            "abilityName": "ohos.rpc.test.service.ServiceAbility",
            "networkId": networkId,
            "flags": 256
-       }
-       connectId = featureAbility.connectAbility(want, connect)
+       };
+       // 建立连接后返回的Id需要保存下来，在断开连接时需要作为参数传入
+       // FA模型使用此方法连接服务
+       // connectId = featureAbility.connectAbility(want, connect);
+
+       connectId = globalThis.context.connectServiceExtensionAbility(want,connect);
    }
    // 第一个参数是本应用的包名，第二个参数是接收deviceManager的回调函数
-   deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback)
+   deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
    ```
 
-   
 
 3. 服务端处理客户端请求
 
@@ -240,78 +278,80 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    ```ts
    onConnect(want: Want) {
-       var robj:rpc.RemoteObject = new Stub("rpcTestAbility")
-       return robj
+       var robj:rpc.RemoteObject = new Stub("rpcTestAbility");
+       return robj;
    }
    class Stub extends rpc.RemoteObject {
        constructor(descriptor) {
-           super(descriptor)
+           super(descriptor);
        }
        onRemoteMessageRequest(code, data, reply, option) {
            // 根据code处理客户端的请求
-           return true
+           return true;
        }
    }
    ```
 
-   
-
 4. 客户端处理服务端响应
 
-   客户端在onConnect回调里接收到代理对象，调用sendRequestAsync方法发起请求，在期约（JavaScript期约：用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
+   客户端在onConnect回调里接收到代理对象，调用sendRequest方法发起请求，在期约（JavaScript期约：用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
 
    ```ts
    // 使用期约
-   let option = new rpc.MessageOption()
-   let data = rpc.MessageParcel.create()
-   let reply = rpc.MessageParcel.create()
+   let option = new rpc.MessageOption();
+   let data = rpc.MessageParcel.create();
+   let reply = rpc.MessageParcel.create();
    // 往data里写入参数
-   proxy.sendRequestAsync(1, data, reply, option)
+   proxy.sendRequest(1, data, reply, option)
        .then(function(result) {
            if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode)
-               return
+               console.error("send request failed, errCode: " + result.errCode);
+               return;
            }
            // 从result.reply里读取结果
        })
        .catch(function(e) {
-           console.error("send request got exception: " + e)
-       }
-       .finally(() => {
-           data.reclaim()
-           reply.reclaim()
+           console.error("send request got exception: " + e);
        })
-   
+       .finally(() => {
+           data.reclaim();
+           reply.reclaim();
+       })
+
    // 使用回调函数
    function sendRequestCallback(result) {
        try {
            if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode)
-               return
+               console.error("send request failed, errCode: " + result.errCode);
+               return;
            }
            // 从result.reply里读取结果
        } finally {
-           result.data.reclaim()
-           result.reply.reclaim()
+           result.data.reclaim();
+           result.reply.reclaim();
        }
    }
-   let option = new rpc.MessageOption()
-   let data = rpc.MessageParcel.create()
-   let reply = rpc.MessageParcel.create()
+   let option = new rpc.MessageOption();
+   let data = rpc.MessageParcel.create();
+   let reply = rpc.MessageParcel.create();
    // 往data里写入参数
-   proxy.sendRequest(1, data, reply, option, sendRequestCallback)
+   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
    ```
 
 5. 断开连接
 
-   IPC通信结束后，使用featureAbility的接口断开连接。
+   IPC通信结束后，FA模型使用featureAbility的接口断开连接，Stage模型在获取context后用提供的接口断开连接。
 
    ```ts
-   import rpc from "@ohos.rpc"
-   import featureAbility from "@ohos.ability.featureAbility"
+   import rpc from "@ohos.rpc";
+   // 仅FA模型需要导入@ohos.ability.featureAbility
+   // import featureAbility from "@ohos.ability.featureAbility";
    function disconnectCallback() {
-       console.info("disconnect ability done")
+       console.info("disconnect ability done");
    }
-   featureAbility.disconnectAbility(connectId, disconnectCallback)
+   // FA模型使用此方法断开连接
+   // featureAbility.disconnectAbility(connectId, disconnectCallback);
+
+   globalThis.context.disconnectServiceExtensionAbility(connectId);
    ```
 

@@ -21,7 +21,7 @@ For adaptation to the unified API exception handling mode, bundle manager APIs (
 | @ohos.bundle.innerBundleManager.d.ts | [@ohos.bundle.launcherBundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.launcherBundleManager.d.ts) |
 | @ohos.bundle.innerBundleManager.d.ts | [@ohos.bundle.bundleMonitor.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleMonitor.d.ts) |
 | @ohos.bundle.defaultAppManager.d.ts  | [@ohos.bundle.defaultAppManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.defaultAppManager.d.ts) |
-| @ohos.distributedBundle.d.ts         | [@ohos.bundle.distributedBundle.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundle.d.ts) |
+| @ohos.distributedBundle.d.ts         | [@ohos.bundle.distributedBundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundleManager.d.ts) |
 | N/A                                  | [@ohos.bundle.appControl.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.appControl.d.ts) |
 | @system.package.d.ts                 | N/A                                                          |
 
@@ -65,23 +65,22 @@ The application developed based on the SDK versions of OpenHarmony 3.2.8.2 and l
 The structures of APIs in API version 8 and earlier are sorted out and deprecated, and those of new APIs in API version 9 are added. The following table lists the comparison before and after the change. Some structures are combined. For example, replace **moduleInfo.d.ts** with **hapModuleInfo.d.ts** and **customizeData.d.ts** with **metadata.d.ts**. The structures' functions are the same as those of the original ones. Structures whose attributes are changed or added are listed separately.
 | Original Structure (Deprecated)                | New Structure (Added)                                            |
 | -------------------------------- | ------------------------------------------------------------ |
-| bundle/abilityInfo.d.ts          | [bundleManager/abilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/abilityInfo.d.ts) |
-| bundle/applicationInfo.d.ts      | [bundleManager/applicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/applicationInfo.d.ts) |
-| bundle/bundleInfo.d.ts           | [bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/bundleInfo.d.ts) |
+| bundle/abilityInfo.d.ts          | [bundleManager/AbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/AbilityInfo.d.ts) |
+| bundle/applicationInfo.d.ts      | [bundleManager/ApplicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts) |
+| bundle/bundleInfo.d.ts           | [bundleManager/BundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts) |
 | bundle/bundleInstaller.d.ts      | [@ohos.bundle.installer.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.installer.d.ts) |
 | bundle/bundleStatusCallback.d.ts | [@ohos.bundle.bundleMonitor.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleMonitor.d.ts) |
-| bundle/customizeData.d.ts        | [bundleManager/metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/metadata.d.ts) |
-| bundle/dispatchInfo.d.ts         | [bundleManager/dispatchInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/dispatchInfo.d.ts) |
-| bundle/elementName.d.ts          | [bundleManager/elementName.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/elementName.d.ts) |
-| bundle/extensionAbilityInfo.d.ts | [bundleManager/extensionAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/extensionAbilityInfo.d.ts) |
-| bundle/hapModuleInfo.d.ts        | [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts) |
-| bundle/launcherAbilityInfo.d.ts  | [bundleManager/launcherAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/launcherAbilityInfo.d.ts) |
-| bundle/metadata.d.ts             | [bundleManager/metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/metadata.d.ts) |
-| bundle/moduleInfo.d.ts           | [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts) |
-| bundle/packInfo.d.ts             | [bundleManager/packInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/packInfo.d.ts) |
-| bundle/PermissionDef.d.ts        | [bundleManager/permissionDef.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/permissionDef.d.ts) |
-| bundle/remoteAbilityInfo.d.ts    | [bundleManager/remoteAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/remoteAbilityInfo.d.ts) |
-| bundle/shortcutInfo.d.ts         | [bundleManager/shortcutInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/shortcutInfo.d.ts) |
+| bundle/customizeData.d.ts        | [bundleManager/Metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/Metadata.d.ts) |
+| bundle/dispatchInfo.d.ts         | [bundleManager/DispatchInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/DispatchInfo.d.ts) |
+| bundle/elementName.d.ts          | [bundleManager/ElementName.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ElementName.d.ts) |
+| bundle/extensionAbilityInfo.d.ts | [bundleManager/ExtensionAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ExtensionAbilityInfo.d.ts) |
+| bundle/hapModuleInfo.d.ts        | [bundleManager/HapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) |
+| bundle/launcherAbilityInfo.d.ts  | [bundleManager/LauncherAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/LauncherAbilityInfo.d.ts) |
+| bundle/metadata.d.ts             | [bundleManager/Metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/Metadata.d.ts) |
+| bundle/moduleInfo.d.ts           | [bundleManager/HapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) |
+| bundle/PermissionDef.d.ts        | [bundleManager/PermissionDef.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/PermissionDef.d.ts) |
+| bundle/remoteAbilityInfo.d.ts    | [bundleManager/RemoteAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/RemoteAbilityInfo.d.ts) |
+| bundle/shortcutInfo.d.ts         | [bundleManager/ShortcutInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ShortcutInfo.d.ts) |
 
 **Adaptation Guide**
 1. Replace the code of original structures with the code of new ones.
@@ -170,7 +169,7 @@ import appControl form '@ohos.bundle.appControl'
 
 ## cl.bundlemanager.4 BundleInfo Structure Changes
 
-All **bundle/bundleInfo.d.ts** fields in the bundle manager are deprecated. [bundle/bundleInfo.d.ts]((https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundle/bundleInfo.d.ts)) is changed to [bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/bundleInfo.d.ts), involving field type changes.
+All **bundle/bundleInfo.d.ts** fields in the bundle manager are deprecated. [bundle/bundleInfo.d.ts]((https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundle/bundleInfo.d.ts)) is changed to [bundleManager/BundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts), involving field type changes.
 
 **Change Impacts**
 
@@ -178,7 +177,7 @@ There is no impact on applications that use the APIs of versions earlier than 9.
 
 **Key API/Component Changes**
 
-The following table describes the changed fields in the **BundleInfo** structure. After other fields are deprecated in **bundle/bundleInfo.d.ts**, they have corresponding values in the new **[bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/bundleInfo.d.ts)**. If corresponding fields do not exist, the fields have been deprecated in API version 9.
+The following table describes the changed fields in the **BundleInfo** structure. After other fields are deprecated in **bundle/bundleInfo.d.ts**, they have corresponding values in the new **[bundleManager/BundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts)**. If corresponding fields do not exist, the fields have been deprecated in API version 9.
 
 | Deprecated               | Added or Changed in API Version 9       | Type                                      |
 | --------------------- | --------------------- | ------------------------------------------ |
@@ -214,7 +213,7 @@ import bundle form '@ohos.bundle.bundleManager'
 ```
 
 ## cl.bundlemanager.5 ApplicationInfo Structure Changes
-The **ApplicationInfo** structure is changed. The original **bundle/applicationInfo.d.ts** fields in the bundle manager are deprecated, and the file is changed from **bundle/applicationInfo.d.ts** to **bundleManager/applicationInfo.d.ts**, involving field type changes.
+The **ApplicationInfo** structure is changed. The original **bundle/applicationInfo.d.ts** fields in the bundle manager are deprecated, and the file is changed from **bundle/applicationInfo.d.ts** to **bundleManager/ApplicationInfo.d.ts**, involving field type changes.
 
 **Change Impacts**
 
@@ -222,7 +221,7 @@ There is no impact on applications that use the APIs of versions earlier than 9.
 
 **Key API/Component Changes**
 
-The following table describes the changed fields in the **ApplicationInfo** structure. After other fields are deprecated in **bundle/applicationInfo.d.ts**, they have corresponding values in the new [bundleManager/applicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/applicationInfo.d.ts). If corresponding fields do not exist, the fields have been deprecated in API version 9.
+The following table describes the changed fields in the **ApplicationInfo** structure. After other fields are deprecated in **bundle/applicationInfo.d.ts**, they have corresponding values in the new [bundleManager/ApplicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts). If corresponding fields do not exist, the fields have been deprecated in API version 9.
 
 | Deprecated            | Added or Changed in API Version 9| Type                              |
 | ---------------- | -------------- | ---------------------------------- |
@@ -245,7 +244,7 @@ Use the **ApplicationInfo** structure of API version 9 for modules imported for 
 
 ## cl.bundlemanager.6 HapModuleInfo Structure Changes
 
-The **HapModuleInfo** structure is changed. The original **bundle/hapModuleInfo.d.ts** and **moduleInfo.d.ts** fields in the bundle manager are deprecated, and the files are changed to [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts), involving field type changes.
+The **HapModuleInfo** structure is changed. The original **bundle/hapModuleInfo.d.ts** and **moduleInfo.d.ts** fields in the bundle manager are deprecated, and the files are changed to [bundleManager/HapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts), involving field type changes.
 
 **Change Impacts**
 
@@ -253,7 +252,7 @@ There is no impact on applications that use the APIs of versions earlier than 9.
 
 **Key API/Component Changes**
 
-The following table describes the changed fields in the **HapModuleInfo** structure. After other fields are deprecated in **bundle/hapModuleInfo.d.ts**, they have corresponding values in the new **bundleManager/hapModuleInfo.d.ts** file.
+The following table describes the changed fields in the **HapModuleInfo** structure. After other fields are deprecated in **bundle/hapModuleInfo.d.ts**, they have corresponding values in the new **bundleManager/HapModuleInfo.d.ts** file.
 
 | Deprecated                | Added or Changed in API Version 9        | Type                        |
 | -------------------- | ---------------------- | ---------------------------- |
@@ -272,9 +271,9 @@ Use the **HapModuleInfo** structure of API version 9 for modules imported for bu
 
 ## cl.bundlemanager.7 ModuleInfo Structure Changes
 
-The original **bundle/hapModuleInfo.d.ts** and **moduleInfo.d.ts** fields in the bundle manager are deprecated, and the files are changed to [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts), involving field changes.
+The original **bundle/hapModuleInfo.d.ts** and **moduleInfo.d.ts** fields in the bundle manager are deprecated, and the files are changed to [bundleManager/HapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts), involving field changes.
 
-The **ModuleInfo** structure is deprecated and replaced by **HapModuleInfo** in [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts).
+The **ModuleInfo** structure is deprecated and replaced by **HapModuleInfo** in [bundleManager/HapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts).
 
 **Change Impacts**
 
@@ -290,7 +289,7 @@ Use the **HapModuleInfo** structure of API version 9.
 
 ## cl.bundlemanager.8 AbilityInfo Structure Changes
 
-The **AbilityInfo** structure is changed. The original **bundle/abilityInfo.d.ts** file is deprecated and changed to **bundleManager/abilityInfo.d.ts**, involving field type changes.
+The **AbilityInfo** structure is changed. The original **bundle/abilityInfo.d.ts** file is deprecated and changed to **bundleManager/AbilityInfo.d.ts**, involving field type changes.
 
 **Change Impacts**
 
@@ -414,7 +413,7 @@ import defaultApp form '@ohos.bundle.defaultAppManager'
 ```
 
 ## cl.bundlemanager.11 Distributed Bundle Manager Changes
-API exception handling is rectified. The distributed bundle manager module is changed. The original **@ohos.distributedBundle.d.ts** APIs are deprecated, and the **@ohos.distributedBundle.d.ts** file is changed to [@ohos.bundle.distributedBundle.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundle.d.ts). The **getRemoteAbilityInfos** API is changed to **getRemoteAbilityInfo**. The export function of a level-2 module in the **RemoteAbilityInfo** structure can be used only after a new module is imported.
+API exception handling is rectified. The distributed bundle manager module is changed. The original **@ohos.distributedBundle.d.ts** APIs are deprecated, and the **@ohos.distributedBundle.d.ts** file is changed to [@ohos.bundle.distributedBundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundleManager.d.ts). The **getRemoteAbilityInfos** API is changed to **getRemoteAbilityInfo**. The export function of a level-2 module in the **RemoteAbilityInfo** structure can be used only after a new module is imported.
 
 **Change Impacts**
 
@@ -422,7 +421,7 @@ Applications using APIs earlier than version 9 are not affected. The names of th
 
 **Key API/Component Changes**
 
-All APIs in **@ohos.distributedBundle.d.ts** are deprecated. The **@ohos.bundle.distributedBundle.d.ts** file is added. The functions of some APIs are the same as those of the original ones. New APIs support exception handling. The API changes are as follows.
+All APIs in **@ohos.distributedBundle.d.ts** are deprecated. The **@ohos.bundle.distributedBundleManager.d.ts** file is added. The functions of some APIs are the same as those of the original ones. New APIs support exception handling. The API changes are as follows.
 
 | Deprecated                 | Added or Changed in API Version 9      | System API|
 | --------------------- | -------------------- | --------- |
@@ -467,7 +466,7 @@ import freeInstall from '@ohos.bundle.freeInstall'
 
 ## cl.bundlemanager.13 Installation-Free Structure Field Changes
 The fields of the **DisPatchInfo**, **AbilityFormInfo**, **ModuleDistroInfo**, and **ModuleConfigInfo** structures are changed as follows:
-1. The name of the **dispatchAPI** field in **DispatchInfo** is changed to [dispatchAPIVersion](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/dispatchInfo.d.ts), and the type is string, which is unchanged. The field indicates the version of the installation-free API. The meaning remains unchanged.
+1. The name of the **dispatchAPI** field in **DispatchInfo** is changed to [dispatchAPIVersion](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/DispatchInfo.d.ts), and the type is string, which is unchanged. The field indicates the version of the installation-free API. The meaning remains unchanged.
 2. The type of the **supportDimensions** field in the **AbilityFormInfo** structure is changed from **Array\<number>** to **Array\<string>**.
 3. The type of the **defaultDimension** field in the **AbilityFormInfo** structure is changed from **number** to **string**.
 4. The **mainAbility** field is deprecated in the **ModuleDistroInfo** structure and moved to the **ModuleConfigInfo** structure.
@@ -536,7 +535,7 @@ Import a new module and change the structure name to **PermissionGrantState**.
 import bundle form '@ohos.bundle.bundleManager'
 ```
 ## cl.bundlemanager.15 Bundle Manager ShortcutInfo Structure Field Changes
-Fields in the **ShortcutInfo** structure of the bundle manager are changed. The **bundle/shortcutInfo.d.ts** fields are deprecated, and the file is changed to [bundleManager/shortcutInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/shortcutInfo.d.ts). The **ShortcutInfo** and **ShortWant** structures are changed to system APIs.
+Fields in the **ShortcutInfo** structure of the bundle manager are changed. The **bundle/shortcutInfo.d.ts** fields are deprecated, and the file is changed to [bundleManager/ShortcutInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ShortcutInfo.d.ts). The **ShortcutInfo** and **ShortWant** structures are changed to system APIs.
 
 **Change Impacts**
 
@@ -760,5 +759,3 @@ The import module does not change. The new API is directly used to adapt excepti
 ```
 import zlib form '@ohos.zlib'
 ```
-
- <!--no_check--> 

@@ -17,6 +17,8 @@ import charger from '@ohos.charger';
 
 Enumerates charging types.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
 | Name      | Value | Description             |

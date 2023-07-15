@@ -1,8 +1,5 @@
 # @ohos.util.Queue (Linear Container Queue)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
 
 Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other end.
@@ -11,6 +8,11 @@ Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at bo
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -174,15 +176,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| Queue | Queue&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| Queue | Queue&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 

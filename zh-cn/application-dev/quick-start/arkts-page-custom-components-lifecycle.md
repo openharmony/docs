@@ -19,7 +19,7 @@
 - [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
 
 
-组件生命周期，即一般用\@Component装饰的自定义组件，提供以下生命周期接口：
+组件生命周期，即一般用\@Component装饰的自定义组件的生命周期，提供以下生命周期接口：
 
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
@@ -84,7 +84,7 @@
 
 1. 在删除组件之前，将调用其aboutToDisappear生命周期函数，标记着该节点将要被销毁。ArkUI的节点删除机制是：后端节点直接从组件树上摘下，后端节点被销毁，对前端节点解引用，当前端节点已经没有引用时，将被JS虚拟机垃圾回收。
 
-2. 自定义组件和它的变量将被删除，如果其有同步的变量，比如[@Link](arkts-link.md)、[@Prop](zh-cn_topic_0000001524296665.xml)、[@StorageLink](arkts-appstorage.md#storagelink)，将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
+2. 自定义组件和它的变量将被删除，如果其有同步的变量，比如[@Link](arkts-link.md)、[@Prop](arkts-prop.md)、[@StorageLink](arkts-appstorage.md#storagelink)，将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
 
 
 不建议在生命周期aboutToDisappear内使用async await，如果在生命周期的aboutToDisappear使用异步操作（Promise或者回调方法），自定义组件将被保留在Promise的闭包中，直到回调方法被执行完，这个行为阻止了自定义组件的垃圾回收。
@@ -134,7 +134,7 @@ struct MyComponent {
         Child()
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
-      Button('create or delete Child').onClick(() => {
+      Button('delete Child').onClick(() => {
         this.showChild = false;
       })
       // push到Page2页面，执行onPageHide
@@ -168,7 +168,7 @@ struct Child {
 ```
 
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以生效页面的生命周期方法，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时也声明了组件的生命周期函数。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以生效页面的生命周期方法，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时声明了组件的生命周期函数。
 
 
 - 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; Child aboutToAppear --&gt; Child build --&gt; Child build执行完毕 --&gt; MyComponent build执行完毕 --&gt; Index onPageShow。

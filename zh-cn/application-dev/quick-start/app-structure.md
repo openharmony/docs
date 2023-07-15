@@ -13,7 +13,7 @@ app对象包含应用全局配置信息，内部结构如下：
 | apiVersion | 标识应用程序所依赖的OpenHarmony&nbsp;API版本。 | 对象 | 可缺省，缺省值为空。 |
 | smartWindowSize | 标识应用在模拟器中运行时使用的屏幕尺寸。 | 字符串 | 可缺省，缺省值为空。 |
 | smartWindowDeviceType | 标识应用在模拟器中运行时可以模拟的设备。 | 字符串数组 | 可缺省，缺省值为空。 |
-| assanEnabled |   标识应用程序是否开启asan检测，用于辅助定位buffer越界造成的crash问题。<br/>-&nbsp;true：当前工程开启asan检测。<br/>-&nbsp;false：当前工程不开启asan检测。Release版本不支持开启asan检测。 | 布尔值 | 可缺省，缺省值false。 |
+| asanEnabled |   标识应用程序是否开启asan检测，用于辅助定位buffer越界造成的crash问题。<br/>-&nbsp;true：当前工程开启asan检测。<br/>-&nbsp;false：当前工程不开启asan检测。Release版本不支持开启asan检测。 | 布尔值 | 可缺省，缺省值false。 |
 
 ## version对象内部结构
 

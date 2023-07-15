@@ -15,7 +15,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 ## AbilityState
 
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -72,7 +72,7 @@ const config = {
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('updateConfiguration success.');
@@ -170,7 +170,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(err)}');
         } else {
             console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
@@ -254,8 +254,8 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err && err.code !== 0) {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
+        if (err) {
             console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
@@ -342,7 +342,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('getTopAbility success, data: ${JSON.stringify(data)}');
@@ -388,7 +388,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-获取目标设备的分享数据（callback形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -396,7 +396,7 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| missionId | number                                   | 是 | 目标设备的missionId，最大为2<sup>31</sup>-1。 |
+| missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
 | callback  | AsyncCallback<{[key: string]: Object}>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
@@ -411,14 +411,17 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
-
-abilityManager.acquireShareData(1, (err, wantParam) => { 
-    if (err && err.code !== 0) {
-        console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('acquireShareData success, data: ${JSON.stringify(data)}');
-    }
-});
+try {
+    abilityManager.acquireShareData(1, (err, wantParam) => { 
+        if (err) {
+            console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+        } else {
+            console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+        }
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 
 ```
 
@@ -426,9 +429,15 @@ abilityManager.acquireShareData(1, (err, wantParam) => {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-获取目标设备的分享数据（Promise形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
 
 **返回值：**
 
@@ -448,10 +457,13 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
-
-abilityManager.acquireShareData(1).then((wantParam) => {
-    console.log('acquireShareData success, data: ${JSON.stringify(data)}');
-}).catch((err) => {
-    console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
-});
+try {
+    abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+    }).catch((err) => {
+    console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 ```

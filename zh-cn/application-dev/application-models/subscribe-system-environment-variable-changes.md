@@ -54,7 +54,7 @@
    
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -77,7 +77,7 @@
    
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -99,19 +99,19 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 let systemLanguage: string; // 系统当前语言
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        systemLanguage = this.context.config.language; // Module首次加载时，获取系统当前语言
-        console.info(`systemLanguage is ${systemLanguage} `);
-    }
+  onCreate() {
+    systemLanguage = this.context.config.language; // Module首次加载时，获取系统当前语言
+    console.info(`systemLanguage is ${systemLanguage} `);
+  }
 
-    onConfigurationUpdate(newConfig) {
-        console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(newConfig) {
+    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
-        if (systemLanguage !== newConfig.language) {
-            console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-            systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
-        }
+    if (systemLanguage !== newConfig.language) {
+      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
+  }
 }
 ```
 
@@ -131,21 +131,21 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 let systemLanguage: string; // 系统当前语言
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        systemLanguage = this.context.config.language; // UIAbility实例首次加载时，获取系统当前语言
-        console.info(`systemLanguage is ${systemLanguage} `);
+  onCreate(want, launchParam) {
+    systemLanguage = this.context.config.language; // UIAbility实例首次加载时，获取系统当前语言
+    console.info(`systemLanguage is ${systemLanguage} `);
+  }
+
+  onConfigurationUpdate(newConfig) {
+    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+
+    if (systemLanguage !== newConfig.language) {
+      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
+  }
 
-    onConfigurationUpdate(newConfig) {
-        console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-
-        if (systemLanguage !== newConfig.language) {
-            console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-            systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
-        }
-    }
-
-    // ...
+  ...
 }
 ```
 
@@ -163,11 +163,10 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class EntryFormAbility extends FormExtensionAbility {
-    onConfigurationUpdate(newConfig) {
-        console.info(`newConfig is ${JSON.stringify(newConfig)}`);
-    }
+  onConfigurationUpdate(newConfig) {
+    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  }
 
-    // ...
+  ...
 }
 ```
-

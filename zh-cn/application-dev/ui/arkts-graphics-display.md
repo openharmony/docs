@@ -1,4 +1,4 @@
-# 显示图片
+# 显示图片（Image）
 
 
 开发者经常需要在应用中显示一些图片，例如：按钮中的logo、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
@@ -26,6 +26,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
 
 - 本地资源
+
   创建文件夹，将本地图片放入ets文件夹下的任意位置。
 
   Image组件引入本地图片路径，即可显示图片（根目录为ets文件夹）。
@@ -36,6 +37,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 网络资源
+
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Image组件的src参数为网络图片的链接。
 
   ```ts
@@ -43,6 +45,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - Resource资源
+
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
   **图1** resouces  
@@ -59,7 +62,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   **图2** rawfile  
 
- ![image-rawfile](figures/image-rawfile.jpg)
+  ![image-rawfile](figures/image-rawfile.jpg)
 
   调用方式：
 
@@ -68,6 +71,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 媒体库datashare
+
   支持datashare://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。
@@ -78,9 +82,9 @@ Image支持加载存档图、多媒体像素图两种类型。
       @Entry
       @Component
       struct Index {
-        private imgDatas: string[] = [];
+        @State imgDatas: string[] = [];
         // 获取照片url集
-        async getAllImg() {
+        getAllImg() {
           let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
@@ -89,40 +93,43 @@ Image支持加载存档图、多媒体像素图两种类型。
             PhotoSelectOptions.maxSelectNumber = 5;
             let photoPicker = new picker.PhotoViewPicker();
             photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
-              result = PhotoSelectResult.photoUris;
+              this.imgDatas = PhotoSelectResult.photoUris;
+              console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err) => {
               console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
             });
           } catch (err) {
             console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
-          return result;
         }
 
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
-          this.imgDatas = await this.getAllImg();
+          this.getAllImg();
         }
         // 使用imgDatas的url加载图片。
         build() {
-          Grid() {
-            ForEach(this.imgDatas, item => {
-              GridItem() {
-                Image(item)
-                  .width(200)
-              }
-            }, item => JSON.stringify(item))
-          }
+          Column() {
+            Grid() {
+              ForEach(this.imgDatas, item => {
+                GridItem() {
+                  Image(item)
+                    .width(200)
+                }
+              }, item => JSON.stringify(item))
+            }
+          }.width('100%').height('100%')
         }
       }
       ```
   2. 从媒体库获取的url格式通常如下。
       ​    
       ```ts
-      Image('datashare:///media/5')
+      Image('file://media/5')
       .width(200)
       ```
 
 - base64
+
   路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
 
   Base64格式字符串可用于存储图片的像素数据，在网页上使用较为广泛。
@@ -130,7 +137,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 ### 多媒体像素图
 
-PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
+PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
 
 1. 创建PixelMap状态变量。
 
@@ -201,9 +208,11 @@ Image($r('app.media.cloud')).width(50)
 ```
 
   **图3** 原始图片  
+
 ![屏幕截图_20230223_141141](figures/屏幕截图_20230223_141141.png)
 
   **图4** 设置绘制颜色后的svg图片  
+
 ![屏幕截图_20230223_141404](figures/屏幕截图_20230223_141404.png)
 
 

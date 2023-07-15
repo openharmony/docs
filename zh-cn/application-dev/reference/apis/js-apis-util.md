@@ -1,6 +1,6 @@
 # @ohos.util (util工具函数)
 
-该模块主要提供常用的工具函数，实现字符串编解码（TextEncoder，TextDecoder）、有理数运算（RationalNumber）、缓冲区管理（LruBuffer）、范围判断（Scope）、Base64编解码（Base64）、内置对象类型检查（Types）等功能。
+该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)）等功能。
 
 > **说明：**
 >
@@ -337,6 +337,8 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## TextDecoder
 
+TextDecoder用于将字节数组解码为字符串，可以处理多种编码格式，包括utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
@@ -367,15 +369,15 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| encoding | string | 否   | 编码格式。                                       |
+| encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | Object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
 **表1.1**options
 
 | 名称      | 参数类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记。  |
+| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
 
 **示例：**
 
@@ -443,15 +445,15 @@ TextDecoder的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 编码格式。 |
+| encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
 | options | Object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | 否 | 是否显示致命错误。 |
-| ignoreBOM | boolean | 否 | 是否忽略BOM标记。 |
+| fatal | boolean | 否 | 是否显示致命错误，默认值是false。 |
+| ignoreBOM | boolean | 否 | 是否忽略BOM标记，默认值是false。 |
 
 **示例：**
 
@@ -508,13 +510,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ## TextEncoder
 
+TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式，默认值是utf-8。 |
+| encoding | string | 是 | 否 | 编码格式，默认值是'utf-8'。 |
 
 
 ### constructor
@@ -543,7 +547,7 @@ TextEncoder的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
-| encoding | string | 否 | 编码格式 |
+| encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
 
 **示例：**
 
@@ -563,7 +567,7 @@ encodeInto(input?: string): Uint8Array
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | 否   | 需要编码的字符串。 |
+| input  | string | 否   | 需要编码的字符串，默认值是空字符串。 |
 
 **返回值：**
 
@@ -582,7 +586,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
-encodeIntoUint8Array(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
 放置生成的UTF-8编码文本。
 
@@ -613,7 +617,7 @@ result = that.encodeIntoUint8Array('abcd', dest)
 
 ### encodeInto<sup>(deprecated)</sup>
 
-encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
+encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 放置生成的UTF-8编码文本。
 
@@ -661,7 +665,7 @@ encode(input?: string): Uint8Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| input | string | 否 | 需要编码的字符串。 |
+| input | string | 否 | 需要编码的字符串，默认值是空字符串。 |
 
 **返回值：**
 
@@ -678,6 +682,8 @@ encode(input?: string): Uint8Array
   ```
 
 ## RationalNumber<sup>8+</sup>
+
+RationalNumber主要是对有理数进行比较，获取分子分母等方法。例如使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
 
 ### constructor<sup>9+</sup>
 
@@ -1063,6 +1069,8 @@ let result = util.RationalNumber.getCommonDivisor(4,6);
 
 ## LRUCache<sup>9+</sup>
 
+LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
@@ -1092,7 +1100,7 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量。 |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
 
 **示例：**
 
@@ -1119,7 +1127,7 @@ updateCapacity(newCapacity: number): void
 
 ```js
 let pro = new util.LRUCache();
-let result = pro.updateCapacity(100);
+pro.updateCapacity(100);
 ```
 
 
@@ -1638,18 +1646,18 @@ compareTo(other: ScopeComparable): boolean;
 
 ```js
 class Temperature{
-    constructor(value){
-       // 当使用ts语言开发时，需要补充以下代码：
-       // private readonly _temp: Temperature;
+    // 当使用ArkTS语言开发时，需要补充以下代码：
+    // private readonly _temp: Temperature;
+    constructor(value) {
        this._temp = value;
     }
-    compareTo(value){
+    compareTo(value) {
        return this._temp >= value.getTemp();
     }
-    getTemp(){
+    getTemp() {
        return this._temp;
     }
-    toString(){
+    toString() {
        return this._temp.toString();
     }
 }
@@ -1667,6 +1675,8 @@ class Temperature{
 | [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable。|
 
 ## ScopeHelper<sup>9+</sup>
+
+ScopeHelper接口用于描述一个字段的有效范围。ScopeHelper实例的构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
 
 ### constructor<sup>9+</sup>
 
@@ -1954,7 +1964,7 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
-range.contains(tempMiDF);
+let result = range.contains(tempMiDF);
   ```
 
 
@@ -2023,6 +2033,8 @@ let result = range.clamp(tempMiDF);
 
 ## Base64Helper<sup>9+</sup>
 
+Base64编码表包含A-Z、a-z、0-9这62个字符，以及"+"和"/"这两个特殊字符。在编码时，将原始数据按3个字节一组进行划分，得到若干个6位的数字，然后使用Base64编码表中对应的字符来表示这些数字。如果最后剩余1或2个字节，则需要使用"="字符进行补齐。
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -2068,7 +2080,7 @@ let result = that.encodeSync(array);
 
 ### encodeToStringSync<sup>9+</sup>
 
-encodeToStringSync(src: Uint8Array): string
+encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
@@ -2079,6 +2091,7 @@ encodeToStringSync(src: Uint8Array): string
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。|
 
 **返回值：**
 
@@ -2090,14 +2103,14 @@ encodeToStringSync(src: Uint8Array): string
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-let result = that.encodeToStringSync(array);
+let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+let result = that.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
 ### decodeSync<sup>9+</sup>
 
-decodeSync(src: Uint8Array | string): Uint8Array
+decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应文本。
 
@@ -2108,6 +2121,7 @@ decodeSync(src: Uint8Array | string): Uint8Array
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 解码输入Uint8数组或者字符串。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2119,8 +2133,8 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
   ```js
 let that = new util.Base64Helper();
-let buff = 'czEz';
-let result = that.decodeSync(buff);
+let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+let result = that.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -2160,7 +2174,7 @@ that.encode(array).then(val=>{
 
 ### encodeToString<sup>9+</sup>
 
-encodeToString(src: Uint8Array): Promise&lt;string&gt;
+encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 通过输入参数异步编码后输出对应文本。
 
@@ -2171,6 +2185,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   |  从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2182,16 +2197,16 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-that.encodeToString(array).then(val=>{    
-    console.log(val)
+let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+that.encodeToString(array, util.Type.MIME).then(val=>{
+  // 根据开发者需求进行添加。
 })
   ```
 
 
 ### decode<sup>9+</sup>
 
-decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
+decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步解码后输出对应文本。
 
@@ -2202,6 +2217,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8数组或者字符串。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2213,16 +2229,28 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([99,122,69,122]);
-let rarray = new Uint8Array([115,49,51]);
-that.decode(array).then(val=>{    
-    for (var i = 0; i < rarray.length; i++) {        
-        console.log(val[i].toString())
-    }
+let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+that.decode(array, util.Type.MIME).then(val=>{
+  // 根据开发者需求进行添加。
 })
   ```
 
+
+## Type<sup>10+</sup>
+
+Base64编码格式枚举。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 值                     | 说明             |
+| -------- | ------------------------ | ---------------- |
+| BASIC | 0 | 表示BASIC编码格式 |
+| MIME | 1 | 表示MIME编码格式。 |
+
+
 ## types<sup>8+</sup>
+
+types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常或崩溃。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型例如：ArrayBuffer、Map、Set等。
 
 ### constructor<sup>8+</sup>
 
@@ -3386,7 +3414,7 @@ constructor(capacity?: number)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| capacity | number | 否 | 指示要为缓冲区自定义的容量。 |
+| capacity | number | 否 | 指示要为缓冲区自定义的容量，默认值为64。 |
 
 **示例：**
 

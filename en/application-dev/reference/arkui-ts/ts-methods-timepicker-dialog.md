@@ -5,6 +5,10 @@ A time picker dialog box is a dialog box that allows users to select a time from
 >  **NOTE**
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [showTimePickerDialog](../apis/js-apis-arkui-UIContext.md#showtimepickerdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## TimePickerDialog.show
 
@@ -19,6 +23,9 @@ Shows a time picker dialog box.
 | -------- | -------- | -------- | -------- |
 | selected | Date | No| Selected time.<br>Default value: current system time|
 | useMilitaryTime | boolean | No| Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
 | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| Callback invoked when the selected time changes.|
@@ -40,7 +47,7 @@ struct TimePickerDialogExample {
           TimePickerDialog.show({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
-              //Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
               this.selectTime.setHours(value.hour, value.minute)
               console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
             },
@@ -74,3 +81,5 @@ struct TimePickerDialogExample {
   }
 }
 ```
+
+![TimetPickerDialog](figures/TimePickerDialog.gif)

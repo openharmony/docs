@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](../../quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](../../quick-start/arkts-rendering-control.md#数据懒加载)）。
+>  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 
 
 ## 接口
@@ -33,13 +33,14 @@ Panel(show: boolean)
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
-| mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。<br/>默认值：PanelMode.Half |
+| mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。<br/>Minibar类型默认值：PanelMode.Mini；其余类型默认值：PanelMode.Half<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
 | show | boolean | 当滑动面板弹出时调用。 |
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。|
+| showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
 ## PanelType枚举说明
 
@@ -93,6 +94,7 @@ struct PanelExample {
       .type(PanelType.Foldable).mode(PanelMode.Half)
       .dragBar(true) // 默认开启
       .halfHeight(500) // 默认一半
+      .showCloseIcon(true) // 显示关闭图标
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })

@@ -1,7 +1,7 @@
 # Storage Switching
 
 
-  | API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model| 
+  | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
 | -------- | -------- | -------- |
 | GetStorageOptions | There is no corresponding API in the stage model.| The stage model uses **Prefereces** to replace **Storage** and has redesigned the input parameters.| 
 | SetStorageOptions | There is no corresponding API in the stage model.| The stage model uses **Prefereces** to replace **Storage** and has redesigned the input parameters.| 

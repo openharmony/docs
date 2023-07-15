@@ -3,8 +3,8 @@
 该模块提供文件哈希处理能力，对文件内容进行哈希处理。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
@@ -63,6 +63,15 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
   | --------------------- | -------------------------- |
   | Promise&lt;string&gt; | Promise对象。返回文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
+
 **示例：**
 
   ```js
@@ -90,7 +99,17 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 | algorithm | string                      | 是   | 哈希计算采用的算法。可选&nbsp;"md5"、"sha1"&nbsp;或&nbsp;"sha256"。建议采用安全强度更高的&nbsp;"sha256"。 |
 | callback  | AsyncCallback&lt;string&gt; | 是   | 异步计算文件哈希操作之后的回调函数（其中给定文件哈希值表示为十六进制数字串，所有字母均大写）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
+
 **示例：**
+
   ```js
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err, str) => {

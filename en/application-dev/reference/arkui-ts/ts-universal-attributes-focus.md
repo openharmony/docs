@@ -11,10 +11,10 @@ Focus control attributes set whether a component is focusable, how it participat
 
 | Name              | Type| Description                                  |
 | -------------------- | -------- | ---------------------------------------- |
-| focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md). |
+| focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
 | tabIndex<sup>9+</sup> | number   | How the current component participates in sequential keyboard navigation.<br>- **tabIndex** >= 0: The component is focusable in sequential keyboard navigation, with its order defined by the value. A component with a larger value gains focus later than one with a smaller value. If multiple components share the same **tabIndex** value, their focus order follows their position in the component tree.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
 | defaultFocus<sup>9+</sup> | boolean  | Whether to set the current component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
-| groupDefaultFocus<sup>9+</sup> | boolean  | Whether to set the current component as the default focus of the parent container. This attribute takes effect only when the container is new and has focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains the focus for the first time. |
+| groupDefaultFocus<sup>9+</sup> | boolean  | Whether to set the current component as the default focus of the parent container. This attribute takes effect only when the container is new and has focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains the focus for the first time.|
 | focusOnTouch<sup>9+</sup> | boolean | Whether the current component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
 
 ## focusControl<sup>9+</sup>
@@ -39,7 +39,7 @@ Requests the focus to move to the specified component. This API can be used in g
 
 >  **NOTE**
 >
->  The following components support focus control: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**. Currently, the running effect of the focus event can be displayed only on a real device.
+>  The following components support focus control: **\<TextInput>**, **\<TextArea>**, **\<Search>**, **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**. Currently, the running effect of the focus event can be displayed only on a real device.
 
 ## Example
 

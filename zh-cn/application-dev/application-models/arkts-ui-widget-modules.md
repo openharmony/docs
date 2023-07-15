@@ -1,7 +1,7 @@
 # ArkTS卡片相关模块
 
 
-  **图1** ArkTS卡片相关模块  
+**图1** ArkTS卡片相关模块  
 ![WidgetModules](figures/WidgetModules.png)
 
 

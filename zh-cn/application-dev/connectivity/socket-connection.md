@@ -16,6 +16,7 @@ Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/TLS协议。
 应用通过Socket进行数据传输，支持TCP/UDP/TLS协议。主要场景有：
 
 - 应用通过TCP/UDP Socket进行数据传输
+- 应用通过TCP Socket Server进行数据传输
 - 应用通过TLS Socket进行加密数据传输
 
 ## 接口说明
@@ -28,12 +29,15 @@ Socket连接主要由socket模块提供。具体接口说明如下表。
 | -------- | -------- |
 | constructUDPSocketInstance() | 创建一个UDPSocket对象。 |
 | constructTCPSocketInstance() | 创建一个TCPSocket对象。 |
+| constructTCPSocketServerInstance() | 创建一个TCPSocketServer对象。 |
+| listen() | 绑定IP地址和端口，监听并接受与此套接字建立的TCPSocket连接。（仅TCP支持） |
 | bind() | 绑定IP地址和端口。 |
 | send() | 发送数据。 |
 | close() | 关闭连接。 |
 | getState() | 获取Socket状态。 |
 | connect() | 连接到指定的IP地址和端口（仅TCP支持） |
 | getRemoteAddress() | 获取对端Socket地址（仅TCP支持，需要先调用connect方法） |
+| setExtraOptions() | 设置Socket连接的其他属性。 |
 | on(type:&nbsp;'message') | 订阅Socket连接的接收消息事件。 |
 | off(type:&nbsp;'message') | 取消订阅Socket连接的接收消息事件。 |
 | on(type:&nbsp;'close') | 订阅Socket连接的关闭事件。 |
@@ -87,81 +91,162 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 7. Socket连接使用完毕后，主动关闭。
 
-   ```js
-   import socket from '@ohos.net.socket'
+```js
+import socket from '@ohos.net.socket'
 
-   // 创建一个TCPSocket连接，返回一个TCPSocket对象。
-   let tcp = socket.constructTCPSocketInstance();
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcp = socket.constructTCPSocketInstance();
 
-   // 订阅TCPSocket相关的订阅事件
-   tcp.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tcp.on('connect', () => {
-       console.log("on connect")
-   });
-   tcp.on('close', () => {
-       console.log("on close")
-   });
+// 订阅TCPSocket相关的订阅事件
+tcp.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tcp.on('connect', () => {
+  console.log("on connect")
+});
+tcp.on('close', () => {
+  console.log("on close")
+});
 
-   // 绑定本地IP地址和端口。
-   let bindAddress = {
-       address: '192.168.xx.xx',
-       port: 1234, // 绑定端口，如1234
-       family: 1
-   };
-   tcp.bind(bindAddress, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
+// 绑定本地IP地址和端口。
+let bindAddress = {
+  address: '192.168.xx.xx',
+  port: 1234, // 绑定端口，如1234
+  family: 1
+};
+tcp.bind(bindAddress, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 
-       // 连接到指定的IP地址和端口。
-       let connectAddress = {
-           address: '192.168.xx.xx',
-           port: 5678, // 连接端口，如5678
-           family: 1
-       };
-       tcp.connect({
-           address: connectAddress, timeout: 6000
-       }, err => {
-           if (err) {
-               console.log('connect fail');
-               return;
-           }
-           console.log('connect success');
+  // 连接到指定的IP地址和端口。
+  let connectAddress = {
+    address: '192.168.xx.xx',
+    port: 5678, // 连接端口，如5678
+    family: 1
+  };
+  tcp.connect({
+    address: connectAddress, timeout: 6000
+  }, err => {
+    if (err) {
+      console.log('connect fail');
+      return;
+    }
+    console.log('connect success');
 
-           // 发送数据
-           tcp.send({
-               data: 'Hello, server!'
-           }, err => {
-               if (err) {
-                   console.log('send fail');
-                   return;
-               }
-               console.log('send success');
-           })
-       });
-   });
+    // 发送数据
+    tcp.send({
+      data: 'Hello, server!'
+    }, err => {
+      if (err) {
+        console.log('send fail');
+        return;
+      }
+      console.log('send success');
+    })
+  });
+});
 
-   // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   setTimeout(() => {
-       tcp.close((err) => {
-           console.log('close socket.')
-       });
-       tcp.off('message');
-       tcp.off('connect');
-       tcp.off('close');
-   }, 30 * 1000);
-   ```
+// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+setTimeout(() => {
+  tcp.close((err) => {
+    console.log('close socket.')
+  });
+  tcp.off('message');
+  tcp.off('connect');
+  tcp.off('close');
+}, 30 * 1000);
+```
+
+## 应用通过TCP Socket Server进行数据传输
+
+### 开发步骤
+
+服务端TCP Socket流程：
+
+1. import需要的socket模块。
+2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+3. 绑定本地IP地址和端口，监听并接受与此套接字建立的客户端TCPSocket连接。
+4. 订阅TCPSocketServer的connect事件，用于监听客户端的连接状态。
+5. 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
+6. 订阅TCPSocketConnection相关的事件，通过TCPSocketConnection向客户端发送数据。
+7. 主动关闭与客户端的连接。
+8. 取消TCPSocketConnection和TCPSocketServer相关事件的订阅。
+
+```js
+import socket from '@ohos.net.socket'
+
+// 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+let tcpServer = socket.constructTCPSocketServerInstance();
+
+// 绑定本地IP地址和端口，进行监听
+tcpServer.listen({ address: "192.168.xx.xxx", port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+
+// 订阅TCPSocketServer的connect事件
+tcpServer.on('connect', function(client) {
+  // 订阅TCPSocketConnection相关的事件
+  client.on('close', () => {
+    console.log("on close success");
+  });
+  client.on('message', function(value) {
+    let buffer = value.message;
+    let dataView = new DataView(buffer);
+    let str = "";
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i));
+    }
+    console.log("received message--:" + str);
+    console.log("received address--:" + value.remoteInfo.address);
+    console.log("received family--:" + value.remoteInfo.family);
+    console.log("received port--:" + value.remoteInfo.port);
+    console.log("received size--:" + value.remoteInfo.size);
+  });
+
+  // 向客户端发送数据
+  client.send({data: 'Hello, client!'}, err => {
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
+  });
+
+  // 关闭与客户端的连接
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+
+  // 取消TCPSocketConnection相关的事件订阅
+  setTimeout(() => {
+    client.off('message');
+    client.off('close');
+  }, 10 * 1000);
+});
+
+// 取消TCPSocketServer相关的事件订阅
+setTimeout(() => {
+  tcpServer.off('connect');
+}, 30 * 1000);
+```
 
 ## 应用通过TLS Socket进行加密数据传输
 
@@ -184,145 +269,144 @@ UDP与TCP流程大体类似，下面以TCP为例：
 7. TLSSocket连接使用完毕后，主动关闭。
 
 ```js
-   import socket from '@ohos.net.socket'
+import socket from '@ohos.net.socket'
 
-   // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
-   let tlsTwoWay = socket.constructTLSSocketInstance();
+// 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsTwoWay = socket.constructTLSSocketInstance();
 
-   // 订阅TLS Socket相关的订阅事件
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0; i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// 订阅TLS Socket相关的订阅事件
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // 绑定本地IP地址和端口。
-   tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// 绑定本地IP地址和端口。
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // 设置通信过程中使用参数
-   let options = {
-       ALPNProtocols: ["spdy/1", "http/1.1"],
+// 设置通信过程中使用参数
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
 
-       // 连接到指定的IP地址和端口。
-       address: {
-           address: "192.168.xx.xxx",
-           port: xxxx, // 端口
-           family: 1,
-       },
+  // 连接到指定的IP地址和端口。
+  address: {
+    address: "192.168.xx.xxx",
+    port: xxxx, // 端口
+    family: 1,
+  },
 
-       // 设置用于通信过程中完成校验的参数。
-       secureOptions: {
-           key: "xxxx",                            // 密钥
-           cert: "xxxx",                           // 数字证书
-           ca: ["xxxx"],                           // CA证书
-           passwd: "xxxx",                         // 生成密钥时的密码
-           protocols: [socket.Protocol.TLSv12],    // 通信协议
-           useRemoteCipherPrefer: true,            // 是否优先使用对端密码套件
-           signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // 签名算法
-           cipherSuite: "AES256-SHA256",           // 密码套件
-       },
-   };
+  // 设置用于通信过程中完成校验的参数。
+  secureOptions: {
+    key: "xxxx",                            // 密钥
+    cert: "xxxx",                           // 数字证书
+    ca: ["xxxx"],                           // CA证书
+    passwd: "xxxx",                         // 生成密钥时的密码
+    protocols: [socket.Protocol.TLSv12],    // 通信协议
+    useRemoteCipherPrefer: true,            // 是否优先使用对端密码套件
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // 签名算法
+    cipherSuite: "AES256-SHA256",           // 密码套件
+  },
+};
 
-   // 建立连接
-   tlsTwoWay.connect(options, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// 建立连接
+tlsTwoWay.connect(options, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 
-   // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
-   let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+// 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
-   // 订阅TLS Socket相关的订阅事件
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// 订阅TLS Socket相关的订阅事件
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // 绑定本地IP地址和端口。
-   tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// 绑定本地IP地址和端口。
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // 设置通信过程中使用参数
-   let oneWayOptions = {
-       address: {
-           address: "192.168.xxx.xxx",
-           port: xxxx,
-           family: 1,
-       },
-       secureOptions: {
-           ca: ["xxxx","xxxx"],            // CA证书
-           cipherSuite: "AES256-SHA256",   // 密码套件
-       },
-   };
+// 设置通信过程中使用参数
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: xxxx,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx", "xxxx"],            // CA证书
+    cipherSuite: "AES256-SHA256",   // 密码套件
+  },
+};
 
-   // 建立连接
-   tlsOneWay.connect(oneWayOptions, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// 建立连接
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 ```
 
 ## 相关实例
 
 针对Socket连接开发，有以下相关实例可供参考：
-- [`Socket`：Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket)
-- [使用UDP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/UdpDemoOH)
-- [使用TCP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/TcpSocketDemo)
+
+- [`Socket`：Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)

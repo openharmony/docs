@@ -19,6 +19,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
@@ -97,12 +98,12 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/widget-development-stage.md)：卡片扩展能力，提供卡片开发能力。 |
+| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md)：卡片扩展能力，提供卡片开发能力。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
 | WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
@@ -112,6 +113,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，当前暂未支持。 |
 | PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，当前暂未支持。 |
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
+| PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
+| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
+| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | [AuthorizationExtensionAbility](js-apis-appAccount-authorizationExtensionAbility.md)：应用帐号认证扩展能力，用于处理帐号授权的请求，允许第三方（相对于操作系统厂商）生态平台的帐号授权。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -186,7 +190,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
 | LOCKED                             |12|表示锁定模式。|
 
-### CompatiblePolicy
+### CompatiblePolicy<sup>10+</sup>
 
 标识共享库的版本兼容类型。
 
@@ -399,7 +403,6 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.    |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -444,7 +447,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
-| userId      | number | 否   | 表示用户ID。  |
+| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -585,7 +588,6 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -629,7 +631,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
-| userId     | number | 否   | 表示用户ID。 |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -675,7 +677,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -724,7 +726,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -734,14 +736,6 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。   |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -771,7 +765,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -780,7 +774,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                   |
-| userId      | number | 否   | 表示用户ID。                         |
+| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                      |
 
 **返回值：**
 
@@ -822,7 +816,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, call
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -871,7 +865,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -881,14 +875,6 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -918,7 +904,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -927,7 +913,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
-| userId   | number | 否   | 表示用户ID。                                  |
+| userId   | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                        |
 
 **返回值：**
 
@@ -1048,7 +1034,6 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
 
@@ -1094,7 +1079,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
-| userId       | number | 否   | 表示用户ID。                               |
+| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
 
 **返回值：**
 
@@ -1245,7 +1230,6 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 | -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.            |
 
 **示例：**
@@ -1292,7 +1276,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
-| userId                | number                                        | 否   | 表示用户ID。                                              |
+| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
 
@@ -2169,7 +2153,6 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -2209,7 +2192,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName。 |
-| userId     | number | 否   | 表示用户ID。               |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -2311,7 +2294,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示应用程序的moduleName。   |
 | abilityName  | string | 是   | 表示应用程序的abilityName。  |
-| metadataName | string | 否   | 表示应用程序的metadataName。 |
+| metadataName | string | 否   | 表示应用程序的metadataName，默认值为空。 |
 
 **返回值：**
 
@@ -2431,7 +2414,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示应用程序的moduleName。           |
 | extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
-| metadataName         | string | 否   | 表示应用程序的metadataName。         |
+| metadataName         | string | 否   | 表示应用程序的metadataName，默认值为空。         |
 
 **返回值：**
 
@@ -2946,7 +2929,7 @@ try {
 
 ### bundleManager.getSharedBundleInfo<sup>10+</sup>
 
-function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
+getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取指定的共享包信息，使用Promise形式返回结果。
 
@@ -3036,7 +3019,7 @@ try {
 
 ### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
-function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
+getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取所有的共享包信息，使用Promise形式返回结果。
 
@@ -3069,3 +3052,289 @@ try {
 }
 ```
 
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+以异步的方法获取指定bundleName的provision配置文件信息，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是   | 指定应用的bundleName。 |
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+以异步的方法获取指定bundleName和userId的provision配置文件信息，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是   | 指定应用的bundleName。 |
+| userId | number | 是 | 指定用户ID, 可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>;
+
+以异步的方法根据bundleName和userId获取应用的provision配置文件信息，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是 | 指定的bundleName。 |
+| userId | number | 否 | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Promise对象，返回应用的provision配置文件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.getSpecifiedDistributionType<sup>10+</sup>
+getSpecifiedDistributionType(bundleName: string): string;
+
+以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer.md#installparam)中的specifiedDistributionType字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的分发类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let type = bundleManager.getSpecifiedDistributionType(bundleName);
+    console.info('getSpecifiedDistributionType successfully, type:' + type);
+} catch (error) {
+    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+}
+```
+
+
+### bundleManager.getAdditionalInfo<sup>10+</sup>
+
+getAdditionalInfo(bundleName: string): string;
+
+以同步接口查询指定bundleName的额外信息。该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer.md#installparam)中的additionalInfo字段。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 指定的bundleName。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| string | 返回指定bundleName的额外信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let info = bundleManager.getAdditionalInfo(bundleName);
+    console.info('getAdditionalInfo successfully, additionInfo:' + info);
+} catch (error) {
+    console.error('getAdditionalInfo failed. Cause: ' + error.message);
+}
+```
+
+### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+
+getBundleInfoForSelfSync(bundleFlags: number): BundleInfo;
+
+以同步方法根据给定的bundleFlags获取当前应用的BundleInfo。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+
+**返回值：**
+
+| 类型                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+try {
+    let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', err.message);
+}
+```

@@ -7,6 +7,12 @@ UIAbilityContext是[UIAbility](js-apis-app-ability-uiAbility.md)的上下文环�
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -29,7 +35,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -52,13 +58,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -92,7 +101,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -108,6 +117,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **错误码：**
 
 | 错误码ID | 错误信息 |
+| 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -116,13 +126,16 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -160,7 +173,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -189,13 +202,16 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -235,7 +251,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -260,11 +276,12 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -302,7 +319,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -328,11 +345,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -356,7 +374,7 @@ try {
     // 执行正常业务
     console.info('startAbilityForResult succeed');
   });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -374,7 +392,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -406,11 +424,12 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -447,10 +466,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -477,11 +500,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -518,10 +544,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -549,11 +579,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -593,10 +626,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -629,11 +666,14 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -686,12 +726,17 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -740,12 +785,17 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -766,7 +816,7 @@ try {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -778,7 +828,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -798,12 +852,17 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -837,7 +896,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -856,12 +919,17 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -914,8 +982,12 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -964,11 +1036,16 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1001,7 +1078,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 停止同一应用程序内指定账户的服务（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1021,11 +1102,14 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1059,7 +1143,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 停止同一应用程序内指定账户的服务（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1078,11 +1166,14 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1135,6 +1226,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1180,6 +1273,8 @@ terminateSelf(): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1193,7 +1288,7 @@ terminateSelf(): Promise&lt;void&gt;;
         // 处理业务逻辑错误
         console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
       });
-  } catch (error) {
+  } catch (err) {
     // 捕获同步的参数错误
     console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -1225,6 +1320,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1288,6 +1385,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1344,9 +1443,16 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1356,6 +1462,7 @@ let want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1385,7 +1492,11 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1410,9 +1521,16 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1423,6 +1541,7 @@ let want = {
   abilityName: 'ServiceExtensionAbility'
 };
 let accountId = 100;
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1469,16 +1588,17 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
+let commRemote;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1517,16 +1637,34 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
+let commRemote;
+
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // 处理入参错误异常
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1554,8 +1692,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限：** ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1581,14 +1721,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1643,11 +1782,11 @@ try {
       // 执行正常业务
       caller = obj;
       console.info('startAbilityByCall succeed');
-    }).catch((error) => {
+    }).catch((err) => {
     // 处理业务逻辑错误
     console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1661,10 +1800,14 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1691,11 +1834,14 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1732,10 +1878,14 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1763,11 +1913,14 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1807,10 +1960,14 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1837,11 +1994,14 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1887,6 +2047,15 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 | label | string | 是 | 显示名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1922,6 +2091,8 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1954,6 +2125,8 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2010,9 +2183,13 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
+  import image from '@ohos.multimedia.image';
+
   let imagePixelMap;
   let color = new ArrayBuffer(0);
   let initializationOptions = {
@@ -2036,6 +2213,82 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
       console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
     });
   ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+
+设置UIAbility任务中流转状态（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
+  ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+
+设置UIAbility任务中流转状态（promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
+    console.info('success');
+  }).catch((err) => {
+    console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
+  });
+  ```
+
 ## UIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage) : void;
@@ -2048,7 +2301,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
+| localStorage | LocalStorage | 是 | 用于恢复window stage的存储数据。 |
 
 **错误码：**
 
@@ -2056,6 +2309,8 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2083,7 +2338,8 @@ isTerminating(): boolean;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2100,7 +2356,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2111,6 +2367,28 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | 是 | 执行结果回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2147,7 +2425,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2164,6 +2442,28 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2188,5 +2488,350 @@ try {
 } catch (err) {
   // 处理入参错误异常
   console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+  ## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**示例：**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startRecentAbility(want, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+当开发者需要携带启动参数时可以选择此API。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**示例：**
+
+  ```ts
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0
+};
+
+try {
+  this.context.startRecentAbility(want, options, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
+当开发者期望启动结果以Promise形式返回时可以选择此API。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**示例：**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
+
+try {
+  this.context.startRecentAbility(want, options)
+    .then(() => {
+      // 执行正常业务
+      console.info('startRecentAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+
+## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
+
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
+
+使用规则：
+ - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released.        |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  let caller;
+
+  // 系统账号的账号ID, -1表示当前激活用户
+  let accountId = -1;
+
+  // 指定启动的Ability
+  let want = {
+      bundleName: 'com.acts.actscalleeabilityrely',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
+      parameters: {
+        // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+  };
+
+  try {
+    this.context.startAbilityByCallWithAccount(want, accountId)
+      .then((obj) => {
+        // 执行正常业务
+        caller = obj;
+        console.log('startAbilityByCallWithAccount succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+  }
+  ```
+
+## UIAbilityContext.reportDrawnCompleted
+
+reportDrawnCompleted(callback: AsyncCallback<void>): void;
+
+当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
+ **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 页面加载完成打点的回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+onWindowStageCreate(windowStage: Window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+        if (err.code) {
+            return;
+        }
+        try {
+            this.context.reportDrawnCompleted((err) => {
+                if (err.code) {
+                    // 处理业务逻辑错误
+                    console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+                    return;
+                }
+                // 执行正常业务
+                console.info('reportDrawnCompleted succeed');
+            });
+        } catch (err) {
+            // 捕获同步的参数错误
+            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+        }
+    });
+    console.log("MainAbility onWindowStageCreate")
 }
   ```

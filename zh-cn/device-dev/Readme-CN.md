@@ -33,8 +33,8 @@
     - [小型系统内核](kernel/kernel-small-overview.md)
     - [标准系统内核](kernel/kernel-standard-overview.md)
   - [驱动](driver/Readme-CN.md) 
-  - [编译构建](subsystems/subsys-build-all.md) 
-  - [分布式远程启动](subsystems/subsys-remote-start.md)
+  - [编译构建](subsystems/subsys-build-all.md)
+  - [ArkUI](subsystems/subsys-arkui-customize_titlebar.md) 
   - [图形图像](subsystems/subsys-graphics-overview.md)	
   - [媒体](subsystems/subsys-multimedia-camera-overview.md)
   - [公共基础](subsystems/subsys-utils-guide.md)
@@ -64,5 +64,6 @@
   - [常见问题-设备开发](faqs/Readme-CN.md)
   - [HDI接口参考](reference/hdi-apis/Readme-CN.md)
   - [CMSIS API参考](reference/kernel/cmsis/Readme-CN.md)
+- [免责声明](disclaimer.md)
 - 贡献
   - [参与贡献](../contribute/贡献文档.md) 

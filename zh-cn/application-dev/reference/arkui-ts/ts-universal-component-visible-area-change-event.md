@@ -98,7 +98,7 @@ struct ScrollExample {
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.On)
       .scrollBarColor(Color.Gray)
-      .scrollBarWidth(30)
+      .scrollBarWidth(10)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })

@@ -21,7 +21,6 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 - 增加基础的ArkTS卡片开发能力：支持卡片交互、能动态更新内容；统一卡片和页面的开发范式，页面的布局可以直接复用到卡片布局中，提升卡片开发体验和开发效率。
 - 系统默认支持纯文本、纯图片复制、粘贴、拖拽，无需开发者处理复制、粘贴、拖拽事件。
 - 支持多级菜单和分组菜单。
-- 支持切换深色模式/浅色模式，仅系统应用支持。
 
  **UI界面开发支持一次开发适配多屏幕规格** 
 
@@ -42,7 +41,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
   - Ability生命周期和窗口显示/焦点事件分离，统一了多设备形态下组件的生命周期，有利于多设备应用开发。
   - Ability与UI职责分离且具备RPC调用能力，原生支持组件级的跨设备迁移与协同，有利于分布式应用开发。
 
-- 提供Extension机制，借助Extension，应用在与其他应用或系统进行交互时向他们提供自定义功能和内容，例如：应用可以作为卡片显示在系统桌面或者系统闲时执行后台任务等。当前支持的常用Extenson有：FormExtensionAbility、WorkSchedulerExtensionAbility、InputMethodExtensionAbility、AccessibilityExtensionAbility等。
+- 提供Extension机制，借助Extension，应用在与其他应用或系统进行交互时向他们提供自定义功能和内容，例如：应用可以作为卡片显示在系统桌面或者系统闲时执行后台任务等。当前支持的常用Extension有：FormExtensionAbility、WorkSchedulerExtensionAbility、InputMethodExtensionAbility、AccessibilityExtensionAbility等。
 
 - 原子化服务支持分包预加载，提升服务首次加载性能。
 
@@ -120,7 +119,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 在支持RAW流的基础上，新增COMMON流传输能力，将未加密音视频流交由软总线进行加解密，调用者只需要把原始的音视频流数据传递给软总线，软总线保障数据的安全传输。
 
-- 支持传输链路（WLAN/WiFi P2P/蓝牙BR）动态选择。根据双端设备支持的传输链路以及业务调用软总线传输接口（SendFile、SendSteam、SendMessage、SendBytes）进行链路选择。例如当需要传输流数据时，优先选择WLAN（5G频段）进行传输，如果WLAN不可用，则选择其它链路（例如WiFi P2P）进行传输。
+- 支持传输链路（WLAN/WiFi P2P/蓝牙BR）动态选择。根据双端设备支持的传输链路以及业务调用软总线传输接口（SendFile、SendStream、SendMessage、SendBytes）进行链路选择。例如当需要传输流数据时，优先选择WLAN（5G频段）进行传输，如果WLAN不可用，则选择其它链路（例如WiFi P2P）进行传输。
 
 
 
@@ -130,7 +129,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 分布式相机支持录像功能。
 
-- 设备管理支持将帐号认证信息导入到设备安全认证系统中，相同帐号的设备可以自动完成设备认证和组网。
+- 设备管理Native APIs支持将帐号认证信息导入到设备安全认证系统中，相同帐号的设备可以自动完成设备认证和组网。
 
 
 #### 分布式数据管理
@@ -189,7 +188,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 支持文件系统外置存储挂载卸载、格式化等能力，支持外置存储读写访问能力。
 
-- 增强文件管理IO接口能力：新增list file接口提供目录遍历能力、新增RamdomAccess接口提供大文件快速随机访问能力。
+- 增强文件管理IO接口能力，新增list file接口提供目录遍历能力。
 
 
 ### 图形显示 &amp; 窗口
@@ -433,7 +432,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 支持应用/服务开发环境的诊断功能，能够检测开发环境是否完备，确保开发者拥有良好的开发体验。若检查结果中存在不满足的检查项，建议您根据修复建议进行调整。
 
-- 提供基础模板和卡片模板，支持Stage工程下创建ArkTS服务卡片，帮助开发者快速开发应用和服务。
+- 提供基础模板和卡片模板，支持在基于Stage模型的应用中添加ArkTS卡片。
 
 - 支持OpenHarmony工程添加Extension Ability模板，具体请参考在模块中添加Ability。
 
@@ -484,10 +483,10 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 - 新增OpenHarmony应用质量要求兼容性测试规范，涵盖UX、性能、功耗、稳定性、兼容性和安全六大方面，规范OpenHarmony应用基础质量要求，详细请参考[官网说明](https://www.openharmony.cn/certification/moreStandard)。
 
 - [SmartPerf-Host](https://gitee.com/openharmony-sig/smartperf/tree/master)性能功耗调试调优工具，为开发者提供一套性能调优平台，支持GUI（图形用户界面）操作进行详细数据分析。3.2版本新增：
-  - 支持功耗分析能力，展示应用各子类别功耗占比信息、资源申请使用记录、功耗异常事件、功耗与系统状态关联信息，详细请参考HiSystemEvent[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_hisystemevent.md)。
-  - 支持Web端抓取trace，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_web_record.md)。
-  - 支持SQL查询和Metrics说明，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_sql_metrics.md)。
-  - 支持内核内存事件分析，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_page_fault.md)。
+  - 支持功耗分析能力，展示应用各子类别功耗占比信息、资源申请使用记录、功耗异常事件、功耗与系统状态关联信息，详细请参考HiSystemEvent[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_hisystemevent.md)。
+  - 支持Web端抓取trace，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_web_record.md)。
+  - 支持SQL查询和Metrics说明，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_sql_metrics.md)。
+  - 支持内核内存事件分析，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_page_fault.md)。
 
 - [wukong](https://gitee.com/openharmony/ostest_wukong)软件稳定性工具能力增强：
   - 支持注入滑动、鼠标、字符、系统按键、控件事件，模拟用户多样化随机操作，覆盖真实用户操作场景，挖掘更多稳定性问题。
@@ -502,7 +501,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Release | NA |
 | Public SDK | Ohos_sdk_public 3.2.11.9 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| HUAWEI DevEco Studio（可选） | 3.1 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br /> [Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/f3/v3/uJyuq3syQ2ak4hE1QZmAug/devecostudio-windows-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013335Z&HW-CC-Expire=315360000&HW-CC-Sign=96262721EDC9B34E6F62E66884AB7AE2A94C2A7B8C28D6F7FC891F46EB211A70) <br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/b7/v3/4z3mLQPCQR-g5KlC56SC1w/devecostudio-mac-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013430Z&HW-CC-Expire=315360000&HW-CC-Sign=93E83FD1F1CE504EF8F098E08955A938FDA4E4926A2555CF1E02DC8D57210D76) <br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/2e/v3/Fl9IY6PiQxqc3tnI2cftiw/devecostudio-mac-arm-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013540Z&HW-CC-Expire=315360000&HW-CC-Sign=0906243123734033AAD34A7A005ED7671F00CAA693B6E674F81A094A0159ECCE) |
+| HUAWEI DevEco Studio（可选） | 3.1 Release | OpenHarmony应用开发推荐使用。获取方式：<br /> [Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/16/v3/YO_7mAQNTbS8jekrvez5IA/devecostudio-windows-3.1.0.500.zip?HW-CC-KV=V1&HW-CC-Date=20230512T073650Z&HW-CC-Expire=315360000&HW-CC-Sign=90814E421B9A6D8DB4757FAFC21A965CF890A387DF9A2633B4AB797AD77E6485) <br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/d8/v3/zRt_WN3iRZiJ6nmb0mII2g/devecostudio-mac-3.1.0.500.zip?HW-CC-KV=V1&HW-CC-Date=20230512T073549Z&HW-CC-Expire=315360000&HW-CC-Sign=11DF6C7F2EE8C5CA5F5F44CE7441EBF2E24824FC7ECD5D961329C9575A8326AF) <br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/7d/v3/EEGHWfBmR_29a-xjAQJZqA/devecostudio-mac-arm-3.1.0.500.zip?HW-CC-KV=V1&HW-CC-Date=20230512T074142Z&HW-CC-Expire=315360000&HW-CC-Sign=92C9A7380140C8363D6B853A3898B31674144C2C809ED47F154EC450B714DBC0) |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
 
 ## 源码获取
@@ -596,7 +595,7 @@ API变更请参考:
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 ### Samples
 
@@ -607,12 +606,7 @@ API变更请参考:
 | 无障碍 | [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTS |
 | 企业管理 | [企业设备管理ExtensionAbility](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility) | 企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。 | ArkTS |
 | 任务管理 | [任务延时调度](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例使用\@ohos.WorkSchedulerExtensionAbility 、\@ohos.net.http 、\@ohos.notification 、\@ohos.bundle 、\@ohos.fileio 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。 | ArkTS |
-| 网络 | [上传](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload) | 本示例主要展示Request服务向三方应用提供系统上传服务能力，通过\@ohos.request，\@ohos.multimedia.mediaLibrary等接口去实现图片的选取与上传。 | ArkTS |
-| 任务管理 | [短时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask) | 本示例主要展示后台任务中的短时任务。通过\@ohos.resourceschedule.backgroundTaskManager，\@ohos.app.ability.quickFixManager等接口实现应用热更新的方式去展现短时任务机制。 | ArkTS |
-| 任务管理 | [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask) | 本示例展示后台任务的长时任务。通过使用\@ohos.resourceschedule.backgroundTaskManager实现后台播放音乐时避免进入挂起（Suspend）状态。 | ArkTS |
-| 元能力 | [ArkTS卡片计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSFormCalc) | 本示例展示了使用ArkTS卡片开发的计算器模型。 | ArkTS |
-| 元能力 | [ArkTS卡片Canvas小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame) | 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。<br/>- 使用Canvas绘制棋盘和黑白棋子的落子。<br/>- 通过卡片支持的点击事件进行交互，让用户在棋盘上进行黑白棋子的对局。<br/>- 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。 | ArkTS |
-| 元能力 | [ArkTs音乐卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/ArkTSCardMusicSample) | 本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片。 | ArkTS |
+
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
