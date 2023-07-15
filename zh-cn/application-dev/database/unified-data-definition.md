@@ -14,23 +14,23 @@ UDMF提供的标准化数据类型主要包括以下几类：
 
 **图1** UDMF File数据类型示意图
 
-！[UDMF_FILE](figures/udmf_type_File.png)
+![UDMF_FILE](figures/udmf_type_File.png)
 
 **图2** UDMF Text数据类型示意图
 
-！[UDMF_TEXT](figures/udmf_type_Text.png)
+![UDMF_TEXT](figures/udmf_type_Text.png)
 
 **系统相关数据类型(System Defined Type, SDT)：** 与具体的平台/操作系统绑定，如Form(UI卡片信息)、AppItem(App描述信息)、PixelMap(缩略图格式)等，该类数据可以实现系统/平台内的跨应用流转，如图3所示。
 
 **图3** UDMF SDT数据类型示意图
 
-！[UDMF_SDT](figures/udmf_type_SDT.png)
+![UDMF_SDT](figures/udmf_type_SDT.png)
 
 **应用自定义数据类型(App Defined Type, ADT)：** 单个应用自定义的数据，该类数据可以实现应用内的跨平台流转，如图4所示为例，应用可自定义MyFile类型文件格式在应用生态内部使用。
 
 **图4** UDMF ADT数据类型示意图
 
-！[UDMF_ADT](figures/udmf_type_ADT.png)
+![UDMF_ADT](figures/udmf_type_ADT.png)
 
 ## 约束限制
 
