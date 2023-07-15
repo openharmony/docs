@@ -12,6 +12,18 @@
 import systemDateTime from '@ohos.systemDateTime';
 ```
 
+## TimeType<sup>10+</sup>
+
+定义获取时间的枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Time
+
+| 名称             | 值   | 说明                                             |
+| ---------------- | ---- | ------------------------------------------------ |
+| CLOCK_TIME       | 0    | 自 Unix 纪元以来经过的毫秒数。                   |
+| REAL_ACTIVE_TIME | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
+| REAL_TIME        | 2    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
+
 ## systemDateTime.setTime
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
@@ -85,7 +97,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -116,7 +128,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -146,7 +158,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -180,7 +192,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -211,7 +223,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -241,7 +253,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -275,7 +287,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -306,7 +318,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -336,7 +348,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -370,7 +382,34 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.getTimeSync<sup>10+</sup>
+
+getTimeSync(timeType:TimeType, isNano: boolean): number
+
+获取不同类型时间，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| timeType | [TimeType](#timetype) | 是   | 获取的时间类型。                                             |
+| isNano   | boolean               | 否   | 返回结果是否为纳秒数。<br>默认值为false。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。 |
+
+**返回值**：
+
+| 类型   | 说明         |
+| ------ | ------------ |
+| number | 返回时间戳。 |
+
+**示例：**
+
+```js
+let time = systemDateTime.getTimeSync(TimeType.CLOCK_TIME, true)
+```
+
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -404,7 +443,7 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -441,7 +480,7 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -471,7 +510,7 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -568,7 +607,7 @@ try {
 }
 ```
 
-## systemDateTime.getTimezone
+## systemDateTime.getTimezone<sup>(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -598,7 +637,7 @@ try {
 }
 ```
 
-## systemDateTime.getTimezone
+## systemDateTime.getTimezone<sup>(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 
@@ -624,6 +663,26 @@ try {
 } catch(e) {
   console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
 }
+```
+
+## systemDateTime.getTimezoneSync<sup>10+</sup>
+
+getTimezoneSync(): string
+
+获取系统时区，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| string | 返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**示例：**
+
+```js
+let timezone = systemDateTime.getTimezoneSync();
 ```
 
 ## 支持的系统时区
