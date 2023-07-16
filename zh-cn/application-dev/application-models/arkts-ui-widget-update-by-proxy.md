@@ -7,7 +7,7 @@
 **图1** 代理刷新运行原理
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
-如图1，与[arkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
+如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
 
 - 数据管理服务：该场景下主要提供了多应用间的数据共享的机制。
 - 数据提供方（仅支持系统应用）：系统应用作为数据提供方，需要开启数据共享能力，同时需要自定义`key + subscriberId`作为共享数据的标识。
