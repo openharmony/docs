@@ -476,6 +476,9 @@ Indicates that the system starts charging the battery.
 ## [COMMON_EVENT_CHARGE_TYPE_CHANGED](./common_event/commonEvent-powermgr.md)
 Indicates that the system charging type has changed. This event is available only for system applications.
 
+## [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](./common_event/commonEvent-powermgr.md)
+Indicates that the device enters the charging idle mode.
+
 ## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
 Indicates that the system idle mode has changed.
 ## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
