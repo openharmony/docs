@@ -6,8 +6,6 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
->
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > Since API version 10, you can use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
@@ -38,8 +36,8 @@ Registers a custom font with the font manager.
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string | Yes   | Name of the custom font to register.  |
-| familySrc  | string | Yes   | Path of the custom font to register.|
+| familyName | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 
@@ -53,9 +51,22 @@ struct FontExample {
   @State message: string =' Hello, World'
 
   aboutToAppear() {
+    // Both familyName and familySrc support the string type.
     font.registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf'
+    })
+
+    // Both familyName and familySrc support the Resource type.
+    font.registerFont({
+      familyName: $r('app.string.mediumFamilyName'),
+      familySrc: $r('app.string.mediumFamilySrc')
+    })
+
+    // familySrc supports the $rawfile type.
+    font.registerFont({
+      familyName: 'mediumRawFile',
+      familySrc: $rawfile('font/medium.ttf')
     })
   }
 
@@ -64,7 +75,7 @@ struct FontExample {
       Text(this.message)
         .align(Alignment.Center)
         .fontSize(20)
-        .fontFamily('medium') // medium: name of the custom font to register.
+        .fontFamily('medium') // medium: name of the custom font to register. (Registered fonts such as $r('app.string.mediumFamilyName') and 'mediumRawFile' can also be used.)
         .height('100%')
     }.width('100%')
   }
