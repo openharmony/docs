@@ -249,7 +249,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update the value of the data item.)
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
 let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
 // @ts-ignore
@@ -264,6 +264,8 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables airplane mode. This API uses an asynchronous callback to return the result.
+
+This API is not supported currently.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
@@ -292,6 +294,8 @@ settings.enableAirplaneMode(isEnabled, (err) => {
 enableAirplaneMode(enable: boolean): Promise\<void>
 
 Enables or disables airplane mode. This API uses a promise to return the result.
+
+This API is not supported currently.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
