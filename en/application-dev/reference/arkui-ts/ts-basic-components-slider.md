@@ -79,7 +79,7 @@ Enumerates the types of the slider in the block direction.
 
 ## Events
 
-In addition to the **OnAppear** and **OnDisAppear** universal events, the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
 
 | Name| Description|
 | -------- | -------- |
@@ -96,8 +96,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse.|
 | Click    | 3    | The user moves the slider by touching the slider track.|
 
-
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -253,3 +254,52 @@ struct SliderExample {
 ```
 
 ![en-us_image_0000001179613854](figures/en-us_image_0000001179613854.gif)
+
+### Example 2
+
+```ts
+@Entry
+@Component
+struct SliderExample {
+  @State tipsValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Text('block').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: 40, height: 40 })
+        .blockBorderColor(Color.Red)
+        .blockBorderWidth(5)
+      Divider()
+      Text('step').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40, step: 10 })
+        .showSteps(true)
+        .stepSize(8)
+        .stepColor(Color.Yellow)
+      Divider()
+      Text('track').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .trackBorderRadius(2)
+      Divider()
+      Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.DEFAULT })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: '60px', height: '60px' })
+        .blockColor(Color.Red)
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+      Divider()
+      Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: this.tipsValue })
+        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .onChange(value => {
+          this.tipsValue = value
+        })
+    }
+  }
+}
+```
+
+![](figures/slider_2.png)
