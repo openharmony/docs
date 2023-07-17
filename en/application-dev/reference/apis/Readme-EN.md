@@ -381,6 +381,7 @@
 
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
+  - [@ohos.account.appAccount.AuthorizationExtensionAbility (App Account AuthorizationExtensionAbility)](js-apis-appAccount-authorizationExtensionAbility.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
   
