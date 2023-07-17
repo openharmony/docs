@@ -118,7 +118,7 @@
         }
         signal->outCond_.notify_all();
         // 将对应输出buffer的 index 送入OutputQueue_队列
-        // 将对应解码完成的数据data送入outBuffer队列
+        // 将对应解码完成的数据data送入OutputBuffer队列
     }
     signal_ = new ADecSignal();
     OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, OnInputBufferAvailable, &OnOutputBufferAvailable};

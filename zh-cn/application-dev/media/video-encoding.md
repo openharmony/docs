@@ -36,7 +36,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
 1. 创建编码器实例对象。
 
-   应用可以通过名称或媒体类型创建解码器。
+   应用可以通过名称或媒体类型创建编码器。
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
@@ -241,7 +241,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
     以下示例中：  
     index：回调函数OnNeedInputData传入的参数，数据队列的索引。  
-    与“步骤6.写入编码码流一样”，使用同一个接口OH_VideoEncoder_PushInputData，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+    与“步骤7.写入编码码流一样”，使用同一个接口OH_VideoEncoder_PushInputData，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
     ``` c++
     int32_t ret;
@@ -277,7 +277,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
     调用OH_VideoEncoder_Flush()后，编码器仍处于运行态，但会将当前队列清空，将已编码的数据释放。
 
-    此时需要调用OH_AudioEncoder_Start()重新开始编码。
+    此时需要调用OH_VideoEncoder_Start()重新开始编码。
 
     ``` c++
     int32_t ret;
@@ -345,7 +345,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 
 1. 创建编码器实例对象。
 
-   应用可以通过名称或媒体类型创建解码器。
+   应用可以通过名称或媒体类型创建编码器。
 
     ``` c++
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
