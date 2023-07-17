@@ -806,7 +806,7 @@
 
 ## ohos.permission.GET_WIFI_INFO
 
-允许应用获取WLAN信息。
+允许应用获取Wi-Fi信息。
 
 **权限级别**：normal
 
@@ -816,7 +816,7 @@
 
 ## ohos.permission.GET_WIFI_INFO_INTERNAL
 
-允许应用获取WLAN信息。
+允许系统应用获取Wi-Fi相关参数。
 
 **权限级别**：system_core
 
@@ -826,7 +826,7 @@
 
 ## ohos.permission.SET_WIFI_INFO
 
-允许应用配置WLAN设备。
+允许应用配置Wi-Fi设备。
 
 **权限级别**：normal
 
@@ -836,7 +836,7 @@
 
 ## ohos.permission.GET_WIFI_PEERS_MAC
 
-允许应用获取对端WLAN或者蓝牙设备的MAC地址。
+允许应用获取对端的Wi-Fi设备的MAC地址。
 
 **权限级别**：system_core
 
@@ -846,7 +846,7 @@
 
 ## ohos.permission.GET_WIFI_LOCAL_MAC
 
-允许应用获取本机WLAN或者蓝牙设备的MAC地址。
+允许应用获取本机的Wi-Fi设备的MAC地址。
 
 **权限级别**：system_basic
 
@@ -856,7 +856,7 @@
 
 ## ohos.permission.GET_WIFI_CONFIG
 
-允许应用获取WLAN配置信息。
+允许应用获取Wi-Fi的配置信息。
 
 **权限级别**：system_basic
 
@@ -866,7 +866,7 @@
 
 ## ohos.permission.SET_WIFI_CONFIG
 
-允许应用配置WLAN信息。
+允许应用配置Wi-Fi信息。
 
 **权限级别**：system_basic
 
@@ -876,7 +876,7 @@
 
 ## ohos.permission.MANAGE_WIFI_CONNECTION
 
-允许应用管理WLAN连接。
+允许应用管理Wi-Fi的连接。
 
 **权限级别**：system_core
 
@@ -886,7 +886,7 @@
 
 ## ohos.permission.MANAGE_WIFI_HOTSPOT
 
-允许应用开启或者关闭WLAN热点。
+允许应用开启或关闭Wi-Fi热点。
 
 **权限级别**：system_core
 
