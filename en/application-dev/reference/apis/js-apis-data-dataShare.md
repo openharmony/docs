@@ -4,11 +4,11 @@ The **DataShare** module allows an application to manage its own data and share 
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
->
-> The APIs of this module can be used only in the stage model.
+> 
+>- The APIs provided by this module are system APIs and can be used only in the stage model.
+> 
 
 
 ## Modules to Import
@@ -34,7 +34,7 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of an application.                                          |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                       |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -82,8 +82,8 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of an application.                                          |
-| uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                        |
+| uri      | string                                                   | Yes  | URI of the server application to connect.                              |
 | options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Configuration specifying whether [DataShareHelper](#datasharehelper) is in proxy mode.|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -133,8 +133,8 @@ Observe the following when using this API:
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of an application.            |
-| uri     | string                                            | Yes  | Uniform Resource Identifier (URI) of the server application to connect.|
-| options | [DataShareHelperOptions](#datasharehelperoptions10) | No| Optional configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode.|
+| uri     | string                                            | Yes  | URI of the server application to connect. |
+| options | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode. |
 
 **Return value**
 
@@ -177,7 +177,7 @@ Defines whether [DataShareHelper](#datasharehelper) is in proxy mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode. The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper] (#datasharecreatedatasharehelper10) will start the data provider to create a database.|
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br/>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database. |
 
 ## TemplateId<sup>10+</sup>
 
@@ -192,14 +192,14 @@ Defines the **TemplateId** struct. **TemplateId** is generated by [**addTemplate
 
 ## PublishedItem<sup>10+</sup>
 
-Defines the type of the data to publish.
+Defines the data to publish.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the data to publish.|
-| data | string \| [Ashmem](js-apis-rpc.md#ashmem8) | Yes| Data to publish. If the data volume is large, use **Ashmem**.|
+| data | string \| ArrayBuffer | Yes| Data to publish. If the data to publish exceeds 20 KB, you are advised to use **data** of the ArrayBuffer type. |
 | subscriberId | string | Yes| Subscriber ID.|
 
 ## RdbDataChangeNode<sup>10+</sup>
@@ -245,7 +245,7 @@ Defines the result of the operation for subscribing to or unsubscribing from the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | ----- | -------- |
 | key | string | Yes| Key of the operation result.|
-| result | number | Yes| Operation result. |
+| result | number | Yes| Operation result. If the operation is successful, **0** is returned; otherwise, an error code is returned. |
 ## DataShareHelper
 
 Provides a **DataShareHelper** instance to access or manage data on the server. Before calling an API provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
@@ -393,7 +393,7 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 
 | Name    | Type                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                           | Yes  | Type of the event to subscribe to. The value is **rdbDataChange**, which indicates the RDB data change event. |
+| type      | string                           | Yes  | Type of the event to subscribe to. The value is **rdbDataChange**, which indicates the RDB data change event. If **type** is any other value, there is no response to this API. |
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the data to operate.          |
 | templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
 | callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the result when the specified data changes. The **err** is **undefined**, and **node** is the new data. Otherwise, this callback is not triggered or **err** is an error object. |
@@ -478,18 +478,15 @@ Subscribes to the changes of the published data.
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-
 function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
     console.info("onPublishCallback node data size" + node.data.length);
     for (let i = 0; i < node.data.length; i++) {
         console.info("onPublishCallback node " + typeof node.data[i].data);
         if (typeof node.data[i].data != 'string') {
-            let ash:rpc.Ashmem = node.data[i].data;
-            ash.mapReadonlyAshmem();
-            console.info("onPublishCallback " + JSON.stringify(ash.readAshmem(ash.getAshmemSize()/4, 0)));
-            ash.closeAshmem();
+            let array:ArrayBuffer = node.data[i].data;
+            let data:Uint8Array = new Uint8Array(array);
+            console.info("onPublishCallback " + i + " " + JSON.stringify(data));
         }
         console.info("onPublishCallback data " + i + " " + JSON.stringify(node.data[i]));
     }
@@ -561,29 +558,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-
-let ashmem = null;
-let subscriberId = '11';
+let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [
-    {key:"city", subscriberId:"11", data:"xian"},
-    {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
-    {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let nums:number[] = [1,2,3];
+let data : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
-    ashmem.closeAshmem();
 }
 try {
-    ashmem = rpc.Ashmem.create("ashmem", (nums.length) * 4);
-    ashmem.mapReadWriteAshmem();
-    ashmem.writeAshmem(nums, nums.length, 0);
-    data.push({
-        "key" : "key2",
-        "data" : ashmem,
-        "subscriberId" : "11",
-    });
     console.info("data length is:", data.length);
     dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
@@ -1066,7 +1047,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Batch inserts data into the database. This API uses an asynchronous callback to return the result.
+Batch inserts data into the database. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1102,7 +1083,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-Batch inserts data into the database. This API uses a promise to return the result.
+Batch inserts data into the database. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1141,7 +1122,7 @@ try {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1169,7 +1150,7 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1200,7 +1181,7 @@ dataShareHelper.normalizeUri(uri).then((data) => {
 
 denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-Denormalizes a URI. This API uses an asynchronous callback to return the result.
+Denormalizes a URI. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1228,7 +1209,7 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
-Denormalizes a URI. This API uses a promise to return the result.
+Denormalizes a URI. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1259,7 +1240,7 @@ dataShareHelper.denormalizeUri(uri).then((data) => {
 
 notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-Notifies the registered observer of data changes. This API uses an asynchronous callback to return the result.
+Notifies the registered observer of data changes. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1283,7 +1264,7 @@ dataShareHelper.notifyChange(uri, () => {
 
 notifyChange(uri: string): Promise&lt;void&gt;
 
-Notifies the registered observer of data changes. This API uses a promise to return the result.
+Notifies the registered observer of data changes. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
