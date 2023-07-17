@@ -10,6 +10,7 @@
     - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)
     - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
+    - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
     - [Audio Effect Management](audio-effect-management.md)
@@ -21,6 +22,7 @@
     - [Using AVRecorder for Audio Recording](using-avrecorder-for-recording.md)
     - [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md)
     - [Using OpenSL ES for Audio Recording](using-opensl-es-for-recording.md)
+    - [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md)
     - [Microphone Management](mic-management.md)
     - [Audio Recording Stream Management](audio-recording-stream-management.md)
     - [Audio Input Device Management](audio-input-device-management.md)
@@ -29,6 +31,14 @@
     - [Developing Audio Call](audio-call-development.md)
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
+  - Audio and Video Codecs
+    - [Obtaining Supported Codecs](obtain-supported-codecs.md)
+    - [Audio Encoding](audio-encoding.md)
+    - [Audio Decoding](audio-decoding.md)
+    - [Video Encoding](video-encoding.md)
+    - [Video Decoding](video-decoding.md)
+    - [Audio/Video Encapsulation](audio-video-encapsulation.md)
+    - [Audio/Video Decapsulation](audio-video-decapsulation.md)
 - AVSession
   - [AVSession Overview](avsession-overview.md)
   - Local AVSession
