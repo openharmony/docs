@@ -1370,7 +1370,7 @@ static struct OH_Huks_Param g_agreeParamsInit01[] = {
 
 static struct OH_Huks_Param g_agreeParamsFinish01[] = {
     {
-        .tag = OH_HUKS_TAG_KEY_STORAGE_FLAG,
+        .tag = OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
         .uint32Param = OH_HUKS_STORAGE_ONLY_USED_IN_HUKS
     }, {
         .tag = OH_HUKS_TAG_ALGORITHM,
@@ -1413,7 +1413,7 @@ static struct OH_Huks_Param g_agreeParamsInit02[] = {
 
 static struct OH_Huks_Param g_agreeParamsFinish02[] = {
     {
-        .tag = OH_HUKS_TAG_KEY_STORAGE_FLAG,
+        .tag = OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
         .uint32Param = OH_HUKS_STORAGE_ONLY_USED_IN_HUKS
     }, {
         .tag = OH_HUKS_TAG_ALGORITHM,
