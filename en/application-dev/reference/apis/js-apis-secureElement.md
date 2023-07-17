@@ -43,10 +43,10 @@ The returned **SEService** object is available only when **true** is returned by
 
 **Parameters**
 
-| **Name**| **Type**                                            | **Description**            |
-| ---------- | ---------------------------------------------------- | -------------------- |
-| type       | string                                               | 'serviceState'       |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Callback invoked to return the SE service status.|
+| **Name**| **Type**                                            | **Mandatory**| **Description**            |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | Yes     | 'serviceState'       |
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback invoked to return the SE service status.|
 
 **Return value**
 
@@ -59,20 +59,18 @@ The returned **SEService** object is available only when **true** is returned by
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
-this.result = "Service state is Unkown";
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log.("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService occurs exception:" + e.message;
+    console.log("newSEService occurs exception:" + e.message);
 }
 ```
 
@@ -95,35 +93,34 @@ Obtains the available SE readers. The returned array cannot contain duplicate ob
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
-@State nfcServiceState: secureElement.ServiceState = null;
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaReaderList: secureElement.Reader[] = null;
+let nfcSEService = null;
+let nfcServiceState = null;
+let nfcOmaReader = null;
+let nfcOmaReaderList = null;
 
 // get SEService
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService excpetion:" + e.message;
+    console.log("newSEService excpetion:" + e.message);
 }
 
 try {
-    this.nfcOmaReaderList = this.nfcSEService.getReaders();
-    if (this.nfcOmaReaderList != null && this.nfcOmaReaderList.length > 0) {
-        this.nfcOmaReader = this.nfcOmaReaderList[0];
-        this.result = "get reader successfully";
+    nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        nfcOmaReader = this.nfcOmaReaderList[0];
+        console.log("get reader successfully");
     } else {
-        this.result = "get reader failed";
+        console.log("get reader failed");
     }
 } catch (e) {
-    this.result = "getReaders exception:" + e.message;
+    console.log("getReaders exception:" + e.message);
 }
 ```
 
@@ -146,20 +143,19 @@ Checks whether this SE service is connected.
 ```JS
 import secureElement from '@ohos.secureElement';
 
-@State result: string = ''
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
 try {
     let ret: boolean;
     // refer to newSEService for this.nfcSEService 
-    ret = this.nfcSEService.isConnected();
+    ret = nfcSEService.isConnected();
     if (ret) {
-        this.result = 'get state: connected';
+        console.log("get state: connected");
     } else {
-        this.result = 'get state: not connected';
+        console.log("get state: not connected");
     }
 } catch (e) {
-    this.result = "isConnected exception: " + e.message;
+    console.log("isConnected exception: " + e.message);
 }
 ```
 
@@ -176,15 +172,15 @@ Releases all SE resources allocated to this service. After that, [isConnected](#
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+
+let nfcSEService = null;
 
 try {
     // refer to newSEService for this.nfcSEService 
-    this.nfcSEService.shutdown();
-    this.result = "shutdown successfully";
+    nfcSEService.shutdown();
+    console.log("shutdown successfully");
 } catch (e) {
-    this.result = "shutdown exception:" + e.message;
+    console.log("shutdown exception:" + e.message);
 }
 ```
 
@@ -207,15 +203,14 @@ Obtains the version of the Open Mobile API Specification used for the implementa
 ```JS
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService = null;
 
 this.result = "version: "
 try {
     // refer to newSEService for this.nfcSEService 
-    this.result += this.nfcSEService.getVersion();
+    console.log("version: " + nfcSEService.getVersion());
 } catch (e) {
-    this.result = "getVersion exception:" + e.message;
+    console.log("getVersion exception:" + e.message);
 }
 ```
 
@@ -238,14 +233,13 @@ Obtains the reader name. If the card reader is a SIM reader, its name must be in
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader 
-    this.result = this.nfcOmaReader.getName();
+    console.log(nfcOmaReader.getName());
 } catch (e) {
-    this.result = "getName exception:" + e.message;
+    console.log("getName exception:" + e.message);
 }
 ```
 
@@ -276,18 +270,17 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    if (this.nfcOmaReader.isSecureElementPresent()) {
-        this.result = "isSecureElementPresent TRUE";
+    if (nfcOmaReader.isSecureElementPresent()) {
+        console.log("isSecureElementPresent TRUE");
     } else {
-        this.result = "isSecureElementPresent FALSE";
+        console.log("isSecureElementPresent FALSE");
     }
 } catch (e) {
-    this.result = "isSecureElementPresent exception:" + e.message;
+    console.log("isSecureElementPresent exception:" + e.message);
 }
 ```
 
@@ -319,20 +312,19 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaReader = null;
+let nfcOmaSession = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaSession = this.nfcOmaReader.openSession();
-    if (this.nfcOmaSession) {
-        this.result = "get session successfully";
+    nfcOmaSession = nfcOmaReader.openSession();
+    if (nfcOmaSession) {
+        console.log("get session successfully");
     } else {
-        this.result = "get session failed";
+        console.log("get session failed");
     }
 } catch (e) {
-    this.result = "OpenSession exception: " + e.message;
+    console.log("OpenSession exception: " + e.message);
 }
 ```
 
@@ -357,15 +349,14 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaReader.closeSessions();
-    this.result = "close Sessions successfully";
+    nfcOmaReader.closeSessions();
+    console.log("close Sessions successfully");
 } catch (e) {
-    this.result = "closeSessions exception:" + e.message;
+    console.log("closeSessions exception:" + e.message);
 }
 ```
 
@@ -388,20 +379,19 @@ Obtains the reader that provides this session.
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaReader = null;
+let nfcOmaSession = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaReader = this.nfcOmaSession.getReader();
-    if (this.nfcOmaReader) {
-        this.result = "get reader successfully";
+    // See Reader.openSession for this.nfcOmaSession.
+    nfcOmaReader = nfcOmaSession.getReader();
+    if (nfcOmaReader) {
+        console.log("get reader successfully");
     } else {
-        this.result = "get reader failed";
+        console.log("get reader failed");
     }
 } catch (e) {
-    this.result = "getReader exception:" + e.message;
+    console.log("getReader exception:" + e.message);
 }
 ```
 
@@ -432,24 +422,25 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
+let str = ""; 
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.getATR();
+    // See Reader.openSession for this.nfcOmaSession.
+    let ret = nfcOmaSession.getATR();
     if (ret) {
-        this.result = "getATR result:[";
+       str = 'getATR result:[';
         for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+            str += ret[i];
+            str += ' ';
         }
-        this.result += ']';
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getATR result is null";
+        console.log("getATR result is null");
     }
 } catch (e) {
-    this.result = "getATR exception:" + e.message;
+    console.log("getATR exception:" + e.message);
 }
 ```
 
@@ -474,15 +465,14 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.close();
-    this.result = "session close successfully";
+    // See Reader.openSession for this.nfcOmaSession.
+    nfcOmaSession.close();
+    console.log("session close successfully");
 } catch (e) {
-    this.result = "session close exception:" + e.message;
+    console.log("session close exception:" + e.message);
 }
 ```
 
@@ -509,19 +499,18 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```Js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.isClosed();
+    // See Reader.openSession for this.nfcOmaSession.
+    let ret = nfcOmaSession.isClosed();
     if (ret) {
-        this.result = "session state is closed";
+        console.log("session state is closed");
     } else {
-        this.result = "session state is not closed";
+        console.log("session state is not closed");
     }
 } catch (e) {
-    this.result = "isClosed exception:" + e.message;
+    console.log("isClosed exception:" + e.message);
 }
 ```
 
@@ -546,21 +535,20 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcOmaSession = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.closeChannels();
-    this.result = "close Channels successfully";
+    // See Reader.openSession for this.nfcOmaSession.
+    nfcOmaSession.closeChannels();
+    console.log("close Channels successfully");
 } catch (e) {
-    this.result = "closeChannels exception:" + e.message;
+    console.log("closeChannels exception:" + e.message);
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[]): Promise<Channel>
+openBasicChannel(aid: number[]): Promise\<Channel>
 
 Opens a basic channel. This API uses a promise to return the result.
 
@@ -568,15 +556,15 @@ Opens a basic channel. This API uses a promise to return the result.
 
 **Parameters**
 
-| **Name**| **Type**| **Description**                                                    |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | AIDs of the applets selected on this channel or null if no applet is selected. |
+| **Name**| **Type**| **Mandatory**| **Description**                                                    |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | Yes     |AIDs of the applets selected on this channel or null if no applet is selected.|
 
 **Return value**
 
 | **Type**| **Description**             |
 | -------- | --------------------- |
-| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned. |
+| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.|
 
 **Error codes**
 
@@ -594,27 +582,26 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray);
+    let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel1 get channel successfully";
+        nfcOmaChannel = channel;
+        console.log("openBasicChannel1 get channel successfully");
     }).catch ((err) => {
-        this.result = "openBasicChannel1 exception:" + err.message;
+        console.log("openBasicChannel1 exception:" + err.message);
     });
 } catch (e) {
-    this.result = "OpenBasicChannel1 exception:" + e.message;
+    console.log("OpenBasicChannel1 exception:" + e.message);
 }
 ```
 
 ## Session.openBasicChannel
 
- openBasicChannel(aid: number[], callback: AsyncCallback<Channel>): void
+ openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
 Opens a basic channel. This API uses an asynchronous callback to return the result.
 
@@ -622,10 +609,10 @@ Opens a basic channel. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| **Name**| **Type**              | **Description**                                                    |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | AIDs of the applets selected on this channel or null if no applet is selected. |
-| callback   | AsyncCallback<Channel> | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                 |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | Yes     | AIDs of the applets selected on this channel or null if no applet is selected.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                           |
 
 **Error codes**
 
@@ -643,29 +630,28 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    this.nfcOmaSession.openBasicChannel(this.aidArray, (error, data) => {
+    nfcOmaSession.openBasicChannel(aidArray, (error, data) => {
         if (error) {
-            this.result = "openBasicChannel2 failed:" + JSON.stringify(error);
+            console.log("openBasicChannel2 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel2 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openBasicChannel2 get channel successfully");
     });
 } catch (e) {
-    this.result = "openBasicChannel2 exception:" + e.message;
+    console.log("openBasicChannel2 exception:" + e.message);
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2: number): Promise<Channel>
+openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 Opens a basic channel. This API uses a promise to return the result.
 
@@ -673,16 +659,16 @@ Opens a basic channel. This API uses a promise to return the result.
 
 **Parameters**
 
-| **Name**| **Type**| **Description**                                                    |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | AIDs of the applets selected on this channel or null if no applet is selected. |
-| p2         | number   | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
+| **Name**| **Type**| **Mandatory**| **Description**                                                    |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | Yes      | AIDs of the applets selected on this channel or null if no applet is selected.|
+| p2         | number   | Yes      |P2 parameter of the **SELECT APDU** command executed on the channel.                    |
 
 **Return value**
 
 | **Type**| **Description**             |
 | -------- | --------------------- |
-| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned. |
+| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.|
 
 **Error codes**
 
@@ -700,29 +686,28 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2);
+    let getPromise = nfcOmaSession.openBasicChannel(aidArray, p2);
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel3 get channel successfully";
+        nfcOmaChannel = channel;
+        console.log("openBasicChannel3 get channel successfully");
     }).catch ((err) => {
-        this.result = "openBasicChannel3 exception";
+        console.log("openBasicChannel3 exception");
     });
 } catch (e) {
-    this.result = "openBasicChannel3 exception:" + e.message;
+    console.log("openBasicChannel3 exception:" + e.message);
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): void
+openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
 Opens a basic channel. This API uses an asynchronous callback to return the result.
 
@@ -730,11 +715,11 @@ Opens a basic channel. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| **Name**| **Type**              | **Description**                                                    |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | AIDs of the applets selected on this channel or null if no applet is selected. |
-| p2         | number                 | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
-| callback   | AsyncCallback<Channel> | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                 |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | Yes     | AIDs of the applets selected on this channel or null if no applet is selected.|
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                           |
 
 **Error codes**
 
@@ -752,30 +737,30 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2, (error, data) => {
+    nfcOmaSession.openBasicChannel(aidArray, p2, (error, data) => {
         if (error) {
-            this.result = "openBasicChannel4 failed:" + JSON.stringify(error);
+            console.log("openBasicChannel4 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel4 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openBasicChannel4 get channel successfully");
     });
 } catch (e) {
-    this.result = "openBasicChannel4 exception:" + e.message;
+    console.log("openBasicChannel4 exception:" + e.message);
 }
 ```
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[]): Promise<Channel>
+openLogicalChannel(aid: number[]): Promise\<Channel>
 
 Opens a logical channel. This API uses a promise to return the result.
 
@@ -783,9 +768,9 @@ Opens a logical channel. This API uses a promise to return the result.
 
 **Parameters**
 
-| **Name**| **Type**| **Description**                               |
-| ---------- | -------- | --------------------------------------- |
-| aid        | number[] | AIDs of the applets selected on the **Channel** instance. |
+| **Name**| **Type**| **Mandatory**| **Description**                               |
+| ---------- | -------- | ------ | --------------------------------------- |
+| aid        | number[] | Yes     | AIDs of the applets selected on the **Channel** instance.|
 
 **Return value**
 
@@ -809,28 +794,27 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray)
+    let getPromise = nfcOmaSession.openLogicalChannel(aidArray)
     getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-   	    this.result = "openLogicChannel1 get channel successfully";
+        nfcOmaChannel = channel;
+   	    console.log("openLogicChannel1 get channel successfully");
     }).catch ((err) => {
-        this.result = "openLogicChannel1 exception:" + err.message;
+        console.log("openLogicChannel1 exception:" + err.message);
     });
 } catch (e) {
-    this.result = "openLogicChannel1 exception:" + e.message;
+    console.log("openLogicChannel1 exception:" + e.message);
 }
 ```
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid:number[], callback: AsyncCallback<Channel>): void
+ openLogicalChannel(aid:number[], callback: AsyncCallback\<Channel>): void
 
 Opens a logical channel. This API uses an asynchronous callback to return the result.
 
@@ -838,10 +822,10 @@ Opens a logical channel. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| **Name**| **Type**              | **Description**                                                    |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | AIDs of the applets selected on the **Channel** instance.                 |
-| callback   | AsyncCallback<Channel> | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | Yes     | AIDs of the applets selected on the **Channel** instance.                   |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
 
 **Error codes**
 
@@ -859,29 +843,28 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, (error, data) => {
+    nfcOmaSession.openLogicalChannel(aidArray, (error, data) => {
         if (error) {
-            this.result = "openLogicChannel2 failed:" + JSON.stringify(error);
+            console.log("openLogicChannel2 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel2 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openLogicChannel2 get channel successfully");
     });
 } catch (e) {
-    this.result = "openLogicChannel2 exception:" + e.message;
+    console.log("openLogicChannel2 exception:" + e.message);
 }
 ```
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[], p2: number): Promise<Channel>
+openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 Opens a logical channel with the applet represented by the given AID (the AID is not null and the length is not 0).
 
@@ -895,10 +878,10 @@ If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this cas
 
 **Parameters**
 
-| **Name**| **Type**| **Description**                                 |
-| ---------- | -------- | ----------------------------------------- |
-| aid        | number[] | AIDs of the applets selected on the **Channel** instance. |
-| p2         | number   | P2 parameter of the **SELECT APDU** command executed on the channel. |
+| **Name**| **Type**| **Mandatory**| **Description**                                 |
+| ---------- | -------- | ------ | ----------------------------------------- |
+| aid        | number[] | Yes     | AIDs of the applets selected on the **Channel** instance.|
+| p2         | number   | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel. |
 
 **Error codes**
 
@@ -916,30 +899,30 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
 
-if (this.nfcOmaSession) {
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
+
+if (nfcOmaSession) {
     try {
     // See Reader.openSession for this.nfcOmaSession.
-        let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2);
+        let getPromise = nfcOmaSession.openLogicalChannel(aidArray, p2);
         getPromise.then((channel) => {
-            this.nfcOmaChannel = channel;
-            this.result = "openLogicChannel3 get channel successfully";
+            nfcOmaChannel = channel;
+            console.log("openLogicChannel3 get channel successfully");
         }).catch ((err) => {
-            this.result = "openLogicChannel3 exception";
+            console.log("openLogicChannel3 exception");
         })
 } catch (e) {
-    this.result = "openLogicChannel3 exception:" + e.message;
+    console.log("openLogicChannel3 exception:" + e.message);
 }
 ```
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback<Channel>):void
+openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
 Opens a logical channel with the applet represented by the given AID (the AID is not null and the length is not 0).
 
@@ -953,11 +936,11 @@ If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this cas
 
 **Parameters**
 
-| **Name**| **Type**              | **Description**                                                    |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | AIDs of the applets selected on the **Channel** instance.                 |
-| p2         | number                 | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
-| callback   | AsyncCallback<Channel> | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | Yes     | AIDs of the applets selected on the **Channel** instance.                   |
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
 
 **Error codes**
 
@@ -975,24 +958,23 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
+let aidArray = [720, 1080];
+let p2 = 0x00;
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2, (error, data) => {
+    nfcOmaSession.openLogicalChannel(aidArray, p2, (error, data) => {
         if (error) {
-            this.result = "openLogicChannel4 failed:" + JSON.stringify(error);
+            console.log("openLogicChannel4 failed:" + JSON.stringify(error));
             return;
         }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel4 get channel successfully";
+        nfcOmaChannel = data;
+        console.log("openLogicChannel4 get channel successfully");
     })
 } catch (e) {
-    this.result = "openLogicChannel4 exception:" + e.message;
+    console.log("openLogicChannel4 exception:" + e.message);
 }
 ```
 
@@ -1015,20 +997,19 @@ Obtains the session that opens this channel.
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    let ret = this.nfcOmaChannel.getSession();
+    let ret = nfcOmaChannel.getSession();
     if (ret) {
-        this.result = "get session successfully";
+        console.log("get session successfully");
     } else {
-        this.result = "get session failed";
+        console.log("get session failed");
     }
 } catch (e) {
-    this.result = "getSession exception:" + e.message;
+    console.log("getSession exception:" + e.message);
 }
 ```
 
@@ -1045,16 +1026,15 @@ Closes the channel of the SE.
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaSession = null;
+let nfcOmaChannel = null;
 
 try {
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    this.nfcOmaChannel.close();
-    this.result = "channel close successfully";
+    nfcOmaChannel.close();
+    console.log("channel close successfully");
 } catch (e) {
-    this.result = "channel close exception:" + e.message;
+    console.log("channel close exception:" + e.message);
 }
 ```
 
@@ -1077,19 +1057,18 @@ Checks whether this channel is a basic channel.
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaChannel = null;
 
 try {
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    let ret = this.nfcOmaChannel.isBasicChannel();
+    let ret = nfcOmaChannel.isBasicChannel();
     if (ret) {
-        this.result = "isBasicChannel TRUE";
+        console.log("isBasicChannel TRUE");
     } else {
-        this.result = "isBasicChannel FALSE";
+        console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    this.result = "isBasicChannel Exception: "+ e.message;
+    console.log ("isBasicChannelException: "+ e.message);
 }
 ```
 
@@ -1112,19 +1091,18 @@ Checks whether this channel is closed.
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcOmaChannel = null;
 
 try {
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    let ret = this.nfcOmaChannel.isClosed();
+    let ret = nfcOmaChannel.isClosed();
     if (ret) {
-        this.result = "channel isClosed TRUE";
+        console.log("channel isClosed TRUE");
     } else {
-        this.result = "channel isClosed False";
+        console.log("channel isClosed False");
     }
 } catch (e) {
-    this.result = "Channel isClosed exception:" + e.message;
+    console.log("Channel isClosed exception:" + e.message);
 }
 ```
 
@@ -1151,24 +1129,25 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let str = '';
+let nfcOmaChannel = null;
 
 try {
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    let ret = this.nfcOmaChannel.getSelectResponse();
+    let ret = nfcOmaChannel.getSelectResponse();
     if (ret) {
-        this.result = "getSelectResponse result:[";
+        str = "getSelectResponse result:[";
         for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+            str += ret[i];
+            str += ' ';
         }
-        this.result += ']';
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getSelectResponse result is null";
+        console.log("getSelectResponse result is null");
     }
 } catch (e) {
-    this.result = "getSelectResponse exception:" + e.message;
+    console.log("getSelectResponse exception:" + e.message);
 }
 ```
 
@@ -1182,9 +1161,9 @@ Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API u
 
 **Parameters**
 
-| **Name**| **Type**| **Description**                             |
-| ---------- | -------- | ------------------------------------- |
-| command    | number[] | AIDs of the applets selected on the channel. |
+| **Name**| **Type**| **Mandatory**| **Description**                             |
+| ---------- | -------- | ------ | ------------------------------------- |
+| command    | number[] | Yes     | AIDs of the applets selected on the channel.|
 
 **Return value**
 
@@ -1207,25 +1186,25 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
-
+let nfcOmaChannel = null;
+let str = "";
 try {
     let command: number[] = [100, 200];
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    let getPromise = this.nfcOmaChannel.transmit(command);
+    let getPromise = nfcOmaChannel.transmit(command);
     getPromise.then((data) => {
-        this.result = "transmit1 result:[";
+        str = "transmit1 result:[";
         for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
+            str += data[i];
+            str += " ";
         }
-        this.result += "]";
+        str += "]";
+        console.log(str);
     }).catch ((err) => {
-        this.result = "transmit1 exception:" + err.code;
+        console.log("transmit1 exception:" + err.code);
     })
 } catch (e) {
-    this.result = "transit1 exception:" + e.message;
+    console.log("transit1 exception:" + e.message);
 }
 ```
 
@@ -1239,10 +1218,10 @@ Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API u
 
 **Parameters**
 
-| **Name**| **Type**               | **Description**                             |
-| ---------- | ----------------------- | ------------------------------------- |
-| command    | number[]                | AIDs of the applets selected on the channel. |
-| callback   | AsyncCallback<number[]> | Callback invoked to return the result. |
+| **Name**| **Type**               | **Mandatory**| **Description**                             |
+| ---------- | ----------------------- | ------ | ------------------------------------- |
+| command    | number[]                | Yes     | AIDs of the applets selected on the channel.|
+| callback   | AsyncCallback<number[]> | Yes     | Callback invoked to return the result. |
 
 **Error codes**
 
@@ -1259,25 +1238,26 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let str = "";
+let nfcOmaChannel = null;
 
 try {
     let command: number[] = [100, 200];
     // See Session.openBasicChannel for this.nfcOmaChannel.
-    this.nfcOmaChannel.transmit(command, (error, data) => {
+    nfcOmaChannel.transmit(command, (error, data) => {
         if (error) {
-            this.result = "transmit2 exception:" + JSON.stringify(error);
+            console.log("transmit2 exception:" + JSON.stringify(error));
             return;
         }
-        this.result = "transmit2 result:[";
+        str = "transmit2 result:[";
         for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
+            str += data[i];
+            str += " ";
         }
-        this.result += "]";
+        str += "]";
+        console.log(str)
     });
 } catch (e) {
-    this.result = "transit2 exception:" + e.message;
+    console.log("transit2 exception:" + e.message);
 }
 ```
