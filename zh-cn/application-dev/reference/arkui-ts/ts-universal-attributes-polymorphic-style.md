@@ -24,6 +24,7 @@
 | disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
 | focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
 | clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
+| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。 |
 
 
 ## 示例
