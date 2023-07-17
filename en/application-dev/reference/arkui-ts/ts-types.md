@@ -157,7 +157,7 @@ The **Font** type is used to set the text style.
 | Name    | Type                                      | Mandatory  | Description                                      |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.|
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a thicker font.|
 | family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. Currently, only the **'HarmonyOS Sans'** font is supported.|
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.                              |
 

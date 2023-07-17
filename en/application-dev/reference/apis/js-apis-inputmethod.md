@@ -218,7 +218,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY<br>**NOTE** <br>- API version 10 and later: This API can be called by system applications and the current input method application.<br>- API version 9: This API can be called by system applications only.
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+> **NOTE**
+>
+> - API version 10 and later: This API can be called by system applications and the current input method application.
+> - API version 9: This API can be called by system applications only.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -274,7 +279,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 Switches to another subtype of the current input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY<br>**NOTE** <br>- API version 10 and later: This API can be called by system applications and the current input method application.<br>- API version 9: This API can be called by system applications only.
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+> **NOTE**
+>
+> - API version 10 and later: This API can be called by system applications and the current input method application.
+> - API version 9: This API can be called by system applications only.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -705,7 +715,7 @@ try {
 
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
-Attaches a self-drawing component to the input method. This API uses an asynchronous callback to return the result.
+Attaches a self-drawing component to the input method. This API uses a promise to return the result.
 
 An input method can use the features provided by the input method framework only when it has a self-drawing component attached to it.
 
@@ -797,7 +807,7 @@ showTextInput(): Promise&lt;void&gt;
 
 Enters the text editing mode. This API uses a promise to return the result.
 
-This API can be called to start the soft keyboard after the editor component is bound to the input method.
+This API can be called to start the soft keyboard after the editor component is attached to the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
