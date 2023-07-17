@@ -84,6 +84,9 @@ struct DatePickerExample {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
+        .disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}})
+        .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
+        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {
           this.selectedDate.setFullYear(value.year, value.month, value.day)
@@ -95,4 +98,4 @@ struct DatePickerExample {
 }
 ```
 
-![datePicker](figures/datePicker.gif)
+![datePicker](figures/DatePickerApi10.gif)
