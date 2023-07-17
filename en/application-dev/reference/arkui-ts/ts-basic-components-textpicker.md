@@ -22,7 +22,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | string[] \| [Resource](ts-types.md#resource) \| [TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.|
+| range | string[] \| [Resource](ts-types.md#resource) \| [TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>The Resource type supports only [strarray.json](../../quick-start/resource-categories-and-access.md#resource-group-subdirectories).|
 | selected | number | No| Index of the default item in the range.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | value | string | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only for a text list. It does not work for an image list or a list consisting of text and images.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
 

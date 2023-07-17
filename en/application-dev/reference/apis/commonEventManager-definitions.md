@@ -49,7 +49,7 @@ Indicates that the device screen is off and the device is in sleep mode.
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_SCREEN_ON
-Indicates that the device screen is on and the device is in interactive state.
+Indicates that the device screen is on and the device is in the active state.
 - Value: **usual.event.SCREEN_ON**
 - Required subscriber permissions: none
 
@@ -65,6 +65,7 @@ Indicates that the device's thermal level has changed.
 > NOTE
 >
 > This API is deprecated since API version 10.
+> You are advised to use [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](#common_event_screen_unlocked10) instead.
 
 ## COMMON_EVENT_TIME_TICK
 Indicates that the system time has changed as time ticks by.
