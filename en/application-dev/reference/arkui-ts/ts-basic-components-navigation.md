@@ -35,19 +35,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                           | Type                                    | Description                                      |
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- |
 | title                         | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> \| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
-| subTitle<sup>deprecated</sup> | string                                   | Subtitle of the page. If this attribute is not set, no subtitle is displayed. This attribute is deprecated since API version 9. You are advised to use **title** instead.|
+| subTitle<sup>(deprecated)</sup> | string                                   | Subtitle of the page. If this attribute is not set, no subtitle is displayed. This attribute is deprecated since API version 9. You are advised to use **title** instead.|
 | menus                         | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. If this parameter is not set, no menu item is displayed. When the value type is Array\<[NavigationMenuItem](#navigationmenuitem)>, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, plus excess icons (if any) under the automatically generated **More** icon.|
 | titleMode                     | [NavigationTitleMode](#navigationtitlemode) | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
 | toolBar                       | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).|
 | hideToolBar                   | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
 | hideTitleBar                  | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton                | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Display the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button is available only when **titleMode** is set to **NavigationTitleMode.Mini**.|
+| hideBackButton                | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Display the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button works only when **titleMode** is set to **NavigationTitleMode.Mini**.|
 | navBarWidth<sup>9+</sup>      | [Length](ts-types.md#length)             | Width of the navigation bar.<br>Default value: **200**<br>Unit: vp<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
-| navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition)        | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
-| mode<sup>9+</sup>             | [NavigationMode](#navigationmode)        | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
+| navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
+| mode<sup>9+</sup>             | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
 | backButtonIcon<sup>9+</sup>   | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | hideNavBar<sup>9+</sup>       | boolean                                  | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
-| navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passsed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
+| navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
+| navBarWidthRange<sup>10+</sup> | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar.<br>Default value: [240, 280]<br>Unit: vp  |
+| minContentWidth<sup>10+</sup>  | [Dimension](ts-types.md#dimension10)                         | Minimum width of the navigation bar content area.<br>Default value: **360**<br>Unit: vp         |
 
 ## NavPathStack<sup>10+</sup>
 
@@ -75,7 +77,7 @@ Pushes the navigation destination page specified by **name** to the navigation s
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| name   | string                   | Yes   | Name of the navigation destination page.  |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
 | param  | unknown                  | Yes   | Parameter information of the navigation destination page.  |
 
 ### pop<sup>10+</sup>
@@ -89,7 +91,7 @@ Pops the top element out of the navigation stack.
 | Type    | Description      |
 | ------ | -------- |
 | NavPathInfo | Returns the information about the navigation destination page at the top of the stack.|
-| undefined   | Returns **undefined** if the navigation stack is empty.|
+| undefined | Returns **undefined** if the navigation stack is empty.|
 
 ### popTo<sup>10+</sup>
 
@@ -101,7 +103,7 @@ Returns the navigation stack to the first navigation destination page that match
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| name   | string                  | Yes  | Name of the navigation destination page.  |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
 
 **Return value**
 
@@ -119,7 +121,7 @@ Returns the navigation stack to the navigation destination page that matches the
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| index  | number                  | Yes  | Index of the navigation destination page.  |
+| index  | number                  | Yes   | Index of the navigation destination page.  |
 
 ### moveToTop<sup>10+</sup>
 
@@ -149,7 +151,7 @@ Moves to the top of the navigation stack the navigation destination page that ma
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| index  | number                  | Yes  | Index of the navigation destination page.  |
+| index  | number                  | Yes   | Index of the navigation destination page.  |
 
 ### clear<sup>10+</sup>
 
@@ -179,13 +181,13 @@ Obtains the parameter information of the navigation destination page that matche
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| index  | number                  | Yes  | Index of the navigation destination page.  |
+| index  | number                  | Yes   | Index of the navigation destination page.  |
 
 **Return value**
 
 | Type    | Description      |
 | ------ | -------- |
-| unknown   | Returns the parameter information of the matching navigation destination page.|
+| unknown  | Returns the parameter information of the matching navigation destination page.|
 | undefined | Returns **undefined** if the passed index is invalid.|
 
 ### getParamByName<sup>10+</sup>
@@ -216,7 +218,7 @@ Obtains the indexes information of all the navigation destination pages that mat
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| name   | string                  | Yes  | Name of the navigation destination page.  |
+| name  | string                  | Yes   | Name of the navigation destination page.  |
 
 **Return value**
 

@@ -5,22 +5,26 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 >  **NOTE**
 >
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > Switching between landscape and portrait modes is not supported.
 
 ## Attributes
 
-| Name| Parameter  | Description|
-| -------- | -------- | -------- |
-| bindSheet | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>sheetStyle?: [SheetStyle](#sheetstyle10) | Binds a sheet to the component, which can be displayed when the component is touched. **isShow**: whether to display the sheet. Mandatory.<br>**builder**: content of the sheet. Mandatory.<br> **sheetStyle**: height and control bar visibility of the sheet. Optional. By default, the default height is **Large** and the control bar is visible.|
+| Name| Parameter| Description|
+| ----- | ----- | ----- |
+| bindSheet | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [SheetOptions](#sheetoptions) | Binds a sheet to the component, which can be displayed when the component is touched.<br>**isShow**: whether to display the sheet. Mandatory.<br>**builder**: content of the sheet. Mandatory.<br> **options**: options of the sheet. Optional.|
 
-## SheetStyle<sup>10+</sup>
+## SheetOptions
 
-| Name              | Type                                  | Mandatory| Description                  |
-| ------------------ | -------------------------------------- | ---- | ---------------------- |
-| height             | [SheetSize](#sheetsize10) \| [Length](ts-types.md#length) | No| Height of the sheet.         |
-| dragBar            | boolean                                | No  | Whether the control bar is visible.         |
+| Name| Type| Mandatory| Description|
+| ----- | ----- | ----- | ------ |
+| height | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No| Height of the sheet.<br>Default value: **LARGE**|
+| dragBar | boolean | No| Whether to display the drag bar. By default, the drag bar is displayed .|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| Background color of the sheet.|
+| onAppear | () => void | No| Callback invoked when the sheet is displayed.|
+| onDisappear | () => void | No| Callback invoked when the sheet is hidden.|
 
-## SheetSize<sup>10+</sup>
+## SheetSize
 
 | Name| Description|
 | -------- | -------- |
@@ -81,7 +85,7 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(), {height: this.sheetHeight, dragBar: this.showDragBar})
+        .bindSheet($$this.isShow, this.myBuilder(), {height: this.sheetHeight, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')

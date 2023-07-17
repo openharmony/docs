@@ -2,12 +2,6 @@
 
 The **\<form>** component allows the content in [\<Input>](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
-
-> **NOTE**
->
-> The APIs of this module are supported since API version 6.
-
-
 ## Creating a \<form> Component
 
 Create a **\<form>** component in the .hml file under **pages/index**.

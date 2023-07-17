@@ -249,7 +249,7 @@ The **ModalTransition** type is used to set the transition type for a full-scree
 | ------- | ------------ |
 | NONE    | No transition animation for the modal.  |
 | DEFAULT | Slide-up and slide-down animation for the modal. |
-| ALPHA   | Opacity gradient animation for the modal. |
+| ALPHA   | Opacity gradient animation for the modal.|
 
 ## Dimension<sup>10+</sup>
 
@@ -258,7 +258,7 @@ The **Length** type is used to represent a size unit.
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
 | [PX](#px10)               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
-| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp can be included or omitted, for example, **10** or **'10vp'**.|
 | [FP](#fp10)                | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
 | [LPX](#lpx10)              | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
 | [Percentage](#percentage10)        | Percentage type. The unit % must be included, for example, **'10%'**.|
@@ -278,7 +278,7 @@ The **VP** type is used to represent a length in vp.
 
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
-| {number}vp               | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| {number}vp\|number | Pixel unit type specific to the screen density. The unit vp can be included or omitted, for example, **10** or **'10vp'**.|
 
 ## FP<sup>10+</sup>
 
@@ -311,3 +311,13 @@ The **Degree** type is used to represent a length in deg.
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
 | {number}deg               | Degree type. The unit deg must be included, for example, **'10deg'**.|
+
+## SwiperAnimationEvent<sup>10+</sup>
+
+Describes the animation information of the \<Swiper> component.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
