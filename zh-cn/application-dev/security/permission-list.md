@@ -704,6 +704,16 @@
 
 **ACL使能**：FALSE
 
+## ohos.permission.NETSYS_INTERNAL
+
+允许SA调用NETSYS中的网络诊断、wifi、网卡监听、iptables设置等功能接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
