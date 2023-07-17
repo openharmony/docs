@@ -105,19 +105,19 @@ Only C++ APIs are now open for system developers. If you're developing a JS app,
 
 **Table 1** Sync APIs
 
-| Sync trace                                                                   | Function     | Parameter Description                                                                 |
-|:---------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | Starts a synchronous trace.| **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length.|
-| void FinishTrace(uint64_t label);                                            | Stops a synchronous trace.| **label**: trace category.                                               |
+| Sync trace                                                                   | Function                    | Parameter Description                                                                                                             |
+|:---------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | Starts a synchronous trace. | **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length. |
+| void FinishTrace(uint64_t label);                                            | Stops a synchronous trace.  | **label**: trace category.                                                                                                        |
 
 **StartTrace** and **FinishTrace** must be used in pairs, and **FinishTrace** matches the latest **StartTrace**. The two APIs can be used in nested mode. The stack data structure is used for matching during trace data parsing. The **limit** parameter is used for flow control, and you are advised to use the default value.
 
 **Table 2** Async APIs
 
-| Async trace                                                                                       | Function     | Parameter Description                                                                                                |
-| ------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------- |
-| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | Starts an asynchronous trace.| **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length.<br>**taskId**: ID used to indicate the association of APIs in an asynchronous trace.|
-| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId);                  | Stops an asynchronous trace.| **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length.<br>**taskId**: ID used to indicate the association of APIs in an asynchronous trace.|
+| Async trace                                                                                       | Function                      | Parameter Description                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | Starts an asynchronous trace. | **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length.<br>**taskId**: ID used to indicate the association of APIs in an asynchronous trace. |
+| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId);                  | Stops an asynchronous trace.  | **label**: trace category.<br>**value**: trace data that indicates the specific status, such as the memory size and queue length.<br>**taskId**: ID used to indicate the association of APIs in an asynchronous trace. |
 
 
 
@@ -125,16 +125,16 @@ The trace data of **StartAsyncTrace** and **FinishAsyncTrace** is matched based 
 
 **Table 3** Counter APIs
 
-| Counter Trace                                                      | Function   | Parameter Description                                                          |
-| ------------------------------------------------------------------ | ------- | -------------------------------------------------------------- |
-| void CountTrace(uint64_t label, const std::string& name, int64_t); | Count trace.| **label**: trace category.<br>**name**: trace name displayed in the IDE.|
+| Counter Trace                                                      | Function     | Parameter Description                                                    |
+| ------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------ |
+| void CountTrace(uint64_t label, const std::string& name, int64_t); | Count trace. | **label**: trace category.<br>**name**: trace name displayed in the IDE. |
 
 ## How to Develop
 
 1. Add the build dependencies to the build configuration file **base\hiviewdfx\hitrace\cmd\BUILD.gn**.
    
    ```
-   external_deps = [ "hitrace_native:hitrace_meter"]
+   external_deps = [ "hitrace:hitrace_meter"]
    ```
 
 2. Add the header file dependencies.
@@ -220,10 +220,10 @@ The following is a demo debugging process, where the **StartTrace** and **Finish
    ohos_executable("hitrace_example") {
      sources = [ "example/hitrace_example.cpp" ]
    
-     external_deps = [ "hitrace_native:hitrace_meter" ]
+     external_deps = [ "hitrace:hitrace_meter" ]
    
      subsystem_name = "hiviewdfx"
-     part_name = "hitrace_native"
+     part_name = "hitrace"
    }
    
    group("hitrace_target") {
@@ -270,20 +270,20 @@ The hitrace CLI tool is an executable binary program. On an OpenHarmony-powered 
 
 **Table 4** Command list
 
-| Option                        | Description                                              |
-| ----------------------------- | -------------------------------------------------------- |
-| -h, --help                    | Views the help Information.                                              |
-| -b *n*, --buffer_size *n*         | Sets the buffer size for trace data in KB. The default value is **2048**.                         |
-| -t *n*, --time *n*                | Sets the trace uptime in seconds, which depends on the time required for analysis.                       |
-| --trace_clock clock           | Sets the type of the clock for adding a timestamp to a trace. The value can be **boot** (default), **global**, **mono**, **uptime**, or **perf**.|
-| --trace_begin                 | Starts capturing trace data.                                                |
-| --trace_dump                  | Dumps trace data to the specified position. The default position is the console.                                       |
-| --trace_finish                | Stops capturing trace data and dumps trace data to the specified position. The default position is the console.                             |
-| --trace_finish_nodump         | Stops capturing trace packets and dumping trace data.                                |
-| -l, --list_categories         | Lists the trace categories supported by the device.                                         |
-| --overwrite                   | Sets the action to take when the buffer is full. If this option is used, the latest trace data is discarded. If this option is not used, the earliest trace data is discarded (default).                           |
-| -o *filename*, --output *filename*| Outputs trace data to the specified file.                                             |
-| -z                            | Compresses the trace data.                                            |
+| Option                             | Description                                                                                                                                                                              |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -h, --help                         | Views the help Information.                                                                                                                                                              |
+| -b *n*, --buffer_size *n*          | Sets the buffer size for trace data in KB. The default value is **2048**.                                                                                                                |
+| -t *n*, --time *n*                 | Sets the trace uptime in seconds, which depends on the time required for analysis.                                                                                                       |
+| --trace_clock clock                | Sets the type of the clock for adding a timestamp to a trace. The value can be **boot** (default), **global**, **mono**, **uptime**, or **perf**.                                        |
+| --trace_begin                      | Starts capturing trace data.                                                                                                                                                             |
+| --trace_dump                       | Dumps trace data to the specified position. The default position is the console.                                                                                                         |
+| --trace_finish                     | Stops capturing trace data and dumps trace data to the specified position. The default position is the console.                                                                          |
+| --trace_finish_nodump              | Stops capturing trace packets and dumping trace data.                                                                                                                                    |
+| -l, --list_categories              | Lists the trace categories supported by the device.                                                                                                                                      |
+| --overwrite                        | Sets the action to take when the buffer is full. If this option is used, the latest trace data is discarded. If this option is not used, the earliest trace data is discarded (default). |
+| -o *filename*, --output *filename* | Outputs trace data to the specified file.                                                                                                                                                |
+| -z                                 | Compresses the trace data.                                                                                                                                                               |
 
 Examples:
 
