@@ -74,46 +74,45 @@
 
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
 
-   - 编码器运行错误
-   - 码流信息变化，如声道变化等。
-   - 运行过程中需要新的输入数据，即编码器已准备好，可以输入PCM数据。
-   - 运行过程中产生了新的输出数据，即编码完成。
+   - OH_AVCodecOnError：编码器运行错误
+   - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
+   - OH_AVCodecOnNeedInputData：运行过程中需要新的输入数据，即编码器已准备好，可以输入PCM数据。
+   - OH_AVCodecOnNewOutputData：运行过程中产生了新的输出数据，即编码完成。
 
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
     ```cpp
-    // 设置 OnError 回调函数
+    // OH_AVCodecOnError回调函数的实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // 设置 FormatChange 回调函数
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+    // OH_AVCodecOnStreamChanged回调函数的实现
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // 编码输入PCM送入InputBuffer 队列
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+    // OH_AVCodecOnNeedInputData回调函数的实现
+    static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
     {
         (void)codec;
-        // 编码输入码流送入InputBuffer 队列
+        // 编码输入码流送入InputBuffer队列
         AEncSignal *signal = static_cast<AEncSignal *>(userData);
-        cout << "OnInputBufferAvailable received, index:" << index << endl;
         unique_lock<mutex> lock(signal->inMutex_);
         signal->inQueue_.push(index);
         signal->inBufferQueue_.push(data);
         signal->inCond_.notify_all();
     }
-    // 编码完成的码流送入OutputBuffer队列
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
+    // OH_AVCodecOnNewOutputData回调函数的实现
+    static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
                                             void *userData)
     {
         (void)codec;
-        // 将对应输出buffer的 index 送入OutputQueue_队列
+        // 将对应输出buffer的index送入OutputQueue_队列
         // 将对应编码完成的数据data送入outBuffer队列
         AEncSignal *signal = static_cast<AEncSignal *>(userData);
         unique_lock<mutex> lock(signal->outMutex_);
@@ -123,7 +122,7 @@
             signal->attrQueue_.push(*attr);
         }
     }
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
     // 配置异步回调
     int32_t ret = OH_AudioEncoder_SetCallback(audioEnc, cb, userData);
     ```
