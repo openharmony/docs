@@ -44,7 +44,7 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
 | 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId not valid.                                  |
+| 14801002     | The dataGroupId is not valid.                               |
 
 **示例：**
 
@@ -130,7 +130,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
 | 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId not valid.                                  |
+| 14801002     | The dataGroupId is not valid.                               |
 
 **示例：**
 
@@ -245,11 +245,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## relationalStore.deleteRdbStore
+## relationalStore.deleteRdbStore<sup>10+</sup>
 
-function deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<void>): void;
+deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<void>): void
 
-删除数据库，使用callback异步回调。
+使用指定的数据库文件配置删除数据库，使用callback异步回调。若数据库文件处于公共沙箱目录下，删除数据库时必须使用该接口。
+
+当在公共沙箱目录下创建数据库时，必需使用该接口删除数据库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -270,7 +272,7 @@ function deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCa
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800000     | Inner error.                                                |
 | 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId not valid.                                  |
+| 14801002     | The dataGroupId is not valid.                               |
 
 **示例：**
 
@@ -382,11 +384,11 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## relationalStore.deleteRdbStore
+## relationalStore.deleteRdbStore<sup>10+</sup>
 
-deleteRdbStore(context: Context, config: StoreConfig): Promise<void>;
+deleteRdbStore(context: Context, config: StoreConfig): Promise<void>
 
-使用指定的数据库文件配置删除数据库，使用Promise异步回调。
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。若数据库文件处于公共沙箱目录下，删除数据库时必须使用该接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -412,7 +414,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise<void>;
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800000     | Inner error.                                                |
 | 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId not valid.                                  |
+| 14801002     | The dataGroupId is not valid.                               |
 
 **示例：**
 
@@ -468,7 +470,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId | string | 否 | 应用组ID。<br/>**模型约束：** 此属性仅可在Stage模型下可用。 |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID。<br/>**模型约束：** 此属性仅可在Stage模式下可用。<br/>从API version 10开始，支持此可选参数。当此参数不填时，默认在本应用沙箱目录下创建数据库。 |
 
 ## SecurityLevel
 
@@ -3930,7 +3932,7 @@ try {
 
 ### on<sup>10+</sup>
 
-on(event: string, supportShared: boolean, observer: Callback): void;
+on(event: string, supportShared: boolean, observer: Callback): void
 
 注册数据库的数据变更的事件监听。当调用[emit](#emit10)接口时，将调用回调。
 
@@ -3941,7 +3943,7 @@ on(event: string, supportShared: boolean, observer: Callback): void;
 | 参数名        | 类型     | 必填 | 说明                                                         |
 | ------------- | -------- | ---- | ------------------------------------------------------------ |
 | event         | string   | 是   | 订阅事件名称。                                               |
-| supportShared | boolean  | 是   | 指定是进程间还是本进程订阅。<br/> true:进程间。<br/> false:本进程。 |
+| supportShared | boolean  | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer      | Callback | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -4031,7 +4033,7 @@ try {
 
 ### off<sup>10+</sup>
 
-off(event: string, supportShared: boolean, observer?: Callback<void>): void;
+off(event: string, supportShared: boolean, observer?: Callback<void>): void
 
 取消数据变更的事件监听。
 
@@ -4042,7 +4044,7 @@ off(event: string, supportShared: boolean, observer?: Callback<void>): void;
 | 参数名        | 类型     | 必填 | 说明                                                         |
 | ------------- | -------- | ---- | ------------------------------------------------------------ |
 | event         | string   | 是   | 取消订阅事件名称。                                           |
-| supportShared | boolean  | 是   | 指定是进程间还是本进程取消订阅。<br/> true:进程间。<br/> false:本进程。 |
+| supportShared | boolean  | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer      | Callback | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
 
 **错误码：**
@@ -4070,9 +4072,9 @@ try {
 
 ### emit<sup>10+</sup>
 
-emit(event: string): void;
+emit(event: string): void
 
-通知数据变更的事件监听。
+通知通过[on](#on10)注册的进程间或者进程内监听事件。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4088,14 +4090,13 @@ emit(event: string): void;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 801          | Capability not supported.              |
 | 14800000     | Inner error.                           |
 | 14800050     | Failed to obtain subscription service. |
 
 **示例：**
 
 ```js
-store.emit(storeObserver);
+store.emit('storeObserver');
 ```
 
 ## ResultSet
