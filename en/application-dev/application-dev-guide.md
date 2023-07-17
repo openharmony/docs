@@ -10,7 +10,7 @@ The documents are carefully organized as follows:
 
 ## Getting Started
 
-[Here](quick-start/start-overview.md) you'll learn how to quickly get started with OpenHarmony application development.
+[Here](quick-start/start-overview.md) you can learn how to better prepare yourself for application development.
 
 Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
 
@@ -63,11 +63,12 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 
 They are organized as follows:
 
+- [ArkTS API Reference](reference/apis/development-intro.md)
 - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-components-summary.md)
 - [Component Reference (JavaScript-compatible Web-like Development Paradigm- ArkUI.Full)](reference/arkui-js/Readme-EN.md)
 - [Component Reference (JavaScript-compatible Web-like Development Paradigm- ArkUI.Lite)](reference/arkui-js-lite/Readme-EN.md)
-- [JS Service Widget UI Components](reference/js-service-widget-ui/js-service-widget-file.md)
-- [JS and TS APIs](reference/apis/development-intro.md)
-- Native APIs
-  - [Standard Library](reference/native-lib/third_party_libc/musl.md)
+- [JavaScript Service Widget UI Component Reference](reference/js-service-widget-ui/js-service-widget-file.md)
+- Native API Reference
+  - [Native APIs](reference/native-apis/_o_h___native_x_component.md)
+  - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
   - [Node_API](reference/native-lib/third_party_napi/napi.md)
