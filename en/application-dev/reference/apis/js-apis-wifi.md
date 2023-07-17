@@ -244,23 +244,6 @@ Enumerates the WLAN security types.
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE).|
 
 
-## wifi.getScanInfosSync<sup>9+</sup>
-
-getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
-
-Obtains the scan result. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_PEERS_MAC (or ohos.permission.LOCATION)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Return value**
-
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
-
-
 ## wifi.addDeviceConfig
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -585,8 +568,8 @@ Connects to the specified network.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permissio.MANAGE_WIFI_CONNECTION (available only to system applications)
-
+**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
+ 
 **System capability**:
   SystemCapability.Communication.WiFi.STA
 
@@ -680,7 +663,7 @@ try {
 	let rssi = 0;
 	let band = 0;
 	let level = wifi.getSignalLevel(rssi,band);
-	console.info("lelvel:" + JSON.stringify(lelvel));
+	console.info("level:" + JSON.stringify(level));
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -1278,10 +1261,10 @@ Disables this hotspot.
 
 **Example**
 ```js
-import wifi from '@ohos.wifiManager';
+import wifi from '@ohos.wifi';
 
 try {
-	wifiManager.disableHotspot();	
+	wifi.disableHotspot();	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -1644,7 +1627,7 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 
 **Example**
 ```js
-import wifi from '@ohos.wifiManager';
+import wifi from '@ohos.wifi';
 
 wifi.getP2pPeerDevices((err, data) => {
    if (err) {
@@ -2043,7 +2026,7 @@ import wifi from '@ohos.wifi';
 
 try {
 	let name = "****";
-	wifi.setDeviceName(netId);	
+	wifi.setDeviceName(name);	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
