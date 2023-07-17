@@ -71,7 +71,7 @@
 
 2. 调用OH_AudioDecoder_SetCallback()设置回调函数。
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
-   - OH_AVCodecOnError：解码器运行错误
+   - OH_AVCodecOnError：解码器运行错误。
    - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
    - OH_AVCodecOnNeedInputData：运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。
    - OH_AVCodecOnNewOutputData：运行过程中产生了新的输出数据，即解码完成。
