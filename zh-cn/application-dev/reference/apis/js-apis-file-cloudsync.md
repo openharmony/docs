@@ -116,8 +116,8 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
   ```js
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.on('progress', (pg: SyncProgress) => {
-    console.info("syncState：" + pg.syncState);
+  gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
+    console.info("syncState：" + pg.state);
   });
   ```
 
@@ -153,8 +153,8 @@ off(evt: 'progress'): void
   ```js
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.on('progress', (pg: SyncProgress) => {
-      console.info("syncState：" + pg.syncState);
+  gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
+      console.info("syncState：" + pg.state);
   });
 
   gallerySync.off('progress');
@@ -194,8 +194,8 @@ start(): Promise&lt;void&gt;
   ```js
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.on('progress', (pg: SyncProgress) => {
-	  console.info("syncState：" + pg.syncState);
+  gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
+	  console.info("syncState：" + pg.state);
   });
 
   gallerySync.start().then(function() {
@@ -411,7 +411,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
   ```js
   let download = new cloudSync.Download();
 
-  download.on('progress', (pg: DownloadProgress) => {
+  download.on('progress', (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   });
   ```
@@ -448,7 +448,7 @@ off(evt: 'progress'): void
   ```js
   let download = new cloudSync.Download();
 
-  download.on('progress', (pg: DownloadProgress) => {
+  download.on('progress', (pg: cloudSync.DownloadProgress) => {
       console.info("download state:" + pg.state);
   });
 
@@ -481,12 +481,13 @@ start(uri: string): Promise&lt;void&gt;
 
   ```js
   let download = new cloudSync.Download();
+  let uri: string = "file:///media/Photo/1";
 
-  download.on('progress', (pg: DownloadProgress) => {
+  download.on('progress', (pg: cloudSync.DownloadProgress) => {
 	  console.info("download state:" + pg.state);
   });
 
-  download.start().then(function() {
+  download.start(uri).then(function() {
 	  console.info("start download successfully");
   }).catch(function(err) {
 	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
@@ -538,8 +539,9 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let download = new cloudSync.Download();
+  let uri: string = "file:///media/Photo/1";
 
-  download.start((err) => {
+  download.start(uri, (err) => {
     if (err) {
       console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -588,8 +590,9 @@ stop(uri: string): Promise&lt;void&gt;
 
   ```js
   let download = new cloudSync.Download();
+  let uri: string = "file:///media/Photo/1";
 
-  download.stop().then(function() {
+  download.stop(uri).then(function() {
 	  console.info("stop download successfully");
   }).catch(function(err) {
 	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
@@ -631,8 +634,9 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let download = new cloudSync.Download();
+  let uri: string = "file:///media/Photo/1";
 
-  download.stop((err) => {
+  download.stop(uri, (err) => {
     if (err) {
       console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
