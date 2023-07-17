@@ -71,30 +71,30 @@
 
 2. 调用OH_AudioDecoder_SetCallback()设置回调函数。
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
-   - 解码器运行错误
-   - 码流信息变化，如声道变化等。
-   - 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。
-   - 运行过程中产生了新的输出数据，即解码完成。
+   - OH_AVCodecOnError：解码器运行错误。
+   - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
+   - OH_AVCodecOnNeedInputData：运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。
+   - OH_AVCodecOnNewOutputData：运行过程中产生了新的输出数据，即解码完成。
 
    开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
     ```cpp
-    // 设置 OnError 回调函数
+    // OH_AVCodecOnError回调函数的实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // 设置 FormatChange 回调函数
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void*userData)
+    // OH_AVCodecOnStreamChanged回调函数的实现
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void*userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // 解码输入码流送入InputBuffer 队列
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, void *userData)
+    // OH_AVCodecOnNeedInputData回调函数的实现
+    static void onNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, void *userData)
     {
         (void)codec;
         ADecSignal *signal = static_cast<ADecSignal *>(userData);
@@ -102,10 +102,10 @@
         signal->inQueue_.push(index);
         signal->inBufferQueue_.push(data);
         signal->inCond_.notify_all();
-        // 解码输入码流送入InputBuffer 队列
+        // 解码输入码流送入InputBuffer队列
     }
-    // 解码完成的PCM送入OutputBuffer队列
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, OH_AVCodecBufferAttr *attr,
+    // OH_AVCodecOnNewOutputData回调函数的实现
+    static void onNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, OH_AVCodecBufferAttr *attr,
                                             void *userData)
     {
         (void)codec;
@@ -121,7 +121,7 @@
         // 将对应解码完成的数据data送入outBuffer队列
     }
     signal_ = new ADecSignal();
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &onNeedInputData, &onNeedOutputData};
     // 配置异步回调
     int32_t ret = OH_AudioDecoder_SetCallback(audioDec, cb, signal_);
     if (ret != AV_ERR_OK) {
