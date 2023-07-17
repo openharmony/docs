@@ -28,6 +28,8 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
 ## 开发步骤
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_encoder.md)。
+如下为视频编码调用关系图：
+![Invoking relationship of video encode stream](figures/video-encode.png)
 
 ### Buffer模式
 
@@ -66,7 +68,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
     ``` c++
-    // 设置 OnError 回调函数
+    // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
@@ -74,7 +76,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
         (void)userData;
     }
 
-    // 设置 OnStreamChanged 回调函数
+    // 编码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
@@ -82,7 +84,7 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
         (void)userData;
     }
 
-    // 设置 OnNeedInputData 回调函数，编码输入帧送入数据队列
+    // 编码输入回调OH_AVCodecOnNeedInputData实现
     static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *mem, void *userData)
     {
         (void)userData;
@@ -92,8 +94,8 @@ Buffer输入是指一块内存区域，一般为字节数组或指向内存的�
         // 7. 写入编码码流
         // 8. 通知编码器码流结束
     }
-    
-    // 设置 OnNeedOutputData 回调函数，编码完成帧送入输出队列
+
+    // 编码输出回调OH_AVCodecOnNewOutputData实现
     static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *mem, 
                                  OH_AVCodecBufferAttr *attr, void *userData)
     {
