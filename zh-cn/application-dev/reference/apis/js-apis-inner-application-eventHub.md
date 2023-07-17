@@ -146,7 +146,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     eventFunc(argOne, argTwo) {
-        console.log('eventFunc is called, ${argOne}, ${argTwo}');
+        console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
     }
 }
 ```
