@@ -2260,10 +2260,10 @@ async function huksAbort() {
 
 | 名称                                          | 值   | 说明                           |
 | --------------------------------------------  | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | 表示通过本地直接管理密钥。<br/>> **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | 表示通过HUKS service管理密钥。<br/>> **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示主密钥派生的密钥存储于huks中，由HUKS进行托管   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示主密钥派生的密钥直接导出给业务方，HUKS不对其进行托管服务  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | 表示通过本地直接管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | 表示通过HUKS service管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示主密钥派生的密钥存储于huks中，由HUKS进行托管。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示主密钥派生的密钥直接导出给业务方，HUKS不对其进行托管服务。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 
 ## HuksSendType
 
@@ -2483,7 +2483,9 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 生成密钥，使用Callback回调异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2535,7 +2537,9 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 生成密钥，使用Promise方式异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2588,7 +2592,9 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 删除密钥，使用Callback回调异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2617,7 +2623,9 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 删除密钥，使用Promise方式异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2651,7 +2659,9 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 导入明文密钥，使用Callback方式回调异步返回结果 。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2711,7 +2721,9 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 导入明文密钥，使用Promise方式异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2778,7 +2790,9 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 导出密钥，使用Callback方式回调异步返回的结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2807,7 +2821,9 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 导出密钥，使用Promise方式回调异步返回的结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1))替代。 
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2841,7 +2857,9 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 
 获取密钥属性，使用Callback回调异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2870,7 +2888,9 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 获取密钥属性，使用Promise回调异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2904,7 +2924,9 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 判断密钥是否存在，使用Callback回调异步返回结果 。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2933,7 +2955,9 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断密钥是否存在，使用Promise回调异步返回结果 。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2967,7 +2991,9 @@ init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle
 
 init操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -2985,7 +3011,9 @@ init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
 init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -3008,7 +3036,9 @@ update(handle: number, token?: Uint8Array, options: HuksOptions, callback: Async
 
 update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-1)替代。
 
 **系统能力**： SystemCapability.Security.Huks.Extension
 
@@ -3027,7 +3057,9 @@ update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<Huks
 
 update操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-2)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-2)替代。
 
 **系统能力**： SystemCapability.Security.Huks.Extension
 
@@ -3051,7 +3083,9 @@ finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult
 
 finish操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -3069,7 +3103,9 @@ finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
 finish操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -3092,7 +3128,9 @@ abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>
 
 abort操作密钥接口，使用Callback回调异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -3203,7 +3241,9 @@ abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
 abort操作密钥接口，使用Promise方式异步返回结果。
 
-> **说明：** 从API Version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9-1)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -3324,7 +3364,9 @@ function huksAbort() {
 huks Handle结构体。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
-> **说明：** 从API Version 9开始废弃，建议使用[HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9)替代。
 
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
@@ -3338,7 +3380,10 @@ huks Handle结构体。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
-> **说明：** 从API Version 9开始废弃，建议使用[HuksReturnResult<sup>9+</sup>](#huksreturnresult9)替代。
+> **说明：**
+>
+> - 从API version 9开始废弃，建议使用[HuksReturnResult<sup>9+</sup>](#huksreturnresult9)替代。
+> - errorCode的具体信息，请参考[错误码文档](../errorcodes/errorcode-huks.md)。
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
@@ -3347,13 +3392,14 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
-
 ## HuksErrorCode<sup>(deprecated)</sup>
 
 表示错误码的枚举。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
-> **说明：** 从API Version 9开始废弃，建议使用[HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9)替代。
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9)替代。
 
 | 名称                       | 值    | 说明 |
 | -------------------------- | ----- | ---- |
