@@ -36,7 +36,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.|
+| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | Viewport of the shape.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.|
 | fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|

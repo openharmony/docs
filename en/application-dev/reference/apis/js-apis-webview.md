@@ -3515,7 +3515,7 @@ struct WebComponent {
 
 pageUp(top:boolean): void
 
-Scrolls the page up by half the view port or jumps to the top of the page.
+Scrolls the page up by half the viewport or jumps to the top of the page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3523,7 +3523,7 @@ Scrolls the page up by half the view port or jumps to the top of the page.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| top    | boolean | Yes  | Whether to jump to the top of the page. The value **true** means to jump to the top of the page; and **false** means to scroll the page up by half the view port.|
+| top    | boolean | Yes  | Whether to jump to the top of the page. The value **true** means to jump to the top of the page; and **false** means to scroll the page up by half the viewport.|
 
 **Error codes**
 
@@ -3564,7 +3564,7 @@ struct WebComponent {
 
 pageDown(bottom:boolean): void
 
-Scrolls the page down by half the view port or jumps to the bottom of the page.
+Scrolls the page down by half the viewport or jumps to the bottom of the page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3572,7 +3572,7 @@ Scrolls the page down by half the view port or jumps to the bottom of the page.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| bottom | boolean | Yes  | Whether to jump to the bottom of the page. The value **true** means to jump to the bottom of the page; and **false** means to scroll the page down by half the view port.|
+| bottom | boolean | Yes  | Whether to jump to the bottom of the page. The value **true** means to jump to the bottom of the page; and **false** means to scroll the page down by half the viewport.|
 
 **Error codes**
 
