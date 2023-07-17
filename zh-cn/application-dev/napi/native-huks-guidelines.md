@@ -368,7 +368,7 @@ static struct OH_Huks_Param g_importWrappedAes256Params[] = {
     {.tag = OH_HUKS_TAG_BLOCK_MODE, .uint32Param = OH_HUKS_MODE_GCM},
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE, .uint32Param = OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING},
-    {.tag = OH_HUKS_TAG_ASSOCIATED_DATA, .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // this is a test value, for real use the aad should be info connected with caller
+    {.tag = OH_HUKS_TAG_ASSOCIATED_DATA, .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // this is a test value, for real use the aad should be info associated with caller
     {.tag = OH_HUKS_TAG_NONCE, .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // this is a test value, for real use the nonce should be different every time
 
 static const uint32_t g_x25519PubKeySize = 32;
@@ -405,7 +405,7 @@ static struct OH_Huks_Param g_aesKekEncryptParams[] = {
     {.tag = OH_HUKS_TAG_PADDING, .uint32Param = OH_HUKS_PADDING_NONE},
     {.tag = OH_HUKS_TAG_BLOCK_MODE, .uint32Param = OH_HUKS_MODE_GCM},
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
-    {.tag = OH_HUKS_TAG_ASSOCIATED_DATA, .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // this is a test value, for real use the aad should be info connected with caller
+    {.tag = OH_HUKS_TAG_ASSOCIATED_DATA, .blob = {.size = AAD_SIZE, .data = (uint8_t *)AAD}}, // this is a test value, for real use the aad should be info associated with caller
     {.tag = OH_HUKS_TAG_NONCE, .blob = {.size = NONCE_SIZE, .data = (uint8_t *)NONCE}}}; // this is a test value, for real use the nonce should be different every time
 
 static struct OH_Huks_Param g_importAgreeKeyParams[] = {
