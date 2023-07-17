@@ -236,7 +236,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile                  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten.|
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                            |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
 
@@ -258,9 +258,7 @@ import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
 
 try {
@@ -287,7 +285,7 @@ Decompresses a file. This API uses a promise to return the result.
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | inFile  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten.|
 | options | [Options](#options) | Yes  | Decompression parameters.                                          |
 
 **Error codes**
@@ -306,9 +304,7 @@ import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
 };
 
 try {
