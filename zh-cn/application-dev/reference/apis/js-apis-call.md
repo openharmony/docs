@@ -4775,6 +4775,88 @@ try {
 ```
 
 
+## call.removeMissedIncomingCallNotification<sup>10+</sup>
+
+removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
+
+删除未接来电通知。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE, ohos.permission.READ_CALL_LOG 和 ohos.permission.WRITE_CALL_LOG
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                      |
+| ----------- | ---------------------------- | ---- | ---------------------------------------   |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.removeMissedIncomingCallNotification((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.removeMissedIncomingCallNotification<sup>10+</sup>
+
+removeMissedIncomingCallNotification\(\): Promise\<void\>
+
+删除未接来电通知。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE, ohos.permission.READ_CALL_LOG 和 ohos.permission.WRITE_CALL_LOG
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**返回值：**
+
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = call.removeMissedIncomingCallNotification();
+promise.then(data => {
+    console.log(`removeMissedIncomingCallNotification success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## DialOptions
 
 拨打电话的可选参数。
