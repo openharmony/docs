@@ -64,8 +64,14 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
-| ABILITY_NOT_RESPONDING          | 1    | The ability does not respond.|
-| NORMAL | 2    | The ability exits normally.|
+| ABILITY_NOT_RESPONDING | 1    | The ability does not respond. This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
+| NORMAL | 2    | The ability exits normally because the user closes the application.|
+| CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.|
+| JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.|
+| APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.|
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits because the system resource usage (CPU, I/O, or memory usage) exceeds the upper limit.|
+| UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.|
 
 **Example**
 
@@ -217,4 +223,25 @@ class MyAbility extends UIAbility {
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
+```
+
+## AbilityConstant.ContinueState<sup>10+</sup>
+
+Enumerates the mission continuation states of the application. It is used in the [setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) API of [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name          | Value      | Description                                                        |
+| ------------- | --------- | ------------------------------------------------------------ |
+| ACTIVE        | 0         | Mission continuation is activated for the current application.                             |
+| INACTIVE      | 1         | Mission continuation is not activated for the current application.                           |
+
+**Example**
+
+```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
 ```
