@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This development guide applies to API version 9, OpenHarmony SDK version 3.2.9 or later, and JS development.
+> This development guide applies to JS development using API version 9 and OpenHarmony SDK 3.2.9 or later.
 
 ## Using Certificates
 
@@ -40,7 +40,7 @@ The table below describes the APIs used in this guide.
 | X509Cert        | getNotBeforeTime() : string                                  | Obtains the time from which the certificate takes effect.                      |
 | X509Cert        | getNotAfterTime() : string                                   | Obtains the expiration time of the certificate.                      |
 | X509Cert        | getSignature() : DataBlob                                    | Obtains the certificate signature.                                |
-| X509Cert        | getSignatureAlgName() : string                               | Obtain the certificate signing algorithm.                        |
+| X509Cert        | getSignatureAlgName() : string                               | Obtains the certificate signing algorithm.                        |
 | X509Cert        | getSignatureAlgOid() : string                                | Obtains the certificate signing algorithm object identifier (OID).                         |
 | X509Cert        | getSignatureAlgParams() : DataBlob                           | Obtains the certificate signing algorithm parameters.                        |
 | X509Cert        | getKeyUsage() : DataBlob                                     | Obtains the key usage of the certificate.                            |
@@ -48,7 +48,7 @@ The table below describes the APIs used in this guide.
 | X509Cert        | getBasicConstraints() : number                               | Obtains the basic constraints on the certificate.                            |
 | X509Cert        | getSubjectAltNames() : DataArray                             | Obtains the Subject Alternative Names (SANs) of the certificate.                        |
 | X509Cert        | getIssuerAltNames() : DataArray                              | Obtains the Issuer Alternative Names (IANs) of the certificate.                      |
-
+| X509Cert        | getItem(itemType: CertItemType) : DataBlob<sup>10+</sup>          | Obtains the fields of the X.509 certificate.                      |
 **How to Develop**
 
 Example: Parse the X.509 certificate data to create an **X509Cert** instance and call APIs to perform certificate operations.
@@ -59,16 +59,28 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // Certificate data, which is only an example. The certificate data varies with the service.
 let certData = "-----BEGIN CERTIFICATE-----\n"
-+ "IBzTCCAXCgAwIBAgIGAXKnMKNyMAwGCCqBHM9VAYN1BQAwSTELMAkGA1UEBhMC\n"
-+ "04xDjAMBgNVBAoTBUdNU1NMMRAwDgYDVQQLEwdQS0kvU00yMRgwFgYDVQQDEw9S\n"
-+ "290Q0EgZm9yIFRlc3QwIhgPMjAxNTEyMzExNjAwMDBaGA8yMDM1MTIzMDE2MDAw\n"
-+ "FowSTELMAkGA1UEBhMCQ04xDjAMBgNVBAoTBUdNU1NMMRAwDgYDVQQLEwdQS0kv\n"
-+ "00yMRgwFgYDVQQDEw9Sb290Q0EgZm9yIFRlc3QwWTATBgcqhkjOPQIBBggqgRzP\n"
-+ "QGCLQNCAATj+apYlL+ddWXZ7+mFZXZJGbcJFXUN+Fszz6humeyWZP4qEEr2N0+a\n"
-+ "dwo/21ft232yo0jPLzdscKB261zSQXSoz4wPDAZBgNVHQ4EEgQQnGnsD7oaOcWv\n"
-+ "CTrspwSBDAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIAxjAMBggqgRzP\n"
-+ "QGDdQUAA0kAMEYCIQCEnW5BlQh0vmsOLxSoXYc/7zs++wWyFc1tnBHENR4ElwIh\n"
-+ "I1Lwu6in1ruflZhzseWulXwcITf3bm/Y5X1g1XFWQUH\n"
++ "MIID/jCCAuagAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjDELMAkGA1UEBhMCQ04x\n"
++ "ETAPBgNVBAgMCHNoYW5naGFpMQ8wDQYDVQQHDAZodWF3ZWkxFTATBgNVBAoMDHd3\n"
++ "dy50ZXN0LmNvbTENMAsGA1UECwwEdGVzdDEVMBMGA1UEAwwMd3d3LnRlc3QuY29t\n"
++ "MRwwGgYJKoZIhvcNAQkBFg10ZXN0QHRlc3QuY29tMB4XDTIyMDgyOTA2NTUwM1oX\n"
++ "DTIzMDgyOTA2NTUwM1owezELMAkGA1UEBhMCQ04xETAPBgNVBAgMCHNoYW5naGFp\n"
++ "MRUwEwYDVQQKDAx3d3cudGVzdC5jb20xDTALBgNVBAsMBHRlc3QxFTATBgNVBAMM\n"
++ "DHd3dy50ZXN0LmNvbTEcMBoGCSqGSIb3DQEJARYNdGVzdEB0ZXN0LmNvbTCCASIw\n"
++ "DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJmY9T4SzXXwKvfMvnvMWY7TqUJK\n"
++ "jnWf2Puv0YUQ2fdvyoKQ2LQXdtzoUL53j587oI+IXelOr7dg020zPyun0cmZHZ4y\n"
++ "l/qAcrWbDjZeEGcbbb5UtQtn1WOEnv8pkXluO355mbZQUKK9L3gFWseXJKGbIXw0\n"
++ "NRpaJZzqvPor4m3a5pmJKPHOlivUdYfLaKSkNj3DlaFzCWKV82k5ee6gzVyETtG+\n"
++ "XN+vq8qLybT+fIFsLNMmAHzRxlqz3NiH7yh+1/p/Knvf8bkkRVR2btH51RyX2RSu\n"
++ "DjPM0/VRL8fxDSDeWBq+Gvn/E6AbOVMmkx63tcyWHhklCSaZtyz7kq39TQMCAwEA\n"
++ "AaN7MHkwCQYDVR0TBAIwADAsBglghkgBhvhCAQ0EHxYdT3BlblNTTCBHZW5lcmF0\n"
++ "ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFFiFDysfADQCzRZCOSPupQxFicwzMB8G\n"
++ "A1UdIwQYMBaAFNYQRQiPsG8HefOTsmsVhaVjY7IPMA0GCSqGSIb3DQEBCwUAA4IB\n"
++ "AQAeppxf6sKQJxJQXKPTT3xHKaskidNwDBbOSIvnVvWXicZXDs+1sF6tUaRgvPxL\n"
++ "OL58+P2Jy0tfSwj2WhqQRGe9MvQ5iFHcdelZc0ciW6EQ0VDHIaDAQc2nQzej/79w\n"
++ "UE7BJJV3b9n1be2iCsuodKO14pOkMb84WcIxng+8SD+MiFqV5BPO1QyKGdO1PE1b\n"
++ "+evjyTpFSTgZf2Mw3fGtu5hfEXyHw1lnsFY2MlSwiRlAym/gm4aXy+4H6LyXKd56\n"
++ "UYQ6fituD0ziaw3RI6liyIe7aENHCkZf6bAvMRhk4QiU4xu6emwX8Qt1bT7RthP0\n"
++ "1Vsro0IOeXT9WAcqEtQUegsi\n"
 + "-----END CERTIFICATE-----\n";
 
 // Convert the certificate data form a string to a Uint8Array.
@@ -133,7 +145,7 @@ function certSample() {
         });
 
         // Time represented in a string.
-        let date = "150527000001Z";
+        let date = "20220830000001Z";
         
         // Verify the certificate validity period.
         try {
@@ -142,6 +154,105 @@ function certSample() {
             console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
         }
     });
+}
+```
+
+## Operating Certificate Extensions
+
+> **NOTE**
+>
+> The following scenario applies to JS development using API version 10 and OpenHarmony SDK 4.0.9 or later.
+
+**When to Use**
+
+Typical operations involve the following:
+
+1. Parse the certificate extension data to generate a certificate extension object.
+2. Obtain certificate extension information, for example, obtaining the object identifiers (OIDs) of certificate extensions and obtaining specific data based on an OID.
+3. Check whether a certificate is a CA certificate.
+
+**Available APIs**
+
+For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md).
+
+The table below describes the APIs used in this guide.
+
+| Instance       | API                                                      | Description                                  |
+| ------------- | ------------------------------------------------------------ | -------------------------------------- |
+| cryptoCert    | createCertExtension(inStream : EncodingBlob, callback : AsyncCallback) : void | Creates a **certExtension** instance. This API uses an asynchronous callback to return the result.|
+| cryptoCert    | createCertExtension(inStream : EncodingBlob) : Promise       | Creates a **certExtension** instance. This API uses a promise to return the result. |
+| CertExtension | getEncoded() : EncodingBlob                                  | Obtains the serialized data of the certificate extension.            |
+| CertExtension | getOidList(valueType : ExtensionOidType) : DataArray         | Obtains the OIDs of certificate extensions.        |
+| CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob | Obtains the certificate extension object information.              |
+| CertExtension | checkCA() : number                                           | Checks whether the certificate is a CA certificate.                  |
+
+**How to Develop**
+
+Example: Parse the X.509 certificate extension data to generate a **CerExtension** instance and call the related APIs.
+
+```javascript
+import cryptoCert from '@ohos.security.cert';
+
+// Certificate extension data, which is only an example. Set it based on service requirements.
+let certData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D, 
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55, 
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55, 
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86, 
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+// Convert the string into a Uint8Array.
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// Certificate extension example.
+function certExtensionSample() {
+  let encodingBlob = {
+    data: certData,
+    // Certificate extension format. Currently, only the DER format is supported.
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+  };
+
+  // Create a CerExtension instance.
+  cryptoCert.createCertExtension(encodingBlob, function (err, certExtension) {
+    if (err != null) {
+      // The CerExtension instance fails to be created.
+      console.log("createCertExtension failed, errCode: " + err.code + ", errMsg: " + err.message);
+      return;
+    }
+    // A CerExtension instance is created.
+    console.log("createCertExtension success");
+    
+    try {
+      // Obtain the serialized data of the CerExtension instance.
+      let encodedData = certExtension.getEncoded();
+      
+      // Obtain the OIDs of the certificate extensions.
+      let oidList = certExtension.getOidList(cryptoCert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+      
+      // Obtain the certificate extension information based on a OID.
+      let oidData = "2.5.29.14";
+      let oid = {
+        data: stringToUint8Array(oidData),
+      }
+      let entry = certExtension.getEntry(cryptoCert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
+        
+      // Check whether the certificate is a CA certificate.
+      let pathLen = certExtension.checkCA();
+    } catch (err) {
+      console.log("operation failed: " + JSON.stringify(err));
+    }
+  });
 }
 ```
 
