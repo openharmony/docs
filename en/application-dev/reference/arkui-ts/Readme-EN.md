@@ -33,7 +33,6 @@
     - [Gradient Color](ts-universal-attributes-gradient-color.md)
     - [Popup Control](ts-universal-attributes-popup.md)
     - [Menu Control](ts-universal-attributes-menu.md)
-    - [Click Control](ts-universal-attributes-click.md)
     - [Focus Control](ts-universal-attributes-focus.md)
     - [Hover Effect](ts-universal-attributes-hover-effect.md)
     - [Component ID](ts-universal-attributes-component-id.md)
@@ -168,3 +167,5 @@
 - [Types](ts-types.md)
 - Components No Longer Maintained 
   - [GridContainer](ts-container-gridcontainer.md)
+- APIs No Longer Maintained
+  - [Click Control](ts-universal-attributes-click.md)

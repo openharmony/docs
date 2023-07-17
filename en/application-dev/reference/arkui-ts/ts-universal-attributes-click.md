@@ -12,7 +12,7 @@ Click control attributes are used to set whether a component can respond to fing
 
 | Name     | Type| Description                   |
 | ----------- | -------- | ------------------------ |
-| touchable   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>Default value: **true**|
+| touchable<sup>(deprecated)</sup>   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>Default value: **true**<br>**NOTE**<br>This API is deprecated since API version 9. You are advised to use [hitTestBehavior](ts-universal-attributes-hit-test-behavior.md) instead.|
 
 
 ## Example
