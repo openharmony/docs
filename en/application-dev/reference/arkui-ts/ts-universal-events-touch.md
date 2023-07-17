@@ -22,9 +22,10 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.|
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
+| getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10)&gt;| All historical points of the current frame (the touch event frequency of a frame varies by device, and all touch events of the current frame are referred to as historical points).|
 
 
 ## TouchObject
@@ -38,6 +39,14 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 | x       | number                                      | X coordinate of the touch point relative to the upper left corner of the component being touched.|
 | y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the component being touched.|
 
+## HistoricalPoint<sup>10+</sup>
+
+| Name        | Type                                | Description                                                                        |
+| ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
+| touchObject | [TouchObject](#touchobject)  | Basic information of the historical point.                                                  |
+| size        | number                              | Size of the contact area between the finger and screen for the historical point.                                    |
+| force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0,1]. A larger value indicates a greater touch force.<br>The support for this API varies by device. Currently, it is only available on tablets.|
+| timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.            |
 ## Example
 
 ```ts
