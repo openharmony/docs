@@ -18,7 +18,7 @@ import cloudData from '@ohos.data.cloudData';
 
 ##   Action
 
-Enumerates the actions for clearing the cloud information about the local data.
+Enumerates the actions to take to clear the downloaded cloud data locally.
 
 **System API**: This is a system API.
 
@@ -26,8 +26,8 @@ Enumerates the actions for clearing the cloud information about the local data.
 
 | Name     | Description                        |
 | --------- | ---------------------------- |
-| CLEAR_CLOUD_INFO | Clear the cloud ID information.|
-| CLEAR_CLOUD_DATA_AND_INFO |Clear all cloud data, including cloud ID information and data downloaded from the cloud (excluding the data modified or generated locally).  |
+| CLEAR_CLOUD_INFO | Clear only the cloud identifier of the data downloaded from the cloud. The related data is still stored as local data.|
+| CLEAR_CLOUD_DATA_AND_INFO |Clear the data downloaded from the cloud, excluding the cloud data that has been modified locally.  |
 
 ## Config
 
@@ -49,7 +49,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | Yes  | ID of the target cloud.                                            |
+| accountId | string                          | Yes  | ID of the cloud account.                                        |
 | switches  | {[bundleName: string]: boolean} | Yes  | Device-cloud synergy switches for applications. The value **true** means to enable the device-cloud synergy; the value **false** means the opposite.|
 | callback  | AsyncCallback&lt;void&gt;       | Yes  | Callback invoked to return the result.                                                  |
 
@@ -87,7 +87,7 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | Yes  | ID of the target cloud.                                            |
+| accountId | string                          | Yes  | ID of the cloud account.                                        |
 | switches  | {[bundleName: string]: boolean} | Yes  | Device-cloud synergy switches for applications. The value **true** means to enable the device-cloud synergy; the value **false** means the opposite.|
 
 **Return value**
@@ -126,10 +126,10 @@ Disables device-cloud synergy. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description            |
-| --------- | ------------------------- | ---- | ---------------- |
-| accountId | string                    | Yes  | ID of the target cloud.|
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.      |
+| Name   | Type                     | Mandatory| Description                |
+| --------- | ------------------------- | ---- | -------------------- |
+| accountId | string                    | Yes  | ID of the cloud account.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.          |
 
 **Example**
 
@@ -162,9 +162,9 @@ Disables device-cloud synergy. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description            |
-| --------- | ------ | ---- | ---------------- |
-| accountId | string | Yes  | ID of the target cloud.|
+| Name   | Type  | Mandatory| Description                |
+| --------- | ------ | ---- | -------------------- |
+| accountId | string | Yes  | ID of the cloud account.|
 
 **Return value**
 
@@ -203,8 +203,8 @@ Changes the device-cloud synergy switch for an application. This API uses an asy
 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | Yes  | ID of the target cloud.|
-| bundleName| string                         | Yes  | Name of the target application.|
+| accountId | string                          | Yes  | ID of the cloud account.|
+| bundleName| string                         | Yes  | Bundle name of the application.|
 | status    | boolean                        | Yes  | Setting of the device-cloud synergy switch for the application. The value **true** means to enable the device-cloud synergy; the value **false** means the opposite.|
 | callback  | AsyncCallback&lt;void&gt;       | Yes  | Callback invoked to return the result.                  |
 
@@ -242,8 +242,8 @@ Changes the device-cloud synergy switch for an application. This API uses a prom
 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | Yes  | ID of the target cloud.|
-| bundleName| string                         | Yes  | Name of the target application.|
+| accountId | string                          | Yes  | ID of the cloud account.|
+| bundleName| string                         | Yes  | Bundle name of the application.|
 | status    | boolean                        | Yes  | Setting of the device-cloud synergy switch for the application. The value **true** means to enable the device-cloud synergy; the value **false** means the opposite.|
 
 **Return value**
@@ -282,11 +282,11 @@ Notifies the data changes in the cloud. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description            |
-| ---------- | ------------------------- | ---- | ---------------- |
-| accountId  | string                    | Yes  | ID of the target cloud.|
-| bundleName | string                    | Yes  | Name of the target application.          |
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.      |
+| Name    | Type                     | Mandatory| Description                |
+| ---------- | ------------------------- | ---- | -------------------- |
+| accountId  | string                    | Yes  | ID of the cloud account.|
+| bundleName | string                    | Yes  | Bundle name of the application.            |
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.          |
 
 **Example**
 
@@ -320,10 +320,10 @@ Notifies the data changes in the cloud. This API uses a promise to return the re
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description            |
-| ---------- | ------ | ---- | ---------------- |
-| accountId  | string | Yes  | ID of the target cloud.|
-| bundleName | string | Yes  | Name of the target application.          |
+| Name    | Type  | Mandatory| Description                |
+| ---------- | ------ | ---- | -------------------- |
+| accountId  | string | Yes  | ID of the cloud account.|
+| bundleName | string | Yes  | Bundle name of the application.            |
 
 **Return value**
 
@@ -344,5 +344,90 @@ try {
     });
 } catch (error) {
     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+###  clean
+
+static clean(accountId: string, appActions: {[bundleName: string]: Action},  callback: AsyncCallback&lt;void&gt;):void
+
+Clears the cloud data locally. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CLOUDDATA_CONFIG
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                            |
+| ---------- | ----------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                    | Yes  | ID of the cloud account.            |
+| appActions | {[bundleName: string]: [Action](#action)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
+| callback   | AsyncCallback&lt;void&gt;                 | Yes  | Callback invoked to return the result.                      |
+
+**Example**
+
+```js
+let action = cloudData.Action;
+let account = "test_id";
+let bundleName1 = "test_bundleName1";
+let bundleName2 = "test_bundleName2";
+let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
+try {
+  cloudData.Config.clean(account, appActions, function (err) {
+    if (err === undefined) {
+      console.info('Succeeding in cleaning cloud data');
+    } else {
+      console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (error) {
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+### clean
+
+static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
+
+Clears the cloud data locally. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CLOUDDATA_CONFIG
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                            |
+| ---------- | ----------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                    | Yes  | ID of the cloud account.            |
+| appActions | {[bundleName: string]: [Action](#action)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+let action = cloudData.Action;
+let account = "test_id";
+let bundleName1 = "test_bundleName1";
+let bundleName2 = "test_bundleName2";
+let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
+try {
+  cloudData.Config.clean(account, appActions).then(() => {
+    console.info('Succeeding in cleaning cloud data');
+  }).catch((err) => {
+    console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
