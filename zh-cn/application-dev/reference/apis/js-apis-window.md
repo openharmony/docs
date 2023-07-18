@@ -2788,7 +2788,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     }, (err) => {
@@ -2861,7 +2870,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     let promise = windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     });
@@ -2872,6 +2890,172 @@ try {
     });
 } catch (exception) {
     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+}
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+        try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            }, (err) => {
+                if (err.code) {
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in binding dialog target.');
+            });
+        } catch(err) {
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
+}
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;): Promise&lt;void&gt;
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
+        try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            let promise = windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            });
+            promise.then(()=> {
+                console.info('Succeeded in binding dialog target.');
+            }).catch((err)=>{
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+            });
+        } catch(err) {
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
 }
 ```
 
