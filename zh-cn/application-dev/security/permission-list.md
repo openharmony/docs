@@ -476,7 +476,7 @@
 
 ## ohos.permission.GET_BUNDLE_INFO
 
-允许应用查询其他单个应用的信息。该权限仅适用于三方应用。
+允许查询应用的基本信息。
 
 **权限级别**：normal
 
@@ -486,7 +486,7 @@
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-允许应用同时查询其他多个应用的信息。
+允许查询应用的基本信息和其他敏感信息。
 
 **权限级别**：system_basic
 
