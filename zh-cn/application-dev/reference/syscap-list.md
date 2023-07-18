@@ -1173,6 +1173,14 @@ usb服务
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 是           | 是     |
+
+## SystemCapability.Startup.SystemInfo.Lite
+
+轻量级系统基本信息
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
 
 ## SystemCapability.DistributedDataManager.RelationalStore.Core
