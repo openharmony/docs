@@ -3527,6 +3527,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
 | url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+
 通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](#avrecorder9)或[AudioRecorder](#audiorecorderdeprecated)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
 ## VideoRecorderProfile<sup>9+</sup>
