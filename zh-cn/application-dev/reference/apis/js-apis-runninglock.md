@@ -69,14 +69,6 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 | type     | [RunningLockType](#runninglocktype)        | 是   | 要创建的锁的类型。                                           |
 | callback | AsyncCallback<[RunningLock](#runninglock)> | 是   | 回调函数。当创建锁成功，err为undefined，data为创建的RunningLock；否则为错误对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
-
-| 错误码ID   | 错误信息     |
-|---------|----------|
-| 4900101 | If connecting to the service failed. |
-
 **示例：**
 
 ```js
@@ -111,14 +103,6 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 | 类型                                       | 说明                                 |
 | ------------------------------------------ | ------------------------------------ |
 | Promise&lt;[RunningLock](#runninglock)&gt; | Promise对象，返回RunningLock锁对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
-
-| 错误码ID   | 错误信息     |
-|---------|----------|
-| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
