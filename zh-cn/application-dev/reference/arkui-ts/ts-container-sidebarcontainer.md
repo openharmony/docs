@@ -81,7 +81,7 @@ SideBarContainer( type?: SideBarContainerType )
 >  针对侧边栏子组件设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效。
 >  针对侧边栏内容区设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效，默认占满SideBarContainer的剩余空间。
 >
->  当属性方法未设置时，依据组件大小进行自动显示：
+>  当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
 >  - 小于520vp：默认不显示侧边栏。
 >  - 大于等于520vp：默认显示侧边栏。
