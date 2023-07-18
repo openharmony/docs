@@ -158,7 +158,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(groupId: string): Promise\<string>;
+getGroupDir(dataGroupID: string): Promise\<string>;
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
@@ -166,9 +166,9 @@ getGroupDir(groupId: string): Promise\<string>;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| groupId | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
 
 **返回值：**
 
@@ -188,16 +188,19 @@ getGroupDir(groupId: string): Promise\<string>;
 
 ```ts
 let groupId = "1";
-context.getGroupDir(groupId).then(data => {
+let getGroupDirContext: common.Context;
+try {
+  getGroupDirContext.getGroupDir(groupId).then(data => {
     console.log("getGroupDir result:" + data);
-}).catch((err) => {
-    console.error('error: ${JSON.stringify(err)}');
-});
+  })
+} catch (error) {
+  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(groupId: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
@@ -205,9 +208,9 @@ getGroupDir(groupId: string, callback: AsyncCallback\<string>);
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| groupId | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
 | callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
 **错误码**：
@@ -221,12 +224,14 @@ getGroupDir(groupId: string, callback: AsyncCallback\<string>);
 **示例：**
 
 ```ts
-context.getGroupDir("1", (err, data) => {
-    if (err) {
-        console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('getGroupDir result is: ${JSON.stringify(data)}');
-    }
+let getGroupDirContext: common.Context;
+
+getGroupDirContext.getGroupDir("1", (err, data) => {
+  if (err) {
+    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+  } else {
+    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+  }
 });
 ```
 

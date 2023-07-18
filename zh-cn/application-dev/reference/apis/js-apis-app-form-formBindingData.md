@@ -75,14 +75,3 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
-
-## ProxyData
-
-定义表单代理数据。
-
-**系统能力**：SystemCapability.Ability.Form
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| key | string | 是 | 代理的密钥。值取决于数据发布者。|
-| subscriberId | string | 否 | 订阅者ID。值取决于数据发布者。默认值为当前卡片ID。|
