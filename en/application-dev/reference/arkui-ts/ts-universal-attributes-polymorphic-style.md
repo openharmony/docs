@@ -9,7 +9,7 @@ You can set state-specific styles for components.
 
 ## Attributes
 
-| Style| Type| Description|
+| Name| Type| Description|
 | -------- | -------- | -------- |
 | stateStyles | StateStyles | Styles of the component for different states.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
@@ -21,9 +21,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- | -------- | -------- |
 | normal | ()=&gt;void | No| Style of the component when being stateless.|
 | pressed | ()=&gt;void | No| Style of the component in the pressed state.|
-| disabled | ()=&gt;void | No| Style of the component in disabled state.|
-| focused | ()=&gt;void | No| Style of the component in focused state.|
-| clicked | ()=&gt;void | No| Style of the component in clicked state.|
+| disabled | ()=&gt;void | No| Style of the component in the disabled state.|
+| focused | ()=&gt;void | No| Style of the component in the focused state.|
+| clicked | ()=&gt;void | No| Style of the component in the clicked state.|
+| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.|
 
 
 ## Example
