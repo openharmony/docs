@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **user preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -40,7 +40,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error code.|
 
 **Example**
 
@@ -310,7 +310,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a **Preferences** instance from the memory. This API uses an asynchronous callback to return the result.
+Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -373,7 +373,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-Removes a **Preferences** instance from the memory. This API uses a promise to return the result.
+Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -434,9 +434,58 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+
+removePreferencesFromCacheSync(context: Context, name: string): void
+
+Synchronously removes a **Preferences** instance from the cache.
+
+The deleted **Preferences** instance cannot be used to perform data operations. Otherwise, data inconsistency will be caused.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name | Type                                 | Mandatory| Description                   |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
+
+**Example**
+
+FA model:
+
+```js
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+try {
+    data_preferences.removePreferencesFromCacheSync(context, 'mystore');
+} catch(err) {
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage model:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCacheSync(this.context, 'mystore');
+        } catch(err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
 ## Preferences
 
-Provides methods for obtaining and modifying data.
+Provides APIs for obtaining and modifying the stored data.
 
 Before calling any method of **Preferences**, you must obtain a **Preferences** instance by using [data_preferences.getPreferences](#data_preferencesgetpreferences).
 
@@ -445,7 +494,7 @@ Before calling any method of **Preferences**, you must obtain a **Preferences** 
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value of a key. This API uses an asynchronous callback to return the result. If the value is **null** or is not of the default value type, **defValue** is returned.
+Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses an asynchronous callback to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -478,7 +527,7 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value of a key. This API uses a promise to return the result. If the value is **null** or is not of the default value type, **defValue** is returned.
+Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses a promise to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -510,11 +559,43 @@ try {
 }
 ```
 
+### getSync<sup>10+</sup>
+
+getSync(key: string, defValue: ValueType): ValueType
+
+Synchronously obtains the value corresponding to the specified key from the cached **Preferences** instance. If the value is null or is not of the default value type, **defValue** is returned.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+
+**Return value**
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| [ValueType](#valuetype) | Returns the value obtained.|
+
+**Example**
+
+```js
+try {
+    let value = preferences.getSync('startup', 'default');
+    console.info("Obtained the value of 'startup'. Data: " + value);
+} catch(err) {
+    console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
+}
+```
+
 ### getAll
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains an **Object** instance that contains all KV pairs. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs from the cached **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -522,7 +603,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses an asyn
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error code.|
 
 **Example**
 
@@ -547,7 +628,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains an **Object** instance that contains all KV pairs. This API uses a promise to return the result.
+Obtains all KV pairs from the cached **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -555,7 +636,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses a promi
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise used to return the **Object** instance obtained.|
+| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained.|
 
 **Example**
 
@@ -574,11 +655,38 @@ try {
 }
 ```
 
+### getAllSync<sup>10+</sup>
+
+getAllSync(): Object
+
+Synchronously obtains all KV pairs from the cached **Preferences** instance.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Return value**
+
+| Type                 | Description                                       |
+| --------------------- | ------------------------------------------- |
+| Object | Returns all KV pairs obtained.|
+
+**Example**
+
+```js
+try {
+    let value = preferences.getAllSync();
+    let allKeys = Object.keys(value);
+    console.info('getAll keys = ' + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
+} catch (err) {
+    console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
+}
+```
+
 ### put
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
+Writes data to the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -611,7 +719,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
+Writes data to the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -644,11 +752,37 @@ try {
 ```
 
 
+### putSync<sup>10+</sup>
+
+putSync(key: string, value: ValueType): void
+
+Synchronously writes data to the cached **Preferences** instance. You can use [flush](#flush) to persist the **Preferences** instance.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name| Type                   | Mandatory| Description                                                        |
+| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+
+**Example**
+
+```js
+try {
+    preferences.putSync('startup', 'auto');
+} catch(err) {
+    console.info("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
+}
+```
+
+
 ### has
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result.
+Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -684,7 +818,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result.
+Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -720,11 +854,47 @@ try {
 ```
 
 
+### hasSync<sup>10+</sup>
+
+hasSync(key: string): boolean
+
+Synchronously checks whether the cached **Preferences** instance contains the KV pair of the given key.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | Yes  | Key of the data to check. It cannot be empty.|
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
+
+```js
+try {
+    let isExist = preferences.hasSync('startup');
+    if (isExist) {
+        console.info("The key 'startup' is contained.");
+    } else {
+        console.info("The key 'startup' is not contained.");
+    }
+} catch(err) {
+    console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+}
+```
+
+
 ### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a KV pair from this **Preferences** instance based on the specified key. This API uses an asynchronous callback to return the result.
+Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -756,7 +926,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from this **Preferences** instance. This API uses a promise to return the result.
+Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -788,11 +958,36 @@ try {
 ```
 
 
+### deleteSync<sup>10+</sup>
+
+deleteSync(key: string): void
+
+Synchronously deletes a KV pair from the cached **Preferences** instance based on the specified key. You can use [flush](#flush) to persist the **Preferences** instance.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
+
+**Example**
+
+```js
+try {
+    preferences.deleteSync('startup');
+} catch(err) {
+    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+}
+```
+
+
 ### flush
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the data of this **Preferences** instance to a file asynchronously. This API uses an asynchronous callback to return the result.
+Flushes the data in the cached **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -823,7 +1018,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-Saves the data of this **Preferences** instance to a file asynchronously. This API uses a promise to return the result.
+Flushes the data in the cached **Preferences** instance to the persistent file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -853,7 +1048,7 @@ try {
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-Clears this **Preferences** instance. This API uses an asynchronous callback to return the result.
+Clears all data in the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -884,7 +1079,7 @@ try {
 
 clear(): Promise&lt;void&gt;
 
-Clears this **Preferences** instance. This API uses a promise to return the result.
+Clears all data in the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -906,6 +1101,25 @@ try {
     })
 } catch(err) {
     console.info("Failed to clear data. code =" + err.code + ", message =" + err.message);
+}
+```
+
+
+### clearSync<sup>10+</sup>
+
+clearSync(): void
+
+Synchronously clears all data in the cached **Preferences** instance. You can use [flush](#flush) to persist the **Preferences** instance.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Example**
+
+```js
+try {
+    preferences.clearSync();
+} catch(err) {
+    console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
 ```
 
