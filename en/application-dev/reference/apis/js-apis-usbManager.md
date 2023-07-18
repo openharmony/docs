@@ -152,7 +152,7 @@ Checks whether the user, for example, the application or system, has the device 
 **Example**
 
 ```js
-let devicesName="1-1";
+let devicesName = "1-1";
 let bool = usb.hasRight(devicesName);
 console.log(`${bool}`);
 ```
@@ -180,7 +180,7 @@ Requests the temporary permission for the application to access a USB device. Th
 **Example**
 
 ```js
-let devicesName="1-1";
+let devicesName = "1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${ret}`);
 });
@@ -209,7 +209,7 @@ Removes the permission for the application to access a USB device.
 **Example**
 
 ```js
-let devicesName= "1-1";
+let devicesName = "1-1";
 if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
@@ -277,6 +277,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
 let ret = usb.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
@@ -307,7 +316,17 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 **Example**
 
 ```js
-let ret = usb.releaseInterface(devicepipe, interfaces);
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+ret = usb.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
 
@@ -337,6 +356,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let config = device.configs[0];
 let ret = usb.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
@@ -367,7 +395,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-let ret = usb.setInterface(devicepipe, interfaces);
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+ret = usb.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
 
@@ -396,6 +434,13 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.getRawDescriptor(devicepipe);
 ```
 
@@ -424,6 +469,13 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.getFileDescriptor(devicepipe);
 ```
 
@@ -462,6 +514,14 @@ let param = {
   index: 0,
   data: null
 };
+
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -498,8 +558,21 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 // Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let endpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+let buffer =  new Uint8Array(128);
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${ret}`);
+  console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -528,6 +601,13 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
@@ -605,6 +685,14 @@ Sets the current USB function list in Device mode.
 | Name| Type                          | Mandatory| Description             |
 | ------ | ------------------------------ | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
+
+**Error codes**
+
+For details about the error codes, see [USB Error Codes](../errorcodes/errorcode-usb.md).
+
+| ID| Error Message                                          |
+| -------- | ---------------------------------------------------- |
+| 14400002 | Permission denied.The HDC is disabled by the system. |
 
 **Return value**
 
