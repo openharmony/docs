@@ -20,7 +20,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 + **udmf:** 协议名，表示使用UDMF提供的数据通路。
 
-+ **intention:** 通路分类，对应不同的业务场景。
++ **intention:** UDMF已经支持的数据通路类型枚举值，对应不同的业务场景。
 
 + **bundleName:** 数据来源应用的包名称。
 
@@ -35,12 +35,12 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 以下是UDMF标准化数据通路的相关接口，均为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，
 更多接口及使用方式请见[统一数据管理框架](../reference/apis/js-apis-data-udmf.md)。
 
-| 接口名称                                                                                   | 描述                                          | 
-|----------------------------------------------------------------------------------------|---------------------------------------------|
-| insertData(options: Options, data: UnifiedData, callback: AsyncCallback<string>): void | 将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用callback异步回调。 | 
-| updateData(options: Options, data: UnifiedData, callback: AsyncCallback<void>): void   | 更新已写入UDMF的公共数据通路的数据，使用callback异步回调。           | 
-| queryData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void         | 查询UDMF公共数据通路的数据，使用callback异步回调。               | 
-| deleteData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void        | 删除UDMF公共数据通路的数据，返回删除的数据集，使用callback异步回调。 |
+| 接口名称                                                                                    | 描述                                          | 
+|-----------------------------------------------------------------------------------------|---------------------------------------------|
+| insertData(options: Options, data: UnifiedData, callback: AsyncCallback\<string>): void | 将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用callback异步回调。 | 
+| updateData(options: Options, data: UnifiedData, callback: AsyncCallback\<void>): void   | 更新已写入UDMF的公共数据通路的数据，使用callback异步回调。           | 
+| queryData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void        | 查询UDMF公共数据通路的数据，使用callback异步回调。               | 
+| deleteData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void       | 删除UDMF公共数据通路的数据，返回删除的数据集，使用callback异步回调。 |
 
 
 ## 开发步骤
