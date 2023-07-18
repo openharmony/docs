@@ -490,7 +490,7 @@ let unifiedData = new UDMF.UnifiedData(record);
 
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | 公共数据通道。 |
+| DATA_HUB | 'DataHub' | 公共数据通路。 |
 
 ## Options
 
@@ -626,7 +626,7 @@ try {
         if (err === undefined) {
             console.info('Succeeded in updating data.');
         } else {
-            console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+            console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
         }
     });
 } catch(e) {

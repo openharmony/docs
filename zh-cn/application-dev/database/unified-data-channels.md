@@ -3,10 +3,9 @@
 
 ## 场景介绍
 
-在多对多跨应用数据共享的场景下，需要提供一条数据通路能接入多个不同应用的数据并共享给其他应用进行读取，同时对通道中数据的访问权限和生命周期
-进行统一的管理。
+在多对多跨应用数据共享的场景下，需要提供一条数据通路能够接入多个不同应用的数据并共享给其他应用进行读取。
 
-UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口，并按照一定策略管理通道中数据的访问权限和生命周期。
+UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。
 
 ## 标准化数据通路的定义和实现
 
@@ -17,23 +16,19 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 并且可以通过UDMF提供的更新和删除接口对已经存入UDMF数据通路的数据进行更新和删除操作。在完成必要的权限校验后，
 目标应用（数据访问方）可以通过UDMF提供的读取接口进行数据的访问，数据被读取后，UDMF会统一对数据的生命周期进行管理。
 
-统一数据对象UnifiedData在UDMF数据通路中具有全局唯一URI标识，其定义为udmf://intension/bundleName/groupName/guid，其中各组成部分的含义分别为：
+统一数据对象UnifiedData在UDMF数据通路中具有全局唯一URI标识，其定义为udmf://intention/bundleName/groupId，其中各组成部分的含义分别为：
 
-**udmf:** 协议名，表示使用UDMF提供的数据通路。
++ **udmf:** 协议名，表示使用UDMF提供的数据通路。
 
-**intension:** 通道分类，对应不同的业务场景。
++ **intention:** 通路分类，对应不同的业务场景。
 
-**bundleName:** 数据来源应用的包名称。
++ **bundleName:** 数据来源应用的包名称。
 
-**groupName:** 分组名称，支持批量数据分组管理。
++ **groupId:** 分组名称，支持批量数据分组管理。
 
-**guid:** 系统生成的数据id，全局唯一。
+当前UDMF中的跨应用数据共享通路有：**公共数据通路**
 
-当前UDMF中的跨应用数据共享通路有：
-
-- **公共数据通路**
-
-应用共享的公用数据共享通路，应用均可写入和读取数据，对应的Intention枚举类型为DATA_HUB。
+**公共数据通路**：应用共享的公用数据共享通路，应用均可写入和读取数据，对应的Intention枚举类型为DATA_HUB。
 
 ## 接口说明
 
@@ -42,16 +37,16 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 | 接口名称                                                                                   | 描述                                          | 
 |----------------------------------------------------------------------------------------|---------------------------------------------|
-| insertData(options: Options, data: UnifiedData, callback: AsyncCallback<string>): void | 将数据写入UDMF的公共存储中，并生成数据的唯一标识符，使用callback异步回调。 | 
-| updateData(options: Options, data: UnifiedData, callback: AsyncCallback<void>): void   | 更新已写入UDMF的公共存储的数据，使用callback异步回调。           | 
-| queryData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void         | 查询UDMF公共存储的数据，使用callback异步回调。               | 
-| deleteData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void        | 删除UDMF公共存储的数据，返回删除的数据集，使用callback异步回调。 |
+| insertData(options: Options, data: UnifiedData, callback: AsyncCallback<string>): void | 将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用callback异步回调。 | 
+| updateData(options: Options, data: UnifiedData, callback: AsyncCallback<void>): void   | 更新已写入UDMF的公共数据通路的数据，使用callback异步回调。           | 
+| queryData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void         | 查询UDMF公共数据通路的数据，使用callback异步回调。               | 
+| deleteData(options: Options, callback: AsyncCallback<Array<UnifiedData>>): void        | 删除UDMF公共数据通路的数据，返回删除的数据集，使用callback异步回调。 |
 
 
 ## 开发步骤
 
-以一次多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UMDF提供的接口将数据写入公共存储通道，并对其进行更新和删除操作。数据访问方可以通过UDMF提供的查询接口获取数据
-提供方共享的数据。示例代码均采用Callback形式，Promise形式请见[ @ohos.data.UDMF(统一数据管理框架)](../reference/apis/js-apis-data-udmf.md)。
+以一次多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UMDF提供的接口将数据写入公共数据通路，并对其进行更新和删除操作。数据访问方可以通过UDMF提供的查询接口获取数据
+提供方共享的数据。
 
 ### 数据提供方
 
@@ -60,7 +55,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    import UDMF from '@ohos.data.UDMF';
    ```
-2. 创建一个统一数据对象并插入到UDMF的公共存储中。
+2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
    ```ts
    let plainText = new UDMF.PlainText();
@@ -86,7 +81,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
    ```ts
    let plainText = new UDMF.PlainText();
-   plainText.textContent = 'hello world!';
+   plainText.textContent = 'How are you!';
    let unifiedData = new UDMF.UnifiedData(plainText);
    
    let options = {
@@ -98,14 +93,14 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
            if (err === undefined) {
                console.info('Succeeded in updating data.');
            } else {
-               console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+               console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
            }
        });
    } catch(e) {
        console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
    }
    ```
-4. 删除存储在UDMF公共存储中的统一数据对象。
+4. 删除存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
    let options = {
@@ -141,7 +136,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    import UDMF from '@ohos.data.UDMF';
    ```
-2. 查询存储在UDMF公共存储中的统一数据对象。
+2. 查询存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
    let options = {
