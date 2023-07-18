@@ -593,6 +593,7 @@
 **ACL使能**：TRUE
 
 **起始版本**：7
+
 ## ohos.permission.ACCELEROMETER
 
 允许应用读取加速度传感器的数据。
