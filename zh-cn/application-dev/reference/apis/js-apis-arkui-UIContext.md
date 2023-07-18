@@ -139,11 +139,13 @@ animateTo(value: AnimateParam, event: () => void): void
 
 提供animateTo接口来指定由于闭包代码导致的状态变化插入过渡动效。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
-| 参数名            | 类型        |       是否必填     |        描述        |
+| 参数名            | 类型        |       必填     |        说明        |
 | ---------------- | ------------ | -------------------- | -------------------- |
 | value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是 | 设置动画效果相关参数。 |
 | event | () => void | 是 | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
@@ -216,11 +218,13 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名    | 参数类型  | 参数描述 |
-| ---- | --------------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)  | 定义并显示AlertDialog组件。 |
+| 参数名    | 类型  | 必填 | 说明 |
+| ---- | --------------- | -------- | -------- |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)  | 是 | 定义并显示AlertDialog组件。 |
 
 **示例：**
 
@@ -252,9 +256,11 @@ showActionSheet(value: ActionSheetOptions): void
 
 定义列表弹窗并弹出。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **ActionSheetOptions参数：**
 
-| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| 参数名        | 类型                    | 必填  | 说明                        |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是     |  弹窗标题。 |
 | message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是     | 弹窗内容。  |
@@ -267,7 +273,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **SheetInfo接口说明：**
 
-| 参数名 | 参数类型                                                     | 必填 | 参数描述          |
+| 参数名 | 类型                                                     | 必填 | 说明        |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
 | title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是   | 选项的文本内容。       |
 | icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 否   | 选项的图标，默认无图标显示。     |
@@ -320,22 +326,24 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **DatePickerDialogOptions参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| start | Date | 否 | Date('1970-1-1') | 设置选择器的起始日期。 |
-| end | Date | 否 | Date('2100-12-31') | 设置选择器的结束日期。 |
-| selected | Date | 否 | 当前系统日期 | 设置当前选中的日期。 |
-| lunar | boolean | 否 | false | 日期是否显示为农历。 |
-| showTime | boolean | 否 | false | 是否展示时间项。 |
-| useMilitaryTime | boolean | 否 | false | 展示时间是否为24小时制。 |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | - | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | - | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | - | 设置选中项的文本颜色、字号、字体粗细。 |
-| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | - | 点击弹窗中的“确定”按钮时触发该回调。 |
-| onCancel | () => void | 否 | - | 点击弹窗中的“取消”按钮时触发该回调。 |
-| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | - | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| start | Date | 否 | 设置选择器的起始日期。<br/>默认值：Date('1970-1-1') |
+| end | Date | 否 | 设置选择器的结束日期。<br/>默认值：Date('2100-12-31') |
+| selected | Date | 否 | 设置当前选中的日期。<br/>默认值：当前系统日期 |
+| lunar | boolean | 否 | 日期是否显示为农历。<br/>默认值：false |
+| showTime | boolean | 否 | 是否展示时间项。<br/>默认值：false |
+| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制。<br/>默认值：false |
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
+| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
+| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。 |
+| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
+| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
+| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。 |
 
 **示例：**
 
@@ -365,9 +373,11 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **TimePickerDialogOptions参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
 | useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
@@ -404,9 +414,11 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **TextPickerDialogOptions参数：**
 
-| 参数名 | 参数类型 | 必填 |  参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |  -------- |
 | range | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是 |  设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。 |
 | selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
@@ -515,9 +527,9 @@ registerFont(options: FontOptions): void
 
 **参数：**
 
-| 参数名     | 类型                          | 必填   | 说明          |
-| ------- | --------------------------- | ---- | ----------- |
-| options | [FontOptions](js-apis-font.md#fontoptions) | 是    | 注册的自定义字体信息。 |
+| 参数名  | 类型                                            | 必填 | 说明                   |
+| ------- | ----------------------------------------------- | ---- | ---------------------- |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | 是   | 注册的自定义字体信息。 |
 
 **示例：**
 
@@ -528,13 +540,61 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
+### getStstemFontList
+
+getSystemFontList(): Array\<string> 
+
+获取系统支持的字体名称列表。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型           | 说明               |
+| -------------- | ------------------ |
+| Array\<string> | 系统的字体名列表。 |
+
+**示例：** 
+
+```ts
+let font = uiContext.getFont();
+font.getSystemFontList()
+```
+
+### getFontByName
+
+getFontByName(fontName: string): font.FontInfo
+
+根据传入的系统字体名称获取系统字体的相关信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明           |
+| -------- | ------ | ---- | -------------- |
+| fontName | string | 是   | 系统的字体名。 |
+
+**返回值：** 
+
+| 类型                                 | 说明           |
+| ------------------------------------ | -------------- |
+| [FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
+
+**示例：** 
+
+```ts
+let font = uiContext.getFont();
+font.getFontByName('Sans Italic')
+```
+
 ## ComponentUtils
 
 以下API需先使用UIContext中的[getComponentUtils()](#getcomponentutils)方法获取到ComponentUtils对象，再通过该对象调用对应方法。
 
 ### getRectangleById
 
-getRectangleById(key: string): ComponentInfo
+getRectangleById(id: string): ComponentUtils.ComponentInfo
 
 获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
@@ -544,7 +604,7 @@ getRectangleById(key: string): ComponentInfo
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| key    | string | 是   | 组件唯一标识id。 |
+| id     | string | 是   | 组件唯一标识id。 |
 
 **返回值：**
 
@@ -567,7 +627,7 @@ let localOffsetHeight = modePosition.size.height;
 
 ### createComponentObserver
 
-createComponentObserver(id: string): ComponentObserver
+createComponentObserver(id: string): inspector.ComponentObserver
 
 注册组件布局和绘制完成回调通知。
 
@@ -581,8 +641,8 @@ createComponentObserver(id: string): ComponentObserver
 
 **返回值：** 
 
-| 类型                                    | 说明                                               |
-| --------------------------------------- | -------------------------------------------------- |
+| 类型                                                         | 说明                                               |
+| ------------------------------------------------------------ | -------------------------------------------------- |
 | [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：**
@@ -598,7 +658,7 @@ let listener = inspector.createComponentObserver('COMPONENT_ID');
 
 ### matchMediaSync
 
-matchMediaSync(condition: string): MediaQueryListener
+matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
 
@@ -629,7 +689,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 ### pushUrl
 
-pushUrl(options: RouterOptions): Promise&lt;void&gt;
+pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
@@ -637,9 +697,9 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明        |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
+| 参数名  | 类型                                                    | 必填 | 说明               |
+| ------- | ------------------------------------------------------- | ---- | ------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 跳转页面描述信息。 |
 
 **返回值：**
 
@@ -680,7 +740,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
+pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
 
@@ -690,7 +750,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型                              | 必填   | 说明        |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -726,7 +786,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
@@ -734,10 +794,10 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| 参数名  | 类型                                                    | 必填 | 说明                 |
+| ------- | ------------------------------------------------------- | ---- | -------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 跳转页面描述信息。   |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | 是   | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -778,7 +838,7 @@ router.pushUrl({
 
 ### pushUrl
 
-pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
 
@@ -788,8 +848,8 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -825,17 +885,17 @@ router.pushUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions): Promise&lt;void&gt;
+replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
+| 参数名  | 类型                                                    | 必填 | 说明               |
+| ------- | ------------------------------------------------------- | ---- | ------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
 
 **返回值：**
 
@@ -876,13 +936,13 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名  | 类型                            | 必填 | 说明               |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -914,18 +974,18 @@ router.replaceUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| 参数名  | 类型                                                    | 必填 | 说明                 |
+| ------- | ------------------------------------------------------- | ---- | -------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 替换页面描述信息。   |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | 是   | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -962,18 +1022,18 @@ router.replaceUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是    | 替换页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1005,7 +1065,7 @@ router.replaceUrl({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
 
@@ -1013,9 +1073,9 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明        |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 跳转页面描述信息。 |
 
 **返回值：**
 
@@ -1056,7 +1116,7 @@ router.pushNamedRoute({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到指定的命名路由页面。
 
@@ -1066,7 +1126,7 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名     | 类型                              | 必填   | 说明        |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1101,7 +1161,7 @@ router.pushNamedRoute({
 ```
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
 
@@ -1109,10 +1169,10 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| 参数名  | 类型                                                         | 必填 | 说明                 |
+| ------- | ------------------------------------------------------------ | ---- | -------------------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 跳转页面描述信息。   |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | 是   | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -1163,8 +1223,8 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1200,7 +1260,7 @@ router.pushNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
@@ -1208,9 +1268,9 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
 
 **返回值：**
 
@@ -1224,7 +1284,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1247,7 +1307,7 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
@@ -1257,7 +1317,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 | 参数名  | 类型                            | 必填 | 说明               |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1266,7 +1326,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1289,7 +1349,7 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
@@ -1297,10 +1357,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 **参数：**
 
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| 参数名  | 类型                                                         | 必填 | 说明                 |
+| ------- | ------------------------------------------------------------ | ---- | -------------------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。   |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | 是   | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -1315,7 +1375,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if can not get the delegate. |
+| 100001    | if the pages are pushed too much. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1348,8 +1408,8 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1358,7 +1418,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1381,7 +1441,7 @@ router.replaceNamedRoute({
 
 ### back
 
-back(options?: RouterOptions ): void
+back(options?: router.RouterOptions ): void
 
 返回上一页面或指定的页面。
 
@@ -1389,9 +1449,9 @@ back(options?: RouterOptions ): void
 
 **参数：**
 
-| 参数名  | 类型                            | 必填 | 说明                                                         |
-| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](js-apis-router.md#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
@@ -1439,7 +1499,7 @@ console.log('pages stack size = ' + size);
 
 ### getState
 
-getState(): RouterState
+getState(): router.RouterState
 
 获取当前页面的状态信息。
 
@@ -1463,7 +1523,7 @@ console.log('current path = ' + page.path);
 
 ### showAlertBeforeBackPage
 
-showAlertBeforeBackPage(options: EnableAlertOptions): void
+showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
@@ -1471,9 +1531,9 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 **参数：**
 
-| 参数名     | 类型                                       | 必填   | 说明        |
-| ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](js-apis-router.md#enablealertoptions) | 是    | 文本弹窗信息描述。 |
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | 是   | 文本弹窗信息描述。 |
 
 **错误码：**
 
@@ -1538,7 +1598,7 @@ router.getParams();
 
 ### showToast
 
-showToast(options: ShowToastOptions): void
+showToast(options: promptAction.ShowToastOptions): void
 
 创建并显示文本提示框。
 
@@ -1546,9 +1606,9 @@ showToast(options: ShowToastOptions): void
 
 **参数：**
 
-| 参数名     | 类型                                    | 必填   | 说明      |
-| ------- | ------------------------------------- | ---- | ------- |
-| options | [ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | 文本弹窗选项。 |
+| 参数名  | 类型                                                         | 必填 | 说明           |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | 文本弹窗选项。 |
 
 **错误码：**
 
@@ -1574,7 +1634,7 @@ try {
 
 ### showDialog
 
-showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&lt;): void
+showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&lt;): void
 
 创建并显示对话框，对话框响应结果异步返回。
 
@@ -1582,10 +1642,10 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明           |
-| -------- | ---------------------------------------- | ---- | ------------ |
-| options  | [ShowDialogOptions](js-apis-promptAction.md#showdialogoptions)  | 是    | 页面显示对话框信息描述。 |
-| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是   | 页面显示对话框信息描述。 |
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是   | 对话框响应结果回调。     |
 
 **错误码：**
 
@@ -1627,7 +1687,7 @@ try {
 
 ### showDialog
 
-showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
+showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后同步返回结果。
 
@@ -1635,15 +1695,15 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填   | 说明     |
-| ------- | --------------------------------------- | ---- | ------ |
-| options | [ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是    | 对话框选项。 |
+| 参数名  | 类型                                                         | 必填 | 说明         |
+| ------- | ------------------------------------------------------------ | ---- | ------------ |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是   | 对话框选项。 |
 
 **返回值：**
 
-| 类型                                       | 说明       |
-| ---------------------------------------- | -------- |
-| Promise&lt;[ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
 
 **错误码：**
 
@@ -1685,7 +1745,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;promptAction.ActionMenuSuccessResponse&gt;):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -1693,10 +1753,10 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions)  | 是    | 操作菜单选项。   |
-| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)> | 是    | 菜单响应结果回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)> | 是   | 菜单响应结果回调。 |
 
 **错误码：**
 
@@ -1737,7 +1797,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
+showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
 创建并显示操作菜单，菜单响应后同步返回结果。
 
@@ -1745,15 +1805,15 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填   | 说明      |
-| ------- | --------------------------------------- | ---- | ------- |
-| options | [ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。 |
+| 参数名  | 类型                                                         | 必填 | 说明           |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。 |
 
 **返回值：**
 
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise&lt;[ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
 
 **错误码：**
 

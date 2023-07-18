@@ -693,7 +693,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
