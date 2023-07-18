@@ -47,7 +47,7 @@ HUKS是`OpenHarmony`提供**密钥的全生命周期管理能力**的模块。`H
 | [OH_Huks_FreshParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_freshparamset) (struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, bool isCopy) | 刷新（复制）参数集内Blob类型的数据到参数集内。  | 
 | [OH_Huks_IsParamSetTagValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet) | 检查参数集中的参数是否有效、是否有重复。  | 
 | [OH_Huks_IsParamSetValid](../reference/native-apis/_huks_param_set_api.md#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](../reference/native-apis/_o_h___huks___param_set.md) \*paramSet, uint32_t size) | 检查参数集大小是否有效。  | 
-| [OH_Huks_CheckParamMatch](../reference/native-apis/_huks_param_set_api.md#oh_huks_checkparammatch) (const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*param) | 比较两个参数是否相同  | 
+| [OH_Huks_CheckParamMatch](../reference/native-apis/_huks_param_set_api.md#oh_huks_checkparammatch) (const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](../reference/native-apis/_o_h___huks___param.md) \*param) | 比较两个参数是否相同。  | 
 
 ## 开发步骤
 
@@ -75,24 +75,21 @@ HUKS提供为业务安全随机生成密钥的能力。通过HUKS生成的密钥
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
-    uint32_t paramcount)
+    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
-    ret = OH_Huks_AddParams(*paramSet, params, paramcount);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    ret = OH_Huks_AddParams(*paramSet, params, paramCount);
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
@@ -149,7 +146,7 @@ static napi_value GenerateKey(napi_env env, napi_callback_info info)
 导入明文密钥时使用[OH_Huks_ImportKeyItem](../reference/native-apis/_huks_key_api.md#oh_huks_importkeyitem)方法，传入keyAlias作为密钥别名，传入paramSetIn包含该密钥的相关信息，其中必须包含密钥材料和密钥属性集。
 
 1. 确定密钥别名；
-2. 封装密钥材料和密钥属性集：密钥材料须符合[HUKS密钥材料格式](../security/huks-appendix.md#密钥材料格式)并赋值key字段；另外，[OH_Huks_InitParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset)构造paramSet，其中必须包含[OH_Huks_KeyAlg](../reference/native-apis/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../reference/native-apis/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose)属性；
+2. 封装密钥材料和密钥属性集：密钥材料须符合[HUKS密钥材料格式](huks-appendix.md#密钥材料格式)并赋值key字段；另外，[OH_Huks_InitParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset)构造paramSet，其中必须包含[OH_Huks_KeyAlg](../reference/native-apis/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../reference/native-apis/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose)属性；
 3. 导入密钥。
 
 **C++代码示例：**
@@ -161,30 +158,28 @@ static napi_value GenerateKey(napi_env env, napi_callback_info info)
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
-    uint32_t paramcount)
+    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
-    ret = OH_Huks_AddParams(*paramSet, params, paramcount);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    ret = OH_Huks_AddParams(*paramSet, params, paramCount);
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     return ret;
 }
+
 static napi_value ImportKey(napi_env env, napi_callback_info info)
 {
     (void)GenerateKey(env, info);
@@ -222,7 +217,7 @@ static napi_value ImportKey(napi_env env, napi_callback_info info)
 
 **图2** 加密导入开发流程
 
-![huks_import_wrapped_key](../security/figures/huks_import_wrapped_key.png)
+![huks_import_wrapped_key](figures/huks_import_wrapped_key.png)
 
 **接口说明**
 
@@ -492,8 +487,7 @@ static OH_Huks_Result HksEncryptLoopUpdate(const struct OH_Huks_Blob *handle, co
             return ret;
         }
         ret = OH_Huks_UpdateSession(handle, paramSet, &inDataSeg, &outDataSeg);
-        if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-        {
+        if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
             free(outDataSeg.data);
             return ret;
         }
@@ -501,8 +495,7 @@ static OH_Huks_Result HksEncryptLoopUpdate(const struct OH_Huks_Blob *handle, co
         cur += outDataSeg.size;
         outData->size += outDataSeg.size;
         free(outDataSeg.data);
-        if ((isFinished == false) && (inDataSeg.data + MAX_UPDATE_SIZE > lastPtr))
-        {
+        if ((isFinished == false) && (inDataSeg.data + MAX_UPDATE_SIZE > lastPtr)) {
             ret.errorCode = OH_HUKS_ERR_CODE_INTERNAL_ERROR;
             return ret;
         }
@@ -927,24 +920,21 @@ HUKS基于密钥会话来操作数据，使用密钥时基于以下流程：
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
-    uint32_t paramcount)
+    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
-    ret = OH_Huks_AddParams(*paramSet, params, paramcount);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    ret = OH_Huks_AddParams(*paramSet, params, paramCount);
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
@@ -1126,21 +1116,18 @@ OH_Huks_Result InitParamSet(
     uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
     ret = OH_Huks_AddParams(*paramSet, params, paramCount);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
@@ -1306,24 +1293,21 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
-    uint32_t paramcount)
+    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
-    ret = OH_Huks_AddParams(*paramSet, params, paramcount);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    ret = OH_Huks_AddParams(*paramSet, params, paramCount);
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
@@ -1621,27 +1605,25 @@ OH_Huks_Result InitParamSet(
     uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
     ret = OH_Huks_AddParams(*paramSet, params, paramCount);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     return ret;
 }
+
 static const uint32_t DERIVE_KEY_SIZE_32 = 32;
 static struct OH_Huks_Blob g_deriveKeyAlias = {
     (uint32_t)strlen("test_derive"),
@@ -1798,21 +1780,18 @@ OH_Huks_Result InitParamSet(
     uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
     }
 
     ret = OH_Huks_AddParams(*paramSet, params, paramCount);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
 
     ret = OH_Huks_BuildParamSet(paramSet);
-    if (ret.errorCode != OH_HUKS_SUCCESS)
-    {
+    if (ret.errorCode != OH_HUKS_SUCCESS) {
         OH_Huks_FreeParamSet(paramSet);
         return ret;
     }
