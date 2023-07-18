@@ -481,6 +481,96 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | TagInfo对象，用于获取不同技术类型的Tag对象。 |
 
+## tag.registerForegroundDispatch<sup>10+</sup>
+
+registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void;
+
+注册对NFC Tag前台应用读卡事件的监听，通过discTech设置支持的Tag技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用，如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+| discTech         |  number[]   | 是   | 前台分发模式支持的技术类型，每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（支持[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义), 技术类型定义中的其他技术类型不属于NFC读卡轮询的Tag技术类型）并关闭卡模拟；当数组长度为0时，同时关闭读卡轮询和卡模拟。 |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数。 |
+
+**示例：**
+
+示例请参见[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)接口的示例。
+
+## tag.unregisterForegroundDispatch<sup>10+</sup>
+
+unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void;
+
+取消注册对NFC Tag前台应用读卡事件的监听。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility'
+import tag from '@ohos.nfc.tag';
+
+let elementName = null;
+let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+function foregroundCb(tagInfo: any) {
+    console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+}
+
+export default class MainAbility extends UIAbility {
+    OnCreate(want, launchParam) {
+        console.log("OnCreate");
+        elementName = {
+            bundleName: want.bundleName,
+            abilityName: want.abilityName,
+            moduleName: want.moduleName
+        }
+    }
+
+    onForeground() {
+        console.log("onForeground");
+        try {
+            tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onBackground() {
+        console.log("onBackground");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onWindowStageDestroy() {
+        console.log("onWindowStageDestroy");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    // override other lifecycle functions
+}
+```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
