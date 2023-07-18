@@ -3387,7 +3387,7 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-、  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -3612,6 +3612,8 @@ try {
 | HALL                        | 10   | 霍尔传感器。           |
 | PROXIMITY                   | 12   | 接近光传感器。         |
 | HUMIDITY                    | 13   | 湿度传感器。           |
+| COLOR<sup>10+</sup>         | 14   | 颜色传感器。           |
+| SAR<sup>10+</sup>           | 15   | 吸收比率传感器。       |
 | ORIENTATION                 | 256  | 方向传感器。           |
 | GRAVITY                     | 257  | 重力传感器。           |
 | LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |

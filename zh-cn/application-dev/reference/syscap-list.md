@@ -1169,7 +1169,7 @@ usb服务
 
 ## SystemCapability.Sensors.Sensor.Lite
 
-传感器服务订阅
+轻量级传感器服务订阅
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1185,7 +1185,7 @@ usb服务
 
 ## SystemCapability.Sensors.MiscDevice.Lite
 
-小器件-振感
+轻量级小器件-振感
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
