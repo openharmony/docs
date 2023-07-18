@@ -490,7 +490,8 @@
       - [用户认证开发指导](security/userauth-guidelines.md)
     - 通用密钥库
       - [通用密钥库开发概述](security/huks-overview.md)
-      - [通用密钥库开发指导](security/huks-guidelines.md)
+      - [通用密钥库开发指导（ArkTS）](security/huks-guidelines.md)
+      - [通用密钥库开发指导（Native）](security/native-huks-guidelines.md)
       - [通用密钥库密码算法规格](security/huks-appendix.md)
     - 加解密算法库框架
       - [加解密算法库框架概述](security/cryptoFramework-overview.md)
