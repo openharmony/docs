@@ -1111,6 +1111,14 @@ TS/JS语言基础库
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
 
+## SystemCapability.FileManagement.File.FileIO.Lite
+
+轻量级基础文件IO接口
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
 ## SystemCapability.FileManagement.File.Environment
 
 环境相关接口
