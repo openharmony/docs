@@ -249,7 +249,7 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<void>): void
 
-使用指定的数据库文件配置删除数据库，使用callback异步回调。若数据库文件处于公共沙箱目录下，删除数据库时必须使用该接口。
+使用指定的数据库文件配置删除数据库，使用callback异步回调。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口。
 
 当在公共沙箱目录下创建数据库时，必需使用该接口删除数据库。
 
@@ -388,7 +388,7 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, config: StoreConfig): Promise<void>
 
-使用指定的数据库文件配置删除数据库，使用Promise异步回调。若数据库文件处于公共沙箱目录下，删除数据库时必须使用该接口。
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -470,7 +470,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID。<br/>**模型约束：** 此属性仅可在Stage模式下可用。<br/>从API version 10开始，支持此可选参数。当此参数不填时，默认在本应用沙箱目录下创建数据库。 |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。当此参数不填时，默认在本应用沙箱目录下创建数据库。 |
 
 ## SecurityLevel
 
@@ -3934,7 +3934,7 @@ try {
 
 on(event: string, supportShared: boolean, observer: Callback): void
 
-注册数据库的数据变更的事件监听。当调用[emit](#emit10)接口时，将调用回调。
+注册数据库的进程内或者进程间事件监听。当调用[emit](#emit10)接口时，将调用回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3952,7 +3952,6 @@ on(event: string, supportShared: boolean, observer: Callback): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 801          | Capability not supported.              |
 | 14800000     | Inner error.                           |
 | 14800050     | Failed to obtain subscription service. |
 
@@ -4053,7 +4052,6 @@ off(event: string, supportShared: boolean, observer?: Callback<void>): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 801          | Capability not supported.              |
 | 14800000     | Inner error.                           |
 | 14800050     | Failed to obtain subscription service. |
 

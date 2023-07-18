@@ -138,7 +138,7 @@ Failed to obtain subscription service.
 
 需通过日志信息确认错误发生原因。
 
-## 14801001 上下文环境非Stage模式
+## 14801001 上下文环境非Stage模型
 
 **错误信息**
 
@@ -146,21 +146,21 @@ Failed to obtain subscription service.
 
 **错误描述**
 
-该操作仅支持Stage模式。
+该操作仅支持Stage模型。
 
 **可能原因**
 
-当前上下文环境非Stage模式，比如FA模式。
+当前上下文环境非Stage模型。
 
 **处理步骤**
 
-请切换当前上下文环境，使用Stage模式。
+请切换当前上下文环境，使用Stage模型。
 
 ## 14801002 storeConfig中传入的dataGroupId参数非法
 
 **错误信息**
 
-The dataGroupId not valid.
+The dataGroupId is not valid.
 
 **错误描述**
 
