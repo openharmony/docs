@@ -3873,9 +3873,8 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options, (err, data) => {
-  console.error("listen callback error" + err);
-  console.log(JSON.stringify(data));
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
 });
 ```
 
@@ -3940,10 +3939,10 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options).then(data => {
-  console.log(JSON.stringify(data));
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
 }).catch(err => {
-  console.error(err);
+  console.log(err);
 });
 ```
 
@@ -3991,9 +3990,8 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options, (err, data) => {
-  console.error("listen callback error" + err);
-  console.log(JSON.stringify(data));
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
 });
 
 tlsServer.getState((err, data) => {
@@ -4048,10 +4046,10 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options).then(data => {
-  console.log(JSON.stringify(data));
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
 }).catch(err => {
-  console.error(err);
+  console.log(err);
 });
 let promise = tlsServer.getState();
 promise.then(() => {
@@ -4106,9 +4104,8 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options, (err, data) => {
-  console.error("listen callback error" + err);
-  console.log(JSON.stringify(data));
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
 });
 tlsServer.setExtraOptions({
   keepAlive: true,
@@ -4178,10 +4175,10 @@ let options = {
     cipherSuite: "AES256-SHA256",
   },
 };
-tlsServer.listen(options).then(data => {
-  console.log(JSON.stringify(data));
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
 }).catch(err => {
-  console.error(err);
+  console.log(err);
 });
 let promise = tlsServer.setExtraOptions({
   keepAlive: true,
