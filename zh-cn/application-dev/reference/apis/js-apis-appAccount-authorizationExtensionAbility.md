@@ -57,13 +57,23 @@ onStartAuthorization(request: AuthorizationRequest, callback: AuthorizationCallb
 **示例：**
 
 ```ts
+import appAccount from '@ohos.account.appAccount';
+
+class MyResponse extends appAccount.AccountCapabilityResponse {
+  name: string;
+  scopes: string[];
+
+  constructor(request: appAccount.AccountCapabilityRequest) {
+    super(request);
+  }
+};
+
 class MyAuthorizationExtensionAbility extends AuthorizationExtensionAbility {
   onStartAuthorization(request: AuthorizationRequest, callback: AuthorizationCallback) {
     console.log('onStartAuthorization, callerUid: ' + request.callerUid + ', parameters: ' + request.parameters);
-    let response = {
-        name: 'xxxx',
-        scopes: ['xxx', 'xxx']
-    };
+    let response = new MyResponse(null);
+    response.name = 'xxx';
+    response.scopes = ['xxx', 'xxx'];
     callback.onResult(null, response);
   }
 };
