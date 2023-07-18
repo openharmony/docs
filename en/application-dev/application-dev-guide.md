@@ -40,12 +40,12 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Data Management](database/data-mgmt-overview.md)
 - [File Management](file-management/file-management-overview.md)
 - [Task Management](task-management/background-task-overview.md)
-- [Device](device/usb-overview.md)
+- [Device Management](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-guidelines.md)
 - [Internationalization](internationalization/international-overview.md)
 - [Application Test](application-test/arkxtest-guidelines.md)
-- [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+- [IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
 ## Tools

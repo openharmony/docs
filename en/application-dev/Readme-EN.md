@@ -71,7 +71,7 @@
         - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
         - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
     - Rendering Control
-      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
+      - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
