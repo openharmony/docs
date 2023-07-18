@@ -138,7 +138,7 @@ async function example() {
 
 save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -177,7 +177,7 @@ async function example() {
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSaveOptions对象，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -213,7 +213,7 @@ async function example() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，返回保存文件的uri数组。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用callback异步返回形式，返回保存文件的uri数组。save接口会将文件保存在文件管理器，而不是图库。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

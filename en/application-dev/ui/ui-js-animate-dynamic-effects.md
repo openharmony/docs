@@ -4,11 +4,6 @@
 You can set the interpolator to implement the animation effect.
 
 
-> **NOTE**
->
-> This feature is supported since API version 6.
-
-
 ## Creating an Animation Object
 
 Use createAnimator to create an animation object and set the animation attributes by using the options parameter.

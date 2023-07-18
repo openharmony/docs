@@ -14,22 +14,23 @@
 ## 开发步骤
 
 详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
+如下为视频解码调用关系图：
+![Invoking relationship of video decode stream](figures/video-decode.png)
 
 1. 创建编解码器实例对象。
    
    应用可以通过名称或媒体类型创建解码器。
 
    ``` c++
-    // 通过 codecname 创建解码器
+    // 通过 codecname 创建解码器, 应用有特殊需求，比如选择支持某种分辨率规格的解码器，可先查询capability，再根据codec name创建解码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name); // name:"OH.Media.Codec.Decoder.Video.AVC"
+    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
    ```
    ```c++
     // 通过 mimetype 创建解码器
-    // 软/硬解: 创建 H264 解码器
+    // 软/硬解: 创建 H264 解码器，存在多个可选解码器时，系统会创建最合适的解码器
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // 通过 mimetype 创建解码器
     // 硬解: 创建 H265 解码器
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
    ```
@@ -62,22 +63,24 @@
    开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
    ``` c++
-    // 解码异常回调
+    // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // 解码码流变化回调
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+
+    // 解码数据流变化回调OH_AVCodecOnStreamChanged实现
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // 解码输入回调获取输入帧信息
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+
+    // 解码输入回调OH_AVCodecOnNeedInputData实现
+    static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
@@ -88,8 +91,9 @@
         signal_->inBufferQueue_.push(data);
         signal_->inCond_.notify_all();
     }
-    // 解码输出回调获取输出帧信息
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
+
+    // 解码输出回调OH_AVCodecOnNewOutputData实现
+    static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
                                         void *userData)
     {
         (void)codec;
@@ -102,7 +106,7 @@
         signal_->attrQueue_.push(*attr);
         signal_->outCond_.notify_all();
     }
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
    ```
@@ -177,7 +181,7 @@
    ``` c++
     // 配置 buffer info 信息
     OH_AVCodecBufferAttr info;
-    // 调用 Ffmpeg 接口 av_packet_alloc 进行初始化并返回一个容器 pkt
+    // 调用 FFmpeg 接口 av_packet_alloc 进行初始化并返回一个容器 pkt
     AVPacket pkt = av_packet_alloc();
     // 配置 info 的输入尺寸、偏移量、时间戳等字段信息
     info.size = pkt->size;

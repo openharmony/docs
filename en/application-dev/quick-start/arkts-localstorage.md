@@ -9,7 +9,7 @@ This topic describes only the LocalStorage application scenarios and related dec
 
 > **NOTE**
 >
-> This module is supported since API version 9.
+> LocalStorage is supported since API version 9.
 
 
 ## Overview

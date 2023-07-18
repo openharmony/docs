@@ -134,9 +134,3 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region);
     ```
-
-## 相关实例
-
-针对NativeWindow的使用，有以下相关实例可供参考：
-
-- [使用NativeWindow接口获取并提交Buffer](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/hello_native_window/hello_native_window.cpp)

@@ -161,9 +161,9 @@ In the stage model:
 
 ### postMessage<sup>9+</sup>
 
-postMessage(message: Object, transfer: ArrayBuffer[]): void;
+postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -171,8 +171,8 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                                        |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
 
 **Error codes**
 
@@ -181,7 +181,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -196,7 +196,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -204,8 +204,8 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
 
 **Error codes**
 
@@ -214,7 +214,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -617,7 +617,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+// The event listener created by addEventListener will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -792,7 +792,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+// The event listener created by addEventListener will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -849,16 +849,16 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                   |
-| -------- | ------------- | ---- | ------------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the host thread.                                 |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Error codes**
 
@@ -867,7 +867,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -897,7 +897,7 @@ workerPort.onmessage = function(e){
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -905,8 +905,8 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Error codes**
 
@@ -915,7 +915,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **Example**
 
@@ -1256,9 +1256,9 @@ In the stage model:
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(message: Object, transfer: ArrayBuffer[]): void;
+postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9) instead.
@@ -1267,10 +1267,10 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                           |
-| -------- | ------------- | ---- | ----------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                           |
-| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instances that can be transferred.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null.|
 
 **Example**
 
@@ -1285,7 +1285,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message to the worker thread. The data type of the message must be sequenceable. For details about the sequenceable data types, see [More Information](#more-information).
+Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1) instead.
@@ -1296,8 +1296,8 @@ Sends a message to the worker thread. The data type of the message must be seque
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the worker thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the worker thread and becomes unavailable in the host thread. The objects are available only in the worker thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the worker thread by copying data.|
 
 **Example**
 
@@ -1696,7 +1696,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: Transferable[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2).
@@ -1707,14 +1707,14 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| messageObject | Object                                    | Yes  | Message to be sent to the host thread.                                      |
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer| Transferable[]                            | Yes  | Currently, this parameter is not supported.                                        |
 
 ### postMessage<sup>9+</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership.
 
 > **NOTE**
 >
@@ -1724,10 +1724,10 @@ Sends a message to the host thread from the worker thread.
 
 **Parameters**
 
-| Name  | Type         | Mandatory| Description                                                 |
-| -------- | ------------- | ---- | ----------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the host thread.                               |
-| transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Example**
 
@@ -1756,7 +1756,7 @@ parentPort.onmessage = function(e){
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Sends a message to the host thread from the worker thread.
+Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3).
@@ -1767,8 +1767,8 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
+| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Example**
 
@@ -1893,7 +1893,7 @@ parentPort.onmessageerror = function(e) {
 
 ## PostMessageOptions
 
-Specifies the object whose ownership needs to be transferred during data transfer. The object must be **ArrayBuffer**.
+Defines the object for which the ownership is to be transferred during data transfer. The object must be an **ArrayBuffer** instance. After the ownership is transferred, the object becomes unavailable in the sender and can be used only in the receiver.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2091,19 +2091,20 @@ workerPort.onerror = function(e) {
 ```
 
 ### Memory Model
-The worker thread is implemented based on the actor model. In the worker interaction process, the JS main thread can create multiple worker threads, each of which are isolated and transfer data through sequentialization. They complete computing tasks and return the result to the main thread.
+The worker thread is implemented based on the actor model. In the worker interaction process, the JS main thread can create multiple worker threads, each of which are isolated and transfer data through serialization. They complete computing tasks and return the result to the main thread.
 
 Each actor concurrently processes tasks of the main thread. For each actor, there is a message queue and a single-thread execution module. The message queue receives requests from the main thread and other actors; the single-thread execution module serially processes requests, sends requests to other actors, and creates new actors. These isolated actors use the asynchronous mode and can run concurrently.
 
 ### Precautions
-- Currently, a maximum of seven workers can co-exist.
+- Currently, a maximum of eight workers can co-exist.
 - In API version 8 and earlier versions, when the number of **Worker** instances exceeds the upper limit, the error "Too many workers, the number of workers exceeds the maximum." is thrown.
-- Since API version 9, when the number of **Worker** instances exceeds the upper limit, the business error "Worker initialization failure, the number of workers exceeds the maximum" is thrown.
+- Since API version 9, when the number of **Worker** instances exceeds the upper limit, the business error "Worker initialization failure, the number of workers exceeds the maximum." is thrown.
 - To proactively destroy a worker thread, you can call **terminate()** or **parentPort.close()** of the newly created **Worker** instance.
 - Since API version 9, if a **Worker** instance in a non-running state (such as destroyed or being destroyed) calls an API, a business error is thrown.
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them.
 - Do not use both **new worker.Worker** and **new worker.ThreadWorker** to create a **Worker** project. Otherwise, **Worker** functions abnormally. Since API version 9, you are advised to use [new worker.ThreadWorker](#constructor9). In API version 8 and earlier versions, you are advised to use [new worker.Worker](#constructordeprecated).
 - When creating a **Worker** project, do not import any UI construction method (such as .ets file) to the worker thread file (for example, **worker.ts** used in this document). Otherwise, the worker module becomes invalid. To check whether any UI construction method has been imported, decompress the generated HAP file, find **worker.js** in the directory where the worker thread is created, and search for the keyword **View** globally. If the keyword exists, a UI construction method has been packaged in **worker.js**. If this is your case, change the directory level of **src** in the statement **import "xxx" from src** in the worker thread file.
+- A maximum of 16 MB data can be transferred during inter-thread communication.
 
 ## Sample Code
 > **NOTE**<br>

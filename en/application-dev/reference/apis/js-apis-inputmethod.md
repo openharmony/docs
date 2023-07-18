@@ -154,15 +154,15 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
-  | Type                                     | Description                        |
-  | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -218,7 +218,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY<br>**NOTE** <br>- API version 10 and later: This API can be called by system applications and the current input method application.<br>- API version 9: This API can be called by system applications only.
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+> **NOTE**
+>
+> - API version 10 and later: This API can be called by system applications and the current input method application.
+> - API version 9: This API can be called by system applications only.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -274,7 +279,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 Switches to another subtype of the current input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY<br>**NOTE** <br>- API version 10 and later: This API can be called by system applications and the current input method application.<br>- API version 9: This API can be called by system applications only.
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+> **NOTE**
+>
+> - API version 10 and later: This API can be called by system applications and the current input method application.
+> - API version 9: This API can be called by system applications only.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -705,7 +715,7 @@ try {
 
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
-Attaches a self-drawing component to the input method. This API uses an asynchronous callback to return the result.
+Attaches a self-drawing component to the input method. This API uses a promise to return the result.
 
 An input method can use the features provided by the input method framework only when it has a self-drawing component attached to it.
 
@@ -797,7 +807,7 @@ showTextInput(): Promise&lt;void&gt;
 
 Enters the text editing mode. This API uses a promise to return the result.
 
-This API can be called to start the soft keyboard after the editor component is bound to the input method.
+This API can be called to start the soft keyboard after the editor component is attached to the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1692,11 +1702,11 @@ Disables listening for the text insertion event of the input method.
 inputMethodController.off('insertText');
 ```
 
-### on('deleteLeft' | 'deleteRight')<sup>10+</sup>
+### on('deleteLeft')<sup>10+</sup>
 
-on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
+on(type: 'deleteLeft', callback: (length: number) => void): void
 
-Enables listening for the delete-to-the-left or delete-to-the-right event of the input method. This API uses an asynchronous callback to return the result.
+Enables listening for the backward delete event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1704,8 +1714,8 @@ Enables listening for the delete-to-the-left or delete-to-the-right event of the
 
 | Name  | Type| Mandatory| Description|
 | -------- | ----- | ---- | ----- |
-| type     | string  | Yes  | Listening type.<br>- The value **'deleteLeft'** indicates the delete-to-the-left event.<br>- The value **'deleteRight'** indicates the delete-to-the-right event.|
-| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted to the left or to the right.<br>Your application needs to operate the content in the edit box based on the length returned in the callback.|
+| type     | string  | Yes  | Listening type.<br>The value **'deleteLeft'** indicates the backward delete event.|
+| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted backward.<br>Your application needs to operate the content in the edit box based on the length returned in the callback.|
 
 **Error codes**
 
@@ -1725,7 +1735,34 @@ try {
 } catch(err) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
 }
+```
 
+### on('deleteRight')<sup>10+</sup>
+
+on(type: 'deleteRight', callback: (length: number) => void): void
+
+Enables listening for the forward delete event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description|
+| -------- | ----- | ---- | ----- |
+| type     | string  | Yes  | Listening type.<br>The value **'deleteRight'** indicates the forward delete event.|
+| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted forward.<br>Your application needs to operate the content in the edit box based on the length returned in the callback.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
+**Example**
+
+```js
 try {
   inputMethodController.on('deleteRight', (length) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
@@ -1734,12 +1771,11 @@ try {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
+### off('deleteLeft')<sup>10+</sup>
 
-### off('deleteLeft' | 'deleteRight')<sup>10+</sup>
+off(type: 'deleteLeft'): void
 
-off(type: 'deleteLeft' | 'deleteRight'): void
-
-Disables listening for the delete-to-the-left or delete-to-the-right event of the input method.
+Disables listening for the backward delete event.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1747,12 +1783,31 @@ Disables listening for the delete-to-the-left or delete-to-the-right event of th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type.<br>- The value **'deleteLeft'** indicates the delete-to-the-left event.<br>- The value **'deleteRight'** indicates the delete-to-the-right event.|
+| type   | string | Yes  | Listening type.<br>The value **'deleteLeft'** indicates the backward delete event.|
 
 **Example**
 
 ```js
 inputMethodController.off('deleteLeft');
+```
+
+### off('deleteRight')<sup>10+</sup>
+
+off(type: 'deleteRight'): void
+
+Disables listening for the forward delete event.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **'deleteRight'** indicates the forward delete event.|
+
+**Example**
+
+```js
 inputMethodController.off('deleteRight');
 ```
 
@@ -2062,6 +2117,180 @@ Disables listening for the select-by-cursor-movement event.
 inputMethodController.off('selectByMovement');
 ```
 
+### on('getLeftTextOfCursor')<sup>10+</sup>
+
+on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
+
+Enables listening for the event of obtaining the length of text deleted backward. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Listening type.<br>The value **'getLeftTextOfCursor'** indicates the event of obtaining the length of text deleted backward.|
+| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted backward.<br>In this callback, obtain the text of the specified length on the left of the cursor in the latest state of the edit box and return the text.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.on('getLeftTextOfCursor', (length) => {
+    console.info(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
+    let text:string = "";
+    return text;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getLeftTextOfCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+### off('getLeftTextOfCursor')<sup>10+</sup>
+
+off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
+
+Disables listening for the event of obtaining the length of text deleted backward. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **'getLeftTextOfCursor'** indicates the event of obtaining the length of text deleted backward.|
+| callback | (length: number) => string | No | Callback used to obtain the text of the specified length deleted backward. The value must be the same as that passed in by the **on** API.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.off('getLeftTextOfCursor', (length) => {
+    console.info(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
+    let text:string = "";
+    return text;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getLeftTextOfCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+### on('getRightTextOfCursor')<sup>10+</sup>
+
+on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
+
+Enables listening for the event of obtaining the length of text deleted forward. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Listening type.<br>The value **'getRightTextOfCursor'** indicates the event of obtaining the length of text deleted forward.|
+| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted forward.<br>In this callback, obtain the text of the specified length on the right of the cursor in the latest state of the edit box and return the text.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.on('getRightTextOfCursor', (length) => {
+    console.info(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
+    let text:string = "";
+    return text;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getRightTextOfCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+### off('getRightTextOfCursor')<sup>10+</sup>
+
+off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
+
+Disables listening for the event of obtaining the length of text deleted forward. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **'getRightTextOfCursor'** indicates the event of obtaining the length of text deleted forward.|
+| callback | (length: number) => string | No | Callback used to obtain the text of the specified length deleted forward. The value must be the same as that passed in by the **on** API.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.off('getRightTextOfCursor', (length) => {
+    console.info(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
+    let text:string = "";
+    return text;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getRightTextOfCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+### on('getTextIndexAtCursor')<sup>10+</sup>
+
+on(type: 'getTextIndexAtCursor', callback: () => number): void;
+
+Enables listening for the event of obtaining the index of text at the cursor. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Listening type.<br>The value **'getTextIndexAtCursor'** indicates the event of obtaining the index of text at the cursor.|
+| callback | () => number | Yes  | Callback used to obtain the index of text at the cursor.<br>In this callback, obtain the index of text at the cursor in the latest state of the edit box and return the index.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.on('getTextIndexAtCursor', () => {
+    console.info(`Succeeded in subscribing getTextIndexAtCursor.`);
+    let index:number = 0;
+    return index;
+  });
+} catch(err) {
+  console.error(`Failed to subscribe getTextIndexAtCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+### off('getTextIndexAtCursor')<sup>10+</sup>
+
+off(type: 'getTextIndexAtCursor', callback?: () => number): void;
+
+Disables listening for the event of obtaining the index of text at the cursor. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **'getTextIndexAtCursor'** indicates the event of obtaining the index of text at the cursor.|
+| callback | () => number | No | Callback used to obtain the index of text at the cursor. The value must be the same as that passed in by the **on** API.|
+
+**Example**
+
+```js
+try {
+  inputMethodController.off('getTextIndexAtCursor', () => {
+    console.info(`Succeeded in unsubscribing getTextIndexAtCursor.`);
+    let index:number = 0;
+    return index;
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing getTextIndexAtCursor. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 In the following API examples, you must first use [getSetting](#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
@@ -2110,11 +2339,11 @@ Disables listening for the input method and subtype change event. This API uses 
 inputMethodSetting.off('imeChange');
 ```
 
-### on('imeShow'|'imeHide')<sup>10+</sup>
+### on('imeShow')<sup>10+</sup>
 
-on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 
-Enables listening for a soft keyboard visibility event of the input method. This API uses an asynchronous callback to return the result.
+Enables listening for the show event of the soft keyboard. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2124,7 +2353,7 @@ Enables listening for a soft keyboard visibility event of the input method. This
 
 | Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---- |
-| type     | string | Yes| Listening type.<br>- The value **'imeShow'** indicates the soft keyboard display event.<br>- The value **'imeHide'** indicates the soft keyboard hiding event.|
+| type     | string | Yes| Listening type.<br>The value **'imeShow'** indicates the show event of the soft keyboard.|
 | callback | (info: Array\<InputWindowInfo>) => void | Yes| Callback used to return the information about the soft keyboard of the input method.|
 
 **Example**
@@ -2135,11 +2364,36 @@ inputMethodSetting.on('imeShow', (info) => {
 });
 ```
 
-### off('imeShow'|'imeHide')<sup>10+</sup>
+### on('imeHide')<sup>10+</sup>
 
-off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 
-Disables listening for a soft keyboard visibility event of the input method.
+Enables listening for the hide event of the soft keyboard. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description|
+| -------- | ---- | ---- | ---- |
+| type     | string | Yes| Listening type.<br>The value **'imeHide'** indicates the hide event of the soft keyboard.|
+| callback | (info: Array\<InputWindowInfo>) => void | Yes| Callback used to return the information about the soft keyboard of the input method.|
+
+**Example**
+
+```js
+inputMethodSetting.on('imeHide', (info) => {
+    console.info('Succeeded in subscribing imeHide event.');
+});
+```
+
+### off('imeShow')<sup>10+</sup>
+
+off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+Disables listening for the show event of the soft keyboard.
 
 **System API**: This is a system API.
 
@@ -2149,13 +2403,36 @@ Disables listening for a soft keyboard visibility event of the input method.
 
 | Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes| Listening type.<br>- The value **'imeShow'** indicates the soft keyboard display event.<br>- The value **'imeHide'** indicates the soft keyboard hiding event.|
+| type     | string | Yes| Listening type.<br>The value **'imeShow'** indicates the show event of the soft keyboard.|
 | callback | (info: Array\<InputWindowInfo>) => void  | No| Callback used for disable listening. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
 
 **Example**
 
 ```js
 inputMethodSetting.off('imeShow');
+```
+
+### off('imeHide')<sup>10+</sup>
+
+off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+Disables listening for the hide event of the soft keyboard.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description  |
+| -------- | ---- | ---- | ------ |
+| type     | string | Yes| Listening type.<br>The value **'imeHide'** indicates the hide event of the soft keyboard.|
+| callback | (info: Array\<InputWindowInfo>) => void  | No| Callback used for disable listening. If this parameter is not specified, all callbacks corresponding to the set event are invoked.|
+
+**Example**
+
+```js
+inputMethodSetting.off('imeHide');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>

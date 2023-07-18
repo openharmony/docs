@@ -34,6 +34,16 @@ Allows an application to pair with a Bluetooth device and access the Contacts or
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.ACCESS_BLUETOOTH
+
+Allows an application to access Bluetooth and use Bluetooth capabilities, such as pairing and connecting to peripheral devices.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Enable ACL**: FALSE
+
 ## ohos.permission.INTERNET
 
 Allows an application to access the Internet.
@@ -394,6 +404,16 @@ Allows an application to call the update APIs.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.UPDATE_MIGRATE
+
+Allows data migration during the update process.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.FACTORY_RESET
 
 Allows an application to call the API for restoring factory settings.
@@ -496,7 +516,7 @@ Allows an application to read data from a gyroscope sensor or uncalibrated gyros
 
 ## ohos.permission.INSTALL_BUNDLE
 
-Allows an application to install and uninstall other applications (except enterprise InHouse applications).
+Allows an application to install and uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.
 
 **Permission level**: system_core
 
@@ -654,6 +674,16 @@ Allows an application to obtain network information or modify network settings.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.MANAGE_VPN
+
+Allows an application to start or stop the VPN.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
 ## ohos.permission.MANAGE_NET_STRATEGY
 
 Allows an application to obtain network strategy information or modify network strategy settings.
@@ -663,6 +693,16 @@ Allows an application to obtain network strategy information or modify network s
 **Authorization mode**: system_grant
 
 **Enable via ACL**: TRUE
+
+## ohos.permission.GET_NETWORK_STATS
+
+Allows an application to obtain historical traffic information and listen for traffic changes.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -1074,6 +1114,16 @@ Allows a device administrator application to manage the network.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
+
+Allows the device to set or cancel browser policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1226,7 +1276,7 @@ Allows an application to send messages.
 
 ## ohos.permission.WRITE_CALENDAR
 
-Allows an application to add, remove, and modify calendar events.
+Allows an application to add, remove, and modify Calendar events.
 
 **Permission level**: normal
 
@@ -1470,7 +1520,7 @@ Allows access to the images or video files in a user's directory.
 
 ## ohos.permission.READ_AUDIO
 
-Allows access to the audio files in a user's directory.
+Allows access to the audio files in a user directory.
 
 **Permission level**: system_basic
 
@@ -1480,7 +1530,7 @@ Allows access to the audio files in a user's directory.
 
 ## ohos.permission.READ_DOCUMENT
 
-Allows access to the files in a user's directory.
+Allows access to the files in a user directory.
 
 **Permission level**: system_basic
 
@@ -1500,7 +1550,7 @@ Allows modification to the images or video files in a user's directory.
 
 ## ohos.permission.WRITE_AUDIO
 
-Audio modification to the audio files in a user's directory.
+Allows modification to the audio files in a user directory.
 
 **Permission level**: system_basic
 
@@ -1660,7 +1710,7 @@ Allows an application to read all calendar information.
 
 ## ohos.permission.WRITE_WHOLE_CALENDAR
 
-Allows an application to add, remove, or change all calendar events.
+Allows an application to add, remove, or change all Calendar events.
 
 **Permission level**: system_basic
 
@@ -1696,7 +1746,7 @@ Allows an application to mount and unmount external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -1706,7 +1756,7 @@ Allows an application to format external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.STORAGE_MANAGER
 
@@ -1780,7 +1830,7 @@ Allows a system application to obtain the authentication and networking capabili
 
 ## ohos.permission.APP_TRACKING_CONSENT
 
-Allows an application to read advertisement identifiers.
+Allows an application to read the open anonymous device identifier (OAID).
 
 **Permission level**: normal
 
@@ -1810,7 +1860,7 @@ Allows an application to publish system common events.
 
 ## ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-Allows an application to call the system API of the lock screen service.
+Allows an application to use the lock screen service to lock the screen, send a screen lock event, and invoke the system event callback.
 
 **Permission level**: system_core
 
@@ -1896,7 +1946,7 @@ Allows the application proxy to authorize the URI.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
@@ -2097,3 +2147,73 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 **Authorization mode**: system_grant
 
 **Enable ACL**: FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+Allows an application to interact with the user authentication framework and register ExtensionAbilities.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.ACCESS_BUNDLE_DIR
+
+Allows an application to access the installation directory of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+
+Allows an application to capture the downlink voice audio.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+Allows an application to access the intelligent voice service interfaces.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
+
+Allows an enterprise MDM bundle to be installed on enterprise devices.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE
+
+Allows an enterprise Normal bundle to be installed on enterprise devices.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.INSTALL_SELF_BUNDLE
+
+Allows automatic updates of the enterprise MDM applications on enterprise devices.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE

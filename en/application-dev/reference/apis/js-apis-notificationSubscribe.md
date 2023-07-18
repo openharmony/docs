@@ -665,10 +665,12 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name | Type  | Read-only| Mandatory| Description    |
-| ----- | ------ | ---- | --- | -------- |
-| id    | number | No | Yes | Notification ID.  |
-| label | string | No | No | Notification label.|
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name | Type  | Mandatory| Description    |
+| ----- | ------ | --- | -------- |
+| id    | number | Yes | Notification ID.  |
+| label | string | No | Notification label.|
 
 ## RemoveReason
 

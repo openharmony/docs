@@ -23,12 +23,17 @@ The size attributes set the width, height, and margin of a component.
 
 | Size Arrangement                                    | Result                |
 | ---------------------------------------- | ------------------ |
-| minWidth/minHeight < width/height< maxWidth/maxHeight | width/height       |
+| minWidth/minHeight < width/height < maxWidth/maxHeight | width/height       |
 | minWidth/minHeight < maxWidth/maxHeight  < width/height | maxWidth/maxHeight |
 | maxWidth/maxHeight < minWidth/minHeight  < width/height | minWidth/minHeight |
-| maxWidth/maxHeight < width/height< minWidth/minHeight | minWidth/minHeight |
+| maxWidth/maxHeight < width/height < minWidth/minHeight | minWidth/minHeight |
 | width/height      < maxWidth/maxHeight  < minWidth/minHeight | minWidth/minHeight |
 | width/height       < minWidth/minHeight  < maxWidth/maxHeight | minWidth/minHeight |
+| minWidth/minHeight = maxWidth/maxHeight | minWidth/minHeight       |
+| minWidth/minHeight < maxWidth/maxHeight  = width/height | maxWidth/maxHeight |
+| maxWidth/maxHeight < minWidth/minHeight  = width/height | minWidth/minHeight |
+| width/height = minWidth/minHeight < maxWidth/maxHeight | minWidth/minHeight |
+| width/height = maxWidth/maxHeight < minWidth/minHeight  | minWidth/minHeight |
 ## Example
 
 ```ts
@@ -71,6 +76,11 @@ struct SizeExample {
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
+      // calc calculation feature
+      Text('calc:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('calc test').fontSize(50).fontWeight(FontWeight.Bold).backgroundColor(0xFFFAF0).textAlign(TextAlign.Center)
+        .margin('calc(25vp*2)')
+        .size({width:'calc(90%)', height:'calc(50vp + 10%)'})
     }.width('100%').margin({ top: 5 })
   }
 }

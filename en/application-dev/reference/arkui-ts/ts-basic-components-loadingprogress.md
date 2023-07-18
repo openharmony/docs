@@ -24,7 +24,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Default value: **'#99666666'**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| enableLoading<sup>10+</sup> | boolean | Whether to show the loading animation.<br>Default value: **true**<br>**NOTE**<br> The component still takes up space in the layout when the loading animation is not shown.<br>While the universal attribute **Visibility.Hidden** hides the entire component, including borders and paddings, **enableLoading=false** hides the loading animation only.|
 
 ## Example
 

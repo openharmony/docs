@@ -3,9 +3,8 @@
 
 Provides APIs for obtaining pixel map data and information.
 
-To use the APIs in this file, **libpixelmap_ndk.z.so** is required.
-
 @Syscap SystemCapability.Multimedia.Image
+
 
 **Since**
 
@@ -19,7 +18,7 @@ To use the APIs in this file, **libpixelmap_ndk.z.so** is required.
 
 | Name| Description|
 | -------- | -------- |
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>File to include: <multimedia/image_framework/image_pixel_map_napi.h> |
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>**File to include**: <multimedia/image_framework/image_pixel_map_napi.h><br>**Library**: libpixelmap_ndk.z.so|
 
 
 ### Structs
@@ -87,7 +86,7 @@ Defines the data type name of the native pixel map.
 
 **Since**
 
-9
+10
 
 
 ## Enum Description
@@ -151,7 +150,7 @@ Enumerates the pixel map alpha types.
 
 **Since**
 
-9
+10
 
 ### anonymous enum
 
@@ -170,7 +169,7 @@ Enumerates the pixel map scale modes.
 
 **Since**
 
-9
+10
 
 
 ### anonymous enum
@@ -190,7 +189,7 @@ Enumerates the pixel map editing types.
 
 **Since**
 
-9
+10
 
 
 ## Function Description
@@ -225,6 +224,7 @@ UnAccessPixels
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 **Since**
+
 8
 
 
@@ -287,7 +287,7 @@ CreateAlphaPixelMap
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -320,7 +320,7 @@ CreatePixelMap
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_Crop()
@@ -353,7 +353,7 @@ Crop
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_Flip()
@@ -384,7 +384,7 @@ Flip
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -414,7 +414,7 @@ GetBytesNumberPerRow
 
 **Since**
 
-9
+10
 
 ### OH_PixelMap_GetDensity()
 
@@ -443,7 +443,7 @@ GetDensity
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_GetIsEditable()
@@ -473,7 +473,7 @@ GetIsEditable
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -503,7 +503,7 @@ InitNativePixelMap
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -533,7 +533,7 @@ IsSupportAlpha
 
 **Since**
 
-9
+10
 
 
 
@@ -564,7 +564,7 @@ Rotate
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_Scale()
@@ -595,7 +595,7 @@ Scale
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -625,7 +625,7 @@ SetAlphaAble
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_SetDensity()
@@ -655,7 +655,7 @@ GetDensity
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_SetOpacity()
@@ -685,7 +685,7 @@ SetOpacity
 
 **Since**
 
-9
+10
 
 
 ### OH_PixelMap_Translate()
@@ -716,7 +716,7 @@ Translate
 
 **Since**
 
-9
+10
 
 
 ### OH_UnAccessPixels()

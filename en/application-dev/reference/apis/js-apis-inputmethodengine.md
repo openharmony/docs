@@ -504,7 +504,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Error Code ID  | Error Message                      |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **Example**
 
@@ -552,7 +552,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Error Code ID  | Error Message                      |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **Example**
 
@@ -726,6 +726,57 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
   console.log('delete keyDown notification.');
   return true;
 });
+```
+
+### on('keyEvent')<sup>10+</sup>
+
+on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
+
+Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Listening type.<br>The value **'keyEvent'** indicates the keyboard event.|
+| callback | function | Yes  | Callback used to return the result.<br>- The input parameter, of the [InputKeyEvent](js-apis-keyevent.md#KeyEvent) type, indicates the key event information.<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
+
+**Example**
+
+```js
+inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent) => {
+  console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
+  console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+  console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+  return true;
+});
+```
+
+### off('keyEvent')<sup>10+</sup>
+
+off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
+
+Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Listening type.<br>The value **'keyEvent'** indicates the keyboard event.|
+| callback | function | No  | Callback to be unregistered.<br>- The input parameter, of the [InputKeyEvent](js-apis-keyevent.md#KeyEvent) type, indicates the key event information.<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.<br>- This parameter is optional. If this parameter is not specified, all callbacks registered for the event will be unregistered.|
+
+**Example**
+
+```js
+inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent) => {
+  console.log('This is a callback function which will be deregistered.');
+  return true;
+});
+inputMethodEngine.getKeyboardDelegate().off('keyEvent');
 ```
 
 ### on('cursorContextChange')
@@ -1147,7 +1198,7 @@ This API does not work on panels in the FLG_FIXED state.
 
 ```js
 try {
-  let promise = windowClass.moveTo(300, 300);
+  let promise = panel.moveTo(300, 300);
   promise.then(() => {
     console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
@@ -1260,11 +1311,11 @@ promise.then(() => {
 });
 ```
 
-### on<sup>10+</sup>
+### on('show')<sup>10+</sup>
 
-on(type: 'show' | 'hide', callback: () => void): void
+on(type: 'show', callback: () => void): void
 
-Enables listening for a panel visibility event. This API uses an asynchronous callback to return the result.
+Enables listening for the show event of this panel. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1272,7 +1323,7 @@ Enables listening for a panel visibility event. This API uses an asynchronous ca
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
+| type | string | Yes| Listening type.<br>The value **'show'** indicates the show event.|
 | callback | () => void | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1283,11 +1334,11 @@ panel.on('show', () => {
 });
 ```
 
-### off<sup>10+</sup>
+### on('hide')<sup>10+</sup>
 
-off(type: 'show' | 'hide', callback?: () => void): void
+on(type: 'hide', callback: () => void): void
 
-Disables listening for a panel visibility event. This API uses an asynchronous callback to return the result.
+Enables listening for the hide event of this panel. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1295,13 +1346,57 @@ Disables listening for a panel visibility event. This API uses an asynchronous c
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
+| type | string | Yes| Listening type.<br>The value **'hide'** indicates the hide event.|
+| callback | () => void | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+panel.on('hide', () => {
+  console.log('Panel is hiding.');
+});
+```
+
+### off('show')<sup>10+</sup>
+
+off(type: 'show', callback?: () => void): void
+
+Disables listening for the show event of this panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | Yes| Listening type.<br>The value **'show'** indicates the show event.|
 | callback | () => void | No  | Callback used to return the result.|
 
 **Example**
 
 ```js
 panel.off('show');
+```
+
+### off('hide')<sup>10+</sup>
+
+off(type: 'hide', callback?: () => void): void
+
+Disables listening for the hide event of this panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | Yes| Listening type.<br>The value **'hide'** indicates the hide event.|
+| callback | () => void | No  | Callback used to return the result.|
+
+**Example**
+
+```js
+panel.off('hide');
 ```
 
 ### changeFlag<sup>10+</sup>
@@ -2487,7 +2582,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -2523,7 +2618,7 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value. For detail, see [KeyCode](js-apis-keycode.md#keycode).|
+| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](js-apis-keycode.md#keycode).|
 | keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>
