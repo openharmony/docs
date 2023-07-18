@@ -16,7 +16,7 @@ import common from '@ohos.app.ability.common';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 参数名           | 类型       | 必填   | 说明                        |
+|    名称      | 类型       | 必填   | 说明                        |
 | ------------ | -------- | ---- | ------------------------- |
 | onConnect<sup>7+</sup>    | function | 是    | 建立连接时的回调函数。      |
 | onDisconnect<sup>7+</sup> | function | 是    | 断开连接时的回调函数。           |

@@ -57,18 +57,18 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
-  let path = this.context.filesDir + '/newDir';
-  await fileio.mkdir(path, function (err) {
+  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+  fileio.mkdir(path, function (err) {
     if (err) {
-      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+      console.log("mkdir error"+err.message)
     } else {
-      hilog.info(0x0000, 'testTag', "mkdir succeed");
+      console.log("mkdir succeed")
     }
   });
   let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
-      console.log("result.code = " + result.code)
-  }) 
+    console.log("result.code = " + result.code)
+  })
   ```
 
 
@@ -119,20 +119,21 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
-  let path = this.context.filesDir + '/newDir';
-  await fileio.mkdir(path, function (err) {
+  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+
+  fileio.mkdir(path, function (err) {
     if (err) {
-      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+      console.log("mkdir error"+err.message)
     } else {
-      hilog.info(0x0000, 'testTag', "mkdir succeed");
+      console.log("mkdir succeed")
     }
   });
   let uri = fileUri.getUriFromPath(path);
-  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
-  .then((data) => {
+  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
+    .then((data) => {
       console.log('Verification succeeded.' + data)
-  }).catch((error) => {
-      console.log('Verification failed.');
+    }).catch((error) => {
+    console.log('Verification failed.');
   })
   ```
 ## uriPermissionManager.revokeUriPermission
