@@ -3342,7 +3342,7 @@ open接口flags参数常量。文件打开标签。
 | NOFOLLOW | number | 0o400000    | 如果path指向符号链接，则出错。 |
 | SYNC | number | 0o4010000    | 以同步IO的方式打开文件。 |
 
-## Filter
+## Filter<sup>10+</sup>
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
