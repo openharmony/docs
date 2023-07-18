@@ -1,6 +1,6 @@
 # 使用OHAudio开发音频播放功能
 
-OHAudio是OpenHarmony在API version 10中引入的一套全新Naitve API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
+OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
 ## 使用入门
 

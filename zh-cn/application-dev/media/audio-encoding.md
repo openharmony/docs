@@ -47,7 +47,7 @@
     ```
 
     ```cpp
-    //通过 codecname 创建编码器
+    //通过媒体类型创建编码器
     OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC); 
     ```
 
