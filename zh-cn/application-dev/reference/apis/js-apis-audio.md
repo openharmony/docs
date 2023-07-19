@@ -3000,8 +3000,8 @@ isVolumeUnadjustable(): boolean
 **示例：**
 
 ```js
-bool switch = audioVolumeGroupManager.isVolumeUnadjustable();
-console.info(`Whether it is volume unadjustable: ${switch}.`);
+bool volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
 ### adjustVolumeByStep<sup>10+</sup>
@@ -3024,6 +3024,15 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
 
 **示例：**
 
@@ -3063,6 +3072,15 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
+
 **示例：**
 
 ```js
@@ -3094,6 +3112,15 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
 | adjustType | [VolumeAdjustType](#volumeadjusttype10) | 是   | 音量调节方向。                                             |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
 
 **示例：**
 
@@ -3133,6 +3160,15 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
+
 **示例：**
 
 ```js
@@ -3160,7 +3196,16 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
 | volumeLevel | number                         | 是   | 音量等级。                                               |
 | device     | [DeviceType](#devicetype)           | 是   | 设备类型。                                               |
-| callback   | AsyncCallback&lt;number&gt;           | 是   | 回调返回对应的音量增益DB值。                              |
+| callback   | AsyncCallback&lt;number&gt;           | 是   | 回调返回对应的音量增益dB值。                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
 
 **示例：**
 
@@ -3177,7 +3222,7 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
 
-获取音量增益DB值，使用Promise方式异步返回结果。
+获取音量增益dB值，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -3195,7 +3240,16 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;number&gt; | Promise回调返回对应的音量增益DB值。 |
+| Promise&lt;number&gt; | Promise回调返回对应的音量增益dB值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error                     |
+| 6800301 | System error                                |
 
 **示例：**
 
@@ -5520,7 +5574,7 @@ getMinStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMinStreamVolume().then(value => {
+audioRenderer.getMinStreamVolume().then((value) => {
   console.info(`Get min stream volume Success! ${value}`);
 }).catch((err) => {
   console.error(`Get min stream volume Fail: ${err}`);
@@ -5569,7 +5623,7 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getMaxStreamVolume().then(value => {
+audioRenderer.getMaxStreamVolume().then((value) => {
   console.info(`Get max stream volume Success! ${value}`);
 }).catch((err) => {
   console.error(`Get max stream volume Fail: ${err}`);
@@ -5618,7 +5672,7 @@ getUnderflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-audioRenderer.getUnderflowCount().then(value => {
+audioRenderer.getUnderflowCount().then((value) => {
   console.info(`Get underflow count Success! ${value}`);
 }).catch((err) => {
   console.error(`Get underflow count Fail: ${err}`);
@@ -5644,16 +5698,16 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 ```js
 audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
   if (err) {
-      console.error(`getCurrentOutputDevices Fail: ${err}`);
+    console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
-      console.info(`DeviceInfo id: ${deviceInfo.id}`);
-      console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-      console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-      console.info(`DeviceInfo name: ${descriptor.name}`);
-      console.info(`DeviceInfo address: ${descriptor.address}`);
-      console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-      console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-      console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+    console.info(`DeviceInfo id: ${deviceInfo.id}`);
+    console.info(`DeviceInfo type: ${descriptor.deviceType}`);
+    console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
+    console.info(`DeviceInfo name: ${descriptor.name}`);
+    console.info(`DeviceInfo address: ${descriptor.address}`);
+    console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
   }
 });
 ```
@@ -5669,12 +5723,12 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;AudioDeviceDescriptors&gt;| Promise回调返回音频流的输出设备描述符。|
+| Promise&lt;AudioDeviceDescriptors&gt;| Promise回调返回音频流的输出设备描述信息 |
 
 **示例：**
 
 ```js
-audioRenderer.getCurrentOutputDevices().then(deviceInfo => {
+audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
   console.info(`DeviceInfo id: ${deviceInfo.id}`);
   console.info(`DeviceInfo type: ${descriptor.deviceType}`);
   console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
@@ -5925,7 +5979,6 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch              |
 | 6800101 | if input parameter value error              |
 
 **示例：**
@@ -5933,10 +5986,10 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 ```js
 audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
   if (err) {
-      console.error(`Subscribes output device change event callback Fail: ${err}`);
-    } else {
-      console.info(`Subscribes output device change event callback Success!`);
-    }
+    console.error(`Subscribes output device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Subscribes output device change event callback Success!`);
+  }
 });
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -5958,7 +6011,6 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch  |
 | 6800101 | if input parameter value error              |
 
 **示例：**
@@ -5966,10 +6018,10 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 ```js
 audioRenderer.off('outputDeviceChange', (deviceChangeInfo) => {
   if (err) {
-      console.error(`Unsubscribes output device change event callback Fail: ${err}`);
-    } else {
-      console.info(`Unsubscribes output device change event callback Success!`);
-    }
+    console.error(`Unsubscribes output device change event callback Fail: ${err}`);
+  } else {
+    console.info(`Unsubscribes output device change event callback Success!`);
+  }
 });
 ```
 
