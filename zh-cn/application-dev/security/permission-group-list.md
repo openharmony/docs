@@ -85,5 +85,4 @@
 
 ## 读取已安装应用列表
 
-- ohos.permission.APP_TRACKING_CONSENT
 - ohos.permission.GET_INSTALLED_BUNDLE_LIST
