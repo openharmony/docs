@@ -9,7 +9,7 @@ The **vibrator** module provides APIs for starting or stopping vibration.
 
 ## Modules to Import
 
-```js
+```ts
 import vibrator from '@ohos.vibrator';
 ```
 
@@ -41,24 +41,25 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 
 **Example**
 
-```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -95,24 +96,25 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -133,40 +135,41 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Start vibration at a fixed duration.
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  // Start vibration at a fixed duration.
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 
 try {
-    // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
-        if (error) {
-            console.log('error.code' + error.code + 'error.message' + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate successful.');
-    })
+  // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
 } catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -192,36 +195,37 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Start vibration at a fixed duration.
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  // Start vibration at a fixed duration.
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
 
 try {
-    // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-        console.log('Promise returned to indicate a successful vibration.');
-    }, (error) => {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    });
+  // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -241,40 +245,41 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Start vibration at a fixed duration.
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000,
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }, (error) => {
-        if (error) {
-            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate a successful vibration.');
-    });
+  // Start vibration at a fixed duration.
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
 } catch (error) {
-    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 
 try {
-    // Stop vibration in all modes.
-    vibrator.stopVibration(function (error) {
-        if (error) {
-            console.log('error.code' + error.code + 'error.message' + error.message);
-            return;
-        }
-        console.log('Callback returned to indicate successful.');
-    })
+  // Stop vibration in all modes.
+  vibrator.stopVibration(function (error) {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
 } catch (error) {
-    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -294,36 +299,37 @@ Stops vibration in all modes. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Start vibration at a fixed duration.
-    vibrator.startVibration({
-        type: 'time',
-        duration: 1000
-    }, {
-        id: 0,
-        usage: 'alarm'
-    }).then(() => {
-        console.log('Promise returned to indicate a successful vibration');
-    }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
-    });
+  // Start vibration at a fixed duration.
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (error) {
-    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 
 try {
-    // Stop vibration in all modes.
-    vibrator.stopVibration().then(() => {
-        console.log('Promise returned to indicate a successful vibration.');
-    }, (error) => {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    });
+  // Stop vibration in all modes.
+  vibrator.stopVibration().then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
 } catch (error) {
-    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -342,40 +348,41 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Check whether 'haptic.clock.timer' is supported.
-    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
-        if (err) {
-            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
-            return;
-        }
-        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-        if (state) {
-            try {
-                vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
-                    type: 'preset',
-                    effectId: 'haptic.clock.timer',
-                    count: 1,
-                }, {
-                    usage: 'unknown'
-                }, (error) => {
-                    if(error) {
-                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
-                    } else {
-                        console.log('haptic.clock.timer vibrator success');
-                    }
-                });
-            } catch (error) {
-                console.error('Exception in, error:' + JSON.stringify(error));
-            }
-        }
-    })
+  // Check whether 'haptic.clock.timer' is supported.
+  vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+    if (err) {
+      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeed in querying effect');
+    if (state) {
+      try {
+        vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'unknown'
+        }, (error) => {
+          if (error) {
+            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+          } else {
+            console.info('Succeed in starting vibration');
+          }
+        });
+      } catch (error) {
+        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+      }
+    }
+  })
 } catch (error) {
-    console.error('Exception in, error:' + JSON.stringify(error));
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -399,36 +406,37 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 **Example**
 
-  ```js
+```ts
 import vibrator from '@ohos.vibrator';
+
 try {
-    // Check whether 'haptic.clock.timer' is supported.
-    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
-        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-        if (state) {
-            try {
-                vibrator.startVibration({
-                    type: 'preset',
-                    effectId: 'haptic.clock.timer',
-                    count: 1,
-                }, {
-                    usage: 'unknown'
-                }).then(()=>{
-                    console.log('Promise returned to indicate a successful vibration');
-                }).catch((error)=>{
-                    console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
-                });
-            } catch (error) {
-                console.error('Exception in, error:' + JSON.stringify(error));
-            }
-        }
-    }, (error) => {
-        console.error('isSupportEffect failed, error:' + JSON.stringify(error));
-    })
+  // Check whether 'haptic.clock.timer' is supported.
+  vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+    console.info(`The query result is ${state}`);
+    if (state) {
+      try {
+        vibrator.startVibration({
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'unknown'
+        }).then(() => {
+          console.info('Succeed in starting vibration');
+        }).catch((error) => {
+          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+        });
+      } catch (error) {
+        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+      }
+    }
+  }, (error) => {
+    console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
+  })
 } catch (error) {
-    console.error('Exception in, error:' + JSON.stringify(error));
+  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
-  ```
+```
 
 ## EffectId
 
@@ -489,7 +497,7 @@ Describes the vibration with a preset effect.
 
 ## VibrateFromFile<sup>10+</sup>
 
-Describes the custom vibration type, which is supported only by certain devices.
+Describes the custom vibration type, which is supported only by certain devices. If a device does not support this vibration type, [an error code indicating unsupported device](../errorcodes/errorcode-universal.md) is returned.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -565,13 +573,13 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 **Example**
 
-  ```js
+```ts
 vibrator.vibrate(1000).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in vibrating');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
@@ -594,15 +602,15 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 **Example**
 
-  ```js
+```ts
 vibrator.vibrate(1000, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
-  ```
+```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -631,13 +639,13 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 **Example**
 
-  ```js
+```ts
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in vibrating');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -661,15 +669,15 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 **Example**
 
-  ```js
+```ts
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
-  ```
+```
 
 ## vibrator.stop<sup>(deprecated)</sup>
 
@@ -697,22 +705,22 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 
 **Example**
 
-  ```js
+```ts
 // Start vibration based on the specified effect ID.
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
 // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-    console.log('Promise returned to indicate a successful vibration.');
+  console.info('Succeed in stopping');
 }, (error) => {
-    console.log('error.code' + error.code + 'error.message' + error.message);
+  console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
 });
-  ```
+```
 
 
 ## vibrator.stop<sup>(deprecated)</sup>
@@ -736,21 +744,21 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 
 **Example**
 
-  ```js
+```ts
 // Start vibration based on the specified effect ID.
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate a successful vibration.');
-    }
+  if (error) {
+    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    console.info('Succeed in vibrating');
+  }
 })
 // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function (error) {
-    if (error) {
-        console.log('error.code' + error.code + 'error.message' + error.message);
-    } else {
-        console.log('Callback returned to indicate successful.');
-    }
+  if (error) {
+    console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
+  } else {
+    onsole.info('Succeed in stopping');
+  }
 })
-  ```
+```
