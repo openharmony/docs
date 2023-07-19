@@ -2390,8 +2390,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 600101  | Session service exception. |
-| 600102  | The session does not exist. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -2423,8 +2423,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 600101  | Session service exception. |
-| 600102  | The session does not exist. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -3859,8 +3859,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **示例：**
 ```js
@@ -3890,8 +3890,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **示例：**
 
