@@ -433,7 +433,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
-| 6600104  | The remote session  connection failed. |
+| 6600104  | The remote session connection failed. |
 
 **示例：**
 
@@ -486,7 +486,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
-| 6600104  | The remote session  connection failed. |
+| 6600104  | The remote session connection failed. |
 
 **示例：**
 
@@ -2390,8 +2390,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
 
 **示例：**
 
@@ -2423,8 +2423,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
 
 **示例：**
 
