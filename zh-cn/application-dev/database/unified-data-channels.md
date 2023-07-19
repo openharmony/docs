@@ -12,9 +12,9 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 标准化数据通路是为各种业务场景提供的跨应用的数据接入与读取通路，它可以暂存应用需要共享的符合标准化数据定义的统一数据对象，并提供给其他应用进行访问，
 同时按照一定的策略对暂存数据的访问权限和生命周期进行管理。
 
-标准化数据通路通过UDMF提供的系统服务实现，应用（数据提供方）需要共享公共数据时可以通过UDMF提供的插入接口将数据写入到UDMF的数据通路中，
-并且可以通过UDMF提供的更新和删除接口对已经存入UDMF数据通路的数据进行更新和删除操作。在完成必要的权限校验后，
-目标应用（数据访问方）可以通过UDMF提供的读取接口进行数据的访问，数据被读取后，UDMF会统一对数据的生命周期进行管理。
+标准化数据通路通过UDMF提供的系统服务实现，应用（数据提供方）需要共享公共数据时可以通过UDMF提供的插入接口将数据写入到UDMF的数据通路中， 并且
+可以通过UDMF提供的更新和删除接口对已经存入UDMF数据通路的数据进行更新和删除操作。在完成必要的权限校验后， 目标
+应用（数据访问方）可以通过UDMF提供的读取接口进行数据的访问，数据被读取后，UDMF会统一对数据的生命周期进行管理。
 
 统一数据对象UnifiedData在UDMF数据通路中具有全局唯一URI标识，其定义为udmf://intention/bundleName/groupId，其中各组成部分的含义分别为：
 
@@ -62,6 +62,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    plainText.textContent = 'hello world!';
    let unifiedData = new UDMF.UnifiedData(plainText);
    
+   // 指定要插入数据的数据通路枚举类型
    let options = {
        intention: UDMF.Intention.DATA_HUB
    }
@@ -84,6 +85,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    plainText.textContent = 'How are you!';
    let unifiedData = new UDMF.UnifiedData(plainText);
    
+   // 指定要更新的统一数据对象的URI
    let options = {
        key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
@@ -103,6 +105,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 4. 删除存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
+   // 指定要删除数据的数据通路枚举类型
    let options = {
     intention: UDMF.Intention.DATA_HUB
    };
@@ -139,6 +142,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 2. 查询存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
+   // 指定要查询数据的数据通路枚举类型
    let options = {
     intention: UDMF.Intention.DATA_HUB
    };
