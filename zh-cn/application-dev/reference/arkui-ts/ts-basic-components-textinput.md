@@ -187,6 +187,8 @@ getTextContentLineCount(): number
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -240,3 +242,55 @@ struct TextInputExample {
 ```
 
 ![textInput](figures/textInput.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State PassWordSrc1:Resource=$r('app.media.icon')
+  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @Builder itemEnd() {
+    Select([{ value: 'KB' },
+      { value: 'MB' },
+      { value: 'GB'},
+      { value: 'TB',}])
+      .height("48vp")
+      .borderRadius(0)
+      .selected(2)
+      .align(Alignment.Center)
+      .value('MB')
+      .font({ size: 20, weight: 500 })
+      .fontColor('#182431')
+      .selectedOptionFont({ size: 20, weight: 400 })
+      .optionFont({ size: 20, weight: 400 })
+      .backgroundColor(Color.Transparent)
+      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .onSelect((index: number) => {
+        console.info('Select:' + index)
+      })
+  }
+
+  build() {
+    Column() {
+      // 自定义密码显示图标
+      TextInput({ placeholder: 'user define password icon' })
+        .type(InputType.Password)
+        .width(400)
+        .height(60)
+        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+      // 下划线模式
+      TextInput({ placeholder: 'underline style' })
+        .showUnderline(true)
+        .width(400)
+        .height(60)
+        .showError('Error')
+        .showUnit(this.itemEnd.bind(this))
+    }.width('100%')
+  }
+}
+```
+
+![showUnit](figures/showUnit.png)
