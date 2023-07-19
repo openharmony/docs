@@ -5,19 +5,14 @@ A drag event is triggered when a component is dragged.
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  The following components provide the drag effect by default: [\<Image>](../arkui-ts/ts-basic-components-image.md), [\<Text>](../arkui-ts/ts-basic-components-text.md), [\<TextArea>](../arkui-ts/ts-basic-components-textarea.md), and [\<Search>](../arkui-ts/ts-basic-components-search.md).
 
-## Attributes
-
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| allowDrop<sup>10+</sup> | Array\<UnifiedData> | Type of data that can be dropped to the component.<br>Default value: empty<br>|
-| draggable<sup>10+</sup> | boolean | Whether the widget is draggable.<br>Default value: **false**<br>|
 ## Events
 
 | Name                                                        | Bubbling Supported| Description                                                    |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 500 ms long press. If the duration of a long press gesture is set to less than or equal to 500 ms, the callback for the long press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br> Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br> Event priority:<br>Long press time < 500 ms: Long press event > Drag event<br> Other: Drag event > Long press event.|
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
@@ -35,9 +30,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## extraParams
 
-  Provides additional information required for dragging an item.
+Provides additional information required for dragging an item.
 
-  **extraParams** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
+**extraParams** is a string converted from a JSON object. You can obtain the following attributes using the JSON object converted from **Json.parse**.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
@@ -51,20 +46,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | getX() | number | X-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | getY() | number | Y-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the default drop animation when the dragging ends.|
-| dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Component tree behavior corresponding to the drga event.|
-| setData(unifiedData: UnifiedData)<sup>10+</sup> | void | Sets drag-related data in the drag event.|
-| getData()<sup>10+</sup> | UnifiedData | Obtains drag-related data from the drag event.|
-| getSummary()<sup>10+</sup> | Summary | Obtains the summary of drag-related data from the drag event.|
+| setData(unifiedData: [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
+| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata) | Obtains drag-related data from the drag event.|
+| getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-udmf.md#summary) | Obtains the summary of drag-related data from the drag event.|
 | setResult(dragRect: [DragRet](#dragret10))<sup>10+</sup>| void | Sets the drag and drop result in the drag event.|
 | getResult()<sup>10+</sup> | [DragRet](#dragret10)| Obtains the drag and drop result from the drag event.|
 | getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the rectangle where the preview image is located.|
-
-## DragBehavior<sup>10+</sup>
-
-| Name| Description|
-| ------ | ------ |
-| COPY | In the component tree, copy the component that initiates the dragging and copy the copy result to the position where the dragging ends.|
-| MOVE | In the component tree, cut the component that initiates the dragging and move it to the position where the dragging ends.|
+| getVelocityX()<sup>10+</sup> | number | Obtains the dragging velocity along the x-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.|
+| getVelocityY()<sup>10+</sup> | number | Obtains the dragging velocity along the y-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
+| getVelocity()<sup>10+</sup> | number | Obtains the dragging velocity along the main axis. The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. |
 
 ## DragRet<sup>10+</sup>
 
@@ -78,230 +68,165 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Example
 
-### Example 1
-
 ```ts
-@Observed
-class ClassA {
-  public name: string
-  public bol: boolean
-
-  constructor(name: string, bol: boolean) {
-    this.name = name
-    this.bol = bol
-  }
-}
-
-@Extend(Text) function textStyle() {
-  .width('25%')
-  .height(35)
-  .fontSize(16)
-  .textAlign(TextAlign.Center)
-  .backgroundColor(0xAFEEEE)
-}
-
+import udmf from '@ohos.data.UDMF';
+import promptAction from '@ohos.promptAction';
 @Entry
 @Component
-struct DragExample {
-  @State arr: ClassA[] = [new ClassA('A', true), new ClassA('B', true), new ClassA('C', true)]
-  @State dragIndex: number = 0
+struct Index {
+  @State targetImage: string = '';
+  @State targetText: string = 'Drag Text';
+  @State hyperLinkText: string = 'HyperLink';
+  @State hyperLinkContent: string = 'HyperLink';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
+  @State abstractContent: string = "abstract";
+  @State textContent: string = "";
 
-  changeIndex(index1: number, index2: number) {// Exchange the array position.
-    [this.arr[index1], this.arr[index2]] = [this.arr[index2], this.arr[index1]];
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
+  {
+    let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
+    if (records.length !== 0) {
+      callback(event);
+      return;
+    }
+    setTimeout(()=>{
+      this.getDataFromUdmfRetry(event, callback);
+    }, 1500);
   }
 
   build() {
-    Column() {
-      Row({ space: 15 }) {
-        List({ space: 20 }) {
-          ForEach(this.arr, (item, index) => {
-            ListItem() {
-              Column() {
-                Child({ a: this.arr[index] })
-              }
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.dragIndex = index // Obtain the index of the current dragged child component.
-                  console.info('onTouch' + this.dragIndex)
-                }
+    Row() {
+      Column() {
+        Text('start Drag')
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image($r('app.media.icon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({left: 15})
+          .visibility(this.imgState)
+          .onDragEnd((event)=>{
+          if (event.getResult() === DragRet.DRAG_SUCCESS) {
+            promptAction.showToast({duration: 100, message: 'Drag Success'});
+          } else if (event.getResult() === DragRet.DRAG_FAILED) {
+            promptAction.showToast({duration: 100, message: 'Drag failed'});
+          }
+        })
+        Text('test drag event')
+          .width('100%')
+          .height(100)
+          .draggable(true)
+          .margin({left: 15})
+          .copyOption(CopyOptions.InApp)
+        TextArea({placeholder: 'please input words'})
+          .copyOption(CopyOptions.InApp)
+          .width('100%')
+          .height(50)
+          .draggable(true)
+        Search({placeholder: 'please input you word'})
+          .searchButton('Search')
+          .width('100%')
+          .height(80)
+          .textFont({size: 20})
+        Column() {
+          Text('change video source')
+        }.draggable(true)
+        .onDragStart((event)=>{
+          let video: udmf.Video = new udmf.Video();
+          video.videoUri = 'resource://RAWFILE/01.mp4';
+          let data: udmf.UnifiedData = new udmf.UnifiedData(video);
+          event.setData(data);
+        })
+        Column() {
+          Text('this is abstract')
+            .fontSize(20)
+            .width('100%')
+        }.margin({left: 40, top: 20})
+        .width('100%')
+        .height(100)
+        .onDragStart((event)=>{
+          let data: udmf.PlainText = new udmf.PlainText();
+          data.abstract = 'this is abstract';
+          data.textContent = 'this is content this is content';
+          event.setData(new udmf.UnifiedData(data));
+        })
+      }.width('45%')
+      .height('100%')
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image(this.targetImage)
+          .width(this.imageWidth)
+          .height(this.imageHeight)
+          .draggable(true)
+          .margin({left: 15})
+          .border({color: Color.Black, width: 1})
+          .allowDrop([udmf.UnifiedDataType.IMAGE])
+          .onDrop((dragEvent: DragEvent)=> {
+            this.getDataFromUdmfRetry(dragEvent, (event)=>{
+              let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
+              let rect: Rectangle = event.getPreviewRect();
+              this.imageWidth = Number(rect.width);
+              this.imageHeight = Number(rect.height);
+              this.targetImage = (<udmf.Image>(records[0])).imageUri;
+              event.useCustomDropAnimation = false;
+              animateTo({duration: 1000}, ()=>{
+                this.imageWidth = 100;
+                this.imageHeight = 100;
+                this.imgState = Visibility.None;
               })
-            }
+              event.setResult(DragRet.DRAG_SUCCESS);
+            })
           })
-        }
-        .listDirection(Axis.Horizontal)
-        .onDrop((event: DragEvent, extraParams: string) => { // The component bound to this event can be used as the drop target. When the dragging stops within the component scope, the callback is triggered.
-          let jsonString = JSON.parse(extraParams);
-          this.changeIndex(this.dragIndex, jsonString.insertIndex)
+
+        Text(this.targetText)
+          .width('100%')
+          .height(100)
+          .border({color: Color.Black, width: 1})
+          .margin(15)
+          .allowDrop([udmf.UnifiedDataType.TEXT])
+          .onDrop((dragEvent: DragEvent)=>{
+            this.getDataFromUdmfRetry(dragEvent, event => {
+              let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
+              this.targetText = (<udmf.Text>(records[0])).details['value'];
+            })
+          })
+
+        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+          .width('100%')
+          .height(200)
+          .controls(true)
+          .allowDrop([udmf.UnifiedDataType.VIDEO])
+
+        Column() {
+          Text(this.abstractContent).fontSize(20).width('100%')
+          Text(this.textContent).fontSize(15).width('100%')
+        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
+        .onDrop((dragEvent)=>{
+          this.getDataFromUdmfRetry(dragEvent, event=>{
+            let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
+            let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
+            this.abstractContent = plainText.abstract;
+            this.textContent = plainText.textContent;
+          })
         })
-      }.padding({ top: 10, bottom: 10 }).margin(10)
-
-    }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink a: ClassA
-
-  @Builder pixelMapBuilder() {
-    Column() {
-      Text(this.a.name)
-        .width('50%')
-        .height(60)
-        .fontSize(16)
-        .borderRadius(10)
-        .textAlign(TextAlign.Center)
-        .backgroundColor(Color.Yellow)
+      }.width('45%')
+      .height('100%')
+      .margin({left: '5%'})
     }
-  }
-
-  build() {
-    Column() {
-      Text(this.a.name)
-        .textStyle()
-        .visibility(this.a.bol ? Visibility.Visible : Visibility.None)
-        .onDragStart(() => { // The callback is triggered when the component bound to this event is dragged for the first time.
-          this.a.bol = false // Control the visibility.
-          return this.pixelMapBuilder() // Set the image displayed during dragging.
-        })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Up) {
-            this.a.bol = true
-          }
-        })
-      Text('')
-        .width('25%')
-        .height(35)
-        .fontSize(16)
-        .textAlign(TextAlign.Center)
-        .border({ width: 5, color: 'red' })
-        .visibility(!this.a.bol ? Visibility.Visible : Visibility.None)
-    }
+    .height('100%')
   }
 }
 ```
-
-![drag-drop](figures/drag-drop.gif)
-
-### Example 2
-
-```ts
-// xxx.ets
-@Extend(Text) function textStyle () {
-  .width('25%')
-  .height(35)
-  .fontSize(16)
-  .textAlign(TextAlign.Center)
-  .backgroundColor(0xAFEEEE)
-}
-
-@Entry
-@Component
-struct DragExample {
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
-  @State text: string = ''
-  @State bool: boolean = true
-  @State eventType: string = ''
-  @State appleVisible: Visibility = Visibility.Visible
-  @State orangeVisible: Visibility = Visibility.Visible
-  @State bananaVisible: Visibility = Visibility.Visible
-  private dragList: string[] = ['apple', 'orange', 'banana']
-  @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
-  @State idx: number = 0
-
-  // Customize the content displayed during dragging.
-  @Builder pixelMapBuilder() {
-    Column() {
-      Text(this.text)
-        .width('50%')
-        .height(60)
-        .fontSize(16)
-        .borderRadius(10)
-        .textAlign(TextAlign.Center)
-        .backgroundColor(Color.Yellow)
-    }
-  }
-
-  build() {
-    Column() {
-      Text('There are three Text elements here')
-        .fontSize(12)
-        .fontColor(0xCCCCCC)
-        .width('90%')
-        .textAlign(TextAlign.Start)
-        .margin(5)
-      Row({ space: 15 }) {
-        ForEach(this.dragList, (item, index) => {
-          Text(item)
-            .textStyle()
-            .visibility(this.fruitVisible[index])
-            .onDragStart(() => {
-              this.bool = true
-              this.text = item
-              this.fruitVisible[index] = Visibility.None
-              return this.pixelMapBuilder
-            })
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.eventType = 'Down'
-                this.idx = index
-              }
-              if (event.type === TouchType.Up) {
-                this.eventType = 'Up'
-                if (this.bool) {
-                  this.fruitVisible[index] = Visibility.Visible
-                }
-              }
-            })
-        })
-      }.padding({ top: 10, bottom: 10 }).margin(10)
-
-      Text('This is a List element')
-        .fontSize(12)
-        .fontColor(0xCCCCCC)
-        .width('90%')
-        .textAlign(TextAlign.Start)
-        .margin(15)
-      List({ space: 20 }) {
-        ForEach(this.numbers, (item) => {
-          ListItem() {
-            Text(item)
-              .width('100%')
-              .height(80)
-              .fontSize(16)
-              .borderRadius(10)
-              .textAlign(TextAlign.Center)
-              .backgroundColor(0xAFEEEE)
-          }
-        }, item => item)
-      }
-      .editMode(true)
-      .height('50%')
-      .width('90%')
-      .border({ width: 1 })
-      .padding(15)
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
-      .onDragEnter((event: DragEvent, extraParams: string) => {
-        console.log('List onDragEnter, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
-      })
-      .onDragMove((event: DragEvent, extraParams: string) => {
-        console.log('List onDragMove, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
-      })
-      .onDragLeave((event: DragEvent, extraParams: string) => {
-        console.log('List onDragLeave, ' + extraParams + 'X:' + event.getX() + 'Y:' + event.getY())
-      })
-      .onDrop((event: DragEvent, extraParams: string) => {
-        let jsonString = JSON.parse(extraParams);
-        if (this.bool) {
-          // Insert an element using the splice method.
-          this.numbers.splice(jsonString.insertIndex, 0, this.text)
-          this.bool = false
-        }
-        this.fruitVisible[this.idx] = Visibility.None
-      })
-    }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
-  }
-}
-```
-
-![en-us_image_0000001252667389](figures/en-us_image_0000001252667389.gif)

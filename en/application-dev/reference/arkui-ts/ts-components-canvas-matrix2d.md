@@ -413,6 +413,70 @@ struct Matrix2DMultiply {
 }
 ```
 
+### rotate<sup>(deprecated) </sup>
+
+rotate(rx?: number, ry?: number): Matrix2D
+
+Performs a rotation operation on this matrix.
+
+Since API version 9, this API is supported in ArkTS widgets. This API is a null API.
+
+This API is deprecated since API version 10. You are advised to use [rotate](#rotate10) instead.
+
+**Parameters**
+
+| Parameter| Type  | Mandatory| Default Value| Description                            |
+| ---- | ------ | ---- | ------ | -------------------------------- |
+| rx   | number | No  | 0      | Horizontal coordinate (in vp) of the rotation point.|
+| ry   | number | No  | 0      | Vertical coordinate (in vp) of the rotation point.|
+
+**Return value**
+
+| Type                 | Description                |
+| --------------------- | -------------------- |
+| [Matrix2D](#matrix2d) | Matrix of the rotation result.|
+
+**Example**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DRotate {
+  @State message: string = 'Matrix2D Rotate'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix rotate")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            matrix.rotate(10, 10)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### rotate<sup>10+</sup>
 
 rotate(degree: number, rx?: number, ry?: number): Matrix2D
