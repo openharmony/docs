@@ -543,13 +543,25 @@ async function createTonePlayerBefore(){
 | 名称                                      |  值    | 说明       |
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
-| STREAM_USAGE_MEDIA                        | 1      | 音频。     |
+| STREAM_USAGE_MEDIA                        | 1      | 媒体。     |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。     |
 | STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 | 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。     |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | 无障碍。   |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。     |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。     |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。   |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。|
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。  |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。  |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。     |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。 |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。 |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波。<br/>此接口为系统接口。 |
+
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -660,7 +672,7 @@ async function createTonePlayerBefore(){
 
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttype) | 是   | 媒体类型。       |
+| content       | [ContentType](#contenttype) | 否   | 媒体类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
 | rendererFlags | number                      | 是   | 音频渲染器标志。 |
 
