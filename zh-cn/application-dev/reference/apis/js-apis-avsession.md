@@ -5660,12 +5660,12 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 5400101  | No Memory.            |
-| 5400102  | Operate Not Permit.   |
-| 5400103  | IO Error.             |
-| 5400104  | Network Timeout.      |
-| 5400105  | Service Died.         |
-| 5400106  | Unsupport Format.     |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed.   |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.      |
+| 5400105  | Service died.         |
+| 5400106  | Unsupport format.     |
 
 **示例：**
 
@@ -5694,14 +5694,14 @@ off(type: 'error'): void
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息              | 
+| 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 5400101  | No Memory.            |
-| 5400102  | Operate Not Permit.   |
-| 5400103  | IO Error.             |
-| 5400104  | Network Timeout.      |
-| 5400105  | Service Died.         |
-| 5400106  | Unsupport Format.     |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed.   |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.      |
+| 5400105  | Service died.         |
+| 5400106  | Unsupport format.     |
 
 **示例：**
 
