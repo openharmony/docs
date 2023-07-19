@@ -504,7 +504,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-根据bundleName查询管理员用户下的超级管理员应用是否被激活。使用callback异步回调。
+根据bundleName查询管理员用户下的超级设备管理应用是否被激活。使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -514,7 +514,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 | 参数名        | 类型                      | 必填   | 说明                   |
 | ---------- | ----------------------- | ---- | -------------------- |
-| bundleName | String                  | 是    | 设备管理应用。              |
+| bundleName | String                  | 是    | 超级设备管理应用。              |
 | callback   | AsyncCallback\<boolean> | 是    | 回调函数，当接口调用成功，err为null，data为boolean类型值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。 |
 
 **示例**：
