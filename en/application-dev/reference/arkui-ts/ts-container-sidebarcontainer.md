@@ -78,15 +78,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | endMargin   | [Length](ts-types.md#length)        | No  | Distance between the divider and the bottom of the sidebar.<br>Default value: **0**|
 >  **NOTE**
 >
->  When the universal attributes [width and height](ts-universal-attributes-size.md) are set for the sidebar, the **width** setting takes effect only when the sidebar container width is not set, and the **height** settings does not take effect.
->  The settings of the universal attributes **width** and **height** do not take effect for the sidebar content area. By default, sidebar content area takes up the remaining space of the sidebar container.
+>  The settings of the [universal size attributes](ts-universal-attributes-size.md) **width** and **height** do not take effect for the sidebar child component.
+>  The settings do not take effect for the sidebar content area either. By default, the sidebar content area takes up the remaining space of the sidebar container.
 >
 >  If the attribute method is not used, the sidebar is displayed depending on the size.
 >
 >  - If the size is less than 520 vp, the sidebar is not displayed by default.
 >  - If the size is greater than or equal to 520 vp, the sidebar is displayed by default.
->  -  
->  -  
 
 ## Events
 
