@@ -125,7 +125,7 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 
 ```js
 let context: mindSporeLite.Context = {};
-let context = {'target': ['cpu']};
+context = {'target': ['cpu']};
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file, context, (result) => {
   const modelInputs = result.getInputs();
@@ -181,14 +181,14 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
+  let modelBuffer = buffer;
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
 })
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, (result) => {
+mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
 })
@@ -213,16 +213,16 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((error,buffer) => {
+  let modelBuffer = buffer;
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
 })
 let context: mindSporeLite.Context = {};
 context = {'target': ['cpu']};
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, context, (result) => {
+mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, context, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
 })
@@ -252,14 +252,14 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
+let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
+  let modelBuffer = buffer;
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
 })
-mindSporeLite.loadModelFromBuffer(model_file).then((result) => {
+mindSporeLite.loadModelFromBuffer(modelBuffer.buffer).then((result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
 })
@@ -284,7 +284,7 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -313,7 +313,7 @@ import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
 context = {'target': ['cpu']};
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -345,7 +345,7 @@ loadModelFromFd(model: number, context?: Context): Promise&lt; Model&gt;
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
 let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
 mindSporeLite.loadModelFromFd(file.fd).then((result) => {
   const modelInputs = result.getInputs();
@@ -400,14 +400,14 @@ predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
+  modelInputs[0].setData(inputBuffer.buffer);
   result.predict(modelInputs, (result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
@@ -440,14 +440,14 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
+  modelInputs[0].setData(inputBuffer.buffer);
   result.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
@@ -541,14 +541,14 @@ getData(): ArrayBuffer
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
   const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
+  modelInputs[0].setData(inputBuffer.buffer);
   result.predict(modelInputs).then((result) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
@@ -576,15 +576,15 @@ setData(inputArray: ArrayBuffer): void
 
 ```js
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
+let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+  inputBuffer = buffer;
 })
 let model_file = '/path/to/xxx.ms';
 let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
 const modelInputs = mindSporeLiteModel.getInputs();
-modelInputs[0].setData(this.inputBuffer.buffer);
+modelInputs[0].setData(inputBuffer.buffer);
 ```
 
 ## DataType
