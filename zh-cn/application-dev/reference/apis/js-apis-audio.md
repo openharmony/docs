@@ -3087,7 +3087,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then((value) => {
   console.info('Success to adjust the volume by step.');
 }).catch((error) => {
-  console.info('Fail to adjust the volume by step.');
+  console.error('Fail to adjust the volume by step.');
 });
 ```
 
@@ -3175,7 +3175,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then((value) => {
   console.info('Success to adjust the system volume by step.');
 }).catch((error) => {
-  console.info('Fail to adjust the system volume by step.');
+  console.error('Fail to adjust the system volume by step.');
 });
 ```
 
@@ -3257,7 +3257,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value) => {
   console.info(`Success to get the volume DB. ${value}`);
 }).catch((error) => {
-  console.info(`Fail to adjust the system volume by step. ${error}`);
+  console.error(`Fail to adjust the system volume by step. ${error}`);
 });
 ```
 
