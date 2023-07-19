@@ -473,7 +473,7 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
-检查当前系统帐号是否已验证。使用callback异步回调。
+检查当前系统帐号是否已认证解锁。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -481,7 +481,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前帐号已验证；返回false表示当前帐号未验证。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
 
 **错误码：**
 
@@ -508,6 +508,41 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 ### checkOsAccountVerified<sup>9+</sup>
 
+checkOsAccountVerified(): Promise&lt;boolean&gt;
+
+检查当前系统帐号是否已认证解锁。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                                      |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```js
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.checkOsAccountVerified().then((isVerified) => {
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
+    }).catch((err) => {
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>9+</sup>
+
 checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查指定系统帐号是否已验证。使用callback异步回调。
@@ -521,7 +556,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 | 参数名   | 类型                         | 必填 | 说明                                                            |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | localId  | number                       | 是   | 系统帐号ID。                              |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
 
 **错误码：**
 
@@ -569,7 +604,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                               |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示指定帐号已验证；返回false表示指定帐号未验证。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
 
 **错误码：**
 
