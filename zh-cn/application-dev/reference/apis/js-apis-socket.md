@@ -3952,6 +3952,9 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 在TLSSocketServer的listen成功之后，获取TLSSocketServer状态。使用callback方式作为异步方法。
 
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -3992,6 +3995,7 @@ let options = {
 };
 tlsServer.listen(options, err => {
   console.log("listen callback error" + err);
+  return;
 });
 
 tlsServer.getState((err, data) => {
@@ -4008,6 +4012,9 @@ tlsServer.getState((err, data) => {
 getState(): Promise\<SocketStateBase\>
 
 在TLSSocketServer的listen成功之后，获取TLSSocketServer状态。使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4050,6 +4057,7 @@ tlsServer.listen(options).then(() => {
   console.log("listen callback success");
 }).catch(err => {
   console.log(err);
+  return;
 });
 let promise = tlsServer.getState();
 promise.then(() => {
@@ -4064,6 +4072,9 @@ promise.then(() => {
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 在TLSSocketServer的listen成功之后，设置TLSSocketServer连接的其他属性。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4106,6 +4117,7 @@ let options = {
 };
 tlsServer.listen(options, err => {
   console.log("listen callback error" + err);
+  return;
 });
 tlsServer.setExtraOptions({
   keepAlive: true,
@@ -4130,6 +4142,9 @@ tlsServer.setExtraOptions({
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 在TLSSocketServer的listen成功之后，设置TLSSocketServer连接的其他属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4179,6 +4194,7 @@ tlsServer.listen(options).then(() => {
   console.log("listen callback success");
 }).catch(err => {
   console.log(err);
+  return;
 });
 let promise = tlsServer.setExtraOptions({
   keepAlive: true,
@@ -4203,6 +4219,9 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 在TLSSocketServer通信连接成功之后，获取本地的数字证书，使用callback方式作为异步方法。
 
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -4224,6 +4243,28 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.getCertificate((err, data) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
@@ -4238,6 +4279,9 @@ tlsServer.getCertificate((err, data) => {
 getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 在TLSSocketServer通信连接之后，获取本地的数字证书，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4259,6 +4303,30 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.getCertificate().then(data => {
   console.log(data);
 }).catch(err => {
@@ -4271,6 +4339,9 @@ tlsServer.getCertificate().then(data => {
 getProtocol(callback: AsyncCallback\<string\>): void
 
 在TLSSocketServer通信连接成功之后，获取通信的协议版本，使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4293,6 +4364,28 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.getProtocol((err, data) => {
   if (err) {
     console.log("getProtocol callback error = " + err);
@@ -4307,6 +4400,9 @@ tlsServer.getProtocol((err, data) => {
 getProtocol():Promise\<string\>
 
 在TLSSocketServer通信连接成功之后，获取通信的协议版本，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4328,6 +4424,28 @@ getProtocol():Promise\<string\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.getProtocol().then(data => {
   console.log(data);
 }).catch(err => {
@@ -4340,6 +4458,9 @@ tlsServer.getProtocol().then(data => {
 on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
 订阅TLSSocketServer的连接事件。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4360,6 +4481,28 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(data) {
   console.log(JSON.stringify(data))
 });
@@ -4396,6 +4539,30 @@ let tlsServer = socket.constructTLSSocketServerInstance();
 let callback = data => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tlsServer.off('connect', callback);
@@ -4427,6 +4594,28 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('error', err => {
   console.log("on error, err:" + JSON.stringify(err))
 });
@@ -4463,6 +4652,30 @@ let tlsServer = socket.constructTLSSocketServerInstance();
 let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tlsServer.off('error', callback);
@@ -4514,6 +4727,28 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.send({data: 'Hello, client!'}, err => {
     if (err) {
@@ -4560,6 +4795,30 @@ send(data: string): Promise\<void\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   let promise = client.send({data: 'Hello, client!'});
   promise.then(() => {
@@ -4598,6 +4857,28 @@ close(callback: AsyncCallback\<void\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.close(err => {
     if (err) {
@@ -4636,6 +4917,30 @@ close(): Promise\<void\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   let promise = client.close();
   promise.then(() => {
@@ -4672,6 +4977,28 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getRemoteAddress((err, data) => {
     if (err) {
@@ -4708,6 +5035,30 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getRemoteAddress().then(data => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -4743,6 +5094,28 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getRemoteCertificate((err, data) => {
     if (err) {
@@ -4779,6 +5152,30 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getRemoteCertificate().then(data => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
@@ -4816,6 +5213,28 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getCipherSuite((err, data) => {
     if (err) {
@@ -4854,6 +5273,30 @@ getCipherSuite(): Promise\<Array\<string\>\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getCipherSuite().then(data => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
@@ -4889,6 +5332,28 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getSignatureAlgorithms((err, data) => {
     if (err) {
@@ -4925,6 +5390,30 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.getSignatureAlgorithms().then(data => {
     console.log("getSignatureAlgorithms success" + data);
@@ -4959,6 +5448,28 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('message', value => {
     let messageView = '';
@@ -5011,6 +5522,30 @@ let callback = value => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('message', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -5044,6 +5579,28 @@ on(type: 'close', callback: Callback\<void\>): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('close', () => {
     console.log("on close success")
@@ -5082,6 +5639,30 @@ let callback = () => {
   console.log("on close success");
 }
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('close', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -5115,6 +5696,28 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('error', err => {
     console.log("on error, err:" + JSON.stringify(err))
@@ -5153,6 +5756,30 @@ let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
 tlsServer.on('connect', function(client) {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
