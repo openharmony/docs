@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
 
 ## 导入模块
 
@@ -20,7 +20,7 @@ import adminManager from '@ohos.enterprise.adminManager';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-激活当前用户下指定的设备管理应用，其中 **超级设备管理应用** 只能在 **管理员用户下** 被激活。使用callback异步回调。
+激活当前用户下指定的设备管理应用，其中超级设备管理应用仅能在管理员用户下被激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -34,7 +34,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 | -------------- | ----------------------------------- | ---- | ------------------ |
 | admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。            |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。      |
-| type           | [AdminType](#admintype)             | 是    |  **激活的设备管理应用类型** 。         |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。         |
 | callback       | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -72,7 +72,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
-激活指定用户下指定的设备管理应用，其中 **超级管理应用** 只能在 **管理员用户下** 被激活。使用callback异步回调。
+激活指定用户（通过userId指定）下指定的设备管理应用，其中超级管理应用仅能在管理员用户下被激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -84,15 +84,15 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | 是    | 特定的设备管理应用。                      |
+| admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                  |
-| userId         | number                              | 是    | 用户ID，用于指定具体用户。<br>默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId         | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br>默认值：调用方所在用户。 |
 | callback       | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**:
 
-以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
 | 错误码ID | 错误信息                                                         |
 | ------- | --------------------------------------------------------------- |
@@ -125,7 +125,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
-激活当前/指定用户下指定的设备管理应用，其中 **超级管理应用** 只能在 **管理员用户下** 被激活。使用Promise异步回调。
+激活当前/指定用户下指定的设备管理应用，其中超级管理应用仅能在管理员用户下被激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -140,13 +140,13 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。                 |
 | type           | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                   |
-| userId         | number                              | 否    | 用户ID。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。<br> 默认值： **调用方所在用户** ，取值范围：大于等于0。 |
+| userId         | number                              | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。|
 
 **返回值：**
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | 无返回结果的Promise对象。当激活设备管理员应用失败时会抛出错误对象。 |
+| Promise\<void>    | 无返回结果的Promise对象。当激活设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**：
 
@@ -223,7 +223,7 @@ adminManager.disableAdmin(wantTemp, (err) => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-将指定用户下指定的普通管理应用去激活。使用callback异步回调。
+将指定用户（通过userId指定）下指定的普通管理应用去激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -236,7 +236,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理应用。                    |
-| userId   | number                              | 是    | 用户ID，指定具体用户。<br>默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId   | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br>默认值：当前用户。 |
 | callback | AsyncCallback\<void>                | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。        |
 
 **错误码**:
@@ -281,7 +281,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
 | admin  | [Want](js-apis-app-ability-want.md) | 是    | 普通设备管理应用。                    |
-| userId | number                              | 否    | 用户ID。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。<br> 默认值： **调用方所在用户** ，取值范围：大于等于0。 |
+| userId | number                              | 否    | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。|
 
 **返回值：**
 
@@ -314,7 +314,7 @@ adminManager.disableAdmin(wantTemp, 100).catch((err) => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-根据bundleName将 **管理员用户** 下的 **超级设备管理应用** 去激活。使用callback异步回调。
+根据bundleName将管理员用户下的超级设备管理应用去激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -355,7 +355,7 @@ adminManager.disableSuperAdmin(bundleName, (err) => {
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
-根据bundleName将 **管理员用户** 下的 **超级设备管理应用** 去激活。使用promise异步回调。
+根据bundleName将管理员用户下的超级设备管理应用去激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -431,7 +431,7 @@ adminManager.isAdminEnabled(wantTemp, (err, result) => {
 
 isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
 
-查询指定用户下指定的设备管理应用是否被激活。使用callback异步回调。
+查询指定用户（通过userId指定）下指定的设备管理应用是否被激活。使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -442,7 +442,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 | 参数名      | 类型                                  | 必填   | 说明                           |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
-| userId   | number                              | 是    | 用户ID，指定具体用户。<br> 默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId   | number                              | 是    | 用户ID，指定具体用户，取值范围：大于等于0。<br> 默认值：当前用户。 |
 | callback | AsyncCallback\<boolean>             | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示当前用户下指定的设备管理应用被激活，false表示当前用户下指定的设备管理应用未激活，否则err为错误对象。      |
 
 **示例**：
@@ -476,8 +476,8 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。                      |
-| userId | number                              | 否    | 用户ID。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。<br> 默认值： **调用方所在用户** ，取值范围：大于等于0。 |
+| admin  | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                      |
+| userId | number                              | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
@@ -504,7 +504,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-根据bundleName查询 **管理员用户** 下的 **超级管理员应用** 是否被激活。使用callback异步回调。
+根据bundleName查询管理员用户下的超级管理员应用是否被激活。使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -535,7 +535,7 @@ adminManager.isSuperAdmin(bundleName, (err, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-根据bundleName查询 **管理员用户** 下的 **超级设备管理应用** 是否被激活。使用promise异步回调。
+根据bundleName查询管理员用户下的超级设备管理应用是否被激活。使用promise异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -802,7 +802,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-指定的设备管理员应用订阅系统管理事件。使用Promise异步回调。
+指定的设备管理应用订阅系统管理事件。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -958,7 +958,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 ## AdminType
 
- **设备管理员用的管理员类型。** 
+设备管理应用的类型。 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -966,8 +966,8 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
-| ADMIN_TYPE_NORMAL | 0x00 | 普通管理员 |
-| ADMIN_TYPE_SUPER  | 0x01 | 超级管理员 |
+| ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
+| ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
 
 ## ManagedEvent
 
