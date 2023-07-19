@@ -22,7 +22,7 @@ PatternLock(controller?: PatternLockController)
 
 ## 属性
 
-不支持除backgroundColor以外的通用属性设置。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称            | 参数类型                              | 描述                                                         |
 | --------------- | ------------------------------------- | ------------------------------------------------------------ |
