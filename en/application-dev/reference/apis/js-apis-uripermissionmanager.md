@@ -17,11 +17,16 @@ import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 Grants permission on the file of the specified URI to an application. This API uses an asynchronous callback to return the result.
 
+By default, an application can authorize its own URIs to another application. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -32,25 +37,53 @@ Grants permission on the file of the specified URI to an application. This API u
   | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | Sandbox application can not grant URI permission. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+  fileio.mkdir(path, function (err) {
+    if (err) {
+      console.log("mkdir error"+err.message)
+    } else {
+      console.log("mkdir succeed")
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
-      console.log("result.code = " + result.code)
-  }) 
+    console.log("result.code = " + result.code)
+  })
   ```
 
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
 Grants permission on the file of the specified URI to an application. This API uses a promise to return the result.
 
+By default, an application can authorize its own URIs to another application. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -66,26 +99,55 @@ Grants permission on the file of the specified URI to an application. This API u
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000058 | Invalid URI flag. |
+  | 16000059 | Invalid URI type. |
+  | 16000060 | Sandbox application can not grant URI permission. |
+
+  For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
-  .then((data) => {
+  let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+
+  fileio.mkdir(path, function (err) {
+    if (err) {
+      console.log("mkdir error"+err.message)
+    } else {
+      console.log("mkdir succeed")
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
+  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
+    .then((data) => {
       console.log('Verification succeeded.' + data)
-  }).catch((error) => {
-      console.log('Verification failed.');
+    }).catch((error) => {
+    console.log('Verification failed.');
   })
   ```
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 Revokes the permission on the file of the specified URI from an application. This API uses an asynchronous callback to return the result.
 
+By default, only the URIs obtained by the application itself or the URIs authorized by the application to other applications can be revoked. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -95,12 +157,23 @@ Revokes the permission on the file of the specified URI from an application. Thi
   | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  let targetBundleName = 'com.example.test_case1'
-  let URI = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
@@ -109,11 +182,18 @@ Revokes the permission on the file of the specified URI from an application. Thi
 
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
 Revokes the permission on the file of the specified URI from an application. This API uses a promise to return the result.
 
+
+By default, only the URIs obtained by the application itself or the URIs authorized by the application to other applications can be revoked. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
+
 
 **Parameters**
 
@@ -128,12 +208,23 @@ Revokes the permission on the file of the specified URI from an application. Thi
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
