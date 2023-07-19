@@ -1277,7 +1277,7 @@ Key-Value型数据库核心能力
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+| 是      | 是     | 是     | 是   | 是   | 是     | 否           | 否     |
 
 ## SystemCapability.DistributedDataManager.DataShare.Core
 
