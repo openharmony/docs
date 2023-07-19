@@ -401,9 +401,9 @@ async function example() {
   let options = {
     title: 'testPhoto'
   }
-  phAccessHelper.createAsset(photoType, extension, options, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -445,9 +445,9 @@ async function example() {
   console.info('createAssetDemo');
   let photoType = photoAccessHelper.PhotoType.IMAGE;
   let extension = 'jpg';
-  phAccessHelper.createAsset(photoType, extension, (err, photoAsset) => {
+  phAccessHelper.createAsset(photoType, extension, (err, uri) => {
     if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -499,8 +499,8 @@ async function example() {
     let options = {
       title: 'testPhoto'
     }
-    let photoAsset = await phAccessHelper.createAsset(photoType,extension, options);
-    console.info('createAsset file displayName' + photoAsset.displayName);
+    let uri = await phAccessHelper.createAsset(photoType, extension, options);
+    console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
     console.error('createAsset failed, message = ', err);
@@ -1081,11 +1081,11 @@ async function example() {
   // 注册onCallback2监听
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1145,11 +1145,11 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // 关闭onCallback1监听，onCallback2 继续监听
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -2866,7 +2866,7 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
@@ -2924,7 +2924,7 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
@@ -2969,7 +2969,7 @@ async function example() {
   let albumFetchOptions = {
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
@@ -3017,7 +3017,7 @@ async function example() {
   let albumFetchOptions = {
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
