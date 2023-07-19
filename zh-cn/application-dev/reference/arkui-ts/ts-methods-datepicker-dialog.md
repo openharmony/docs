@@ -51,6 +51,11 @@ struct DatePickerDialogExample {
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
+            showTime:true,
+            useMilitaryTime:false,
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onAccept: (value: DatePickerResult) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
               this.selectedDate.setFullYear(value.year, value.month, value.day)
@@ -73,6 +78,9 @@ struct DatePickerDialogExample {
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: true,
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onAccept: (value: DatePickerResult) => {
               this.selectedDate.setFullYear(value.year, value.month, value.day)
               console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
@@ -90,4 +98,4 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DataPickerDialog.gif)
+![DataPickerDialog](figures/DatePickerDialogApi10.gif)
