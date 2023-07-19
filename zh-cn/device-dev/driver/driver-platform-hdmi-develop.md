@@ -227,6 +227,8 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         }
         ```
 
+        需要注意的是，新增hdmi_config.hcs配置文件后，必须在对应的hdf.hcs文件中包含hdmi_config.hcs所在路径信息，否则配置文件无法生效。
+
 3. 实例化控制器对象
 
     最后一步，完成驱动入口注册之后，要以核心层HdmiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化HdmiCntlr成员HdmiCntlrOps（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）。
@@ -320,7 +322,7 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         
         **返回值：**
 
-        HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+        HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS 定义）
 
         |状态(值)|状态描述|
         |:-|:-|

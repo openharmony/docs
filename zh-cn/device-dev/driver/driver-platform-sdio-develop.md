@@ -31,7 +31,7 @@ SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且
 
 ### 接口说明
 
-为了保证上层在调用SDIO接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/model/storage/include/mmc//mmc_sdio.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
+为了保证上层在调用SDIO接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/model/storage/include/mmc/mmc_sdio.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
 
 SdioDeviceOps定义：
 
@@ -182,13 +182,7 @@ SDIO模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
      }
      ```
 
-     需要注意的是，新增sdio_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
-
-     例如：本例中sdio_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/sdio/sdio_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
-
-     ```c
-     #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/sdio/sdio_config.hcs" // 配置文件相对路径
-     ```
+     需要注意的是，新增sdio_config.hcs配置文件后，必须在hdf.hcs文件中包含sdio_config.hcs所在路径信息，否则配置文件无法生效。
 
 3. 完成属性文件配置之后，下一步就是以核心层SdioDevice对象的初始化为核心，包括驱动适配者自定义结构体（传递参数和数据），实例化SdioDevice成员SdioDeviceOps（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
 
@@ -254,7 +248,7 @@ SDIO模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
 
       返回值：
 
-      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS 定义）。
 
         **表2** Bind函数入参及返回值
       
