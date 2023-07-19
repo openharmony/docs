@@ -18,12 +18,6 @@
 
 - ohos.permission.MICROPHONE
 
-## 媒体和文件
-
-- ohos.permission.MEDIA_LOCATION
-- ohos.permission.READ_MEDIA
-- ohos.permission.WRITE_MEDIA
-
 ## 日历
 
 - ohos.permission.READ_CALENDAR
@@ -88,3 +82,8 @@
 ## 广告跟踪
 
 - ohos.permission.APP_TRACKING_CONSENT
+
+## 读取已安装应用列表
+
+- ohos.permission.APP_TRACKING_CONSENT
+- ohos.permission.GET_INSTALLED_BUNDLE_LIST
