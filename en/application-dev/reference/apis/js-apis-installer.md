@@ -771,7 +771,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user ID of the current process.|
-| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation. The default value is **0**.|
+| installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
@@ -779,7 +779,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 ## UninstallParam<sup>10+</sup>
 
-Defines the parameters required for the uninstallation of a shared bundle.
+Defines the parameters required for the uninstall of a shared bundle.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

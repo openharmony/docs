@@ -220,7 +220,7 @@ Common kernel errors such as memory application and multi-thread processing erro
 
 **Solution**
 
-Ensure sufficient sytem memory.
+Ensure sufficient system memory.
 
 ## 16000051 Network Error
 
@@ -750,7 +750,7 @@ Common kernel errors such as memory application and multi-thread processing erro
 
 **Solution**
 
-Ensure sufficient sytem memory.
+Ensure sufficient system memory.
 
 ## 18500009 Application Has a Quick Fix Task Being Processed
 
