@@ -22,7 +22,7 @@ Processing flow of the widget provider (indicated by the blue arrows in the figu
 
 2. In the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback, the widget provider returns the **key** + **subscriberId** combination defined by the data provider to the Widget Manager.
 
-3. Widget Manager parses the subscription information of the widget provider and registers a subscription instance with the data management service.
+3. The Widget Manager parses the subscription information of the widget provider and registers a subscription instance with the data management service.
 
 Processing flow of the widget update proxy (indicated by the red arrows in the figure):
 
@@ -67,13 +67,13 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- Configure the subscription information [proxies](../reference/apis/js-apis-app-form-formBindingData.md#proxydata) in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **detail** and **subscriberId** is set to **11**.
+- Configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **detail** and **subscriberId** is set to **11**.
   > **NOTE**
   >
   > The value of **key** can be a URI or a simple string. The default value of **subscriberId** is the value of **formId**. The actual value depends on the definition of the data provider.
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
-  
+
   let dataShareHelper;
   onAddForm(want) {
     let formData = {};
@@ -89,14 +89,14 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- In the widget page code file **widgets.abc**, use the variable in LocalStorage to obtain the subscribed data. In this example, the subscribed data is obtained through **'detail'** and displayed in the **\<Text>** component.
+- In the widget page code file **widgets.abc**, use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'detail'** and displayed in the **\<Text>** component.
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
   @Component
   struct Index {
     @LocalStorageProp('detail') detail: string = 'Loading...';
-  
+
     build() {
       Row() {
         Column() {
@@ -139,7 +139,7 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- Add a subscription template ([addTemplate]([../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxies](../reference/apis/js-apis-app-form-formBindingData.md#proxydata) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format.
+- Add a subscription template ([addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format.
 
   > **NOTE**
   >
@@ -178,7 +178,7 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- In the widget page code file **widgets.abc**, use the variable in LocalStorage to obtain the subscribed data. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
+- In the widget page code file (generally the .ets file in the **pages** folder under the widget directory of the project), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -190,7 +190,7 @@ The update-through-proxy configuration varies by the type of shared data.
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
     @LocalStorageProp('list') list: Array<object> = [{"type": "a"}];
-  
+
     build() {
       Row() {
         Column() {
@@ -216,4 +216,3 @@ The update-through-proxy configuration varies by the type of shared data.
 ## Data Provider Development
 
 For details, see [Data Management](../database/data-mgmt-overview.md).
-<!--no_check-->

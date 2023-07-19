@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 权限                                       | 权限等级     | 说明               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询系统中所有应用信息。 |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 

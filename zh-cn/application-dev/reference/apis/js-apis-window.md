@@ -3118,7 +3118,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     }, (err) => {
@@ -3191,7 +3200,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     let promise = windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     });
@@ -3242,7 +3260,16 @@ import window from '@ohos.window';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3254,7 +3281,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                 console.info('Succeeded in binding dialog target.');
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 }
@@ -3302,7 +3329,16 @@ import window from '@ohos.window';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             let promise = windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3313,7 +3349,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 }

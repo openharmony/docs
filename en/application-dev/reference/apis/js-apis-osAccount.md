@@ -2433,7 +2433,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback for the OS account activation state events. By default, no value is passed, which unsubscribes from all the callbacks for the OS account activation state events.                     |
+| callback | Callback&lt;number&gt;     | No  | Callback for the OS account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the OS account activation state events.                     |
 
 **Error codes**
 
@@ -4107,7 +4107,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid challenge or authType or authTrustLevel. |
+| 12300002 | Invalid challenge, authType, or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
@@ -4166,7 +4166,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid userId or challenge or authType or authTrustLevel. |
+| 12300002 | Invalid userId, challenge, authType, or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
@@ -5649,7 +5649,7 @@ Obtains authentication information of the specified type. This API uses a promis
 
 | Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#authtype8)              | No  | Authentication type. By default, no value is passed, which means to obtain information about all authentication types.|
+| authType | [AuthType](#authtype8)              | No  | Authentication type. By default, this parameter is left blank, which means to obtain information about all authentication types.|
 
 **Return value**
 

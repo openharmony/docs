@@ -13,6 +13,8 @@ Ability模块将二级模块API组织在一起方便开发者进行导出。
 import ability from '@ohos.ability.ability';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
 | 名称         | 类型                 | 描述                                                         |

@@ -41,7 +41,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | 名称       | 说明             |
 | ---------- | --------------- |
-| app        | 监听应用事件。   |
+| add        | 监听应用事件。   |
 | update     | 监听更新事件。   |
 | remove     | 监听删除事件。   |
 

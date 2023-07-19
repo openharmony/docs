@@ -8,8 +8,6 @@ The **DataStorage** module provides applications with data processing capability
 > -  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > -  The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.preferences](js-apis-data-preferences.md).
->
-> -  The APIs of this module can be used only in the FA model.
 
 
 ## Modules to Import
@@ -188,7 +186,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
 
 **Example**
 
@@ -230,7 +228,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -295,7 +293,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
 
 **Example**
 
@@ -337,7 +335,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -490,7 +488,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.            |
 | value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.                              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                               |
 
 **Example**
 
@@ -524,7 +522,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -672,7 +670,7 @@ Deletes data with the specified key from this storage object. This API uses an a
 | Name  | Type                     | Mandatory| Description                           |
 | -------- | ------------------------- | ---- | ------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.      |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                     |
 
 **Example**
 
@@ -705,7 +703,7 @@ Deletes data with the specified key from this storage object. This API uses a pr
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -746,7 +744,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -773,7 +771,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -814,7 +812,7 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -840,7 +838,7 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **Return value**
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 

@@ -13,6 +13,8 @@
 import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
+## 属性
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |

@@ -1,4 +1,4 @@
-# \@Watch: Getting Notified of State Variable Changes
+# \@Watch Decorator: Getting Notified of State Variable Changes
 
 
 \@Watch is used to listen for state variables. If your application needs watch for value changes of a state variable, you can decorate the variable with \@Watch.
@@ -27,7 +27,7 @@ An application can request to be notified whenever the value of the \@Watch deco
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| (changedPropertyName?&nbsp;:&nbsp;string)&nbsp;=&gt;&nbsp;void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
+| (changedPropertyName? : string) =&gt; void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
 
 
 ## Observed Changes and Behavior
@@ -131,7 +131,7 @@ The processing procedure is as follows:
 
 ### \@Watch and Custom Component Update
 
-This example is used to clarify the processing steps of custom component updates and \@Watch. Note that **count** is @State decorated in both components.
+This example is used to clarify the processing steps of custom component updates and \@Watch. **count** is decorated by \@State in **CountModifier** and \@Prop in **TotalView**.
 
 
 ```ts

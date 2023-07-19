@@ -23,7 +23,7 @@ getInfo(options?: GetDeviceOptions): void
 > **说明：**<br>
 > 在首页的onShow生命周期之前不建议调用device.getInfo接口。
 
-**系统能力：** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Startup.SystemInfo.Lite
 
 **参数：**
 
@@ -35,7 +35,7 @@ getInfo(options?: GetDeviceOptions): void
 
 定义设备信息获取的参数选项。
 
-**系统能力：** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Startup.SystemInfo.Lite
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -47,7 +47,7 @@ getInfo(options?: GetDeviceOptions): void
 
 设备信息。
 
-**系统能力：** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Startup.SystemInfo.Lite
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |

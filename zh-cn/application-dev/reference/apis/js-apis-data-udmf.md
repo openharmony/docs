@@ -626,7 +626,7 @@ try {
         if (err === undefined) {
             console.info('Succeeded in updating data.');
         } else {
-            console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+            console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
         }
     });
 } catch(e) {

@@ -55,7 +55,7 @@ struct AspectRatioExample {
             Text(item)
               .backgroundColor(0xbbb2cb)
               .fontSize(40)
-              .height(160)
+              .width('100%')
               .aspectRatio(1.5)
           }
         }, item => item)
@@ -70,10 +70,12 @@ struct AspectRatioExample {
 }
 ```
 
-**Figure 1** Portrait display<br>
+**Figure 1** Portrait display
+
 ![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
 
-**Figure 2** Landscape display<br>
+**Figure 2** Landscape display
+
 ![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
 
 ```ts
@@ -132,5 +134,7 @@ struct DisplayPriorityExample {
 }
 
 ```
+
+Landscape display in containers of different sizes
 
 ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)

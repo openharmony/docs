@@ -46,7 +46,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 2. 配置音频流参数
 
-    创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
+    创建音频录制构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```c++
     OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
@@ -64,7 +64,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
-4. 构造播放音频流
+4. 构造录制音频流
 
     ```c++
     OH_AudioCapturer* audioCapturer;

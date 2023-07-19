@@ -1,4 +1,4 @@
-# stateStyles Decorator: Polymorphic Style
+# stateStyles: Polymorphic Style
 
 
 Unlike \@Styles and \@Extend, which are used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
@@ -15,6 +15,8 @@ stateStyles is an attribute method that sets the style based on the internal sta
 - pressed
 
 - disabled
+
+- selected<sup>10+</sup>
 
 
 ## Application Scenarios
