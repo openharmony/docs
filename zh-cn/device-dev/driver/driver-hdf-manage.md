@@ -45,11 +45,9 @@ typedef enum {
 
 #### 按需加载
 
-​- preload字段配置为0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载。
-
+- preload字段配置为0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载。
 - preload字段配置为1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快速启动的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同。
-
-​- preload字段配置为2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务[消息机制](#驱动消息机制管理)时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
+- preload字段配置为2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务[消息机制](#驱动消息机制管理)时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
 
 #### 按序加载（默认加载策略）
 
@@ -58,9 +56,7 @@ typedef enum {
 #### 异常恢复（用户态驱动）
 
 当驱动服务异常退出时，恢复策略如下：
-
 - preload字段配置为0（DEVICE_PRELOAD_ENABLE）或1（DEVICE_PRELOAD_ENABLE_STEP2）的驱动服务，由启动模块拉起host并重新加载服务。
-
 - preload字段配置为2（DEVICE_PRELOAD_DISABLE）的驱动服务，需业务模块注册HDF的服务状态监听器，当收到服务退出消息时，业务模块调用LoadDevice重新加载服务。
 
 ### 驱动服务管理
@@ -110,9 +106,7 @@ typedef enum {
 #### 接口说明
 
 消息机制的功能主要有以下两种：
-
-​- 用户态应用发送消息到驱动。
-
+- 用户态应用发送消息到驱动。
 - 用户态应用接收驱动主动上报事件。
 
 **表2** 消息机制接口
