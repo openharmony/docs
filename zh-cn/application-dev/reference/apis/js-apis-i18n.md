@@ -2368,6 +2368,8 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 封装时区城市组合信息的类型。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 类型             |  必填   |  说明                                   |
