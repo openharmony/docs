@@ -210,10 +210,22 @@ export class BreakpointSystem {
 
   public register() {
     this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
+    //初始化
+    if (this.smListener.matches){
+      this.updateCurrentBreakpoint('sm')
+    }
     this.smListener.on("change", this.isBreakpointSM)
     this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
+    //初始化
+    if (this.mdListener .matches){
+      this.updateCurrentBreakpoint('md')
+    }
     this.mdListener.on("change", this.isBreakpointMD)
     this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
+    //初始化
+    if (this.lgListener .matches){
+      this.updateCurrentBreakpoint('lg')
+    }
     this.lgListener.on("change", this.isBreakpointLG)
   }
 
@@ -224,6 +236,9 @@ export class BreakpointSystem {
   }
 }
 
+```
+
+```
 // MediaQuerySample.ets
 import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
 
@@ -257,6 +272,7 @@ struct MediaQuerySample {
   }
 }
 ```
+
 
 
 ## 栅格布局
