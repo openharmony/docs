@@ -39,8 +39,7 @@ UDMF提供的标准化数据类型主要包括以下几类：
 
 ## 接口说明
 
-UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录UnifiedRecord。数据记录UnifiedRecord则是对UDMF支持的数据内容的抽象定义，例如一条文本记录、一条图片记录等。
-数据记录中的数据内容类型对应为各数据类型UnifiedDataType。
+UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录UnifiedRecord。数据记录UnifiedRecord则是对UDMF支持的数据内容的抽象定义，例如一条文本记录、一条图片记录等。数据记录中的数据内容类型对应为各数据类型UnifiedDataType。
 
 以下是常见的UDMF的接口说明，更多接口和具体说明，请见[统一数据管理框架](../reference/apis/js-apis-data-udmf.md)。
 
