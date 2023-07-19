@@ -150,11 +150,10 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 | -------- | -------- | -------- |
 | ![zh-cn_image_0000001336165712](figures/zh-cn_image_0000001336165712.jpg) | ![zh-cn_image_0000001386485617](figures/zh-cn_image_0000001386485617.jpg) | ![zh-cn_image_0000001386805569](figures/zh-cn_image_0000001386805569.jpg) | 
 
-
+1. 对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 
 ```ts
 // common/breakpointsystem.ets
-// 对通过媒体查询监听断点的功能做简单的封装，方便后续使用
 import mediaquery from '@ohos.mediaquery';
 
 export class BreakpointType<T> {
@@ -237,7 +236,7 @@ export class BreakpointSystem {
 }
 
 ```
-
+2. 在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值。
 ```
 // MediaQuerySample.ets
 import { BreakpointSystem, BreakpointType } from '../common/breakpointsystem'
