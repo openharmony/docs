@@ -16,8 +16,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | Permission                                      | Permission Level    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about a specified bundle.  |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.|
+| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | Permission to clear cache files of a bundle.      |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | Permission to enable or disable an application or ability. |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list.|
