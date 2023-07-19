@@ -1271,6 +1271,14 @@ Key-Value型数据库核心能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
+## SystemCapability.DistributedDataManager.Preferences.Core.Lite
+
+轻量级偏好型数据存储核心能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 否           | 否     |
+
 ## SystemCapability.DistributedDataManager.DataShare.Core
 
 跨进程数据共享，基础能力
