@@ -220,7 +220,7 @@ Common kernel errors such as memory application and multi-thread processing erro
 
 **Solution**
 
-Ensure sufficient sytem memory.
+Ensure sufficient system memory.
 
 ## 16000051 Network Error
 
@@ -347,6 +347,60 @@ Cross-device installation-free is not supported.
 **Solution**
 
 Use installation-free on the same device.
+
+## 16000058 Specified URI Flag Is Invalid
+
+**Error Message**
+
+Invalid URI flag.
+
+**Description**
+
+This error code is reported when the specified URI flag is invalid.
+
+**Possible Causes**
+
+An incorrect parameter is passed in.
+
+**Solution**
+
+Pass in a valid URI flag.
+
+## 16000059 Specified URI Type Is Invalid
+
+**Error Message**
+
+Invalid URI type.
+
+**Description**
+
+This error code is reported when the specified URI type is invalid.
+
+**Possible Causes**
+
+An incorrect parameter is passed in. Currently, URI authorization management supports only URIs of the file type.
+
+**Solution**
+
+Ensure that the input parameter is of the supported URI type.
+
+## 16000060 Sandbox Applications Cannot Authorize URIs
+
+**Error Message**
+
+Sandbox application can not grant URI permission.
+
+**Description**
+
+This error code is reported when a sandbox application authorizes a URI.
+
+**Possible Causes**
+
+Sandbox applications cannot authorize URIs.
+
+**Solution**
+
+Use a non-sandbox application.
 
 ## 16000101 shell Command Failure
 
@@ -750,7 +804,7 @@ Common kernel errors such as memory application and multi-thread processing erro
 
 **Solution**
 
-Ensure sufficient sytem memory.
+Ensure sufficient system memory.
 
 ## 18500009 Application Has a Quick Fix Task Being Processed
 
