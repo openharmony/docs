@@ -34,7 +34,7 @@
 
 4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
 
-5. 工程创建完成后，在应用级**build-profile.json5**文件中，将**compileSdkVersion**和**compatibleSdkVersion**字段从**app**下迁移到当前选中的products中。当前生效的products可以通过点击编辑区域右上方![zh-cn_image_0000001609333677](figures/zh-cn_image_0000001609333677.png)图标进行查看。
+5. 工程创建完成后，在应用级**build-profile.json5**（与entry同目录级别）文件中，将**compileSdkVersion**和**compatibleSdkVersion**字段从**app**下迁移到当前选中的products中。当前生效的products可以通过点击编辑区域右上方![zh-cn_image_0000001609333677](figures/zh-cn_image_0000001609333677.png)图标进行查看。
 
    ![changeToAPI10](figures/changeToAPI10.png)
 
