@@ -4221,7 +4221,7 @@ struct WebComponent {
 }
 ```
 
-### prefetchPage
+### prefetchPage<sup>10+</sup>
 
 prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
@@ -4231,7 +4231,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **参数：**
 
-| 名称              | 类型                             | 必填  | 说明                      |                            
+| 参数名             | 类型                             | 必填  | 说明                      |                            
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
@@ -4274,7 +4274,7 @@ struct WebComponent {
 }
 ```
 
-### prepareForPageLoad
+### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
 
@@ -4284,7 +4284,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **参数：**
 
-| 名称           | 类型     | 必填  | 说明                                                   |
+| 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
 | url            | string  | 是   | 预连接的url。|
 | preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
