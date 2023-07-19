@@ -40,6 +40,7 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | 是 | 指定系统的深色模式配置 |
@@ -64,6 +65,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **参数：** 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | 是 | 指定系统深色模式配置 |
@@ -95,6 +97,7 @@ getDarkMode(): DarkMode;
 **系统能力：** SystemCapability.ArkUI.UiAppearance
 
 **返回值：** 
+
 | 类型 | 说明 |
 | -- | -- |
 |[DarkMode](#darkmode) | 系统当前的深色模式配置 |
