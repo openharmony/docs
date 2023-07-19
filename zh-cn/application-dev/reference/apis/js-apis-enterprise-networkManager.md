@@ -6,7 +6,9 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理员应用获取所有活动的网络接口，使用callback形式返回网络接口名称数组。
+指定设备管理应用获取所有激活的网络接口。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -30,12 +32,12 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为网络接口名称数组，否则err为错误对象。     |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -63,7 +65,7 @@ networkManager.getAllNetworkInterfaces(wantTemp, (err, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-指定设备管理员应用获取所有活动的网络接口，使用Promise形式返回网络接口名称数组。
+指定设备管理应用获取所有激活的网络接口。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -75,7 +77,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -85,7 +87,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -111,7 +113,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理员应用根据networkInterface获取设备IP地址，使用callback形式返回设备IP地址。
+指定设备管理应用根据网络接口获取设备IP地址。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -123,13 +125,13 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为IP地址，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -157,7 +159,7 @@ networkManager.getIpAddress(wantTemp, 'eth0', (err, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-指定设备管理员应用根据networkInterface获取设备IP地址，使用Promise形式返回设备IP地址。
+指定设备管理应用根据网络接口获取设备IP地址。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -169,7 +171,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -180,7 +182,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -206,7 +208,7 @@ networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理员应用根据networkInterface获取设备MAC地址，使用callback形式返回设备MAC地址。
+指定设备管理应用根据网络接口获取设备MAC地址。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -218,13 +220,13 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备MAC地址，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -252,7 +254,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 getMac(admin: Want, networkInterface: string): Promise\<string>;
 
-指定设备管理员应用根据networkInterface获取设备MAC地址，使用Promise形式返回设备IP地址。
+指定设备管理应用根据网络接口获取设备MAC地址。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -264,7 +266,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -275,7 +277,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -301,7 +303,7 @@ networkManager.getMac(wantTemp, 'eth0').then((result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-指定设备管理员应用查询指定网络接口是否被禁用，使用callback形式返回网络接口是否被禁用。
+指定设备管理应用查询指定网络接口是否被禁用。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -313,13 +315,13 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为指定网络接口是否被禁用，true表示该网络接口被禁用，false表示该网络接口未被禁用，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -347,7 +349,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0', (err, result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;boolean&gt;
 
-指定设备管理员应用查询指定网络接口是否被禁用，使用Promise形式返回指定网络接口是否被禁用。
+指定设备管理应用查询指定网络接口是否被禁用。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -359,7 +361,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -370,7 +372,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -396,7 +398,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理员应用禁用指定网络接口，使用callback形式返回。
+指定设备管理应用禁止设备使用指定网络。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -408,14 +410,14 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -443,7 +445,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true, (err) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean): Promise&lt;void&gt;
 
-指定设备管理员应用禁用指定网络接口，使用Promise形式返回。
+指定设备管理应用禁止设备使用指定网络。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -455,7 +457,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 
@@ -467,7 +469,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -493,7 +495,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-指定设备管理员应用添加网络包过滤规则，使用callback形式返回。
+指定设备管理应用为设备添加网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -505,13 +507,13 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -551,7 +553,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-指定设备管理员应用添加网络包过滤规则，使用Promise形式返回。
+指定设备管理应用为设备添加网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -563,7 +565,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 
 **返回值：**
@@ -574,7 +576,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -612,7 +614,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
 
-指定设备管理员应用移除网络包过滤规则，使用callback形式返回。
+指定设备管理应用移除网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -624,13 +626,13 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -668,7 +670,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
 
-指定设备管理员应用移除网络包过滤规则，使用Promise形式返回。
+指定设备管理应用移除网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -680,7 +682,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 
 **返回值：**
@@ -691,7 +693,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -727,7 +729,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
-指定设备管理员应用获取网络包过滤规则，使用callback形式返回。
+指定设备管理应用获取网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -739,12 +741,12 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -772,7 +774,7 @@ networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
 
 listIptablesFilterRules(admin: Want): Promise\<string>
 
-指定设备管理员应用获取网络包过滤规则，使用Promise形式返回。
+指定设备管理应用获取网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -784,7 +786,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -794,7 +796,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
