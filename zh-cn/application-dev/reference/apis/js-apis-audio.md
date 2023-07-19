@@ -3676,7 +3676,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ### getAudioEffectInfoArray<sup>10+</sup>
 
-getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
 
 获取当前音效模式的信息。使用callback异步回调。
 
@@ -3686,14 +3686,13 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: Asyn
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
 | usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
 | callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
 
 **示例：**
 
 ```js
-audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
@@ -3706,7 +3705,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC,
 
 ### getAudioEffectInfoArray<sup>10+</sup>
 
-getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 获取当前音效模式的信息。使用Promise异步回调。
 
@@ -3716,7 +3715,6 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | [ContentType](#contenttype)         | 是     |  音频内容类型。                 |
 | usage    | [StreamUsage](#streamusage)         | 是     |  音频流使用类型。               |
 
 **返回值：**
@@ -3728,7 +3726,7 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 **示例：**
 
 ```js
-audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
 }).catch((err) => {
