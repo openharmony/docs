@@ -847,7 +847,7 @@
 
 ## ohos.permission.NETSYS_INTERNAL
 
-允许SA调用NETSYS中的网络诊断、wifi、网卡监听、iptables设置等功能接口。
+管理网络接口调用权限。
 
 **权限级别**：system_basic
 
