@@ -32,7 +32,7 @@ Obtains the localized script for the specified country.
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
 
@@ -71,7 +71,7 @@ Obtains the localized script for the specified language.
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
 | locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
 
@@ -177,7 +177,7 @@ Checks whether the system language matches the specified region.
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
 | language | string | Yes   | Valid language ID, for example, **zh**.|
-| region   | string | No   | Valid region ID, for example, **CN**. |
+| region   | string | No   | Valid region ID, for example, **CN**. The default value is the country or region where the SIM card is used. |
 
 **Return value**
 
@@ -239,7 +239,7 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -305,7 +305,7 @@ static setSystemRegion(region: string): void
 
 Sets the system region.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -315,7 +315,7 @@ This is a system API.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| region | string | Yes   | Region ID.|
+| region | string | Yes   | System region ID.|
 
 **Error codes**
 
@@ -371,7 +371,7 @@ static setSystemLocale(locale: string): void
 
 Sets the system locale.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -435,9 +435,9 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static set24HourClock(option: boolean): void
 
-Sets the 24-hour clock.
+Sets the system time to the 24-hour clock.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -473,7 +473,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 Adds a preferred language to the specified position on the preferred language list.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -484,7 +484,7 @@ This is a system API.
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
 | language | string | Yes   | Preferred language to add. |
-| index    | number | No   | Position to which the preferred language is added.|
+| index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
 
 **Error codes**
 
@@ -512,7 +512,7 @@ static removePreferredLanguage(index: number): void
 
 Deletes a preferred language from the specified position on the preferred language list.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -642,7 +642,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 Specifies whether to enable use of local digits.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -683,7 +683,7 @@ Checks whether use of local digits is enabled.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+| boolean | Returns **true** if the local digit switch is turned on; returns **false** otherwise.|
 
 **Error codes**
 
@@ -707,7 +707,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 isRTL(locale: string): boolean
 
-Checks whether the localized script for the specified language is displayed from right to left.
+Checks whether a locale uses an RTL language.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -743,7 +743,7 @@ Obtains a **Calendar** object.
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**.                |
-| type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
+| type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. The default value is the default calendar type of the locale.|
 
 **Return value**
 
@@ -818,9 +818,9 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 | year   | number | Yes   | Year to set. |
 | month  | number | Yes   | Month to set. |
 | date   | number | Yes   | Day to set. |
-| hour   | number | No   | Hour to set.|
-| minute | number | No   | Minute to set.|
-| second | number | No   | Second to set. |
+| hour   | number | No   | Hour to set. The default value is the system hour.|
+| minute | number | No   | Minute to set. The default value is the system minute.|
+| second | number | No   | Second to set. The default value is the system second.|
 
 **Example**
   ```js
@@ -990,7 +990,7 @@ Obtains the value of the specified field in the **Calendar** object.
 
 getDisplayName(locale: string): string
 
-Obtains the **Calendar** object name displayed for the specified locale.
+Obtains the displayed name of the **Calendar** object for the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -998,13 +998,13 @@ Obtains the **Calendar** object name displayed for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**.|
+| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist&nbsp;Calendar** when the locale is set to **en-US**.|
 
 **Return value**
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | **Calendar** object name displayed for the specified locale.|
+| string | Displayed name of the **Calendar** object for the specified locale.|
 
 **Example**
   ```js
@@ -1017,7 +1017,7 @@ Obtains the **Calendar** object name displayed for the specified locale.
 
 isWeekend(date?: Date): boolean
 
-Checks whether the specified date in this **Calendar** object is a weekend.
+Checks whether a given date is a weekend in the calendar.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1025,13 +1025,13 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Specified date in this **Calendar** object. If the **date** parameter is not specified, the system checks whether the current date is a weekend.|
+| date | Date | No   | Specified date. If this parameter is left empty, the system checks whether the current date is a weekend. The default value is the system date.|
 
 **Return value**
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
+| boolean | Returns **true** if the specified date is a weekend; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1059,7 +1059,7 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. The default value is **NATIONAL**. |
 
 **Example**
   ```js
@@ -1184,13 +1184,13 @@ Creates an **IndexUtil** object.
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, optional script, and region.|
+| locale | string | No   | A string containing locale information, including the language, optional script, and region. The default value is the system locale.|
 
 **Return value**
 
 | Type                      | Description                   |
 | ------------------------ | --------------------- |
-| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
+| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the **locale** object.|
 
 **Example**
   ```js
@@ -1213,7 +1213,7 @@ Obtains the index list for this **locale** object.
 
 | Type                 | Description                |
 | ------------------- | ------------------ |
-| Array&lt;string&gt; | Index list for this **locale** object.|
+| Array&lt;string&gt; | Index list for the **locale** object.|
 
 **Example**
   ```js
@@ -1228,7 +1228,7 @@ Obtains the index list for this **locale** object.
 
 addLocale(locale: string): void
 
-Adds the index of the new **locale** object to the index list.
+Adds a **locale** object to the current index list.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1249,7 +1249,7 @@ Adds the index of the new **locale** object to the index list.
 
 getIndex(text: string): string
 
-Obtains the index of a text object.
+Obtains the index of a **text** object.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1305,7 +1305,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 setLineBreakText(text: string): void
 
-Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
+Sets the text to be processed by the **BreakIterator** object.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1326,7 +1326,7 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 
 getLineBreakText(): string
 
-Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
+Obtains the text being processed by the **BreakIterator** object.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1348,7 +1348,7 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 
 current(): number
 
-Obtains the position of the [BreakIterator](#breakiterator8) object in the text being processed.
+Obtains the position of the **BreakIterator** object in the text being processed.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1370,7 +1370,7 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 
 first(): number
 
-Puts the [BreakIterator](#breakiterator8) object to the first text boundary, which is always at the beginning of the processed text.
+Puts the **BreakIterator** object to the first break point, which is always at the beginning of the processed text.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1378,7 +1378,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 | Type    | Description               |
 | ------ | ----------------- |
-| number | Offset to the first text boundary of the processed text.|
+| number | Offset to the first break point of the processed text.|
 
 **Example**
   ```js
@@ -1392,7 +1392,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 last(): number
 
-Puts the [BreakIterator](#breakiterator8) object to the last text boundary, which is always the next position after the end of the processed text.
+Puts the **BreakIterator** object to the last break point, which is always the next position after the end of the processed text.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1400,7 +1400,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | Offset to the last text boundary of the processed text.|
+| number | Offset to the last break point of the processed text.|
 
 **Example**
   ```js
@@ -1414,7 +1414,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 next(index?: number): number
 
-Moves the [BreakIterator](#breakiterator8) object backward by the specified number of text boundaries if the specified index is a positive number. If the index is a negative number, the [BreakIterator](#breakiterator8) object will be moved forward by the corresponding number of text boundaries. If no index is specified, the index will be treated as **1**.
+Moves the **BreakIterator** object backward by the corresponding number of break points.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1422,13 +1422,13 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | No   | Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**.|
+| index | number | No   | Number of break points to be moved by the **BreakIterator** object. A positive value indicates that the break point is moved backward by the specified number of break points, and a negative value indicates the opposite. The default value is **1**.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the **BreakIterator** object in the text after it is moved by the specified number of break points. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
 
 **Example**
   ```js
@@ -1444,7 +1444,7 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 previous(): number
 
-Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
+Moves the **BreakIterator** object forward by one break point.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1452,7 +1452,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the **BreakIterator** object in the text after it is moved to the previous break point. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
 
 **Example**
   ```js
@@ -1468,7 +1468,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 following(offset: number): number
 
-Moves the [BreakIterator](#breakiterator8) object to the text boundary after the position specified by the offset. Position of the [BreakIterator](#breakiterator8) object after it is moved to the text boundary after the position specified by the offset.
+Moves the **BreakIterator** to the break point following the specified position.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1476,13 +1476,13 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | Yes   | Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved.|
+| offset | number | Yes   | Moves the **BreakIterator** to the break point following the specified position.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
+| number | The value **-1** is returned if the break point to which the **BreakIterator** object is moved is outside of the processed text.|
 
 **Example**
   ```js
@@ -1498,7 +1498,7 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 
 isBoundary(offset: number): boolean
 
-Checks whether the position specified by the offset is a text boundary. If **true** is returned, the [BreakIterator](#breakiterator8) object is moved to the position specified by the offset. If **false** is returned, the [BreakIterator](#breakiterator8) object is moved to the text boundary after the position specified by the offset, which is equivalent to calling [following](#following8)(offset).
+Checks whether the specified position of the text is a break point.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1506,13 +1506,13 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 
 | Name   | Type    | Mandatory  | Description         |
 | ------ | ------ | ---- | ----------- |
-| offset | number | Yes   | Position to check.|
+| offset | number | Yes   | Offset to the specified position of the text. The value **true** is returned if the position specified by **offset** is a break point, and the value **false** is returned otherwise. If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
 
 **Return value**
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
+| boolean | Returns **true** if the position specified by the offset is a break point; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1535,7 +1535,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| zondID | string | No   | Time zone ID.|
+| zondID | string | No   | Time zone ID. The default value is the system time zone.|
 
 **Return value**
 
@@ -1577,7 +1577,7 @@ Obtains the ID of the specified **TimeZone** object.
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
-Obtains the localized representation of the time zone.
+Obtains the localized representation of a **TimeZone** object.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1585,8 +1585,8 @@ Obtains the localized representation of the time zone.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | Locale ID.               |
-| isDST  | boolean | No   | Whether to consider DST when obtaining the representation of the **TimeZone** object.|
+| locale | string  | No   | Locale ID. The default value is the system locale.               |
+| isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
 
 **Return value**
 
@@ -1634,7 +1634,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point. The default value is the system time zone.|
 
 **Example**
   ```js
@@ -1689,7 +1689,7 @@ Obtains the list of time zone city IDs supported by the system.
 
 static getCityDisplayName(cityID: string, locale: string): string
 
-Obtains the localized display of a time zone city in the specified locale.
+Obtains the localized representation of a time zone city in the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1704,7 +1704,7 @@ Obtains the localized display of a time zone city in the specified locale.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Localized display of the time zone city in the specified locale.|
+| string | Localized representation of the time zone city in the specified locale.|
 
 **Example**
   ```ts
@@ -2101,7 +2101,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
 | locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
 
 **Return value**
 
@@ -2133,7 +2133,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | Sequence of the year, month, and day.|
+| string | Sequence of the year, month, and day in the locale.|
 
 **Example**
   ```js
@@ -2290,7 +2290,7 @@ Obtains the country/region sorting array.
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
 | regions   | Array&lt;string&gt; | Yes  | List of countries/regions to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option. The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
 
 **Return value**
 
@@ -2320,10 +2320,40 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
   }
   ```
 
+### getTimeZoneCityItemArray<sup>10+</sup>
+
+static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
+
+Obtains the array of time zone city items after sorting.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | -------------------- |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | Array of time zone city items.|
+
+**Example**
+  ```js
+  try {
+    let timeZoneCityItemArray = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    for (var i = 0; i < timeZoneCityItemArray.length; i++) {
+        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName + 
+                   ", " + timeZoneCityItemArray[i].offset + "\r\n");
+    }
+  } catch(error) {
+    console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
 
 ## LocaleItem<sup>10+</sup>
 
 Represents the list of languages or countries/regions sorted by **SystemLocaleManager**.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2331,13 +2361,30 @@ Represents the list of languages or countries/regions sorted by **SystemLocaleMa
 | --------------- | --------------- | ------ | --------------------------------------- |
 | id              | string          |   Yes  | Language code or country/region code, for example, **zh** or **CN**.   |
 | suggestionType  | [SuggestionType](#suggestiontype10)  |   Yes | Language or country/region suggestion type.                 |
-| displayName     | string          |  Yes  | Displayed name of the ID in the locale of **SystemLocaleManager**.|
+| displayName     | string          |  Yes  | Displayed name of ID in the locale of **SystemLocaleManager**.|
 | localName       | string          |  No  | Local name of the ID.                          |
+
+## TimeZoneCityItem<sup>10+</sup>
+
+Represents the type of time zone city items.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type            |  Mandatory  |  Description                                  |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| zoneId          | string          |   Yes   | Time zone ID, for example, **Asia/Shanghai**.             |
+| cityId          | string          |   Yes   | City ID, for example, **Shanghai**.                  |
+| cityDisplayName | string          |   Yes   | Displayed name of the city ID in the system locale.         |
+| offset          | int             |   Yes   | Offset of the time zone ID.                        |
+| zoneDisplayName | string          |   Yes   | Displayed name of the time zone ID in the system locale.         |
+| rawOffset       | int             |   No   | Row offset of the time zone ID.                      |
 
 
 ## SuggestionType<sup>10+</sup>
 
 Represents the language or country/region suggestion type.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2352,13 +2399,15 @@ Represents the language or country/region suggestion type.
 
 Represents the language or country/region sorting option.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name           | Type           |  Mandatory|   Description                                |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  No | System locale, for example, **zh-Hans-CN**.   |
-| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting.                 |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. |
+| locale          | string          |  No | System locale, for example, **zh-Hans-CN**. The default value of **locale** is the system locale.   |
+| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**. If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The default value of **isSuggestedFirst** is **true**. |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
@@ -2367,7 +2416,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 Obtains the localized script for the specified country.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2377,7 +2426,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
 
@@ -2398,7 +2447,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 Obtains the localized script for the specified language.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2408,7 +2457,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
 | locale       | string  | Yes   | Locale ID.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
 
@@ -2429,7 +2478,7 @@ getSystemLanguage(): string
 
 Obtains the system language.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2451,7 +2500,7 @@ getSystemRegion(): string
 
 Obtains the system region.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2473,7 +2522,7 @@ getSystemLocale(): string
 
 Obtains the system locale.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2495,7 +2544,7 @@ is24HourClock(): boolean
 
 Checks whether the 24-hour clock is used.
 
-This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9) instead.
+This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2517,7 +2566,7 @@ set24HourClock(option: boolean): boolean
 
 Sets the 24-hour clock.
 
-This API is deprecated since API version 9. You are advised to use [System.set24HourClock](#set24hourclock9) instead.
+This API is deprecated since API version 9. You are advised to use [System.set24HourClock](#set24hourclock9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2548,7 +2597,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 Adds a preferred language to the specified position on the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.addPreferredLanguage](#addpreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.addPreferredLanguage](#addpreferredlanguage9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2559,7 +2608,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
 | language | string | Yes   | Preferred language to add. |
-| index    | number | No   | Position to which the preferred language is added.|
+| index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
 
 **Return value**
 
@@ -2582,7 +2631,7 @@ removePreferredLanguage(index: number): boolean
 
 Deletes a preferred language from the specified position on the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.removePreferredLanguage](#removepreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.removePreferredLanguage](#removepreferredlanguage9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2614,7 +2663,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 Obtains the list of preferred languages.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2636,7 +2685,7 @@ getFirstPreferredLanguage(): string
 
 Obtains the first language in the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2661,7 +2710,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2673,7 +2722,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
 | locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
 
 **Return value**
 
@@ -2691,7 +2740,7 @@ static isDigit(char: string): boolean
 
 Checks whether the input character string is composed of digits.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2714,7 +2763,7 @@ static isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2737,7 +2786,7 @@ static isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2760,7 +2809,7 @@ static isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2783,7 +2832,7 @@ static isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2806,7 +2855,7 @@ static isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2829,7 +2878,7 @@ static isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2852,7 +2901,7 @@ static isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2875,7 +2924,7 @@ static getType(char: string): string
 
 Obtains the type of the input character string.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 
 **System capability**: SystemCapability.Global.I18n
 

@@ -492,6 +492,8 @@
       - [hapsigner Overview](security/hapsigntool-overview.md)
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
+  - AI
+      - [Using MindSpore Lite for Model Inference (JS)](ai/mindspore-lite-js-guidelines.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
