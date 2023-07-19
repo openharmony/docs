@@ -939,6 +939,15 @@ marshalling(sequence: rpc.MessageSequence): void
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](#ResponseCode说明)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
 **示例：**
 
 ```js
@@ -955,7 +964,7 @@ class MySequence {
     }
     async unmarshalling(messageSequence) {
         await image.unmarshalling(messageSequence).then(async (pixelMap) => {
-            this.pixel_map = pixelMap;
+            this.pixel_map = pixelmap;
         })
         return true;
     }
@@ -987,6 +996,15 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | -------------------------------- | --------------------- |
 | Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[图片错误码](#ResponseCode说明)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
 **示例：**
 
 ```js
@@ -1003,7 +1021,7 @@ class MySequence {
     }
     async unmarshalling(messageSequence) {
         await image.unmarshalling(messageSequence).then(async (pixelMap) => {
-            this.pixel_map = pixelMap;
+            this.pixel_map = pixelmap;
         })
         return true;
     }
