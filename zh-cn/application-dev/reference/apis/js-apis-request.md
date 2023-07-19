@@ -494,11 +494,7 @@ delete(): Promise&lt;boolean&gt;
 
   ```js
   uploadTask.delete().then((result) => {
-    if (result) {
-      console.info('Succeeded in deleting the upload task.');
-    } else {
-      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in deleting the upload task.');
   }).catch((err) => {
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -529,11 +525,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in deleting the upload task.');
-    } else {
-      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in deleting the upload task.');
   });
   ```
 
@@ -560,11 +552,7 @@ remove(): Promise&lt;boolean&gt;
 
   ```js
   uploadTask.remove().then((result) => {
-    if (result) {
-      console.info('Succeeded in removing the upload task.');
-    } else {
-      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in removing the upload task.');
   }).catch((err) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1059,11 +1047,7 @@ delete(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.delete().then((result) => {
-  if (result) {
     console.info('Succeeded in removing the download task.');
-  } else {
-    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-  }
   }).catch ((err) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1094,11 +1078,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     } 
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    } 
+    console.info('Succeeded in removing the download task.');
   });
   ```
 
@@ -1235,11 +1215,7 @@ suspend(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.suspend().then((result) => {    
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   }).catch((err) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1270,11 +1246,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   });
   ```
 
@@ -1299,11 +1271,6 @@ restore(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.restore().then((result) => {
-    if (result) {
-      console.info('Succeeded in resuming the download task.')
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
     console.info('Succeeded in resuming the download task.')
   }).catch((err) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1335,11 +1302,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     } 
-    if (result) {
-      console.info('Succeeded in resuming the download task.');
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in resuming the download task.');
   });
   ```
 
@@ -1366,11 +1329,7 @@ remove(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.remove().then((result) => {
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in removing the download task.');
   }).catch ((err) => {
     console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1402,12 +1361,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
     if(err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
       return;
-    } 
-    if (result) {
-      console.info('Succeeded in removing the download task.');
-    } else {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    } 
+    }
+    console.info('Succeeded in removing the download task.');
   });
   ```
 
@@ -1554,11 +1509,7 @@ pause(): Promise&lt;void&gt;
 
   ```js
   downloadTask.pause().then((result) => {    
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   }).catch((err) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
@@ -1591,11 +1542,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in pausing the download task.');
-    } else {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in pausing the download task.');
   });
   ```
 
@@ -1622,11 +1569,6 @@ resume(): Promise&lt;void&gt;
 
   ```js
   downloadTask.resume().then((result) => {
-    if (result) {
-      console.info('Succeeded in resuming the download task.')
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
     console.info('Succeeded in resuming the download task.')
   }).catch((err) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1660,11 +1602,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    if (result) {
-      console.info('Succeeded in resuming the download task.');
-    } else {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    }
+    console.info('Succeeded in resuming the download task.');
   });
   ```
 
