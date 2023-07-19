@@ -244,7 +244,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
 
-| 错误码ID | 错误信息
+| 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
