@@ -43,8 +43,8 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
-| 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId is not valid.                               |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **示例：**
 
@@ -129,8 +129,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800011     | Failed to open database by database corrupted.              |
 | 14800000     | Inner error.                                                |
-| 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId is not valid.                               |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **示例：**
 
@@ -271,8 +271,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<vo
 | ------------ | ----------------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800000     | Inner error.                                                |
-| 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId is not valid.                               |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **示例：**
 
@@ -413,8 +413,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise<void>
 | ------------ | ----------------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
 | 14800000     | Inner error.                                                |
-| 14801001     | Only supported in Stage mode.                               |
-| 14801002     | The dataGroupId is not valid.                               |
+| 14801001     | Only supported in stage mode.                               |
+| 14801002     | The data group id is not valid.                             |
 
 **示例：**
 
@@ -3932,7 +3932,7 @@ try {
 
 ### on<sup>10+</sup>
 
-on(event: string, supportShared: boolean, observer: Callback): void
+on(event: string, interProcess: boolean, observer: Callback<void>): void
 
 注册数据库的进程内或者进程间事件监听。当调用[emit](#emit10)接口时，将调用回调。
 
@@ -3940,11 +3940,11 @@ on(event: string, supportShared: boolean, observer: Callback): void
 
 **参数：**
 
-| 参数名        | 类型     | 必填 | 说明                                                         |
-| ------------- | -------- | ---- | ------------------------------------------------------------ |
-| event         | string   | 是   | 订阅事件名称。                                               |
-| supportShared | boolean  | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
-| observer      | Callback | 是   | 回调函数。                                                   |
+| 参数名       | 类型     | 必填 | 说明                                                         |
+| ------------ | -------- | ---- | ------------------------------------------------------------ |
+| event        | string   | 是   | 订阅事件名称。                                               |
+| interProcess | boolean  | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
+| observer     | Callback | 是   | 回调函数。                                                   |
 
 **错误码：**
 
@@ -4032,7 +4032,7 @@ try {
 
 ### off<sup>10+</sup>
 
-off(event: string, supportShared: boolean, observer?: Callback<void>): void
+off(event: string, interProcess: boolean, observer?: Callback<void>): void
 
 取消数据变更的事件监听。
 
@@ -4040,11 +4040,11 @@ off(event: string, supportShared: boolean, observer?: Callback<void>): void
 
 **参数：**
 
-| 参数名        | 类型     | 必填 | 说明                                                         |
-| ------------- | -------- | ---- | ------------------------------------------------------------ |
-| event         | string   | 是   | 取消订阅事件名称。                                           |
-| supportShared | boolean  | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
-| observer      | Callback | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
+| 参数名       | 类型     | 必填 | 说明                                                         |
+| ------------ | -------- | ---- | ------------------------------------------------------------ |
+| event        | string   | 是   | 取消订阅事件名称。                                           |
+| interProcess | boolean  | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
+| observer     | Callback | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
 
 **错误码：**
 

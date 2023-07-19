@@ -142,7 +142,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
- Only supported in Stage mode.
+ Only supported in stage mode.
 
 **错误描述**
 
@@ -154,13 +154,13 @@ Failed to obtain subscription service.
 
 **处理步骤**
 
-请切换当前上下文环境，使用Stage模型。
+切换当前上下文环境，使用Stage模型。
 
 ## 14801002 storeConfig中传入的dataGroupId参数非法
 
 **错误信息**
 
-The dataGroupId is not valid.
+The data group id is not valid.
 
 **错误描述**
 
