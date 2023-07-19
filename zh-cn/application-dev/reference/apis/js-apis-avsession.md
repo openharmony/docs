@@ -41,6 +41,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | Promise<[AVSession](#avsession10)\> | Promise对象。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -82,6 +83,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -166,6 +168,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -214,6 +217,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 | Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise对象。返回所有会话描述的只读对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -257,6 +261,7 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。                              |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -307,6 +312,7 @@ createController(sessionId: string): Promise\<AVSessionController>
 | Promise<[AVSessionController](#avsessioncontroller10)\> | Promise对象。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -2379,6 +2385,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 | Promise<[OutputDeviceInfo](#outputdeviceinfo10)> | Promise对象。返回播放设备信息。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -2411,6 +2418,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 | callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo10)\> | 是   | 回调函数，返回播放设备信息。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -3846,6 +3854,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 | Promise<[OutputDeviceInfo](#outputdeviceinfo10)\> | Promise对象，返回播放设备信息。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -3999,11 +4008,11 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **返回值：**
 
@@ -4044,11 +4053,11 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **示例：**
 
@@ -4661,6 +4670,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 | callback | (sessionEvent: string, args: {[key:string]: object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -5644,6 +5654,8 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
 | callback | function | 是   | 错误事件回调方法：远端播放过程中发生的错误，会提供错误码ID和错误信息。 |
 
+**错误码：**
+
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
 
 | 错误码ID | 错误信息              | 说明                                                         |
@@ -5677,6 +5689,8 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | 是   | 错误事件回调类型，取消注册的事件：'error' |
+
+**错误码：**
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
 
