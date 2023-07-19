@@ -117,7 +117,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **错误码：**
 
 | 错误码ID | 错误信息 |
-| 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -276,6 +275,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -345,6 +346,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -424,6 +427,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -979,6 +984,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -1040,8 +1046,6 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1445,6 +1449,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -2226,7 +2231,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCall
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -2260,7 +2265,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
 
 **返回值：**
 
@@ -2787,9 +2792,9 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
   }
   ```
 
-## UIAbilityContext.reportDrawnCompleted
+## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
 
-reportDrawnCompleted(callback: AsyncCallback<void>): void;
+reportDrawnCompleted(callback: AsyncCallback\<void>): void;
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
  **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2812,26 +2817,31 @@ reportDrawnCompleted(callback: AsyncCallback<void>): void;
 **示例：**
 
   ```ts
-onWindowStageCreate(windowStage: Window.WindowStage) {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
-        if (err.code) {
-            return;
-        }
-        try {
-            this.context.reportDrawnCompleted((err) => {
-                if (err.code) {
-                    // 处理业务逻辑错误
-                    console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
-                    return;
-                }
-                // 执行正常业务
-                console.info('reportDrawnCompleted succeed');
-            });
-        } catch (err) {
-            // 捕获同步的参数错误
+      if (err.code) {
+        return;
+      }
+      try {
+        this.context.reportDrawnCompleted((err) => {
+          if (err.code) {
+            // 处理业务逻辑错误
             console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
-        }
+            return;
+          }
+          // 执行正常业务
+          console.info('reportDrawnCompleted succeed');
+        });
+      } catch (err) {
+        // 捕获同步的参数错误
+        console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+      }
     });
     console.log("MainAbility onWindowStageCreate")
-}
+  }
+};
   ```

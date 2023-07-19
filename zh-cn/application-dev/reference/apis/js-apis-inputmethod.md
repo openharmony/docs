@@ -2125,6 +2125,14 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
 | type     | string  | 是   | 设置监听类型。<br/>- type为‘getLeftTextOfCursor’时表示订阅输入法应用获取光标左侧指定长度文本事件监听。 |
 | callback | (length: number) => string | 是   | 回调函数，获取光标左侧指定长度文本内容。<br/>开发者需要在该函数中，获取编辑框最新状态下光标左侧指定length长度的文本内容并返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
 **示例：**
 
 ```js
@@ -2143,7 +2151,7 @@ try {
 
 off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
 
-取消订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
+取消订阅输入法应用获取光标左侧指定长度文本事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2183,6 +2191,14 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
 | type     | string  | 是   | 设置监听类型。<br/>- type为‘getRightTextOfCursor’时表示订阅输入法应用获取光标右侧指定长度文本事件监听。 |
 | callback | (length: number) => string | 是   | 回调函数，获取光标右侧指定长度文本内容。<br/>开发者需要在该函数中，获取编辑框最新状态下光标右侧指定length长度的文本内容并返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
 **示例：**
 
 ```js
@@ -2201,7 +2217,7 @@ try {
 
 off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
 
-取消订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
+取消订阅输入法应用获取光标右侧指定长度文本事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2241,6 +2257,14 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void;
 | type     | string  | 是   | 设置监听类型。<br/>- type为‘getTextIndexAtCursor’时表示订阅输入法应用获取光标处文本索引事件监听。 |
 | callback | () => number | 是   | 回调函数，获取光标处文本索引。<br/>开发者需要在该函数中，获取编辑框最新状态下光标处文本索引并返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800009 | input method client is detached. |
+
 **示例：**
 
 ```js
@@ -2259,7 +2283,7 @@ try {
 
 off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 
-取消订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
+取消订阅输入法应用获取光标处文本索引事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

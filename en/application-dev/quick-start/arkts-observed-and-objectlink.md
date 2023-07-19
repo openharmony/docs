@@ -15,7 +15,7 @@ The decorators described above can observe only the changes of the first layer. 
 
 - Regarding classes decorated by \@Observed, the attribute changes can be observed.
 
-- The \@ObjectLink decorated state variable in the child component is used to accept the instance of the \@Observed decorated class and establish two-way data binding with the corresponding state variable in the parent component. The instance can be an \@Observed decorated item in the array or an \@Observeddecorated attribute in the class object.
+- The \@ObjectLink decorated state variable in the child component is used to accept the instance of the \@Observed decorated class and establish two-way data binding with the corresponding state variable in the parent component. The instance can be an \@Observed decorated item in the array or an \@Observed decorated attribute in the class object.
 
 - Using \@Observed alone has no effect. Combined use with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization is required.
 
@@ -54,7 +54,7 @@ this.objLink= ...
 >
 > - \@Prop creates a one-way synchronization from the data source to the decorated variable. It takes a copy of its source tp enable changes to remain local. When \@Prop observes a change to its source, the local value of the \@Prop decorated variable is overwritten.
 >
-> - \@ObjectLink creates a two-way synchronization between the data source and the decorated variable. An \@ObjectLink decorated variable can be considered as a pointer to the source object inside the parent component. If value assignment of an \@ObjectLink decorated variable occurs, the synchronization chain is interrupted.
+> - \@ObjectLink creates a two-way synchronization between the data source and the decorated variable. An \@ObjectLink decorated variable can be considered as a pointer to the source object inside the parent component. Do not assign values to \@ObjectLink decorated variables, as doing so will interrupt the synchronization chain. \@ObjectLink decorated variables are initialized through data source (Object) references. Assigning a value to them is equivalent to updating the array item or class attribute in the parent component, which is not supported in TypeScript/JavaScript and will result in a runtime error.
 
 
 ## Variable Transfer/Access Rules
@@ -216,13 +216,13 @@ Event handlers in **ViewB**:
 
 - this.b.a = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
 
-- this.b.a.c = ... : Second change. [@State](arkts-state.md#observed-changes) cannot observe the change of the second layer, but ClassA is decorated by \@Observed, and therefore the change of its attribute c can be observed by \@ObjectLink.
+- this.b.a.c = ... : Change at the second layer. Though [@State](arkts-state.md#observed-changes) cannot observe the change at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
 
 
 Event handlers in **ViewA**:
 
 
-- this.a.c += 1: Changes to the \@ObjectLink decorated variable which cause the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
+- this.a.c += 1: Changes to the \@ObjectLink decorated variable cause the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
 
 - The \@ObjectLink decorated variable is read-only. Assigning **this.a = new ClassA(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
 
@@ -300,7 +300,7 @@ struct ViewB {
   1. ForEach: The newly added Class A object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **View A** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
-- this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes in the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
+- this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
 
 
 ### Two-Dimensional Array

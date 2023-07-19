@@ -2870,7 +2870,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 
 ```js
 let PRIKey = [1, 4, 2, 3];
-relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, modifyTime) {
+store.getModifyTime("cloud_tasks", "uuid", PRIKey, function (err, modifyTime) {
     if (err) {
         console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
         return;
@@ -2913,7 +2913,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 
 ```js
 let PRIKey = [1, 2, 3];
-relationalStore.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
+store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime) => {
     let size = modifyTime.size();
 }).catch((err) => {
     console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
@@ -3592,7 +3592,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 **示例：**
 
 ```js
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3633,7 +3633,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
@@ -3663,7 +3663,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3706,7 +3706,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relatioanalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);

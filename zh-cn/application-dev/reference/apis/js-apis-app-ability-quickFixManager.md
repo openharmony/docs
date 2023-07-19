@@ -64,20 +64,12 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 **错误码**：
 
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -126,20 +118,12 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 **错误码**：
 
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -279,13 +263,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
 
 **示例：**
 

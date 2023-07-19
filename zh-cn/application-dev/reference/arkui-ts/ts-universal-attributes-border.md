@@ -88,7 +88,7 @@ struct BorderExample {
         .width(300)
         .height(300)
         .border({
-          width: { left: '5lpx', right: '10lpx', top: '20lpx', bottom: '30lpx' },
+          width: { left: 3, right: 6, top: 10, bottom: 15 },
           color: { left: '#e3bbbb', right: Color.Blue, top: Color.Red, bottom: Color.Green },
           radius: { topLeft: 10, topRight: 20, bottomLeft: 40, bottomRight: 80 },
           style: {

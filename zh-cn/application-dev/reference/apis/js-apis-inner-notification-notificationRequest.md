@@ -35,14 +35,14 @@
 | smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 通知小图标。可选字段，大小不超过30KB。 |
 | largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 通知大图标。可选字段，大小不超过30KB。 |
 | creatorBundleName     | string                                        | 否  | 创建通知的包名。             |
-| creatorUid<sup>8+<sup>  | number                                        | 否  | 创建通知的UID。              |
+| creatorUid            | number                                        | 否  | 创建通知的UID。              |
 | creatorPid            | number                                        | 否  | 创建通知的PID。              |
-| creatorUserId         | number                                       | 否  | 创建通知的UserId。           |
+| creatorUserId<sup>8+<sup> | number                                       | 否  | 创建通知的UserId。           |
 | hashCode              | string                                        | 否  | 通知唯一标识。               |
 | classification        | string                                        | 否  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | groupName<sup>8+<sup> | string                                        | 否  | 组通知名称。                 |
 | template<sup>8+<sup> | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) | 否  | 通知模板。                   |
-| isRemoveAllowed<sup>8+<sup> | boolean                                | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| isRemoveAllowed<sup>10+<sup> | boolean                                | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | source<sup>8+<sup> | number                                        | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                 | 否  | 分布式通知的选项。          |
 | deviceId<sup>8+<sup> | string                                        | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |

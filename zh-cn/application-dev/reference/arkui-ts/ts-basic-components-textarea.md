@@ -106,7 +106,7 @@ stopEditing(): void
 
 getTextContentRect(): [RectResult](#rectresult)
 
-获取已编辑文本内容区域相对组件的位置和大小。
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
 **返回值：**
 
@@ -145,6 +145,8 @@ getTextContentLineCount(): number
 | number| 已编辑文本内容行数。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -185,3 +187,41 @@ struct TextAreaExample {
 ```
 
 ![textArea](figures/textArea.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = 'test'
+  @State counterVisible: boolean = false
+  @State maxNumber: number = -1
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.controller
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .margin(20)
+        .fontSize(16)
+        .fontColor('#182431')
+        .maxLength(4)
+        .showCounter(true)
+        .backgroundColor('#FFFFFF')
+        .onChange((value: string) => {
+          this.text = value
+        })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![maxLength](figures/maxLength.png)

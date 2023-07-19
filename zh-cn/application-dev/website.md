@@ -490,7 +490,8 @@
       - [用户认证开发指导](security/userauth-guidelines.md)
     - 通用密钥库
       - [通用密钥库开发概述](security/huks-overview.md)
-      - [通用密钥库开发指导](security/huks-guidelines.md)
+      - [通用密钥库开发指导（ArkTS）](security/huks-guidelines.md)
+      - [通用密钥库开发指导（Native）](security/native-huks-guidelines.md)
       - [通用密钥库密码算法规格](security/huks-appendix.md)
     - 加解密算法库框架
       - [加解密算法库框架概述](security/cryptoFramework-overview.md)
@@ -1040,6 +1041,7 @@
       - [@ohos.systemDateTime (系统时间、时区)](reference/apis/js-apis-system-date-time.md)
       - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
+      - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](reference/apis/js-apis-WallpaperExtensionAbility.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
       - [console (控制台)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
@@ -1100,6 +1102,7 @@
       - [@ohos.enterprise.deviceSettings (设备设置管理)](reference/apis/js-apis-enterprise-deviceSettings.md)
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.networkManager (网络管理)](reference/apis/js-apis-enterprise-networkManager.md)
+      - [@ohos.enterprise.restrictions (限制类策略)](reference/apis/js-apis-enterprise-restrictions.md)
       - [@ohos.enterprise.wifiManager (WiFi管理)](reference/apis/js-apis-enterprise-wifiManager.md)
     - 语言基础类库
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)

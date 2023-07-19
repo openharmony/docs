@@ -26,20 +26,26 @@ GridItem()
 | columnStart | number | Start column number of the component.|
 | columnEnd | number | End column number of the component.|
 | forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the current grid item is selectable by the mouse.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true** |
+| selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true** |
+| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
 
 >  **NOTE**
 >
 >  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
 >
->  - The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1.
+>  The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1.
 >
->  - Settings outside of the valid ranges do not take effect.
+>  Settings outside of the valid ranges do not take effect.
 >
->  - In the grid that has both **columnTemplate** and **rowTemplate** set, a grid item takes up the specified number of rows (rowEnd – rowStart + 1) or columns (columnEnd – columnStart + 1), depending on whether **rowStart**/**rowEnd** or **columnStart**/**columnEnd** is set.
->- In the grid that has only **columnTemplate** set, a grid item takes up the specified number of columns.
->  - In the grid that has only **rowTemplate** set, a grid item takes up the specified number of rows.
->- In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
+>  In the grid that has both **columnTemplate** and **rowTemplate** set, grid items that have **rowStart**/**rowEnd** or **columnStart**/**columnEnd** set are laid out in a row-by-row then column-by-column manner.
+>
+>  In the grid that has only **columnTemplate** set, grid items that have **columnStart**/**columnEnd** set are laid out in the specific columns. If there are already grid items in those columns, the grid items will be laid out in another row.
+>
+>  In the grid that has only **rowTemplate** set, grid items that have **rowStart**/**rowEnd** set are laid out in the specific rows. If there are already grid items in those rows, the grid items will be laid out in another column.
+>
+>  In the grid that has only **columnTemplate** set, grid items whose row or column number settings are invalid are laid out in a row-by-row then column-by-column manner.
+>
+>  In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
 
 
 ## Events

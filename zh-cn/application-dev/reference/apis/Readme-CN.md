@@ -358,6 +358,7 @@
   - [@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+  - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](js-apis-WallpaperExtensionAbility.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
@@ -423,6 +424,7 @@
   - [@ohos.enterprise.deviceSettings (设备设置管理)](js-apis-enterprise-deviceSettings.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
 
 - 语言基础类库
