@@ -1367,17 +1367,17 @@ context.printDrawnCompleted().then((data) => {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name  | Readable/Writable| Type    | Mandatory  | Description   |
-| ---- | ---- | ------ | ---- | ----- |
-| pid  | Read-only  | number | No   | Process ID.|
-| uid  | Read-only  | number | No   | User ID.|
+| Name  | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| pid  |number | No   | Process ID.|
+| uid  |number | No   | User ID.|
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name         | Readable/Writable| Type            | Mandatory  | Description        |
-| ----------- | ---- | -------------- | ---- | ---------- |
-| requestCode | Read-only  | number         | Yes   | Request code passed.|
-| permissions | Read-only  | Array\<string> | Yes   | Permissions requested.  |
-| authResults | Read-only  | Array\<number> | Yes   | Permission request result.  |
+| Name        | Type            | Mandatory  | Description        |
+| ----------- |-------------- | ---- | ---------- |
+| requestCode | number         | Yes   | Request code passed.|
+| permissions | Array\<string> | Yes   | Permissions requested.  |
+| authResults | Array\<number> | Yes   | Permission request result.  |

@@ -21,8 +21,8 @@ Defines the subscription information about the widget update by proxy.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Subscriber ID of the widget update by proxy. The value is the same as that of the data publisher.|
-| subscriberId | string | No| Subscription condition of the widget update by proxy. The default value is the current widget ID (specified by **formId**).|
+| key<sup>10+</sup> | string | Yes| Subscriber ID of the widget update by proxy. The value is the same as that of the data publisher.|
+| subscriberId<sup>10+</sup> | string | No| Subscription condition of the widget update by proxy. The default value is the current widget ID (specified by **formId**).|
 
 
 ## FormBindingData

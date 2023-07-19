@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 | bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory. |
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory.|
 
 ## Context.createBundleContext
 
@@ -154,4 +154,78 @@ try {
 } catch (error) {
     console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(groupId: string): Promise\<string>;
+
+Obtains the shared directory based on a group ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| groupId | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<string> | Promise used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+let groupId = "1";
+context.getGroupDir(groupId).then(data => {
+    console.log("getGroupDir result:" + data);
+}).catch((err) => {
+    console.error('error: ${JSON.stringify(err)}');
+});
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(groupId: string, callback: AsyncCallback\<string>);
+
+Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| groupId | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+context.getGroupDir("1", (err, data) => {
+    if (err) {
+        console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    }
+});
 ```

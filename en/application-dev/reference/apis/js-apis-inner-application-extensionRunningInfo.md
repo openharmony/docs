@@ -21,6 +21,8 @@ Import the **abilityManager** module and obtain the ExtensionAbility running inf
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: The following APIs are system APIs and cannot be called by third-party applications.
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | extension | [ElementName](js-apis-bundleManager-elementName.md) | Yes| No| ExtensionAbility information.|
