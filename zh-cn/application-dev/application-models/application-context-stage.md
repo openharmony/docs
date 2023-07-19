@@ -84,13 +84,13 @@
 
   | 属性 | 路径 |
   | -------- | -------- |
-  | bundleCodeDir | <路径前缀>/el1/bundle/ |
-  | cacheDir | <路径前缀>/<加密等级>/base/cache/ |
-  | filesDir | <路径前缀>/<加密等级>/base/files/ |
-  | preferencesDir | <路径前缀>/<加密等级>/base/preferences/ |
-  | tempDir | <路径前缀>/<加密等级>/base/temp/ |
-  | databaseDir | <路径前缀>/<加密等级>/database/ |
-  | distributedFilesDir | <路径前缀>/el2/distributedFiles/ |
+  | bundleCodeDir | <路径前缀>/el1/bundle |
+  | cacheDir | <路径前缀>/<加密等级>/base/cache |
+  | filesDir | <路径前缀>/<加密等级>/base/files |
+  | preferencesDir | <路径前缀>/<加密等级>/base/preferences |
+  | tempDir | <路径前缀>/<加密等级>/base/temp |
+  | databaseDir | <路径前缀>/<加密等级>/database |
+  | distributedFilesDir | <路径前缀>/el2/distributedFiles |
 
   示例代码如下所示。
 
@@ -108,6 +108,9 @@
         let distributedFilesDir = applicationContext.distributedFilesDir;
         let preferencesDir = applicationContext.preferencesDir;
         ...
+        // 获取应用文件路径
+        let filePath = tempDir + 'test.txt';
+        console.info(`filePath: ${filePath}`);
       }
     }
     ```
@@ -116,13 +119,13 @@
 
   | 属性 | 路径 |
   | -------- | -------- |
-  | bundleCodeDir | <路径前缀>/el1/bundle/ |
-  | cacheDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache/ |
-  | filesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/files/ |
-  | preferencesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/preferences/ |
-  | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp/ |
-  | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>**/ |
-  | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>**/ |
+  | bundleCodeDir | <路径前缀>/el1/bundle |
+  | cacheDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache |
+  | filesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/files |
+  | preferencesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/preferences |
+  | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
+  | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
+  | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
 
   示例代码如下所示。
 
@@ -139,6 +142,9 @@
       let distributedFilesDir = this.context.distributedFilesDir;
       let preferencesDir = this.context.preferencesDir;
       ...
+      // 获取应用文件路径
+      let filePath = tempDir + 'test.txt';
+      console.info(`filePath: ${filePath}`);
     }
   }
   ```
