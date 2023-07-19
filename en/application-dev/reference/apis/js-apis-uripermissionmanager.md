@@ -6,7 +6,6 @@
 
 The **uriPermissionManager** module provides APIs for granting permissions on a file to or revoking the granted permission from an application. The file is identified by a uniform resource identifier (URI).
 
-
 ## Modules to Import
 
   
@@ -14,14 +13,17 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
-
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 Grants permission on the file of the specified URI to an application. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -31,6 +33,18 @@ Grants permission on the file of the specified URI to an application. This API u
   | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.| 
   | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+
+**Error codes**
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | Permissions denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16500050 | Internal error. |
+  | 16500058 | Invalid URI flag. |
+  | 16500059 | Invalid URI type. |
+  | 16500060 | Sandbox application can not grant URI permission. |
 
 **Example**
     
@@ -46,11 +60,15 @@ Grants permission on the file of the specified URI to an application. This API u
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
 Grants permission on the file of the specified URI to an application. This API uses a promise to return the result.
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -66,13 +84,25 @@ Grants permission on the file of the specified URI to an application. This API u
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | Permissions denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16500050 | Internal error. |
+  | 16500058 | Invalid URI flag. |
+  | 16500059 | Invalid URI type. |
+  | 16500060 | Sandbox application can not grant URI permission. |
+
 **Example**
     
   ```js
   import WantConstant from '@ohos.ability.wantConstant';
   let targetBundleName = 'com.example.test_case1'
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
+  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
   }).catch((error) => {
@@ -81,11 +111,15 @@ Grants permission on the file of the specified URI to an application. This API u
   ```
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
+revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
 
 Revokes the permission on the file of the specified URI from an application. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
 
 **Parameters**
 
@@ -95,13 +129,22 @@ Revokes the permission on the file of the specified URI from an application. Thi
   | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
 
+**Error codes**
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | Permissions denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16500059 | Invalid URI type. |
+
 **Example**
     
   ```js
   import WantConstant from '@ohos.ability.wantConstant';
   let targetBundleName = 'com.example.test_case1'
   let URI = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
+  uriPermissionManager.revokeUriPermission(URI, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
   ```
@@ -109,11 +152,16 @@ Revokes the permission on the file of the specified URI from an application. Thi
 
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
+revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
 Revokes the permission on the file of the specified URI from an application. This API uses a promise to return the result.
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
+
 
 **Parameters**
 
@@ -127,6 +175,15 @@ Revokes the permission on the file of the specified URI from an application. Thi
   | Type| Description| 
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+
+**Error codes**
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 201 | Permissions denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16500059 | Invalid URI type. |
 
 **Example**
     
