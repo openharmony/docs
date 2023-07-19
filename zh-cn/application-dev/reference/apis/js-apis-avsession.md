@@ -506,11 +506,11 @@ avSession.castAudio('all', audioDevices, function (err) {
 });
 ```
 
-## avSession.on('sessionCreate' | 'sessionDestroy' | 'topSessionChange')
+## avSession.on('sessionCreate')
 
-on(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback: (session: AVSessionDescriptor) => void): void
+on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): void
 
-会话的创建、销毁以及最新会话变更的监听事件。
+会话的创建监听事件。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
 
@@ -520,13 +520,13 @@ on(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback: (ses
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持的事件包括：<br/>- `'sessionCreate'`：会话创建事件，检测到会话创建时触发。<br/>- `'sessionDestroy'`：会话销毁事件，检测到会话销毁时触发。 <br/>- `'topSessionChange'`：最新会话的变化事件，检测到最新的会话改变时触发。|
-| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。                               |
+| 参数名    | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'`：会话创建事件，检测到会话创建时触发。|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -541,24 +541,13 @@ avSession.on('sessionCreate', (descriptor) => {
     console.info(`on sessionCreate : sessionTag : ${descriptor.sessionTag}`);
 });
 
-avSession.on('sessionDestroy', (descriptor) => {
-    console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
-    console.info(`on sessionDestroy : type : ${descriptor.type}`);
-    console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
-});
-
-avSession.on('topSessionChange', (descriptor) => {
-    console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
-    console.info(`on topSessionChange : type : ${descriptor.type}`);
-    console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
-});
 ```
 
-## avSession.off('sessionCreate' | 'sessionDestroy' | 'topSessionChange')
+## avSession.on('sessionDestroy')
 
-off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (session: AVSessionDescriptor) => void): void
+on(type: 'sessionDestroy', callback: (session: AVSessionDescriptor) => void): void
 
-取消会话相关事件监听，取消后，不再进行相关事件的监听。
+会话的销毁监听事件。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
 
@@ -568,13 +557,85 @@ off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (s
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持的事件为：<br/>- `'sessionCreate'`：会话创建事件，检测到会话创建时触发。<br/>- `'sessionDestroy'`：会话销毁事件，检测到会话销毁时触发。 <br/>- `'topSessionChange'`：最新会话的变化事件，检测到最新的会话改变时触发。|
+| 参数名   | 类型            | 必填 | 说明                                                         |
+| -------- | ---------------| ---- | ------------------------------------------------------------ |
+| type     | string         | 是   | 事件回调类型，支持的事件包括是`'sessionDestroy'`：会话销毁事件，检测到会话销毁时触发。|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+avSession.on('sessionDestroy', (descriptor) => {
+    console.info(`on sessionDestroy : isActive : ${descriptor.isActive}`);
+    console.info(`on sessionDestroy : type : ${descriptor.type}`);
+    console.info(`on sessionDestroy : sessionTag : ${descriptor.sessionTag}`);
+});
+```
+
+## avSession.on('topSessionChange')
+
+on(type: 'topSessionChange', callback: (session: AVSessionDescriptor) => void): void
+
+最新会话变更的监听事件。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | --------------------| ---- | ------------------------------------------------------------ |
+| type     | string      | 是   | 事件回调类型，支持的事件包括是 `'topSessionChange'`：最新会话的变化事件，检测到最新的会话改变时触发。|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+avSession.on('topSessionChange', (descriptor) => {
+    console.info(`on topSessionChange : isActive : ${descriptor.isActive}`);
+    console.info(`on topSessionChange : type : ${descriptor.type}`);
+    console.info(`on topSessionChange : sessionTag : ${descriptor.sessionTag}`);
+});
+```
+
+## avSession.off('sessionCreate')
+
+off(type: 'sessionCreate', callback?: (session: AVSessionDescriptor) => void): void
+
+取消会话创建事件监听，取消后，不再进行该事件的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明       |
+| -------- | ----------| ---- | ----------|
+| type     | string    | 是   | 事件回调类型，支持的事件为：`'sessionCreate'`。|
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为会话相关描述，为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -584,7 +645,69 @@ off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (s
 
 ```js
 avSession.off('sessionCreate');
+```
+
+## avSession.off('sessionDestroy')
+
+off(type: 'sessionDestroy', callback?: (session: AVSessionDescriptor) => void): void
+
+取消会话销毁事件监听，取消后，不再进行该事件的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                      |
+| -------- | -----------| ---- | -------------------------|
+| type     | string     | 是   | 事件回调类型，支持的事件为`'sessionDestroy'`。|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为会话相关描述，为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
 avSession.off('sessionDestroy');
+```
+
+## avSession.off('topSessionChange')
+
+off(type: 'topSessionChange', callback?: (session: AVSessionDescriptor) => void): void
+
+取消最新会话变更事件监听，取消后，不再进行该事件的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型              | 必填 | 说明                        |
+| -------- | -----------------| ---- | ---------------------------- |
+| type     | string           | 是   | 事件回调类型，支持的事件为`'topSessionChange'`。|
+| callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为会话相关描述，为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
 avSession.off('topSessionChange');
 ```
 
@@ -1087,8 +1210,6 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201      | No Permission: 无权限执行此操作 |
-| 401      | Invalid Parameter: 入参错误，表示调用无效。                                     |
 | 6600101  | Session service exception. |
 | 6600108 | Device connecting failed.       |
 
@@ -1142,8 +1263,6 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201      | No Permission: 无权限执行此操作 |
-| 401      | Invalid Parameter: 入参错误，表示调用无效。                                     |
 | 6600101  | Session service exception. |
 | 6600108 | Device connecting failed.       |
 
@@ -1556,7 +1675,7 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 
-let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
+let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -1622,7 +1741,7 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 
-let value : Uint8Array = await resourceManager.getRawFile('IMAGE_URI');
+let value : Uint8Array = await resourceManager.getRawFileContent('IMAGE_URI');
 let imageSource : imageImageSource = image.createImageSource(value.buffer);
 let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
@@ -2511,9 +2630,9 @@ session.destroy(function (err) {
 });
 ```
 
-### on('play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind')<sup>10+</sup>
+### on('play')<sup>10+</sup>
 
-on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind', callback: () => void): void
+on(type: 'play', callback: () => void): void
 
 设置播放命令监听事件。
 
@@ -2523,7 +2642,7 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件包括：`'play'`，`'pause'`，`'stop'`，` 'playNext'`，` 'playPrevious'`， `'fastForward'`，` 'rewind'`。<br/>当对应的播放命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件为`'play'`当播放命令被发送到会话时，触发该事件回调。 |
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
@@ -2540,21 +2659,189 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 session.on('play', () => {
     console.info(`on play entry`);
 });
+```
+
+### on('pause')<sup>10+</sup>
+
+on(type: 'pause', callback: () => void): void
+
+设置暂停命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件为`'pause'`，当暂停命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。     |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('pause', () => {
     console.info(`on pause entry`);
 });
+```
+
+### on('stop')<sup>10+</sup>
+
+on(type:'stop', callback: () => void): void
+
+设置停止命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'stop'`，当停止命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。          |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('stop', () => {
     console.info(`on stop entry`);
 });
+```
+
+### on('playNext')<sup>10+</sup>
+
+on(type:'playNext', callback: () => void): void
+
+设置播放下一首命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是` 'playNext'`，当播放下一首命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。     |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('playNext', () => {
     console.info(`on playNext entry`);
 });
+```
+
+### on('playPrevious')<sup>10+</sup>
+
+on(type:'playPrevious', callback: () => void): void
+
+设置播放上一首命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是` 'playPrevious'`当播放上一首命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。       |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('playPrevious', () => {
     console.info(`on playPrevious entry`);
 });
+```
+
+### on('fastForward')<sup>10+</sup>
+
+on(type: 'fastForward', callback: () => void): void
+
+设置快进命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是 `'fastForward'`，当快进命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。    |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('fastForward', () => {
     console.info(`on fastForward entry`);
 });
+```
+
+### on('rewind')<sup>10+</sup>
+
+on(type:'rewind', callback: () => void): void
+
+设置快退命令监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是` 'rewind'`，当快退命令被发送到会话时，触发该事件回调。 |
+| callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。      |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.on('rewind', () => {
     console.info(`on rewind entry`);
 });
@@ -2808,11 +3095,11 @@ session.on('commonCommand', (commonCommand, args) => {
 });
 ```
 
-### off('play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind')<sup>10+</sup>
+### off('play')<sup>10+</sup>
 
-off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind', callback?: () => void): void
+off(type: 'play', callback?: () => void): void
 
-取消会话相关事件监听，关闭后，不再进行相关事件回调。
+取消会话播放事件监听，关闭后，不再进行该事件回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2820,7 +3107,7 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件包括：`'play'`，` 'pause'`，`'stop'`， `'playNext'`，` 'playPrevious'`， ` 'fastForward'`，` 'rewind'`。 |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'play'`|
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
@@ -2835,11 +3122,179 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 
 ```js
 session.off('play');
+```
+
+### off('pause')<sup>10+</sup>
+
+off(type: 'pause', callback?: () => void): void
+
+取消会话暂停事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'pause'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('pause');
+```
+
+### off('stop')<sup>10+</sup>
+
+off(type: 'stop', callback?: () => void): void
+
+取消会话停止事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'stop'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('stop');
+```
+
+### off('playNext')<sup>10+</sup>
+
+off(type: 'playNext', callback?: () => void): void
+
+取消会话播放下一首事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是 `'playNext'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('playNext');
+```
+
+### off('playPrevious')<sup>10+</sup>
+
+off(type: 'playPrevious', callback?: () => void): void
+
+取消会话播放上一首事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'playPrevious'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('playPrevious');
+```
+
+### off('fastForward')<sup>10+</sup>
+
+off(type: 'fastForward', callback?: () => void): void
+
+取消会话快进事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'fastForward'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('fastForward');
+```
+
+### off('rewind')<sup>10+</sup>
+
+off(type: 'rewind', callback?: () => void): void
+
+取消会话快退事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'rewind'`。 |
+| callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
 session.off('rewind');
 ```
 
@@ -4305,7 +4760,6 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 | -------- | ------------------------------ |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
-| 401      | Parameter check failed                 |
 
 **示例：**
 
@@ -4607,7 +5061,6 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 | -------- | ----------------                       |
 | 6600101  | Session service exception.             |
 | 6600103  | The session controller does not exist. |
-| 401      | Parameter check failed                 |
 
 **示例：**
 
@@ -5195,14 +5648,12 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
-| 201      | No Permission:        | 无权限执行此操作 |
-| 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
-| 5400101  | No Memory:            | 播放内存不足 |
-| 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | 播放中发现码流异常|
-| 5400104  | Network Timeout:      | 网络原因超时响应 |
-| 5400105  | Service Died:         | 播放进程死亡 |
-| 5400106  | Unsupport Format:     | 不支持的文件格式 |
+| 5400101  | No Memory.            | 播放内存不足 |
+| 5400102  | Operate Not Permit.   | 当前状态机不支持此操作，表示调用无效。                       |
+| 5400103  | IO Error.             | 播放中发现码流异常|
+| 5400104  | Network Timeout.      | 网络原因超时响应 |
+| 5400105  | Service Died.         | 播放进程死亡 |
+| 5400106  | Unsupport Format.     | 不支持的文件格式 |
 
 **示例：**
 
@@ -5226,6 +5677,17 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | 是   | 错误事件回调类型，取消注册的事件：'error' |
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息              | 说明                                                         |
+| -------- | --------------------- | ------------------------------------------------------------ |
+| 5400101  | No Memory.            | 播放内存不足 |
+| 5400102  | Operate Not Permit.   | 当前状态机不支持此操作，表示调用无效。                       |
+| 5400103  | IO Error.             | 播放中发现码流异常|
+| 5400104  | Network Timeout.      | 网络原因超时响应 |
+| 5400105  | Service Died.         | 播放进程死亡 |
+| 5400106  | Unsupport Format.     | 不支持的文件格式 |
 
 **示例：**
 
@@ -5890,8 +6352,8 @@ getCurrentItem(): Promise\<AVQueueItem>
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | STATE_CONNECTING      | 0    | 设备连接中    |
-| STATE_CONNECTED      | 6    | 设备连接成功 |
-| STATE_DISCONNECTED      | 5    | 设备断开连接 |
+| STATE_CONNECTED      | 1    | 设备连接成功 |
+| STATE_DISCONNECTED      | 6    | 设备断开连接 |
 
 ## ProtocolType<sup>10+</sup>
 
@@ -5984,16 +6446,16 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称                           | 值      | 说明                             |
-| ------------------------------ | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception.               |
-| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist.      |
-| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist.   |
-| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed.         |
-| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
-| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
-| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |
+| 名称                                   | 值      | 说明                             |
+| -------------------------------------- | ------- | ------------------------------- |
+| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
+| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.      |
+| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.   |
+| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | The remote session  connection failed.         |
+| ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
+| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
+| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
 | ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
-| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST      | 6600109 | The remote connection is not established.       |
+| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 <!--no_check-->
