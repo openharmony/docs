@@ -21,7 +21,6 @@ import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
