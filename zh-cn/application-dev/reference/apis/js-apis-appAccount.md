@@ -1559,7 +1559,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
-| 12400004 | The number of token reaches the upper limit. |
+| 12400004 | The number of tokens reaches the upper limit. |
 
 **示例：**
 
@@ -1606,7 +1606,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
-| 12400004 | The number of token reaches the upper limit. |
+| 12400004 | The number of tokens reaches the upper limit. |
 
 **示例：**
 
