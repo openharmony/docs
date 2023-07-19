@@ -134,7 +134,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: **number**): **void**;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 
 Deregisters the listener that monitors the ability lifecycle of the application.
 
@@ -279,17 +279,118 @@ export default class MyAbility extends Ability {
 }
 ```
 
+## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+
+Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description            |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| type     | string                                     | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onCreate() {
+        console.log('MyAbility onCreate');
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+
+        globalThis.applicationContext = this.context.getApplicationContext();
+        // 1. Obtain an applicationContext object.
+        let applicationContext = globalThis.applicationContext;
+        // 2. Use applicationContext to subscribe to the 'applicationStateChange' event.
+        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        console.log('Resgiter applicationStateChangeCallback');
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange', callback: AsyncCallback\<void>)<sup>10+</sup>
+
+off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
+
+Deregisters the listener for application foreground/background state changes based on a given callback.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                            |
+| -------- | ------------------------ | ---- | -------------------------------- |
+| type     | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.            |
+| callback | AsyncCallback\<void>     | No  | Callback that has been used for the registration|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onDestroy() {
+        globalThis.applicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+
+off(type: 'applicationStateChange'): **void**;
+
+Deregisters all the listeners for application foreground/background state changes.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| type   | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange');
+    }
+}
+```
+
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -322,11 +423,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 

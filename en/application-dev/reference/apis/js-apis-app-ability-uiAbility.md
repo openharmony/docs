@@ -362,7 +362,7 @@ Triggered when this UIAbility is about to terminate in case that the system para
     onPrepareToTerminate() {
       // Define a pre-termination operation,
       // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
-      let want:Want = {
+      let want = {
         bundleName: "com.example.myapplication",
         moduleName: "entry",
         abilityName: "SecondAbility"
@@ -444,7 +444,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       return true;
     }
   };
-  let method = 'call_Function'; // Notification message string negotiated by the two abilities.
+  let method = 'call_Function'; // Notification message string negotiated by the two UIAbilities.
   let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {

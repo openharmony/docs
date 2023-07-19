@@ -1,6 +1,6 @@
 # @ohos.app.ability.appManager (appManager)
 
-The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
+The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory usage of the application, and information about the running process.
 
 > **NOTE**
 > 
@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Type| Description| 
-  | -------- | -------- |
-  |AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. |
 
 **Error codes**
 
@@ -59,9 +59,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
 
 **Error codes**
 
@@ -94,9 +94,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
 
 **Error codes**
 
@@ -128,9 +128,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. |
 
 **Error codes**
 
@@ -158,15 +158,15 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>;
 
-Obtains the memory size of this application. This API uses a promise to return the result.
+Obtains the memory usage of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -192,15 +192,15 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void;
 
-Obtains the memory size of this application. This API uses an asynchronous callback to return the result.
+Obtains the memory usage of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Type| Description| 
-  | -------- | -------- |
-  |AsyncCallback&lt;number&gt; |Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -272,9 +272,9 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-| Type| Description|
-| -------- | -------- |
-|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -325,7 +325,8 @@ Checks whether the shared library is in use. This API uses a promise to return t
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
+| ------- | -------- |
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -366,7 +367,8 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
+| ------- | -------- |
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -762,7 +764,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -812,7 +814,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -820,11 +822,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -1037,6 +1039,286 @@ try {
         console.log('clearUpApplicationData success.');
     }).catch((err) => {
         console.error('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getProcessMemoryByPid<sup>10+</sup>
+
+getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
+
+Obtains the memory usage of a process. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pid | number | Yes| Process ID. For details, see [getRunningProcessInfoByBundleName](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinfobybundlename10).|
+| callback | AsyncCallback\<number> | Yes| Callback used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let pid = 0;
+function getProcessMemoryByPidCallback(err, data) {
+    if (err) {
+        console.error('getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getProcessMemoryByPidCallback success.');
+    }
+}
+try {
+    appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getProcessMemoryByPid<sup>10+</sup>
+
+getProcessMemoryByPid(pid: number): Promise\<number>;
+
+Obtains the memory usage of a process. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pid | number | Yes| Process ID. For details, see [getRunningProcessInfoByBundleName](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinfobybundlename10). |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<number> | Promise used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let pid = 0;
+try {
+    appManager.getProcessMemoryByPid(pid).then((data) => {
+        console.log('getProcessMemoryByPid success.');
+    }).catch((err) => {
+        console.error('getProcessMemoryByPid fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+
+Obtains information about the running processes by bundle name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes| Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+function getRunningProcessInfoByBundleNameCallback(err, data) {
+    if (err) {
+        console.error('getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getRunningProcessInfoByBundleNameCallback success.');
+    }
+}
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>;
+
+Obtains information about the running processes by bundle name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
+        console.log('getRunningProcessInfoByBundleName success.');
+    }).catch((err) => {
+        console.error('getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}');
+    });
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+
+Obtains information about the running processes by bundle name and user ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | Yes| User ID.|
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes| Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+let userId = 0;
+function getRunningProcessInfoByBundleNameCallback(err, data) {
+    if (err) {
+        console.error('getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('getRunningProcessInfoByBundleNameCallback success.');
+    }
+}
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
+```
+
+## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
+
+getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>;
+
+Obtains information about the running processes by bundle name and user ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | Yes| User ID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = "bundleName";
+let userId = 0;
+try {
+    appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
+        console.log('getRunningProcessInfoByBundleName success.');
+    }).catch((err) => {
+        console.error('getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');

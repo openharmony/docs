@@ -1685,7 +1685,7 @@ formHost.on('formRemove', callback, bundleName);
 
 ## off('formRemove')<sup>10+</sup>
 
- off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
 Unsubscribes from widget removal events. This API uses an asynchronous callback to return the result.
 
@@ -2337,7 +2337,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
+getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 
 Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
@@ -2482,7 +2482,7 @@ Unsubscribes from events indicating that a widget becomes visible.
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.|
 | callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | No  | Callback registered during the subscription. By default, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
-| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**. |
+| bundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
 
 **Example**
 

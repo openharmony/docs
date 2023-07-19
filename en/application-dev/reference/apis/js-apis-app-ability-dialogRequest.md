@@ -262,7 +262,8 @@ Defines the request information, which is used as an input parameter for binding
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
             var requestInfo = dialogRequest.getRequestInfo(want);
-            window.bindDialogTarget(requestInfo, () => {
+            let windowClass = null;
+            windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
             }, (err) => {
                 if (err.code) {

@@ -31,8 +31,6 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 **Example**
 
   ```ts
-  import formProvider from '@ohos.app.form.formProvider';
-
   let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
     if (error.code) {
@@ -65,8 +63,6 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 **Example**
 
   ```ts
-  import formProvider from '@ohos.app.form.formProvider';
-
   let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
@@ -95,7 +91,6 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
-  import formProvider from '@ohos.app.form.formProvider';
 
   let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
@@ -131,7 +126,6 @@ Updates a widget. This API uses a promise to return the result.
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  import formProvider from '@ohos.app.form.formProvider';
 
   let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
