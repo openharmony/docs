@@ -471,7 +471,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | No                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
-| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
+| installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters.        |
 | crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
