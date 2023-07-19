@@ -2679,6 +2679,8 @@ avRecorder.off('error');
 
 表示音视频录制的参数设置。
 
+通过audioSourceType和videoSourceType区分纯音频录制、纯视频录制或音视频录制。纯音频录制时，仅需要设置audioSourceType；纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
@@ -2689,8 +2691,6 @@ avRecorder.off('error');
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
 | rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
-
-通过audioSourceType和videoSourceType区分纯音频录制、纯视频录制或音视频录制。纯音频录制时，仅需要设置audioSourceType；纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -3515,6 +3515,8 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 表示视频录制的参数设置。
 
+通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](#avrecorder9)或[AudioRecorder](#audiorecorderdeprecated)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 **系统接口：** 该接口为系统接口
@@ -3527,8 +3529,6 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
 | url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
-
-通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](#avrecorder9)或[AudioRecorder](#audiorecorderdeprecated)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
 ## VideoRecorderProfile<sup>9+</sup>
 
