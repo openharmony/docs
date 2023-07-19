@@ -5658,14 +5658,14 @@ on(type: 'error', callback: ErrorCallback): void
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 5400101  | No Memory.            | 播放内存不足 |
-| 5400102  | Operate Not Permit.   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error.             | 播放中发现码流异常|
-| 5400104  | Network Timeout.      | 网络原因超时响应 |
-| 5400105  | Service Died.         | 播放进程死亡 |
-| 5400106  | Unsupport Format.     | 不支持的文件格式 |
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 5400101  | No Memory.            |
+| 5400102  | Operate Not Permit.   |
+| 5400103  | IO Error.             |
+| 5400104  | Network Timeout.      |
+| 5400105  | Service Died.         |
+| 5400106  | Unsupport Format.     |
 
 **示例：**
 
@@ -5694,14 +5694,14 @@ off(type: 'error'): void
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 5400101  | No Memory.            | 播放内存不足 |
-| 5400102  | Operate Not Permit.   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error.             | 播放中发现码流异常|
-| 5400104  | Network Timeout.      | 网络原因超时响应 |
-| 5400105  | Service Died.         | 播放进程死亡 |
-| 5400106  | Unsupport Format.     | 不支持的文件格式 |
+| 错误码ID | 错误信息              | 
+| -------- | --------------------- |
+| 5400101  | No Memory.            |
+| 5400102  | Operate Not Permit.   |
+| 5400103  | IO Error.             |
+| 5400104  | Network Timeout.      |
+| 5400105  | Service Died.         |
+| 5400106  | Unsupport Format.     |
 
 **示例：**
 
