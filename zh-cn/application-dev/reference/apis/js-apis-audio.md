@@ -811,8 +811,6 @@ async function createTonePlayerBefore(){
 
 音频采集器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
-
 | 名称                                | 类型                                                      | 必填 | 说明                                                         |
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
