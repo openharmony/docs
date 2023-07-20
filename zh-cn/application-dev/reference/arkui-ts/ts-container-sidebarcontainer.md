@@ -127,8 +127,6 @@ struct SideBarContainerExample {
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
-
-
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -148,6 +146,7 @@ struct SideBarContainerExample {
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
+    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
   }
 }
 ```
