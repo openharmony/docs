@@ -657,6 +657,12 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 **示例：**
 
 ```js
+let callback = data => {
+    console.log("on netStatsChange, data:" + JSON.stringify(data));
+}
+statistics.on('netStatsChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
 ```
 
