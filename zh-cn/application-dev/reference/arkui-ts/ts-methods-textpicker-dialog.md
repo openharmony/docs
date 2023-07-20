@@ -58,6 +58,9 @@ struct TextPickerDialogExample {
             TextPickerDialog.show({
               range: this.fruits,
               selected: this.select,
+              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
+              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
+              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
