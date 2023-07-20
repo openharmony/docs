@@ -74,7 +74,7 @@ SubTabBarStyle的静态构造函数。
 | indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br />                |
 | selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。 |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置选中子页签的label文本和字体的样式。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
@@ -399,3 +399,290 @@ struct TabBarStyleExample {
 ```
 
 ![tabbarStyle](figures/TabBarStyle.jpeg)
+
+示例4：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsAttr {
+  private controller: TabsController = new TabsController()
+  @State indicatorColor: Color = Color.Blue;
+  @State indicatorWidth: number = 40;
+  @State indicatorHeight: number = 10;
+  @State indicatorBorderRadius: number = 5;
+  @State indicatorSpace: number = 10;
+  @State subTabBorderRadius: number = 20;
+  @State selectedMode: SelectedMode = SelectedMode.INDICATOR;
+  private colorFlag: boolean = true;
+  private widthFlag: boolean = true;
+  private heightFlag: boolean = true;
+  private borderFlag: boolean = true;
+  private spaceFlag: boolean = true;
+  build() {
+    Column() {
+      Button("下划线颜色变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          // 对Button组件的宽高属性进行动画配置
+          if (this.colorFlag) {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorColor = Color.Red
+            })
+          } else {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorColor = Color.Yellow
+            })
+          }
+          this.colorFlag = !this.colorFlag
+        })
+      Button("下划线高度变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          // 对Button组件的宽高属性进行动画配置
+          if (this.heightFlag) {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorHeight = 20
+            })
+          } else {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorHeight = 10
+            })
+          }
+          this.heightFlag = !this.heightFlag
+        })
+      Button("下划线宽度变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          // 对Button组件的宽高属性进行动画配置
+          if (this.widthFlag) {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorWidth = 30
+            })
+          } else {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorWidth = 50
+            })
+          }
+          this.widthFlag = !this.widthFlag
+        })
+      Button("下划线圆角半径变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          // 对Button组件的宽高属性进行动画配置
+          if (this.borderFlag) {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorBorderRadius = 0
+            })
+          } else {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorBorderRadius = 5
+            })
+          }
+          this.borderFlag = !this.borderFlag
+        })
+      Button("下划线间距变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          // 对Button组件的宽高属性进行动画配置
+          if (this.spaceFlag) {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorSpace = 20
+            })
+          } else {
+            animateTo({
+              duration: 1000, // 动画时长
+              curve: Curve.Linear, // 动画曲线
+              delay: 200, // 动画延迟
+              iterations: 1, // 播放次数
+              playMode: PlayMode.Normal, // 动画模式
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.indicatorSpace = 10
+            })
+          }
+          this.spaceFlag = !this.spaceFlag
+        })
+      Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
+        }.tabBar(SubTabBarStyle.of('pink')
+          .indicator({
+            color: this.indicatorColor, //下划线颜色
+            height: this.indicatorHeight, //下划线高度
+            width: this.indicatorWidth, //下划线宽度
+            borderRadius: this.indicatorBorderRadius, //下划线圆角半径
+            marginTop: this.indicatorSpace //下划线与文字间距
+          })
+          .selectedMode(this.selectedMode)
+          .board({ borderRadius: this.subTabBorderRadius })
+          .labelStyle({})
+        )
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Yellow).borderRadius('12vp')
+        }.tabBar('yellow')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
+        }.tabBar('blue')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green).borderRadius('12vp')
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Gray).borderRadius('12vp')
+        }.tabBar('gray')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Orange).borderRadius('12vp')
+        }.tabBar('orange')
+      }
+      .vertical(false).scrollable(true)
+      .barMode(BarMode.Scrollable)
+      .barHeight(140).animationDuration(400)
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .backgroundColor(0xF5F5F5).height(320)
+    }.width('100%').height(250).padding({top: '24vp', left: '24vp', right: '24vp'})
+  }
+}
+```
+
+![tabContent3](figures/tabContent3.gif)
+
+示例5：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsTextOverflow {
+  @State message: string = 'Hello World'
+  private controller: TabsController = new TabsController()
+  @State subTabOverflowOpaque: boolean = true;
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+        TabContent() {
+          Column(){
+            Text('单行省略号截断').fontSize(30).fontColor(0xFF000000)
+          }.width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
+          .labelStyle({ overflow: TextOverflow.Ellipsis, maxLines: 1, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 } }))
+        TabContent() {
+          Column()
+          {
+            Text('先缩小再截断').fontSize(30).fontColor(0xFF000000)
+          }.width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
+          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 1, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 } }))
+        TabContent() {
+          Column(){
+            Text('先缩小再换行再截断').fontSize(30).fontColor(0xFF000000)
+          }.width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
+          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 2, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 } }))
+        TabContent() {
+          Column() {
+            Text('换行').fontSize(30).fontColor(0xFF000000)
+          }
+          .width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of('开始【换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行】结束')
+          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 10, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 } }))
+      }
+      .vertical(true).scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barHeight(720)
+      .barWidth(200).animationDuration(400)
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .height('100%').width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![tabContent4](figures/tabContent4.png)
