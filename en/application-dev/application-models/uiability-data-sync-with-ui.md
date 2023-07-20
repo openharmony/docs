@@ -4,15 +4,15 @@
 Based on the OpenHarmony application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
 
 - [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
-- [Using globalThis for Data Synchronization](#using-globalthis-for-data-synchronization): **globalThis** is a global object inside the ArkTS engine instance and can be accessed by components such as UIAbility, ExtensionAbility, and UI page.
+- [Using globalThis for Data Synchronization](#using-globalthis-for-data-synchronization): **globalThis** is a global object inside the ArkTS engine instance and can be accessed by the UIAbility components, ExtensionAbility components, and ArkUI pages inside the instance.
 - [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: AppStorage and LocalStorage, which implement application- and UIAbility-level data synchronization, respectively.
 
 
 ## Using EventHub for Data Synchronization
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility or ExtensionAbility component so that they can subscribe to, unsubscribe from, and trigger events.
+[EventHub](../reference/apis/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
 
-Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md). 
+Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md).
 
 1. Call [eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
@@ -123,14 +123,14 @@ To implement data synchronization between the UIAbility component and UI page, y
 
    ```ts
    let entryAbilityWant;
-   
+
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-   
+
      // UI page display.
      build() {
        ...
@@ -160,7 +160,7 @@ To implement data synchronization between two UIAbility components in the same a
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-   
+
    export default class UIAbilityB extends UIAbility {
      onCreate(want, launch) {
        // UIAbilityB reads name from globalThis and outputs it.
@@ -193,7 +193,7 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-   
+
    export default class ServiceExtAbility extends Extension {
      onCreate(want) {
        / / ServiceExtAbility reads name from globalThis and outputs it.
@@ -206,10 +206,12 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
 ### Precautions for Using globalThis
 
-**Figure 2** Precautions for using globalThis 
+**Figure 2** Precautions for using globalThis
 ![globalThis2](figures/globalThis2.png)
 
 - In the stage model, all the UIAbility components in a process share one ArkTS engine instance. When using **globalThis**, do not store objects with the same name. For example, if UIAbilityA and UIAbilityB use **globalThis** to store two objects with the same name, the object stored earlier will be overwritten.
+
+- **globalThis** cannot be used across processes. The UIAbility and ExtensionAbility components of different processes cannot use **globalThis** to share data. For details about the process model and inter-process communication, see [Process Model Overview](./process-model-stage.md#process-model-overview).
 
 - This problem does not occur in the FA model because each UIAbility component uses an independent engine.
 

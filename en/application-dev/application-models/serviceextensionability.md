@@ -30,7 +30,8 @@ Note the following:
 
 The [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) class provides the lifecycle callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestroy()**. Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
 
-**Figure 1** ServiceExtensionAbility lifecycle 
+**Figure 1** ServiceExtensionAbility lifecycle
+
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
 
 - **onCreate**
@@ -40,19 +41,19 @@ The [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExten
   > **NOTE**
   >
   > If a ServiceExtensionAbility has been created, starting it again does not trigger the **onCreate()** callback.
-  
+
 - **onRequest**
 
   This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability) method is called.
-  
+
 - **onConnect**
 
   This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, IRemoteObject, is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
-  
+
 - **onDisconnect**
 
   This callback is triggered when the last connection is interrupted. A connection is interrupted when the client exits or the [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method is called.
-  
+
 - **onDestroy**
 
   This callback is triggered when a ServiceExtensionAbility is no longer used and the instance is ready for destruction. You can clear resources in this callback, for example, deregistering the listener.
