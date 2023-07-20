@@ -531,7 +531,7 @@ usb.requestRight(devicesList[0].name);
 let devicepipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
-})
+});
 ```
 
 ## usb.bulkTransfer

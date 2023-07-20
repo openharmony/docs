@@ -137,9 +137,9 @@ hasRight(deviceName: string): boolean
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 let bool = usb.hasRight(devicesName);
-console.log(bool);
+console.log(`${bool}`);
 ```
 
 ## usb.requestRight
@@ -165,7 +165,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${ret}`);
 });
@@ -375,10 +375,17 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
- console.log(`controlTransfer = ${ret}`);
-})
+  console.log(`controlTransfer = ${ret}`);
+});
 ```
 
 ## usb.bulkTransfer
@@ -413,7 +420,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${ret}`);
+  console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -500,7 +507,7 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -529,8 +536,12 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 **示例：**
 
 ```js
-let funcs = usb.HDC;
-let ret = usb.setCurrentFunctions(funcs);
+let funcs = usb.FunctionType.HDC;
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions<sup>9+</sup>
