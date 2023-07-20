@@ -362,7 +362,7 @@ mindSporeLite.loadModelFromFd(file.fd).then((result) => {
 
 getInputs(): MSTensor[]
 
-获取模型的输入用于推理。
+获取模型的输入用于推理。需要确保调用时模型对象不为空。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -385,7 +385,7 @@ mindSporeLite.loadModelFromFile(model_file).then((result) => {
 
 predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
 
-执行推理模型。使用callback异步回调。
+执行推理模型。使用callback异步回调。需要确保调用时模型对象不为空。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -420,7 +420,7 @@ syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
 
 predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
-执行推理模型。使用Promise异步函数。
+执行推理模型。使用Promise异步函数。需要确保调用时模型对象不为空。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -461,7 +461,7 @@ syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
 
 resize(inputs: MSTensor[], dims: Array&lt;Array&lt;number&gt;&gt;): boolean
 
-重新设置张量大小。
+重新设置张量大小。需要确保调用时模型对象不为空。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
