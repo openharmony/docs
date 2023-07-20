@@ -16,7 +16,7 @@ ArrayList依据泛型定义，要求存储位置是一片连续的内存空间�
 ArrayList进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| ------- | ------- |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过arr\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
@@ -38,7 +38,7 @@ API version 9开始，该接口不再维护，推荐使用[ArrayList](../referen
 Vector进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| ------- | ------- |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过vec\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
@@ -67,7 +67,7 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 可以通过get/set等接口对存储的元素进行修改，List进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| ------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过list\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
@@ -98,7 +98,7 @@ LinkedList和[ArrayList](../reference/apis/js-apis-arraylist.md)相比，插入�
 可以通过get/set等接口对存储的元素进行修改，LinkedList进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| -------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过list\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
@@ -130,7 +130,7 @@ Deque和[Vector](../reference/apis/js-apis-vector.md)相比，它们都支持在
 Deque进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| -------- | ------ |
 | 增加元素 | 通过insertFront(element: T)函数每次在队头增加一个元素。 |
 | 增加元素 | 通过insertEnd(element: T)函数每次在队尾增加一个元素。 |
 | 访问元素 | 通过getFirst()获取队首元素的value值，但是不进行出队操作。 |
@@ -159,7 +159,7 @@ Queue和[Deque](../reference/apis/js-apis-deque.md)相比，Queue只能在一端
 Queue进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| -------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在队尾增加一个元素。 |
 | 访问元素 | 通过getFirst()获取队首元素的value值，但是不进行出队操作。 |
 | 访问元素 | 通过pop()获取队首元素的value值，并进行出队操作。 |
@@ -182,7 +182,7 @@ Stack和[Queue](../reference/apis/js-apis-queue.md)相比，Queue基于循环队
 Stack进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
-| -------- | -------- |
+| -------- | ------ |
 | 增加元素 | 通过push(item：T)函数每次在栈顶增加一个元素。 |
 | 访问元素 | 通过peek()获取栈顶元素的value值，但是不进行出栈操作。 |
 | 访问元素 | 通过pop()获取栈顶的value值，并进行出栈操作。 |
