@@ -31,6 +31,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [WebGL](webgl/Readme-EN.md)
 - [Media](media/Readme-EN.md)
 - [Security](security/Readme-EN.md)
+- [AI](ai/Readme-EN.md)
 - [Connectivity](connectivity/Readme-EN.md)
 - [Telephony Service](telephony/Readme-EN.md)
 - [Data Management](database/Readme-EN.md)
