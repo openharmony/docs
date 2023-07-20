@@ -679,13 +679,22 @@
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-    - [Drawing开发指导](napi/drawing-guidelines.md)
+    - 图形图像
+      - [XComponent开发指导](napi/xcomponent-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
+      - [NativeImage开发指导](napi/native-image-guidelines.md)
+      - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
+      - [NativeWindow开发指导](napi/native-window-guidelines.md)
+      - [Vulkan开发指导](napi/vulkan-guidelines.md)
+    - 资源管理
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
-    - [NativeWindow开发指导](napi/native-window-guidelines.md)
-    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
-    - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
-    - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
-    - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+    - AI
+      - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
+      - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
+      - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
+    - 内存管理
+      - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -1678,7 +1687,6 @@
       - [HuksTypeApi](reference/native-apis/_huks_type_api.md)
       - [Init](reference/native-apis/init.md)
       - [Memory](reference/native-apis/memory.md)
-      - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
@@ -1738,8 +1746,6 @@
       - [relational_store.h](reference/native-apis/relational__store_8h.md)
       - [syscap_ndk.h](reference/native-apis/syscap__ndk_8h.md)
       - [purgeable_memory.h](reference/native-apis/purgeable__memory_8h.md)
-      - [usb_ddk_api.h](reference/native-apis/usb__ddk__api_8h.md)
-      - [usb_ddk_types.h](reference/native-apis/usb__ddk__types_8h.md)
       - [trace.h](reference/native-apis/trace_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
@@ -1786,17 +1792,6 @@
       - [OH_Rdb_Store](reference/native-apis/_o_h___rdb___store.md)
       - [OH_VBucket](reference/native-apis/_o_h___v_bucket.md)
       - [OH_VObject](reference/native-apis/_o_h___v_object.md)
-      - [UsbConfigDescriptor](reference/native-apis/_usb_config_descriptor.md)
-      - [UsbControlRequestSetup](reference/native-apis/_usb_control_request_setup.md)
-      - [UsbDdkConfigDescriptor](reference/native-apis/_usb_ddk_config_descriptor.md)
-      - [UsbDdkEndpointDescriptor](reference/native-apis/_usb_ddk_endpoint_descriptor.md)
-      - [UsbDdkInterface](reference/native-apis/_usb_ddk_interface.md)
-      - [UsbDdkInterfaceDescriptor](reference/native-apis/_usb_ddk_interface_descriptor.md)
-      - [UsbDeviceDescriptor](reference/native-apis/_usb_device_descriptor.md)
-      - [UsbDeviceMemMap](reference/native-apis/_usb_device_mem_map.md)
-      - [UsbEndpointDescriptor](reference/native-apis/_usb_endpoint_descriptor.md)
-      - [UsbInterfaceDescriptor](reference/native-apis/_usb_interface_descriptor.md)
-      - [UsbRequestPipe](reference/native-apis/_usb_request_pipe.md)
     - 标准库
       - [libc标准库](reference/native-lib/third_party_libc/musl.md)
       - [c++标准库](reference/native-lib/third_party_libc/cpp.md)
@@ -1806,11 +1801,13 @@
       - [OpenGL ES](reference/native-lib/third_party_opengl/opengles.md)
       - [EGL](reference/native-lib/third_party_opengl/egl.md)
       - [Zlib](reference/native-lib/third_party_zlib/zlib.md)
+      - [Vulkan](reference/native-lib/third_party_vulkan/vulkanmd)
       - 附录
         - [libc中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [libc中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
         - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中支持的Vulkan接口列表](reference/native-lib/third_party_vulkan/vulkan-symbol.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
