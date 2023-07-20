@@ -699,6 +699,18 @@ async function createTonePlayerBefore(){
 | ------------ | ---------------------------------------- | ---- | ---------------- |
 | streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。 |
+| privacyType<sup>10+</sup> | [AudioPrivacyType](#audioprivacytype) | 否 | 表示音频流是否可以被其他应用录制，默认值为0。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+
+## AudioPrivacyType<sup>10+</sup><a name="audioprivacytype"></a>
+
+枚举类型，用于标识对应播放音频流是否支持被其他应用录制。
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+| 名称                 | 值   | 说明                             |
+| -------------------- | ---- | -------------------------------- |
+| PRIVACY_TYPE_PUBLIC  | 0    | 表示音频流可以被其他应用录制。   |
+| PRIVACY_TYPE_PRIVATE | 1    | 表示音频流不可以被其他应用录制。 |
 
 ## InterruptEvent<sup>9+</sup>
 
@@ -790,10 +802,10 @@ async function createTonePlayerBefore(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
-| 名称       |  值     | 说明           |
-| :--------- | :----- | :------------- |
-| CONNECT    | 0      | 设备连接。     |
-| DISCONNECT | 1      | 断开设备连接。 |
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| CONNECT    | 0    | 设备连接。     |
+| DISCONNECT | 1    | 断开设备连接。 |
 
 ## AudioCapturerOptions<sup>8+</sup>
 
@@ -801,10 +813,11 @@ async function createTonePlayerBefore(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
 
-| 名称         | 类型                                    | 必填 | 说明             |
-| ------------ | --------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | 是   | 表示音频流信息。 |
-| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 表示采集器信息。 |
+| 名称                                | 类型                                                      | 必填 | 说明                                                         |
+| ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。                                             |
+| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | 是   | 表示采集器信息。                                             |
+| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -828,7 +841,32 @@ async function createTonePlayerBefore(){
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。        |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。 |
+
+## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
+
+播放音频流录制（内录）的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+| 名称          | 类型                                          | 必填 | 说明                             |
+| ------------- | --------------------------------------------- | ---- | -------------------------------- |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptions) | 是   | 需要录制的播放音频流的筛选信息。 |
+
+## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
+
+待录制播放音频流的筛选信息。
+
+**需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+
+当应用指定录制的StreamUsage值中包含SOURCE_TYPE_VOICE_COMMUNICATION的播放音频流时，需要校验应用是否拥有该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+| 名称   | 类型                               | 必填 | 说明                                                         |
+| ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
