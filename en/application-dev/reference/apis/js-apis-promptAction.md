@@ -6,7 +6,7 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This module can be used only after a component instance is created, and it cannot be used in the [UIAbility](./js-apis-app-ability-uiAbility.md).
+> This module cannot be used in the file declaration of the [UIAbility](./js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 
 ## Modules to Import
 
