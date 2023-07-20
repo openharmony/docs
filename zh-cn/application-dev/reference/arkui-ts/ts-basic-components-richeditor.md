@@ -27,6 +27,10 @@ RichEditor(value: RichEditorOptions)
 
 支持[通用属性](ts-universal-attributes-size.md)。
 
+>  **说明：**
+>
+>  其中clip属性默认值为true。
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -114,7 +118,7 @@ Span位置信息。
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | 是 | 图片的宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是  | 图片垂直对齐方式。 |
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | 是 | 图片缩放类型。 |
+| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | 是 | 图片缩放类型。 |
 
 
 ## RichEditorOptions
@@ -158,7 +162,7 @@ setCaretOffset(offset: number): boolean
 
 | 参数名 | 参数类型 | 必填 | 参数描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset | number | 是 | 光标偏移位置。 |
+| offset | number | 是 | 光标偏移位置。超出文本范围时，设置失败。 |
 
 **返回值：**
 
@@ -265,8 +269,8 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | 否 | 需要更新样式的文本起始位置，省略时表示从0开始。 |
-| end | number | 否 | 需要更新样式的文本结束位置，省略时表示到结尾。 |
+| start | number   | 否 | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是 | 文本样式。 |
 
 
@@ -276,8 +280,8 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | 否 | 需要更新样式的图片起始位置，省略时表示从0开始。 |
-| end | number | 否 | 需要更新样式的图片结束位置，省略时表示到结尾。 |
+| start | number   | 否 | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
 
@@ -296,12 +300,12 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。 |
-| fontSize | [Length](ts-types.md#length) \| number   | 否 | 字体大小。 |
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 字体样式。 |
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。 |
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | 否 | 设置字体列表。默认字体'HarmonyOS Sans'，且当前只支持这种字体。 |
-| decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} \| number \| string | 否 | 设置文本装饰线样式及其颜色。 |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/> 默认值：Color.Black。 |
+| fontSize | [Length](ts-types.md#length) \| number   | 否 | 字体大小。 <br/>默认值：16fp。|
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 字体样式。<br/>默认值：FontStyle.Normal。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>默认值：FontWeight.Normal。 |
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | 否 | 设置字体列表。默认字体'HarmonyOS Sans'，且当前只支持这种字体。 <br/>默认字体:'HarmonyOS Sans'。|
+| decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否 | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 
 
 ## RichEditorImageSpanOptions
@@ -320,8 +324,8 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | size  | [Dimension, Dimension]  | 否 | 图片宽度和高度。 |
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。 |
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | 否 | 图片缩放类型。 |
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 
 ## RichEditorRange
 
@@ -329,8 +333,8 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | 否 | 起始位置，省略时表示从0开始。 |
-| end | number | 否 | 结束位置，省略时表示到结尾。 |
+| start | number   | 否 | 起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 结束位置，省略或者超出文本范围时表示到结尾。 |
 
 
 ## 示例
