@@ -3689,6 +3689,15 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 | usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
 | callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | if input parameter type or number mismatch  |
+| 6800101 | if input parameter value error              |
+
 **示例：**
 
 ```js
@@ -3722,6 +3731,15 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
 | Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise对象，返回当前音效模式的信息。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | if input parameter type or number mismatch  |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
