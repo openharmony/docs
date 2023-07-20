@@ -188,7 +188,7 @@ setUp(config: VpnConfig): Promise\<number\>;
 
 protect(socketFd: number, callback: AsyncCallback\<void\>): void;
 
-保护套接字不受VPN连接。经过保护后，通过此套接字发送的数据将直接进入底层网络，因此其流量不会通过VPN转发，使用callback方式作为异步方法。
+保护套接字不受VPN连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过VPN转发，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -246,7 +246,7 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
 
 protect(socketFd: number): Promise\<void\>;
 
-保护套接字不受VPN连接。经过保护后，通过此套接字发送的数据将直接进入底层网络，因此其流量不会通过VPN转发, 使用Promise方式作为异步方法。
+保护套接字不受VPN连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过VPN转发, 使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 

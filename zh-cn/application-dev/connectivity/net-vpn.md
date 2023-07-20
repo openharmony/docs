@@ -21,10 +21,11 @@ VPN即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 ## 启动VPN的流程
 
-1. 建立一个VPN的网络隧道，下面以TCP隧道为例。
-2. 保护前一步建立的TCP隧道。
+1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
+2. 保护前一步建立的UDP隧道。
 3. 建立一个VPN网络。
 4. 处理虚拟网卡的数据，如：读写操作。
+5. 销毁VPN网络。
 
 本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 
@@ -51,21 +52,21 @@ let VpnConnection = vpn.createVpnConnection(globalThis.context)
 struct Index {
   @State message: string = 'Test VPN'
 
+  //1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
   CreateTunnel() {
-    TunnelFd = vpn_client.tcpConnect("192.168.43.208", 8888)
+    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888)
   }
 
+  //2. 保护前一步建立的UDP隧道。
   Protect() {
-    console.info("vpn Protect")
     VpnConnection.protect(TunnelFd).then(function () {
-      console.info("vpn Protect Success ")
+      console.info("vpn Protect Success.")
     }).catch(function (err) {
       console.info("vpn Protect Failed " + JSON.stringify(err))
     })
   }
 
   SetupVpn() {
-    console.info("vpn SetupVpn")
     let config = {
       addresses: [{
         address: {
@@ -84,8 +85,10 @@ struct Index {
     }
 
     try {
+      //3. 建立一个VPN网络。
       VpnConnection.setUp(config, (error, data) => {
         console.info("tunfd: " + JSON.stringify(data));
+        //4. 处理虚拟网卡的数据，如：读写操作。
         vpn_client.startVpn(data, TunnelFd)
       })
     } catch (error) {
@@ -93,11 +96,11 @@ struct Index {
     }
   }
 
+  //5.销毁VPN网络。
   Destroy() {
-    console.info("vpn Destroy")
     vpn_client.stopVpn(TunnelFd)
     VpnConnection.destroy().then(function () {
-      console.info("vpn Destroy Success ")
+      console.info("vpn Destroy Success.")
     }).catch(function (err) {
       console.info("vpn Destroy Failed " + JSON.stringify(err))
     })
@@ -238,7 +241,7 @@ void HandleTcpReceived(FdInfo fdInfo) {
     }
 }
 
-static napi_value TcpConnect(napi_env env, napi_callback_info info) {
+static napi_value UdpConnect(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -326,7 +329,7 @@ static napi_value StopVpn(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"tcpConnect", nullptr, TcpConnect, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"udpConnect", nullptr, UdpConnect, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startVpn", nullptr, StartVpn, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"stopVpn", nullptr, StopVpn, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
