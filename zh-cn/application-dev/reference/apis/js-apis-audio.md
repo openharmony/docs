@@ -3695,8 +3695,7 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch  |
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error.             |
 
 **示例：**
 
@@ -3738,8 +3737,7 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | if input parameter type or number mismatch  |
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error.             |
 
 **示例：**
 
