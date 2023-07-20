@@ -22,7 +22,7 @@ show(options?: TextPickerDialogOptions)
 | -------- | -------- | -------- |  -------- |
 | range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource)\|[TextPickerRangeContent](ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[]<sup>10+</sup> | 是 | 设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。<br/>**说明：** <br/>Resource类型只支持[strarray.json](../../quick-start/resource-categories-and-access.md#资源组目录)。 |
 | selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
-| value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。|
+| value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。<br>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 |
 | defaultPickerItemHeight | number \| string | 否 | 设置选择器中选项的高度。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
