@@ -2,7 +2,12 @@
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。HAR不同于HAP，不能独立安装运行在设备上，只能作为应用模块的依赖项被引用。
 
 ## 创建HAR模块
-通过DevEco Studio创建一个HAR模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
+通过DevEco Studio创建一个HAR模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
+
+需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
+注意：仅Stage模型的ArkTS工程支持混淆。
+
+### 在API9中，HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
 
 ```json
 {
@@ -16,8 +21,41 @@ artifactType字段有以下两种取值，默认缺省为original。
 - original：不混淆。
 - obfuscation：混淆，目前仅支持uglify混淆。
 
-需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
-注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
+### 在API10中，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
+
+```json
+{
+  "apiType": "stageMode",
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          },
+          "consumerFiles": [
+            "./consumer-rules.txt"
+          ]
+        }
+      }
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}
+```
+### 适配指导
+
+该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快用新的配置方式。
 
 ## HAR开发注意事项
 - HAR不支持在配置文件中声明abilities、extensionAbilities组件。
