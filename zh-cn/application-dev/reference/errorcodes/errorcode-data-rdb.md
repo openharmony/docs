@@ -172,5 +172,5 @@ The data group id is not valid.
 
 **处理步骤**
 
-应用从应用市场申请dataGroupId，并正确传入该参数。
+从应用市场申请dataGroupId，并正确传入该参数。
 
