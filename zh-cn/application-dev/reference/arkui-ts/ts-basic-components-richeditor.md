@@ -114,7 +114,7 @@ Span位置信息。
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | 是 | 图片的宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是  | 图片垂直对齐方式。 |
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | 是 | 图片缩放类型。 |
+| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | 是 | 图片缩放类型。 |
 
 
 ## RichEditorOptions
@@ -321,7 +321,7 @@ deleteSpans(value?: RichEditorRange): void
 | ------ | -------- | ---- | -------------------------------------- |
 | size  | [Dimension, Dimension]  | 否 | 图片宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。 |
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | 否 | 图片缩放类型。 |
+| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | 否 | 图片缩放类型。 |
 
 ## RichEditorRange
 
