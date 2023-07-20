@@ -40,7 +40,7 @@ SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且
 
 ### 接口说明
 
-为了保证上层在调用SDIO接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/model/storage/include/mmc//mmc_sdio.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
+为了保证上层在调用SDIO接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/model/storage/include/mmc/mmc_sdio.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
 
 SdioDeviceOps定义：
 
@@ -205,13 +205,7 @@ SDIO模块适配包含以下四个步骤：
         }
         ```
 
-        需要注意的是，新增sdio_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
-
-        例如：本例中sdio_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/sdio/sdio_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
-
-        ```c
-        #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/sdio/sdio_config.hcs" // 配置文件相对路径
-        ```
+        需要注意的是，新增sdio_config.hcs配置文件后，必须在hdf.hcs文件中包含sdio_config.hcs所在路径信息，否则配置文件无法生效。
 
 3. 实例化SDIO设备控制器对象
 
@@ -279,7 +273,7 @@ SDIO模块适配包含以下四个步骤：
 
         返回值：
 
-        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS的定义）。
+        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS的定义）。
 
         **表 3** HDF_STATUS相关状态说明
 
