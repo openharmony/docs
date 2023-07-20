@@ -846,6 +846,18 @@
 
 **起始版本**：10
 
+## ohos.permission.NETSYS_INTERNAL
+
+允许SA服务调用网络管理netsys中的网络管理、wifi、网卡监听、iptables设置等功能接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：10
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
