@@ -839,8 +839,8 @@ async function createTonePlayerBefore(){
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| VOLUME_UP    | 0      | 向上调节音量。     |
-| VOLUME_DOWN    | 1      | 向下调节音量。 |
+| VOLUME_UP              | 0      | 向上调节音量。<br/>此接口为系统接口。   |
+| VOLUME_DOWN            | 1      | 向下调节音量。<br/>此接口为系统接口。   |
 
 ## AudioManager
 
@@ -3031,8 +3031,8 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
 
 **示例：**
 
@@ -3078,8 +3078,8 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
 
 **示例：**
 
@@ -3119,8 +3119,8 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
 
 **示例：**
 
@@ -3166,8 +3166,8 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
 
 **示例：**
 
@@ -3184,8 +3184,6 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
 
 获取音量增益dB值，使用callback方式异步返回结果。
-
-**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3204,8 +3202,8 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by callback.                     |
+| 6800301 | System error. Return by callback.                                |
 
 **示例：**
 
@@ -3223,8 +3221,6 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
 
 获取音量增益dB值，使用Promise方式异步返回结果。
-
-**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3248,8 +3244,8 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error                     |
-| 6800301 | System error                                |
+| 6800101 | Invalid parameter error. Return by promise.                     |
+| 6800301 | System error. Return by promise.                                |
 
 **示例：**
 
@@ -5962,7 +5958,7 @@ audioRenderer.on('stateChange', (state) => {
 
 ### on('outputDeviceChange') <sup>10+</sup>
 
-on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): void
+on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void;
 
 订阅监听音频输出设备变化。
 
@@ -5979,7 +5975,7 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error.              |
 
 **示例：**
 
@@ -5994,7 +5990,7 @@ audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
 ```
 ### off('outputDeviceChange') <sup>10+</sup>
 
-off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): void
+off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void;
 
 取消订阅监听音频输出设备变化。
 
@@ -6005,13 +6001,13 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 取消监听的音频设备变化。                            |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 取消监听的音频设备变化。                            |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error.              |
 
 **示例：**
 
