@@ -811,7 +811,7 @@ async function createTonePlayerBefore(){
 
 音频采集器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer、SystemCapability.Multimedia.Audio.PlaybackCapture
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 | 名称                                | 类型                                                      | 必填 | 说明                                                         |
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -6032,7 +6032,7 @@ on(type: 'outputDeviceChange', callback: Callback<AudioDeviceDescriptors\>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -6057,14 +6057,14 @@ off(type: 'outputDeviceChange', callback?: Callback<AudioDeviceDescriptors\>): v
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 否   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 取消监听的音频设备变化。                            |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error.              |
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
