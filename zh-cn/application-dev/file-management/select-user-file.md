@@ -1,6 +1,6 @@
 # 选择用户文件
 
-终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。
+终端用户有时需要分享、保存一些图片、视频等用户文件，开发者需要在应用中支持此类使用场景。此时，开发者可以使用OpenHarmony系统预置的[文件选择器（FilePicker）](../reference/apis/js-apis-file-picker.md)，实现用户文件选择及保存能力。此类接口不需要申请任何权限。
 
 根据用户文件的常见类型，文件选择器（FilePicker）分别提供以下接口：
 
