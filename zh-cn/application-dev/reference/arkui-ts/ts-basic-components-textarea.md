@@ -42,6 +42,8 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | 设置文本框多态样式。<br/>默认值：TextContentStyle.DEFAULT    |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextArea获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean                                                      | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 |
 
 >  **说明：**
 >
