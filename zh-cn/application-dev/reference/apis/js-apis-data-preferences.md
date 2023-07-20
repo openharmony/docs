@@ -40,7 +40,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                                 |
 | name     | string                                           | 是   | Preferences实例的名称。                                      |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误码。 |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。 |
 
 **示例：**
 
@@ -177,7 +177,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -320,7 +320,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -452,7 +452,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
 | defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误码。 |
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。 |
 
 **示例：**
 
@@ -519,7 +519,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为含有所有键值的Object对象；否则err为错误码。 |
+| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为含有所有键值的Object对象；否则err为错误对象。 |
 
 **示例：**
 
@@ -585,7 +585,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
 | value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误码。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。     |
 
 **示例：**
 
@@ -730,7 +730,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | 是   | 要删除的存储Key名称，不能为空。                      |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -797,7 +797,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -858,7 +858,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
