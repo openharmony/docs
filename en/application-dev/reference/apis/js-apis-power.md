@@ -147,13 +147,20 @@ try {
 
 ## power.suspend<sup>9+</sup>
 
-suspend(): void
+suspend(isImmediate?: boolean): void
 
 Hibernates a device.
 
 **System API**: This is a system API.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately. If this parameter is not specified, the default value **false** is used. The system automatically determines when to enter the hibernation state.<br>**NOTE**: This parameter is supported since API version 10.|
+
 
 **Error codes**
 
@@ -287,6 +294,39 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .catch(err => {
     console.error('set power mode failed, err: ' + err);
 });
+```
+
+## power.isStandby<sup>10+</sup>
+
+isStandby(): boolean
+
+Checks whether the device is in standby mode.
+
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| boolean | The value **true** indicates that the device is in standby mode, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+
+**Example**
+
+```js
+try {
+    var isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
 ```
 
 ## power.rebootDevice<sup>(deprecated)</sup>

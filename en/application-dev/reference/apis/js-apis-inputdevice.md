@@ -468,11 +468,13 @@ Sets the keyboard repeat delay. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| delay    | number                    | Yes   | Keyboard repeat delay, in ms. The value range is [300 ms, 1000 ms] and the default value is **500**.|
+| delay    | number                    | Yes   | Keyboard repeat delay, in ms. The value range is [300, 1000] and the default value is **500**.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -499,6 +501,8 @@ Sets the keyboard repeat delay. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description                                 |
@@ -523,6 +527,66 @@ try {
 }
 ```
 
+## inputDevice.getKeyboardRepeatDelay<sup>10+</sup>
+
+getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the keyboard repeat delay. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| callback   | AsyncCallback&lt;number&gt;                    | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getKeyboardRepeatDelay((error, delay) => {
+    if (error) {
+      console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatDelay<sup>10+</sup>
+
+getKeyboardRepeatDelay(): Promise&lt;number&gt;
+
+Obtains the keyboard repeat delay. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Parameters                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getKeyboardRepeatDelay().then(delay => {
+    console.log(`Get keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
 
 setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
@@ -530,6 +594,8 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 Sets the keyboard repeat rate. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -562,6 +628,8 @@ Sets the keyboard repeat rate. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description                                 |
@@ -583,6 +651,66 @@ try {
   });
 } catch (error) {
   console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatRate<sup>10+</sup>
+
+getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the keyboard repeat rate. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getKeyboardRepeatRate((error, rate) => {
+    if (error) {
+      console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatRate<sup>10+</sup>
+
+getKeyboardRepeatRate(): Promise&lt;number&gt;
+
+Obtains the keyboard repeat rate. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Parameters                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  inputDevice.getKeyboardRepeatRate().then(rate => {
+    console.log(`Get keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

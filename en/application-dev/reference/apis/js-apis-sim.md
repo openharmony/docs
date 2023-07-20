@@ -615,7 +615,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.                          |
 
 **Error codes**
 
@@ -681,13 +681,15 @@ promise.then(data => {
 });
 ```
 
-## sim.getSimAccountInfo<sup>7+</sup>
+## sim.getSimAccountInfo<sup>10+</sup>
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
 Obtains SIM card account information. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
+>**NOTE**
+>
+>If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -706,8 +708,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -725,13 +725,15 @@ sim.getSimAccountInfo(0, (err, data) => {
 ```
 
 
-## sim.getSimAccountInfo<sup>7+</sup>
+## sim.getSimAccountInfo<sup>10+</sup>
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 Obtains SIM card account information. This API uses a promise to return the result.
 
-**System API**: This is a system API.
+>**NOTE**
+>
+>If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -755,8 +757,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -776,13 +776,15 @@ promise.then(data => {
 });
 ```
 
-## sim.getActiveSimAccountInfoList<sup>8+</sup>
+## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
 Obtains the account information list of the active SIM card. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
+>**NOTE**
+>
+>If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -800,8 +802,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -817,13 +817,15 @@ sim.getActiveSimAccountInfoList((err, data) => {
 ```
 
 
-## sim.getActiveSimAccountInfoList<sup>8+</sup>
+## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 Obtains the account information list of the active SIM card. This API uses a promise to return the result.
 
-**System API**: This is a system API.
+>**NOTE**
+>
+>If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -841,8 +843,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300004  | Do not have sim card.                        |
@@ -2250,6 +2250,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2302,6 +2303,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3990,6 +3992,80 @@ try {
 }
 ```
 
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
+
+Obtains the default slot ID of the SIM card that provides voice services. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description      |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```js
+sim.getDefaultVoiceSimId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(\): Promise\<number\>
+
+Obtains the default slot ID of the SIM card that provides voice services. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<number\> | Promise used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```js
+let promise = sim.getDefaultVoiceSimId();
+promise.then(data => {
+    console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## SimState
 
 Enumerates SIM card states.
@@ -4113,7 +4189,7 @@ Defines the personalized lock information.
 
 ## IccAccountInfo<sup>7+</sup>
 
-Defines the ICC account information.
+ICC account information.
 
 **System API**: This is a system API.
 

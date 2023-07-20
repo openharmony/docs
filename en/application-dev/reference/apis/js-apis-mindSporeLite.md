@@ -1,8 +1,7 @@
 # @ohos.ai.mindSporeLite (Inference)
 
-The **mindSporeLite** module provides APIs for the MindSpore Lite inference engine to implment model inference.
-
 MindSpore Lite is an AI engine that implements AI model inference for different hardware devices. It has been used in a wide range of fields, such as image classification, target recognition, facial recognition, and character recognition.
+The **mindSporeLite** module provides APIs for the MindSpore Lite inference engine to implment model inference.
 
 > **NOTE**
 >
