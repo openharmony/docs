@@ -25,7 +25,8 @@
 
 在此基础上，还提供了如下功能的开发指导：
 
-- [Web](web/web-component-overview.md)
+- [ArkTS语言基础类库](arkts-utils/Readme-CN.md)
+- [Web](web/Readme-CN.md)
 - [通知](notification/Readme-CN.md)
 - [窗口管理](windowmanager/Readme-CN.md)
 - [WebGL](webgl/Readme-CN.md)
