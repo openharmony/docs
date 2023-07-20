@@ -995,7 +995,6 @@
       - [@ohos.multimodalInput.shortKey (Shortcut Key)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (System Power Management)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock)](reference/apis/js-apis-runninglock.md)
-      - [@ohos.resourceschedule.deviceStandby (Device Standby)](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.sensor (Sensor)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (Data Item Settings)](reference/apis/js-apis-settings.md)
       - [@ohos.stationary (Device Status Awareness Framework)](reference/apis/js-apis-stationary.md)
