@@ -750,27 +750,53 @@ setProperty(property: PasteDataProperty): void
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.INAPP;
-prop.additions['TestOne'] = 123;
+prop.additions['TestOne'] = {'Test' : 123};
 prop.additions['TestTwo'] = {'Test' : 'additions'};
 prop.tag = 'TestTag';
 pasteData.setProperty(prop);
 ```
 [PasteDataProperty](#pastedataproperty7)的localOnly与shareOption属性互斥，最终结果以shareOption为准，shareOption会影响localOnly的值。
 ```js
-prop.shareOption = pasteboard.ShareOption.INAPP;
-prop.localOnly = false;
-pasteData.setProperty(prop);
-pasteData.localOnly //true
-
-prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
-prop.localOnly = false;
-pasteData.setProperty(prop);
-pasteData.localOnly //true
-
-prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
-prop.localOnly = true;
-pasteData.setProperty(prop);
-pasteData.localOnly //false
+(async function() {
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+    let prop = pasteData.getProperty();
+    prop.shareOption = pasteboard.ShareOption.INAPP;
+    prop.localOnly = false;
+    pasteData.setProperty(prop);    
+    let systemPasteboard = pasteboard.getSystemPasteboard();
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly //true
+        });
+    });
+    
+    prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
+    prop.localOnly = false;
+    pasteData.setProperty(prop);
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly; //true
+        });
+    });
+    
+    prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
+    prop.localOnly = true;
+    pasteData.setProperty(prop);
+    
+    await systemPasteboard.setData(pasteData).then(async () => {
+        console.info('Succeeded in setting PasteData.');
+        await systemPasteboard.getData().then(pasteData => {
+            let prop = pasteData.getProperty();
+            prop.localOnly; //false
+        });
+    });
+})()
 
 ```
 
