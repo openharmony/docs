@@ -132,7 +132,7 @@ hasRight(deviceName: string): boolean
   ```js
   let devicesName="1-1";
   let bool = usb.hasRight(devicesName);
-  console.log(bool);
+  console.log(`${bool}`);
   ```
 
 
