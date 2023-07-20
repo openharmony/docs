@@ -484,13 +484,13 @@ let unifiedData = new UDMF.UnifiedData(record);
 
 ## Intention
 
-已接入UDMF的系统服务能力的枚举类型。其主要用途是标识用户向UDMF写入的数据的用途，同时也标明了当前系统内哪些系统服务已经接入了UDMF，通过UDMF实现应用间数据传递的业务。
+UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | 公共数据通道。 |
+| DATA_HUB | 'DataHub' | 公共数据通路。 |
 
 ## Options
 
@@ -499,9 +499,9 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| 名称       | 类型                      | 可读 | 可写 | 必填 | 说明                                                                                                                                                                                        |
-|-----------|-------------------------|----|----|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | 是  | 是  | 否  | 表示数据操作相关的业务标签。                                                                                                                                                                            |
+| 名称       | 类型                      | 可读 | 可写 | 必填 | 说明                                                                                                                                                                                                                                |
+|-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | 是  | 是  | 否  | 表示数据操作相关的数据通路类型。                                                                                                                                                                                                                  |
 | key       | string                  | 是  | 是  | 否  | UDMF中数据对象的唯一标识符，可通过[insertData](#udmfinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
 
 
@@ -510,7 +510,7 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 
 insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
 
-将数据写入UDMF的公共存储中，并生成数据的唯一标识符，使用callback异步回调。
+将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -552,7 +552,7 @@ try {
 
 insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
-将数据写入UDMF的公共存储中，并生成数据的唯一标识符，使用Promise异步回调。
+将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -596,7 +596,7 @@ try {
 
 updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
 
-更新已写入UDMF的公共存储的数据，使用callback异步回调。
+更新已写入UDMF的公共数据通路的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -638,7 +638,7 @@ try {
 
 updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
-更新已写入UDMF的公共存储的数据，使用Promise异步回调。
+更新已写入UDMF的公共数据通路的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -683,7 +683,7 @@ try {
 
 queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
-查询UDMF公共存储的数据，使用callback异步回调。
+查询UDMF公共数据通路的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -729,7 +729,7 @@ try {
 
 queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
-查询UDMF公共存储的数据，使用Promise异步回调。
+查询UDMF公共数据通路的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -778,7 +778,7 @@ try {
 
 deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
-删除UDMF公共存储的数据，返回删除的数据集，使用callback异步回调。
+删除UDMF公共数据通路的数据，返回删除的数据集，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -824,7 +824,7 @@ try {
 
 deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
-删除UDMF公共存储的数据，返回删除的数据集，使用Promise异步回调。
+删除UDMF公共数据通路的数据，返回删除的数据集，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
