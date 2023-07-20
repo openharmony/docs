@@ -484,7 +484,7 @@ function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     for (let i = 0; i < node.data.length; i++) {
         console.info("onPublishCallback node " + typeof node.data[i].data);
         if (typeof node.data[i].data != 'string') {
-            let array:ArrayBuffer = node.data[i].data;
+            let array:ArrayBuffer = node.data[i].data as ArrayBuffer;
             let data:Uint8Array = new Uint8Array(array);
             console.info("onPublishCallback " + i + " " + JSON.stringify(data));
         }
