@@ -811,12 +811,10 @@ async function createTonePlayerBefore(){
 
 音频采集器选项信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
-
 | 名称                                | 类型                                                      | 必填 | 说明                                                         |
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。                                             |
-| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | 是   | 表示采集器信息。                                             |
+| streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
+| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
 | playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
