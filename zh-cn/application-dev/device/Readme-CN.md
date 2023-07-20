@@ -19,3 +19,5 @@
   - [示例服务器开发指导](sample-server-guidelines.md)
 - 设备状态
   - [Stationary开发指导](stationary-guidelines.md)
+- 扩展外设
+  - [扩展外设管理开发指导](externaldevice-guidelines.md)
