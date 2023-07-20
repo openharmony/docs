@@ -2074,13 +2074,48 @@ static getType(char: string): string
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 输入字符的一般类别值。 |
+| string | 输入字符的一般类别值。|
+
+一般类别值如下，更详细的介绍可以参考Unicode标准。
+
+| 名称 | 值 | 说明 |
+| ---- | -------- | ---------- |
+| U_UNASSIGNED | U_UNASSIGNED | 表示未分配和非字符代码点对应类别。 |
+| U_GENERAL_OTHER_TYPES | U_GENERAL_OTHER_TYPES | 与 U_UNASSIGNED 相同。 |
+| U_UPPERCASE_LETTER | U_UPPERCASE_LETTER | 表示大写字母。 |
+| U_LOWERCASE_LETTER | U_LOWERCASE_LETTER | 表示小写字母。  |
+| U_TITLECASE_LETTER | U_TITLECASE_LETTER | 表示首字母大写。 |
+| U_MODIFIER_LETTER | U_MODIFIER_LETTER | 表示字母修饰符。 |
+| U_OTHER_LETTER | U_OTHER_LETTER | 表示其它字母，不属于大写字母、小写字母、首字母大写或修饰符字母的字母。 |
+| U_NON_SPACING_MARK | U_NON_SPACING_MARK | 表示非间距标记，如重音符号'，变音符号#。 |
+| U_ENCLOSING_MARK | U_ENCLOSING_MARK | 表示封闭标记和能围住其它字符的标记，如圆圈、方框等。 |
+| U_COMBINING_SPACING_MARK | U_COMBINING_SPACING_MARK | 表示间距标记，如元音符号[ ]。 |
+| U_DECIMAL_DIGIT_NUMBER | U_DECIMAL_DIGIT_NUMBER | 表示十进制数字。 |
+| U_LETTER_NUMBER | U_LETTER_NUMBER | 表示字母数字，罗马数字。 |
+| U_OTHER_NUMBER | U_OTHER_NUMBER | 表示其它作为加密符号和记号的数字，非阿拉伯数字的数字表示符，如@、#、（1）、①等。 |
+| U_SPACE_SEPARATOR | U_SPACE_SEPARATOR | 表示空白分隔符，如空格符、不间断空格、固定宽度的空白符。 |
+| U_LINE_SEPARATOR | U_LINE_SEPARATOR | 表示行分隔符。|
+| U_PARAGRAPH_SEPARATOR | U_PARAGRAPH_SEPARATOR | 表示段落分割符。 |
+| U_CONTROL_CHAR | U_CONTROL_CHAR | 表示控制字符。 |
+| U_FORMAT_CHAR | U_FORMAT_CHAR | 表示格式字符。 |
+| U_PRIVATE_USE_CHAR | U_PRIVATE_USE_CHAR | 表示私人使用区代码点类别，例如公司 logo。 |
+| U_SURROGATE | U_SURROGATE | 表示代理项，在UTF-16中用来表示补充字符的方法。 |
+| U_DASH_PUNCTUATION | U_DASH_PUNCTUATION | 表示短划线标点。 |
+| U_START_PUNCTUATION | U_START_PUNCTUATION | 表示开始标点，如左括号。 |
+| U_END_PUNCTUATION | U_END_PUNCTUATION | 表示结束标点，如右括号。 |
+| U_INITIAL_PUNCTUATION | U_INITIAL_PUNCTUATION | 表示前引号，如左双引号、左单引号。 |
+| U_FINAL_PUNCTUATION | U_FINAL_PUNCTUATION | 表示后引号，如右双引号、右单引号。 |
+| U_CONNECTOR_PUNCTUATION | U_CONNECTOR_PUNCTUATION | 表示连接符标点。 |
+| U_OTHER_PUNCTUATION | U_OTHER_PUNCTUATION | 表示其他标点。 |
+| U_MATH_SYMBOL | U_MATH_SYMBOL | 表示数学符号。 |
+| U_CURRENCY_SYMBOL | U_CURRENCY_SYMBOL | 表示货币符号。 |
+| U_MODIFIER_SYMBOL | U_MODIFIER_SYMBOL | 表示修饰符号。 |
+| U_OTHER_SYMBOL | U_OTHER_SYMBOL | 表示其它符号。 |
 
 **示例：** 
   ```js
   let type = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
-
 
 ## I18NUtil<sup>9+</sup>
 
