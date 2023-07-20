@@ -903,7 +903,7 @@ async function example() {
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the recycle bin.
+Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -964,7 +964,7 @@ async function example() {
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-Deletes media files. This API uses a promise to return the result. The deleted files are moved to the recycle bin.
+Deletes media files. This API uses a promise to return the result. The deleted files are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -1159,7 +1159,7 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Creates a dialog box for deleting photos. This API uses an asynchronous callback to return the result. The deleted photos are moved to the recycle bin.
+Creates a dialog box for deleting photos. This API uses an asynchronous callback to return the result. The deleted photos are moved to the trash.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1217,7 +1217,7 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-Creates a dialog box for deleting photos. This API uses a promise to return the result. The deleted photos are moved to the recycle bin.
+Creates a dialog box for deleting photos. This API uses a promise to return the result. The deleted photos are moved to the trash.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -3258,7 +3258,7 @@ async function example() {
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Recovers image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses an asynchronous callback to return the result.
+Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3316,7 +3316,7 @@ async function example() {
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-Recovers image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses a promise to return the result.
+Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3377,7 +3377,7 @@ async function example() {
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses an asynchronous callback to return the result.
+Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
 **CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
@@ -3437,7 +3437,7 @@ async function example() {
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses a promise to return the result.
+Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
 **CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
@@ -3568,7 +3568,7 @@ Enumerate the album subtypes.
 | FAVORITE |  1025 |  Favorites.|
 | VIDEO |  1026 |  Video album.|
 | HIDDEN |  1027 |  Hidden album. **System API**: This is a system API.|
-| TRASH |  1028 |  Recycle bin. **System API**: This is a system API.|
+| TRASH |  1028 |  Trash. **System API**: This is a system API.|
 | SCREENSHOT |  1029 |  Album for screenshots and screen recording files. **System API**: This is a system API.|
 | CAMERA |  1030 |  Album for photos and videos taken by the camera. **System API**: This is a system API.|
 | ANY |  2147483647 |  Any album.|
