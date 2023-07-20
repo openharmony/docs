@@ -31,7 +31,7 @@ VPN exist already, please execute destroy first.
 
 **错误描述**
 
-VPN已经存在，请先执行destory接口。
+VPN连接已存在，请先调用destroy接口销毁VPN连接。
 
 **可能原因**
 
@@ -58,4 +58,4 @@ tcp链路建立失败。
 
 **处理步骤**
 
-检查tcp链路是否建立成功。
+检查socket链路是否建立成功。

@@ -174,8 +174,8 @@ setUp(config: VpnConfig): Promise\<number\>;
     dnsAddresses:[
       "114.114.114.114"
     ],
-    acceptedApplications:[],
-    refusedApplications:[]
+    trustedApplications:[],
+    blockedApplications:[]
   }
   VpnConnection.setUp(config).then((data) => {
     console.info(TAG + "setUp success, tunfd: " + JSON.stringify(data))
@@ -236,9 +236,8 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
   })
   tcp.getSocketFd().then((tunnelfd) => {
     console.info("tunenlfd: " + tunnelfd);
-    VpnConnection.protect(tunnelfd, (error, data) => {
+    VpnConnection.protect(tunnelfd, (error) => {
       console.info(JSON.stringify(error));
-      console.info(JSON.stringify(data));
     })
   })
 ```
@@ -300,8 +299,8 @@ protect(socketFd: number): Promise\<void\>;
   })
   tcp.getSocketFd().then((tunnelfd) => {
     console.info("tunenlfd: " + tunnelfd);
-    VpnConnection.protect(tunnelfd).then((data) => {
-      console.info("protect success" + JSON.stringify(data))
+    VpnConnection.protect(tunnelfd).then(() => {
+      console.info("protect success.")
     }).catch(err => {
       console.info("protect fail" + JSON.stringify(err))
     })
@@ -341,9 +340,8 @@ destroy(callback: AsyncCallback\<void\>): void;
 **示例：**
 
 ```js
-  VpnConnection.destroy((error, data) => {
+  VpnConnection.destroy((error) => {
     console.info(JSON.stringify(error));
-    console.info(JSON.stringify(data));
   })
 ```
 
@@ -373,15 +371,14 @@ destroy(): Promise\<void\>;
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.        |
-| 401     | Parameter error.       |
 | 2200002 | Operation failed. Cannot connect to service.    |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```js
-  VpnConnection.destroy().then((data) => {
-    console.info("destroy success" + JSON.stringify(data))
+  VpnConnection.destroy().then(() => {
+    console.info("destroy success.")
   }).catch(err => {
     console.info("destroy fail" + JSON.stringify(err))
   });

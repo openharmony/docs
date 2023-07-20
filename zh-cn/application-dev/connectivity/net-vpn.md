@@ -49,7 +49,7 @@ let VpnConnection = vpn.createVpnConnection(globalThis.context)
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Toy VPN'
+  @State message: string = 'Test VPN'
 
   CreateTunnel() {
     TunnelFd = vpn_client.tcpConnect("192.168.43.208", 8888)
