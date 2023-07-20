@@ -200,7 +200,7 @@ Watchdog模块适配包含以下四个步骤：
 
       返回值：
 
-      HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS的定义）。
+      HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS的定义）。
 
       **表2** Init函数和Bind函数返回值和描述
 
