@@ -127,7 +127,7 @@ import componentUtils from '@ohos.componentUtils';
 @Entry
 @Component
 struct Utils{
-  static getComponentRect(key) {
+  private getComponentRect(key) {
     console.info("Mode Key: " + key);
     let modePosition = componentUtils.getRectangleById(key);
 
@@ -202,7 +202,7 @@ struct Utils{
         Text('getRectangleById').fontSize(40).fontWeight(FontWeight.Bold);
       }.margin({ top: 20 })
       .onClick(() => {
-        Utils.getComponentRect("image_01");
+        this.getComponentRect("image_01");
       }).id('onClick');
     }
   }
