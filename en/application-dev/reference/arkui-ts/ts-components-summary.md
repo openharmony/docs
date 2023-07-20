@@ -168,7 +168,9 @@
 - [RichText](ts-basic-components-richtext.md)
 
     A component that parses and displays HTML text.
+- [RichEditor](ts-basic-components-richeditor.md)
 
+    A component that supports interactive text editing and mixture of text and imagery.
 
 ## Image, Video, and Media
 
@@ -288,9 +290,12 @@
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     A component that is used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
-- [Formcomponent](ts-basic-components-formcomponent.md)
+- [FormComponent](ts-basic-components-formcomponent.md)
 
     A component that is used to display widgets.
+- [FormLink](ts-container-formlink.md)
+
+    A component that provides interactions with static widgets.
 - [Menu](ts-basic-components-menu.md)
 
     A component that is used to present a vertical list of items to the user.
