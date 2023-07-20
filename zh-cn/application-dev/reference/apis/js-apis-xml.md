@@ -48,7 +48,7 @@ console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
 
 setAttributes(name: string, value: string): void
 
-设置Attributes方法。
+写入元素的属性和属性值。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -56,8 +56,8 @@ setAttributes(name: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明            |
 | ------ | ------ | ---- | --------------- |
-| name   | string | 是   | 属性的key值。   |
-| value  | string | 是   | 属性的value值。 |
+| name   | string | 是   | 属性。   |
+| value  | string | 是   | 属性值。 |
 
 **示例：**
 
@@ -113,7 +113,7 @@ console.log(view1) //<d/>
 
 setDeclaration(): void
 
-设置Declaration方法。
+写入XML文件声明。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -236,7 +236,7 @@ console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<
 
 setComment(text: string): void
 
-写入comment属性。
+写入注释内容。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -267,7 +267,7 @@ console.log(view1) //<!--Hello, World!-->'
 
 setCDATA(text: string): void
 
-写入CDATA属性。
+写入CDATA数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -298,7 +298,7 @@ console.log(view1) //'<![CDATA[root SYSTEM]]>''
 
 setText(text: string): void
 
-设置Text方法。
+写入标签值。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -332,7 +332,7 @@ console.log(view1) // '<note importance="high">Happy1</note>'
 
 setDocType(text: string): void
 
-写入DocType属性。
+写入文档类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -472,11 +472,11 @@ xml解析选项。
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否忽略Doctype , 默认false。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略NameSpace，默认false。          |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数 , 默认null。                  |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数 , 默认null。            |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数, 默认null。     |
+| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示解析文档类型。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示解析命名空间。 |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数，解析标签和标签值，默认null，表示不解析标签和标签值。  |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数，解析属性和属性值，默认null，表示不解析属性和属性值。|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数,，解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认null，表示不解析元素事件类型和ParseInfo属性。|
 
 ## ParseInfo
 
@@ -922,7 +922,7 @@ console.log(str);
 
 ## EventType
 
-事件枚举。
+事件类型枚举。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
