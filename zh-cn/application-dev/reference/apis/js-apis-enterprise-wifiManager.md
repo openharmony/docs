@@ -6,7 +6,9 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-指定设备管理员应用查询wifi开启状态，使用callback形式返回wifi开启状态。
+指定设备管理应用查询wifi开启状态。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -30,7 +32,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示wifi开启，false表示wifi关闭，否则err为错误对象。       |
 
 **错误码**：
@@ -63,7 +65,7 @@ wifiManager.isWifiActive(wantTemp, (err, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-获取wifi开启状态，使用Promise形式返回wifi开启状态。
+指定设备管理应用获取wifi开启状态。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -75,7 +77,7 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -111,7 +113,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-配置wifi，使连接到指定网络，使用callback返回配置结果。
+指定设备管理应用为设备配置wifi，使连接到指定网络。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -123,7 +125,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
@@ -162,7 +164,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (err) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-配置wifi，使连接到指定网络，使用Promise返回配置结果。
+指定设备管理应用为设备配置wifi，使连接到指定网络。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -174,7 +176,7 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 
 **返回值：**

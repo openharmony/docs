@@ -6,7 +6,9 @@
 > 
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ import deviceControl from '@ohos.enterprise.deviceControl'
 
 resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
-指定设备管理员应用恢复出厂设置。使用callback异步回调。
+指定设备管理应用使设备恢复出厂设置。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -30,12 +32,12 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -63,7 +65,7 @@ deviceControl.resetFactory(wantTemp, (err) => {
 
 resetFactory(admin: Want): Promise\<void>
 
-恢复出厂设置。使用Promise形式返回设置结果。
+指定设备管理应用使设备恢复出厂设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -75,7 +77,7 @@ resetFactory(admin: Want): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -85,7 +87,7 @@ resetFactory(admin: Want): Promise\<void>
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
