@@ -18,11 +18,13 @@ The DataShareHelper is not initialized successfully.
 
 1. 创建DataShareHelper时，接口createDataHelper的入参uri不正确。
 2. 创建DataShareHelper时，接口createDataHelper的入参context不正确。
+3. 创建DataShareHelper时，客户端从后台拉起DataShareExtension时，未配置后台拉起权限。
 
 **处理步骤**
 
 1. 咨询DataShare服务端提供者，获取正确的uri路径。
 2. DataShare仅支持Stage模型，检查context是否为Stage模型的context。
+3. 检查客户端是否在后台拉起，是否配置后台拉起权限
 
 ## 15700011 添加/删除模板异常
 
