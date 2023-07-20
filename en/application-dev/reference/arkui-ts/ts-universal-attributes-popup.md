@@ -56,6 +56,9 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
 
 ## Example
+
+### Example 1
+
 ```ts
 // xxx.ets
 @Entry
@@ -133,3 +136,85 @@ struct PopupExample {
 ```
 
 ![figures/popup.gif](figures/popup.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+
+  build() {
+    Column() {
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          messageOptions: {
+            textColor: Color.Red,
+            font: {
+              size: '14vp',
+              style: FontStyle.Italic,
+              weight: FontWeight.Bolder
+            }
+          },
+          placement: Placement.Bottom,
+          enableArrow: false,
+          targetSpace: '15vp',
+          onStateChange: (e) => {
+            console.info(JSON.stringify(e.isVisible))
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          }
+        })
+    }.margin(20)
+  }
+}
+```
+
+![](figures/popup_2.png)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State customPopup: boolean = false
+
+  // Popup builder
+  @Builder popupBuilder() {
+    Row() {
+      Text('Custom Popup Message').fontSize(10)
+    }.height(50).padding(5)
+  }
+
+  build() {
+    Column() {
+      // CustomPopupOptions for setting the popup
+      Button('CustomPopupOptions')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          targetSpace: '15vp',
+          enableArrow: false,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
+        })
+    }.margin(20)
+  }
+}
+```
+
+![](figures/popup_3.png)
