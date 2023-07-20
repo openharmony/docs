@@ -1968,7 +1968,7 @@
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
-允许应用进行私有凭据的相关操作、查询证书状态等操作。
+允许应用进行查询证书及私有凭据等操作。
 
 **权限级别**：normal
 
