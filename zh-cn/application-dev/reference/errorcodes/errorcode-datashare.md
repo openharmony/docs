@@ -24,7 +24,7 @@ The DataShareHelper is not initialized successfully.
 
 1. 咨询DataShare服务端提供者，获取正确的uri路径。
 2. DataShare仅支持Stage模型，检查context是否为Stage模型的context。
-3. 检查客户端是否在后台拉起，是否配置后台拉起权限
+3. 检查客户端是否在后台拉起，是否配置后台拉起权限。
 
 ## 15700011 添加/删除模板异常
 
