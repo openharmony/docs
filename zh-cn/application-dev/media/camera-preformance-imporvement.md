@@ -10,7 +10,11 @@
 
 延时配流方案是把配流启流与surface解耦，在组件尚未给应用surface之前，可以先进行配流启流，只需要在启流结束之前提供surface，可以提升启动速度，防止影响其他启动优化方案的落地。
 
-### 调用流程
+![deferred-surface-scene](figures/deferred-surface-scene.png)
+
+优化前：配流动作依赖surface对象，surface对象依赖于UI加载完成。
+
+优化后：配流动作不依赖surface对象，界面加载和配流并行执行。
 
 ### 接口说明
 
@@ -48,12 +52,53 @@ function async preview(context: Context, cameraInfo: camera.Device, previewProfi
 
 通过相机快速缩略图技术，相机拍照可单独输出拇指缩略图，在真图没有上来前，提前上报一张缩略图给应用去显示，提升shot2see用户感知拍照速度。
 
-### 调用流程
-
 ### 接口说明
+
+详细的API参考说明，请参考[Camera API文档](../reference/apis/js-apis-camera.md)。
+
+| 接口 | 说明 |
+| ---- | ---- |
+| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图。 |
+| enableQuickThumbnail(enabled:bool): void | 使能/去使能快速缩略图。 |
+| on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void | 相机缩略图监听回调。 |
+
+> **说明：**
+>
+> - isQuickThumbnailSupported及enableQuickThumbnail接口的调用需要在CaptureSession.addOutput、CaptureSession.addInput后，CaptureSession.commitConfig()之前。
+> - on接口需要在enableQuickThumbnail(true)之后生效。
 
 ### 开发示例
 
+```js
+import camera from '@ohos.multimedia.camera'
+
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// 创建CaptureSession实例
+this.captureSession = await this.cameraManager.createCaptureSession()
+// 开始配置会话
+await this.captureSession.beginConfig()
+// 把CameraInput加入到会话
+this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// 把PhotoOutPut加入到会话
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+if (isSupported) {
+    // 使能快速缩略图
+    this.photoOutPut.enableQuickThumbnail(true)
+}
+this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
+    if (err || pixelmap === undefined) {
+        Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
+        return
+    }
+    // 显示或保存pixelmap
+    this.showOrSavePicture(pixelmap)
+})
+```
 
 ## 预热启动
 
@@ -62,8 +107,23 @@ function async preview(context: Context, cameraInfo: camera.Device, previewProfi
 ​相机启动方案是把“相机设备打开”这个动作提前到相机应用启动之前，即在用户点击相机图标，
 还没等相机应用启动的时候，触发相机设备打开的动作，从而缩短相机应用内启动相机的流程，加速相机启动。使用预热启动前后的相机应用流程对比如下：
 
-![](figures/prelaunch-scene.png)
+![prelaunch-scene](figures/prelaunch-scene.png)
 
 ### 接口说明
 
+详细的API参考说明，请参考[Camera API文档](../reference/apis/js-apis-camera.md)。
+
+| 接口 | 说明 |
+| ---- | ---- |
+| isPreLaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
+| setPreLaunchConfig(camera: CameraDevice) : void | 配置相机预热参数。 |
+| preLaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
+
+### 调用流程
+
+
 ### 开发示例
+
+使用该功能前需要申请权限：ohos.permission.CAMERA
+
+具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
