@@ -26,7 +26,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 应用程序决定LocalStorage对象的生命周期。当应用释放最后一个指向LocalStorage的引用时，比如销毁最后一个自定义组件，LocalStorage将被JS Engine垃圾回收。
 
-LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供了两个装饰器：
+LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
 - [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单行同步关系。
 
@@ -306,7 +306,7 @@ struct CompA {
 
 先看Parent自定义组件中发生的变化：
 
-1. 点击“countStorage ${this.playCount} incr by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新；
+1. 点击“playCount ${this.playCount} dec by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新；
 
 2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新；
 

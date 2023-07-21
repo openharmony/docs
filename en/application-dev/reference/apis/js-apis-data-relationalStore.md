@@ -38,11 +38,11 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                               |
-| ------------ | ----------------------------------------------------------- |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
-| 14800011     | Failed to open database by database corrupted.              |
-| 14800000     | Inner error.                                                |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -122,11 +122,11 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                               |
-| ------------ | ----------------------------------------------------------- |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
-| 14800011     | Failed to open database by database corrupted.              |
-| 14800000     | Inner error.                                                |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -198,10 +198,10 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                               |
-| ------------ | ----------------------------------------------------------- |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
-| 14800000     | Inner error.                                                |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -265,10 +265,10 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                               |
-| ------------ | ----------------------------------------------------------- |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
 | 14800010     | Failed to open or delete database by invalid database path. |
-| 14800000     | Inner error.                                                |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -378,22 +378,6 @@ Defines the subscription type.
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1    | Subscribe to cloud data changes.|
-
-## ConflictResolution<sup>10+</sup>
-
-Defines the resolution to use when **insert()** and **update()** conflict.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name                | Value  | Description                                                        |
-| -------------------- | ---- | ------------------------------------------------------------ |
-| ON_CONFLICT_NONE | 0 | No operation is performed.|
-| ON_CONFLICT_ROLLBACK | 1    | Abort the SQL statement and roll back the current transaction.               |
-| ON_CONFLICT_ABORT    | 2    | Abort the current SQL statement and revert any changes made by the current SQL statement. However, the changes made by the previous SQL statement in the same transaction are retained and the transaction remains active.|
-| ON_CONFLICT_FAIL     | 3    | Abort the current SQL statement. The **FAIL** resolution does not revert previous changes made by the failed SQL statement or end the transaction.|
-| ON_CONFLICT_IGNORE   | 4    | Skip the rows that contain constraint violations and continue to process the subsequent rows of the SQL statement.|
-| ON_CONFLICT_REPLACE  | 5    | Delete pre-existing rows that cause the constraint violation before inserting or updating the current row, and continue to execute the command normally.|
 
 ## RdbPredicates
 
@@ -1257,23 +1241,6 @@ Provides APIs to manage an RDB store.
 
 Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
-### Attributes<sup>10+</sup>
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name        | Type           | Mandatory| Description                            |
-| ------------ | ----------- | ---- | -------------------------------- |
-| version<sup>10+</sup>  | number | Yes  | RDB store version, which is an integer greater than 0.      |
-
-**Example**
-
-```js
-// Set the RDB store version.
-store.version = 3;
-// Obtain the RDB store version.
-console.info(`RdbStore version is ${store.version}`);
-```
-
 ### insert
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
@@ -1289,15 +1256,6 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 | table    | string                        | Yes  | Name of the target table.                                          |
 | values   | [ValuesBucket](#valuesbucket) | Yes  | Row of data to insert.                                |
 | callback | AsyncCallback&lt;number&gt;   | Yes  | Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
 
 **Example**
 
@@ -1317,49 +1275,6 @@ store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
 })
 ```
 
-### insert<sup>10+</sup>
-
-insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
-
-Inserts a row of data into a table. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name  | Type                                       | Mandatory| Description                                                      |
-| -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| table    | string                                      | Yes  | Name of the target table.                                          |
-| values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.                                |
-| conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                        |
-| callback | AsyncCallback&lt;number&gt;                 | Yes  | Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
-
-**Example**
-
-```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-};
-store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rowId) {
-  if (err) {
-    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Insert is successful, rowId = ${rowId}`);
-})
-```
 
 ### insert
 
@@ -1388,8 +1303,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1408,53 +1322,6 @@ promise.then((rowId) => {
 })
 ```
 
-### insert<sup>10+</sup>
-
-insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
-
-Inserts a row of data into a table. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name  | Type                                       | Mandatory| Description                      |
-| -------- | ------------------------------------------- | ---- | -------------------------- |
-| table    | string                                      | Yes  | Name of the target table.          |
-| values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.|
-| conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.        |
-
-**Return value**
-
-| Type                 | Description                                             |
-| --------------------- | ------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
-
-**Example**
-
-```js
-const valueBucket = {
-  "NAME": "Lisa",
-  "AGE": 18,
-  "SALARY": 100.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-};
-let promise = store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then((rowId) => {
-  console.info(`Insert is successful, rowId = ${rowId}`);
-}).catch((err) => {
-  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-})
-```
 
 ### batchInsert
 
@@ -1478,8 +1345,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1540,8 +1406,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1590,14 +1455,14 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Update conditions specified by the **RdbPredicates** object.                   |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows updated.                  |
 
+
 **Error codes**
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1619,51 +1484,6 @@ store.update(valueBucket, predicates, function (err, rows) {
 })
 ```
 
-### update<sup>10+</sup>
-
-update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
-
-Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name    | Type                                       | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                          |
-| callback   | AsyncCallback&lt;number&gt;                 | Yes  | Callback invoked to return the number of rows updated.                  |
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
-
-**Example**
-
-```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-};
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Lisa");
-store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rows) {
-  if (err) {
-    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Updated row count: ${rows}`);
-})
-```
 
 ### update
 
@@ -1692,8 +1512,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1714,55 +1533,6 @@ promise.then(async (rows) => {
 })
 ```
 
-### update<sup>10+</sup>
-
-update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
-
-Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name    | Type                                       | Mandatory| Description                                                        |
-| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                          |
-
-**Return value**
-
-| Type                 | Description                                     |
-| --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
-
-**Example**
-
-```js
-const valueBucket = {
-  "NAME": "Rose",
-  "AGE": 22,
-  "SALARY": 200.5,
-  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-};
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Lisa");
-let promise = store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then(async (rows) => {
-  console.info(`Updated row count: ${rows}`);
-}).catch((err) => {
-  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-})
-```
 
 ### update
 
@@ -1791,8 +1561,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1847,8 +1616,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1891,8 +1659,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1934,8 +1701,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1976,8 +1742,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2025,8 +1790,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2062,9 +1826,9 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2076,17 +1840,8 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -2105,19 +1860,19 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.       |
 | columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
-
 **Return value**
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2126,17 +1881,8 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2167,9 +1913,9 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2182,17 +1928,8 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -2226,9 +1963,9 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2238,17 +1975,8 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2280,9 +2008,9 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2309,17 +2037,8 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
       console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-    while(resultSet.goToNextRow()) {
-      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-    }
-    // Release the dataset memory.
-    resultSet.close();
+    console.info(`ResultSet column names: ${resultSet.columnNames}`);
+    console.info(`ResultSet column count: ${resultSet.columnCount}`);
   }
 )
 ```
@@ -2355,9 +2074,9 @@ Queries data from the RDB store of a remote device based on specified conditions
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2380,17 +2099,8 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
   console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
@@ -2416,9 +2126,9 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2428,17 +2138,8 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -2467,26 +2168,17 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
 ```js
 let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2514,8 +2206,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2557,8 +2248,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2586,8 +2276,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                |
 | ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2708,9 +2397,9 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2738,19 +2427,19 @@ Backs up an RDB store. This API uses a promise to return the result.
 | -------- | ------ | ---- | ------------------------ |
 | destName | string | Yes  | Name of the RDB store backup file.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
-
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
 
 **Example**
 
@@ -2782,9 +2471,9 @@ Restores an RDB store from a backup file. This API uses an asynchronous callback
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2822,9 +2511,9 @@ Restores an RDB store from a backup file. This API uses a promise to return the 
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2858,9 +2547,9 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2900,9 +2589,9 @@ Sets distributed tables. This API uses a promise to return the result.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2921,7 +2610,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
@@ -2941,9 +2630,9 @@ Obtains the distributed table name of a remote device based on the local table n
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2977,7 +2666,7 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 
 Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
@@ -3002,9 +2691,9 @@ Obtains the distributed table name of a remote device based on the local table n
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -3053,9 +2742,9 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -3117,9 +2806,9 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -3188,7 +2877,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
+Unregisters the observer of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

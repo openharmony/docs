@@ -292,14 +292,6 @@ setSize(size: number): void
   | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
-
 **示例：**
 
   ```ts
@@ -333,7 +325,6 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
   | 1900011  | parcel memory alloc failed |
 
 **示例：**
@@ -460,12 +451,6 @@ rewindRead(pos: number): void
   | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
 
-**错误码：**
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-
 **示例：**
 
   ```ts
@@ -497,12 +482,6 @@ rewindWrite(pos: number): void
   | 参数名 | 类型   | 必填 | 说明  |
   | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
-
-**错误码：**
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
 
 **示例：**
 
@@ -2944,8 +2923,8 @@ writeAshmem(ashmem: Ashmem): void
 以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | -------- | ------- |
+  | 1900003  | write to ashmem failed |
 
 **示例：**
 
@@ -2986,7 +2965,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900004  | read from ashmem failed |
 
 **示例：**
 
@@ -5958,7 +5937,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900005  | only proxy object permitted |
+  | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -6004,7 +5983,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900005  | only proxy object permitted |
+  | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 

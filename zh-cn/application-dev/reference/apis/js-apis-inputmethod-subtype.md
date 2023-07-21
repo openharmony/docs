@@ -18,14 +18,14 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 必选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
-| name | string | 是 | 否 | 是 | 输入法应用的包名。 |
-| id | string | 是 | 否 | 是 | 输入法子类型的id。 |
-| mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper（大写）和lower（小写）。 |
-| locale | string | 是 | 否 | 是 | 输入法子类型的方言版本。 |
-| language | string | 是 | 否 | 是 | 输入法子类型的语言。 |
-| icon | string | 是 | 否 | 否 | 输入法子类型的图标。 |
-| iconId | number | 是 | 否 | 否 | 输入法子类型的图标id。 |
-| extra | object | 是 | 是 | 是 | 输入法子类型的其他信息。 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| label | string | 是 | 否 | 非必填。输入法子类型的标签。 |
+| name | string | 是 | 否 | 必填。输入法应用的包名。 |
+| id | string | 是 | 否 | 必填。输入法子类型的id。 |
+| mode | string | 是 | 否 | 非必填。输入法子类型的模式，包括upper（大写）和lower（小写）。 |
+| locale | string | 是 | 否 | 必填。输入法子类型的方言版本。 |
+| language | string | 是 | 否 | 必填。 输入法子类型的语言。 |
+| icon | string | 是 | 否 | 非必填。输入法子类型的图标。 |
+| iconId | number | 是 | 否 | 非必填。输入法子类型的图标id。 |
+| extra | object | 是 | 是 | 必填。输入法子类型的其他信息。 |

@@ -22,8 +22,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width of the circle.<br>Default value: **0**|
-| height | string \| number | No| Height of the circle.<br>Default value: **0**|
+| width | string \| number | No| Width of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -31,17 +31,18 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| fill | [ResourceColor](ts-types.md) | Color of the fill area.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| Opacity of the fill area.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| stroke | [ResourceColor](ts-types.md) | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeDashArray | Array&lt;Length&gt; | Stroke dashes.<br>Default value: **[]**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeDashOffset | number \| string  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fill | [ResourceColor](ts-types.md) | Color of the fill area.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| Opacity of the fill area.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| stroke | [ResourceColor](ts-types.md) | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the value is invalid, no stroke will be drawn.|
+| strokeDashArray | Array&lt;Length&gt; | Stroke dashes.<br>Default value: **[]**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| strokeDashOffset | number \| string  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Cap style of the stroke.<br>Default value: **LineCapStyle.Butt**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | Join style of the stroke.<br>Default value: **LineJoinStyle.Miter**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute does not work for the **\<circle>** component, which does not have corners.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | Join style of the stroke.<br>Default value: **LineJoinStyle.Miter**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeMiterLimit | number \| string | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute does not take effect for the **\<Circle>** component, because it does not have a miter join.|
-| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| Stroke opacity.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.|
-| strokeWidth | Length | Stroke width.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value cannot be a percentage.|
+| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| Stroke opacity.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.|
+| strokeWidth | Length | Stroke width.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value cannot be a percentage.<br>An invalid value is handled as the default value.|
 | antiAlias | boolean | Whether anti-aliasing is enabled.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
+
 
 
 ## Example

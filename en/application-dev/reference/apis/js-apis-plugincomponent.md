@@ -262,7 +262,7 @@ pluginComponentManager.push(
     name: "ets/pages/plugin2.js",
     data: {
       "js": "ets/pages/plugin.js",
-      "key_1": 1111, ,
+      "key_1": 1111, 
     },
     extraData: {
       "extra_str": "this is push event"
@@ -375,7 +375,6 @@ Listens for events of the request type and returns the requested data, or listen
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | eventType | string                                   | Yes   | Type of the event to listen for. The options are as follows:<br>**"push"**: The component provider pushes data to the component consumer.<br>**"request"**: The component consumer proactively requests data from the component provider.|
 | callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
-
 
 **Example**
 

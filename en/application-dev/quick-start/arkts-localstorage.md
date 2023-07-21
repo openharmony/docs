@@ -9,7 +9,7 @@ This topic describes only the LocalStorage application scenarios and related dec
 
 > **NOTE**
 >
-> This module is supported since API version 9.
+> LocalStorage is supported since API version 9.
 
 
 ## Overview
@@ -292,7 +292,7 @@ struct CompA {
 
         .onClick(() => this.storLink += 1)
 
-      // You are not advised to use the global variable linkToPropA.get() in the component because errors may occur due to different life cycles.
+      // Avoid using the global variable linkToPropA.get() in the component. Doing so may cause errors due to different lifecycles.
       Text(`@LocalStorageLink: ${this.storLink} - linkToPropA: ${linkToPropA.get()}`)
     }
   }
@@ -306,7 +306,7 @@ This example shows how to use \@LocalStorageLink to create a two-way synchroniza
 
 Check the changes in the **Parent** custom component.
 
-1. Clicking **countStorage ${this.playCount} incr by 1** decreases the value of **this.playCount** by 1. This change is synchronized to LocalStorage and to the components bound to **playCountLink** in the **Child** component.
+1. Clicking **playCount ${this.playCount} dec by 1** decreases the value of **this.playCount** by 1. This change is synchronized to LocalStorage and to the components bound to **playCountLink** in the **Child** component.
 
 2. Click **countStorage ${this.playCount} incr by 1** to call the **set** API in LocalStorage to update the attributes corresponding to **countStorage** in LocalStorage. The components bound to** playCountLink** in the **Child** component are updated synchronously.
 
@@ -379,7 +379,7 @@ Changes in the **Child** custom component:
 
 ### Sharing a LocalStorage Instance from UIAbility to One or More Pages
 
-In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its owning child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in the owning UIAbility and call windowStage.[loadContent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md#loadcontent9).
+In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its owning child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in the owning UIAbility and call windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9).
 
 
 ```ts
