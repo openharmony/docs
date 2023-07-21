@@ -1,4 +1,4 @@
-# OpenGL ES 3.0 Symbols Exported from Native APIs
+# OpenGL ES 3.0 Symbols Exported
 
 |Type|Symbol|Remarks|
 | --- | --- | --- |

@@ -61,6 +61,6 @@ param set musl.log.ld.app.{app_name} false
 ```
 
 ## Interfaces Not Supported by musl
-[Native API Symbols Not Exported](musl-peculiar-symbol.md)
-[Native API Symbols That May Fail to Be Invoked Due to Permission Control](musl-permission-control-symbol.md)
+[libc Symbols Not Exported](musl-peculiar-symbol.md)
+[libc Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
 
