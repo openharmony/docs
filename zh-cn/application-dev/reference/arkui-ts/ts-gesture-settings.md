@@ -52,7 +52,7 @@
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
 | offsetX | number | 手势事件x轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
 | offsetY | number | 手势事件y轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
-| angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
+| angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
 | scale | number | 缩放比例，用于PinchGesture手势触发场景。 |
 | pinchCenterX | number | 捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | pinchCenterY | number | 捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
