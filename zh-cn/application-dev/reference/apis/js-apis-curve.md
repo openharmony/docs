@@ -41,7 +41,7 @@ initCurve(curve?: Curve): ICurve
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述                                                         |
+| 名称                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Linear              | 表示动画从头到尾的速度都是相同的。                           |
 | Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25, 0.1, 0.25, 1.0)。 |
@@ -284,7 +284,7 @@ import Curves from '@ohos.curves'
 interpolate(fraction) {
     return Math.sqrt(fraction);
   }
-private curve = Curves.customCurve(this.interpolate) // 创建一个用户自定义插值曲线
+let curve = Curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
 ```
 
 
