@@ -15,7 +15,7 @@ CPU密集型任务是指需要占用系统资源处理大量计算能力的任�
 1. 实现图像处理的业务逻辑。
 
 2. 数据分段，通过任务组发起关联任务调度。
-   创建[TaskGroup](../reference/apis/js-apis-taskpool.md#taskgroup10)并通过[addTask()](../reference/apis/js-apis-taskpool.md#addtask10)添加对应的任务，通过[execute()](../apis/js-apis-taskpool.md#taskpoolexecute10)执行任务组，并指定为[高优先级](../reference/apis/js-apis-taskpool.md#priority)，在当前任务组所有任务结束后，会将直方图处理结果同时返回。
+   创建[TaskGroup](../reference/apis/js-apis-taskpool.md#taskgroup10)并通过[addTask()](../reference/apis/js-apis-taskpool.md#addtask10)添加对应的任务，通过[execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute10)执行任务组，并指定为[高优先级](../reference/apis/js-apis-taskpool.md#priority)，在当前任务组所有任务结束后，会将直方图处理结果同时返回。
 
 3. 结果数组汇总处理。
 
@@ -78,7 +78,7 @@ struct Index {
 
    ![newWorker](figures/newWorker.png)
 
-2. 在主线程中通过调用[ThreadWorker()](../apis/js-apis-worker.md#threadworker9)方法创建Worker对象，当前线程为宿主线程。
+2. 在主线程中通过调用[ThreadWorker()](../reference/apis/js-apis-worker.md#threadworker9)方法创建Worker对象，当前线程为宿主线程。
    
    ```js
    import worker from '@ohos.worker';
@@ -86,7 +86,7 @@ struct Index {
    const workerInstance = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
    ```
 
-3. 在宿主线程中通过调用[onmessage()](../apis/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，以及通过调用[postMessage()](../apis/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
+3. 在宿主线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，以及通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
    例如向Worker线程发送训练和预测的消息，同时接收Worker线程发送回来的消息。
 
    
@@ -117,7 +117,7 @@ struct Index {
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
-5. 在Worker线程中通过调用[onmessage()](../apis/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，以及通过调用[postMessage()](../apis/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
+5. 在Worker线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，以及通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
    例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
 
    
@@ -164,7 +164,7 @@ struct Index {
    ```
 
 6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。根据需要可以在宿主线程中对Worker线程进行销毁，也可以在Worker线程中主动销毁Worker线程。
-   在宿主线程中通过调用[onexit()](../apis/js-apis-worker.md#onexit9)方法定义Worker现成销毁后的处理逻辑。
+   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker现成销毁后的处理逻辑。
 
    
    ```js
@@ -174,7 +174,7 @@ struct Index {
    }
    ```
 
-   在宿主线程中通过调用[terminate()](../apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
+   在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
 
    
    ```js
@@ -182,7 +182,7 @@ struct Index {
    workerInstance.terminate();
    ```
 
-     在Worker线程中通过调用[close()](../apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
+     在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
    
    ```js
    // 销毁线程
