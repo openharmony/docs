@@ -86,7 +86,7 @@ struct Index {
    const workerInstance = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
    ```
 
-3. 在宿主线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，以及通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
+3. 在宿主线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
    例如向Worker线程发送训练和预测的消息，同时接收Worker线程发送回来的消息。
 
    
@@ -117,7 +117,7 @@ struct Index {
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
-5. 在Worker线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，以及通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
+5. 在Worker线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，并通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
    例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
 
    
@@ -164,7 +164,7 @@ struct Index {
    ```
 
 6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。根据需要可以在宿主线程中对Worker线程进行销毁，也可以在Worker线程中主动销毁Worker线程。
-   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker现成销毁后的处理逻辑。
+   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
 
    
    ```js
