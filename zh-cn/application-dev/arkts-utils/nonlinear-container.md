@@ -90,7 +90,7 @@ TreeMap进行增、删、改、查操作的相关API如下：
 
 ## TreeSet
 
-[TreeSet](../reference/apis/js-apis-treemap.md)可用来存储一系列值的集合，存储元素中value是唯一的。
+[TreeSet](../reference/apis/js-apis-treeset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
 TreeSet依据泛型定义，集合中的value值是有序的，TreeSet的底层是一棵二叉树，可以通过树的二叉查找快速的找到该value值，value的类型满足ECMA标准中要求的类型。TreeSet中的值是有序存储的。TreeSet底层基于红黑树实现，可以进行快速的插入和删除。
 

@@ -9,7 +9,7 @@
 
 ## ArrayList
 
-[ArrayList](../reference/apis/js-apis-list.md)即动态数组，可用来构造全局的数组对象。 当需要频繁读取集合中的元素时，推荐使用ArrayList。
+[ArrayList](../reference/apis/js-apis-arraylist.md)即动态数组，可用来构造全局的数组对象。 当需要频繁读取集合中的元素时，推荐使用ArrayList。
 
 ArrayList依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的1.5倍。
 
@@ -121,7 +121,7 @@ LinkedList和[ArrayList](../reference/apis/js-apis-arraylist.md)相比，插入�
 
 Deque依据泛型定义，要求存储位置是一片连续的内存空间，其初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的2倍。Deque底层采用循环队列实现，入队及出队操作效率都比较高。
 
-Deque和[Deque](../reference/apis/js-apis-deque.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
+Deque和[Qeque](../reference/apis/js-apis-qeque.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
 
 Deque和[Vector](../reference/apis/js-apis-vector.md)相比，它们都支持在两端增删元素，但Deque不能进行中间插入的操作。对头部元素的插入删除效率高于Vector，而Vector访问元素的效率高于Deque。
 
@@ -171,7 +171,7 @@ Queue进行增、删、改、查操作的相关API如下：
 
 ## Stack
 
-Stack可用来构造栈对象，存储元素遵循后进先出的规则。
+[Qeque](../reference/apis/js-apis-stack.md)可用来构造栈对象，存储元素遵循后进先出的规则。
 
 Stack依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的1.5倍。Stack底层基于数组实现，入栈出栈均从数组的一端操作。
 
