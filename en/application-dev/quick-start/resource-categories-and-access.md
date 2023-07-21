@@ -240,6 +240,8 @@ To reference an application resource in a project, use the **"$r('app.type.name'
 
 When referencing resources in the **rawfile** subdirectory, use the **"$rawfile('filename')"** format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
+To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
+
 > **NOTE**
 > 
 > Resource descriptors accept only strings, such as **'app.type.name'**, and cannot be combined.
@@ -284,7 +286,7 @@ To reference a system resource, use the **"$r('sys.type.resource_id')"** format.
 
 > **NOTE**
 >
-> - Use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
+> - The use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
 >
 > - For details about the implementation of preconfigured resources, visit the [OpenHarmony/resources repository](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources). The directory structure there is similar to that of the **resources** directory in the project. Resource qualifiers are used to match resources with different devices and device states.
 
