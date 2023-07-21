@@ -43,11 +43,11 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                 | 类型                                | 必填 | 说明                     |
-| -------------------- | ----------------------------------- | ---- | ------------------------ |
-| title                | string                              | 是   | 用户认证界面的标题。     |
-| navigationButtonText | string                              | 否   | 导航按键的说明文本。     |
-| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 用户认证界面的显示类型。 |
+| 名称                 | 类型                                | 必填 | 说明                                    |
+| -------------------- | ----------------------------------- | ---- | --------------------------------------- |
+| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。 |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。  |
+| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 用户认证界面的显示类型。                |
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -91,17 +91,17 @@ const authParam = {
     authTrustLevel: 10000,
 };
 const widgetParam = {
-	title: string = '请输入密码',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
     userAuthInstance.on('result', {
-        callback: function (result) {
-        	LogUtils.info(TAG, 'userAuthInstance callback result = ' + JSON.stringify(result));
-          }
+        onResult (result) {
+            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        }
     });
     console.log('auth on success');
 } catch (error) {
@@ -149,17 +149,17 @@ const authParam = {
     authTrustLevel: 10000,
 };
 const widgetParam = {
-	title: string = '请输入密码',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
     userAuthInstance.on('result', {
-        callback: function (result) {
-        	LogUtils.info(TAG, 'userAuthInstance callback result = ' + JSON.stringify(result));
-          }
+        onResult (result) {
+            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        }
     });
     console.log('auth on success');
 } catch (error) {
@@ -204,15 +204,15 @@ const authParam = {
     authTrustLevel: 10000,
 };
 const widgetParam = {
-	title: string = '请输入密码',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
 	userAuthInstance.off('result', {
-        callback: function (result) {
+        onResult (result) {
             console.log('auth off result: ' + JSON.stringify(result));
         }
     });
@@ -262,12 +262,12 @@ const authParam = {
     authTrustLevel: 10000,
 };
 const widgetParam = {
-	title: string = '请输入密码',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
     userAuthInstance.start();
     console.log('auth start success');
@@ -301,26 +301,21 @@ cancel(): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-let authType: Array<userAuth.UserAuthType> = [];
-authType.push(userAuth.UserAuthType.PIN);
-authType.push(userAuth.UserAuthType.FACE);
-authType.push(userAuth.UserAuthType.FINGERPRINT);
 const authParam = {
-	authType: authType,
-    challenge: new Uint8Array([4, 49, 49, 49, 49, 49]),
-	authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
 };
 const widgetParam = {
-	title: string = '',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
-
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
     userAuthInstance.cancel();
-    console.log('auth cancel success'));
+    console.log('auth cancel success');
 } catch (error) {
     console.log('auth catch error: ' + JSON.stringify(error));
 }
@@ -368,23 +363,18 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-let authType: Array<userAuth.UserAuthType> = [];
-authType.push(userAuth.UserAuthType.PIN);
-authType.push(userAuth.UserAuthType.FACE);
-authType.push(userAuth.UserAuthType.FINGERPRINT);
 const authParam = {
-	authType: authType,
-    challenge: new Uint8Array([4, 49, 49, 49, 49, 49]),
-	authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: 10000,
 };
-
 const widgetParam = {
-	title: string = '',
+	title: '请输入密码',
 	navigationButtonText: '返回',
     windowMode: userAuth.WindowModeType.DIALOG_BOX,
 };
 try {
-    let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     console.log('get userAuth instance success');
 } catch (error) {
     console.log('auth catch error: ' + JSON.stringify(error));
@@ -445,10 +435,11 @@ try {
         version: '1',
         payload: {
             type: ['pin']
-        };
+        },
+    };
     const jsonEventData = JSON.stringify(eventData);
     let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
-    sendNotice(noticeType, {jsonEventData});
+    userAuth.sendNotice(noticeType, jsonEventData);
     console.log('sendNotice success');
 } catch (error) {
     console.log('sendNotice catch error: ' + JSON.stringify(error));
@@ -490,12 +481,12 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-static userAuthWidgetMgrVersion = 1;
+const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = await userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
     console.log('get userAuthWidgetMgr instance success');
     userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
+    	sendCommand(cmdData) {
             console.log('The cmdData is ' + cmdData);
         }
      })
@@ -536,17 +527,15 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
+const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = await userAuth.getUserAuthWidgetMgr(version);
-    console.info('get userAuthWidgetMgr instance success');
-    userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+    console.log('get userAuthWidgetMgr instance success');
+    userAuthWidgetMgr.off('command', {
+    	sendCommand(cmdData) {
             console.log('The cmdData is ' + cmdData);
         }
      })
-    console.log('subscribe authentication event success');
-	userAuthWidgetMgr.off('command');
     console.log('cancel subscribe authentication event success');
 } catch (error) {
     console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
@@ -596,9 +585,9 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
+let userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = await userAuth.getUserAuthWidgetMgr(version);
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
     console.log('get userAuthWidgetMgr instance success');   
 } catch (error) {
     console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
@@ -630,12 +619,12 @@ sendCommand(cmdData: string): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-let version = 1;
+const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = await userAuth.getUserAuthWidgetMgr(version);
+    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
     console.log('get userAuthWidgetMgr instance success');
     userAuthWidgetMgr.on('command', {
-    	callback: sendCommand(cmdData) {
+    	sendCommand(cmdData) {
             console.log('The cmdData is ' + cmdData);
         }
      })
