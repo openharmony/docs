@@ -20,7 +20,7 @@ ColumnSplit()
 | 名称                   | 参数类型                                                              | 描述                             | 
 |-----------------------|-------------------------------------------------------------------|---------------------------------|
 | resizeable            | boolean                                                           | 分割线是否可拖拽，默认为false。    | 
-| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#ColumnSplitDividerStyle10对象说明) \| null | 设置分割线的margin。<br/>- DividerStyle：设置分割线与上下子节点的距离。<br/>- 默认为null：分割线上下margin为0。 | 
+| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明) \| null | 设置分割线的margin。<br/>- DividerStyle：设置分割线与上下子节点的距离。<br/>- 默认为null：分割线上下margin为0。 | 
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
 
