@@ -538,16 +538,12 @@
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
   - 后台任务(Background Task)管理
-    - 后台任务
-      - [后台任务概述](task-management/background-task-overview.md)
-      - [短时任务开发指导](task-management/transient-task-dev-guide.md)
-      - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
-      - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
-      - [延迟任务回调能力开发指导](task-management/workscheduler-extensionability.md)
-      - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
-    - 后台代理提醒
-      - [后台代理提醒概述](task-management/reminder-agent-overview.md)
-      - [后台代理提醒开发指导](task-management/reminder-agent-development.md)
+      - [后台任务总体概述](task-management/background-task-overview.md)
+      - [短时任务](task-management/transient-task.md)
+      - [长时任务](task-management/continuous-task.md)
+      - [延迟任务](task-management/work-scheduler.md)
+      - [代理提醒](task-management/agent-powered-reminder.md)
+      - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
