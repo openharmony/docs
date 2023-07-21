@@ -832,15 +832,13 @@ async function createTonePlayerBefore(){
 
 枚举，音源类型。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
 | 名称                                         |  值     | 说明                   |
 | :------------------------------------------- | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
-| SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
-| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。        |
+| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
+| SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。 |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
 
