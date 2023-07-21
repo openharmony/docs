@@ -585,16 +585,12 @@
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
   - 后台任务（Background Task）管理
-    - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
-      - [短时任务开发指导](task-management/transient-task-dev-guide.md)
-      - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
-      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
-      - [延迟任务回调能力开发指导（WorkSchedulerExtensionAbility）](task-management/workscheduler-extensionability.md)
-      - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
-    - 后台代理提醒
-      - [后台代理提醒概述](task-management/reminder-agent-overview.md)
-      - [后台代理提醒开发指导](task-management/reminder-agent-development.md)
+      - [短时任务](task-management/transient-task.md)
+      - [长时任务](task-management/continuous-task.md)
+      - [延迟任务](task-management/work-scheduler.md)
+      - [代理提醒](task-management/agent-powered-reminder.md)      
+      - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -1034,7 +1030,7 @@
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (蓝牙)(推荐)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
-      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
+      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-deviceScardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
       - [@ohos.nfc.tag (标准NFC-Tag)](reference/apis/js-apis-nfcTag.md)
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
