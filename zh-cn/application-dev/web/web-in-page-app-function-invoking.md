@@ -103,7 +103,7 @@
   <p id="demo"></p>
   <script>
       function callArkTS() {
-          let str = testObjName.test();
+          let str = objName.test();
           document.getElementById("demo").innerHTML = str;
           console.info('ArkTS Hello World! :' + str);
       }
