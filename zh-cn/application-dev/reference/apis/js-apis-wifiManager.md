@@ -13,7 +13,7 @@ import wifiManager from '@ohos.wifiManager';
 
 ## wifi.enableWifi<sup>9+</sup>
 
-enableWifi(): void
+enableWifi(): boolean
 
 使能WLAN。
 
@@ -51,7 +51,7 @@ enableWifi(): void
 
 ## wifi.disableWifi<sup>9+</sup>
 
-disableWifi(): void
+disableWifi(): boolean
 
 去使能WLAN。
 
@@ -117,8 +117,8 @@ isWifiActive(): boolean
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let isActivate = wifiManager.isActivate();
-		console.info("isActivate:" + isActivate);
+		let isWifiActive = wifiManager.isWifiActive();
+		console.info("isWifiActive:" + isWifiActive);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -126,7 +126,7 @@ isWifiActive(): boolean
 
 ## wifi.scan<sup>9+</sup>
 
-scan(): void
+scan(): boolean
 
 启动WLAN扫描。
 
@@ -1641,6 +1641,12 @@ isBandTypeSupported(bandType: WifiBandType): boolean
   | -------- | -------- | -------- | -------- |
   | bandType | WifiBandType | 是 | Wifi 频段类型。 |
 
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:支持，&nbsp;false:不支持。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
@@ -1673,6 +1679,12 @@ get5GChannelList(): Array&lt;number&gt;
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;number&gt; | 设备支持的5G信道列表。 |
 
 **错误码：**
 
@@ -3342,7 +3354,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   import wifiManager from '@ohos.wifiManager';
   
   var recvP2pDeviceChangeFunc = result => {
-      console.info("Receive recv p2p device change event: " + result);
+      console.info("Receive p2p device change event: " + result);
   }
   
   // Register event
@@ -3407,7 +3419,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   import wifiManager from '@ohos.wifiManager';
   
   var recvP2pPeerDeviceChangeFunc = result => {
-      console.info("Receive recv p2p peer device change event: " + result);
+      console.info("Receive p2p peer device change event: " + result);
   }
   
   // Register event
@@ -3472,7 +3484,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   import wifiManager from '@ohos.wifiManager';
   
   var recvP2pPersistentGroupChangeFunc = result => {
-      console.info("Receive recv p2p persistent group change event: " + result);
+      console.info("Receive p2p persistent group change event: " + result);
   }
   
   // Register event
@@ -3544,7 +3556,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   import wifiManager from '@ohos.wifiManager';
   
   var recvP2pDiscoveryChangeFunc = result => {
-      console.info("Receive recv p2p discovery change event: " + result);
+      console.info("Receive p2p discovery change event: " + result);
   }
   
   // Register event
