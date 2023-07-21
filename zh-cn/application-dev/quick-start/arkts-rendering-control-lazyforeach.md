@@ -78,19 +78,19 @@ interface DataChangeListener {
 | 接口声明                                                     | 参数类型                               | 说明                                                         |
 | ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------ |
 | onDataReloaded():&nbsp;void                                  | -                                      | 通知组件重新加载所有数据。                                   |
-| onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值 |
-| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>从API 8开始，建议使用onDataMove。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
-| onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值 |
-| onDataChanged(index:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | number                                 | 通知组件index的位置有数据有变化。<br/>从API 8开始，建议使用onDataChange。<br/>index：数据变化监听器。 |
 | onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值 |
 | onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
 | onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
 | onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值 |
+| onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值 |
+| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>从API 8开始，建议使用onDataMove。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
+| onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值 |
+| onDataChanged(index:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | number                                 | 通知组件index的位置有数据有变化。<br/>从API 8开始，建议使用onDataChange。<br/>index：数据变化监听器。 |
 
 
 ## 使用限制
 
-- LazyForEach必须在容器组件内使用，仅有List、Grid以及Swiper组件支持数据懒加载（即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
+- LazyForEach必须在容器组件内使用，仅有[List](../reference/arkui-ts/ts-container-list.md)、[Grid](../reference/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/arkui-ts/ts-container-swiper.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
 
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件。
 
@@ -177,7 +177,7 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = ['/path/image0', '/path/image1', '/path/image2', '/path/image3'];
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -201,6 +201,12 @@ class MyDataSource extends BasicDataSource {
 @Entry
 @Component
 struct MyComponent {
+  aboutToAppear() {
+    for (var i = 100; i >= 80; i--) {
+      this.data.pushData(`Hello ${i}`)
+    }
+  }
+
   private data: MyDataSource = new MyDataSource();
 
   build() {
@@ -208,15 +214,17 @@ struct MyComponent {
       LazyForEach(this.data, (item: string) => {
         ListItem() {
           Row() {
-            Image(item).width('30%').height(50)
-            Text(item).fontSize(20).margin({ left: 10 })
+            Text(item).fontSize(50)
+              .onAppear(() => {
+                console.info("appear:" + item)
+              })
           }.margin({ left: 10, right: 10 })
         }
         .onClick(() => {
-          this.data.pushData('/path/image' + this.data.totalCount());
+          this.data.pushData(`Hello ${this.data.totalCount()}`);
         })
       }, item => item)
-    }
+    }.cachedCount(5)
   }
 }
 ```
