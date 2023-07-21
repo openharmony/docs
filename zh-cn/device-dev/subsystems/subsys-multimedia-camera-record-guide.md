@@ -3,12 +3,12 @@
 
 ## 使用场景
 
-使用camera采集视频码流。
+使用Camera采集视频码流。
 
 
-### 接口说明
+## 接口说明
 
-参考“拍照开发指导”的“接口说明”。
+参考[拍照开发指导](subsys-multimedia-camera-photo-guide.md)的“接口说明”。
 
 
 ## 约束与限制
@@ -18,7 +18,7 @@
 
 ## 开发步骤
 
-1. 参考“拍照开发指导”中步骤1、步骤2、步骤3、步骤4。
+1. 参考[拍照开发指导](subsys-multimedia-camera-photo-guide.md)中步骤1、步骤2、步骤3、步骤4。
 
 2. 获取录像FrameConfig。
      
@@ -37,5 +37,5 @@
      
    ```
    stateCallback->camera_->TriggerLoopingCapture(*fc); // 开始录像
-   stateCallback->camera_->StopLoopingCapture(); // 结束录像
+   stateCallback->camera_->StopLoopingCapture();       // 结束录像
    ```

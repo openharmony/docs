@@ -34,7 +34,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
           console.log('prepare failed and error is ' + err.message);
       }
    })
-
+   
    let videoSurfaceId = null; 
    AVRecorder.getInputSurface().then((surfaceId) => {
       console.info('getInputSurface success');
@@ -66,7 +66,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
            videoFrameRate: 30 // Video frame rate.
        },
        url: 'fd://35',
-       rotation: 0
+       rotation: 90 // 90° is the default vertical display angle. You can use other values based on project requirements.
    } 
    // Create an AVRecorder instance.
    let avRecorder;

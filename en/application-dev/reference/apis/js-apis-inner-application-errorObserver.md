@@ -24,7 +24,7 @@ Called when an unhandled exception occurs in the JS runtime.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errMsg | string | No| Message and error stack trace about the exception.|
+| errMsg | string | Yes| Message and error stack trace about the exception.|
 
 **Example**
 

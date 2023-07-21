@@ -16,3 +16,4 @@
 OpenHarmony_Icons.zip filter=lfs diff=lfs merge=lfs -text
 zip filter=lfs diff=lfs merge=lfs -text
 figures/OpenHarmony_Icons.zip filter=lfs diff=lfs merge=lfs -text
+figures/OpenHarmony应用图标模版.zip filter=lfs diff=lfs merge=lfs -text

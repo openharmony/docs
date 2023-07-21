@@ -124,7 +124,7 @@ Triggers an event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event name.|
-| ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered.|
+| ...args | Object[] | No| Variable parameters, which are passed to the callback when the event is triggered.|
 
 **Example**
 
@@ -146,7 +146,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     eventFunc(argOne, argTwo) {
-        console.log('eventFunc is called, ${argOne}, ${argTwo}');
+        console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
     }
 }
 ```

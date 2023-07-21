@@ -6,7 +6,7 @@ The **Animator** module provides APIs for applying animation effects, including 
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This module can be used only after a component instance is created, and it cannot be used in the [UIAbility](./js-apis-app-ability-uiAbility.md).
+> This module cannot be used in the file declaration of the [UIAbility](./js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
@@ -40,17 +40,19 @@ Creates an **Animator** object.
 **Example**
 
   ```js
-  let options = {
-    duration: 1500,
-    easing: "friction",
-    delay: 0,
-    fill: "forwards",
-    direction: "normal",
-    iterations: 3,
-    begin: 200.0,
-    end: 400.0
-  };
-  animator.create(options);
+import animator, { AnimatorOptions } from '@ohos.animator';
+
+let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0
+};
+animator.create(options);
   ```
 
 ## AnimatorResult
@@ -83,7 +85,7 @@ For details about the error codes, see [Animator Error Codes](../errorcodes/erro
 **Example**
 
 ```js
-let options = {
+let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -516,7 +518,7 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 **Example**
 
 ```js
-let options = {
+let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
   duration: 1500,
   easing: "friction",
   delay: 0,

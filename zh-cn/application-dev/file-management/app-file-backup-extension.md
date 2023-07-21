@@ -73,8 +73,8 @@ BackupExtensionAbility，是[Stage模型](../../application-dev/application-mode
     "data/storage/el2/base/files/",
     "data/storage/el2/base/preferences/",
     "data/storage/el2/base/haps/*/database/",
-    "data/storage/el2/base/haps/*/base/files/",
-    "data/storage/el2/base/haps/*/base/preferences/",
+    "data/storage/el2/base/haps/*/files/",
+    "data/storage/el2/base/haps/*/preferences/",
     ]
 }
 ```

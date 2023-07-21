@@ -1231,7 +1231,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
-| timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
+| timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
 
 **返回值：**
 

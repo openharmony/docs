@@ -51,6 +51,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 |
 
 >  **说明：**
 >
@@ -71,7 +73,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                 | 描述            |
 | ------------------ | ------------- |
 | Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。 |
+| Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
 | Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
@@ -148,7 +150,7 @@ stopEditing(): void
 
 getTextContentRect(): [RectResult](#rectresult)
 
-获取已编辑文本内容区域相对组件的位置和大小。
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
 **返回值：**
 
@@ -186,6 +188,8 @@ getTextContentLineCount(): number
 | number| 已编辑文本内容行数。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -240,3 +244,55 @@ struct TextInputExample {
 ```
 
 ![textInput](figures/textInput.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State PassWordSrc1:Resource=$r('app.media.icon')
+  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @Builder itemEnd() {
+    Select([{ value: 'KB' },
+      { value: 'MB' },
+      { value: 'GB'},
+      { value: 'TB',}])
+      .height("48vp")
+      .borderRadius(0)
+      .selected(2)
+      .align(Alignment.Center)
+      .value('MB')
+      .font({ size: 20, weight: 500 })
+      .fontColor('#182431')
+      .selectedOptionFont({ size: 20, weight: 400 })
+      .optionFont({ size: 20, weight: 400 })
+      .backgroundColor(Color.Transparent)
+      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .onSelect((index: number) => {
+        console.info('Select:' + index)
+      })
+  }
+
+  build() {
+    Column() {
+      // 自定义密码显示图标
+      TextInput({ placeholder: 'user define password icon' })
+        .type(InputType.Password)
+        .width(400)
+        .height(60)
+        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+      // 下划线模式
+      TextInput({ placeholder: 'underline style' })
+        .showUnderline(true)
+        .width(400)
+        .height(60)
+        .showError('Error')
+        .showUnit(this.itemEnd.bind(this))
+    }.width('100%')
+  }
+}
+```
+
+![showUnit](figures/showUnit.png)

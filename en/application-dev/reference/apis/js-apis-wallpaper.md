@@ -137,9 +137,87 @@ try {
 }
 ```
 
+## wallpaper.setCustomWallpaper<sup>10+</sup>
+
+setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the content from a specified URI as the wallpaper. This API works only when com.ohos.sceneboard is set. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.SET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | string | Yes| URI of the custom wallpaper.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
+try {
+    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+        if (error) {
+            console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+            return;
+        }
+        console.log(`success to setCustomWallpaper.`);
+    });
+} catch (error) {
+    console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+}
+
+```
+
+## wallpaper.setCustomWallpaper<sup>10+</sup>
+
+setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+Sets the content from a specified URI as the wallpaper. This API works only when com.ohos.sceneboard is set. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | string | Yes| URI of the custom wallpaper.|
+| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
+try {
+    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+        console.log(`success to setCustomWallpaper.`);
+    }).catch((error) => {
+        console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+    });
+} catch (error) {
+    console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+}
+```
+
 ## wallpaper.on('wallpaperChange')<sup>10+</sup>
 
-on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
 Subscribes to wallpaper change events.
 
@@ -152,7 +230,7 @@ Subscribes to wallpaper change events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
-| callback | function | Yes| Callback used to return the wallpaper type and wallpaper resource type.<br>- wallpaperType<br>  Wallpaper type.<br>- resourceType<br>  Wallpaper resource type.|
+| callback | function | Yes| Callback used to return the wallpaper type and wallpaper resource type.<br>- **wallpaperType**: wallpaper type.<br>- **resourceType**: wallpaper resource type.<br>- **uri**: URI of the wallpaper resource.|
 
 **Example**
 
@@ -169,7 +247,7 @@ try {
 
 ## wallpaper.off('wallpaperChange')<sup>10+</sup>
 
-off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
 Unsubscribes from wallpaper change events.
 
@@ -182,7 +260,7 @@ Unsubscribes from wallpaper change events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **'wallpaperChange'**.|
-| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- wallpaperType<br>  Wallpaper type.<br>- resourceType<br>  Wallpaper resource type.|
+| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- **wallpaperType**: wallpaper type.<br>- **resourceType**: wallpaper resource type.<br>- **uri**: URI of the wallpaper resource.|
 
 **Example**
 

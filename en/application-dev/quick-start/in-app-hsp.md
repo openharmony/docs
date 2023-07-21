@@ -146,7 +146,7 @@ struct Index {
 }
 ```
 
-### Redirecting to a Page in Another Bundle
+### Redirecting to a Page
 
 If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/MainAbility/Index.ets** file of the **entry** module:
 ```ts

@@ -16,10 +16,11 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | Permission                                      | Permission Level    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about a specified bundle.  |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.|
+| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | Permission to clear cache files of a bundle.      |
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | Permission to enable or disable an application or ability. |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
@@ -115,7 +116,7 @@ Enumerates the types of Extension abilities.
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved.|
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
-| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | AuthorizationExtensionAbility: provides APIs to process authorization requests for application accounts and allow account authorization from a third-party (relative to the operating system vendor) ecosystem platform.|
+| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | [AuthorizationExtensionAbility](js-apis-appAccount-authorizationExtensionAbility.md): provides APIs to process authorization requests for application accounts and allow account authorization from a third-party (relative to the operating system vendor) ecosystem platform.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of Extension abilities.|
 
 
@@ -677,7 +678,7 @@ Obtains the information about all bundles based on the given bundle flags and us
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -726,7 +727,7 @@ Obtains the information about all bundles based on the given bundle flags. This 
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -765,7 +766,7 @@ Obtains the information about all bundles based on the given bundle flags and us
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -816,7 +817,7 @@ Obtains the information about all applications based on the given application fl
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -865,7 +866,7 @@ Obtains the information about all applications based on the given application fl
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -904,7 +905,7 @@ Obtains the information about all applications based on the given application fl
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1752,7 +1753,7 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the application.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1814,7 +1815,7 @@ Enables or disables an ability. This API uses a promise to return the result.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the application.|
 
 **Return value**
 
@@ -3211,5 +3212,131 @@ try {
     });
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.getSpecifiedDistributionType<sup>10+</sup>
+
+getSpecifiedDistributionType(bundleName: string): string;
+
+Obtains the distribution type of a bundle in synchronous mode. The return value is the **specifiedDistributionType** field value in [InstallParam](./js-apis-installer.md#installparam) passed when **install** is called.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| string | Distribution type of the bundle.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**Example**
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let type = bundleManager.getSpecifiedDistributionType(bundleName);
+    console.info('getSpecifiedDistributionType successfully, type:' + type);
+} catch (error) {
+    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+}
+```
+
+
+### bundleManager.getAdditionalInfo<sup>10+</sup>
+
+getAdditionalInfo(bundleName: string): string;
+
+Obtains additional information about a bundle in synchronous mode. The return value is the **additionalInfo** field value in [InstallParam](./js-apis-installer.md#installparam) passed when **install** is called.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| string | Additional information about the bundle.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+let bundleName = "com.example.myapplication";
+
+try {
+    let info = bundleManager.getAdditionalInfo(bundleName);
+    console.info('getAdditionalInfo successfully, additionInfo:' + info);
+} catch (error) {
+    console.error('getAdditionalInfo failed. Cause: ' + error.message);
+}
+```
+
+### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+
+getBundleInfoForSelfSync(bundleFlags: number): BundleInfo;
+
+Obtains the bundle information of this bundle based on the given bundle flags in synchronous mode.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description               |
+| ----------- | ------ | ---- | --------------------- |
+| bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.|
+
+**Return value**
+
+| Type                                             | Description                |
+| ------------------------------------------------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+try {
+    let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', err.message);
 }
 ```

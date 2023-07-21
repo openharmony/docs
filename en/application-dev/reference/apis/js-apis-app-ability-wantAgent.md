@@ -31,7 +31,7 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -110,7 +110,7 @@ Obtains a **WantAgent** object. This API uses a promise to return the result. If
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -179,7 +179,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -271,7 +271,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -354,7 +354,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -447,7 +447,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -531,7 +531,7 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -626,7 +626,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -710,7 +710,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -802,7 +802,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -960,7 +960,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                 |
+| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1041,7 +1041,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
 | agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | The second **WantAgent** object. |
+| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
 
 **Return value**
 
@@ -1127,7 +1127,7 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1218,7 +1218,7 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 

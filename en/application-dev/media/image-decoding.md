@@ -13,7 +13,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
    ```
 
 2. Obtain an image.
-   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
      
       ```ts
       // Code on the stage model
@@ -110,6 +110,11 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
 
    After the decoding is complete and the pixel map is obtained, you can perform subsequent [image processing](image-transformation.md).
 
+5. Release the **PixelMap** instance.
+   ```ts
+   pixelMap.release();
+   ```
+
 ## Sample Code - Decoding an Image in Resource Files
 
 1. Obtain a resource manager.
@@ -140,4 +145,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
    const pixelMap = await imageSource.createPixelMap();
    ```
 
- <!--no_check--> 
+5. Release the **PixelMap** instance.
+   ```ts
+   pixelMap.release();
+   ```

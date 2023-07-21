@@ -484,7 +484,7 @@ function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     for (let i = 0; i < node.data.length; i++) {
         console.info("onPublishCallback node " + typeof node.data[i].data);
         if (typeof node.data[i].data != 'string') {
-            let array:ArrayBuffer = node.data[i].data;
+            let array:ArrayBuffer = node.data[i].data as ArrayBuffer;
             let data:Uint8Array = new Uint8Array(array);
             console.info("onPublishCallback " + i + " " + JSON.stringify(data));
         }
@@ -560,13 +560,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 ```ts
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
+let dataArray : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
 try {
-    console.info("data length is:", data.length);
-    dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
+    console.info("dataArray length is:", dataArray.length);
+    dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
     console.error("publish error " + JSON.stringify(e));
 }
@@ -602,11 +602,11 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallback);
+dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", publishCallback);
 ```
 
 ### publish<sup>10+</sup>
@@ -642,11 +642,11 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 **示例：**
 
 ```ts
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let result: Array<dataShare.OperationResult> = dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest");
+let result: Array<dataShare.OperationResult> = dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest");
 ```
 
 ### getPublishedData<sup>10+</sup>

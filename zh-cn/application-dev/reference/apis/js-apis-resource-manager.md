@@ -3506,7 +3506,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 ### getColorByName<sup>10+</sup>
 
-getStringByName(resName: string): Promise&lt;number&gt;
+getColorByName(resName: string): Promise&lt;number&gt;
 
 用户获取指定资源名称对应的颜色值，使用Promise形式返回其对应的颜色值。
 

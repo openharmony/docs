@@ -492,6 +492,8 @@
       - [hapsigner Overview](security/hapsigntool-overview.md)
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
+  - AI
+      - [Using MindSpore Lite for Model Inference (JS)](ai/mindspore-lite-js-guidelines.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
@@ -993,7 +995,6 @@
       - [@ohos.multimodalInput.shortKey (Shortcut Key)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (System Power Management)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock)](reference/apis/js-apis-runninglock.md)
-      - [@ohos.resourceschedule.deviceStandby (Device Standby)](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.sensor (Sensor)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (Data Item Settings)](reference/apis/js-apis-settings.md)
       - [@ohos.stationary (Device Status Awareness Framework)](reference/apis/js-apis-stationary.md)

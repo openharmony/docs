@@ -170,6 +170,7 @@ getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
 **示例：**
 
 ```js
+let cameras = cameraManager.getSupportedCameras();
 let cameraDevice = cameras[0];
 let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
 
@@ -852,7 +853,6 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback\<BusinessError\>)
 **示例：**
 
 ```js
-let cameraDevice = cameras[0];
 cameraInput.on('error', cameraDevice, (error) => {
     console.log(`Camera input error code: ${error.code}`);
 })
@@ -2774,6 +2774,17 @@ capture(setting?: PhotoCaptureSetting): Promise\<void\>
 **示例：**
 
 ```js
+let captureLocation = {
+  latitude: 0,
+  longitude: 0,
+  altitude: 0,
+}
+let settings = {
+  quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+  rotation: camera.ImageRotation.ROTATION_0,
+  location: captureLocation,
+  mirror: false
+}
 photoOutput.capture(settings).then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
 }).catch((err) => {

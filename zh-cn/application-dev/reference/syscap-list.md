@@ -1111,6 +1111,14 @@ TS/JS语言基础库
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
 
+## SystemCapability.FileManagement.File.FileIO.Lite
+
+轻量级基础文件IO接口
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
 ## SystemCapability.FileManagement.File.Environment
 
 环境相关接口
@@ -1161,7 +1169,7 @@ usb服务
 
 ## SystemCapability.Sensors.Sensor.Lite
 
-传感器服务订阅
+轻量级传感器服务订阅
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1177,7 +1185,7 @@ usb服务
 
 ## SystemCapability.Sensors.MiscDevice.Lite
 
-小器件-振感
+轻量级小器件-振感
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1186,6 +1194,14 @@ usb服务
 ## SystemCapability.Startup.SystemInfo
 
 系统基本信息
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 是           | 是     |
+
+## SystemCapability.Startup.SystemInfo.Lite
+
+轻量级系统基本信息
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1254,6 +1270,14 @@ Key-Value型数据库核心能力
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.DistributedDataManager.Preferences.Core.Lite
+
+轻量级偏好型数据存储核心能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 否           | 否     |
 
 ## SystemCapability.DistributedDataManager.DataShare.Core
 

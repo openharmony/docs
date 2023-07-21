@@ -849,6 +849,83 @@ observer.off('simStateChange', callback);
 observer.off('simStateChange');
 ```
 
+## observer.on('iccAccountInfoChange')<sup>10+</sup>
+
+on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
+
+Registers an observer for account information change events of the SIM card. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Account information change event. This field has a fixed value of **iccAccountInfoChange**.                |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+observer.on('iccAccountInfoChange', error => {
+    console.log("on iccAccountInfoChange, error:" + JSON.stringify(error));
+});
+```
+
+
+## observer.off('iccAccountInfoChange')<sup>10+</sup>
+
+off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
+
+Unregisters the observer for account information change events of the SIM card. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Account information change event. This field has a fixed value of **iccAccountInfoChange**.                |
+| callback | Callback\<void\> | No  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let callback = data => {
+    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+}
+observer.on('iccAccountInfoChange', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+observer.off('iccAccountInfoChange', callback);
+observer.off('iccAccountInfoChange');
+```
+
 
 ## LockReason<sup>8+</sup>
 

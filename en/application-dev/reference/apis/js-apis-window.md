@@ -54,7 +54,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | Yes| Name of the window.                                                                      |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
 | displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
 | parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
@@ -228,7 +228,7 @@ Describes the window properties.
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                   |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                    |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
 | focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
 | touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
@@ -261,7 +261,7 @@ Describes the scale parameters.
 
 | Name  | Type| Readable| Writable| Description                                        |
 | ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                |
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
 | y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
 | pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 | pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
@@ -276,7 +276,7 @@ Describes the rotation parameters.
 
 | Name  | Type| Readable| Writable| Description                                         |
 | ------ | -------- | ---- | ---- |---------------------------------------------|
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                 |
+| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
 | y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
 | z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
 | pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
@@ -790,7 +790,7 @@ try {
 
 on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
-Enables listening for properties changes of the status bar and navigation bar.
+Subscribes to the property change event of the status bar and navigation bar.
 
 **System API**: This is a system API.
 
@@ -819,7 +819,7 @@ try {
 
 off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
-Disables listening for properties changes of the status bar and navigation bar.
+Unsubscribes from the property change event of the status bar and navigation bar.
 
 **System API**: This is a system API.
 
@@ -830,7 +830,7 @@ Disables listening for properties changes of the status bar and navigation bar.
 | Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
 
 **Example**
 
@@ -846,7 +846,7 @@ try {
 
 on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for gesture navigation status changes.
+Subscribes to the gesture navigation status change event.
 
 **System API**: This is a system API.
 
@@ -875,7 +875,7 @@ try {
 
 off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables the listening for gesture navigation status changes.
+Unsubscribes from the gesture navigation status change event.
 
 **System API**: This is a system API.
 
@@ -886,7 +886,7 @@ Disables the listening for gesture navigation status changes.
 | Name  | Type                    | Mandatory| Description                                                       |
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
 | type     | string                  | Yes| Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.|
-| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If this parameter is passed in, only the listener registered using this callback function is removed; otherwise, all gesture navigation status change listeners are removed.|
+| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -2694,7 +2694,7 @@ try {
 
 on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
-Enables listening for window size changes.
+Subscribes to the window size change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2721,7 +2721,7 @@ try {
 
 off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
-Disables listening for window size changes.
+Unsubscribes from the window size change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2730,7 +2730,7 @@ Disables listening for window size changes.
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size.                          |
+| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                          |
 
 **Example**
 
@@ -2746,7 +2746,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
-Enables listening for changes to the area where the window cannot be displayed.
+Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2774,7 +2774,7 @@ try {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
-Disables listening for changes to the area where the window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2783,7 +2783,7 @@ Disables listening for changes to the area where the window cannot be displayed.
 | Name  | Type                                                                         | Mandatory | Description                                |
 | -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
 | type     | string                                                                      | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | No  | Callback used to return the area and area type.|
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | No  | Callback used to return the area and area type. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -2799,7 +2799,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-Enables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
+Subscribes to the event indicating soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2826,7 +2826,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-Disables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
+Unsubscribes from the event indicating soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2835,7 +2835,7 @@ Disables listening for soft keyboard height changes in the input method panel in
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                              |
 
 **Example**
 
@@ -2851,7 +2851,7 @@ try {
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
-Enables listening for click events outside this window.
+Subscribes to the click event outside this window.
 
 **System API**: This is a system API.
 
@@ -2880,7 +2880,7 @@ try {
 
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
-Disables listening for click events outside this window.
+Unsubscribes from the click event outside this window.
 
 **System API**: This is a system API.
 
@@ -2891,7 +2891,7 @@ Disables listening for click events outside this window.
 | Name  | Type                  | Mandatory| Description                                  |
 | -------- |----------------------| ---- |--------------------------------------|
 | type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.            |
+| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
 
 **Example**
 
@@ -2907,7 +2907,7 @@ try {
 
 on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
-Subscribes to screenshot events.
+Subscribes to the screenshot event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2934,7 +2934,7 @@ try {
 
 off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from screenshot events.
+Unsubscribes from the screenshot event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2943,7 +2943,7 @@ Unsubscribes from screenshot events.
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
-| callback | Callback&lt;void&gt; | No  | Callback invoked when a screenshot event occurs.|
+| callback | Callback&lt;void&gt; | No  | Callback invoked when a screenshot event occurs. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -2969,7 +2969,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to click events of the target window in the modal window mode.
+Subscribes to the click event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2996,7 +2996,7 @@ try {
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from click events of the target window in the modal window mode.
+Unsubscribes from the click event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3005,7 +3005,7 @@ Unsubscribes from click events of the target window in the modal window mode.
 | Name  | Type                   | Mandatory| Description                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
-| callback | Callback&lt;void&gt;      | No  | Callback invoked when the click event occurs in the target window of the modal window mode.|
+| callback | Callback&lt;void&gt;      | No  | Callback invoked when the click event occurs in the target window of the modal window mode. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -3021,7 +3021,7 @@ try {
 
 on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
-Enables listening for window lifecycle changes.
+Subscribes to the window lifecycle change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3048,7 +3048,7 @@ try {
 
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
-Disables listening for window lifecycle changes.
+Unsubscribes from the window lifecycle change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3057,7 +3057,7 @@ Disables listening for window lifecycle changes.
 | Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event.|
-| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | No  | Callback used to return the window lifecycle state.                |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | No  | Callback used to return the window lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                |
 
 **Example**
 
@@ -4430,7 +4430,7 @@ Blurs this window.
 
 | Name| Type  | Mandatory| Description                                              |
 | ------ | ------ | ---- |--------------------------------------------------|
-| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window. |
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window.|
 
 **Error codes**
 
@@ -4465,7 +4465,7 @@ Blurs the background of this window.
 
 | Name| Type  | Mandatory| Description                                                   |
 | ------ | ------ | ---- |-------------------------------------------------------|
-| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window. |
+| radius | number | Yes  | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window.|
 
 **Error codes**
 
@@ -4535,7 +4535,7 @@ Sets the shadow for the window borders.
 
 | Name | Type  | Mandatory| Description                                                         |
 | ------- | ------ | ---- |-------------------------------------------------------------|
-| radius  | number | Yes  | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders. |
+| radius  | number | Yes  | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders.    |
 | color   | string | No  | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 | offsetX | number | No  | Offset of the shadow along the x-axis, in pixels. The value is a floating point number.                             |
 | offsetY | number | No  | Offset of the shadow along the y-axis, in pixels. The value is a floating point number.                             |
@@ -4573,7 +4573,7 @@ Sets the radius of the rounded corners for this window.
 
 | Name     | Type   | Mandatory| Description                                                |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners. |
+| radius | number | Yes  | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners.|
 
 **Error codes**
 
@@ -4684,7 +4684,7 @@ This API is available only for the main window of the application. The aspect ra
 
 | Name            | Type   | Mandatory| Description                                       |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0.|
 
 **Return value**
 
@@ -4731,7 +4731,7 @@ This API is available only for the main window of the application. The aspect ra
 
 | Name            | Type   | Mandatory| Description                                        |
 | ------------------ | ------- | ---- |--------------------------------------------|
-| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
+| ratio | number | Yes  | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0.|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
@@ -5426,7 +5426,7 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 | Name      | Type                     | Mandatory| Description                                          |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
+| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite.|
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                    |
 
 **Example**
@@ -5449,7 +5449,6 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 Sets whether the window is in full-screen mode. This API uses a promise to return the result.
 
 In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-
 In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
@@ -5462,7 +5461,7 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 | Name      | Type   | Mandatory| Description                                          |
 | ------------ | ------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
+| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite.|
 
 **Return value**
 
@@ -5837,7 +5836,7 @@ promise.then((data)=> {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-Enables listening for changes to the area where the window cannot be displayed.
+Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
 > **NOTE**
 >
@@ -5864,7 +5863,7 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-Disables listening for changes to the area where the window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
 > **NOTE**
 >
@@ -5877,7 +5876,7 @@ Disables listening for changes to the area where the window cannot be displayed.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No  | Callback used to return the area.                           |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No  | Callback used to return the area. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.          |
 
 **Example**
 
@@ -7143,7 +7142,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
-Enables listening for window stage lifecycle changes.
+Subscribes to the window stage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -7192,7 +7191,7 @@ export default class EntryAbility extends UIAbility {
 
 off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
 
-Disables listening for window stage lifecycle changes.
+Unsubscribes from the window stage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -7203,7 +7202,7 @@ Disables listening for window stage lifecycle changes.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'windowStageEvent'**, indicating the window stage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the window stage lifecycle state.               |
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the window stage lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.               |
 
 **Error codes**
 

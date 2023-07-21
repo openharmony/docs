@@ -25,7 +25,7 @@ The figure below shows the multi-device collaboration process.
 
 ## Constraints
 
-- Since multi-device collaboration task management is not available, you can obtain the device list by developing system applications. Third-party applications cannot access the device list.
+- Since multi-device collaboration mission management is not available, you can obtain the device list by developing system applications. Third-party applications cannot access the device list.
 
 - Multi-device collaboration must comply with [Inter-Device Component Startup Rules](component-startup-rules.md#inter-device-component-startup-rules).
 
@@ -101,7 +101,7 @@ On device A, touch the **Start** button provided by the initiator application to
    })
    ```
 
-5. Call [stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through task management.)
+5. Call [stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
 
    ```ts
    let want = {
@@ -157,7 +157,7 @@ On device A, touch the **Start** button provided by the initiator application to
    })
    ```
 
-4. After the UIAbility task on the target device is complete, call **terminateSelfWithResult()** to return the data to the initiator UIAbility.
+4. After the UIAbility mission on the target device is complete, call **terminateSelfWithResult()** to return the data to the initiator UIAbility.
 
    ```ts
    const RESULT_CODE: number = 1001;

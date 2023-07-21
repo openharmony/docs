@@ -96,8 +96,8 @@ isWifiActive(): boolean
 import wifi from '@ohos.wifi';
 
 try {
-	let isActivate = wifi.isActivate();
-	console.info("isActivate:" + isActivate);
+	let isWifiActive = wifi.isWifiActive();
+	console.info("isWifiActive:" + isWifiActive);
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -2463,7 +2463,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 import wifi from '@ohos.wifi';
 
 var recvP2pDeviceChangeFunc = result => {
-    console.info("Receive recv p2p device change event: " + result);
+    console.info("Receive p2p device change event: " + result);
 }
 
 // Register event
@@ -2513,7 +2513,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 import wifi from '@ohos.wifi';
 
 var recvP2pPeerDeviceChangeFunc = result => {
-    console.info("Receive recv p2p peer device change event: " + result);
+    console.info("Receive p2p peer device change event: " + result);
 }
 
 // Register event
@@ -2563,7 +2563,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 import wifi from '@ohos.wifi';
 
 var recvP2pPersistentGroupChangeFunc = result => {
-    console.info("Receive recv p2p persistent group change event: " + result);
+    console.info("Receive p2p persistent group change event: " + result);
 }
 
 // Register event
@@ -2621,7 +2621,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 import wifi from '@ohos.wifi';
 
 var recvP2pDiscoveryChangeFunc = result => {
-    console.info("Receive recv p2p discovery change event: " + result);
+    console.info("Receive p2p discovery change event: " + result);
 }
 
 // Register event

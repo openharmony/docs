@@ -3387,7 +3387,7 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-、  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get rotationMatrix. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -3612,6 +3612,8 @@ try {
 | HALL                        | 10   | 霍尔传感器。           |
 | PROXIMITY                   | 12   | 接近光传感器。         |
 | HUMIDITY                    | 13   | 湿度传感器。           |
+| COLOR<sup>10+</sup>         | 14   | 颜色传感器。           |
+| SAR<sup>10+</sup>           | 15   | 吸收比率传感器。       |
 | ORIENTATION                 | 256  | 方向传感器。           |
 | GRAVITY                     | 257  | 重力传感器。           |
 | LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |
@@ -4077,7 +4079,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | 是   | 要订阅的加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。     |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，当前可用于设置传感器上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。        |
 
 **示例：** 
 

@@ -231,7 +231,7 @@ promise.then(data => {
 
 getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelectionMode\>\): void
 
-Obtains the network selection mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network selection mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -268,7 +268,7 @@ radio.getNetworkSelectionMode(slotId, (err, data) => {
 
 getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
-Obtains the network selection mode of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network selection mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -957,7 +957,7 @@ promise.then(() => {
 
 getIMEI\(callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -998,7 +998,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1041,7 +1041,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI\(slotId?: number\): Promise\<string\>
 
-Obtains the IMEI of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the IMEI for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1091,7 +1091,7 @@ promise.then(data => {
 
 getMEID\(callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1132,7 +1132,7 @@ radio.getMEID((err, data) => {
 
 getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1175,7 +1175,7 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID\(slotId?: number\): Promise\<string\>
 
-Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1225,7 +1225,7 @@ promise.then(data => {
 
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1266,7 +1266,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1309,7 +1309,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2867,6 +2867,206 @@ promise.then(data => {
 ```
 
 
+## radio.getNetworkCapability<sup>10+</sup>
+
+getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: AsyncCallback\<NetworkCapabilityState\>\): void
+
+Obtains the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  |                              Type                                      | Mandatory| Description                                 |
+| -------- | -----------------------------------------------------------------------| ---- | ----------------------------------- |
+| slotId   | number                                                                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)                      | Yes  | Network capability type.                       |
+| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | Yes  | Callback used to return the result.                           |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+radio.getNetworkCapability(slotId, type, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNetworkCapability<sup>10+</sup>
+
+getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<NetworkCapabilityState\>
+
+Obtains the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | Yes  | Network capability type.                       |
+
+**Return value**
+
+| Type                                                        | Description                   |
+| ------------------------------------------------------------- | ----------------------- |
+| Promise\<[NetworkCapabilityState](#networkcapabilitystate10)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let promise = radio.getNetworkCapability(slotId, type);
+promise.then(data => {
+    console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.setNetworkCapability<sup>10+</sup>
+
+setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState,
+      callback: AsyncCallback\<void\>\): void
+
+Sets the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | Yes  | Network capability type.                       |
+| state    | [NetworkCapabilityState](#networkcapabilitystate10)             | Yes  | Network capability status.                       |
+| callback | AsyncCallback\<void\>                                           | Yes  | Callback used to return the result.                           |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+radio.setNetworkCapability(slotId, type, state, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setNetworkCapability<sup>10+</sup>
+
+setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState\): Promise\<void\>
+
+Sets the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| type     | [NetworkCapabilityType](#networkcapabilitytype10)               | Yes  | Network capability type.                       |
+| state    | [NetworkCapabilityState](#networkcapabilitystate10)             | Yes  | Network capability status.                       |
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let type = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
+let state = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
+let promise = radio.setNetworkCapability(slotId, type, state);
+promise.then(data => {
+    console.log(`setNetworkCapability success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## RadioTechnology
 
 Enumerates radio access technologies.
@@ -3290,3 +3490,29 @@ Enumerates IMS service types.
 | TYPE_VIDEO | 1    | Video service.|
 | TYPE_UT    | 2    | UT service.  |
 | TYPE_SMS   | 3    | SMS service.|
+
+## NetworkCapabilityType<sup>10+</sup>
+
+Network capability type.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name            | Value  | Description      |
+| -----------------| ---- | ---------- |
+| SERVICE_TYPE_LTE | 0    | LTE service.|
+| SERVICE_TYPE_NR  | 1    | NR service.|
+
+## NetworkCapabilityState<sup>10+</sup>
+
+Defines the network capability switch status.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                  | Value  | Description      |
+| -----------------------| ---- | ---------- |
+| SERVICE_CAPABILITY_OFF | 0    | The network capability is disabled.|
+| SERVICE_CAPABILITY_ON  | 1    | The network capability is enabled.|

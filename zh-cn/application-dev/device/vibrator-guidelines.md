@@ -226,46 +226,43 @@ try {
 ```ts
 import vibrator from '@ohos.vibrator';
 
-const FILE_NAME = "xxx.json";
-
 // 获取振动文件资源描述符
-let fileDescriptor = undefined;
-getContext().resourceManager.getRawFd(FILE_NAME).then(value => {
-  fileDescriptor = { fd: value.fd, offset: value.offset, length: value.length };
-  console.info('Succeed in getting resource file descriptor');
-}).catch(error => {
-  console.error(`Failed to get resource file descriptor. Code: ${error.code}, message: ${error.message}`);
-});
-// 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
-try {
-  // 启动自定义振动
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length }
-  }, {
-    usage: "alarm"
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-  // 停止所有类型的马达振动
-  vibrator.stopVibration(function (error) {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+async function getRawfileFd(fileName) {
+  let rawFd = await globalThis.getContext().resourceManager.getRawFd(fileName);
+  return rawFd;
 }
-// 关闭振动文件资源
-getContext().resourceManager.closeRawFd(FILE_NAME).then(() => {
-  console.info('Succeed in closing resource file descriptor');
-}).catch(error => {
-  console.error(`Failed to close resource file descriptor. Code: ${error.code}, message: ${error.message}`);
-});
+
+// 关闭振动文件资源描述符
+async function closeRawfileFd(fileName) {
+  await globalThis.getContext().resourceManager.closeRawFd(fileName)
+}
+
+// 播放自定义振动，使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
+async function playCustomHaptic(fileName) {
+  try {
+    let rawFd = await getRawfileFd(fileName);
+    vibrator.startVibration({
+      type: "file",
+      hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+    }, {
+      usage: "alarm"
+    }).then(() => {
+      console.info('Succeed in starting vibration');
+    }, (error) => {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+    });
+    vibrator.stopVibration(function (error) {
+      if (error) {
+        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+        return;
+      }
+      console.info('Succeed in stopping vibration');
+    })
+    await closeRawfileFd(fileName);
+  } catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  }
+}
 ```
 
 

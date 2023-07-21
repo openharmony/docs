@@ -27,8 +27,9 @@ Enumerates the types of the [data records](#unifiedrecord) in the [unifiedData](
 | FILE                       | 'File'                       | File.    |
 | IMAGE                      | 'File.Media.Image'           | Image.    |
 | VIDEO                      | 'File.Media.Video'           | Video.    |
+| AUDIO                      | 'File.Media.Audio'           | Audio.    |
 | FOLDER                     | 'File.Folder'                | Folder.   |
-| SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | System service data.|
+| SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | System ability data.|
 | SYSTEM_DEFINED_FORM        | 'SystemDefinedType.Form'     | Widget.    |
 | SYSTEM_DEFINED_APP_ITEM    | 'SystemDefinedType.AppItem'  | Icon.    |
 | SYSTEM_DEFINED_PIXEL_MAP   | 'SystemDefinedType.PixelMap' | Pixel map. |
@@ -179,7 +180,7 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name   | Type                     | Readable| Writable| Description                                                                                                                                                 |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>title: 'Title',<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -257,7 +258,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name     | Type                       | Readable| Writable| Description                                                                                                                                                  |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where Both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 | uri     | string                    | Yes  | Yes  | URI of the file data.                                                                                                                                            |
 
 **Example**
@@ -305,6 +306,23 @@ let video = new UDMF.Video();
 video.videoUri = 'schema://com.samples.test/files/test.mp4';
 ```
 
+## Audio
+
+Represents video data. It is a child class of [File](#file) and is used to describe a video file.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name      | Type    | Readable| Writable| Description      |
+|----------|--------|----|----|----------|
+| audioUri | string | Yes | Yes | Audio data URI.|
+
+**Example**
+
+```js
+let audio = new UDMF.Audio();
+audio.audioUri = 'schema://com.samples.test/files/test.mp3';
+```
+
 ## Folder
 
 Represents the folder data. It is a child class of [File](#file) and is used to describe a folder.
@@ -330,7 +348,7 @@ Represents specific data types defined by OpenHarmony. It is a child class of [U
 
 | Name   | Type                      | Readable| Writable| Description                                                        |
 | ------- |--------------------------| ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: number \| string \| Uint8Array } | Yes  | Yes  | A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array.<br/>This parameter is optional. The default value is an empty dictionary object. |
+| details | { [key: string]: number \| string \| Uint8Array } | Yes  | Yes  | A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array.<br/>This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -430,9 +448,9 @@ const color = new ArrayBuffer(96); // Create a PixelMap object.
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error, pixelmap) => {
     if(error) {
-        console.log('Failed to create pixelmap.');
+        console.error('Failed to create pixelmap.');
     } else {
-        console.log('Succeeded in creating pixelmap.');
+        console.info('Succeeded in creating pixelmap.');
         let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
         pixelmap.readPixelsToBuffer(arrayBuf);
         let u8Array = new Uint8Array(arrayBuf);
@@ -462,4 +480,391 @@ let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 record.applicationDefinedType = 'ApplicationDefinedType';
 record.rawData = u8Array;
 let unifiedData = new UDMF.UnifiedData(record);
+```
+
+## Intention
+
+Enumerates the types of the system abilities connected to the UDMF. It identifies the purpose of the data written by the user to the UDMF and the system abilities connected to the UDMF to implement data transmission between applications.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name      | Value        | Description     |
+|----------|-----------|---------|
+| DATA_HUB | 'DataHub' | Public data hub.|
+
+## Options
+
+Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters have no default value, and can be left unspecified. For details, see the parameter description of the specific API.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+
+| Name      | Type                     | Readable| Writable| Mandatory| Description                                                                                                                                                                                       |
+|-----------|-------------------------|----|----|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | Yes | Yes | No | Service tag related to the data operation.                                                                                                                                                                           |
+| key       | string                  | Yes | Yes | No | Unique identifier of a data object in the UDMF, which can be obtained from the return value of [insertData](#udmfinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
+
+
+
+## UDMF.insertData
+
+insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
+
+Inserts data to the UDMF. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                          |
+|----------|----------------------------|----|------------------------------|
+| options  | [Options](#options)        | Yes | Configuration parameters. Only the **intention** is required.       |
+| data     | [UnifiedData](#unifieddata) | Yes | Data to insert.                       |
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback invoked to return the key (unique identifier) of the data inserted.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+}
+try {
+    UDMF.insertData(options, unifiedData, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in inserting data. key = ${data}`);
+        } else {
+            console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+
+```
+
+## UDMF.insertData
+
+insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
+
+Inserts data to the UDMF. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                   |
+|---------|-----------------------------|----|-----------------------|
+| options | [Options](#options)         | Yes | Configuration parameters. Only the **intention** is required.|
+| data    | [UnifiedData](#unifieddata) | Yes | Data to insert.                |
+
+**Return value**
+
+| Type                   | Description                               |
+|-----------------------|-----------------------------------|
+| Promise&lt;string&gt; | Promise used to return the key of the data inserted.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+}
+try {
+    UDMF.insertData(options, unifiedData).then((data) => {
+        console.info(`Succeeded in inserting data. key = ${data}`);
+    }).catch((err) => {
+        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.updateData
+
+updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
+
+Updates data in the UDMF. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory| Description                                 |
+|----------|-----------------------------|----|-------------------------------------|
+| options  | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.                    |
+| data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
+| callback | AsyncCallback&lt;void&gt;   | Yes | Callback invoked to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.updateData(options, unifiedData, (err) => {
+        if (err === undefined) {
+            console.info('Succeeded in updating data.');
+        } else {
+            console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.updateData
+
+updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
+
+Updates data in the UDMF. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description             |
+|---------|-----------------------------|----|-----------------|
+| options | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.|
+| data    | [UnifiedData](#unifieddata) | Yes | New data.          |
+
+**Return value**
+
+| Type                 | Description                        |
+|---------------------|----------------------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.updateData(options, unifiedData).then(() => {
+        console.info('Succeeded in updating data.');
+    }).catch((err) => {
+        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.queryData
+
+queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
+
+Queries data in the UDMF. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                                                           | Mandatory| Description                                                                                                                                                              |
+|----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                   |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback invoked to return the queried data.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+};
+
+try {
+    UDMF.queryData(options, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in querying data. size = ${data.length}`);
+            for (let i = 0; i < data.length; i++) {
+                let records = data[i].getRecords();
+                for (let j = 0; j < records.length; j++) {
+                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                        let text = <UDMF.PlainText>(records[j]);
+                        console.info(`${i + 1}.${text.textContent}`);
+                    }
+                }
+            }
+        } else {
+            console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.queryData
+
+queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
+
+Queries data in the UDMF. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name    | Type                 | Mandatory| Description                                           |
+|---------|---------------------|----|-----------------------------------------------|
+| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.|
+
+**Return value**
+
+| Type                                                     | Description                                                                                                                                 |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the result.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.queryData(options).then((data) => {
+        console.info(`Succeeded in querying data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+            let records = data[i].getRecords();
+            for (let j = 0; j < records.length; j++) {
+                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                    let text = <UDMF.PlainText>(records[j]);
+                    console.info(`${i + 1}.${text.textContent}`);
+                }
+            }
+        }
+    }).catch((err) => {
+        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.deleteData
+
+deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
+
+Deletes data from the UDMF. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                                                           | Mandatory| Description                                                                                                                                                                                    |
+|----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                                         |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback invoked to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+};
+
+try {
+    UDMF.deleteData(options, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in deleting data. size = ${data.length}`);
+            for (let i = 0; i < data.length; i++) {
+                let records = data[i].getRecords();
+                for (let j = 0; j < records.length; j++) {
+                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                        let text = <UDMF.PlainText>(records[j]);
+                        console.info(`${i + 1}.${text.textContent}`);
+                    }
+                }
+            }
+        } else {
+            console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.deleteData
+
+deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
+
+Deletes data in the UDMF. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name    | Type                 | Mandatory| Description    |
+|---------|---------------------|----|--------|
+| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.|
+
+**Return value**
+
+| Type                                                     | Description                                                                                                                                                         |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
+
+**Example**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.deleteData(options).then((data) => {
+        console.info(`Succeeded in deleting data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+            let records = data[i].getRecords();
+            for (let j = 0; j < records.length; j++) {
+                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                    let text = <UDMF.PlainText>(records[j]);
+                    console.info(`${i + 1}.${text.textContent}`);
+                }
+            }
+        }
+    }).catch((err) => {
+        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+}
 ```

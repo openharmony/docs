@@ -6,7 +6,9 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理员应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理员应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
@@ -18,7 +20,7 @@ import browser from '@ohos.enterprise.browser';
 
 setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用设置指定浏览器的策略，使用callback形式返回是否设置成功。
+指定设备管理应用为指定的浏览器设置浏览策略，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -30,14 +32,14 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string              | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -66,7 +68,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
 
-指定设备管理员应用设置指定浏览器的策略，使用promise形式返回是否设置成功。
+指定设备管理应用为指定的浏览器设置浏览策略，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -78,7 +80,7 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string                | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 
@@ -86,11 +88,11 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理员应用设置浏览器策略失败时会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用设置浏览器策略失败时，会抛出错误对象。  |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -117,7 +119,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void;
 
-指定管理员应用获取指定浏览器的策略，使用callback形式返回获取浏览器策略。
+指定管理员应用获取指定浏览器的策略，使用callback异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -127,13 +129,13 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | callback | AsyncCallback&lt;string&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -161,7 +163,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
 
-指定管理员应用获取指定浏览器的策略，使用promise形式返回获取的浏览器策略。
+指定管理员应用获取指定浏览器的策略，使用promise异步回调。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -171,7 +173,7 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 
 **返回值：**
@@ -182,7 +184,7 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |

@@ -134,7 +134,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 1. 编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
    
    ```
-   external_deps = [ "hitrace_native:hitrace_meter"]
+   external_deps = [ "hitrace:hitrace_meter"]
    ```
 
 2. 头文件依赖添加。
@@ -220,7 +220,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
    ohos_executable("hitrace_example") {
      sources = [ "example/hitrace_example.cpp" ]
    
-     external_deps = [ "hitrace_native:hitrace_meter" ]
+     external_deps = [ "hitrace:hitrace_meter" ]
    
      subsystem_name = "hiviewdfx"
      part_name = "hitrace_native"
@@ -350,5 +350,3 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
 # 参考
 
 更多关于HiTraceMeter的详细内容请参考：[轻量级的分布式调用链跟踪](https://gitee.com/openharmony/hiviewdfx_hitrace) 。
-
-

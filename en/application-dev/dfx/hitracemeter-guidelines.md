@@ -1,4 +1,4 @@
-# Development of Performance Tracing
+# Development of Performance Tracing (ArkTS)
 
 ## Introduction
 
@@ -17,19 +17,19 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 ## Constraints
 
-Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
+- Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference](../reference/apis/js-apis-hitracemeter.md).
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 
-| API                                                                      | Return Value   | Description        |
-| ---------------------------------------------------------------------------- | --------- | ------------ |
-| hiTraceMeter.startTrace(name: string, taskId: number) | void      | Marks the start of a trace task. If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same task ID can be used.|
-| hiTraceMeter.finishTrace(name: string, taskId: number)                       | void      | Marks the end of a trace task. The values of **name** and **taskId** must be the same as those of **hiTraceMeter.startTrace**.|
-| hiTraceMeter.traceByValue(name: string, value: number)                       | void      | Marks the value changes of a numeric variable in a trace task.|
+| API                                                   | Return Value | Description                                                                                                                  |
+| ------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------------------------- |
+| hiTraceMeter.startTrace(name: string, taskId: number)  | void | Marks the start of a trace task. If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same task ID can be used.|
+| hiTraceMeter.finishTrace(name: string, taskId: number) | void | Marks the end of a trace task. The values of **name** and **taskId** must be the same as those of **hiTraceMeter.startTrace**.                                                                |
+| hiTraceMeter.traceByValue(name: string, value: number) | void | Marks the value changes of a numeric variable in a trace task.                                                                                         |
 
 ## How to Develop
 

@@ -5,6 +5,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
 
 
 > **NOTE**
+>
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 
@@ -169,7 +170,7 @@ struct FancyUse {
       Text(`${this.label}`)
         .fancyText(200, Color.Pink)
       Text(`${this.label}`)
-        .fancyText(200, Color.Orange)
+        .fancyText(300, Color.Orange)
     }.margin('20%')
   }
 }

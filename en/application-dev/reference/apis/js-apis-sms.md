@@ -99,11 +99,15 @@ promise.then(data => {
 });
 ```
 
-## sms.sendMessage
+## sms.sendMessage<sup>(deprecated)</sup>
 
 sendMessage\(options: SendMessageOptions\): void
 
 Sends an SMS message.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [sendShortMessage](#smssendshortmessage10).
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
@@ -146,6 +150,114 @@ let options = {slotId, content, destinationHost, serviceCenter, destinationPort,
 sms.sendMessage(options);
 ```
 
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&gt;\): void
+
+Sends an SMS message. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.SEND_MESSAGES
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content ='SMS message content';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.sendShortMessage<sup>10+</sup>
+
+sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
+
+Sends an SMS message. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SEND_MESSAGES
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
+
+**Return value**
+
+| Type           | Description                                                        |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let sendCallback = function (err, data) {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let deliveryCallback = function (err, data) {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}
+let slotId = 0;
+let content ='SMS message content';
+let destinationHost = '+861xxxxxxxxxx';
+let serviceCenter = '+861xxxxxxxxxx';
+let destinationPort = 1000;
+let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+let promise = sms.sendShortMessage(options);
+promise.then(() => {
+    console.log(`sendShortMessage success`);
+}).catch(err => {
+    console.error(`sendShortMessage failed, promise: err->${JSON.stringify(err)}`);
+});
+
+```
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
@@ -1371,6 +1483,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1415,6 +1528,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1456,6 +1570,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1508,6 +1623,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1531,6 +1647,81 @@ promise.then(data => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
+
+Obtains the default ID of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```js
+sms.getDefaultSmsSimId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(\): Promise&lt;number&gt;
+
+Obtains the default ID of the SIM card used to send SMS messages. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Return value**
+
+| Type           | Description                                                        |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | Promise used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```js
+let promise = sms.getDefaultSmsSimId();
+promise.then(data => {
+    console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2026,7 +2217,7 @@ Defines an MMS message delivery index.
 | messageId | string                             | Yes  | Message ID.|
 | date      | number                             | Yes  | Date.  |
 | to        | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination address.|
-| status    | number                             | Yes  | Status  |
+| status    | number                             | Yes  | Status.  |
 | version   | [MmsVersionType](#mmsversiontype8) | Yes  | Version.  |
 
 ## MmsRespInd<sup>8+</sup>
@@ -2040,7 +2231,7 @@ Defines an MMS response index.
 |     Name     | Type                              | Mandatory| Description    |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | Yes  | Event ID.  |
-| status        | number                             | Yes  | Status    |
+| status        | number                             | Yes  | Status.    |
 | version       | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
 | reportAllowed | [ReportType](#reporttype8)         | No  | Report allowed.|
 

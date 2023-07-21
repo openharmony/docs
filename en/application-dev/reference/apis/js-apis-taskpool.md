@@ -37,35 +37,32 @@ function printArgs(args) {
     console.log("printArgs: " + args);
     return args;
 }
-async function taskpoolPriority() {
-  let task = new taskpool.Task(printArgs, 100);
 
-  let highCount = 0;
-  let mediumCount = 0;
-  let lowCount = 0;
-  let allCount = 100;
-  for (let i = 0; i < allCount; i++) {
-    taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-      lowCount++;
-      console.log("taskpool lowCount is :" + lowCount);
-    }).catch((e) => {
-      console.error("low task error: " + e);
-    })
-    taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-      mediumCount++;
-      console.log("taskpool mediumCount is :" + mediumCount);
-    }).catch((e) => {
-      console.error("medium task error: " + e);
-    })
-    taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-      highCount++;
-      console.log("taskpool highCount is :" + highCount);
-    }).catch((e) => {
-      console.error("high task error: " + e);
-    })
-  }
+let task = new taskpool.Task(printArgs, 100); // 100: test number
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+    lowCount++;
+    console.log("taskpool lowCount is :" + lowCount);
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+    mediumCount++;
+    console.log("taskpool mediumCount is :" + mediumCount);
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+    highCount++;
+    console.log("taskpool highCount is :" + highCount);
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
 }
-taskpoolPriority();
 ```
 
 ## Task
@@ -91,7 +88,7 @@ A constructor used to create a **Task** instance.
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
-| ID| Error Message                               |
+| ID| Error Message                                |
 | -------- | --------------------------------------- |
 | 10200014 | The function is not mark as concurrent. |
 
@@ -107,6 +104,117 @@ function printArgs(args) {
 let task = new taskpool.Task(printArgs, "this is my first Task");
 ```
 
+### isCanceled<sup>10+</sup>
+
+static isCanceled(): boolean
+
+Checks whether the running task is canceled.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the running task is canceled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // do something
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled.");
+      // do something
+      return arg + 1;
+    }
+    // do something
+    return arg;
+}
+```
+
+> **NOTE**
+> 
+> **isCanceled** must be used together with **taskpool.cancel**. If **cancel** is not called, **isCanceled** returns **false** by default.
+
+**Example**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // Check the cancellation status and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // Wait for 2s.
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // Check the cancellation status again and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+  return arg + 1;
+}
+
+let task = new taskpool.Task(inspectStatus, 100); // 100: test number
+taskpool.execute(task).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+// If cancel is not called, isCanceled() returns false by default, and the task execution result is 101.
+```
+
+### setTransferList<sup>10+</sup>
+
+setTransferList(transfer?: ArrayBuffer[]): void
+
+Sets the task transfer list.
+
+> **NOTE**
+> 
+> This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                                         |
+| -------- | ------------- | ---- | --------------------------------------------- |
+| transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array.|
+
+**Example**
+
+```ts
+let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+let buffer1 = new ArrayBuffer(16);
+let view1 = new Uint8Array(buffer1);
+
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+@Concurrent
+function testTransfer(arg1, arg2) {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+let task = new taskpool.Task(testTransfer, view, view1);
+task.setTransferList([view.buffer, view1.buffer]);
+taskpool.execute(task).then((res)=>{
+  console.info("test result: " + res);
+}).catch((e)=>{
+  console.error("test catch: " + e);
+})
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+```
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
@@ -115,6 +223,96 @@ let task = new taskpool.Task(printArgs, "this is my first Task");
 | --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
 | function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
 | arguments | unknown[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+
+## TaskGroup<sup>10+</sup>
+
+Implements a task group. Before using any of the following APIs, you must create a **TaskGroup** instance.
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+Constructor used to create a **TaskGroup** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+```ts
+let taskGroup = new taskpool.TaskGroup();
+```
+
+### addTask<sup>10+</sup>
+
+addTask(func: Function, ...args: unknown[]): void
+
+Adds the function to be executed to this task group.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                  |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+taskGroup.addTask(printArgs, 100); // 100: test number
+```
+
+### addTask<sup>10+</sup>
+
+addTask(task: Task): void
+
+Adds a created task to this task group.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                      |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | Yes  | Task to be added to the task group.                 |
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+let task = new taskpool.Task(printArgs, 200); // 200: test number
+taskGroup.addTask(task);
+```
 
 ## taskpool.execute
 
@@ -141,11 +339,11 @@ Places the function to be executed in the internal task queue of the task pool. 
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 10200003 | Worker initialization failure.            |
-| 10200006 | Serializing an uncaught exception failed. |
-| 10200014 | The function is not mark as concurrent.   |
+| ID| Error Message                                     |
+| -------- | -------------------------------------------- |
+| 10200003 | Worker initialization failure.               |
+| 10200006 | An exception occurred during serialization.  |
+| 10200014 | The function is not mark as concurrent.      |
 
 **Example**
 
@@ -156,12 +354,9 @@ function printArgs(args) {
     return args;
 }
 
-async function taskpoolExecute() {
-  let value = await taskpool.execute(printArgs, 100);
+taskpool.execute(printArgs, 100).then((value) => { // 100: test number
   console.log("taskpool result: " + value);
-}
-
-taskpoolExecute();
+});
 ```
 
 ## taskpool.execute
@@ -177,23 +372,23 @@ Places a task in the internal task queue of the task pool. The task will be dist
 | Name  | Type                 | Mandatory| Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [Task](#task)         | Yes  | Task to be executed.                 |
-| priority | [Priority](#priority) | No  | Priority of the task. The default value is **MEDIUM**.|
+| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
 
-| Type            | Description                          |
-| ---------------- | ------------------------------ |
+| Type             | Description             |
+| ----------------  | ---------------- |
 | Promise\<unknown> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 10200003 | Worker initialization failure.            |
-| 10200006 | Serializing an uncaught exception failed. |
-| 10200014 | The function is not mark as concurrent.   |
+| ID| Error Message                                    |
+| -------- | ------------------------------------------- |
+| 10200003 | Worker initialization failure.              |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not mark as concurrent.     |
 
 **Example**
 
@@ -204,13 +399,72 @@ function printArgs(args) {
     return args;
 }
 
-async function taskpoolExecute() {
-  let task = new taskpool.Task(printArgs, 100);
-  let value = await taskpool.execute(task);
+let task = new taskpool.Task(printArgs, 100); // 100: test number
+taskpool.execute(task).then((value) => {
   console.log("taskpool result: " + value);
+});
+```
+
+## taskpool.execute<sup>10+</sup>
+
+execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
+
+Places a task group in the internal task queue of the task pool. The task group will be distributed to the worker thread for execution.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name    | Type                       | Mandatory| Description                                                          |
+| --------- | --------------------------- | ---- | -------------------------------------------------------------- |
+| group     | [TaskGroup](#taskgroup)     | Yes  | Task group to be executed.                                     |
+| priority  | [Priority](#priority)       | No  | Priority of the task group. The default value is **taskpool.Priority.MEDIUM**.|
+
+**Return value**
+
+| Type                | Description                              |
+| ----------------    | ---------------------------------- |
+| Promise\<unknown[]> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                    |
+| -------- | ------------------------------------------- |
+| 10200006 | An exception occurred during serialization. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
 }
 
-taskpoolExecute();
+let taskGroup1 = new taskpool.TaskGroup();
+taskGroup1.addTask(printArgs, 10); // 10: test number
+taskGroup1.addTask(printArgs, 20); // 20: test number
+taskGroup1.addTask(printArgs, 30); // 30: test number
+
+let taskGroup2 = new taskpool.TaskGroup();
+let task1 = new taskpool.Task(printArgs, 100); // 100: test number
+let task2 = new taskpool.Task(printArgs, 200); // 200: test number
+let task3 = new taskpool.Task(printArgs, 300); // 300: test number
+taskGroup2.addTask(task1);
+taskGroup2.addTask(task2);
+taskGroup2.addTask(task3);
+taskpool.execute(taskGroup1).then((res) => {
+  console.info("taskpool execute res is:" + res);
+}).catch((e) => {
+  console.error("taskpool execute error is:" + e);
+});
+taskpool.execute(taskGroup2).then((res) => {
+  console.info("taskpool execute res is:" + res);
+}).catch((e) => {
+  console.error("taskpool execute error is:" + e);
+});
 ```
 
 ## taskpool.cancel
@@ -231,91 +485,109 @@ Cancels a task in the task pool.
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
-| ID| Error Message                 |
-| -------- | ------------------------- |
-| 10200015 | If the task is not exist. |
-| 10200016 | If the task is running.   |
+| ID| Error Message                                     |
+| -------- | -------------------------------------------- |
+| 10200015 | The task does not exist when it is canceled. |
+| 10200016 | The task is executing when it is canceled.   |
 
-**Example of successful task cancellation**
+Since API version 10, error code 10200016 is not reported when this API is called.
+
+**Example of canceling an ongoing task**
 
 ```ts
 @Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
+function inspectStatus(arg) {
+    // Check the task cancellation state and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // 2s sleep
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // Check the task cancellation state again and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+    return arg + 1;
 }
 
-async function taskpoolCancel() {
-  let task = new taskpool.Task(printArgs, 100);
-  taskpool.execute(task);
-  try {
-    taskpool.cancel(task);
-  } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
-  }
-}
-
-taskpoolCancel();
+let task1 = new taskpool.Task(inspectStatus, 100); // 100: test number
+let task2 = new taskpool.Task(inspectStatus, 200); // 200: test number
+let task3 = new taskpool.Task(inspectStatus, 300); // 300: test number
+let task4 = new taskpool.Task(inspectStatus, 400); // 400: test number
+let task5 = new taskpool.Task(inspectStatus, 500); // 500: test number
+let task6 = new taskpool.Task(inspectStatus, 600); // 600: test number
+taskpool.execute(task1).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+let res2 = taskpool.execute(task2);
+let res3 = taskpool.execute(task3);
+let res4 = taskpool.execute(task4);
+let res5 = taskpool.execute(task5);
+let res6 = taskpool.execute(task6);
+// Cancel the task 1s later.
+setTimeout(()=>{
+  taskpool.cancel(task1);}, 1000);
 ```
 
-**Example of a failure to cancel a task that has been executed**
+## taskpool.cancel<sup>10+</sup>
+
+cancel(group: TaskGroup): void
+
+Cancels a task group in the task pool.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                |
+| ------- | ----------------------- | ---- | -------------------- |
+| group   | [TaskGroup](#taskgroup) | Yes  | Task group to cancel.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                                |
+| -------- | ------------------------------------------------------- |
+| 10200018 | The task group does not exist when it is canceled.      |
+
+**Example**
 
 ```ts
 @Concurrent
 function printArgs(args) {
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
     console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolCancel() {
-  let task = new taskpool.Task(printArgs, 100);
-  let value = taskpool.execute(task);
-  let start = new Date().getTime();
-  while (new Date().getTime() - start < 1000) {// Wait for 1s to ensure that the task has been executed.
-    continue;
-  }
-
+let taskGroup1 = new taskpool.TaskGroup();
+taskGroup1.addTask(printArgs, 10); // 10: test number
+let taskGroup2 = new taskpool.TaskGroup();
+taskGroup2.addTask(printArgs, 100); // 100: test number
+taskpool.execute(taskGroup1).then((res)=>{
+  console.info("taskGroup1 res is:" + res)
+});
+taskpool.execute(taskGroup2).then((res)=>{
+  console.info("taskGroup2 res is:" + res)
+});
+setTimeout(()=>{
   try {
-    taskpool.cancel(task); // The task has been executed and fails to be canceled.
+    taskpool.cancel(taskGroup2);
   } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
+    console.log("taskGroup.cancel occur error:" + e);
   }
-}
-
-taskpoolCancel();
-```
-
-**Example of a failure to cancel an ongoing task**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-async function taskpoolCancel() {
-  let task1 = new taskpool.Task(printArgs, 100);
-  let task2 = new taskpool.Task(printArgs, 200);
-  let task3 = new taskpool.Task(printArgs, 300);
-  let task4 = new taskpool.Task(printArgs, 400);
-  let task5 = new taskpool.Task(printArgs, 500);
-  let task6 = new taskpool.Task(printArgs, 600);
-
-  let res1 = taskpool.execute(task1);
-  let res2 = taskpool.execute(task2);
-  let res3 = taskpool.execute(task3);
-  let res4 = taskpool.execute(task4);
-  let res5 = taskpool.execute(task5);
-  let res6 = taskpool.execute(task6);
-  try {
-    taskpool.cancel(task1); // task1 is being executed and fails to be canceled.
-  } catch (e) {
-    console.log("taskpool.cancel occur error:" + e);
-  }
-}
-
-taskpoolCancel();
+}, 1000);
 ```
 
 ## Additional Information
@@ -359,7 +631,7 @@ taskpoolExecute();
 
 ```ts
 // b.ets
-export var c = 2000;
+export let c = 2000;
 ```
 ```ts
 // Reference an imported variable.
@@ -420,8 +692,8 @@ function strSort(inPutArr) {
 export async function func1() {
     console.log("taskpoolTest start");
     let strArray = ['c test string', 'b test string', 'a test string'];
-    var task = new taskpool.Task(strSort, strArray);
-    var result = await taskpool.execute(task);
+    let task = new taskpool.Task(strSort, strArray);
+    let result = await taskpool.execute(task);
     console.log("func1 result:" + result);
 }
 
@@ -435,9 +707,132 @@ export async function func2() {
 ```
 
 ```ts
-/ / a.ets (in the same directory as c.ets)
+// a.ets (in the same directory as c.ets)
 import { taskpoolTest1, taskpoolTest2 } from "./c";
 
 func1();
 func2();
+```
+
+**Example 5**
+
+```ts
+// Success in canceling a task
+@Concurrent
+function inspectStatus(arg) {
+    // Check the task cancellation state and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // Wait for 2s.
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // Check the task cancellation state again and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+    return arg + 1;
+}
+
+async function taskpoolCancel() {
+    let task = new taskpool.Task(inspectStatus, 100); // 100: test number
+    taskpool.execute(task).then((res)=>{
+      console.log("taskpool test result: " + res);
+    }).catch((err) => {
+      console.log("taskpool test occur error: " + err);
+    });
+    // Cancel the task 1s later.
+    setTimeout(()=>{
+      taskpool.cancel(task);}, 1000);
+}
+
+taskpoolCancel();
+```
+
+**Example 6**
+
+```ts
+// Failure to cancel a task that has been executed
+@Concurrent
+function inspectStatus(arg) {
+    // Check the cancellation status and return the result.
+    if (taskpool.Task.isCanceled()) {
+      return arg + 2;
+    }
+    // Wait for 2s.
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // Check the cancellation status again and return the result.
+    if (taskpool.Task.isCanceled()) {
+      return arg + 3;
+    }
+    return arg + 1;
+}
+
+async function taskpoolCancel() {
+    let task = new taskpool.Task(inspectStatus, 100); // 100: test number
+    taskpool.execute(task).then((res)=>{
+      console.log("taskpool test result: " + res);
+    }).catch((err) => {
+      console.log("taskpool test occur error: " + err);
+    });
+    setTimeout(()=>{
+      try {
+        taskpool.cancel(task); // The task has been executed and fails to be canceled.
+      } catch (e) {
+        console.log("taskpool.cancel occur error:" + e);
+      }
+    }, 3000); // Wait for 3s to ensure that the task has been executed.
+}
+
+taskpoolCancel();
+```
+
+**Example 7**
+
+```ts
+// Success of canceling a task group to be executed
+@Concurrent
+function printArgs(args) {
+  let t = Date.now();
+  while (Date.now() - t < 1000) {
+    continue;
+  }
+  console.log("printArgs: " + args);
+  return args;
+}
+
+async function taskpoolGroupCancelTest() {
+  let taskGroup1 = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  taskGroup1.addTask(printArgs, 20); // 20: test number
+  taskGroup1.addTask(printArgs, 30); // 30: test number
+  let taskGroup2 = new taskpool.TaskGroup();
+  let task1 = new taskpool.Task(printArgs, 100); // 100: test number
+  let task2 = new taskpool.Task(printArgs, 200); // 200: test number
+  let task3 = new taskpool.Task(printArgs, 300); // 300: test number
+  taskGroup2.addTask(task1);
+  taskGroup2.addTask(task2);
+  taskGroup2.addTask(task3);
+  taskpool.execute(taskGroup1).then((res) => {
+    console.info("taskpool execute res is:" + res);
+  }).catch((e) => {
+    console.error("taskpool execute error is:" + e);
+  });
+  taskpool.execute(taskGroup2).then((res) => {
+    console.info("taskpool execute res is:" + res);
+  }).catch((e) => {
+    console.error("taskpool execute error is:" + e);
+  });
+
+  taskpool.cancel(taskGroup2);
+}
+
+taskpoolGroupCancelTest()
 ```

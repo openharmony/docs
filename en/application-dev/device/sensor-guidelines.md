@@ -31,12 +31,13 @@ For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 
    For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
    
-2. Subscribe to data changes of a type of sensor. The following uses the acceleration sensor as an example. 
+2. Subscribe to data changes of a type of sensor. The following uses the acceleration sensor as an example.
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
-   sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+
+   sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
+   console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
    });
    ```
    
@@ -44,7 +45,7 @@ For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 
 3. Unsubscribe from sensor data changes.
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
    sensor.off(sensor.SensorId.ACCELEROMETER);
    ```
@@ -53,10 +54,11 @@ For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 
 4. Subscribe to only one data change of a type of sensor.
   
-   ```js
+   ```ts
    import sensor from "@ohos.sensor";
-   sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+
+   sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+   console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
    });
    ```
    
@@ -64,13 +66,14 @@ For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 
    If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
 
-    ```js
+    ```ts
    import sensor from "@ohos.sensor";
-    try {
-      sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
-      });
-    } catch (error) {
-      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
-    }
+
+   try {
+   sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+      console.info("Succeeded in obtaining data. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+   });
+   } catch (error) {
+   console.error(`Failed to get sensor data. Code: ${error.code}, message: ${error.message}`);
+   }
     ```

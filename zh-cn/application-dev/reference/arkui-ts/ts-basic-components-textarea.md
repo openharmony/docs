@@ -42,6 +42,8 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | 设置文本框多态样式。<br/>默认值：TextContentStyle.DEFAULT    |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextArea获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean                                                      | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 |
 
 >  **说明：**
 >
@@ -106,7 +108,7 @@ stopEditing(): void
 
 getTextContentRect(): [RectResult](#rectresult)
 
-获取已编辑文本内容区域相对组件的位置和大小。
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
 **返回值：**
 
@@ -145,6 +147,8 @@ getTextContentLineCount(): number
 | number| 已编辑文本内容行数。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -185,3 +189,41 @@ struct TextAreaExample {
 ```
 
 ![textArea](figures/textArea.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = 'test'
+  @State counterVisible: boolean = false
+  @State maxNumber: number = -1
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.controller
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .margin(20)
+        .fontSize(16)
+        .fontColor('#182431')
+        .maxLength(4)
+        .showCounter(true)
+        .backgroundColor('#FFFFFF')
+        .onChange((value: string) => {
+          this.text = value
+        })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![maxLength](figures/maxLength.png)

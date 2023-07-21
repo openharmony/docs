@@ -259,7 +259,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 Revokes quick fix. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INSTALL_BUNDLE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -304,7 +304,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 Revokes quick fix. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INSTALL_BUNDLE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 

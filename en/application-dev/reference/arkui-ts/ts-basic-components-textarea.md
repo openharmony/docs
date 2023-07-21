@@ -20,8 +20,8 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 | Name                    | Type                                    | Mandatory  | Description          |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
-| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | No   | Placeholder text displayed when no text input is set.<br>When only the **placeholder** attribute is set, the text selection handle is still available; the caret stays at the beginning of the placeholder text when the handle is released.    |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | No   | Text displayed when there is no input.<br>When only the **placeholder** attribute is set, the text selection handle is still available; the caret stays at the beginning of the placeholder text when the handle is released.    |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No   | Text area controller.|
 
 
@@ -101,6 +101,48 @@ Sets the text selection range and highlights the selected text when the componen
 stopEditing(): void
 
 Exits the editing state.
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): [RectResult](#rectresult10)
+
+Obtains the position of the edited text area relative to the component and its size. The unit of the return value is pixel.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | Position of the edited text area relative to the component and its size.|
+
+> **NOTE**
+>
+> - If no text is entered, the return value contains the position information, but the size is 0.
+> - The position information is the offset of the first character relative to the editable area.
+> - If there is input, the width in the return value is the fixed width of the editable area.
+
+### RectResult<sup>10+</sup>
+
+Describes the position and size.
+
+| Parameter     | Type    | Description|
+| ------- | ------ | ----------------------- |
+| x     | number | X coordinate.|
+| y     | number | Y coordinate.|
+| width | number | Content width.|
+| height | number | Content height.|
+
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+Obtains the number of lines of the edited text.
+
+**Return value**
+
+| Type | Description      |
+| ----- | -------- |
+| number| Number of lines of the edited text.|
 
 ## Example
 

@@ -359,7 +359,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange'): **void**;
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
 
 取消当前应用注册的前后台变化的全部监听。
 
@@ -370,6 +370,7 @@ off(type: 'applicationStateChange'): **void**;
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 

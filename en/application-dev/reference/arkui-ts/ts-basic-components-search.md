@@ -29,7 +29,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton<sup>10+</sup> | value: string,<br>option?: [SearchButtonOption](#searchbuttonoption10)              | Text on the search button located next to the search text box. By default, there is no search button.              |
+| searchButton<sup>10+</sup> | value: string,<br>option?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.              |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.                          |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
@@ -56,7 +56,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | width  | [Length](ts-types.md#length)               | No  | Caret width.|
 | color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.|
 
-## SearchButtonOption<sup>10+</sup>
+## SearchButtonOptions<sup>10+</sup>
 
 | Name   | Type                                  | Mandatory| Description        |
 | --------- | ------------------------------------------ | ---- | ---------------- |
@@ -110,6 +110,47 @@ Sets the position of the caret.
 stopEditing(): void
 
 Exits the editing state.
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): [RectResult](#rectresult10)
+
+Obtains the position of the edited text area relative to the component and its size. The unit of the return value is pixel.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | Position of the edited text area relative to the component and its size.|
+
+> **NOTE**
+>
+> - The returned position information is the offset of the first character relative to the search icon in the **\<Search>** component.
+> - If no text is entered, the return value contains the position information, but the size is 0.
+
+### RectResult<sup>10+</sup>
+
+Describes the position and size.
+
+| Parameter     | Type    | Description|
+| ------- | ------ | ----------------------- |
+| x     | number | X coordinate.|
+| y     | number | Y coordinate.|
+| width | number | Content width.|
+| height | number | Content height.|
+
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+Obtains the number of lines of the edited text.
+
+**Return value**
+
+| Type | Description      |
+| ----- | -------- |
+| number| Number of lines of the edited text.|
 
 ##  Example
 

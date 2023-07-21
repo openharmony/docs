@@ -91,7 +91,7 @@
 
 ## 全局查询音效模式
 
-主要包括全局音效查询相应ContentType和StreamUsage对应场景的音效模式。
+主要包括全局音效查询相应StreamUsage对应场景的音效模式。
 对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager音频流管理实例。
 
 ### 获取音频流管理接口
@@ -107,7 +107,7 @@
 ### 查询对应场景的音效模式
 
   ```js
-  audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
     if (err) {
       console.error('Failed to get effect info array');
       return;    

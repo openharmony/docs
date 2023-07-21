@@ -20,8 +20,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
-| placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Placeholder text displayed when there is no input.     |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Text displayed when there is no input.     |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event, so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
@@ -54,7 +54,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: { top: 8 vp, right: 16 vp, bottom: 8 vp, left: 16 vp }
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }
 
 ## EnterKeyType
 
@@ -96,7 +96,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.<br>**value**: text content.<br>This event is triggered when any of the following conditions is met:<br>1. Keyboard input is received.<br>2. Paste and cut is performed.<br>3. Ctrl+V is pressed.|
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input in the text box changes.<br>**value**: text content.<br>This event is triggered when any of the following conditions is met:<br>1. Keyboard input is received.<br>2. Paste and cut is performed.<br>3. Ctrl+V is pressed.|
 | onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the keyboard is pressed. The return value is the current type of the Enter key.<br>**enterKeyType**: type of the Enter key. For details, see [EnterKeyType](#enterkeytype).|
 | onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
 | onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. When the cursor is placed in the text box, it is in the editing state. Otherwise, it is in the non-editing state. If the value of **isEditing** is **true**, text input is in progress.|
@@ -135,14 +135,55 @@ Sets the text selection area, which will be highlighted.
 
 | Name        | Type| Mandatory| Description              |
 | -------------- | -------- | ---- | ---------------------- |
-| selectionStart | number   | Yes  | Start position of the text selection area. The start position of the text in the text box is 0.|
-| selectionEnd   | number   | Yes  | End position of the text selection area.|
+| selectionStart | number   | Yes  | Start position of the text selection range. The start position of text in the text box is 0.|
+| selectionEnd   | number   | Yes  | End position of the text selection range.|
 
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void
 
 Exits the editing state.
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): [RectResult](#rectresult10)
+
+Obtains the position of the edited text area relative to the component and its size. The unit of the return value is pixel.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | Position of the edited text area relative to the component and its size.|
+
+> **NOTE**
+>
+> - If no text is entered, the return value contains the position information, but the size is 0.
+> - The position information is the offset of the first character relative to the editable area.
+
+### RectResult<sup>10+</sup>
+
+Describes the position and size.
+
+| Parameter     | Type    | Description|
+| ------- | ------ | ----------------------- |
+| x     | number | X coordinate.|
+| y     | number | Y coordinate.|
+| width | number | Content width.|
+| height | number | Content height.|
+
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+Obtains the number of lines of the edited text.
+
+**Return value**
+
+| Type | Description      |
+| ----- | -------- |
+| number| Number of lines of the edited text.|
 
 ## Example
 

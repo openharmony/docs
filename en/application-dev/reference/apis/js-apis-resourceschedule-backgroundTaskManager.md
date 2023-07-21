@@ -634,5 +634,5 @@ Enumerates the efficiency resource types.
 | BLUETOOTH               | 16   | Bluetooth resources are not proxied when the application is suspended.|
 | GPS                     | 32   | GPS resources are not proxied when the application is suspended.|
 | AUDIO                   | 64   | Audio resources are not proxied when the application is suspended.|
-| RUNNING_LOCK | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
-| SENSOR | 256 | Sensor callbacks are not intercepted.|
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
+| SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted.|

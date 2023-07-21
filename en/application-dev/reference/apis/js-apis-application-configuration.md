@@ -10,7 +10,7 @@ The **Configuration** module defines environment change information. **Configura
 ## Modules to Import
 
 ```ts
-import Configuration from '@ohos.app.application.Configuration';
+import Configuration from '@ohos.application.Configuration';
 ```
 
 **System capability**: SystemCapability.Ability.AbilityBase

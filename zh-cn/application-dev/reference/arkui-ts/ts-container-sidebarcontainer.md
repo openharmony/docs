@@ -83,7 +83,7 @@ SideBarContainer( type?: SideBarContainerType )
 >  针对侧边栏子组件设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效。
 >  针对侧边栏内容区设置[通用属性宽高](ts-universal-attributes-size.md)时，宽高都不生效，默认占满SideBarContainer的剩余空间。
 >
->  当属性方法未设置时，依据组件大小进行自动显示：
+>  当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
 >  - 小于520vp：默认不显示侧边栏。
 >  - 大于等于520vp：默认显示侧边栏。
@@ -127,8 +127,6 @@ struct SideBarContainerExample {
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
-
-
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -148,6 +146,7 @@ struct SideBarContainerExample {
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
+    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
   }
 }
 ```

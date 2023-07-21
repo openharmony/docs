@@ -65,6 +65,14 @@ Indicates that the system charging type has changed. This event is available onl
 
 When the system charging type changes, the event notification service is triggered to publish this event.
 
+## COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED
+Indicates that the device enters the charging idle mode.
+
+- Value: usual.event.CHARGE_IDLE_MODE_CHANGED
+- Required subscriber permissions: none
+
+When the device starts charging in idle mode, and the temperature rise is acceptable, the event notification service is triggered to publish this event.
+
 ## COMMON_EVENT_SHUTDOWN
 Indicates that the device is being and will be shut down.
 

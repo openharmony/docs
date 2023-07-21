@@ -78,10 +78,9 @@ emitter.once(innerEvent, emitterCallback);
 
 ## emitter.off
 
-off(eventId: number，callback?: Callback\<[EventData](#eventdata)\>): void
+off(eventId: number): void
 
-取消针对该事件ID的订阅。如果不传入可选参数callback，则取消针对该事件ID的所有订阅。
-如果传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+取消针对该事件ID的订阅。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -90,7 +89,6 @@ off(eventId: number，callback?: Callback\<[EventData](#eventdata)\>): void
 | 参数名  | 类型   | 必填 | 说明   |
 | ------- | ------ | ---- | ------ |
 | eventId | number | 是   | 事件ID |
-| callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | 否   | API version 10 新增取消该事件的回调处理函数。该参数可选，不影响API version 9 及更早版本的接口兼容性   |
 
 **示例：**
 
@@ -98,6 +96,23 @@ off(eventId: number，callback?: Callback\<[EventData](#eventdata)\>): void
 // 取消eventID为1的所有事件回调处理函数
 emitter.off(1);
 ```
+
+## emitter.off<sup>10+<sup>
+
+off(eventId: number，callback: Callback\<[EventData](#eventdata)\>): void
+
+取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明   |
+| ------- | ------ | ---- | ------ |
+| eventId | number | 是   | 事件ID |
+| callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | 是   | API version 10 新增取消该事件的回调处理函数。   |
+
+**示例：**
 
 ```javascript
 // 取消eventID为1的事件回调处理函数 emitterCallback

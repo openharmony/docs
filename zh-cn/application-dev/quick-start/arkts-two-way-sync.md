@@ -37,6 +37,8 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
   | [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md) | isOn            | 10          |
   | [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | selected        | 10          |
   | [Select](../reference/arkui-ts/ts-basic-components-select.md) | selected、value | 10          |
+  | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
+  | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
 
 - $$绑定的变量变化时，会触发UI的同步刷新。
 

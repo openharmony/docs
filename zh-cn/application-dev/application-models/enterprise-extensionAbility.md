@@ -32,8 +32,6 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 
 ### 开发步骤
 
-开发者在实现EnterpriseAdminExtensionAbility的时候，需先激活设备管理员应用，并在设备管理员应用的代码目录下新建ExtensionAbility，具体步骤如下。
-
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并命名为EnterpriseExtAbility。
 2. 在EnterpriseExtAbility目录，右键选择“New > TypeScript File”，新建一个TypeScript文件并命名为EnterpriseExtAbility.ts。
 3. 打开EnterpriseExtAbility.ts文件，导入EnterpriseAdminExtensionAbility模块，自定义类继承EnterpriseAdminExtensionAbility并加上需要的应用通知回调方法，如onAdminEnabled()、onAdminDisabled()等回调方法。当设备管理员应用被激活或者去激活时，则可以在对应回调方法中接受系统发送通知。

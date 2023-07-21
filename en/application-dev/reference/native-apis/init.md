@@ -19,7 +19,7 @@ You can use the provided APIs to read the SycCap parameter file to check whether
 
 | Name| Description|
 | -------- | -------- |
-| [syscap_ndk.h](syscap__ndk_8h.md) | Defines the APIs for checking SycCap support.|
+| [syscap_ndk.h](syscap__ndk_8h.md) | Declares the APIs for checking SycCap support.<br>**File to include**: <syscap_ndk.h><br>**Library**: libdeviceinfo_ndk.z.so|
 
 
 ### Functions

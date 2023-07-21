@@ -171,6 +171,7 @@ import Want from '@ohos.app.ability.Want';
 
     ```ts
         // (1) UIAbility1启动一个ServiceExtension
+        import common from '@ohos.app.ability.common';
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication1',

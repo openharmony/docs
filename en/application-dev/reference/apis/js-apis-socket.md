@@ -2398,7 +2398,7 @@ Enables listening for **close** events of a **TCPSocketConnection** object. This
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event|
-| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
 

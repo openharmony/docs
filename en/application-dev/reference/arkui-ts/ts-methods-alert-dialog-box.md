@@ -8,7 +8,7 @@ You can set the text content and response callback for an alert dialog box.
 >
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
 >
-> Since API version 10, you can use the[showAlertDialog](../apis/js-apis-arkui-UIContext.md#showalertdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [showAlertDialog](../apis/js-apis-arkui-UIContext.md#showalertdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## Attributes
 

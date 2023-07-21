@@ -4,35 +4,32 @@
 The ExtensionAbility component is used for specific scenarios such as widget development and input method development.
 
 
-An [ExtensionAbility type](../reference/apis/js-apis-bundleManager.md#extensionabilitytype) is provided for every specific scenario. All types of ExtensionAbility components are managed by the corresponding system services in a unified manner. For example, the InputMethodExtensionAbility component is managed by the input method management service. The following ExtensionAbility types are supported:
+The system defines an [ExtensionAbility type](../reference/apis/js-apis-bundleManager.md#extensionabilitytype) for every specific scenario. You can use (implement and access) only the types that have been defined. All types of ExtensionAbility components are managed by the corresponding system services in a unified manner. For example, the InputMethodExtensionAbility component is managed by the input method management service.
+
+The table below lists the ExtensionAbility types defined in the system.
+
+**NOTE**
+
+- The column **Allow Third-Party Apps to Implement** specifies whether third-party applications can inherit the **ExtensionAbility** parent class and implement their own service logic for a type of ExtensionAbility. The value **Y** means that third-party applications can implement their own service logic for a type of ExtensionAbility, **N** means the opposite.
+- The column **Allow Third-Party Apps to Access** specifies whether third-party applications can access external services provided by a type of ExtensionAbility. The value **Y** means that third-party applications can access external services provided by a certain type of ExtensionAbility, **N** means that they cannot access external services, and **NA** means that no external services are provided.
+
+System applications are not restricted. They can implement all the ExtensionAbility types defined in the system and access external services provided by all the ExtensionAbility types.
+
+| Supported ExtensionAbility Type                | Description| Allow Third-Party Apps to Implement                 | Allow Third-Party Apps to Access                                                |
+| ------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)                 | ExtensionAbility component of the form type, which provides APIs related to widgets.     | Y | N |
+| [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md) | ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.     | Y | NA |
+| [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md) | ExtensionAbility component of the input_method type, which is used to develop input method applications.     | Y | Y |
+|[AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md) | ExtensionAbility component of the accessibility type, which provides APIs related to the accessibility feature.     | Y | NA |
+|[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) | ExtensionAbility component of the service type, which provides APIs related to background services. To implement transaction processing in the background for a third-party application, use background tasks rather than ServiceExtensionAbility. For details, see [Background Task](../task-management/background-task-overview.md).     | N | Y |
+|[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) | ExtensionAbility component of the data_share type, which provides APIs for data sharing.     | N | Y |
+|[StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md) | ExtensionAbility component of the static_subscriber type, which provides APIs for static broadcast.     | N | NA |
+|[WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) | ExtensionAbility component of the window type, which allows a system application to be embedded in and displayed over another application.     | N | NA |
+| [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)            | ExtensionAbility component of the enterprise_admin type, which provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.     | N | NA |
 
 
-- [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md): ExtensionAbility component of the form type, which provides APIs related to widgets.
 
-- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md): ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.
-
-- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md): ExtensionAbility component of the input_method type, which is used to develop input method applications.
-
-- [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md): ExtensionAbility component of the service type, which provides APIs related to background services.
-
-- [AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md): ExtensionAbility component of the accessibility type, which provides APIs related to the accessibility feature.
-
-- [DataShareExtensionAbility (for system applications only)](../reference/apis/js-apis-application-dataShareExtensionAbility.md): ExtensionAbility component of the data_share type, which provides APIs for data sharing.
-
-- [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md): ExtensionAbility component of the static_subscriber type, which provides APIs for static broadcast.
-
-- [WindowExtensionAbility (for system applications only)](../reference/apis/js-apis-application-windowExtensionAbility.md): ExtensionAbility component of the window type, which allows a system application to be embedded in and displayed over another application.
-
-- [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md): ExtensionAbility component of the enterprise_admin type, which provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.
-
-> **NOTE**
-> 
->- Third-party applications cannot implement ServiceExtensionAbility, DataShareExtensionAbility, StaticSubscriberExtensionAbility, or WindowExtensionAbility. They can use other types of ExtensionAbility components that have been defined.
-> 
->- To implement transaction processing in the background for a third-party application, use background tasks rather than ServiceExtensionAbility. For details, see [Background Task](../task-management/background-task-overview.md).
-
-
-## Using ExtensionAbility of the Specified Type
+## Accessing ExtensionAbility of the Specified Type
 
 Each type of ExtensionAbility component is started by the corresponding system management service, rather than applications, so that its lifecycle is under system control. The caller of the ExtensionAbility component does not need to care about its lifecycle.
 
@@ -55,11 +52,3 @@ You do not need to care when to add or delete a widget. The lifecycle of the For
 > **NOTE**
 >
 > For an application, all ExtensionAbility components of the same type run in an independent process, whereas the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components run in another independent process. For details, see [Process Model (Stage Model)](process-model-stage.md).
->
-> For example, if an application has one UIAbility component, one ServiceExtensionAbility component, one DataShareExtensionAbility component, two FormExtensionAbility components, and one ImeExtensionAbility component, there will be three processes when the application is running.
->
-> - UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility run in an independent process.
->
-> - The two FormExtensionAbility components run in an independent process.
->
-> - The two ImeExtensionAbility components run in an independent process.

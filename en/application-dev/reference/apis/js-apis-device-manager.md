@@ -125,8 +125,8 @@ Defines subscription information.
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | medium        | [ExchangeMedium](#exchangemedium) | Yes   | Medium used for device discovery.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
-| isSameAccount | boolean                           | Yes   | Whether the same account is used on the discovered device.           |
-| isWakeRemote  | boolean                           | Yes   | Whether to wake up the discovered device.          |
+| isSameAccount | boolean                           | No   | Whether the same account is used on the discovered device.           |
+| isWakeRemote  | boolean                           | No   | Whether to wake up the discovered device.          |
 | capability    | [SubscribeCap](#subscribecap)     | Yes   | Discovery capability.            |
 
 
@@ -227,6 +227,8 @@ release(): void
 
 Releases this **DeviceManager** instance when it is no longer used.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Error codes**
@@ -252,6 +254,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 Obtains all trusted devices synchronously.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -279,11 +283,53 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   }
   ```
 
+### getTrustedDeviceListSync<sup>10+</sup>
+
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
+
+Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices online and updates the list of online trusted devices.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+| Name       | Type                              | Mandatory| Description                               |
+| ------------- | --------------------------------- | ---- | ---------------------------------- |
+|   isRefresh   | boolean                           | Yes  | Whether to enable the heartbeat mode and update the list of online trusted devices.     |
+
+**Return value**
+
+| Name                                    | Description           |
+| -------------------------------------- | ---------------- |
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+
+**Example**
+
+  ```js
+  try {
+    var deviceInfoList = dmInstance.getTrustedDeviceListSync(true);
+  } catch (err) {
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ### getTrustedDeviceList<sup>8+</sup>
 
 getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -315,6 +361,8 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -322,14 +370,6 @@ Obtains all trusted devices. This API uses a promise to return the result.
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
@@ -346,6 +386,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 Obtains local device information synchronously.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -379,6 +421,8 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -409,6 +453,8 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 Obtains local device information. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -416,14 +462,6 @@ Obtains local device information. This API uses a promise to return the result.
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Device Management Error Codes](../errorcodes/errorcode-device-manager.md).
-
-| ID| Error Message                                                       |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
 
 **Example**
 
@@ -440,6 +478,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -474,6 +514,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -505,6 +547,8 @@ Obtains the information about a specific device based on the network ID. This AP
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 Starts to discover peripheral devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -549,6 +593,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 Starts to discover peripheral devices and filters discovered devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -604,6 +650,8 @@ stopDeviceDiscovery(subscribeId: number): void
 
 Stops device discovery.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -637,6 +685,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 Publishes device information for discovery purposes. The publish process automatically stops when 2 minutes have elapsed.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -679,6 +729,8 @@ unPublishDeviceDiscovery(publishId: number): void
 
 Stops publishing device information.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -712,6 +764,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 Authenticates a device.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -764,6 +818,8 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 Deauthenticates a device.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -803,6 +859,8 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 Verifies authentication information.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -839,6 +897,8 @@ setUserOperation(operateAction: number, params: string): void;
 
 Sets a user operation.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -872,6 +932,8 @@ Sets a user operation.
 requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 Obtains the registration information of the credential.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -907,6 +969,8 @@ Obtains the registration information of the credential.
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 Imports credential information.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -959,6 +1023,8 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 Deletes credential information.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -995,6 +1061,8 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 Subscribes to UI status changes.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1025,6 +1093,8 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 Unsubscribes from UI status changes.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1049,6 +1119,8 @@ Unsubscribes from UI status changes.
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 Subscribes to changes in the device state.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1077,6 +1149,8 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 Unsubscribes from changes in the device state.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1103,6 +1177,8 @@ Unsubscribes from changes in the device state.
 on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 Subscribes to device discovery events.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1131,6 +1207,8 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 Unsubscribes from device discovery events.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1157,6 +1235,8 @@ Unsubscribes from device discovery events.
 on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 Subscribes to device discovery failures.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1185,6 +1265,8 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 Unsubscribes from device discovery failures.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1211,6 +1293,8 @@ Unsubscribes from device discovery failures.
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 Subscribes to device information publication success events.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1240,6 +1324,8 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 Unsubscribes from device information publication success events.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1266,6 +1352,8 @@ Unsubscribes from device information publication success events.
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 Subscribes to device information publication failures.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1294,6 +1382,8 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 Unsubscribes from device information publication failures.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1321,6 +1411,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 Subscribes to dead events of the **DeviceManager** service.
 
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1347,6 +1439,8 @@ Subscribes to dead events of the **DeviceManager** service.
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 Unsubscribes from dead events of the **DeviceManager** service.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 

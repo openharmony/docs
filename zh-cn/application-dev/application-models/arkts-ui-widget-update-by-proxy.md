@@ -7,7 +7,7 @@
 **图1** 代理刷新运行原理
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
-如图1，与[arkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
+如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
 
 - 数据管理服务：该场景下主要提供了多应用间的数据共享的机制。
 - 数据提供方（仅支持系统应用）：系统应用作为数据提供方，需要开启数据共享能力，同时需要自定义`key + subscriberId`作为共享数据的标识。
@@ -88,7 +88,7 @@
   }
   ```
 
-- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
+- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -177,7 +177,7 @@
   }
   ```
 
-- 在卡片页面代码文件（一般为工程中卡片目录下pages目录中的.ets文件）中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
+- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)

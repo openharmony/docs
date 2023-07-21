@@ -2,9 +2,9 @@
 
 Bind different types of gesture events to components and set response methods for them.
 
->  **NOTE**
+> **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Binding Gesture Recognition
@@ -65,6 +65,9 @@ The component binds gesture objects of different **GestureType**s through gestur
 | tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.|
 | tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.|
 | sourceTool<sup>9+</sup> | [SourceTool](#sourcetool) | Event input source.|
+| velocityX<sup>10+</sup> | number | Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.|
+| velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
+| velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.|
 
 ## SourceType
 | Name| Description|

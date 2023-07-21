@@ -1,7 +1,7 @@
 # @system.file (File Storage)
 
-> **NOTE**<br>
-> - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.fileio`](js-apis-fileio.md).
+> **NOTE**
+> - The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.file.fs](js-apis-file-fs.md).
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -20,7 +20,11 @@ move(Object): void
 
 Moves a specified file to a given location.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.moveFile](js-apis-file-fs.md#fsmovefile) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -32,7 +36,7 @@ Moves a specified file to a given location.
 | fail | Function | No| Called when the file fails to be moved.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -66,7 +70,11 @@ copy(Object): void
 
 Copies a file to the given URI.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.copyFile](js-apis-file-fs.md#fscopyfile) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -78,7 +86,7 @@ Copies a file to the given URI.
 | fail | Function | No| Called when the file fails to be copied.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -112,7 +120,11 @@ list(Object): void
 
 Obtains all files in the specified directory.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.listFile](js-apis-file-fs.md#fslistfile) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -138,7 +150,7 @@ Obtains all files in the specified directory.
 | length | number | File size, in bytes.|
 | type | string | File type. Available values are as follows:<br>- **dir**: directory<br>-&nbsp;**file**: file |
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -171,7 +183,11 @@ get(Object): void
 
 Obtains information about a local file.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.stat](js-apis-file-fs.md#fsstat) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -190,10 +206,10 @@ Obtains information about a local file.
 | uri | string | URI of the file.|
 | length | number | File size, in bytes.|
 | lastModifiedTime | number | Timestamp when the file is saved the last time, which is the number of milliseconds elapsed since 1970/01/01 00:00:00 GMT.|
-| type | string | File type. Available values are as follows:<br>-&nbsp;**dir**: directory<br>-&nbsp;**file**: file |
+| type | string | File type. Available values are as follows:<br>- &nbsp;**dir**: directory<br>-&nbsp;**file**: file|
 | subFiles | Array | List of files.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -226,7 +242,11 @@ delete(Object): void
 
 Deletes a local file.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.unlink](js-apis-file-fs.md#fsunlink) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -237,7 +257,7 @@ Deletes a local file.
 | fail | Function | No| Called when the file fails to be deleted.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -270,7 +290,11 @@ writeText(Object): void
 
 Writes text into a file. Only text files can be read and written.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.write](js-apis-file-fs.md#fswrite) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -284,7 +308,7 @@ Writes text into a file. Only text files can be read and written.
 | fail | Function | No| Called when the text fails to be written into the file.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -317,7 +341,11 @@ writeArrayBuffer(Object): void
 
 Writes buffer data into a file. Only text files can be read and written.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.write](js-apis-file-fs.md#fswrite) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -331,7 +359,7 @@ Writes buffer data into a file. Only text files can be read and written.
 | fail | Function | No| Called when buffer data fails to be written into the file.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -345,7 +373,7 @@ export default {
   writeArrayBuffer() {       
     file.writeArrayBuffer({           
       uri: 'internal://app/test',           
-      buffer: new Uint8Array(8), // The buffer is of the Uint8Array type. 
+      buffer: new Uint8Array(8), // The buffer is of the Uint8Array type.          
       success: function() {                
         console.log('call writeArrayBuffer success.');            
       },           
@@ -364,7 +392,11 @@ readText(Object): void
 
 Reads text from a file. Only text files can be read and written.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.readText](js-apis-file-fs.md#fsreadtext) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -384,7 +416,7 @@ Reads text from a file. Only text files can be read and written.
 | -------- | -------- | -------- |
 | text | string | Text read from the specified file.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -418,7 +450,11 @@ readArrayBuffer(Object): void
 
 Reads buffer data from a file. Only text files can be read and written.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.read](js-apis-file-fs.md#fsread) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -437,7 +473,7 @@ Reads buffer data from a file. Only text files can be read and written.
 | -------- | -------- | -------- |
 | buffer | Uint8Array | Data read.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -472,7 +508,11 @@ access(Object): void
 
 Checks whether a file or directory exists.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.access](js-apis-file-fs.md#fsaccess) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -483,7 +523,7 @@ Checks whether a file or directory exists.
 | fail | Function | No| Called when the operation fails.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -516,7 +556,11 @@ mkdir(Object): void
 
 Creates a directory.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.mkdir](js-apis-file-fs.md#fsmkdir) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -528,7 +572,7 @@ Creates a directory.
 | fail | Function | No| Called when the directory fails to be created.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
@@ -560,7 +604,11 @@ rmdir(Object): void
 
 Deletes a directory.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+> **NOTE**
+>
+> This API is deprecated since API version 10. Use [fs.rmdir](js-apis-file-fs.md#fsrmdir) instead.
+
+**System Capability**: SystemCapability.FileManagement.File.FileIO.Lite
 
 **Parameters**
 
@@ -572,7 +620,7 @@ Deletes a directory.
 | fail | Function | No| Called when the directory fails to be deleted.|
 | complete | Function | No| Called when the execution is complete.|
 
-**Return value of fail()**
+**Error codes**
 
 | Error Code| Description|
 | -------- | -------- |
