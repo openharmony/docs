@@ -2,7 +2,7 @@
 
 - 快速入门
   - [开发准备](start-overview.md)
-  - [使用ArkTS语言开发（Stage模型）](start-with-ets-stage.md)
+  - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
