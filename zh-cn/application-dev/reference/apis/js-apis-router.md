@@ -46,22 +46,20 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+```ts
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -141,22 +139,20 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+```ts
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -236,19 +232,17 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+```ts
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -325,19 +319,17 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+```ts
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceUrl<sup>9+</sup>
