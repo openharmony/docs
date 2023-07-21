@@ -193,3 +193,42 @@ struct ListItemExample2 {
 }
 ```
 ![deleteListItem](figures/deleteListItem.gif)
+
+## 示例3
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample3 {
+ private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ListItemGroup({style:ListItemGroupStyle.CARD}){
+     ForEach(this.arr, (itemStyle,index) => {
+      ListItem({style:itemStyle}) {
+       Text(""+index)
+        .width("100%")
+        .textAlign(TextAlign.Center)
+      }
+     })
+    }
+    ForEach(this.arr, (itemStyle,index) => {
+     ListItem({style:itemStyle}) {
+      Text(""+index)
+       .width("100%")
+       .textAlign(TextAlign.Center)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // 浅蓝色的List
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemStyle](figures/listItem3.jpeg)

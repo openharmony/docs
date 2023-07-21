@@ -119,3 +119,55 @@ struct ListItemGroupExample {
 ```
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_listitemgroup.gif)
+
+## 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemGroupExample2 {
+ private arr: any = [
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
+  },
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  },
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
+  },
+  {
+   style:ListItemGroupStyle.NONE,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  },
+ ]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ForEach(this.arr, (item,index) => {
+     ListItemGroup({ style:item.style }) {
+      ForEach(item.itemStyles, (itemStyle,itemIndex) => {
+       ListItem({style:itemStyle}) {
+        Text("第"+(index+1)+"个Group中第"+(itemIndex+1)+"个item")
+         .width("100%")
+         .textAlign(TextAlign.Center)
+       }
+      }, item => item)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // 浅蓝色的List
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemGroupStyle](figures/listItemGroup2.jpeg)
