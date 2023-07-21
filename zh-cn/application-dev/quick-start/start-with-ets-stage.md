@@ -1,4 +1,4 @@
-# 使用ArkTS语言开发（Stage模型）
+# 构建第一个ArkTS应用（Stage模型）
 
 
 >  **说明：**
