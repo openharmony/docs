@@ -8,5 +8,5 @@ OpenGL ES 3.0
 
 ## **Symbols Exported from the NAPI Library**
 
-[OpenGL ES 3.0 Symbols Exported from Native APIs](openglesv3-symbol.md)
+[OpenGL ES 3.0 Symbols Exported](openglesv3-symbol.md)
 

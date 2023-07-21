@@ -2,13 +2,13 @@
 
 ## When to Use
 
-The Native Drawing module provides APIs for drawing 2D graphics and text. The following scenarios are common for drawing development:
+The **NativeDrawing** module provides APIs for drawing 2D graphics and text. The following scenarios are common for drawing development:
 * Drawing 2D graphics
 * Drawing text drawing
 
 ## Available APIs
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
 | OH_Drawing_BitmapCreate (void) | Creates a bitmap object.|
 | OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap object and sets the pixel format for the bitmap.|
@@ -31,7 +31,7 @@ The Native Drawing module provides APIs for drawing 2D graphics and text. The fo
 | OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate *, const char *) | Sets the text content.|
 | OH_Drawing_TypographyPaint (OH_Drawing_Typography *, OH_Drawing_Canvas *, double, double) | Paints text on the canvas.|
 
-
+For details about the APIs, see [Drawing](../reference/native-apis/_drawing.md).
 
 ## Development Procedure for 2D Graphics Drawing
 
