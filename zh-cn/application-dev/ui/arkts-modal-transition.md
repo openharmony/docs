@@ -8,8 +8,8 @@
 
 | 接口 | 说明 | 使用场景 |
 | -------- | -------- | -------- |
-| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md#%E5%85%A8%E5%B1%8F%E6%A8%A1%E6%80%81%E8%BD%AC%E5%9C%BA) | 弹出全屏的模态组件。 | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
-| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md#%E5%8D%8A%E6%A8%A1%E6%80%81%E8%BD%AC%E5%9C%BA) | 弹出半模态组件。 | 用于半模态展示界面，如分享框。 |
+| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | 弹出全屏的模态组件。 | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
+| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | 弹出半模态组件。 | 用于半模态展示界面，如分享框。 |
 | [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，点击组件后弹出。 | 需要Menu菜单的场景，如一般应用的“+”号键。 |
 | [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，长按或者右键点击后弹出。 | 长按浮起效果，一般结合拖拽框架使用，如桌面图标长按浮起。 |
 | [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | 弹出Popup弹框。 | Popup弹框场景，如点击后对某个组件进行临时说明。 |
@@ -18,9 +18,9 @@
 
 ## 使用bindContentCover构建全屏模态转场效果
 
-[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md#%E5%85%A8%E5%B1%8F%E6%A8%A1%E6%80%81%E8%BD%AC%E5%9C%BA)接口用于为组件绑定全屏模态页面，在组件插入和删除时可通过设置转场参数ModalTransition显示过渡动效。
+[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)接口用于为组件绑定全屏模态页面，在组件插入和删除时可通过设置转场参数ModalTransition显示过渡动效。
 
-1. 定义全屏模态转场效果[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md#%E5%85%A8%E5%B1%8F%E6%A8%A1%E6%80%81%E8%BD%AC%E5%9C%BA)。
+1. 定义全屏模态转场效果[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)。
 
 2. 定义模态展示界面。
   
@@ -136,7 +136,7 @@ struct BindContentCoverDemo {
 
 ## 使用bindSheet构建半模态转场效果
 
-[bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md#%E5%8D%8A%E6%A8%A1%E6%80%81%E8%BD%AC%E5%9C%BA)属性可为组件绑定半模态页面，在组件插入时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+[bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md)属性可为组件绑定半模态页面，在组件插入时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
 
 完整示例和效果如下。
 

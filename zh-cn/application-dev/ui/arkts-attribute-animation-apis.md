@@ -6,8 +6,8 @@
 
 | 隐式动画接口 | 作用域 | 原理 | 使用场景 |
 | -------- | -------- | -------- | -------- |
-| animateTo | 闭包内改变属性引起的界面变化。<br/>作用于出现消失转场。 | -&nbsp;通用的函数，对闭包前界面和闭包中的状态变量引起的界面之间的差异做动画。<br/>-&nbsp;支持多次调用，支持嵌套。 | -&nbsp;适用对多个可动画属性配置相同动画参数的动画。<br/>-&nbsp;需要嵌套使用动画的场景。 |
-| animation | 组件通过属性接口绑定的属性变化引起的界面变化。 | -&nbsp;识别组件的可动画属性变化，自动添加动画。<br/>-&nbsp;组件的接口调用是从下往上执行，animation只会作用于在其之上的属性调用。<br/>-&nbsp;组件可以根据调用顺序对多个属性设置不同的animation。 | -&nbsp;适用于对多个可动画属性配置不同参数动画的场景。 |
+| animateTo | 闭包内改变属性引起的界面变化。<br/>作用于出现消失转场。 | 通用函数，对闭包前界面和闭包中的状态变量引起的界面之间的差异做动画。<br/>支持多次调用，支持嵌套。 | 适用对多个可动画属性配置相同动画参数的动画。<br/>需要嵌套使用动画的场景。 |
+| animation | 组件通过属性接口绑定的属性变化引起的界面变化。 | 识别组件的可动画属性变化，自动添加动画。<br/>组件的接口调用是从下往上执行，animation只会作用于在其之上的属性调用。<br/>组件可以根据调用顺序对多个属性设置不同的animation。 | 适用于对多个可动画属性配置不同参数动画的场景。 |
 
 
 ## 使用animateTo产生属性动画
@@ -17,7 +17,7 @@
 animateTo(value: AnimateParam, event: () => void): void
 ```
 
-[animateTo](../reference/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[动画参数](../reference/arkui-ts/ts-explicit-animation.md#animateparam%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)（包括时长、[曲线](../reference/apis/js-apis-curve.md#ohoscurves-%E6%8F%92%E5%80%BC%E8%AE%A1%E7%AE%97)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
+[animateTo](../reference/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[动画参数](../reference/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[曲线](../reference/apis/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
 
 ```ts
