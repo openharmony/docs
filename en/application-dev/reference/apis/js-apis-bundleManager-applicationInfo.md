@@ -9,6 +9,7 @@ The **ApplicationInfo** module defines the application information. A system app
 ## ApplicationInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
 | Name                      | Type                                                        | Readable| Writable| Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | Yes  | No  | Application name.                                                |
