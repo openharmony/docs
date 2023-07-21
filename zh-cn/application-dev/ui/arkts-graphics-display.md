@@ -268,7 +268,214 @@ struct MyComponent {
 }
 ```
 
-![zh-cn_image_0000001511421240](figures/zh-cn_image_0000001511421240.png)
+![zh-cn_image_0000001622804833](figures/zh-cn_image_0000001622804833.png)
+
+
+### 图片插值
+
+当原图分辨率较低并且放大显示时，图片会模糊出现锯齿。这时可以使用interpolation属性对图片进行插值，使图片显示得更清晰。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.None)
+          .borderWidth(1)
+          .overlay("Interpolation.None", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Low)
+          .borderWidth(1)
+          .overlay("Interpolation.Low", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Medium)
+          .borderWidth(1)
+          .overlay("Interpolation.Medium", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.High)
+          .borderWidth(1)
+          .overlay("Interpolation.High", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001643127365](figures/zh-cn_image_0000001643127365.png)
+
+
+### 设置图片重复样式
+
+通过objectRepeat属性设置图片的重复样式方式，重复样式请参考枚举说明。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 5 }) {
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.XY)
+          .objectFit(ImageFit.ScaleDown)
+          // 在水平轴和竖直轴上同时重复绘制图片
+          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.Y)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在竖直轴上重复绘制图片
+          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.X)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在水平轴上重复绘制图片
+          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding(8)
+  }
+}
+```
+
+![zh-cn_image_0000001593444112](figures/zh-cn_image_0000001593444112.png)
+
+
+### 设置图片渲染模式
+
+通过renderMode属性设置图片的渲染模式为原色或黑白。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 50 }) {
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为原色 
+          .renderMode(ImageRenderMode.Original)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+            // overlay是通用属性，用于在组件上显示说明文字
+          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为黑白
+          .renderMode(ImageRenderMode.Template)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding({ top: 20,right: 10 })
+  }
+}
+```
+
+![zh-cn_image_0000001593293100](figures/zh-cn_image_0000001593293100.png)
+
+
+### 设置图片解码尺寸
+
+通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 150,
+            height: 150
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:150 height:150', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 400,
+            height: 400
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:400 height:400', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+      }.height(150).width('100%').padding(20)
+
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001593769844](figures/zh-cn_image_0000001593769844.png)
+
+
+### 为图片添加滤镜效果
+
+通过colorFilter修改图片的像素颜色，为图片添加滤镜。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.example'))
+          .width('40%')
+          .margin(10)
+        Image($r('app.media.example'))
+          .width('40%')
+          .colorFilter(
+            [1, 1, 0, 0, 0,
+             0, 1, 0, 0, 0,
+             0, 0, 1, 0, 0,
+             0, 0, 0, 1, 0])
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001643171357](figures/zh-cn_image_0000001643171357.png)
 
 
 ### 同步加载图片
