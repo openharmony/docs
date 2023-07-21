@@ -1,16 +1,15 @@
 # Image
 
+Image为图片组件，常用于在应用中显示图片。Image支持加载string、&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)和[Resource](ts-types.md#resource类型)类型的数据源，支持png、jpg、bmp、svg和gif类型的图片格式。
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载string、[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref17377151114177,link:zh-cn_topic_0000001607845161.ditamap](zh-cn_topic_0000001607845161.ditamap)和[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref153775115171,link:zh-cn_topic_0000001557565314.xml#resource类型](zh-cn_topic_0000001557565314.xml#resource类型)类型的数据源，支持png、jpg、bmp、svg和gif类型的图片格式。
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 需要权限
 
-使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref528719702145536,link:zh-cn_topic_0000001607884821.xml](zh-cn_topic_0000001607884821.xml)。
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 
 ## 子组件
@@ -28,66 +27,85 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**参数：** 
 
-  | 参数名 | 参数类型 | 必填 | 参数描述 | 
-| -------- | -------- | -------- | -------- |
-| src | string&nbsp;\|&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref1783591898145536,link:zh-cn_topic_0000001607845161.ditamap](zh-cn_topic_0000001607845161.ditamap)&nbsp;\|&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref1676365543145536,link:zh-cn_topic_0000001557565314.xml#resource类型](zh-cn_topic_0000001557565314.xml#resource类型) | 是 | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-graphics-display.md#加载图片资源)。<br/>-&nbsp;string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br/>&nbsp;&nbsp;-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64&nbsp;data],&nbsp;其中[base64&nbsp;data]为Base64字符串数据。<br/>&nbsp;&nbsp;-&nbsp;支持file://路径前缀的字符串。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br/>-&nbsp;PixelMap格式为像素图，常用于图片编辑的场景。<br/>-&nbsp;Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>**说明：**<br/>-&nbsp;ArkTS卡片支持gif图片格式动效，但仅在显示时播放一次。<br/>-&nbsp;ArkTS卡片上不支持http://等网络相关路径前缀和file://路径前缀的字符串。<br/>-&nbsp;ArkTS卡片上不支持&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref334249260145536,link:zh-cn_topic_0000001607845161.ditamap](zh-cn_topic_0000001607845161.ditamap)类型。 | 
-
+| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../ui/arkts-graphics-display.md#加载图片资源)。<br>1. string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持Base64字符串。格式data:image/[png<br>- 支持file://路径前缀的字符串。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>2. PixelMap格式为像素图，常用于图片编辑的场景。<br>3. Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http://等网络相关路径前缀和file://路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型。 |
 
 ## 属性
 
-属性的详细使用指导请参考[添加属性](arkts-graphics-display.md#添加属性)。除支持[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref1225295582145536,link:zh-cn_topic_0000001607884837.xml](zh-cn_topic_0000001607884837.xml)外，还支持以下属性：
+属性的详细使用指导请参考[添加属性](x-wc://file=zh-cn_topic_0000001622645181.html#section214484111539)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-  | 名称 | 参数类型 | 描述 | 
-| -------- | -------- | -------- |
-| alt | string&nbsp;\|&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref1856869696145536,link:zh-cn_topic_0000001557565314.xml#resource类型](zh-cn_topic_0000001557565314.xml#resource类型) | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| objectFit | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref531158678145536,link:zh-cn_topic_0000001608004797.xml#imagefit](zh-cn_topic_0000001608004797.xml#imagefit) | 设置图片的缩放类型。<br/>会审意见：补充和objectRepeat同时使用的效果<br/>默认值：ImageFit.Cover<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| objectRepeat | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref501248717145536,link:zh-cn_topic_0000001608004797.xml#imagerepeat](zh-cn_topic_0000001608004797.xml#imagerepeat) | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 | 
-| interpolation | ImageInterpolation | 设置图片的插值效果，即减轻低清晰度图片在放大显示时出现的锯齿问题。默认值：ImageInterpolation.None<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 | 
-| renderMode | ImageRenderMode | 设置图片的渲染模式为原色或黑白。<br/>默认值：ImageRenderMode.Original<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 | 
-| sourceSize | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：px<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅在目标尺寸小于图源尺寸时生效。<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 | 
-| matchTextDirection | boolean | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| fitOriginalSize | boolean | 图片组件尺寸未设置时，显示尺寸是否跟随图源尺寸。<br/>组件不设置宽高或仅设置宽/高时，该属性不生效。<br/>默认值：false<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| fillColor | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref467768525145536,link:zh-cn_topic_0000001557565314.xml#resourcecolor](zh-cn_topic_0000001557565314.xml#resourcecolor) | 设置填充颜色，设置后填充颜色会覆盖在图片上。<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 | 
-| autoResize | boolean | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会自动解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：true<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| syncLoad<sup>8+</sup> | boolean | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 | 
-| copyOption<sup>9+</sup> | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref1637224051145536,link:zh-cn_topic_0000001608004797.xml#copyoptions9](zh-cn_topic_0000001608004797.xml#copyoptions9) | 设置图片是否可复制。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg图片不支持复制。 | 
-| colorFilter<sup>9+</sup> | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref421105371145536,link:zh-cn_topic_0000001557565314.xml#colorfilter9](zh-cn_topic_0000001557565314.xml#colorfilter9) | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>会审意见：确定RGBA值定义<br/>RGBA值分别是0和1之间的浮点数字，当矩阵对角线值为1时，保持图片原有色彩。<br/>**计算规则：**<br/>如果输入的滤镜矩阵为：<br/>&nbsp;&nbsp;<br/>```<br/>&nbsp;&nbsp;[&nbsp;r_1,&nbsp;r_2,&nbsp;r_3,&nbsp;r_4,&nbsp;r_5,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;g_1,&nbsp;g_2,&nbsp;g_3,&nbsp;g_4,&nbsp;g_5,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;b_1,&nbsp;b_2,&nbsp;b_3,&nbsp;b_4,&nbsp;b_5,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;a_1,&nbsp;a_2,&nbsp;a_3,&nbsp;a_4,&nbsp;a_5&nbsp;]<br/>```<br/>像素点为[R,&nbsp;G,&nbsp;B,&nbsp;A]<br/>则过滤后的颜色为&nbsp;[R’,&nbsp;G’,&nbsp;B’,&nbsp;A’]<br/>&nbsp;&nbsp;<br/>```<br/>R’&nbsp;=&nbsp;r_1*R&nbsp;+&nbsp;r_2*G&nbsp;+&nbsp;r_3*B&nbsp;+&nbsp;r_4*A&nbsp;+&nbsp;r_5<br/>G’&nbsp;=&nbsp;g_1*R&nbsp;+&nbsp;g_2*G&nbsp;+&nbsp;g_3*B&nbsp;+&nbsp;g_4*A&nbsp;+&nbsp;g_5&nbsp;&nbsp;&nbsp;<br/>B’&nbsp;=&nbsp;b_1*R&nbsp;+&nbsp;b_2*G&nbsp;+&nbsp;b_3*B&nbsp;+&nbsp;b_4*A&nbsp;+&nbsp;b_5&nbsp;&nbsp;<br/>A’&nbsp;=&nbsp;a_1*R&nbsp;+&nbsp;a_2*G&nbsp;+&nbsp;a_3*B&nbsp;+&nbsp;a_4*A&nbsp;+&nbsp;a_5<br/>```<br/>从API&nbsp;version&nbsp;9开始，该接口支持在ArkTS卡片中使用。 | 
-| draggable<sup>9+</sup> | boolean | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br/>不能和[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001607884825.xml#xref190510913161,link:zh-cn_topic_0000001557406026.xml](zh-cn_topic_0000001557406026.xml)事件同时使用。<br/>默认值：false | 
+| 名称                     | 参数类型                                                | 描述                                                         |
+| ------------------------ | ------------------------------------------------------- | ------------------------------------------------------------ |
+| alt                      | string \| [Resource](ts-types.md#resource类型)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectFit                | [ImageFit](ts-appendix-enums.md#imagefit)               | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectRepeat             | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| interpolation            | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
+| renderMode               | [ImageRenderMode](#imagerendermode)                     | 设置图片的渲染模式为原色或黑白。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| sourceSize               | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：px<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅在目标尺寸小于图源尺寸时生效。<br>svg类型图源不支持该属性。<br>PixelMap资源不支持该属性。 |
+| matchTextDirection       | boolean                                                 | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fitOriginalSize          | boolean                                                 | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fillColor                | [ResourceColor](ts-types.md#resourcecolor)              | 设置填充颜色，设置后填充颜色会覆盖在图片上。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
+| autoResize               | boolean                                                 | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会自动解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| syncLoad<sup>8+</sup>    | boolean                                                 | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
+| colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>RGBA值分别是0和1之间的浮点数字，当矩阵对角线值为1时，保持图片原有色彩。<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| draggable<sup>9+</sup>   | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-events-focus-event.md#%E8%AE%BE%E7%BD%AE%E7%BB%84%E4%BB%B6%E6%98%AF%E5%90%A6%E8%8E%B7%E7%84%A6)。Image组件默认不获焦，需将[focusable](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-focus.md)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-focus.md)属性设置为true，即可实现点击获焦。
-> 
-> - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
+计算规则：
 
+如果输入的滤镜矩阵为：
+
+```
+  [ r_1, r_2, r_3, r_4, r_5,     
+    g_1, g_2, g_3, g_4, g_5,     
+    b_1, b_2, b_3, b_4, b_5,     
+    a_1, a_2, a_3, a_4, a_5 ]
+```
+
+像素点为[R, G, B, A]
+
+则过滤后的颜色为 [R’, G’, B’, A’]
+
+```
+R’ = r_1*R + r_2*G + r_3*B + r_4*A + r_5
+G’ = g_1*R + g_2*G + g_3*B + g_4*A + g_5   
+B’ = b_1*R + b_2*G + b_3*B + b_4*A + b_5  
+A’ = a_1*R + a_2*G + a_3*B + a_4*A + a_5
+```
+
+
+
+>  **说明：**
+>
+>  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md)属性设置为true，即可实现点击获焦。
+>  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
 
 ## ImageInterpolation
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-  | 名称 | 描述 | 
-| -------- | -------- |
-| None | 不使用图片插值。 | 
-| High | 高图片插值，插值质量最高，可能会影响图片渲染的速度。 | 
-| Medium | 中图片插值。 | 
-| Low | 低图片插值。 | 
-
+| 名称   | 描述                                                 |
+| ------ | ---------------------------------------------------- |
+| None   | 不使用图片插值。                                     |
+| High   | 高图片插值，插值质量最高，可能会影响图片渲染的速度。 |
+| Medium | 中图片插值。                                         |
+| Low    | 低图片插值。                                         |
 
 ## ImageRenderMode
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-  | 名称 | 描述 | 
-| -------- | -------- |
-| Original | 原色渲染模式。 | 
-| Template | 黑白渲染模式。 | 
-
+| 名称     | 描述           |
+| -------- | -------------- |
+| Original | 原色渲染模式。 |
+| Template | 黑白渲染模式。 |
 
 ## 事件
 
-除支持[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref876253198145536,link:zh-cn_topic_0000001607725241.xml](zh-cn_topic_0000001607725241.xml)外，还支持以下事件：
-
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 ### onComplete
 
@@ -99,13 +117,13 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 **参数：**
 
-  | 参数名 | 类型 | 说明 | 
+| 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| width | number | 图片的宽。<br/>单位：像素 | 
-| height | number | 图片的高。<br/>单位：像素 | 
-| componentWidth | number | 组件的宽。<br/>单位：像素 | 
-| componentHeight | number | 组件的高。<br/>单位：像素 | 
-| loadingStatus | number | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 | 
+| width | number | 图片的宽。<br/>单位：像素 |
+| height | number | 图片的高。<br/>单位：像素 |
+| componentWidth | number | 组件的宽。<br/>单位：像素 |
+| componentHeight | number | 组件的高。<br/>单位：像素 |
+| loadingStatus | number | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
 
 
 ### onError
@@ -118,11 +136,11 @@ onError(callback: (event?: { componentWidth: number, componentHeight: number , m
 
 **参数：**
 
-  | 参数名 | 类型 | 说明 | 
+| 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| componentWidth | number | 组件的宽。<br/>单位：像素 | 
-| componentHeight | number | 组件的高。<br/>单位：像素 | 
-| message<sup>9+</sup> | string | 报错信息。 | 
+| componentWidth | number | 组件的宽。<br/>单位：像素 |
+| componentHeight | number | 组件的高。<br/>单位：像素 |
+| message<sup>9+</sup> | string | 报错信息。 |
 
 
 ### onFinish
@@ -135,14 +153,12 @@ onFinish(event: () =&gt; void)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-
 ## 示例
-
 
 ### 加载基本类型图片
 
-  
-```
+
+```ts
 @Entry
 @Component
 struct ImageExample1 {
@@ -177,14 +193,15 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
 
-
 ### 加载网络图片
 
-加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用SDK中提供的[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref614967979145536,link:zh-cn_topic_0000001607845145.xml](zh-cn_topic_0000001607845145.xml)工具包发送网络请求，接着将返回的数据解码为Image组件中的PixelMap，图片开发可参考[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref331200695145536,link:zh-cn_topic_0000001607725225.xml](zh-cn_topic_0000001607725225.xml)。
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image-overview.md)。
+
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 会审意见：补充权限配置说明
 
-  
+
 ```
 @Entry
 @Component
@@ -200,13 +217,10 @@ struct ImageExample2 {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 网络图片加载的请求方式、超时、额外请求参数等配置可以参考HTTP工具包中关于[ERROR:Invalid link:zh-cn_topic_0000001607884825.xml#xref1079565687145536,link:zh-cn_topic_0000001557724938.xml](zh-cn_topic_0000001557724938.xml)请求方法的细节。
-
 
 ### 为图片添加事件
 
-  
+
 ```ts
 @Entry
 @Component
