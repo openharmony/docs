@@ -199,10 +199,7 @@ struct ImageExample1 {
 
 使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
-会审意见：补充权限配置说明
-
-
-```
+```ts
 @Entry
 @Component
 struct ImageExample2 {
