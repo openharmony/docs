@@ -107,7 +107,7 @@ conn.on('netAvailable', (data => {
 
 // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
 conn.on('netUnavailable', (data => {
-  console.log("net is unavailable, netId is " + data.netId);
+  console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
 
 // 订阅指定网络状态变化的通知
