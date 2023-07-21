@@ -693,12 +693,10 @@ async function createTonePlayerBefore(){
 
 音频渲染器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
 | 名称         | 类型                                     | 必填  | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。 |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Renderer |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Renderer |
 | privacyType<sup>10+</sup> | [AudioPrivacyType](#audioprivacytype) | 否 | 表示音频流是否可以被其他应用录制，默认值为0。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
 ## AudioPrivacyType<sup>10+</sup><a name="audioprivacytype"></a>
@@ -852,7 +850,7 @@ async function createTonePlayerBefore(){
 
 ## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
 
-待录制播放音频流的筛选信息。
+待录制的播放音频流的筛选信息。
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
