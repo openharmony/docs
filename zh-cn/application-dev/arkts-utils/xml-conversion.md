@@ -9,7 +9,7 @@
 
 ## 注意事项
 
-XML解析及转换需要确认传入的XML数据符合标准格式。
+XML解析及转换需要确保传入的XML数据符合标准格式。
 
 
 ## 开发步骤
@@ -22,7 +22,7 @@ XML解析及转换需要确认传入的XML数据符合标准格式。
    import convertxml from '@ohos.convertxml';
    ```
 
-2. 输入待转换XML，设置转换选项。
+2. 输入待转换的XML，设置转换选项。
    
    ```js
    let xml =
