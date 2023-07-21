@@ -87,7 +87,7 @@ export default class EntryAbility extends UIAbility {
         }
         // 1. Obtain applicationContext through the context attribute.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext to register a listener for the ability lifecycle in the application.
+        // 2. Use applicationContext.on to subscribe to the 'abilityLifecycle' event.
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
         console.log('registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}');
     }
@@ -205,7 +205,7 @@ export default class EntryAbility extends UIAbility {
         };
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
-        // 2. Use applicationContext to register a listener for system environment changes.
+        // 2. Use applicationContext.on() to subscribe to the 'environment' event.
         callbackId = applicationContext.on('environment', environmentCallback);
         console.log('registerEnvironmentCallback callbackId: ${callbackId}');
     }
@@ -314,7 +314,7 @@ export default class MyAbility extends UIAbility {
         globalThis.applicationContext = this.context.getApplicationContext();
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
-        // 2. Use applicationContext to subscribe to the 'applicationStateChange' event.
+        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
         applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
         console.log('Resgiter applicationStateChangeCallback');
     }
@@ -334,7 +334,7 @@ Deregisters the listener for application foreground/background state changes bas
 | Name  | Type                    | Mandatory| Description                            |
 | -------- | ------------------------ | ---- | -------------------------------- |
 | type     | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.            |
-| callback | AsyncCallback\<void>     | No  | Callback that has been used for the registration|
+| callback | AsyncCallback\<void>     | No  | Callback that has been used for the registration.|
 
 **Example**
 
@@ -359,7 +359,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange'): **void**;
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
 
 Deregisters all the listeners for application foreground/background state changes.
 
@@ -370,6 +370,7 @@ Deregisters all the listeners for application foreground/background state change
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | type   | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
+| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
 
 **Example**
 
