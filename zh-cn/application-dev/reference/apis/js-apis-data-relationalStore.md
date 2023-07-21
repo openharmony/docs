@@ -3285,7 +3285,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: number, config: Distribu
 **示例：**
 
 ```js
-let config = new DistributedConfig();
+let config = new relationalStore.DistributedConfig();
 config.autoSync = true;
 store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
   if (err) {
@@ -3323,7 +3323,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 **示例：**
 
 ```js
-let config = new DistributedConfig();
+let config = new relationalStore.DistributedConfig();
 config.autoSync = true;
 let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
 promise.then(() => {
