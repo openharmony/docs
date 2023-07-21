@@ -31,6 +31,20 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 | bundleName | string | Yes  | No  | Name of the bundle whose status changes.|
 | userId     | number | Yes  | No  | ID of the user whose bundle status changes.  |
 
+## BundleChangedEvent
+
+Enumerates the types of events to listen for.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name      | Description            |
+| ---------- | --------------- |
+| add        | Bundle addition events.  |
+| update     | Bundle update events.  |
+| remove     | Bundle removal events.  |
+
 ## bundleMonitor.on
 
 on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
@@ -47,7 +61,7 @@ Subscribes to bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| BundleChangedEvent| Yes  | Type of the event to subscribe to.|
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to subscribe to.|
 | callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
 
 **Example**
@@ -80,7 +94,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| type| BundleChangedEvent| Yes  | Type of the event to unsubscribe from.                                        |
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to unsubscribe from.                                        |
 | callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
 
 **Example**
