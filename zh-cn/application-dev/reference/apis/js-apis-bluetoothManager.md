@@ -2164,7 +2164,7 @@ try {
     let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let setRet = a2dpSrc.setConnectionStrategy("XX:XX:XX:XX:XX:XX", 1).then((data) => {
         console.info("setConnectionStrategy");
-    }, (error) => {
+    }, err => {
         console.error("setConnectionStrategy errCode: " + err.code + ", errMessage: " + err.message);
     });
 } catch (err) {
