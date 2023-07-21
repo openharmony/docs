@@ -1030,7 +1030,7 @@
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (蓝牙)(推荐)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
-      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-deviceScardEmulation.md)
+      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
       - [@ohos.nfc.tag (标准NFC-Tag)](reference/apis/js-apis-nfcTag.md)
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
