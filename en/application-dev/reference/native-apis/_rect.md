@@ -3,10 +3,13 @@
 
 ## Overview
 
-If **rects** is a null pointer, the buffer size is the same as the size of the dirty region by default.
+The **Rect** module describes a rectangle on the display.
 
+**Since**
 
-**Related Modules:**
+8
+
+**Related Modules**
 
 [NativeWindow](_native_window.md)
 
@@ -14,25 +17,25 @@ If **rects** is a null pointer, the buffer size is the same as the size of the d
 ## Summary
 
 
-
 ### Member Variables
 
-| Name | Description | 
+  | Name| Description| 
 | -------- | -------- |
-| x | Start X coordinate of the rectangle. | 
-| y | Start Y coordinate of the rectangle.  | 
-| w | Width of the rectangle. | 
-| h | Height of the rectangle.  | 
+| [x](#x) | Start X coordinate of the rectangle.| 
+| [y](#y) | Start Y coordinate of the rectangle.| 
+| [w](#w) | Width of the rectangle.| 
+| [h](#h) | Height of the rectangle.| 
 
-
-## Member Variable Description 
 
 ### x
 
+  
 ```
 int32_t Rect::x
 ```
-**Description**<br>
+
+**Description**
+
 Start X coordinate of the rectangle.
 
 
@@ -42,16 +45,21 @@ Start X coordinate of the rectangle.
 ```
 int32_t Rect::y
 ```
-**Description**<br>
+
+**Description**
+
 Start Y coordinate of the rectangle.
+
 
 ### w
 
   
 ```
-int32_t Rect::w
+uint32_t Rext::w
 ```
-**Description**<br>
+
+**Description**
+
 Width of the rectangle.
 
 
@@ -59,7 +67,9 @@ Width of the rectangle.
 
   
 ```
-int32_t Rect::h
+uint32_t Rect::h
 ```
-**Description**<br>
+
+**Description**
+
 Height of the rectangle.
