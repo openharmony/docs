@@ -1818,7 +1818,7 @@ policy.off('netBackgroundPolicyChange', (data) => {
 
 | 名称                  | 类型                                |必填| 说明                                                         |
 | ----------------------- | ----------------------------------- |----| ------------------------------------------------------------ |
-| periodDuration    | string                      |是| 计量开始时间。 |
+| periodDuration    | string                      |是| 流量限制计量周期。D1，M1，Y1 分别代表1天，1个月，1年内流量限制，超出时间则不受限制。 |
 | warningBytes      | number                      |是| 发出警告的流量阈值。 |
 | limitBytes        | number                      |是| 流量设置的配额。 |
 | metered           | string                      |是| 是否为计量网络。 |
