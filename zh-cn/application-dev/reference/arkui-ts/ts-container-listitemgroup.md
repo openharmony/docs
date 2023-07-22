@@ -120,7 +120,7 @@ struct ListItemGroupExample {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_listitemgroup.gif)
 
-## 示例2
+- 示例2
 
 ```ts
 // xxx.ets
@@ -143,7 +143,7 @@ struct ListItemGroupExample2 {
   {
    style:ListItemGroupStyle.NONE,
    itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
-  },
+  }
  ]
  build() {
   Column() {
