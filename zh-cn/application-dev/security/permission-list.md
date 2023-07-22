@@ -414,7 +414,7 @@
 
 ## ohos.permission.CHANGE_ABILITY_ENABLED_STATE
 
-允许改变应用或者组件的使能状态。
+允许改变应用或组件的使能状态。
 
 **权限级别**：system_basic
 
@@ -2328,7 +2328,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
-允许应用安装、卸载其他企业InHouse应用。
+允许应用安装企业InHouse应用。
 
 **权限级别**：system_core
 
