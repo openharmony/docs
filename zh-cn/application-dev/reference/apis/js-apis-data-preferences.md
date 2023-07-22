@@ -316,11 +316,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -388,11 +386,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -463,11 +459,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -538,11 +532,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
-从内存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -616,9 +608,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，使用callback异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -638,7 +632,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
@@ -672,16 +665,17 @@ class EntryAbility extends UIAbility {
         }
     }
 }
-
 ```
 
 ## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，使用Promise异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -706,7 +700,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
 	promise.then(() => {
@@ -744,9 +737,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-从缓存中移除指定的Preferences实例，此为同步接口。
+从缓存中移出指定的Preferences实例，此为同步接口。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -765,7 +760,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     data_preferences.removePreferencesFromCacheSync(context, 'mystore');
 } catch(err) {
@@ -793,9 +787,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，使用callback异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -824,7 +820,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     data_preferences.removePreferencesFromCache(context, {name: 'mystore'}, function (err) {
         if (err) {
@@ -858,16 +853,17 @@ class EntryAbility extends UIAbility {
         }
     }
 }
-
 ```
 
 ## data_preferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，使用Promise异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -901,7 +897,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     let promise = data_preferences.removePreferencesFromCache(context, {name: 'mystore'});
 	promise.then(() => {
@@ -1642,6 +1637,8 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
+此方法可以配合[removePreferencesFromCache](#data_preferencesremovepreferencesfromcache)使用，当监听到有进程更新了文件时，在回调方法中更新当前的Preferences实例，如下示例2。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1659,7 +1656,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
-**示例：**
+**示例1：**
 
 ```js
 try {
@@ -1690,6 +1687,67 @@ try {
 	})
 } catch (err) {
 	console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+}
+```
+
+**示例2：**
+
+```js
+let preferences = null;
+try {
+    data_preferences.getPreferences(this.context, { name: 'mystore' }, function (err, val) {
+        if (err) {
+            console.info("Failed to get preferences.");
+            return;
+        }
+        preferences = val;
+        let observer = function (key) {
+            console.info("The key " + key + " changed.");
+            try {
+                data_preferences.removePreferencesFromCache(context, { name: 'mystore' }, function (err) {
+                    if (err) {
+                        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                        return;
+                    }
+                    preferences = null;
+                    console.info("Succeeded in removing preferences.");
+                })
+            } catch (err) {
+                console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            }
+
+            try {
+                data_preferences.getPreferences(context, { name: 'mystore' }, function (err, val) {
+                    if (err) {
+                        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                        return;
+                    }
+                    preferences = val;
+                    console.info("Succeeded in getting preferences.");
+                })
+            } catch (err) {
+                console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            }
+        }
+        preferences.on('multiProcessChange', observer);
+        preferences.put('startup', 'manual', function (err) {
+            if (err) {
+                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in putting the value of 'startup'.");
+
+            preferences.flush(function (err) {
+                if (err) {
+                    console.info("Failed to flush. Cause: " + err);
+                    return;
+                }
+                console.info("Succeeded in flushing.");
+            })
+        })
+    })
+} catch (err) {
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
