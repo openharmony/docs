@@ -531,17 +531,21 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 import connection from '@ohos.net.connection';
 
 let netQuotaPolicyList = []
-
 let netquotapolicy = {
-  netType: connection.NetBearType.BEARER_CELLULAR,
-  simId: 1,
-  identity: "",
-  periodDuration: "M1",
-  warningBytes: 40000,
-  limitBytes: 50000,
-  metered: true,
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE
-};
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity:"",
+    simId:"1"
+  },
+  quotaPolicy: {
+    periodDuration: "M1",
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  },
+}
+
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error) => {
@@ -590,17 +594,21 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 import connection from '@ohos.net.connection';
 
 let netQuotaPolicyList = []
-
 let netquotapolicy = {
-  netType: connection.NetBearType.BEARER_CELLULAR,
-  simId: 1,
-  identity: "",
-  periodDuration: "M1",
-  warningBytes: 40000,
-  limitBytes: 50000,
-  metered: true,
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE
-};
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity:"",
+    simId:"1"
+  },
+  quotaPolicy: {
+    periodDuration: "M1",
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  },
+}
+
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
@@ -1051,7 +1059,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-policy.resetPolicies(1, (error) => {
+policy.resetPolicies('1', (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1094,7 +1102,7 @@ resetPolicies(simId: string): Promise\<void>;
 **示例：**
 
 ```js
-policy.resetPolicies(1).then(function (error) {
+policy.resetPolicies('1').then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1135,7 +1143,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 
 ```js
 import connection from '@ohos.net.connection';
-policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, 1, policy.NetUidPolicy.NET_POLICY_NONE, (error) => {
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1181,7 +1189,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 ```js
 import connection from '@ohos.net.connection';
-policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, 1, policy.NetUidPolicy.NET_POLICY_NONE).then(function (error) {
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1220,9 +1228,6 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 **示例：**
 
 ```js
-let param = {
-  uids: [11111,22222], isAllowed: true
-}
 policy.setDeviceIdleTrustlist([11111,22222], true, (error) => {
   console.log(JSON.stringify(error))
 });
