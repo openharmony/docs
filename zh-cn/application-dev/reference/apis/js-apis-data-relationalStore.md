@@ -234,7 +234,6 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
-
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
