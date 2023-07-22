@@ -204,10 +204,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), policy: Number.parseInt(policy.NetUidPolicy.NET_POLICY_NONE)
-}
-policy.setPolicyByUid(param, (error) => {
+policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error) => {
    console.log(JSON.stringify(error))
 });
 ```
@@ -251,10 +248,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), policy: Number.parseInt(policy.NetUidPolicy.NET_POLICY_NONE)
-}
-policy.setPolicyByUid(param).then(function (error) {
+policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -292,7 +286,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(11111), (error, data) => {
+policy.getPolicyByUid(11111, (error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -336,7 +330,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(11111)).then(function (error, data) {
+policy.getPolicyByUid(11111).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -375,7 +369,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(11111), (error, data) => {
+policy.getUidsByPolicy(11111, (error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -419,7 +413,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(11111)).then(function (error, data) {
+policy.getUidsByPolicy(11111).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -538,17 +532,17 @@ import connection from '@ohos.net.connection';
 
 let netQuotaPolicyList = []
 
-let param = {
-  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR),
+let netquotapolicy = {
+  netType: connection.NetBearType.BEARER_CELLULAR,
   simId: 1,
   identity: "",
   periodDuration: "M1",
-  warningBytes: Number.parseInt(40000),
-  limitBytes: Number.parseInt(50000),
-  metered: Boolean(Number.parseInt(true)),
+  warningBytes: 40000,
+  limitBytes: 50000,
+  metered: true,
   limitAction: policy.LimitAction.LIMIT_ACTION_NONE
 };
-netQuotaPolicyList.push(param);
+netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error) => {
   console.log(JSON.stringify(error))
@@ -597,17 +591,17 @@ import connection from '@ohos.net.connection';
 
 let netQuotaPolicyList = []
 
-let param = {
-  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR),
+let netquotapolicy = {
+  netType: connection.NetBearType.BEARER_CELLULAR,
   simId: 1,
   identity: "",
   periodDuration: "M1",
-  warningBytes: Number.parseInt(40000),
-  limitBytes: Number.parseInt(50000),
-  metered: Boolean(Number.parseInt(true)),
+  warningBytes: 40000,
+  limitBytes: 50000,
+  metered: true,
   limitAction: policy.LimitAction.LIMIT_ACTION_NONE
 };
-netQuotaPolicyList.push(param);
+netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
   console.log(JSON.stringify(error))
@@ -648,10 +642,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), isMetered: true
-}
-policy.isUidNetAllowed(param, (error, data) => {
+policy.isUidNetAllowed(11111, true, (error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -696,10 +687,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), isMetered: true
-}
-policy.isUidNetAllowed(param).then(function (error, data) {
+policy.isUidNetAllowed(11111, true).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -739,10 +727,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), iface: 'wlan0'
-}
-policy.isUidNetAllowed(param, (error, data) => {
+policy.isUidNetAllowed(11111, 'wlan0', (error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -787,10 +772,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 **示例：**
 
 ```js
-let param = {
-  uid: Number.parseInt(11111), iface: 'wlan0'
-}
-policy.isUidNetAllowed(param).then(function (error, data) {
+policy.isUidNetAllowed(11111, 'wlan0').then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -830,10 +812,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 **示例：**
 
 ```js
-let param = {
-  uids: [11111,22222], isAllowed: true
-}
-policy.setDeviceIdleTrustlist(param, (error) => {
+policy.setDeviceIdleTrustlist([11111,22222], true, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -877,10 +856,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-let param = {
-  uids: [11111,22222], isAllowed: true
-}
-policy.setDeviceIdleTrustlist(param).then(function (error) {
+policy.setDeviceIdleTrustlist([11111,22222], true).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -992,7 +968,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 **示例：**
 
 ```js
-policy.getBackgroundPolicyByUid(Number.parseInt(11111), (error, data) => {
+policy.getBackgroundPolicyByUid(11111, (error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -1036,7 +1012,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 **示例：**
 
 ```js
-policy.getBackgroundPolicyByUid(Number.parseInt(11111)).then(function (error, data) {
+policy.getBackgroundPolicyByUid(11111).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1159,11 +1135,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 
 ```js
 import connection from '@ohos.net.connection';
-
-let param = {
-  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR), simId: 1, remindType: policy.NetUidPolicy.NET_POLICY_NONE
-}
-policy.updateRemindPolicy(param, (error) => {
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, 1, policy.NetUidPolicy.NET_POLICY_NONE, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1209,11 +1181,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 ```js
 import connection from '@ohos.net.connection';
-
-let param = {
-  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR), simId: 1, remindType: policy.NetUidPolicy.NET_POLICY_NONE
-}
-policy.updateRemindPolicy(param).then(function (error) {
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, 1, policy.NetUidPolicy.NET_POLICY_NONE).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1255,7 +1223,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 let param = {
   uids: [11111,22222], isAllowed: true
 }
-policy.setDeviceIdleTrustlist(param, (error) => {
+policy.setDeviceIdleTrustlist([11111,22222], true, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1299,10 +1267,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 **示例：**
 
 ```js
-let param = {
-  uids: [11111,22222], isAllowed: true
-}
-policy.setDeviceIdleTrustlist(param).then(function (error) {
+policy.setDeviceIdleTrustlist([11111,22222], true).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
