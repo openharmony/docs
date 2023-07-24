@@ -80,7 +80,8 @@ getPixelMap(): image.PixelMap;
 
 **示例：**
   ```ts
-pixmap: PixelMap = (<DrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+let resManager = getContext().resourceManager
+pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getPixelMap();
   ```
 
@@ -99,7 +100,8 @@ getPixelMap(): image.PixelMap;
 
 **示例：**
   ```ts
-pixmap: PixelMap = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
           .id))).getPixelMap();
   ```
 
@@ -118,7 +120,8 @@ getForeground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getForeground();
   ```
 
@@ -137,7 +140,8 @@ getBackground(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getBackground();
   ```
 
@@ -156,7 +160,8 @@ getMask(): DrawableDescriptor;
 
 **示例：**
   ```ts
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = getContext().resourceManager
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id))).getMask();
   ```
 ## LayeredDrawableDescriptor.getMashClipPath
