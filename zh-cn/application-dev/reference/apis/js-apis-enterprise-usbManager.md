@@ -18,7 +18,7 @@ import usbManager from '@ohos.enterprise.usbManager'
 
 ## usbManager.setUsbPolicy
 
-setUsbPolicy(dmin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>): void
+setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>): void
 
 指定设备管理应用设置USB的读写策略。使用callback异步回调。
 
