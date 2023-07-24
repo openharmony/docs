@@ -100,10 +100,10 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 | componentWidth               | number | 组件的宽。<br/>单位：像素                                    |
 | componentHeight              | number | 组件的高。<br/>单位：像素                                    |
 | loadingStatus                | number | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth<sup>10+</sup>   | number | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：** 仅在loadingStatus返回1时有效。 |
-| contentHeight<sup>10+</sup>  | number | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：** 仅在loadingStatus返回1时有效。 |
-| contentOffsetX<sup>10+</sup> | number | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：** 仅在loadingStatus返回1时有效。 |
-| contentOffsetY<sup>10+</sup> | number | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：** 仅在loadingStatus返回1时有效。 |
+| contentWidth<sup>10+</sup>   | number | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight<sup>10+</sup>  | number | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX<sup>10+</sup> | number | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY<sup>10+</sup> | number | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
 ### onError
