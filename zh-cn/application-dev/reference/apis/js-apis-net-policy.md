@@ -1428,6 +1428,7 @@ let callback = data => {
     console.log("on netUidPolicyChange, data:" + JSON.stringify(data));
 }
 policy.on('netUidPolicyChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 policy.off('netUidPolicyChange', callback);
 policy.off('networkStateChange');
 ```
@@ -1507,6 +1508,7 @@ let callback = data => {
     console.log("on netUidRuleChange, data:" + JSON.stringify(data));
 }
 policy.on('netUidRuleChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 policy.off('netUidRuleChange', callback);
 policy.off('netUidRuleChange');
 ```
@@ -1586,6 +1588,7 @@ let callback = data => {
     console.log("on netMeteredIfacesChange, data:" + JSON.stringify(data));
 }
 policy.on('netMeteredIfacesChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 policy.off('netMeteredIfacesChange', callback);
 policy.off('netMeteredIfacesChange');
 ```
@@ -1665,6 +1668,7 @@ let callback = data => {
     console.log("on netQuotaPolicyChange, data:" + JSON.stringify(data));
 }
 policy.on('netQuotaPolicyChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 policy.off('netQuotaPolicyChange', callback);
 policy.off('netQuotaPolicyChange');
 ```
@@ -1744,6 +1748,7 @@ let callback = data => {
     console.log("on netBackgroundPolicyChange, data:" + JSON.stringify(data));
 }
 policy.on('netBackgroundPolicyChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 policy.off('netBackgroundPolicyChange', callback);
 policy.off('netBackgroundPolicyChange');
 ```
