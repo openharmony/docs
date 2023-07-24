@@ -16,7 +16,7 @@ import calendarManager from'@ohos.calendarManager';
 
 ## calendarManager.createCalendar
 
-createCalendar(calendarAccount: [CalendarAccount](#CalendarAccount), callback: AsyncCallback<[Calendar](#Calendar)>): void
+createCalendar(calendarAccount: [CalendarAccount](#calendaraccount), callback: AsyncCallback<[Calendar](#calendar)>): void
 
 创建账户，使用回调的方式实现异步调用。
 
