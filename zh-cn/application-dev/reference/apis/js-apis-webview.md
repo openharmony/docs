@@ -1042,12 +1042,14 @@ struct Index {
 <html>
     <meta charset="utf-8">
     <body>
-        Hello world!
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
-        str = objName.test("test function")
-        console.log('objName.test result:'+ str)
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
     }
 </script>
 </html>
