@@ -126,7 +126,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| certificate    | [CertBlob](#CertBlob)     | 是    | 证书信息。                  |
+| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -186,7 +186,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| certificate    | [CertBlob](#CertBlob)     | 是    | 证书信息。                  |
+| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。                  |
 
 **返回值：**
 

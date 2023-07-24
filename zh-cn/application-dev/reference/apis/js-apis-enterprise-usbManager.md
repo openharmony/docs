@@ -33,7 +33,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| usbPolicy  | [UsbPolicy](#UsbPolicy) | 是 | USB读写策略。 |
+| usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -80,7 +80,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| usbPolicy  | [UsbPolicy](#UsbPolicy) | 是 | USB读写策略。 |
+| usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略。 |
 
 **返回值：**
 
