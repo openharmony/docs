@@ -186,7 +186,9 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除数据库文件，使用callback异步回调。删除成功后，建议将数据库对象置为null。
+删除数据库文件，使用callback异步回调。
+
+删除成功后，建议将数据库对象置为null。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -250,7 +252,9 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
-使用指定的数据库文件配置删除数据库，使用Promise异步回调。删除成功后，建议将数据库对象置为null。
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。
+
+删除成功后，建议将数据库对象置为null。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -317,7 +321,9 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<void>): void
 
-使用指定的数据库文件配置删除数据库，使用callback异步回调。删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
+使用指定的数据库文件配置删除数据库，使用callback异步回调。
+
+删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -391,7 +397,9 @@ class EntryAbility extends UIAbility {
 
 deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
-使用指定的数据库文件配置删除数据库，使用Promise异步回调。删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。
+
+删除成功后，建议将数据库对象置为null。若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
