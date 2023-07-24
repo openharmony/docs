@@ -19,6 +19,12 @@
   - Selecting and Saving User Files (FilePicker)
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
+  - Album Management (photoAccessHelper)
+    - [photoAccessHelper Overview](photoAccessHelper-overview.md)
+    - [Media Asset (Image and video) Management](photoAccessHelper-resource-guidelines.md)
+    - [User Album Management](photoAccessHelper-userAlbum-guidelines.md)
+    - [System Album Management](photoAccessHelper-systemAlbum-guidelines.md)
+    - [Media Asset Change Notification Management](photoAccessHelper-notify-guidelines.md)
   - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
   - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
 - Distributed File System
