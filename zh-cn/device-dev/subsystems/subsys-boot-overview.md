@@ -22,19 +22,24 @@
 
 启动子系统内部涉及以下组件：
 
-- init启动引导组件：
-  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init-jobs.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+- init启动引导组件
 
-- ueventd启动引导组件：
+  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[job解析接口说明](../subsystems/subsys-boot-init-jobs.md#接口说明)）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+
+- ueventd启动引导组件
+
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
 
-- appspawn应用孵化组件：
-  负责接收**用户程序框架**的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
+- appspawn应用孵化组件
 
-- bootstrap服务启动组件：
+  负责接收用户程序框架的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
+
+- bootstrap服务启动组件
+
   提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用bootstrap标识的入口函数，并启动系统服务。
 
-- syspara系统属性组件：
+- syspara系统属性组件
+
   系统属性组件，根据OpenHarmony产品兼容性规范提供获取设备信息的接口，如：产品名、品牌名、厂家名等，同时提供设置/读取系统属性的接口。
 
 
@@ -52,13 +57,13 @@
 | base/startup/syspara_lite | -&nbsp;轻量系统设备（参考内存≥128KB），如Hi3861V100<br/>-&nbsp;小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300 |
 
 - init启动引导组件：
-  - 每个系统服务启动时都需要编写各自的启动脚本文件init.cfg，定义各自的服务名、可执行文件路径、权限和其他信息。
-  - 每个系统服务各自安装其启动脚本到/system/etc/init目录下，init进程统一扫码执行。
+  - 每个系统服务启动时都需要编写各自的启动脚本文件`init.cfg`，定义各自的服务名、可执行文件路径、权限和其他信息。
+  - 每个系统服务各自安装其启动脚本到`/system/etc/init`目录下，init进程统一扫码执行。
 
-- 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
+- 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件`/vendor/etc/init/init.{hardware}.cfg`；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
   > **说明：**
->
+  >
   > 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
@@ -78,10 +83,10 @@
 每个开发板都需要在存储器上划分好分区来存放上述镜像，SOC启动时都由bootloader来加载这些镜像，具体过程包括以下几个大的步骤：
 
 - bootloader初始化ROM和RAM等硬件，加载分区表信息。
-- bootloader根据分区表加载boot.img，从中解析并加载ramdisk.img到内存中。
+- bootloader根据分区表加载`boot.img`，从中解析并加载`ramdisk.img`到内存中。
 - bootloader准备好分区表信息，ramdisk地址等信息，进入内核，内核加载ramdisk并执行init。
-- init准备初始文件系统，挂载required.fstab（包括system.img和vendor.img的挂载）。
-- 扫描system.img和vendor.img中etc/init目录下的启动配置脚本，执行各个启动命令。
+- init准备初始文件系统，挂载`required.fstab`（包括`system.img`和`vendor.img`的挂载）。
+- 扫描`system.img`和`vendor.img`中`etc/init`目录下的启动配置脚本，执行各个启动命令。
 
 ### uboot启动引导过程
 
@@ -95,21 +100,21 @@
 
     - Hi3516DV300
 
-      在Hi3516DV300平台上的boot.img采用了FIT（flattened image tree）格式，将kernel编译生成的zImage-dtb和cpio格式的ramdisk镜像通过打包工具Mkimage根据its文件中的信息打包生成一个镜像，这个镜像就是boot.img。
+      在Hi3516DV300平台上的`boot.img`采用了FIT（flattened image tree）格式，将kernel编译生成的zImage-dtb和cpio格式的ramdisk镜像通过打包工具Mkimage根据its文件中的信息打包生成一个镜像，这个镜像就是`boot.img`。
 
-      下面对上述boot.img文件生成过程中使用的文件和工具进行简要介绍：
+      下面对上述`boot.img`文件生成过程中使用的文件和工具进行简要介绍：
 
       1. its文件
 
-         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的ohos.its文件。
+         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的`ohos.its`文件。
 
       2. Mkimage打包工具
 
-         能够解析its文件，将其中按照其中镜像的配置将对应镜像打包生成itb文件，这里也就是boot.img文件。
+         能够解析its文件，将其中按照其中镜像的配置将对应镜像打包生成itb文件，这里也就是`boot.img`文件。
 
       3. ramdisk
 
-         使用cpio打包的ramdisk.img镜像文件。
+         使用cpio打包的`ramdisk.img`镜像文件。
 
       4. zImage-dtb
 
@@ -117,7 +122,7 @@
 
     - rk3568
 
-      在rk3568平台上相应的镜像文件为boot_linux.img，其中打包的文件与Hi3516DV300平台不尽相同，下面分别列举：
+      在rk3568平台上相应的镜像文件为`boot_linux.img`，其中打包的文件与Hi3516DV300平台不尽相同，下面分别列举：
 
       1. Image
 
@@ -129,11 +134,11 @@
 
       3. ramdisk.img
 
-         使用cpio打包的ramdisk.img镜像文件。
+         使用cpio打包的`ramdisk.img`镜像文件。
 
   - u-boot加载
 
-    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk 的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为root=/dev/ram0 initrd=0x84000000,0x292e00。
+    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为`root=/dev/ram0 initrd=0x84000000,0x292e00`。
 
 
 - u-boot进入
@@ -155,15 +160,15 @@
 
   所谓required分区，就是系统启动引导过程的必要分区，必须在二级启动开始前进行挂载。比如system、vendor等必选镜像，挂载这些镜像前，需要先创建对应的块设备文件。这些块设备文件是通过内核上报UEVENT事件来创建的。init需要知道存储器的主设备目录，需要bootloader通过default_boot_device传递。
 
-  目前init支持两种方式获取required分区信息，一是通过保存在/proc/cmdline中的bootargs，init会首先尝试从cmdline读取required分区信息；二是通过读取ramdisk中的fstab.required文件，只有在前一种方式获取失败的情况下才会尝试通过这种方式获取。
+  目前init支持两种方式获取required分区信息，一是通过保存在`/proc/cmdline`中的bootargs，init会首先尝试从cmdline读取required分区信息；二是通过读取ramdisk中的`fstab.required`文件，只有在前一种方式获取失败的情况下才会尝试通过这种方式获取。
 
     - 块设备的创建逻辑
 
       - 准备工作
 
-        1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
-        2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
-        3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
+        1. init从cmdline中读取required fstab，若获取失败，则尝试读`fstab.required`文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
+        2. 创建接收内核上报uevent事件广播消息的socket，从`/proc/cmdline`里读取default_boot_device。
+        3. 带着fstab信息和socket句柄遍历`/sys/devices`目录，准备开始触发内核上报uevent事件。
 
       - 触发事件
 
@@ -180,16 +185,16 @@
 
     - 与default_boot_device匹配关系
 
-      内核将bootargs信息写入/proc/cmdline，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。以ohos.required_mount.为前缀的内容则是系统启动必要的分区挂载信息，其内容与fstab.required文件内容应当是一致的。另外，分区挂载信息中的块设备节点就是default_boot_device目录中by-name下软链接指向的设备节点。例如，default_boot_device的值为soc/10100000.himci.eMMC，那么ohos.required_mount.system的值就包含了/dev/block/platform/soc/10100000.himci.eMMC/by-name/system这个指向system设备节点的软链接路径。
+      内核将bootargs信息写入`/proc/cmdline`，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。以`ohos.required_mount.`为前缀的内容则是系统启动必要的分区挂载信息，其内容与`fstab.required`文件内容应当是一致的。另外，分区挂载信息中的块设备节点就是`default_boot_device`目录中by-name下软链接指向的设备节点。例如，`default_boot_device`的值为`soc/10100000.himci.eMMC`，那么`ohos.required_mount.system`的值就包含了`/dev/block/platform/soc/10100000.himci.eMMC/by-name/system`这个指向system设备节点的软链接路径。
 
-      在创建块设备节点的过程中，会有一个将设备路径与default_boot_device的值匹配的操作，匹配成功后，会在/dev/block/by-name目录下创建指向真实块设备节点的软链接，以此在访问设备节点的过程中实现芯片平台无关化。
+      在创建块设备节点的过程中，会有一个将设备路径与default_boot_device的值匹配的操作，匹配成功后，会在`/dev/block/by-name`目录下创建指向真实块设备节点的软链接，以此在访问设备节点的过程中实现芯片平台无关化。
 
     - 实例
 
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
       > **说明：**
-    >
+      >
       > 从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
       1. 获取required设备信息
