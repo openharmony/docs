@@ -140,7 +140,6 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
 
 **示例：**
 
@@ -189,7 +188,6 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
 
 **示例：**
 
