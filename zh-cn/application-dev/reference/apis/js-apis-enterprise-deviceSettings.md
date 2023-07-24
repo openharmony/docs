@@ -146,21 +146,25 @@ let wantTemp = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray:Uint8Array;
+var certFileArray: Uint8Array;
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer").then(value => {
-  certFileArray = value
-}).catch(error => {
-
-});
-var certUri:string;
+await globalThis.context.resourceManager.getRawFileContent("test.cer")
+  .then(value => {
+    certFileArray = value
+  })
+  .catch(error => {
+    console.error(`Failed to get row file content. message: ${error.message}`);
+  });
 await new Promise((resolve, reject) => {
-  deviceSettings.installUserCertificate(SELFWANT, {inData: certFileArray, alias: "cert_alias_xts"}, (err, result) => {
-  if (err) {
-    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+  deviceSettings.installUserCertificate(wantTemp, {
+    inData: certFileArray,
+    alias: "cert_alias_xts"
+  }, (err, result) => {
+    if (err) {
+      console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
   });
 });
 ```
@@ -207,20 +211,20 @@ let wantTemp = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-var certFileArray:Uint8Array;
+var certFileArray: Uint8Array
 // test.cer needs to be placed in the rawfile directory
-await globalThis.context.resourceManager.getRawFileContent("test.cer").then(data => {
-  certFileArray = data
-}).catch(error => {
-  console.log('getRawFileContent error' + error)
-})
-var certUri:string;
-await deviceSettings.installUserCertificate(SELFWANT, {inData: certFileArray, alias: "cert_alias_xts"})
-  .then((data) => {
-    certUri = data
-}).catch(error => {
-    console.log('installUserCertificate error' + error)
-})
+await globalThis.context.resourceManager.getRawFileContent("test.cer")
+  .then(data => {
+    certFileArray = data
+  }).catch(error => {
+    console.log('getRawFileContent error' + error)
+  })
+await deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
+  .then((result) => {
+    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+  }).catch(err => {
+    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+  })
 ```
 
 ## CertBlob
