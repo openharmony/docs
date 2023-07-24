@@ -30,14 +30,14 @@
 | 装饰器参数        | 无                                        |
 | 同步类型         | 不与父组件中任何类型的变量同步。                         |
 | 允许装饰的变量类型    | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>建议不要装饰Date类型，应用可能会产生异常行为。<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
-| 被装饰变量的初始值    | 必须指定。                                    |
+| 被装饰变量的初始值    | 必须本地初始化。                                    |
 
 
 ## 变量的传递/访问规则说明
 
 | 传递/访问     | 说明                                       |
 | --------- | ---------------------------------------- |
-| 从父组件初始化   | 可选，从父组件初始化或者本地初始化。<br/>支持父组件中常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化   | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
 | 用于初始化子组件  | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                            |
 
