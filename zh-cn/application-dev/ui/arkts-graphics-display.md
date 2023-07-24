@@ -26,6 +26,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
 
 - 本地资源
+
   创建文件夹，将本地图片放入ets文件夹下的任意位置。
 
   Image组件引入本地图片路径，即可显示图片（根目录为ets文件夹）。
@@ -36,6 +37,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 网络资源
+
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Image组件的src参数为网络图片的链接。
 
   ```ts
@@ -43,6 +45,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - Resource资源
+
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
   **图1** resouces  
@@ -59,7 +62,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   **图2** rawfile  
 
- ![image-rawfile](figures/image-rawfile.jpg)
+  ![image-rawfile](figures/image-rawfile.jpg)
 
   调用方式：
 
@@ -67,8 +70,9 @@ Image支持加载存档图、多媒体像素图两种类型。
   Image($rawfile('snap'))
   ```
 
-- 媒体库datashare
-  支持datashare://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
+- 媒体库file://data/storage
+
+  支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ​    
@@ -120,7 +124,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   2. 从媒体库获取的url格式通常如下。
       ​    
       ```ts
-      Image('datashare:///media/5')
+      Image('file://media/Photos/5')
       .width(200)
       ```
 
@@ -142,6 +146,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    ```
 
 2. 引用多媒体。
+
    请求网络图片请求，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
@@ -268,7 +273,216 @@ struct MyComponent {
 }
 ```
 
-![zh-cn_image_0000001511421240](figures/zh-cn_image_0000001511421240.png)
+![zh-cn_image_0000001622804833](figures/zh-cn_image_0000001622804833.png)
+
+
+### 图片插值
+
+当原图分辨率较低并且放大显示时，图片会模糊出现锯齿。这时可以使用interpolation属性对图片进行插值，使图片显示得更清晰。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.None)
+          .borderWidth(1)
+          .overlay("Interpolation.None", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Low)
+          .borderWidth(1)
+          .overlay("Interpolation.Low", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Medium)
+          .borderWidth(1)
+          .overlay("Interpolation.Medium", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.High)
+          .borderWidth(1)
+          .overlay("Interpolation.High", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001643127365](figures/zh-cn_image_0000001643127365.png)
+
+
+### 设置图片重复样式
+
+通过objectRepeat属性设置图片的重复样式方式，重复样式请参考[ImageRepeat](../reference/arkui-ts/ts-appendix-enums.md#imagerepeat)枚举说明。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 5 }) {
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.XY)
+          .objectFit(ImageFit.ScaleDown)
+          // 在水平轴和竖直轴上同时重复绘制图片
+          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.Y)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在竖直轴上重复绘制图片
+          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.X)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在水平轴上重复绘制图片
+          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding(8)
+  }
+}
+```
+
+![zh-cn_image_0000001593444112](figures/zh-cn_image_0000001593444112.png)
+
+
+### 设置图片渲染模式
+
+通过renderMode属性设置图片的渲染模式为原色或黑白。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 50 }) {
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为原色 
+          .renderMode(ImageRenderMode.Original)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+            // overlay是通用属性，用于在组件上显示说明文字
+          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为黑白
+          .renderMode(ImageRenderMode.Template)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding({ top: 20,right: 10 })
+  }
+}
+```
+
+![zh-cn_image_0000001593293100](figures/zh-cn_image_0000001593293100.png)
+
+
+### 设置图片解码尺寸
+
+通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
+
+原图尺寸为1280\*960，该示例将图片解码为150\*100和400\*400。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 150,
+            height: 150
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:150 height:150', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 400,
+            height: 400
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:400 height:400', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+      }.height(150).width('100%').padding(20)
+
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001593769844](figures/zh-cn_image_0000001593769844.png)
+
+
+### 为图片添加滤镜效果
+
+通过colorFilter修改图片的像素颜色，为图片添加滤镜。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.example'))
+          .width('40%')
+          .margin(10)
+        Image($r('app.media.example'))
+          .width('40%')
+          .colorFilter(
+            [1, 1, 0, 0, 0,
+             0, 1, 0, 0, 0,
+             0, 0, 1, 0, 0,
+             0, 0, 0, 1, 0])
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001643171357](figures/zh-cn_image_0000001643171357.png)
 
 
 ### 同步加载图片
