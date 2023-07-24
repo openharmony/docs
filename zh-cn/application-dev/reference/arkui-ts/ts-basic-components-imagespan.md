@@ -29,7 +29,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| verticalAlign | [ImageSpanAlignment](#imagespanalignment) | 图片基于文本的对齐方式。 |
+| verticalAlign | [ImageSpanAlignment](#imagespanalignment) | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
 
 ## ImageSpanAlignment
