@@ -25,8 +25,8 @@
 | confirm    | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认按钮的文本内容、文本色、按钮背景色和点击回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void      | 否     | 点击遮障层关闭dialog时的回调。 |
 | alignment  | [DialogAlignment](#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
-| offset     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。 |
-| gridCount  | number                       | 否     | 弹窗容器宽度所占用栅格数。 |
+| offset     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
+| gridCount  | number                       | 否     | 弹窗容器宽度所占用栅格数。<br/>默认值：4 |
 
 ## AlertDialogParamWithButtons对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
