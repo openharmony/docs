@@ -9,7 +9,7 @@ Image通过调用接口来创建，接口调用形式如下：
 
 
 ```ts
-Image(src: string | Resource | media.PixelMap)
+Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 ```
 
 
