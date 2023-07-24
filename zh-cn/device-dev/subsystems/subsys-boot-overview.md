@@ -457,23 +457,23 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
 
           接下来，我们将尝试B分区启动。
 
-          1）执行`partitionslot setactive 2`，将活动分区slot设置为2，也就是B分区的slot。
+          1. 执行`partitionslot setactive 2`，将活动分区slot设置为2，也就是B分区的slot。
 
              ![设置slot](figures/ABStartup_5.png)
 
-          2）执行`partitionslot getslot`，查看刚刚设置的slot值是否设置成功。
+          2. 执行`partitionslot getslot`，查看刚刚设置的slot值是否设置成功。
 
              ![查看slot](figures/ABStartup_6.png)
 
              `current slot: 2`表示活动分区slot被成功设置为2。
 
-          3）重启设备后，执行`df -h`，查看当前系统挂载分区。
+          3. 重启设备后，执行`df -h`，查看当前系统挂载分区。
          
              发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
 
              ![挂载信息](figures/ABStartup_7.png)
 
-          4）再次执行`ls -l /dev/block/by-name`。
+          4. 再次执行`ls -l /dev/block/by-name`。
 
              ![新增设备信息](figures/ABStartup_8.png)
 
