@@ -135,10 +135,35 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-使用该功能前需要**申请权限**：ohos.permission.CAMERA
+使用该功能前，桌面应用和相机应用均需要**申请权限**：ohos.permission.CAMERA
 
 具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
+- **桌面应用**
+
+  ```js
+  import camera from '@ohos.multimedia.camera'
+
+  this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+  try {
+    this.cameraManager.preLaunch(); 
+  } catch (error) {
+    console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+  }
+  ```
+
+- **相机应用**
+
 ```js
-待补充
+import camera from '@ohos.multimedia.camera'
+
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+if(this.cameraManager.isPreLaunchSupported(cameras[0])) {
+  try {
+    this.cameraManager.setPreLaunchConfig({cameraDevice: cameras[0]});
+  } catch (error) {
+    console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+  }
+}
 ```
