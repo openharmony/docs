@@ -147,6 +147,7 @@ let wantTemp = {
   abilityName: 'EntryAbility',
 };
 var certFileArray: Uint8Array;
+// The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
 await globalThis.context.resourceManager.getRawFileContent("test.cer")
   .then(value => {
@@ -154,17 +155,16 @@ await globalThis.context.resourceManager.getRawFileContent("test.cer")
   })
   .catch(error => {
     console.error(`Failed to get row file content. message: ${error.message}`);
+    done();
+    return
   });
-await new Promise((resolve, reject) => {
-  deviceSettings.installUserCertificate(wantTemp, {
-    inData: certFileArray,
-    alias: "cert_alias_xts"
-  }, (err, result) => {
+new Promise((resolve, reject) => {
+  deviceSettings.installUserCertificate(wantTemp, {inData: certFileArray, alias: "cert_alias_xts"}, (err, result) => {
     if (err) {
       console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
-      return;
+    } else{
+      console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
     }
-    console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
   });
 });
 ```
@@ -212,14 +212,17 @@ let wantTemp = {
   abilityName: 'EntryAbility',
 };
 var certFileArray: Uint8Array
+// The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
 await globalThis.context.resourceManager.getRawFileContent("test.cer")
   .then(data => {
     certFileArray = data
   }).catch(error => {
     console.log('getRawFileContent error' + error)
+    done();
+    return
   })
-await deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
+deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
   .then((result) => {
     console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
   }).catch(err => {
@@ -278,8 +281,7 @@ let wantTemp = {
   abilityName: 'EntryAbility',
 };
 let aliasStr = "certName"
-
-deviceSettings.uninstallUserCertificate(admin, alias, (err) => {
+deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
   if (err) {
     console.error(`Failed to uninstall user certificate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -331,8 +333,7 @@ let wantTemp = {
   abilityName: 'EntryAbility',
 };
 let aliasStr = "certName"
-
-deviceSettings.uninstallUserCertificate(admin, aliasStr).then(() => {
+deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate`);
 }).catch((err) => {
   console.error(`Failed to uninstall user certificate. Code is ${err.code}, message is ${err.message}`);

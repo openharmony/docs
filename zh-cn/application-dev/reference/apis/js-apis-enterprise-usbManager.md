@@ -106,7 +106,7 @@ let wantTemp = {
 };
 let policy = usbManager.UsbPolicy.READ_WRITE
 
-restrictions.setUsbPolicy(wantTemp, policy).then(() => {
+usbManager.setUsbPolicy(wantTemp, policy).then(() => {
   console.info('Succeeded in setting usb policy');
 }).catch((err) => {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
