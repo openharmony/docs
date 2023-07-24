@@ -126,7 +126,7 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 | 接口 | 说明 |
 | ---- | ---- |
 | isPreLaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
-| setPreLaunchConfig(camera: CameraDevice) : void | 配置相机预热参数。 |
+| setPreLaunchConfig(preLaunchConfig: PreLaunchConfig) : void | 配置相机预热参数。 |
 | preLaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 
 ### 开发示例
