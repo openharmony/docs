@@ -187,11 +187,12 @@ struct GridExample {
       .columnsGap(10)
       .rowsGap(10)
       .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
       .onScrollIndex((first: number) => {
         console.info(first.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        return {totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4}
+        return {totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4}
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
