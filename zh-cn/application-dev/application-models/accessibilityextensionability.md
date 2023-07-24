@@ -116,8 +116,7 @@ onAccessibilityEvent(accessibilityEvent) {
 ```
 ## 如何开启自定义的无障碍扩展服务
 
-SDK: API Version 9 及之前的版本
-目前设置中尚未开放无障碍扩展服务开启关闭功能，需要使用命令行进行开启关闭。
+1. 使用命令行进行开启关闭。
 - 开启命令：`accessibility enable -a AccessibilityExtAbility -b com.example.demo -c rg`
 - 关闭命令：`accessibility disable -a AccessibilityExtAbility -b com.example.demo`
 
@@ -125,8 +124,7 @@ SDK: API Version 9 及之前的版本
 
 若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
 
-SDK: API Version 10 及以后版本
-设置中开放无障碍扩展服务管理功能，可通过开启/关闭开关，对扩展服务进行开启/关闭：
+2. 设置中开放无障碍扩展服务管理功能，可通过开启/关闭开关，对扩展服务进行开启/关闭：
 在设置页面，进入“辅助功能”，“扩展服务”小标题下的“已安装的服务”显示当前安装的扩展服务个数，点击进入，展示安装的扩展服务列表；
 未安装扩展服务时，“已安装的扩展服务”不可点击，并显示“无服务”；
 选择需要开启/关闭的扩展服务，通过开关按钮进行扩展服务的开启/关闭；
@@ -137,5 +135,5 @@ SDK: API Version 10 及以后版本
 
 针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-[AccessibilityExtAbility的创建和使用（ArkTS）（API 10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
+[AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
 
