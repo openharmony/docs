@@ -252,6 +252,10 @@
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
 
+   > **说明：**
+   >
+   > 删除成功后，建议将数据库对象置为null。
+   
    Stage模型示例：
 
      
@@ -265,6 +269,7 @@
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
+         store = null;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
@@ -285,6 +290,7 @@
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
+     store = null;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
