@@ -941,7 +941,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](#ResponseCode说明)。
+以下错误码的详细介绍请参见[图片错误码](###ResponseCode说明)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -998,7 +998,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[图片错误码](#ResponseCode说明)。
+以下错误码的详细介绍请参见[图片错误码](###ResponseCode说明)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
