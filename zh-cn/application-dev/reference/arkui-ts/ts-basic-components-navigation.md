@@ -36,7 +36,8 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 | subTitle<sup>(deprecated)</sup> | string                                   | 页面副标题。不设置时不显示副标题。从API Version 9开始废弃，建议使用title代替。 |
 | menus                         | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。 |
 | titleMode                     | [NavigationTitleMode](#navigationtitlemode枚举说明) | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
-| toolBar                       | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>items:&nbsp;工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。 |
+| toolBar<sup>(deprecated)</sup> | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>items:&nbsp;工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。<br/>从API version 10开始，该接口不再维护，推荐使用toolbarConfiguration代替。 |
+| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10类型说明)<sup>10+</sup>&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>**说明：** <br/>使用Array<[ToolbarItem](#ToolbarItem类型说明)>写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array<[NavigationMenuItem](#navigationmenuitem类型说明)>使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | hideToolBar                   | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar                  | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
 | hideBackButton                | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
@@ -266,6 +267,24 @@ constructor(name: string, param: unknown)
 | value  | string                  | 是    | 工具栏单个选项的显示文本。   |
 | icon   | string                  | 否    | 工具栏单个选项的图标资源路径。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否    | 当前选项被选中的事件回调。   |
+
+## ToolbarItem<sup>10+</sup>类型说明
+
+| 名称       | 类型                                              | 必填 | 描述                                                        |
+| ---------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| value      | ResourceStr                                       | 是   | 工具栏单个选项的显示文本。                                  |
+| icon       | ResourceStr                                       | 否   | 工具栏单个选项的图标资源路径。                              |
+| action     | ()&nbsp;=&gt;&nbsp;void                           | 否   | 当前选项被选中的事件回调。                                  |
+| status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否   | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
+| activeIcon | ResourceStr                                       | 否   | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
+
+## ToolbarItemStatus<sup>10+</sup>枚举说明
+
+| 名称     | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
+| DISABLED | 设置工具栏单个选项为DISABLED态， 该选项显示DISABLED态样式，并且不可交互。 |
+| ACTIVE   | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
 
 ## NavigationTitleMode枚举说明
 
