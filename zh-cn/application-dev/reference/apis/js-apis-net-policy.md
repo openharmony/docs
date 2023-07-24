@@ -84,7 +84,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果，失败返回错误码错误信息。 |
+| Promise\<void> | 以Promise形式返回设定结果，成功返回空，失败返回错误码错误信息。 |
 
 **示例：**
 
@@ -232,7 +232,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。失败返回错误码错误信息。 |
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -271,7 +271,6 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是 | app唯一标识符 |
 | callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数，成功返回获取策略结果，失败返回错误码错误信息。 |
-
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
@@ -581,13 +580,11 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 | 2100001 | Invalid parameter value.                     |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.                  |
-
 **返回值：**
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
-
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 **示例：**
 
 ```js
@@ -848,7 +845,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1086,7 +1083,7 @@ resetPolicies(simId: string): Promise\<void>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1172,7 +1169,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1228,7 +1225,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 **示例：**
 
 ```js
-policy.setDeviceIdleTrustlist([11111,22222], true, (error) => {
+policy.setPowerSaveTrustlist([11111,22222], true, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1256,7 +1253,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1272,7 +1269,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 **示例：**
 
 ```js
-policy.setDeviceIdleTrustlist([11111,22222], true).then(function (error) {
+policy.setPowerSaveTrustlist([11111,22222], true).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1427,9 +1424,12 @@ off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUi
 **示例：**
 
 ```js
-policy.off('netUidPolicyChange', (data) => {
-  console.log('off netUidPolicyChange: ' + JSON.stringify(data));
-})
+let callback = data => {
+    console.log("on netUidPolicyChange, data:" + JSON.stringify(data));
+}
+policy.on('netUidPolicyChange', callback);
+policy.off('netUidPolicyChange', callback);
+policy.off('networkStateChange');
 ```
 
 ### on('netUidRuleChange')<sup>10+</sup>
@@ -1503,9 +1503,12 @@ off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRul
 **示例：**
 
 ```js
-policy.off('netUidRuleChange', (data) => {
-  console.log('off netUidRuleChange: ' + JSON.stringify(data));
-})
+let callback = data => {
+    console.log("on netUidRuleChange, data:" + JSON.stringify(data));
+}
+policy.on('netUidRuleChange', callback);
+policy.off('netUidRuleChange', callback);
+policy.off('netUidRuleChange');
 ```
 
 ### on('netMeteredIfacesChange')<sup>10+</sup>
@@ -1579,9 +1582,12 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 **示例：**
 
 ```js
-policy.off('netMeteredIfacesChange', (data) => {
-  console.log('off netMeteredIfacesChange: ' + JSON.stringify(data));
-})
+let callback = data => {
+    console.log("on netMeteredIfacesChange, data:" + JSON.stringify(data));
+}
+policy.on('netMeteredIfacesChange', callback);
+policy.off('netMeteredIfacesChange', callback);
+policy.off('netMeteredIfacesChange');
 ```
 
 ### on('netQuotaPolicyChange')<sup>10+</sup>
@@ -1655,9 +1661,12 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 **示例：**
 
 ```js
-policy.off('netQuotaPolicyChange', (data) => {
-  console.log('off netQuotaPolicyChange: ' + JSON.stringify(data));
-})
+let callback = data => {
+    console.log("on netQuotaPolicyChange, data:" + JSON.stringify(data));
+}
+policy.on('netQuotaPolicyChange', callback);
+policy.off('netQuotaPolicyChange', callback);
+policy.off('netQuotaPolicyChange');
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1731,9 +1740,13 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 **示例：**
 
 ```js
-policy.off('netBackgroundPolicyChange', (data) => {
-  console.log('off netBackgroundPolicyChange: ' + JSON.stringify(data));
-})
+let callback = data => {
+    console.log("on netBackgroundPolicyChange, data:" + JSON.stringify(data));
+}
+policy.on('netBackgroundPolicyChange', callback);
+policy.off('netBackgroundPolicyChange', callback);
+policy.off('netBackgroundPolicyChange');
+```
 ```
 
 ## NetBackgroundPolicy<sup>10+</sup>
