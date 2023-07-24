@@ -26,6 +26,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
 
 - 本地资源
+
   创建文件夹，将本地图片放入ets文件夹下的任意位置。
 
   Image组件引入本地图片路径，即可显示图片（根目录为ets文件夹）。
@@ -36,6 +37,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 网络资源
+
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Image组件的src参数为网络图片的链接。
 
   ```ts
@@ -43,6 +45,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - Resource资源
+
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
   **图1** resouces  
@@ -59,7 +62,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   **图2** rawfile  
 
- ![image-rawfile](figures/image-rawfile.jpg)
+  ![image-rawfile](figures/image-rawfile.jpg)
 
   调用方式：
 
@@ -67,8 +70,9 @@ Image支持加载存档图、多媒体像素图两种类型。
   Image($rawfile('snap'))
   ```
 
-- 媒体库datashare
-  支持datashare://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
+- 媒体库file://data/storage
+
+  支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ​    
@@ -120,7 +124,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   2. 从媒体库获取的url格式通常如下。
       ​    
       ```ts
-      Image('datashare:///media/5')
+      Image('file://media/Photos/5')
       .width(200)
       ```
 
@@ -142,6 +146,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    ```
 
 2. 引用多媒体。
+
    请求网络图片请求，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
@@ -324,7 +329,7 @@ struct Index {
 
 ### 设置图片重复样式
 
-通过objectRepeat属性设置图片的重复样式方式，重复样式请参考枚举说明。
+通过objectRepeat属性设置图片的重复样式方式，重复样式请参考[ImageRepeat](../reference/arkui-ts/ts-appendix-enums.md#imagerepeat)枚举说明。
 
 
 ```ts
@@ -406,6 +411,8 @@ struct MyComponent {
 ### 设置图片解码尺寸
 
 通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
+
+原图尺寸为1280\*960，该示例将图片解码为150\*100和400\*400。
 
 
 ```ts
