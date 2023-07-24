@@ -1,6 +1,6 @@
 # 性能提升方案（仅对系统应用开放）
 
-相机启动性能受限于底层器件上点、流程Pipeline初始化等耗时操作影响，本文档将开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，开发者在使用前需确认是否支持相关特性。
+相机启动性能受限于底层器件上点、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
 ​相关特性分别在打开相机设备过程、配流过程以及拍照过程中。本文档针对三个场景分别进行介绍。
 
@@ -27,6 +27,10 @@
 
 ### 开发示例
 
+接口调用流程建议如下图所示：
+
+![](figures/deferred-surface-sequence-diagram.png)
+
 ```js
 import camera from '@ohos.multimedia.camera';
 
@@ -48,9 +52,11 @@ function async preview(context: Context, cameraInfo: camera.Device, previewProfi
 
 ## 快速缩略图
 
-相机拍照性能依赖算法处理的速度，算法链越复杂、效果就越好，但同时处理时间就越长。要能够从拍照流程上进行优化，既满足后处理算法处理的要求，又不要阻塞前台的拍照速度。
+相机拍照性能依赖算法处理的速度，算法链越复杂、效果就越好，但同时处理时间就越长。
 
-通过相机快速缩略图技术，相机拍照可单独输出拇指缩略图，在真图没有上来前，提前上报一张缩略图给应用去显示，提升shot2see用户感知拍照速度。
+通过相机快速缩略图，相机拍照可单独输出拇指缩略图，在真图没有上报之前，可以提前上报一张缩略图给应用去做显示，提升shot2see用户感知拍照速度。
+
+这样从拍照流程上进行优化，既可以满足后处理算法处理的要求，又不会阻塞前台的拍照速度。
 
 ### 接口说明
 
@@ -68,6 +74,10 @@ function async preview(context: Context, cameraInfo: camera.Device, previewProfi
 > - on接口需要在enableQuickThumbnail(true)之后生效。
 
 ### 开发示例
+
+接口调用流程建议如下图所示：
+
+![](figures/quick-thumbnail-sequence-diagram.png)
 
 ```js
 import camera from '@ohos.multimedia.camera'
@@ -119,11 +129,16 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 | setPreLaunchConfig(camera: CameraDevice) : void | 配置相机预热参数。 |
 | preLaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 
-### 调用流程
-
-
 ### 开发示例
 
-使用该功能前需要申请权限：ohos.permission.CAMERA
+接口调用流程建议如下图所示：
+
+![](figures/prelaunch-sequence-diagram.png)
+
+使用该功能前需要**申请权限**：ohos.permission.CAMERA
 
 具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+
+```js
+待补充
+```
