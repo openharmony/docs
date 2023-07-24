@@ -28,8 +28,8 @@ createCalendar(calendarAccount: [CalendarAccount](#calendaraccount), callback: A
 
 | 参数名          | 类型                                  | 必填 | 说明                               |
 | --------------- | ------------------------------------- | ---- | ---------------------------------- |
-| calendarAccount | [CalendarAccount](#CalendarAccount)   | 是   | 账户信息实例。                     |
-| callback        | AsyncCallback\<[Calendar](#Calendar)> | 是   | 异步回调，返回创建的Calendar对象。 |
+| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 账户信息实例。                     |
+| callback        | AsyncCallback\<[Calendar](#calendar)> | 是   | 异步回调，返回创建的Calendar对象。 |
 
 **错误码：**
 
@@ -55,7 +55,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 ## calendarManager.createCalendar
 
-createCalendar(calendarAccount: [CalendarAccount](#CalendarAccount)): Promise<[Calendar](#Calendar)>
+createCalendar(calendarAccount: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
 
 创建账户，使用Promise方式实现异步调用。
 
@@ -67,13 +67,13 @@ createCalendar(calendarAccount: [CalendarAccount](#CalendarAccount)): Promise<[C
 
 | 参数名          | 类型                                | 必填 | 说明           |
 | --------------- | ----------------------------------- | ---- | -------------- |
-| calendarAccount | [CalendarAccount](#CalendarAccount) | 是   | 账户信息实例。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 账户信息实例。 |
 
 **返回值**：
 
 | 类型                           | 说明           |
 | ------------------------------ | -------------- |
-| Promise<[Calendar](#Calendar)> | 返回账户实例。 |
+| Promise<[Calendar](#calendar)> | 返回账户实例。 |
 
 **错误码：**
 
@@ -97,7 +97,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 ## calendarManager.deleteCalendar
 
-deleteCalendar(calendar: [Calendar](#Calendar), callback: AsyncCallback<void>): void
+deleteCalendar(calendar: [Calendar](#calendar), callback: AsyncCallback<void>): void
 
 删除账户，使用回调的方式实现异步调用。
 
@@ -109,7 +109,7 @@ deleteCalendar(calendar: [Calendar](#Calendar), callback: AsyncCallback<void>): 
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| calendar | [Calendar](#Calendar) | 是   | 账户实例。 |
+| calendar | [Calendar](#calendar) | 是   | 账户实例。 |
 | callback | AsyncCallback<void>   | 是   | 异步回调。 |
 
 **错误码：**
@@ -137,7 +137,7 @@ calendarManager.deleteCalendar(calendar, (err, data) => {
 
 ## calendarManager.deleteCalendar
 
-deleteCalendar(calendar: [Calendar](#Calendar)): Promise<void>
+deleteCalendar(calendar: [Calendar](#calendar)): Promise<void>
 
 删除账户，使用Promise方式实现异步调用。
 
@@ -149,7 +149,7 @@ deleteCalendar(calendar: [Calendar](#Calendar)): Promise<void>
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| calendar | [Calendar](#Calendar) | 是   | 账户实例。 |
+| calendar | [Calendar](#calendar) | 是   | 账户实例。 |
 
 **返回值**：
 
@@ -180,7 +180,7 @@ calendarManager.deleteCalendar(calendar).then((data) => {
 
 ## calendarManager.getCalendar
 
-getCalendar(callback: AsyncCallback<[Calendar](#Calendar)>): void
+getCalendar(callback: AsyncCallback<[Calendar](#calendar)>): void
 
 获取默认账户，使用回调的方式实现异步调用。
 
@@ -192,7 +192,7 @@ getCalendar(callback: AsyncCallback<[Calendar](#Calendar)>): void
 
 | 参数名   | 类型                                 | 必填 | 说明                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<[Calendar](#Calendar)> | 是   | 异步回调，返回查询的账户实例。 |
+| callback | AsyncCallback<[calendar](#Calendar)> | 是   | 异步回调，返回查询的账户实例。 |
 
 **错误码：**
 
@@ -218,7 +218,7 @@ calendarManager.getCalendar((err, data) => {
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount: [CalendarAccount](#CalendarAccount)，callback: AsyncCallback<[Calendar](#Calendar)>): void
+getCalendar(calendarAccount: [CalendarAccount](#calendaraccount)，callback: AsyncCallback<[Calendar](#calendar)>): void
 
 获取指定账户，使用回调的方式实现异步调用。
 
@@ -230,8 +230,8 @@ getCalendar(calendarAccount: [CalendarAccount](#CalendarAccount)，callback: Asy
 
 | 参数名          | 类型                                 | 必填 | 说明                           |
 | --------------- | ------------------------------------ | ---- | ------------------------------ |
-| calendarAccount | [CalendarAccount](#CalendarAccount)  | 是   | 账户信息实例                   |
-| callback        | AsyncCallback<[Calendar](#Calendar)> | 是   | 异步回调，返回查询的账户实例。 |
+| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 账户信息实例                   |
+| callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 异步回调，返回查询的账户实例。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount?: [CalendarAccount](#CalendarAccount)): Promise<[Calendar](#Calendar)>
+getCalendar(calendarAccount?: [CalendarAccount](#calendarAccount)): Promise<[Calendar](#calendar)>
 
 获取账户，使用Promise的方式实现异步调用。
 
@@ -269,13 +269,13 @@ getCalendar(calendarAccount?: [CalendarAccount](#CalendarAccount)): Promise<[Cal
 
 | 参数名          | 类型                                | 必填 | 说明         |
 | --------------- | ----------------------------------- | ---- | ------------ |
-| calendarAccount | [CalendarAccount](#CalendarAccount) | 否   | 账户信息实例 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 账户信息实例 |
 
 **返回值**：
 
 | 类型                           | 说明                 |
 | ------------------------------ | -------------------- |
-| Promise<[Calendar](#Calendar)> | 返回查询的账户实例。 |
+| Promise<[Calendar](#calendar)> | 返回查询的账户实例。 |
 
 **错误码：**
 
@@ -300,7 +300,7 @@ calendarManager.getCalendar().then((data) => {
 
 ## calendarManager.getAllCalendars
 
-getAllCalendars(callback: AsyncCallback<[Calendar](#Calendar)[]>): void
+getAllCalendars(callback: AsyncCallback<[Calendar](#calendar)[]>): void
 
 获取当前应用所有创建的账户以及默认账户，使用回调的方式实现异步调用。
 
@@ -312,7 +312,7 @@ getAllCalendars(callback: AsyncCallback<[Calendar](#Calendar)[]>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                |
 | -------- | -------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<[Calendar](#Calendar)[]> | 是   | 异步回调， 返回查询的账户实例数组。 |
+| callback | AsyncCallback<[Calendar](#calendar)[]> | 是   | 异步回调， 返回查询的账户实例数组。 |
 
 **错误码：**
 
@@ -338,7 +338,7 @@ calendarManager.getAllCalendars((err, data) => {
 
 ## calendarManager.getAllCalendars
 
-getAllCalendars(): Promise<[Calendar](#Calendar)[]>
+getAllCalendars(): Promise<[Calendar](#calendar)[]>
 
 获取当前应用所有创建的账户以及默认账户，使用Promise方式实现异步调用。
 
@@ -350,7 +350,7 @@ getAllCalendars(): Promise<[Calendar](#Calendar)[]>
 
 | 类型                             | 说明                     |
 | -------------------------------- | ------------------------ |
-| Promise<[Calendar](#Calendar)[]> | 返回查询的账户实例数组。 |
+| Promise<[Calendar](#calendar)[]> | 返回查询的账户实例数组。 |
 
 **错误码：**
 
@@ -384,7 +384,7 @@ calendarManager.getAllCalendars().then((data) => {
 
 ### addEvent
 
-addEvent(event:   [Event](#Event), callback: AsyncCallback<number>): void
+addEvent(event:   [Event](#event), callback: AsyncCallback<number>): void
 
 创建日程，使用回调的方式实现异步调用。
 
@@ -394,7 +394,7 @@ addEvent(event:   [Event](#Event), callback: AsyncCallback<number>): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
-| event    | [Event](#Event)       | 是   | 日程具体参数实例。     |
+| event    | [Event](#event)       | 是   | 日程具体参数实例。     |
 | callback | AsyncCallback<number> | 是   | 异步回调，返回日程id。 |
 
 **示例**：
@@ -420,7 +420,7 @@ calendar.addEvent(event, (err, data) => {
 
 ### addEvent
 
-addEvent(event:   [Event](#Event)): Promise<number>
+addEvent(event:   [Event](#event)): Promise<number>
 
 创建日程，使用Promise方式实现异步调用。
 
@@ -430,7 +430,7 @@ addEvent(event:   [Event](#Event)): Promise<number>
 
 | 参数名 | 类型            | 必填 | 说明               |
 | ------ | --------------- | ---- | ------------------ |
-| event  | [Event](#Event) | 是   | 日程具体参数实例。 |
+| event  | [Event](#event) | 是   | 日程具体参数实例。 |
 
 **返回值**：
 
@@ -459,7 +459,7 @@ calendar.addEvent(event).then((data) => {
 
 ### addEvents
 
-addEvents(events: [Event](#Event)[], callback: AsyncCallback<void>): void
+addEvents(events: [Event](#event)[], callback: AsyncCallback<void>): void
 
 批量创建日程，使用回调的方式实现异步调用。
 
@@ -469,7 +469,7 @@ addEvents(events: [Event](#Event)[], callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ------------------- | ---- | ---------------------- |
-| events   | [Event](#Event)[]   | 是   | 日程具体参数实例数组。 |
+| events   | [Event](#event)[]   | 是   | 日程具体参数实例数组。 |
 | callback | AsyncCallback<void> | 是   | 异步回调。             |
 
 **示例**：
@@ -502,7 +502,7 @@ calendar.addEvents(events, (err, data) => {
 
 ### addEvents
 
-addEvents(events:   [Event](#Event)[]): Promise<void>
+addEvents(events:   [Event](#event)[]): Promise<void>
 
 批量创建日程，使用Promise方式实现异步调用。
 
@@ -512,7 +512,7 @@ addEvents(events:   [Event](#Event)[]): Promise<void>
 
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
-| events | [Event](#Event)[] | 是   | 日程具体参数实例数组。 |
+| events | [Event](#event)[] | 是   | 日程具体参数实例数组。 |
 
 **返回值**：
 
@@ -674,7 +674,7 @@ calendar.deleteEvents([1, 2]).then(() => {
 
 ### updateEvent
 
-updateEvent(event: [Event](#Event), callback: AsyncCallback<void>): void
+updateEvent(event: [Event](#event), callback: AsyncCallback<void>): void
 
 更新日程，使用回调的方式实现异步调用。
 
@@ -684,7 +684,7 @@ updateEvent(event: [Event](#Event), callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                | 必填 | 说明               |
 | -------- | ------------------- | ---- | ------------------ |
-| event    | [Event](#Event)     | 是   | 日程具体参数示例。 |
+| event    | [Event](#event)     | 是   | 日程具体参数示例。 |
 | callback | AsyncCallback<void> | 是   | 异步回调。         |
 
 **示例**：
@@ -712,7 +712,7 @@ calendar.updateEvent(event, (err, data) => {
 
 ### updateEvent
 
-updateEvent(event: [Event](#Event)): Promise<void>
+updateEvent(event: [Event](#event)): Promise<void>
 
 更新日程，使用Promise方式实现异步调用。
 
@@ -722,7 +722,7 @@ updateEvent(event: [Event](#Event)): Promise<void>
 
 | 参数名 | 类型            | 必填 | 说明               |
 | ------ | --------------- | ---- | ------------------ |
-| event  | [Event](#Event) | 是   | 日程具体参数示例。 |
+| event  | [Event](#event) | 是   | 日程具体参数示例。 |
 
 **返回值**：
 
@@ -753,7 +753,7 @@ calendar.updateEvent(event).then(() => {
 
 ### getEvents
 
-getEvents(callback: AsyncCallback<[Event](#Event)[]>): void
+getEvents(callback: AsyncCallback<[Event](#event)[]>): void
 
 查询账户下所有日程，使用回调的方式实现异步调用。
 
@@ -763,7 +763,7 @@ getEvents(callback: AsyncCallback<[Event](#Event)[]>): void
 
 | 参数名   | 类型                             | 必填 | 说明                             |
 | -------- | -------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<[Event](#Event)[]> | 是   | 异步回调，返回的是日程实例数组。 |
+| callback | AsyncCallback<[Event](#event)[]> | 是   | 异步回调，返回的是日程实例数组。 |
 
 **示例**：
 
@@ -782,7 +782,7 @@ calendar.getEvents((err, data) => {
 
 ### getEvents
 
-getEvents(eventFilter: [EventFilter](#EventFilter), eventKey: (keyof [Event](#Event))[], callback: AsyncCallback<[Event](#Event)[]>):void
+getEvents(eventFilter: [EventFilter](#eventfilter), eventKey: (keyof [Event](#event))[], callback: AsyncCallback<[Event](#event)[]>):void
 
 查询账户下符合条件的日程，使用回调的方式实现异步调用。
 
@@ -792,9 +792,9 @@ getEvents(eventFilter: [EventFilter](#EventFilter), eventKey: (keyof [Event](#Ev
 
 | 参数名      | 类型                             | 必填 | 说明                             |
 | ----------- | -------------------------------- | ---- | -------------------------------- |
-| eventFilter | [EventFilter](#EventFilter)      | 是   | 查询条件                         |
-| eventKey    | (keyof [Event](#Event))[]        | 是   | 查询结果集                       |
-| callback    | AsyncCallback<[Event](#Event)[]> | 是   | 异步回调，返回的是日程实例数组。 |
+| eventFilter | [EventFilter](#eventfilter)      | 是   | 查询条件                         |
+| eventKey    | (keyof [Event](#event))[]        | 是   | 查询结果集                       |
+| callback    | AsyncCallback<[Event](#event)[]> | 是   | 异步回调，返回的是日程实例数组。 |
 
 **示例**：
 
@@ -815,7 +815,7 @@ calendar.getEvents(filter, columns, (err, data) => {
 
 ### getEvents
 
-getEvents(eventFilter?: [EventFilter](#EventFilter), eventKey?: (keyof [Event](#Event))[]): Promise<[Event](#Event)[]>
+getEvents(eventFilter?: [EventFilter](#eventfilter), eventKey?: (keyof [Event](#event))[]): Promise<[Event](#event)[]>
 
 查询账户下符合条件的日程，使用Promise方式实现异步调用。
 
@@ -825,14 +825,14 @@ getEvents(eventFilter?: [EventFilter](#EventFilter), eventKey?: (keyof [Event](#
 
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
-| eventFilter | [EventFilter](#EventFilter) | 否   | 查询条件   |
-| eventKey    | (keyof [Event](#Event))[]   | 否   | 查询结果集 |
+| eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件   |
+| eventKey    | (keyof [Event](#event))[]   | 否   | 查询结果集 |
 
 **返回值**：
 
 | 类型                       | 说明               |
 | -------------------------- | ------------------ |
-| Promise<[Event](#Event)[]> | 返回日程实例数组。 |
+| Promise<[Event](#event)[]> | 返回日程实例数组。 |
 
 **示例**：
 
@@ -850,7 +850,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### getConfig
 
-getConfig(): [CalendarConfig](#CalendarConfig)
+getConfig(): [CalendarConfig](#calendarconfig)
 
 获取账户具体参数。
 
@@ -860,7 +860,7 @@ getConfig(): [CalendarConfig](#CalendarConfig)
 
 | 类型                              | 说明               |
 | --------------------------------- | ------------------ |
-| [CalendarConfig](#CalendarConfig) | 返回账户参数实例。 |
+| [CalendarConfig](#calendarconfig) | 返回账户参数实例。 |
 
 **示例**：
 
@@ -874,7 +874,7 @@ console.log("get config success");
 
 ### setConfig
 
-setConfig(config: [CalendarConfig](#CalendarConfig), callback: AsyncCallback<void>): void
+setConfig(config: [CalendarConfig](#calendarconfig), callback: AsyncCallback<void>): void
 
 设置账户参数，使用回调的方式实现异步调用。
 
@@ -884,7 +884,7 @@ setConfig(config: [CalendarConfig](#CalendarConfig), callback: AsyncCallback<voi
 
 | 参数名   | 类型                              | 必填 | 说明             |
 | -------- | --------------------------------- | ---- | ---------------- |
-| config   | [CalendarConfig](#CalendarConfig) | 是   | 账户具体参数实例 |
+| config   | [CalendarConfig](#calendarconfig) | 是   | 账户具体参数实例 |
 | callback | AsyncCallback<void>               | 是   | 异步回调。       |
 
 **示例**：
@@ -907,7 +907,7 @@ calendar.setConfig(config, (err, data) => {
 
 ### setConfig
 
-setConfig(config:  [CalendarConfig](#CalendarConfig)): Promise<void>
+setConfig(config:  [CalendarConfig](#calendarconfig)): Promise<void>
 
 设置账户参数，使用Promise方式实现异步调用。
 
@@ -917,7 +917,7 @@ setConfig(config:  [CalendarConfig](#CalendarConfig)): Promise<void>
 
 | 参数名 | 类型                              | 必填 | 说明             |
 | ------ | --------------------------------- | ---- | ---------------- |
-| config | [CalendarConfig](#CalendarConfig) | 是   | 账户具体参数实例 |
+| config | [CalendarConfig](#calendarconfig) | 是   | 账户具体参数实例 |
 
 **返回值**：
 
@@ -943,7 +943,7 @@ calendar.setConfig(config).then(() => {
 
 ### getAccount
 
-getAccount(): [CalendarAccount](#CalendarAccount)
+getAccount(): [CalendarAccount](#calendaraccount)
 
 获取账户信息。
 
@@ -953,7 +953,7 @@ getAccount(): [CalendarAccount](#CalendarAccount)
 
 | 类型                                | 说明               |
 | ----------------------------------- | ------------------ |
-| [CalendarAccount](#CalendarAccount) | 返回账户信息实例。 |
+| [CalendarAccount](#calendaraccount) | 返回账户信息实例。 |
 
 **示例**：
 
@@ -974,7 +974,7 @@ console.log("get account success");
 | 名称        | 类型                          | 只读 | 必填 | 说明           |
 | ----------- | ----------------------------- | ---- | ---- | -------------- |
 | name        | string                        | 是   | 是   | 账户名称       |
-| type        | [CalendarType](#CalendarType) | 否   | 是   | 账户类型       |
+| type        | [CalendarType](#calendartype) | 否   | 是   | 账户类型       |
 | displayName | string                        | 否   | 否   | 账户的显示名称 |
 
 ## CalendarConfig
@@ -997,18 +997,18 @@ console.log("get account success");
 | 名称           | 类型                              | 只读 | 必填 | 说明           |
 | -------------- | --------------------------------- | ---- | ---- | -------------- |
 | id             | number                            | 是   | 否   | 日程id         |
-| type           | [EventType](#EventType)           | 否   | 是   | 日程类型       |
+| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型       |
 | title          | string                            | 否   | 否   | 日程标题       |
-| location       | [Location](#Location)             | 否   | 否   | 日程地点       |
+| location       | [Location](#location)             | 否   | 否   | 日程地点       |
 | startTimer     | number                            | 否   | 是   | 日程开始时间   |
 | endTimer       | number                            | 否   | 是   | 日程结束时间   |
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程 |
-| attendee       | [Attendee](#Attendee)[]           | 否   | 否   | 日程参与者     |
+| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者     |
 | timeZone       | string                            | 否   | 否   | 日程时区       |
 | reminderTime   | number[]                          | 否   | 否   | 日程提醒时间   |
-| recurrenceRule | [RecurrenceRule](#RecurrenceRule) | 否   | 否   | 日程重复规则   |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则   |
 | description    | string                            | 否   | 否   | 日程描述       |
-| service        | [EventService](#EventService)     | 否   | 否   | 日程服务       |
+| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务       |
 
 ## CalendarType
 
@@ -1040,7 +1040,7 @@ console.log("get account success");
 
 ### filterById
 
-filterById(ids: number[]): [EventFilter](#EventFilter)
+filterById(ids: number[]): [EventFilter](#eventfilter)
 
 根据日程id进行过滤
 
@@ -1056,7 +1056,7 @@ filterById(ids: number[]): [EventFilter](#EventFilter)
 
 | 类型                        | 说明                   |
 | --------------------------- | ---------------------- |
-| [EventFilter](#EventFilter) | 返回日程过滤实例对象。 |
+| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
 
 **示例**：
 
@@ -1074,7 +1074,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTime
 
-filterByTime(start: number, end: number):  [EventFilter](#EventFilter)
+filterByTime(start: number, end: number):  [EventFilter](#eventfilter)
 
 根据日程时间进行过滤
 
@@ -1091,7 +1091,7 @@ filterByTime(start: number, end: number):  [EventFilter](#EventFilter)
 
 | 类型                        | 说明                   |
 | --------------------------- | ---------------------- |
-| [EventFilter](#EventFilter) | 返回日程过滤实例对象。 |
+| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
 
 **示例**：
 
@@ -1109,7 +1109,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTitle
 
-filterByTitle(title: string):  [EventFilter](#EventFilter)
+filterByTitle(title: string):  [EventFilter](#eventfilter)
 
 根据日程时间进行过滤
 
@@ -1125,7 +1125,7 @@ filterByTitle(title: string):  [EventFilter](#EventFilter)
 
 | 类型                        | 说明                   |
 | --------------------------- | ---------------------- |
-| [EventFilter](#EventFilter) | 返回日程过滤实例对象。 |
+| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
 
 **示例**：
 
@@ -1160,7 +1160,7 @@ calendar.getEvents(filter).then(() => {
 
 | 名称                | 类型                                        | 只读 | 必填 | 说明             |
 | ------------------- | ------------------------------------------- | ---- | ---- | ---------------- |
-| recurrenceFrequency | [RecurrenceFrequency](#RecurrenceFrequency) | 否   | 否   | 日程重复规则类型 |
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否   | 日程重复规则类型 |
 | expire              | number                                      | 否   | 否   | 日程过期时间     |
 
 ## RecurrenceFrequency
@@ -1195,7 +1195,7 @@ calendar.getEvents(filter).then(() => {
 
 | 名称        | 类型                        | 只读 | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---- | ---------- |
-| type        | [ServiceType](#ServiceType) | 否   | 是   | 服务类型   |
+| type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型   |
 | uri         | string                      | 否   | 是   | 服务的uri  |
 | description | string                      | 否   | 否   | 服务的描述 |
 
