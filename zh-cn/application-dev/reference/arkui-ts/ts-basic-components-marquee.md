@@ -33,7 +33,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 | src       | string  | 是    | -    | 需要滚动的文本。              |
 
 ## 属性
-
+除支持文本通用属性：fontColor、fontSize、fontWeight、fontFamily外，还支持以下属性：
 | 名称       | 参数类型 | 默认值 | 描述               |
 | ---------- | -------- | ------ | ------------------ |
 | allowScale | boolean  | false  | 是否允许文本缩放。<br/>暂不支持该接口。 |
