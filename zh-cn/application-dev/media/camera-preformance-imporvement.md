@@ -135,10 +135,6 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-使用该功能前，桌面应用和相机应用均需要**申请权限**：ohos.permission.CAMERA
-
-具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
-
 - **桌面应用**
 
   ```js
@@ -153,6 +149,10 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
   ```
 
 - **相机应用**
+
+  使用该功能前，应用需要**申请权限**：ohos.permission.CAMERA
+
+  具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
   ```js
   import camera from '@ohos.multimedia.camera'
