@@ -108,3 +108,229 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
   console.error(`Failed to get screen off time. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## deviceSettings.installUserCertificate
+
+installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
+
+安装用户证书，使用callback异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| certificate    | [CertBlob](#CertBlob)     | 是    | 证书信息。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+| 9201001 | manage certificate failed |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+var certFileArray:Uint8Array;
+// test.cer needs to be placed in the rawfile directory
+await globalThis.context.resourceManager.getRawFileContent("test.cer").then(value => {
+  certFileArray = value
+}).catch(error => {
+
+});
+var certUri:string;
+await new Promise((resolve, reject) => {
+  deviceSettings.installUserCertificate(SELFWANT, {inData: certFileArray, alias: "cert_alias_xts"}, (err, result) => {
+  if (err) {
+    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
+  });
+});
+```
+
+## deviceSettings.installUserCertificate
+
+installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
+
+安装用户证书，使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| certificate    | [CertBlob](#CertBlob)     | 是    | 证书信息。                  |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise对象，返回当前证书安装后的uri，用于卸载证书。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+| 9201001 | manage certificate failed |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+var certFileArray:Uint8Array;
+// test.cer needs to be placed in the rawfile directory
+await globalThis.context.resourceManager.getRawFileContent("test.cer").then(data => {
+  certFileArray = data
+}).catch(error => {
+  console.log('getRawFileContent error' + error)
+})
+var certUri:string;
+await deviceSettings.installUserCertificate(SELFWANT, {inData: certFileArray, alias: "cert_alias_xts"})
+  .then((data) => {
+    certUri = data
+}).catch(error => {
+    console.log('installUserCertificate error' + error)
+})
+```
+
+## CertBlob
+
+证书信息
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+| 名称         | 类型     | 可读 | 可写   | 说明                            |
+| ----------- | --------| ---- | ----- | ------------------------------- |
+| inData | Uint8Array | 是 | 否 | 证书的二进制内容。 |
+| alias | string | 是 | 否 | 证书安装后的别名。 |
+
+## deviceSettings.uninstallUserCertificate
+
+uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
+
+卸载用户证书，使用callback异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| certUri    | string    | 是    | 证书uri。                  |
+| callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+| 9201001 | manage certificate failed |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let aliasStr = "certName"
+
+deviceSettings.uninstallUserCertificate(admin, alias, (err) => {
+  if (err) {
+    console.error(`Failed to uninstall user certificate. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in uninstalling user certificate`);
+});
+```
+
+## deviceSettings.uninstallUserCertificate
+
+uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
+
+卸载用户证书，使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| certUri    | string     | 是    | 证书uri。                  |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+| 9201001 | manage certificate failed |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let aliasStr = "certName"
+
+deviceSettings.uninstallUserCertificate(admin, aliasStr).then(() => {
+  console.info(`Succeeded in uninstalling user certificate`);
+}).catch((err) => {
+  console.error(`Failed to uninstall user certificate. Code is ${err.code}, message is ${err.message}`);
+});
+```
