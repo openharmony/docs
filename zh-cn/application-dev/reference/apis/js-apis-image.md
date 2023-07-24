@@ -964,13 +964,13 @@ class MySequence {
     }
     async unmarshalling(messageSequence) {
         await image.unmarshalling(messageSequence).then(async (pixelMap) => {
-            this.pixel_map = pixelmap;
+            this.pixel_map = pixelMap;
         })
         return true;
     }
 }
 async function Demo() {
-    let parcelable = new MySequence(pixelMap);
+    let parcelable = new MySequence(pixelmap);
     let data = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 }
@@ -1021,7 +1021,7 @@ class MySequence {
     }
     async unmarshalling(messageSequence) {
         await image.unmarshalling(messageSequence).then(async (pixelMap) => {
-            this.pixel_map = pixelmap;
+            this.pixel_map = pixelMap;
         })
         return true;
     }
@@ -1029,6 +1029,7 @@ class MySequence {
 async function Demo() {
     let pixel_map = undefined;
     let ret = new MySequence(pixel_map);
+    let data = rpc.MessageSequence.create();
     await data.readParcelable(ret);
 }
 ```
@@ -2905,7 +2906,7 @@ PixelMap的初始化选项。
 | DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间               |
 | GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳        |
 | GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳         |
-| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像描述               |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述               |
 | MAKE<sup>10+</sup>                       | "Make"                 | 生产商                  |
 | PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式              |
 | SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型             |
@@ -2916,7 +2917,7 @@ PixelMap的初始化选项。
 | EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值    |
 | METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式    |
 | LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源    |
-| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯    |
+| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态    |
 | FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距    |
 | USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释    |
 | PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸    |
@@ -2924,7 +2925,7 @@ PixelMap的初始化选项。
 | WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡    |
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片    |
 | CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式    |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径   |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小   |
 
 ## ImageFormat<sup>9+</sup>
 
