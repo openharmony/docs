@@ -194,7 +194,7 @@
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+      >
       > 从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
       1. 获取required设备信息
@@ -215,7 +215,7 @@
               return fstab;
           }
           ```
-          以上代码分别展示了获取fstab信息的两种方式，首先调用LoadFstabFromCommandLine()，从cmdline中获取fstab信息，如果获取失败，则输出log，表示继续尝试从fstab.required文件中获取fstab信息。
+          以上代码分别展示了获取fstab信息的两种方式，首先调用`LoadFstabFromCommandLine()`，从cmdline中获取fstab信息，如果获取失败，则输出log，表示继续尝试从`fstab.required`文件中获取fstab信息。
 
           对于system分区来说，其读到devices中的关键信息如下所示：
           ```
@@ -244,7 +244,7 @@
          int ret = GetProcCmdlineValue("default_boot_device", buffer, bootDevice, CMDLINE_VALUE_LEN_MAX);
          INIT_CHECK_ONLY_ELOG(ret == 0, "Failed get default_boot_device value from cmdline");
          ```
-         这里取得的default_boot_device的值应该是soc/10100000.himci.eMMC，也就对应了system分区设备所在目录，这一值存放在了bootDevice这个全局变量当中，将在后续创建system分区设备软链接前进行匹配。
+         这里取得的`default_boot_device`的值应该是`soc/10100000.himci.eMMC`，也就对应了system分区设备所在目录，这一值存放在了bootDevice这个全局变量当中，将在后续创建system分区设备软链接前进行匹配。
 
       4. 处理required设备uevent事件
          ```
@@ -264,11 +264,11 @@
              break;
          }
          ```
-         存在devices中的设备信息，就是在此处与内核上报的uevent事件进行匹配的。对于system分区设备的uevent消息，其uevent->partitionName值应该为system，与devices中存在的/dev/block/platform/fe310000.sdhci/by-name/system字段匹配成功，则开始处理system分区设备的uevent消息。
+         存在devices中的设备信息，就是在此处与内核上报的uevent事件进行匹配的。对于system分区设备的uevent消息，其`uevent->partitionName`值应该为`system`，与devices中存在的`/dev/block/platform/fe310000.sdhci/by-name/system`字段匹配成功，则开始处理system分区设备的uevent消息。
 
       5. 创建required设备节点和对应软链接
 
-         首先应该格式化对应软链接的路径，这一部分就用到了bootargs中default_boot_device的值，与上报的required设备节点路径进行匹配，以创建平台无关的可读性更高的指向该设备节点的软链接，关键部分代码如下：
+         首先应该格式化对应软链接的路径，这一部分就用到了`bootargs`中`default_boot_device`的值，与上报的required设备节点路径进行匹配，以创建平台无关的可读性更高的指向该设备节点的软链接，关键部分代码如下：
          ```
          if (STRINGEQUAL(bus, "/sys/bus/platform")) {
              INIT_LOGV("Find a platform device: %s", parent);
@@ -285,10 +285,10 @@
          ```
          首先解释一下这段代码中出现的关键变量。
 
-             bus: 这是一个保存了路径信息的字符串，路径是当前处理的设备所连接的总线路径。
-             parent: 同样是一个保存了路径信息的字符串，路径是从uevent->syspath取出的当前处理的设备路径。
-             links：事先申请好的指向保存软链接路径内存的指针
-             bootDevice: 存放bootargs中default_boot_device值的字符串
+         - bus: 这是一个保存了路径信息的字符串，路径是当前处理的设备所连接的总线路径。
+         - parent: 同样是一个保存了路径信息的字符串，路径是从uevent->syspath取出的当前处理的设备路径。
+         - links：事先申请好的指向保存软链接路径内存的指针。
+         - bootDevice: 存放bootargs中default_boot_device值的字符串。
          根据代码可知，只有处理到所连接总线类型为platform时的设备才会创建对应软链接，这一软链接所在的目录是：
          ```
          /dev/block/platform/soc/10100000.himci.eMMC/by-name
@@ -299,7 +299,7 @@
          ```
          /sys/devices/platform/soc/10100000.himci.eMMC/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p5
          ```
-         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径soc/10100000.himci.eMMC相匹配，因此而创建相应的软链接，这一软连接的路径是：
+         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软连接的路径是：
          ```
          /dev/block/by-name/system
          ```
@@ -339,16 +339,16 @@
 
 - init执行system和vendor中的启动脚本，挂载vendor中更多的分区
 
-挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
+挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如`/vendor/etc/init.{ohos.boot.hardware}.cfg`。vendor中扩展的挂载分区文件是`/vendor/etc/fstab.{ohos.boot.hardware}`。hardware的来源是bootloader传递给内核的bootargs。
 
 
 ### 无ramdisk的启动加载流程
 
-有些开发板没有采用ramdisk启动引导，直接通过内核挂载system.img。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
+有些开发板没有采用ramdisk启动引导，直接通过内核挂载`system.img`。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
 
-此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下；而没有ramdisk时，没有chroot过程，但是都会读取init.cfg文件从而执行脚本。
+此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把`system.img`挂载到`/usr`目录，然后chroot到`/usr`下；而没有ramdisk时，没有chroot过程，但是都会读取`init.cfg`文件从而执行脚本。
 
-对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如root=/dev/mmcblk0p5，rootfstype=ext4。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
+对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如`root=/dev/mmcblk0p5，rootfstype=ext4`。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
 
 
 ### A/B分区启动
@@ -369,7 +369,7 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
       return GetSlotInfoFromCmdLine("bootslots");
   }
   ```
-  在系统正常启动后，用户可以在控制台通过系统参数ohos.boot.bootslots来获取bootslots的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
+  在系统正常启动后，用户可以在控制台通过系统参数`ohos.boot.bootslots`来获取bootslots的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
   ```
   param get ohos.boot.bootslots
   ```
@@ -440,40 +440,41 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
 
   3. 启动完成后
 
-      1. 执行cat /proc/cmdline，能够找到bootslot=2，说明当前系统支持A/B分区启动。
+      1. 执行`cat /proc/cmdline`，能够找到`bootslot=2`，说明当前系统支持A/B分区启动。
 
           ![cmdline](figures/ABStartup_2.png)
-      2. 执行param get ohos.boot.bootslot，得到的结果是2，说明bootslot信息被成功写到了parameter中。
+      2. 执行`param get ohos.boot.bootslot`，得到的结果是2，说明bootslot信息被成功写到了parameter中。
 
-      3. 执行ls -l /dev/block/by-name，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
+      3. 执行`ls -l /dev/block/by-name`，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
 
           ![设备信息](figures/ABStartup_3.png)
 
-      4. 执行df -h 查看当前系统挂载分区。
+      4. 执行`df -h`查看当前系统挂载分区。
 
           ![分区信息](figures/ABStartup_4.png)
 
-          可以看到根文件系统（一个 ” / ” 表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到/vendor中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
+          可以看到根文件系统（一个“/”表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到`/vendor`中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
 
           接下来，我们将尝试B分区启动。
 
-          1）执行partitionslot setactive 2，将活动分区slot设置为2，也就是B分区的slot。
+          1）执行`partitionslot setactive 2`，将活动分区slot设置为2，也就是B分区的slot。
 
-          ![设置slot](figures/ABStartup_5.png)
+             ![设置slot](figures/ABStartup_5.png)
 
-          2）执行partitionslot getslot，查看刚刚设置的slot值是否设置成功。
+          2）执行`partitionslot getslot`，查看刚刚设置的slot值是否设置成功。
 
-          ![查看slot](figures/ABStartup_6.png)
+             ![查看slot](figures/ABStartup_6.png)
 
-          current slot: 2表示活动分区slot被成功设置为2
+             `current slot: 2`表示活动分区slot被成功设置为2。
 
-          3）重启设备后，执行df -h，查看当前系统挂载分区
-          发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
+          3）重启设备后，执行`df -h`，查看当前系统挂载分区。
+         
+             发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
 
-          ![挂载信息](figures/ABStartup_7.png)
+             ![挂载信息](figures/ABStartup_7.png)
 
-          4）再次执行ls -l /dev/block/by-name。
+          4）再次执行`ls -l /dev/block/by-name`。
 
-          ![新增设备信息](figures/ABStartup_8.png)
+             ![新增设备信息](figures/ABStartup_8.png)
 
           找到mmcblk0p11对应的是system_b，mmcblk0p12对应的是vendor_b，也就是说，本次启动系统已经成功从B分区挂载启动。
