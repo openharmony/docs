@@ -47,8 +47,8 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 | backButtonIcon<sup>9+</sup>   | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>       | boolean                                  | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
 | navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup> | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度。<br/>默认值：[240, 280]<br/>单位：vp   |
-| minContentWidth<sup>10+</sup>  | [Dimension](ts-types.md#dimension10)                         | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp          |
+| navBarWidthRange<sup>10+</sup> | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
+| minContentWidth<sup>10+</sup>  | [Dimension](ts-types.md#dimension10)                         | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算 默认600vp (minNavBarWidth + minContentWidth ) |
 
 ## NavPathStack<sup>10+</sup>
 
