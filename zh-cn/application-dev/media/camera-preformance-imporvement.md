@@ -154,16 +154,16 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 
 - **相机应用**
 
-```js
-import camera from '@ohos.multimedia.camera'
+  ```js
+  import camera from '@ohos.multimedia.camera'
 
-this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
-let cameras = this.cameraManager.getSupportedCameras()
-if(this.cameraManager.isPreLaunchSupported(cameras[0])) {
-  try {
-    this.cameraManager.setPreLaunchConfig({cameraDevice: cameras[0]});
-  } catch (error) {
-    console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+  this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+  let cameras = this.cameraManager.getSupportedCameras()
+  if(this.cameraManager.isPreLaunchSupported(cameras[0])) {
+    try {
+      this.cameraManager.setPreLaunchConfig({cameraDevice: cameras[0]});
+    } catch (error) {
+      console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+    }
   }
-}
-```
+  ```
