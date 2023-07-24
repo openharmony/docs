@@ -18,7 +18,7 @@
 关系型数据库对应用提供通用的操作接口，底层使用SQLite作为持久化存储引擎，支持SQLite具有的数据库特性，包括但不限于事务、索引、视图、触发器、外键、参数化查询和预编译SQL语句。
 
 **图1** 关系型数据库运作机制
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -53,7 +53,7 @@
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore。示例代码如下所示：
 
    Stage模型示例：
-     
+   
    ```js
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -106,7 +106,7 @@
 
    FA模型示例：
 
-     
+   
    ```js
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块
    import featureAbility from '@ohos.ability.featureAbility';
@@ -163,7 +163,7 @@
    > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，数据库文件相同的目录下，可以会产生以-wal和-shm结尾的临时文件，此时开发者希望移到数据库文件到其它地方使用可查看，需要同时移动这些临时文件。当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
 
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
-     
+   
    ```js
    const valueBucket = {
      'NAME': 'Lisa',
@@ -187,7 +187,7 @@
 3. 根据谓词指定的实例对象，对数据进行修改或删除。
 
    调用update()方法修改数据，调用delete()方法删除数据。示例代码如下所示：
-     
+   
    ```js
    // 修改数据
    const valueBucket = {
@@ -221,7 +221,7 @@
 4. 根据谓词指定的查询条件查找数据。
 
    调用query()方法查找数据，返回一个ResultSet结果集。示例代码如下所示：
-     
+   
    ```js
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
@@ -258,7 +258,7 @@
    
    Stage模型示例：
 
-     
+   
    ```js
    import UIAbility from '@ohos.app.ability.UIAbility';
    
@@ -269,15 +269,16 @@
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
+         store = null;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
    }
    ```
-
+   
    FA模型示例：
-
-     
+   
+   
    ```js
    import featureAbility from '@ohos.ability.featureAbility';
    
@@ -289,6 +290,7 @@
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
+     store = null;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
