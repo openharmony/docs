@@ -214,4 +214,4 @@
 
 ## 数据提供方开发步骤
 
-参考[数据管理](../database/data-mgmt-overview.md)开发指南。
+参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
