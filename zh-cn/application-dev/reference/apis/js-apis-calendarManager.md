@@ -192,7 +192,7 @@ getCalendar(callback: AsyncCallback<[Calendar](#calendar)>): void
 
 | 参数名   | 类型                                 | 必填 | 说明                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<[calendar](#Calendar)> | 是   | 异步回调，返回查询的账户实例。 |
+| callback | AsyncCallback<[Calendar](#calendar)> | 是   | 异步回调，返回查询的账户实例。 |
 
 **错误码：**
 
