@@ -213,7 +213,7 @@ try {
 **开发步骤：**
 
 1. 建立检索条件，用于获取图片资源。
-2. 调用getFileAssets接口获取目标图片资源。
+2. 调用getAssets接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片，即要重命名的图片对象。
 4. 调用FileAsset.set接口将图片重命名为新的名字。
 5. 调用FileAsset.commitModify接口将修改的图片属性更新到数据库中完成修改。
@@ -258,7 +258,7 @@ try {
 **开发步骤：**
 
 1. 建立检索条件，用于获取图片资源。
-2. 调用PhotoAccessHelper.getFileAssets接口获取目标图片资源。
+2. 调用PhotoAccessHelper.getAssets接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject)接口获取第一张图片，即要放入回收站的图片对象。
 4. 调用deleteAssets接口将文件放入回收站。
 
