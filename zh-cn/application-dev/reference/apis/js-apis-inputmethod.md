@@ -1821,7 +1821,7 @@ inputMethodController.off('deleteRight');
 
 ### on('sendKeyboardStatus')<sup>10+</sup>
 
-on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => void): void
+on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => void): void
 
 订阅输入法应用发送键盘状态事件。使用callback异步回调。
 
@@ -1832,7 +1832,7 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 | 参数名   | 类型  | 必填 | 说明    |
 | -------- | ------ | ---- | ---- |
 | type     | string  | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示订阅输入法应用发送键盘状态事件监听。 |
-| callback | (keyBoardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
 
 **错误码：**
 
@@ -1846,8 +1846,8 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 
 ```js
 try {
-  inputMethodController.on('sendKeyboardStatus', (keyBoardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
+  inputMethodController.on('sendKeyboardStatus', (keyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
@@ -1856,7 +1856,7 @@ try {
 
 ### off('sendKeyboardStatus')<sup>10+</sup>
 
-off(type: 'sendKeyboardStatus', callback?: (keyBoardStatus: KeyboardStatus) => void): void
+off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void
 
 取消订阅输入法应用发送键盘状态事件。
 
@@ -1867,13 +1867,13 @@ off(type: 'sendKeyboardStatus', callback?: (keyBoardStatus: KeyboardStatus) => v
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
-| callback | (keyBoardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
-let onSendKeyboardStatus = (keyBoardStatus: KeyboardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
+let onSendKeyboardStatus = (keyboardStatus: KeyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
 };
 inputMethodController.off('sendKeyboardStatus', onSendKeyboardStatus);
 inputMethodController.off('sendKeyboardStatus');
