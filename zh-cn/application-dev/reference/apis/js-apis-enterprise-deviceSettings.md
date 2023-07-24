@@ -235,10 +235,10 @@ await deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, a
 
 **系统API**: 此接口为系统接口。
 
-| 名称         | 类型     | 可读 | 可写   | 说明                            |
-| ----------- | --------| ---- | ----- | ------------------------------- |
-| inData | Uint8Array | 是 | 否 | 证书的二进制内容。 |
-| alias | string | 是 | 否 | 证书安装后的别名。 |
+| 名称         | 类型     | 必填 | 说明                            |
+| ----------- | --------| ----- | ------------------------------- |
+| inData | Uint8Array | 是 | 证书的二进制内容。 |
+| alias | string | 是 | 证书别名。 |
 
 ## deviceSettings.uninstallUserCertificate
 
@@ -257,7 +257,7 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| certUri    | string    | 是    | 证书uri。                  |
+| certUri    | string    | 是    | 证书uri，由安装用户证书接口返回                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -305,7 +305,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| certUri    | string     | 是    | 证书uri。                  |
+| certUri    | string     | 是    | 证书uri，由安装用户证书接口返回                  |
 
 **返回值：**
 
