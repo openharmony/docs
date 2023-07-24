@@ -126,7 +126,7 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 | 接口 | 说明 |
 | ---- | ---- |
 | isPreLaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
-| setPreLaunchConfig(camera: CameraDevice) : void | 配置相机预热参数。 |
+| setPreLaunchConfig(preLaunchConfig: PreLaunchConfig) : void | 配置相机预热参数。 |
 | preLaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 
 ### 开发示例
@@ -134,10 +134,6 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
 接口调用流程建议如下图所示：
 
 ![](figures/prelaunch-sequence-diagram.png)
-
-使用该功能前，桌面应用和相机应用均需要**申请权限**：ohos.permission.CAMERA
-
-具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
 - **桌面应用**
 
@@ -153,6 +149,10 @@ this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
   ```
 
 - **相机应用**
+
+  使用该功能前，应用需要**申请权限**：ohos.permission.CAMERA
+
+  具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
   ```js
   import camera from '@ohos.multimedia.camera'
