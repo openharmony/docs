@@ -6,24 +6,24 @@
 
 **变更影响**
 
-对于已发布的C接口，可能影响三方应用的兼容性。
+对于已发布的js接口，可能影响三方应用的兼容性。
 
 **关键的接口/组件变更**
 
 修改前的接口原型：
 
- ```C
+ ```js
 getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback<AudioEffectInfoArray>): void;
 getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise<AudioEffectInfoArray>;
  ```
 
 修改后的接口原型：
 
- ```C
+ ```js
 getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback<AudioEffectInfoArray>): void;
 getAudioEffectInfoArray(usage: StreamUsage): Promise<AudioEffectInfoArray>;
  ```
 
 **适配指导**
 
-修改后用户不需要再传入ContenType type入参。
+修改后用户调用该接口时，只需要传入StreamUsage入参，对于已经适配的用户，直接删去ContentType type入参即可。
