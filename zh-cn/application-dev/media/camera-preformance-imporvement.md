@@ -12,9 +12,9 @@
 
 ![deferred-surface-scene](figures/deferred-surface-scene.png)
 
-优化前：配流动作依赖surface对象，surface对象依赖于UI加载完成。
+优化前：配流动作依赖surface对象，surface对象依赖于UI加载完成。也就是在UI加载完成后，才可以创建Session、配置输入输出流、启动Session，由相机HDI进行配流。
 
-优化后：配流动作不依赖surface对象，界面加载和配流并行执行。
+优化后：配流动作不依赖surface对象，界面加载和配流并行执行。完成参数准备后，即可开始创建Session。
 
 ### 接口说明
 
