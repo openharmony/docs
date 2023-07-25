@@ -3491,7 +3491,7 @@ async function getCurrentAudioCapturerInfoArray(){
 
 ### on('audioRendererChange')<sup>9+</sup>
 
-on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
+on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
 监听音频渲染器更改事件。
 
@@ -3541,7 +3541,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ### off('audioRendererChange')<sup>9+</sup>
 
-off(type: "audioRendererChange"): void
+off(type: 'audioRendererChange'): void
 
 取消监听音频渲染器更改事件。
 
@@ -3570,7 +3570,7 @@ console.info('######### RendererChange Off is called #########');
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
-on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
+on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
 监听音频采集器更改事件。
 
@@ -3619,7 +3619,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ### off('audioCapturerChange')<sup>9+</sup>
 
-off(type: "audioCapturerChange"): void;
+off(type: 'audioCapturerChange'): void;
 
 取消监听音频采集器更改事件。
 
@@ -5898,7 +5898,7 @@ async function onAudioInterrupt(){
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -5945,7 +5945,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
@@ -6683,7 +6683,7 @@ async function onAudioInterrupt(){
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -6729,7 +6729,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
