@@ -82,9 +82,12 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }).catch(ex => console.error(".error=" + ex.toString()))
 })
 ```
-createColorPicker(source: image.PixelMap, region: Array<number>): Promise\<ColorPicker>
 
-通过传入的PixelMap创建ColorPicker实例，使用Promise异步回调。
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<ColorPicker>
+
+通过传入的PixelMap创建选定区域的ColorPicker实例，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -93,7 +96,7 @@ createColorPicker(source: image.PixelMap, region: Array<number>): Promise\<Color
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。 |
-| region<sup>10+</sup>   | Array\<number> | 否   |  指定图片的取色区域，从API version 10开始，支持此参数。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的上左、上、右、下位置。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+| region   | Array\<number> | 否   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
 
 **返回值：**
 
@@ -148,9 +151,11 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 
+## effectKit.createColorPicker<sup>10+</sup>
+
 createColorPicker(source: image.PixelMap, region:Array\<number>, callback: AsyncCallback\<ColorPicker>): void
 
-通过传入的PixelMap创建ColorPicker实例，使用callback异步回调。
+通过传入的PixelMap创建选定区域的ColorPicker实例，使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -159,7 +164,7 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 | 参数名     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。  |
-| region<sup>10+</sup>   | Array\<number> | 否   |  指定图片的取色区域，从API version 10开始，支持此参数。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的上左、上、右、下位置。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+| region   | Array\<number> | 否   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
 
 **示例：**
@@ -188,10 +193,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | 是   | 否   | 红色分量值。           |
-| green | number | 是   | 否   | 绿色分量值。           |
-| blue  | number | 是   | 否   | 蓝色分量值。           |
-| alpha | number | 是   | 否   | 透明通道分量值。       |
+| red   | number | 是   | 否   | 红色分量值,取值范围[0x0, 0xFF]。           |
+| green | number | 是   | 否   | 绿色分量值,取值范围[0x0, 0xFF]。           |
+| blue  | number | 是   | 否   | 蓝色分量值,取值范围[0x0, 0xFF]。           |
+| alpha | number | 是   | 否   | 透明通道分量值,取值范围[0x0, 0xFF]。       |
 
 ## ColorPicker
 
@@ -317,6 +322,12 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 判断图像是否为黑白灰颜色，返回true或false。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | ----------- | ---- | -------------------------- |
+| color| number | 是   |  需要判断是否黑白灰色的颜色值，取值范围[0x0, 0xFFFFFFFF] |
 
 **返回值：**
 
