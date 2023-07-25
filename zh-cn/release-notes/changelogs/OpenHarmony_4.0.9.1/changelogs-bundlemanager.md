@@ -97,7 +97,7 @@ import bundleManager form '@ohos.bundle.bundleManager'
 import bundleManager form '@ohos.bundle.bundleManager'
 ```
 
-## cl.bundlemanager.7 包管理Schema中proxyDatas更名为proxyData。
+## cl.bundlemanager.7 应用配置文件module.json5中proxyDatas更名为proxyData。
 
 由于命名规范问题，proxyDatas更名为proxyData。
 
