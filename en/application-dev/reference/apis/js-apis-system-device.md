@@ -24,7 +24,7 @@ Obtains the device information.
 >
 > Do not call **device.getInfo** before the **onShow** event of the home page.
 
-**System capability**: SystemCapability.Startup.SystemInfo
+**System capability**: SystemCapability.Startup.SystemInfo.Lite
 
 **Parameters**
 
@@ -36,7 +36,7 @@ Obtains the device information.
 
 Defines the parameters for obtaining the device information.
 
-**System capability**: SystemCapability.Startup.SystemInfo
+**System capability**: SystemCapability.Startup.SystemInfo.Lite
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -48,7 +48,7 @@ Defines the parameters for obtaining the device information.
 
 Provides the device information.
 
-**System capability**: SystemCapability.Startup.SystemInfo
+**System capability**: SystemCapability.Startup.SystemInfo.Lite
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
