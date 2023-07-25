@@ -257,7 +257,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount?: [CalendarAccount](#calendarAccount)): Promise<[Calendar](#calendar)>
+getCalendar(calendarAccount?: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
 
 获取账户，使用Promise的方式实现异步调用。
 
