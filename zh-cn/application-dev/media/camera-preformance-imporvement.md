@@ -99,15 +99,15 @@ boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
 if (isSupported) {
     // 使能快速缩略图
     this.photoOutPut.enableQuickThumbnail(true)
-}
-this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
+    this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
     if (err || pixelmap === undefined) {
         Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
         return
     }
     // 显示或保存pixelmap
     this.showOrSavePicture(pixelmap)
-})
+  })
+}
 ```
 
 ## 预热启动
