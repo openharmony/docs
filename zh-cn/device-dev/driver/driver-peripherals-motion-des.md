@@ -60,7 +60,7 @@ Motion驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能
 │   └── unittest\hdi                     # 手势识别模块HDI单元测试代码
 ```
 
-下面结合DEMO实例，介绍如何基于HDF驱动框架，进行手势识别用户态驱动开发。具体实现请参考[motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_interface_driver.cpp)。
+下面结合DEMO实例，介绍如何基于HDF驱动框架，进行手势识别用户态驱动开发。具体实现请参考[motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/OpenHarmony-3.2-Release/motion/hdi_service/motion_interface_driver.cpp)。
 
 手势识别用户态驱动开发， 主要完成Bind、Init、Release、Dispatch函数接口实现。其中Bind函数为驱动绑定对外提供的服务能力，Init函数为系统加载驱动前需要的一些初始化的操作，Release函数的主要作用为当系统加载驱动调用Init函数失败时对资源进行回收操作，Dispatch函数为服务能力的具体实现，在Bind函数中进行绑定。
 
