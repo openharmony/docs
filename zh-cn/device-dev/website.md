@@ -536,6 +536,7 @@
 - 调测
   - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
   - [xdevice测试调度框架使用指导](device-test/xdevice.md)
+  - [Smartperf-Host调优工具使用指导](device-test/smartperf-host.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsystems/subsys-toolchain-hdc-guide.md)
