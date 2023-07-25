@@ -113,7 +113,7 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
 
-安装用户证书，使用callback异步回调。
+指定设备管理应用安装用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -172,7 +172,7 @@ new Promise((resolve, reject) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-安装用户证书，使用Promise异步回调。
+指定设备管理应用安装用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -230,7 +230,7 @@ deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: 
 
 ## CertBlob
 
-证书信息
+证书信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -245,7 +245,7 @@ deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: 
 
 uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
 
-卸载用户证书，使用callback异步回调。
+指定设备管理应用卸载用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -292,7 +292,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-卸载用户证书，使用Promise异步回调。
+指定设备管理应用卸载用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
