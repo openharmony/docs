@@ -1,10 +1,10 @@
 # ArkUI Component Development (ArkTS)
 
-## Can custom dialog boxes be defined or used in .ts files?
+## Can custom dialog boxes be defined and used in .ts files?
 
 Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
-Unfortunately, no. ArkTS syntax is required for defining and initializing custom dialog boxes. Therefore, they can be defined and used only in .ets files.
+Unfortunately not. Custom dialog boxes require ArkTS syntax for definition and initialization. Therefore, they can be defined and used only in .ets files.
 
 **Reference**
 
@@ -245,8 +245,8 @@ When a custom dialog box contains a child component whose area size can be chang
 
 **Solution**
 
--   Method 1: Use the default style of the custom dialog box. In this case, the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height.
--   Method 2: Use a custom style of the custom dialog box. In this case, the dialog box automatically adapts its width and height to the child components.
+-   Method 1: Set the custom dialog box to the default style. In this style, the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height.
+-   Method 2: Set the custom dialog box to a custom style. In this style, the dialog box automatically adapts its width and height to the child components.
 
 **Reference**
 
@@ -685,3 +685,64 @@ You can use **focusControl.requestFocus** to control the focus of the text input
 **Reference**
 
 [Focus Control](../reference/arkui-ts/ts-universal-attributes-focus.md)
+
+## How do I set the controlButton attribute for the \<SideBarContainer> component?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+Refer to the following sample code:
+
+```
+@Entry
+@Component
+struct SideBarContainerExample {
+  normalIcon : Resource = $r("app.media.icon")
+  selectedIcon: Resource = $r("app.media.icon")
+  @State arr: number[] = [1, 2, 3]
+  @State current: number = 1
+
+  build() {
+    SideBarContainer(SideBarContainerType.Embed)
+    {
+      Column() {
+        ForEach(this.arr, (item, index) => {
+          Column({ space: 5 }) {
+            Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
+            Text("Index0" + item)
+              .fontSize(25)
+              .fontColor(this.current === item ? '#0A59F7' : '#999')
+              .fontFamily('source-sans-pro,cursive,sans-serif')
+          }
+          .onClick(() => {
+            this.current = item
+          })
+        }, item => item)
+      }.width('100%')
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .backgroundColor('#19000000')
+
+
+      Column() {
+        Text('SideBarContainer content text1').fontSize(25)
+        Text('SideBarContainer content text2').fontSize(25)
+      }
+      .margin({ top: 50, left: 20, right: 30 })
+    }
+    .sideBarWidth(150)
+    .minSideBarWidth(50)
+    .controlButton({left:32,
+      top:32,
+      width:32,
+      height:32, 
+      icons:{shown: $r("app.media.icon"),
+        hidden: $r("app.media.icon"),
+        switching: $r("app.media.icon")}})
+    .maxSideBarWidth(300)
+    .onChange((value: boolean) => {
+      console.info('status:' + value)
+    })
+  }
+}
+```

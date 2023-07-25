@@ -37,9 +37,9 @@ GridItem()
 >  - Settings outside of the valid ranges do not take effect.
 >
 >  - In the grid that has both **columnTemplate** and **rowTemplate** set, a grid item takes up the specified number of rows (rowEnd – rowStart + 1) or columns (columnEnd – columnStart + 1), depending on whether **rowStart**/**rowEnd** or **columnStart**/**columnEnd** is set.
->- In the grid that has only **columnTemplate** set, a grid item takes up the specified number of columns.
+>  - In the grid that has only **columnTemplate** set, a grid item takes up the specified number of columns.
 >  - In the grid that has only **rowTemplate** set, a grid item takes up the specified number of rows.
->- In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
+>  - In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
 
 
 ## Events

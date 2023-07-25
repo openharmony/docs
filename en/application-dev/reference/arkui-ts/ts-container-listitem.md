@@ -78,6 +78,7 @@ struct ListItemExample {
           }
         }, item => item)
       }.width('90%')
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

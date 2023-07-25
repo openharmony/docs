@@ -99,12 +99,12 @@ struct ListItemGroupExample {
               }
             }, item => item)
           }
-          .borderRadius(20)
           .divider ({ strokeWidth: 1,color:Color.Blue }) // Divider between lines
         })
       }
       .width('90%')
       .sticky(StickyStyle.Header|StickyStyle.Footer)
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

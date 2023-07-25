@@ -291,7 +291,6 @@ struct ListExample{
             }
           }, item => item)
         }.width('90%')
-        .scrollBar(BarState.Off)
       }.width('100%')
 
       Button('edit list')
