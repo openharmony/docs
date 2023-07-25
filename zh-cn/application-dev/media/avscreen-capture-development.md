@@ -22,110 +22,106 @@
 
 1. 创建AVScreenCapture实例capture。
 
-   ```c++
-
-   OH_AVScreenCapture* capture = AVScreenCapture_Create();
-   ```
+    ```c++
+    OH_AVScreenCapture* capture = AVScreenCapture_Create();
+    ```
 
 2. 配置屏幕录制参数。
       创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数，可以参考下面的案例。
-   ```c++
 
-  OH_AudioCaptureInfo miccapinfo = {
+    ```c++
+    OH_AudioCaptureInfo miccapinfo = {
         .audioSampleRate = 16000,
         .audioChannels = 2,
         .audioSource = OH_MIC
-  };
-  OH_VideoCaptureInfo videocapinfo = {
-      .videoFrameWidth = display->GetWidth(),
-      .videoFrameHeight = display->Height(),
-      .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
-  };
-  OH_AudioInfo audioinfo = {
-      .micCapInfo = miccapinfo,
-  };
-  OH_VideoInfo videoinfo = {
-      .videoCapInfo = videocapinfo
-  };
-  OH_RecorderInfo recorderinfo = {
-      .url = name
-  };
-  OH_AVScreenCaptureConfig config = {
+    };
+
+    OH_VideoCaptureInfo videocapinfo = {
+        .videoFrameWidth = display->GetWidth(),
+        .videoFrameHeight = display->Height(),
+        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
+    };
+
+    OH_AudioInfo audioinfo = {
+        .micCapInfo = miccapinfo,
+    };
+
+    OH_VideoInfo videoinfo = {
+        .videoCapInfo = videocapinfo
+    };
+
+    OH_RecorderInfo recorderinfo = {
+        .url = name
+    };
+
+    OH_AVScreenCaptureConfig config = {
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioinfo,
         .videoInfo = videoinfo,
         .recorderInfo = recorderinfo
-  };
-  OH_AVScreenCapture_Init(capture, config);
-   ```
+    };
+
+    OH_AVScreenCapture_Init(capture, config);
+    ```
 
 3. 设置麦克风开关。
      
-   ```c++
-
-  bool isMic = true;
-  OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
-   ```
+    ```c++
+    bool isMic = true;
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
+    ```
 
 4. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
      
-   ```c++
-
-   OH_AVScreenCaptureCallback callback;
-   callback.onAudioBufferAvailable = OnAudioBufferAvailable;
-   callback.onVideoBufferAvailable = OnVideoBufferAvailable;
-   OH_AVScreenCapture_SetCallback(capture, callback);
-   ```
+    ```c++
+    OH_AVScreenCaptureCallback callback;
+    callback.onAudioBufferAvailable = OnAudioBufferAvailable;
+    callback.onVideoBufferAvailable = OnVideoBufferAvailable;
+    OH_AVScreenCapture_SetCallback(capture, callback);
+    ```
 
 5. 调用StartScreenCapture方法开始进行屏幕录制。
      
-   ```c++
-
-  OH_AVScreenCapture_StartScreenCapture(capture);
-   ```
+    ```c++
+    OH_AVScreenCapture_StartScreenCapture(capture);
+    ```
 
 6. 调用StopScreenCapture()方法停止录制。
      
-   ```c++
-
-  OH_AVScreenCapture_StopScreenCapture(capture_);
-   ```
+    ```c++
+    OH_AVScreenCapture_StopScreenCapture(capture_);
+    ```
 
 7. 调用AcquireAudioBuffer()获取音频原始码流数据
      
-   ```c++
-
-  OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
-   ```
+    ```c++
+    OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
+    ```
 
 8. 调用AcquireVideoBuffer()方法停止录制。
      
-   ```c++
-
-  OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
-   ```
+    ```c++
+    OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
+    ```
 
 9. 调用ReleaseAudioBuffer方法释放音频buffer。
      
-   ```c++
-
-  OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
-   ```
+    ```c++
+    OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
+    ```
 
 10. 调用ReleaseVideoBuffer()方法停止录制。
      
-   ```c++
-
-  OH_ScreenCapture_ReleaseVideoBuffer(capture);
-   ```
+    ```c++
+    OH_ScreenCapture_ReleaseVideoBuffer(capture);
+    ```
 
 11. 调用release()方法销毁实例，释放资源。
      
-   ```c++
-
-  OH_AVScreenCapture_Release(capture);
-   ```
+    ```c++
+    OH_AVScreenCapture_Release(capture);
+    ```
 
 ### 完整示例
 
