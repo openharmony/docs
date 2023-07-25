@@ -21,9 +21,10 @@ off接口新增需要取消订阅的回调函数作为可选参数，需要与on
 | off('insertText')         | off(type: 'insertText'): void         | off(type: 'insertText', callback?: (text: string) => void): void |
 | off('deleteLeft')         | off(type: 'deleteLeft'): void         | off(type: 'deleteLeft', callback?: (length: number) => void): void |
 | off('deleteRight')        | off(type: 'deleteRight'): void        | off(type: 'deleteRight', callback?: (length: number) => void): void |
-| off('sendKeyboardStatus') | off(type: 'sendKeyboardStatus'): void | off(type: 'sendKeyboardStatus', callback?: (keyBoardStatus: KeyboardStatus) => void): void |
+| off('sendKeyboardStatus') | off(type: 'sendKeyboardStatus'): void | off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void |
 | off('sendFunctionKey')    | off(type: 'sendFunctionKey'): void    | off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): void |
 | off('moveCursor')         | off(type: 'moveCursor'): void         | off(type: 'moveCursor', callback?: (direction: Direction) => void): void |
+| off('handleExtendAction') | off(type: 'handleExtendAction'): void | off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void |
 | off('selectByRange')      | off(type: 'selectByRange'): void      | off(type: 'selectByRange', callback?: Callback\<Range\>): void |
 | off('selectByMovement')   | off(type: 'selectByMovement'): void   | off(type: 'selectByMovement', callback?: Callback\<Movement\>): void |
 
