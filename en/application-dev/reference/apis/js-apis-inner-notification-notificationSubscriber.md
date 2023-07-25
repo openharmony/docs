@@ -1,6 +1,6 @@
 # NotificationSubscriber
 
-Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](js-apis-notificationSubscribe.md).
+The **NotificationSubscriber** module provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](js-apis-notificationSubscribe.md).
 
 > **NOTE**
 >
@@ -283,7 +283,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
 
 Listens for the notification enabled status changes.
 
@@ -295,7 +295,7 @@ Listens for the notification enabled status changes.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -367,9 +367,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Type                                             | Read-only| Mandatory| Description    |
+| Name           | Type                                             | Readable| Writable| Description    |
 | --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | Yes | Notification content.|
+| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | No | Notification content.|
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | Yes | No | Notification sorting information.|
 | reason          | number                                            | Yes | No | Reason for deletion.|
 | sound           | string                                            | Yes | No | Sound used for notification.|
@@ -382,11 +382,11 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type   | Read-only| Mandatory| Description            |
+| Name  | Type   | Readable| Writable| Description            |
 | ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | Yes | Yes | Bundle name of the application.      |
-| uid    | number  | Yes | Yes | UID of the application.       |
-| enable | boolean | Yes | Yes | Notification enabled status of the application.|
+| bundle | string  | Yes | No | Bundle name of the application.      |
+| uid    | number  | Yes | No | UID of the application.       |
+| enable | boolean | Yes | No | Notification enabled status of the application.|
 
 
 ## BadgeNumberCallbackData<sup>10+</sup>
@@ -395,8 +395,8 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Type  | Read-only| Mandatory| Description        |
+| Name       | Type  | Readable| Writable| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundle      | string | Yes  | Yes  | Bundle name of the application.|
-| uid         | number | Yes  | Yes  | UID of the application. |
-| badgeNumber | number | Yes  | Yes  | Number of notifications displayed on the application icon.  |
+| bundle      | string | Yes  | No  | Bundle name of the application.|
+| uid         | number | Yes  | No  | UID of the application. |
+| badgeNumber | number | Yes  | No  | Number of notifications displayed on the application icon.  |
