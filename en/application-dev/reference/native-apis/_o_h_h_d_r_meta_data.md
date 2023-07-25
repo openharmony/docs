@@ -3,9 +3,13 @@
 
 ## Overview
 
-Defines the HDR metadata.
+The **OHHDRMetaData** module defines the HDR metadata.
 
-**Related Modules:**
+**Since**
+
+9
+
+**Related Modules**
 
 [NativeWindow](_native_window.md)
 
@@ -15,30 +19,34 @@ Defines the HDR metadata.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [key](#key) | Key of the HDR metadata.  | 
-| [value](#value) | Value corresponding to the metadata key.  | 
+| [key](#key) | HDR metadata key.|
+| [value](#value) | Value of the key.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### key
 
-  
+
 ```
 OHHDRMetadataKey OHHDRMetaData::key
 ```
-**Description**<br>
-Key of the HDR metadata.
+
+**Description**
+
+HDR metadata key.
 
 
 ### value
 
-  
+
 ```
 float OHHDRMetaData::value
 ```
-**Description**<br>
-Value corresponding to the metadata key.
+
+**Description**
+
+Value of the key.
