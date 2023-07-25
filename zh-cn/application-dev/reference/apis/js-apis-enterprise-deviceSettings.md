@@ -201,7 +201,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 9201001 | manage certificate failed. |
+| 9201001 | manage certificate failed |
 
 **示例：**
 
