@@ -10,6 +10,7 @@ You can set the background for a component.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
+| background<sup>10+</sup> | builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: {align?:[Alignment](ts-appendix-enums.md#alignment)} | Background color of the component.<br>**builder**: custom background.<br>**align**: alignment mode between the custom background and the component.<br>If **background**, **backgroundColor**, and **backgroundImage** are set at the same time, they will all take effect, with **background** at the top layer.|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | backgroundImage | src: [ResourceStr](ts-types.md#resourcestr),<br>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | **src**: image address, which can be the address of an Internet or a local image or a Base64 encoded image. SVG images are not supported.<br>**repeat**: whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | backgroundImageSize | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} \| [ImageSize](ts-appendix-enums.md#imagesize) | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
@@ -122,3 +123,35 @@ struct BackgroundBlurStyleDemo {
 ```
 
 ![en-us_image_background_blur_style](figures/en-us_image_background_blur_style.png)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BackgroundExample {
+  @Builder renderBackground() {
+    Column() {
+      Progress({value : 50})
+    }
+  }
+
+  build() {
+    Column() {
+      Text("content")
+        .width(100)
+        .height(40)
+        .fontColor("#FFF")
+        .position({x:50, y:80})
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Green)
+    }
+    .width(200).height(200)
+    .background(this.renderBackground)
+    .backgroundColor(Color.Gray)
+  }
+}
+```
+
+![en-us_image_background](figures/en-us_image_background.png)

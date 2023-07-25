@@ -146,6 +146,8 @@ Obtains the number of lines of the edited text.
 
 ## Example
 
+### Example 1
+
 ```ts
 // xxx.ets
 @Entry
@@ -185,3 +187,41 @@ struct TextAreaExample {
 ```
 
 ![textArea](figures/textArea.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = 'test'
+  @State counterVisible: boolean = false
+  @State maxNumber: number = -1
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.controller
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .margin(20)
+        .fontSize(16)
+        .fontColor('#182431')
+        .maxLength(4)
+        .showCounter(true)
+        .backgroundColor('#FFFFFF')
+        .onChange((value: string) => {
+          this.text = value
+        })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![maxLength](figures/maxLength.png)
