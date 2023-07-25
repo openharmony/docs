@@ -540,7 +540,9 @@
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
   - AI
-    - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
+    - [AI开发概述](./ai/ai-overview.md)
+    - [使用MindSpore Lite JS API开发AI应用](./ai/mindspore-guidelines-based-js.md)
+    - [使用MindSpore Lite Native API开发AI应用](./ai/mindspore-guidelines-based-native.md)
   - 网络与连接
     - 网络管理
       - [网络管理开发概述](connectivity/net-mgmt-overview.md)
