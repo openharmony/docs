@@ -12,15 +12,15 @@ VPN creation denied, please check the user type.
 
 **错误描述**
 
-VPN创建拒绝，请检测当前用户的类型。
+拒绝创建VPN，请检测当前用户的类型。
 
 **可能原因**
 
-用户的type不匹配, GUEST用户不能调用setUp接口。
+登录系统的用户类型不匹配, GUEST用户不能调用setUp接口。
 
 **处理步骤**
 
-检查当前用户的类型。
+检查当前登录系统用户的类型。
 
 
 ## 2203002 VPN已存在

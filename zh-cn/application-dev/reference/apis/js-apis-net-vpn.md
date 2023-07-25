@@ -11,9 +11,9 @@ VPN管理模块，支持VPN的启动和停止功能。
 import vpn from '@ohos.net.vpn';
 ```
 
-## vpn.createVpnConnection<sup>10+</sup>
+## vpn.createVpnConnection
 
-function createVpnConnection(context: AbilityContext): VpnConnection;
+createVpnConnection(context: AbilityContext): VpnConnection
 
 创建一个VPN连接对象。
 
@@ -23,7 +23,13 @@ function createVpnConnection(context: AbilityContext): VpnConnection;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| context | AbilityContext | 是   | 指定context                   |
+| context | [AbilityContext](js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定context                   |
+
+**返回值：**
+
+| 类型                               | 说明                    |
+| :--------------------------------- | :---------------------- |
+| [VpnConnection](#vpnconnection) | 返回一个VPN连接对象。 |
 
 **错误码：**
 
@@ -34,17 +40,6 @@ function createVpnConnection(context: AbilityContext): VpnConnection;
 | 401     | Parameter error.             |
 
 **示例：**
-
-FA模型示例：
-
-```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  VpnConnection = vpn.createVpnConnection(context);
-  console.info("vpn onInit: " + JSON.stringify(VpnConnection));
-```
-
 Stage模型示例：
 
 ```ts
@@ -60,9 +55,13 @@ VpnConnection = vpn.createVpnConnection(context);
 console.info("vpn onInit: " + JSON.stringify(VpnConnection));
 ```
 
-## VpnConnection.setUp<sup>10+</sup>
+## VpnConnection
 
-setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
+VPN连接对象。在调用VpnConnection的方法前，需要先通过[vpn.createVpnConnection](#vpncreatevpnconnection)创建VPN连接对象。
+
+### setUp
+
+setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 
 使用config创建一个vpn网络，使用callback方式作为异步方法。
 
@@ -76,7 +75,7 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| config | [VpnConfig](#vpnconfig10) | 是   | 指定VPN网络的配置信息。                   |
+| config | [VpnConfig](#vpnconfig) | 是   | 指定VPN网络的配置信息。                   |
 | callback | AsyncCallback\<number\>         | 是   | 回调函数，当成功启动VPN网络时，返回虚拟网卡的文件描述符fd, error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -119,9 +118,9 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void;
   })
 ```
 
-## VpnConnection.setUp<sup>10+</sup>
+### setUp
 
-setUp(config: VpnConfig): Promise\<number\>;
+setUp(config: VpnConfig): Promise\<number\>
 
 使用config创建一个vpn网络，使用Promise方式作为异步方法。
 
@@ -135,7 +134,7 @@ setUp(config: VpnConfig): Promise\<number\>;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| config | [VpnConfig](#vpnconfig10) | 是   | 指定VPN网络的配置信息。                   |
+| config | [VpnConfig](#vpnconfig) | 是   | 指定VPN网络的配置信息。                   |
 
 **返回值：**
 
@@ -184,9 +183,9 @@ setUp(config: VpnConfig): Promise\<number\>;
   })
 ```
 
-## VpnConnection.protect<sup>10+</sup>
+### protect
 
-protect(socketFd: number, callback: AsyncCallback\<void\>): void;
+protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 保护套接字不受VPN连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过VPN转发，使用callback方式作为异步方法。
 
@@ -200,7 +199,7 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| socketFd | number | 是   | 指定保护的socketfd。                   |
+| socketFd | number | 是   | 指定保护的socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10)获取。                   |
 | callback | AsyncCallback\<void\>         | 是   | 回调函数，成功时，error为undefined，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -242,9 +241,9 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void;
   })
 ```
 
-## VpnConnection.protect<sup>10+</sup>
+### protect
 
-protect(socketFd: number): Promise\<void\>;
+protect(socketFd: number): Promise\<void\>
 
 保护套接字不受VPN连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过VPN转发, 使用Promise方式作为异步方法。
 
@@ -258,7 +257,7 @@ protect(socketFd: number): Promise\<void\>;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| socketFd | number | 是   | 指定保护的socketfd。                   |
+| socketFd | number | 是   | 指定保护的socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。                   |
 
 **返回值：**
 
@@ -307,9 +306,9 @@ protect(socketFd: number): Promise\<void\>;
   })
 ```
 
-## VpnConnection.destroy<sup>10+</sup>
+### destroy
 
-destroy(callback: AsyncCallback\<void\>): void;
+destroy(callback: AsyncCallback\<void\>): void
 
 销毁启动的VPN网络，使用callback方式作为异步方法。
 
@@ -345,9 +344,9 @@ destroy(callback: AsyncCallback\<void\>): void;
   })
 ```
 
-## VpnConnection.destroy<sup>10+</sup>
+### destroy
 
-destroy(): Promise\<void\>;
+destroy(): Promise\<void\>
 
 销毁启动的VPN网络，使用Promise方式作为异步方法。
 
@@ -384,7 +383,7 @@ destroy(): Promise\<void\>;
   });
 ```
 
-## VpnConfig<sup>10+</sup>
+## VpnConfig
 
 VPN配置参数。
 
@@ -394,8 +393,8 @@ VPN配置参数。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------- | ------ | -- |------------------------------ |
-| addresses | Array\<LinkAddress\> | 是 | VPN虚拟网卡的IP地址。 |
-| routes  | Array\<RouteInfo\> | 否 | VPN虚拟网卡的路由信息。 |
+| addresses | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress8)\> | 是 | VPN虚拟网卡的IP地址。 |
+| routes  | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo8)\> | 否 | VPN虚拟网卡的路由信息。 |
 | dnsAddresses    | Array\<string\> | 否 | DNS服务器地址信息。 |
 | searchDomains | Array\<string\> | 否 | DNS的搜索域列表。 |
 | mtu  | number | 否 | 最大传输单元MTU值(单位:字节)。 |

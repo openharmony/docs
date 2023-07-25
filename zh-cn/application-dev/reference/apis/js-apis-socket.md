@@ -1250,7 +1250,7 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<number\> | 是   | 回调函数，当成功获取fd时，返回tcpsocket的fd。 |
+| callback | AsyncCallback\<number\> | 是   | 回调函数，当成功时，返回socket的文件描述符，失败时，返回undefined。 |
 
 **示例：**
 
@@ -1290,7 +1290,7 @@ getSocketFd(): Promise\<number\>
 
 | 类型                                             | 说明                                       |
 | :----------------------------------------------- | :----------------------------------------- |
-| Promise\<number\> | 以Promise形式返回获取TCPSocket的文件描述符。 |
+| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
 
 **示例：**
 

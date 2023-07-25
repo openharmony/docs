@@ -11,7 +11,7 @@ VPN即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[vpn链接](../reference/apis/js-apis-net-vpn.md)。
+完整的JS API说明以及实例代码请参考：[VPN API参考](../reference/apis/js-apis-net-vpn.md)。
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |
@@ -29,8 +29,10 @@ VPN即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 
+示例程序主要包含两个部分：js功能代码和C++功能代码
 
-### js 相关的代码
+## VPN示例源码(js部分)
+主要功能：实现业务逻辑，如：创建隧道、建立VPN网络、保护VPN网络、销毁VPN网络
 
 ```js
 import hilog from '@ohos.hilog';
@@ -135,7 +137,8 @@ struct Index {
 }
 ```
 
-### C++ 相关的代码
+## VPN示例源码(c++部分)
+主要功能：具体业务的底层实现，如：UDP隧道Client端的实现、虚拟网卡读写数据的实现
 
 ```c++
 #include "napi/native_api.h"
@@ -184,6 +187,7 @@ static bool threadRunF = false;
 static std::thread threadt1;
 static std::thread threadt2;
 
+//获取对应字符串数据, 用于获取udp server 的IP地址
 static constexpr const int MAX_STRING_LENGTH = 1024;
 std::string GetStringFromValueUtf8(napi_env env, napi_value value) {
     std::string result;
@@ -232,6 +236,7 @@ void HandleTcpReceived(FdInfo fdInfo) {
             continue;
         }
 
+        // 接收到udp server的数据，写入到虚拟网卡中
         NETMANAGER_VPN_LOGD("from [%{public}s:%{public}d] data: %{public}s, len: %{public}d",
                             inet_ntoa(fdInfo.serverAddr.sin_addr), ntohs(fdInfo.serverAddr.sin_port), buffer, length);
         int ret = write(fdInfo.tunFd, buffer, length);
@@ -252,6 +257,7 @@ static napi_value UdpConnect(napi_env env, napi_callback_info info) {
 
     NETMANAGER_VPN_LOGI("ip: %{public}s port: %{public}d", ipAddr.c_str(), port);
 
+    // 建立udp隧道
     int32_t sockFd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockFd == -1) {
         NETMANAGER_VPN_LOGE("socket() error");
@@ -287,6 +293,7 @@ static napi_value StartVpn(napi_env env, napi_callback_info info) {
         threadt2.join();
     }
 
+    // 启动两个线程, 一个处理读取虚拟网卡的数据，另一个接收服务端的数据
     threadRunF = true;
     std::thread tt1(HandleReadTunfd, fdInfo);
     std::thread tt2(HandleTcpReceived, fdInfo);
@@ -313,6 +320,7 @@ static napi_value StopVpn(napi_env env, napi_callback_info info) {
         tunnelFd = 0;
     }
 
+    // 停止两个线程
     if (threadRunF) {
         threadRunF = false;
         threadt1.join();
