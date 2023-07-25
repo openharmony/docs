@@ -21,7 +21,7 @@ ArrayList进行增、删、改、查操作的相关API如下：
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过arr\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
 | 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object): void访问整个ArrayList容器的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]()Iterableterator&lt;T&gt;迭代器进行数据访问。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过arr\[index] = xxx修改指定index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
 | 删除元素 | 通过removeByRange(fromIndex: number, toIndex:number)删除指定范围内的元素。 |
@@ -53,7 +53,7 @@ Vector进行增、删、改、查操作的相关API如下：
 | 修改元素 | 通过setLength(newSize:number)设置Vector的长度大小。 |
 | 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromlndex:number,tolndex:number)删除指定范围内的元素。 |
+| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
 
 
 ## List
@@ -82,7 +82,7 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 | 修改元素 | 通过replaceAllElements(callbackfn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
 | 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromlndex:number,tolndex:number)删除指定范围内的元素。 |
+| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
 
 
 ## LinkedList
@@ -171,7 +171,7 @@ Queue进行增、删、改、查操作的相关API如下：
 
 ## Stack
 
-[Qeque](../reference/apis/js-apis-stack.md)可用来构造栈对象，存储元素遵循后进先出的规则。
+[Stack](../reference/apis/js-apis-stack.md)可用来构造栈对象，存储元素遵循先进后出的规则。
 
 Stack依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的1.5倍。Stack底层基于数组实现，入栈出栈均从数组的一端操作。
 
@@ -183,7 +183,7 @@ Stack进行增、删、改、查操作的相关API如下：
 
 | 操作 | 描述 |
 | ---------- | ------ |
-| 增加元素 | 通过push(item：T)函数每次在栈顶增加一个元素。 |
+| 增加元素 | 通过push(item: T)函数每次在栈顶增加一个元素。 |
 | 访问元素 | 通过peek()获取栈顶元素的value值，但是不进行出栈操作。 |
 | 访问元素 | 通过pop()获取栈顶的value值，并进行出栈操作。 |
 | 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Stack的元素。 |
