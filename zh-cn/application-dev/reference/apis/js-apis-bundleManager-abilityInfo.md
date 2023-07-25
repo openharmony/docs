@@ -14,11 +14,11 @@ Ability信息，系统应用可以通过[bundleManager.queryAbilityInfo](js-apis
 | bundleName            | string                                                   | 是   | 否   | 应用Bundle名称。                            |
 | moduleName            | string                                                   | 是   | 否   | Ability所属的HAP的名称。                    |
 | name                  | string                                                   | 是   | 否   | Ability名称。                               |
-| label                 | string                                                   | 是   | 否   | Ability对用户显示的名称。                   |
+| label                 | string                                                   | 是   | 否   | Ability对用户显示的名称的资源描述符，如："label": "$string: mainability_description"。                   |
 | labelId               | number                                                   | 是   | 否   | Ability的标签资源id。                       |
 | description           | string                                                   | 是   | 否   | Ability的描述。                             |
 | descriptionId         | number                                                   | 是   | 否   | Ability的描述资源id。                       |
-| icon                  | string                                                   | 是   | 否   | Ability的图标资源文件索引。                 |
+| icon                  | string                                                   | 是   | 否   | Ability的图标资源描述符，如"icon": "$media:icon"。                 |
 | iconId                | number                                                   | 是   | 否   | Ability的图标资源id。                       |
 | process               | string                                                   | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。 |
 | exported             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用。         |
