@@ -14,6 +14,8 @@
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -39,6 +41,8 @@ struct OverlayExample {
 ```
 
 ![zh-cn_image_0000001205769446](figures/zh-cn_image_0000001205769446.png)
+
+### 示例2
 
 ```ts
 // xxx.ets
