@@ -155,7 +155,6 @@ await globalThis.context.resourceManager.getRawFileContent("test.cer")
   })
   .catch(error => {
     console.error(`Failed to get row file content. message: ${error.message}`);
-    done();
     return
   });
 new Promise((resolve, reject) => {
@@ -219,7 +218,6 @@ await globalThis.context.resourceManager.getRawFileContent("test.cer")
     certFileArray = data
   }).catch(error => {
     console.log('getRawFileContent error' + error)
-    done();
     return
   })
 deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
