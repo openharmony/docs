@@ -377,7 +377,6 @@
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - 编译构建参考
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
        - [产品配置规则](subsystems/subsys-build-product.md)
        - [子系统配置规则](subsystems/subsys-build-subsystem.md)
        - [部件配置规则](subsystems/subsys-build-component.md)
@@ -391,16 +390,22 @@
        - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
        - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
+       - Rust编译构建指导
+         - [Rust模块配置规则和指导](subsystems/subsys-build-rust-compilation.md)
+         - [交互工具使用指导](subsystems/subsys-build-bindgen-cxx-guide.md)
+         - [Cargo2gn工具操作指导](subsystems/subsys-build-cargo2gn-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler](subsystems/subsys-arkcompiler-guide.md)
   -  ArkUI
      - [窗口标题栏定制](subsystems/subsys-arkui-customize_titlebar.md) 
   -  图形图像
      - [图形图像概述](subsystems/subsys-graphics-overview.md)
+     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
      - [容器类组件开发指导](subsystems/subsys-graphics-container-guide.md)
      - [布局容器类组件开发指导](subsystems/subsys-graphics-layout-guide.md)
-     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
      - [动画开发指导](subsystems/subsys-graphics-animation-guide.md)
+     - [Windows QT 模拟器使用指导](subsystems/subsys-graphics-simulator-guide.md)
+     - [如何对接图形框架](subsystems/subsys-graphics-porting-guide.md)
   -  媒体
      - 相机
        - [相机开发概述](subsystems/subsys-multimedia-camera-overview.md)
@@ -540,7 +545,7 @@
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsystems/subsys-toolchain-hdc-guide.md)
-    - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
+    - [hiperf使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具
   - [工具概述](get-code/gettools-overview.md)
