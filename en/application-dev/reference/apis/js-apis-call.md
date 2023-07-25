@@ -1750,6 +1750,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1795,6 +1796,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 

@@ -1870,7 +1870,7 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3228,17 +3228,15 @@ Enumerates preferred network modes.
 
 Defines the cell information.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name             |                  Type                  | Mandatory|                           Description                              |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | networkType       | [NetworkType](#networktype)             |  Yes | Network type of the cell.                                    |
-| isCamped          | boolean                                 |  Yes | Cell status.                                        |
-| timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.                                |
+| isCamped          | boolean                                 |  Yes | Cell status.<br>**System API**: This is a system API.         |
+| timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.<br>**System API**: This is a system API.   |
 | signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information<br>**System API**: This is a system API.|
 
 ## CdmaCellInformation<sup>8+</sup>
 

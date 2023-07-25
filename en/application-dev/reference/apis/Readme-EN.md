@@ -221,7 +221,7 @@
 - Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
-  - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
+  - [@ohos.resourceManager (Resource Management)](js-apis-resource-manager.md)
 
 - Background Task
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
@@ -291,6 +291,7 @@
   - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
+  - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
