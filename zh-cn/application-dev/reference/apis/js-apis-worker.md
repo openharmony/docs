@@ -2025,18 +2025,8 @@ parentPort.onerror = function(e){
 ## 其他说明
 
 ### 序列化支持类型
-| Type               | 备注                                   | 是否支持 |
-| ------------------ | -------------------------------------- | -------- |
-| All Primitive Type | 不包括symbol                           | 是       |
-| Date               |                                        | 是       |
-| String             |                                        | 是       |
-| RegExp             |                                        | 是       |
-| Array              |                                        | 是       |
-| Map                |                                        | 是       |
-| Set                |                                        | 是       |
-| Object             | 只支持Plain Object，不支持带function的 | 是       |
-| ArrayBuffer        | 提供transfer能力                       | 是       |
-| TypedArray         |                                        | 是       |
+
+序列化支持类型包括：除Symbol之外的基础类型、Date、String、RegExp、Array、Map、Set、Object（仅限简单对象，比如通过"{}"或者"new Object"创建，普通对象仅支持传递属性，不支持传递其原型及方法）、ArrayBuffer、TypedArray。
 
 特例：传递通过自定义class创建出来的object时，不会发生序列化错误，但是自定义class的属性（如Function）无法通过序列化传递。
 > **说明：**<br/>
