@@ -26,6 +26,11 @@ StepperItem()
 | nextLabel | string | 设置右侧文本按钮内容，最后一页默认值为“开始”，其余页默认值为“下一步”。 |
 | status | [ItemState](#itemstate枚举说明) | 步骤导航器nextLabel的显示状态，参数可选。<br/>默认值：ItemState.Normal |
 
+>  **说明：**
+>
+>  - StepperItem组件不支持设置通用宽度属性，其宽度默认撑满Stepper父组件。
+>  - StepperItem组件不支持设置通用高度属性，其高度由Stepper父组件高度减去label按钮组件高度。
+>  - StepperItem组件不支持设置aspectRadio/constrainSize影响长宽的属性。
 ## ItemState枚举说明
 
 |   名称    | 描述 |
