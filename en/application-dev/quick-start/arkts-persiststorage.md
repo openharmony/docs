@@ -24,6 +24,7 @@ Persistence of data is a relatively slow operation. Applications should avoid th
 
 The preceding situations may overload the change process of persisted data. As a result, the PersistentStorage implementation may limit the change frequency of persisted attributes.
 
+PersistentStorage works only when used within UI pages.
 
 ## Application Scenarios
 
