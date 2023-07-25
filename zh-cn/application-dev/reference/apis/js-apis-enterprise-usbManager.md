@@ -86,7 +86,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用禁止使用打印能力失败时抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用设置USB策略失败时抛出错误对象。 |
 
 **错误码**：
 
