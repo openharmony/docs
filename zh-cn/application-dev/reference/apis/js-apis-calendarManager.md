@@ -257,7 +257,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount?: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
+getCalendar(calendarAccount?: [CalendarAccount](#calendarAccount)): Promise<[Calendar](#calendar)>
 
 获取账户，使用Promise的方式实现异步调用。
 
@@ -406,8 +406,8 @@ const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
-  startTimer: date.getTime(),
-  endTimer: date.getTime() + 60 * 60 * 1000
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.addEvent(event, (err, data) => {
   if (err) {
@@ -447,8 +447,8 @@ const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
-  startTimer: date.getTime(),
-  endTimer: date.getTime() + 60 * 60 * 1000
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.addEvent(event).then((data) => {
   console.log("add event success");
@@ -482,13 +482,13 @@ const date = new Date();
 const events: calendarManager.Event[] = [
   {
     type: calendarManager.EventType.NORMAL,
-    startTimer: date.getTime(),
-    endTimer: date.getTime() + 60 * 60 * 1000
+    startTime: date.getTime(),
+    endTime: date.getTime() + 60 * 60 * 1000
   },
   {
     type: calendarManager.EventType.NORMAL,
-    startTimer: date.getTime(),
-    endTimer: date.getTime() + 60 * 60 * 1000
+    startTime: date.getTime(),
+    endTime: date.getTime() + 60 * 60 * 1000
   }
 ];
 calendar.addEvents(events, (err, data) => {
@@ -530,13 +530,13 @@ const date = new Date();
 const events: calendarManager.Event[] = [
   {
     type: calendarManager.EventType.NORMAL,
-    startTimer: date.getTime(),
-    endTimer: date.getTime() + 60 * 60 * 1000
+    startTime: date.getTime(),
+    endTime: date.getTime() + 60 * 60 * 1000
   },
   {
     type: calendarManager.EventType.NORMAL,
-    startTimer: date.getTime(),
-    endTimer: date.getTime() + 60 * 60 * 1000
+    startTime: date.getTime(),
+    endTime: date.getTime() + 60 * 60 * 1000
   }
 ];
 calendar.addEvents(events).then(() => {
@@ -698,8 +698,8 @@ const event: calendarManager.Event = {
   id: 1,
   title: 'update',
   type: calendarManager.EventType.NORMAL,
-  startTimer: date.getTime(),
-  endTimer: date.getTime() + 60 * 60 * 1000
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.updateEvent(event, (err, data) => {
   if (err) {
@@ -741,8 +741,8 @@ const event: calendarManager.Event = {
   id: 1,
   title: 'update',
   type: calendarManager.EventType.NORMAL,
-  startTimer: date.getTime(),
-  endTimer: date.getTime() + 60 * 60 * 1000
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.updateEvent(event).then(() => {
   console.log("update event success");
@@ -803,7 +803,7 @@ import calendarManager from'@ohos.calendarManager';
 
 const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-const columns: (keyof calendarManager.Event)[] =  ['title', 'type', 'startTimer', 'endTimer'];
+const columns: (keyof calendarManager.Event)[] =  ['title', 'type', 'startTime', 'endTime'];
 calendar.getEvents(filter, columns, (err, data) => {
   if (err) {
     console.log("get events failed");
@@ -1000,8 +1000,8 @@ console.log("get account success");
 | type           | [EventType](#eventtype)           | 否   | 是   | 日程类型       |
 | title          | string                            | 否   | 否   | 日程标题       |
 | location       | [Location](#location)             | 否   | 否   | 日程地点       |
-| startTimer     | number                            | 否   | 是   | 日程开始时间   |
-| endTimer       | number                            | 否   | 是   | 日程结束时间   |
+| startTime      | number                            | 否   | 是   | 日程开始时间   |
+| endTime        | number                            | 否   | 是   | 日程结束时间   |
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程 |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者     |
 | timeZone       | string                            | 否   | 否   | 日程时区       |
