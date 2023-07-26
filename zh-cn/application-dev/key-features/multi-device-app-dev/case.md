@@ -262,7 +262,7 @@
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_basic_default](figures/pic/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/pic/message_bubble_basic_tablet.png) | 
+| ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
 
 
 ```
@@ -294,7 +294,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_radius_default](figures/pic/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/pic/message_bubble_radius_tablet.png) | 
+| ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
 
 
 ```
@@ -331,7 +331,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_recv_default](figures/pic/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/pic/message_bubble_recv_tablet.png) | 
+| ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
 
 
 ```
@@ -379,7 +379,7 @@ struct MessageBubble {
 
   | 默认设备 | 平板 | 
 | -------- | -------- |
-| ![message_bubble_send_default](figures/pic/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/pic/message_bubble_send_tablet.png) | 
+| ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
 
 
 ```
