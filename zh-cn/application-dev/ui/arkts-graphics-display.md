@@ -23,7 +23,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 ### 存档图类型数据源
 
-存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
+存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库资源和base64。
 
 - 本地资源
 
@@ -48,7 +48,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
-  **图1** resouces  
+  **图1** resources  
 
   ![image-resource](figures/image-resource.jpg)
 
