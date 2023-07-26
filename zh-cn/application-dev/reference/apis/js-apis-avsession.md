@@ -391,6 +391,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 **参数：**
 
 | 参数名        | 类型           | 必填 | 说明 |
+| ------------ | -------------- |------|------|
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
 | audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
 
@@ -1266,6 +1267,10 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
@@ -1302,6 +1307,10 @@ getAVCastController(sessionId: string): Promise\<AVCastController>;
 设备建立连接后，获取投播控制器。结果通过Promise方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -3738,7 +3747,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception |
 
 **示例：**
 
@@ -3771,7 +3780,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception |
 
 **示例：**
 
@@ -4458,6 +4467,8 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型         | 必填 | 说明                                                         |
@@ -4480,6 +4491,8 @@ off(type: 'videoSizeChange'): void
 取消设置video尺寸更改监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -4795,7 +4808,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -4809,6 +4822,8 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -4828,7 +4843,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 
 获取当前的远端播放状态。结果通过callback异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -4842,6 +4857,8 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **示例：**
 
