@@ -19,3 +19,5 @@
   - [Sample Server Development](sample-server-guidelines.md)
 - Stationary
   - [Stationary Development](stationary-guidelines.md)
+- Peripheral
+  - [Peripheral Management Development](externaldevice-guidelines.md)
