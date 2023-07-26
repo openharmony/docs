@@ -479,7 +479,7 @@ S-->>U: 显示给张三发短信的页面
 
 开发步骤如下所示。
 
-1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-arkui-UIContext.md)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
+1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
