@@ -951,7 +951,7 @@ struct SharePage {
 
 - [页面间转场](../application-dev/reference/arkui-ts/ts-page-transition-animation.md)
 
-- [组件内转场](../application-dev/ui/arkts-transition-animation-within-component.md)
+- [组件内转场](../application-dev/ui/arkts-shared-element-transition.md)
 
 - [共享元素转场](../application-dev/reference/arkui-ts/ts-transition-animation-shared-elements.md)
 
