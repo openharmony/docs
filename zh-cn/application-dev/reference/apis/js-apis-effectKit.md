@@ -124,10 +124,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | 是   | 否   | 红色分量值。           |
-| green | number | 是   | 否   | 绿色分量值。           |
-| blue  | number | 是   | 否   | 蓝色分量值。           |
-| alpha | number | 是   | 否   | 透明通道分量值。       |
+| red   | number | 是   | 否   | 红色分量值，取值范围[0x0, 0xFF]。           |
+| green | number | 是   | 否   | 绿色分量值，取值范围[0x0, 0xFF]。           |
+| blue  | number | 是   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
+| alpha | number | 是   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
 
 ## ColorPicker
 
