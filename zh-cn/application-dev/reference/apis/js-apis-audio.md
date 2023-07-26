@@ -533,7 +533,6 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
 | CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
-| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | 超声波。<br/>此接口为系统接口。|
 ## StreamUsage
 
 枚举，音频流使用类型。
@@ -6678,6 +6677,34 @@ async function onAudioInterrupt(){
    }
   });
 }
+```
+
+### off('audioInterrupt')<sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+取消订阅音频中断事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt' |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```js
+audioCapturer.off('audioInterrupt');
 ```
 
 
