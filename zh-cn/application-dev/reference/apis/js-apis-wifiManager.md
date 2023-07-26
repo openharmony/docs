@@ -13,7 +13,7 @@ import wifiManager from '@ohos.wifiManager';
 
 ## wifiManager.enableWifi<sup>9+</sup>
 
-enableWifi(): boolean
+enableWifi(): void
 
 使能WLAN。
 
@@ -22,12 +22,6 @@ enableWifi(): boolean
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION  仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **错误码：**
 
@@ -51,7 +45,7 @@ enableWifi(): boolean
 
 ## wifiManager.disableWifi<sup>9+</sup>
 
-disableWifi(): boolean
+disableWifi(): void
 
 去使能WLAN。
 
@@ -60,12 +54,6 @@ disableWifi(): boolean
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **错误码：**
 
@@ -126,19 +114,13 @@ isWifiActive(): boolean
 
 ## wifiManager.scan<sup>9+</sup>
 
-scan(): boolean
+scan(): void
 
 启动WLAN扫描。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
 
 **错误码：**
 
@@ -160,13 +142,187 @@ scan(): boolean
 	}
 ```
 
-## wifiManager.getScanInfoList<sup>9+</sup>
+## wifiManager.startScan<sup>10+</sup>
+
+startScan(): void
+
+**系统接口：** 此接口为系统接口。
+
+启动WLAN扫描。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.startScan();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+## wifiManager.getScanResults<sup>10+</sup>
+
+getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
+
+获取扫描结果，使用Promise异步回调。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或(ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.getScanResults<sup>10+</sup>
+
+getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
+
+获取扫描结果，使用callback异步回调。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
+  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```js
+  import wifiManager from '@ohos.wifiManager';
+  
+  wifiManager.getScanResults((err, result) => {
+      if (err) {
+          console.error("get scan info error");
+          return;
+      }
+  
+      var len = Object.keys(result).length;
+      console.log("wifi received scan info: " + len);
+      for (var i = 0; i < len; ++i) {
+          console.info("ssid: " + result[i].ssid);
+          console.info("bssid: " + result[i].bssid);
+          console.info("capabilities: " + result[i].capabilities);
+          console.info("securityType: " + result[i].securityType);
+          console.info("rssi: " + result[i].rssi);
+          console.info("band: " + result[i].band);
+          console.info("frequency: " + result[i].frequency);
+          console.info("channelWidth: " + result[i].channelWidth);
+          console.info("timestamp: " + result[i].timestamp);
+      }
+  });
+  
+  wifiManager.getScanResults().then(result => {
+      var len = Object.keys(result).length;
+      console.log("wifi received scan info: " + len);
+      for (var i = 0; i < len; ++i) {
+          console.info("ssid: " + result[i].ssid);
+          console.info("bssid: " + result[i].bssid);
+          console.info("capabilities: " + result[i].capabilities);
+          console.info("securityType: " + result[i].securityType);
+          console.info("rssi: " + result[i].rssi);
+          console.info("band: " + result[i].band);
+          console.info("frequency: " + result[i].frequency);
+          console.info("channelWidth: " + result[i].channelWidth);
+          console.info("timestamp: " + result[i].timestamp);
+      }
+  });
+```
+
+## wifiManager.getScanResultsSync<sup>10+</sup>
+
+getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
+
+获取扫描结果，使用同步方式返回结果。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let scanInfoList = wifiManager.getScanResultsSync();
+		console.info("scanInfoList:" + JSON.stringify(scanInfoList));
+		let len = Object.keys(scanInfoList).length;
+        console.log("wifi received scan info: " + len);
+		if(len > 0){
+			for (var i = 0; i < len; ++i) {
+				console.info("ssid: " + scanInfoList[i].ssid);
+				console.info("bssid: " + scanInfoList[i].bssid);
+				console.info("capabilities: " + scanInfoList[i].capabilities);
+				console.info("securityType: " + scanInfoList[i].securityType);
+				console.info("rssi: " + scanInfoList[i].rssi);
+				console.info("band: " + scanInfoList[i].band);
+				console.info("frequency: " + scanInfoList[i].frequency);
+				console.info("channelWidth: " + scanInfoList[i].channelWidth);
+				console.info("timestamp: " + scanInfoList[i].timestamp);
+			}
+		}	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+	
+```
+
+## wifiManager.getScanInfoList<sup>10+</sup>
 
 getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 获取扫描结果。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -224,6 +380,7 @@ WLAN热点信息。
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
+| bssidType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
@@ -235,6 +392,16 @@ WLAN热点信息。
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
 
+## DeviceAddressType <sup>10+</sup>
+
+wifi 设备地址（mac/bissid）类型。
+
+**系统能力：** SystemCapability.Communication.WiFi.Core
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| RANDOM_DEVICE_ADDRESS | 0 | 随机设备地址。 |
+| REAL_DEVICE_ADDRESS | 1 | 真实设备地址。 |
 
 ## WifiSecurityType<sup>9+</sup>
 
@@ -317,6 +484,83 @@ WLAN热点信息。
 | WIDTH_80MHZ_PLUS | 4 | 80MHZ<sup>+</sup>。 |
 | WIDTH_INVALID | 5 | 无效值 |
 
+## wifiManager.setScanAlwaysAllowed<sup>10+</sup>
+
+setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
+
+设置是否始终允许扫描。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| isScanAlwaysAllowed | boolean | 是 | 是否始终允许扫描。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isScanAlwaysAllowed = true;
+		wifiManager.setScanAlwaysAllowed(isScanAlwaysAllowed);
+		});	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getScanAlwaysAllowed<sup>10+</sup>
+
+getScanAlwaysAllowed(): boolean
+
+获取是否始终允许扫描。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean| 是否始终允许扫描。 true 表示允许触发扫描，false表示在禁用wifi时不允许触发扫描|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
+		console.info("isScanAlwaysAllowed:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.addDeviceConfig<sup>9+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -379,6 +623,7 @@ WLAN配置信息。
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
+| bssidType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
@@ -389,8 +634,8 @@ WLAN配置信息。
 | randomMacAddr | string | 是 | 否 | 随机MAC地址。 <br /> **系统接口：** 此接口为系统接口。 |
 | ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
-| eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig9) | 是 | 否 | 可扩展身份验证协议配置。 <br /> **系统接口：** 此接口为系统接口。 |
-
+| eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。 |
+| proxyConfig<sup>10+</sup> | WifiProxyConfig | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -425,18 +670,16 @@ IP配置信息。
 | domains | Array&lt;string&gt; | 是 | 否 | 域信息。 |
 
 
-## WifiEapConfig<sup>9+</sup>
+## WifiEapConfig<sup>10+</sup>
 
 可扩展身份验证协议配置信息。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| eapMethod | [EapMethod](#eapmethod9) | 是 | 否 | EAP认证方式。 |
-| phase2Method | [Phase2Method](#phase2method9) | 是 | 否 | 第二阶段认证方式。 |
+| eapMethod | [EapMethod](#eapmethod10) | 是 | 否 | EAP认证方式。 |
+| phase2Method | [Phase2Method](#phase2method10) | 是 | 否 | 第二阶段认证方式。 |
 | identity | string | 是 | 否 | 身份信息。 |
 | anonymousIdentity | string | 是 | 否 | 匿名身份。 |
 | password | string | 是 | 否 | 密码。 |
@@ -452,11 +695,9 @@ IP配置信息。
 | eapSubId | number | 是 | 否 | SIM卡的子ID。 |
 
 
-## EapMethod<sup>9+</sup>
+## EapMethod<sup>10+</sup>
 
 表示EAP认证方式的枚举。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -473,11 +714,9 @@ IP配置信息。
 | EAP_UNAUTH_TLS | 8 | UNAUTH TLS类型。 |
 
 
-## Phase2Method<sup>9+</sup>
+## Phase2Method<sup>10+</sup>
 
 表示第二阶段认证方式的枚举。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -492,6 +731,36 @@ IP配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
+
+## WifiProxyConfig <sup>10+</sup>
+
+Wifi 代理配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| proxyMethod | ProxyMethod | 是 | 否 | 代理方法 |
+| pacWebAddress | string | 是 | 否 | 自动配置代理的PAC web 地址。 |
+| serverHostName | string | 是 | 否 | 手动配置代理的服务器主机名。 |
+| serverPort | string | 是 | 否 | 手动配置代理的服务器端口。 |
+| exclusionObjects | string | 是 | 否 | 手动配置代理的排除对象，对象用“,”分隔。|
+
+## ProxyMethod<sup>10+</sup>
+
+表示WiFi代理方法的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| METHOD_NONE  | 0 | 不使用代理。 |
+| METHOD_AUTO  | 1 | 使用自动配置的代理。 |
+| METHOD_MANUAL  | 2 | 使用手动配置的代理。 |
 
 ## wifiManager.addDeviceConfig<sup>9+</sup>
 
@@ -1331,6 +1600,58 @@ IP信息。
 | leaseDuration | number | 是 | 否 | IP地址租用时长。 |
 
 
+## wifiManager.getIpv6Info<sup>10+</sup>
+
+getIpv6Info(): Ipv6Info
+
+获取IP信息。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| Ipv6Info | Ipv6信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let info = wifiManager.getIpv6Info();
+		console.info("info:" + JSON.stringify(info));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+## Ipv6Info <sup>10+</sup>
+
+Ipv6信息。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
+| globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
+| randomGlobalIpv6Address | number | 是 | 否 | 随机全局Ipv6地址。 |
+| gateway | string | 是 | 否 | 网关。 |
+| netmask | string | 是 | 否 | 网络掩码。 |
+| primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
+| secondDNS | string | 是 | 否 | 备DNS服务器Ipv6地址。 |
+
+
 ## wifiManager.getCountryCode<sup>9+</sup>
 
 getCountryCode(): string
@@ -1469,9 +1790,9 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 	}
 ```
 
-## wifiManager.updateDeviceConfig<sup>9+</sup>
+## wifiManager.updateNetwork<sup>9+</sup>
 
-updateDeviceConfig(config: WifiDeviceConfig): number
+updateNetwork(config: WifiDeviceConfig): number
 
 更新网络配置。
 
@@ -1511,16 +1832,16 @@ updateDeviceConfig(config: WifiDeviceConfig): number
 			preSharedKey : "****",
 			securityType : 3
 		}
-		let ret = wifiManager.updateDeviceConfig(config);
+		let ret = wifiManager.updateNetwork(config);
 		console.error("ret:" + ret);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
 
-## wifiManager.disableDeviceConfig<sup>9+</sup>
+## wifiManager.disableNetwork<sup>9+</sup>
 
-disableDeviceConfig(networkId: number): void
+disableNetwork(networkId: number): void
 
 去使能网络配置。
 
@@ -1550,15 +1871,15 @@ disableDeviceConfig(networkId: number): void
 
 	try {
 		let netId = 0;
-		wifiManager.disableDeviceConfig(netId);		
+		wifiManager.disableNetwork(netId);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
 
-## wifiManager.removeAllDeviceConfigs<sup>9+</sup>
+## wifiManager.removeAllNetwork<sup>9+</sup>
 
-removeAllDeviceConfigs(): void
+removeAllNetwork(): void
 
 移除所有网络配置。
 
@@ -1581,15 +1902,15 @@ removeAllDeviceConfigs(): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		wifiManager.removeAllDeviceConfigs();		
+		wifiManager.removeAllNetwork();		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
 
-## wifiManager.removeDeviceConfig<sup>9+</sup>
+## wifiManager.removeDevice<sup>9+</sup>
 
-removeDeviceConfig(networkId: number): void
+removeDevice(networkId: number): void
 
 移除指定的网络配置。
 
@@ -1619,7 +1940,7 @@ removeDeviceConfig(networkId: number): void
 
 	try {
 		let id = 0;
-		wifiManager.removeDeviceConfig(id);		
+		wifiManager.removeDevice(id);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1996,9 +2317,9 @@ getHotspotConfig(): HotspotConfig
 	}
 ```
 
-## wifiManager.getHotspotStations<sup>9+</sup>
+## wifiManager.getStations<sup>9+</sup>
 
-getHotspotStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
+getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 
 获取连接的设备。
 
@@ -2027,7 +2348,7 @@ getHotspotStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let stations = wifiManager.getHotspotStations();
+		let stations = wifiManager.getStations();
 		console.info("result:" + JSON.stringify(stations));		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2046,6 +2367,7 @@ getHotspotStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 设备名称。 |
 | macAddress | string | 是 | 否 | MAC地址。 |
+| macAddressType<sup>10+</sup> | DeviceAddressType | 是 | 否 | MAC地址类型。 |
 | ipAddress | string | 是 | 否 | IP地址。 |
 
 
@@ -2273,6 +2595,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
+| deviceAddressType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 设备MAC地址类型。 |
 | primaryDeviceType | string | 是 | 否 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | 是 | 否 | 设备状态。 |
 | groupCapabilities | number | 是 | 否 | 群组能力。 |
@@ -2356,9 +2679,9 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 	});
 ```
 
-## wifiManager.createP2pGroup<sup>9+</sup>
+## wifiManager.createGroup<sup>9+</sup>
 
-createP2pGroup(config: WifiP2PConfig): void
+createGroup(config: WifiP2PConfig): void
 
 创建群组。
 
@@ -2392,7 +2715,7 @@ createP2pGroup(config: WifiP2PConfig): void
 			groupName: "****",
 			goBand: 0
 		}
-		wifiManager.createP2pGroup(config);	
+		wifiManager.createGroup(config);	
 		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2408,6 +2731,7 @@ createP2pGroup(config: WifiP2PConfig): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
+| deviceAddressType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 设备地址类型。 |
 | netId | number | 是 | 否 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | groupName | string | 是 | 否 | 群组名称。 |
@@ -2427,9 +2751,9 @@ createP2pGroup(config: WifiP2PConfig): void
 | GO_BAND_5GHZ | 2 | 5GHZ。 |
 
 
-## wifiManager.removeP2pGroup<sup>9+</sup>
+## wifiManager.removeGroup<sup>9+</sup>
 
-removeP2pGroup(): void
+removeGroup(): void
 
 移除群组。
 
@@ -2450,7 +2774,7 @@ removeP2pGroup(): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		wifiManager.removeP2pGroup();	
+		wifiManager.removeGroup();	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -2576,9 +2900,9 @@ p2pCancelConnect(): void
 	}
 ```
 
-## wifiManager.startDiscoverP2pDevices<sup>9+</sup>
+## wifiManager.startDiscoverDevices<sup>10+</sup>
 
-startDiscoverP2pDevices(): void
+startDiscoverDevices(): void
 
 开始发现设备。
 
@@ -2599,15 +2923,15 @@ startDiscoverP2pDevices(): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		wifiManager.startDiscoverP2pDevices();	
+		wifiManager.startDiscoverDevices();	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
 
-## wifiManager.stopDiscoverP2pDevices<sup>9+</sup>
+## wifiManager.stopDiscoverDevices<sup>10+</sup>
 
-stopDiscoverP2pDevices(): void
+stopDiscoverDevices(): void
 
 停止发现设备。
 
@@ -2628,15 +2952,15 @@ stopDiscoverP2pDevices(): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		wifiManager.stopDiscoverP2pDevices();	
+		wifiManager.stopDiscoverDevices();	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
 
-## wifiManager.deletePersistentP2pGroup<sup>9+</sup>
+## wifiManager.deletePersistentGroup<sup>9+</sup>
 
-deletePersistentP2pGroup(netId: number): void
+deletePersistentGroup(netId: number): void
 
 删除永久组。
 
@@ -2667,7 +2991,7 @@ deletePersistentP2pGroup(netId: number): void
 
 	try {
 		let netId = 0;
-		wifiManager.deletePersistentP2pGroup(netId);	
+		wifiManager.deletePersistentGroup(netId);	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -2762,9 +3086,9 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
-## wifiManager.setP2pDeviceName<sup>9+</sup>
+## wifiManager.setDeviceName<sup>9+</sup>
 
-setP2pDeviceName(devName: string): void
+setDeviceName(devName: string): void
 
 设置设备名称。
 
@@ -2794,7 +3118,7 @@ setP2pDeviceName(devName: string): void
 
 	try {
 		let name = "****";
-		wifiManager.setP2pDeviceName(name);	
+		wifiManager.setDeviceName(name);	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
