@@ -1,6 +1,6 @@
-# @ohos. **deviceStatus.dragInteraction**  (拖拽)
+# @ohos. deviceStatus.dragInteraction (拖拽)
 
- 拖拽功能模块，提供拖拽状态监听和去监听能力 。
+ 拖拽功能模块，提供注册和取消拖拽状态监听的能力。 
 
 > **说明**
 >
@@ -26,7 +26,7 @@ on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  是  | 监听类型，取值为“drag” |
+| type                 | string                                                          |  是  | 监听类型，固定取值为 'drag' |
 | callback             | Callback&lt;[DragState](#dragstate)&gt; |  是  | 回调函数，异步返回拖拽状态消息 |
 
 **示例**：
@@ -53,7 +53,7 @@ off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  是    | 监听类型，取值为“drag” |
+| type                 | string                                                           |  是    | 监听类型，固定取值为 'drag' |
 | callback             | Callback&lt;[DragState](#dragstate)> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 **示例**：
@@ -87,9 +87,9 @@ try {
 
 ##  DragState
 
-拖拽状态的消息通知。 
+拖拽状态。
 
-**系统能力**：syscap SystemCapability.Msdp.DeviceStatus.Drag
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Drag
 
 | 名称                       | 值                             | 说明                              |
 | --------                     |  -----------------               |  -----------------               |
