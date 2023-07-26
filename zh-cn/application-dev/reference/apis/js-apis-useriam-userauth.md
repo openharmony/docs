@@ -18,7 +18,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
@@ -43,11 +43,11 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称                 | 类型                                | 必填 | 说明                                    |
-| -------------------- | ----------------------------------- | ---- | --------------------------------------- |
-| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。 |
-| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。  |
-| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 用户认证界面的显示类型。                |
+| 名称                 | 类型                                | 必填 | 说明                                                         |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。                       |
+| windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型。<br>**系统接口**: 此接口为系统接口。 |
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -332,8 +332,6 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
-
 **参数：**
 
 | 参数名      | 类型                          | 必填 | 说明                       |
@@ -387,7 +385,7 @@ try {
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 | 名称          | 值   | 说明                 |
 | ------------- | ---- | -------------------- |
@@ -403,7 +401,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -458,7 +456,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -504,7 +502,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -555,7 +553,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -606,7 +604,7 @@ sendCommand(cmdData: string): void
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
