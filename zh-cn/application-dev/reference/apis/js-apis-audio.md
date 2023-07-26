@@ -6681,7 +6681,7 @@ async function onAudioInterrupt(){
 
 ### off('audioInterrupt')<sup>10+</sup>
 
-on(type: 'audioInterrupt'): void
+off(type: 'audioInterrupt'): void
 
 取消订阅音频中断事件。
 
