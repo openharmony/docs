@@ -28,6 +28,8 @@
 - [列表上拉加载更多内容](list-pullup-loading-data.md)
 - [如何删除多选框选项](delete-checkboxgroup-items.md)
 - [像素单位转换](pixel-format-transfer.md)
+- [如何在UIAbility间进行跳转](jump-between-UIAbilities.md)
+- [转场动画](transition-animation.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
@@ -40,6 +42,7 @@
 - [如何实现沉浸模式](immersion-mode.md)
 - [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
+- [如何创建子窗口并与主窗口通信](subwindow-mainwindow-communication.md)
 
 ### 数据管理
 - [用户首选项的基本使用](preferences-data-process.md)
