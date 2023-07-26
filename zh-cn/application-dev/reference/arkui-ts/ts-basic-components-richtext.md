@@ -83,7 +83,7 @@ struct RichTextExample {
           console.info('RichText onComplete');
         })
         .width(500)
-        .height(400)
+        .height(500)
         .backgroundColor(0XBDDB69)
       RichText('layoutWeight(1)')
         .onStart(() => {

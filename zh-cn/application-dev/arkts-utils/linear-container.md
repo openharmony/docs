@@ -20,7 +20,7 @@ ArrayList进行增、删、改、查操作的相关API如下：
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过arr\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
-| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object): void访问整个ArrayList容器的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object): void访问整个ArrayList容器的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过arr\[index] = xxx修改指定index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
@@ -46,7 +46,7 @@ Vector进行增、删、改、查操作的相关API如下：
 | 访问元素 | 通过getLastElement()获取最后一个元素。 |
 | 访问元素 | 通过getlndexOf(element:T)获取第一个匹配到元素的位置。 |
 | 访问元素 | 通过getLastlndexOf(element:T)获取最后一个匹配到元素的位置。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; thisArg?: Object)访问整个Vector的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Vector的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过vec\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number,element:T)修改指定index位置的元素值为element。 |
@@ -79,10 +79,9 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 | 访问元素 | 通过forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object)访问整个List的元素。 |
 | 修改元素 | 通过list\[index] = xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number, element: T)修改指定index位置的元素值为element。 |
-| 修改元素 | 通过replaceAllElements(callbackfn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
+| 修改元素 | 通过replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
 | 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
 
 
 ## LinkedList
@@ -100,17 +99,16 @@ LinkedList和[ArrayList](../reference/apis/js-apis-arraylist.md)相比，插入�
 | 操作 | 描述 |
 | ---------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
-| 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
+| 增加元素 | 通过insert(index: number, element: T)在指定位置插入一个元素。 |
 | 访问元素 | 通过list\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
 | 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
 | 访问元素 | 通过getFirst()获取第一个元素。 |
 | 访问元素 | 通过getLast()获取最后一个元素。 |
 | 访问元素 | 通过getlndexOf(element: T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个LinkedList的元素。 |
+| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个LinkedList的元素。 |
 | 修改元素 | 通过list\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index: number,element: T)修改指定index位置的元素值为element。 |
-| 修改元素 | 通过replaceAllElements(callbackfn:(value: T,index?: number,list?: LinkedList&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
 | 删除元素 | 通过removeBylndex(index: number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
 
@@ -137,9 +135,9 @@ Deque进行增、删、改、查操作的相关API如下：
 | 访问元素 | 通过getLast()获取队尾元素的value值，但是不进行出队操作。 |
 | 访问元素 | 通过popFirst()获取队首元素的value值，并进行出队操作。 |
 | 访问元素 | 通过popLast()获取队尾元素的value值，并进行出队操作。 |
-| 访问元素 | 通过forEach(callbackfn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Deque的元素。 |
+| 访问元素 | 通过forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Deque的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void,thisArg?: Object)对队列进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object)对队列进行修改操作。 |
 | 删除元素 | 通过popFirst()对队首元素进行出队操作并删除。 |
 | 删除元素 | 通过popLast()对队尾元素进行出队操作并删除。 |
 
@@ -163,9 +161,9 @@ Queue进行增、删、改、查操作的相关API如下：
 | 增加元素 | 通过add(element: T)函数每次在队尾增加一个元素。 |
 | 访问元素 | 通过getFirst()获取队首元素的value值，但是不进行出队操作。 |
 | 访问元素 | 通过pop()获取队首元素的value值，并进行出队操作。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Queue的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Queue的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)对队列进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)对队列进行修改操作。 |
 | 删除元素 | 通过pop()对队首进行出队操作并删除。 |
 
 
@@ -186,10 +184,10 @@ Stack进行增、删、改、查操作的相关API如下：
 | 增加元素 | 通过push(item: T)函数每次在栈顶增加一个元素。 |
 | 访问元素 | 通过peek()获取栈顶元素的value值，但是不进行出栈操作。 |
 | 访问元素 | 通过pop()获取栈顶的value值，并进行出栈操作。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Stack的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Stack的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 访问元素 | 通过locate(element: T)获取元素对应的位置。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void,thisArg?: Object)对栈内元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)对栈内元素进行修改操作。 |
 | 删除元素 | 通过pop()对栈顶进行出栈操作并删除。 |
 
 
