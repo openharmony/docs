@@ -82,6 +82,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 ```js
 try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }, (error, data) => {
@@ -131,6 +132,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 ```js
 try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }).then(data => {
@@ -169,6 +171,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678, (error, data) => {
   if (error) {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
@@ -211,6 +214,7 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 ```js
 try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678).then(data => {
     console.info('unbindDevice success');
   }, error => {
