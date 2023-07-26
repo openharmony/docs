@@ -27,7 +27,6 @@
 | [OH_VideoCaptureInfo](_a_v_screen_capture_base.md#oh_videocaptureinfo) | 定义屏幕录制中视频录制capture的描述信息。 |
 | [OH_VideoEncInfo](_a_v_screen_capture_base.md#oh_videoencinfo) | 定义屏幕录制中视频的编码数据描述信息。 |
 | [OH_VideoInfo](_a_v_screen_capture_base.md#oh_videoinfo) | 定义屏幕录制时视频的描述信息。 |
-| [OH_RecorderInfo](_a_v_screen_capture_base.md#oh_recorderinfo) | 定义屏幕录制保存音视频文件的参数描述信息。 |
 | [OH_AVScreenCaptureConfig](_a_v_screen_capture_base.md#oh_avscreencaptureconfig) | 定义整体avscreencapture的配置信息。 |
 | [OH_AVScreenCaptureCallback](_a_v_screen_capture_callback.md) | 定义avscreencapture的回调信息，包含不同的回调函数类型。 |
 | [OH_Rect](_a_v_screen_capture_base.md#oh_rect) | 定义录屏的宽高以及画面信息。 |

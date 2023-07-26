@@ -34,7 +34,7 @@ AVScreenCapture模块提供用于屏幕录制的函数。
 | \*[OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer) (OH_AVScreenCapture \*capture, int32_t \*fence, int64_t \*timestamp, struct OH_Rect \*region) | 获取视频原始码流接口，通过此接口可以获取视频码流以及每帧视频的信息 | 
 | [OH_AVScreenCapture_ReleaseAudioBuffer](#oh_avscreencapture_releaseaudiobuffer) (OH_AVScreenCapture \*capture, OH_AudioCaptureSourceType type) | 释放根据音频类型释放音频buffer，用于用完的音频的buffer的释放 | 
 | [OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer) (OH_AVScreenCapture \*capture) | 释放视频的buffer，用于用完的视频的buffer的释放 | 
-| [OH_AVScreenCapture_SetCallback](#oh_acscreencapture_setcallback) (OH_AVScreenCapture \*capture, OH_AVScreenCaptureCallback callback) | 设置回调的接口，用于回调相关事件的监听 |
+| [OH_AVScreenCapture_SetCallback](#oh_avscreencapture_setcallback) (OH_AVScreenCapture \*capture, OH_AVScreenCaptureCallback callback) | 设置回调的接口，用于回调相关事件的监听 |
 | [OH_AVScreenCapture_SetMicrophoneEnabled](#oh_avscreencapture_setmicrophoneenabled) (OH_AVScreenCapture \*capture, bool isMicrophone) | 设置麦克风开关，关闭时，将获得无声的音频数据 |
 | [OH_AVScreenCapture_Release](#oh_avscreencapture_release) (OH_AVScreenCapture \*capture) | 用于录屏实例对象的释放 |
 
@@ -92,7 +92,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -121,18 +121,18 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVSc
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
 10
 
 
-### OH_AVScreenCapture_StopScreenRecording()
+### OH_AVScreenCapture_StopScreenCapture()
 
   
 ```
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording(struct OH_AVScreenCapture *capture);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScreenCapture *capture);
 ```
 
 **描述：**
@@ -149,7 +149,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording(struct OH_AVS
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -181,7 +181,7 @@ buffer使用完成后，调用OH_AVScreenCapture_ReleaseAudioBuffer接口进行�
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -243,7 +243,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseAudioBuffer(struct OH_AVSc
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -271,7 +271,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer(struct OH_AVSc
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -300,7 +300,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback(struct OH_AVScreenCap
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -329,7 +329,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMicrophoneEnabled(struct OH_AV
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 
@@ -357,7 +357,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release(struct OH_AVScreenCapture
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](_core.md#native__avscreen_capture_errors_8h.md)。
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](native__avscreen_capture_errors_8h.md#oh_avscreen_capture_errcode)。
 
 **起始版本：**
 

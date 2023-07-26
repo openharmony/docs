@@ -24,7 +24,6 @@ AVScreenCaptureBase模块提供运行录屏通用的结构体、字符常量、�
 | [OH_VideoCaptureInfo](#oh_videocaptureinfo) | 定义屏幕录制中视频录制采集的描述信息。 |
 | [OH_VideoEncInfo](#oh_videoencinfo) | 定义屏幕录制中视频的编码数据描述信息。 |
 | [OH_VideoInfo](#oh_videoinfo) | 定义屏幕录制时视频的描述信息。 |
-| [OH_RecorderInfo](#oh_recorderinfo) | 定义屏幕录制保存音视频文件的参数描述信息。 |
 | [OH_AVScreenCaptureConfig](#oh_avscreencaptureconfig) | 定义整体avscreencapture的配置信息。 |
 | [OH_AVScreenCaptureCallback](_a_v_screen_capture_callback.md) | 定义avscreencapture的回调信息，包含不同的回调函数类型。 |
 | [OH_Rect](#oh_rect) | 定义录屏的宽高以及画面信息。 |
@@ -56,12 +55,12 @@ AVScreenCaptureBase模块提供运行录屏通用的结构体、字符常量、�
 | [OH_AudioCaptureInfo::audioSampleRate](#audiosamplerate) | 录屏音频采样率， 支持列表见[OH_AudioCapturer_GetSamplingRate](#_o_h_audio.md#oh_audiocapturer_getsamplingrate)。 | 
 | [OH_AudioCaptureInfo::audioChannels](#audiochannels) | 录屏音频声道数。 | 
 | [OH_AudioCaptureInfo::audioSource](#audiosource) | 录屏音频的source源，如麦克风或者内录。 |
-| [OH_AudioEncInfo::audioBitrate](#audioBitrate) | 录制音频的比特率，用于编码相关参数的设置。 |
+| [OH_AudioEncInfo::audioBitrate](#audiobitrate) | 录制音频的比特率，用于编码相关参数的设置。 |
 | [OH_AudioEncInfo::audioCodecformat](#audiocodecformat) | 录制音频的编码格式。 |
 | [OH_AudioInfo::micCapInfo](#miccapinfo) | 录制的mic的音频参数设置，设置类型为OH_AudioCaptureInfo。 |
 | [OH_AudioInfo::innerCapInfo](#innercapinfo) | 录制的内录的音频参数设置，设置类型为OH_AudioCaptureInfo。 |
 | [OH_AudioInfo::audioEncInfo](#audioencinfo) | 录制音频编码的相关参数，设置类型为OH_AudioEncInfo。 |
-| [OH_VideoCaptureInfo::displayId](#displayId) | 录制物理屏id，使用该参数需要在capturemode为CAPTURE_SPECIFIED_SCREEN模式下使用。 |
+| [OH_VideoCaptureInfo::displayId](#displayid) | 录制物理屏id，使用该参数需要在capturemode为CAPTURE_SPECIFIED_SCREEN模式下使用。 |
 | [OH_VideoCaptureInfo::missionIDs](#missionids) | 指定窗口id列表，使用该参数需要在capturemode为CAPTURE_SPECIFIED_WINDOW模式下使用。 |
 | [OH_VideoCaptureInfo::missionIDsLen](#missionidslen) | 指定窗口的，使用该参数需要在capturemode为CAPTURE_SPECIFIED_WINDOW模式下使用。 |
 | [OH_VideoCaptureInfo::videoFrameWidth](#videoframewidth) | 采集视频的宽度设置。 |
@@ -72,14 +71,10 @@ AVScreenCaptureBase模块提供运行录屏通用的结构体、字符常量、�
 | [OH_VideoEncInfo::videoFrameRate](#videoframerate) | 视频采集帧率。 |
 | [OH_VideoInfo::videoCapInfo](#videocapinfo) | 视频采集信息的设置，设置类型为OH_VideoCaptureInfo。 |
 | [OH_VideoInfo::videoEncInfo](#videoencinfo) | 视频编码参数的设置，设置类型为OH_VideoEncInfo。 |
-| [OH_RecorderInfo::\*url](#*\url) | 录屏生成文件路径设置。 |
-| [OH_RecorderInfo::urlLen](#urllen) | 录屏生成文件路径字符的长度。 |
-| [OH_RecorderInfo::fileFormat](#fileformat) | 录屏生成文件格式设置，如mp4格式。 |
 | [OH_AVScreenCaptureConfig::captureMode](#capturemode) | 屏幕录制方式，如全屏录制，指定物理屏录制或者指定窗口录制。 |
 | [OH_AVScreenCaptureConfig::dataType](#datatype) | 屏幕录制的形式，比如录制原始码流，编码后码流还是文件。 |
 | [OH_AVScreenCaptureConfig::audioInfo](#audioinfo) | 录制音频相关参数设置，类型为OH_AudioInfo。 |
 | [OH_AVScreenCaptureConfig::videoInfo](#videoinfo) | 录制视频相关参数设置，类型为OH_VideoInfo。 |
-| [OH_AVScreenCaptureConfig::recorderInfo](#recorderinfo) | 录屏生成文件相关参数设置，类型为OH_RecorderInfo。 |
 | [OH_AVScreenCaptureCallback::onError](_a_v_screen_capture_callback.md#onerror) | 录屏过程中错误事件的监听函数。 |
 | [OH_AVScreenCaptureCallback::onAudioBufferAvailable](_a_v_screen_capture_callback.md#onaudiobufferavailable) | 录屏过程中音频流产生的监听。 |
 | [OH_AVScreenCaptureCallback::onVideoBufferAvailable](_a_v_screen_capture_callback.md#onvideobufferavailable) | 录屏过程中视频流产生的监听。 |
@@ -87,7 +82,7 @@ AVScreenCaptureBase模块提供运行录屏通用的结构体、字符常量、�
 | [OH_Rect::y](#y) | 视频数据的y坐标。 |
 | [OH_Rect::width](#width) | 视频宽度。 |
 | [OH_Rect::height](#height) | 视频高度。 |
-| [OH_AudioBuffer::\*buf](#buf) | 存放音频数据。 |
+| [OH_AudioBuffer::buf](#buf) | 存放音频数据。 |
 | [OH_AudioBuffer::size](#size) | 存放音频每一帧数据的长度。 |
 | [OH_AudioBuffer::timestamp](#timestamp) | 音频的时间戳。 |
 | [OH_AudioBuffer::type](#type) | 音频数据源类型，比如内录源还是mic。 |
@@ -113,11 +108,11 @@ typedef struct OH_AudioCaptureInfo OH_AudioCaptureInfo
 
 ### 成员变量
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| [audioSampleRate](#audiosampleratets) | 录屏音频采样率。 | 
-| [audioSampleRate;](#audichannels) | 录制音频的声道数。 | 
-| [audioSource](#audiosource) | 录屏音频的source源，如麦克风或者内录。 | 
+|                 名称                 |                描述                 |
+| ----------------------------------- | ----------------------------------- |
+| [audioSampleRate](#audiosamplerate) | 录屏音频采样率。                      |
+| [audioChannels](#audiochannels)     | 录制音频的声道数。                    |
+| [audioSource](#audiosource)         | 录屏音频的source源，如麦克风或者内录。 |
 
 ## 结构体成员变量说明
 
@@ -189,8 +184,8 @@ typedef struct OH_AudioCaptureInfo OH_AudioCaptureInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [audioBitrate](#audioBitrate) | 录屏音频比特率。 |
-| [audioCodecformat](#audioCodecformat) | 录屏音频编码格式。 |
+| [audioBitrate](#audiobitrate) | 录屏音频比特率。 |
+| [audioCodecformat](#audiocodecformat) | 录屏音频编码格式。 |
 
 ## 结构体成员变量说明
 
@@ -245,9 +240,9 @@ typedef struct OH_AudioInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [micCapInfo](#micCapInfo) | 麦克风录制信息。 |
-| [innerCapInfo](#innerCapInfo) | 内录录制信息。 |
-| [audioEncInfo](#audioEncInfo) | 音频编码信息。 |
+| [micCapInfo](#miccapinfo) | 麦克风录制信息。 |
+| [innerCapInfo](#innercapinfo) | 内录录制信息。 |
+| [audioEncInfo](#audioencinfo) | 音频编码信息。 |
 
 ## 结构体成员变量说明
 
@@ -314,12 +309,12 @@ typedef struct OH_VideoCaptureInfo OH_VideoCaptureInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [displayId](#displayId) | 录屏显示id。 |
-| [\*missionIDs](#\*missionIDs) | 录屏任务id。 |
-| [missionIDsLen](#missionIDsLen) | 录屏任务id长度。 |
-| [videoFrameWidth](#videoFrameWidth) | 录屏视频帧宽。 |
-| [videoFrameHeight](#videoFrameHeight) | 录屏视频帧高。 |
-| [videoSource](#videoSource) | 录屏视频数据源。 |
+| [displayId](#displayid) | 录屏显示id。 |
+| [missionIDs](#missionids) | 录屏任务id。 |
+| [missionIDsLen](#missionidslen) | 录屏任务id长度。 |
+| [videoFrameWidth](#videoframewidth) | 录屏视频帧宽。 |
+| [videoFrameHeight](#videoframeheight) | 录屏视频帧高。 |
+| [videoSource](#videosource) | 录屏视频数据源。 |
 
 ## 结构体成员变量说明
 
@@ -338,7 +333,7 @@ uint64_t displayId
 
 10
 
-### \*missionIDs
+### missionIDs
 
 
 ```
@@ -428,9 +423,9 @@ typedef struct OH_VideoEncInfo OH_VideoEncInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [videoCodec](#videoCodec) | 视频数据编码信息。 |
-| [videoBitrate](#videoBitrate) | 视频数据比特率信息。 |
-| [videoFrameRate](#videoFrameRate) | 视频数据帧率参数。 |
+| [videoCodec](#videocodec) | 视频数据编码信息。 |
+| [videoBitrate](#videobitrate) | 视频数据比特率信息。 |
+| [videoFrameRate](#videoframerate) | 视频数据帧率参数。 |
 
 ## 结构体成员变量说明
 
@@ -498,8 +493,8 @@ typedef struct OH_VideoInfo OH_VideoInfo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [videoCapInfo](#videoCapInfo) | 视频数据编码信息。 |
-| [videoEncInfo](#videoEncInfo) | 视频数据比特率信息。 |
+| [videoCapInfo](#videocapinfo) | 视频数据编码信息。 |
+| [videoEncInfo](#videoencinfo) | 视频数据比特率信息。 |
 
 ## 结构体成员变量说明
 
@@ -532,60 +527,6 @@ OH_VideoEncInfo videoEncInfo
 
 10
 
-# OH_RecorderInfo
-
-```
-typedef struct OH_RecorderInfo OH_RecorderInfo 
-```
-
-## 概述
-
-定义屏幕录制保存音视频文件的参数描述信息。
-
-\@syscap SystemCapability.Multimedia.Media.AVScreenCapture
-
-**起始版本：**
-
-10
-
-### 成员变量
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| [\*url](#\*url) | 视频数据编码信息。 |
-| [urlLen](#urlLen) | 视频数据比特率信息。 |
-
-## 结构体成员变量说明
-
-
-### \*url
-
-
-```
-char *url
-```
-
-**描述：**
-录屏生成文件路径设置。
-
-**起始版本：**
-
-10
-
-### urlLen
-
-
-```
-uint32_t urlLen;
-```
-
-**描述：**
-录屏生成文件路径字符的长度。
-
-**起始版本：**
-
-10
-
 # OH_AVScreenCaptureConfig
 
 ```
@@ -606,11 +547,10 @@ typedef struct OH_AVScreenCaptureConfig OH_AVScreenCaptureConfig
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [captureMode](#captureMode) | 屏幕录制方式，如全屏录制，指定物理屏录制或者指定窗口录制。 |
-| [dataType](#dataType) | 屏幕录制的形式，比如录制原始码流，编码后码流还是文件。 |
-| [audioInfo](#audioInfo) | 录制音频相关参数设置，类型为OH_AudioInfo。 |
-| [videoInfo](#videoInfo) | 录制视频相关参数设置，类型为OH_VideoInfo。 |
-| [recorderInfo](#recorderInfo) | 录屏生成文件相关参数设置，类型为OH_RecorderInfo。 |
+| [captureMode](#capturemode) | 屏幕录制方式，如全屏录制，指定物理屏录制或者指定窗口录制。 |
+| [dataType](#datatype) | 屏幕录制的形式，比如录制原始码流，编码后码流还是文件。 |
+| [audioInfo](#audioinfo) | 录制音频相关参数设置，类型为OH_AudioInfo。 |
+| [videoInfo](#videoinfo) | 录制视频相关参数设置，类型为OH_VideoInfo。 |
 
 
 ## 结构体成员变量说明
@@ -672,20 +612,6 @@ OH_VideoInfo videoInfo
 
 10
 
-### recorderInfo
-
-
-```
-OH_RecorderInfo recorderInfo
-```
-
-**描述：**
-录屏生成文件相关参数设置，类型为OH_RecorderInfo。
-
-**起始版本：**
-
-10
-
 # OH_AVScreenCaptureCallback
 
 ```
@@ -706,9 +632,9 @@ typedef struct OH_AVScreenCaptureCallback OH_AVScreenCaptureCallback
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onError](#onError) | 录屏过程中错误事件的监听函数。 |
-| [onAudioBufferAvailable](#onAudioBufferAvailable) | 录屏过程中音频流产生的监听。 |
-| [onVideoBufferAvailable](#onVideoBufferAvailable) | 录屏过程中视频流产生的监听。 |
+| [onError](#onerror) | 录屏过程中错误事件的监听函数。 |
+| [onAudioBufferAvailable](#onaudiobufferavailable) | 录屏过程中音频流产生的监听。 |
+| [onVideoBufferAvailable](#onvideobufferavailable) | 录屏过程中视频流产生的监听。 |
 
 ## 结构体成员变量说明
 
@@ -859,7 +785,7 @@ typedef struct OH_AudioBuffer OH_AudioBuffer
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [\*buf](#\*buf) | 存放音频数据。 |
+| [buf](#buf) | 存放音频数据。 |
 | [size](#size) | 存放音频每一帧数据的长度。 |
 | [timestamp](#timestamp) | 音频的时间戳。 |
 | [type](#type) | 音频数据源类型，比如内录源还是mic。 |
@@ -867,7 +793,7 @@ typedef struct OH_AudioBuffer OH_AudioBuffer
 ## 结构体成员变量说明
 
 
-### \*buf
+### buf
 
 
 ```
