@@ -50,7 +50,7 @@ The figure below shows the call relationship of audio encoding.
 
     ```cpp
     // Create an encoder by MIME type.
-    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
+    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC); 
     ```
 
     ```cpp
@@ -76,47 +76,46 @@ The figure below shows the call relationship of audio encoding.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
-   - **OnError**, a callback used to report a codec operation error
-   - **OnOutputFormatChanged**, a callback used to report a codec stream change, for example, audio channel change
-   - **OnInputBufferAvailable**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
-   - **OnOutputBufferAvailable**, a callback used to report output data generated, which means that encoding is complete
+   - **OH_AVCodecOnError**, a callback used to report a codec operation error
+   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
+   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that encoding is complete
 
    You need to process the callback functions to ensure that the encoder runs properly.
 
     ```cpp
-    // Set the OnError callback function.
+    // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // Set the OnOutputFormatChanged callback function.
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+    // Implement the OH_AVCodecOnStreamChanged callback function.
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // Set the OnInputBufferAvailable callback function, which is used to send the input PCM data to the InputBuffer queue.
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+    // Implement the OH_AVCodecOnNeedInputData callback function.
+    static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
     {
         (void)codec;
         // The input stream is sent to the InputBuffer queue.
         AEncSignal *signal = static_cast<AEncSignal *>(userData);
-        cout << "OnInputBufferAvailable received, index:" << index << endl;
         unique_lock<mutex> lock(signal->inMutex_);
         signal->inQueue_.push(index);
         signal->inBufferQueue_.push(data);
         signal->inCond_.notify_all();
     }
-    // Set the OnOutputBufferAvailable callback function, which is used to send the encoded stream to the OutputBuffer queue.
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
+    // Implement the OH_AVCodecOnNewOutputData callback function.
+    static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
                                             void *userData)
     {
         (void)codec;
-        // The index of the output buffer is sent to the OutputQueue.
-        // The encoded data is sent to the OutputBuffer queue.
+        // The index of the output buffer is sent to OutputQueue_.
+        // The encoded data is sent to the outBuffer queue.
         AEncSignal *signal = static_cast<AEncSignal *>(userData);
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
@@ -125,7 +124,7 @@ The figure below shows the call relationship of audio encoding.
             signal->attrQueue_.push(*attr);
         }
     }
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
     // Set the asynchronous callbacks.
     int32_t ret = OH_AudioEncoder_SetCallback(audioEnc, cb, userData);
     ```
@@ -143,7 +142,7 @@ The figure below shows the call relationship of audio encoding.
     };
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
-    constexpr uint32_t DEFAULT_SMAPLERATE = 44100;
+    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
     // (Mandatory) Configure the audio bit rate.
     constexpr uint32_t DEFAULT_BITRATE = 32000;
     // (Mandatory) Configure the number of audio channels.
@@ -193,7 +192,7 @@ The figure below shows the call relationship of audio encoding.
     ```c++
     inputFile_ = std::make_unique<std::ifstream>();
     // Open the path of the binary file to be encoded.
-    inputFile_->open(inputFilePath.data(), std::ios::in |std::ios::binary);
+    inputFile_->open(inputFilePath.data(), std::ios::in |std::ios::binary); 
     // Configure the path of the output file.
     outFile_ = std::make_unique<std::ofstream>();
     outFile_->open(outputFilePath.data(), std::ios::out |std::ios::binary);
