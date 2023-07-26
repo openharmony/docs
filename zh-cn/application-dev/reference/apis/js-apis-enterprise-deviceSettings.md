@@ -113,7 +113,7 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
 
-安装用户证书，使用callback异步回调。
+指定设备管理应用安装用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -172,7 +172,7 @@ new Promise((resolve, reject) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-安装用户证书，使用Promise异步回调。
+指定设备管理应用安装用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -230,7 +230,7 @@ deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: 
 
 ## CertBlob
 
-证书信息
+证书信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -245,7 +245,7 @@ deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: 
 
 uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
 
-卸载用户证书，使用callback异步回调。
+指定设备管理应用卸载用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -258,7 +258,7 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| certUri    | string    | 是    | 证书uri，由安装用户证书接口返回                  |
+| certUri    | string    | 是    | 证书uri，由安装用户证书接口返回。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -292,7 +292,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-卸载用户证书，使用Promise异步回调。
+指定设备管理应用卸载用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -305,13 +305,13 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| certUri    | string     | 是    | 证书uri，由安装用户证书接口返回                  |
+| certUri    | string     | 是    | 证书uri，由安装用户证书接口返回。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象。 |
 
 **错误码**：
 

@@ -115,7 +115,7 @@ usbManager.setUsbPolicy(wantTemp, policy).then(() => {
 
 ## UsbPolicy
 
-USB读写策略的枚举
+USB读写策略的枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -124,4 +124,4 @@ USB读写策略的枚举
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | READ_WRITE | 0 | 可读可写。 |
-| READ_ONLY | 1 | 只读 |
+| READ_ONLY | 1 | 只读。 |
