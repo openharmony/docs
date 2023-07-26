@@ -35,8 +35,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    let want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
-     abilityName: 'FuncAbility',
      moduleName: 'func', // moduleName非必选
+     abilityName: 'FuncAbility',
      parameters: { // 自定义信息
        info: '来自EntryAbility Index页面',
      },
@@ -100,8 +100,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    let want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
-     abilityName: 'FuncAbility',
      moduleName: 'func', // moduleName非必选
+     abilityName: 'FuncAbility',
      parameters: { // 自定义信息
        info: '来自EntryAbility Index页面',
      },
@@ -123,8 +123,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.myapplication',
+       moduleName: 'func', // moduleName非必选
        abilityName: 'FuncAbility',
-       moduleName: 'func',
        parameters: {
          info: '来自FuncAbility Index页面',
        },
@@ -296,9 +296,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    let abilityResult = {
      resultCode: RESULT_CODE,
      want: {
-       bundleName: 'com.example.myapplication',
+       bundleName: 'com.example.funcapplication',
+       moduleName: 'entry', // moduleName非必选
        abilityName: 'EntryAbility',
-       moduleName: 'entry',
        parameters: {
          payResult: 'OKay',
        },
@@ -366,8 +366,8 @@ let context = ...; // UIAbilityContext
 let want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.myapplication',
-  abilityName: 'FuncAbility',
   moduleName: 'func', // moduleName非必选
+  abilityName: 'FuncAbility',
   parameters: { // 自定义信息
     info: '来自EntryAbility Index页面',
   },
@@ -399,13 +399,13 @@ context.startAbility(want, options).then(() => {
 ```ts
 let context = ...; // UIAbilityContext
 let want = {
-    deviceId: '', // deviceId为空表示本设备
-    bundleName: 'com.example.myapplication',
-    abilityName: 'FuncAbility',
-    moduleName: 'func', // moduleName非必选
-    parameters: { // 自定义参数传递页面信息
-        router: 'funcA',
-    },
+  deviceId: '', // deviceId为空表示本设备
+  bundleName: 'com.example.funcapplication',
+  moduleName: 'entry', // moduleName非必选
+  abilityName: 'EntryAbility',
+  parameters: { // 自定义参数传递页面信息
+    router: 'funcA',
+  },
 }
 // context为调用方UIAbility的UIAbilityContext
 context.startAbility(want).then(() => {
@@ -422,24 +422,24 @@ context.startAbility(want).then(() => {
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 
 export default class FuncAbility extends UIAbility {
-  funcAbilityWant;
+  funcAbilityWant: Want;
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 接收调用方UIAbility传过来的参数
     this.funcAbilityWant = want;
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     let url = 'pages/Index';
-    if (this.funcAbilityWant?.parameters?.router) {
-      if (this.funcAbilityWant.parameters.router === 'funA') {
-        url = 'pages/Second';
-      }
+    if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+      url = 'pages/Second';
     }
     windowStage.loadContent(url, (err, data) => {
       ...
@@ -448,55 +448,95 @@ export default class FuncAbility extends UIAbility {
 }
 ```
 
-
 ### 目标UIAbility非首次启动
 
-经常还会遇到一类场景，当应用A已经启动且处于主页面时，回到桌面，打开应用B，并从应用B再次启动应用A，且需要跳转到应用A的指定页面。例如联系人应用和短信应用配合使用的场景。打开短信应用主页，回到桌面，此时短信应用处于已打开状态且当前处于短信应用的主页。再打开联系人应用主页，进入联系人用户A查看详情，点击短信图标，准备给用户A发送短信，此时会再次拉起短信应用且当前处于短信应用的发送页面。
+在应用开发中，会遇到目标UIAbility实例之前已经启动过的场景，这时再次启动目标UIAbility时，不会重新走初始化逻辑，只会直接触发`onNewWant()`生命周期方法。为了实现跳转到指定页面，需要在`onNewWant()`中解析要参数进行处理。
 
-![uiability_not_first_started](figures/uiability_not_first_started.png)
+例如短信应用和联系人应用配合使用的场景。
 
-针对以上场景，即当应用A的UIAbility实例已创建，并且处于该UIAbility实例对应的主页面中，此时，从应用B中需要再次启动应用A的该UIAbility，并且需要跳转到不同的页面，这种情况下要如何实现呢？
+1. 用户先打开短信应用，短信应用的UIAbility实例启动，显示短信应用的主页。
+2. 用户将设备回到桌面界面，短信应用进入后台运行状态。
+3. 用户打开联系人应用，找到联系人张三。
+4. 用户点击联系人张三的短信按钮，会重新启动短信应用的UIAbility实例。
+5. 由于短信应用的UIAbility实例已经启动过了，此时会触发该UIAbility的`onNewWant()`回调，而不会再走`onCreate()`和`onWindowStageCreate()`等初始化逻辑。
 
-1. 在目标UIAbility中，默认加载的是Index页面。由于当前UIAbility实例之前已经创建完成，此时会进入UIAbility的`onNewWant()`回调中且不会进入`onCreate()`和`onWindowStageCreate()`生命周期回调，在onNewWant()回调中解析调用方传递过来的want参数，并挂在到全局变量globalThis中，以便于后续在页面中获取。
-   
+```mermaid
+sequenceDiagram
+Participant U as 用户
+Participant S as 短信应用
+Participant C as 联系人应用
+
+U->>S: 打开短信应用
+S-->>U: 显示短信应用主页
+U->>S: 将设备回到桌面界面
+S->>S: 短信应用进入后台
+U->>C: 打开联系人应用  
+C-->>U: 显示联系人应用界面
+U->>C: 点击联系人张三的短信按钮
+C->>S: 构造Want启动短信应用
+S-->>U: 显示给张三发短信的页面
+```
+
+开发步骤如下所示。
+
+1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-arkui-UIContext.md)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
+
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import window from '@ohos.window';
    
-   export default class FuncAbility extends UIAbility {
-     onNewWant(want, launchParam) {
-       // 接收调用方UIAbility传过来的参数
-       globalThis.funcAbilityWant = want;
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   
+   export default class EntryAbility extends UIAbility {
+     funcAbilityWant: Want;
+     uiContext: UIContext;
+   
+     ...
+     
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       // Main window is created, set main page for this ability
        ...
+   
+       let windowClass: window.Window;
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+           return;
+         }
+         windowClass = data;
+         this.uiContext = windowClass.getUIContext();
+       })
      }
    }
    ```
 
-2. 在FuncAbility中，此时需要在Index页面中通过页面路由Router模块实现指定页面的跳转，由于此时FuncAbility对应的Index页面是处于激活状态，不会重新变量声明以及进入`aboutToAppear()`生命周期回调中。因此可以在Index页面的`onPageShow()`生命周期回调中实现页面路由跳转的功能。
-   
+2. 在短信应用UIAbility的`onNewWant()`回调中解析调用方传递过来的want参数，通过调用UIContext中的[`getRouter()`](../reference/apis/js-apis-arkui-UIContext.md#getrouter)方法获取[`Router`](../reference/apis/js-apis-arkui-UIContext.md#router)对象，并进行指定页面的跳转。此时再次启动该短信应用的UIAbility实例时，即可跳转到该短信应用的UIAbility实例的指定页面。
+
    ```ts
-   import router from '@ohos.router';
+   export default class EntryAbility extends UIAbility {
+     funcAbilityWant: Want;
+     uiContext: UIContext;
    
-   @Entry
-   @Component
-   struct Index {
-     onPageShow() {
-       let funcAbilityWant = globalThis.funcAbilityWant;
-       let url2 = funcAbilityWant?.parameters?.router;
-       if (url2 && url2 === 'funcA') {
-         router.replaceUrl({
-           url: 'pages/Second',
+     onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
+       if (want?.parameters?.router && want.parameters.router === 'funcA') {
+         let funcAUrl = 'pages/Second';
+         let router: Router = this.uiContext.getRouter();
+         router.pushUrl({
+           url: funcAUrl
+         }).catch((err) => {
+           console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
          })
        }
      }
    
-     // 页面展示
-     build() {
-       ...
-     }
+     ...
    }
    ```
 
 > **说明：**
+>
 > 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
 
 
