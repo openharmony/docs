@@ -93,14 +93,14 @@ build() {
    ```shell
    Launching com.example.myapptfjs
    $ hdc uninstall com.example.myapptfjs
-   $ hdc install -r "D:\TVOS\JSAPI\MyAppTfjs\entry\build\default\outputs\default\entry-default-signed.hap"
+   $ hdc install -r "path/to/xxx.hap"
    $ hdc shell aa start -a EntryAbility -b com.example.myapptfjs
    ```
 
 2. 使用hdc连接设备，并将mnet.caffemodel.ms推送到设备中的沙盒目录。mnet_caffemodel_nhwc.bin在本地项目中的rawfile目录下。
 
    ```shell
-   hdc -t 7001005458323933328a00bcdf423800 file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/
+   hdc -t your_device_id file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/
    ```
 3. 在设备屏幕点击Test_MSLiteModel_predict触发用例，在HiLog打印结果中得到如下结果：
 
