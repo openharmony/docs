@@ -519,7 +519,7 @@ uiContext.runScopedTask(
 
 ### registerFont
 
-registerFont(options: FontOptions): void
+registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
 
@@ -594,7 +594,7 @@ font.getFontByName('Sans Italic')
 
 ### getRectangleById
 
-getRectangleById(id: string): ComponentUtils.ComponentInfo
+getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
@@ -932,7 +932,7 @@ router.replaceUrl({
 
 ### replaceUrl
 
-replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
+replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
@@ -1213,7 +1213,7 @@ router.pushNamedRoute({
 
 ### pushNamedRoute
 
-pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+pushNamedRoute(options: router.NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到指定的命名路由页面。
 
@@ -1375,7 +1375,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if the pages are pushed too much. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
@@ -1398,7 +1398,7 @@ router.replaceNamedRoute({
 
 ### replaceNamedRoute
 
-replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
@@ -1441,7 +1441,7 @@ router.replaceNamedRoute({
 
 ### back
 
-back(options?: router.RouterOptions ): void
+back(options: router.RouterOptions ): void
 
 返回上一页面或指定的页面。
 
@@ -1451,7 +1451,7 @@ back(options?: router.RouterOptions ): void
 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | 是   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
@@ -1634,7 +1634,7 @@ try {
 
 ### showDialog
 
-showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&lt;): void
+showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&lt;): void
 
 创建并显示对话框，对话框响应结果异步返回。
 
@@ -1745,7 +1745,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;promptAction.ActionMenuSuccessResponse&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.ActionMenuSuccessResponse):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -1756,7 +1756,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)> | 是   | 菜单响应结果回调。 |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 菜单响应结果回调。 |
 
 **错误码：**
 
