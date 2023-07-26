@@ -1,4 +1,4 @@
-# @ohos.componentUtils (componentUtils)
+# @ohos.arkui.componentUtils (componentUtils)
 
 提供获取组件绘制区域坐标和大小的能力。
 
@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import componentUtils from '@ohos.componentUtils'
+import componentUtils from '@ohos.arkui.componentUtils'
 ```
 ## componentUtils.getRectangleById
 
@@ -142,7 +142,7 @@ let modePosition = componentUtils.getRectangleById("onClick");
 
   ```js
 import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.componentUtils';
+import componentUtils from '@ohos.arkui.componentUtils';
 
 @Entry
 @Component
