@@ -1,4 +1,4 @@
-﻿# 接口
+# 接口
 
 - [开发说明](development-intro.md)
 
@@ -315,6 +315,7 @@
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
@@ -397,6 +398,7 @@
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.multimodalInput.shortKey(快捷键)](js-apis-shortKey.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
+  - [@ohos.resourceschedule.deviceStandby (设备待机模块)](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
