@@ -164,8 +164,8 @@ let resManager = getContext().resourceManager
 let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getMask();
   ```
-## LayeredDrawableDescriptor.getMashClipPath
-static getMashClipPath(): string
+## LayeredDrawableDescriptor.getMaskClipPath
+static getMaskClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
 
