@@ -82,7 +82,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 ```js
 try {
-  deviceManager.bindDevice(device.deviceId, (error, data) => {
+  deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }, (error, data) => {
     if (error) {
@@ -131,7 +131,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 ```js
 try {
-  deviceManager.bindDevice(matchDevice.deviceId, (error, data) => {
+  deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }).then(data => {
     console.info('bindDevice success');
@@ -169,7 +169,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  deviceManager.unbindDevice(matchDevice.deviceId, (error, data) => {
+  deviceManager.unbindDevice(12345678, (error, data) => {
   if (error) {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
     return;
@@ -211,7 +211,7 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 ```js
 try {
-  deviceManager.unbindDevice(matchDevice.deviceId).then(data => {
+  deviceManager.unbindDevice(12345678).then(data => {
     console.info('unbindDevice success');
   }, error => {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
