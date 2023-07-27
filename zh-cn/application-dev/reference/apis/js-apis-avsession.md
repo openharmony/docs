@@ -5602,7 +5602,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 > **说明：**
 >
-> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[注册媒体会话相关监听](#onplaypausestopplaynextplaypreviousfastforwardrewind10)。
+> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[on'play'](#onplay10)、[on'pause'](#onpause10)等。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -5659,7 +5659,7 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 > **说明：**
 >
-> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[注册媒体会话相关监听](#onplaypausestopplaynextplaypreviousfastforwardrewind10)。
+> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[on'play'](#onplay10)、[on'pause'](#onpause10)等。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
