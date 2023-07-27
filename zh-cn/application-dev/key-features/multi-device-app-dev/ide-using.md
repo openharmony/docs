@@ -51,7 +51,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 新建Module
 
-参考[开发系统 npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api8-0000001494155892-V3?catalogVersion=V3)，新建三个npm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
+参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section143510369612)，新建三个ohpm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
 
 ![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
@@ -109,7 +109,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 回顾之前小节中关于“工程结构”的介绍，我们推荐在common目录中存放基础公共代码，features目录中存放相对独立的功能模块代码，product目录中存放完全独立的产品代码。这样在product目录中依赖features和common中的公共代码来实现功能，可以最大程度实现代码复用。
 
-配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 npm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3)。
+配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 ohpm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/configuring-dependencies-0000001545614945-V3#section1361763617508)。
 
 ![zh-cn_image_0000001267274208](figures/zh-cn_image_0000001267274208.png)
 
@@ -118,9 +118,9 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 修改oh-package.json文件后，一定要点击右上角的“Sync Now”，否则改动不会生效！
 
 
-## 引用npm包中的代码
+## 引用ohpm包中的代码
 
-在[开发HarmonyOS npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api8-0000001494155892-V3?catalogVersion=V3)中，仅介绍了如何使用npm包中的页面和资源，本小节以例子的形式补充介绍如何使用npm包中的类和函数。
+在[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section611662614153)中，仅介绍了如何使用ohpm包中的页面和资源，本小节以例子的形式补充介绍如何使用ohpm包中的类和函数。
 
 示例如下：
 
@@ -140,7 +140,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
    ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
 > **说明：**
-> 如果需要将HarmonyOS npm包发布供其他开发者使用，当前npm包可发布到npm官方中心仓和HarmonyOS npm专用仓，具体可参考[发布HarmonyOS npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api8-0000001494155892-V3?catalogVersion=V3)。
+> 如果需要将ohpm包发布供其他开发者使用，具体可参考[发布ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section1213451811512)。
 
 
 ## 总结
