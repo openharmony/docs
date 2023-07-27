@@ -2256,7 +2256,7 @@ wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
 wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
 
 ```
-## wifi.on('streamChange')<sup>7+</sup>
+## wifi.on('streamChange')<sup>9+</sup>
 
 on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
@@ -2273,7 +2273,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"streamChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
 
-## wifi.off('streamChange')<sup>7+</sup>
+## wifi.off('streamChange')<sup>9+</sup>
 
 off(type: "streamChange", callback: Callback&lt;number&gt;): void
 
@@ -2364,7 +2364,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-## wifi.on('hotspotStaJoin')<sup>7+</sup>
+## wifi.on('hotspotStaJoin')<sup>9+</sup>
 
 on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
@@ -2381,7 +2381,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
   | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
   | callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
-## wifi.off('hotspotStaJoin')<sup>7+</sup>
+## wifi.off('hotspotStaJoin')<sup>9+</sup>
 
 off(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
@@ -2414,7 +2414,7 @@ wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ```
 
-## wifi.on('hotspotStaLeave')<sup>7+</sup>
+## wifi.on('hotspotStaLeave')<sup>9+</sup>
 
 on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
@@ -2431,7 +2431,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
   | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
-## wifi.off('hotspotStaLeave')<sup>7+</sup>
+## wifi.off('hotspotStaLeave')<sup>9+</sup>
 
 off(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
