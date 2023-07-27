@@ -1,5 +1,6 @@
 # 转场动画的使用（ArkTs）
 
+## 场景介绍
 日常在应用时，经常需要衔接两个场景，或者两个镜头画面之间进行切换，切换时需要呈现一种平滑过渡效果。
 
 本例将为大家介绍下如何通过转场动画实现上述过渡效果。
@@ -44,9 +45,9 @@
 
     * 通过Image、Column、Text、Button等组件构建ComponentTransition.ets页面。
 
-    * 新建一个Image组件，并且添加两个transition属性，分别用于定义组件的插入动效和移除动效，来实现组件转场间。
+    * 新建一个Image组件，并且添加两个transition属性，分别用于定义组件的插入动效和移除动效，从而实现组件间的转场。
 
-    * 设置变量isShow,用来控制上述步骤中Image组件的添加和移除，同时向Button组件的onClick添加animateTo方法，来使ComponentItem子组件动效生效。
+    * 设置变量isShow，用来控制上述步骤中Image组件的添加和移除，同时向Button组件的onClick添加animateTo方法，来使ComponentItem子组件动效生效。
       * isShow默认状态为false，删除隐藏Image组件，同时删除动效生效。
 
       * 当isShow状态更新为true时，插入Image组件，同时插入动效生效。
@@ -504,7 +505,7 @@
 
    共享元素转场通过给组件设置sharedTransition属性来实现，两个页面的组件配置为同一个id，则转场过程中会执行共享元素转场效果。
 
-   * 通过Image、Column、Text等组件构建ShareItem.ets页面,给内容区域的Image组件设置sharedTransition属性标记该元素为共享元素，组件转场id设置为“shareID”， 同时设置共享元素转场效果。
+   * 通过Image、Column、Text等组件构建ShareItem.ets页面，给内容区域的Image组件设置sharedTransition属性标记该元素为共享元素，组件转场id设置为“shareID”， 同时设置共享元素转场效果。
 
      具体代码如下：
 
