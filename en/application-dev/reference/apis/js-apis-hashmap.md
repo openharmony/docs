@@ -338,7 +338,7 @@ hashMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-Obtains an iterator that contains all the elements in this container.
+Obtains an iterator that contains all the keys in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
