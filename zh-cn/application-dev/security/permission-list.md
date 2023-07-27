@@ -884,7 +884,7 @@
 
 ## ohos.permission.MANAGE_USER_IDM
 
-允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。
+允许录入和管理用户身份认证凭据。
 
 **权限级别**：system_basic
 
@@ -908,7 +908,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许应用使用系统身份认证能力进行用户身份认证或身份识别。
+允许调用统一身份认证服务的系统内部接口。
 
 **权限级别**：system_basic
 
@@ -920,7 +920,7 @@
 
 ## ohos.permission.ACCESS_PIN_AUTH
 
-允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。
+允许注册口令认证过程获取口令数据的回调。
 
 **权限级别**：system_basic
 
@@ -2076,7 +2076,7 @@
 
 ## ohos.permission.ENFORCE_USER_IDM
 
-允许SA无token删除IAM子系统用户信息。
+允许SA无token删除IAM用户信息。
 
 **权限级别**：system_core
 
@@ -2088,7 +2088,7 @@
 
 ## ohos.permission.ACCESS_AUTH_RESPOOL
 
-允许SA注册执行器。
+允许SA注册认证执行器。
 
 **权限级别**：system_core
 
