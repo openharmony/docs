@@ -185,12 +185,12 @@ let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
 syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
   let modelBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, (result) => {
+  	const modelInputs = result.getInputs();
+  	console.log(modelInputs[0].name);
+  })
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -217,14 +217,14 @@ let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
 syscontext.resourceManager.getRawFileContent(modelName).then((error,buffer) => {
   let modelBuffer = buffer;
+  let context: mindSporeLite.Context = {};
+  context = {'target': ['cpu']};
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, context, (result) => {
+    const modelInputs = result.getInputs();
+    console.log(modelInputs[0].name);
+  })  
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-let context: mindSporeLite.Context = {};
-context = {'target': ['cpu']};
-mindSporeLite.loadModelFromBuffer(modelBuffer.buffer, context, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -256,12 +256,12 @@ let modelName = '/path/to/xxx.ms';
 let syscontext = globalThis.context;
 syscontext.resourceManager.getRawFileContent(modelName).then((buffer) => {
   let modelBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer.buffer).then((result) => {
+    const modelInputs = result.getInputs();
+    console.log(modelInputs[0].name);
+  })  
 }).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(modelBuffer.buffer).then((result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -402,7 +402,7 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 import resourceManager from '@ohos.resourceManager'
 let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
@@ -442,7 +442,7 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 import resourceManager from '@ohos.resourceManager'
 let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
@@ -543,7 +543,7 @@ getData(): ArrayBuffer
 import resourceManager from '@ohos.resourceManager'
 let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
@@ -578,13 +578,13 @@ setData(inputArray: ArrayBuffer): void
 import resourceManager from '@ohos.resourceManager'
 let inputName = 'input_data.bin';
 let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(inputName).then((buffer) => {
+syscontext.resourceManager.getRawFileContent(inputName).then(async (buffer) => {
   inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
+  const modelInputs = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer.buffer);
 })
-let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-modelInputs[0].setData(inputBuffer.buffer);
 ```
 
 ## DataType

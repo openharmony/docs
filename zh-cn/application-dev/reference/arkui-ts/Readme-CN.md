@@ -123,6 +123,7 @@
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
   - [GridItem](ts-container-griditem.md)
+  - [Hyperlink](ts-container-hyperlink.md)
   - [List](ts-container-list.md)
   - [ListItem](ts-container-listitem.md)
   - [ListItemGroup](ts-container-listitemgroup.md)

@@ -279,8 +279,8 @@ customCurve(interpolate: (fraction: number) => number): ICurve
 
 ```ts
 import Curves from '@ohos.curves'
-interpolate(fraction) {
-    return Math.sqrt(fraction);
+let interpolate = function(fraction) {
+    return Math.sqrt(fraction)
   }
 let curve = Curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
 ```

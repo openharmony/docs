@@ -1,4 +1,4 @@
-﻿# 接口
+# 接口
 
 - [开发说明](development-intro.md)
 
@@ -315,12 +315,23 @@
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
+  - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
+  - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)
+  - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](js-apis-bluetooth-baseProfile.md)
+  - [@ohos.bluetooth.ble(蓝牙ble模块)(推荐)](js-apis-bluetooth-ble.md)
+  - [@ohos.bluetooth.connection(蓝牙connection模块)(推荐)](js-apis-bluetooth-connection.md)
+  - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)](js-apis-bluetooth-hfp.md)
+  - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](js-apis-bluetooth-hid.md)
+  - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](js-apis-bluetooth-pan.md)
+  - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
-  - [@ohos.bluetoothManager (蓝牙)(推荐)](js-apis-bluetoothManager.md)
+  - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -397,6 +408,7 @@
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.multimodalInput.shortKey(快捷键)](js-apis-shortKey.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
+  - [@ohos.resourceschedule.deviceStandby (设备待机模块)](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)

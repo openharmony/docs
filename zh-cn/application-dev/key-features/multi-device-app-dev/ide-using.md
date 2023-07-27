@@ -12,7 +12,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 参考[创建系统工程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/create_new_project-0000001053342414-V3?catalogVersion=V3)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
 
-![zh-cn_image_0000001267274204](figures/pic/zh-cn_image_0000001267274204.png)
+![zh-cn_image_0000001267274204](figures/zh-cn_image_0000001267274204.png)
 
 如果直接使用如下所示的平级目录进行模块管理，工程逻辑结构较混乱且模块间的依赖关系不够清晰，不利于开发及后期维护。
 
@@ -53,7 +53,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 参考[开发系统 npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api8-0000001494155892-V3?catalogVersion=V3)，新建三个npm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
 
-![zh-cn_image_0000001315434285](figures/pic/zh-cn_image_0000001315434285.png)
+![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
 > **说明：**
 > - 在一个工程中同一个设备类型只支持一个Entry类型的模块。
@@ -70,7 +70,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 修改创建工程时默认的entry模块名称。在该模块上点击鼠标右键，依次选择”Refactor -&gt; Rename”，将名称修改为default。
 
-![zh-cn_image_0000001315914185](figures/pic/zh-cn_image_0000001315914185.png)
+![zh-cn_image_0000001315914185](figures/zh-cn_image_0000001315914185.png)
 
 
 ### 修改Module类型及其设备类型
@@ -80,12 +80,12 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 - 将default模块的deviceTypes配置为["default", "tablet"]，同时将其type字段配置为entry。
   即default模块编译出的HAP在默认设备和平板上安装和运行。
 
-  ![zh-cn_image_0000001267914116](figures/pic/zh-cn_image_0000001267914116.png)
+  ![zh-cn_image_0000001267914116](figures/zh-cn_image_0000001267914116.png)
 
 - 将wearable模块的deviceTypes配置为["wearable"]，同时将其type字段配置为entry。
   即wearable模块编译出的HAP仅在智能穿戴设备上安装和运行。
 
-  ![zh-cn_image_0000001267514192](figures/pic/zh-cn_image_0000001267514192.png)
+  ![zh-cn_image_0000001267514192](figures/zh-cn_image_0000001267514192.png)
 
 
 ## 调整目录结构
@@ -94,15 +94,15 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 在工程根目录（MyApplication）上点击鼠标右键，依次选择“New -&gt; Directory”新建子目录。创建product和features两个子目录。
 
-![zh-cn_image_0000001266874320](figures/pic/zh-cn_image_0000001266874320.png)
+![zh-cn_image_0000001266874320](figures/zh-cn_image_0000001266874320.png)
 
 用鼠标左键将default目录拖拽到新建的product目录中，在IDE弹出的确认窗口中，点击“Refactor”即可。
 
-![zh-cn_image_0000001315714137](figures/pic/zh-cn_image_0000001315714137.png)
+![zh-cn_image_0000001315714137](figures/zh-cn_image_0000001315714137.png)
 
 按照同样的步骤，将wearable目录放到product目录中，将feature1和feature2放到features目录中。
 
-![zh-cn_image_0000001316914105](figures/pic/zh-cn_image_0000001316914105.png)
+![zh-cn_image_0000001316914105](figures/zh-cn_image_0000001316914105.png)
 
 
 ## 修改依赖关系
@@ -111,7 +111,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 npm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3)。
 
-![zh-cn_image_0000001267274208](figures/pic/zh-cn_image_0000001267274208.png)
+![zh-cn_image_0000001267274208](figures/zh-cn_image_0000001267274208.png)
 
 同样的，修改feature1和feature2模块中的oh-package.json文件，使其可以使用common模块中的代码。
 
@@ -131,13 +131,13 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 - 在default模块中，使用common模块新增的ComplexNumber类和Add函数。
 
 1. 在”common/src/main/ets”目录中，按照需要新增文件和自定义类和函数。
-   ![zh-cn_image_0000001315434289](figures/pic/zh-cn_image_0000001315434289.png)
+   ![zh-cn_image_0000001315434289](figures/zh-cn_image_0000001315434289.png)
 
 2. 在”common/index.ets”文件中，申明需要export的类、函数的名称及在当前模块中的位置，否则其它模块无法使用。
-   ![zh-cn_image_0000001315914189](figures/pic/zh-cn_image_0000001315914189.png)
+   ![zh-cn_image_0000001315914189](figures/zh-cn_image_0000001315914189.png)
 
 3. 在default模块中import和使用这些类和函数。注意提前在default模块的oh-package.json文件中配置对common模块的依赖关系。
-   ![zh-cn_image_0000001267914120](figures/pic/zh-cn_image_0000001267914120.png)
+   ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
 > **说明：**
 > 如果需要将HarmonyOS npm包发布供其他开发者使用，当前npm包可发布到npm官方中心仓和HarmonyOS npm专用仓，具体可参考[发布HarmonyOS npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api8-0000001494155892-V3?catalogVersion=V3)。
