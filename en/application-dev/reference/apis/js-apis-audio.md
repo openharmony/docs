@@ -486,8 +486,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description    |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | Channel 1. |
-| CHANNEL_2 | 0x1 << 1 | Channel 2. |
+| CHANNEL_1 | 0x1 << 0 | Channel 1.|
+| CHANNEL_2 | 0x1 << 1 | Channel 2.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -544,13 +544,13 @@ Enumerates the audio stream usage.
 | Name                                     |  Value   | Description      |
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
-| STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.|
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Used for alarming.    |
-| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | Used for accessibility.  |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | System tone (such as screen lock or keypad tone).<br>This is a system API.|
+| STREAM_USAGE_MEDIA                        | 1      | Media.    |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.| 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.|
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.    |
+| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Notification tone.|
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | Accessibility.  |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | System tone (such as screen lock sound effect or key tone).<br>This is a system API.|
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -4717,10 +4717,10 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let currStat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
+fs.stat(path).then((stat) => {
+  let buf = new ArrayBuffer(bufferSize);
+  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+  for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
       length: bufferSize
@@ -4735,7 +4735,8 @@ for (let i = 0;i < len; i++) {
         }
       })
     })	  
-}
+  }
+});
 
 ```
 
@@ -4771,21 +4772,22 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let currStat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    try{
-       let writeSize = await audioRenderer.write(buf);
-    } catch(err) {
-       console.error(`audioRenderer.write err: ${err}`);
-    }   
-}
+fs.stat(path).then((stat) => {
+  let buf = new ArrayBuffer(bufferSize);
+  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+  for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      try{
+         let writeSize = await audioRenderer.write(buf);
+      } catch(err) {
+         console.error(`audioRenderer.write err: ${err}`);
+      }   
+  }
+});
 ```
 
 ### getAudioTime<sup>8+</sup>
