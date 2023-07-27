@@ -1118,6 +1118,7 @@
       - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
+      - [@ohos. deviceStatus.dragInteraction (拖拽)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedDeviceManager (设备管理)](reference/apis/js-apis-distributedDeviceManager.md)
       - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
@@ -1171,6 +1172,7 @@
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.networkManager (网络管理)](reference/apis/js-apis-enterprise-networkManager.md)
       - [@ohos.enterprise.restrictions (限制类策略)](reference/apis/js-apis-enterprise-restrictions.md)
+      - [@ohos.enterprise.usbManager (USB管理)](reference/apis/js-apis-enterprise-usbManager.md)
       - [@ohos.enterprise.wifiManager (WiFi管理)](reference/apis/js-apis-enterprise-wifiManager.md)
     - 语言基础类库
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
