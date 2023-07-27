@@ -10,6 +10,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
 
 ## 效果呈现
 本例最终效果如下：
+
 ![UIAbility](figures/UIAbility.gif)
 
 ## 运行环境
@@ -76,7 +77,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
             }
         }   
         ```
-    * 构建Second页面，该页面由由一个Image组件、两个Text组件、一个Button组件组成。
+    * 构建Second页面，该页面由一个Image组件、两个Text组件、一个Button组件组成。
         具体代码如下：
         ```ts
         // entry/src/main/ets/pages/Second.ets
@@ -253,7 +254,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
             let context = getContext(this);
             ...            
             ```
-        2. 在EntryAbility的Index页面中,点击“导航到SecondAbility的Index Page”按钮后，调用ButtonClickMethod类中的toSecondAbilityIndex方法，拉起SecondAbility的Index页面,同时通过params来向新页面传入参数。        
+        2. 在EntryAbility的Index页面中,点击“导航到SecondAbility的Index Page”按钮后，调用ButtonClickMethod类中的toSecondAbilityIndex方法，拉起SecondAbility的Index页面，同时通过params来向新页面传入参数。        
             * 向ButtonClickMethod类中添加toSecondAbilityIndex方法。
                 具体代码如下：
                 ```ts
@@ -546,7 +547,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
                 }
             } 
             ```
-    * 从device模块的SecondAbility的Second页面，返回至entry模块的EntryAbility首页：通过点击“停止SecondAbility自身并返回结果”按钮，调用ButtonClickMethod类中的terminateSecondAbilityForResult方法，使用UIAbilityContext.terminateSelfWithResult方法，同时传入不同的resultCode和want，手动销毁Ability，成功后发起拉起侧会收到abilityResult的值， 通过Text的方式显示在界面上，从而实现从SecondAbility的Second页面返回至entry的Index页面。
+    * 从device模块的SecondAbility的Second页面，返回至entry模块的EntryAbility首页：通过点击“停止SecondAbility自身并返回结果”按钮，调用ButtonClickMethod类中的terminateSecondAbilityForResult方法，使用UIAbilityContext.terminateSelfWithResult方法，同时传入不同的resultCode和want，手动销毁Ability，成功后拉起侧会收到abilityResult的值， 通过Text的方式显示在界面上，从而实现从SecondAbility的Second页面返回至entry的Index页面。
         1. 给ButtonClickMethod类中添加terminateSecondAbilityForResult方法。
             具体代码如下：
             ```ts
@@ -580,7 +581,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
             }
             export default new ButtonClickMethod();              
             ```
-        2. 在SecondAbility的Index页面中，给“停止SecondAbility自身并返回结果”按钮添加onClick事件，调用ButtonClickMethod类中的terminateSecondAbilityForResult方法，手动销毁自身Ability，。
+        2. 在SecondAbility的Index页面中，给“停止SecondAbility自身并返回结果”按钮添加onClick事件，调用ButtonClickMethod类中的terminateSecondAbilityForResult方法，手动销毁自身Ability。
             具体代码如下：
             ```ts
             // device/src/main/ets/pages/Second.ets
