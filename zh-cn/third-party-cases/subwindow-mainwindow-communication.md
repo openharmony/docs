@@ -6,6 +6,7 @@
 
 ## 效果呈现
 本例最终效果如下：
+
 ![subwindow-mainwindow-communication](figures/subwindow-mainwindow-communication.gif)
 
 ## 环境要求
@@ -21,7 +22,7 @@
 - 子窗口可以拖拽：通过gesture属性为子窗口绑定PanGesture拖拽事件，使用moveWindowTo方法将窗口移动到拖拽位置，呈现拖拽效果。
 - 点击主窗口的“子窗口数据+1”按钮，子窗口中的数据加1，反之亦然，即实现主窗口和子窗口间的数据通信：将数据变量存储在AppStorage中，在主窗口和子窗口中引用该数据，并通过@StorageLink与AppStorage中的数据进行双向绑定，从而实现主窗口和子窗口之间的数据联动。
 > ![icon-note.gif](../device-dev/public_sys-resources/icon-note.gif) **说明：**
-> 本文使用AppStorage实现主窗口和子窗口之间的数据传递，除此之外，Emitter和EventHub等方式也可以实现，用户可以根据实际业务需要进行选择。
+> 本文使用AppStorage实现主窗口和子窗口之间的数据传递，除此之外，Emitter和EventHub等方式也可以实现，开发者可以根据实际业务需要进行选择。
 
 
 ## 开发步骤
