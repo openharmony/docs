@@ -321,7 +321,7 @@ deleteSpans(value?: RichEditorRange): void
 | ------ | -------- | ---- | -------------------------------------- |
 | size  | [Dimension, Dimension]  | 否 | 图片宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
-| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 
 ## RichEditorRange
 
