@@ -133,7 +133,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
 
 ## Experiencing the Immersive Window Feature
 
-To create a better video watching and gaming experience, you can use the immersive window feature to hide the system windows, including the status bar and navigation bar. To achieve this effect, you can use the immersive window feature, which is available only for the main window of an application.
+To create a better video watching and gaming experience, you can use the immersive window feature to hide the system windows, including the status bar and navigation bar. This feature is available only for the main window of an application.
 
 
 ### How to Develop
@@ -163,8 +163,8 @@ To create a better video watching and gaming experience, you can use the immersi
 
 2. Implement the immersive effect. You can use either of the following methods:
 
-   - Method 1: Call **setWindowSystemBarEnable** to hide the navigation bar and status bar.
-   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setSystemProperties** to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
+   - Method 1: Call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
+   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
 
    ```js
    
