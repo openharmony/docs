@@ -3443,11 +3443,11 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                         |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables   | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                 |
-| type     | [DistributedType](#distributedtype10)     | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
-| callback | AsyncCallback&lt;void&gt;                 | 是   | 指定callback回调函数。                                       |
+| 参数名   | 类型                                  | 必填 | 说明                         |
+| -------- | ------------------------------------- | ---- | ---------------------------- |
+| tables   | Array&lt;string&gt;                   | 是   | 要设置的分布式数据库表表名。 |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。             |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 指定callback回调函数。       |
 
 **错误码：**
 
@@ -3461,8 +3461,6 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 **示例：**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
 store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
@@ -3489,7 +3487,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 | 参数名      | 类型                                  | 必填  | 说明              |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式数据库表表名。     |
-| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。 |
 | config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
 
@@ -3531,7 +3529,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | tables | Array&lt;string&gt;                       | 是   | 要设置的分布式数据库表表名。                                 |
-| type   | [DistributedType](#ditributedtype)        | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| type   | [DistributedType](#ditributedtype)        | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。 |
 | config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
 
 **返回值**：
