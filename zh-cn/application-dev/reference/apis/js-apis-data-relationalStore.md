@@ -2040,6 +2040,53 @@ promise.then((rows) => {
 })
 ```
 
+### query<sup>10+</sup>
+
+query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定条件查询数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```js
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+store.query(predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
+})
+```
+
 ### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
@@ -2121,6 +2168,59 @@ promise.then((resultSet) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
+
+### query<sup>10+</sup>
+
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定条件查询数据库中的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下可用。
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| table      | string                                                       | 是   | 指定的目标表名。                                            |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+store.query("EMPLOYEE", predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // 释放数据集的内存
+  resultSet.close();
+})
+```
 
 ### query
 
