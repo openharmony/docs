@@ -47,7 +47,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
 | navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。                       |
-| windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型。<br>**系统接口**: 此接口为系统接口。 |
+| windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型，默认值为WindowModeType.DIALOG_BOX。<br>**系统接口**: 此接口为系统接口。 |
 
 ## UserAuthResult<sup>10+</sup>
 
