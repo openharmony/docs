@@ -137,7 +137,7 @@ export { nativeMulti } from './utils/nativeTest'
 在使用方的代码中，可以这样使用：
 ```ts
 // entry/src/main/ets/pages/index.ets
-import { Log, add, MyTitleBar, nativeMulti, ResManager } from "library"
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from "library"
 
 @Entry
 @Component
@@ -157,6 +157,18 @@ struct Index {
           })
         Image(ResManager.getPic())
           .width("100%")
+        Button('getStringValue')
+          .onClick(()=> {
+            // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
+            getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
+              .then(value => {
+                console.log("getStringByName value is " + value);
+              })
+              .catch(error => {
+                console.log("getStringByName promise error is " + error);
+              });
+          })
+          .width("50%")
         Button('nativeMulti(3, 4)')
           .onClick(()=>{
             Log.info("nativeMulti button click!");
