@@ -390,7 +390,7 @@
 
 ## ohos.permission.SET_WALLPAPER
 
-允许应用设置静态壁纸。
+允许应用设置壁纸。
 
 **权限级别**：normal
 
