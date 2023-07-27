@@ -142,8 +142,8 @@
    constexpr AudioChannelLayout CHANNEL_LAYOUT =AudioChannelLayout::STEREO;
    // 配置音频位深（必须） flac 只有SAMPLE_S16LE和SAMPLE_S32LE
    constexpr OH_BitsPerSample SAMPLE_FORMAT =OH_BitsPerSample::SAMPLE_S32LE;
-   // 配置音频位深（必须）aac只有SAMPLE_S32P
-   constexpr OH_BitsPerSample SAMPLE_AAC_FORMAT =OH_BitsPerSample::SAMPLE_S32P;
+   // 配置音频位深（必须）aac只有SAMPLE_F32P
+   constexpr OH_BitsPerSample SAMPLE_AAC_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
