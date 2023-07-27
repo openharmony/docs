@@ -269,7 +269,7 @@ TabContent() {
 
 ## Switching to a Specified Tab
 
-Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user touches a tab, the application displays the corresponding tab page.
+Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
 
 
   **Figure 10** Switching to a specified tab in a custom navigation bar 
@@ -332,7 +332,7 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 
   **Figure 11** Lack of linkage between tabs and tab content 
 
-![lack-of-linkage](figures /lack-of-linkage.gif)
+![lack-of-linkage](figures/lack-of-linkage.gif)
 
 
 To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
@@ -367,3 +367,4 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   **Figure 12** Linkage between tabs and tab content
 
 ![final-effect](figures/final-effect.gif)
+
