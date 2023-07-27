@@ -551,7 +551,7 @@ notificationManager.publish(notificationRequest, (err) => {
     ...
     return;
   }
-  console.info('Invoke publish succeeded.');
+  console.info('Succeeded in publishing notification.');
 });
 ```
 
@@ -563,7 +563,7 @@ notificationManager.publish(notificationRequest, function (err) {
     ...
     return;
   }
-  console.info('Invoke publish succeeded.');
+  console.info('Succeeded in publishing notification.');
 });
 ```
 
