@@ -1585,7 +1585,7 @@ Provides the usage duration information of an application.
 
 **System API**: This is a system API.
 
-| Name                           | Type                                      | Mandatory  | Description            |
+|Name                          | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string] | [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
 

@@ -3,6 +3,7 @@
 ## Basic Concepts
 
 Immersive window: System windows such as the status bar and navigation bar are controlled in such a way that they are unobtrusive and natural looking in the entire screen, thereby engaging users more deeply with the content displayed.
+
 The immersive window feature is valid only when the main window of an application is displayed in full-screen mode. It does not apply to a main window in free window mode or a subwindow (for example, a dialog box or a floating window).
 
 ## When to Use
@@ -164,7 +165,7 @@ To create a better video watching and gaming experience, you can use the immersi
 2. Implement the immersive effect. You can use either of the following methods:
 
    - Method 1: When the main window of the application is a full-screen window, call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
-   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setSystemProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
+   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
 
    ```js
    

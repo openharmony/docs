@@ -22,7 +22,7 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**.|
+| context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**.|
 
 ## WorkSchedulerExtensionAbility.onWorkStart
 
