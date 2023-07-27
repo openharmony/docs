@@ -21,6 +21,8 @@ mediaLibrary部分接口兼容性变更。
 | medialibrary   |  **function** getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt; | 接口兼容性变更     |
 | medialibrary   |  **function** FileAsset.commitModify(callback: AsyncCallback&lt;void&gt;): void | 接口兼容性变更     |
 | medialibrary   |  **function** FileAsset.commitModify(): Promise&lt;void&gt; | 接口兼容性变更     |
+| medialibrary   |  **function** FileAsset.deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void | 接口兼容性变更     |
+| medialibrary   |  **function** FileAsset.deleteAsset(uri: string): Promise&lt;void&gt; | 接口兼容性变更     |
 
 **适配指导**
 
@@ -145,3 +147,40 @@ async function example() {
 **FileAsset.commitModify接口获取相册兼容性影响：**
 
 在API version 10的SDK上去掉了针对audio无意义的orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。
+
+**FileAsset.deleteAsset接口删除媒体文件资源兼容性影响：**
+
+修复了文件删除机制的已知问题。该问题会导致系统应用可以通过MediaLibrary.deleteAsset方法将一个没有进入回收站的文件直接彻底删除。
+
+对于系统应用，彻底删除一个文件应该按照以下步骤进行操作：
+
+1. 调用[getFileAssets](../../../application-dev/reference/apis/js-apis-medialibrary.md#getfileassets7)接口获取文件资源。
+2. 然后调用[FileAsset.trash](../../../application-dev/reference/apis/js-apis-medialibrary.md#trash8)接口将文件放入回收站。
+3. 最后调用[MediaLibrary.deleteAsset](../../../application-dev/reference/apis/js-apis-medialibrary.md#deleteasset8)方法将文件彻底删除。
+
+**正确示例：**
+
+```js
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+
+async function example() {
+  try {
+    let context = getContext(this);
+    let media = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
+    let imageType = mediaLibrary.MediaType.IMAGE;
+    let getImageOp = {
+      selections: fileKeyObj.MEDIA_TYPE + '= ?',
+      selectionArgs: [imageType.toString()],
+    };
+    const fetchFileResult = await media.getFileAssets(getImageOp); 
+    const fileAsset = await fetchFileResult.getFirstObject();
+    // 将文件删除（放入系统图库的回收站）。
+    await fileAsset.trash(true);
+    // 将文件从系统中彻底删除。
+    await media.deleteAsset(fileAsset.uri);
+  } catch (err) {
+    console.error('Failed to delete asset permanently from system, error: ' + err);
+  }
+}
+```
