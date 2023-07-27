@@ -1124,7 +1124,7 @@
 
 ## ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
-允许应用激活设备管理员应用。
+允许应用激活设备管理应用。
 
 **权限级别**：system_core
 
@@ -1136,7 +1136,7 @@
 
 ## ohos.permission.SET_ENTERPRISE_INFO
 
-允许设备管理员应用设置企业信息。
+允许设备管理应用设置企业信息。
 
 **权限级别**：system_basic
 
@@ -1148,7 +1148,7 @@
 
 ## ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
-允许设备管理员应用订阅管理事件。
+允许设备管理应用订阅管理事件。
 
 **权限级别**：system_basic
 
@@ -1160,7 +1160,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_DATETIME
 
-允许设备管理员应用设置系统时间。
+允许设备管理应用设置系统时间。
 
 **权限级别**：system_basic
 
@@ -1172,7 +1172,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
-允许设备管理员读取设备信息。
+允许设备管理应用读取设备信息。
 
 **权限级别**：system_basic
 
@@ -1184,7 +1184,7 @@
 
 ## ohos.permission.ENTERPRISE_RESET_DEVICE
 
-允许设备管理员恢复设备出厂设置。
+允许设备管理应用恢复设备出厂设置。
 
 **权限级别**：system_basic
 
@@ -1196,7 +1196,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_WIFI
 
-允许设备管理员应用设置和查询WiFi信息。
+允许设备管理应用设置和查询WiFi信息。
 
 **权限级别**：system_basic
 
@@ -1208,7 +1208,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
-允许设备管理员应用查询网络信息。
+允许设备管理应用查询网络信息。
 
 **权限级别**：system_basic
 
@@ -1220,7 +1220,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
-允许设备管理员设置账户管理策略。
+允许设备管理应用设置账户管理策略。
 
 **权限级别**：system_basic
 
@@ -1232,7 +1232,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
-允许设备管理员设置包安装管理策略。
+允许设备管理应用设置包安装管理策略。
 
 **权限级别**：system_basic
 
@@ -1244,7 +1244,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_NETWORK
 
-允许设备管理员设置网络信息。
+允许设备管理应用设置网络信息。
 
 **权限级别**：system_basic
 
@@ -1256,7 +1256,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
-允许设备管理员设置应用运行管理策略。
+允许设备管理应用设置应用运行管理策略。
 
 **权限级别**：system_basic
 
@@ -1268,7 +1268,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
-允许设备管理员设置系统休眠时间。
+允许设备管理应用设置系统休眠时间。
 
 **权限级别**：system_basic
 
@@ -1280,7 +1280,7 @@
 
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
-允许设备管理员安装和卸载包。
+允许设备管理应用安装和卸载包。
 
 **权限级别**：system_core
 
@@ -1292,7 +1292,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_SETTINGS
 
-允许设备管理员查询“设置”应用数据。
+允许设备管理应用查询“设置”应用数据。
 
 **权限级别**：system_basic
 
@@ -1304,7 +1304,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
-允许设备管理员管理证书。
+允许设备管理应用管理证书。
 
 **权限级别**：system_basic
 
@@ -1316,7 +1316,7 @@
 
 ## ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
-允许设备管理员下发和获取限制类策略。
+允许设备管理应用下发和获取限制类策略。
 
 **权限级别**：system_basic
 
@@ -1328,7 +1328,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
-允许设备管理员管理USB。
+允许设备管理应用管理USB。
 
 **权限级别**：system_basic
 
@@ -1340,7 +1340,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
-允许设备管理员管理网络。
+允许设备管理应用管理网络。
 
 **权限级别**：system_basic
 
@@ -1352,7 +1352,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
-允许设备设置/取消浏览器策略。
+允许设备管理应用设置/取消浏览器策略。
 
 **权限级别**：system_basic
 
