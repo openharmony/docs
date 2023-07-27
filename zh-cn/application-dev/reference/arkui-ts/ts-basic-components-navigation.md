@@ -43,7 +43,7 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 | hideBackButton                | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
 | navBarWidth<sup>9+</sup>      | [Length](ts-types.md#length)             | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| mode<sup>9+</sup>             | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>API version 9之前断点在520vp切换显示模式。API version 10之后断点在600vp，minNavBarWidth(240vp) + minContentWidth (360vp)切换显示模式。 |
+| mode<sup>9+</sup>             | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>   | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>       | boolean                                  | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
 | navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
@@ -317,11 +317,11 @@ constructor(name: string, param: unknown)
 
 ## NavigationMode枚举说明
 
-| 名称    | 描述                                       |
-| ----- | ---------------------------------------- |
+| 名称  | 描述                                                         |
+| ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。                            |
-| Auto  | 窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。 |
+| Split | 导航栏与内容区分两栏显示。                                   |
+| Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## TitleHeight枚举说明
 
