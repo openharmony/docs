@@ -1994,7 +1994,9 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 **描述:**
 
-向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}， {"QuantParam": "YourQuantConfig"} 三种键值对配置，用户根据使用情况替换具体的值。
+向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 
+
+注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}， {"QuantParam": "YourQuantConfig"} 三种键值对配置，用户根据使用情况替换具体的值。
 
 **参数:**
 
