@@ -81,37 +81,12 @@ export struct MyTitleBar {
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 
-### 导出HSP中资源
 #### 通过$r访问HSP中资源
 注意，在`HSP`中，通过`$r`/`$rawfile`可以使用本模块`resources`目录下的资源。
 如果使用相对路径的方式，例如：
 在`HSP`模块中使用`Image("common/example.png")`，实际上该`Image`组件访问的是`HSP调用方`（如`entry`）下的资源`entry/src/main/ets/common/example.png`。
 
-#### 通过resourceManager访问HSP中资源
-先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源。  
-注：该方法不推荐使用，因为需要开发者手动维护调用名称与HSP内部的资源名称一致。
-```ts
-Button('getStringValue')
-  .onClick(()=> {
-    getContext().createModuleContext('library').resourceManager.getStringByName("shared_desc")
-      .then(value => {
-        console.log("getStringByName value is " + value);
-      })
-      .catch(error => {
-        console.log("getStringByName promise error is " + error);
-      });
-  })
-  .width("50%")
-```
-
-#### 导出HSP中资源给使用方使用
-可以使用一个类来提供对外导出资源的接口，该方案的好处是：
-- HSP开发者可以控制自己需要导出的资源，不需要对外暴露的资源可以不用导出
-- 使用方无须感知HSP内部的资源名称
-- HSP内部的资源名称变化时，不需要使用方跟着修改
-
-具体实现如下：
-
+### 导出HSP中资源
 封装对外提供资源的接口类：
 ```ts
 // library/src/main/ets/ResManager.ets
@@ -119,26 +94,16 @@ export class ResManager{
   static getPic(){
     return $r("app.media.pic");
   }
+  static getDesc(){
+    return $r("app.string.shared_desc");
+  }
 }
 ```
 
-在`index.ts`中导出该类：
+对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
 export { ResManager } from './ResManager'
-```
-
-将ResManager导入使用方代码文件：
-```ts
-// 使用方
-import {ResManager} from "library"
-```
-
-再以`ResManager.getPic()`的API获取资源，如下面的Image组件：
-```ts
-// 使用方
-Image(ResManager.getPic())
-    .width("100%")
 ```
 
 ### 导出native方法
@@ -166,12 +131,13 @@ export { nativeMulti } from './utils/nativeTest'
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'
 export { MyTitleBar } from './components/MyTitleBar'
+export { ResManager } from './ResManager'
 export { nativeMulti } from './utils/nativeTest'
 ```
 在使用方的代码中，可以这样使用：
 ```ts
 // entry/src/main/ets/pages/index.ets
-import { Log, add, MyTitleBar, nativeMulti } from "library"
+import { Log, add, MyTitleBar, nativeMulti, ResManager } from "library"
 
 @Entry
 @Component
@@ -189,6 +155,8 @@ struct Index {
             Log.info("add button click!");
             this.message = "result: " + add(1, 2);
           })
+        Image(ResManager.getPic())
+          .width("100%")
         Button('nativeMulti(3, 4)')
           .onClick(()=>{
             Log.info("nativeMulti button click!");
