@@ -212,7 +212,8 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.measure (文本计算)](js-apis-measure.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
-
+  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
+  
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-windowExtensionAbility.md)
