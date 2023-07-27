@@ -51,7 +51,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 新建Module
 
-参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section143510369612)，新建三个npm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
+参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section143510369612)，新建三个ohpm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
 
 ![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
