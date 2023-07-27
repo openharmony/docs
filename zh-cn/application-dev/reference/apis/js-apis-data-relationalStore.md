@@ -3057,11 +3057,11 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| table       | string                                     | 是   | 指定要查询的数据库表的表名。                                 |
-| columnName  | string                                     | 是   | 指定要查询的数据库表的列名。                                 |
-| primaryKeys | [PRIKeyType](#prikeytype10) | 是   | 指定要查询的行的主键。<br>如果数据库表无主键，参数columnName需传入"rowid"，此时primaryKeys为要查询的数据库表的行号。<br>如果数据库表无主键，参数columnName传入不为"rowid"，返回对应的错误码。 |
+| 参数名      | 类型                          | 必填 | 说明                                                         |
+| ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| table       | string                        | 是   | 指定要查询的数据库表的表名。                                 |
+| columnName  | string                        | 是   | 指定要查询的数据库表的列名。                                 |
+| primaryKeys | [PRIKeyType](#prikeytype10)[] | 是   | 指定要查询的行的主键。<br>如果数据库表无主键，参数columnName需传入"rowid"，此时primaryKeys为要查询的数据库表的行号。<br>如果数据库表无主键，参数columnName传入不为"rowid"，返回对应的错误码。 |
 
 **返回值**：
 
