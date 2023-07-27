@@ -248,9 +248,9 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 代码未格式化
-      windowStage.loadContent('pages/Index', (err, data) => {
-    });
+  // 代码未格式化，没有缩进
+  windowStage.loadContent('pages/Index', (err, data) => {
+  });
   }
 }
 ```
@@ -295,8 +295,6 @@ export default class EntryAbility extends UIAbility {
 注释符与代码块语法保持一致，禁止自创注释符。注释符与注释内容间统一添加一个空格。例如：对于ArkTS代码块，注释写法为“// 注释内容”。
 
 当一行注释内容过长时，注意断句切分到下一行呈现。
-
-示例代码中的关键内容和逻辑需要添加注释来说明，以确保开发者理解代码的作用。
 
 代码注释应该清晰、简洁、有用，能够方便别人理解代码的含义和作用。注释应该写在代码上方或右方。
 
@@ -454,7 +452,10 @@ console.info('Succeeded in doing sthing.');
 
 // 正例：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Succeeded in publishing notification.');
 });
 ```
@@ -464,13 +465,19 @@ notificationManager.publish(notificationRequest, (err) => {
 ```ts
 // 反例1：使用console.log(...)可能会让程序员产生困惑，无法明确该日志信息是正常日志还是错误日志
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.log('Succeeded in publishing notification.');
 });
 
 // 反例2：使用了console.error(...)而不是console.info(...)来打印正常日志信息。console.error通常用于打印错误信息，而不是正常的日志信息
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.error('Succeeded in publishing notification.');
 });
 ```
@@ -489,7 +496,10 @@ console.info('Succeeded in doing sthing.');
 
 // 正例：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Succeeded in publishing.');
 });
 ```
@@ -499,19 +509,28 @@ notificationManager.publish(notificationRequest, (err) => {
 ```ts
 // 反例1：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish success.');
 });
 
 // 反例2：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish successful.');
 });
 
 // 反例3：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish successfully.');
 });
 ```
@@ -528,7 +547,10 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish succeeded.');
 });
 ```
@@ -537,7 +559,10 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 notificationManager.publish(notificationRequest, function (err) {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish succeeded.');
 });
 ```
