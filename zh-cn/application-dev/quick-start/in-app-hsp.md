@@ -82,12 +82,20 @@ export { MyTitleBar } from './components/MyTitleBar'
 ```
 
 #### 通过$r访问HSP中资源
-注意，在`HSP`中，通过`$r`/`$rawfile`可以使用本模块`resources`目录下的资源。
-如果使用相对路径的方式，例如：
+在组件中，经常需要使用到字符串、颜色值、图片等资源。`HSP`中的组件同样需要使用资源，我们一般将其使用的资源放在HSP包内，以符合高内聚低耦合的原则，同时使得多处调用时资源可以只维持一个拷贝。若要使用到HSP中资源，可以像以上代码一样，通过`$r`/`$rawfile`可以使用本模块`resources`目录下的资源。
+
+不推荐使用相对路径的方式，容易引用错误路径。例如：
 在`HSP`模块中使用`Image("common/example.png")`，实际上该`Image`组件访问的是`HSP调用方`（如`entry`）下的资源`entry/src/main/ets/common/example.png`。
 
 ### 导出HSP中资源
-封装对外提供资源的接口类：
+HSP内资源有时也需要在外部其它包中直接调用，这时可以使用一个类来提供对外导出资源的接口，该方案的好处是：
+- HSP开发者可以控制自己需要导出的资源，不需要对外暴露的资源可以不用导出
+- 使用方无须感知HSP内部的资源名称，HSP内部的资源名称变化时也不需要使用方跟着修改
+
+其具体实现如下：
+
+封装对外提供资源的接口类：   
+注：用`$r`方法返回的是Resource对象形式的资源，可以被组件直接使用，但在一般场景下要对其进行解封装才能直接使用，这时需要另写函数获取解封装后资源。
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{
@@ -96,6 +104,10 @@ export class ResManager{
   }
   static getDesc(){
     return $r("app.string.shared_desc");
+  }
+  static getDescStr(){
+    // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取Resource对象中资源（返回值为异步结果Promise对象）
+    return getContext().resourceManager.getStringValue($r("app.string.shared_desc"));
   }
 }
 ```
@@ -155,12 +167,13 @@ struct Index {
             Log.info("add button click!");
             this.message = "result: " + add(1, 2);
           })
+        // ResManager返回Resource对象
         Image(ResManager.getPic())
           .width("100%")
         Button('getStringValue')
           .onClick(()=> {
-            // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-            getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
+            // ResManager返回Promise对象（Resource对象解封装结果）
+            ResManager.getDescStr()
               .then(value => {
                 console.log("getStringValue is " + value);
               })
