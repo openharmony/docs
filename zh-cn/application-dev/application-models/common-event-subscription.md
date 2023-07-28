@@ -12,7 +12,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata)&gt;):&nbsp;void | 创建订阅者对象（callback） |
+| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventSubscriber](../reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md#使用说明)&gt;):&nbsp;void | 创建订阅者对象（callback） |
 | createSubscriber(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象（promise） |
 | subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback):&nbsp;void | 订阅公共事件 |
 
