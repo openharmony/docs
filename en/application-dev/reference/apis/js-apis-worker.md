@@ -89,7 +89,7 @@ const workerFAModel02 = new worker.ThreadWorker("../workers/worker.ts");
 
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
+// In the stage model, the workers directory is a child directory of the pages directory in the entry module.
 const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
@@ -101,7 +101,7 @@ const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/work
 // workerdir indicates the directory where the worker file is located, and workerfile indicates the worker file name.
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module, and bundlename is com.example.workerdemo.
 const workerStageModel03 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
-// In the stage model, the workers directory is at the same level as the parent directory of the pages directory in the entry module, and bundlename is com.example.workerdemo.
+// In the stage model, the workers directory is a child directory of the pages directory in the entry module, and bundlename is com.example.workerdemo.
 const workerStageModel04 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
@@ -1199,7 +1199,7 @@ const workerFAModel02 = new worker.Worker("../workers/worker.ts");
 
 // In the stage model, the workers directory is at the same level as the pages directory.
 const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is at the same level as the child directory of the pages directory.
+// In the stage model, the workers directory is a child directory of the pages directory.
 const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
@@ -2224,4 +2224,5 @@ Configuration of the **build-profile.json5** file:
     }
   }
 ```
+
 <!--no_check-->
