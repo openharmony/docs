@@ -169,6 +169,6 @@ struct BasketModifier {
 
 2. \@Link装饰的BasketViewer shopBasket值发生变化；
 
-3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BaketViewer TotalPurchase的值；
+3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BasketViewer TotalPurchase的值；
 
 4. \@Link shopBasket的改变，新增了数组项，ForEach组件会执行item Builder，渲染构建新的Item项；\@State totalPurchase改变，对应的Text组件也重新渲染；重新渲染是异步发生的。
