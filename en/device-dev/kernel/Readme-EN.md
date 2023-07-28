@@ -158,7 +158,8 @@
         - [Linux Kernel Overview](kernel-standard-overview.md)
         - [Applying Patches on Development Boards](kernel-standard-patch.md)
         - [Compiling and Building the Linux Kernel](kernel-standard-build.md)
-        - Enhanced Kernel Features
+        - [HCK](kernel-standard-hck.md)
+        - Enhanced kernel features
           - [Enhanced Swap](kernel-standard-mm-eswap.md)
           - [NewIP Kernel Protocol Stack](kernel-standard-newip.md)
           - Task Scheduling
