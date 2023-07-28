@@ -12,7 +12,7 @@
 
 ## 接口
 
-Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
+Search(options?: { value?: string, placeholder?: string, icon?: string, controller?: SearchController })
 
 **参数:**
 
