@@ -4559,10 +4559,10 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
+fs.stat(path).then((stat) => {
+  let buf = new ArrayBuffer(bufferSize);
+  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+  for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
       length: bufferSize
@@ -4577,7 +4577,8 @@ for (let i = 0;i < len; i++) {
         }
       })
     })	  
-}
+  }
+});
 ```
 
 ### write<sup>8+</sup>
@@ -4612,21 +4613,22 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
-let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    try{
-       let writeSize = await audioRenderer.write(buf);
-    } catch(err) {
-       console.error(`audioRenderer.write err: ${err}`);
-    }   
-}
+fs.stat(path).then((stat) => {
+  let buf = new ArrayBuffer(bufferSize);
+  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+  for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      try{
+         let writeSize = await audioRenderer.write(buf);
+      } catch(err) {
+         console.error(`audioRenderer.write err: ${err}`);
+      }   
+  }
+});
 ```
 
 ### getAudioTime<sup>8+</sup>
