@@ -4,7 +4,7 @@
 
 **TreeMap** is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
 
-**[HashMap](js-apis-treemap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
+**[HashMap](js-apis-hashmap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
 
 Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
 
