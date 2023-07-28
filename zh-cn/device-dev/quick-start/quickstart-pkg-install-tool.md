@@ -13,13 +13,13 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 如需安装代理，请参考[配置代理](quickstart-pkg-common-proxy.md)。
 
-1. 在源码根目录运行如下命令安装hb并更新至最新版本
+1. 在源码根目录运行如下命令安装hb并更新至最新版本。
      
    ```shell
    python3 -m pip install --user build/hb
    ```
 
-2. 设置环境变量
+2. 设置环境变量。
      
    ```shell
    vim ~/.bashrc
@@ -37,23 +37,9 @@
    source ~/.bashrc
    ```
 
-3. 在源码目录执行"hb -h"，界面打印以下信息即表示安装成功：
+3. 在源码目录执行"hb help"，界面打印以下信息即表示安装成功。
      
-   ```shell
-   usage: hb
-   
-   OHOS build system
-   
-   positional arguments:
-     {build,set,env,clean}
-       build               Build source code
-       set                 OHOS build settings
-       env                 Show OHOS build env
-       clean               Clean output
-   
-   optional arguments:
-     -h, --help            show this help message and exit
-   ```
+   ![hb_help](figures/hb_help.png)
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
 > - 可采用以下命令卸载hb：
@@ -78,25 +64,25 @@
 
 3. 解压LLVM安装包至~/llvm路径下。
      
-   ```
+   ```shell
    tar -zxvf llvm.tar -C ~/
    ```
 
 4. 设置环境变量。
      
-   ```
+   ```shell
    vim ~/.bashrc
    ```
 
    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
 
      
-   ```
+   ```shell
    export PATH=~/llvm/bin:$PATH
    ```
 
 5. 生效环境变量。
      
-   ```
+   ```shell
    source ~/.bashrc
    ```
