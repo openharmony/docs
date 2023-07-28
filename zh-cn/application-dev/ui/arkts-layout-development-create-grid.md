@@ -269,7 +269,7 @@ struct Shopping {
 
 ![zh-cn_image_0000001562940549](figures/zh-cn_image_0000001562940549.gif)
 
-Grid组件初始化时，可以绑定一个[Scroller](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md/#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md/#scrollpage)方法进行翻页。
+Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-container-scroll.md/#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/arkui-ts/ts-container-scroll.md/#scrollpage)方法进行翻页。
 
 
 ```ts
