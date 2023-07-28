@@ -162,10 +162,10 @@ struct Index {
             // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
             getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
               .then(value => {
-                console.log("getStringByName value is " + value);
+                console.log("getStringValue is " + value);
               })
               .catch(error => {
-                console.log("getStringByName promise error is " + error);
+                console.log("getStringValue promise error is " + error);
               });
           })
           .width("50%")
