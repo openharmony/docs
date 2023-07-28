@@ -553,11 +553,15 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 });
 ```
 
-### getSerialNumber
+### getSerialNumber<sup>(deprecated)</sup>
 
 getSerialNumber() : number
 
 表示获取X509证书序列号。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[getCertSerialNumber](#getcertserialnumber10)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -585,6 +589,48 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     } else {
         console.log("createX509Cert success");
         let serialNumber = x509Cert.getSerialNumber();
+    }
+});
+```
+
+### getCertSerialNumber<sup>10+</sup>
+
+getCertSerialNumber() : bigint
+
+表示获取X509证书序列号。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明               |
+| ------ | ------------------ |
+| bigint | 表示X509证书序列号 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020002 | runtime error.                                    |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+};
+cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
+    if (error != null) {
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createX509Cert success");
+        let serialNumber = x509Cert.getCertSerialNumber();
     }
 });
 ```
