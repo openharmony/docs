@@ -1,7 +1,7 @@
 # LocalStorage：页面级UI状态存储
 
 
-LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接受的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以在UIAbility内，页面间共享状态。
+LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以在UIAbility内，页面间共享状态。
 
 
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
@@ -28,7 +28,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
-- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单行同步关系。
+- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单向同步关系。
 
 - [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量和在\@Component中创建与LocalStorage中给定属性建立双向同步关系。
 
@@ -379,7 +379,7 @@ Child自定义组件中的变化：
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个视图
 
-上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#loadcontent9)。
+上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9)。
 
 
 ```ts
