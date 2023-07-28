@@ -52,6 +52,19 @@ RichText(content:string)
 | style | 属性规定元素的行内样式，写在标签内部，在使用的时候需用引号来进行区分，并以; 间隔样式，style='width: 500px;height: 500px;border: 1px soild;margin: 0 auto;'。 | \<h1 style='color:blue;text-align:center'>这是一个标题\</h1>\<p style='color:green'>这是一个段落。\</p> |
 | \<script>\</script> | 用于定义客户端脚本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
+
+## 使用场景
+
+RichText组件底层复用了Web组件来提供基础能力，包括但不限于HTML页面的解析、渲染等。但由于Web组件比较消耗资源，所以在一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。
+
+RichText使用Web提供基础能力，同样遵循Web约束条件。常见典型场景如下:
+
+移动设备的视口默认值大小为980px，默认值可以确保大部分网页在移动设备下可以正常浏览。如果RichText组件宽度低于这个值，content内部的HTML则可能会生产一个可以滑动的页面被RichText组件包裹。如果想替换默认值，可以在content中添加以下标签：
+
+```html
+<meta name="viewport" content="width=device-width">
+```
+
 ## 示例
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
@@ -112,6 +125,3 @@ struct RichTextExample {
 
  ![richText](figures/richText.png)
 
-## 使用场景说明
-
-RichText组件底层复用了Web组件来提供基础能力，包括但不限于HTML页面的解析、渲染等。但由于Web组件比较消耗资源，所以在一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。
