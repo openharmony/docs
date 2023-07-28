@@ -12,6 +12,8 @@ The **AppVersionInfo** module defines the application version information. You c
 import featureAbility from '@ohos.ability.featureAbility';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name       | Type  | Readable| Writable| Description          |

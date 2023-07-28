@@ -6,6 +6,8 @@ The **AbilityStageMonitor** module provides conditions for matching **AbilitySta
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                                                        | Type    | Readable| Writable| Description                                                        |

@@ -12,6 +12,8 @@ The **ShellCmdResult** module provides the shell command execution result.
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name     | Type  | Readable| Writable| Description                                                        |

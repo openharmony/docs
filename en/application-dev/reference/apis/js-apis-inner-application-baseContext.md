@@ -12,6 +12,8 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Type  | Readable  | Writable  | Description     |
