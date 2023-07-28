@@ -13,6 +13,8 @@ The **StartAbilityParameter** module defines the parameters for starting an abil
 import ability from '@ohos.ability.ability';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name              |   Type  | Mandatory  | Description                                   |

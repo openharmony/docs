@@ -1231,7 +1231,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
-| timeout | number | No  | Maximum waiting time, in milliseconds.|
+| timeout | number | Yes  | Maximum waiting time, in milliseconds.|
 
 **Return value**
 
