@@ -3,7 +3,6 @@
 The **statistics** module provides APIs to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
 
 > **NOTE**
-> 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -589,7 +588,7 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 
 on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void
 
-Subscribes to data traffic change events.
+Subscribes to traffic change events.
 
 **System API**: This is a system API.
 
@@ -602,7 +601,7 @@ Subscribes to data traffic change events.
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                             | Yes  | Event type. This field has a fixed value of **netStatsChange**.|
-| callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the data traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
+| callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
 **Error codes**
 
@@ -628,7 +627,7 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 
 off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
 
-Unsubscribes from data traffic change events.
+Unsubscribes from traffic change events.
 
 **System API**: This is a system API.
 
@@ -641,7 +640,7 @@ Unsubscribes from data traffic change events.
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type   | string | Yes  | Event type. This field has a fixed value of **netStatsChange**.|
-| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the data traffic changes.<br>**iface**: NIC name.<br>uid: application UID.|
+| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>uid: application UID.|
 
 **Error codes**
 
