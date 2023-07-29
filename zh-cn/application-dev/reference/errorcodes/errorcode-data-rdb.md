@@ -174,3 +174,20 @@ The data group id is not valid.
 
 从应用市场申请dataGroupId，并正确传入该参数。
 
+## 14800051 分布式表类型不匹配
+
+**错误信息**
+
+The type of the distributed table does not match.
+
+**错误描述**
+
+对同一数据库表设置的分布式表类型前后不一致。
+
+**可能原因**
+
+对同一数据库表设置的分布式表类型前后不一致，分布式表类型可见[DistributedType](../apis/js-apis-data-relationalStore.md#distributedtype10)。
+
+**处理步骤**
+
+对同一数据库表设置的分布式表类型保持一致，属于端端同步的分布式表不可再设置为用于端云的同步表。
