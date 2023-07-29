@@ -171,7 +171,7 @@
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // 进行相关数据操作
+       // 请确保获取到键值数据库实例后，再进行相关数据操作
      });
    } catch (e) {
      console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
