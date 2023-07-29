@@ -186,7 +186,7 @@ The type of the distributed table does not match.
 
 **可能原因**
 
-对同一数据库表设置的分布式表类型前后不一致，分布式表类型可见[DistributedType](../apis/js-apis-data-relationalStore.md/#distributedtype10)。
+对同一数据库表设置的分布式表类型前后不一致，分布式表类型可见[DistributedType](../apis/js-apis-data-relationalStore.md#distributedtype10)。
 
 **处理步骤**
 
