@@ -4326,7 +4326,7 @@ export default class EntryAbility extends UIAbility {
 
 > **说明：**
 >
-> 目前调用WebCookieManager下的方法，都需要先加载web组件。
+> - 目前调用WebCookieManager下的方法，都需要先加载web组件。
 
 ### getCookie
 
