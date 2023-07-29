@@ -75,7 +75,7 @@
          console.info(`Succeeded in getting RdbStore.`);
          store.executeSql(SQL_CREATE_TABLE); // 创建数据表
    
-         // 这里执行数据库的增、删、改、查等操作
+         // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    
        });
      }
@@ -107,7 +107,7 @@
      console.info(`Succeeded in getting RdbStore.`);
      store.executeSql(SQL_CREATE_TABLE); // 创建数据表
    
-     // 这里执行数据库的增、删、改、查等操作
+     // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    
    });
    ```
