@@ -43,41 +43,44 @@
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
-    - Basic Syntax
-      - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
-      - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
-      - Custom Component
-        - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
-        - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
-      - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
-      - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
-      - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
-      - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
-      - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
-      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
-    - State Management
-      - [State Management Overview](quick-start/arkts-state-management-overview.md)
-      - Component State Management
-        - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
-        - [\@Prop Decorator: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
-        - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
-        - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
-        - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
-      - Application State Management
-        - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
-        - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
-        - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
-        - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
-        - [Environment: Device Environment Query](quick-start/arkts-environment.md)
-      - Other State Management Features
-        - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
-        - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
-        - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
-    - Rendering Control
-      - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
-      - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
-      - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
-      - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
+    - [Introduction to ArkTS]quick-start/arkts/introduction-to-arkts.md)
+    - [TypeScript to ArkTS Migration](quick-start/arkts/typescript-to-arkts-migration-guide.md)
+    - UI Paradigm
+      - Basic Syntax
+        - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
+        - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
+        - Custom Component
+          - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
+          - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+        - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
+        - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
+        - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
+        - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
+        - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
+        - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
+      - State Management
+        - [State Management Overview](quick-start/arkts-state-management-overview.md)
+        - Component State Management
+          - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
+          - [\@Prop Decorator: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
+          - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
+          - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
+          - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
+        - Application State Management
+          - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
+          - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
+          - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
+          - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
+          - [Environment: Device Environment Query](quick-start/arkts-environment.md)
+        - Other State Management Features
+          - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
+          - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
+          - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+      - Rendering Control
+        - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
+        - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
+        - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
+        - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -528,7 +531,9 @@
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
   - AI
-      - [Using MindSpore Lite for Model Inference (JS)](ai/mindspore-lite-js-guidelines.md)
+    - [AI Development](./ai/ai-overview.md)
+    - [Using MindSpore Lite JavaScript APIs to Develop AI Applications](./ai/mindspore-guidelines-based-js.md)
+    - [Using MindSpore Lite Native APIs to Develop AI Applications](./ai/mindspore-guidelines-based-native.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
@@ -564,10 +569,14 @@
       - [Database Backup and Restoration](database/data-backup-and-restore.md)
       - [Database Encryption](database/data-encryption.md)
       - [Access Control by Device and Data Level](database/access-control-by-device-and-data-level.md)
-    - Cross-Application Data Sharing (for System Applications Only)
-      - [Cross-Application Data Sharing Overview](database/share-device-data-across-apps-overview.md)
-      - [Sharing Data Using DataShareExtensionAbility](database/share-data-by-datashareextensionability.md)
-      - [Data Sharing Through Silent Access](database/share-data-by-silent-access.md)
+    - Cross-Application Data Sharing
+      - [Data Sharing Overview](database/data-share-overview.md)
+      - [Unified Data Definition](database/unified-data-definition.md)
+      - One-to-Many Data Sharing (for System Applications Only)
+        - [Sharing Data Using DataShareExtensionAbility](database/share-data-by-datashareextensionability.md)
+        - [Data Sharing Through Silent Access](database/share-data-by-silent-access.md)
+      - Many-to-Many Data Sharing
+        - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
   - File Management
     - [File Management Overview](file-management/file-management-overview.md)
     - Application File
@@ -601,16 +610,12 @@
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
       - [Accessing Files Across Devices](file-management/file-access-across-devices.md)
   - Background Task Management
-    - Background Task
-      - [Background Task Management Overview](task-management/background-task-overview.md)
-      - [Transient Task Development](task-management/transient-task-dev-guide.md)
-      - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
-      - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
-      - [WorkSchedulerExtensionAbility Development](task-management/workscheduler-extensionability.md)
-      - [Efficiency Resource Request Development](task-management/efficiency-resources-apply-dev-guide.md)
-    - Agent-Powered Reminder
-      - [Agent-Powered Reminder Overview](task-management/reminder-agent-overview.md)
-      - [Agent-Powered Reminder Development](task-management/reminder-agent-development.md)
+      - [Background Task Overview](task-management/background-task-overview.md)
+      - [Transient Task](task-management/transient-task.md)
+      - [Continuous Task](task-management/continuous-task.md)
+      - [Deferred Task](task-management/work-scheduler.md)
+      - [Agent-powered Reminder](task-management/agent-powered-reminder.md)     
+      - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
   - Device Management
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -930,9 +935,9 @@
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (reminderAgentManager)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
-      - [@ohos.resourceschedule.workScheduler (Work Scheduler)](reference/apis/js-apis-resourceschedule-workScheduler.md)
+      - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](reference/apis/js-apis-resourceschedule-workScheduler.md)
       - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
-      - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
+      - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
       - application
         - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - Security
