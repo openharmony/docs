@@ -372,6 +372,8 @@ deleteAsset(uri: string): Promise\<void>
 
 删除媒体文件资源。
 
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
+
 > **说明：**
 > 此接口从API Version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-3)替代。
 
@@ -423,6 +425,8 @@ async function example() {
 deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 删除媒体文件资源。
+
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
 
 > **说明：**
 > 此接口从API Version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-2)替代。
