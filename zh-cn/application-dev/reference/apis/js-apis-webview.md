@@ -4326,7 +4326,7 @@ export default class EntryAbility extends UIAbility {
 
 > **说明：**
 >
-> - 目前调用WebCookieManager下的方法，都需要先加载web组件。
+> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
 ### getCookie
 
@@ -4789,6 +4789,10 @@ struct WebComponent {
 
 通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
 
+> **说明：**
+>
+> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
+
 ### deleteOrigin
 
 static deleteOrigin(origin : string): void
@@ -5249,6 +5253,10 @@ struct WebComponent {
 
 web组件数据库管理对象。
 
+> **说明：**
+>
+> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
+
 ### getHttpAuthCredentials
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string>
@@ -5426,6 +5434,10 @@ struct WebComponent {
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
+
+> **说明：**
+>
+> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
 ### 需要权限
 
