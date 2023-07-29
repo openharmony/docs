@@ -4791,7 +4791,7 @@ struct WebComponent {
 
 > **说明：**
 >
-> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
+> 目前调用WebStorage下的方法，都需要先加载Web组件。
 
 ### deleteOrigin
 
@@ -5255,7 +5255,7 @@ web组件数据库管理对象。
 
 > **说明：**
 >
-> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
+> 目前调用WebDataBase下的方法，都需要先加载Web组件。
 
 ### getHttpAuthCredentials
 
@@ -5437,7 +5437,7 @@ web组件地理位置权限管理对象。
 
 > **说明：**
 >
-> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
+> 目前调用GeolocationPermissions下的方法，都需要先加载Web组件。
 
 ### 需要权限
 
