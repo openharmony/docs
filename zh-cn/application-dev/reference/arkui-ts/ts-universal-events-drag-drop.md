@@ -85,15 +85,23 @@ struct Index {
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
 
-  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
+  hasUdmfData(event: DragEvent, callback: (data: DragEvent)=>void)
   {
     let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
     if (records.length !== 0) {
       callback(event);
-      return;
+      return true;
+    }
+    return false;
+  }
+
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
+  {
+    if(hasUdmfData(event, callback)) {
+        return;
     }
     setTimeout(()=>{
-      this.getDataFromUdmfRetry(event, callback);
+      this.hasUdmfData(event, callback);
     }, 1500);
   }
 
