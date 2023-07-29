@@ -40,7 +40,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -163,7 +163,7 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a **Preferences** instance from the memory. This API uses an asynchronous callback to return the result.
+Deletes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
 If the **Preferences** instance has a persistent file, this API also deletes the persistent file.
 
@@ -176,8 +176,8 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
-| name     | string                                | Yes  | Name of the **Preferences** instance to delete.                             |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
+| name     | string                                | Yes  | Name of the **Preferences** instance.                             |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -235,7 +235,7 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-Deletes a **Preferences** instance from the memory. This API uses a promise to return the result.
+Deletes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
 If the **Preferences** instance has a persistent file, this API also deletes the persistent file.
 
@@ -248,7 +248,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance to delete.|
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
 
@@ -310,7 +310,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a **Preferences** instance from the memory. This API uses an asynchronous callback to return the result.
+Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -321,8 +321,8 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
-| name     | string                                | Yes  | Name of the **Preferences** instance to remove.                          |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
+| name     | string                                | Yes  | Name of the **Preferences** instance.                             |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -373,7 +373,7 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-Removes a **Preferences** instance from the memory. This API uses a promise to return the result.
+Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -384,7 +384,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance to remove.|
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
 
@@ -455,7 +455,7 @@ Obtains the value of a key. This API uses an asynchronous callback to return the
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
 | defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is** undefined** and **data** is the value obtained. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -522,7 +522,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses an asyn
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -538,7 +538,7 @@ try {
     console.info("getAll object = " + JSON.stringify(value));
     })
 } catch (err) {
-    console.info("Failed to get all KV pairs. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -567,10 +567,10 @@ try {
         console.info('getAll keys = ' + allKeys);
         console.info("getAll object = " + JSON.stringify(value));
     }).catch((err) => {
-        console.info("Failed to get all KV pairs. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.info("Failed to get all KV pairs. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -578,7 +578,7 @@ try {
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
+Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -588,7 +588,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
 | value    | [ValueType](#valuetype)   | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is undefined. Otherwise, **err** is an error code.    |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
 
@@ -611,7 +611,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
+Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -733,7 +733,7 @@ Deletes a KV pair from this **Preferences** instance based on the specified key.
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty.                     |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -756,7 +756,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from this **Preferences** instance. This API uses a promise to return the result.
+Deletes a KV pair from this **Preferences** instance based on the specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -800,7 +800,7 @@ Saves the data of this **Preferences** instance to a file asynchronously. This A
 
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -861,7 +861,7 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -972,7 +972,7 @@ Unsubscribes from data changes.
 
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events.  |
+| type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events. |
 | callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks for all data changes will be unregistered.|
 
 **Example**
@@ -993,7 +993,7 @@ try {
                 console.info("Failed to put the value of 'startup'. Cause: " + err);
                 return;
             }
-            console.info("Put the value of 'startup' successfully.");
+            console.info("Successfully put the value of 'startup'.");
 
             preferences.flush(function (err) {
                 if (err) {
@@ -1023,4 +1023,4 @@ Enumerates the value types.
 | boolean         | The value is of Boolean type.          |
 | Array\<number>  | The value is an array of numbers.  |
 | Array\<boolean> | The value is a Boolean array.  |
-| Array\<string>  | The value is an array of the strings.|
+| Array\<string>  | The value is an array of strings.|
