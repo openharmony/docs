@@ -35,7 +35,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
    ```
 
 2. 对XML文件编码后调用XmlPullParser。
-   可以基于Arraybuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
+   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
 
    
    ```js
@@ -47,7 +47,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
        '</note>';
    let textEncoder = new util.TextEncoder();
    let arrBuffer = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-   // 1.基于Arraybuffer构造XmlPullParser对象
+   // 1.基于ArrayBuffer构造XmlPullParser对象
    let that = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
    
    // 2.基于DataView构造XmlPullParser对象
@@ -62,7 +62,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
    function func(name, value){
      str = name + value;
      console.info(str);
-     return true; //true:继续解析 flase:停止解析
+     return true; //true:继续解析 false:停止解析
    }
    ```
 
@@ -118,7 +118,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
    let str = '';
    function func(name, value){
      str += name + ' ' + value + ' ';
-     return true; // true:继续解析 flase:停止解析
+     return true; // true:继续解析 false:停止解析
    }
    ```
 
@@ -167,7 +167,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
    function func(name, value){
      str = name + ' ' + value.getDepth(); // getDepth 获取元素的当前深度
      console.info(str)
-     return true; //true:继续解析 flase:停止解析
+     return true; //true:继续解析 false:停止解析
    }
    ```
 
