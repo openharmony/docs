@@ -776,7 +776,7 @@
 
 ## ohos.permission.MANAGE_MISSIONS
 
-允许用户管理元能力任务栈。
+允许应用管理系统中的任务。
 
 **权限级别**：system_core
 
@@ -860,7 +860,7 @@
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
-允许设置ability组件启动和停止控制权。
+允许应用拦截Ability组件启动，主要用测试调试，比如稳定性金刚测试。
 
 **权限级别**：system_basic
 
@@ -956,7 +956,7 @@
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
-允许应用观察应用状态。
+允许应用监听应用状态。
 
 **权限级别**：system_basic
 
