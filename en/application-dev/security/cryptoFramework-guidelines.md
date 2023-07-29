@@ -20,7 +20,8 @@ Typical key generation operations involve the following:
 
 ### Available APIs
 
-The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+The following table describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+
 
 |Instance|API|Description|
 |---|---|---|
@@ -207,9 +208,10 @@ Important data needs to be encrypted in data storage or transmission for securit
 
 ### Available APIs
 
-The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+The following table describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+
 
 |Instance|API|Description|
 |---|---|---|
@@ -844,7 +846,7 @@ A digital signature can be used to verify the authenticity of a message. Typical
 
 ### Available APIs
 
-For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 |Instance|API|Description|
 |---|---|---|
@@ -1063,11 +1065,11 @@ function signLongMessagePromise() {
   let globalSignData;
   let textSplitLen = 64; // Customized data splitting length.
   let keyGenName = "RSA1024";
-  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let signAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // Create an AsyKeyGenerator object.
-  let signer = cryptoFramework.createSign(cipherAlgName); //Create a Sign object for signing.
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // Create a Verify object for signature verification.
+  let signer = cryptoFramework.createSign(signAlgName); // Create a Signer instance.
+  let verifier = cryptoFramework.createVerify(signAlgName); // Create a Verifier instance.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
@@ -1090,7 +1092,7 @@ function signLongMessagePromise() {
     console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
     return verifier.init(globalKeyPair.pubKey);
   }).then(async() => {
-    // Split and decrypt the ciphertext by 128 bytes, and combine the plaintext obtained each time.
+    // If the plaintext is too large, split the plaintext based on the specified length and cyclically call update() to pass in the plaintext.
     for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
       let tempData = globalPlainText.slice(i * textSplitLen, (i + 1) * textSplitLen);
       let tempBlob = { data : stringToUint8Array(tempData) };
@@ -1275,6 +1277,7 @@ async function doLoopMdPromise() {
 ## Key Agreement
 
 ### When to Use
+
 
 Key agreement allows two parties to establish a shared secret over an insecure channel.
 
@@ -1550,8 +1553,9 @@ function doLoopHmacPromise() {
 
 Typical random number operations involve the following:
 
-- 1. Generate a random number of the specified length.
-- 2. Set a seed based on the random number generated.
+1. Generate a random number of the specified length.
+
+2. Set a seed based on the random number generated.
 
 ### Available APIs
 
