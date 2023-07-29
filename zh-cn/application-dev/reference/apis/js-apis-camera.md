@@ -582,11 +582,11 @@ cameraManager.on('cameraMute', (err, curMuetd) => {
 })
 ```
 
-### isPreLaunchSupported
+### isPrelaunchSupported
 
-isPreLaunchSupported(camera: CameraDevice): boolean
+isPrelaunchSupported(camera: CameraDevice): boolean
 
-在setPreLaunchConfig接口使用前调用，用于判断指定cameraDevice是否支持预热启动。
+在setPrelaunchConfig接口使用前调用，用于判断指定cameraDevice是否支持预热启动。
 
 **系统接口：** 此接口为系统接口。
 
@@ -617,14 +617,14 @@ isPreLaunchSupported(camera: CameraDevice): boolean
 ```js
 this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
 let cameras = this.cameraManager.getSupportedCameras()
-if(this.cameraManager.isPreLaunchSupported(cameras[0])) {
-     this.cameraManager.setPreLaunchConfig({cameraDevice: cameras[0]});
+if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
+     this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
 }
 ```
 
-### setPreLaunchConfig
+### setPrelaunchConfig
 
-setPreLaunchConfig(preLaunchConfig: PreLaunchConfig): void
+setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 
 **系统接口：** 此接口为系统接口。
 
@@ -636,7 +636,7 @@ setPreLaunchConfig(preLaunchConfig: PreLaunchConfig): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| preLaunchConfig | [PreLaunchConfig](#prelaunchconfig) | 是 | 预启动配置参数。|
+| prelaunchConfig | [PrelaunchConfig](#prelaunchconfig) | 是 | 预启动配置参数。|
 
 **错误码：**
 
@@ -652,11 +652,18 @@ setPreLaunchConfig(preLaunchConfig: PreLaunchConfig): void
 ```js
 this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
 let cameras = this.cameraManager.getSupportedCameras()
+if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
+    try {
+      this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
+    } catch (error) {
+       console.error(`catch error: Code: ${error.code}, message: ${error.message}`);
+    }
+}
 ```
 
-### preLaunch
+### prelaunch
 
-preLaunch(): void
+prelaunch(): void
 
 用户点击系统相机图标，拉起相机应用同时调用，下发预热请求，使能相机预热启动。
 
@@ -668,6 +675,11 @@ preLaunch(): void
 
 ```js
 this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+try {
+  this.cameraManager.prelaunch();
+} catch (error) {
+  console.error(`catch error: Code: ${error.code}, message: ${error.message}`);
+}
 ```
 
 ### createDeferredPreviewOutput
@@ -710,7 +722,7 @@ function getDeferredPreviewOutput(context: Context, previewProfile: camera.Profi
 }
 ```
 
-## PreLaunchConfig
+## PrelaunchConfig
 
 相机预启动配置参数。
 

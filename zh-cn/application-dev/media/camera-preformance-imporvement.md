@@ -125,9 +125,9 @@ if (isSupported) {
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isPreLaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
-| setPreLaunchConfig(preLaunchConfig: PreLaunchConfig) : void | 配置相机预热参数。 |
-| preLaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
+| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
+| setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | 配置相机预热参数。 |
+| prelaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 
 ### 开发示例
 
@@ -142,7 +142,7 @@ if (isSupported) {
 
   this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
   try {
-    this.cameraManager.preLaunch(); 
+    this.cameraManager.prelaunch(); 
   } catch (error) {
     console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
   }
@@ -159,9 +159,9 @@ if (isSupported) {
 
   this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
   let cameras = this.cameraManager.getSupportedCameras()
-  if(this.cameraManager.isPreLaunchSupported(cameras[0])) {
+  if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
     try {
-      this.cameraManager.setPreLaunchConfig({cameraDevice: cameras[0]});
+      this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
     } catch (error) {
       console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
     }
