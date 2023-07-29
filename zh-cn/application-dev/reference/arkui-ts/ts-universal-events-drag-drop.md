@@ -97,11 +97,11 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    if(hasUdmfData(event, callback)) {
+    if(this.hasUdmfData(event, callback)) {
         return;
     }
     setTimeout(()=>{
-      hasUdmfData(event, callback);
+      this.hasUdmfData(event, callback);
     }, 1500);
   }
 
