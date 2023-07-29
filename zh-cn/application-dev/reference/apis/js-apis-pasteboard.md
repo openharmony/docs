@@ -48,10 +48,10 @@ createData(mimeType: string, value: ValueType): PasteData
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
+| 参数名 | 类型 | 必填 | 说明                                                                                                                                 |
+| -------- | -------- | -------- |------------------------------------------------------------------------------------------------------------------------------------|
+| mimeType | string | 是 | 可以是MIMETYPE_TEXT_HTML, MIMETYPE_TEXT_WANT, MIMETYPE_TEXT_PLAIN, MIMETYPE_TEXT_URI, MIMETYPE_PIXELMAP等剪贴板预置的MIME类型, 也可以是自定义的MIME类型。 |
+| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。                                                                                                                           |
 
 **返回值：**
 
@@ -76,10 +76,10 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
+| 参数名 | 类型 | 必填 | 说明                |
+| -------- | -------- | -------- |-------------------|
+| mimeType | string | 是 | 可以是MIMETYPE_TEXT_HTML, MIMETYPE_TEXT_WANT, MIMETYPE_TEXT_PLAIN, MIMETYPE_TEXT_URI, MIMETYPE_PIXELMAP等剪贴板预置的MIME类型, 也可以是自定义的MIME类型。 |
+| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
 
 **返回值：**
 
