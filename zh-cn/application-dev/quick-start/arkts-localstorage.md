@@ -1,7 +1,7 @@
 # LocalStorage：页面级UI状态存储
 
 
-LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接受的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以在UIAbility内，页面间共享状态。
+LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以在UIAbility内，页面间共享状态。
 
 
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
@@ -28,7 +28,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
-- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单行同步关系。
+- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单向同步关系。
 
 - [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量和在\@Component中创建与LocalStorage中给定属性建立双向同步关系。
 
@@ -193,12 +193,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   ```ts
   // 创建新实例并使用给定对象初始化
   let storage = new LocalStorage({ 'PropA': 47 });
-
+  
   @Component
   struct Child {
     // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink2: number = 1;
-
+  
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
         // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
@@ -211,7 +211,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   struct CompA {
     // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink1: number = 1;
-
+  
     build() {
       Column({ space: 15 }) {
         Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
@@ -241,7 +241,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   struct CompA {
     // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
-
+  
     build() {
       Column({ space: 15 }) {
         // 点击后从47开始加1，只改变当前组件显示的storProp1，不会同步到LocalStorage中
@@ -251,12 +251,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
       }
     }
   }
-
+  
   @Component
   struct Child {
     // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp2: number = 2;
-
+  
     build() {
       Column({ space: 15 }) {
         // 当CompA改变时，当前storProp2不会改变，显示47
@@ -318,14 +318,14 @@ Child自定义组件中的变化：
 
    ```ts
    let storage = new LocalStorage({ countStorage: 1 });
-
+   
    @Component
    struct Child {
      // 子组件实例的名字
      label: string = 'no name';
      // 和LocalStorage中“countStorage”的双向绑定数据
      @LocalStorageLink('countStorage') playCountLink: number = 0;
-
+   
      build() {
        Row() {
          Text(this.label)
@@ -338,12 +338,12 @@ Child自定义组件中的变化：
        }.width(300).height(60)
      }
    }
-
+   
    @Entry(storage)
    @Component
    struct Parent {
      @LocalStorageLink('countStorage') playCount: number = 0;
-
+   
      build() {
        Column() {
          Row() {
@@ -355,7 +355,7 @@ Child自定义组件中的变化：
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
-
+   
          Row() {
            Text('LocalStorage')
              .width(50).height(60).fontSize(12)
@@ -365,10 +365,10 @@ Child自定义组件中的变化：
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
-
+   
          Child({ label: 'ChildA' })
          Child({ label: 'ChildB' })
-
+   
          Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
            .width(300).height(60).fontSize(12)
        }
@@ -379,7 +379,7 @@ Child自定义组件中的变化：
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个视图
 
-上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#loadcontent9)。
+上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9)。
 
 
 ```ts
