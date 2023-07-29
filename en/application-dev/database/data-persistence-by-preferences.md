@@ -28,7 +28,7 @@ The preference persistent file of an application is stored in the application sa
 
 ## Available APIs
 
-The following table lists the APIs used for preferences data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
+The following table lists the APIs used for preferences data persistence. Most of the APIs are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
 
   | API| Description| 
 | -------- | -------- |
@@ -159,7 +159,7 @@ The following table lists the APIs used for preferences data persistence. Most o
    }
    ```
 
-5. Delete data.
+5. Deletes data.
 
    Use delete() to delete a KV pair.<br>Example:
 
@@ -248,4 +248,3 @@ The following table lists the APIs used for preferences data persistence. Most o
      console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
    }
    ```
-
