@@ -297,6 +297,7 @@
 
 - AI
   - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
+  - [@ohos.ai.intelligentVoice (智能语音)](js-apis-intelligentVoice.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
