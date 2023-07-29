@@ -101,7 +101,7 @@ struct Index {
         return;
     }
     setTimeout(()=>{
-      this.hasUdmfData(event, callback);
+      hasUdmfData(event, callback);
     }, 1500);
   }
 
