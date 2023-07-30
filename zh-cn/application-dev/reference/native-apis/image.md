@@ -61,6 +61,11 @@
 | (\*[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)) () | 定义native层图片的回调方法。 | 
 | [ImageSourceNative](#imagesourcenative) | 为图像源方法定义native层图像源对象。 | 
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| **IMAGE_RESULT_BASE** 62980096 | 接口返回值的基础值  |
 
 ### 枚举
 
@@ -1524,9 +1529,9 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 如果索引无效，返回 IMAGE_RESULT_INDEX_INVALID；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
+如果透明度类型错误，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
+如果内存分配类型错误，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
 
 **起始版本：**
 
@@ -1615,9 +1620,9 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 如果索引无效，返回 IMAGE_RESULT_INDEX_INVALID；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
+如果透明度类型错误，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR；
+如果内存分配类型错误，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR；
 
 如果解码的EXIF不支持，返回 IMAGE_RESULT_DECODE_EXIF_UNSUPPORT；
 
@@ -2170,9 +2175,9 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 如果索引无效，返回 IMAGE_RESULT_INDEX_INVALID；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
+如果透明度类型错误，返回 IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
-如果硬解码失败，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
+如果内存分配类型错误，返回 IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
 
 **起始版本：**
 
