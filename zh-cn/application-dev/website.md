@@ -43,8 +43,8 @@
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
-    - [ArkTS语言介绍](quick-start/arkts/introduction-to-arkts.md)
-    - [从TypeScript到ArkTS的迁移指导](quick-start/arkts/typescript-to-arkts-migration-guide.md)
+    - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
+    - [从TypeScript到ArkTS的迁移指导](quick-start/typescript-to-arkts-migration-guide.md)
     - UI范式
       - 基本语法
         - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
@@ -76,11 +76,14 @@
           - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+        - [MVVM模式](quick-start/arkts-mvvm.md)
+        - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
       - 渲染控制
         - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [渲染控制优秀实践](quick-start/arkts-rendering-control-best-practices.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -959,7 +962,7 @@
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
-      - [@ohos.componentUtils (componentUtils)](reference/apis/js-apis-componentUtils.md)
+      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
@@ -1777,6 +1780,7 @@
       - [native_buffer.h](reference/native-apis/native__buffer_8h.md)
       - [native_image.h](reference/native-apis/native__image_8h.md)
       - [native_interface_xcomponent.h](reference/native-apis/native__interface__xcomponent_8h.md)
+      - [native_xcomponent_key_event.h](reference/native-apis/native__xcomponent__key__event_8h.md)
       - [native_vsync.h](reference/native-apis/native__vsync_8h.md)
       - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
       - [raw_file_manager.h](reference/native-apis/raw__file__manager_8h.md)

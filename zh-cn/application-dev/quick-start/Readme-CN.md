@@ -41,8 +41,8 @@
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
-  - [ArkTS语言介绍](arkts/introduction-to-arkts.md)
-  - [从TypeScript到ArkTS的迁移指导](arkts/typescript-to-arkts-migration-guide.md)
+  - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [从TypeScript到ArkTS的迁移指导](typescript-to-arkts-migration-guide.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
