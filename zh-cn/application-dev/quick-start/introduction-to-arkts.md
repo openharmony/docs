@@ -1566,7 +1566,7 @@ function main() {
 
 ### ArkUI示例
 
-以下示例提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。有关ArkUI功能的更多详细信息，请参见ArkUI[指导手册](../arkts-get-started.md)。
+以下示例提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。有关ArkUI功能的更多详细信息，请参见ArkUI[指导手册](arkts-get-started.md)。
 
 ```typescript
 // ViewModel classes ---------------------------
