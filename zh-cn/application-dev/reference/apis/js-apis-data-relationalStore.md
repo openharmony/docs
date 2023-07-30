@@ -216,6 +216,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext()
 
@@ -233,6 +235,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -287,6 +291,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext();
 
@@ -303,6 +309,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -353,6 +361,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext()
 const STORE_CONFIG = {
@@ -374,6 +384,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -434,6 +446,8 @@ FA模型示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // 获取context
 let context = featureAbility.getContext();
 const STORE_CONFIG = {
@@ -454,6 +468,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -2432,7 +2448,7 @@ store.query(predicates, function (err, resultSet) {
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2480,7 +2496,7 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2530,7 +2546,7 @@ let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2585,7 +2601,7 @@ store.query("EMPLOYEE", predicates, function (err, resultSet) {
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2639,7 +2655,7 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2695,7 +2711,7 @@ let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY"
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2766,7 +2782,7 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-    while(resultSet.goToNextRow()) {
+    while (resultSet.goToNextRow()) {
       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2837,7 +2853,7 @@ let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME",
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2884,7 +2900,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2930,7 +2946,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2978,7 +2994,7 @@ let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -3603,9 +3619,9 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 **示例：**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+}, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3650,9 +3666,9 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 **示例：**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+});
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -3919,7 +3935,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 **示例：**
 
 ```js
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3960,7 +3976,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
@@ -3990,7 +4006,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 
 ```js
 const tables = ["table1", "table2"];
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -4033,7 +4049,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
