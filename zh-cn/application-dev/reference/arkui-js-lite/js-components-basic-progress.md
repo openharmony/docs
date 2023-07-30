@@ -122,4 +122,4 @@ export default {
 }
 ```
 
-![progress](figures/progress.png)
+![progress](figures/progress-lite.png)
