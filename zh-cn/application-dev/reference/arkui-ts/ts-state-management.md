@@ -21,6 +21,9 @@
 ## AppStorage
 
 
+AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../quick-start/arkts-appstorage.md)
+
+
 ### link<sup>10+</sup>
 
 static link<T>(propName: string): SubscribedAbstractProperty<T>
@@ -698,6 +701,9 @@ let res: number = AppStorage.Size(); // 1
 ## LocalStorage<sup>9+</sup>
 
 
+LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../quick-start/arkts-localstorage.md)
+
+
 ### constructor<sup>9+</sup>
 
 constructor(initializingProperties?: Object)
@@ -735,9 +741,7 @@ static getShared(): LocalStorage
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
 
 
-```ts
-let storage: LocalStorage = LocalStorage.getShared();
-```
+getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../quick-start/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)
 
 
 ### has<sup>9+</sup>
@@ -1161,6 +1165,10 @@ link.set(50); // PropB -> 49, link.get() --> undefined
 
 ## PersistentStorage
 
+
+PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../quick-start/arkts-persiststorage.md)
+
+
 ### PersistPropsOptions
 
 | 参数名       | 类型                    | 必填 | 参数描述                                                     |
@@ -1196,9 +1204,7 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 **示例：**
 
 
-```ts
-PersistentStorage.persistProp('highScore', '0');
-```
+persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化的属性](../../quick-start/arkts-persiststorage.md#从appstorage中访问persistentstorage初始化的属性)
 
 
 ### deleteProp<sup>10+</sup>
@@ -1352,6 +1358,9 @@ let keys: Array<string> = PersistentStorage.Keys();
 ## Environment
 
 
+Environment具体使用说明，详见[Environment(设备环境查询)](../../quick-start/arkts-environment.md)
+
+
 ### EnvPropsOptions
 
 | 参数名       | 类型                    | 必填 | 参数描述                                                     |
@@ -1386,21 +1395,7 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 **示例：**
 
 
-```ts
-Environment.envProp('accessibilityEnabled', 'default');
-```
-
-
-### 内置环境变量说明
-
-| key                  | 类型              | 说明                                       |
-| -------------------- | --------------- | ---------------------------------------- |
-| accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。                             |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
-| fontScale            | number          | 字体大小比例。                                  |
-| fontWeightScale      | number          | 字重比例。                                    |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
-| languageCode         | string          | 当前系统语言，小写字母，例如zh。                        |
+envProp具体使用，见[从UI中访问Environment参数](../../quick-start/arkts-environment.md#从ui中访问environment参数)
 
 
 ### envProps<sup>10+</sup>
@@ -1526,3 +1521,15 @@ Environment.EnvProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, 
 
 let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageCode, prop
 ```
+
+
+## 内置环境变量说明
+
+| key                  | 类型              | 说明                                       |
+| -------------------- | --------------- | ---------------------------------------- |
+| accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。                             |
+| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
+| fontScale            | number          | 字体大小比例。                                  |
+| fontWeightScale      | number          | 字重比例。                                    |
+| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
+| languageCode         | string          | 当前系统语言，小写字母，例如zh。                        |

@@ -34,7 +34,7 @@
 | X509Cert        | getPublicKey() : cryptoFramework.PubKey                       | 获取证书公钥                               |
 | X509Cert        | checkValidityWithDate(date: string) : void                   | 校验证书有效期                              |
 | X509Cert        | getVersion() : number                                        | 获取证书版本                                 |
-| X509Cert        | getSerialNumber() : number                                   | 获取证书序列号                               |
+| X509Cert | getCertSerialNumber() : bigint<sup>10+</sup> | 获取证书序列号 |
 | X509Cert        | getIssuerName() : DataBlob                                   | 获取证书颁发者名称                           |
 | X509Cert        | getSubjectName() : DataBlob                                  | 获取证书主体名称                             |
 | X509Cert        | getNotBeforeTime() : string                                  | 获取证书有效期起始时间                       |
