@@ -61,6 +61,11 @@
 | (\*[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)) () | 定义native层图片的回调方法。 | 
 | [ImageSourceNative](#imagesourcenative) | 为图像源方法定义native层图像源对象。 | 
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| **IMAGE_RESULT_BASE** 62980096 | 接口返回值的基础值  |
 
 ### 枚举
 
