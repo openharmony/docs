@@ -66,7 +66,7 @@
    
    // 应用需要在后台保持活动状态，不被挂起。
    let request = {
-     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起
+     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起 
      isApply: true, // 释放资源
      timeOut: 0, // 超时时间，超过超时时间后资源自动释放
      reason: "apply", // 申请原因
