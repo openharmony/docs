@@ -67,8 +67,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 |
-| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
+| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) (void) | 创建[OH_VObject](_o_h___v_object.md)实例。 |
+| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) (void) | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
 | [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | 获得一个相关的[OH_Rdb_Store](_o_h___rdb___store.md)实例，操作关系型数据库。 |
 | [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 销毁[OH_Rdb_Store](_o_h___rdb___store.md)对象，并回收该对象占用的内存。 |
@@ -502,7 +502,7 @@ OH_Predicates* OH_Rdb_CreatePredicates (const char * table)
 ### OH_Rdb_CreateValueObject()
 
 ```
-OH_VObject* OH_Rdb_CreateValueObject ()
+OH_VObject* OH_Rdb_CreateValueObject (void)
 ```
 
 **描述:**
@@ -521,7 +521,7 @@ OH_VObject* OH_Rdb_CreateValueObject ()
 ### OH_Rdb_CreateValuesBucket()
 
 ```
-OH_VBucket* OH_Rdb_CreateValuesBucket ()
+OH_VBucket* OH_Rdb_CreateValuesBucket (void)
 ```
 
 **描述:**
