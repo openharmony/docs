@@ -2695,3 +2695,27 @@
 **ACL使能**：FALSE
 
 **起始版本**：10
+
+## ohos.permission.UNINSTALL_BUNDLE
+
+允许应用卸载应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.RECOVER_BUNDLE
+
+允许应用恢复预置应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
