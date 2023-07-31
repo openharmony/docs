@@ -48,8 +48,6 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 创建定时器，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
-
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -89,7 +87,6 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 创建定时器，使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -133,8 +130,6 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 开始定时器，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
-
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -177,8 +172,6 @@ export default {
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 开始定时器，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -226,8 +219,6 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 停止定时器，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
-
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -270,8 +261,6 @@ export default {
 stopTimer(timer: number): Promise&lt;void&gt;
 
 停止定时器，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -319,8 +308,6 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 销毁定时器，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
-
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -364,8 +351,6 @@ export default {
 destroyTimer(timer: number): Promise&lt;void&gt;
 
 销毁定时器，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
 
