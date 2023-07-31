@@ -1052,7 +1052,7 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
+const workerPort= worker.workerPort;
 parentPort.onmessageerror = function(e) {
     console.log("worker.ts onmessageerror")
 }
@@ -1742,7 +1742,7 @@ workerInstance.onmessage = function(e) {
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
+const workerPort= worker.parentPort;
 parentPort.onmessage = function(e){
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
@@ -1783,7 +1783,7 @@ workerInstance.onmessage = function(e) {
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
+const workerPort= worker.parentPort;
 parentPort.onmessage = function(e){
     // let data = e.data;
     parentPort.postMessage("receive data from main thread");
@@ -1811,7 +1811,7 @@ const workerInstance = new worker.Worker("workers/worker.ts");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
+const workerPort= worker.parentPort;
 parentPort.onmessage = function(e) {
     parentPort.close()
 }
@@ -1847,7 +1847,7 @@ workerInstance.postMessage("hello world");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
+const workerPort= worker.parentPort;
 parentPort.onmessage = function(e) {
     console.log("receive main thread message");
 }
@@ -1882,7 +1882,7 @@ const workerInstance = new worker.Worker("workers/worker.ts");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
+const workerPort= worker.parentPort;
 parentPort.onmessageerror = function(e) {
     console.log("worker.ts onmessageerror")
 }
@@ -2015,7 +2015,7 @@ const workerInstance = new worker.Worker("workers/worker.ts")
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort
+const workerPort= worker.parentPort
 parentPort.onerror = function(e){
     console.log("worker.ts onerror")
 }
