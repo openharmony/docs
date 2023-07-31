@@ -16,7 +16,7 @@ import runningLock from '@ohos.runningLock';
 
 isSupported(type: RunningLockType): boolean;
 
-Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified type of **RunningLock** is supported.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
