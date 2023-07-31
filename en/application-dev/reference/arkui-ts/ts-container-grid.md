@@ -23,10 +23,11 @@ The **\<Grid>** component accepts only **\<[GridItem](ts-container-griditem.md)>
 >
 >  If the values of [if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md) change, the indexes of subnodes are updated.
 >
->  Child components of **\<Grid>** whose **visibility** attribute is set to **Hidden** or **None** are included in the index calculation.
+>  The child component that has the **visibility** attribute set to **Hidden** or **None** is included in the index calculation.
 >
->  Child components of **\<Grid>** whose **visibility** attribute is set to **None** are not displayed, but still take up the corresponding cells.
-
+>  The child component that has the **visibility** attribute set to **None** is not displayed, but still takes up the corresponding cell.
+>
+>  The child component that has the **position** attribute set takes up the corresponding cell, and is offset by the distance specified by **position** relative to the upper left corner of the grid. This child component does not scroll with the corresponding cell and is not displayed after the corresponding cell extends beyond the display range of the grid.
 
 ## APIs
 
@@ -61,6 +62,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | supportAnimation<sup>8+</sup> | boolean | Whether to enable animation. Currently, the grid item drag animation is supported.<br>Default value: **false**|
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 
 Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
 
@@ -71,10 +73,6 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 - If the width and height of a grid are not set, the grid adapts to the size of its parent component by default.
 - The size of the grid rows and columns is the size of the grid content area minus the gap between rows and columns. It is allocated based on the proportion of each row and column.
 - By default, the grid items fill the entire grid.
-- In this mode, if a grid item has both **rowStart** and **columnStart** set, it is placed in the position based on the settings. If a grid item already exists in this position, overlapping occurs.
-- If a grid item has only **rowStart** or **columnStart** set, the system traverses the previous grid item layout to search for an idle position that meets the settings. If no idle position meets the requirements, the grid item is not laid out.
-- If a grid item has neither **rowStart** nor **columnStart** set, the system traverses the previous grid item layout to search for an idle position. If no idle position is available, the grid item is not laid out.
-- If a grid item has **rowEnd** set but not **rowStart**, **rowStart** is considered as set to the same value as **rowEnd**. If a grid item has **columnEnd** set but not **columnStart**, **columnStart** is considered as set to the same value as **columnEnd**.
 
 2. Either **rowsTemplate** or **columnsTemplate** is set
 
@@ -84,19 +82,14 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, minCount, and **cellLength**.
 - The cross axis size of the grid is the cross axis size of the grid content area minus the gaps along the cross axis. It is allocated based on the proportion of each row and column.
 - The main axis size of the grid is the maximum height of all grid items in the cross axis direction of the current grid.
-- In this mode, if a grid item has both **rowStart** and **columnStart** set, it is placed in the position based on the settings. If a grid item already exists in this position, overlapping occurs.
-- If a grid item has only **rowStart** or **columnStart** set, the system traverses the previous grid item layout to search for an idle position that meets the settings.
-- If a grid item has neither **rowStart** nor **columnStart** set, the system traverses the previous grid item layout to search for an idle position.
-- If a grid item has **rowEnd** set but not **rowStart**, **rowStart** is considered as set to the same value as **rowEnd**. If a grid item has **columnEnd** set but not **columnStart**, **columnStart** is considered as set to the same value as **columnEnd**.
 
 3. Neither **rowsTemplate** nor **columnsTemplate** is set
 
 - The **\<Grid>** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
 - The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
 - In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
-- When **layoutDirection** is set to **Row**, elements are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the top of the content is centered.
-- When **layoutDirection** is set to **Column**, elements are arranged from top to bottom. When a column is full, a new column will be added. If the remaining height is insufficient, no more elements will be laid out, and the top of the content is centered.
-- In this mode, **rowStart** and **columnStart** of the grid item do not take effect.
+- When **layoutDirection** is set to **Row**, elements are arranged row by row from left to right. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
+- When **layoutDirection** is set to **Column**, elements are arranged column by column from top to bottom. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
 
 ## GridDirection<sup>8+</sup>
 
@@ -140,6 +133,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | totalLength   | number |  Total length of the grid content.   |
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -196,12 +191,11 @@ struct GridExample {
         console.info(first.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        return {totalOffset: (index / 5) * (80 + 10) - 10 + offset, totalLength: 80 * 5 + 10 * 4}
+        return {totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4}
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
-      .scrollBar(BarState.Off)
       Button('next page')
         .onClick(() => {// Click to go to the next page.
           this.scroller.scrollPage({ next: true })
@@ -212,3 +206,82 @@ struct GridExample {
 ```
 
 ![en-us_image_0000001219744183](figures/en-us_image_0000001219744183.gif)
+
+### Example 2
+
+1.  Set **editMode\(true\)** to enable the grid to enter editing mode, where the user can drag the grid items.
+
+2.  Through [onItemDragStart](#events), set the image to be displayed during dragging.
+
+3.  Through [onItemDrop](#events), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onDrag](#events), complete the array position exchange logic.
+
+```ts
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = []
+  scroller: Scroller = new Scroller()
+  @State text: string = 'drag'
+
+  @Builder pixelMapBuilder () { // Style for the drag event.
+    Column() {
+      Text(this.text)
+        .fontSize(16)
+        .backgroundColor(0xF9CF93)
+        .width(80)
+        .height(80)
+        .textAlign(TextAlign.Center)
+    }
+  }
+
+  aboutToAppear() {
+    for (let i = 1;i <= 15; i++) {
+      this.numbers.push(i + '')
+    }
+  }
+
+  changeIndex(index1: number, index2: number) { // Exchange the array position.
+    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        ForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width(80)
+              .height(80)
+              .textAlign(TextAlign.Center)
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Up) {
+                  this.text = day
+                }
+              })
+          }
+        })
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .onScrollIndex((first: number) => {
+        console.info(first.toString())
+      })
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+      .editMode(true) // Enable the grid to enter editing mode, where the user can drag the grid items.
+      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { // Triggered when a grid item starts to be dragged.
+        return this.pixelMapBuilder() // Set the image to be displayed during dragging.
+      })
+      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { // Triggered when the dragged item is dropped on the drop target of the grid.
+        console.info('beixiang' + itemIndex + '', insertIndex + '') // itemIndex indicates the initial position of the dragged item. insertIndex indicates the position to which the dragged item will be dropped.
+        this.changeIndex(itemIndex, insertIndex)
+      })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+<!--no_check-->

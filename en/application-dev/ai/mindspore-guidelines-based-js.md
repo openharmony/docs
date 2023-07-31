@@ -1,10 +1,8 @@
-# Using MindSpore Lite for Model Inference (JS)
+# Using MindSpore Lite JavaScript APIs to Develop AI Applications
 
 ## Scenarios
 
-MindSpore Lite is an AI engine that implements AI model inference for different hardware devices. It has been used in a wide range of fields, such as image classification, target recognition, facial recognition, and character recognition.
-
-This document describes the general development process for implementing MindSpore Lite model inference. For details about how to use native APIs to implement model inference, see [Using MindSpore Lite for Model Inference](../napi/mindspore-lite-guidelines.md).
+You can use the JavaScript APIs provided by MindSpore Lite to directly integrate MindSpore Lite capabilities into the UI code. This way, you can quickly deploy AI algorithms for AI model inference.
 
 ## Basic Concepts
 
@@ -27,16 +25,14 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 
 ## How to Develop
 
-The development process consists of the following main steps:
+Assume that you have prepared a model in the **.ms** format. The key steps in model inference are model reading, model building, model inference, and memory release. The development procedure is described as follows:
 
-1. Prepare the required model. You can download the required model directly or obtain the model by using the model conversion tool. The required data is read from the `bin` file.
+1. Create a context, and set parameters such as the number of runtime threads and device type.
+2. Load the model. In this example, the model is read from the file.
+3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensor.
+4. Perform model inference by calling **predict**, and read the output.  
 
-   - If the downloaded model is in the `.ms` format, you can use it directly for inference. This document uses `mnet.caffemodel.ms` as an example.
-   - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r2.0/use/downloads.html#1-8-1) to convert it to the `.ms` format.
-2. Create a context, and set parameters such as the number of runtime threads and device type.
-3. Load the model. In this example, the model is read from the file.
-4. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensor.
-5. Perform inference and print the output. Call the **predict** API to perform model inference.
+
 ```js
 @State inputName: string = 'mnet_caffemodel_nhwc.bin';
 @State T_model_predict: string = 'Test_MSLiteModel_predict'
@@ -49,7 +45,6 @@ build() {
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
       .onClick(async () => {
-         // 1. Prepare for a model.
          let syscontext = globalThis.context;
          syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
            this.inputBuffer = buffer;
@@ -57,20 +52,24 @@ build() {
          }).catch(error => {
            console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
          })
-         // 2. Create a context.
+
+         // 1. Create a context.
          let context: mindSporeLite.Context = {};
          context.target = ['cpu'];
          context.cpu = {}
          context.cpu.threadNum = 1;
          context.cpu.threadAffinityMode = 0;
          context.cpu.precisionMode = 'enforce_fp32';
-         // 3. Load the model.
+         
+         // 2. Load the model.
          let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
          let msLiteModel = await mindSporeLite.loadModelFromFile(modelFile, context);
-         // 4. Load data.
+         
+         // 3. Set the input data.
          const modelInputs = msLiteModel.getInputs();
          modelInputs[0].setData(this.inputBuffer.buffer);
-         // 5. Perform inference and print the output.
+         
+         // 4. Perform inference and print the output.
          console.log('=========MSLITE predict start=====')
          msLiteModel.predict(modelInputs).then((modelOutputs) => {
            let output0 = new Float32Array(modelOutputs[0].getData());
@@ -89,21 +88,21 @@ build() {
 
 ## Debugging and Verification
 
-1. Connect to the rk3568 development board on DevEco Studio, click **Run entry**, and compile your own HAP. The following information is displayed:
+1. On DevEco Studio, connect to the device, click **Run entry**, and compile your own HAP. The following information is displayed:
 
    ```shell
    Launching com.example.myapptfjs
    $ hdc uninstall com.example.myapptfjs
-   $ hdc install -r "D:\TVOS\JSAPI\MyAppTfjs\entry\build\default\outputs\default\entry-default-signed.hap"
+   $ hdc install -r "path/to/xxx.hap"
    $ hdc shell aa start -a EntryAbility -b com.example.myapptfjs
    ```
 
-2. Use the hdc tool to connect to the rk3568 development board and push `mnet.caffemodel.ms` to the sandbox directory on the device. `mnet\_caffemodel\_nhwc.bin` is stored in the `rawfile` directory of the local project.
+2. Use hdc to connect to the device, and push **mnet.caffemodel.ms** to the sandbox directory on the device. **mnet\_caffemodel\_nhwc.bin** is stored in the **rawfile** directory of the local project.
 
    ```shell
-   hdc -t 7001005458323933328a00bcdf423800 file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/
+   hdc -t your_device_id file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/
    ```
-3. Click **Test\_MSLiteModel\_predict** on the screen of the rk3568 development board to run the test case. The following information is displayed in the HiLog printing result:
+3. Click **Test\_MSLiteModel\_predict** on the device screen to run the test case. The following information is displayed in the HiLog printing result:
 
    ```shell                                        
    08-27 23:25:50.278 31782-31782/? I C03d00/JSAPP: =========MSLITE predict start=====

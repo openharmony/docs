@@ -1,14 +1,13 @@
-# @ohos.resourceschedule.workScheduler (Work Scheduler)
+# @ohos.resourceschedule.workScheduler (Deferred Task Scheduling)
 
-The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
+The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks.
 
-The system executes Work Scheduler tasks at an appropriate time, subject to the storage space, power consumption, temperature, and more.
+The system schedules and executes deferred tasks at an appropriate time, subject to the storage space, power consumption, temperature, and more.
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
->  - For details about the restrictions, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on-using-work-scheduler-tasks).
 
 
 ## Modules to Import
@@ -20,7 +19,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 ## workScheduler.startWork
 startWork(work: WorkInfo): void
 
-Instructs the **WorkSchedulerService** to add the specified task to the execution queue.
+Instructs the WorkSchedulerService to add a task to the execution queue.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -71,7 +70,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.stopWork
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-Instructs the **WorkSchedulerService** to stop the specified task.
+Instructs the WorkSchedulerService to stop a task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -130,7 +129,7 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | Yes   | Task ID.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If the specified task ID is valid, the task status obtained from the WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -178,7 +177,7 @@ Obtains the latest task status. This API uses a promise to return the result.
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If the specified task ID is valid, the task status obtained from the WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -210,7 +209,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.obtainAllWorks
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-Obtains all tasks associated with this application. This API uses an asynchronous callback to return the result.
+Obtains all tasks associated with the application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -218,13 +217,13 @@ Obtains all tasks associated with this application. This API uses an asynchronou
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. All tasks associated with the current application.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
 
 **Return value**
 
 | Type                           | Description             |
 | ----------------------------- | --------------- |
-| Array\<[WorkInfo](#workinfo)> | All tasks associated with the current application.|
+| Array\<[WorkInfo](#workinfo)> | All tasks associated with the application.|
 
 **Error codes**
 
@@ -255,7 +254,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.obtainAllWorks
 obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
-Obtains all tasks associated with this application. This API uses a promise to return the result.
+Obtains all tasks associated with the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -263,7 +262,7 @@ Obtains all tasks associated with this application. This API uses a promise to r
 
 | Type                                    | Description                            |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return the result. All tasks associated with the current application.|
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all tasks associated with the application.|
 
 **Error codes**
 
@@ -292,7 +291,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.stopAndClearWorks
 stopAndClearWorks(): void
 
-Stops and cancels all tasks associated with the current application.
+Stops and cancels all tasks associated with the application.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -320,7 +319,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
-Checks whether the last execution of the specified task timed out. This API uses an asynchronous callback to return the result.
+Checks whether the last execution of a task timed out. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -329,13 +328,13 @@ Checks whether the last execution of the specified task timed out. This API uses
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | Yes   | Task ID.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.  |
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| boolean |  Returns **true** if the last execution of the task timed out; returns **false** otherwise.|
 
 **Error codes**
 
@@ -367,7 +366,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
-Checks whether the last execution of the specified task timed out. This API uses a promise to return the result.
+Checks whether the last execution of a task timed out. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -381,7 +380,7 @@ Checks whether the last execution of the specified task timed out. This API uses
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. If the last execution of the task timed out, **true** is returned. Otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -411,15 +410,15 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## WorkInfo
-Provides detailed information about the task. For details about the constraints on configuring **WorkInfo**, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on-using-work-scheduler-tasks).
+Provides detailed information about the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | Task ID.         |
-| bundleName      | string                            | Yes   | Name of the Work Scheduler task bundle.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a Work Scheduler callback.|
+| bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
+| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback. |
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device is charging.            |
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
@@ -435,7 +434,7 @@ Provides detailed information about the task. For details about the constraints 
 | parameters      | {[key: string]: number \| string \| boolean}              | No   | Carried parameters.          |
 
 ## NetworkType
-Enumerates the network types that can trigger the task.
+Enumerates the network types that can trigger task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -449,7 +448,7 @@ Enumerates the network types that can trigger the task.
 | NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
 ## ChargingType
-Enumerates the charging types that can trigger the task.
+Enumerates the charging types that can trigger task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -461,7 +460,7 @@ Enumerates the charging types that can trigger the task.
 | CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
 
 ## BatteryStatus
-Enumerates the battery states that can trigger the task.
+Enumerates the battery states that can trigger task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -472,7 +471,7 @@ Enumerates the battery states that can trigger the task.
 | BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
 ## StorageRequest
-Enumerates the storage states that can trigger the task.
+Enumerates the storage states that can trigger task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
