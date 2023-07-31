@@ -5,6 +5,10 @@
 
 音频编码信息。
 
+> **说明：** 
+> 
+> 预留接口，将在后续版本提供。
+
 **系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：**

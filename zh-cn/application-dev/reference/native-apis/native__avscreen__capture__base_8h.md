@@ -22,10 +22,10 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) | 音频录制信息。 | 
-| [OH_AudioEncInfo](_o_h___audio_enc_info.md) | 音频编码信息。 | 
+| [OH_AudioEncInfo](_o_h___audio_enc_info.md) | 音频编码信息。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AudioInfo](_o_h___audio_info.md) | 音频录制参数。 | 
 | [OH_VideoCaptureInfo](_o_h___video_capture_info.md) | 视频采集信息。 | 
-| [OH_VideoEncInfo](_o_h___video_enc_info.md) | 视频编码参数。 | 
+| [OH_VideoEncInfo](_o_h___video_enc_info.md) | 视频编码信息。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_VideoInfo](_o_h___video_info.md) | 视频录制参数。 | 
 | [OH_RecorderInfo](_o_h___recorder_info.md) | 录制文件信息。 | 
 | [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) | 屏幕录制配置参数。 | 
@@ -48,10 +48,10 @@
 | [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype) | 枚举，表示视频源格式。 | 
 | [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
 | [OH_AudioCaptureInfo](_a_v_screen_capture.md#oh_audiocaptureinfo) | 音频录制信息。 | 
-| [OH_AudioEncInfo](_a_v_screen_capture.md#oh_audioencinfo) | 音频编码信息。 | 
+| [OH_AudioEncInfo](_a_v_screen_capture.md#oh_audioencinfo) | 音频编码信息。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AudioInfo](_a_v_screen_capture.md#oh_audioinfo) | 音频录制参数。 | 
 | [OH_VideoCaptureInfo](_a_v_screen_capture.md#oh_videocaptureinfo) | 视频采集信息。 | 
-| [OH_VideoEncInfo](_a_v_screen_capture.md#oh_videoencinfo) | 视频编码参数。 | 
+| [OH_VideoEncInfo](_a_v_screen_capture.md#oh_videoencinfo) | 视频编码信息。 <br>**说明：** 预留接口，将在后续版本提供。| 
 | [OH_VideoInfo](_a_v_screen_capture.md#oh_videoinfo) | 视频录制参数。 | 
 | [OH_RecorderInfo](_a_v_screen_capture.md#oh_recorderinfo) | 录制文件信息。 | 
 | [OH_AVScreenCaptureConfig](_a_v_screen_capture.md#oh_avscreencaptureconfig) | 屏幕录制配置参数。 | 

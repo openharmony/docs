@@ -25,7 +25,7 @@
 | -------- | -------- |
 | [micCapInfo](#miccapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br/>麦克风的音频参数。 | 
 | [innerCapInfo](#innercapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br/>内录的音频参数。 | 
-| [audioEncInfo](#audioencinfo) | [OH_AudioEncInfo](_o_h___audio_enc_info.md)<br/>音频录制信息， 当dataType为OH_ORIGINAL_STREAM时不需要设置。 | 
+| [audioEncInfo](#audioencinfo) | [OH_AudioEncInfo](_o_h___audio_enc_info.md)<br/>音频录制信息， 当dataType为OH_ORIGINAL_STREAM时不需要设置。<br>**说明：** 预留接口，将在后续版本提供。 | 
 
 
 ## 结构体成员变量说明
@@ -40,6 +40,10 @@ OH_AudioEncInfo OH_AudioInfo::audioEncInfo
 **描述:**
 
 音频录制信息， 当dataType为OH_ORIGINAL_STREAM时不需要设置。
+
+> **说明：** 
+> 
+> 预留接口，将在后续版本提供。
 
 
 ### innerCapInfo

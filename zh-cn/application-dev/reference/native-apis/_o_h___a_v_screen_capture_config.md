@@ -27,7 +27,7 @@
 | [dataType](#datatype) | [OH_DataType](_a_v_screen_capture.md#oh_datatype)<br/>屏幕录制流的数据格式。 | 
 | [audioInfo](#audioinfo) | [OH_AudioInfo](_o_h___audio_info.md)<br/>音频录制参数。 | 
 | [videoInfo](#videoinfo) | [OH_VideoInfo](_o_h___video_info.md)<br/>视频录制参数。 | 
-| [recorderInfo](#recorderinfo) | [OH_RecorderInfo](_o_h___recorder_info.md)<br/>录制文件参数，当数据格式为OH_CAPTURE_FILE时，必须设置。 | 
+| [recorderInfo](#recorderinfo) | [OH_RecorderInfo](_o_h___recorder_info.md)<br/>录制文件参数，当数据格式为OH_CAPTURE_FILE时，必须设置。<br>**说明：** 预留接口，将在后续版本提供。 | 
 
 
 ## 结构体成员变量说明
@@ -75,6 +75,10 @@ OH_RecorderInfo OH_AVScreenCaptureConfig::recorderInfo
 **描述:**
 
 录制文件参数，当数据格式为OH_CAPTURE_FILE时，必须设置。
+
+> **说明：** 
+> 
+> 预留接口，将在后续版本提供。
 
 
 ### videoInfo

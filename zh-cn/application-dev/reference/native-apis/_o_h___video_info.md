@@ -24,7 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [videoCapInfo](#videocapinfo) | [OH_VideoCaptureInfo](_o_h___video_capture_info.md)<br/>视频采集信息。 | 
-| [videoEncInfo](#videoencinfo) | [OH_VideoEncInfo](_o_h___video_enc_info.md)<br/>视频编码参数。 | 
+| [videoEncInfo](#videoencinfo) | [OH_VideoEncInfo](_o_h___video_enc_info.md)<br/>视频编码参数。 <br>**说明：** 预留接口，将在后续版本提供。| 
 
 
 ## 结构体成员变量说明
@@ -50,3 +50,7 @@ OH_VideoEncInfo OH_VideoInfo::videoEncInfo
 **描述:**
 
 视频编码参数。
+
+> **说明：** 
+> 
+> 预留接口，将在后续版本提供。
