@@ -10,7 +10,7 @@
 
 |                           扫描WLAN                           |                           连接WLAN                           |                           断开WLAN                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="figures/wlanscan.jpg" alt="contactlist" style="zoom: 50%;" /> | <img src="figures/wlanconnect.jpg" alt="contactlist" style="zoom: 50%;" /> | <img src="figures/wlandisconnect.jpg" alt="contactlist" style="zoom: 50%;" /> |
+| <img src="figures/wlanscan.png" alt="contactlist" style="zoom: 50%;" /> | <img src="figures/wlanconnect.png" alt="contactlist" style="zoom: 50%;" /> | <img src="figures/wlandisconnect.png" alt="contactlist" style="zoom: 50%;" /> |
 
 ## 运行环境
 
