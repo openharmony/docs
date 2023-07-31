@@ -610,8 +610,10 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    Call **transform** to obtain the transliterated string.
 
    ```js
-   let transliterator = I18n.Transliterator.getInstance("Any-Latn"); // Any-Latn means to convert any text to Latn text.
-   let transformText = transliterator.transform ("Hello"); // transformText = "nǐ hǎo"
+   let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latin means to convert any text to Latin text.
+   let transformText = transliterator.transform ("你好");   // transformText = "nǐ hǎo"
+   let transliterator2 = I18n.Transliterator.getInstance("Latin-ASCII");   // Latin-ASCII means to convert Latin text to ASCII text.
+   let transformText = transliterator2.transform(transformText);   // transformText = "ni hao"
    ```
 
 ## Obtaining the Character Type

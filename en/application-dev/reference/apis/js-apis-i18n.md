@@ -1757,8 +1757,8 @@ Obtains a list of IDs supported by the **Transliterator** object.
 
 **Example**
   ```ts
-  // ids = ["ASCII-Latin", "Accents-Any", "Amharic-Latin/BGN", ...], 671 IDs supported in total
-  // Each ID consists of two parts separated by a hyphen (-). The format is source-destination.
+  // A total of 671 IDs are supported. One ID is comprised of two parts separated by a hyphen (-) in the format of source-destination. For example, in **ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]**, **Han-Latin** indicates conversion from Chinese to Latin, and **Amharic-Latin** indicates conversion from Amharic to Latin.
+  // For more information, see ISO-15924.
   let ids = I18n.Transliterator.getAvailableIDs();
   ```
 
