@@ -11,7 +11,7 @@ The open-source code repositories are available at [https://openharmony.gitee.co
 You can use any of the following methods to acquire the OpenHarmony source code:
 
 -   **Method 1**: Acquire the source code from the Gitee code repository. You can use the **repo** or **git** tool to download the latest code from the code repository.
--   **Method 2**: Acquire the source code from [DevEco Marketplace](https://repo.harmonyos.com/#/en/home). Visit [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), search for your desired open-source distribution, and download the bundle list \(or customize bundles and download the bundle list\). Then use the **hpm-cli** tool to download and install the bundles and compilation toolchain on your local PC.
+-   **Method 2**: Acquire the source code from [DevEco Marketplace](https://repo.harmonyos.com/#/en/home). Visit [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), search for your desired open-source distribution, and download the component list \(or customize components and download the component list\). Then use the **hpm-cli** tool to download and install the components and compilation toolchain on your local PC.
 -   **Method 3**: Download the compressed file of a distribution from a mirror site. This method provides a fast download speed, so you can also use this method for obtaining the source code of an earlier version.
 -   **Method 4**: Acquire the source code from the GitHub image repository. You can use the **repo** or **git** tool to download the latest code from the code repository.
 
@@ -54,8 +54,9 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 ### How to Use<a name="section429012478331"></a>
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
->Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
+> ![](../public_sys-resources/icon-note.gif) **NOTE**
+>
+> Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 -   **Obtaining OpenHarmony master code**
 
@@ -77,14 +78,14 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 
 -   **Obtaining OpenHarmony release code**
 
-    For details about how to obtain the source code of an OpenHarmony release, see the [Release-Notes](../../release-notes/Readme.md).
+    For details about how to obtain the source code of an OpenHarmony release, see the [Release Notes](../../release-notes/Readme.md).
 
 
 ## Method 2: Acquiring Source Code from DevEco Marketplace<a name="section463013147412"></a>
 
 ### When to Use<a name="section26661067443"></a>
 
-If OpenHarmony is new to you, sample solutions are helpful to your development. You can obtain an open-source distribution from [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), or customize a distribution by adding or deleting bundles of an open-source distribution. Then use the **hpm-cli** tool to download and install the bundles and compilation toolchain on your local PC.
+If OpenHarmony is new to you, sample solutions are helpful to your development. You can obtain an open-source distribution from [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), or customize a distribution by adding or deleting components of an open-source distribution. Then use the **hpm-cli** tool to download and install the components and compilation toolchain on your local PC.
 
 ### Prerequisites<a name="section17544943123315"></a>
 
@@ -119,44 +120,48 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 ### How to Use<a name="section954619433333"></a>
 
-1.  Search for distributions.
-    1.  Access [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), and click **Equipment Bundle**. Then go to the **Open Source Distribution** page.
-    2.  Enter a keyword \(for example: **camera**\) in the search box. All matched distributions are found.
-    3.  Specify filter criteria, such as the bundle type \(for example: **Board support** or **Kernel support**\), to further filter the distributions.
-    4.  Find your desired distribution and click it to view details.
+1. Search for distributions.
+   1. Access [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), and click **Device**. Then go to the **Open Source Distribution** page.
+   2. Enter a keyword, for example, **camera**, in the search box. All matched distributions are displayed.
+   3. Specify filter criteria, such as the OS, board, and kernel, to further filter the distributions.
+   4. Find your desired distribution, and click it to view details.
 
-        **Figure 1**  HPM page<a name="fig349416264520"></a> 
-        ![](figure/hpm-page.png "hpm-page")
+         **Figure 1** HPM page
 
-2.  Learn more about the distribution.
+         ![](figures/hpm-page.png "hpm-page")
 
-    1.  Read carefully the information about the distribution to learn its application scenarios, features, bundles, usage, and customization methods, as shown in the following figure.
-    2.  Click **Download** if you want to download the distribution to your local PC.
-    3.  Click **Custom** if you want to add or delete bundles of the distribution.
+2. Learn more about the distribution.
+   1. Read carefully the information about the distribution to learn its application scenarios, features, components, usage, and customization methods.
+   2. Click **Download** if you want to download the distribution to your local PC.
+   3. Click **Device component tailoring** if you want to add or delete components of the distribution.
 
-        **Figure 2**  Example distribution<a name="fig142484411121"></a> 
-        ![](figure/example-distribution.png "example-distribution")
+         **Figure 2** Example distribution
 
-3.  Customize bundles.
-    1.  Access the **Custom solution** page, as shown in the following figure.
-    2.  Set the toggle switch next to a specific optional bundle to delete it from the distribution, or click **Add bundle** to add new bundles.
-    3.  Enter the basic information about your project, including the bundle name, version, and description, on the right pane.
-    4.  Click **Download**. The system generates the OpenHarmony code structure file \(for example, **my\_cust\_dist.zip**\) and saves it to your local PC.
+         ![](figures/example-distribution.png "example-distribution")
 
-        **Figure 3**  Customizing bundles<a name="fig1256020372197"></a>  
-        ![](figure/customizing-bundles.png "customizing-bundles")
+3. Customize components.
+   1. Access the **Device Component Tailoring** page.
+   2. Add or delete components.
+      - In the **Customizable Components** pane, click the plus sign. In the displayed dialog box, add required components.
+      - In the **Customizable Components** pane, click the minus sign next to a component to delete it.
+   3. Enter the basic information about your project, including the name, version, and description, on the right pane.
+   4. Click **Download**. The system generates the OpenHarmony code structure file (for example, **my_cust_dist.zip**) and saves it to your local PC.
 
-4.  Install bundles.
-    1.  Decompress the downloaded code structure file using CMD on Windows (or shell in Linux).
-    2.  In the generated directory, run the **hpm install** command to download and install bundles. If the **Install successful** message is displayed, the command has been executed successfully.
-    3.  Obtain the bundles. The downloaded bundles are stored in the **ohos\_bundles** folder under the project directory. \(The source code of some bundles will be copied to a specified directory after the bundles are installed.\)
+         **Figure 3** Customizing components
+
+         ![](figures/customizing-components.png "customizing-components")
+
+4. Install components.
+   1. Decompress the downloaded code structure file using CMD on Windows (or shell in Linux).
+   2. In the generated directory, run the **hpm install** command to download and install components. If the **Install successful** message is displayed, the command has been executed successfully.
+   3. The downloaded components will be stored in the **ohos_bundles** folder under the project directory. (The source code of some components will be copied to a specified directory after the components are installed.)
 
 
 ## Method 3: Acquiring Source Code from a Mirror Site<a name="section1186691118430"></a>
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release-Notes](../../release-notes/Readme.md). 
+The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes](../../release-notes/Readme.md). 
 
 **Table 1**  Sites for acquiring source code 
 
@@ -329,7 +334,8 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
+> ![](../public_sys-resources/icon-note.gif) **NOTE**
+> 
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
@@ -373,7 +379,7 @@ The following table describes the OpenHarmony source code directories.
 </tr>
 <tr id="row1134218692910"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p4904112910295"><a name="p4904112910295"></a><a name="p4904112910295"></a>build</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>Bundle-based compilation, build, and configuration scripts</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>Component-based compilation, build, and configuration scripts</p>
 </td>
 </tr>
 <tr id="row8166154261316"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1216719425130"><a name="p1216719425130"></a><a name="p1216719425130"></a>docs</p>
