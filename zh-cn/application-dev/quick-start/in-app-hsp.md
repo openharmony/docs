@@ -98,10 +98,10 @@ export { MyTitleBar } from './components/MyTitleBar'
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{
-  static getPic(){
+  static getPic(): Resource{
     return $r("app.media.pic");
   }
-  static getDesc(){
+  static getDesc(): Resource{
     return $r("app.string.shared_desc");
   }
 }
@@ -162,12 +162,12 @@ struct Index {
             Log.info("add button click!");
             this.message = "result: " + add(1, 2);
           })
+        // ResManager返回的Resource对象，可以传给组件直接使用，也可以从中取出资源来使用
         Image(ResManager.getPic())
           .width("100%")
         Button('getStringValue')
           .onClick(()=> {
             // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-            // 注：用`$r`方法获得的是Resource对象形式的资源，其可被组件直接使用，但在此须对其进行解封装才可使用
             getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
               .then(value => {
                 console.log("getStringValue is " + value);
