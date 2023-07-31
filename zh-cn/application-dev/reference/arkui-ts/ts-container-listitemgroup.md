@@ -10,7 +10,7 @@
 
 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，不允许设置ListItemGroup组件的height属性。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。当父组件List的listDirection属性为Axis.Horizontal时，不允许设置ListItemGroup组件的width属性。ListItemGroup的宽度为header宽度、footer宽度和所有ListItem布局后总宽度之和。
 
-当前ListItemGroup内部的ListItem组件不支持编辑、框选、拖拽功能，即ListItem组件的editable、selectable属性不生效。
+当前ListItemGroup内部的ListItem组件不支持编辑、拖拽功能，即ListItem组件的editable属性不生效。
 
 ## 子组件
 
@@ -119,3 +119,55 @@ struct ListItemGroupExample {
 ```
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_listitemgroup.gif)
+
+- 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemGroupExample2 {
+ private arr: any = [
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
+  },
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  },
+  {
+   style:ListItemGroupStyle.CARD,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
+  },
+  {
+   style:ListItemGroupStyle.NONE,
+   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  }
+ ]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ForEach(this.arr, (item,index) => {
+     ListItemGroup({ style:item.style }) {
+      ForEach(item.itemStyles, (itemStyle,itemIndex) => {
+       ListItem({style:itemStyle}) {
+        Text("第"+(index+1)+"个Group中第"+(itemIndex+1)+"个item")
+         .width("100%")
+         .textAlign(TextAlign.Center)
+       }
+      }, item => item)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // 浅蓝色的List
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemGroupStyle](figures/listItemGroup2.jpeg)

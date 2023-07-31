@@ -26,7 +26,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 Enumerates the types of business abilities.
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -39,7 +39,7 @@ Enumerates the types of business abilities.
 
 Describes the criteria for filtering business abilities.
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -57,7 +57,7 @@ Obtains the business ability information based on the specified filter criteria.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -94,7 +94,7 @@ Obtains the business ability information based on the specified filter criteria.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 

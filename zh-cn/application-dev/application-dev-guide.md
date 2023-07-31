@@ -25,6 +25,7 @@
 
 在此基础上，还提供了如下功能的开发指导：
 
+- [ArkTS语言基础类库](arkts-utils/arkts-commonlibrary-overview.md)
 - [Web](web/web-component-overview.md)
 - [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)

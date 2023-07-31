@@ -8,3 +8,4 @@
 - [Using MindSpore Lite for Offline Model Conversion and Inference](mindspore-lite-offline-model-guidelines.md)
 - [Connecting the Neural Network Runtime to an AI Inference Framework](neural-network-runtime-guidelines.md)
 - [Purgeable Memory Development](purgeable-memory-guidelines.md)
+- [USB DDK Development](usb-ddk-guidelines.md)

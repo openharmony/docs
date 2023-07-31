@@ -401,9 +401,9 @@ async function example() {
   let options = {
     title: 'testPhoto'
   }
-  phAccessHelper.createAsset(photoType, extension, options, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -445,9 +445,9 @@ async function example() {
   console.info('createAssetDemo');
   let photoType = photoAccessHelper.PhotoType.IMAGE;
   let extension = 'jpg';
-  phAccessHelper.createAsset(photoType, extension, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -499,8 +499,8 @@ async function example() {
     let options = {
       title: 'testPhoto'
     }
-    let photoAsset = await phAccessHelper.createAsset(photoType,extension, options);
-    console.info('createAsset file displayName' + photoAsset.displayName);
+    let uri = await phAccessHelper.createAsset(photoType, extension, options);
+    console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
     console.error('createAsset failed, message = ', err);
@@ -1081,11 +1081,11 @@ async function example() {
   // 注册onCallback2监听
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1145,11 +1145,11 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // 关闭onCallback1监听，onCallback2 继续监听
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -2856,17 +2856,17 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoCallback');
-
+  console.info('albumGetAssetsDemoCallback');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
@@ -2914,17 +2914,18 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoPromise');
+  console.info('albumGetAssetsDemoPromise');
 
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
@@ -2967,9 +2968,10 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
@@ -3015,9 +3017,10 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
@@ -3492,6 +3495,131 @@ async function example() {
     });
   } catch (err) {
     console.error('deleteAssetsDemoPromise failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+
+设置相册封面，该方法使用callback形式来返回结果。
+
+**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | 是   | 待设置为相册封面文件的uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string): Promise&lt;void&gt;;
+
+设置相册封面，该方法使用Promise来返回结果。
+
+**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | 是   | 待设置为相册封面文件的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
   }
 }
 ```

@@ -73,33 +73,33 @@ The figure below shows the call relationship of audio decoding.
     ```
 
 2. Call **OH_AudioDecoder_SetCallback()** to set callback functions.
-   
+
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
-   
-   - **OnError**, a callback used to report a codec operation error
-   - **OnOutputFormatChanged**, a callback used to report a codec stream change, for example, audio channel change
-   - **OnInputBufferAvailable**, a callback used to report input data required, which means that the decoder is ready for receiving data
-   - **OnOutputBufferAvailable**, a callback used to report output data generated, which means that decoding is complete
+
+   - **OH_AVCodecOnError**, a callback used to report a codec operation error
+   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the decoder is ready for receiving data
+   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete
 
    You need to process the callback functions to ensure that the decoder runs properly.
-   
-   ```cpp
-    // Set the OnError callback function.
+
+    ```cpp
+    // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // Set the OnOutputFormatChanged callback function.
-    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void*userData)
+    // Implement the OH_AVCodecOnStreamChanged callback function.
+    static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void*userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // Set the OnInputBufferAvailable callback function, which is used to send the input stream to the InputBuffer queue.
-    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, void *userData)
+    // Implement the OH_AVCodecOnNeedInputData callback function.
+    static void onNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, void *userData)
     {
         (void)codec;
         ADecSignal *signal = static_cast<ADecSignal *>(userData);
@@ -109,8 +109,8 @@ The figure below shows the call relationship of audio decoding.
         signal->inCond_.notify_all();
         // The input stream is sent to the InputBuffer queue.
     }
-    // Set the OnOutputBufferAvailable callback function, which is used to send the PCM stream obtained after decoding to the OutputBuffer queue.
-    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, OH_AVCodecBufferAttr *attr,
+    // Implement the OH_AVCodecOnNewOutputData callback function.
+    static void onNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, OH_AVCodecBufferAttr *attr,
                                             void *userData)
     {
         (void)codec;
@@ -126,14 +126,13 @@ The figure below shows the call relationship of audio decoding.
         // The decoded data is sent to the OutputBuffer queue.
     }
     signal_ = new ADecSignal();
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnOutputFormatChanged, OnInputBufferAvailable, &OnOutputBufferAvailable};
+    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &onNeedInputData, &onNeedOutputData};
     // Set the asynchronous callbacks.
     int32_t ret = OH_AudioDecoder_SetCallback(audioDec, cb, signal_);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-   
+    ```
 3. Call **OH_AudioDecoder_Configure()** to configure the decoder.
 
    The following options are mandatory: sampling rate, bit rate, and number of audio channels. The maximum input length is optional.
@@ -141,7 +140,7 @@ The figure below shows the call relationship of audio decoding.
    - For AAC decoding, the parameter that specifies whether the data type is Audio Data Transport Stream (ADTS) must be specified. If this parameter is not specified, the data type is considered as Low Overhead Audio Transport Multiplex (LATM).
 
    - For Vorbis decoding, the ID header and setup header must also be specified.
-   ```cpp
+    ```cpp
     enum AudioFormatType : int32_t {
         TYPE_AAC = 0,
         TYPE_FLAC = 1,
@@ -176,8 +175,7 @@ The figure below shows the call relationship of audio decoding.
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-
+    ```
 4. Call **OH_AudioDecoder_Prepare()** to prepare internal resources for the decoder.
 
     ```cpp
@@ -186,7 +184,6 @@ The figure below shows the call relationship of audio decoding.
         // Exception handling.
     }
     ```
-
 5. Call **OH_AudioDecoder_Start()** to start the decoder.
 
     ```c++
@@ -202,12 +199,10 @@ The figure below shows the call relationship of audio decoding.
     // Exception handling.
     }
     ```
-
 6. Call **OH_AudioDecoder_PushInputData()** to write the data to decode.
 
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
-
-   ```c++
+    ```c++
     // Configure the buffer information.
     OH_AVCodecBufferAttr info;
     // Set the package size, offset, and timestamp.
@@ -228,8 +223,7 @@ The figure below shows the call relationship of audio decoding.
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-
+    ```
 7. Call **OH_AudioDecoder_FreeOutputData()** to output decoded PCM streams.
 
     ```c++
@@ -244,7 +238,6 @@ The figure below shows the call relationship of audio decoding.
         // Exception handling.
     }
     ```
-
 8. (Optional) Call **OH_AudioDecoder_Flush()** to refresh the decoder.
 
     After **OH_AudioDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioDecoder_Start()** again.
@@ -265,24 +258,22 @@ The figure below shows the call relationship of audio decoding.
         // Exception handling.
     }
     ```
-
 9. (Optional) Call **OH_AudioDecoder_Reset()** to reset the decoder.
 
     After **OH_AudioDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_AudioDecoder_Configure()** and then **OH_AudioDecoder_Start()**.
-    
-      ```c++
-       // Reset the decoder.
-       ret = OH_AudioDecoder_Reset(audioDec);
-       if (ret != AV_ERR_OK) {
-           // Exception handling.
-       }
-       // Reconfigure the decoder.
-       ret = OH_AudioDecoder_Configure(audioDec, format);
-       if (ret != AV_ERR_OK) {
-       // Exception handling.
-       }
-      ```
-    
+
+    ```c++
+    // Reset the decoder.
+    ret = OH_AudioDecoder_Reset(audioDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Reconfigure the decoder.
+    ret = OH_AudioDecoder_Configure(audioDec, format);
+    if (ret != AV_ERR_OK) {
+    // Exception handling.
+    }
+    ```
 10. Call **OH_AudioDecoder_Stop()** to stop the decoder.
 
     ```c++
@@ -293,18 +284,17 @@ The figure below shows the call relationship of audio decoding.
     }
     return ret;
     ```
-
 11. Call **OH_AudioDecoder_Destroy()** to destroy the decoder instance and release resources.
 
-      **NOTE**: You only need to call this API once.
+    **NOTE**: You only need to call this API once.
 
-      ```c++
-      // Call OH_AudioDecoder_Destroy to destroy the decoder.
-      ret = OH_AudioDecoder_Destroy(audioDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      } else {
-          audioEnc = NULL; // The decoder cannot be destroyed repeatedly.
-      }
-      return ret;
-      ```
+    ```c++
+    // Call OH_AudioDecoder_Destroy to destroy the decoder.
+    ret = OH_AudioDecoder_Destroy(audioDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    } else {
+        audioEnc = NULL; // The decoder cannot be destroyed repeatedly.
+    }
+    return ret;
+    ```

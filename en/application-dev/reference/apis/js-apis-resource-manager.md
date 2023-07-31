@@ -1,4 +1,4 @@
-# @ohos.resourceManager (Resource Manager)
+# @ohos.resourceManager (Resource Management)
 
 The **resourceManager** module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
 
@@ -3506,7 +3506,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### getColorByName<sup>10+</sup>
 
-getStringByName(resName: string): Promise&lt;number&gt;
+getColorByName(resName: string): Promise&lt;number&gt;
 
 Obtains the color value corresponding to the specified resource name. This API uses a promise to return the result.
 

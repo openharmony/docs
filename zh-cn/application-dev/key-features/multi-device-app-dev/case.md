@@ -1,12 +1,12 @@
 # 案例应用
 
 
-本章从OpenHarmony预置的系统应用中，选择短信应用作为典型的案例，从页面开发和工程结构的角度，介绍"一多"的具体实践。OpenHarmony的产品形态在不断丰富中，当前主要有默认设备和平板两种产品形态，本章的具体实践也将围绕这两种产品形态展开。
+本章从系统预置的应用中，选择短信应用作为典型的案例，从页面开发和工程结构的角度，介绍"一多"的具体实践。系统的产品形态在不断丰富中，当前主要有默认设备和平板两种产品形态，本章的具体实践也将围绕这两种产品形态展开。
 
 
 ## 概览
 
-[短信](https://gitee.com/openharmony/applications_mms/tree/master)是OpenHarmony中预置的系统应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP或HAP组合）。
+[短信](https://gitee.com/openharmony/applications_mms/tree/master)是系统中预置的应用，主要包含信息查看、发送短信、接收短信、短信送达报告、删除短信等功能。在不同类型设备上，短信应用的功能完全相同，故短信应用适合使用[部署模型A](introduction.md#部署模型)（即：不同类型的设备上安装运行相同的HAP或HAP组合）。
 
 本案例中，在会话详情页面利用[方舟开发框架](introduction.md#方舟开发框架)提供的“一多”能力，用一套代码同时适配默认设备和平板。
 
@@ -268,7 +268,7 @@
 ```
 @Component
 struct MessageBubble {
-  private content: string = "OpenHarmony"
+  private content: string = "Introduction"
 
   build() {
     Column() {
@@ -300,9 +300,8 @@ struct MessageBubble {
 ```
 @Component
 struct MessageBubble {
-  private content: string = "OpenHarmony"
-  private time: string = "今天 上午 10:35"
-
+  private content: string = "Introduction"
+  
   build() {
     Column() {
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
@@ -338,7 +337,7 @@ struct MessageBubble {
 ```
 @Component
 struct MessageBubble {
-  private content: string = "OpenHarmony"
+  private content: string = "Introduction"
   private time: string = "上午 10:35"
 
   build() {
@@ -368,7 +367,7 @@ struct MessageBubble {
           .fontSize(10)
           .lineHeight(13)
           .fontColor("#99182431")
-      }.width('100%').margin({ left: 12, right: 0 })
+      }.width('100%').margin({ left: 12, right: 24 })
     }
     .margin({left: 24, right: 24 })
     .backgroundColor('#87CEFA')  // 消息背景色，仅用于开发和测试 
@@ -386,9 +385,9 @@ struct MessageBubble {
 ```
 @Component
  struct MessageBubble {
-   private isReceived:boolean = false  // 通过标志位，判断是发送or接收场景，进而使用不同的样式
-   private content:string = "OpenHarmony"
-   private time:string = "今天 10:00"
+   private isReceived:boolean = true// 通过标志位，判断是发送or接收场景，进而使用不同的样式
+   private content:string = "Introduction"
+   private time:string = "今天 10:35"
 
    build() {
      Column() {
@@ -550,7 +549,7 @@ struct Conversation {
                  content: item.content,
                  time: item.time
                })
-           })
+           }})
          }
          .listDirection(Axis.Vertical)
          .edgeEffect(EdgeEffect.Spring)

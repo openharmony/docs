@@ -45,8 +45,8 @@ Grid(scroller?: Scroller)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>**说明：** <br/>设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。 |
-| rowsTemplate | string | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>**说明：** <br/>设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。 |
+| columnsTemplate | string | 设置当前网格布局列的数量或最小列宽值，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>‘repeat(auto-fit, 90px)’是设置最小列宽值为90，自动计算列数和实际列宽。<br/>**说明：** <br/>设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。 |
+| rowsTemplate | string | 设置当前网格布局行的数量或最小行高值，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>‘repeat(auto-fit, 90px)’是设置最小行高值为90，自动计算行数和实际行高。<br/>**说明：** <br/>设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。 |
 | columnsGap | [Length](ts-types.md#length) | 设置列与列的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | rowsGap | [Length](ts-types.md#length) | 设置行与行的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
@@ -55,8 +55,8 @@ Grid(scroller?: Scroller)
 | cachedCount | number                                   | 设置预加载的GridItem的数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>**说明：** <br>设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。<br/>[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的GridItem会被释放。<br/>设置为小于0的值时，按默认值显示。 |
 | editMode <sup>8+</sup>                   | boolean | 设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。<br/>默认值：flase |
 | layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明) | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
-| maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大列数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大行数。<br/>默认值：Infinity<br/>**说明：** <br/>当maxCount小于minCount时，maxCount和minCount都按默认值处理。<br/>设置为小于0的值时，按默认值显示。 |
-| minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小列数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。<br/>默认值：1<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大列数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大行数。<br/>默认值：Infinity<br/>**说明：** <br/>当maxCount小于minCount时，maxCount和minCount都按默认值处理。<br/>设置为小于1的值时，按默认值显示。 |
+| minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小列数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。<br/>默认值：1<br/>**说明：** <br/>设置为小于1的值时，按默认值显示。 |
 | cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：第一个元素的大小 |
 | multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false |
@@ -111,7 +111,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onScrollIndex(event: (first: number) => void) | 当前网格显示的起始位置item发生变化时触发。列表初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>Grid显示区域上第一个子组件的索引值有变化就会触发。 |
-| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。 |
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。<br/>由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽；如有长按和拖拽同时使用的需求可以使用通用拖拽事件。 |
 | onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
@@ -187,11 +187,12 @@ struct GridExample {
       .columnsGap(10)
       .rowsGap(10)
       .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.On)
       .onScrollIndex((first: number) => {
         console.info(first.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        return {totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4}
+        return {totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4}
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
@@ -277,6 +278,10 @@ struct GridExample {
         return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
       })
       .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
+        // isSuccess=false时，说明drop的位置在grid外部；insertIndex > length时，说明有新增元素的事件发生
+        if (!isSuccess || insertIndex >= this.numbers.length) {
+          return
+        }
         console.info('beixiang' + itemIndex + '', insertIndex + '') //itemIndex拖拽起始位置，insertIndex拖拽插入位置
         this.changeIndex(itemIndex, insertIndex)
       })
@@ -285,3 +290,16 @@ struct GridExample {
 }
 ```
 
+示例图：
+
+网格子组件开始拖拽：
+
+![gridDrag](figures/gridDrag.png)
+
+网格子组件拖拽过程中：
+
+![gridDrag](figures/gridDrag1.png)
+
+网格子组件1与子组件6拖拽交换位置后：
+
+![gridDrag](figures/gridDrag2.png)

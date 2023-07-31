@@ -97,7 +97,7 @@
           store.version = 3;
         }
 
-         // 这里执行数据库的增、删、改、查等操作
+         // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
 
        });
      }
@@ -151,7 +151,7 @@
         store.version = 3;
      }
    
-     // 这里执行数据库的增、删、改、查等操作
+     // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    
    });
    ```
@@ -160,7 +160,7 @@
    >
    > - 应用创建的数据库与其上下文（Context）有关，即使使用同样的数据库名称，但不同的应用上下文，会产生多个数据库，例如每个UIAbility都有各自的上下文。
    > 
-   > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，数据库文件相同的目录下，可以会产生以-wal和-shm结尾的临时文件，此时开发者希望移到数据库文件到其它地方使用可查看，需要同时移动这些临时文件。当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
+   > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，在与数据库文件相同的目录下可能会产生以-wal和-shm结尾的临时文件。此时若开发者希望移动数据库文件到其它地方使用查看，则需要同时移动这些临时文件，当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
 
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
      
@@ -252,6 +252,10 @@
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
 
+   > **说明：**
+   >
+   > 删除成功后，建议将数据库对象置为null。
+   
    Stage模型示例：
 
      
@@ -265,6 +269,7 @@
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
+         store = null;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
@@ -285,6 +290,7 @@
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
+     store = null;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```

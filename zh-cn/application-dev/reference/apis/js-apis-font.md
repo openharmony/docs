@@ -138,7 +138,7 @@ getFontByName(fontName: string): FontInfo;
 | ---------------- | ---------------------------- |
 | FontInfo         | 字体的详细信息                 |
 
-## FontInfo
+## FontInfo<sup>10+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -170,7 +170,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
+          this.fontInfo = font.getFontByName('Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)

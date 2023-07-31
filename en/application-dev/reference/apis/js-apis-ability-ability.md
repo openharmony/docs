@@ -13,6 +13,8 @@ The **Ability** module provides all level-2 module APIs for developers to export
 import ability from '@ohos.ability.ability';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name        | Type                | Description                                                        |

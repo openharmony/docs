@@ -336,15 +336,12 @@ reqPermissions() {
 ```
 
 ## user_grant权限预授权
-应用在申请`user_grant`类型的权限默认未授权，需要通过拉起弹框由用户确认是否授予该权限。对于一些预制应用，不希望出现弹窗申请`user_grant`类型的权限，例如系统相机应用需要使用麦克风` ohos.permission.MICROPHONE`等权限，需要对麦克风等权限进行预授权，可以通过预授权的方式完成`user_grant`类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`user_grant`类型权限授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`permissions`。
+
+user_grant权限可以通过预授权方式请求权限。预授权方式需要预置配置文件，[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`user_grant`类型权限授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`permissions`。
 
 - `bundleName`字段配置为应用的Bundle名称。
 - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 - `permissions`字段中`name`配置为需要预授权的`user_grant`类型的权限名；`permissions`字段中`userCancellable`表示为用户是否能够取消该预授权，配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
-
-> **说明**：
->
-> 当前仅支持预置应用配置该文件。
 
 ```json
 [

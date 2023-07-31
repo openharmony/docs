@@ -12,9 +12,11 @@ The **AbilityResult** module defines the result code and data returned when an a
 import ability from '@ohos.ability.ability';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name       | Readable   | Writable    | Type                | Mandatory| Description                                                        |
-| ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
-| resultCode    | Yes   | Yes     | number               | Yes  | Result code returned after the started ability is terminated.                               |
-| want   | Yes   | Yes     | [Want](./js-apis-app-ability-want.md)               | No  | Data returned after the started ability is terminated.|
+| Name       |  Type                | Mandatory| Description                                                        |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| resultCode  | number               | Yes  | Result code returned after the started ability is terminated.                               |
+| want  | [Want](./js-apis-app-ability-want.md)               | No  | Data returned after the started ability is terminated.|

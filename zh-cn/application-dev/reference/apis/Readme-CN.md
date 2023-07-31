@@ -1,4 +1,4 @@
-﻿# 接口
+# 接口
 
 - [开发说明](development-intro.md)
 
@@ -198,10 +198,11 @@
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.arkui.componentSnapshot (组件截图)](js-apis-arkui-componentSnapshot.md)
+  - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
-  - [@ohos.componentUtils (componentUtils)](js-apis-componentUtils.md)
+  - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.font (注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -211,7 +212,8 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.measure (文本计算)](js-apis-measure.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
-
+  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
+  
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-windowExtensionAbility.md)
@@ -314,12 +316,23 @@
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
+  - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
+  - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)
+  - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](js-apis-bluetooth-baseProfile.md)
+  - [@ohos.bluetooth.ble(蓝牙ble模块)(推荐)](js-apis-bluetooth-ble.md)
+  - [@ohos.bluetooth.connection(蓝牙connection模块)(推荐)](js-apis-bluetooth-connection.md)
+  - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)](js-apis-bluetooth-hfp.md)
+  - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](js-apis-bluetooth-hid.md)
+  - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](js-apis-bluetooth-pan.md)
+  - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
-  - [@ohos.bluetoothManager (蓝牙)(推荐)](js-apis-bluetoothManager.md)
+  - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -376,6 +389,7 @@
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
+  - [@ohos. deviceStatus.dragInteraction (拖拽)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
@@ -396,6 +410,7 @@
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.multimodalInput.shortKey(快捷键)](js-apis-shortKey.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
+  - [@ohos.resourceschedule.deviceStandby (设备待机模块)](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
@@ -432,6 +447,7 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
+  - [@ohos.enterprise.usbManager (USB管理)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
 
 - 语言基础类库

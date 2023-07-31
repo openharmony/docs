@@ -30,15 +30,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
 | searchButton<sup>10+</sup> | value: string,<br>option?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.              |
-| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.                          |
+| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.<br>Default value: **'#99182431'**  |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box.<br>Default value: **TextAlign.Start**   |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.                            |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy or cut is not allowed. |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.                                      |
-| cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.                                      |
-| fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.                                   |
-| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.                                              |
+| cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
+| fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.<br>Default value: **'#FF182431'**<br>**NOTE**<br>[Universal text attributes](ts-universal-attributes-text-style.md) **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are set in the **textFont** attribute.|
+| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: 1.5vp<br>color: '#007DFF'<br>} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 ## IconOptions<sup>10+</sup>

@@ -17,20 +17,20 @@ The AVSource module provides functions for constructing audio and video resource
 
 ### File
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used to construct audio and video resource objects.<br>File to include: \<multimedia/native_avsource.h>|
+| [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used to construct audio and video resource objects.<br>**File to include**: <multimedia/player_framework/native_avsource.h><br>**Library**: libnative_media_avsource.so| 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| \*[OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.|
-| \*[OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).|
-| [OH_AVSource_Destroy](#oh_avsource_destroy) (OH_AVSource \*source) | Destroys an **OH_AVSource** instance and clears internal resources. An instance can be destroyed only once.|
-| \*[OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) (OH_AVSource \*source) | Obtains the basic information about a media resource.|
-| \*[OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) (OH_AVSource \*source, uint32_t trackIndex) | Obtains the basic information about a track.|
+| \*[OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
+| \*[OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
+| [OH_AVSource_Destroy](#oh_avsource_destroy) (OH_AVSource \*source) | Destroys an **OH_AVSource** instance and clears internal resources. An instance can be destroyed only once.| 
+| \*[OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) (OH_AVSource \*source) | Obtains the basic information about a media resource.| 
+| \*[OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) (OH_AVSource \*source, uint32_t trackIndex) | Obtains the basic information about a track.| 
 
 
 ## Function Description
@@ -38,9 +38,9 @@ The AVSource module provides functions for constructing audio and video resource
 
 ### OH_AVSource_CreateWithFD()
 
-
+  
 ```
-OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size )
+OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 ```
 
 **Description**
@@ -55,11 +55,11 @@ If **offset** is not the start position of the file or **size** is not the file 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| fd | FD of a media resource file.|
-| offset | Position from which data is to read.|
-| size | File size, in bytes.|
+| fd | FD of a media resource file.| 
+| offset | Position from which data is to read.| 
+| size | File size, in bytes.| 
 
 **Returns**
 
@@ -72,9 +72,9 @@ Returns the pointer to an **OH_AVSource** instance.
 
 ### OH_AVSource_CreateWithURI()
 
-
+  
 ```
-OH_AVSource* OH_AVSource_CreateWithURI (char * uri)
+OH_AVSource* OH_AVSource_CreateWithURI (char *uri)
 ```
 
 **Description**
@@ -85,9 +85,9 @@ Create an **OH_AVSource** instance object based on a URI. You can release the in
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| uri | URI of the media resource.|
+| uri | URI of the media resource.| 
 
 **Returns**
 
@@ -100,9 +100,9 @@ Returns the pointer to an **OH_AVSource** instance.
 
 ### OH_AVSource_Destroy()
 
-
+  
 ```
-OH_AVErrCode OH_AVSource_Destroy (OH_AVSource * source)
+OH_AVErrCode OH_AVSource_Destroy (OH_AVSource *source)
 ```
 
 **Description**
@@ -117,9 +117,9 @@ The destroyed instance cannot be used until it is re-created. You are advised to
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.|
+| source | Pointer to an **OH_AVSource** instance.| 
 
 **Returns**
 
@@ -132,9 +132,9 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 ### OH_AVSource_GetSourceFormat()
 
-
+  
 ```
-OH_AVFormat* OH_AVSource_GetSourceFormat (OH_AVSource * source)
+OH_AVFormat* OH_AVSource_GetSourceFormat (OH_AVSource *source)
 ```
 
 **Description**
@@ -145,9 +145,9 @@ Obtains the basic information about a media resource.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.|
+| source | Pointer to an **OH_AVSource** instance.| 
 
 **Returns**
 
@@ -160,9 +160,9 @@ Returns the basic information obtained.
 
 ### OH_AVSource_GetTrackFormat()
 
-
+  
 ```
-OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource * source, uint32_t trackIndex )
+OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackIndex)
 ```
 
 **Description**
@@ -173,10 +173,10 @@ Obtains the basic information about a track.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance.|
-| trackIndex | Index of the track whose information is to be obtained.|
+| source | Pointer to an **OH_AVSource** instance.| 
+| trackIndex | Index of the track whose information is to be obtained.| 
 
 **Returns**
 

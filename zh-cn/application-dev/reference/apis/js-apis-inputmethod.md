@@ -1677,7 +1677,7 @@ try {
 
 ### off('insertText')<sup>10+</sup>
 
-off(type: 'insertText'): void
+off(type: 'insertText', callback?: (text: string) => void): void
 
 取消订阅输入法应用插入文本事件。
 
@@ -1685,13 +1685,18 @@ off(type: 'insertText'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 设置监听类型。<br/>- type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
+| callback | (text: string) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onInsertTextCallback = (text: string) => {
+    console.log(`Succeeded in subscribing insertText: ${text}`);
+};
+inputMethodController.off('insertText', onInsertTextCallback);
 inputMethodController.off('insertText');
 ```
 
@@ -1766,7 +1771,7 @@ try {
 ```
 ### off('deleteLeft')<sup>10+</sup>
 
-off(type: 'deleteLeft'): void
+off(type: 'deleteLeft', callback?: (length: number) => void): void
 
 取消订阅输入法应用向左删除文本事件。
 
@@ -1774,19 +1779,24 @@ off(type: 'deleteLeft'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示取消订阅输入法应用向左删除的事件监听。|
+| 参数名   | 类型                     | 必填 | 说明                                                         |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示取消订阅输入法应用向左删除的事件监听。 |
+| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onDeleteLeftCallback = (length: number) => {
+    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+};
+inputMethodController.off('deleteLeft', onDeleteLeftCallback);
 inputMethodController.off('deleteLeft');
 ```
 
 ### off('deleteRight')<sup>10+</sup>
 
-off(type: 'deleteRight'): void
+off(type: 'deleteRight', callback?: (length: number) => void): void
 
 取消订阅输入法应用向右删除文本事件。
 
@@ -1794,19 +1804,24 @@ off(type: 'deleteRight'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为`deleteRight`表示取消订阅输入法应用向右删除的事件监听。|
+| 参数名   | 类型                     | 必填 | 说明                                                         |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | 是   | 设置监听类型。<br/>- type为`deleteRight`表示取消订阅输入法应用向右删除的事件监听。 |
+| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onDeleteRightCallback = (length: number) => {
+    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+};
+inputMethodController.off('deleteRight', onDeleteRightCallback);
 inputMethodController.off('deleteRight');
 ```
 
 ### on('sendKeyboardStatus')<sup>10+</sup>
 
-on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => void): void
+on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => void): void
 
 订阅输入法应用发送键盘状态事件。使用callback异步回调。
 
@@ -1817,7 +1832,7 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 | 参数名   | 类型  | 必填 | 说明    |
 | -------- | ------ | ---- | ---- |
 | type     | string  | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示订阅输入法应用发送键盘状态事件监听。 |
-| callback | (keyBoardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
 
 **错误码：**
 
@@ -1831,8 +1846,8 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 
 ```js
 try {
-  inputMethodController.on('sendKeyboardStatus', (keyBoardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
+  inputMethodController.on('sendKeyboardStatus', (keyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
@@ -1841,7 +1856,7 @@ try {
 
 ### off('sendKeyboardStatus')<sup>10+</sup>
 
-off(type: 'sendKeyboardStatus'): void
+off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void
 
 取消订阅输入法应用发送键盘状态事件。
 
@@ -1849,13 +1864,18 @@ off(type: 'sendKeyboardStatus'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onSendKeyboardStatus = (keyboardStatus: KeyboardStatus) => {
+    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+};
+inputMethodController.off('sendKeyboardStatus', onSendKeyboardStatus);
 inputMethodController.off('sendKeyboardStatus');
 ```
 
@@ -1896,7 +1916,7 @@ try {
 
 ### off('sendFunctionKey')<sup>10+</sup>
 
-off(type: 'sendFunctionKey'): void
+off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): void
 
 取消订阅输入法应用发送FunctionKey事件。
 
@@ -1904,13 +1924,18 @@ off(type: 'sendFunctionKey'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                               | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onSendFunctionKey = (functionKey: FunctionKey) => {
+    console.log(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
+};
+inputMethodController.off('sendFunctionKey', onSendFunctionKey);
 inputMethodController.off('sendFunctionKey');
 ```
 
@@ -1951,7 +1976,7 @@ try {
 
 ### off('moveCursor')<sup>10+</sup>
 
-off(type: 'moveCursor'): void
+off(type: 'moveCursor', callback?: (direction: Direction) => void): void
 
 取消订阅输入法应用移动光标事件。
 
@@ -1962,10 +1987,15 @@ off(type: 'moveCursor'): void
 | 参数名  | 类型    | 必填 | 说明  |
 | ------ | ------ | ---- | ---- |
 | type   | string | 是   | 设置监听类型。<br/>- type为‘moveCursor’时表示取消订阅输入法应用发送移动光标事件监听。 |
+| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onMoveCursorCallback = (direction: Direction) => {
+    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+};
+inputMethodController.off('moveCursor', onMoveCursorCallback);
 inputMethodController.off('moveCursor');
 ```
 
@@ -2006,7 +2036,7 @@ try {
 
 ### off('handleExtendAction')<sup>10+</sup>
 
-off(type: 'handleExtendAction'): void
+off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 
 取消订阅输入法应用发送扩展操作事件。
 
@@ -2017,10 +2047,15 @@ off(type: 'handleExtendAction'): void
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ------ | ---- | ------- |
 | type   | string | 是   | 设置监听类型。<br/>- type为‘handleExtendAction’时表示取消订阅输入法应用发送扩展代码事件监听。 |
+| callback | (action: [ExtendAction](#extendaction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onHandleExtendActionCallback = (action: ExtendAction) => {
+    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+};
+inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
 inputMethodController.off('handleExtendAction');
 ```
 
@@ -2049,7 +2084,7 @@ inputMethodController.on('selectByRange', (range) => {
 
 ### off('selectByRange')<sup>10+</sup>
 
-off(type: 'selectByRange'): void
+off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 
 取消订阅输入法应用按范围选中文本事件。
 
@@ -2057,13 +2092,18 @@ off(type: 'selectByRange'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| 参数名   | 类型                              | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                            | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| callback | Callback&lt;[Range](#range10)&gt; | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onSelectByRangeCallback = (range: Range) => {
+    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+};
+inputMethodController.off('selectByRange', onSelectByRangeCallback);
 inputMethodController.off('selectByRange');
 ```
 
@@ -2092,7 +2132,7 @@ inputMethodController.on('selectByMovement', (movement) => {
 
 ### off('selectByMovement')<sup>10+</sup>
 
-off(type: 'selectByMovement'): void
+off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 
 取消订阅输入法应用按光标动作选中文本事件。
 
@@ -2100,13 +2140,18 @@ off(type: 'selectByMovement'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                               | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| callback | Callback&lt;[Movement](#movement10)> | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```js
+let onSelectByMovementCallback = (movement: Movement) => {
+    console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
+};
+inputMethodController.off('selectByMovement', onSelectByMovementCallback);
 inputMethodController.off('selectByMovement');
 ```
 

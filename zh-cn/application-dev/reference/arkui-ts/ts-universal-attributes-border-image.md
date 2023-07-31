@@ -8,22 +8,22 @@
 
 ## 属性
 
-| 名称         | 参数类型                                     | 描述                                      |
-| ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | [BorderImageOption](#borderimageoption对象说明) | 图片边框或者渐变色边框设置接口。<br/>该接口支持在ArkTS卡片中使用。 |
+| 名称          | 参数类型                                     | 描述                                     |
+| ----------- | ---------------------------------------- | -------------------------------------- |
+| borderImage | [BorderImageOption](#borderimageoption对象说明) | 图片边框或者渐变色边框设置接口。<br/>该接口支持在ArkTS卡片中使用。 |
 
 ## BorderImageOption对象说明
 
 该接口支持在ArkTS卡片中使用。
 
-| 名称         | 类型                                     | 描述                                      |
-| ---------- | ---------------------------------------- | --------------------------------------- |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。<br/>**说明：** 边框图源仅适用于容器组件，如Row、Column、Flex，在非容器组件上使用会失效。 |
-| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
-| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
-| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
-| repeat | [RepeatMode](#repeatmode枚举说明)                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
-| fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
+| 名称     | 类型                                       | 描述                                       |
+| ------ | ---------------------------------------- | ---------------------------------------- |
+| source | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。<br/>**说明：**<br>边框图源仅适用于容器组件，如Row、Column、Flex，在非容器组件上使用会失效。 |
+| slice  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                    |
+| width  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                      |
+| outset | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                  |
+| repeat | [RepeatMode](#repeatmode枚举说明)            | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch  |
+| fill   | boolean                                  | 设置边框图片中心填充。<br/>默认值：false                |
 
 ## RepeatMode枚举说明
 

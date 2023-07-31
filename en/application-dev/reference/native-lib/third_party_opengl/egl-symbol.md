@@ -1,4 +1,4 @@
-# EGL Symbols Exported from Native APIs
+# EGL Symbols Exported
 
 |Type|Symbol|Remarks|
 | --- | --- | --- |

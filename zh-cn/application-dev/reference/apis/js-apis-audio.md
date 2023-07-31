@@ -533,7 +533,6 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
 | CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
-| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | 超声波。<br/>此接口为系统接口。|
 ## StreamUsage
 
 枚举，音频流使用类型。
@@ -693,12 +692,10 @@ async function createTonePlayerBefore(){
 
 音频渲染器选项信息。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
 | 名称         | 类型                                     | 必填  | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---------------- |
-| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。 |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Renderer |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Renderer |
 | privacyType<sup>10+</sup> | [AudioPrivacyType](#audioprivacytype) | 否 | 表示音频流是否可以被其他应用录制，默认值为0。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
 ## AudioPrivacyType<sup>10+</sup><a name="audioprivacytype"></a>
@@ -832,15 +829,13 @@ async function createTonePlayerBefore(){
 
 枚举，音源类型。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
 | 名称                                         |  值     | 说明                   |
 | :------------------------------------------- | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
-| SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
-| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。        |
+| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
+| SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。 |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
 
@@ -854,7 +849,7 @@ async function createTonePlayerBefore(){
 
 ## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
 
-待录制播放音频流的筛选信息。
+待录制的播放音频流的筛选信息。
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
@@ -3048,7 +3043,7 @@ isVolumeUnadjustable(): boolean
 **示例：**
 
 ```js
-bool volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+let volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
@@ -3495,7 +3490,7 @@ async function getCurrentAudioCapturerInfoArray(){
 
 ### on('audioRendererChange')<sup>9+</sup>
 
-on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
+on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
 监听音频渲染器更改事件。
 
@@ -3545,7 +3540,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ### off('audioRendererChange')<sup>9+</sup>
 
-off(type: "audioRendererChange"): void
+off(type: 'audioRendererChange'): void
 
 取消监听音频渲染器更改事件。
 
@@ -3574,7 +3569,7 @@ console.info('######### RendererChange Off is called #########');
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
-on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
+on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
 监听音频采集器更改事件。
 
@@ -3623,7 +3618,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ### off('audioCapturerChange')<sup>9+</sup>
 
-off(type: "audioCapturerChange"): void;
+off(type: 'audioCapturerChange'): void;
 
 取消监听音频采集器更改事件。
 
@@ -5762,13 +5757,13 @@ audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
     console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-    console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-    console.info(`DeviceInfo name: ${descriptor.name}`);
-    console.info(`DeviceInfo address: ${descriptor.address}`);
-    console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo.name}`);
+    console.info(`DeviceInfo address: ${deviceInfo.address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
   }
 });
 ```
@@ -5791,13 +5786,13 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 ```js
 audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
   console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-  console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-  console.info(`DeviceInfo name: ${descriptor.name}`);
-  console.info(`DeviceInfo address: ${descriptor.address}`);
-  console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo.name}`);
+  console.info(`DeviceInfo address: ${deviceInfo.address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
 }).catch((err) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
@@ -5902,7 +5897,7 @@ async function onAudioInterrupt(){
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -5949,7 +5944,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 
@@ -6045,7 +6040,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 **示例：**
 
 ```js
-audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
   if (err) {
     console.error(`Subscribes output device change event callback Fail: ${err}`);
   } else {
@@ -6077,7 +6072,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 **示例：**
 
 ```js
-audioRenderer.off('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
   if (err) {
     console.error(`Unsubscribes output device change event callback Fail: ${err}`);
   } else {
@@ -6684,10 +6679,38 @@ async function onAudioInterrupt(){
 }
 ```
 
+### off('audioInterrupt')<sup>10+</sup>
+
+off(type: 'audioInterrupt'): void
+
+取消订阅音频中断事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt' |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```js
+audioCapturer.off('audioInterrupt');
+```
+
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -6733,7 +6756,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
+on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值。
 

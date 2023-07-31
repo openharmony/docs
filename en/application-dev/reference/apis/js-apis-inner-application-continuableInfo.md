@@ -13,6 +13,8 @@ The **ContinuableInfo** module provides the mission continuation information to 
 import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name      | Type  | Readable  | Writable  | Description     |

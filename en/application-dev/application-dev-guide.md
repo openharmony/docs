@@ -25,6 +25,7 @@ All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
 
+- [ArkTS Common Library](arkts-utils/arkts-commonlibrary-overview.md)
 - [Web](web/web-component-overview.md)
 - [Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)

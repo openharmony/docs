@@ -2,7 +2,7 @@
 
 在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。
 
-对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应picker的save()接口并传入对应的saveOptions来实现。此类接口不需要申请任何权限。
+对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
 
 save接口会将文件保存在文件管理器，而不是图库。
 
@@ -11,7 +11,7 @@ save接口会将文件保存在文件管理器，而不是图库。
 
 本例展示了从图库中选择一张图片，保存到文件管理器的示例代码。
 
-1. 导入[选择器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)、[文件管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[相册管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md)、[数据共享谓词](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-dataSharePredicates.md)模块。
+1. 导入[选择器](../reference/apis/js-apis-file-picker.md)、[文件管理](../reference/apis/js-apis-file-fs.md)、[相册管理](../reference/apis/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
 
    ```ts
    import picker from '@ohos.file.picker';

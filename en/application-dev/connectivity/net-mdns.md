@@ -94,7 +94,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 
 1. Connect the device to the Wi-Fi network.
 2. Import the **mdns** namespace from **@ohos.net.mdns**.
-3. Create a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
+3. Creates a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
 4. Subscribe to mDNS service discovery status changes.
 5. Enable discovery of mDNS services on the LAN.
 6. Stop searching for mDNS services on the LAN.
@@ -115,20 +115,6 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
-// Create a LocalService object.
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
 
 // Create a DiscoveryService object, which is used to discover mDNS services of the specified type.
 let serviceType = "_print._tcp";

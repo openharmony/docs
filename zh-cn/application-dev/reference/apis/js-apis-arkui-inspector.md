@@ -48,7 +48,7 @@ let listener = inspector.createComponentObserver('COMPONENT_ID'); //监听id为C
 
 on(type: 'layout', callback: () => void): void
 
-通过句柄向对应的查询条件注册回调，当组件布局或者绘制完成时会触发该回调。
+通过句柄向对应的查询条件注册回调，当组件布局完成时会触发该回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ on(type: 'layout', callback: () => void): void
 
 off(type: 'layout', callback?: () => void): void
 
-通过句柄向对应的查询条件取消注册回调，当组件布局或者绘制完成时不在触发指定的回调。
+通过句柄向对应的查询条件取消注册回调，当组件布局完成时不在触发指定的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,8 +71,38 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'或‘draw’。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
 | callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+
+### on
+
+on(type: 'draw', callback: () => void): void
+
+通过句柄向对应的查询条件注册回调，当组件绘制完成时会触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
+| callback | void   | 是   | 监听layout或draw的回调。                                     |
+
+### off
+
+off(type: 'draw', callback?: () => void): void
+
+通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不在触发指定的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
+| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。 |
 
 **示例：**
 

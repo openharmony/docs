@@ -5,7 +5,7 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 > **说明：**
 >
 > 在进行功能开发前，请开发者查阅[相册管理模块开发概述](photoAccessHelper-overview.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到mgr的地方默认为使用相册管理模块开发概述中获取的对象，如未添加此段代码报mgr未定义的错误请自行添加。
+> 文档中使用到PhotoAccessHelper的地方默认为使用相册管理模块开发概述中获取的对象，如未添加此段代码报PhotoAccessHelper未定义的错误请自行添加。
 
 为了保证应用的运行效率，大部分photoAccessHelper调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis/js-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
@@ -41,7 +41,7 @@ try {
 
 ### 收藏图片和视频
 
-通过[favorite](../reference/apis/js-apis-photoAccessHelper.md#favorite)接口将图片或者视频设置收藏。
+通过[setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite)接口将图片或者视频设置收藏。
 
 **前提条件：**
 
@@ -53,8 +53,8 @@ try {
 **开发步骤：**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
-2. isFavorite参数设置为true，表示将会设置为收藏。
-3. 调用FileAsset.favorite接口设置收藏。
+2. favoriteState参数设置为true，表示将会设置为收藏。
+3. 调用FileAsset.setFavorite接口设置收藏。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -70,10 +70,10 @@ try {
   let photoFetchResult = await phAccessHelper.getAssets(fetchOptions);
   let fileAsset = await photoFetchResult.getFirstObject();
   console.info('getAssets fileAsset.displayName : ' + fileAsset.displayName);
-  let isFavorite = true;
-  await fileAsset.favorite(isFavorite);
+  let favoriteState = true;
+  await fileAsset.setFavorite(favoriteState);
 } catch (err) {
-  console.error('favorite failed with err: ' + err);
+  console.error('setFavorite failed with err: ' + err);
 }
 ```
 
@@ -121,7 +121,7 @@ try {
 
 ### 取消收藏图片或视频
 
-通过[favorite](../reference/apis/js-apis-photoAccessHelper.md#favorite)接口将图片或者视频取消收藏。
+通过[setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite)接口将图片或者视频取消收藏。
 
 **前提条件：**
 
@@ -133,8 +133,8 @@ try {
 **开发步骤：**
 
 1. [获取收藏夹中的图片和视频](#获取收藏夹中的图片和视频)。
-2. isFavorite参数设置为false。
-3. 调用FileAsset.favorite接口设置收藏。
+2. favoriteState参数设置为false。
+3. 调用FileAsset.setFavorite接口设置收藏。
 
 
 ```ts
@@ -154,12 +154,12 @@ try {
   let photoFetchResult = await album.getAssets(fetchOptions);
   let fileAsset = await photoFetchResult.getFirstObject();
   console.info('favorite album getAssets successfully, albumName: ' + fileAsset.displayName);
-  let isFavorite = false;
-  await fileAsset.favorite(isFavorite);
+  let favoriteState = false;
+  await fileAsset.setFavorite(favoriteState);
   photoFetchResult.close();
   albumFetchResult.close();
 } catch (err) {
-  console.error('favorite failed with err: ' + err);
+  console.error('setFavorite failed with err: ' + err);
 }
 ```
 

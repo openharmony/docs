@@ -18,11 +18,11 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 **参数：**
 
-| 参数名      | 参数类型                          | 必填 | 参数描述                                                     |
-| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| barPosition | BarPosition                       | 否   | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start           |
-| index       | number                            | 否   | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| controller  | [TabsController](#tabscontroller) | 否   | 设置Tabs控制器。                                             |
+| 参数名         | 参数类型                              | 必填   | 参数描述                                     |
+| ----------- | --------------------------------- | ---- | ---------------------------------------- |
+| barPosition | BarPosition                       | 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
+| index       | number                            | 否    | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
 
@@ -36,25 +36,25 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                       | 参数类型                                     | 描述                                       |
-| ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| vertical                 | boolean                                  | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
-| scrollable               | boolean                                  | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
-| barMode                  | BarMode                                  | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
-| barWidth                 | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
-| barHeight                | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。|
-| animationDuration        | number                                   | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：300 <br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
-| divider<sup>10+</sup>    | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
-| fadingEdge<sup>10+</sup> | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true          |
-| barOverlap<sup>10+</sup> | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false          |
-| barBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)           | 设置TabBar的背景颜色。<br />默认值：透明|
+| 名称                               | 参数类型                                     | 描述                                       |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| vertical                         | boolean                                  | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
+| scrollable                       | boolean                                  | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
+| barMode                          | BarMode                                  | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
+| barWidth                         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
+| barHeight                        | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。 |
+| animationDuration                | number                                   | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：300 <br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
+| divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
+| fadingEdge<sup>10+</sup>         | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true         |
+| barOverlap<sup>10+</sup>         | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
+| barBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置TabBar的背景颜色。<br />默认值：透明               |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
-| 名称          | 参数类型                                     | 必填   | 描述                                  |
-| ----------- | ---------------------------------------- | ---- | ----------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。                             |
-| color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431           |
+| 名称          | 参数类型                                     | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。                        |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431                |
 | startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 | endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 
@@ -97,6 +97,8 @@ changeIndex(value: number): void
 
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -160,3 +162,263 @@ struct TabsExample {
 ```
 
 ![tabs2](figures/tabs2.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsDivider1 {
+  private controller1: TabsController = new TabsController()
+  @State dividerColor: string  = 'red'
+  @State strokeWidth: number = 2
+  @State startMargin: number = 0
+  @State endMargin: number = 0
+  @State nullFlag: boolean = false
+
+  build() {
+    Column() {
+      Tabs({ controller: this.controller1 }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar('pink')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+        }.tabBar('yellow')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar('blue')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Red)
+        }.tabBar('red')
+      }
+      .vertical(true)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(70)
+      .barHeight(200)
+      .animationDuration(400)
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .height('200vp')
+      .margin({bottom: '12vp'})
+      .divider(this.nullFlag ? null :{
+                                       strokeWidth: this.strokeWidth,
+                                       color: this.dividerColor,
+                                       startMargin: this.startMargin,
+                                       endMargin: this.endMargin
+                                     })
+
+      Button('常规Divider').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.nullFlag = false,
+          this.strokeWidth = 2,
+          this.dividerColor = 'red',
+          this.startMargin = 0,
+          this.endMargin = 0
+        })
+      Button('空Divider').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.nullFlag = true
+        })
+      Button('颜色变为蓝色').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.dividerColor = 'blue'
+        })
+      Button('宽度增加').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.strokeWidth += 2
+        })
+      Button('宽度减小').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          if(this.strokeWidth > 2) {
+            this.strokeWidth -= 2
+          }
+        })
+      Button('上边距增加').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.startMargin += 2
+        })
+      Button('上边距减少').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          if (this.startMargin > 2) {
+            this.startMargin -= 2
+          }
+        })
+      Button('下边距增加').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          this.endMargin += 2
+        })
+      Button('下边距减少').width('100%').margin({bottom: '12vp'})
+        .onClick(() => {
+          if(this.endMargin > 2) {
+            this.endMargin -= 2
+          }
+        })
+    }.padding({top: '24vp', left: '24vp', right: '24vp'})
+  }
+}
+```
+
+![tabs3](figures/tabs3.gif)
+
+### 示例3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsOpaque {
+  @State message: string = 'Hello World'
+  private controller: TabsController = new TabsController()
+  private controller1: TabsController = new TabsController()
+  @State selfFadingFade: boolean = true;
+  build() {
+    Column() {
+      Button('子页签设置渐隐').width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          this.selfFadingFade = true;
+        })
+      Button('子页签设置不渐隐').width('100%').margin({bottom: '12vp'})
+        .onClick((event: ClickEvent) => {
+          this.selfFadingFade = false;
+        })
+      Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar('pink')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+        }.tabBar('yellow')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar('blue')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+      }
+      .vertical(false).scrollable(true)
+      .barMode(BarMode.Scrollable)
+      .barHeight(80).animationDuration(400)
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .fadingEdge(this.selfFadingFade)
+      .height('30%').width('100%')
+      Tabs({ barPosition: BarPosition.Start, controller: this.controller1 }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar('pink')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+        }.tabBar('yellow')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar('blue')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar('green')
+      }
+      .vertical(true).scrollable(true)
+      .barMode(BarMode.Scrollable)
+      .barHeight(200)
+      .barWidth(80).animationDuration(400)
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .fadingEdge(this.selfFadingFade)
+      .height('30%').width('100%')
+    }
+    .padding({top: '24vp', left: '24vp', right: '24vp'})
+  }
+}
+```
+
+![tabs4](figures/tabs4.gif)
+
+### 示例4
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct barBackgroundColorTest {
+  private controller: TabsController = new TabsController()
+  @State barOverlap: boolean = true;
+  @State barBackgroundColor: string = '#88888888';
+
+  build() {
+    Column() {
+      Button("barOverlap变化").width('100%').margin({bottom: '12vp'})
+        .onClick((event:ClickEvent) =>{
+          if (this.barOverlap) {
+            this.barOverlap = false;
+          } else {
+            this.barOverlap = true;
+          }
+        })
+
+      Tabs({ barPosition: BarPosition.Start, index:0, controller: this.controller }) {
+        TabContent() {
+          Column() {
+            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
+            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
+          }.width('100%').width('100%').height('100%')
+          .backgroundColor(Color.Pink)
+        }
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "1"))
+        TabContent() {
+          Column() {
+            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
+            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
+          }.width('100%').width('100%').height('100%')
+          .backgroundColor(Color.Yellow)
+        }
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "2"))
+        TabContent() {
+          Column() {
+            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
+            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
+          }.width('100%').width('100%').height('100%')
+          .backgroundColor(Color.Green)
+        }
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "3"))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .height('60%')
+      .barOverlap(this.barOverlap)
+      .scrollable(true)
+      .animationDuration(10)
+      .barBackgroundColor(this.barBackgroundColor)
+    }
+    .height(500)
+    .padding({top: '24vp', left: '24vp', right: '24vp'})
+  }
+}
+```
+
+![tabs5](figures/tabs5.gif)

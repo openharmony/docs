@@ -14,121 +14,7 @@
 - limitations under the License.
 */
 
-zh-cn/device-dev/kernel/ @Austin23
-zh-cn/device-dev/website.md @Austin23
-zh-cn/device-dev/faqs/ @Austin23
-zh-cn/device-dev/porting/ @Austin23
-zh-cn/device-dev/security/ @Austin23
-zh-cn/device-dev/guide/ @duangavin123_admin
-zh-cn/device-dev/quick-start/ @li-yan339
-zh-cn/device-dev/driver/ @li-yan339
-zh-cn/device-dev/get-code/ @li-yan339
-zh-cn/device-dev/hpm-part/ @duangavin123_admin
-zh-cn/device-dev/reference/hdi-apis/ @li-yan339
-zh-cn/device-dev/quick-start/quickstart-standard-env-setup.md @li-yan339 @chenmudan
-zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md @li-yan339 @chenmudan
-zh-cn/device-dev/porting/porting-thirdparty-overview.md @Austin23 @chenmudan
-zh-cn/device-dev/porting/porting-thirdparty-makefile.md @Austin23 @chenmudan
-zh-cn/device-dev/porting/porting-thirdparty-cmake.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-all.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guide.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-product.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-zh-cn/device-dev/subsystems/subsystem.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-component.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-module.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-chip_solution.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-feature.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-syscap.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-FAQ.md  @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-graphics-layout-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-graphics-common-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-graphics-animation-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-camera-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-camera-photo-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-camera-record-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-camera-preview-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-video-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-video-play-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-multimedia-video-record-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-utils-overview.md @Austin23
-zh-cn/device-dev/subsystems/subsys-utils-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-utils-faqs.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-envbuild.md @Austin23 
-zh-cn/device-dev/subsystems/subsys-aiframework-tech-codemanage.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-tech-name.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-tech-interface.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-devguide-sdk.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-devguide-plugin.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-devguide-conf.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-demo-sdk.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-demo-plugin.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-demo-conf.md @Austin23
-zh-cn/device-dev/subsystems/subsys-data-relational-database.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-data-relational-database-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-data-relational-database-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-data-storage.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-data-storage-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-data-storage-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @Austin23
-zh-cn/device-dev/subsystems/subsys-sensor-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-sensor-demo.md @Austin23
-zh-cn/device-dev/subsystems/subsys-usbservice-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-usbservice-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-usbservice-demo.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-application-framework-overview.md @Austin23
-zh-cn/device-dev/subsystems/subsys-application-framework-envbuild.md @Austin23
-zh-cn/device-dev/subsystems/subsys-application-framework-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-application-framework-demo.md @Austin23
-zh-cn/device-dev/subsystems/subsys-ota-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-tel-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-tel-guide.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-sigverify.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-rightmanagement.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-communicationverify.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-devicesecuritylevel.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-security-huks-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-appspawn.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-bootstrap.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-faqs.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-cfg.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-jobs.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-plugin.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-sandbox.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-service.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-overview.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-ref.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot.md @Austin23
-zh-cn/device-dev/subsystems/subsys-testguide-test.md @Austin23
-zh-cn/device-dev/subsystems/subsys-dfx-overview.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hilog-rich.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hilog-lite.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hitrace.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hicollie.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-listening.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-query.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-tool.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hidumper.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-hichecker.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-dfx-faultlogger.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-toolchain-bytrace-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-toolchain-hiperf.md @Austin23
-zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
+zh-cn/device-dev/ @li-yan339 @zengyawen
 zh-cn/application-dev/quick-start/arkts-get-started.md @HelloCrease @tomatodevboy @s10021109
 zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @HelloCrease @tomatodevboy @s10021109
 zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @HelloCrease @tomatodevboy @s10021109
@@ -371,7 +257,7 @@ zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @nianCode @z
 zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-document.md @panqinxu @zengyawen @bubble_mao @jinhaihw
-zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
+zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @jayleehw @RayShih @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-environment.md @panqinxu @zengyawen @bubble_mao @jinhaihw
@@ -517,7 +403,7 @@ zh-cn/application-dev/reference/apis/js-apis-webSocket.md @zhang-hai-feng @zengy
 zh-cn/application-dev/reference/apis/js-apis-wifi.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
+zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @chenmingJay @ningningW @nan-xiansen @iceice1001
@@ -557,7 +443,7 @@ zh-cn/application-dev/reference/apis/js-apis-bundleManager-remoteAbilityInfo.md 
 zh-cn/application-dev/reference/apis/js-apis-bundleManager-shortcutInfo.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleManager.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-bundleMonitor.md @shuaytao @RayShih @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
+zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md @jayleehw @RayShih @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @yuanxinying @ningningW @cococoler @alien0208

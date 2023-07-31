@@ -56,6 +56,7 @@
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
   - [mDNS Error Codes](errorcode-net-mdns.md)
+  - [Traffic Management Error Codes](errorcode-net-statistics.md)
 - Connectivity
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)  

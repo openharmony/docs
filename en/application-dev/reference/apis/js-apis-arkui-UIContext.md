@@ -33,6 +33,45 @@ Obtains a **Font** object.
 ```ts
 uiContext.getFont();
 ```
+### getComponentUtils
+
+getComponentUtils(): ComponentUtils
+
+Obtains the **ComponentUtils** object.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type | Description         |
+| ----- | ----------------- |
+| [ComponentUtils](#componentutils) | **ComponentUtils** object.|
+
+**Example**
+
+```ts
+uiContext.getComponentUtils();
+```
+
+### getUIInspector
+
+getUIInspector(): UIInspector
+
+Obtains the **UIInspector** object.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type | Description         |
+| ----- | ----------------- |
+| [UInspector](#uiinspector) | **UIInspector** object.|
+
+**Example**
+
+```ts
+uiContext.getUIInspector();
+```
 
 ### getMediaQuery
 
@@ -181,7 +220,7 @@ Shows an alert dialog box.
 
 | Name   | Type | Description|
 | ---- | --------------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Defines and displays the **\<AlertDialog>** component.|
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Defines and displays the **\<AlertDialog>** component.|
 
 **Example**
 
@@ -217,13 +256,13 @@ Defines and shows the action sheet.
 
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | Yes    |  Title of the dialog box.|
-| message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | Yes    | Content of the dialog box. |
+| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
+| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
 | autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
-| confirm    | {<br>value:&nbsp;[ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
-| cancel     | ()&nbsp;=&gt;&nbsp;void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
+| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
+| cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
 | alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx:&nbsp;[Length](../arkui-ts/ts-types.md#length),<br>dy:&nbsp;[Length](../arkui-ts/ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx:&nbsp;0,<br>dy:&nbsp;0<br>} |
+| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
 | sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 
 **SheetInfo parameters**
@@ -369,7 +408,7 @@ Shows a text picker in the given settings.
 
 | Name| Type| Mandatory|  Description|
 | -------- | -------- | -------- |  -------- |
-| range | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
+| range | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
 | selected | number | No|  Index of the selected item.<br>Default value: **0**|
 | value       | string           | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
 | defaultPickerItemHeight | number \| string | No| Height of the picker item.|
@@ -488,6 +527,69 @@ font.registerFont({
   familyName: 'medium',
   familySrc: '/font/medium.ttf'
 });
+```
+## ComponentUtils
+
+In the following API examples, you must first use [getComponentUtils()](#getcomponentutils) in **UIContext** to obtain a **ComponentUtils** instance, and then call the APIs using the obtained instance.
+
+### getRectangleById
+
+getRectangleById(key: string): ComponentInfo
+
+Obtains the size, position, translation, scaling, rotation, and affine matrix information of the specified component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| key    | string | Yes  | Unique component ID.|
+
+**Return value**
+
+| Type                                                    | Description                                            |
+| -------------------------------------------------------- | ------------------------------------------------ |
+| [ComponentInfo](js-apis-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
+
+**Example**
+
+```ts
+let componentUtils = uiContext.getComponentUtils();
+let modePosition = componentUtils.getRectangleById("onClick");
+let localOffsetWidth = modePosition.size.width;
+let localOffsetHeight = modePosition.size.height;
+```
+
+## UIInspector
+
+In the following API examples, you must first use [getUIInspector()](#getuiinspector) in **UIContext** to obtain a **UIInspector** instance, and then call the APIs using the obtained instance.
+
+### createComponentObserver
+
+createComponentObserver(id: string): ComponentObserver
+
+Creates an observer for the specified component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                         | Mandatory  | Description         |
+| ------- | --------------------------- | ---- | ----------- |
+| id | string | Yes   | Component ID.|
+
+**Return value**
+
+| Type                                   | Description                                              |
+| --------------------------------------- | -------------------------------------------------- |
+| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register and unregister listeners for completion of component layout or drawing.|
+
+**Example**
+
+```ts
+let inspector = uiContext.getUIInspector();
+let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
 
 ## MediaQuery

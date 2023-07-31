@@ -60,33 +60,51 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name              | Type                                                    | Description                                                        |
 | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | value              | number                                                       | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used. Invalid values do not take effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Background color of the progress indicator. Since API version 10, this attribute can be set to **LinearGradient** for the **Ring** style.<br>Default value (API version 9): **'\#ff007dff'**<br>Default value (API version 10):<br>- Capsule: **'\#33006cde'**<br>- Ring: starting point: **'\#ff3b61f7'**, ending point: **'\#ff6591bf'**<br>- Other styles: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets, except that **LinearGradient** is not supported.|
+| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Background color of the progress indicator.<br>Since API version 10, this attribute can be set to **LinearGradient** for the **Ring** style.<br>Default value (API version 9): **'\#ff007dff'**<br>Default value (API version 10):<br>- Capsule: **'\#33006cde'**<br>- Ring: starting point: **'\#ff3b61f7'**, ending point: **'\#ff6591bf'**<br>- Other styles: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets, except that **LinearGradient** is not supported.|
 | backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the progress indicator.<br>Default value (API version 9): **'\#19182431'**<br>Default value (API version 10):<br>- Capsule: **'\#33ffffff'**<br>- Ring: **'\#08182431'**<br>- Other styles: **'\#19182431'**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the progress indicator instead of the entire **\<Progress>** component.|
-| style<sup>8+</sup> | [ProgressStyleOptions](#progressstyleoptions) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) | Component style. Since API version 10, this attribute can be set to **CapsuleStyleOptions** or **RingStyleOptions**.<br>- **CapsuleStyleOptions** is available for the **Capsule** style.<br>- **RingStyleOptions** is available for the **Ring** style.<br>- **ProgressStyleOptions** is available for other styles.<br>Since API version 9, this API is supported in ArkTS widgets, except that **CapsuleStyleOptions** and **RingStyleOptions** are not supported.|
+| style<sup>8+</sup> | [ProgressStyleOptions](#progressstyleoptions) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) \| [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10) \| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10) \| [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | Component style.<br>Since API version 10, the following types are supported:<br>- **CapsuleStyleOptions**: capsule style.<br>- **RingStyleOptions**: ring style.<br>- **LinearStyleOptions**: linear style.<br>- **ScaleRingStyleOptions**: determinate ring style.<br>- **EclipseStyleOptions**: eclipse style.<br>- **ProgressStyleOptions**: basic style.<br>Since API version 9, this API is supported in ArkTS widgets, but only the **ProgressStyleOptions** type is available.|
 
 ## ProgressStyleOptions
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0Vp**                                           |
+| strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
 | scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
-| scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0Vp**|
+| scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
 
 ## CapsuleStyleOptions<sup>10+</sup>
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | No| Border color.<br>Default value: **'\#33006cde'**|
-| borderWidth | [Length](ts-types.md#length) | No| Border width. It cannot be set in percentage.<br>Default value: **1 Vp**|
+| borderWidth | [Length](ts-types.md#length) | No| Border width. It cannot be set in percentage.<br>Default value: **1vp**|
 | content | string | No| Text content, which can be customized .|
-| font | [Font](ts-types.md#font) | No| Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12Fp**<br>- Other attributes: following the settings of the **\<Text>** component.|
+| font | [Font](ts-types.md#font) | No| Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **\<Text>** component.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br>Default value: **'\#ff182431'**|
 | enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+| showDefaultPercentage | boolean | No| Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false**|
 
 ## RingStyleOptions<sup>10+</sup>
 | Name          | Type                     | Mandatory| Description                                                                                       |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage. A value greater than or equal to the radius evaluates to half of the radius.<br>Default value: **4Vp**|
+| strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage. A value greater than or equal to the radius evaluates to half of the radius.<br>Default value: **4.0vp**|
 | shadow        | boolean                      | No  | Whether to enable the shadow effect.<br>Default value: **false**                                                            |
-| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10) | No| Status of the progress indicator. When this parameter is set to **LOADING**, the **value** settings do not take effect.<br>Default value: **ProgressStatus.PROGRESSING**|
+| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10) | No| Status of the progress indicator. When this parameter is set to **LOADING**, the check update animation is played, and the **value** settings do not take effect. When the value changes from **LOADING** to **PROGRESSING**, the check update animation stops when it has reached the end state.<br>Default value: **ProgressStatus.PROGRESSING**|
+| enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+
+## LinearStyleOptions<sup>10+</sup>
+| Name          | Type                     | Mandatory| Description                                                                                       |
+| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**|
+| enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+
+## ScaleRingStyleOptions<sup>10+</sup>
+| Name         | Type                     | Mandatory| Description                                                                                       |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
+| scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
+| scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
+
+## EclipseStyleOptions<sup>10+</sup>
+No parameter available.
 
 ## ProgressStatus<sup>10+</sup>
 | Name                   | Description            |
@@ -99,7 +117,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-
+### Example 1
+This example shows the effect of the basic attributes for different types of progress indicators.
 ```ts
 // xxx.ets
 @Entry
@@ -159,3 +178,74 @@ struct ProgressExample {
 ```
 
 ![progress](figures/arkts-progress.png)
+
+### Example 2
+This example shows the effect of visual attributes of the ring style progress indicator.
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
+                                                              { color: Color.Orange, offset: 1.0 }])
+  build() {
+    Column({ space: 15 }) {
+      Text('Gradient Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 70, total: 100, type: ProgressType.Ring })
+        .width(100).style({ strokeWidth: 20 })
+        .color(this.gradientColor)
+
+      Text('Shadow').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 70, total: 100, type: ProgressType.Ring })
+        .width(120).color(Color.Orange)
+        .style({ strokeWidth: 20, shadow: true })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
+
+### Example 3
+This example shows the animation effect of the ring style progress indicator.
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
+                                                              { color: Color.Orange, offset: 1.0 }])
+  build() {
+    Column({ space: 15 }) {
+      Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 0, total: 100, type: ProgressType.Ring })
+        .width(100).color(Color.Blue)
+        .style({ strokeWidth: 20, status: ProgressStatus.LOADING })
+
+      Text('Scan Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Progress({ value: 30, total: 100, type: ProgressType.Ring })
+        .width(100).color(Color.Orange)
+        .style({ strokeWidth: 20, enableScanEffect: true })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
+
+### Example 4
+This example shows the effect of visual attributes of the capsule style progress indicator.
+```ts
+@Entry
+@Component
+struct ProgressExample {
+
+  build() {
+    Column({ space: 15 }) {
+      Row({ space: 40 }) {
+        Progress({ value: 100, total: 100,type: ProgressType.Capsule }).width(100).height(50)
+          .style({borderColor: Color.Blue, borderWidth: 1, content: 'Installing...',
+                  font: {size: 13, style: FontStyle.Normal}, fontColor: Color.Gray,
+                  enableScanEffect: false, showDefaultPercentage: false})
+      }
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)

@@ -1,5 +1,5 @@
 
-# HUKS Development
+# HUKS Development (ArkTS)
 
 ## Key Generation
 
@@ -18,7 +18,7 @@ Use [huks.generateKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-
 >
 > The key alias cannot exceed 64 bytes.
 
-**Sample code**
+**Sample Code**
 
 ```ts
 /*
@@ -106,7 +106,7 @@ Use [huks.importKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-hu
 2. Encapsulate the key material and key property set.<br>The key material must comply with [HUKS key material formats](./huks-appendix.md#key-material-formats). The **inData** value of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions) must be in the Uint8Array format. Encapsulate key properties in [HuksParam](../reference/apis/js-apis-huks.md#huksparam), and use a **HuksParam** array to assign values to the **properties** field. The key properties must contain [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose).
 3. Import the key.
 
-**Sample code**
+**Sample Code**
 
 ```ts
 /*
@@ -166,7 +166,7 @@ try {
 
 Check whether the key exists. If yes, the key is imported successfully.
 
-**Sample code**
+**Sample Code**
 
 ```ts
 import huks from '@ohos.security.huks';
@@ -247,7 +247,7 @@ The following example presents the development involving HUKS APIs (using the EC
 5. Import the encapsulated key material.
 6. Delete the key used for secure import.
 
-**Sample code**
+**Sample Code**
 
 ```ts
 /*
@@ -586,7 +586,7 @@ async function ImportWrappedKeyNormalTest() {
 
 Check whether the key exists. If yes, the key is imported successfully.
 
-**Sample code**
+**Sample Code**
 
 ```ts
 import huks from '@ohos.security.huks';
@@ -632,15 +632,9 @@ To ensure data confidentiality and integrity, you may need to encrypt or decrypt
 
 The HUKS operates data based on key sessions. The general process is as follows:
 
-1. (Mandatory) Use [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session.
-
-   You need to pass in the key alias and key operation parameters to initialize a key session, and obtain the session handle. The key operation parameters must contain the parameters required by the cipher algorithm, including the cipher algorithm, key size, key purpose, working mode, padding mode, hash mode, IV, nonce, and AAD. If access control is set for the key, other parameters are required. For details, see [Key Access Control](#key-access-control).
-
+1. (Mandatory) Use [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session.<br>You need to pass in the key alias and key operation parameters to initialize a key session, and obtain the session handle. The key operation parameters must contain the parameters required by the cipher algorithm, including the cipher algorithm, key size, key purpose, working mode, padding mode, hash mode, IV, nonce, and AAD. If access control is set for the key, other parameters are required. For details, see [Key Access Control](#key-access-control).
 2. (Optional) Use [huks.updateSession()](../reference/apis/js-apis-huks.md#huksupdatesession9) to pass in data by segment. Perform this step only if the data exceeds 100 KB or the cryptographic algorithm requires operations by data segment. Otherwise, skip this step.
-
-3. (Mandatory) Use [huks.finishSession()](../reference/apis/js-apis-huks.md#huksfinishsession9) to complete the key session operation.
-
-   Pass in the last data segment and complete the key session operation. If an error occurs during the process or the data passed in is not required, use [huks.abortSession()](../reference/apis/js-apis-huks.md#huksabortsession9) to abort the session.
+3. (Mandatory) Use [huks.finishSession()](../reference/apis/js-apis-huks.md#huksfinishsession9) to complete the key session operation.<br>Pass in the last data segment and complete the key session operation. If an error occurs during the process or the data passed in is not required, use [huks.abortSession()](../reference/apis/js-apis-huks.md#huksabortsession9) to abort the session.
 
 ### Encryption and Decryption
 
@@ -857,28 +851,6 @@ struct Index {
 
       Row() {
         TextInput({placeholder: 'Encrypt 123456 by default', controller: this.controller })
-          .placeholderColor(Color.Grey)
-          .placeholderFont({ size: 14, weight: 400 })
-          .caretColor(Color.Blue)
-          .width(400)
-          .height(40)
-          .margin(20)
-          .fontSize(14)
-          .fontColor(Color.Black)
-          .type(InputType.Normal)
-          .onChange((value: string) => {
-            This.message +='Plaintext entered: ' + value + '\n'
-            plainText = value
-          })
-          .margin({ top: 10 })
-      }
-
-      Row() {
-        Text('Encryption or decryption result') .fontSize(20).margin({ left: 2, top: 10 })
-      }
-
-      Row() {
-        TextInput({placeholder: 'Encryption and decryption result', controller: this.controller })
           .placeholderColor(Color.Grey)
           .placeholderFont({ size: 14, weight: 400 })
           .caretColor(Color.Blue)
@@ -1671,7 +1643,7 @@ In addition to user identity authentication, the HUKS provides the following mod
 - Invalidate the key when the screen lock password is cleared.<br>This mode takes effect only when a screen lock password has been set. If the screen lock password is cleared, the key becomes invalid permanently. The key will not be invalidated if the screen lock password is modified. This mode applies to user-related data protection or access based on screen lock passwords.
 - Invalidate the key when new biometric enrollments are added.<br>This mode takes effect only when at least one biometric feature (such as fingerprint) has been enrolled. The key becomes invalid permanently once a new biometric feature is enrolled. The key will not be invalidated if the biometric feature is deleted. This mode applies to scenarios, such as password-free login or payment.
 
-To ensure the validity of the user authentication result, the HUKS supports challenge verification. Before user identity authentication, obtain the challenge (in [HuksSessionHandle](../reference/apis/js-apis-huks.md#hukssessionhandle9) returned by [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9)) from the HUKS and pass in the challenge in [userIAM_userAuth.getAuthInstance](../reference/apis/js-apis-useriam-userauth.md#authinstance9). The challenge of the authentication token is then verified during key operations.
+To ensure the validity of the user authentication result, the HUKS supports challenge verification. Before user identity authentication, obtain the challenge (in [HuksSessionHandle](../reference/apis/js-apis-huks.md#hukssessionhandle9) returned by [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9)) from the HUKS and pass in the challenge in **userIAM_userAuth.getAuthInstance**. The challenge of the authentication token is then verified during key operations.
 
 **How to Develop**
 
@@ -1685,34 +1657,38 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 
 **Table 3** User authentication types
 
-| Name           | Value | Description                     |
-| ------------------------------- |---|------------------------ |
-| HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | Fingerprint authentication, which can be enabled with facial authentication and PIN authentication at the same time. |
-| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication, whch can be enabled with fingerprint authentication and PIN authentication at the same time.|
-| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication, which can be enabled with fingerprint authentication and facial authenticationat the same time.|
+| Name                            | Value  | Description                                                  |
+| ------------------------------- | ------ | ------------------------------------------------------------ |
+| HUKS_USER_AUTH_TYPE_FINGERPRINT | 0x0001 | Fingerprint authentication, which can be enabled with facial authentication and PIN authentication at the same time. |
+| HUKS_USER_AUTH_TYPE_FACE        | 0x0002 | Facial authentication, whch can be enabled with fingerprint authentication and PIN authentication at the same time. |
+| HUKS_USER_AUTH_TYPE_PIN         | 0x0004 | PIN authentication, which can be enabled with fingerprint authentication and facial authenticationat the same time. |
+
 
 **Table 4** Secure access types
-| Name                                   | Value  | Description            |
-| --------------------------------------- | ---- | ------------------------------------------------ |
-| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | Invalidates the key after the screen lock password is cleared.      |
-| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication.|
+
+| Name                                    | Value | Description                                                  |
+| --------------------------------------- | ----- | ------------------------------------------------------------ |
+| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1     | Invalidates the key after the screen lock password is cleared. |
+| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2     | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication. |
+
 
 **Table 5** Challenge types
-| Name                           | Value  | Description                       |
-| ------------------------------- | ---- | ------------------------------ |
-| HUKS_CHALLENGE_TYPE_NORMAL | 0    | Normal challenge, which requires an independent user authentication for each use of the key.|
-| HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | Custom challenge, which supports only one user authentication for multiple keys.|
-| HUKS_CHALLENGE_TYPE_NONE         | 2    | No challenge is required during user authentication.|
+
+| Name                       | Value | Description                                                  |
+| -------------------------- | ----- | ------------------------------------------------------------ |
+| HUKS_CHALLENGE_TYPE_NORMAL | 0     | Normal challenge, which requires an independent user authentication for each use of the key. |
+| HUKS_CHALLENGE_TYPE_CUSTOM | 1     | Custom challenge, which supports only one user authentication for multiple keys. |
+| HUKS_CHALLENGE_TYPE_NONE   | 2     | No challenge is required during user authentication.         |
+
 
 > **NOTICE**
 >
-    > - The three challenge types are mutually exclusive.
-> - If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
+> If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
 
 To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.
+        
 
 **Table 6** APIs for using a key
-
 | API                     | Description                |
 | -------------------------------------- | ----------------------------|
 |initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| Initializes the key session and obtains the challenge.|
@@ -2090,23 +2066,23 @@ To use a key, initialize the key session, and determine whether a challenge is r
 
 ### Refined User Identity Authentication
 
-As an extension of the Key Access Control, the refined access control allows secondary user identity authentication (biometric authentication and lock screen password) to be performed for key access in one or more scenarios, such as encryption, decryption, signing, signature verification, key agreement, and key derivation. For example, a service needs to use a HUKS key to encrypt the account password information. In this scenario, identity authentication is not required in encryption but required in decryption. To achieve this purpose, you can use the refined user identity authentication feature provided by the HUKS.
+As an extension to [Key Access Control](#key-access-control), the refined access control allows secondary user identity authentication (biometric authentication and lock screen password) to be performed for key access in one or more scenarios, such as encryption, decryption, signing, signature verification, key agreement, and key derivation. For example, a service needs to use a HUKS key to encrypt the account password information. In this scenario, identity authentication is not required in encryption but required in decryption. To achieve this purpose, you can use the refined user identity authentication feature provided by the HUKS.
 
 **How to Develop**
 
-1. Specify [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) in key generation to allow user identity authentication to be performed when a specific algorithm is used.
+1. Specify [HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag) in key generation to allow refined user identity authentication to be performed when a specific algorithm is used.
 2. The **HUKS_TAG_KEY_AUTH_PURPOSE** does not need to be specified for the key usage process. The development process is the same as that of the user identity authentication process.
 
 **Available APIs**
 
-You can use the [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) tag to specify the scenarios, for which the refined user identity authentication is performed. The value range of this tag is [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg).
+You can use the [HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag) tag to specify the scenarios, for which the refined user identity authentication is performed. The value range of this tag is [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg).
 
 **Table 7** HUKS_TAG_KEY_AUTH_PURPOSE
 | Name                     | Description                |
 | -------------------------------------- | ----------------------------|
 |HUKS_TAG_KEY_AUTH_PURPOSE| Purpose of the user identity authentication, that is, perform the user identity authentication when a specific algorithm is used.|
 
-**NOTE**
+**NOTICE**
 
 - If [**HuksUserAuthType**](../reference/apis/js-apis-huks.md#huksuserauthtype9) is not specified, no user identity authentication is performed by default. In this case, the setting of **HUKS_TAG_KEY_AUTH_PURPOSE** is invalid by default. If **HuksUserAuthType** is specified and **HUKS_TAG_KEY_AUTH_PURPOSE** is not specified, user identity authentication will still be performed by default before the key is used with the algorithm that is specified in the key generation process.
 - If the AES or SM4 symmetric algorithm is used for encryption and decryption, only the CBC mode supports refined user identity authentication.
@@ -2726,8 +2702,9 @@ async function AttestKeyTest() {
 
 **security.huks.d.ts** is not imported. To solve the problem, add **import huks from '@ohos.security.huks'**.
 
+
+
 ### Property 'finishSession' does not exist on type 'typeof huks'. Did you mean 'finish'?
 
-   **finishSession()** is supported from API version 9. Update the SDK version or use the latest **security.huks.d.ts** file.
-
+**finishSession()** is supported from API version 9. Update the SDK version or use the latest **security.huks.d.ts** file.
 

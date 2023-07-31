@@ -5,5 +5,5 @@ EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG
 
 ## **Symbols Exported from the NAPI Library**
 
-[EGL Symbols Exported fom Native APIs](egl-symbol.md)
+[EGL Symbols Exported](egl-symbol.md)
 

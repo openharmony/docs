@@ -40,7 +40,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                                 |
 | name     | string                                           | 是   | Preferences实例的名称。                                      |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误码。 |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。 |
 
 **示例：**
 
@@ -159,15 +159,166 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.getPreferences<sup>10+</sup>
+
+getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Preferences&gt;): void
+
+获取Preferences实例，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                                                                                                                                                           |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context  | Context                                       | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options  | [Options](#options10)                              | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。                                                                                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid.     |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+let preferences = null;
+
+try {
+    data_preferences.getPreferences(context, {name: 'mystore'}, function (err, val) {
+        if (err) {
+	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+	        return;
+	    }
+	    preferences = val;
+	    console.info("Succeeded in getting preferences.");
+	})
+} catch (err) {
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let preferences = null;
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, val) {
+                if (err) {
+                    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                preferences = val;
+                console.info("Succeeded in getting preferences.");
+            })
+        } catch (err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+## data_preferences.getPreferences<sup>10+</sup>
+
+getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
+
+获取Preferences实例，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
+| ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+
+**返回值：**
+
+| 类型                                    | 说明                               |
+| --------------------------------------- | ---------------------------------- |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid.     |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let preferences = null;
+try {
+    let promise = data_preferences.getPreferences(context, {name: 'mystore'});
+    promise.then((object) => {
+        preferences = object;
+        console.info("Succeeded in getting preferences.");
+    }).catch((err) => {
+        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+    })
+} catch(err) {
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let preferences = null;
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'});
+            promise.then((object) => {
+                preferences = object;
+                console.info("Succeeded in getting preferences.");
+            }).catch((err) => {
+                console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+
 ## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -177,7 +328,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -235,11 +386,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
-
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -306,23 +455,33 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache
+## data_preferences.deletePreferences<sup>10+</sup>
 
-removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
+deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移除指定的Preferences实例，使用callback异步回调。
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填 | 说明                                                 |
-| -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
-| name     | string                                | 是   | Preferences实例的名称。                              |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
+| 参数名   | 类型                      | 必填 | 说明                                                                                                                                                                           |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options  | [Options](#options10)          | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。                                                                                                                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                           |
+| -------- | ---------------------------------- |
+| 15500010 | Failed to delete preferences file. |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid. |
 
 **示例：**
 
@@ -333,6 +492,146 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
+try {
+    data_preferences.deletePreferences(context, {name: 'mystore'}, function (err) {
+        if (err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            return;
+        }
+        console.info("Succeeded in deleting preferences." );
+    })
+} catch (err) {
+    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.deletePreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err) {
+                if (err) {
+                    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in deleting preferences." );
+            })
+        } catch (err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+
+## data_preferences.deletePreferences<sup>10+</sup>
+
+deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
+
+从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
+| ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                           |
+| -------- | ---------------------------------- |
+| 15500010 | Failed to delete preferences file. |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid. |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+try {
+    let promise = data_preferences.deletePreferences(context, {name: 'mystore'});
+    promise.then(() => {
+        console.info("Succeeded in deleting preferences.");
+    }).catch((err) => {
+        console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+    })
+} catch(err) {
+    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try{
+            let promise = data_preferences.deletePreferences(this.context, {name: 'mystore', dataGroupId:'myId'});
+            promise.then(() => {
+                console.info("Succeeded in deleting preferences.");
+            }).catch((err) => {
+                console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+
+## data_preferences.removePreferencesFromCache
+
+removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
+
+从缓存中移出指定的Preferences实例，使用callback异步回调。
+
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                                 |
+| -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
+| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
+| name     | string                                | 是   | Preferences实例的名称。                              |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
 try {
     data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
@@ -366,16 +665,17 @@ class EntryAbility extends UIAbility {
         }
     }
 }
-
 ```
 
 ## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移除指定的Preferences实例，使用Promise异步回调。
+从缓存中移出指定的Preferences实例，使用Promise异步回调。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -400,7 +700,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
 	promise.then(() => {
@@ -438,9 +737,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-从缓存中移除指定的Preferences实例，此为同步接口。
+从缓存中移出指定的Preferences实例，此为同步接口。
 
-调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -459,7 +760,6 @@ FA模型示例：
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-
 try {
     data_preferences.removePreferencesFromCacheSync(context, 'mystore');
 } catch(err) {
@@ -483,6 +783,164 @@ class EntryAbility extends UIAbility {
 }
 ```
 
+## data_preferences.removePreferencesFromCache<sup>10+</sup>
+
+removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
+
+从缓存中移出指定的Preferences实例，使用callback异步回调。
+
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                                                                                                                                           |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options  | [Options](#options10)          | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。                                                                                                                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid.     |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+try {
+    data_preferences.removePreferencesFromCache(context, {name: 'mystore'}, function (err) {
+        if (err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            return;
+        }
+        console.info("Succeeded in removing preferences.");
+    })
+} catch (err) {
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCache(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err) {
+                if (err) {
+                    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in removing preferences.");
+            })
+        } catch (err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+## data_preferences.removePreferencesFromCache<sup>10+</sup>
+
+removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
+
+从缓存中移出指定的Preferences实例，使用Promise异步回调。
+
+应用首次调用[getPreferences](#data_preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#data_preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
+| ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 15501001 | Only supported in stage mode. |
+| 15501002 | The data group id is not valid.     |
+
+**示例：**
+
+FA模型示例：
+
+```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+try {
+    let promise = data_preferences.removePreferencesFromCache(context, {name: 'mystore'});
+	promise.then(() => {
+    	console.info("Succeeded in removing preferences.");
+    }).catch((err) => {
+        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    })
+} catch(err) {
+    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+}
+```
+
+Stage模型示例：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.removePreferencesFromCache(this.context, {name: 'mystore', dataGroupId:'myId'});
+            promise.then(() => {
+                console.info("Succeeded in removing preferences.");
+            }).catch((err) => {
+                console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
+}
+```
+
+## Options<sup>10+</sup>
+
+Preferences实例配置选项。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+| 名称        | 类型   | 必填 | 说明                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| name        | string | 是   | Preferences实例的名称。                                      |
+| dataGroupId | string | 否   | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例，当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。 |
+
 ## Preferences
 
 首选项实例，提供获取和修改存储数据的接口。
@@ -504,7 +962,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
 | defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误码。 |
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。 |
 
 **示例：**
 
@@ -603,7 +1061,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为所有键值数据；否则err为错误码。 |
+| callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为所有键值数据；否则err为错误对象。 |
 
 **示例：**
 
@@ -696,7 +1154,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
 | value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误码。     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。     |
 
 **示例：**
 
@@ -903,7 +1361,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | 是   | 要删除的存储Key名称，不能为空。                      |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -995,7 +1453,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -1056,7 +1514,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误码。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -1173,6 +1631,125 @@ try {
 }
 ```
 
+### on('multiProcessChange')<sup>10+</sup>
+
+on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
+
+订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
+
+此方法可以配合[removePreferencesFromCache](#data_preferencesremovepreferencesfromcache)使用，当监听到有进程更新了文件时，在回调方法中更新当前的Preferences实例，如下示例2。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                           |
+| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
+| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                                                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 15500019 | Failed to obtain subscription service. |
+
+**示例1：**
+
+```js
+try {
+	data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, preferences) {
+		if (err) {
+			console.info("Failed to get preferences.");
+			return;
+		}
+		let observer = function (key) {
+			console.info("The key " + key + " changed.");
+		}
+		preferences.on('multiProcessChange', observer);
+		preferences.put('startup', 'manual', function (err) {
+			if (err) {
+				console.info("Failed to put the value of 'startup'. Cause: " + err);
+				return;
+			}
+			console.info("Succeeded in putting the value of 'startup'.");
+
+			preferences.flush(function (err) {
+				if (err) {
+					console.info("Failed to flush. Cause: " + err);
+					return;
+				}
+				console.info("Succeeded in flushing.");
+			})
+		})
+	})
+} catch (err) {
+	console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+}
+```
+
+**示例2：**
+
+```js
+let preferences = null;
+try {
+    data_preferences.getPreferences(this.context, { name: 'mystore' }, function (err, val) {
+        if (err) {
+            console.info("Failed to get preferences.");
+            return;
+        }
+        preferences = val;
+        let observer = function (key) {
+            console.info("The key " + key + " changed.");
+            try {
+                data_preferences.removePreferencesFromCache(context, { name: 'mystore' }, function (err) {
+                    if (err) {
+                        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                        return;
+                    }
+                    preferences = null;
+                    console.info("Succeeded in removing preferences.");
+                })
+            } catch (err) {
+                console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            }
+
+            try {
+                data_preferences.getPreferences(context, { name: 'mystore' }, function (err, val) {
+                    if (err) {
+                        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                        return;
+                    }
+                    preferences = val;
+                    console.info("Succeeded in getting preferences.");
+                })
+            } catch (err) {
+                console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            }
+        }
+        preferences.on('multiProcessChange', observer);
+        preferences.put('startup', 'manual', function (err) {
+            if (err) {
+                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in putting the value of 'startup'.");
+
+            preferences.flush(function (err) {
+                if (err) {
+                    console.info("Failed to flush. Cause: " + err);
+                    return;
+                }
+                console.info("Succeeded in flushing.");
+            })
+        })
+    })
+} catch (err) {
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+}
+```
 
 ### off('change')
 
@@ -1224,6 +1801,55 @@ try {
 }
 ```
 
+### off('multiProcessChange')<sup>10+</sup>
+
+off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): void
+
+取消订阅进程间数据变更。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                           |
+| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
+| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。                     |
+
+**示例：**
+
+```js
+try {
+    data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, preferences) {
+        if (err) {
+            console.info("Failed to get preferences.");
+            return;
+        }
+        let observer = function (key) {
+            console.info("The key " + key + " changed.");
+        }
+        preferences.on('multiProcessChange', observer);
+        preferences.put('startup', 'auto', function (err) {
+            if (err) {
+                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in putting the value of 'startup'.");
+
+            preferences.flush(function (err) {
+                if (err) {
+                    console.info("Failed to flush. Cause: " + err);
+                    return;
+                }
+                console.info("Succeeded in flushing.");
+            })
+            preferences.off('multiProcessChange', observer);
+        })
+    })
+} catch (err) {
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+}
+```
 ## ValueType
 
 用于表示允许的数据字段类型。

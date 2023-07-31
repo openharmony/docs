@@ -51,21 +51,19 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -146,21 +144,19 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -241,18 +237,16 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -330,18 +324,16 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message'
+    }
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -420,21 +412,19 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-})
-  .then(() => {
-    // success
   })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -515,21 +505,19 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 **示例：**
 
 ```ts
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      }
     }
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -610,18 +598,16 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-})
-  .then(() => {
-    // success
+try {
+  router.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
   })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+} catch (err) {
+  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -693,24 +679,22 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 100004    | if the named route is not exist. |
 
 **示例：**
 
 ```ts
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard)
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
-  })
+try {
+  router.replaceNamedRoute({
+    name: 'myPage',
+    params: {
+      data1: 'message'
+    }
+  }, router.RouterMode.Standard)
+} catch (err) {
+  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>

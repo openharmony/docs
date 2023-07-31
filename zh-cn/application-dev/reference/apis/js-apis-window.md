@@ -859,6 +859,15 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 | type     | string                  | 是   | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。    |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前手势导航的启用状态。true表示手势导航状态变化为启用；false表示手势导航状态变化为禁用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
 **示例：**
 
 ```js
@@ -887,6 +896,15 @@ off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;):
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
 | type     | string                  | 是 | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有手势导航启用状态变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -2740,7 +2758,7 @@ try {
 
 ### on('avoidAreaChange')<sup>9+</sup>
 
-on(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: AvoidArea}&gt;): void
 
 开启系统规避区变化的监听。
 
@@ -2751,7 +2769,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;
 | 参数名   | 类型                                                               | 必填 | 说明                                   |
 | -------- |------------------------------------------------------------------| ---- |--------------------------------------|
 | type     | string                                                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
 
 **示例：**
 
@@ -2768,7 +2786,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area: AvoidArea }&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -2779,7 +2797,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&g
 | 参数名   | 类型                                                                          | 必填  | 说明                                 |
 | -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
 | type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
+| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
 
 **示例：**
 

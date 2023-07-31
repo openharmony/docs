@@ -13,7 +13,7 @@ import Url from '@ohos.url'
 
 ### constructor<sup>9+</sup>
 
-constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
+constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParams)
 
 A constructor used to create a **URLParams** instance.
 
@@ -23,7 +23,7 @@ A constructor used to create a **URLParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLParams**: object<br>The default value is **null**.|
 
 **Example**
 

@@ -1098,3 +1098,315 @@ try {
     console.error('moveMissionToFront failed. Cause: ${error.message}');
 }
 ```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void;
+
+Switches a batch of missions to the foreground. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, (err, data) => {
+            if (err) {
+                console.error('moveMissionsToForeground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void;
+
+Switches a batch of missions to the foreground, and moves the mission with the specified ID to the top. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
+  | topMission | number | Yes| ID of the mission to be moved to the top.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, toShows[0], (err, data) => {
+            if (err) {
+                console.error('moveMissionsToForeground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToForeground<sup>10+</sup>
+
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt; ;
+
+Switches a batch of missions to the foreground, and moves the mission with the specified ID to the top. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
+  | topMission | number | No| ID of the mission to be moved to the top.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+        if (missionInfos.length < 1) {
+            return;
+        }
+
+        let toShows = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState == abilityManager.AbilityState.BACKGROUND) {
+                toShows.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
+            console.log("moveMissionsToForeground is called" );
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```
+
+## missionManager.moveMissionsToBackground<sup>10+</sup>
+
+moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void;
+
+Switches a batch of missions to the background. This API uses an asynchronous callback to return the result. The mission IDs in the callback are sorted by mission level when the missions are switched.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
+  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+
+        let toHides = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+            toHides.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToBackground(toHides, (err, data) => {
+            if (err) {
+                console.error('moveMissionsToBackground failed: ${err.message}');
+            } else {
+                console.info('moveMissionsToBackground successfully: ${JSON.stringify(data)}');
+            }
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+```
+
+## missionManager.moveMissionsToBackground<sup>10+</sup>
+
+moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+
+Switches a batch of missions to the background. This API uses a promise to return the result. The mission IDs in the promise are sorted by mission level when the missions are switched.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | missionIds | Array&lt;number&gt; | Yes| Array holding the mission IDs.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import missionManager from '@ohos.app.ability.missionManager';
+
+try {
+    missionManager.getMissionInfos("", 10, (error, missionInfos) => {
+        if (error.code) {
+            console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+            return;
+        }
+
+        let toHides = new Array<number>();
+        for (let missionInfo of missionInfos) {
+            if (missionInfo.abilityState ==  abilityManager.AbilityState.FOREGROUND) {
+            toHides.push(missionInfo.missionId);
+            }
+        }
+        missionManager.moveMissionsToBackground(toHides).then((hideRes) => {
+            console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+        });
+    });
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
+
+```

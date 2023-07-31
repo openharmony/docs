@@ -97,15 +97,15 @@ import bundleManager form '@ohos.bundle.bundleManager'
 import bundleManager form '@ohos.bundle.bundleManager'
 ```
 
-## cl.bundlemanager.7 包管理Schema中proxyDatas更名为proxyData。
+## cl.bundlemanager.7 应用配置文件module.json5中proxyDatas更名为proxyData。
 
 由于命名规范问题，proxyDatas更名为proxyData。
 
 **变更影响**<br>
-升级新版本镜像后，proxyDatas更名为proxyData，原有proxyDatas能使用，后续将逐步废弃，建议尽快用proxyData替换proxyDatas。
+升级新版本SDK后，proxyDatas更名为proxyData，应用如果不进行适配，将会编译失败。
 
 **关键的接口/组件变更**<br>
 proxyDatas更名为proxyData。
 
 **适配指导**<br>
-请使用proxyData替换proxyDatas。
+请使用proxyData替换proxyDatas，其内容不需要变更。

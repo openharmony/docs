@@ -1,6 +1,6 @@
 # # @ohos.net.ethernet (Ethernet Connection Management)
 
-The **ethernet** module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
+The **ethernet** module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server, and HTTP proxy of a wired network.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -55,7 +55,12 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1"
+  dnsServers: "1.1.1.1",
+  httpProxy: {
+    host: "180.89.xx.xx",
+    port: 8080,
+    exclusionList: {"example.com","192.168.0.1"}
+  }
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
@@ -114,7 +119,12 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1"
+  dnsServers: "1.1.1.1",
+  httpProxy: {
+    host: "180.89.xx.xx",
+    port: 8080,
+    exclusionList: {"example.com","192.168.0.1"}
+  }
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {
@@ -476,6 +486,7 @@ Defines the network configuration for the Ethernet connection.
 | gateway      | string                  | Yes| Gateway of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | netMask      | string                  | Yes| Subnet mask of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
+| httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy) | No| HTTP proxy of the Ethernet connection. By default, no proxy is configured.|
 
 ## IPSetMode<sup>9+</sup>
 

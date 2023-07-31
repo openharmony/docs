@@ -13,6 +13,8 @@ The **MissionSnapshot** module defines the snapshot of a mission. The snapshot c
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name| Type| Readable| Writable| Description|

@@ -12,6 +12,8 @@ The **Configuration** module defines environment change information. **Configura
 import Configuration from '@ohos.app.ability.Configuration';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name| Type| Readable| Writable| Description|

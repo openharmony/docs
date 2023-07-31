@@ -390,7 +390,7 @@
 
 ## ohos.permission.SET_WALLPAPER
 
-允许应用设置静态壁纸。
+允许应用设置壁纸。
 
 **权限级别**：normal
 
@@ -414,7 +414,7 @@
 
 ## ohos.permission.CHANGE_ABILITY_ENABLED_STATE
 
-允许改变应用或者组件的使能状态。
+允许改变应用或组件的使能状态。
 
 **权限级别**：system_basic
 
@@ -776,7 +776,7 @@
 
 ## ohos.permission.MANAGE_MISSIONS
 
-允许用户管理元能力任务栈。
+允许应用管理系统中的任务。
 
 **权限级别**：system_core
 
@@ -846,9 +846,21 @@
 
 **起始版本**：10
 
+## ohos.permission.NETSYS_INTERNAL
+
+允许SA服务调用网络管理netsys中的网络管理、wifi、网卡监听、iptables设置等功能接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：10
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
-允许设置ability组件启动和停止控制权。
+允许应用拦截Ability组件启动，主要用于测试调试，比如稳定性金刚测试。
 
 **权限级别**：system_basic
 
@@ -872,7 +884,7 @@
 
 ## ohos.permission.MANAGE_USER_IDM
 
-允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。
+允许录入和管理用户身份认证凭据。
 
 **权限级别**：system_basic
 
@@ -896,7 +908,7 @@
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-允许应用使用系统身份认证能力进行用户身份认证或身份识别。
+允许调用统一身份认证服务的系统内部接口。
 
 **权限级别**：system_basic
 
@@ -908,7 +920,7 @@
 
 ## ohos.permission.ACCESS_PIN_AUTH
 
-允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。
+允许注册口令认证过程获取口令数据的回调。
 
 **权限级别**：system_basic
 
@@ -944,7 +956,7 @@
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
-允许应用观察应用状态。
+允许应用监听应用状态。
 
 **权限级别**：system_basic
 
@@ -1112,7 +1124,7 @@
 
 ## ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
-允许应用激活设备管理员应用。
+允许应用激活设备管理应用。
 
 **权限级别**：system_core
 
@@ -1124,7 +1136,7 @@
 
 ## ohos.permission.SET_ENTERPRISE_INFO
 
-允许设备管理员应用设置企业信息。
+允许设备管理应用设置企业信息。
 
 **权限级别**：system_basic
 
@@ -1136,7 +1148,7 @@
 
 ## ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
-允许设备管理员应用订阅管理事件。
+允许设备管理应用订阅管理事件。
 
 **权限级别**：system_basic
 
@@ -1148,7 +1160,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_DATETIME
 
-允许设备管理员应用设置系统时间。
+允许设备管理应用设置系统时间。
 
 **权限级别**：system_basic
 
@@ -1160,7 +1172,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
-允许设备管理员读取设备信息。
+允许设备管理应用读取设备信息。
 
 **权限级别**：system_basic
 
@@ -1172,7 +1184,7 @@
 
 ## ohos.permission.ENTERPRISE_RESET_DEVICE
 
-允许设备管理员恢复设备出厂设置。
+允许设备管理应用恢复设备出厂设置。
 
 **权限级别**：system_basic
 
@@ -1184,7 +1196,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_WIFI
 
-允许设备管理员应用设置和查询WiFi信息。
+允许设备管理应用设置和查询WiFi信息。
 
 **权限级别**：system_basic
 
@@ -1196,7 +1208,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
-允许设备管理员应用查询网络信息。
+允许设备管理应用查询网络信息。
 
 **权限级别**：system_basic
 
@@ -1208,7 +1220,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
-允许设备管理员设置账户管理策略。
+允许设备管理应用设置账户管理策略。
 
 **权限级别**：system_basic
 
@@ -1220,7 +1232,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
-允许设备管理员设置包安装管理策略。
+允许设备管理应用设置包安装管理策略。
 
 **权限级别**：system_basic
 
@@ -1232,7 +1244,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_NETWORK
 
-允许设备管理员设置网络信息。
+允许设备管理应用设置网络信息。
 
 **权限级别**：system_basic
 
@@ -1244,7 +1256,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
-允许设备管理员设置应用运行管理策略。
+允许设备管理应用设置应用运行管理策略。
 
 **权限级别**：system_basic
 
@@ -1256,7 +1268,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
-允许设备管理员设置系统休眠时间。
+允许设备管理应用设置系统休眠时间。
 
 **权限级别**：system_basic
 
@@ -1268,7 +1280,7 @@
 
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
-允许设备管理员安装和卸载包。
+允许设备管理应用安装和卸载包。
 
 **权限级别**：system_core
 
@@ -1280,7 +1292,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_SETTINGS
 
-允许设备管理员查询“设置”应用数据。
+允许设备管理应用查询“设置”应用数据。
 
 **权限级别**：system_basic
 
@@ -1292,7 +1304,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
-允许设备管理员管理证书。
+允许设备管理应用管理证书。
 
 **权限级别**：system_basic
 
@@ -1304,7 +1316,7 @@
 
 ## ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
-允许设备管理员下发和获取限制类策略。
+允许设备管理应用下发和获取限制类策略。
 
 **权限级别**：system_basic
 
@@ -1316,7 +1328,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
-允许设备管理员管理USB。
+允许设备管理应用管理USB。
 
 **权限级别**：system_basic
 
@@ -1328,7 +1340,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
-允许设备管理员管理网络。
+允许设备管理应用管理网络。
 
 **权限级别**：system_basic
 
@@ -1340,7 +1352,7 @@
 
 ## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
-允许设备设置/取消浏览器策略。
+允许设备管理应用设置/取消浏览器策略。
 
 **权限级别**：system_basic
 
@@ -1644,7 +1656,7 @@
 
 ## ohos.permission.CAMERA
 
-允许应用使用相机拍摄照片和录制视频。
+允许应用使用相机。
 
 **权限级别**：normal
 
@@ -2064,7 +2076,7 @@
 
 ## ohos.permission.ENFORCE_USER_IDM
 
-允许SA无token删除IAM子系统用户信息。
+允许SA无token删除IAM用户信息。
 
 **权限级别**：system_core
 
@@ -2076,7 +2088,7 @@
 
 ## ohos.permission.ACCESS_AUTH_RESPOOL
 
-允许SA注册执行器。
+允许SA注册认证执行器。
 
 **权限级别**：system_core
 
@@ -2316,7 +2328,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
-允许应用安装、卸载其他企业InHouse应用。
+允许应用安装企业InHouse应用。
 
 **权限级别**：system_core
 
@@ -2657,5 +2669,29 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.OBSERVE_FORM_RUNNING
+
+允许应用监听卡片运行状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.MANAGE_DEVICE_AUTH_CRED
+
+允许应用调用设备认证华为帐号凭据管理应用接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 **起始版本**：10

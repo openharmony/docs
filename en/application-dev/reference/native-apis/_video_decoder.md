@@ -19,7 +19,7 @@ The VideoDecoder module provides the functions for video decoding.
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md) | Declares the native APIs used for video decoding.<br>File to include: <multimedia/player_framework/native_avcodec_videodecoder.h> | 
+| [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md) | Declares the native APIs used for video decoding.<br>**File to include**: <multimedia/player_framework/native_avcodec_videodecoder.h><br>**Library**: libnative_media_vdec.so | 
 
 
 ### Functions
@@ -52,7 +52,7 @@ The VideoDecoder module provides the functions for video decoding.
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **Description**
@@ -83,7 +83,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVCodec* OH_VideoDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_VideoDecoder_CreateByMime (const char *mime)
 ```
 
 **Description**
@@ -111,7 +111,7 @@ Returns the pointer to an **OH_AVCodec** instance.
 
   
 ```
-OH_AVCodec* OH_VideoDecoder_CreateByName (const char * name)
+OH_AVCodec* OH_VideoDecoder_CreateByName (const char *name)
 ```
 
 **Description**
@@ -139,7 +139,7 @@ Returns the pointer to an **OH_AVCodec** instance.
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Destroy (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -167,7 +167,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -197,7 +197,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoDecoder_FreeOutputData (OH_AVCodec *codec, uint32_t index)
 ```
 
 **Description**
@@ -226,7 +226,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -256,7 +256,7 @@ Returns the pointer to an **OH_AVFormat** instance.
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid)
 ```
 
 **Description**
@@ -285,7 +285,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Prepare (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -313,7 +313,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr)
 ```
 
 **Description**
@@ -349,7 +349,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec *codec, uint32_t index)
 ```
 
 **Description**
@@ -380,7 +380,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Reset (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -408,7 +408,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData)
 ```
 
 **Description**
@@ -440,7 +440,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **Description**
@@ -471,7 +471,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * window )
+OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec *codec, OHNativeWindow *window)
 ```
 
 **Description**
@@ -500,7 +500,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Start (OH_AVCodec *codec)
 ```
 
 **Description**
@@ -530,7 +530,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
   
 ```
-OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 ```
 
 **Description**

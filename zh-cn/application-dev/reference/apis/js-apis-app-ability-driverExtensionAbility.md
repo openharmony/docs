@@ -35,8 +35,6 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -62,8 +60,6 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **示例：**
 
   ```ts
@@ -82,8 +78,6 @@ onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -105,7 +99,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
       constructor(des) {
           super(des);
       }
-      onRemoteRequest(code, data, reply, option) {
+      onRemoteMessageRequest(code, data, reply, option) {
       }
   }
   class DriverExt extends DriverExtension {
@@ -124,7 +118,7 @@ class StubTest extends rpc.RemoteObject{
     constructor(des) {
         super(des);
     }
-    onRemoteRequest(code, data, reply, option) {
+    onRemoteMessageRequest(code, data, reply, option) {
     }
 }
 async function getDescriptor() {
@@ -147,8 +141,6 @@ onDisconnect(want: Want): void | Promise\<void>;
 Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -185,8 +177,6 @@ onDump(params: Array\<string>): Array\<string>;
 转储客户端信息时调用。
 
 **系统能力**：SystemCapability.Driver.ExternalDevice
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

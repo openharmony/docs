@@ -1,13 +1,8 @@
 # 后台任务（Background Task）管理
 
-- 后台任务 
-  - [后台任务概述](background-task-overview.md)
-  - [短时任务开发指导](transient-task-dev-guide.md)
-  - [长时任务开发指导](continuous-task-dev-guide.md)
-  - [延迟任务调度开发指导](work-scheduler-dev-guide.md)
-  - [延迟任务回调能力开发指导（WorkSchedulerExtensionAbility）](workscheduler-extensionability.md)
-  - [申请能效资源开发指导](efficiency-resources-apply-dev-guide.md)
-
-- 后台代理提醒
-  - [后台代理提醒概述](reminder-agent-overview.md)
-  - [后台代理提醒开发指导](reminder-agent-development.md)
+- [后台任务总体概述](background-task-overview.md)
+- [短时任务](transient-task.md)
+- [长时任务](continuous-task.md)
+- [延迟任务](work-scheduler.md)
+- [代理提醒](agent-powered-reminder.md)
+- [能效资源申请（仅对系统特权应用开放）](efficiency-resource-request.md)
