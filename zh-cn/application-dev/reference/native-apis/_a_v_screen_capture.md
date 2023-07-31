@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avscreen_capture.h](native__avscreen__capture_8h.md) | 声明用于构造屏幕录制对象的Native API。 | 
-| [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md) | 声明用于运行屏幕录制通用的结构体、字符常量、枚举。 | 
-| [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md) | 声明用于运行屏幕录制过程中接口调用的错误码说明。 | 
+| [native_avscreen_capture.h](native__avscreen__capture_8h.md) | 声明用于构造屏幕录制对象的Native API。<br>**引用文件**：<multimedia/player_framework/native_avscreen_capture.h> <br>**库**：libnative_avscreen_capture.so | 
+| [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md) | 声明用于运行屏幕录制通用的结构体、字符常量、枚举。<br>**引用文件**：<multimedia/player_framework/native_avscreen_capture_base.h> <br>**库**：libnative_avscreen_capture.so | 
+| [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md) | 声明用于运行屏幕录制过程中接口调用的错误码说明。<br>**引用文件**：<multimedia/player_framework/native_avscreen_capture_errors.h> <br>**库**：libnative_avscreen_capture.so | 
 
 
 ### 结构体
