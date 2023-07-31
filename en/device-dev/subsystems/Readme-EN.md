@@ -1,77 +1,76 @@
 #  Subsystems
 
-- Compilation and Building
+- [Compilation and Building](subsys-build.md)
   - [Building Mini and Small Systems](subsys-build-mini-lite.md)
   - [Building the Standard Systems](subsys-build-standard-large.md)
   - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
   - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
-- [Distributed Remote Startup](subsys-remote-start.md)
-- Graphics
+- [Graphics](subsys-graphics.md)
   - [Graphics Overview](subsys-graphics-overview.md)
   - [Container Component Development](subsys-graphics-container-guide.md)
   - [Development of Layout Container Components](subsys-graphics-layout-guide.md)
   - [Common Component Development](subsys-graphics-common-guide.md)
   - [Animator Development](subsys-graphics-animation-guide.md)
-- Multimedia
-  - Camera
+- [Multimedia]((subsys-multimedia.md)
+  - [Camera](subsys-multimedia-camera.md)
     - [Camera Overview](subsys-multimedia-camera-overview.md)
     - [Photographing Development](subsys-multimedia-camera-photo-guide.md)
     - [Video Recording Development](subsys-multimedia-camera-record-guide.md)
     - [Previewing Development](subsys-multimedia-camera-preview-guide.md)
-  - Audio/Video
+  - [Audio/Video](subsys-multimedia-video.md)
     - [Audio/Video Overview](subsys-multimedia-video-overview.md)
     - [Audio/Video Playback Development](subsys-multimedia-video-play-guide.md)
     - [Audio/Video Recording Development](subsys-multimedia-video-record-guide.md)
-- Utils
+- [Utils](subsys-utils.md)
   - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development](subsys-utils-guide.md)
   - [Utils FAQ](subsys-utils-faqs.md)
-- AI Framework
+- [AI Framework]](subsys-aiframework.md)
   - [AI Engine Framework](subsys-aiframework-guide.md)
   - [Development Environment](subsys-aiframework-envbuild.md)
-  - Technical Specifications
+  - [Technical Specifications](subsys-aiframework-tech.md)
     - [Code Management](subsys-aiframework-tech-codemanage.md)
     - [Naming](subsys-aiframework-tech-name.md)
     - [API Development](subsys-aiframework-tech-interface.md)
-  - Development Guidelines
+  - [Development Guidelines](subsys-aiframework-devguide.md)
     - [SDK](subsys-aiframework-devguide-sdk.md)
     - [Plug-in](subsys-aiframework-devguide-plugin.md)
     - [Configuration File](subsys-aiframework-devguide-conf.md)
-  - Development Examples
+  - [Development Examples](subsys-aiframework-demo.md)
     - [KWS SDK](subsys-aiframework-demo-sdk.md)
     - [KWS Plug-in](subsys-aiframework-demo-plugin.md)
     - [KWS Configuration File](subsys-aiframework-demo-conf.md)
-- Data Management
+- [Data Management](subsys-data.md)
   - RDB
     - [RDB Overview](subsys-data-relational-database-overview.md)
     - [RDB Development](subsys-data-relational-database-guide.md)
-  - Lightweight Data Store
+  - [Lightweight Data Store](subsys-data-storage.md)
     - [Lightweight Data Store Overview](subsys-data-storage-overview.md)
     - [Lightweight Data Store Development](subsys-data-storage-guide.md)
-- Sensor
+- [Sensor](subsys-sensor.md)
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
   - [Sensor Usage Example](subsys-sensor-demo.md)
-- USB
+- [USB](subsys-usbservice.md)
   - [USB Overview](subsys-usbservice-overview.md)
   - [USB Usage Guidelines](subsys-usbservice-guide.md)
   - [USB Usage Example](subsys-usbservice-demo.md)
-- Application Framework
+- [Application Framework](subsys-application-framework.md)
   - [Application Framework Overview](subsys-application-framework-overview.md)
   - [Setting Up a Development Environment](subsys-application-framework-envbuild.md)
   - [Development Guidelines](subsys-application-framework-guide.md)
   - [Development Example](subsys-application-framework-demo.md)
 - [OTA Update](subsys-ota-guide.md)
-- Telephony
+- [Telephony](subsys-tel.md)
   - [Telephony Overview](subsys-tel-overview.md)
   - [Telephony Development](subsys-tel-guide.md)
-- Security
+- [Security](subsys-security.md)
   - [Security Overview](subsys-security-overview.md)
   - [Development on Application Signature Verification](subsys-security-sigverify.md)
   - [Development on Application Permission Management](subsys-security-rightmanagement.md)
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
-- Startup
+- [Startup](subsys-boot.md)
   - [Startup Overview](subsys-boot-overview.md)
   - [init Module](subsys-boot-init.md)
   - [appspawn Module](subsys-boot-appspawn.md)
@@ -81,7 +80,7 @@
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
 - [Test Case Development](subsys-testguide-test.md)
-- DFX
+- [DFX](subsys-dfx.md)
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
   - [HiLog\_Lite Development](subsys-dfx-hilog-lite.md)
@@ -96,7 +95,7 @@
   - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
   - [FaultLogger Development](subsys-dfx-faultlogger.md)
-- R&D Tools
+- [R&D Tools](subsys-toolchain.md)
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc\_std](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
