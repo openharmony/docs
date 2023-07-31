@@ -36,8 +36,8 @@ import systemTimer from '@ohos.systemTimer';
 | 名称      | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type      | number                                        | 是   | 定时器类型。<br>取值为1，表示为系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间） ；<br>取值为2，表示为唤醒定时器；<br>取值为4，表示为精准定时器；<br>取值为8，表示为IDLE模式定时器（暂不支持）。 |
-| repeat    | boolean                                       | 是   | true为循环定时器，false为单次定时器。                        |
-| interval  | number                                        | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。 |
+| repeat    | boolean                                       | 是   | 是否为循环定时器。<br>true为循环定时器，false为单次定时器。                        |
+| interval  | number                                        | 否   | 定时器时间间隔。 <br>如果是循环定时器，interval值应大于5000毫秒；单次定时器interval值为0。 |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，暂不支持拉起ServiceAbility。） |
 | callback  | number                                        | 是   | 以回调函数的形式返回定时器的ID。                             |
 
@@ -127,7 +127,7 @@ export default {
 
 startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&gt;): void
 
-开始定时器，使用callback异步回调。
+开启定时器，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -170,7 +170,7 @@ export default {
 
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
-开始定时器，使用Promise异步回调。
+开启定时器，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
