@@ -732,3 +732,4 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    ```js
    let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d" indicates that the sequence of year, month, and day in Chinese is year-month-day.
    ```
+<!--no_check-->

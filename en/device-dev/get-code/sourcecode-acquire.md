@@ -73,7 +73,7 @@ This document describes how to acquire OpenHarmony source code and provides its 
    ```
 
 
-### Procedure
+### How to Use
 
 
 > **NOTE**<br>
@@ -143,7 +143,7 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
    ```
 
 
-### Procedure
+### How to Use
 
 1. Search for distributions.
    1. Access [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), and click **Device**. Then go to the **Open Source Distribution** page.
