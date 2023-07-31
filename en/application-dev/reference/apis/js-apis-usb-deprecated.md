@@ -139,7 +139,7 @@ Checks whether the application has the permission to access the device.
 ```js
 let devicesName="1-1";
 let bool = usb.hasRight(devicesName);
-console.log(bool);
+console.log(`${bool}`);
 ```
 
 ## usb.requestRight
@@ -375,9 +375,16 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
- console.log(`controlTransfer = ${ret}`);
+  console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -413,7 +420,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${ret}`);
+  console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -500,7 +507,7 @@ Converts the USB function list in the numeric mask format to a string in Device 
 **Example**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -529,8 +536,12 @@ Sets the current USB function list in Device mode.
 **Example**
 
 ```js
-let funcs = usb.HDC;
-let ret = usb.setCurrentFunctions(funcs);
+let funcs = usb.FunctionType.HDC;
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions<sup>9+</sup>
@@ -848,7 +859,7 @@ Enumerates power role types.
 
 | Name  | Value  | Description      |
 | ------ | ---- | ---------- |
-| NONE   | 0    | None      |
+| NONE   | 0    | None.      |
 | SOURCE | 1    | External power supply.|
 | SINK   | 2    | Internal power supply.|
 
@@ -862,6 +873,6 @@ Enumerates data role types.
 
 | Name  | Value  | Description        |
 | ------ | ---- | ------------ |
-| NONE   | 0    | None        |
+| NONE   | 0    | None.        |
 | HOST   | 1    | USB host.|
 | DEVICE | 2    | USB device.|
