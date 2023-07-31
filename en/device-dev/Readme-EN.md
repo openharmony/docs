@@ -33,7 +33,6 @@
     - [Kernel for the Standard System](kernel/kernel-standard-overview.md)
   - [Driver](driver/Readme-EN.md)	
   - [Compilation and Building](subsystems/subsys-build-all.md)
-  - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - [Graphics](subsystems/subsys-graphics-overview.md)	
   - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
   - [Utils](subsystems/subsys-utils-overview.md)
