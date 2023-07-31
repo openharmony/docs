@@ -10,7 +10,7 @@
 
 - **能效资源申请接口** ：单独为进程申请CPU等资源的接口，保障系统应用在后台执行的诉求。申请CPU资源后，则应用或进程不被挂起。
 
-- **系统特权应用**：配置[runningResourcesApply特权](../../subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)应用的系统应用。
+- **系统特权应用**：配置[runningResourcesApply特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)应用的系统应用。
 
 ### 约束与限制
 
