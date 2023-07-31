@@ -1161,7 +1161,6 @@
         - [DriverExtensionContext](reference/apis/js-apis-inner-application-driverExtensionContext.md)
     - 帐号管理
       - [@ohos.account.appAccount (应用帐号管理)](reference/apis/js-apis-appAccount.md)
-      - [@ohos.account.appAccount.AuthorizationExtensionAbility (应用帐号授权扩展能力)](reference/apis/js-apis-appAccount-authorizationExtensionAbility.md)
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 定制管理
