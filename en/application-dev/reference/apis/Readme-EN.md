@@ -227,9 +227,9 @@
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
-  - [@ohos.resourceschedule.workScheduler (Work Scheduler)](js-apis-resourceschedule-workScheduler.md)
+  - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](js-apis-resourceschedule-deviceUsageStatistics.md)
-  - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
 
