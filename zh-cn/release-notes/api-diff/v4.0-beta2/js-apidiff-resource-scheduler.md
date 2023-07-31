@@ -1,0 +1,9 @@
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
+| ---- | ------ | ------ | -------- |
+|新增|NA|类名：ResourceType;<br>方法or属性：RUNNING_LOCK = 1 \<\< 7|@ohos.resourceschedule.backgroundTaskManager.d.ts|
+|新增|NA|类名：ResourceType;<br>方法or属性：SENSOR = 1 \<\< 8|@ohos.resourceschedule.backgroundTaskManager.d.ts|
+|废弃版本有变化|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>旧版本信息：|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>新版本信息：9<br>代替接口： ohos.resourceschedule.backgroundTaskManager/backgroundTaskManager#startBackgroundRunning|@ohos.ability.particleAbility.d.ts|
+|废弃版本有变化|类名：particleAbility;<br>方法or属性：function cancelBackgroundRunning(): Promise\<void>;<br>旧版本信息：|类名：particleAbility;<br>方法or属性：function cancelBackgroundRunning(): Promise\<void>;<br>新版本信息：9<br>代替接口： ohos.resourceschedule.backgroundTaskManager/backgroundTaskManager#stopBackgroundRunning|@ohos.ability.particleAbility.d.ts|
+|权限有变化|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>旧版本信息：|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>新版本信息：ohos.permission.KEEP_BACKGROUND_RUNNING|@ohos.ability.particleAbility.d.ts|
+|model有变化|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>旧版本信息：|类名：particleAbility;<br>方法or属性：function startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>;<br>新版本信息：FAModelOnly|@ohos.ability.particleAbility.d.ts|
+|model有变化|类名：particleAbility;<br>方法or属性：function cancelBackgroundRunning(): Promise\<void>;<br>旧版本信息：|类名：particleAbility;<br>方法or属性：function cancelBackgroundRunning(): Promise\<void>;<br>新版本信息：FAModelOnly|@ohos.ability.particleAbility.d.ts|
