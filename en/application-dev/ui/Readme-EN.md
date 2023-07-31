@@ -40,14 +40,26 @@
     - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
   - Using Animation
-    - [Animation Overview](arkts-animation-overview.md)
-    - Animation Within a Page
-      - [Layout Update Animation](arkts-layout-update-animation.md)
-      - [Transition Animation Within a Component](arkts-transition-animation-within-component.md)
-      - [Spring Curve Animation](arkts-spring-animation.md)
-    - Animation Between Pages
-      - [Zoom Animation](arkts-zoom-animation.md)
-      - [Page Transition Animation](arkts-page-transition-animation.md)
+    - [Animation Overview](arkts-animation.md)
+    - Attribute Animation
+      - [Attribute Animation Overview](arkts-attribute-animation-overview.md)
+      - [Attribute Animation APIs](arkts-attribute-animation-apis.md)
+      - [Custom Attribute Animation](arkts-custom-attribute-animation.md)
+    - Transition Animation
+      - [Transition Animation Overview](arkts-transition-overview.md)
+      - [Enter/Exit Transition](arkts-enter-exit-transition.md)
+      - [Navigation Transition](arkts-navigation-transition.md)
+      - [Modal Transition](arkts-modal-transition.md)
+      - [Shared Element Transition](arkts-shared-element-transition.md)
+    - [Component Animation](arkts-component-animation.md)
+    - Animation Curve
+      - [Traditional Curve](arkts-traditional-curve.md)
+      - [Spring Curve](arkts-spring-curve.md)
+    - [Animation Smoothing](arkts-animation-smoothing.md)
+    - Animation Effects
+      - [Blur Effect](arkts-blur-effect.md)
+      - [Shadow Effect](arkts-shadow-effect.md)
+      - [Color Effect](arkts-color-effect.md)
   - Using Interaction Events
     - [Interaction Event Overview](arkts-event-overview.md)
     - Universal Events
