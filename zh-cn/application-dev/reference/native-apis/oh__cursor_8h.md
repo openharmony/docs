@@ -30,6 +30,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_ColumnType](_r_d_b.md#oh_columntype) | 数据库字段类型. |
 | [OH_Cursor](_r_d_b.md#oh_cursor) | 表示结果集。 |
 
 
@@ -37,4 +38,4 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype)&nbsp;{<br/>TYPE_NULL&nbsp;=&nbsp;0,&nbsp;TYPE_INT64,&nbsp;TYPE_REAL,&nbsp;TYPE_TEXT,<br/>TYPE_BLOB<br/>} | 数据库字段类型. |
+| [OH_ColumnType](_r_d_b.md#oh_columntype) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB<br/>} | 数据库字段类型. |
