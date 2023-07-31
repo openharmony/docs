@@ -587,6 +587,86 @@ setTimeout(()=>{
 }, 1000);
 ```
 
+## State<sup>10+</sup>
+
+表示任务（Task）状态的枚举。
+
+**系统能力：**  SystemCapability.Utils.Lang
+
+| 名称      | 值        | 说明          |
+| --------- | -------- | ------------- |
+| WAITING   | 1        | 任务正在等待。 |
+| RUNNING   | 2        | 任务正在执行。 |
+| CANCELED  | 3        | 任务已被取消。 |
+
+
+## TaskInfo<sup>10+</sup>
+
+任务的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称     | 类型                | 可读 | 可写 | 说明                                                           |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| taskId   | number             | 是   | 否   | 任务的ID。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行  |
+
+## ThreadInfo<sup>10+</sup>
+
+工作线程的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
+| -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
+| tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
+| taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
+| priority | [Priority](#priority)  | 是   | 否   | 当前线程的优先级。返回为空时，代表没有任务执行。              |
+
+## TaskPoolInfo<sup>10+</sup>
+
+任务池的内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称          | 类型                              | 可读 | 可写 | 说明                  |
+| ------------- | -------------------------------- | ---- | ---- | -------------------- |
+| threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
+| taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
+
+## taskpool.getTaskPoolInfo<sup>10+</sup>
+
+getTaskPoolInfo(): TaskPoolInfo
+
+获取任务池内部信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                                | 说明                |
+| ----------------------------------- | ------------------ |
+| [TaskPoolInfo](#taskpoolinfo10)   | 任务池的内部信息。   |
+
+**示例：**
+
+```ts
+let taskpoolInfo:TaskPoolInfo = taskpool.getTaskPoolInfo();
+```
+
 ## 其他说明
 
 ### 序列化支持类型
@@ -832,4 +912,65 @@ async function taskpoolGroupCancelTest() {
 }
 
 taskpoolGroupCancelTest()
+```
+
+**示例八**
+
+```ts
+// 分别创建执行100个高、中、低优先级的任务，查看其各项信息
+@Concurrent
+function delay() {
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 500) {
+    continue;
+  }
+}
+
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  let task1 = new taskpool.Task(delay);
+  let task2 = new taskpool.Task(delay);
+  let task3 = new taskpool.Task(delay);
+  taskpool.execute(task1, taskpool.Priority.LOW).then(() => {
+    lowCount++;
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task2, taskpool.Priority.MEDIUM).then(() => {
+    mediumCount++;
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task3, taskpool.Priority.HIGH).then(() => {
+    highCount++;
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
+}
+let start = new Date().getTime();
+while (new Date().getTime() - start < 1000) {
+    continue;
+}
+let taskpoolInfo = taskpool.getTaskPoolInfo();
+let tid = 0;
+let taskIds = [];
+let priority = 0;
+let taskId = 0;
+let state = 0;
+let duration = 0;
+for(let threadInfo of taskpoolInfo.threadInfos) {
+  tid = threadInfo.tid;
+  taskIds.length = threadInfo.taskIds.length;
+  priority = threadInfo.priority;
+  console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
+}
+for(let taskInfo of taskpoolInfo.taskInfos) {
+  taskId = taskInfo.taskId;
+  state = taskInfo.state;
+  duration = taskInfo.duration;
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+}
 ```
