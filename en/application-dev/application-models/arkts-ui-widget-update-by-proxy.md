@@ -89,7 +89,7 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- In the widget page code file **widgets.abc**, use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'detail'** and displayed in the **\<Text>** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'detail'** and displayed in the **\<Text>** component.
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -178,7 +178,7 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- In the widget page code file (generally the .ets file in the **pages** folder under the widget directory of the project), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -215,4 +215,4 @@ The update-through-proxy configuration varies by the type of shared data.
 
 ## Data Provider Development
 
-For details, see [Data Management](../database/data-mgmt-overview.md).
+For details, see [Data Management](../database/share-data-by-silent-access.md).
