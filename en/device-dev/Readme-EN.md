@@ -26,7 +26,6 @@
           - [Small System STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
       - Standard System SoC Porting Cases
           - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md) 
-
 - Subsystem Development
   - Kernel
     - [Kernel for the Mini System](kernel/kernel-mini-overview.md)
@@ -34,7 +33,6 @@
     - [Kernel for the Standard System](kernel/kernel-standard-overview.md)
   - [Driver](driver/Readme-EN.md)	
   - [Compilation and Building](subsystems/subsys-build-all.md)
-  - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - [Graphics](subsystems/subsys-graphics-overview.md)	
   - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
   - [Utils](subsystems/subsys-utils-guide.md)
