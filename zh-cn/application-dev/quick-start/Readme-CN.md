@@ -41,8 +41,8 @@
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
-  - [ArkTS语言介绍](arkts/introduction-to-arkts.md)
-  - [从TypeScript到ArkTS的迁移指导](arkts/typescript-to-arkts-migration-guide.md)
+  - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [从TypeScript到ArkTS的迁移指导](typescript-to-arkts-migration-guide.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -74,8 +74,11 @@
         - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
+      - [MVVM模式](arkts-mvvm.md)
+      - [状态管理优秀实践](arkts-state-management-best-practices.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)

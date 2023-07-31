@@ -71,4 +71,4 @@
 }
 ```
 
-![image](figures/image.png)
+![image](figures/image-lite.png)

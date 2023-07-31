@@ -860,7 +860,7 @@
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
-允许应用拦截Ability组件启动，主要用测试调试，比如稳定性金刚测试。
+允许应用拦截Ability组件启动，主要用于测试调试，比如稳定性金刚测试。
 
 **权限级别**：system_basic
 
@@ -1656,7 +1656,7 @@
 
 ## ohos.permission.CAMERA
 
-允许应用使用相机拍摄照片和录制视频。
+允许应用使用相机。
 
 **权限级别**：normal
 

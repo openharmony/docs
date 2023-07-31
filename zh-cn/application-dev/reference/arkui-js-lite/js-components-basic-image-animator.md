@@ -204,4 +204,4 @@ export default {
 };
 ```
 
-![image-animator](figures/image-animator.gif)
+![image-animator](figures/image-animator-lite.gif)
