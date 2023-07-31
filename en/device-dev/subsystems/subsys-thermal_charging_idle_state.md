@@ -88,7 +88,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         "subsystem": "product_hihope"
     }
     ```
-    In the preceding code, `//vendor/hihope/rk3568/thermal/` is the folder path, `profile` is the folder name, and `thermal_hdf_config` is the build target.
+    In the preceding code, `//vendor/hihope/rk3568/thermal/` is the folder path, `profile` is the folder name, and `thermal_service_config` is the build target.
 
 6. Build the customized version by referring to [Quick Start](../quick-start/quickstart-overview.md).
 
