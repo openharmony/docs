@@ -538,16 +538,12 @@
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
       - [Accessing Files Across Devices](file-management/file-access-across-devices.md)
   - Background Task Management
-    - Background Task
-      - [Background Task Management Overview](task-management/background-task-overview.md)
-      - [Transient Task Development](task-management/transient-task-dev-guide.md)
-      - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
-      - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
-      - [WorkSchedulerExtensionAbility Development](task-management/workscheduler-extensionability.md)
-      - [Efficiency Resource Request Development](task-management/efficiency-resources-apply-dev-guide.md)
-    - Agent-Powered Reminder
-      - [Agent-Powered Reminder Overview](task-management/reminder-agent-overview.md)
-      - [Agent-Powered Reminder Development](task-management/reminder-agent-development.md)
+      - [Background Task Overview](task-management/background-task-overview.md)
+      - [Transient Task](task-management/transient-task.md)
+      - [Continuous Task](task-management/continuous-task.md)
+      - [Deferred Task](task-management/work-scheduler.md)
+      - [Agent-powered Reminder](task-management/agent-powered-reminder.md)
+      - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
   - Device
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -810,9 +806,9 @@
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (Reminder Agent Management)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
-      - [@ohos.resourceschedule.workScheduler (Work Scheduler)](reference/apis/js-apis-resourceschedule-workScheduler.md)
+      - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](reference/apis/js-apis-resourceschedule-workScheduler.md)
       - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
-      - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
+      - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - Security
       - [@ohos.abilityAccessCtrl (Ability Access Control)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (Privacy Management)](reference/apis/js-apis-privacyManager.md)
