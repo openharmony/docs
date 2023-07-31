@@ -73,12 +73,11 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| deleteAreaDistance | [Length](ts-types.md#length) | 否 | 设置组件长距离滑动删除距离阈值。<br/>默认值：56vp <br/>**说明：** <br/>不支持设置百分比。<br/>删除距离阈值大于item宽度减去划出组件宽度，或删除距离阈值小于等于0就不会设置删除区域。|
-| onDelete | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。|
-| onEntryDeleteArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
-| onExitDeleteArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
+| actionAreaDistance | [Length](ts-types.md#length) | 否 | 设置组件长距离滑动删除距离阈值。<br/>默认值：56vp <br/>**说明：** <br/>不支持设置百分比。<br/>删除距离阈值大于item宽度减去划出组件宽度，或删除距离阈值小于等于0就不会设置删除区域。|
+| onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。|
+| onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
+| onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
 | builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。<br/>默认值：true |
 ## ListItemOptions<sup>10+</sup>对象说明
 
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
@@ -193,3 +192,42 @@ struct ListItemExample2 {
 }
 ```
 ![deleteListItem](figures/deleteListItem.gif)
+
+## 示例3
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample3 {
+ private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ListItemGroup({style:ListItemGroupStyle.CARD}){
+     ForEach(this.arr, (itemStyle,index) => {
+      ListItem({style:itemStyle}) {
+       Text(""+index)
+        .width("100%")
+        .textAlign(TextAlign.Center)
+      }
+     })
+    }
+    ForEach(this.arr, (itemStyle,index) => {
+     ListItem({style:itemStyle}) {
+      Text(""+index)
+       .width("100%")
+       .textAlign(TextAlign.Center)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // 浅蓝色的List
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemStyle](figures/listItem3.jpeg)

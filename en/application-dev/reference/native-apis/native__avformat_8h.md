@@ -28,7 +28,7 @@ The **native_avformat.h** file declares the format-related functions and enums.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVPixelFormat](_core.md#oh_avpixelformat) {<br>AV_PIXEL_FORMAT_YUVI420 = 1, AV_PIXEL_FORMAT_NV12 = 2, AV_PIXEL_FORMAT_NV21 = 3, AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
+| [OH_AVPixelFormat](_core.md#oh_avpixelformat) {<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_YUVI420 = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV12 = 2,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_NV21 = 3,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>&nbsp;&nbsp;&nbsp;&nbsp;AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
 
 
 ### Functions

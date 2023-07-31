@@ -2060,7 +2060,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the type of the input character string.
+Obtains the category value of the input character string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2074,13 +2074,48 @@ Obtains the type of the input character string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Type of the input character.|
+| string | Category value of the input character.|
+
+The following table lists only the general category values. For more details, see the Unicode Standard.
+
+| Name| Value| Description|
+| ---- | -------- | ---------- |
+| U_UNASSIGNED | U_UNASSIGNED | Non-category for unassigned and non-character code points.|
+| U_GENERAL_OTHER_TYPES | U_GENERAL_OTHER_TYPES | Same as **U_UNASSIGNED**.|
+| U_UPPERCASE_LETTER | U_UPPERCASE_LETTER | Uppercase letter.|
+| U_LOWERCASE_LETTER | U_LOWERCASE_LETTER | Lowercase letter. |
+| U_TITLECASE_LETTER | U_TITLECASE_LETTER | Title case letter.|
+| U_MODIFIER_LETTER | U_MODIFIER_LETTER | Modifier letter.|
+| U_OTHER_LETTER | U_OTHER_LETTER | Letters other than the uppercase letter, lowercase letter, title case letter, and modifier letter.|
+| U_NON_SPACING_MARK | U_NON_SPACING_MARK | Non-spacing mark, such as the accent symbol **'** and the variable symbol **#**.|
+| U_ENCLOSING_MARK | U_ENCLOSING_MARK | Enclosing mark, for example, a circle or a box.|
+| U_COMBINING_SPACING_MARK | U_COMBINING_SPACING_MARK | Spacing mark, for example, the vowel symbol **[]**.|
+| U_DECIMAL_DIGIT_NUMBER | U_DECIMAL_DIGIT_NUMBER | Decimal number.|
+| U_LETTER_NUMBER | U_LETTER_NUMBER | Letter and number (including Roman numeral).|
+| U_OTHER_NUMBER | U_OTHER_NUMBER | Other numbers, which are used as encryption symbols, marker symbols, or non-Arabic numerals, such as **@**, **#**, **(1)**, and **①**.|
+| U_SPACE_SEPARATOR | U_SPACE_SEPARATOR | Space separator, for example, a space character, uninterrupted space character, or space character with a fixed width.|
+| U_LINE_SEPARATOR | U_LINE_SEPARATOR | Line separator.|
+| U_PARAGRAPH_SEPARATOR | U_PARAGRAPH_SEPARATOR | Paragraph separator.|
+| U_CONTROL_CHAR | U_CONTROL_CHAR | Control character.|
+| U_FORMAT_CHAR | U_FORMAT_CHAR | Format character.|
+| U_PRIVATE_USE_CHAR | U_PRIVATE_USE_CHAR | Privately used character, for example, a company logo.|
+| U_SURROGATE | U_SURROGATE | Surrogate, which is used to represent supplementary characters in UTF-16.|
+| U_DASH_PUNCTUATION | U_DASH_PUNCTUATION | Dash punctuation.|
+| U_START_PUNCTUATION | U_START_PUNCTUATION | Start punctuation, for example, the left parenthesis.|
+| U_END_PUNCTUATION | U_END_PUNCTUATION | End punctuation, for example, the right parenthesis.|
+| U_INITIAL_PUNCTUATION | U_INITIAL_PUNCTUATION | Initial punctuation, for example, the left double quotation mark or left single quotation mark.|
+| U_FINAL_PUNCTUATION | U_FINAL_PUNCTUATION | Final punctuation, for example, the right double quotation mark or right single quotation mark.|
+| U_CONNECTOR_PUNCTUATION | U_CONNECTOR_PUNCTUATION | Connector punctuation.|
+| U_OTHER_PUNCTUATION | U_OTHER_PUNCTUATION | Other punctuations.|
+| U_MATH_SYMBOL | U_MATH_SYMBOL | Mathematical symbol.|
+| U_CURRENCY_SYMBOL | U_CURRENCY_SYMBOL | Currency symbol.|
+| U_MODIFIER_SYMBOL | U_MODIFIER_SYMBOL | Modifier symbol.|
+| U_OTHER_SYMBOL | U_OTHER_SYMBOL | Other symbols.|
 
 **Example**
   ```js
   let type = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
-
 
 ## I18NUtil<sup>9+</sup>
 
@@ -2367,6 +2402,8 @@ Represents the list of languages or countries/regions sorted by **SystemLocaleMa
 ## TimeZoneCityItem<sup>10+</sup>
 
 Represents the type of time zone city items.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Global.I18n
 

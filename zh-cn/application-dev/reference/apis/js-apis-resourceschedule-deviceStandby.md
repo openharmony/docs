@@ -1,4 +1,4 @@
-# @ohos.resourceschedule.deviceStandby（设备待机模块）
+# @ohos.resourceschedule.deviceStandby (设备待机模块)
 当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备或应用是否为待机模式，以及为应用申请或取消待机资源管控。
 
 >  **说明**:
@@ -120,7 +120,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 应用订阅申请豁免，使应用临时不进入待机管控。
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
@@ -185,7 +185,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 取消应用订阅申请豁免。
 
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
@@ -248,7 +248,7 @@ console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + e
 
 非待机应用资源枚举。
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
 **系统API:** 此接口为系统接口。
 
@@ -266,7 +266,7 @@ console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + e
 
 豁免应用信息，未进入待机管控的应用信息。
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
 **系统API:** 此接口为系统接口。
 
@@ -280,7 +280,7 @@ console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + e
 
 待机资源请求体。
 
-**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
 **系统API:** 此接口为系统接口。
 

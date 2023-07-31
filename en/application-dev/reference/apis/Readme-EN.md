@@ -221,15 +221,15 @@
 - Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
-  - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
+  - [@ohos.resourceManager (Resource Management)](js-apis-resource-manager.md)
 
 - Background Task
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
-  - [@ohos.resourceschedule.workScheduler (Work Scheduler)](js-apis-resourceschedule-workScheduler.md)
+  - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](js-apis-resourceschedule-deviceUsageStatistics.md)
-  - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
 
@@ -291,6 +291,7 @@
   - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
+  - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
@@ -351,7 +352,9 @@
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
+  - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
+  - [@ohos.driver.deviceManager (Peripheral Management)](js-apis-driver-deviceManager.md)
   - [@ohos.geoLocationManager (Geolocation Manager)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.inputConsumer (Input Consumer)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (Input Device)](js-apis-inputdevice.md)
@@ -368,7 +371,6 @@
   - [@ohos.multimodalInput.shortKey (Shortcut Key)](js-apis-shortKey.md)
   - [@ohos.power (System Power Management)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock)](js-apis-runninglock.md)
-  - [@ohos.resourceschedule.deviceStandby (Device Standby)](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)
   - [@ohos.settings (Data Item Settings)](js-apis-settings.md)
   - [@ohos.stationary (Device Status Awareness Framework)](js-apis-stationary.md)
@@ -392,6 +394,7 @@
   - [@ohos.enterprise.accountManager(Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.browser (Browser Management)](js-apis-enterprise-browser.md)
   - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)

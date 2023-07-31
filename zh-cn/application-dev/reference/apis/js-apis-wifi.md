@@ -569,7 +569,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
- 
+
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
 
@@ -2254,7 +2254,58 @@ wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
 
 // Unregister event
 wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
+
 ```
+## wifi.on('streamChange')<sup>7+</sup>
+
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+注册WIFI流更改事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"streamChange"字符串。 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+## wifi.off('streamChange')<sup>7+</sup>
+
+off(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+取消注册WIFI流更改事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"streamChange"字符串。 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+**示例：**
+```js
+import wifi from '@ohos.wifi';
+
+var recvStreamChangeFunc = result => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register event
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister event
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
+
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
@@ -2313,6 +2364,105 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
+## wifi.on('hotspotStaJoin')<sup>7+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta加入事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+  | callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+
+## wifi.off('hotspotStaJoin')<sup>7+</sup>
+
+off(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta加入事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+  | callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+
+  **示例：**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaJoinFunc = result => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register event
+wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister event
+wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifi.on('hotspotStaLeave')<sup>7+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta离开事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
+
+off(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta离开事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+
+  **示例：**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaLeaveFunc = result => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register event
+wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister event
+wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
@@ -2373,7 +2523,7 @@ wifi.on("p2pStateChange", recvP2pStateChangeFunc);
 wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 ```
 
-  ## wifi.on('p2pConnectionChange')<sup>8+</sup>
+## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 

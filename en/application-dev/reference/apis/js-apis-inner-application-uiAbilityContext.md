@@ -116,7 +116,6 @@ Observe the following when using this API:
 
 **Error codes**
 
-| ID | Error Message |
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -276,6 +275,8 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -345,6 +346,8 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -424,6 +427,8 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -979,6 +984,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -1040,8 +1046,6 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1445,6 +1449,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -2226,7 +2231,7 @@ Sets the mission continuation state of this UIAbility. This API uses an asynchro
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2260,7 +2265,7 @@ Sets the mission continuation state of this UIAbility. This API uses a promise t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
 
 **Return value**
 
@@ -2787,9 +2792,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## UIAbilityContext.reportDrawnCompleted
+## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
 
-reportDrawnCompleted(callback: AsyncCallback<void>): void;
+reportDrawnCompleted(callback: AsyncCallback\<void>): void;
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
  **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -2812,26 +2817,31 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-onWindowStageCreate(windowStage: Window.WindowStage) {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
-        if (err.code) {
-            return;
-        }
-        try {
-            this.context.reportDrawnCompleted((err) => {
-                if (err.code) {
-                    // Process service logic errors.
-                    console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
-                    return;
-                }
-                // Carry out normal service processing.
-                console.info('reportDrawnCompleted succeed');
-            });
-        } catch (err) {
-            // Capture the synchronization parameter error.
+      if (err.code) {
+        return;
+      }
+      try {
+        this.context.reportDrawnCompleted((err) => {
+          if (err.code) {
+            // Process service logic errors.
             console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
-        }
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('reportDrawnCompleted succeed');
+        });
+      } catch (err) {
+        // Capture the synchronization parameter error.
+        console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+      }
     });
     console.log("MainAbility onWindowStageCreate")
-}
+  }
+};
   ```

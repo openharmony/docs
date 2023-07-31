@@ -68,7 +68,7 @@
              return;
            }
            console.info('Succeeded in getting preferences.');
-           // 进行相关数据操作
+           // 请确保获取到Preferences实例后，再进行相关数据操作
          })
        } catch (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
@@ -93,7 +93,7 @@
          return;
        }
        console.info('Succeeded in getting preferences.');
-       // 进行相关数据操作
+       // 请确保获取到Preferences实例后，再进行相关数据操作
      })
    } catch (err) {
      console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);

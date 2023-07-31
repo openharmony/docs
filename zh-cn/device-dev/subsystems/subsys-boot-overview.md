@@ -22,19 +22,24 @@
 
 启动子系统内部涉及以下组件：
 
-- init启动引导组件：
-  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init-jobs.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+- init启动引导组件
 
-- ueventd启动引导组件：
+  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[job解析接口说明](../subsystems/subsys-boot-init-jobs.md#接口说明)）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+
+- ueventd启动引导组件
+
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
 
-- appspawn应用孵化组件：
-  负责接收**用户程序框架**的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
+- appspawn应用孵化组件
 
-- bootstrap服务启动组件：
+  负责接收用户程序框架的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
+
+- bootstrap服务启动组件
+
   提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用bootstrap标识的入口函数，并启动系统服务。
 
-- syspara系统属性组件：
+- syspara系统属性组件
+
   系统属性组件，根据OpenHarmony产品兼容性规范提供获取设备信息的接口，如：产品名、品牌名、厂家名等，同时提供设置/读取系统属性的接口。
 
 
@@ -52,13 +57,13 @@
 | base/startup/syspara_lite | -&nbsp;轻量系统设备（参考内存≥128KB），如Hi3861V100<br/>-&nbsp;小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300 |
 
 - init启动引导组件：
-  - 每个系统服务启动时都需要编写各自的启动脚本文件init.cfg，定义各自的服务名、可执行文件路径、权限和其他信息。
-  - 每个系统服务各自安装其启动脚本到/system/etc/init目录下，init进程统一扫码执行。
+  - 每个系统服务启动时都需要编写各自的启动脚本文件`init.cfg`，定义各自的服务名、可执行文件路径、权限和其他信息。
+  - 每个系统服务各自安装其启动脚本到`/system/etc/init`目录下，init进程统一扫码执行。
 
-- 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
+- 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件`/vendor/etc/init/init.{hardware}.cfg`；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
   > **说明：**
->
+  >
   > 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
@@ -78,10 +83,10 @@
 每个开发板都需要在存储器上划分好分区来存放上述镜像，SOC启动时都由bootloader来加载这些镜像，具体过程包括以下几个大的步骤：
 
 - bootloader初始化ROM和RAM等硬件，加载分区表信息。
-- bootloader根据分区表加载boot.img，从中解析并加载ramdisk.img到内存中。
+- bootloader根据分区表加载`boot.img`，从中解析并加载`ramdisk.img`到内存中。
 - bootloader准备好分区表信息，ramdisk地址等信息，进入内核，内核加载ramdisk并执行init。
-- init准备初始文件系统，挂载required.fstab（包括system.img和vendor.img的挂载）。
-- 扫描system.img和vendor.img中etc/init目录下的启动配置脚本，执行各个启动命令。
+- init准备初始文件系统，挂载`required.fstab`（包括`system.img`和`vendor.img`的挂载）。
+- 扫描`system.img`和`vendor.img`中`etc/init`目录下的启动配置脚本，执行各个启动命令。
 
 ### uboot启动引导过程
 
@@ -95,21 +100,21 @@
 
     - Hi3516DV300
 
-      在Hi3516DV300平台上的boot.img采用了FIT（flattened image tree）格式，将kernel编译生成的zImage-dtb和cpio格式的ramdisk镜像通过打包工具Mkimage根据its文件中的信息打包生成一个镜像，这个镜像就是boot.img。
+      在Hi3516DV300平台上的`boot.img`采用了FIT（flattened image tree）格式，将kernel编译生成的zImage-dtb和cpio格式的ramdisk镜像通过打包工具Mkimage根据its文件中的信息打包生成一个镜像，这个镜像就是`boot.img`。
 
-      下面对上述boot.img文件生成过程中使用的文件和工具进行简要介绍：
+      下面对上述`boot.img`文件生成过程中使用的文件和工具进行简要介绍：
 
       1. its文件
 
-         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的ohos.its文件。
+         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的`ohos.its`文件。
 
       2. Mkimage打包工具
 
-         能够解析its文件，将其中按照其中镜像的配置将对应镜像打包生成itb文件，这里也就是boot.img文件。
+         能够解析its文件，将其中按照其中镜像的配置将对应镜像打包生成itb文件，这里也就是`boot.img`文件。
 
       3. ramdisk
 
-         使用cpio打包的ramdisk.img镜像文件。
+         使用cpio打包的`ramdisk.img`镜像文件。
 
       4. zImage-dtb
 
@@ -117,7 +122,7 @@
 
     - rk3568
 
-      在rk3568平台上相应的镜像文件为boot_linux.img，其中打包的文件与Hi3516DV300平台不尽相同，下面分别列举：
+      在rk3568平台上相应的镜像文件为`boot_linux.img`，其中打包的文件与Hi3516DV300平台不尽相同，下面分别列举：
 
       1. Image
 
@@ -129,11 +134,11 @@
 
       3. ramdisk.img
 
-         使用cpio打包的ramdisk.img镜像文件。
+         使用cpio打包的`ramdisk.img`镜像文件。
 
   - u-boot加载
 
-    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk 的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为root=/dev/ram0 initrd=0x84000000,0x292e00。
+    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为`root=/dev/ram0 initrd=0x84000000,0x292e00`。
 
 
 - u-boot进入
@@ -155,15 +160,15 @@
 
   所谓required分区，就是系统启动引导过程的必要分区，必须在二级启动开始前进行挂载。比如system、vendor等必选镜像，挂载这些镜像前，需要先创建对应的块设备文件。这些块设备文件是通过内核上报UEVENT事件来创建的。init需要知道存储器的主设备目录，需要bootloader通过default_boot_device传递。
 
-  目前init支持两种方式获取required分区信息，一是通过保存在/proc/cmdline中的bootargs，init会首先尝试从cmdline读取required分区信息；二是通过读取ramdisk中的fstab.required文件，只有在前一种方式获取失败的情况下才会尝试通过这种方式获取。
+  目前init支持两种方式获取required分区信息，一是通过保存在`/proc/cmdline`中的bootargs，init会首先尝试从cmdline读取required分区信息；二是通过读取ramdisk中的`fstab.required`文件，只有在前一种方式获取失败的情况下才会尝试通过这种方式获取。
 
     - 块设备的创建逻辑
 
       - 准备工作
 
-        1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
-        2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
-        3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
+        1. init从cmdline中读取required fstab，若获取失败，则尝试读`fstab.required`文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
+        2. 创建接收内核上报uevent事件广播消息的socket，从`/proc/cmdline`里读取default_boot_device。
+        3. 带着fstab信息和socket句柄遍历`/sys/devices`目录，准备开始触发内核上报uevent事件。
 
       - 触发事件
 
@@ -180,16 +185,16 @@
 
     - 与default_boot_device匹配关系
 
-      内核将bootargs信息写入/proc/cmdline，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。以ohos.required_mount.为前缀的内容则是系统启动必要的分区挂载信息，其内容与fstab.required文件内容应当是一致的。另外，分区挂载信息中的块设备节点就是default_boot_device目录中by-name下软链接指向的设备节点。例如，default_boot_device的值为soc/10100000.himci.eMMC，那么ohos.required_mount.system的值就包含了/dev/block/platform/soc/10100000.himci.eMMC/by-name/system这个指向system设备节点的软链接路径。
+      内核将bootargs信息写入`/proc/cmdline`，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。以`ohos.required_mount.`为前缀的内容则是系统启动必要的分区挂载信息，其内容与`fstab.required`文件内容应当是一致的。另外，分区挂载信息中的块设备节点就是`default_boot_device`目录中by-name下软链接指向的设备节点。例如，`default_boot_device`的值为`soc/10100000.himci.eMMC`，那么`ohos.required_mount.system`的值就包含了`/dev/block/platform/soc/10100000.himci.eMMC/by-name/system`这个指向system设备节点的软链接路径。
 
-      在创建块设备节点的过程中，会有一个将设备路径与default_boot_device的值匹配的操作，匹配成功后，会在/dev/block/by-name目录下创建指向真实块设备节点的软链接，以此在访问设备节点的过程中实现芯片平台无关化。
+      在创建块设备节点的过程中，会有一个将设备路径与default_boot_device的值匹配的操作，匹配成功后，会在`/dev/block/by-name`目录下创建指向真实块设备节点的软链接，以此在访问设备节点的过程中实现芯片平台无关化。
 
     - 实例
 
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
       > **说明：**
-    >
+      >
       > 从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
       1. 获取required设备信息
@@ -210,7 +215,7 @@
               return fstab;
           }
           ```
-          以上代码分别展示了获取fstab信息的两种方式，首先调用LoadFstabFromCommandLine()，从cmdline中获取fstab信息，如果获取失败，则输出log，表示继续尝试从fstab.required文件中获取fstab信息。
+          以上代码分别展示了获取fstab信息的两种方式，首先调用`LoadFstabFromCommandLine()`，从cmdline中获取fstab信息，如果获取失败，则输出log，表示继续尝试从`fstab.required`文件中获取fstab信息。
 
           对于system分区来说，其读到devices中的关键信息如下所示：
           ```
@@ -239,7 +244,7 @@
          int ret = GetProcCmdlineValue("default_boot_device", buffer, bootDevice, CMDLINE_VALUE_LEN_MAX);
          INIT_CHECK_ONLY_ELOG(ret == 0, "Failed get default_boot_device value from cmdline");
          ```
-         这里取得的default_boot_device的值应该是soc/10100000.himci.eMMC，也就对应了system分区设备所在目录，这一值存放在了bootDevice这个全局变量当中，将在后续创建system分区设备软链接前进行匹配。
+         这里取得的`default_boot_device`的值应该是`soc/10100000.himci.eMMC`，也就对应了system分区设备所在目录，这一值存放在了bootDevice这个全局变量当中，将在后续创建system分区设备软链接前进行匹配。
 
       4. 处理required设备uevent事件
          ```
@@ -259,11 +264,11 @@
              break;
          }
          ```
-         存在devices中的设备信息，就是在此处与内核上报的uevent事件进行匹配的。对于system分区设备的uevent消息，其uevent->partitionName值应该为system，与devices中存在的/dev/block/platform/fe310000.sdhci/by-name/system字段匹配成功，则开始处理system分区设备的uevent消息。
+         存在devices中的设备信息，就是在此处与内核上报的uevent事件进行匹配的。对于system分区设备的uevent消息，其`uevent->partitionName`值应该为`system`，与devices中存在的`/dev/block/platform/fe310000.sdhci/by-name/system`字段匹配成功，则开始处理system分区设备的uevent消息。
 
       5. 创建required设备节点和对应软链接
 
-         首先应该格式化对应软链接的路径，这一部分就用到了bootargs中default_boot_device的值，与上报的required设备节点路径进行匹配，以创建平台无关的可读性更高的指向该设备节点的软链接，关键部分代码如下：
+         首先应该格式化对应软链接的路径，这一部分就用到了`bootargs`中`default_boot_device`的值，与上报的required设备节点路径进行匹配，以创建平台无关的可读性更高的指向该设备节点的软链接，关键部分代码如下：
          ```
          if (STRINGEQUAL(bus, "/sys/bus/platform")) {
              INIT_LOGV("Find a platform device: %s", parent);
@@ -280,10 +285,10 @@
          ```
          首先解释一下这段代码中出现的关键变量。
 
-             bus: 这是一个保存了路径信息的字符串，路径是当前处理的设备所连接的总线路径。
-             parent: 同样是一个保存了路径信息的字符串，路径是从uevent->syspath取出的当前处理的设备路径。
-             links：事先申请好的指向保存软链接路径内存的指针
-             bootDevice: 存放bootargs中default_boot_device值的字符串
+         - bus: 这是一个保存了路径信息的字符串，路径是当前处理的设备所连接的总线路径。
+         - parent: 同样是一个保存了路径信息的字符串，路径是从`uevent->syspath`取出的当前处理的设备路径。
+         - links：事先申请好的指向保存软链接路径内存的指针。
+         - bootDevice: 存放`bootargs`中`default_boot_device`值的字符串。
          根据代码可知，只有处理到所连接总线类型为platform时的设备才会创建对应软链接，这一软链接所在的目录是：
          ```
          /dev/block/platform/soc/10100000.himci.eMMC/by-name
@@ -294,7 +299,7 @@
          ```
          /sys/devices/platform/soc/10100000.himci.eMMC/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p5
          ```
-         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径soc/10100000.himci.eMMC相匹配，因此而创建相应的软链接，这一软连接的路径是：
+         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软连接的路径是：
          ```
          /dev/block/by-name/system
          ```
@@ -334,16 +339,16 @@
 
 - init执行system和vendor中的启动脚本，挂载vendor中更多的分区
 
-挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
+挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如`/vendor/etc/init.{ohos.boot.hardware}.cfg`。vendor中扩展的挂载分区文件是`/vendor/etc/fstab.{ohos.boot.hardware}`。hardware的来源是bootloader传递给内核的bootargs。
 
 
 ### 无ramdisk的启动加载流程
 
-有些开发板没有采用ramdisk启动引导，直接通过内核挂载system.img。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
+有些开发板没有采用ramdisk启动引导，直接通过内核挂载`system.img`。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
 
-此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下；而没有ramdisk时，没有chroot过程，但是都会读取init.cfg文件从而执行脚本。
+此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把`system.img`挂载到`/usr`目录，然后chroot到`/usr`下；而没有ramdisk时，没有chroot过程，但是都会读取`init.cfg`文件从而执行脚本。
 
-对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如root=/dev/mmcblk0p5，rootfstype=ext4。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
+对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如`root=/dev/mmcblk0p5，rootfstype=ext4`。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
 
 
 ### A/B分区启动
@@ -364,7 +369,7 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
       return GetSlotInfoFromCmdLine("bootslots");
   }
   ```
-  在系统正常启动后，用户可以在控制台通过系统参数ohos.boot.bootslots来获取bootslots的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
+  在系统正常启动后，用户可以在控制台通过系统参数`ohos.boot.bootslots`来获取`bootslots`的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
   ```
   param get ohos.boot.bootslots
   ```
@@ -373,7 +378,7 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
 
   currentslot是指当前启动的系统分区，比如A分区或B分区。currentslot的值使用数字表示，比如数字1表示当前启动A分区，数字2表示当前启动B分区。
 
-  init在启动的第一阶段通过bootslots判断系统是否支持A/B分区，若不支持，将不再获取currentslot值，直接启动默认系统分区；若支持，将会继续获取currentslot值，根据该值判断当前启动的系统分区为A分区或B分区。init获取currentslot的主要接口如下：
+  init在启动的第一阶段通过bootslots判断系统是否支持A/B分区，若不支持，将不再获取`currentslot`值，直接启动默认系统分区；若支持，将会继续获取`currentslot`值，根据该值判断当前启动的系统分区为A分区或B分区。init获取`currentslot`的主要接口如下：
   ```
   int GetCurrentSlot(void)
   {
@@ -394,7 +399,7 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
 
 - A/B分区启动流程
 
-  1. 获取当前启动的A/B分区信息，即currentslot信息。
+  1. 获取当前启动的A/B分区信息，即`currentslot`信息。
   2. 以原始fstab为基础构造新的分区挂载配置，为支持A/B启动的分区（目前支持的分区有system分区和chipset分区）添加对应的"_a"或"_b"后缀。
   3. 按照构造后的分区挂载配置挂载带有相应后缀的分区并切换到启动的第二阶段，启动第二阶段将在具体的A分区或B分区中进行，涉及A/B分区启动部分至此结束。
 
@@ -426,49 +431,50 @@ OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的
 
       使用原始镜像构造A/B分区镜像，测试A/B分区启动功能
       - 复制system、vendor镜像并添加_b后缀。
-      - 在分区表（parameter.txt）中添加system_b、vendor_b分区。
+      - 在分区表（`parameter.txt`）中添加system_b、vendor_b分区。
 
   2. 烧写A/B分区镜像
 
-     - 在rk3568烧写工具中导入配置，选择带有system_b和vendor_b分区的parameter.txt。
+     - 在rk3568烧写工具中导入配置，选择带有system_b和vendor_b分区的`parameter.txt`。
      - 按照新的分区表配置选择镜像（注意新增的system_b和vendor_b镜像），选择完成后烧写。
 
   3. 启动完成后
 
-      1. 执行cat /proc/cmdline，能够找到bootslot=2，说明当前系统支持A/B分区启动。
+      1. 执行`cat /proc/cmdline`，能够找到`bootslot=2`，说明当前系统支持A/B分区启动。
 
           ![cmdline](figures/ABStartup_2.png)
-      2. 执行param get ohos.boot.bootslot，得到的结果是2，说明bootslot信息被成功写到了parameter中。
+      2. 执行`param get ohos.boot.bootslot`，得到的结果是2，说明bootslot信息被成功写到了parameter中。
 
-      3. 执行ls -l /dev/block/by-name，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
+      3. 执行`ls -l /dev/block/by-name`，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
 
           ![设备信息](figures/ABStartup_3.png)
 
-      4. 执行df -h 查看当前系统挂载分区。
+      4. 执行`df -h`查看当前系统挂载分区。
 
           ![分区信息](figures/ABStartup_4.png)
 
-          可以看到根文件系统（一个 ” / ” 表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到/vendor中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
+          可以看到根文件系统（一个“/”表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到`/vendor`中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
 
           接下来，我们将尝试B分区启动。
 
-          1）执行partitionslot setactive 2，将活动分区slot设置为2，也就是B分区的slot。
+          1. 执行`partitionslot setactive 2`，将活动分区slot设置为2，也就是B分区的slot。
 
-          ![设置slot](figures/ABStartup_5.png)
+             ![设置slot](figures/ABStartup_5.png)
 
-          2）执行partitionslot getslot，查看刚刚设置的slot值是否设置成功。
+          2. 执行`partitionslot getslot`，查看刚刚设置的slot值是否设置成功。
 
-          ![查看slot](figures/ABStartup_6.png)
+             ![查看slot](figures/ABStartup_6.png)
 
-          current slot: 2表示活动分区slot被成功设置为2
+             `current slot: 2`表示活动分区slot被成功设置为2。
 
-          3）重启设备后，执行df -h，查看当前系统挂载分区
-          发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
+          3. 重启设备后，执行`df -h`，查看当前系统挂载分区。
+          
+             发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
 
-          ![挂载信息](figures/ABStartup_7.png)
+             ![挂载信息](figures/ABStartup_7.png)
 
-          4）再次执行ls -l /dev/block/by-name。
+          4. 再次执行`ls -l /dev/block/by-name`。
 
-          ![新增设备信息](figures/ABStartup_8.png)
+             ![新增设备信息](figures/ABStartup_8.png)
 
           找到mmcblk0p11对应的是system_b，mmcblk0p12对应的是vendor_b，也就是说，本次启动系统已经成功从B分区挂载启动。

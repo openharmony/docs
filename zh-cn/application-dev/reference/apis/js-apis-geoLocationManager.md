@@ -224,7 +224,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -238,7 +238,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -256,6 +256,69 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | -------- | -------- | -------- | -------- | -------- |
 | country | string | 是 | 否 | 表示国家码字符串。 |
 | type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
+
+
+## LocatingRequiredDataConfig<sup>10+</sup>
+
+获取定位所需数据时的配置参数。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 是 | 是 | 表示请求获取数据的类型。 |
+| needStartScan |  boolean | 是 | 是 | 表示是否需要发起扫描。 |
+| scanInterval |  number | 是 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
+| scanTimeout |  number | 是 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
+
+
+## LocatingRequiredData<sup>10+</sup>
+
+表示定位业务所需的数据，包含WiFi或蓝牙扫描结果，APP拿到这些数据之后可以用于网络定位等业务。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | 是 | 否 | 表示WiFi扫描结果。 |
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 是 | 否 | 表示蓝牙扫描结果。 |
+
+
+## WifiScanInfo<sup>10+</sup>
+
+WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| ssid | string | 是 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | WiFi热点的BSSID。 |
+| rssi | number | 是 | 否 | WiFi热点的信号强度(dBm)。 |
+| frequency | number | 是 | 否 | WiFi热点的频率。 |
+| timestamp | number | 是 | 否 | 时间戳。 |
+
+
+## BluetoothScanInfo<sup>10+</sup>
+
+蓝牙扫描信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 否 | 蓝牙设备名称。 |
+| macAddress | string | 是 | 否 | 蓝牙设备的MAC地址。 |
+| rssi | number | 是 | 否 | 蓝牙设备的信号强度(dBm)。 |
+| timestamp | number | 是 | 否 | 时间戳。 |
 
 
 ## LocationRequestPriority
@@ -294,7 +357,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -315,6 +378,20 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |
 | COUNTRY_CODE_FROM_LOCATION | 3 | 基于用户的位置信息，通过逆地理编码查询到的国家码。 |
 | COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |
+
+
+## LocatingRequiredDataType<sup>10+</sup>
+
+定位业务所需数据的类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| WIFI  | 1 | 表示WiFi扫描信息。 |
+| BLUETOOTH | 2 | 表示蓝牙扫描信息。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -942,6 +1019,89 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   ```
 
 
+## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
+
+on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+
+订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示订阅定位业务所需数据的变化。 |
+  | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | 是 | 表示获取定位所需数据时的配置参数。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 是 | 接收定位业务所需数据的上报。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301800 | Failed to start WiFi or Bluetooth scanning.                            |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  let callback = (code) => {
+      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+  }
+  let config = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.on('locatingRequiredDataChange', config, callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+
+## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
+
+off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+
+取消订阅定位业务所需数据的变化，并停止WiFi和蓝牙扫描。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示取消订阅定位业务所需数据的变化。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+
+**错误码**：
+
+错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  let callback = (code) => {
+      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+  }
+  let config = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.on('locatingRequiredDataChange', config, callback);
+      geoLocationManager.off('locatingRequiredDataChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 
 ## geoLocationManager.getCurrentLocation
 
@@ -1165,7 +1325,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
 打开位置服务，使用callback回调异步返回结果。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1207,7 +1367,7 @@ enableLocation(): Promise&lt;void&gt;
 
 打开位置服务，使用Promise方式异步返回结果。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1249,7 +1409,7 @@ disableLocation(): void;
 
 关闭位置服务。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1273,7 +1433,6 @@ disableLocation(): void;
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
-
 
 
 ## geoLocationManager.getAddressesFromLocation
@@ -1839,7 +1998,7 @@ enableLocationMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1870,7 +2029,7 @@ disableLocationMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1903,7 +2062,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1949,7 +2108,7 @@ enableReverseGeocodingMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1979,7 +2138,7 @@ disableReverseGeocodingMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -2011,7 +2170,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -2053,7 +2212,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -2095,7 +2254,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -2122,6 +2281,56 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   import geoLocationManager from '@ohos.geoLocationManager';
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
+  } catch (err) {
+      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+
+## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
+
+getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;;
+
+单次获取定位业务所需数据，包含WiFi蓝牙扫描信息，使用Promise方式异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | 是 | 表示获取定位所需数据时的配置参数。 |
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | 用来接收定位业务所需数据，包含WiFi蓝牙扫描信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301800  | Failed to start WiFi or Bluetooth scanning.                    |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  let config = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.getLocatingRequiredData(config).then((result) => {
+          console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
+      })  
+      .catch((error) => {
+          console.log('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
+      });
   } catch (err) {
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }

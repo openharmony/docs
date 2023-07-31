@@ -34,7 +34,7 @@ let udp = socket.constructUDPSocketInstance();
 
 ## UDPSocket<sup>7+</sup>
 
-Defines a **UDPSocket** connection. Before invoking UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
+Defines a UDPSocket connection. Before calling UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
 
 ### bind<sup>7+</sup>
 
@@ -355,7 +355,7 @@ promise.then(err => {
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other attributes of the UDPSocket connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -408,7 +408,7 @@ udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
-Sets other attributes of the UDPSocket connection. This API uses a promise to return the result.
+Sets other properties of the UDPSocket connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
@@ -472,7 +472,7 @@ Enables listening for message receiving events of the UDPSocket connection. This
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
 
 **Example**
@@ -506,7 +506,7 @@ Disables listening for message receiving events of the UDPSocket connection. Thi
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
@@ -524,7 +524,7 @@ let callback = value => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 udp.on('message', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 udp.off('message', callback);
 udp.off('message');
 ```
@@ -541,7 +541,7 @@ Enables listening for data packet message events or close events of the UDPSocke
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -571,7 +571,7 @@ Disables listening for data packet message events or close events of the UDPSock
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -582,14 +582,14 @@ let callback1 = () => {
   console.log("on listening, success");
 }
 udp.on('listening', callback1);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 udp.off('listening', callback1);
 udp.off('listening');
 let callback2 = () => {
   console.log("on close, success");
 }
 udp.on('close', callback2);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 udp.off('close', callback2);
 udp.off('close');
 ```
@@ -606,7 +606,7 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -633,7 +633,7 @@ Disables listening for error events of the UDPSocket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -644,7 +644,7 @@ let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 udp.off('error', callback);
 udp.off('error');
 ```
@@ -739,7 +739,7 @@ let tcp = socket.constructTCPSocketInstance();
 
 ## TCPSocket<sup>7+</sup>
 
-Defines a TCPSocket connection. Before invoking TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance) to create a **TCPSocket** object.
+Defines a TCPSocket connection. Before calling TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance) to create a **TCPSocket** object.
 
 ### bind<sup>7+</sup>
 
@@ -1358,7 +1358,7 @@ Enables listening for message receiving events of the TCPSocket connection. This
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Example**
@@ -1392,7 +1392,7 @@ Disables listening for message receiving events of the TCPSocket connection. Thi
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
@@ -1410,7 +1410,7 @@ let callback = value => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 tcp.on('message', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcp.off('message', callback);
 tcp.off('message');
 ```
@@ -1427,7 +1427,7 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1457,7 +1457,7 @@ Disables listening for connection or close events of the TCPSocket connection. T
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1468,14 +1468,14 @@ let callback1 = () => {
   console.log("on connect success");
 }
 tcp.on('connect', callback1);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcp.off('connect', callback1);
 tcp.off('connect');
 let callback2 = () => {
   console.log("on close success");
 }
 tcp.on('close', callback2);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcp.off('close', callback2);
 tcp.off('close');
 ```
@@ -1492,7 +1492,7 @@ Enables listening for error events of the TCPSocket connection. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -1519,7 +1519,7 @@ Disables listening for error events of the TCPSocket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -1530,7 +1530,7 @@ let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcp.off('error', callback);
 tcp.off('error');
 ```
@@ -1596,7 +1596,7 @@ let tcpServer = socket.constructTCPSocketServerInstance();
 
 ## TCPSocketServer<sup>10+</sup>
 
-Defines a TCPSocketServer connection. Before invoking TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
+Defines a TCPSocketServer connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
 
 ### listen<sup>10+</sup>
 
@@ -1916,7 +1916,7 @@ Enables listening for TCPSocketServer connection events. This API uses an asynch
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event|
+| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
@@ -1949,7 +1949,7 @@ Disables listening for TCPSocketServer connection events. This API uses an async
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event|
+| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | No  | Callback used to return the result.                           |
 
 **Error codes**
@@ -1966,7 +1966,7 @@ let callback = data => {
   console.log('on connect message: ' + JSON.stringify(data));
 }
 tcpServer.on('connect', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcpServer.off('connect', callback);
 tcpServer.off('connect');
 ```
@@ -1983,7 +1983,7 @@ Enables listening for error events of the TCPSocketServer connection. This API u
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2016,7 +2016,7 @@ Disables listening for error events of the TCPSocketServer connection. This API 
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2033,14 +2033,17 @@ let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tcpServer.on('error', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tcpServer.off('error', callback);
 tcpServer.off('error');
 ```
 
 ## TCPSocketConnection<sup>10+</sup>
 
-Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before invoking TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
+Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before calling TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
+
+> **NOTE**
+> The TCPSocket client can call related APIs through the **TCPSocketConnection** object only after a connection is successfully established between the TCPSocket client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2312,7 +2315,7 @@ Enables listening for **message** events of a **TCPSocketConnection** object. Th
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
@@ -2331,7 +2334,7 @@ tcpServer.on('connect', function(client) {
     for (var i = 0; i < value.message.length; i++) {
       let messages = value.message[i];
       let message = String.fromCharCode(messages);
-      messageView += item;
+      messageView += message;
     }
     console.log('on message message: ' + JSON.stringify(messageView));
     console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -2354,8 +2357,8 @@ Disables listening for **message** events of a **TCPSocketConnection** object. T
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2371,7 +2374,7 @@ let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i];
     let message = String.fromCharCode(messages);
-    messageView += item;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -2379,7 +2382,7 @@ let callback = value => {
 let tcpServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', function(client) {
   client.on('message', callback);
-  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
   client.off('message', callback);
   client.off('message');
 });
@@ -2397,7 +2400,7 @@ Enables listening for **close** events of a **TCPSocketConnection** object. This
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2432,7 +2435,7 @@ Disables listening for **close** events of a **TCPSocketConnection** object. Thi
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2450,7 +2453,7 @@ let callback = () => {
 let tcpServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', function(client) {
   client.on('close', callback);
-  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
   client.off('close', callback);
   client.off('close');
 });
@@ -2468,7 +2471,7 @@ Enables listening for **error** events of a **TCPSocketConnection** object. This
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2503,7 +2506,7 @@ Disables listening for **error** events of a **TCPSocketConnection** object. Thi
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2521,7 +2524,7 @@ let callback = err => {
 let tcpServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', function(client) {
   client.on('error', callback);
-  // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
   client.off('error', callback);
   client.off('error');
 });
@@ -2555,7 +2558,7 @@ let tls = socket.constructTLSSocketInstance();
 
 ## TLSSocket<sup>9+</sup>
 
-Defines a TLSSocket connection. Before invoking TLSSocket APIs, you need to call [socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9) to create a **TLSSocket** object.
+Defines a TLSSocket connection. Before calling TLSSocket APIs, you need to call [socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9) to create a **TLSSocket** object.
 
 ### bind<sup>9+</sup>
 
@@ -2719,7 +2722,7 @@ promise.then(() => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses an asynchronous callback to return the result.
+Sets other properties of the TCPSocket connection after **bind** is successfully called. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2771,7 +2774,7 @@ tls.setExtraOptions({
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the connection. This API uses a promise to return the result.
+Sets other properties of the TCPSocket connection after **bind** is successfully called. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2834,7 +2837,7 @@ Enables listening for **message** events of the TLSSocket connection. This API u
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
@@ -2868,8 +2871,8 @@ Disables listening for **message** events of the TLSSocket connection. This API 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.|
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br/> **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
@@ -2886,14 +2889,14 @@ let callback = value => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 tls.on('message', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('message', callback);
 ```
 ### on('connect' | 'close')<sup>9+</sup>
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
-Enables listening for connection or close events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+Enables listening for **connect** or **close** events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2901,7 +2904,7 @@ Enables listening for connection or close events of the TLSSocket connection. Th
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2920,7 +2923,7 @@ tls.on('close', () => {
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
-Disables listening for connection or close events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
+Disables listening for **connect** or **close** events of the TLSSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
@@ -2931,7 +2934,7 @@ Disables listening for connection or close events of the TLSSocket connection. T
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event<br>- **close**: close event|
+| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2942,14 +2945,14 @@ let callback1 = () => {
   console.log("on connect success");
 }
 tls.on('connect', callback1);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('connect', callback1);
 tls.off('connect');
 let callback2 = () => {
   console.log("on close success");
 }
 tls.on('close', callback2);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('close', callback2);
 ```
 
@@ -2965,7 +2968,7 @@ Enables listening for error events of the TLSSocket connection. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -2992,7 +2995,7 @@ Disables listening for error events of the TLSSocket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event|
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -3003,7 +3006,7 @@ let callback = err => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
-// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('error', callback);
 ```
 
@@ -3011,7 +3014,7 @@ tls.off('error', callback);
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLSSocket connection, and creates and initializes a TLS session after successful binding of the local IP address and port number of the TLSSocket connection. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
+Sets up a TLSSocket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3105,7 +3108,7 @@ tlsOneWay.connect(oneWayOptions, (err, data) => {
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLSSocket connection, and creates and initializes a TLS session after successful binding of the local IP address and port number of the TLSSocket connection. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
+Sets up a TLSSocket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3789,3 +3792,2001 @@ Enumerates TLS protocol versions.
 Defines the certificate raw data.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+## socket.constructTLSSocketServerInstance<sup>10+</sup>
+
+constructTLSSocketServerInstance(): TLSSocketServer
+
+Creates a **TLSSocketServer** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                 | Description                         |
+| :------------------------------------ | :---------------------------- |
+| [TLSSocketServer](#tlssocketserver10) | **TLSSocketServer** object.|
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+```
+
+## TLSSocketServer<sup>10+</sup>
+
+Defines a TLSSocketServer connection. Before calling TLSSocketServer APIs, you need to call [socket.constructTLSSocketServerInstance](#socketconstructtlssocketserverinstance10) to create a **TLSSocketServer** object.
+
+### listen<sup>10+</sup>
+
+listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
+
+Listens to client connections after **bind** is successfully called. This API uses an asynchronous callback to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------ |
+| options  | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the connection.               |
+| callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+| 2303501  | SSL is null.                                |
+| 2303502  | Error in tls reading.                       |
+| 2303503  | Error in tls writing                        |
+| 2303505  | Error occurred in the tls system call.      |
+| 2303506  | Error clearing tls connection.              |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+});
+```
+
+### listen<sup>10+</sup>
+
+listen(options: TLSConnectOptions): Promise\<void\>
+
+Listens to client connections after **bind** is successfully called. This API uses a promise to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                    | Mandatory| Description              |
+| ------- | ---------------------------------------- | ---- | ------------------ |
+| options | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the connection.|
+
+**Return value**
+
+| Type           | Description                                                     |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error.                            |
+| 201      | Permission denied.                          |
+| 2300002  | System internal error.                      |
+| 2303109  | Bad file number.                            |
+| 2303111  | Resource temporarily unavailable try again. |
+| 2303198  | Address already in use.                     |
+| 2303199  | Cannot assign requested address.            |
+| 2303501  | SSL is null.                                |
+| 2303502  | Error in tls reading.                       |
+| 2303503  | Error in tls writing                        |
+| 2303505  | Error occurred in the tls system call.      |
+| 2303506  | Error clearing tls connection.              |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+Obtains the status of the TLSSocketServer connection upon successful listening. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLSSocketServer connection is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+
+tlsServer.getState((err, data) => {
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
+});
+```
+
+### getState<sup>10+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+Obtains the status of the TLSSocketServer connection upon successful listening. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+let promise = tlsServer.getState();
+promise.then(() => {
+  console.log('getState success');
+}).catch(err => {
+  console.log('getState fail');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
+
+Sets other properties of the TLSSocketServer connection upon successful listening. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                            |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLSSocketServer connection.                 |
+| callback | AsyncCallback\<void\>                | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+}, err => {
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
+});
+```
+
+### setExtraOptions<sup>10+</sup>
+
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
+
+Sets other properties of the TLSSocketServer connection upon successful listening. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                | Mandatory| Description                           |
+| ------- | ------------------------------------ | ---- | ------------------------------- |
+| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLSSocketServer connection.|
+
+**Return value**
+
+| Type           | Description                                                     |
+| :-------------- | :-------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+let promise = tlsServer.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on: true, linger: 10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+});
+promise.then(() => {
+  console.log('setExtraOptions success');
+}).catch(err => {
+  console.log('setExtraOptions fail');
+});
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
+
+Obtains the local digital certificate after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                    |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------------- |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | Yes  | Callback used to return the result. If the operation is successful, the local certificate is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2303504  | Error looking up x509. |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.getCertificate((err, data) => {
+  if (err) {
+    console.log("getCertificate callback error = " + err);
+  } else {
+    console.log("getCertificate callback = " + data);
+  }
+});
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
+
+Obtains the local digital certificate after a TLSSocketServer connection is established. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                           | Description                                                        |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2303504  | Error looking up x509. |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.getCertificate().then(data => {
+  console.log(data);
+}).catch(err => {
+  console.error(err);
+});
+```
+
+### getProtocol<sup>10+</sup>
+
+getProtocol(callback: AsyncCallback\<string\>): void
+
+Obtains the communication protocol version after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                |
+| -------- | ----------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.getProtocol((err, data) => {
+  if (err) {
+    console.log("getProtocol callback error = " + err);
+  } else {
+    console.log("getProtocol callback = " + data);
+  }
+});
+```
+
+### getProtocol<sup>10+</sup>
+
+getProtocol():Promise\<string\>
+
+Obtains the communication protocol version after a TLSSocketServer connection is established. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type             | Description                                                   |
+| ----------------- | ------------------------------------------------------- |
+| Promise\<string\> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.getProtocol().then(data => {
+  console.log(data);
+}).catch(err => {
+  console.error(err);
+});
+```
+
+### on('connect')
+
+on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
+
+Enables listening for TLSSocketServer connection events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                   | Mandatory| Description                                 |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | Yes  | Callback used to return the result.                           |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(data) {
+  console.log(JSON.stringify(data))
+});
+```
+
+### off('connect')
+
+off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
+
+Disables listening for TLSSocketServer connection events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                   | Mandatory| Description                                 |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | No  | Callback used to return the result.                           |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let callback = data => {
+  console.log('on connect message: ' + JSON.stringify(data));
+}
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+tlsServer.off('connect', callback);
+tlsServer.off('connect');
+```
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback): void
+
+Enables listening for **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Disables listening for **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| callback | ErrorCallback | No  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('error', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+tlsServer.off('error', callback);
+tlsServer.off('error');
+```
+
+## TLSSocketConnection<sup>10+</sup>
+
+Defines a **TLSSocketConnection** object, that is, the connection between the TLSSocket client and the server. Before calling TLSSocketConnection APIs, you need to obtain a **TLSSocketConnection** object.
+
+> **NOTE**
+> The TLSSocket client can call related APIs through the **TLSSocketConnection** object only after a connection is successfully established between the TLSSocket client and the server.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+### Attributes
+
+| Name    | Type  | Mandatory| Description                                 |
+| -------- | ------ | ---- | ------------------------------------- |
+| clientId | number | Yes  | ID of the connection between the client and TLSSocketServer.|
+
+### send<sup>10+</sup>
+
+send(data: string, callback: AsyncCallback\<void\>): void
+
+Sends a message to the client after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                            |
+| -------- | --------------------- | ---- | ------------------------------------------------ |
+| data     | string                | Yes  | Parameters for sending data over the TLSSocketServer connection.           |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303503  | Error in tls writing.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.send({data: 'Hello, client!'}, err => {
+    if (err) {
+        console.log('send fail');
+        return;
+    }
+    console.log('send success');
+  });
+});
+```
+
+### send<sup>10+</sup>
+
+send(data: string): Promise\<void\>
+
+Sends a message to the server after a TLSSocketServer connection is established. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                 |
+| ------ | ------ | ---- | ------------------------------------- |
+| data   | string | Yes  | Parameters required for the TLSSocketServer connection.|
+
+**Return value**
+
+| Type           | Description                                                     |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303503  | Error in tls writing.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  let promise = client.send({data: 'Hello, client!'});
+  promise.then(() => {
+    console.log('send success');
+  }).catch(err => {
+    console.log('send fail');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(callback: AsyncCallback\<void\>): void
+
+Closes a TLSSocketServer connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                            |
+| -------- | --------------------- | ---- | ------------------------------------------------ |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.close(err => {
+    if (err) {
+      console.log('close fail');
+      return;
+    }
+    console.log('close success');
+  });
+});
+```
+
+### close<sup>10+</sup>
+
+close(): Promise\<void\>
+
+Closes a TLSSocketServer connection. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                                     |
+| --------------- | --------------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303505  | Error occurred in the tls system call. |
+| 2303506  | Error clearing tls connection.         |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  let promise = client.close();
+  promise.then(() => {
+    console.log('close success');
+  }).catch(err => {
+    console.log('close fail');
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
+
+Obtains the remote address of a TLSSocketServer connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetAddress](#netaddress7)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getRemoteAddress((err, data) => {
+    if (err) {
+      console.log('getRemoteAddress fail');
+      return;
+    }
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  });
+});
+```
+
+### getRemoteAddress<sup>10+</sup>
+
+getRemoteAddress(): Promise\<NetAddress\>
+
+Obtains the remote address of a TLSSocketServer connection. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                | Description                                                        |
+| :----------------------------------- | :----------------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 2303188  | Socket operation on non-socket. |
+| 2300002  | System internal error.          |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getRemoteAddress().then(data => {
+    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getRemoteCertificate<sup>10+</sup>
+
+getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
+
+Obtains the digital certificate of the peer end after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result. It applies only to the scenario where the client sends a certificate to the server. 
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getRemoteCertificate((err, data) => {
+    if (err) {
+      console.log("getRemoteCertificate callback error = " + err);
+    } else {
+      console.log("getRemoteCertificate callback = " + data);
+    }
+  });
+});
+```
+
+### getRemoteCertificate<sup>10+</sup>
+
+getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
+
+Obtains the digital certificate of the peer end after a TLSSocketServer connection is established. This API uses a promise to return the result. It applies only to the scenario where the client sends a certificate to the server. 
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                           | Description                                                        |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getRemoteCertificate().then(data => {
+    console.log('getRemoteCertificate success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getCipherSuite<sup>10+</sup>
+
+getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
+
+Obtains the cipher suite negotiated by both communication parties after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                            | Mandatory| Description                                                        |
+| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<string\>\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401      | Parameter error.                       |
+| 2303501  | SSL is null.                           |
+| 2303502  | Error in tls reading.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getCipherSuite((err, data) => {
+    if (err) {
+      console.log("getCipherSuite callback error = " + err);
+    } else {
+      console.log("getCipherSuite callback = " + data);
+    }
+  });
+});
+```
+
+### getCipherSuite<sup>10+</sup>
+
+getCipherSuite(): Promise\<Array\<string\>\>
+
+Obtains the cipher suite negotiated by both communication parties after a TLSSocketServer connection is established. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                      | Description                                                        |
+| -------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<string\>\> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 2303501  | SSL is null.                           |
+| 2303502  | Error in tls reading.                  |
+| 2303505  | Error occurred in the tls system call. |
+| 2300002  | System internal error.                 |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getCipherSuite().then(data => {
+    console.log('getCipherSuite success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### getSignatureAlgorithms<sup>10+</sup>
+
+getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
+
+Obtains the signing algorithm negotiated by both communication parties after a TLSSocketServer connection is established. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                            | Mandatory| Description                              |
+| -------- | -------------------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<Array\<string\>\> | Yes  | Callback used to return the result. |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getSignatureAlgorithms((err, data) => {
+    if (err) {
+      console.log("getSignatureAlgorithms callback error = " + err);
+    } else {
+      console.log("getSignatureAlgorithms callback = " + data);
+    }
+  });
+});
+```
+
+### getSignatureAlgorithms<sup>10+</sup>
+
+getSignatureAlgorithms(): Promise\<Array\<string\>\>
+
+Obtains the signing algorithm negotiated by both communication parties after a TLSSocketServer connection is established. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                      | Description                                         |
+| -------------------------- | --------------------------------------------- |
+| Promise\<Array\<string\>\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 2303501  | SSL is null.           |
+| 2300002  | System internal error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.getSignatureAlgorithms().then(data => {
+    console.log("getSignatureAlgorithms success" + data);
+  }).catch(err => {
+    console.error(err);
+  });
+});
+```
+
+### on('message')<sup>10+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Enables listening for **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('message', value => {
+    let messageView = '';
+    for (var i = 0; i < value.message.length; i++) {
+      let messages = value.message[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
+});
+```
+
+### off('message')<sup>10+</sup>
+
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Disables listening for **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = value => {
+  let messageView = '';
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('message', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  client.off('message', callback);
+  client.off('message');
+});
+```
+
+### on('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+Enables listening for **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>10+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+Disables listening for **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = () => {
+  console.log("on close success");
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('close', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  client.off('close', callback);
+  client.off('close');
+});
+```
+
+### on('error')<sup>10+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Enables listening for **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options, err => {
+  console.log("listen callback error" + err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('error', err => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>10+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Disables listening for **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| callback | ErrorCallback | No  | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```js
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+let tlsServer = socket.constructTLSSocketServerInstance();
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
+};
+tlsServer.listen(options).then(() => {
+  console.log("listen callback success");
+}).catch(err => {
+  console.log(err);
+  return;
+});
+tlsServer.on('connect', function(client) {
+  client.on('error', callback);
+  // You can pass the callback of the on method to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  client.off('error', callback);
+  client.off('error');
+});
+```

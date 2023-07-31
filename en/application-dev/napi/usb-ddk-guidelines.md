@@ -1,0 +1,79 @@
+# USB DDK Development
+
+## When to Use
+
+USB Driver Development Kit (USB DDK) is a tool kit provided by OpenHarmony to help you develop USB device drivers for your applications based on the user mode. It provides a series of device access APIs, which implement functions such as opening and closing USB interfaces, performing non-isochronous and isochronous data transfer, and implementing control transfer and interrupt transfer over USB pipes, etc.
+
+## Available APIs
+
+| Name| Description|
+| -------- | -------- |
+| OH_Usb_Init(void) | Initializes the DDK.|
+| OH_Usb_Release(void) | Releases the DDK.|
+| OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc) | Obtains the device descriptor.|
+| OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor()** to release a descriptor after use.|
+| OH_Usb_FreeConfigDescriptor(const struct UsbDdkConfigDescriptor *const config) | Releases a configuration descriptor. To avoid memory leakage, release a descriptor after use.|
+| OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle) | Declares a USB interface.|
+| OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | Releases a USB interface.|
+| OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
+| OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Creates a buffer. To avoid memory leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
+| OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
+
+For details about the APIs, see [USB DDK](../reference/native-apis/_usb_ddk.md).
+
+## How to Develop 
+
+To develop a USB driver using the USB DDK in OpenHarmony, perform the following steps:
+
+1. Obtain the device descriptor. Initialize the DDK by calling **OH_Usb_Init** of **usb_ddk_api.h**, and obtain the device descriptor by calling **OH_Usb_GetDeviceDescriptor**.
+
+    ```c++
+    // Initialize the USB DDK.
+    OH_Usb_Init();
+    struct UsbDeviceDescriptor devDesc;
+    uint64_t deviceId = 0;
+    // Obtain the device descriptor.
+    OH_Usb_GetDeviceDescriptor(deviceId, &devDesc);
+    ```
+
+2. Obtain the configuration descriptor, and declare the USB interface. Obtain the configuration descriptor **config** by calling **OH_Usb_GetConfigDescriptor** of **usb_ddk_api.h**, and declare the USB interface by calling **OH_Usb_ClaimInterface**.
+
+    ```c++
+    struct UsbDdkConfigDescriptor *config = nullptr;
+    // Obtain the configuration descriptor.
+    OH_Usb_GetConfigDescriptor(deviceId, 1, &config);
+    // Obtain the index of the target USB interface based on the configuration descriptor.
+    uint8_t interfaceIndex = 0;
+    // Declare the USB interface.
+    uint64_t interfaceHandle = 0;
+    OH_Usb_ClaimInterface(deviceId, interfaceIndex, &interfaceHandle);
+    // Release the configuration descriptor.
+    OH_Usb_FreeConfigDescriptor(config);
+    ```
+
+3. Create a device memory map, and send a request. Create the device memory map **devMmap** by calling **OH_Usb_CreateDeviceMemMap** of **usb_ddk_api.h**, and send a request by calling **OH_Usb_SendPipeRequest**.
+
+    ```c++
+    struct UsbDeviceMemMap *devMmap = nullptr;
+    // Create a buffer for storing data.
+    size_t bufferLen = 10;
+    OH_Usb_CreateDeviceMemMap(deviceId, bufferLen, &devMmap);
+    struct UsbRequestPipe pipe;
+    pipe.interfaceHandle = interfaceHandle;
+    // Obtain the target endpoint based on the configuration descriptor.
+    pipe.endpoint = 128;
+    pipe.timeout = UINT32_MAX;
+    // Send a request.
+    OH_Usb_SendPipeRequest(&pipe, devMmap);
+    ```
+
+4. Release resources. After all requests are processed and before the application exits, destroy the buffer by calling **OH_Usb_DestroyDeviceMemMap** of **usb_ddk_api.h** to release resources. Release the USB interface by calling **OH_Usb_ReleaseInterface**. Release the USB DDK by calling **OH_Usb_Release**.
+
+    ```c++
+    // Destroy the buffer.
+    OH_Usb_DestroyDeviceMemMap(devMmap);
+    // Release the USB interface.
+    OH_Usb_ReleaseInterface(interfaceHandle);
+    // Release the USB DDK.
+    OH_Usb_Release();
+    ```

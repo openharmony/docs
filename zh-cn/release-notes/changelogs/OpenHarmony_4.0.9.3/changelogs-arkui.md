@@ -161,3 +161,103 @@ struct Child {
   }
 }
 ```
+## cl.arkui.3 canvas组件onReady事件行为变更
+
+**说明**
+onReady事件在组件创建完成后或组件大小发生变化时触发，并清空画布。
+
+**示例：**
+```ts
+@Entry
+@Component
+struct OnReadyDiff {
+  @State message: string = 'init '
+  @State isShow: boolean = false
+  @State myHeight: number = 300
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('ChangePosition')
+          .onClick(()=>{
+            this.isShow = !this.isShow
+          })
+        if (this.isShow) {
+          Button('new button')
+            .height(200)
+        }
+        Button('ChangeHeight')
+          .onClick(()=>{
+            this.myHeight = this.myHeight==300?500:300
+          })
+
+        Canvas(this.context)
+          .width(300)
+          .height(this.myHeight)
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.fillRect(0, 0, 100, 100)
+            this.message += 'a '
+          })
+        Button('draw another')
+          .onClick(()=>{
+            this.context.fillRect(100, 100, 100, 100)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+API version 9：onReady在组件创建完成时触发，位置变化时会触发，组件大小变化时也会触发。
+
+![stack](figures/api9onReady.gif)
+
+API version 10及以后：onReady在组件创建完成时触发，在组件位置变化时不会触发，组件大小变化时会触发。
+
+![stack](figures/api10onReady.gif)
+
+**变更影响**
+
+onReady事件在组件位置发生变化时行为变更，API version 9及以前会触发，API version 10及以后不会触发。
+
+## cl.arkui.4 Margin属性百分比计算变更
+
+当前margin会计算两次，margin的百分比参照在第一次margin计算之后会减去margin的大小，计算完之后百分比类型margin第二次计算时数值偏小。变更后margin第一次计算的结果为最终值，不进行第二次计算。
+
+**变更影响**
+
+所有设置百分比的margin大小。
+
+**错误示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
+
+  build() {
+    Column(){
+      Row().margin({left:"50%"}).width(100).height(100)
+    }.width("100%").height("100%")
+  }
+}
+```
+
+**关键接口/组件变更**
+
+不涉及
+
+**适配指导**
+
+变更后margin的百分比参照固定为父组件的宽减去父组件的padding且不会减去第一次margin的计算结果，其百分比参照比变更前稍大，建议调整margin百分比的数值。

@@ -36,9 +36,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- |
 | title                         | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> \| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
 | subTitle<sup>(deprecated)</sup> | string                                   | Subtitle of the page. If this attribute is not set, no subtitle is displayed. This attribute is deprecated since API version 9. You are advised to use **title** instead.|
-| menus                         | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. If this parameter is not set, no menu item is displayed. When the value type is Array\<[NavigationMenuItem](#navigationmenuitem)>, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, plus excess icons (if any) under the automatically generated **More** icon.|
+| menus                         | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. If this attribute is not set, no menu item is displayed. When the value type is Array\<[NavigationMenuItem](#navigationmenuitem)>, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, with excess icons (if any) placed under the automatically generated **More** icon.|
 | titleMode                     | [NavigationTitleMode](#navigationtitlemode) | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
-| toolBar                       | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).|
+| toolBar<sup>(deprecated)</sup> | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).<br>This API is deprecated since API version 10. You are advised to use **toolbarConfiguration** instead.|
+| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10)<sup>10+</sup>&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**NOTE**<br>When the value type is Array<[ToolbarItem](#ToolbarItem>, the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array<[NavigationMenuItem](#navigationmenuitem)> of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
 | hideToolBar                   | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
 | hideTitleBar                  | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
 | hideBackButton                | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Display the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button works only when **titleMode** is set to **NavigationTitleMode.Mini**.|
@@ -48,8 +49,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | backButtonIcon<sup>9+</sup>   | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | hideNavBar<sup>9+</sup>       | boolean                                  | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
 | navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
-| navBarWidthRange<sup>10+</sup> | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar.<br>Default value: [240, 280]<br>Unit: vp  |
-| minContentWidth<sup>10+</sup>  | [Dimension](ts-types.md#dimension10)                         | Minimum width of the navigation bar content area.<br>Default value: **360**<br>Unit: vp         |
+| navBarWidthRange<sup>10+</sup> | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar.<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
+| minContentWidth<sup>10+</sup>  | [Dimension](ts-types.md#dimension10)                         | Minimum width of the navigation bar content area.<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600vp = minNavBarWidth (240vp) + minContentWidth (360vp)|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -265,17 +266,35 @@ constructor(name: string, param: unknown)
 
 | Name    | Type                     | Mandatory  | Description             |
 | ------ | ----------------------- | ---- | --------------- |
-| value  | string                  | Yes   | Text of an option on the toolbar.  |
-| icon   | string                  | No   | Icon path of an option on the toolbar.|
-| action | () =&gt; void | No   | Callback invoked when an option is selected.  |
+| value  | string                  | Yes   | Text of a toolbar item.  |
+| icon   | string                  | No   | Icon path of a toolbar item.|
+| action | () =&gt; void | No   | Callback invoked when a toolbar item is selected.  |
+
+## ToolbarItem<sup>10+</sup>
+
+| Name      | Type                                             | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| value      | ResourceStr                                       | Yes  | Text of a toolbar item.                                 |
+| icon       | ResourceStr                                       | No  | Icon path of a toolbar item.                             |
+| action     | () =&gt; void                           | No  | Callback invoked when a toolbar item is selected.                                 |
+| status     | [ToolbarItemStatus](#toolbaritemstatus10) | No  | Status of a toolbar item.<br>Default value: **ToolbarItemStatus.NORMAL**|
+| activeIcon | ResourceStr                                       | No  | Icon path of the toolbar item in the active state.               |
+
+## ToolbarItemStatus<sup>10+</sup>
+
+| Name    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
+| NORMAL   | Normal state. In this state, the toolbar item takes on the default style and can switch to another state-specific style by responding to the hover, press, and focus events.|
+| DISABLED | Disabled state. In this state, the toolbar item is disabled and does not allow for user interactions.|
+| ACTIVE   | Active state. In this state, the toolbar item can update its icon to the one specified by **activeIcon** by responding to a click event.|
 
 ## NavigationTitleMode
 
-| Name  | Description                                      |
-| ---- | ---------------------------------------- |
-| Free | When the content is a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores when the content scrolls up to the top.|
-| Mini | The title is fixed at mini mode.                               |
-| Full | The title is fixed at full mode.                               |
+| Name| Description                                                        |
+| ---- | ------------------------------------------------------------ |
+| Free | When the content is a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores when the content scrolls up to the top.<br>**NOTE**<br>The size linkage effect works only when **title** is set to **ResourceStr** or **NavigationCommonTitle**. If **title** is set to any other value type, the main title changes in mere location when pulled down.|
+| Mini | The title is fixed at mini mode.                                          |
+| Full | The title is fixed at full mode.                                          |
 
 ## NavigationCommonTitle
 
@@ -315,7 +334,6 @@ constructor(name: string, param: unknown)
 
 
 >  **NOTE**
->
 >  Among the scrollable components, only **\<List>** is supported.
 
 

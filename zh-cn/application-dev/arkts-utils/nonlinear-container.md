@@ -16,19 +16,19 @@ HashMap和[TreeMap](../reference/apis/js-apis-treemap.md)相比，HashMap依据�
 
 需要快速存取、删除以及插入键值对数据时，推荐使用HashMap。
 
-HashMap进行增、删、改、查操作的相关API如下：
+HashMap进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
 | 增加元素 | 通过set(key: K, value: V)函数每次在HashMap增加一个键值对。 |
 | 访问元素 | 通过get(key: K)获取key对应的value值。 |
-| 访问元素 | 通过keys()返回一个选代器对象，包含map中的所有key值。 |
-| 访问元素 | 通过value()返回一个迭代器对象，包含map中的所有value值。 |
+| 访问元素 | 通过keys()返回一个迭代器对象，包含map中的所有key值。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含map中的所有value值。 |
 | 访问元素 | 通过entries()返回一个迭代器对象，包含map中的所有键值对。 |
-| 访问元素 | forEach(callbackfn: (value: T, index?: number, map?: HashMap&lt;K,V&gt;) =&gt; void,thisArg?: Object)访问整个map的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;[K,V]&gt;选代器进行数据访问。 |
+| 访问元素 | forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)访问整个map的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过replace(key: K, newValue: V)对指定key对应的value值进行修改操作。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, map?: HashMap&lt;K, V&gt;) =&gt; void,thisArg?: Object)对map中元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)对map中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: K)对map中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过clear()清空整个map集合。 |
 
@@ -45,16 +45,16 @@ HashSet和[TreeSet](../reference/apis/js-apis-treeset.md)相比，HashSet中的�
 
 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
-HashSet进行增、删、改、查操作的相关API如下：
+HashSet进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个键值对。 |
-| 访问元素 | 通过value()返回一个选代器对象，包含set中的所有value值。 |
-| 访问元素 | 通过entries()返回一个选代器对象，包含类似键值对的数组，键值都是value。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?:  number, set?:  HashSet&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个set的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():lterablelterator&lt;T&gt;选代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, set?: HashSet&lt;T&gt;) =&gt; void,thisArg?: Object)对set中value进行修改操作。 |
+| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个值。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含set中的所有value值。 |
+| 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
 | 删除元素 | 通过remove(value: T)对set中匹配到的值进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
 
@@ -69,7 +69,7 @@ TreeMap和[HashMap](../reference/apis/js-apis-hashmap.md)相比，HashMap依据�
 
 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-TreeMap进行增、删、改、查操作的相关API如下：
+TreeMap进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | ------- | ------ |
@@ -78,12 +78,12 @@ TreeMap进行增、删、改、查操作的相关API如下：
 | 访问元素 | 通过getFirstKey()获取map中排在首位的key值。 |
 | 访问元素 | 通过getLastKey()获取map中排在未位的key值。 |
 | 访问元素 | 通过keys()返回一个迭代器对象，包含map中的所有key值。 |
-| 访问元素 | 通过value()返回一个迭代器对象，包含map中的所有value值。 |
-| 访问元素 | 通过entries()返回一个选代器对象，包含map中的所有键值对。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, map?: TreeMap\<K, V>) =&gt; void, thisArg?: Object)访问整个map的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator\<[K,V]>选代器进行数据访问。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含map中的所有value值。 |
+| 访问元素 | 通过entries()返回一个迭代器对象，包含map中的所有键值对。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)访问整个map的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator\<[K,V]>迭代器进行数据访问。 |
 | 修改元素 | 通过replace(key: K,newValue: V)对指定key对应的value值进行修改操作。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, map?: TreeMap\<K, V>) =&gt; void, thisArg?: Object)对map中元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)对map中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: K)对map中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过clear()清空整个map集合。 |
 
@@ -100,49 +100,49 @@ TreeSet和[HashSet](../reference/apis/js-apis-hashset.md)相比，HashSet中的�
 
 一般需要存储有序集合的场景，可以使用TreeSet。
 
-TreeSet进行增、删、改、查操作的相关API如下：
+TreeSet进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个键值对。 |
-| 访问元素 | 通过value()返回一个选代器对象，包含set中的所有value值。 |
-| 访问元素 | 通过entries()返回一个选代器对象，包含类似键值对的数组，键值都是value。 |
+| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个值。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含set中的所有value值。 |
+| 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | 通过getFirstValue()获取set中排在首位的value值。 |
 | 访问元素 | 通过getLastValue()获取set中排在未位的value值。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, set?: TreeSet&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个set的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, set?: TreeSet&lt;T&gt;) =&gt; void,thisArg?: Object)对set中value进行修改操作。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
 | 删除元素 | 通过remove(value: T)对set中匹配到的值进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
 
 
 ## LightWeightMap
 
-[LigthWeightMap](../reference/apis/js-apis-lightweightmap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。LigthWeightMap依据泛型定义，采用更加轻量级的结构，集合中的key值的查找依赖于hash值以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的key值以及value值，key的类型满足ECMA标准中要求的类型。
+[LightWeightMap](../reference/apis/js-apis-lightweightmap.md)可用来存储具有关联关系的key-value键值对集合，存储元素中key是唯一的，每个key会对应一个value值。LightWeightMap依据泛型定义，采用更加轻量级的结构，底层标识唯一key通过hash实现，其冲突策略为线性探测法。集合中的key值的查找依赖于hash值以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的key值以及value值，key的类型满足ECMA标准中要求的类型。
 
-初始默认容量大小为8，每次扩容大小为原始容量的2倍。LigthWeightMap底层标识唯一key通过hash实现，其冲突策略为线性探测法，查找策略基于二分查找法。
+初始默认容量大小为8，每次扩容大小为原始容量的2倍。
 
 LightWeightMap和[HashMap](../reference/apis/js-apis-hashmap.md)都是用来存储键值对的集合，LightWeightMap占用内存更小。
 
 当需要存取key-value键值对时，推荐使用占用内存更小的LightWeightMap。
 
-LigthWeightMap进行增、删、改、查操作的相关API如下：
+LightWeightMap进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过set(key: K,value: V)函数每次在LigthWeightMap增加一个键值对。 |
+| 增加元素 | 通过set(key: K,value: V)函数每次在LightWeightMap增加一个键值对。 |
 | 访问元素 | 通过get(key: K)获取key对应的value值。 |
-| 访问元素 | 通过getlndexOfKey(key: K)获取map中指定key的index。 |
-| 访问元素 | 通过getindexOfValue(value: V)获取map中指定value的index。 |
-| 访问元素 | 通过keys()返回一个选代器对象，包含map中的所有key值。 |
-| 访问元素 | 通过value()返回一个选代器对象，包含map中的所有value值。 |
-| 访问元素 | 通过entries()返回一个选代器对象，包含map中的所有键值对。 |
+| 访问元素 | 通过getIndexOfKey(key: K)获取map中指定key的index。 |
+| 访问元素 | 通过getIndexOfValue(value: V)获取map中指定value出现的第一个的index。 |
+| 访问元素 | 通过keys()返回一个迭代器对象，包含map中的所有key值。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含map中的所有value值。 |
+| 访问元素 | 通过entries()返回一个迭代器对象，包含map中的所有键值对。 |
 | 访问元素 | 通过getKeyAt(index: number)获取指定index对应的key值。 |
-| 访问元素 | 通过getValueAt(index：number)获取指定index对应的value值。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, map?: LigthWeightMap&lt;K, V&gt;) =&gt; void,thisArg? Object)访问整个map的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;[K,V]&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过setValueAt(key: K,newValue: V)对指定key对应的value值进行修改操作。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, map?: LigthWeightMap&lt;K, V&gt;) =&gt; void,thisArg?: Object)对map中元素进行修改操作。 |
+| 访问元素 | 通过getValueAt(index: number)获取指定index对应的value值。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)访问整个map的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过setValueAt(index: number, newValue: V)对指定index对应的value值进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)对map中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: K)对map中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过removeAt(index: number)对map中指定index的位置进行删除操作。 |
 | 删除元素 | 通过clear()清空整个map集合。 |
@@ -150,28 +150,28 @@ LigthWeightMap进行增、删、改、查操作的相关API如下：
 
 ## LightWeightSet
 
-[LigthWeightSet](../reference/apis/js-apis-lightweightset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
+[LightWeightSet](../reference/apis/js-apis-lightweightset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
-LigthWeightSet依据泛型定义，采用更加轻量级的结构，初始默认容量大小为8，每次扩容大小为原始容量的2倍。集合中的value值的查找依赖于hash以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的value值，value的类型满足ECMA标准中要求的类型。
+LightWeightSet依据泛型定义，采用更加轻量级的结构，初始默认容量大小为8，每次扩容大小为原始容量的2倍。集合中的value值的查找依赖于hash以及二分查找算法，通过一个数组存储hash值，然后映射到其他数组中的value值，value的类型满足ECMA标准中要求的类型。
 
-LigthWeightSet底层标识唯一value基于hash实现，其冲突策略为线性探测法，查找策略基于二分查找法。
+LightWeightSet底层标识唯一value基于hash实现，其冲突策略为线性探测法，查找策略基于二分查找法。
 
 LightWeightSet和[HashSet](../reference/apis/js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet的占用内存更小。
 
 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
-LigthWeightSet进行增、删、改、查操作的相关API如下：
+LightWeightSet进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过add(obj: T)函数每次在LigthWeightSet增加一个键值对。 |
-| 访问元素 | 通过getlndexOf(key: T)获取对应的index值。 |
-| 访问元素 | 通过value()返回一个迭代器对象，包含map中的所有value值。 |
-| 访问元素 | 通过entries()返回一个选代器对象，包含map中的所有键值对。 |
+| 增加元素 | 通过add(obj: T)函数每次在LightWeightSet增加一个值。 |
+| 访问元素 | 通过getIndexOf(key: T)获取对应的index值。 |
+| 访问元素 | 通过values()返回一个迭代器对象，包含map中的所有value值。 |
+| 访问元素 | 通过entries()返回一个迭代器对象，包含map中的所有键值对。 |
 | 访问元素 | 通过getValueAt(index: number)获取指定index对应的value值。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number,  set?:  LigthWeightSet&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个set的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, set?: LigthWeightSet&lt;T&gt;) =&gt; void,thisArg?: Object)对set中元素进行修改操作。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)对set中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: K)对set中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过removeAt(index: number)对set中指定index的位置进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
@@ -181,26 +181,26 @@ LigthWeightSet进行增、删、改、查操作的相关API如下：
 
 [PlainArray](../reference/apis/js-apis-plainarray.md)可用来存储具有关联关系的键值对集合，存储元素中key是唯一的，并且对于PlainArray来说，其key的类型为number类型。每个key会对应一个value值，类型依据泛型的定义，PlainArray采用更加轻量级的结构，集合中的key值的查找依赖于二分查找算法，然后映射到其他数组中的value值。
 
-初始默认容量大小为16，每次扩容大小为原始容量的2倍。PlainArray的查找策略基于二分查找法。
+初始默认容量大小为16，每次扩容大小为原始容量的2倍。
 
 PlainArray和[LightWeightMap](../reference/apis/js-apis-lightweightmap.md)都是用来存储键值对，且均采用轻量级结构，但PlainArray的key值类型只能为number类型。
 
 当需要存储key值为number类型的键值对时，可以使用PlainArray。
 
-PlainArray进行增、删、改、查操作的相关API如下：
+PlainArray进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
 | 增加元素 | 通过add(key: number,value: T)函数每次在PlainArray增加一个键值对。 |
 | 访问元素 | 通过get(key: number)获取key对应的value值。 |
-| 访问元素 | 通过getlndexOfKey(key: number)获取PlainArray中指定key的index。 |
-| 访问元素 | 通过getlndexOfValue(value: T)获取PlainArray中指定value的index。 |
+| 访问元素 | 通过getIndexOfKey(key: number)获取PlainArray中指定key的index。 |
+| 访问元素 | 通过getIndexOfValue(value: T)获取PlainArray中指定value的index。 |
 | 访问元素 | 通过getKeyAt(index: number)获取指定index对应的key值。 |
 | 访问元素 | 通过getValueAt(index: number)获取指定index对应的value值。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) =&gt;void, thisArg?: Object)访问整个plainarray的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;[number, T]&gt;选代器进行数据访问。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)访问整个plainarray的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过setValueAt(index:number, value: T)对指定index对应的value值进行修改操作。 |
-| 修改元素 | 通过forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) =&gt; void,thisArg?: Object)对plainarray中元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)对plainarray中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: number)对plainarray中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过removeAt(index: number)对plainarray中指定index的位置进行删除操作。 |
 | 删除元素 | 通过removeRangeFrom(index: number, size: number)对plainarray中指定范围内的元素进行删除操作。 |

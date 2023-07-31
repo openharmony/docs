@@ -392,6 +392,8 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -432,6 +434,8 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数**：
 

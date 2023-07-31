@@ -39,7 +39,9 @@
     - [Polymorphic Style](ts-universal-attributes-polymorphic-style.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
+    - [Foreground Blur](ts-universal-attributes-foreground-blur-style.md)
     - [Click Effect](ts-universal-attributes-click-effect.md)
+    - [Accessibility](ts-universal-attributes-accessibility.md)
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
@@ -48,6 +50,8 @@
       - [Sheet Transition](ts-universal-attributes-sheet-transition.md)
     - [Obscuring](ts-universal-attributes-obscured.md)
   - [Universal Text Attributes](ts-universal-attributes-text-style.md)
+  - [Drag and Drop Control](ts-universal-attributes-drag-drop.md)
+  - [Safe Area](ts-universal-attributes-expand-safe-area.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -87,6 +91,7 @@
   - [Radio](ts-basic-components-radio.md)
   - [Rating](ts-basic-components-rating.md)
   - [RemoteWindow](ts-basic-components-remotewindow.md)
+  - [RichEditor](ts-basic-components-richeditor.md)
   - [RichText](ts-basic-components-richtext.md)
   - [ScrollBar](ts-basic-components-scrollbar.md)
   - [Search](ts-basic-components-search.md)
@@ -113,6 +118,7 @@
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
+  - [FormLink](ts-container-formlink.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
@@ -155,6 +161,8 @@
   - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
+- Advanced Components
+  - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
 - Animation
   - [AnimatorProperty](ts-animatorproperty.md)
   - [Explicit Animatio](ts-explicit-animation.md)
@@ -162,6 +170,7 @@
     - [Page Transition](ts-page-transition-animation.md)
     - [Component Transition](ts-transition-animation-component.md)
     - [Transition of Shared Elements](ts-transition-animation-shared-elements.md)
+    - [Implicit Shared Element Transition](ts-transition-animation-geometrytransition.md)
   - [Motion Path Animation](ts-motion-path-animation.md)
 - Global UI Methods
   - Pop-up Window

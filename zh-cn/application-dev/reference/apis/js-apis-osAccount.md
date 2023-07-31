@@ -1790,7 +1790,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1826,7 +1826,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
 **系统能力：** SystemCapability.Account.OsAccount
 

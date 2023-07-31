@@ -93,7 +93,34 @@ Unsubscribes from an event.
 **Example**
 
 ```javascript
+// Unregister the callbacks of all events whose eventID is 1.
 emitter.off(1);
+```
+
+## emitter.off<sup>10+<sup>
+
+off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
+
+Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description  |
+| ------- | ------ | ---- | ------ |
+| eventId | number | Yes  | Event ID.|
+| callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | Yes  | Callback to unregister.  |
+
+**Example**
+
+```javascript
+// Unregister the emitterCallback callback for the event whose eventID is 1.
+// If the callback has not been registered, no processing is performed.
+function emitterCallback() {
+    console.info('callback');
+}
+emitter.off(1, emitterCallback);
 ```
 
 ## emitter.emit

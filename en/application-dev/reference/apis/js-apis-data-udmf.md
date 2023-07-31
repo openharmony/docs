@@ -180,7 +180,7 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name   | Type                     | Readable| Writable| Description                                                                                                                                                 |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -258,7 +258,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name     | Type                       | Readable| Writable| Description                                                                                                                                                  |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
 | uri     | string                    | Yes  | Yes  | URI of the file data.                                                                                                                                            |
 
 **Example**
@@ -484,13 +484,13 @@ let unifiedData = new UDMF.UnifiedData(record);
 
 ## Intention
 
-Enumerates the types of the system abilities connected to the UDMF. It identifies the purpose of the data written by the user to the UDMF and the system abilities connected to the UDMF to implement data transmission between applications.
+Enumerates the data channel types supported by the UDMF. It is used to identify different service scenarios, to which the UDMF data channels apply.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 | Name      | Value        | Description     |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | Public data hub.|
+| DATA_HUB | 'DataHub' | Public data channel.|
 
 ## Options
 
@@ -499,9 +499,9 @@ Defines the data operation performed by the UDMF. It includes two optional param
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| Name      | Type                     | Readable| Writable| Mandatory| Description                                                                                                                                                                                       |
-|-----------|-------------------------|----|----|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | Yes | Yes | No | Service tag related to the data operation.                                                                                                                                                                           |
+| Name      | Type                     | Readable| Writable| Mandatory| Description                                                                                                                                                                                                                               |
+|-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | Yes | Yes | No | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
 | key       | string                  | Yes | Yes | No | Unique identifier of a data object in the UDMF, which can be obtained from the return value of [insertData](#udmfinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
 
 
@@ -510,7 +510,7 @@ Defines the data operation performed by the UDMF. It includes two optional param
 
 insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
 
-Inserts data to the UDMF. This API uses an asynchronous callback to return the result.
+Inserts data to the UDMF public data channel. This API uses an asynchronous callback to return the unique identifier of the data inserted.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -552,7 +552,7 @@ try {
 
 insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
-Inserts data to the UDMF. This API uses a promise to return the result.
+Inserts data to the UDMF public data channel. This API uses a promise to return the unique identifier of the data inserted.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -596,7 +596,7 @@ try {
 
 updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
 
-Updates data in the UDMF. This API uses an asynchronous callback to return the result.
+Updates the data in the UDMF public data channel. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -626,7 +626,7 @@ try {
         if (err === undefined) {
             console.info('Succeeded in updating data.');
         } else {
-            console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+            console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
         }
     });
 } catch(e) {
@@ -638,7 +638,7 @@ try {
 
 updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
-Updates data in the UDMF. This API uses a promise to return the result.
+Updates the data in the UDMF public data channel. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -683,7 +683,7 @@ try {
 
 queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
-Queries data in the UDMF. This API uses an asynchronous callback to return the result.
+Queries data in the UDMF public data channel. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -729,7 +729,7 @@ try {
 
 queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
-Queries data in the UDMF. This API uses a promise to return the result.
+Queries data in the UDMF public data channel. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -778,7 +778,7 @@ try {
 
 deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
-Deletes data from the UDMF. This API uses an asynchronous callback to return the result.
+Deletes data from the UDMF public data channel. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -824,7 +824,7 @@ try {
 
 deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
-Deletes data in the UDMF. This API uses a promise to return the result.
+Deletes data from the UDMF public data channel. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 

@@ -7,12 +7,13 @@
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  已实现默认拖拽效果组件：[Image](../arkui-ts/ts-basic-components-image.md)、[Text](../arkui-ts/ts-basic-components-text.md)、[TextArea](../arkui-ts/ts-basic-components-textarea.md)、[Search](../arkui-ts/ts-basic-components-search.md)。
-
+>
+>  应用中的预置资源文件不支持拖拽（即应用在安装前的HAP包中已经存在的资源文件）。
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长安触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 |
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 |
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
@@ -90,7 +91,15 @@ struct Index {
     let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
     if (records.length !== 0) {
       callback(event);
-      return;
+      return true;
+    }
+    return false;
+  }
+
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
+  {
+    if(this.getDataFromUdmfRetry(event, callback)) {
+        return;
     }
     setTimeout(()=>{
       this.getDataFromUdmfRetry(event, callback);
@@ -174,7 +183,7 @@ struct Index {
           .border({color: Color.Black, width: 1})
           .allowDrop([udmf.UnifiedDataType.IMAGE])
           .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmfRetry(dragEvent, (event)=>{
+            this.getDataFromUdmf(dragEvent, (event)=>{
               let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
@@ -197,7 +206,7 @@ struct Index {
           .margin(15)
           .allowDrop([udmf.UnifiedDataType.TEXT])
           .onDrop((dragEvent: DragEvent)=>{
-            this.getDataFromUdmfRetry(dragEvent, event => {
+            this.getDataFromUdmf(dragEvent, event => {
               let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
               this.targetText = (<udmf.Text>(records[0])).details['value'];
             })
@@ -215,7 +224,7 @@ struct Index {
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
         .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
         .onDrop((dragEvent)=>{
-          this.getDataFromUdmfRetry(dragEvent, event=>{
+          this.getDataFromUdmf(dragEvent, event=>{
             let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
             let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
             this.abstractContent = plainText.abstract;

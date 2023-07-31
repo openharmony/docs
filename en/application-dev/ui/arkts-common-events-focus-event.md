@@ -171,7 +171,7 @@ The preceding example includes four steps:
 4. When the Tab key (or the down arrow key) is pressed, the **Third Button** component is focused, its **onFocus** callback is triggered, and its background color turns green. **Second Button** loses focus, its **onBlur** callback is triggered, and its background color turns gray.
 
 
-## Setting Whether a Component Is focusable
+## Setting Whether a Component Is Focusable
 
 Use the **focusable** API to set whether a component is focusable.
 

@@ -13,15 +13,15 @@
 
 ArrayList依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的1.5倍。
 
-ArrayList进行增、删、改、查操作的相关API如下：
+ArrayList进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | --------- | ------- |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
 | 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
 | 访问元素 | 通过arr\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
-| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object): void访问整个ArrayList容器的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]()Iterableterator&lt;T&gt;迭代器进行数据访问。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object): void访问整个ArrayList容器的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过arr\[index] = xxx修改指定index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
 | 删除元素 | 通过removeByRange(fromIndex: number, toIndex:number)删除指定范围内的元素。 |
@@ -35,7 +35,7 @@ Vector和[ArrayList](../reference/apis/js-apis-arraylist.md)相似，都是基�
 
 API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis/js-apis-arraylist.md)。
 
-Vector进行增、删、改、查操作的相关API如下：
+Vector进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | --------- | ------- |
@@ -46,14 +46,14 @@ Vector进行增、删、改、查操作的相关API如下：
 | 访问元素 | 通过getLastElement()获取最后一个元素。 |
 | 访问元素 | 通过getlndexOf(element:T)获取第一个匹配到元素的位置。 |
 | 访问元素 | 通过getLastlndexOf(element:T)获取最后一个匹配到元素的位置。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; thisArg?: Object)访问整个Vector的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Vector的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过vec\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number,element:T)修改指定index位置的元素值为element。 |
 | 修改元素 | 通过setLength(newSize:number)设置Vector的长度大小。 |
 | 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromlndex:number,tolndex:number)删除指定范围内的元素。 |
+| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
 
 
 ## List
@@ -64,7 +64,7 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 
 当需要频繁的插入删除时，推荐使用List高效操作。
 
-可以通过get/set等接口对存储的元素进行修改，List进行增、删、改、查操作的相关API如下：
+可以通过get/set等接口对存储的元素进行修改，List进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | --------- | ------ |
@@ -77,12 +77,12 @@ List和[LinkedList](../reference/apis/js-apis-linkedlist.md)相比，LinkedList�
 | 访问元素 | 通过getlndexOf(element: T)获取第一个匹配到元素的位置。 |
 | 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置。 |
 | 访问元素 | 通过forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object)访问整个List的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过list\[index] = xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index:number, element: T)修改指定index位置的元素值为element。 |
-| 修改元素 | 通过replaceAllElements(callbackfn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
+| 修改元素 | 通过replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
 | 删除元素 | 通过removeBylndex(index:number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromlndex:number,tolndex:number)删除指定范围内的元素。 |
 
 
 ## LinkedList
@@ -95,29 +95,29 @@ LinkedList和[ArrayList](../reference/apis/js-apis-arraylist.md)相比，插入�
 
 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
-可以通过get/set等接口对存储的元素进行修改，LinkedList进行增、删、改、查操作的相关API如下：
+可以通过get/set等接口对存储的元素进行修改，LinkedList进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | ---------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
-| 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
+| 增加元素 | 通过insert(index: number, element: T)在指定位置插入一个元素。 |
 | 访问元素 | 通过list\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
 | 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
 | 访问元素 | 通过getFirst()获取第一个元素。 |
 | 访问元素 | 通过getLast()获取最后一个元素。 |
 | 访问元素 | 通过getlndexOf(element: T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个LinkedList的元素。 |
+| 访问元素 | 通过getLastlndexOf(element: T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个LinkedList的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过list\[index]=xxx修改指定index位置对应的value值。 |
 | 修改元素 | 通过set(index: number,element: T)修改指定index位置的元素值为element。 |
-| 修改元素 | 通过replaceAllElements(callbackfn:(value: T,index?: number,list?: LinkedList&lt;T&gt;)=&gt;T,thisArg?: Object)对List内元素进行替换操作。 |
 | 删除元素 | 通过removeBylndex(index: number)删除index位置对应的value值。 |
 | 删除元素 | 通过remove(element: T)删除第一个匹配到的元素。 |
 
 
 ## Deque
 
-[Deque](../reference/apis/js-apis-deque.md)可用来构造双端队列对象，存储元素遵循先进先出的规则，双端队列可以分别从队头或者队尾进行访问。
+[Deque](../reference/apis/js-apis-deque.md)可用来构造双端队列对象，存储元素遵循先进先出以及先进后出的规则，双端队列可以分别从队头或者队尾进行访问。
 
 Deque依据泛型定义，要求存储位置是一片连续的内存空间，其初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的2倍。Deque底层采用循环队列实现，入队及出队操作效率都比较高。
 
@@ -127,7 +127,7 @@ Deque和[Vector](../reference/apis/js-apis-vector.md)相比，它们都支持在
 
 需要频繁在集合两端进行增删元素的操作时，推荐使用Deque。
 
-Deque进行增、删、改、查操作的相关API如下：
+Deque进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | ---------- | ------ |
@@ -137,9 +137,9 @@ Deque进行增、删、改、查操作的相关API如下：
 | 访问元素 | 通过getLast()获取队尾元素的value值，但是不进行出队操作。 |
 | 访问元素 | 通过popFirst()获取队首元素的value值，并进行出队操作。 |
 | 访问元素 | 通过popLast()获取队尾元素的value值，并进行出队操作。 |
-| 访问元素 | 通过forEach(callbackfn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Deque的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void,thisArg?: Object)对队列进行修改操作。 |
+| 访问元素 | 通过forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Deque的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object)对队列进行修改操作。 |
 | 删除元素 | 通过popFirst()对队首元素进行出队操作并删除。 |
 | 删除元素 | 通过popLast()对队尾元素进行出队操作并删除。 |
 
@@ -156,22 +156,22 @@ Queue和[Deque](../reference/apis/js-apis-deque.md)相比，Queue只能在一端
 
 一般符合先进先出的场景可以使用Queue。
 
-Queue进行增、删、改、查操作的相关API如下：
+Queue进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | ---------- | ------ |
 | 增加元素 | 通过add(element: T)函数每次在队尾增加一个元素。 |
 | 访问元素 | 通过getFirst()获取队首元素的value值，但是不进行出队操作。 |
 | 访问元素 | 通过pop()获取队首元素的value值，并进行出队操作。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Queue的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)对队列进行修改操作。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)访问整个Queue的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object)对队列进行修改操作。 |
 | 删除元素 | 通过pop()对队首进行出队操作并删除。 |
 
 
 ## Stack
 
-[Qeque](../reference/apis/js-apis-stack.md)可用来构造栈对象，存储元素遵循后进先出的规则。
+[Stack](../reference/apis/js-apis-stack.md)可用来构造栈对象，存储元素遵循先进后出的规则。
 
 Stack依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的1.5倍。Stack底层基于数组实现，入栈出栈均从数组的一端操作。
 
@@ -179,17 +179,17 @@ Stack和[Queue](../reference/apis/js-apis-queue.md)相比，Queue基于循环队
 
 一般符合先进后出的场景可以使用Stack。
 
-Stack进行增、删、改、查操作的相关API如下：
+Stack进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | ---------- | ------ |
-| 增加元素 | 通过push(item：T)函数每次在栈顶增加一个元素。 |
+| 增加元素 | 通过push(item: T)函数每次在栈顶增加一个元素。 |
 | 访问元素 | 通过peek()获取栈顶元素的value值，但是不进行出栈操作。 |
 | 访问元素 | 通过pop()获取栈顶的value值，并进行出栈操作。 |
-| 访问元素 | 通过forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Stack的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():Iterablelterator&lt;T&gt;选代器进行数据访问。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Stack的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
 | 访问元素 | 通过locate(element: T)获取元素对应的位置。 |
-| 修改元素 | 通过forEach(callbackfn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void,thisArg?: Object)对栈内元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)对栈内元素进行修改操作。 |
 | 删除元素 | 通过pop()对栈顶进行出栈操作并删除。 |
 
 

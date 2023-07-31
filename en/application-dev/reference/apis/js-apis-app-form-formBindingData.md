@@ -75,14 +75,3 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
-
-## ProxyData
-
-Defines the widget proxy data.
-
-**System capability**: SystemCapability.Ability.Form
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the proxy. The value depends on the data publisher.|
-| subscriberId | string | No| Subscriber ID. The value depends on the data publisher. The default value is the current widget ID.|

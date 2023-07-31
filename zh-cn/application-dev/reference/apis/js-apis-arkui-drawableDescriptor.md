@@ -57,7 +57,7 @@ struct Index {
     Row() {
       Column() {
         Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.drawable')
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
           .id))).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -81,7 +81,7 @@ getPixelMap(): image.PixelMap;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
+let pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getPixelMap();
   ```
 
@@ -101,7 +101,7 @@ getPixelMap(): image.PixelMap;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
+let pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
           .id))).getPixelMap();
   ```
 
@@ -121,7 +121,7 @@ getForeground(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getForeground();
   ```
 
@@ -141,7 +141,7 @@ getBackground(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
+drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getBackground();
   ```
 
@@ -161,11 +161,11 @@ getMask(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.drawable')
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getMask();
   ```
-## LayeredDrawableDescriptor.getMashClipPath
-static getMashClipPath(): string
+## LayeredDrawableDescriptor.getMaskClipPath
+static getMaskClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
 
@@ -179,7 +179,7 @@ LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参�
 
 **示例：**
   ```ts
-Image($r('app.media.testImg'))
+Image($r('app.media.icon'))
     .width('200px').height('200px')
     .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
   ```

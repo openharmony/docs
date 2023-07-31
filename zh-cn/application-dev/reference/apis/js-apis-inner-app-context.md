@@ -494,7 +494,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation, (error) => {
@@ -521,7 +521,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
@@ -708,7 +708,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-获取当前ability的ohos.bundle.ElementName对象（callback形式）。
+获取当前ability的ohos.bundleManager.ElementName对象（callback形式）。
 
 此方法仅适用于页面功能。
 
@@ -718,7 +718,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 | 参数名       | 类型                          | 必填   | 说明                                     |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundle.ElementName对象。 |
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -740,7 +740,7 @@ context.getElementName((error, data) => {
 
 getElementName(): Promise\<ElementName>
 
-获取当前能力的ohos.bundle.ElementName对象（Promise形式）。
+获取当前能力的ohos.bundleManager.ElementName对象（Promise形式）。
 
 此方法仅适用于页面功能。
 
@@ -750,7 +750,7 @@ getElementName(): Promise\<ElementName>
 
 | 类型                    | 说明                                   |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundle.ElementName对象。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 

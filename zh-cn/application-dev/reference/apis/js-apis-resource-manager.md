@@ -35,9 +35,9 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 获取当前应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
-**模型约束**：此接口仅可在FA模型下使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：** 
 
@@ -52,7 +52,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
           console.log("error is " + error);
           return; 
       }
-      mgr.getString(0x1000000, (error, value) => {
+      mgr.getStringValue(0x1000000, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -70,9 +70,9 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
-**模型约束**：此接口仅可在FA模型下使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：** 
 
@@ -94,9 +94,9 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-**模型约束**：此接口仅可在FA模型下使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **返回值：**
 
@@ -107,7 +107,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 **示例：** 
   ```js
   resourceManager.getResourceManager().then(mgr => {
-      mgr.getString(0x1000000, (error, value) => {
+      mgr.getStringValue(0x1000000, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -127,9 +127,9 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-**模型约束**：此接口仅可在FA模型下使用。
-
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：** 
 
@@ -185,7 +185,7 @@ try {
         console.log("systemResourceManager getStringValue promise error is " + error);
     });
 } catch (error) {
-    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
 }
   ```
 
@@ -247,16 +247,6 @@ try {
 | direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向 |
 | locale    | string                  | 是    | 否    | 当前系统语言   |
 
-**示例：**
-
-  ```js
-resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration((error, value) => {
-          let direction = value.direction;
-          let locale = value.locale;
-      });
-  });
-  ```
 
 ## DeviceCapability
 
@@ -271,16 +261,6 @@ resourceManager.getResourceManager((error, mgr) => {
 | screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度 |
 | deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型   |
 
-**示例：**
-
-  ```js
-resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability((error, value) => {
-          let screenDensity = value.screenDensity;
-          let deviceType = value.deviceType;
-      });
-  });
-  ```
 
 ## RawFileDescriptor<sup>8+</sup>
 
@@ -357,7 +337,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
           }
       });
     } catch (error) {
-        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     }
   ```
 
@@ -401,7 +381,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
         console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -413,6 +393,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -447,7 +429,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   
   ```
@@ -460,6 +442,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -497,7 +481,7 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -538,7 +522,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
         }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -582,7 +566,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
         console.log("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -593,6 +577,8 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -627,7 +613,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -638,6 +624,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 用户获取指定resource对象对应的字符串数组，使用Promise形式返回字符串数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -675,7 +663,7 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
         console.log("getStringArray promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -714,7 +702,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -754,7 +742,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -796,7 +784,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
           console.log("getMediaContent promise error is " + error);
       });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -839,7 +827,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
           console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -850,6 +838,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -883,7 +873,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -894,6 +884,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -928,7 +920,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -939,6 +931,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -975,7 +969,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -986,6 +980,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1023,7 +1019,7 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1062,7 +1058,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
         }
     });       
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1102,7 +1098,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
         }
     });       
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1144,7 +1140,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
         console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1187,7 +1183,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
         console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1198,6 +1194,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1231,7 +1229,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
         }
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1242,6 +1240,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1270,13 +1270,13 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
   try {
     this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
         if (error != null) {
-            console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+            console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1287,6 +1287,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1323,7 +1325,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
         console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1334,6 +1336,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1371,7 +1375,7 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
         console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1391,16 +1395,18 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration((error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let direction = value.direction;
-              let locale = value.locale;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getConfiguration((error, value) => {
+      if (error != null) {
+        console.error("getConfiguration callback error is " + error);
+      } else {
+        let direction = value.direction;
+        let locale = value.locale;
+      }
+    });
+  } catch (error) {
+    console.error("getConfiguration callback error is " + error);
+  }
   ```
 
 
@@ -1420,14 +1426,16 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration().then(value => {
-          let direction = value.direction;
-          let locale = value.locale;
-      }).catch(error => {
-          console.log("getConfiguration promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getConfiguration().then(value => {
+      let direction = value.direction;
+      let locale = value.locale;
+    }).catch(error => {
+      console.error("getConfiguration promise error is " + error);
+    });
+  } catch (error) {
+    console.error("getConfiguration promise error is " + error);
+  }
   ```
 
 
@@ -1447,16 +1455,18 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability((error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let screenDensity = value.screenDensity;
-              let deviceType = value.deviceType;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getDeviceCapability((error, value) => {
+      if (error != null) {
+        console.error("getDeviceCapability callback error is " + error);
+      } else {
+        let screenDensity = value.screenDensity;
+        let deviceType = value.deviceType;
+      }
+    });
+  } catch (error) {
+    console.error("getDeviceCapability callback error is " + error);
+  }
   ```
 
 
@@ -1476,16 +1486,17 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability().then(value => {
-          let screenDensity = value.screenDensity;
-          let deviceType = value.deviceType;
-      }).catch(error => {
-          console.log("getDeviceCapability promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getDeviceCapability().then(value => {
+      let screenDensity = value.screenDensity;
+      let deviceType = value.deviceType;
+    }).catch(error => {
+      console.error("getDeviceCapability promise error is " + error);
+    });
+  } catch (error) {
+    console.error("getDeviceCapability promise error is " + error);
+  }
   ```
-
 
 ### getPluralStringValue<sup>9+</sup>
 
@@ -1524,8 +1535,8 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }   
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 
@@ -1569,8 +1580,8 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
         console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }  
+    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getPluralStringValue<sup>9+</sup>
@@ -1580,6 +1591,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1615,9 +1628,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }  
-  
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getPluralStringValue<sup>9+</sup>
@@ -1627,6 +1639,8 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1665,7 +1679,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
         console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1704,9 +1718,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
-      
   ```
 
 ### getRawFileContent<sup>9+</sup>
@@ -1746,7 +1759,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
         console.log("getRawFileContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1787,8 +1800,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
         }
     });
   } catch (error) {
-      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`)
-  };
+      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getRawFd<sup>9+</sup>
@@ -1831,7 +1844,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
     });
   } catch (error) {
     console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
-  };
+  }
   ```
 
 ### getRawFileList<sup>10+</sup>
@@ -1862,15 +1875,14 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("", (error, value) => {
         if (error != null) {
-            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let rawFile = value;
         }
     });
   } catch (error) {
-    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
   }
-      
   ```
 
 ### getRawFileList<sup>10+</sup>
@@ -1907,70 +1919,12 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
     this.context.resourceManager.getRawFileList("").then(value => {
         let rawFile = value;
     }).catch(error => {
-        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
-
-### closeRawFileDescriptor<sup>8+</sup>
-
-closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                        | 必填   | 说明          |
-| -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          }
-      });
-  });
-  ```
-
-### closeRawFileDescriptor<sup>8+</sup>
-
-closeRawFileDescriptor(path: string): Promise&lt;void&gt;
-
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明          |
-| ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
-
-**返回值：**
-
-| 类型                  | 说明   |
-| ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml").then(value => {
-          let result = value;
-      }).catch(error => {
-          console.log("closeRawFileDescriptor promise error is " + error);
-      });
-  });
-  ```
-
 
 ### closeRawFd<sup>9+</sup>
 
@@ -2004,7 +1958,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   }
       
   ```
@@ -2046,7 +2000,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
         console.log("closeRawFd promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2060,9 +2014,11 @@ release()
 
 **示例：** 
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.release();
-  });
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
+  }
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -2101,9 +2057,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
-  
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -2145,7 +2100,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
         console.log("getStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2185,7 +2140,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
         }
     });
   } catch (error) {
-    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2228,7 +2183,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
         console.log("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2267,7 +2222,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2307,7 +2262,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
         }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2392,7 +2347,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
         console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2431,7 +2386,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
         }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2471,7 +2426,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
         }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2513,7 +2468,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
         console.log("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2556,7 +2511,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
         console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2597,7 +2552,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   
   ```
@@ -2642,7 +2597,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
       console.log("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2681,7 +2636,7 @@ getStringSync(resId: number): string
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2722,7 +2677,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2733,6 +2688,8 @@ getStringSync(resource: Resource): string
 用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2766,7 +2723,7 @@ getStringSync(resource: Resource): string
   try {
     this.context.resourceManager.getStringSync(resource);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2777,6 +2734,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2812,7 +2771,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
   try {
     this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
  ```
 
@@ -2851,7 +2810,7 @@ getStringByNameSync(resName: string): string
   try {
     this.context.resourceManager.getStringByNameSync("test");
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2892,7 +2851,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
  ```
 
@@ -2931,7 +2890,7 @@ getBoolean(resId: number): boolean
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 ### getBoolean<sup>9+</sup>
@@ -2941,6 +2900,8 @@ getBoolean(resource: Resource): boolean
 使用同步方式，返回获取指定resource对象对应的布尔结果。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2974,7 +2935,7 @@ getBoolean(resource: Resource): boolean
   try {
     this.context.resourceManager.getBoolean(resource);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3013,7 +2974,7 @@ getBooleanByName(resName: string): boolean
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
   } catch (error) {
-    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3052,13 +3013,13 @@ getNumber(resId: number): number
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
 
   try {
     this.context.resourceManager.getNumber($r('app.float.float_test').id); // float对应返回的是真实像素点值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3069,6 +3030,8 @@ getNumber(resource: Resource): number
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -3102,7 +3065,7 @@ getNumber(resource: Resource): number
   try {
     this.context.resourceManager.getNumber(resource);// integer对应返回的是原数值, float对应返回的是真实像素点值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3141,13 +3104,13 @@ getNumberByName(resName: string): number
   try {
     this.context.resourceManager.getNumberByName("integer_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
 
   try {
     this.context.resourceManager.getNumberByName("float_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3186,12 +3149,12 @@ getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3202,6 +3165,8 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3235,12 +3200,12 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
   try {
     this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3279,12 +3244,12 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3324,7 +3289,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
           }
       });
     } catch (error) {
-        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
     }
   ```
 
@@ -3367,7 +3332,7 @@ getColor(resId: number): Promise&lt;number&gt;
         console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3378,6 +3343,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。
 
 **系统能力：** SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3412,7 +3379,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
         }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3423,6 +3390,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3460,7 +3429,7 @@ getColor(resource: Resource): Promise&lt;number&gt;;
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3500,7 +3469,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
         }
     });
   } catch (error) {
-    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3543,7 +3512,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
         console.log("getColorByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3582,7 +3551,7 @@ getColorSync(resId: number) : number;
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3593,6 +3562,8 @@ getColorSync(resource: Resource): number
 用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。
 
 **系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3626,7 +3597,7 @@ getColorSync(resource: Resource): number
   try {
     this.context.resourceManager.getColorSync(resource);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3665,7 +3636,7 @@ getColorByNameSync(resName: string) : number;
   try {
     this.context.resourceManager.getColorByNameSync("test");
   } catch (error) {
-    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3697,8 +3668,8 @@ addResource(path: string) : void;
   try {
       this.context.resourceManager.addResource(path);
   } catch (error) {
-      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`)
-        }
+      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### removeResource<sup>10+</sup>
@@ -3729,7 +3700,7 @@ removeResource(path: string) : void;
   try {
       this.resmgr.removeResource(path);
   } catch (error) {
-      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`)
+      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -4188,6 +4159,67 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
           let length = value.length;
       }).catch(error => {
           console.log("getRawFileDescriptor promise error is " + error);
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>(deprecated)</sup>
+
+closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
+
+从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                        | 必填   | 说明          |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | 是    | rawfile文件路径 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          }
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>(deprecated)</sup>
+
+closeRawFileDescriptor(path: string): Promise&lt;void&gt;
+
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
+
+从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9-1)代替。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| path | string | 是    | rawfile文件路径 |
+
+**返回值：**
+
+| 类型                  | 说明   |
+| ------------------- | ---- |
+| Promise&lt;void&gt; | 无返回值 |
+
+**示例：** 
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml").then(value => {
+          let result = value;
+      }).catch(error => {
+          console.log("closeRawFileDescriptor promise error is " + error);
       });
   });
   ```

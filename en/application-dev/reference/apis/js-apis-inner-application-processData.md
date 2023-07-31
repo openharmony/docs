@@ -12,6 +12,8 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 import appManager from '@ohos.application.appManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.

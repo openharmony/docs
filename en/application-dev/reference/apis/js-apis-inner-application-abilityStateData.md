@@ -12,7 +12,11 @@ The **AbilityStateData** module defines the ability state information, which can
 import appManager from '@ohos.application.appManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name                    | Type    | Readable| Writable| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |

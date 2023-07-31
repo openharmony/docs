@@ -44,3 +44,4 @@
 | [OH_AI_TensorGetMutableData](_mind_spore.md#oh_ai_tensorgetmutabledata) (const OH_AI_TensorHandle tensor) | 获取可变的张量数据指针。如果数据为空则会开辟内存。 |
 | [OH_AI_TensorGetElementNum](_mind_spore.md#oh_ai_tensorgetelementnum) (const OH_AI_TensorHandle tensor) | 获取张量元素数量。 |
 | [OH_AI_TensorGetDataSize](_mind_spore.md#oh_ai_tensorgetdatasize) (const OH_AI_TensorHandle tensor) | 获取张量中的数据的字节数大小。 |
+| [OH_AI_TensorSetUserData](_mind_spore.md#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | 设置张量为用户自行管理的数据。此接口常用于复用用户数据作为模型输入，可减少一次数据拷贝。 |

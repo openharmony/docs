@@ -4,15 +4,17 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| overlay | value:&nbsp;string&nbsp;&#124;&nbsp;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup>,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本或者叠加自定义组件作为该组件的浮层。<br/> value: 遮罩文本内容或自定义组件构造函数。<br/>options: 浮层的定位，align设置浮层相对于组件的方位，[offset](ts-universal-attributes-location.md)为浮层基于自身左上角的偏移量。浮层默认处于组件左上角。<br>两者都设置时效果重叠，浮层相对于组件方位定位后再基于当前位置的左上角进行偏移。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>注：自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
+| 名称      | 参数类型                                     | 默认值                                      | 描述                                       |
+| ------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| overlay | value:&nbsp;string&nbsp;&#124;&nbsp;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup>,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本或者叠加自定义组件作为该组件的浮层。<br/> value: 遮罩文本内容或自定义组件构造函数。<br/>options: 浮层的定位，align设置浮层相对于组件的方位，[offset](ts-universal-attributes-location.md)为浮层基于自身左上角的偏移量。浮层默认处于组件左上角。<br>两者都设置时效果重叠，浮层相对于组件方位定位后再基于当前位置的左上角进行偏移。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**说明：**<br>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -39,6 +41,8 @@ struct OverlayExample {
 ```
 
 ![zh-cn_image_0000001205769446](figures/zh-cn_image_0000001205769446.png)
+
+### 示例2
 
 ```ts
 // xxx.ets

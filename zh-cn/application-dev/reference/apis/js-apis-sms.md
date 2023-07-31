@@ -195,7 +195,7 @@ let destinationHost = '+861xxxxxxxxxx';
 let serviceCenter = '+861xxxxxxxxxx';
 let destinationPort = 1000;
 let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options, (err) => {
+sms.sendShortMessage(options, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```

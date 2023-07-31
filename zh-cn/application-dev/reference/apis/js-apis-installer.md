@@ -15,7 +15,11 @@ import installer from '@ohos.bundle.installer';
 
 | 权限                           | 权限等级    | 描述             |
 | ------------------------------ | ----------- | ---------------- |
-| ohos.permission.INSTALL_BUNDLE | system_core | 可安装、卸载应用。 |
+| ohos.permission.INSTALL_BUNDLE | system_core | 允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。 |
+| ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | 允许应用安装企业InHouse应用。 |
+| ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE | system_core | 允许在企业设备上安装企业MDM应用包。 |
+| ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE | system_core | 允许在企业设备上安装企业NORMAL应用包。 |
+
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
 
