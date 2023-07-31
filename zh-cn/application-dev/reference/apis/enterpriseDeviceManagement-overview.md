@@ -13,7 +13,7 @@ OpenHarmony通过企业设备管理（Enterprise Device Management）API支持�
 
 ### 环境准备
 - DevEco Studio可参考其官网介绍进行下载，并进行相关的配置动作。
-- ohos-sdk-full可参考[ruhe 替换full-sdk](../../faqs/full-sdk-switch-guide.md)进行下载。
+- ohos-sdk-full可参考[如何替换full-sdk](../../faqs/full-sdk-switch-guide.md)进行下载。
 
 ### 开发步骤
 
