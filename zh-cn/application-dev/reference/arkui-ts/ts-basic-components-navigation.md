@@ -54,9 +54,9 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 
 Navigation路由栈。
 
-### push<sup>10+</sup>
+### pushPath<sup>10+</sup>
 
-push(info: NavPathInfo): void
+pushPath(info: NavPathInfo): void
 
 将info指定的NavDestination页面信息入栈。
 
@@ -66,9 +66,9 @@ push(info: NavPathInfo): void
 | ------ | ----------------------- | ---- | --------------- |
 | info  | [NavPathInfo](#navpathinfo10)                  | 是    | NavDestination页面的信息。   |
 
-### pushName<sup>10+</sup>
+### pushPathByName<sup>10+</sup>
 
-pushName(name: string, param: unknown): void
+pushPathByName(name: string, param: unknown): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
@@ -92,9 +92,9 @@ pop(): NavPathInfo | undefined
 | NavPathInfo | 返回栈顶NavDestination页面的信息。 |
 | undefined | 当路由栈为空时返回undefined。 |
 
-### popTo<sup>10+</sup>
+### popToName<sup>10+</sup>
 
-popTo(name: string): number
+popToName(name: string): number
 
 回退路由栈到第一个名为name的NavDestination页面。
 
