@@ -8,7 +8,7 @@
 >
 >  已实现默认拖拽效果组件：[Image](../arkui-ts/ts-basic-components-image.md)、[Text](../arkui-ts/ts-basic-components-text.md)、[TextArea](../arkui-ts/ts-basic-components-textarea.md)、[Search](../arkui-ts/ts-basic-components-search.md)。
 >
->  应用中的资源文件不支持拖拽。
+>  应用中的预置资源文件不支持拖拽（即应用在安装前的HAP包中已经存在的资源文件）。
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
