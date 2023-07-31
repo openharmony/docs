@@ -86,7 +86,7 @@ struct Index {
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
 
-  hasUdmfData(event: DragEvent, callback: (data: DragEvent)=>void)
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
     let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
     if (records.length !== 0) {
@@ -96,13 +96,13 @@ struct Index {
     return false;
   }
 
-  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    if(this.hasUdmfData(event, callback)) {
+    if(this.getDataFromUdmfRetry(event, callback)) {
         return;
     }
     setTimeout(()=>{
-      this.hasUdmfData(event, callback);
+      this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
 
@@ -183,7 +183,7 @@ struct Index {
           .border({color: Color.Black, width: 1})
           .allowDrop([udmf.UnifiedDataType.IMAGE])
           .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmfRetry(dragEvent, (event)=>{
+            this.getDataFromUdmf(dragEvent, (event)=>{
               let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
@@ -206,7 +206,7 @@ struct Index {
           .margin(15)
           .allowDrop([udmf.UnifiedDataType.TEXT])
           .onDrop((dragEvent: DragEvent)=>{
-            this.getDataFromUdmfRetry(dragEvent, event => {
+            this.getDataFromUdmf(dragEvent, event => {
               let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
               this.targetText = (<udmf.Text>(records[0])).details['value'];
             })
@@ -224,7 +224,7 @@ struct Index {
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
         .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
         .onDrop((dragEvent)=>{
-          this.getDataFromUdmfRetry(dragEvent, event=>{
+          this.getDataFromUdmf(dragEvent, event=>{
             let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
             let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
             this.abstractContent = plainText.abstract;
