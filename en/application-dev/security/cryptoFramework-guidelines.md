@@ -18,7 +18,8 @@ Typical key generation operations involve the following:
 
 ### Available APIs
 
-The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+The following table describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+
 
 |Instance|API|Description|
 |---|---|---|
@@ -121,8 +122,6 @@ function convertAsyKey() {
 >
 > The public key binary data to be converted by **convertKey()** must be in the DER format complying with X.509 specifications, and the private key binary data must be in the DER format complying with PKCS #8 specifications.
 
- 
-
 Generate an ECC asymmetric key pair from the binary key data.
 
 1. Obtain the ECC binary key data and encapsulate it into a **DataBlob** instance.
@@ -206,7 +205,8 @@ Important data needs to be encrypted in data storage or transmission for securit
 
 ### Available APIs
 
-The following table  describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+The following table describes the APIs used in this guide. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md). <br>Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+
 
 |Instance|API|Description|
 |---|---|---|
@@ -1052,11 +1052,11 @@ function signLongMessagePromise() {
   let globalSignData;
   let textSplitLen = 64; // Customized data splitting length.
   let keyGenName = "RSA1024";
-  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let signAlgName = "RSA1024|PKCS1|SHA256";
   let globalKeyPair;
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // Create an AsyKeyGenerator object.
-  let signer = cryptoFramework.createSign(cipherAlgName); //Create a Sign object for signing.
-  let verifier = cryptoFramework.createVerify(cipherAlgName); // Create a Verify object for signature verification.
+  let signer = cryptoFramework.createSign(signAlgName); // Create a Signer instance.
+  let verifier = cryptoFramework.createVerify(signAlgName); // Create a Verifier instance.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("testRsaMultiUpdate");
@@ -1263,9 +1263,8 @@ async function doLoopMdPromise() {
 
 ### When to Use
 
+
 Key agreement allows two parties to establish a shared secret over an insecure channel.
-
-
 
 ### Available APIs
 
