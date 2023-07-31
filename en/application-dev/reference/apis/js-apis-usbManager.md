@@ -280,7 +280,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -320,7 +319,6 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -361,7 +359,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -401,7 +398,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -441,7 +437,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
@@ -477,7 +472,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
@@ -524,14 +518,13 @@ let param = {
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
 let devicepipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
-})
+});
 ```
 
 ## usb.bulkTransfer
@@ -568,7 +561,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
@@ -612,7 +604,6 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 usb.requestRight(devicesList[0].name);
