@@ -19,8 +19,8 @@
 - Cross-Application Data Sharing
   - [Data Sharing Overview](data-share-overview.md)
   - [Unified Data Definition](unified-data-definition.md)
-  - One-to-Many Data Sharing (Only for System Applications)
-  - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
-  - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
+  - One-to-Many Data Sharing (for System Applications Only)
+    - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
+    - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
   - Many-to-Many Data Sharing 
     - [Sharing Data Using Unified Data Channels](unified-data-channels.md)
