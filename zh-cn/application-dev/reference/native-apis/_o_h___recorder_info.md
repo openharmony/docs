@@ -5,6 +5,10 @@
 
 录制文件信息。
 
+> **说明：**
+>
+> 预留接口，将在后续版本提供支持。
+
 **系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：**
@@ -23,9 +27,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [url](#url) | char \*<br/>录制文件的URL。 | 
-| [urlLen](#urllen) | uint32_t<br/>录制文件的URL长度。 | 
-| [fileFormat](#fileformat) | [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype)<br/>录制文件的格式。 | 
+| [url](#url) | 录制文件的URL。 | 
+| [urlLen](#urllen) | 录制文件的URL长度。 | 
+| [fileFormat](#fileformat) | 录制文件的格式。 | 
 
 
 ## 结构体成员变量说明

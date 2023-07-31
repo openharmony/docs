@@ -46,7 +46,7 @@
 | [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat) | 枚举，表示视频编码格式。 | 
 | [OH_DataType](_a_v_screen_capture.md#oh_datatype) | 枚举，表示屏幕录制流的数据格式。 | 
 | [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype) | 枚举，表示视频源格式。 | 
-| [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
+| [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AudioCaptureInfo](_a_v_screen_capture.md#oh_audiocaptureinfo) | 音频录制信息。 | 
 | [OH_AudioEncInfo](_a_v_screen_capture.md#oh_audioencinfo) | 音频编码信息。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AudioInfo](_a_v_screen_capture.md#oh_audioinfo) | 音频录制参数。 | 
@@ -73,4 +73,4 @@
 | [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat) {<br/>[OH_VIDEO_DEFAULT](_a_v_screen_capture.md) = 0, [OH_H264](_a_v_screen_capture.md) = 2, [OH_H265](_a_v_screen_capture.md) = 4, [OH_MPEG4](_a_v_screen_capture.md) = 6,<br/>[OH_VP8](_a_v_screen_capture.md) = 8, [OH_VP9](_a_v_screen_capture.md) = 10, [OH_VIDEO_CODEC_FORMAT_BUTT](_a_v_screen_capture.md)<br/>} | 枚举，表示视频编码格式。 | 
 | [OH_DataType](_a_v_screen_capture.md#oh_datatype) { [OH_ORIGINAL_STREAM](_a_v_screen_capture.md) = 0, [OH_ENCODED_STREAM](_a_v_screen_capture.md) = 1, [OH_CAPTURE_FILE](_a_v_screen_capture.md) = 2, OH_INVAILD = -1 } | 枚举，表示屏幕录制流的数据格式。 | 
 | [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype) { [OH_VIDEO_SOURCE_SURFACE_YUV](_a_v_screen_capture.md) = 0, [OH_VIDEO_SOURCE_SURFACE_ES](_a_v_screen_capture.md), [OH_VIDEO_SOURCE_SURFACE_RGBA](_a_v_screen_capture.md), [OH_VIDEO_SOURCE_BUTT](_a_v_screen_capture.md) } | 枚举，表示视频源格式。 | 
-| [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) { [CFT_MPEG_4A](_a_v_screen_capture.md) = 0, [CFT_MPEG_4](_a_v_screen_capture.md) = 1 } | 枚举，表示屏幕录制生成的文件类型。 | 
+| [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) { [CFT_MPEG_4A](_a_v_screen_capture.md) = 0, [CFT_MPEG_4](_a_v_screen_capture.md) = 1 } | 枚举，表示屏幕录制生成的文件类型。<br>**说明：** 预留接口，将在后续版本提供。 | 

@@ -34,7 +34,7 @@
 | [OH_VideoCaptureInfo](_o_h___video_capture_info.md) | 视频采集信息。 | 
 | [OH_VideoEncInfo](_o_h___video_enc_info.md) | 视频编码信息。 <br>**说明：** 预留接口，将在后续版本提供。| 
 | [OH_VideoInfo](_o_h___video_info.md) | 视频录制参数。 | 
-| [OH_RecorderInfo](_o_h___recorder_info.md) | 录制文件信息。 | 
+| [OH_RecorderInfo](_o_h___recorder_info.md) | 录制文件信息。 <br>**说明：** 预留接口，将在后续版本提供。| 
 | [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) | 屏幕录制配置参数。 | 
 | [OH_AVScreenCaptureCallback](_o_h___a_v_screen_capture_callback.md) | OH_AVScreenCapture中所有异步回调函数指针的集合。 | 
 | [OH_Rect](_o_h___rect.md) | 定义录屏界面的宽高以及画面信息。 | 
@@ -53,7 +53,7 @@
 | [OH_VideoCodecFormat](#oh_videocodecformat) | 枚举，表示视频编码格式。 | 
 | [OH_DataType](#oh_datatype) | 枚举，表示屏幕录制流的数据格式。 | 
 | [OH_VideoSourceType](#oh_videosourcetype) | 枚举，表示视频源格式。 | 
-| [OH_ContainerFormatType](#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
+| [OH_ContainerFormatType](#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AudioCaptureInfo](#oh_audiocaptureinfo) | 音频录制信息。 | 
 | [OH_AudioEncInfo](#oh_audioencinfo) | 音频编码信息。 <br>**说明：** 预留接口，将在后续版本提供。| 
 | [OH_AudioInfo](#oh_audioinfo) | 音频录制参数。 | 
@@ -81,7 +81,7 @@
 | [OH_VideoCodecFormat](#oh_videocodecformat) {<br/>OH_VIDEO_DEFAULT = 0, OH_H264 = 2, OH_H265 = 4, OH_MPEG4 = 6,<br/>OH_VP8 = 8, OH_VP9 = 10, OH_VIDEO_CODEC_FORMAT_BUTT<br/>} | 枚举，表示视频编码格式。 | 
 | [OH_DataType](#oh_datatype) { OH_ORIGINAL_STREAM = 0, OH_ENCODED_STREAM = 1, OH_CAPTURE_FILE = 2, OH_INVAILD = -1 } | 枚举，表示屏幕录制流的数据格式。 | 
 | [OH_VideoSourceType](#oh_videosourcetype) { OH_VIDEO_SOURCE_SURFACE_YUV = 0, OH_VIDEO_SOURCE_SURFACE_ES, OH_VIDEO_SOURCE_SURFACE_RGBA, OH_VIDEO_SOURCE_BUTT } | 枚举，表示视频源格式。 | 
-| [OH_ContainerFormatType](#oh_containerformattype) { CFT_MPEG_4A = 0, CFT_MPEG_4 = 1 } | 枚举，表示屏幕录制生成的文件类型。 | 
+| [OH_ContainerFormatType](#oh_containerformattype) { CFT_MPEG_4A = 0, CFT_MPEG_4 = 1 } | 枚举，表示屏幕录制生成的文件类型。<br>**说明：** 预留接口，将在后续版本提供。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) {<br/>AV_SCREEN_CAPTURE_ERR_BASE = 0, AV_SCREEN_CAPTURE_ERR_OK = AV_SCREEN_CAPTURE_ERR_BASE, AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1, AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,<br/>AV_SCREEN_CAPTURE_ERR_INVALID_VAL = AV_SCREEN_CAPTURE_ERR_BASE + 3, AV_SCREEN_CAPTURE_ERR_IO = AV_SCREEN_CAPTURE_ERR_BASE + 4, AV_SCREEN_CAPTURE_ERR_TIMEOUT = AV_SCREEN_CAPTURE_ERR_BASE + 5, AV_SCREEN_CAPTURE_ERR_UNKNOWN = AV_SCREEN_CAPTURE_ERR_BASE + 6,<br/>AV_SCREEN_CAPTURE_ERR_SERVICE_DIED = AV_SCREEN_CAPTURE_ERR_BASE + 7, AV_SCREEN_CAPTURE_ERR_INVALID_STATE = AV_SCREEN_CAPTURE_ERR_BASE + 8, AV_SCREEN_CAPTURE_ERR_UNSUPPORT = AV_SCREEN_CAPTURE_ERR_BASE + 9, AV_SCREEN_CAPTURE_ERR_EXTEND_START = AV_SCREEN_CAPTURE_ERR_BASE + 100<br/>} | 屏幕录制过程中产生的不同结果码。 | 
 
 
@@ -91,10 +91,10 @@
 | -------- | -------- |
 | [OH_AVScreenCapture_Create](#oh_avscreencapture_create) (void) | 实例化对象，创建OH_AVScreenCapture。 | 
 | [OH_AVScreenCapture_Init](#oh_avscreencapture_init) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) config) | 初始化OH_AVScreenCapture相关参数。 | 
-| [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 开始录屏，调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。 | 
-| [OH_AVScreenCapture_StopScreenCapture](#oh_avscreencapture_stopscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 结束录屏，调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。 | 
-| [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 启动录屏。<br>**说明：** 预留接口，将在后续版本提供。 | 
-| [OH_AVScreenCapture_StopScreenRecording](#oh_avscreencapture_stopscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 停止录屏。 <br>**说明：** 预留接口，将在后续版本提供。| 
+| [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 开始录屏，采集原始码流。调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。 | 
+| [OH_AVScreenCapture_StopScreenCapture](#oh_avscreencapture_stopscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 结束录屏，与OH_AVScreenCapture_StartScreenCapture配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。 | 
+| [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 启动录屏，调用此接口，可采集编码后的码流。<br>**说明：** 预留接口，将在后续版本提供。 | 
+| [OH_AVScreenCapture_StopScreenRecording](#oh_avscreencapture_stopscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 停止录屏，与OH_AVScreenCapture_StartScreenRecording配合使用。 <br>**说明：** 预留接口，将在后续版本提供。| 
 | [OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioBuffer](_o_h___audio_buffer.md) \*\*audiobuffer, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | 获取音频buffer，应用在调用时，需要对audiobuffer分配对应结构体大小的内存，否则会影响拿到音频buffer的获取。 | 
 | [OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*fence, int64_t \*timestamp, struct [OH_Rect](_o_h___rect.md) \*region) | 获取视频buffer，应用在调用时，通过此接口来获取到视频的buffer以及时间戳等信息。 | 
 | [OH_AVScreenCapture_ReleaseAudioBuffer](#oh_avscreencapture_releaseaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | 根据音频类型释放buffer。 | 
@@ -110,7 +110,7 @@
 ### OH_AudioBuffer
 
 ```
-typedef struct OH_AudioBufferOH_AudioBuffer
+typedef struct OH_AudioBuffer OH_AudioBuffer
 ```
 
 **描述：**
@@ -125,7 +125,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AudioCaptureInfo
 
 ```
-typedef struct OH_AudioCaptureInfoOH_AudioCaptureInfo
+typedef struct OH_AudioCaptureInfo OH_AudioCaptureInfo
 ```
 
 **描述：**
@@ -140,7 +140,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AudioCaptureSourceType
 
 ```
-typedef enum OH_AudioCaptureSourceTypeOH_AudioCaptureSourceType
+typedef enum OH_AudioCaptureSourceType OH_AudioCaptureSourceType
 ```
 
 **描述：**
@@ -155,7 +155,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AudioCodecFormat
 
 ```
-typedef enum OH_AudioCodecFormatOH_AudioCodecFormat
+typedef enum OH_AudioCodecFormat OH_AudioCodecFormat
 ```
 
 **描述：**
@@ -170,7 +170,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AudioEncInfo
 
 ```
-typedef struct OH_AudioEncInfoOH_AudioEncInfo
+typedef struct OH_AudioEncInfo OH_AudioEncInfo
 ```
 
 **描述：**
@@ -189,7 +189,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AudioInfo
 
 ```
-typedef struct OH_AudioInfoOH_AudioInfo
+typedef struct OH_AudioInfo OH_AudioInfo
 ```
 
 **描述：**
@@ -204,7 +204,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AVSCREEN_CAPTURE_ErrCode
 
 ```
-typedef enum OH_AVSCREEN_CAPTURE_ErrCodeOH_AVSCREEN_CAPTURE_ErrCode
+typedef enum OH_AVSCREEN_CAPTURE_ErrCode OH_AVSCREEN_CAPTURE_ErrCode
 ```
 
 **描述：**
@@ -219,7 +219,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AVScreenCapture
 
 ```
-typedef struct OH_AVScreenCaptureOH_AVScreenCapture
+typedef struct OH_AVScreenCapture OH_AVScreenCapture
 ```
 
 **描述：**
@@ -234,7 +234,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AVScreenCaptureCallback
 
 ```
-typedef struct OH_AVScreenCaptureCallbackOH_AVScreenCaptureCallback
+typedef struct OH_AVScreenCaptureCallback OH_AVScreenCaptureCallback
 ```
 
 **描述：**
@@ -257,7 +257,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_AVScreenCaptureConfig
 
 ```
-typedef struct OH_AVScreenCaptureConfigOH_AVScreenCaptureConfig
+typedef struct OH_AVScreenCaptureConfig OH_AVScreenCaptureConfig
 ```
 
 **描述：**
@@ -354,12 +354,16 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_ContainerFormatType
 
 ```
-typedef enum OH_ContainerFormatTypeOH_ContainerFormatType
+typedef enum OH_ContainerFormatType OH_ContainerFormatType
 ```
 
 **描述：**
 
 枚举，表示屏幕录制生成的文件类型。
+
+> **说明：**
+>
+> 预留接口，将在后续版本提供。
 
 **系统能力：**
 
@@ -369,7 +373,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_DataType
 
 ```
-typedef enum OH_DataTypeOH_DataType
+typedef enum OH_DataType OH_DataType
 ```
 
 **描述：**
@@ -384,7 +388,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_NativeBuffer
 
 ```
-typedef struct OH_NativeBufferOH_NativeBuffer
+typedef struct OH_NativeBuffer OH_NativeBuffer
 ```
 
 **描述：**
@@ -399,7 +403,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_RecorderInfo
 
 ```
-typedef struct OH_RecorderInfoOH_RecorderInfo
+typedef struct OH_RecorderInfo OH_RecorderInfo
 ```
 
 **描述：**
@@ -414,7 +418,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_Rect
 
 ```
-typedef struct OH_RectOH_Rect
+typedef struct OH_Rect OH_Rect
 ```
 
 **描述：**
@@ -429,7 +433,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_VideoCaptureInfo
 
 ```
-typedef struct OH_VideoCaptureInfoOH_VideoCaptureInfo
+typedef struct OH_VideoCaptureInfo OH_VideoCaptureInfo
 ```
 
 **描述：**
@@ -444,7 +448,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_VideoCodecFormat
 
 ```
-typedef enum OH_VideoCodecFormatOH_VideoCodecFormat
+typedef enum OH_VideoCodecFormat OH_VideoCodecFormat
 ```
 
 **描述：**
@@ -459,7 +463,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_VideoEncInfo
 
 ```
-typedef struct OH_VideoEncInfoOH_VideoEncInfo
+typedef struct OH_VideoEncInfo OH_VideoEncInfo
 ```
 
 **描述：**
@@ -478,7 +482,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_VideoInfo
 
 ```
-typedef struct OH_VideoInfoOH_VideoInfo
+typedef struct OH_VideoInfo OH_VideoInfo
 ```
 
 **描述：**
@@ -493,7 +497,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 ### OH_VideoSourceType
 
 ```
-typedef enum OH_VideoSourceTypeOH_VideoSourceType
+typedef enum OH_VideoSourceType OH_VideoSourceType
 ```
 
 **描述：**
@@ -568,7 +572,7 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AV_SCREEN_CAPTURE_ERR_BASE | 接口返回值的基础值。 | 
+| AV_SCREEN_CAPTURE_ERR_BASE | 接口调用错误返回的基础值。 | 
 | AV_SCREEN_CAPTURE_ERR_OK | 操作成功。 | 
 | AV_SCREEN_CAPTURE_ERR_NO_MEMORY | 内存不足。 | 
 | AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT | 不允许操作。 | 
@@ -613,6 +617,10 @@ enum OH_ContainerFormatType
 **描述：**
 
 枚举，表示屏幕录制生成的文件类型。
+
+> **说明：**
+>
+> 预留接口，将在后续版本提供。
 
 **系统能力：**
 
@@ -934,7 +942,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture (struct OH_AVS
 
 **描述：**
 
-开始录屏，调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。
+开始录屏，采集原始码流。调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。
 
 通过调用获取音频buffer(OH_AVScreenCapture_AcquireAudioBuffer)和视频buffer(OH_AVScreenCapture_ReleaseVideoBuffer)的接口来获取录屏的原始码流
 
@@ -961,7 +969,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording (struct OH_A
 
 **描述：**
 
-启动录屏。
+启动录屏，调用此接口，可采集编码后的码流。
 
 > **说明：** 
 > 
@@ -990,7 +998,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture (struct OH_AVSc
 
 **描述：**
 
-结束录屏，调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
+结束录屏，与OH_AVScreenCapture_StartScreenCapture配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
 
 **参数：**
 
@@ -1015,7 +1023,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AV
 
 **描述：**
 
-停止录屏。
+停止录屏，与OH_AVScreenCapture_StartScreenRecording配合使用。
 
 > **说明：** 
 > 
