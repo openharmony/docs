@@ -43,7 +43,7 @@ NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本
 
 1. 获取OH_Rdb_Store实例，创建数据库文件。示例代码如下所示：
 
-   ```js
+   ```c
    // 创建OH_Rdb_Config对象
    OH_Rdb_Config config;
    // 该路径为应用沙箱路径
@@ -68,7 +68,7 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
 
 2. 获取到OH_Rdb_Store后，调用OH_Rdb_Execute接口创建表，并调用OH_Rdb_Insert接口插入数据。示例代码如下所示：
    
-   ```js
+   ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE                           INTEGER, SALARY REAL, CODES BLOB)";
    // 执行建表语句
    OH_Rdb_Execute(store_, createTableSql);
@@ -95,7 +95,7 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
 
    调用OH_Rdb_Update方法修改数据，调用OH_Rdb_Delete方法删除数据。示例代码如下所示：
    
-   ```js
+   ```c
    // 修改数据
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Rose");
@@ -128,7 +128,7 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
 
    调用OH_Rdb_Query方法查找数据，返回一个OH_Cursor结果集。示例代码如下所示：
 
-   ```js
+   ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
    const char *columnNames[] = {"NAME", "AGE"};
@@ -159,10 +159,10 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
    调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
 
    
-   ```js
+   ```c
    // 释放数据库实例
    OH_Rdb_CloseStore(store_)
-   // 删除
+   // 删除数据库文件
    OH_Rdb_DeleteStore(&config)
    ```
    
