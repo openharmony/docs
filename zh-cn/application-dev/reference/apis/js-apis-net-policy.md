@@ -91,7 +91,9 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 ```js
 policy.setBackgroundAllowed(true).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isBackgroundAllowed<sup>10+</sup>
@@ -167,7 +169,9 @@ isBackgroundAllowed(): Promise\<boolean>;
 policy.isBackgroundAllowed().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setPolicyByUid<sup>10+</sup>
@@ -250,7 +254,9 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 ```js
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getPolicyByUid<sup>10+</sup>
@@ -332,7 +338,9 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 policy.getPolicyByUid(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getUidsByPolicy<sup>10+</sup>
@@ -415,7 +423,9 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 policy.getUidsByPolicy(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getNetQuotaPolicies<sup>10+</sup>
@@ -490,8 +500,9 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 policy.getNetQuotaPolicies().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
-
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setNetQuotaPolicies<sup>10+</sup>
@@ -610,7 +621,9 @@ netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
@@ -695,7 +708,9 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 policy.isUidNetAllowed(11111, true).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
@@ -780,7 +795,9 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 policy.isUidNetAllowed(11111, 'wlan0').then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setDeviceIdleTrustlist<sup>10+</sup>
@@ -863,7 +880,9 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 ```js
 policy.setDeviceIdleTrustlist([11111,22222], true).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getDeviceIdleTrustlist<sup>10+</sup>
@@ -937,7 +956,9 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 policy.getDeviceIdleTrustlist().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getBackgroundPolicyByUid<sup>10+</sup>
@@ -1020,7 +1041,9 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 policy.getBackgroundPolicyByUid(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.resetPolicies<sup>10+</sup>
@@ -1101,7 +1124,9 @@ resetPolicies(simId: string): Promise\<void>;
 ```js
 policy.resetPolicies('1').then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.updateRemindPolicy<sup>10+</sup>
@@ -1188,7 +1213,9 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 import connection from '@ohos.net.connection';
 policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.setPowerSaveTrustlist<sup>10+</sup>
@@ -1271,7 +1298,9 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 ```js
 policy.setPowerSaveTrustlist([11111,22222], true).then((error) => {
   console.log(JSON.stringify(error))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.getPowerSaveTrustlist<sup>10+</sup>
@@ -1346,7 +1375,9 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 policy.getPowerSaveTrustlist().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-})
+}).catch(error => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## policy.on
