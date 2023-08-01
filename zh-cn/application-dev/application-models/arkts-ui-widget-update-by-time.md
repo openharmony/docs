@@ -1,7 +1,5 @@
 # 卡片定时刷新和定点刷新
 
-在使用定时和定点刷新功能之前，需要在form_config.json配置文件中设置`updateEnabled`字段为`true`，以启用周期性刷新功能。
-
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
 
@@ -9,6 +7,7 @@
 
   > **说明：**
   >
+  > 在使用定时和定点刷新功能之前，需要在form_config.json配置文件中设置`updateEnabled`字段为`true`，以启用周期性刷新功能。
   > 当配置了`updateDuration`（定时刷新）后，该设置会优先于`scheduledUpdateTime`（定点刷新）生效，即使同时配置了两者，定点刷新也会被忽略。
 
   ```json
