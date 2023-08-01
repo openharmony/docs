@@ -311,7 +311,7 @@ getTaskPoolInfo(): TaskPoolInfo
 **示例：**
 
 ```ts
-let taskpoolInfo:TaskPoolInfo = taskpool.getTaskPoolInfo();
+let taskpoolInfo = taskpool.getTaskPoolInfo();
 ```
 
 ## Priority
@@ -364,7 +364,7 @@ for (let i = 0; i < allCount; i++) {
 
 ## Task
 
-表示任务。使用以下方法前，需要先构造Task。
+表示任务。使用[constructor](#constructor)方法构造Task。
 
 ### constructor
 
@@ -405,7 +405,7 @@ let task = new taskpool.Task(printArgs, "this is my first Task");
 
 static isCanceled(): boolean
 
-检查当前正在运行的任务是否已取消。
+检查当前正在运行的任务是否已取消。使用该方法前需要先构造Task。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -470,7 +470,7 @@ taskpool.execute(task).then((res)=>{
 
 setTransferList(transfer?: ArrayBuffer[]): void
 
-设置任务的传输列表。
+设置任务的传输列表。使用该方法前需要先构造Task。
 
 > **说明：**<br/>
 > 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。
@@ -520,7 +520,8 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 | arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
 
 ## TaskGroup<sup>10+</sup>
-表示任务组。使用以下方法前，需要先构造TaskGroup。
+
+表示任务组。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
@@ -540,7 +541,7 @@ let taskGroup = new taskpool.TaskGroup();
 
 addTask(func: Function, ...args: unknown[]): void
 
-将待执行的函数添加到任务组中。
+将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -576,7 +577,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。
 
 **系统能力：** SystemCapability.Utils.Lang
 
