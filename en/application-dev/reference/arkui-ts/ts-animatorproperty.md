@@ -1,12 +1,12 @@
-# Property Animator
+# Property Animation
 
-You can create a property animator to animate certain universal attributes of a component, including **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**.
+You can animate certain properties of a component, including **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**.
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void})
 
 Since API version 9, this API is supported in ArkTS widgets.
 
