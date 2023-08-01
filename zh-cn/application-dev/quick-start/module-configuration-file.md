@@ -420,7 +420,7 @@ extensionAbilities示例：
 
 ## requestPermissions标签
 
-该标签标识应用运行时需向系统申请的权限集合。
+该标签标识应用运行时需向系统申请的权限集合，权限设置方式参见[指导](../security/accesstoken-guidelines.md)。
 
 > **说明：**
 >
