@@ -1698,7 +1698,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixeMap数组。 |
+| Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixelMap数组。 |
 
 **示例：**
 
@@ -2423,7 +2423,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage failded.');
+        console.info('dequeueImage failed.');
     }
     console.info('dequeueImage succeeded.');
 });
@@ -2967,7 +2967,7 @@ PixelMap的初始化选项。
 ## 补充说明
 ### SVG标签说明
 
-从API verison 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
 - a
 - circla
 - clipPath
