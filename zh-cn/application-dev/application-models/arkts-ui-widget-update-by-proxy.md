@@ -7,10 +7,14 @@
 **图1** 代理刷新运行原理
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
-如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，新增了数据管理服务和数据提供方。
+如图1，与[ArkTS卡片实现原理图](../application-models/arkts-ui-widget-working-principles.md#实现原理)相比，卡片代理刷新原理新增了数据管理服务和数据提供方。
 
 - 数据管理服务：该场景下主要提供了多应用间的数据共享的机制。
 - 数据提供方（仅支持系统应用）：系统应用作为数据提供方，需要开启数据共享能力，同时需要自定义`key + subscriberId`作为共享数据的标识。
+
+> **说明：**
+>
+> 只有系统提供了作为数据提供方的应用，同时提供公开可获得的共享数据标识，才能正常使用该特性。
 
 卡片提供方处理流程（图中蓝色箭头）：
 
@@ -32,7 +36,7 @@
 
 数据提供方提供的共享数据有两种类型：
 
-- 过程数据，不会一直存储，有老化期，普通应用可以订阅。
+- 过程数据，不会一直存储，有老化期，所有应用都可以订阅。
 
 - 持久化数据，仅系统应用可以订阅。
 

@@ -57,7 +57,7 @@
   let selectPage = "";
   let currentWindowStage = null;
   
-  export default class CameraAbility extends UIAbility {
+  export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
     onCreate(want, launchParam) {
       // 获取router事件中传递的targetPage参数
