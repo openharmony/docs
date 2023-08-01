@@ -248,7 +248,7 @@
          // 授权成功
        }).catch((err) => {
          console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-   
+       })
        // ...
      }
    }
