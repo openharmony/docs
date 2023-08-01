@@ -1,9 +1,9 @@
-# NativeRdbStore开发指导
+# RelationalStore开发指导
 
 
 ## 场景介
 
-NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
+RelationalStore是RDB组件在Native层的实现，提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
 
 
 ## 基本概念

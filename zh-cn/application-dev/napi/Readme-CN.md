@@ -21,4 +21,5 @@
   - [USB DDK开发指导](usb-ddk-guidelines.md)
 
 - 数据管理
-  - [NativeRdbStore开发指导](native-rdb-store-guidelines.md)
+  - [RelationalStore开发指导](native-relational-store-guidelines.md)
+
