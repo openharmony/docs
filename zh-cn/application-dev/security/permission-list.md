@@ -100,6 +100,18 @@
 
 **起始版本**：8
 
+## ohos.permission.GET_PHONE_NUMBERS
+
+允许应用读取SIM卡MSISDN。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
 ## ohos.permission.REQUIRE_FORM
 
 允许应用获取Ability Form。
