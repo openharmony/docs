@@ -53,7 +53,7 @@ NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本
    // 应用包名
    config.bundleName = "xxx";
    // 应用模块名
-   config.moduleName = "";
+   config.moduleName = "xxx";
    // 数据库安全等级测试
 config.securityLevel = OH_Rdb_SecurityLevel::S1;
    // 数据库是否加密
