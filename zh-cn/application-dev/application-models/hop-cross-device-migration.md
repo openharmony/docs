@@ -46,7 +46,7 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| onContinue(wantParam&nbsp;:&nbsp;{[key:&nbsp;string]:&nbsp;any}):&nbsp;OnContinueResult | 迁移发起端在该回调中保存迁移所需要的数据，同时返回是否同意迁移：<br/>-&nbsp;AGREE：表示同意。<br/>-&nbsp;REJECT：表示拒绝：如应用在onContinue中异常可以直接REJECT。<br/>-&nbsp;MISMATCH：表示版本不匹配：迁移发起端应用可以在onContinue中获取到迁移接收端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。 |
+| onContinue(wantParam&nbsp;:&nbsp;{[key:&nbsp;string]:&nbsp;Object}):&nbsp;OnContinueResult | 迁移发起端在该回调中保存迁移所需要的数据，同时返回是否同意迁移：<br/>-&nbsp;AGREE：表示同意。<br/>-&nbsp;REJECT：表示拒绝：如应用在onContinue中异常可以直接REJECT。<br/>-&nbsp;MISMATCH：表示版本不匹配：迁移发起端应用可以在onContinue中获取到迁移接收端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。 |
 | onCreate(want:&nbsp;Want,&nbsp;param:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 应用迁移接收端为冷启动或多实例应用热启动时，在该回调中完成数据恢复，并触发页面恢复。详见[应用组件启动模式](uiability-launch-type.md) |
 | onNewWant(want:&nbsp;Want,&nbsp;launchParams:&nbsp;AbilityConstant.LaunchParam):&nbsp;void; | 迁移接收端为单实例应用热启动时，在该回调中完成数据恢复，并触发页面恢复。详见[应用组件启动模式](uiability-launch-type.md) |
 
