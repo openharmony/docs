@@ -2840,7 +2840,7 @@ PixelMap的初始化选项。
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。 |
 | rotate             | number                             | 是   | 是   | 旋转角度。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败     |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。  |
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
@@ -2869,7 +2869,7 @@ PixelMap的初始化选项。
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg和webp。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2898,34 +2898,34 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。当前为只读属性     |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec。当前为只读属性 |
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。当前为只读属性      |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400。当前为只读属性      |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8。当前为只读属性      |
-| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间，当前为只读属性                |
-| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳，当前为只读属性         |
-| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳，当前为只读属性          |
-| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述，当前为只读属性                |
-| MAKE<sup>10+</sup>                       | "Make"                 | 生产商，当前为只读属性                  |
-| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式，当前为只读属性              |
-| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型，当前为只读属性             |
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度，当前为只读属性    |
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数，当前为只读属性    |
-| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级，当前为只读属性    |
-| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值，当前为只读属性    |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值，当前为只读属性    |
-| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式，当前为只读属性    |
-| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源，当前为只读属性    |
-| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态，当前为只读属性    |
-| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距，当前为只读属性    |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释，当前为只读属性    |
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸，当前为只读属性    |
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | 像素Y尺寸，当前为只读属性    |
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡，当前为只读属性    |
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片，当前为只读属性    |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式，当前为只读属性    |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小，当前为只读属性   |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。当前为只读属性。     |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec。当前为只读属性。 |
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。当前为只读属性。      |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400。当前为只读属性。      |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8。当前为只读属性。      |
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间，当前为只读属性。                |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳，当前为只读属性。         |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳，当前为只读属性。          |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述，当前为只读属性。               |
+| MAKE<sup>10+</sup>                       | "Make"                 | 生产商，当前为只读属性。                  |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式，当前为只读属性。              |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型，当前为只读属性。             |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度，当前为只读属性。    |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数，当前为只读属性。    |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级，当前为只读属性。    |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值，当前为只读属性。    |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值，当前为只读属性。    |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式，当前为只读属性。    |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源，当前为只读属性。    |
+| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态，当前为只读属性。    |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距，当前为只读属性。    |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释，当前为只读属性。    |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸，当前为只读属性。   |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | 像素Y尺寸，当前为只读属性。    |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡，当前为只读属性。    |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片，当前为只读属性。    |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式，当前为只读属性。    |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小，当前为只读属性。   |
 
 ## ImageFormat<sup>9+</sup>
 
