@@ -12,7 +12,7 @@ Worker的上下文对象和主线程的上下文对象是不同的，Worker线�
 ## 导入模块
 
 ```js
-import worker from '@ohos.worker';i
+import worker from '@ohos.worker';
 ```
 
 
