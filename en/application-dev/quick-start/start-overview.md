@@ -44,4 +44,4 @@ To help you better understand the preceding basic concepts and application devel
 
 2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3).
 
-When you are done, follow the instructions in [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md).
+When you are done, you can set out to [build your first ArkTS application in the stage model](start-with-ets-stage.md).

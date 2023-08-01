@@ -2,7 +2,7 @@
 
 - Getting Started
   - [Before You Start](start-overview.md)
-  - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
+  - [Building the First ArkTS Application in Stage Model](start-with-ets-stage.md)
 - Development Fundamentals
   - Application Package Fundamentals
     - [Application Package Overview](application-package-overview.md)
@@ -55,6 +55,7 @@
       - [\@Styles Decorator: Definition of Resusable Styles](arkts-style.md)
       - [\@Extend Decorator: Extension of Built-in Components](arkts-extend.md)
       - [stateStyles Decorator: Polymorphic Style](arkts-statestyles.md)
+      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
     - State Management
       - [State Management Overview](arkts-state-management-overview.md)
       - Component State Management

@@ -1,6 +1,6 @@
 # RichEditor
 
-The \<RichEditor> is a component that supports interactive text editing and mixture of text and imagery.
+The **\<RichEditor>** is a component that supports interactive text editing and mixture of text and imagery.
 
 >  **NOTE**
 >
@@ -114,7 +114,7 @@ Provides the image span style information returned by the backend.
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | Yes| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | Yes| Scale mode of the image.|
+| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | Yes| Scale mode of the image.|
 
 
 ## RichEditorOptions
@@ -158,7 +158,7 @@ Sets the cursor position.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset | number | Yes| Offset of the cursor.|
+| offset | number | Yes| Offset of the cursor. If the value is out of the text range, the setting fails.|
 
 **Return value**
 
@@ -265,8 +265,8 @@ Defines the text span style options.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position of the text span whose style needs to be updated. If this parameter is omitted, it indicates the end of the text span.|
+| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the text span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the text span.|
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes| Text style.|
 
 
@@ -276,8 +276,8 @@ Defines the image span style options.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted, it indicates the end of the image span.|
+| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the image span.|
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes| Image style.|
 
 
@@ -296,12 +296,12 @@ Provides the text style information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.|
-| fontSize | [Length](ts-types.md#length) \| number   | No| Font size.|
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.|
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.|
-| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} \| number \| string | No| Style and color of the text decorative line.|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
+| fontSize | [Length](ts-types.md#length) \| number   | No| Font size.<br>Default value: **16fp**|
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>Default value: **FontWeight.Normal**|
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.<br>Default font: **'HarmonyOS Sans'**|
+| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 
 
 ## RichEditorImageSpanOptions
@@ -320,8 +320,8 @@ Provides the image span style information.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | size  | [Dimension, Dimension]  | No| Width and height of the image.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit]((ts-basic-components-imagespan.md#imagefit)) | No| Scale mode of the image.|
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | No| Scale mode of the image.<br> Default value: **ImageFit.Cover**|
 
 ## RichEditorRange
 
@@ -329,8 +329,8 @@ Provides the span range information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position. If this parameter is omitted, the value **0** will be used.|
-| end | number | No| End position. If this parameter is omitted, it indicates the very end.|
+| start | number   | No| Start position. If this parameter is omitted or set to a negative value, the value **0** will be used.|
+| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the very end.|
 
 
 ## Example
