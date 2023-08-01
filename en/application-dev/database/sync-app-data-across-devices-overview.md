@@ -7,7 +7,7 @@ The distributed application data synchronization allows the data of an applicati
 
 For example, when data is added, deleted, or modified for an application on a device, the same application on another device can obtain the updated data. You can use this feature in the distributed Gallery, Notepad, Contacts, and File Manager. 
 
-For details about how to subscribe to database change notifications between different applications, see [Sharing Application Data with Other Applications](share-device-data-across-apps-overview.md).
+For details about how to subscribe to database change notifications between different applications, see [Cross-Application Data Sharing](data-share-overview.md).
 
 The data storage modes vary depending on the lifecycle of data to be synchronized:
 
@@ -24,7 +24,7 @@ In a distributed scenario, cross-device collaboration demands consistent data be
 The data consistency can be classified into the following types:
 
 
-- Strong consistency: When data is inserted, deleted, or modified on a device, other devices in the same network can obtain the updates eventually, but may not immediately.
+- Strong consistency: When data is inserted, deleted, or modified on a device, other devices in the same network will obtain the latest data immediately. Once data is modified, the devices can read the updated data eventually, but may not read the updated data immediately.
 
 - Weak consistency: When data is added, deleted, or modified on a device, other devices in the same network may or may not obtain the updates. The data on these devices may be inconsistent after a certain period of time.
 

@@ -1,6 +1,6 @@
-# @ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)
+# @ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)
 
-The **WorkSchedulerExtensionAbility** module provides callbacks for Work Scheduler tasks.
+The **WorkSchedulerExtensionAbility** module provides callbacks for deferred task scheduling.
 
 When developing an application, you can override the APIs of this module and add your own task logic to the APIs.
 
@@ -28,7 +28,7 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 
 onWorkStart(work: workScheduler.WorkInfo): void
 
-Triggered when the Work Scheduler task starts.
+Called when the system starts scheduling the deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -52,7 +52,7 @@ Triggered when the Work Scheduler task starts.
 
 onWorkStop(work: workScheduler.WorkInfo): void
 
-Triggered when the Work Scheduler task stops.
+Called when the system stops scheduling the deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 

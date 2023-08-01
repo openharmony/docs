@@ -32,7 +32,7 @@
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/media-application-overview.md)
 - [安全](security/userauth-overview.md)
-- [AI](ai/mindspore-lite-js-guidelines.md)
+- [AI](ai/ai-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
 - [数据管理](database/data-mgmt-overview.md)
@@ -54,7 +54,7 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ## 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta2/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ## API参考
 
