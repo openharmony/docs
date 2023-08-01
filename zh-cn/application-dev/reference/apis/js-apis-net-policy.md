@@ -89,7 +89,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setBackgroundAllowed(true).then(function (error) {
+policy.setBackgroundAllowed(true).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -164,7 +164,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isBackgroundAllowed().then(function (error, data) {
+policy.isBackgroundAllowed().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -248,7 +248,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 **示例：**
 
 ```js
-policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then(function (error) {
+policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -329,7 +329,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **示例：**
 
 ```js
-policy.getPolicyByUid(11111).then(function (error, data) {
+policy.getPolicyByUid(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -412,7 +412,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(11111).then(function (error, data) {
+policy.getUidsByPolicy(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -487,7 +487,7 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 **示例：**
 
 ```js
-policy.getNetQuotaPolicies().then(function (error, data) {
+policy.getNetQuotaPolicies().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -608,7 +608,7 @@ let netquotapolicy = {
 
 netQuotaPolicyList.push(netquotapolicy);
 
-policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
+policy.setNetQuotaPolicies(netQuotaPolicyList).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -692,7 +692,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isUidNetAllowed(11111, true).then(function (error, data) {
+policy.isUidNetAllowed(11111, true).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -777,7 +777,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isUidNetAllowed(11111, 'wlan0').then(function (error, data) {
+policy.isUidNetAllowed(11111, 'wlan0').then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -861,7 +861,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setDeviceIdleTrustlist([11111,22222], true).then(function (error) {
+policy.setDeviceIdleTrustlist([11111,22222], true).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -934,7 +934,7 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getDeviceIdleTrustlist().then(function (error, data) {
+policy.getDeviceIdleTrustlist().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1017,7 +1017,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 **示例：**
 
 ```js
-policy.getBackgroundPolicyByUid(11111).then(function (error, data) {
+policy.getBackgroundPolicyByUid(11111).then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1099,7 +1099,7 @@ resetPolicies(simId: string): Promise\<void>;
 **示例：**
 
 ```js
-policy.resetPolicies('1').then(function (error) {
+policy.resetPolicies('1').then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1186,7 +1186,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 ```js
 import connection from '@ohos.net.connection';
-policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then(function (error) {
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1269,7 +1269,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 **示例：**
 
 ```js
-policy.setPowerSaveTrustlist([11111,22222], true).then(function (error) {
+policy.setPowerSaveTrustlist([11111,22222], true).then((error) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1343,7 +1343,7 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getPowerSaveTrustlist().then(function (error, data) {
+policy.getPowerSaveTrustlist().then((error, data) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
