@@ -26,7 +26,7 @@ NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本
 
 ## 接口说明
 
-详细的接口说明请参考[关系型数据库](../reference/native-apis/_r_d_b.md)。
+详细的接口说明请参考RDB[关系型数据库](../reference/native-apis/_r_d_b.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -51,7 +51,7 @@ NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本
 // 数据库文件名
    config.storeName = "RdbTest.db";
    // 应用包名
-   config.bundleName = "xxx"
+   config.bundleName = "xxx";
    // 应用模块名
    config.moduleName = "";
    // 数据库安全等级测试
@@ -167,3 +167,4 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
    ```
    
    
+
