@@ -63,7 +63,7 @@ import wallpaper from '@ohos.wallpaper';
 
 setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-将视频资源设置为桌面或锁屏的动态壁纸。
+将视频资源设置为桌面或锁屏的动态壁纸。使用callback异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -101,7 +101,7 @@ try {
 
 setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将视频资源设置为桌面或锁屏的动态壁纸。
+将视频资源设置为桌面或锁屏的动态壁纸。使用promise异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -370,7 +370,7 @@ let minWidth = wallpaper.getMinWidthSync();
 
 restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-移除指定类型的壁纸，恢复为默认显示的壁纸。
+移除指定类型的壁纸，恢复为默认显示的壁纸。使用callback异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -401,7 +401,7 @@ wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
 
 restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-移除指定类型的壁纸，恢复为默认显示的壁纸。
+移除指定类型的壁纸，恢复为默认显示的壁纸。使用promise异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -435,7 +435,7 @@ wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
 
 setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-将指定资源设置为指定类型的壁纸。
+将指定资源设置为指定类型的壁纸。使用callback异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -490,7 +490,7 @@ imageSource.createPixelMap(opts).then((pixelMap) => {
 
 setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将指定资源设置为指定类型的壁纸。
+将指定资源设置为指定类型的壁纸。使用promise异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -546,7 +546,7 @@ imageSource.createPixelMap(opts).then((pixelMap) => {
 
 getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
-获取壁纸图片的像素图。
+获取壁纸图片的像素图。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -578,7 +578,7 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, function (error, da
 
 getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
-获取壁纸图片的像素图。
+获取壁纸图片的像素图。使用promise异步回调。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
