@@ -150,6 +150,7 @@ import matrix4 from '@ohos.matrix4'
 @Component
 struct Test {
   private matrix1 = matrix4.identity().translate({ x: 100 })
+  // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
   private matrix2 = this.matrix1.copy().scale({ x: 2 })
 
   build() {
@@ -305,7 +306,7 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
 combine(options: Matrix4Transit): Matrix4Transit
 
 
-Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
+Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。会改变调用该函数的原始矩阵。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -330,8 +331,8 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 }).copy()
-  private matrix2 = matrix4.identity().scale({ x: 2 }).copy()
+  private matrix1 = matrix4.identity().translate({ x: 200 })
+  private matrix2 = matrix4.identity().scale({ x: 2 })
 
   build() {
     Column() {
@@ -342,7 +343,7 @@ struct Test {
         .margin({ top: 50 })
       // 先平移x轴200px，再缩放两倍x轴，得到矩阵变换后的效果图
       Image($r("app.media.icon"))
-        .transform(this.matrix1.combine(this.matrix2))
+        .transform(this.matrix1.copy().combine(this.matrix2))
         .width("40%")
         .height(100)
         .margin({ top: 50 })
@@ -358,7 +359,7 @@ struct Test {
 
 invert(): Matrix4Transit
 
-Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。
+Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。会改变调用该函数的原始矩阵。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -374,7 +375,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 import matrix4 from '@ohos.matrix4'
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
 let matrix1 = matrix4.identity().scale({ x: 2 })
-let matrix2 = matrix1.invert()
+let matrix2 = matrix1.copy().invert()
 
 @Entry
 @Component
@@ -401,7 +402,7 @@ struct Tests {
 
 translate(options: TranslateOption): Matrix4Transit
 
-Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
+Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。会改变调用该函数的原始矩阵。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -446,7 +447,7 @@ struct Test {
 scale(options: ScaleOption): Matrix4Transit
 
 
-Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
+Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。会改变调用该函数的原始矩阵。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -490,7 +491,7 @@ struct Test {
 rotate(options: RotateOption): Matrix4Transit
 
 
-Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
+Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。会改变调用该函数的原始矩阵。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -604,9 +605,9 @@ struct Test {
 
 | 名称    | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| x       | number | 否   | x轴的缩放倍数。x>1时以x轴方向放大，x<1时以x轴方向缩小。<br/>默认值：1<br/>取值范围 [0, +∞)<br/>**说明：** <br/>设置小于0的值时，按照默认值处理。 |
-| y       | number | 否   | y轴的缩放倍数。y>1时以y轴方向放大，y<1时以y轴方向缩小。<br/>默认值：1<br/>取值范围 [0, +∞)<br/>**说明：** <br/>设置小于0的值时，按照默认值处理。 |
-| z       | number | 否   | z轴的缩放倍数。z>1时以z轴方向放大，z<1时以z轴方向缩小。<br/>默认值：1<br/>取值范围 [0, +∞)<br/>**说明：** <br/>设置小于0的值时，按照默认值处理。 |
+| x       | number | 否   | x轴的缩放倍数。x>1时以x轴方向放大，0&lt;x&lt;1时以x轴方向缩小，x<0时沿x轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
+| y       | number | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0&lt;y&lt;1时以y轴方向缩小，y<0时沿y轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
+| z       | number | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0&lt;z&lt;1时以z轴方向缩小，z<0时沿z轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
 | centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)    |
 | centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)    |
 
@@ -616,9 +617,9 @@ struct Test {
 
 | 名称    | 类型   | 必填 | 说明                                                    |
 | ------- | ------ | ---- | ------------------------------------------------------- |
-| x       | number | 否   | 旋转轴向量x坐标。<br/>默认值：1。<br/>取值范围 (-∞, +∞) |
-| y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：1。<br/>取值范围 (-∞, +∞) |
-| z       | number | 否   | 旋转轴向量z坐标。<br/>默认值：1。<br/>取值范围 (-∞, +∞) |
+| x       | number | 否   | 旋转轴向量x坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞) |
+| y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞) |
+| z       | number | 否   | 旋转轴向量z坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)。<br/>**说明：** 旋转向量中x、y、z至少有一个不为0才有意义。 |
 | angle   | number | 否   | 旋转角度。<br/>默认值：0                                |
 | centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0                       |
 | centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0                       |
