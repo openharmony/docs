@@ -4,7 +4,7 @@
 - Quick Start
   - Getting Started
     - [Before You Start](quick-start/start-overview.md)
-    - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Building the First ArkTS Application in Stage Model](quick-start/start-with-ets-stage.md)
   - Development Fundamentals
     - Application Package Fundamentals
       - [Application Package Overview](quick-start/application-package-overview.md)
@@ -43,8 +43,8 @@
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
-    - [Introduction to ArkTS]quick-start/arkts/introduction-to-arkts.md)
-    - [TypeScript to ArkTS Migration](quick-start/arkts/typescript-to-arkts-migration-guide.md)
+    - [Introduction to ArkTS](quick-start/introduction-to-arkts.md)
+    - [TypeScript to ArkTS Migration](quick-start/typescript-to-arkts-migration-guide.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
@@ -147,7 +147,6 @@
           - [Cross-Device Migration (for System Applications Only)](application-models/hop-cross-device-migration.md)
           - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
         - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
-        - [Setting Atomic Services to Support Sharing](application-models/atomic-services-support-sharing.md)
       - Process Model
         - [Process Model Overview](application-models/process-model-stage.md)
         - Common Events
@@ -289,14 +288,26 @@
         - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
         - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
       - Using Animation
-        - [Animation Overview](ui/arkts-animation-overview.md)
-        - Animation Within a Page
-          - [Layout Update Animation](ui/arkts-layout-update-animation.md)
-          - [Transition Animation Within a Component](ui/arkts-transition-animation-within-component.md)
-          - [Spring Curve Animation](ui/arkts-spring-animation.md)
-        - Animation Between Pages
-          - [Zoom Animation](ui/arkts-zoom-animation.md)
-          - [Page Transition Animation](ui/arkts-page-transition-animation.md)
+        - [Animation Overview](ui/arkts-animation.md)
+        - Property Animation
+          - [Property Animation Overview](ui/arkts-attribute-animation-overview.md)
+          - [Property Animation APIs](ui/arkts-attribute-animation-apis.md)
+          - [Custom Property Animation](ui/arkts-custom-attribute-animation.md)
+        - Transition Animation
+          - [Transition Animation Overview](ui/arkts-transition-overview.md)
+          - [Enter/Exit Transition](ui/arkts-enter-exit-transition.md)
+          - [Navigation Transition](ui/arkts-navigation-transition.md)
+          - [Modal Transition](ui/arkts-modal-transition.md)
+          - [Shared Element Transition](ui/arkts-shared-element-transition.md)
+        - [Component Animation](ui/arkts-component-animation.md)
+        - Animation Curve
+          - [Traditional Curve](ui/arkts-traditional-curve.md)
+          - [Spring Curve](ui/arkts-spring-curve.md)
+        - [Animation Smoothing](ui/arkts-animation-smoothing.md)
+        - Animation Effects
+          - [Blur Effect](ui/arkts-blur-effect.md)
+          - [Shadow Effect](ui/arkts-shadow-effect.md)
+          - [Color Effect](ui/arkts-color-effect.md)
       - Using Interaction Events
         - [Interaction Event Overview](ui/arkts-event-overview.md)
         - Universal Events
@@ -544,6 +555,7 @@
       - [Ethernet Connection](connectivity/net-ethernet.md)
       - [Network Connection Management](connectivity/net-connection-manager.md)
       - [MDNS Management](connectivity/net-mdns.md)
+      - [Traffic Management](connectivity/net-statistics.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
@@ -574,7 +586,7 @@
       - [Unified Data Definition](database/unified-data-definition.md)
       - One-to-Many Data Sharing (for System Applications Only)
         - [Sharing Data Using DataShareExtensionAbility](database/share-data-by-datashareextensionability.md)
-        - [Data Sharing Through Silent Access](database/share-data-by-silent-access.md)
+        - [Silent Access via the DatamgrService](database/share-data-by-silent-access.md)
       - Many-to-Many Data Sharing
         - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
   - File Management
@@ -896,7 +908,6 @@
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
-      - [@ohos.componentUtils (componentUtils)](reference/apis/js-apis-componentUtils.md)
       - [@ohos.curves (Interpolation Calculation)](reference/apis/js-apis-curve.md)
       - [@ohos.font (Custom Font Registration)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (Matrix Transformation)](reference/apis/js-apis-matrix4.md)
@@ -994,6 +1005,7 @@
       - [@ohos.net.connection (Network Connection Management)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.ethernet (Ethernet Connection Management)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (Data Request)](reference/apis/js-apis-http.md)
+      - [@ohos.net.policy (Network Policy Management)](reference/apis/js-apis-net-policy.md)
       - [@ohos.net.mdns (mDNS Management)](reference/apis/js-apis-net-mdns.md)
       - [@ohos.net.sharing (Network Sharing)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket Connection)](reference/apis/js-apis-socket.md)
@@ -1058,6 +1070,7 @@
       - [@ohos.cooperate (Screen Hopping)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (Device Attestation)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos.deviceInfo (Device Information)](reference/apis/js-apis-device-info.md)
+      - [@ohos.distributedDeviceManager (Device Management)](reference/apis/js-apis-distributedDeviceManager.md)
       - [@ohos.distributedHardware.deviceManager (Device Management)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (Peripheral Management)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (Geolocation Manager)](reference/apis/js-apis-geoLocationManager.md)
@@ -1076,6 +1089,7 @@
       - [@ohos.multimodalInput.touchEvent (Touch Event)](reference/apis/js-apis-touchevent.md)
       - [@ohos.multimodalInput.shortKey (Shortcut Key)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (System Power Management)](reference/apis/js-apis-power.md)
+      - [@ohos.resourceschedule.deviceStandby (Device Standby)](reference/apis/js-apis-resourceschedule-deviceStandby.md)     
       - [@ohos.runningLock (Runninglock)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (Sensor)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (Data Item Settings)](reference/apis/js-apis-settings.md)
@@ -1100,6 +1114,7 @@
       - [@ohos.enterprise.accountManager (Account Management)](reference/apis/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (Enterprise Device Management)](reference/apis/js-apis-enterprise-adminManager.md)
       - [@ohos.enterprise.applicationManager (Application Management)](reference/apis/js-apis-enterprise-applicationManager.md)
+      - [@ohos.enterprise.browser (Browser Management)](reference/apis/js-apis-enterprise-browser.md)
       - [@ohos.enterprise.bundleManager (Bundle Management)](reference/apis/js-apis-enterprise-bundleManager.md)
       - [@ohos.enterprise.dateTimeManager (System Time Management)](reference/apis/js-apis-enterprise-dateTimeManager.md)
       - [@ohos.enterprise.deviceControl (Device Control Management)](reference/apis/js-apis-enterprise-deviceControl.md)
