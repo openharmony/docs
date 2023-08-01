@@ -1,4 +1,4 @@
-# Getting Started with ArkTS in Stage Model
+# Building the First ArkTS Application in Stage Model
 
 
 >  **NOTE**
