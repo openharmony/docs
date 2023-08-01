@@ -104,3 +104,38 @@
       });
     }
 ```
+
+# cl.image.2 NDK接口变更
+1. image_pixel_map_napi.h 废弃API8接口
+2. image_pixel_map_napi.h 移动除API8以外的接口到image_pixel_map_mdk.h，并去除命名空间
+
+**变更影响**
+
+对于已发布的JS接口，可能影响应用的兼容性。
+
+**适配指导**
+
+1. 添加头文件image_pixel_map_mdk.h。
+2. 去除image_pixel_map_mdk.h中接口调用中的命名空间。
+
+**示例：**
+```
+#include "napi/native_api.h"
+#include "image_pixel_map_mdk.h"
+#include "image_pixel_map_napi.h"
+
+...
+static NativePixelMap* getNativePixelMap(napi_env env, napi_callback_info info)
+{
+    napi_value thisVar = nullptr;
+    napi_value argValue[NUM_1] = {0};
+    size_t argCount = NUM_1;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok ||
+        argCount < NUM_1 || argValue[NUM_0] == nullptr) {
+        return nullptr;
+    }
+    return OH_PixelMap_InitNativePixelMap(env, argValue[NUM_0]);
+}
+...
+```
