@@ -104,7 +104,7 @@
     
    avRecorder.start().then(() => {
        console.info('avRecorder start success');
-   }
+   });
    ```
 
 5. 停止录像。
@@ -114,7 +114,7 @@
    ```ts
    videoRecorder.stop().then(() => {
        console.info('stop success');
-   }
+   });
    
    videoOutput.stop((err) => {
        if (err) {
