@@ -400,6 +400,7 @@
         - [异步并发概述](arkts-utils/async-concurrency-overview.md)
         - [单次I/O任务开发指导](arkts-utils/single-io-development.md)
       - 使用多线程并发能力进行开发
+        - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
         - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
         - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
         - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
@@ -508,6 +509,7 @@
       - 相机最佳实践
         - [拍照实现方案](media/camera-shooting-case.md)
         - [录像实现方案](media/camera-recording-case.md)
+        - [性能提升方案（仅对系统应用开放）](media/camera-preformance-imporvement.md)
     - 图片
       - [图片开发概述](media/image-overview.md)
       - [图片解码](media/image-decoding.md)
@@ -543,9 +545,9 @@
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
   - AI
-    - [AI开发概述](./ai/ai-overview.md)
-    - [使用MindSpore Lite JS API开发AI应用](./ai/mindspore-guidelines-based-js.md)
-    - [使用MindSpore Lite Native API开发AI应用](./ai/mindspore-guidelines-based-native.md)
+    - [AI开发概述](ai/ai-overview.md)
+    - [使用MindSpore Lite JS API开发AI应用](ai/mindspore-guidelines-based-js.md)
+    - [使用MindSpore Lite Native API开发AI应用](ai/mindspore-guidelines-based-native.md)
   - 网络与连接
     - 网络管理
       - [网络管理开发概述](connectivity/net-mgmt-overview.md)
@@ -557,6 +559,7 @@
       - [网络连接管理](connectivity/net-connection-manager.md)
       - [MDNS管理](connectivity/net-mdns.md)
       - [流量管理](connectivity/net-statistics.md)
+      - [VPN管理](connectivity/net-vpn.md)
     - IPC与RPC通信
       - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
@@ -623,12 +626,12 @@
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
   - 后台任务（Background Task）管理
-      - [后台任务概述](task-management/background-task-overview.md)
-      - [短时任务](task-management/transient-task.md)
-      - [长时任务](task-management/continuous-task.md)
-      - [延迟任务](task-management/work-scheduler.md)
-      - [代理提醒](task-management/agent-powered-reminder.md)      
-      - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
+    - [后台任务总体概述](task-management/background-task-overview.md)
+    - [短时任务](task-management/transient-task.md)
+    - [长时任务](task-management/continuous-task.md)
+    - [延迟任务](task-management/work-scheduler.md)
+    - [代理提醒](task-management/agent-powered-reminder.md)      
+    - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -741,6 +744,8 @@
       - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
     - 内存管理
       - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+    - 设备管理
+      - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -956,6 +961,7 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
@@ -1063,11 +1069,22 @@
       - [@ohos.net.sharing (网络共享管理)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.statistics (流量管理)](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.vpn (VPN管理)](reference/apis/js-apis-net-vpn.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
+      - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis/js-apis-bluetooth-a2dp.md)
+      - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](reference/apis/js-apis-bluetooth-access.md)
+      - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](reference/apis/js-apis-bluetooth-baseProfile.md)
+      - [@ohos.bluetooth.ble(蓝牙ble模块)(推荐)](reference/apis/js-apis-bluetooth-ble.md)
+      - [@ohos.bluetooth.connection(蓝牙connection模块)(推荐)](reference/apis/js-apis-bluetooth-connection.md)
+      - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)](reference/apis/js-apis-bluetooth-constant.md)
+      - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)](reference/apis/js-apis-bluetooth-hfp.md)
+      - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](reference/apis/js-apis-bluetooth-hid.md)
+      - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](reference/apis/js-apis-bluetooth-pan.md)
+      - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis/js-apis-bluetooth-socket.md)
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
-      - [@ohos.bluetoothManager (蓝牙)(推荐)](reference/apis/js-apis-bluetoothManager.md)
+      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
@@ -1385,6 +1402,7 @@
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
+      - [Hyperlink](reference/arkui-ts/ts-container-hyperlink.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
       - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
@@ -1433,6 +1451,7 @@
         - [组件内转场](reference/arkui-ts/ts-transition-animation-component.md)
         - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
         - [组件内隐式共享元素转场](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
+      - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
     - 全局UI方法
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -1450,7 +1469,7 @@
     - 已停止维护的组件
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - 已停止维护的接口
-    - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
+      - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
   - 组件参考（兼容JS的类Web开发范式-ArkUI.Full）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -1685,6 +1704,7 @@
       - [策略管理错误码](reference/errorcodes/errorcode-net-policy.md)
       - [MDNS错误码](reference/errorcodes/errorcode-net-mdns.md)
       - [流量管理错误码](reference/errorcodes/errorcode-net-statistics.md)
+      - [VPN错误码](reference/errorcodes/errorcode-net-vpn.md)
     - 通信与连接
       - [Bluetooth错误码](reference/errorcodes/errorcode-bluetoothManager.md)
       - [WIFI错误码](reference/errorcodes/errorcode-wifi.md)
@@ -1752,11 +1772,13 @@
       - [AVDemuxer](reference/native-apis/_a_v_demuxer.md)
       - [AVSource](reference/native-apis/_a_v_source.md)
       - [OHAudio](reference/native-apis/_o_h_audio.md)
+      - [AVScreenCapture](reference/native-apis/_a_v_screen_capture.md)
       - [HuksKeyApi](reference/native-apis/_huks_key_api.md)
       - [HuksParamSetApi](reference/native-apis/_huks_param_set_api.md)
       - [HuksTypeApi](reference/native-apis/_huks_type_api.md)
       - [Init](reference/native-apis/init.md)
       - [Memory](reference/native-apis/memory.md)
+      - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
     - 头文件
@@ -1812,6 +1834,9 @@
       - [native_audiorenderer.h](reference/native-apis/native__audiorenderer_8h.md)
       - [native_audiostream_base.h](reference/native-apis/native__audiostream__base_8h.md)
       - [native_audiostreambuilder.h](reference/native-apis/native__audiostreambuilder_8h.md)
+      - [native_avscreen_capture.h](reference/native-apis/native__avscreen__capture_8h.md)
+      - [native_avscreen_capture_base.h](reference/native-apis/native__avscreen__capture__base_8h.md)
+      - [native_avscreen_capture_errors.h](reference/native-apis/native__avscreen__capture__errors_8h.md)
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
@@ -1823,6 +1848,8 @@
       - [relational_store.h](reference/native-apis/relational__store_8h.md)
       - [syscap_ndk.h](reference/native-apis/syscap__ndk_8h.md)
       - [purgeable_memory.h](reference/native-apis/purgeable__memory_8h.md)
+      - [usb_ddk_api.h](reference/native-apis/usb__ddk__api_8h.md)
+      - [usb_ddk_types.h](reference/native-apis/usb__ddk__types_8h.md)
       - [trace.h](reference/native-apis/trace_8h.md)
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - 结构体
@@ -1867,6 +1894,17 @@
       - [OH_AVRange](reference/native-apis/_o_h___a_v_range.md)
       - [OH_AudioCapturer_Callbacks_Struct](reference/native-apis/_o_h___audio_capturer___callbacks___struct.md)
       - [OH_AudioRenderer_Callbacks_Struct](reference/native-apis/_o_h___audio_renderer___callbacks___struct.md)
+      - [OH_AudioBuffer](reference/native-apis/_o_h___audio_buffer.md)
+      - [OH_AudioCaptureInfo](reference/native-apis/_o_h___audio_capture_info.md)
+      - [OH_AudioEncInfo](reference/native-apis/_o_h___audio_enc_info.md)
+      - [OH_AudioInfo](reference/native-apis/_o_h___audio_info.md)
+      - [OH_AVScreenCaptureCallback](reference/native-apis/_o_h___a_v_screen_capture_callback.md)
+      - [OH_AVScreenCaptureConfig](reference/native-apis/_o_h___a_v_screen_capture_config.md)
+      - [OH_RecorderInfo](reference/native-apis/_o_h___recorder_info.md)
+      - [OH_Rect](reference/native-apis/_o_h___rect.md)
+      - [OH_VideoCaptureInfo](reference/native-apis/_o_h___video_capture_info.md)
+      - [OH_VideoEncInfo](reference/native-apis/_o_h___video_enc_info.md)
+      - [OH_VideoInfo](reference/native-apis/_o_h___video_info.md)
       - [OH_Huks_Blob](reference/native-apis/_o_h___huks___blob.md)
       - [OH_Huks_CertChain](reference/native-apis/_o_h___huks___cert_chain.md)
       - [OH_Huks_KeyInfo](reference/native-apis/_o_h___huks___key_info.md)
@@ -1885,6 +1923,17 @@
       - [OH_Rdb_Store](reference/native-apis/_o_h___rdb___store.md)
       - [OH_VBucket](reference/native-apis/_o_h___v_bucket.md)
       - [OH_VObject](reference/native-apis/_o_h___v_object.md)
+      - [UsbConfigDescriptor](reference/native-apis/_usb_config_descriptor.md)
+      - [UsbControlRequestSetup](reference/native-apis/_usb_control_request_setup.md)
+      - [UsbDdkConfigDescriptor](reference/native-apis/_usb_ddk_config_descriptor.md)
+      - [UsbDdkEndpointDescriptor](reference/native-apis/_usb_ddk_endpoint_descriptor.md)
+      - [UsbDdkInterface](reference/native-apis/_usb_ddk_interface.md)
+      - [UsbDdkInterfaceDescriptor](reference/native-apis/_usb_ddk_interface_descriptor.md)
+      - [UsbDeviceDescriptor](reference/native-apis/_usb_device_descriptor.md)
+      - [UsbDeviceMemMap](reference/native-apis/_usb_device_mem_map.md)
+      - [UsbEndpointDescriptor](reference/native-apis/_usb_endpoint_descriptor.md)
+      - [UsbInterfaceDescriptor](reference/native-apis/_usb_interface_descriptor.md)
+      - [UsbRequestPipe](reference/native-apis/_usb_request_pipe.md)
       - [VkExternalFormatOHOS](reference/native-apis/_vk_external_format_o_h_o_s.md)
       - [VkImportNativeBufferInfoOHOS](reference/native-apis/_vk_import_native_buffer_info_o_h_o_s.md)
       - [VkMemoryGetNativeBufferInfoOHOS](reference/native-apis/_vk_memory_get_native_buffer_info_o_h_o_s.md)
