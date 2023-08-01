@@ -7,7 +7,6 @@
 
 ## 导入模块
 
-
 ```js
 import image from '@ohos.multimedia.image';
 ```
