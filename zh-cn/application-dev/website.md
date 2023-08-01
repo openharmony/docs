@@ -1935,6 +1935,7 @@
       - [UsbInterfaceDescriptor](reference/native-apis/_usb_interface_descriptor.md)
       - [UsbRequestPipe](reference/native-apis/_usb_request_pipe.md)
       - [VkExternalFormatOHOS](reference/native-apis/_vk_external_format_o_h_o_s.md)
+      - [VkImportNativeBufferInfoOHOS](reference/native-apis/_vk_import_native_buffer_info_o_h_o_s.md)
       - [VkMemoryGetNativeBufferInfoOHOS](reference/native-apis/_vk_memory_get_native_buffer_info_o_h_o_s.md)
       - [VkNativeBufferFormatPropertiesOHOS](reference/native-apis/_vk_native_buffer_format_properties_o_h_o_s.md)
       - [VkNativeBufferPropertiesOHOS](reference/native-apis/_vk_native_buffer_properties_o_h_o_s.md)
