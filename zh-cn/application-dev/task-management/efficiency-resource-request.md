@@ -10,7 +10,7 @@
 
 - **能效资源申请接口** ：单独为进程申请CPU等资源的接口，保障系统应用在后台执行的诉求。申请CPU资源后，则应用或进程不被挂起。
 
-- **系统特权应用**：配置[runningResourcesApply特权](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)应用的系统应用。
+- **系统特权应用**：配置[runningResourcesApply特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)应用的系统应用。
 
 ### 约束与限制
 
@@ -66,7 +66,7 @@
    
    // 应用需要在后台保持活动状态，不被挂起。
    let request = {
-     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起
+     resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起 
      isApply: true, // 释放资源
      timeOut: 0, // 超时时间，超过超时时间后资源自动释放
      reason: "apply", // 申请原因
