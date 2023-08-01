@@ -76,11 +76,14 @@
           - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+        - [MVVM模式](quick-start/arkts-mvvm.md)
+        - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
       - 渲染控制
         - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [渲染控制优秀实践](quick-start/arkts-rendering-control-best-practices.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -761,7 +764,7 @@
     - [suap工具](tools/suap-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta2/README_zh.md)
+  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
