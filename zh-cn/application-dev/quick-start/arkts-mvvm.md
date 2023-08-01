@@ -1150,11 +1150,7 @@ export class ObservedArray<T> extends Array<T> {
      this.phones = new ObservedArray<string>(phones);
    }
  }
-```
 
-
-​     
-```ts
  export class AddressBook {
    me: Person;
    contacts: ObservedArray<Person>;
@@ -1322,11 +1318,11 @@ export class ObservedArray<T> extends Array<T> {
  @Component
  struct PageEntry {
    @Provide addrBook: AddressBook = new AddressBook(
-     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["+358441234567", "+35891234567", "+49621234567889"]),
+     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********", "(86) (755) ********"]),
      [
-       new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["+358449876543", "+3589456789"]),
-       new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["+358509876543", "+358910101010"]),
-       new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["+358400908070", "+35894445555"]),
+       new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
+       new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
+       new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
      ]);
  
    build() {
