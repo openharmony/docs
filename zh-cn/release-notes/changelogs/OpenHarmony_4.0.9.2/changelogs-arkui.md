@@ -1,6 +1,6 @@
 # arkui子系统ChangeLog
 
-## cl.arkui.1 滚动事件上报滚动状态枚举值规则变更
+## 1.cl.arkui.1 滚动事件上报滚动状态枚举值规则变更
 
 ScrollState枚举值在API version 9及以下上报规则：
 
@@ -78,3 +78,35 @@ struct ListExample {
   }
 }
 ```
+
+## 2.ArkUI系统组件使用场景限制
+
+对ArkUI系统组件的使用场景进行限制，仅允许在struct的build方法内， pageTransition方法内或@Builder修饰的函数内使用。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+    }
+
+  }
+}
+// ERROR:UI component 'Text' cannot be used in this place.
+Text('Hello World')
+```
+
+**变更影响**
+
+ 如果ArkUI系统组件不在struct的build方法内，pageTransition方法内，@Builder修饰的函数内使用，编译报错。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+ ArkUI系统组件必须在struct的build方法内，pageTransition方法内，@Builder修饰的函数内使用。
