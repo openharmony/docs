@@ -56,10 +56,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
 
-await avSession.createAVSession(context, tag, "audio").then((data) => {
+avSession.createAVSession(context, tag, "audio").then((data) => {
     currentAVSession = data;
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${currentAVSession.sessionId}`);
+    sessionId = currentAVSession.sessionId;
+    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
 }).catch((err) => {
     console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -98,13 +100,15 @@ import featureAbility from '@ohos.ability.featureAbility';
 let currentAVSession;
 let tag = "createNewSession";
 let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", function (err, data) {
     if (err) {
         console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         currentAVSession = data;
-        console.info(`CreateAVSession : SUCCESS : sessionId = ${session.sessionId}`);
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
     }
 });
 ```
@@ -325,7 +329,7 @@ createController(sessionId: string): Promise\<AVSessionController>
 ```js
 
 let currentAVcontroller;
-await avSession.createController(currentAVSession.sessionId).then((avcontroller) => {
+avSession.createController(currentAVSession.sessionId).then((avcontroller) => {
     currentAVcontroller = avcontroller;
     console.info(`CreateController : SUCCESS : ${currentAVcontroller.sessionId}`);
 }).catch((err) => {
@@ -1376,8 +1380,13 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 
 ```js
 let myToken = {
-    sessionId: currentAVSession.sessionId;
+    sessionId: sessionId,
 }
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
 avSession.startCasting(myToken, castDevice, function (err) {
     if (err) {
         console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -1424,8 +1433,13 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 
 ```js
 let myToken = {
-    sessionId: currentAVSession.sessionId;
+    sessionId: sessionId,
 }
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
 avSession.startCasting(myToken, castDevice).then(() => {
     console.info(`startCasting successfully`);
 }).catch((err) => {
@@ -1461,8 +1475,13 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 
 ```js
 let myToken = {
-    sessionId: currentAVSession.sessionId;
+    sessionId: sessionId,
 }
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
 avSession.stopCasting(myToken, castDevice, function (err) {
     if (err) {
         console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -1505,8 +1524,13 @@ stopCasting(session: SessionToken): Promise\<void>
 
 ```js
 let myToken = {
-    sessionId: currentAVSession.sessionId;
+    sessionId: sessionId,
 }
+let castDevice;
+avSession.on('deviceAvailable', (device) => {
+    castDevice = device;
+    console.info(`on deviceAvailable  : ${device} `);
+});
 avSession.stopCasting(myToken).then(() => {
     console.info(`stopCasting successfully`);
 }).catch((err) => {
@@ -1914,7 +1938,7 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await currentAVSession.dispatchSessionEvent(eventName, args).catch((err) => {
+currentAVSession.dispatchSessionEvent(eventName, args).catch((err) => {
     console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -1953,7 +1977,7 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await currentAVSession.dispatchSessionEvent(eventName, args, (err) => {
+currentAVSession.dispatchSessionEvent(eventName, args, (err) => {
     if(err) {
         console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     }
@@ -2211,7 +2235,7 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 let extras = {
     extras : "This is custom media packet"
 }
-await currentAVSession.setExtras(extras).catch((err) => {
+currentAVSession.setExtras(extras).catch((err) => {
     console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -2248,7 +2272,7 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 let extras = {
     extras : "This is custom media packet"
 }
-await currentAVSession.setExtras(extras, (err) => {
+currentAVSession.setExtras(extras, (err) => {
     if(err) {
         console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     }
@@ -4795,7 +4819,7 @@ aVCastController.off('error')
 **示例：**
 ```js
 let AVSessionController;
-await avSession.createController(currentAVSession.sessionId).then((controller) => {
+avSession.createController(currentAVSession.sessionId).then((controller) => {
     AVSessionController = controller;
 }).catch((err) => {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4828,7 +4852,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 **示例：**
 
 ```js
-AVSessionController.getAVPlaybackState(function (err, state) {
+avsessionController.getAVPlaybackState(function (err, state) {
     if (err) {
         console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -4863,7 +4887,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 **示例：**
 
 ```js
-AVSessionController.getAVPlaybackState().then((state) => {
+avsessionController.getAVPlaybackState().then((state) => {
     console.info(`getAVPlaybackState : SUCCESS :`);
 }).catch((err) => {
     console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4895,7 +4919,7 @@ getAVMetadata(): Promise\<AVMetadata>
 
 **示例：**
 ```js
-AVSessionController.getAVMetadata().then((metadata) => {
+avsessionController.getAVMetadata().then((metadata) => {
     console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
 }).catch((err) => {
     console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4927,7 +4951,7 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 **示例：**
 ```js
-AVSessionController.getAVMetadata(function (err, metadata) {
+avsessionController.getAVMetadata(function (err, metadata) {
     if (err) {
         console.error(`GetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -4961,7 +4985,7 @@ getAVQueueTitle(): Promise\<string>
 
 **示例：**
 ```js
-AVSessionController.getAVQueueTitle().then((title) => {
+avsessionController.getAVQueueTitle().then((title) => {
     console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
 }).catch((err) => {
     console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4993,7 +5017,7 @@ getAVQueueTitle(callback: AsyncCallback\<string>): void
 
 **示例：**
 ```js
-AVSessionController.getAVQueueTitle(function (err, title) {
+avsessionController.getAVQueueTitle(function (err, title) {
     if (err) {
         console.error(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5027,7 +5051,7 @@ getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 
 **示例：**
 ```js
-AVSessionController.getAVQueueItems().then((items) => {
+avsessionController.getAVQueueItems().then((items) => {
     console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
 }).catch((err) => {
     console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5059,7 +5083,7 @@ getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
 
 **示例：**
 ```js
-AVSessionController.getAVQueueItems(function (err, items) {
+avsessionController.getAVQueueItems(function (err, items) {
     if (err) {
         console.error(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5101,7 +5125,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 
 ```js
 let queueItemId = 0;
-AVSessionController.skipToQueueItem(queueItemId).then(() => {
+avsessionController.skipToQueueItem(queueItemId).then(() => {
     console.info(`SkipToQueueItem successfully`);
 }).catch((err) => {
     console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5136,7 +5160,7 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 
 ```js
 let queueItemId = 0;
-AVSessionController.skipToQueueItem(queueItemId, function (err) {
+avsessionController.skipToQueueItem(queueItemId, function (err) {
     if (err) {
         console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5170,7 +5194,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **示例：**
 ```js
-AVSessionController.getOutputDevice().then((deviceInfo) => {
+avsessionController.getOutputDevice().then((deviceInfo) => {
     console.info(`GetOutputDevice : SUCCESS : isRemote : ${deviceInfo.isRemote}`);
 }).catch((err) => {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5202,7 +5226,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 **示例：**
 
 ```js
-AVSessionController.getOutputDevice(function (err, deviceInfo) {
+avsessionController.getOutputDevice(function (err, deviceInfo) {
     if (err) {
         console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5248,7 +5272,7 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {action:2, key:keyItem, keys:[keyItem]};
 
-AVSessionController.sendAVKeyEvent(event).then(() => {
+avsessionController.sendAVKeyEvent(event).then(() => {
     console.info(`SendAVKeyEvent Successfully`);
 }).catch((err) => {
     console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5287,7 +5311,7 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {action:2, key:keyItem, keys:[keyItem]};
 
-AVSessionController.sendAVKeyEvent(event, function (err) {
+avsessionController.sendAVKeyEvent(event, function (err) {
     if (err) {
         console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5322,7 +5346,7 @@ getLaunchAbility(): Promise\<WantAgent>
 **示例：**
 
 ```js
-AVSessionController.getLaunchAbility().then((agent) => {
+avsessionController.getLaunchAbility().then((agent) => {
     console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
 }).catch((err) => {
     console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5355,7 +5379,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 **示例：**
 
 ```js
-AVSessionController.getLaunchAbility(function (err, agent) {
+avsessionController.getLaunchAbility(function (err, agent) {
     if (err) {
         console.error(`GetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5389,7 +5413,7 @@ getRealPlaybackPositionSync(): number
 **示例：**
 
 ```js
-let time = AVSessionController.getRealPlaybackPositionSync();
+let time = avsessionController.getRealPlaybackPositionSync();
 ```
 
 ### isActive<sup>10+</sup>
@@ -5418,7 +5442,7 @@ isActive(): Promise\<boolean>
 **示例：**
 
 ```js
-AVSessionController.isActive().then((isActive) => {
+avsessionController.isActive().then((isActive) => {
     console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
 }).catch((err) => {
     console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5451,7 +5475,7 @@ isActive(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-AVSessionController.isActive(function (err, isActive) {
+avsessionController.isActive(function (err, isActive) {
     if (err) {
         console.error(`IsActive BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5485,7 +5509,7 @@ destroy(): Promise\<void>
 **示例：**
 
 ```js
-AVSessionController.destroy().then(() => {
+avsessionController.destroy().then(() => {
     console.info(`Destroy : SUCCESS `);
 }).catch((err) => {
     console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5517,7 +5541,7 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVSessionController.destroy(function (err) {
+avsessionController.destroy(function (err) {
     if (err) {
         console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5552,7 +5576,7 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 **示例：**
 
 ```js
-AVSessionController.getValidCommands.then((validCommands) => {
+avsessionController.getValidCommands.then((validCommands) => {
     console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
 }).catch((err) => {
     console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5585,7 +5609,7 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 **示例：**
 
 ```js
-AVSessionController.getValidCommands(function (err, validCommands) {
+avsessionController.getValidCommands(function (err, validCommands) {
     if (err) {
         console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5644,7 +5668,7 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setSpeed', parameter:2.6};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
-AVSessionController.sendControlCommand(avCommand).then(() => {
+avsessionController.sendControlCommand(avCommand).then(() => {
     console.info(`SendControlCommand successfully`);
 }).catch((err) => {
     console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -5696,7 +5720,7 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setSpeed', parameter:2.6};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
-AVSessionController.sendControlCommand(avCommand, function (err) {
+avsessionController.sendControlCommand(avCommand, function (err) {
     if (err) {
         console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5748,7 +5772,7 @@ let commandName = "my_command";
 let args = {
     command : "This is my command"
 }
-await AVSessionController.sendCommonCommand(commandName, args).catch((err) => {
+avsessionController.sendCommonCommand(commandName, args).catch((err) => {
     console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -5791,7 +5815,7 @@ let commandName = "my_command";
 let args = {
     command : "This is my command"
 }
-AVSessionController.sendCommonCommand(commandName, args, (err) => {
+avsessionController.sendCommonCommand(commandName, args, (err) => {
     if(err) {
         console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
@@ -5825,7 +5849,7 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 **示例：**
 ```js
-let extras = await AVSessionController.getExtras().catch((err) => {
+let extras = await avsessionController.getExtras().catch((err) => {
     console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -5857,7 +5881,7 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 
 **示例：**
 ```js
-AVSessionController.getExtras(function (err, extras) {
+avsessionController.getExtras(function (err, extras) {
     if (err) {
         console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -5893,12 +5917,12 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 **示例：**
 
 ```js
-AVSessionController.on('metadataChange', 'all', (metadata) => {
+avsessionController.on('metadataChange', 'all', (metadata) => {
     console.info(`on metadataChange assetId : ${metadata.assetId}`);
 });
 
 let metaFilter = ['assetId', 'title', 'description'];
-AVSessionController.on('metadataChange', metaFilter, (metadata) => {
+avsessionController.on('metadataChange', metaFilter, (metadata) => {
     console.info(`on metadataChange assetId : ${metadata.assetId}`);
 });
 ```
@@ -5929,7 +5953,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 **示例：**
 
 ```js
-AVSessionController.off('metadataChange');
+avsessionController.off('metadataChange');
 ```
 
 ### on('playbackStateChange')<sup>10+</sup>
@@ -5959,12 +5983,12 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 **示例：**
 
 ```js
-AVSessionController.on('playbackStateChange', 'all', (playbackState) => {
+avsessionController.on('playbackStateChange', 'all', (playbackState) => {
     console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 
 let playbackFilter = ['state', 'speed', 'loopMode'];
-AVSessionController.on('playbackStateChange', playbackFilter, (playbackState) => {
+avsessionController.on('playbackStateChange', playbackFilter, (playbackState) => {
     console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 ```
@@ -5995,7 +6019,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 **示例：**
 
 ```js
-AVSessionController.off('playbackStateChange');
+avsessionController.off('playbackStateChange');
 ```
 
 ### on('sessionDestroy')<sup>10+</sup>
@@ -6024,7 +6048,7 @@ on(type: 'sessionDestroy', callback: () => void)
 **示例：**
 
 ```js
-AVSessionController.on('sessionDestroy', () => {
+avsessionController.on('sessionDestroy', () => {
     console.info(`on sessionDestroy : SUCCESS `);
 });
 ```
@@ -6055,7 +6079,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 **示例：**
 
 ```js
-AVSessionController.off('sessionDestroy');
+avsessionController.off('sessionDestroy');
 ```
 
 ### on('activeStateChange')<sup>10+</sup>
@@ -6084,7 +6108,7 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 **示例：**
 
 ```js
-AVSessionController.on('activeStateChange', (isActive) => {
+avsessionController.on('activeStateChange', (isActive) => {
     console.info(`on activeStateChange : SUCCESS : isActive ${isActive}`);
 });
 ```
@@ -6115,7 +6139,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 **示例：**
 
 ```js
-AVSessionController.off('activeStateChange');
+avsessionController.off('activeStateChange');
 ```
 
 ### on('validCommandChange')<sup>10+</sup>
@@ -6144,7 +6168,7 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 **示例：**
 
 ```js
-AVSessionController.on('validCommandChange', (validCommands) => {
+avsessionController.on('validCommandChange', (validCommands) => {
     console.info(`validCommandChange : SUCCESS : size : ${validCommands.size}`);
     console.info(`validCommandChange : SUCCESS : validCommands : ${validCommands.values()}`);
 });
@@ -6176,7 +6200,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 **示例：**
 
 ```js
-AVSessionController.off('validCommandChange');
+avsessionController.off('validCommandChange');
 ```
 
 ### on('outputDeviceChange')<sup>10+</sup>
@@ -6205,7 +6229,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 **示例：**
 
 ```js
-AVSessionController.on('outputDeviceChange', (state, device) => {
+avsessionController.on('outputDeviceChange', (state, device) => {
     console.info(`on outputDeviceChange state: ${state}, device : ${device}`);
 });
 ```
@@ -6236,7 +6260,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 **示例：**
 
 ```js
-AVSessionController.off('outputDeviceChange');
+avsessionController.off('outputDeviceChange');
 ```
 
 ### on('sessionEvent')<sup>10+</sup>
@@ -6266,7 +6290,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 **示例：**
 
 ```js
-AVSessionController.on('sessionEvent', (sessionEvent, args) => {
+avsessionController.on('sessionEvent', (sessionEvent, args) => {
     console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
 });
 ```
@@ -6297,7 +6321,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 **示例：**
 
 ```js
-AVSessionController.off('sessionEvent');
+avsessionController.off('sessionEvent');
 ```
 
 ### on('queueItemsChange')<sup>10+</sup>
@@ -6326,7 +6350,7 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem1
 **示例：**
 
 ```js
-AVSessionController.on('queueItemsChange', (items) => {
+avsessionController.on('queueItemsChange', (items) => {
     console.info(`OnQueueItemsChange, items length is ${items.length}`);
 });
 ```
@@ -6357,7 +6381,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 **示例：**
 
 ```js
-AVSessionController.off('queueItemsChange');
+avsessionController.off('queueItemsChange');
 ```
 
 ### on('queueTitleChange')<sup>10+</sup>
@@ -6386,7 +6410,7 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 **示例：**
 
 ```js
-AVSessionController.on('queueTitleChange', (title) => {
+avsessionController.on('queueTitleChange', (title) => {
     console.info(`queueTitleChange, title is ${title}`);
 });
 ```
@@ -6417,7 +6441,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 **示例：**
 
 ```js
-AVSessionController.off('queueTitleChange');
+avsessionController.off('queueTitleChange');
 ```
 
 ### on('extrasChange')<sup>10+</sup>
@@ -6446,7 +6470,7 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 **示例：**
 
 ```js
-AVSessionController.on('extrasChange', (extras) => {
+avsessionController.on('extrasChange', (extras) => {
     console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
 });
 ```
@@ -6477,7 +6501,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 **示例：**
 
 ```js
-AVSessionController.off('extrasChange');
+avsessionController.off('extrasChange');
 ```
 
 ## AVControlCommandType<sup>10+</sup>

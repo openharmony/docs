@@ -67,7 +67,7 @@ struct RichTextExample {
   '<h2 style="text-align: center;">h2 heading</h2>' +
   '<h3 style="text-align: center;">h3 heading</h3>' +
   '<p style="text-align: center;">Regular paragraph</p><hr/>' +
-  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
+  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0 auto;">' +
   '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">Font size: 35px; line height: 45px</p>' +
   '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
   '<p>This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text.</p>';
