@@ -89,8 +89,8 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setBackgroundAllowed(true).then((error) => {
-  console.log(JSON.stringify(error))
+policy.setBackgroundAllowed(true).then(() => {
+  console.log("setBackgroundAllowed success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -166,9 +166,8 @@ isBackgroundAllowed(): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isBackgroundAllowed().then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.isBackgroundAllowed().then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -252,8 +251,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 **示例：**
 
 ```js
-policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then((error) => {
-  console.log(JSON.stringify(error))
+policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE).then(() => {
+  console.log("setPolicyByUid success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -335,9 +334,8 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **示例：**
 
 ```js
-policy.getPolicyByUid(11111).then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getPolicyByUid(11111).then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -420,9 +418,8 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(11111).then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getUidsByPolicy(11111).then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -497,9 +494,8 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 **示例：**
 
 ```js
-policy.getNetQuotaPolicies().then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getNetQuotaPolicies().then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -619,8 +615,8 @@ let netquotapolicy = {
 
 netQuotaPolicyList.push(netquotapolicy);
 
-policy.setNetQuotaPolicies(netQuotaPolicyList).then((error) => {
-  console.log(JSON.stringify(error))
+policy.setNetQuotaPolicies(netQuotaPolicyList).then(() => {
+  console.log("setNetQuotaPolicies success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -705,9 +701,8 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isUidNetAllowed(11111, true).then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.isUidNetAllowed(11111, true).then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -792,9 +787,8 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isUidNetAllowed(11111, 'wlan0').then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.isUidNetAllowed(11111, 'wlan0').then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -878,8 +872,8 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setDeviceIdleTrustlist([11111,22222], true).then((error) => {
-  console.log(JSON.stringify(error))
+policy.setDeviceIdleTrustlist([11111,22222], true).then(() => {
+  console.log("setDeviceIdleTrustlist success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -953,9 +947,8 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getDeviceIdleTrustlist().then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getDeviceIdleTrustlist().then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -1038,9 +1031,8 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 **示例：**
 
 ```js
-policy.getBackgroundPolicyByUid(11111).then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getBackgroundPolicyByUid(11111).then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -1122,8 +1114,8 @@ resetPolicies(simId: string): Promise\<void>;
 **示例：**
 
 ```js
-policy.resetPolicies('1').then((error) => {
-  console.log(JSON.stringify(error))
+policy.resetPolicies('1').then(() => {
+  console.log("resetPolicies success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -1211,8 +1203,8 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 ```js
 import connection from '@ohos.net.connection';
-policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then((error) => {
-  console.log(JSON.stringify(error))
+policy.updateRemindPolicy(connection.NetBearType.BEARER_CELLULAR, '1', policy.RemindType.REMIND_TYPE_WARNING).then(() => {
+  console.log("updateRemindPolicy success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -1296,8 +1288,8 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 **示例：**
 
 ```js
-policy.setPowerSaveTrustlist([11111,22222], true).then((error) => {
-  console.log(JSON.stringify(error))
+policy.setPowerSaveTrustlist([11111,22222], true).then(() => {
+  console.log("setPowerSaveTrustlist success");
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
@@ -1372,9 +1364,8 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getPowerSaveTrustlist().then((error, data) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+policy.getPowerSaveTrustlist().then((data) => {
+  console.log(JSON.stringify(data));
 }).catch(error => {
   console.log(JSON.stringify(error));
 });
