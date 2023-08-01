@@ -1822,9 +1822,9 @@ imageSourceApi.createPixelMapList(decodeOpts, pixelmaplist => {
 })
 ```
 
-### getDelayTimeList<sup>10+</sup>
+### getDelayTime<sup>10+</sup>
 
-getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
+getDelayTime(callback: AsyncCallback<Array\<number>>): void;
 
 获取图像延迟时间数组，使用callback形式返回结果。
 
@@ -1853,14 +1853,14 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 **示例：**
 
 ```js
-imageSourceApi.getDelayTimeList( delayTimes => {
+imageSourceApi.getDelayTime( delayTimes => {
     console.log('Succeeded in getting delay time.');
 });
 ```
 
-### getDelayTimeList<sup>10+</sup>
+### getDelayTime<sup>10+</sup>
 
-getDelayTimeList(): Promise<Array\<number>>;
+getDelayTime(): Promise<Array\<number>>;
 
 获取图像延迟时间数组，使用Promise形式返回结果。
 
@@ -1889,7 +1889,7 @@ getDelayTimeList(): Promise<Array\<number>>;
 **示例：**
 
 ```js
-let delayTimes = imageSourceApi.getDelayTimeList();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
