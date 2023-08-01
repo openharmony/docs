@@ -54,7 +54,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | Yes| Name of the window.                                                                      |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
 | displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
 | parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
@@ -228,7 +228,7 @@ Describes the window properties.
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                   |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                    |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
 | focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
 | touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
@@ -261,7 +261,7 @@ Describes the scale parameters.
 
 | Name  | Type| Readable| Writable| Description                                        |
 | ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                 |
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
 | y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
 | pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 | pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
@@ -790,7 +790,7 @@ try {
 
 on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
-Enables listening for properties changes of the status bar and navigation bar.
+Subscribes to the property change event of the status bar and navigation bar.
 
 **System API**: This is a system API.
 
@@ -819,7 +819,7 @@ try {
 
 off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
-Disables listening for properties changes of the status bar and navigation bar.
+Unsubscribes from the property change event of the status bar and navigation bar.
 
 **System API**: This is a system API.
 
@@ -830,7 +830,7 @@ Disables listening for properties changes of the status bar and navigation bar.
 | Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | Yes  | Event type. The value is fixed at **'systemBarTintChange'**, indicating the property change event of the status bar and navigation bar.|
-| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate8)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.               |
 
 **Example**
 
@@ -846,7 +846,7 @@ try {
 
 on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for gesture navigation status changes.
+Subscribes to the gesture navigation status change event.
 
 **System API**: This is a system API.
 
@@ -875,7 +875,7 @@ try {
 
 off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables the listening for gesture navigation status changes.
+Unsubscribes from the gesture navigation status change event.
 
 **System API**: This is a system API.
 
@@ -886,7 +886,7 @@ Disables the listening for gesture navigation status changes.
 | Name  | Type                    | Mandatory| Description                                                       |
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
 | type     | string                  | Yes| Event type. The value is fixed at **'gestureNavigationEnabledChange'**, indicating the gesture navigation status change event.|
-| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If this parameter is passed in, only the listener registered using this callback function is removed; otherwise, all gesture navigation status change listeners are removed.|
+| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -2639,7 +2639,7 @@ try {
 
 on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
-Enables listening for window size changes.
+Subscribes to the window size change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2666,7 +2666,7 @@ try {
 
 off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
-Disables listening for window size changes.
+Unsubscribes from the window size change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2689,9 +2689,9 @@ try {
 
 ### on('avoidAreaChange')<sup>9+</sup>
 
-on(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+on(type: 'avoidAreaChange', callback: Callback&lt;{type: AvoidAreaType, area: AvoidArea}&gt;): void
 
-Enables listening for changes to the area where the window cannot be displayed.
+Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2700,7 +2700,7 @@ Enables listening for changes to the area where the window cannot be displayed.
 | Name  | Type                                                              | Mandatory| Description                                  |
 | -------- |------------------------------------------------------------------| ---- |--------------------------------------|
 | type     | string                                                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | Yes  | Callback used to return the area and area type.|
+| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7)}&gt; | Yes  | Callback used to return the area and area type.|
 
 **Example**
 
@@ -2717,9 +2717,9 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{type: AvoidAreaType, area: AvoidArea}&gt;): void
 
-Disables listening for changes to the area where the window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2728,7 +2728,7 @@ Disables listening for changes to the area where the window cannot be displayed.
 | Name  | Type                                                                         | Mandatory | Description                                |
 | -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
 | type     | string                                                                      | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | No  | Callback used to return the area and area type.|
+| callback | Callback&lt;{type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7)}&gt; | No  | Callback used to return the area and area type.|
 
 **Example**
 
@@ -2744,7 +2744,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-Enables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
+Subscribes to the event indicating soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2771,7 +2771,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-Disables listening for soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
+Unsubscribes from the event indicating soft keyboard height changes in the input method panel in fixed state. Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](js-apis-inputmethodengine.md#changeflag10).
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2780,7 +2780,7 @@ Disables listening for soft keyboard height changes in the input method panel in
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer.                               |
 
 **Example**
 
@@ -2796,7 +2796,7 @@ try {
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
-Enables listening for click events outside this window.
+Subscribes to the click event outside this window.
 
 **System API**: This is a system API.
 
@@ -2825,7 +2825,7 @@ try {
 
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
-Disables listening for click events outside this window.
+Unsubscribes from the click event outside this window.
 
 **System API**: This is a system API.
 
@@ -2836,7 +2836,7 @@ Disables listening for click events outside this window.
 | Name  | Type                  | Mandatory| Description                                  |
 | -------- |----------------------| ---- |--------------------------------------|
 | type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.            |
+| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window.           |
 
 **Example**
 
@@ -2852,7 +2852,7 @@ try {
 
 on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
-Subscribes to screenshot events.
+Subscribes to the screenshot event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2879,7 +2879,7 @@ try {
 
 off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from screenshot events.
+Unsubscribes from the screenshot event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2914,7 +2914,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to click events of the target window in the modal window mode.
+Subscribes to the click event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2941,7 +2941,7 @@ try {
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from click events of the target window in the modal window mode.
+Unsubscribes from the click event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2966,7 +2966,7 @@ try {
 
 on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
-Enables listening for window lifecycle changes.
+Subscribes to the window lifecycle change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2993,7 +2993,7 @@ try {
 
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 
-Disables listening for window lifecycle changes.
+Unsubscribes from the window lifecycle change event.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3067,7 +3067,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     }, (err) => {
@@ -3140,7 +3149,16 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token = new TestRemoteObject('testObject');
+let windowClass = null;
+let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
 try {
+    window.createWindow(config, (err, data) => {
+        if (err.code) {
+            console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        windowClass = data;
+    });
     let promise = windowClass.bindDialogTarget(token, () => {
         console.info('Dialog Window Need Destroy.');
     });
@@ -3196,7 +3214,16 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3208,7 +3235,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                 console.info('Succeeded in binding dialog target.');
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 
@@ -3273,7 +3300,16 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
     onRequest(want, startId) {
         console.info('onRequest');
+        let windowClass = null;
+        let config = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
         try {
+            window.createWindow(config, (err, data) => {
+                if (err.code) {
+                    console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                windowClass = data;
+            });
             let requestInfo = dialogRequest.getRequestInfo(want)
             let promise = windowClass.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
@@ -3284,7 +3320,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
                     console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
             });
         } catch(err) {
-            console.error('getRequestInfo err = ' + JSON.stringify(err))
+            console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
         }
     }
 
@@ -5405,7 +5441,7 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 | Name      | Type                     | Mandatory| Description                                          |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
+| isFullScreen | boolean                   | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite.|
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                    |
 
 **Example**
@@ -5428,7 +5464,6 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 Sets whether the window is in full-screen mode. This API uses a promise to return the result.
 
 In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-
 In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
@@ -5441,7 +5476,7 @@ In non-full-screen mode, the status bar and navigation bar are displayed, and th
 
 | Name      | Type   | Mandatory| Description                                          |
 | ------------ | ------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
+| isFullScreen | boolean | Yes  | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite.|
 
 **Return value**
 
@@ -5816,7 +5851,7 @@ promise.then((data)=> {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-Enables listening for changes to the area where the window cannot be displayed.
+Subscribes to the event indicating changes to the area where the window cannot be displayed.
 
 > **NOTE**
 >
@@ -5843,7 +5878,7 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-Disables listening for changes to the area where the window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where the window cannot be displayed.
 
 > **NOTE**
 >
@@ -5856,7 +5891,7 @@ Disables listening for changes to the area where the window cannot be displayed.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No  | Callback used to return the area.                           |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No  | Callback used to return the area.          |
 
 **Example**
 
@@ -7122,7 +7157,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
-Enables listening for window stage lifecycle changes.
+Subscribes to the window stage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -7171,7 +7206,7 @@ export default class EntryAbility extends UIAbility {
 
 off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
 
-Disables listening for window stage lifecycle changes.
+Unsubscribes from the window stage lifecycle change event.
 
 **Model restriction**: This API can be used only in the stage model.
 

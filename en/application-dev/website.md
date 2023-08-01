@@ -624,7 +624,7 @@
     - [restool](tools/restool.md)
     - [LLDB Usage Guide](tools/lldb-tool.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta1/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
