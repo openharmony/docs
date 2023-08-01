@@ -161,19 +161,18 @@ struct ListItemExample2 {
           .swipeAction({
             end: {
               builder: this.itemEnd.bind(this, item),
-              useDefaultDeleteAnimation: true,
-              onDelete: () => {
+              onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
               },
-              deleteAreaDistance: 80,
-              onEnterDeleteArea: () => {
+              actionAreaDistance: 80,
+              onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"
               },
-              onExitDeleteArea: () => {
+              onExitActionArea: () => {
                 this.enterEndDeleteAreaString = "not enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "exitEndDeleteArea"
               }
