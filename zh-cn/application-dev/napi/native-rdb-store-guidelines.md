@@ -48,17 +48,17 @@ NativeRdbStore是RDB组件在Native层的实现，提供了一套完整的对本
    OH_Rdb_Config config;
    // 该路径为应用沙箱路径
    config.dataBaseDir = "xxx";
-// 数据库文件名
+   // 数据库文件名
    config.storeName = "RdbTest.db";
    // 应用包名
    config.bundleName = "xxx";
    // 应用模块名
    config.moduleName = "xxx";
    // 数据库安全等级测试
-config.securityLevel = OH_Rdb_SecurityLevel::S1;
+   config.securityLevel = OH_Rdb_SecurityLevel::S1;
    // 数据库是否加密
    config.isEncrypt = false;
-// config所占内存大小
+   // config所占内存大小
    config.selfSize = sizeof(OH_Rdb_Config);
    
    int errCode = 0;
@@ -67,7 +67,7 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
    ```
 
 2. 获取到OH_Rdb_Store后，调用OH_Rdb_Execute接口创建表，并调用OH_Rdb_Insert接口插入数据。示例代码如下所示：
-   
+
    ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE                           INTEGER, SALARY REAL, CODES BLOB)";
    // 执行建表语句
@@ -86,15 +86,15 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
    // 销毁键值对实例
    valueBucket->destroy(valueBucket);
    ```
-   
+
    > **说明：**
    >
    > 关系型数据库没有显式的flush操作实现持久化，数据插入即保存在持久化文件。
-   
+
 3. 根据谓词指定的实例对象，对数据进行修改或删除。
 
    调用OH_Rdb_Update方法修改数据，调用OH_Rdb_Delete方法删除数据。示例代码如下所示：
-   
+
    ```c
    // 修改数据
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
@@ -123,7 +123,7 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
    int deleteRows = OH_Rdb_Delete(store_, predicates);
    predicates->destroyPredicates(predicates);
    ```
-   
+
 4. 根据谓词指定的查询条件查找数据。
 
    调用OH_Rdb_Query方法查找数据，返回一个OH_Cursor结果集。示例代码如下所示：
@@ -158,13 +158,13 @@ config.securityLevel = OH_Rdb_SecurityLevel::S1;
 
    调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
 
-   
+
    ```c
    // 释放数据库实例
    OH_Rdb_CloseStore(store_)
    // 删除数据库文件
    OH_Rdb_DeleteStore(&config)
    ```
-   
+
    
 
