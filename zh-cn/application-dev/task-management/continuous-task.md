@@ -320,7 +320,7 @@
    ```
 
 
-### FA模型中
+### FA模型
 
 1. 启动并连接ServiceAbility。
 
