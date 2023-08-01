@@ -892,16 +892,6 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 | ----------------------------------- | ---------------- |
 | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980101| If the image data abnormal              |
-| 62980103| If the image data unsupport              |
-| 62980115| If the image parameter invalid             |
-
 **示例：**
 
 ```js
@@ -924,15 +914,6 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 | 参数名     | 类型                                | 必填 | 说明            |
 | ---------- | ----------------------------------- | ---- | --------------- |
 | colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
-| 62980115| If the image parameter invalid             |
 
 **示例：**
 
@@ -1713,18 +1694,6 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
-
 **返回值：**
 
 | 类型                             | 说明                  |
@@ -1759,18 +1728,6 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
-
 **示例：**
 
 ```js
@@ -1794,18 +1751,6 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | options | [DecodingOptions](#decodingoptions7) | 是 | 解码参数。 |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
-
 **示例：**
 
 ```js
@@ -1822,9 +1767,9 @@ imageSourceApi.createPixelMapList(decodeOpts, pixelmaplist => {
 })
 ```
 
-### getDelayTimeList<sup>10+</sup>
+### getDelayTime<sup>10+</sup>
 
-getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
+getDelayTime(callback: AsyncCallback<Array\<number>>): void;
 
 获取图像延迟时间数组，使用callback形式返回结果。
 
@@ -1836,31 +1781,17 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback<Array\<number>> | 是   | 通过回调返回延迟时间数组。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
-
 **示例：**
 
 ```js
-imageSourceApi.getDelayTimeList( delayTimes => {
+imageSourceApi.getDelayTime( delayTimes => {
     console.log('Succeeded in getting delay time.');
 });
 ```
 
-### getDelayTimeList<sup>10+</sup>
+### getDelayTime<sup>10+</sup>
 
-getDelayTimeList(): Promise<Array\<number>>;
+getDelayTime(): Promise<Array\<number>>;
 
 获取图像延迟时间数组，使用Promise形式返回结果。
 
@@ -1872,24 +1803,10 @@ getDelayTimeList(): Promise<Array\<number>>;
 | -------------- | --------------------------- |
 | Promise<Array\<number>> | Promise实例，异步返回延迟时间数组。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
-
 **示例：**
 
 ```js
-let delayTimes = imageSourceApi.getDelayTimeList();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -1905,20 +1822,6 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<number> | 是   | 通过回调返回图像帧数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
 
 **示例：**
 
@@ -1941,20 +1844,6 @@ getFrameCount(): Promise\<number>;
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
 | Promise\<number> | Promise实例，异步返回图像帧数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见文档底部图片错误码。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 62980096| If the operation invalid              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
 
 **示例：**
 
