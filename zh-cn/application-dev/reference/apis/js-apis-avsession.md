@@ -1038,7 +1038,7 @@ startCastDeviceDiscovery(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并开始搜索，err为undefined，否则返回错误对象。 |
 
 
 **示例：**
@@ -1057,7 +1057,7 @@ avSession.startCastDeviceDiscovery(function (err) {
 
 startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
 
-开始设备搜索发现。结果通过callback异步回调方式返回。
+指定过滤条件，开始设备搜索发现。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1068,7 +1068,7 @@ startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | filter | number | 是 | 进行设备发现的过滤条件，由ProtocolType的组合而成 |
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并开始搜索，err为undefined，否则返回错误对象。 |
 
 
 **示例：**
@@ -1103,7 +1103,7 @@ startCastDeviceDiscovery(filter?: number): Promise\<void>
 **返回值：**
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当开始设备搜索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当命令发送成功并开始搜索，无返回结果，否则返回错误对象。 |
 
 **示例：**
 
@@ -1130,7 +1130,7 @@ stopCastDeviceDiscovery(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当成功停止搜索，err为undefined，否则返回错误对象。 |
 
 
 **示例：**
@@ -1159,7 +1159,7 @@ stopCastDeviceDiscovery(): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当停止搜索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当成功停止搜索，无返回结果，否则返回错误对象。 |
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | enable | boolean | 是 | 是否允许本设备被发现. true: 允许被发现， false：不允许被发现 |
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当设置成功，err为undefined，否则返回错误对象。 |
 
 
 **示例：**
@@ -1221,7 +1221,7 @@ setDiscoverable(enable: boolean): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当停止搜索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当设置成功，无返回结果，否则返回错误对象。 |
 
 **示例：**
 
@@ -1247,7 +1247,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备更新时触发回调。 |
+| type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
 | callback | (device: OutputDeviceInfo) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
 **错误码：**
@@ -1432,8 +1432,8 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 |
-| device | [OutputDeviceInfo](#outputdeviceinfo10)                        | 是   | 设备相关信息 | 
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| device | [OutputDeviceInfo](#outputdeviceinfo10)                        | 是   | 设备相关信息 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并启动投播，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -1503,7 +1503,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当停止搜索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当命令发送成功并启动投播，无返回结果，否则返回错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -1563,7 +1563,7 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 | 
-| callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback\<void>                  | 是   | 回调函数。当成功结束投播，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -1624,7 +1624,7 @@ stopCasting(session: SessionToken): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当停止搜索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当成功结束投播，无返回结果，否则返回错误对象。 |
 
 **错误码：**
 错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -2917,7 +2917,7 @@ on(type:'playNext', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件是` 'playNext'`，当播放下一首命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'playNext'`，当播放下一首命令被发送到会话时，触发该事件回调。 |
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
@@ -2948,7 +2948,7 @@ on(type:'playPrevious', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件是` 'playPrevious'`当播放上一首命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'playPrevious'`当播放上一首命令被发送到会话时，触发该事件回调。 |
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。       |
 
 **错误码：**
@@ -3010,7 +3010,7 @@ on(type:'rewind', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持的事件是` 'rewind'`，当快退命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'rewind'`，当快退命令被发送到会话时，触发该事件回调。 |
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。      |
 
 **错误码：**
@@ -3318,7 +3318,7 @@ off(type: 'pause', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'pause'`。 |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'pause'`。 |
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3405,7 +3405,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'playPrevious'`。 |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playPrevious'`。 |
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
@@ -3434,7 +3434,7 @@ off(type: 'fastForward', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'fastForward'`。 |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'fastForward'`。 |
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
@@ -3463,7 +3463,7 @@ off(type: 'rewind', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是` 'rewind'`。 |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'rewind'`。 |
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
@@ -3758,7 +3758,7 @@ stopCasting(): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当停止投播索成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。当成功结束投播，无返回结果，否则返回错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -3881,7 +3881,7 @@ aVCastController.setDisplaySurface(function (err, value) {
 
 getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。
+获取当前的远端播放状态。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3889,7 +3889,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10))\> | 是   | 回调函数，返回投播控制器实例。 |
+| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10)\> | 是   | 回调函数，返回远端播放状态。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -3922,7 +3922,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回投播控制器实例。 |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -4289,7 +4289,7 @@ aVCastController.getCurrentItem(function (err, value) {
 
 getCurrentItem(): Promise\<AVQueueItem>
 
-结束投播。结果通过Promise异步回调方式返回。
+获取当前投播的资源信息。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4392,8 +4392,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'mediaItemChange'`：当播放状态变化时，触发该事件。 |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void         | 是   | 回调函数，参数AVQueueItem是d当前正在播放的媒体内容。                      |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'mediaItemChange'`：当播放的媒体内容变化时，触发该事件。 |
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -4506,7 +4506,7 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'playPrevious'`：当播放下一首状态变化时，触发该事件。 |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'playPrevious'`：当播放上一首状态变化时，触发该事件。 |
 | callback | Callback\<void\>         | 是   | 回调函数                      |
 
 **错误码：**
@@ -4671,7 +4671,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4707,7 +4707,7 @@ off(type: 'error'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4726,7 +4726,7 @@ aVCastController.off('error')
 
 ## ConnectionState<sup>10+</sup>
 
-播放设备的类别枚举。
+连接状态枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4831,7 +4831,7 @@ aVCastController.off('error')
 
 ## AVCastCategory<sup>10+</sup>
 
-播放设备的类别枚举。
+投播的类别枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4861,7 +4861,7 @@ aVCastController.off('error')
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | 是   | 播放设备的类别         |
+| castCategory   | AVCastCategory        | 是   | 投播的类别。         |
 | deviceId   | string | 是   | 播放设备的ID。  |
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
@@ -4955,7 +4955,7 @@ avSession.createController(currentAVSession.sessionId).then((controller) => {
 
 getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。
+获取当前的远端播放状态。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4963,7 +4963,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10))\> | 是   | 回调函数，返回投播控制器实例。 |
+| callback  | AsyncCallback<[[AVPlaybackState](#avplaybackstate10)\> | 是   | 回调函数，返回远端播放状态。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -4990,7 +4990,7 @@ avsessionController.getAVPlaybackState(function (err, state) {
 
 getAVPlaybackState(): Promise\<AVPlaybackState>;
 
-获取当前的远端播放状态。结果通过callback异步回调方式返回。
+获取当前的远端播放状态。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4998,7 +4998,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>;
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回投播控制器实例。 |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
