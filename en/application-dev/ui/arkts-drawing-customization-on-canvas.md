@@ -53,8 +53,8 @@ You can draw custom graphics on the canvas in any of the following ways:
   // Configure the parameters of the CanvasRenderingContext2D and OffscreenCanvasRenderingContext2D objects, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  // Create an OffscreenCanvasRenderingContext2D object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  // Create an OffscreenCanvas object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
    
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -63,10 +63,11 @@ You can draw custom graphics on the canvas in any of the following ways:
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
+            var offContext = this.offCanvas.getContext("2d", this.settings)
             // You can draw content here.
-            this.offContext.strokeRect(50, 50, 200, 150);
+            offContext.strokeRect(50, 50, 200, 150);
             // Display the image rendered by the offscreen drawing value on the common canvas.
-            let image = this.offContext.transferToImageBitmap();
+            let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
       }
@@ -113,7 +114,7 @@ Canvas(this.context)
 
 ## Canvas Component Drawing Modes
 
-Two modes are available for drawing with the **Canvas** component:
+Two modes are available for drawing with the **Canvas** component:  
 
 - After the **onReady()** callback of the **Canvas** component is invoked, use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to call related APIs for drawing.
 
@@ -154,9 +155,8 @@ Two modes are available for drawing with the **Canvas** component:
 **OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle), and more attributes are provided to spruce up the graphics. This topic describes typical usage of the canvas.
 
 - Draw a basic shape.
-  
   You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
-  
+
   ```ts
   Canvas(this.context)
     .width('100%')
@@ -175,12 +175,12 @@ Two modes are available for drawing with the **Canvas** component:
        this.context.beginPath();
        this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
        this.context.stroke();
-  })
-  
+    })
+
   ```
-  
-![2023022794521(1)](figures/2023022794521(1).jpg)
-  
+
+  ![2023022794521(1)](figures/2023022794521(1).jpg)
+
 - Draw text.
 
   You can use APIs such as [fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
@@ -212,7 +212,7 @@ Two modes are available for drawing with the **Canvas** component:
   struct GetImageData {
    private settings: RenderingContextSettings = new RenderingContextSettings(true)
    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
     build() {
@@ -222,14 +222,15 @@ Two modes are available for drawing with the **Canvas** component:
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
+            var offContext = this.offCanvas.getContext("2d", this.settings)
             // Use the drawImage API to draw an image in the area with the width and height of 130 starting from (0, 0).
-            this.offContext.drawImage(this.img,0,0,130,130);
+            offContext.drawImage(this.img,0,0,130,130);
             // Use the getImageData API to obtain the image data with the width and height of 130 starting from (50, 50).
-            let imagedata = this.offContext.getImageData(50,50,130,130);
+            let imagedata = offContext.getImageData(50,50,130,130);
             // Use the putImageData API to draw the obtained image data in the area starting from (150, 150).
-            this.offContext.putImageData(imagedata,150,150);
+            offContext.putImageData(imagedata,150,150);
             // Draw the offscreen drawing content to the canvas.
-            let image = this.offContext.transferToImageBitmap();
+            let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
       }

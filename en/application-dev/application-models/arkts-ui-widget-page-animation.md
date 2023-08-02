@@ -1,7 +1,7 @@
 # Using Animations in the Widget
 
 
-To make your ArkTS widget more engaging, you can apply animations to it, including [explicit animation](../reference/arkui-ts/ts-explicit-animation.md), [attribute animation](../reference/arkui-ts/ts-animatorproperty.md), and [component transition](../reference/arkui-ts/ts-transition-animation-component.md). Just note the following restrictions when using the animations in ArkTS widgets.
+To make your ArkTS widget more engaging, you can apply animations to it, including [explicit animation](../reference/arkui-ts/ts-explicit-animation.md), [property animation](../reference/arkui-ts/ts-animatorproperty.md), and [component transition](../reference/arkui-ts/ts-transition-animation-component.md). Just note the following restrictions when using the animations in ArkTS widgets.
 
 
 **Table 1** Restrictions on animation parameters

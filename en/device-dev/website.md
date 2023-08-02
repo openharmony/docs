@@ -388,15 +388,22 @@
        - [Configuring Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md)
        - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
+       - Rust Compilation and Building
+         - [Rust Module Configuration Rules and Guide](subsystems/subsys-build-rust-compilation.md)
+         - [Interactive Tool User Guide](subsystems/subsys-build-bindgen-cxx-guide.md)
+         - [Using Cargo2gn](subsystems/subsys-build-cargo2gn-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
-  -  [Distributed Remote Startup](subsystems/subsys-remote-start.md)
+  -  ArkUI
+     - [Custom Window Title Bar Development](subsystems/subsys-arkui-customize_titlebar.md) 
   -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
+     - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
      - [Container Component Development](subsystems/subsys-graphics-container-guide.md)
      - [Development of Layout Container Components](subsystems/subsys-graphics-layout-guide.md)
-     - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
      - [Animator Development](subsystems/subsys-graphics-animation-guide.md)
+     - [Using Qt Creator on Windows](subsystems/subsys-graphics-simulator-guide.md)
+     - [Small-System Graphics Framework Integration](subsystems/subsys-graphics-porting-guide.md)
   -  Multimedia
      - Camera
        - [Camera Overview](subsystems/subsys-multimedia-camera-overview.md)
@@ -532,6 +539,7 @@
 - Debugging
   - [Development Self-Test Framework User Guide](device-test/developer_test.md)
   - [xDevice User Guide](device-test/xdevice.md)
+  - [Smartperf-Host User Guide](device-test/smartperf-host.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
