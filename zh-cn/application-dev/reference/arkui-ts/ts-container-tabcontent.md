@@ -140,7 +140,7 @@ BottomTabBarStyle的静态构造函数。
 
 ## 示例
 
-示例1：
+### 示例1
 
 ```ts
 // xxx.ets
@@ -246,7 +246,7 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent1.gif)
 
-示例2：
+### 示例2
 
 ```ts
 // xxx.ets
@@ -302,7 +302,7 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent2.gif)
 
-示例3：
+### 示例3
 
 ```ts
 // xxx.ets
@@ -400,7 +400,7 @@ struct TabBarStyleExample {
 
 ![tabbarStyle](figures/TabBarStyle.jpeg)
 
-示例4：
+### 示例4
 
 ```ts
 // xxx.ets
@@ -627,7 +627,7 @@ struct TabsAttr {
 
 ![tabContent3](figures/tabContent3.gif)
 
-示例5：
+### 示例5
 
 ```ts
 // xxx.ets
