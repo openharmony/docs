@@ -775,7 +775,7 @@ struct ViewA {
 开发一个电话簿应用，实现功能如下：
 
 
-- 显示联系人和本机（"Me"）电话号码 。
+- 显示联系人和设备（"Me"）电话号码 。
 
 - 选中联系人时，进入可编辑态”Edit“，可以更新该联系人详细信息，包括电话号码，住址。
 
@@ -788,8 +788,8 @@ ViewModel需要包括：
 
 
 - AddressBook（class）
-  - me (本机）: 存储一个Person类。
-  - contacts（本机联系人）：存储一个Person类数组。
+  - me (设备）: 存储一个Person类。
+  - contacts（设备联系人）：存储一个Person类数组。
 
 
 AddressBook类声明如下：
@@ -800,7 +800,7 @@ AddressBook类声明如下：
 export class AddressBook {
   me: Person;
   contacts: ObservedArray<Person>;
-​
+
   constructor(me: Person, contacts: Person[]) {
     this.me = me;
     this.contacts = new ObservedArray<Person>(contacts);
@@ -936,11 +936,11 @@ export class ObservedArray<T> extends Array<T> {
    @Component
    struct PageEntry {
      @Provide addrBook: AddressBook = new AddressBook(
-       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["+358441234567", "+35891234567", "+49621234567889"]),
+       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
        [
-         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["+358449876543", "+3589456789"]),
-         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["+358509876543", "+358910101010"]),
-         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["+358400908070", "+35894445555"]),
+         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
        ]);
    
      build() {
@@ -1099,236 +1099,236 @@ export class ObservedArray<T> extends Array<T> {
      完整应用代码如下：
 
 
-     ```ts
-     // ViewModel classes
-     let nextId = 0;
-     
-     @Observed
-     export class ObservedArray<T> extends Array<T> {
-       constructor(args?: any[]) {
-         console.log(`ObservedArray: ${JSON.stringify(args)} `)
-         if (Array.isArray(args)) {
-           super(...args);
-         } else {
-           super(args)
-         }
+```ts
+
+ // ViewModel classes
+ let nextId = 0;
+ 
+ @Observed
+ export class ObservedArray<T> extends Array<T> {
+   constructor(args?: any[]) {
+     console.log(`ObservedArray: ${JSON.stringify(args)} `)
+     if (Array.isArray(args)) {
+       super(...args);
+     } else {
+       super(args)
+     }
+   }
+ }
+ 
+ @Observed
+ export class Address {
+   street: string;
+   zip: number;
+   city: string;
+ 
+   constructor(street: string,
+               zip: number,
+               city: string) {
+     this.street = street;
+     this.zip = zip;
+     this.city = city;
+   }
+ }
+ 
+ @Observed
+ export class Person {
+   id_: string;
+   name: string;
+   address: Address;
+   phones: ObservedArray<string>;
+ 
+   constructor(name: string,
+               street: string,
+               zip: number,
+               city: string,
+               phones: string[]) {
+     this.id_ = `${nextId}`;
+     nextId++;
+     this.name = name;
+     this.address = new Address(street, zip, city);
+     this.phones = new ObservedArray<string>(phones);
+   }
+ }
+
+ export class AddressBook {
+   me: Person;
+   contacts: ObservedArray<Person>;
+ 
+   constructor(me: Person, contacts: Person[]) {
+     this.me = me;
+     this.contacts = new ObservedArray<Person>(contacts);
+   }
+ }
+ 
+ //渲染出Person对象的名称和Observed数组<string>中的第一个号码
+ //为了更新电话号码，这里需要@ObjectLink person和@ObjectLink phones，
+ //不能使用this.person.phones，内部数组的更改不会被观察到。
+ // 在AddressBookView、PersonEditView中的onClick更新selectedPerson
+ @Component
+ struct PersonView {
+   @ObjectLink person: Person;
+   @ObjectLink phones: ObservedArray<string>;
+   @Link selectedPerson: Person;
+ 
+   build() {
+     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+       Text(this.person.name)
+       if (this.phones.length) {
+         Text(this.phones[0])
        }
      }
-     
-     @Observed
-     export class Address {
-       street: string;
-       zip: number;
-       city: string;
-     
-       constructor(street: string,
-                   zip: number,
-                   city: string) {
-         this.street = street;
-         this.zip = zip;
-         this.city = city;
-       }
-     }
-     
-     @Observed
-     export class Person {
-       id_: string;
-       name: string;
-       address: Address;
-       phones: ObservedArray<string>;
-     
-       constructor(name: string,
-                   street: string,
-                   zip: number,
-                   city: string,
-                   phones: string[]) {
-         this.id_ = `${nextId}`;
-         nextId++;
-         this.name = name;
-         this.address = new Address(street, zip, city);
-         this.phones = new ObservedArray<string>(phones);
-       }
-     }
-     
-     
-     export class AddressBook {
-       me: Person;
-       contacts: ObservedArray<Person>;
-     
-       constructor(me: Person, contacts: Person[]) {
-         this.me = me;
-         this.contacts = new ObservedArray<Person>(contacts);
-       }
-     }
-     
-     //渲染出Person对象的名称和手机Observed数组<string>中的第一个号码
-     //为了更新电话号码，这里需要@ObjectLink person和@ObjectLink phones，
-     //不能使用this.person.phones，内部数组的更改不会被观察到。
-     // 在AddressBookView、PersonEditView中的onClick更新selectedPerson
-     @Component
-     struct PersonView {
-       @ObjectLink person: Person;
-       @ObjectLink phones: ObservedArray<string>;
-       @Link selectedPerson: Person;
-     
-       build() {
-         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-           Text(this.person.name)
-           if (this.phones.length) {
-             Text(this.phones[0])
-           }
-         }
-         .height(55)
-         .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
-         .onClick(() => {
-           this.selectedPerson = this.person;
+     .height(55)
+     .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
+     .onClick(() => {
+       this.selectedPerson = this.person;
+     })
+   }
+ }
+ 
+ // 渲染Person的详细信息
+ // @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
+ // 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
+ @Component
+ struct PersonEditView {
+   @Consume addrBook: AddressBook;
+ 
+   /* 指向父组件selectedPerson的引用 */
+   @Link selectedPerson: Person;
+ 
+   /*在本地副本上编辑，直到点击保存*/
+   @Prop name: string;
+   @Prop address: Address;
+   @Prop phones: ObservedArray<string>;
+ 
+   selectedPersonIndex(): number {
+     return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
+   }
+ 
+   build() {
+     Column() {
+       TextInput({ text: this.name })
+         .onChange((value) => {
+           this.name = value;
          })
-       }
-     }
-     
-     // 渲染Person的详细信息
-     // @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
-     // 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
-     @Component
-     struct PersonEditView {
-       @Consume addrBook: AddressBook;
-     
-       /* 指向父组件selectedPerson的引用 */
-       @Link selectedPerson: Person;
-     
-       /*在本地副本上编辑，直到点击保存*/
-       @Prop name: string;
-       @Prop address: Address;
-       @Prop phones: ObservedArray<string>;
-     
-       selectedPersonIndex(): number {
-         return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
-       }
-     
-       build() {
-         Column() {
-           TextInput({ text: this.name })
-             .onChange((value) => {
-               this.name = value;
-             })
-           TextInput({ text: this.address.street })
-             .onChange((value) => {
-               this.address.street = value;
-             })
-     
-           TextInput({ text: this.address.city })
-             .onChange((value) => {
-               this.address.city = value;
-             })
-     
-           TextInput({ text: this.address.zip.toString() })
-             .onChange((value) => {
-               const result = parseInt(value);
-               this.address.zip = isNaN(result) ? 0 : result;
-             })
-     
-           if (this.phones.length > 0) {
-             ForEach(this.phones,
-               (phone, index) => {
-                 TextInput({ text: phone })
-                   .width(150)
-                   .onChange((value) => {
-                     console.log(`${index}. ${value} value has changed`)
-                     this.phones[index] = value;
-                   })
-               },
-               (phone, index) => `${index}-${phone}`
-             )
-           }
-     
-           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-             Text("Save Changes")
-               .onClick(() => {
-                 // 将本地副本更新的值赋值给指向父组件selectedPerson的引用
-                 // 避免创建新对象，在现有属性上进行修改
-                 this.selectedPerson.name = this.name;
-                 this.selectedPerson.address.street = this.address.street
-                 this.selectedPerson.address.city = this.address.city
-                 this.selectedPerson.address.zip = this.address.zip
-                 this.phones.forEach((phone: string, index: number) => {
-                   this.selectedPerson.phones[index] = phone
-                 });
+       TextInput({ text: this.address.street })
+         .onChange((value) => {
+           this.address.street = value;
+         })
+ 
+       TextInput({ text: this.address.city })
+         .onChange((value) => {
+           this.address.city = value;
+         })
+ 
+       TextInput({ text: this.address.zip.toString() })
+         .onChange((value) => {
+           const result = parseInt(value);
+           this.address.zip = isNaN(result) ? 0 : result;
+         })
+ 
+       if (this.phones.length > 0) {
+         ForEach(this.phones,
+           (phone, index) => {
+             TextInput({ text: phone })
+               .width(150)
+               .onChange((value) => {
+                 console.log(`${index}. ${value} value has changed`)
+                 this.phones[index] = value;
                })
-             if (this.selectedPersonIndex() != -1) {
-               Text("Delete Contact")
-                 .onClick(() => {
-                   let index = this.selectedPersonIndex();
-                   console.log(`delete contact at index ${index}`);
-     
-                   // 删除当前联系人
-                   this.addrBook.contacts.splice(index, 1);
-     
-                   // 删除当前selectedPerson，选中态前移一位
-                   index = (index < this.addrBook.contacts.length) ? index : index - 1;
-     
-                   // 如果contract被删除完，则设置me为选中态
-                   this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
-                 })
-             }
-           }
-     
-         }
+           },
+           (phone, index) => `${index}-${phone}`
+         )
        }
-     }
-     
-     @Component
-     struct AddressBookView {
-       @ObjectLink me: Person;
-       @ObjectLink contacts: ObservedArray<Person>;
-       @State selectedPerson: Person = undefined;
-     
-       aboutToAppear() {
-         this.selectedPerson = this.me;
-       }
-     
-       build() {
-         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-           Text("Me:")
-           PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
-     
-           Divider().height(8)
-     
-           ForEach(this.contacts,
-             contact => {
-               PersonView({ person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson })
-             },
-             contact => contact.id_
-           )
-     
-           Divider().height(8)
-     
-           Text("Edit:")
-           PersonEditView({
-             selectedPerson: this.$selectedPerson,
-             name: this.selectedPerson.name,
-             address: this.selectedPerson.address,
-             phones: this.selectedPerson.phones
+ 
+       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+         Text("Save Changes")
+           .onClick(() => {
+             // 将本地副本更新的值赋值给指向父组件selectedPerson的引用
+             // 避免创建新对象，在现有属性上进行修改
+             this.selectedPerson.name = this.name;
+             this.selectedPerson.address.street = this.address.street
+             this.selectedPerson.address.city = this.address.city
+             this.selectedPerson.address.zip = this.address.zip
+             this.phones.forEach((phone: string, index: number) => {
+               this.selectedPerson.phones[index] = phone
+             });
            })
-         }
-         .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
-       }
-     }
-     
-     @Entry
-     @Component
-     struct PageEntry {
-       @Provide addrBook: AddressBook = new AddressBook(
-         new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["+358441234567", "+35891234567", "+49621234567889"]),
-         [
-           new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["+358449876543", "+3589456789"]),
-           new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["+358509876543", "+358910101010"]),
-           new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["+358400908070", "+35894445555"]),
-         ]);
-     
-       build() {
-         Column() {
-           AddressBookView({ me: this.addrBook.me, contacts: this.addrBook.contacts, selectedPerson: this.addrBook.me })
+         if (this.selectedPersonIndex() != -1) {
+           Text("Delete Contact")
+             .onClick(() => {
+               let index = this.selectedPersonIndex();
+               console.log(`delete contact at index ${index}`);
+ 
+               // 删除当前联系人
+               this.addrBook.contacts.splice(index, 1);
+ 
+               // 删除当前selectedPerson，选中态前移一位
+               index = (index < this.addrBook.contacts.length) ? index : index - 1;
+ 
+               // 如果contract被删除完，则设置me为选中态
+               this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
+             })
          }
        }
+ 
      }
-     ```
+   }
+ }
+ 
+ @Component
+ struct AddressBookView {
+   @ObjectLink me: Person;
+   @ObjectLink contacts: ObservedArray<Person>;
+   @State selectedPerson: Person = undefined;
+ 
+   aboutToAppear() {
+     this.selectedPerson = this.me;
+   }
+ 
+   build() {
+     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+       Text("Me:")
+       PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
+ 
+       Divider().height(8)
+ 
+       ForEach(this.contacts,
+         contact => {
+           PersonView({ person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson })
+         },
+         contact => contact.id_
+       )
+ 
+       Divider().height(8)
+ 
+       Text("Edit:")
+       PersonEditView({
+         selectedPerson: this.$selectedPerson,
+         name: this.selectedPerson.name,
+         address: this.selectedPerson.address,
+         phones: this.selectedPerson.phones
+       })
+     }
+     .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
+   }
+ }
+ 
+ @Entry
+ @Component
+ struct PageEntry {
+   @Provide addrBook: AddressBook = new AddressBook(
+     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
+     [
+       new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+       new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+       new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+     ]);
+ 
+   build() {
+     Column() {
+       AddressBookView({ me: this.addrBook.me, contacts: this.addrBook.contacts, selectedPerson: this.addrBook.me })
+     }
+   }
+ }
+```
