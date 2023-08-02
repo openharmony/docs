@@ -323,3 +323,64 @@ function onBackClick() {
 ```
 
 当用户点击“返回”按钮时，会弹出自定义的询问框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发router.back()方法，并根据参数决定如何执行跳转。
+
+## 命名路由
+
+在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute)来实现。
+
+在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
+
+
+```ts
+import router from '@ohos.router';
+```
+
+在想要跳转到的[共享包](../quick-start/shared-guide.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
+
+```ts
+// library/src/main/ets/pages/Index.ets
+@Entry({ routeName : 'myPage' })
+@Component
+struct MyComponent {
+}
+```
+
+配置成功后需要在需要跳转的页面中引入命名路由的页面：
+
+```ts
+// entry/src/main/ets/pages/Index.ets
+import router from '@ohos.router';
+import '@ohos/library/src/main/ets/Index.ets' // 引入共享包library中的命名路由页面
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 20 })
+        .backgroundColor('#ccc')
+        .onClick(() => { // 点击跳转到其他共享包中的页面
+          try {
+            router.pushNamedRoute({
+              name: 'myPage',
+              params: {
+                data1: 'message',
+                data2: {
+                  data3: [123, 456, 789]
+                }
+              }
+            })
+          } catch (err) {
+            console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
