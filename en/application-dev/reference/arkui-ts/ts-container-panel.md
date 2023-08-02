@@ -103,4 +103,4 @@ struct PanelExample {
 }
 ```
 
-![en-us_image_0000001256978381](figures/en-us_image_0000001256978381.gif)
+![en-us_image_0000001174422896](figures/en-us_image_0000001174422896.gif)
