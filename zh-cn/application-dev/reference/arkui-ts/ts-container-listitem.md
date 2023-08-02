@@ -100,6 +100,8 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -126,6 +128,7 @@ struct ListItemExample {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
 
+### 示例2
 
 ```ts
 // xxx.ets
@@ -193,7 +196,8 @@ struct ListItemExample2 {
 ```
 ![deleteListItem](figures/deleteListItem.gif)
 
-## 示例3
+### 示例3
+
 ```ts
 // xxx.ets
 @Entry

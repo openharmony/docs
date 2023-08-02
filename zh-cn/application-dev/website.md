@@ -76,11 +76,14 @@
           - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+        - [MVVM模式](quick-start/arkts-mvvm.md)
+        - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
       - 渲染控制
         - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [渲染控制优秀实践](quick-start/arkts-rendering-control-best-practices.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -961,21 +964,21 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
+      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
-      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
+      - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.pluginComponent (PluginComponentManager)](reference/apis/js-apis-plugincomponent.md)
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
-      - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
       - [@ohos.uiAppearance (用户界面外观)](reference/apis/js-apis-uiappearance.md)
-      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
