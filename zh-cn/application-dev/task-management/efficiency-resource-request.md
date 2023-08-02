@@ -33,10 +33,10 @@
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | resourceTypes | number | 是 | 申请的资源类型 |
-| isApply | boolean | 是 | 申请或释放资源<br/>- ture表示申请资源<br/>- false表示释放部分资源 |
+| isApply | boolean | 是 | 申请或释放资源<br/>- true表示申请资源<br/>- false表示释放部分资源 |
 | timeOut | number | 是 | 资源使用时间（ms） |
-| isPersist | boolean | 否 | 是否为永久持有资源，默认为false<br/>- ture表示永久持有<br/>- false表示有限时间内持有 |
-| isProcess | boolean | 否 | 进程或应用申请，默认为false<br/>- ture表示进程申请<br/>- false表示应用申请 |
+| isPersist | boolean | 否 | 是否为永久持有资源，默认为false<br/>- true表示永久持有<br/>- false表示有限时间内持有 |
+| isProcess | boolean | 否 | 进程或应用申请，默认为false<br/>- true表示进程申请<br/>- false表示应用申请 |
 | reason | string | 是 | 申请资源原因 |
 
 **表3** 能效资源类型
@@ -67,7 +67,7 @@
    // 应用需要在后台保持活动状态，不被挂起。
    let request = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU, // 资源类型是CPU资源，保证应用进程不被挂起 
-     isApply: true, // 释放资源
+     isApply: true, // 申请资源
      timeOut: 0, // 超时时间，超过超时时间后资源自动释放
      reason: "apply", // 申请原因
      isPersist: true, // 永久持有资源

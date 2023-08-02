@@ -134,11 +134,11 @@ finishAnimation(callback?: () => void): void
 
 | 参数名              | 参数类型                                     | 必填项  | 参数描述                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| isShowBackground | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
+| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
 | isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
 | backgroundSize   | [Length](ts-types.md#length)             | 否    | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
 | backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：\#19182431<br/>在组件两侧显示：<br/>默认值：\#00000000 |
-| arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>isShowBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
+| arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
 | arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置箭头颜色。<br/>默认值：\#182431                 |
 
 ## SwiperAutoFill<sup>10+</sup>
@@ -219,7 +219,7 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        isShowBackground:true,
+        showBackground:true,
         isSidebarMiddle:true,
         backgroundSize:24,
         backgroundColor:Color.White,

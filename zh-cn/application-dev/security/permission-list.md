@@ -2686,7 +2686,7 @@
 
 ## ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为帐号凭据管理应用接口。
+允许应用调用设备认证分布式帐号凭据管理应用接口。
 
 **权限级别**：system_basic
 
