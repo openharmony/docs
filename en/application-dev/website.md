@@ -4,9 +4,9 @@
 - Quick Start
   - Getting Started
     - [Before You Start](quick-start/start-overview.md)
-    - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
-    - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
-    - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
+    - [Building the First ArkTS Application in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Building the First ArkTS Application in FA Model](quick-start/start-with-ets-fa.md)
+    - [Building the First JS Application in FA Model](quick-start/start-with-js-fa.md)
   - Development Fundamentals
     - Application Package Fundamentals
       - [Application Package Overview](quick-start/application-package-overview.md)
@@ -262,8 +262,8 @@
           - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
           - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
           - [XComponent](ui/arkts-common-components-xcomponent.md)
-        - Adding a Bubble and Menu
-          - [Bubble (Popup)](ui/arkts-popup-and-menu-components-popup.md)
+        - Adding a Popup and Menu
+          - [Popup](ui/arkts-popup-and-menu-components-popup.md)
           - [Menu](ui/arkts-popup-and-menu-components-menu.md)
       - Setting Page Routing and Component Navigation
         - [Page Routing (router)](ui/arkts-routing.md)
