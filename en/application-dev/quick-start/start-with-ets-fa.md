@@ -1,4 +1,4 @@
-# Getting Started with ArkTS in FA Model
+# Building the First ArkTS Application in FA Model
 
 
 >  **NOTE**

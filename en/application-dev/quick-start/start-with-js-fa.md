@@ -1,4 +1,4 @@
-# Getting Started with JavaScript in FA Model
+# Building the First JavaScript Application in FA Model
 
 
 > **NOTE**

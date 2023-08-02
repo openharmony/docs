@@ -24,7 +24,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |
 | customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.|
-| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
+| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
 
 ## CustomDialogController
 
@@ -41,7 +41,7 @@ dialogController : CustomDialogController = new CustomDialogController(value:{bu
 open(): void
 
 
-Opens the content of the custom dialog box. If the content has been displayed, this API does not take effect.
+Opens the content of the custom dialog box. This API can be called multiple times. If the dialog box displayed in a subwindow, no new subwindow is allowed.
 
 
 ### close
@@ -60,6 +60,7 @@ struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
   controller: CustomDialogController
+  // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self at the end.
   cancel: () => void
   confirm: () => void
 
@@ -85,6 +86,7 @@ struct CustomDialogExample {
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }
+    // The default value of borderRadius is 24vp. The border attribute must be used together with the borderRadius attribute.
   }
 }
 
