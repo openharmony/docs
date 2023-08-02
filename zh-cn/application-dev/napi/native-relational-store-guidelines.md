@@ -69,7 +69,8 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
 2. 获取到OH_Rdb_Store后，调用OH_Rdb_Execute接口创建表，并调用OH_Rdb_Insert接口插入数据。示例代码如下所示：
 
    ```c
-   char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE                           INTEGER, SALARY REAL, CODES BLOB)";
+   char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
+                           "AGE INTEGER, SALARY REAL, CODES BLOB)";
    // 执行建表语句
    OH_Rdb_Execute(store_, createTableSql);
    
