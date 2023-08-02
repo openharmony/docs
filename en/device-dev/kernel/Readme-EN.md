@@ -1,6 +1,5 @@
 #  Kernel
 
-- Kernel
     - Mini-System Kernel
         - [Kernel Overview](kernel-mini-overview.md)
         - Basic Kernel
