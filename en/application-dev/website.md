@@ -4,7 +4,7 @@
 - Quick Start
   - Getting Started
     - [Before You Start](quick-start/start-overview.md)
-    - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Building the First ArkTS Application in Stage Model](quick-start/start-with-ets-stage.md)
   - Development Fundamentals
     - Application Package Fundamentals
       - [Application Package Overview](quick-start/application-package-overview.md)
@@ -266,8 +266,8 @@
           - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
           - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
           - [XComponent](ui/arkts-common-components-xcomponent.md)
-        - Adding a Bubble and Menu
-          - [Bubble (Popup)](ui/arkts-popup-and-menu-components-popup.md)
+        - Adding a Popup and Menu
+          - [Popup](ui/arkts-popup-and-menu-components-popup.md)
           - [Menu](ui/arkts-popup-and-menu-components-menu.md)
       - Setting Page Routing and Component Navigation
         - [Page Routing (router)](ui/arkts-routing.md)
@@ -624,7 +624,7 @@
     - [restool](tools/restool.md)
     - [LLDB Usage Guide](tools/lldb-tool.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta1/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
@@ -850,9 +850,9 @@
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (reminderAgentManager)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
-      - [@ohos.resourceschedule.workScheduler (Work Scheduler)](reference/apis/js-apis-resourceschedule-workScheduler.md)
+      - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](reference/apis/js-apis-resourceschedule-workScheduler.md)
       - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
-      - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
+      - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
       - application
         - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - Security
