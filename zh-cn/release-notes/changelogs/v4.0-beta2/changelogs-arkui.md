@@ -1,7 +1,107 @@
 # ArkUI Changelog
 
+## cl.arkui.1 状态变量数据类型声明使用限制
 
-## cl.arkui.1 通用事件参数支持undefined
+所有的状态装饰器变量需要显式声明变量类型，不允许声明any。
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  // 错误写法: @State isLunar: any = false
+  @State isLunar: boolean = false
+
+  build() {
+   ...
+  }
+}
+```
+
+**变更影响**
+
+如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截等级由WARN变成ERROR。
+
+```ts
+// ArkTS:ERROR Please define an explicit type, not any.
+@State isLunar: any = false
+```
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+状态装饰器变量声明具体的变量类型替代any。
+
+
+## cl.arkui.2 自定义组件成员变量初始化的规则与约束
+
+不允许从父组件初始化\@LocalStorageLink, \@LocalStorageProp修饰的变量。
+
+**示例：**
+
+```ts
+let NextID: number = 0;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
+@Entry
+@Component
+struct LocalStorageComponent {
+  build() {
+    Column() {
+      Child({
+        /* ArkTS:ERROR Property 'simpleVarName' in the custom component 'Child' cannot
+          initialize here (forbidden to specify). */
+        simpleVarName: 1,
+        /* ArkTS:ERROR Property 'objectName' in the custom component 'Child' cannot
+          initialize here (forbidden to specify). */
+        objectName: new ClassA(1)
+      })
+    }
+  }
+}
+
+@Component
+struct Child {
+  @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0;
+  @LocalStorageProp("storageObjectProp") objectName: ClassA = new ClassA(1);
+
+  build() {
+  }
+}
+```
+
+**变更影响**
+
+如果父组件初始化\@LocalStorageLink, \@LocalStorageProp修饰的变量，编译拦截等级由WARN变成ERROR。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+构造子组件时，不对子组件的\@LocalStorageLink, \@LocalStorageProp修饰的变量进行赋值。
+
+如果需要在父组件中修改子组件的\@LocalStorageLink, \@LocalStorageProp修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
+
+
+
+## cl.arkui.3 通用事件参数支持undefined
 
 通用事件（点击事件、触摸事件、挂载卸载事件、按键事件、焦点事件、鼠标事件、组件区域变化事件）参数支持undefined。
 
@@ -35,7 +135,7 @@ struct Example {
 当事件参数设置为undefined，将会禁用该事件，依据实际应用开发场景进行参数设置即可。
 
 
-## cl.arkui.2 \@Prop/\@BuilderParam 状态变量需要初始化或从父组件传值
+## cl.arkui.4 \@Prop/\@BuilderParam 状态变量需要初始化或从父组件传值
 
 **示例：**
 
@@ -76,7 +176,7 @@ struct Child {
 对\@Prop/\@BuilderParam 状态变量做初始化赋值或从父组件调用子组件时传入。
 
 
-## cl.arkui.3 \@BuilderParam 状态变量初始化赋值必须为\@Builder函数/方法
+## cl.arkui.5 \@BuilderParam 状态变量初始化赋值必须为\@Builder函数/方法
 
 **示例：**
 
@@ -116,7 +216,7 @@ struct Index {
 \@BuilderParam 状态变量初始化赋值传入\@Builder方法。
 
 
-## cl.arkui.4 Search组件的searchButton属性中SearchButtonOption修改为SearchButtonOptions
+## cl.arkui.6 Search组件的searchButton属性中SearchButtonOption修改为SearchButtonOptions
 
 **变更影响**
 
@@ -131,7 +231,7 @@ searchButton属性中类型SearchButtonOption修改为SearchButtonOptions。
 SearchButtonOption修改为SearchButtonOptions。
 
 
-## cl.arkui.5 滚动事件上报滚动状态枚举值规则变更
+## cl.arkui.7 滚动事件上报滚动状态枚举值规则变更
 
 ScrollState枚举值在API version 9及以下上报规则：
 
@@ -215,7 +315,7 @@ struct ListExample {
 ```
 
 
-## cl.arkui.6 ArkUI系统组件使用限制
+## cl.arkui.8 ArkUI系统组件使用限制
 
 对ArkUI系统组件的使用场景进行限制，仅允许在struct的build方法内、pageTransition方法内或\@Builder修饰的函数内使用。
 
@@ -248,7 +348,7 @@ Text('Hello World')
 将ArkUI系统组件的调用修改到struct的build方法内、pageTransition方法内或\@Builder修饰的函数内。
 
 
-## cl.ArkUI.7 \@Prop在API 9支持Object浅拷贝，API 10变更为深拷贝
+## cl.ArkUI.9 \@Prop在API 9支持Object浅拷贝，API 10变更为深拷贝
 
 **变更影响**
 
@@ -375,7 +475,7 @@ struct StateClassAArray {
 ```
 
 
-## cl.arkui.8 编译拦截\@Extend/\@AnimatableExtend参数个数不符合预期
+## cl.arkui.10 编译拦截\@Extend/\@AnimatableExtend参数个数不符合预期
 
 \@Extend/\@AnimatableExtend装饰器参数有且仅能有一个。
 
@@ -448,7 +548,7 @@ struct Example {
 ```
 
 
-## cl.arkui.9 编译拦截\@Link/\@ObjectLink成员变量未从父组件传值
+## cl.arkui.11 编译拦截\@Link/\@ObjectLink成员变量未从父组件传值
 
 子组件的\@Link/\@ObjectLink成员变量需要从父组件传值。
 
@@ -540,7 +640,7 @@ struct Child {
 ```
 
 
-## cl.arkui.10 canvas组件onReady事件行为变更
+## cl.arkui.12 canvas组件onReady事件行为变更
 
 **说明**
 
@@ -610,7 +710,7 @@ API version 10及以后：onReady在组件创建完成时触发，在组件位�
 onReady事件在组件位置发生变化时行为变更，API version 9及以前会触发，API version 10及以后不会触发。
 
 
-## cl.arkui.11 Navigation menus属性显示变更
+## cl.arkui.13 Navigation menus属性显示变更
 
 **变更影响**
 
@@ -646,7 +746,7 @@ API Version 10: menus中的value属性不显示
 ![zh-cn_image_0000001621612228](figures/zh-cn_image_0000001621612228.png)
 
 
-## cl.arkui.12 Navigation的titleMode属性Free模式默认显示位置变更
+## cl.arkui.14 Navigation的titleMode属性Free模式默认显示位置变更
 
 **变更影响**
 
