@@ -3175,7 +3175,7 @@ const person: Person = {
     name: "John",
     age: 30,
     email: "***@example.com",
-    phoneNumber: (86)********,
+    phoneNumber: 18*********,
 }
 ```
 
@@ -3197,7 +3197,7 @@ class Person {
 }
 
 function main(): void {
-    const person: Person = new Person("John", 30, "***@example.com", (86)********)
+    const person: Person = new Person("John", 30, "***@example.com", 18*********)
 }
 ```
 

@@ -936,11 +936,11 @@ export class ObservedArray<T> extends Array<T> {
    @Component
    struct PageEntry {
      @Provide addrBook: AddressBook = new AddressBook(
-       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********", "(86) (755) ********"]),
+       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
        [
-         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
-         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
-         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
+         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
        ]);
    
      build() {
@@ -1318,11 +1318,11 @@ export class ObservedArray<T> extends Array<T> {
  @Component
  struct PageEntry {
    @Provide addrBook: AddressBook = new AddressBook(
-     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********", "(86) (755) ********"]),
+     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
      [
-       new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
-       new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
-       new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["(86) (755) ********", "(86) (755) ********"]),
+       new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+       new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+       new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
      ]);
  
    build() {
