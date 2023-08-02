@@ -109,11 +109,18 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
    OH_VObject *valueObject = OH_Rdb_CreateValueObject();
    const char *name = "Lisa";
    valueObject->putText(valueObject, name);
-   predicates->equalTo(predicates, "NAME", valueObject);
+   predicates->equalTo(predicates, "NAME", valueObject)->andOperate(predicates);
+   uint32_t count = 1;
+   double salary = 100.5;
+   valueObject->putDouble(valueObject, &salary, count);
+   predicates->equalTo(predicates, "SALARY", valueObject);
+       
    int changeRows = OH_Rdb_Update(store_, valueBucket, predicates);
-   predicates->destroyPredicates(predicates);
+   predicates->destroy(predicates);
    valueBucket->destroy(valueBucket);
-   
+   ```
+
+   ```c
    // 删除数据
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    OH_VObject *valueObject = OH_Rdb_CreateValueObject();
@@ -121,7 +128,7 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
    valueObject->putText(valueObject, name);
    predicates->equalTo(predicates, "NAME", valueObject);
    int deleteRows = OH_Rdb_Delete(store_, predicates);
-   predicates->destroyPredicates(predicates);
+   predicates->destroy(predicates);
    ```
 
 4. 根据谓词指定的查询条件查找数据。
@@ -139,12 +146,15 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
    cursor->getColumnCount(cursor, &columnCount);
    
    // OH_Cursor是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始
+   // 查询第一条记录相关数据
    cursor->goToNextRow(cursor);
    size_t size = 0;
    cursor->getSize(cursor, 0, &size);
    char name[size + 1];
    cursor->getText(cursor, 0, name, size + 1);
    
+   // 查询第二条记录相关数据
+   cursor->goToNextRow(cursor);
    int64_t age;
    cursor->getInt64(cursor, 1, &age);
    
@@ -161,9 +171,9 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
 
    ```c
    // 释放数据库实例
-   OH_Rdb_CloseStore(store_)
+   OH_Rdb_CloseStore(store_);
    // 删除数据库文件
-   OH_Rdb_DeleteStore(&config)
+   OH_Rdb_DeleteStore(&config);
    ```
 
    
