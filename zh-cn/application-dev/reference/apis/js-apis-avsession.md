@@ -327,11 +327,27 @@ createController(sessionId: string): Promise\<AVSessionController>
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
 
 let currentAVcontroller;
-avSession.createController(currentAVSession.sessionId).then((avcontroller) => {
+avSession.createController(sessionId).then((avcontroller) => {
     currentAVcontroller = avcontroller;
-    console.info(`CreateController : SUCCESS : ${currentAVcontroller.sessionId}`);
+    console.info('CreateController : SUCCESS ');
 }).catch((err) => {
     console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -367,13 +383,30 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
+
 let currentAVcontroller;
-avSession.createController(currentAVSession.sessionId, function (err, avcontroller) {
+avSession.createController(sessionId, function (err, avcontroller) {
     if (err) {
         console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
         currentAVcontroller = avcontroller;
-        console.info(`CreateController : SUCCESS : ${currentAVcontroller.sessionId}`);
+        console.info('CreateController : SUCCESS ');
     }
 });
 ```
@@ -1293,6 +1326,23 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
+
 let aVCastController;
 avSession.getAVCastController(sessionId ,function (err, avcontroller) {
     if (err) {
@@ -1339,6 +1389,23 @@ getAVCastController(sessionId: string): Promise\<AVCastController>;
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let sessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        sessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+    }
+});
+
 let aVCastController;
 avSession.getAVCastController(sessionId).then((avcontroller) => {
     aVCastController = avcontroller;
@@ -1379,8 +1446,25 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
 let myToken = {
-    sessionId: sessionId,
+    sessionId: currSessionId,
 }
 let castDevice;
 avSession.on('deviceAvailable', (device) => {
@@ -1432,8 +1516,25 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 **示例：**
 
 ```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
+});
+
 let myToken = {
-    sessionId: sessionId,
+    sessionId: currSessionId,
 }
 let castDevice;
 avSession.on('deviceAvailable', (device) => {
@@ -1474,15 +1575,27 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let myToken = {
-    sessionId: sessionId,
-}
-let castDevice;
-avSession.on('deviceAvailable', (device) => {
-    castDevice = device;
-    console.info(`on deviceAvailable  : ${device} `);
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
 });
-avSession.stopCasting(myToken, castDevice, function (err) {
+
+let myToken = {
+    sessionId: currSessionId,
+}
+avSession.stopCasting(myToken, function (err) {
     if (err) {
         console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
@@ -1523,14 +1636,26 @@ stopCasting(session: SessionToken): Promise\<void>
 **示例：**
 
 ```js
-let myToken = {
-    sessionId: sessionId,
-}
-let castDevice;
-avSession.on('deviceAvailable', (device) => {
-    castDevice = device;
-    console.info(`on deviceAvailable  : ${device} `);
+import featureAbility from '@ohos.ability.featureAbility';
+
+let currentAVSession;
+let tag = "createNewSession";
+let context = featureAbility.getContext();
+let currSessionId;  //供后续函数入参使用
+
+avSession.createAVSession(context, tag, "audio", function (err, data) {
+    if (err) {
+        console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        currentAVSession = data;
+        currSessionId = currentAVSession.sessionId;
+        console.info(`CreateAVSession : SUCCESS : sessionId = ${currSessionId}`);
+    }
 });
+
+let myToken = {
+    sessionId: currSessionId,
+}
 avSession.stopCasting(myToken).then(() => {
     console.info(`stopCasting successfully`);
 }).catch((err) => {
@@ -5885,7 +6010,7 @@ avsessionController.getExtras(function (err, extras) {
     if (err) {
         console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info(`getExtras : SUCCESS : assetId : ${metadata.assetId}`);
+        console.info(`getExtras : SUCCESS : assetId : ${extras}`);
     }
 });
 ```

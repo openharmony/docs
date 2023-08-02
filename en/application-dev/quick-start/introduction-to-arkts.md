@@ -1674,7 +1674,7 @@ between the GUI components.
 The following example provides a complete ArkUI-based application as an
 illustration of GUI programming capabilities. For more details about ArkUI
 features, please refer to the ArkUI
-[tutorial](../arkts-get-started.md).
+[tutorial](arkts-get-started.md).
 
 ```typescript
 // ViewModel classes ---------------------------
