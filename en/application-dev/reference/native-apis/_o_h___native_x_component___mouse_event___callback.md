@@ -3,7 +3,7 @@
 
 ## Overview
 
-Registers a callback for the mouse event.
+Registers callbacks for the mouse event.
 
 **Since:**
 9
@@ -18,7 +18,7 @@ Registers a callback for the mouse event.
 
 ### Member Variables
 
-| Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) | Invoked when a mouse event is triggered. | 
-| [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) |  Invoked when a hover event is triggered. | 
+| [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) | Invoked when a mouse event is triggered. |
+| [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) |  Invoked when a hover event is triggered. |
