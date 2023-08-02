@@ -271,9 +271,8 @@ ScrollState枚举变更如下。
 
 List组件接口文档：
 
-- [List组件事件](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-references/ts-container-list-0000001580185770#ZH-CN_TOPIC_0000001656797053__%E4%BA%8B%E4%BB%B6)
-
-- [List组件ScrollState枚举说明](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-references/ts-container-list-0000001580185770#ZH-CN_TOPIC_0000001656797053__scrollstate%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)
+- [List组件事件](../../../application-dev/reference/arkui-ts/ts-container-list.md#事件)
+- [List组件ScrollState枚举说明](../../../application-dev/reference/arkui-ts/ts-container-list.md#scrollstate枚举说明)
 
 **适配指导**
 
@@ -380,7 +379,7 @@ api9：PropClassAArray组件中\@Prop objArray改变ClassA的属性，或者设�
 
 api10：在上述场景中，因为父组件StateClassAArray中\@State stateClassAArray到子组件PropClassAArray中\@Prop objArray是深拷贝，完整拷贝了ClassA的对象，所以不会改变数据源，从而不会引发ObjectLinkClassA组件中的\@ObjectLink obj的更新（从StateClassAArray组件中构造的）。
 
-![zh-cn_image_0000001621772152](figures/zh-cn_image_0000001621772152.png)
+![zh-cn_image_0000001588291546](figures/zh-cn_image_0000001588291546.png)
 
 ```ts
 let nextId = 0;
@@ -699,11 +698,11 @@ struct OnReadyDiff {
 
 API version 9：onReady在组件创建完成时触发，位置变化时会触发，组件大小变化时也会触发。
 
-![zh-cn_image_0000001669812181](figures/zh-cn_image_0000001669812181.gif)
+![stack](figures/api9onReady.gif)
 
 API version 10及以后：onReady在组件创建完成时触发，在组件位置变化时不会触发，组件大小变化时会触发。
 
-![zh-cn_image_0000001621452400](figures/zh-cn_image_0000001621452400.gif)
+![stack](figures/api10onReady.gif)
 
 **变更影响**
 
@@ -739,11 +738,11 @@ struct Index {
 
 API Version 9：menus的value属性会显示
 
-![zh-cn_image_0000001670132021](figures/zh-cn_image_0000001670132021.png)
+![Navigation](figures/navigation_menu_api9.png)
 
 API Version 10: menus中的value属性不显示
 
-![zh-cn_image_0000001621612228](figures/zh-cn_image_0000001621612228.png)
+![Navigation](figures/navigation_menu_api10.png)
 
 
 ## cl.arkui.14 Navigation的titleMode属性Free模式默认显示位置变更
@@ -783,8 +782,8 @@ struct Index {
 
 API Version 9: Free模式显示位置
 
-![zh-cn_image_0000001621932120](figures/zh-cn_image_0000001621932120.png)
+![Navigation](figures/navigation_title_mode_free_sdk9.png)
 
 API Version 10: Free模式显示位置与Full模式显示位置相同
 
-![zh-cn_image_0000001670212013](figures/zh-cn_image_0000001670212013.png)
+![Navigation](figures/navigation_title_mode_free_sdk10.png)
