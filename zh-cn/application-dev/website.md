@@ -991,12 +991,15 @@
         - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
         - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
     - 媒体
+      - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.systemSoundManager (系统声音管理)](reference/apis/js-apis-systemSoundManager.md)
+      - application
+        - [MediaControlExtensionContext (播控扩展能力上下文)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - 资源管理
