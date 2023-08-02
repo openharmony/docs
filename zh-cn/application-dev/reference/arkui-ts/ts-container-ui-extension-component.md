@@ -41,6 +41,7 @@ UIExtensionComponent(want: Want)
 send(data: { [key: string]: Object }): void
 
 **参数：**
+
 | 参数名  | 参数类型                                     | 必填   | 参数描述            |
 | ---- | ---------------------------------------- | ---- | --------------- |
 | data | { [key: string]: Object } | 是    | 发送给被拉起的扩展Ability的数据。 |
@@ -89,6 +90,8 @@ onResult(callback: [Callback](../apis/js-apis-base.md#callback)\<{code: number; 
 
 本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)。
 
+**参数：**
+
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
 | code                        | number | 收到来自对端Ability的处理結果code。                          |
@@ -102,7 +105,9 @@ onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
 
 被拉起的Ability扩展调用terminateSelfWithResult或者terminateSelf时会触发本回调，此时releaseCode为0，即正常销毁。
 
-被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1，即异常死亡。
+被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1。
+
+**参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
@@ -113,6 +118,8 @@ onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
 onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+
+**参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
