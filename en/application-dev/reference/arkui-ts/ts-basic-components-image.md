@@ -78,71 +78,36 @@ Obtains an image from the specified source for subsequent rendering and display.
 ## Example
 
 ```ts
-// Image1
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com' 
-  @State src: string = this.on
-
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.ic_png'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          Image($r('app.media.example_png'))
+            .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_gif'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          Image($r('app.media.example_gif'))
+            .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_svg'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image(this.src)
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25, bottom: 10 })
-      }
 
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.None).width(110).height(110)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Fill).width(110).height(110)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Cover).width(110).height(110)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.Contain).width(110).height(110)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
-            .objectFit(ImageFit.ScaleDown).width(110).height(110)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25 })
+          Image($r('app.media.example_svg'))
+            .width(110).height(110).border({ width: 1 })
+            .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.example_jpg'))
+            .width(110).height(110).border({ width: 1 })
+            .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }.margin({ top: 25, bottom: 10 })
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
 }
 ```
 
-![en-us_image_0000001211898484](figures/en-us_image_0000001211898484.gif)
+![en-us_image_0000001250492613](figures/en-us_image_0000001250492613.gif)
 
 ```ts
 // Image2
