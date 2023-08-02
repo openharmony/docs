@@ -482,6 +482,7 @@
         - [开发音频通话功能](media/audio-call-development.md)
       - [视频播放](media/video-playback.md)
       - [视频录制](media/video-recording.md)
+      - [屏幕录制](media/avscreen-capture.md)
       - 音视频编解码
         - [获取支持的编解码能力](media/obtain-supported-codecs.md)
         - [音频编码](media/audio-encoding.md)
