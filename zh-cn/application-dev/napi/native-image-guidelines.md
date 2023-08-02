@@ -26,6 +26,17 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeImage`提供的Native API接口，创建`OH_NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
 
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+```txt
+libEGL.so
+libGLESv3.so
+libnative_image.so
+libnative_window.so
+libnative_buffer.so
+```
+
 **头文件**
 ```c++
 #include <EGL/egl.h>
