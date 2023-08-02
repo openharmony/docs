@@ -52,7 +52,3 @@
 |type有变化|类名：HiTraceId;<br>方法or属性：spanId?: number;<br>旧版本信息：|类名：HiTraceId;<br>方法or属性：spanId?: number;<br>新版本信息：?number|@ohos.hiTraceChain.d.ts|
 |type有变化|类名：HiTraceId;<br>方法or属性：parentSpanId?: number;<br>旧版本信息：|类名：HiTraceId;<br>方法or属性：parentSpanId?: number;<br>新版本信息：?number|@ohos.hiTraceChain.d.ts|
 |type有变化|类名：HiTraceId;<br>方法or属性：flags?: number;<br>旧版本信息：|类名：HiTraceId;<br>方法or属性：flags?: number;<br>新版本信息：?number|@ohos.hiTraceChain.d.ts|
-|跨平台能力有变化|类名：hilog;<br>方法or属性：declare hilog<br>旧版本信息：|类名：hilog;<br>方法or属性：declare hilog<br>新版本信息：crossplatform|@ohos.hilog.d.ts|
-|跨平台能力有变化|类名：hiTraceMeter;<br>方法or属性：declare hiTraceMeter<br>旧版本信息：|类名：hiTraceMeter;<br>方法or属性：declare hiTraceMeter<br>新版本信息：crossplatform|@ohos.hiTraceMeter.d.ts|
-|跨平台能力有变化|类名：hiTraceMeter;<br>方法or属性：function startTrace(name: string, taskId: number): void;<br>旧版本信息：|类名：hiTraceMeter;<br>方法or属性：function startTrace(name: string, taskId: number): void;<br>新版本信息：crossplatform|@ohos.hiTraceMeter.d.ts|
-|跨平台能力有变化|类名：hiTraceMeter;<br>方法or属性：function finishTrace(name: string, taskId: number): void;<br>旧版本信息：|类名：hiTraceMeter;<br>方法or属性：function finishTrace(name: string, taskId: number): void;<br>新版本信息：crossplatform|@ohos.hiTraceMeter.d.ts|
