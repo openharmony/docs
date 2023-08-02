@@ -445,3 +445,5 @@ OpenHarmony 4.0 Beta2的API范围相比4.0 Beta1，API变更的清单请参见�
 | I7BF3M | 长时间运行测试，launcher进程概率性出现appfreeze，原因是STRINGID:APPLICATION_BLOCK_INPUT卡在libeventhandler.z.so。 | 该问题不会引起系统重启，整体影响可控。 | 2023年8月30日 |
 | I7M51R | 低概率出现进程com.ohos.systemui下的线程render_service出现cppcrash。 | 低概率问题，且render_service进程出现cppcrash后，系统会自动重新启动render_service进程，对业务影响可控。 | 2023年8月30日 |
 | I7L2CF | SystemUI内存泄漏：反复执行下拉任务栏操作，压力测试执行24小时，泄露60MB。 | 单次执行下拉任务栏操作，泄露量在几KB，影响可控。 | 2023年8月30日 |
+| I7NWF3 | 因兼容性问题，使用3.2.x版本的设备和4.0.x版本的设备通过Wi-Fi引导P2P连接时开启会话失败。 | 在使用4.0.x版本的设备间此问题不存在，影响可控。 | 2023年8月30日 |
+| I7BOAO | 三方仓GLES3多个测试用例执行失败。 | 三方仓问题，厂商正在适配修改。 | 2023年8月30日 |
