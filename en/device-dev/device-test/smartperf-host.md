@@ -1,4 +1,4 @@
-# Smartperf-Host
+# Smartperf-Host User Guide
 ## Overview
 Smartperf-Host is an intuitive performance and power optimization tool that offers in-depth data mining and fine-grained data visualization. In this tool, you can gain visibility into a multitude of metrics in terms of CPU scheduling, frequency, process and thread time slices, heap memory, frame rate, and more, in swimlanes. Better yet, you can analyze the collected data intuitively on the GUI.
 ## Architecture
