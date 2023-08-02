@@ -27,6 +27,10 @@ RichEditor(value: RichEditorOptions)
 
 支持[通用属性](ts-universal-attributes-size.md)。
 
+>  **说明：**
+>
+>  其中clip属性默认值为true。
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
