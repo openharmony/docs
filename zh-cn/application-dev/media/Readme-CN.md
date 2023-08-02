@@ -31,8 +31,7 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
-  - 屏幕录制
-    - [屏幕录制](avscreen-capture.md)
+  - [屏幕录制](avscreen-capture.md)
   - 音视频编解码
     - [获取支持的编解码能力](obtain-supported-codecs.md)
     - [音频编码](audio-encoding.md)
