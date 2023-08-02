@@ -148,17 +148,10 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
    cursor->getColumnCount(cursor, &columnCount);
    
    // OH_Cursor是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始
-   // 查询第一条记录相关数据
-   cursor->goToNextRow(cursor);
-   size_t size = 0;
-   cursor->getSize(cursor, 0, &size);
-   char name[size + 1];
-   cursor->getText(cursor, 0, name, size + 1);
-   
-   // 查询第二条记录相关数据
-   cursor->goToNextRow(cursor);
    int64_t age;
-   cursor->getInt64(cursor, 1, &age);
+   while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
+       cursor->getInt64(cursor, 1, &age);
+   }
    
    // 释放谓词实例
    predicates->destroy(predicates);
