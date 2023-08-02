@@ -26,7 +26,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 
 ## 接口说明
 
-详细的接口说明请参考RelationalStore[关系型数据库](../reference/native-apis/_r_d_b.md)。
+详细的接口说明请参考[RDB](../reference/native-apis/_r_d_b.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
