@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-RelationalStore是RDB组件在Native层的实现，提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
+RelationalStore提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
 
 
 ## 基本概念
@@ -26,7 +26,7 @@ RelationalStore是RDB组件在Native层的实现，提供了一套完整的对�
 
 ## 接口说明
 
-详细的接口说明请参考RDB[关系型数据库](../reference/native-apis/_r_d_b.md)。
+详细的接口说明请参考RelationalStore[关系型数据库](../reference/native-apis/_r_d_b.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
