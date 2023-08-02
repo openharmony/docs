@@ -202,7 +202,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
 
 **返回值：**
 
@@ -289,7 +289,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
-| wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
 
 **返回值：**
 
