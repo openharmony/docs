@@ -14,7 +14,7 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 本组件不支持预览。
 
-被拉起的Ability必须是带UI的Ability扩展。
+被拉起的Ability必须是带UI的Ability扩展，如何实现带UI的Ability扩展请参考[实现带UI的Ability扩展](../apis/js-apis-app-ability-uiExtensionAbility.md)。
 
 必须显示设置组件宽高为非0有效值。
 
@@ -89,6 +89,8 @@ onResult(callback: [Callback](../apis/js-apis-base.md#callback)\<{code: number; 
 
 本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)。
 
+**参数：**
+
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
 | code                        | number | 收到来自对端Ability的处理結果code。                          |
@@ -102,7 +104,9 @@ onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
 
 被拉起的Ability扩展调用terminateSelfWithResult或者terminateSelf时会触发本回调，此时releaseCode为0，即正常销毁。
 
-被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1，即异常死亡。
+被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1。
+
+**参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
@@ -113,6 +117,8 @@ onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
 onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+
+**参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
