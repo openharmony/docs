@@ -118,5 +118,5 @@
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
-- [StaticSubscriber：静态订阅（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+- [StaticSubscriber：静态订阅（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SystemFeature/ApplicationModels/StaticSubscriber)
 

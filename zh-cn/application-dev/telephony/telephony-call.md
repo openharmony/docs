@@ -113,4 +113,4 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 
 拨打电话有以下相关实例可供参考：
 
-- [拨打电话](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Call)
+- [拨打电话](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/Telephony/Call)

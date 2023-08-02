@@ -168,4 +168,4 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 针对“设置”应用页面，有以下相关实例可以参考：
 
-设置：[设置应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+设置：[设置应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SuperFeature/MultiDeviceAppDev/Settings)

@@ -1,3 +1,7 @@
+
+
+
+
 # Mouse Event
 
 If an action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
@@ -9,32 +13,32 @@ If an action triggers multiple events, the order of these events is fixed. By de
 
 ## Events
 
-| Name                                                        | Bubbling Supported| Description                                                        |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes      | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.<br>**event**: bubbling blocking of the event.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes      | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| Name                                      | Bubbling Supported| Description                                      |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.<br>**event**: bubbling blocking of the event.|
+| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent
 
-| Name     | Type                           | Description                  |
-| --------- | ------------------------------- | -------------------- |
-| screenX   | number                          | X coordinate of the cursor position relative to the upper left corner of the application window.|
-| screenY   | number                          | Y coordinate of the cursor position relative to the upper left corner of the application window.|
-| x         | number                          | X coordinate of the cursor position relative to the upper left corner of the component being clicked.|
-| y         | number                          | Y coordinate of the mouse position relative to the upper left corner of the component being clicked.|
-| button    | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.               |
-| action    | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.               |
-| stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.                        |
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.|
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
+| Name                    | Type                                    | Description                          |
+| ---------------------- | ---------------------------------------- | ---------------------------- |
+| screenX                | number                                   | X coordinate of the cursor position relative to the upper left corner of the application window.        |
+| screenY                | number                                   | Y coordinate of the cursor position relative to the upper left corner of the application window.        |
+| x                      | number                                   | X coordinate of the cursor position relative to the upper left corner of the component being clicked.        |
+| y                      | number                                   | Y coordinate of the mouse position relative to the upper left corner of the component being clicked.        |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.                       |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.                       |
+| stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.                     |
+| timestamp<sup>8+</sup> | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
+| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
 
 ## HoverEvent<sup>10+</sup>
 
-| Name     | Type                           | Description                  |
-| --------- | ------------------------------- | -------------------- |
-| stopPropagation   | () => void                          | Stops the event from bubbling upwards or downwards.|
+| Name             | Type      | Description     |
+| --------------- | ---------- | ------- |
+| stopPropagation | () => void | Stops the event from bubbling upwards or downwards.|
 
 ## Example
 
