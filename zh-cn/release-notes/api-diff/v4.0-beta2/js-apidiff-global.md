@@ -32,9 +32,3 @@
 |新增|NA|类名：ResourceManager;<br>方法or属性：getColorByNameSync(resName: string) : number;|@ohos.resourceManager.d.ts|
 |新增|NA|类名：ResourceManager;<br>方法or属性：addResource(path: string) : void;|@ohos.resourceManager.d.ts|
 |新增|NA|类名：ResourceManager;<br>方法or属性：removeResource(path: string) : void;|@ohos.resourceManager.d.ts|
-|跨平台能力有变化|类名：DateTimeOptions;<br>方法or属性：year?: string;<br>旧版本信息：|类名：DateTimeOptions;<br>方法or属性：year?: string;<br>新版本信息：crossplatform|@ohos.intl.d.ts|
-|跨平台能力有变化|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_TABLET = 0x01<br>旧版本信息：crossplatform|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_TABLET = 0x01<br>新版本信息：|@ohos.resourceManager.d.ts|
-|跨平台能力有变化|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_CAR = 0x02<br>旧版本信息：crossplatform|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_CAR = 0x02<br>新版本信息：|@ohos.resourceManager.d.ts|
-|跨平台能力有变化|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_PC = 0x03<br>旧版本信息：crossplatform|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_PC = 0x03<br>新版本信息：|@ohos.resourceManager.d.ts|
-|跨平台能力有变化|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_TV = 0x04<br>旧版本信息：crossplatform|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_TV = 0x04<br>新版本信息：|@ohos.resourceManager.d.ts|
-|跨平台能力有变化|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_WEARABLE = 0x06<br>旧版本信息：crossplatform|类名：DeviceType;<br>方法or属性：DEVICE_TYPE_WEARABLE = 0x06<br>新版本信息：|@ohos.resourceManager.d.ts|
