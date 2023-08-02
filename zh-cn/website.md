@@ -4,6 +4,7 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 4.x Releases
+    - [OpenHarmony v4.0 Beta2 (2023-08-02)](release-notes/OpenHarmony-v4.0-beta2.md)
     - [OpenHarmony v4.0 Beta1 (2023-06-03)](release-notes/OpenHarmony-v4.0-beta1.md)
   - OpenHarmony 3.x Releases
     - [OpenHarmony v3.2 Release (2023-04-09)](release-notes/OpenHarmony-v3.2-release.md)
@@ -27,8 +28,7 @@
   - OpenHarmony 2.x Releases
     - [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     - [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
-  - OpenHarmony 1.x Releases
-  
+  - OpenHarmony 1.x Releases  
     - [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
       - [OpenHarmony v1.1.5 LTS (2022-08-24)](release-notes/OpenHarmony-v1.1.5-LTS.md)
       - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
@@ -37,8 +37,24 @@
       - [OpenHarmony v1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
       - [OpenHarmony v1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
   - API差异报告
+    - OpenHarmony 4.0 Beta2
+      - ArkTS API差异报告
+      - API变更说明
+        - [总览](release-notes/changelogs/v4.0-beta2/readme.md)
+        - [ArkUI Changelog](release-notes/changelogs/v4.0-beta2/changelogs-arkui.md)
+        - [包管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-bundlemanager.md)
+        - [程序访问控制Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accesstoken.md)
+        - [分布式数据管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-distributeddatamgr.md)
+        - [元能力-卡片框架Changelog](release-notes/changelogs/v4.0-beta2/changelogs-formfwk.md)
+        - [图形Changelog](release-notes/changelogs/v4.0-beta2/changelogs-image.md)
+        - [输入法框架Changelog](changelogs-imf.md)
+        - [媒体Changelog](release-notes/changelogs/v4.0-beta2/changelogs-multimedia.md)
+        - [主题框架-锁屏管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-screenlock.md)
+        - [设备管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-device_manager.md)
+        - [泛Sensor Changelog](release-notes/changelogs/v4.0-beta2/changelogs-miscdevice.md)
+        - [文件管理（媒体库）Changelog](release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)
     - OpenHarmony 4.0 Beta1
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v4.0-beta1/js-apidiff-ability.md)
         - [无障碍服务](release-notes/api-diff/v4.0-beta1/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v4.0-beta1/js-apidiff-account.md)
@@ -101,7 +117,7 @@
         - [Web](release-notes/changelogs/v4.0-beta1/changelogs-web.md)
         - [WIFI](release-notes/changelogs/v4.0-beta1/changelogs-wifiManager.md)
     - OpenHarmony 3.2 Release (相比3.1 Release)
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v3.2-Release/js-apidiff-ability.md)
         - [无障碍](release-notes/api-diff/v3.2-Release/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v3.2-Release/js-apidiff-account.md)
@@ -136,7 +152,7 @@
         - [Web](release-notes/api-diff/v3.2-Release/js-apidiff-web.md)
         - [窗口](release-notes/api-diff/v3.2-Release/js-apidiff-window.md)
     - OpenHarmony 3.2 Release (相比3.2 Beta5)
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/Beta5%20to%20v3.2-Release/js-apidiff-ability.md)
         - [帐号](release-notes/api-diff/Beta5%20to%20v3.2-Release/js-apidiff-account.md)
         - [应用](release-notes/api-diff/Beta5%20to%20v3.2-Release/js-apidiff-application.md)
@@ -174,7 +190,7 @@
         - [主题框架-壁纸](release-notes/changelogs/v3.2-release/changelogs-wallpaper.md)
         - [web组件](release-notes/changelogs/v3.2-release/changelogs-web.md)
     - OpenHarmony 3.2 Beta4
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v3.2-beta4/js-apidiff-ability.md)
         - [无障碍](release-notes/api-diff/v3.2-beta4/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v3.2-beta4/js-apidiff-account.md)
@@ -208,7 +224,7 @@
         - [Web](release-notes/api-diff/v3.2-beta4/js-apidiff-web.md)
         - [窗口管理](release-notes/api-diff/v3.2-beta4/js-apidiff-window.md)
     - OpenHarmony 3.2 Beta3
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v3.2-beta3/js-apidiff-ability.md)
         - [无障碍](release-notes/api-diff/v3.2-beta3/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v3.2-beta3/js-apidiff-account.md)
@@ -238,7 +254,7 @@
         - [窗口管理](release-notes/api-diff/v3.2-beta3/js-apidiff-window.md)
       - [3.2 beta3相对于3.2 beta2变更详细说明](release-notes/changelogs/v3.2-beta3/changelog-v3.2-beta3.md)
     - OpenHarmony 3.2 Beta2
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v3.2-beta2/js-apidiff-ability.md)
         - [无障碍](release-notes/api-diff/v3.2-beta2/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v3.2-beta2/js-apidiff-account.md)
@@ -270,7 +286,7 @@
         - [3.2 beta2相对3.2 beta1变更详细说明](release-notes/changelogs/v3.2-beta2/changelog-v3.2-beta2.md)
         - [OpenHarmony启用应用沙箱机制-适配指导](release-notes/changelogs/v3.2-beta2/application-sandbox-adaptation-guide.md)  
     - OpenHarmony 3.2 Beta1
-      - JS API差异报告
+      - ArkTS API差异报告
         - [元能力](release-notes/api-diff/v3.2-beta1/js-apidiff-ability.md)
         - [ArkUI](release-notes/api-diff/v3.2-beta1/js-apidiff-arkui.md)
         - [电源](release-notes/api-diff/v3.2-beta1/js-apidiff-battery.md)
@@ -291,7 +307,7 @@
         - [窗口管理](release-notes/api-diff/v3.2-beta1/js-apidiff-window.md)
       - [Native API差异报告](release-notes/api-diff/v3.2-beta1/native-apidiff-v3.2-beta.md)
     - OpenHarmony 3.1 Release
-      - JS API差异报告（API Version 8）
+      - ArkTS API差异报告（API Version 8）
         - [元能力](release-notes/api-diff/v3.1-Release/js-apidiff-ability.md)
         - [无障碍](release-notes/api-diff/v3.1-Release/js-apidiff-accessibility.md)
         - [帐号](release-notes/api-diff/v3.1-Release/js-apidiff-account.md)
@@ -321,7 +337,7 @@
         - [USB服务](release-notes/api-diff/v3.1-Release/js-apidiff-usb.md)
         - [用户IAM](release-notes/api-diff/v3.1-Release/js-apidiff-user-authentication.md)
         - [窗口管理](release-notes/api-diff/v3.1-Release/js-apidiff-window.md)
-      - JS API差异报告（API Version 9 Canary）
+      - ArkTS API差异报告（API Version 9 Canary）
         - [元能力](release-notes/api-diff/v3.1-Release/js-apidiff-ability_api-9-canary.md)
         - [包管理](release-notes/api-diff/v3.1-Release/js-apidiff-bundle_api-9-canary.md)
         - [分布式数据管理](release-notes/api-diff/v3.1-Release/js-apidiff-distributed-data_api-9-canary.md)
@@ -334,13 +350,13 @@
       - [Native API差异报告](release-notes/api-diff/v3.1-Release/native-apidiff-v3.1-release.md)
       - [3.1 release相对于3.1 beta变更详细说明](release-notes/changelogs/v3.1-Release/changelog-v3.1-release.md)
     - OpenHarmony 3.1 Beta
-      - [JS API差异报告](release-notes/api-diff/v3.1-beta/js-apidiff-v3.1-beta.md)
+      - [ArkTS API差异报告](release-notes/api-diff/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API差异报告](release-notes/api-diff/v3.1-beta/native-apidiff-v3.1-beta.md)
       - [3.1 beta相对于3.0变更详细说明](release-notes/api-diff/v3.1-beta/changelog-v3.1-beta.md)
     - OpenHarmony 3.0 LTS  
-      - [JS API差异报告](release-notes/api-diff/v3.0-LTS/js-apidiff-v3.0-lts.md)
+      - [ArkTS API差异报告](release-notes/api-diff/v3.0-LTS/js-apidiff-v3.0-lts.md)
     - OpenHarmony v2.2 Beta2
-      - [JS API差异报告](release-notes/api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+      - [ArkTS API差异报告](release-notes/api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API差异报告](release-notes/api-diff/v2.2-beta2/native-apidiff-v2.2-beta2.md)
   
 - OpenHarmony三方组件
