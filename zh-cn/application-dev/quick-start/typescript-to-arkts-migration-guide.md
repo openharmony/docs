@@ -651,7 +651,7 @@ interface Identity {
 
 interface Contact {
     email: string
-    phone: string
+    phoneNumber: string
 }
 
 type Employee = Identity & Contact
@@ -667,7 +667,7 @@ interface Identity {
 
 interface Contact {
     email: string
-    phone: string
+    phoneNumber: string
 }
 
 interface Employee extends Identity,  Contact {}
@@ -3174,8 +3174,8 @@ class Person {
 const person: Person = {
     name: "John",
     age: 30,
-    email: "john@example.com",
-    phone: 1234567890,
+    email: "***@example.com",
+    phoneNumber: 18*********,
 }
 ```
 
@@ -3186,18 +3186,18 @@ class Person {
     name: string
     age: number
     email: string
-    phone: number
+    phoneNumber: number
 
-    constructor(name: string, age: number, email: string, phone: number) {
+    constructor(name: string, age: number, email: string, phoneNumber: number) {
         this.name = name
         this.age = age
         this.email = email
-        this.phone = phone
+        this.phoneNumber = phoneNumber
     }
 }
 
 function main(): void {
-    const person: Person = new Person("John", 30, "john@example.com", 1234567890)
+    const person: Person = new Person("John", 30, "***@example.com", 18*********)
 }
 ```
 

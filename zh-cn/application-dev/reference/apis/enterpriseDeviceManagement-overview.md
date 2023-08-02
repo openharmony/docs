@@ -12,12 +12,12 @@ OpenHarmony通过企业设备管理（Enterprise Device Management）API支持�
 - 仅支持Stage模型
 
 ### 环境准备
-- DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
-- ohos-sdk-full可参考OpenHarmony网站进行[下载](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-beta2.md#%E4%BB%8E%E9%95%9C%E5%83%8F%E7%AB%99%E7%82%B9%E8%8E%B7%E5%8F%96)。
+- DevEco Studio可参考其官网介绍进行下载，并进行相关的配置动作。
+- ohos-sdk-full可参考[如何替换full-sdk](../../faqs/full-sdk-switch-guide.md)进行下载。
 
 ### 开发步骤
 
-1. 使用DevEco Studio新建工程、[替换full-sdk](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+1. 使用DevEco Studio新建工程、替换full-sdk。
 
 2. 在[应用签名文件](../../security/accesstoken-overview.md#应用apl等级说明)中设置应用为系统应用，即app-feature字段为hos_system_app。
 

@@ -55,7 +55,7 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | 卡片提供方接收处理卡片事件的通知接口。 |
 | onRemoveForm(formId:&nbsp;string):&nbsp;void | 卡片提供方接收销毁卡片的通知接口。 |
 | onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;any&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
+| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;Object&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
 
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
@@ -94,7 +94,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考[DevEco Studio服务卡片开发指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)生成服务卡片模板。
 
-1. 在EntryFormAbility.ts中，导入相关模块。
+1. 在EntryFormAbility.ets中，导入相关模块。
 
    
    ```ts
@@ -105,7 +105,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    import dataPreferences from '@ohos.data.preferences';
    ```
 
-2. 在EntryFormAbility.ts中，实现FormExtension生命周期接口。
+2. 在EntryFormAbility.ets中，实现FormExtension生命周期接口。
 
    
    ```ts
@@ -174,7 +174,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
@@ -544,6 +544,29 @@ onUpdateForm(formId) {
     }
   }
   ```
+
+  说明：
+
+  "data"中JSON Value支持多级嵌套数据，在更新数据时，需要注意携带完整数据。
+
+  例如:当前卡片显示07.18日Mr.Zhang的课程信息，示例如下。
+  ```ts
+  "data": {
+      "Day": "07.18",
+      "teacher": {
+          "name": "Mr.Zhang",
+          "course": "Math"
+      }
+  }
+  ```
+  当卡片内容需要更新为07.18日Mr.Li的课程信息时，需要传递待更新的完整数据，不能值传递单个数据项，如只传name或只传course，示例如下。
+  ```ts
+  "teacher": {
+      "name": "Mr.Li",
+      "course": "English"
+  }
+  ```
+
 
 - 在UIAbility中接收router事件并获取参数
 

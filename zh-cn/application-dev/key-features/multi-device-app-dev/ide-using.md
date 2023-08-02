@@ -58,8 +58,6 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 > **说明：**
 > - 在一个工程中同一个设备类型只支持一个Entry类型的模块。
 > 
-> - 当前的DevEco Studio（3.1.1 Release）在创建工程时，设备类型仅能选择phone和tablet，默认该模块已经选择了entry类型，那么在创建wearable这个模块，只能选择feature类型。
-> 
 > - 在下一个小节，我们将介绍如何修改Module的配置，包括Module的类型以及其支持的设备类型等。
 
 
@@ -115,7 +113,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 同样的，修改feature1和feature2模块中的oh-package.json文件，使其可以使用common模块中的代码。
 
-修改oh-package.json文件后，一定要点击右上角的“Sync Now”，否则改动不会生效！
+修改oh-package.json文件后，请点击右上角的“Sync Now”，否则改动不会生效。
 
 
 ## 引用ohpm包中的代码

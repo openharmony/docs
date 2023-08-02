@@ -55,12 +55,12 @@ let preferences = null;
 try {
     data_preferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
-	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-	        return;
-	    }
-	    preferences = val;
-	    console.info("Succeeded in getting preferences.");
-	})
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            return;
+        }
+        preferences = val;
+        console.info("Succeeded in getting preferences.");
+    })
 } catch (err) {
     console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
@@ -195,14 +195,14 @@ let context = featureAbility.getContext();
 let preferences = null;
 
 try {
-    data_preferences.getPreferences(context, {name: 'mystore'}, function (err, val) {
+    data_preferences.getPreferences(context, { name: 'mystore' }, function (err, val) {
         if (err) {
-	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-	        return;
-	    }
-	    preferences = val;
-	    console.info("Succeeded in getting preferences.");
-	})
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            return;
+        }
+        preferences = val;
+        console.info("Succeeded in getting preferences.");
+    })
 } catch (err) {
     console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
@@ -219,7 +219,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, val) {
+            data_preferences.getPreferences(this.context, { name: 'mystore', dataGroupId:'myId' }, function (err, val) {
                 if (err) {
                     console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -275,7 +275,7 @@ let context = featureAbility.getContext();
 
 let preferences = null;
 try {
-    let promise = data_preferences.getPreferences(context, {name: 'mystore'});
+    let promise = data_preferences.getPreferences(context, { name: 'mystore' });
     promise.then((object) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
@@ -297,7 +297,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'});
+            let promise = data_preferences.getPreferences(this.context, { name: 'mystore', dataGroupId:'myId' });
             promise.then((object) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
@@ -493,7 +493,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, {name: 'mystore'}, function (err) {
+    data_preferences.deletePreferences(context, { name: 'mystore' }, function (err) {
         if (err) {
             console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -513,7 +513,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.deletePreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err) {
+            data_preferences.deletePreferences(this.context, { name: 'mystore', dataGroupId:'myId' }, function (err) {
                 if (err) {
                     console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -571,7 +571,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.deletePreferences(context, {name: 'mystore'});
+    let promise = data_preferences.deletePreferences(context, { name: 'mystore' });
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
@@ -590,7 +590,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
-            let promise = data_preferences.deletePreferences(this.context, {name: 'mystore', dataGroupId:'myId'});
+            let promise = data_preferences.deletePreferences(this.context, { name: 'mystore', dataGroupId:'myId' });
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err) => {
@@ -702,8 +702,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
     let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
-	promise.then(() => {
-    	console.info("Succeeded in removing preferences.");
+    promise.then(() => {
+        console.info("Succeeded in removing preferences.");
     }).catch((err) => {
         console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
@@ -821,7 +821,7 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
-    data_preferences.removePreferencesFromCache(context, {name: 'mystore'}, function (err) {
+    data_preferences.removePreferencesFromCache(context, { name: 'mystore' }, function (err) {
         if (err) {
             console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -841,7 +841,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.removePreferencesFromCache(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err) {
+            data_preferences.removePreferencesFromCache(this.context, { name: 'mystore', dataGroupId:'myId' }, function (err) {
                 if (err) {
                     console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -898,9 +898,9 @@ FA模型示例：
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
-    let promise = data_preferences.removePreferencesFromCache(context, {name: 'mystore'});
-	promise.then(() => {
-    	console.info("Succeeded in removing preferences.");
+    let promise = data_preferences.removePreferencesFromCache(context, { name: 'mystore' });
+    promise.then(() => {
+        console.info("Succeeded in removing preferences.");
     }).catch((err) => {
         console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
@@ -917,7 +917,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.removePreferencesFromCache(this.context, {name: 'mystore', dataGroupId:'myId'});
+            let promise = data_preferences.removePreferencesFromCache(this.context, { name: 'mystore', dataGroupId:'myId' });
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
             }).catch((err) => {
@@ -1405,7 +1405,7 @@ delete(key: string): Promise&lt;void&gt;
 ```js
 try {
     let promise = preferences.delete('startup');
-	promise.then(() => {
+    promise.then(() => {
         console.info("Succeeded in deleting the key 'startup'.");
     }).catch((err) => {
         console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
@@ -1520,7 +1520,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-	preferences.clear(function (err) {
+    preferences.clear(function (err) {
         if (err) {
             console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
             return;
@@ -1552,8 +1552,8 @@ clear(): Promise&lt;void&gt;
 ```js
 try {
     let promise = preferences.clear();
-	promise.then(() => {
-    	console.info("Succeeded in clearing.");
+    promise.then(() => {
+        console.info("Succeeded in clearing.");
     }).catch((err) => {
         console.info("Failed to clear. code =" + err.code + ", message =" + err.message);
     })
@@ -1601,33 +1601,33 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 ```js
 try {
-	data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-		if (err) {
-			console.info("Failed to get preferences.");
-			return;
-		}
-		let observer = function (key) {
-			console.info("The key " + key + " changed.");
-		}
-		preferences.on('change', observer);
-		preferences.put('startup', 'manual', function (err) {
-			if (err) {
-				console.info("Failed to put the value of 'startup'. Cause: " + err);
-				return;
-			}
-			console.info("Succeeded in putting the value of 'startup'.");
+    data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+        if (err) {
+            console.info("Failed to get preferences.");
+            return;
+        }
+        let observer = function (key) {
+            console.info("The key " + key + " changed.");
+        }
+        preferences.on('change', observer);
+        preferences.put('startup', 'manual', function (err) {
+            if (err) {
+                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in putting the value of 'startup'.");
 
-			preferences.flush(function (err) {
-				if (err) {
-					console.info("Failed to flush. Cause: " + err);
-					return;
-				}
-				console.info("Succeeded in flushing.");
-			})
-		})
-	})
+            preferences.flush(function (err) {
+                if (err) {
+                    console.info("Failed to flush. Cause: " + err);
+                    return;
+                }
+                console.info("Succeeded in flushing.");
+            })
+        })
+    })
 } catch (err) {
-	console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -1660,40 +1660,39 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 ```js
 try {
-	data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, preferences) {
-		if (err) {
-			console.info("Failed to get preferences.");
-			return;
-		}
-		let observer = function (key) {
-			console.info("The key " + key + " changed.");
-		}
-		preferences.on('multiProcessChange', observer);
-		preferences.put('startup', 'manual', function (err) {
-			if (err) {
-				console.info("Failed to put the value of 'startup'. Cause: " + err);
-				return;
-			}
-			console.info("Succeeded in putting the value of 'startup'.");
+    data_preferences.getPreferences(this.context, { name: 'mystore', dataGroupId:'myId' }, function (err, preferences) {
+        if (err) {
+            console.info("Failed to get preferences.");
+            return;
+        }
+        let observer = function (key) {
+            console.info("The key " + key + " changed.");
+        }
+        preferences.on('multiProcessChange', observer);
+        preferences.put('startup', 'manual', function (err) {
+            if (err) {
+                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                return;
+            }
+            console.info("Succeeded in putting the value of 'startup'.");
 
-			preferences.flush(function (err) {
-				if (err) {
-					console.info("Failed to flush. Cause: " + err);
-					return;
-				}
-				console.info("Succeeded in flushing.");
-			})
-		})
-	})
+            preferences.flush(function (err) {
+                if (err) {
+                    console.info("Failed to flush. Cause: " + err);
+                    return;
+                }
+                console.info("Succeeded in flushing.");
+            })
+        })
+    })
 } catch (err) {
-	console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
 **示例2：**
 
 ```js
-let preferences = null;
 try {
     data_preferences.getPreferences(this.context, { name: 'mystore' }, function (err, val) {
         if (err) {
@@ -1704,7 +1703,7 @@ try {
         let observer = function (key) {
             console.info("The key " + key + " changed.");
             try {
-                data_preferences.removePreferencesFromCache(context, { name: 'mystore' }, function (err) {
+                data_preferences.removePreferencesFromCache(this.context, { name: 'mystore' }, function (err) {
                     if (err) {
                         console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                         return;
@@ -1717,7 +1716,7 @@ try {
             }
 
             try {
-                data_preferences.getPreferences(context, { name: 'mystore' }, function (err, val) {
+                data_preferences.getPreferences(this.context, { name: 'mystore' }, function (err, val) {
                     if (err) {
                         console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                         return;
@@ -1820,7 +1819,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): vo
 
 ```js
 try {
-    data_preferences.getPreferences(this.context, {name: 'mystore', dataGroupId:'myId'}, function (err, preferences) {
+    data_preferences.getPreferences(this.context, { name: 'mystore', dataGroupId:'myId' }, function (err, preferences) {
         if (err) {
             console.info("Failed to get preferences.");
             return;

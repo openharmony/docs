@@ -96,8 +96,10 @@ Thread name:crasher <- 异常线程名
 
     使用addr2line工具根据偏移地址解析行号:
 
+    [product name]为具体设备名。
+
     ```
-    root:~/OpenHarmony/out/rk3568/exe.unstripped/hiviewdfx/faultloggerd$ addr2line -e crasher 0000332c
+    root:~/OpenHarmony/out/[product name]/exe.unstripped/hiviewdfx/faultloggerd$ addr2line -e crasher 0000332c
     base/hiviewdfx/faultloggerd/tools/crasher/dfx_crasher.c:57
     ```
 

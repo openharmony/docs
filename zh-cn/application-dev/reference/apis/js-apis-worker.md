@@ -387,7 +387,7 @@ workerInstance.onexit = function(e) {
 workerInstance.terminate();
 
 // worker线程：
-//parentPort.close()
+//workerPort.close()
 ```
 
 
@@ -428,7 +428,7 @@ workerInstance.onerror = function(e) {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1052,8 +1052,8 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
-parentPort.onmessageerror = function(e) {
+const workerPort = worker.workerPort;
+workerPort.onmessageerror = function(e) {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -1742,11 +1742,11 @@ workerInstance.onmessage = function(e) {
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
-parentPort.onmessage = function(e){
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e){
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
-    parentPort.postMessage(buffer, [buffer]);
+    workerPort.postMessage(buffer, [buffer]);
 }
 ```
 
@@ -2087,7 +2087,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 - Worker存在数量限制，当前支持最多同时存在8个Worker。
 - 在API version 8及之前的版本，当Worker数量超出限制时，会抛出错误Error "Too many workers, the number of workers exceeds the maximum."。
 - 从API version 9开始，当Worker数量超出限制时，会抛出错误BusinessError "Worker initialization failure, the number of workers exceeds the maximum."。
-- 主动销毁Worker可以调用新创建Worker对象的terminate()或parentPort.close()方法。
+- 主动销毁Worker可以调用新创建Worker对象的terminate()或workerPort.close()方法。
 - 自API version 9版本开始，若Worker处于已经销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的BusinessError。
 - Worker的创建和销毁耗费性能，建议管理已创建的Worker并重复使用。
 - 创建Worker工程时，new worker.Worker构造函数和new worker.ThreadWorker构造函数不能同时使用，否则将导致工程中Worker的功能异常。自API version 9版本开始，建议使用[new worker.ThreadWorker](#constructor9)构造函数，在API version 8及之前的版本，建议使用[new worker.Worker](#constructordeprecated)构造函数。

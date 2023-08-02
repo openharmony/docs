@@ -88,12 +88,16 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
-    if (records.length !== 0) {
-      callback(event);
-      return true;
+    let data = event.getData();
+    if (!data) {
+      return false;
     }
-    return false;
+    let records: Array<udmf.UnifiedRecord> = data.getRecords();
+    if (!records || records.length <= 0) {
+      return false;
+    }
+    callback(event);
+    return true;
   }
 
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
