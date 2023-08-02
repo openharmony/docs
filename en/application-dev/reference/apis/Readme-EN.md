@@ -267,6 +267,7 @@
   - [@ohos.file.fileuri (File URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
+  - [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
@@ -296,8 +297,18 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
+  - [@ohos.bluetooth.a2dp (Bluetooth a2dp Module)(Recommended)](js-apis-bluetooth-a2dp.md)
+  - [@ohos.bluetooth.access (Bluetooth access Module)(Recommended)](js-apis-bluetooth-access.md)
+  - [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)(Recommended)](js-apis-bluetooth-baseProfile.md)
+  - [@ohos.bluetooth.ble (Bluetooth ble Module)(Recommended)](js-apis-bluetooth-ble.md)
+  - [@ohos.bluetooth.connection (Bluetooth connection Module)(Recommended)](js-apis-bluetooth-connection.md)
+  - [@ohos.bluetooth.constant (Bluetooth constant Module)(Recommended)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.hfp (Bluetooth hfp Module)(Recommended)](js-apis-bluetooth-hfp.md)
+  - [@ohos.bluetooth.hid (Bluetooth hid Module)(Recommended)(js-apis-bluetooth-hid.md)
+  - [@ohos.bluetooth.pan (Bluetooth pan Module)(Recommended)](js-apis-bluetooth-pan.md)
+  - [@ohos.bluetooth.socket (Bluetooth socket Module)(Recommended)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetooth.md)
-  - [@ohos.bluetoothManager (Bluetooth) (Recommended)](js-apis-bluetoothManager.md)
+  - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -391,6 +402,7 @@
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
 
 - Enterprise Device Management
+  - [Enterprise Device Management Overview (for System Applications Only)](enterpriseDeviceManagement-overview.md)
   - [@ohos.enterprise.accountManager(Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
