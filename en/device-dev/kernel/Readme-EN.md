@@ -1,6 +1,5 @@
 # Kernel
 
-- Kernel
     - [Kernel Overview](kernel-overview.md)
     - Mini-System Kernel (LiteOS-M)
         - [LiteOS-M Overview](kernel-mini-overview.md)
