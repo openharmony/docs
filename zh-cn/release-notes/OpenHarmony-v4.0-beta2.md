@@ -391,7 +391,7 @@ OpenHarmony 4.0版本标准系统能力持续完善：ArkUI进一步增强基础
 
 ### API 
 
-OpenHarmony 4.0 Beta2的API范围相比4.0 Beta1，API变更的清单请参见“[API差异报告](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/release-notes/api-diff/v4.0-beta1/Readme-CN.md)”。极少量接口的变更可能影响到已开发的应用（使用API 9或更早版本API开发的应用），变更影响的说明和接口的适配指导请参见“[changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta1/zh-cn/release-notes/changelogs/v4.0-beta2/Readme-CN.md)”。
+OpenHarmony 4.0 Beta2的API范围相比4.0 Beta1，API变更的清单请参见“[API差异报告](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/release-notes/api-diff/v4.0-beta2/Readme-CN.md)”。极少量接口的变更可能影响到已开发的应用（使用API 9或更早版本API开发的应用），变更影响的说明和接口的适配指导请参见“[changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/release-notes/changelogs/v4.0-beta2/Readme-CN.md)”。
 
 
 ### 特性变更
@@ -400,7 +400,7 @@ OpenHarmony 4.0 Beta2的API范围相比4.0 Beta1，API变更的清单请参见�
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
