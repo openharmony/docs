@@ -139,6 +139,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
@@ -189,5 +190,5 @@
 - [类型定义](ts-types.md)
 - 已停止维护的组件
   - [GridContainer](ts-container-gridcontainer.md)
-- 已停止维护的接口 
+- 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)
