@@ -968,7 +968,7 @@
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
-      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
+      - [@ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
