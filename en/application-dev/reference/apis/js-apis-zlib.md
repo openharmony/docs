@@ -240,7 +240,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
 
-| ID| Error Message
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 900001   | The Input source file is invalid.      |
 | 900002   | The Input destination file is invalid. |
