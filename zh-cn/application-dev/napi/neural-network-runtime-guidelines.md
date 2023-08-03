@@ -19,12 +19,12 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：OpenHarmony定义的标准设备，并且系统中内置的硬件加速器驱动，已通过HDI接口对接Neural Network Runtime。
 
-由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。在社区的[每日构建](http://ci.openharmony.cn/dailys/dailybuilds)下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
+由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。
 
 ### 环境搭建
 
 1. 打开Ubuntu编译服务器的终端。
-2. 把下载好的Native开发套件压缩包拷贝至当前用户根目录下。
+2. 把Native开发套件压缩包拷贝至当前用户根目录下。
 3. 执行以下命令解压Native开发套件的压缩包。
 ```shell
 unzip native-linux-{版本号}.zip
@@ -487,5 +487,6 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
 ## 相关实例
 
 第三方AI推理框架对接Neural Network Runtime的流程，可以参考以下相关实例：
-- [Tensorflow Lite接入NNRt Delegate开发指南](https://gitee.com/openharmony/neural_network_runtime/tree/master/example/deep_learning_framework)
-<!--no_check-->
+
+- [Tensorflow Lite接入NNRt Delegate开发指南](https://gitee.com/openharmony/ai_neural_network_runtime/tree/master/example/deep_learning_framework)
+
