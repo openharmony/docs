@@ -24,7 +24,6 @@
         - [Using Cargo2gn](subsys-build-cargo2gn-guide.md)
       - [FAQs](subsys-build-FAQ.md)
 - [ArkCompiler Development](subsys-arkcompiler-guide.md)
-- [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
   - [Common Component Development](subsys-graphics-common-guide.md)
