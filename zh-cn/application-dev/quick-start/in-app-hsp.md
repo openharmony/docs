@@ -1,11 +1,11 @@
 # 应用内HSP开发指导
 
-应用内`HSP`指的是专门为某一应用开发的`HSP`，只能被该应用内部其他`HAP`/`HSP`使用，用于应用内部代码、资源的共享。
-应用内`HSP`跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
+应用内HSP指的是专门为某一应用开发的HSP，只能被该应用内部其他HAP/HSP使用，用于应用内部代码、资源的共享。
+应用内HSP跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 
 ## 开发应用内HSP
 
-通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的`HSP`模块为例。基本的工程目录结构大致如下：
+通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构大致如下：
 ```
 library
 ├── src
@@ -17,14 +17,14 @@ library
 │       └── module.json5
 └── oh-package.json5
 ```
-模块`module.json5`中的`"type"`标识模块类型，`HSP`的`"type"`是`"shared"`。
+模块`module.json5`中的`"type"`标识模块类型，HSP的`"type"`是`"shared"`。
 ```json
 {
     "type": "shared"
 }
 ```
 
-`HSP`通过在入口文件中导出接口，对外提供能力。入口文件在模块`oh-package.json5`的`"main"`中配置。例如：
+HSP通过在入口文件中导出接口，对外提供能力。入口文件在模块`oh-package.json5`的`"main"`中配置。例如：
 ```json
 {
     "main": "./src/main/ets/index.ets"
@@ -81,11 +81,11 @@ export struct MyTitleBar {
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 
-#### 通过$r访问HSP中资源
-在组件中，经常需要使用字符串、图片等资源。`HSP`中的组件需要使用资源时，一般将其所用资源放在HSP包内，以符合高内聚低耦合的原则。可以通过`$r`/`$rawfile`访问本模块`resources`目录下的资源。
+### 通过$r访问HSP中资源
+在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，以符合高内聚低耦合的原则。可以通过`$r`/`$rawfile`访问本模块`resources`目录下的资源。
 
 不推荐使用相对路径的方式，容易引用错误路径。例如：
-在`HSP`模块中使用`Image("common/example.png")`，实际上该`Image`组件访问的是`HSP调用方`（如`entry`）下的资源`entry/src/main/ets/common/example.png`。
+在HSP模块中使用`Image("common/example.png")`，实际上该`Image`组件访问的是HSP调用方（如`entry`）下的资源`entry/src/main/ets/common/example.png`。
 
 ### 导出HSP中资源
 跨包访问HSP内资源时，推荐实现一个资源管理类，以封装对外导出的资源，通过该方式：
@@ -114,7 +114,7 @@ export { ResManager } from './ResManager'
 ```
 
 ### 导出native方法
-在`HSP`中也可以包含`C++`编写的`so`。对于`so`中的`native`方法，`HSP`通过间接的方式导出，以导出`libnative.so`的乘法接口`multi`为例：
+在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`libnative.so`的乘法接口`multi`为例：
 ```ts
 // library/src/main/ets/utils/nativeTest.ts
 import native from "libnative.so"
