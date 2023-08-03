@@ -86,13 +86,13 @@ The application file paths obtained by the preceding contexts are different.
 
   | Name| Path|
   | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle/|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/cache/|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/files/|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/preferences/|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/temp/|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database/|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles/|
+  | bundleCodeDir | \<Path prefix>/el1/bundle|
+  | cacheDir | \<Path prefix>/\<Encryption level>/base/cache|
+  | filesDir | \<Path prefix>/\<Encryption level>/base/files|
+  | preferencesDir | \<Path prefix>/\<Encryption level>/base/preferences|
+  | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
+  | databaseDir | \<Path prefix>/\<Encryption level>/database|
+  | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
 
   The sample code is as follows:
 
@@ -110,6 +110,9 @@ The application file paths obtained by the preceding contexts are different.
         let distributedFilesDir = applicationContext.distributedFilesDir;
         let preferencesDir = applicationContext.preferencesDir;
         ...
+        // Obtain the application file path.
+        let filePath = tempDir + 'test.txt';
+        console.info(`filePath: ${filePath}`);
       }
     }
     ```
@@ -118,13 +121,13 @@ The application file paths obtained by the preceding contexts are different.
 
   | Name| Path|
   | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle/|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache/|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files/|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences/|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp/|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**/|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**/|
+  | bundleCodeDir | \<Path prefix>/el1/bundle|
+  | cacheDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache|
+  | filesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files|
+  | preferencesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences|
+  | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
+  | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
+  | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
 
   The sample code is as follows:
 
@@ -141,6 +144,9 @@ The application file paths obtained by the preceding contexts are different.
       let distributedFilesDir = this.context.distributedFilesDir;
       let preferencesDir = this.context.preferencesDir;
       ...
+      // Obtain the application file path.
+      let filePath = tempDir + 'test.txt';
+      console.info(`filePath: ${filePath}`);
     }
   }
   ```
