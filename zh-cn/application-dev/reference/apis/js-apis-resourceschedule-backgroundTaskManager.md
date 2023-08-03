@@ -48,7 +48,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -84,7 +84,6 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
 获取延迟挂起的剩余时间。使用callback形式返回。
-//// 参考最新开发指南，进行修改
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -97,7 +96,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -147,11 +146,11 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法，回调函数，返回本次延迟挂起的剩余时间，单位为毫秒。 |
+| Promise&lt;number&gt; | 指定的Promise回调方法，返回本次延迟挂起的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -196,7 +195,7 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -242,7 +241,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -325,7 +324,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -395,7 +394,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -454,7 +453,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -501,12 +500,12 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息,包括资源类型，超时时间等信息。 |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息，包括资源类型，超时时间等信息。 |
 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -549,7 +548,7 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
