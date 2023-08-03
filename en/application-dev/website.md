@@ -1836,7 +1836,7 @@
 - FAQs
   - [Full SDK Compilation Guide](faqs/full-sdk-compile-guide.md)
   - [Guide to Switching to Full SDK](faqs/full-sdk-switch-guide.md)
-  - [Using Native APIs (NDK) of the OpenHarmony SDK in a CMake Project](faqs/howto-migrate-cmake-with-ohosndk.md)
+  - [Using Native APIs (NDK) of the OpenHarmony SDK in a CMake Project](faqs/cmake-with-ndk.md)
   - [Application Model Development](faqs/faqs-ability.md)
   - ArkUI Framework Development (ArkTS)
     - [ArkTS Syntax Usage](faqs/faqs-arkui-arkts.md)
