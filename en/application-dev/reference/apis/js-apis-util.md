@@ -2080,7 +2080,7 @@ let result = that.encodeSync(array);
 
 ### encodeToStringSync<sup>9+</sup>
 
-encodeToStringSync(src: Uint8Array): string
+encodeToStringSync(src: Uint8Array, options?: Type): string
 
 Encodes the input content.
 
@@ -2091,6 +2091,7 @@ Encodes the input content.
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | Yes  | Uint8Array to encode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2102,14 +2103,14 @@ Encodes the input content.
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-let result = that.encodeToStringSync(array);
+let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+let result = that.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
 ### decodeSync<sup>9+</sup>
 
-decodeSync(src: Uint8Array | string): Uint8Array
+decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 Decodes the input content.
 
@@ -2120,6 +2121,7 @@ Decodes the input content.
 | Name| Type                          | Mandatory| Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2131,8 +2133,8 @@ Decodes the input content.
 
   ```js
 let that = new util.Base64Helper();
-let buff = 'czEz';
-let result = that.decodeSync(buff);
+let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+let result = that.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -2172,7 +2174,7 @@ that.encode(array).then(val=>{
 
 ### encodeToString<sup>9+</sup>
 
-encodeToString(src: Uint8Array): Promise&lt;string&gt;
+encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 Encodes the input content asynchronously.
 
@@ -2183,6 +2185,7 @@ Encodes the input content asynchronously.
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+| options<sup>10+</sup>    | [Type](#type10) | No  |  Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2194,16 +2197,16 @@ Encodes the input content asynchronously.
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([115,49,51]);
-that.encodeToString(array).then(val=>{    
-    console.log(val)
+let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+that.encodeToString(array, util.Type.MIME).then(val=>{
+  // Add information as required.
 })
   ```
 
 
 ### decode<sup>9+</sup>
 
-decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
+decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 Decodes the input content asynchronously.
 
@@ -2214,6 +2217,7 @@ Decodes the input content asynchronously.
 | Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode asynchronously.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2225,14 +2229,24 @@ Decodes the input content asynchronously.
 
   ```js
 let that = new util.Base64Helper();
-let array = new Uint8Array([99,122,69,122]);
-let rarray = new Uint8Array([115,49,51]);
-that.decode(array).then(val=>{    
-    for (var i = 0; i < rarray.length; i++) {        
-        console.log(val[i].toString())
-    }
+let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+that.decode(array, util.Type.MIME).then(val=>{
+  // Add information as required.
 })
   ```
+
+
+## Type<sup>10+</sup>
+
+Enumerates the Base64 encoding formats.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name  | Value                    | Description            |
+| -------- | ------------------------ | ---------------- |
+| BASIC | 0 | Basic format.|
+| MIME | 1 | MIME format.|
+
 
 ## types<sup>8+</sup>
 

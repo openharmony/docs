@@ -926,6 +926,115 @@ async function Demo() {
 }
 ```
 
+### marshalling<sup>10+</sup>
+
+marshalling(sequence: rpc.MessageSequence): void
+
+Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                                                 | Mandatory| Description                                    |
+| ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
+
+**Error codes**
+
+For details about the error codes, see [ResponseCode](#responsecode).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let parcelable = new MySequence(pixelmap);
+    let data = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+}
+```
+
+### unmarshalling<sup>10+</sup>
+
+unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
+
+Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                                                 | Mandatory| Description                                    |
+| ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+
+**Error codes**
+
+For details about the error codes, see [ResponseCode](#responsecode).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | If the input parameter invalid              |
+| 62980097 | If the ipc error              |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence {
+    pixel_map;
+    constructor(pixelmap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    async unmarshalling(messageSequence) {
+        await image.unmarshalling(messageSequence).then(async (pixelMap) => {
+            this.pixel_map = pixelMap;
+        })
+        return true;
+    }
+}
+async function Demo() {
+    let pixel_map = undefined;
+    let ret = new MySequence(pixel_map);
+    let data = rpc.MessageSequence.create();
+    await data.readParcelable(ret);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -1590,7 +1699,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixeMap** objects.|
+| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixelMap** objects.|
 
 **Example**
 
@@ -1618,7 +1727,7 @@ Creates an array of **PixelMap** objects based on the default parameters. This A
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
 
 **Example**
 
@@ -1641,7 +1750,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | Yes| Image decoding parameters.|
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
 
 **Example**
 
@@ -2795,7 +2904,29 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night.    |
 | ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400.    |
 | F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8.    |
-
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | Date and time.              |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS timestamp.       |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS date stamp.        |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | Image description.              |
+| MAKE<sup>10+</sup>                       | "Make"                 | Vendor.                 |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | Photo mode.             |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | Sensitivity type.            |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | Standard output sensitivity.   |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | Recommended exposure index.   |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO speed.   |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | Aperture value.   |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | Exposure bias value.   |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | Metering mode.   |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | Light source.   |
+| FLASH <sup>10+</sup>                     | "Flash"                    | Flash status.   |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | Focal length.   |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | User comment.   |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | Pixel X dimension.   |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | Pixel Y dimension.   |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | White balance.   |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | Focal length in 35mm film.   |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | Capture mode.   |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | Physical aperture.  |
 
 ## ImageFormat<sup>9+</sup>
 
