@@ -45,22 +45,22 @@ param set musl.log.enable true
 
 #### 2. 加载器log功能
 加载器是libc中负责程序引导，dlopen，dlclose等动态链接程序，如需要查看动态加载过程异常，可以打开加载器log。用法如下：
-* 使能全部应用的加载器log，谨慎使用, log量比较大
+* 使能全部应用的加载器log，log量比较大，请谨慎使用。
 ```
 param set musl.log.ld.app true
 ```
-* 使能指定应用的加载器log，{app_name}需要替换成真实需要打印log的应用名字
+* 使能指定应用的加载器log，{app_name}需要替换成真实需要打印log的应用名字。
 ```
 param set musl.log.ld.all false
 param set musl.log.ld.app.{app_name} true
 ```
-* 打印全部应用除指定名字应用外的加载器日志
+* 打印全部应用除指定名字应用外的加载器日志。
 ```
 param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
 
-## musl不支持接口列表
+## musl不支持接口列表。
 
 [native api中没有导出的符号列表](musl-peculiar-symbol.md)
 
