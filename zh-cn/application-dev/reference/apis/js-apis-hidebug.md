@@ -175,23 +175,30 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 ```js
 import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
-import featureAbility from '@ohos.ability.featureAbility'
+import common from '@ohos.app.ability.common'
 
-let context = featureAbility.getContext();
-context.getFilesDir().then((data) => {
-  var path = data + "/serviceInfo.txt";
-  console.info("output path: " + path);
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  var serviceId = 10;
-  var args = new Array("allInfo");
-  try {
-    hidebug.getServiceDump(serviceId, file.fd, args);
-  } catch (error) {
-    console.info(error.code);
-    console.info(error.message);
-  }
-  fs.closeSync(file);
-})
+let applicationContext: common.Context;
+try {
+  applicationContext = this.context.getApplicationContext();
+} catch (error) {
+  console.info(error.code);
+  console.info(error.message);
+}
+
+var filesDir = applicationContext.filesDir;
+var path = filesDir + "/serviceInfo.txt";
+console.info("output path: " + path);
+let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+var serviceId = 10;
+var args = new Array("allInfo");
+
+try {
+  hidebug.getServiceDump(serviceId, file.fd, args);
+} catch (error) {
+  console.info(error.code);
+  console.info(error.message);
+}
+fs.closeSync(file);
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
