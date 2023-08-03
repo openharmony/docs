@@ -14,7 +14,6 @@ The bottom-layer implementation is changed. The result value of **getAllBundleIn
 **Adaptation Guide**
 
 If your application uses **getAllBundleInfo** in **@ohos.bundle.d.ts**, replace it with **getAllBundleInfo** in **@ohos.bundle.bundleManager.d.ts**. For details about how to use the new API, see [API Reference](../../../application-dev/reference/apis/js-apis-bundleManager.md#bundlemanagergetallbundleinfo).
-
 ```ets
 import bundleManager from '@ohos.bundle.bundleManager';
 ```
@@ -34,7 +33,6 @@ The bottom-layer implementation is changed. The result value of **getAllApplicat
 **Adaptation Guide**
 
 If your application uses **getAllApplicationInfo** in **@ohos.bundle.d.ts**, replace it with **getAllApplicationInfo** in **@ohos.bundle.bundleManager.d.ts**. For details about how to use the new API, see [API Reference](../../../application-dev/reference/apis/js-apis-bundleManager.md#bundlemanagergetallapplicationinfo).
-
 ```ets
 import bundleManager from '@ohos.bundle.bundleManager';
 ```
@@ -113,13 +111,13 @@ To use **getAdditionalInfo**, import the **bundleManager** module.
 import bundleManager form '@ohos.bundle.bundleManager'
 ```
 
-## cl.bundlemanager.7 proxyDatas under Schema Renamed proxyData
+## cl.bundlemanager.7 proxyDatas Renamed proxyData in the module.json5 File
 
 **proxyDatas** is renamed **proxyData**.
 
 **Change Impact**
 
-After an update to the new image version, **proxyDatas** is renamed **proxyData**. Currently **proxyDatas** can still be used, but it will be deprecated soon. You are advised to replace **proxyDatas** with **proxyData** as soon as possible.
+After an update to the new SDK version, **proxyDatas** is **renamed proxyData**. If your application is not adapted, the build will fail.
 
 **Key API/Component Changes**
 
@@ -127,4 +125,5 @@ After an update to the new image version, **proxyDatas** is renamed **proxyData*
 
 **Adaptation Guide**
 
-Replace **proxyDatas** with **proxyData**.
+Replace **proxyDatas** with **proxyData**. The content of **proxyDatas** does not need to be changed.
+
