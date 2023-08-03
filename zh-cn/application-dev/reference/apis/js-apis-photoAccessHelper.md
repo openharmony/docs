@@ -341,7 +341,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |  
+| 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
@@ -1077,7 +1077,7 @@ async function example() {
     //file had changed, do something
   }
   // 注册onCallback1监听
-  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1); 
+  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
   // 注册onCallback2监听
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
@@ -1539,7 +1539,7 @@ commitModify(): Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**示例：**  
+**示例：**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3725,6 +3725,7 @@ async function example() {
 | POSITION  | 'position'            | 文件位置类型。**系统接口**：此接口为系统接口。                               |
 | DATE_TRASHED  | 'date_trashed'  | 删除日期（删除文件时间距1970年1月1日的秒数值）。**系统接口**：此接口为系统接口。                 |
 | HIDDEN  | 'hidden'            | 文件的隐藏状态。**系统接口**：此接口为系统接口。                               |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。            |
 
 ## AlbumKeys
 
@@ -3746,6 +3747,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。**系统接口**：此接口为系统接口。  |
+| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。   |
 
 ## CreateOptions
 
