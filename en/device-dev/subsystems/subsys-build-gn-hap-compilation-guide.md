@@ -17,7 +17,7 @@ The HAP provides HAP build functions and supports FA and stage models.
 
 ## How to Develop
 
-### Templates
+### OpenHarmony Templates
 #### ohos_hap
 
 This template declares a HAP target, which generates a HAP that will be packaged into the system image.
@@ -84,7 +84,7 @@ Resource files, which are stored in the **assets/entry/resources** directory for
 
 1. Save the developed application example to the **applications/standard/** directory.
 
-2. Configure the GN script **applications/standard/example/BUILD.gn**. <br>The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
+2. Configure the GN script **applications/standard/example/BUILD.gn**.<br>The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
    ```
    import("//build/ohos.gni") # Import ohos.gni.
 
@@ -103,7 +103,7 @@ Resource files, which are stored in the **assets/entry/resources** directory for
    }
    ```
 
-3. Modify the **applications/standard/hap/ohos.build** file. <br>The following is an example:
+3. Modify the **applications/standard/hap/ohos.build** file.<br>The following is an example:
    ```
    {
      "subsystem": "applications",
