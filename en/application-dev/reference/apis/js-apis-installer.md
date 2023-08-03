@@ -16,7 +16,11 @@ import installer from '@ohos.bundle.installer';
 
 | Permission                          | Permission Level   | Description            |
 | ------------------------------ | ----------- | ---------------- |
-| ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall bundles.|
+| ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.|
+| ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | Permission to install enterprise InHouse applications.|
+| ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE | system_core | Permission to install enterprise MDM applications.|
+| ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE | system_core | Permission to install enterprise Normal applications.|
+
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
