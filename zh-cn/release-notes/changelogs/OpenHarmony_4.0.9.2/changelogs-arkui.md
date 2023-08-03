@@ -113,9 +113,9 @@ Text('Hello World')
 
 ## cl.arkui.3 RowSplit/ColumnSplit组件布局与行为变更
 
-1、RowSplit/ColumnSplit交叉轴方向未设置大小时，由当前的适应父节点大小改为适应子节点大小；  
-2、RowSplit/ColumnSplit分割线拖动后子节点行为变更，变更前不能对子节点进行挤压，只能进行平移，
-变更后分割线可以在其左右两边子节点进行压缩和拉伸；  
+1、RowSplit/ColumnSplit交叉轴方向未设置大小时，由当前的适应父节点大小改为适应子节点大小。  
+2、RowSplit/ColumnSplit分割线拖动后子节点行为变更，变更前拖动分割线时，子节点不压缩和拉伸，只进行平移；
+变更后拖动分割线时，子节点拉伸和压缩。  
 3、使用clip属性对子组件内容超出组件区域进行裁剪时，RowSplit裁剪区域由子组件区域的右侧改为子组件区域的左右两侧，
 ColumnSplit裁剪区域由子组件区域的下侧改为子组件区域的上下两侧。
 
