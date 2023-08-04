@@ -41,8 +41,8 @@
   - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
   - [Getting Started with ArkTS](arkts-get-started.md)
-  - [Introduction to ArkTS](arkts/introduction-to-arkts.md)
-  - [TypeScript to ArkTS Migration Guide](arkts/typescript-to-arkts-migration-guide.md)
+  - [Introduction to ArkTS](introduction-to-arkts.md)
+  - [TypeScript to ArkTS Migration Guide](typescript-to-arkts-migration-guide.md)
   - UI paradigms
     - Basic Syntax
       - [Basic Syntax Overview](arkts-basic-syntax-overview.md)

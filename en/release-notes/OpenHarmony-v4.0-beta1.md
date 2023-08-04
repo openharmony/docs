@@ -382,7 +382,7 @@ This version has the following updates to OpenHarmony 3.2 Release.
 
 ### APIs
 
-For details about the API changes over OpenHarmony 3.2 Release, see [API Differences](/api-diff/v4.0-beta1/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](changelogs/v4.0-beta1/Readme-EN.md).
+For details about the API changes over OpenHarmony 3.2 Release, see [API Differences](api-diff/v4.0-beta1/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](changelogs/v4.0-beta1/Readme-EN.md).
 
 
 ### Feature Updates

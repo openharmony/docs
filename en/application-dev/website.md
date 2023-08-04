@@ -1397,7 +1397,7 @@
     - Components No Longer Maintained 
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - APIs No Longer Maintained
-    - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
+      - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
   - Component Reference (JavaScript-compatible Web-like Development Paradigm - ArkUI.Full)
     - Universal Component Information
       - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
