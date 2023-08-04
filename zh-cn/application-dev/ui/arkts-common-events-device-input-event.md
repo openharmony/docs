@@ -102,7 +102,7 @@ onMouse(event: (event?: MouseEvent) => void)
 鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常见用于开发者自定义的鼠标行为逻辑处理。
 
 
-开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（screenX/screenY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
+开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
 
 
 >**说明：**
@@ -134,7 +134,7 @@ struct MouseExample {
           'button = ' + event.button + '\n' +
           'action = ' + event.action + '\n' +
           'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-          'screenXY=(' + event.screenX + ',' + event.screenY + ')';
+          'windowXY=(' + event.windowX + ',' + event.windowY + ')';
         })
       Divider()
       Text(this.buttonText).fontColor(Color.Green)
@@ -151,7 +151,7 @@ struct MouseExample {
       'button = ' + event.button + '\n' +
       'action = ' + event.action + '\n' +
       'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-      'screenXY=(' + event.screenX + ',' + event.screenY + ')';
+      'windowXY=(' + event.windowX + ',' + event.windowY + ')';
     })
   }
 }
@@ -190,7 +190,7 @@ Button(this.isHovered ? 'Hovered!' : 'Not Hover')
     'button = ' + event.button + '\n' +
     'action = ' + event.action + '\n' +
     'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-    'screenXY=(' + event.screenX + ',' + event.screenY + ')';
+    'windowXY=(' + event.windowX + ',' + event.windowY + ')';
   })
 ```
 

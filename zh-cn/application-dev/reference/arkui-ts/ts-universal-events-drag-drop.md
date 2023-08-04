@@ -49,8 +49,6 @@
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| getX() | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
-| getY() | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 | useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata) | 从DragEvent中获取拖拽相关数据。 |
@@ -61,6 +59,12 @@
 | getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。 |
 | getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
 | getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。 |
+| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。 |
+| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。 |
+| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
+| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
+| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
 
 ## DragRet<sup>10+</sup>枚举说明
 
