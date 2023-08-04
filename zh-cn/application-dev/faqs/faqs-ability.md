@@ -221,7 +221,7 @@ Failure\[INSTALL\_FAILED\_SIZE\_TOO\_LARGE\] error while deploying hap？
 
 **参考链接**
 
-[cacheDir](../application-models/application-context-stage.md#获取应用开发路径)
+[cacheDir](../application-models/application-context-stage.md#获取应用文件路径)
 
 ## 服务卡片生命周期回调函数在哪个js文件中调用
 
@@ -266,7 +266,7 @@ DevEco Studio默认下载是public-sdk。
 
 **参考链接**
 
-[获取应用开发路径](../application-models/application-context-stage.md#获取应用开发路径)
+[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)
 
 
 ## FA卡片上架后在用户的服务中心展示时可否触发生命周期，从而实现用户没有打开过FA应用的情况下获取到用户的登录信息  
