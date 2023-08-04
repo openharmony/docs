@@ -23,8 +23,8 @@
 | OS媒体 | 枚举声明变更 | [音频输出流类型由AUDIOSTREAM_TYPE_RERNDERER更名为AUDIOSTREAM_TYPE_RENDERER](changelogs-multimedia.md#clmultimedia1-音频c接口流类型枚举声明变更) | 
 | OS媒体 | 枚举值变更 | [1.&nbsp;OH_AudioStream_Usage变更，删除了AUDIOSTREAM_USAGE_MEDIA枚举值，将AUDIOSTREAM_USAGE_COMMUNICATION枚举值变更为AUDIOSTREAM_USAGE_VOICE_COMMUNICATION和AUDIOSTREAM_USAGE_VOICE_ASSISTANT。](changelogs-multimedia.md#clmultimedia2-oh_audiostream_usage变更)<br/>[2.&nbsp;OH_AudioStream_SampleFormat变更，OH_AudioStream_SampleFormat枚举中删除了AUDIOSTREAM_SAMPLE_F32LE枚举值。](changelogs-multimedia.md#clmultimedia3-oh_audiostream_sampleformat变更删除audiostream_sample_f32le) | 
 | OS媒体 | 接口入参变更 | [getAudioEffectInfoArray接口入参变更，删除Content&nbsp;type入参。](changelogs-multimedia.md#clmultimedia4-getaudioeffectinfoarray接口入参变更删除content-type入参) | 
-| 程序访问控制 | 权限调整 | [“电话”、“信息”、“通话记录”权限组的权限仅对系统应用开放。](changelogs-accesstoken.md#claccesstoken2-电话信息通话记录权限组的权限申请方式调整) | 
-| 程序访问控制 | 权限组拆分 | [原“媒体和文件”权限组内权限组进行调整，MEDIA_LOCATION&nbsp;划分为图片和视频权限组，READ_MEDIA&nbsp;和WRITE_MEDIA&nbsp;划分为文件权限组。](changelogs-accesstoken.md#claccesstoken1-媒体和文件权限组拆分) | 
+| 程序访问控制 | 权限调整 | [“电话”、“信息”、“通话记录”权限组的权限仅对系统应用开放。](changelogs-accessToken.md#claccesstoken2-电话信息通话记录权限组的权限申请方式调整) | 
+| 程序访问控制 | 权限组拆分 | [原“媒体和文件”权限组内权限组进行调整，MEDIA_LOCATION&nbsp;划分为图片和视频权限组，READ_MEDIA&nbsp;和WRITE_MEDIA&nbsp;划分为文件权限组。](changelogs-accessToken.md#claccesstoken1-媒体和文件权限组拆分) | 
 | 输入法框架 | 返回错误码变更 | [1.ohos.InputMethod中on('imeShow')系统接口权限校验失败返回错误码变更。](changelogs-imf.md#climf1-ohosinputmethod中onimeshow系统接口权限校验失败返回错误码变更)<br/>[2.ohos.InputMethod中on('imeHide')系统接口权限校验失败返回错误码变更。](changelogs-imf.md#climf2-ohosinputmethod中onimehide系统接口权限校验失败返回错误码变更) | 
 | 主题框架 | 接口实例名称变更 | [锁屏管理的包名为'@ohos.screenLock'，在导入时，使用的代码实例由screenlock变更为screenLock。](changelogs-screenlock.md#clscreenlock1-代码实例名称变更) | 
 | 分布式数据管理 | 接口/组件变更 | [ValuesBucket由系统接口变更为公共接口。](changelogs-distributeddatamgr.md#cldistributeddatamgr1-valuesbucket由系统接口变更为公共接口) | 
