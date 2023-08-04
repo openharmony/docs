@@ -32,7 +32,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/media-application-overview.md)
 - [Security](security/userauth-overview.md)
-- [AI](ai/mindspore-lite-js-guidelines.md)
+- [AI](ai/ai-overview.md.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
 - [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/data-mgmt-overview.md)
