@@ -50,7 +50,7 @@ Creates a **PasteData** object of a custom type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mimeType | string | Yes| MIME type of custom data.|
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type.|
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.|
 
 **Return value**
@@ -59,12 +59,20 @@ Creates a **PasteData** object of a custom type.
 | -------- | -------- |
 | [PasteData](#pastedata) |  **PasteData** object.|
 
-**Example**
+**Example 1**
 
-  ```js
-  let dataXml = new ArrayBuffer(256);
+```js
+let dataXml = new ArrayBuffer(256);
 let pasteData = pasteboard.createData('app/xml', dataXml);
-  ```
+```
+
+**Example 2**
+
+```js
+let dataText = 'hello';
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
+```
+
 
 ## pasteboard.createRecord<sup>9+</sup>
 
@@ -78,7 +86,7 @@ Creates a **PasteDataRecord** object of the custom type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mimeType | string | Yes| MIME type of custom data.|
+| mimeType | string | Yes| MIME type of custom data. The value can a predefined MIME type listed in [Constants](#constants), including HTML, WANT, plain text, URI, and pixel map, or a custom MIME type. |
 | value | [ValueType](#valuetype9) | Yes| Content of custom data.|
 
 **Return value**
@@ -87,12 +95,19 @@ Creates a **PasteDataRecord** object of the custom type.
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | New **PasteDataRecord** object of the custom type.|
 
-**Example**
+**Example 1**
 
-  ```js
+```js
 let dataXml = new ArrayBuffer(256);
 let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
-  ```
+```
+
+**Example 2**
+
+```js
+let dataUri = 'dataability:///com.example.myapplication1/user.txt';
+let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, dataUri);
+```
 
 ## pasteboard.getSystemPasteboard
 
@@ -1286,7 +1301,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
@@ -1329,7 +1344,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');
