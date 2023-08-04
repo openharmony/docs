@@ -22,7 +22,7 @@ The following exemplifies how to burn an image to Hi3516DV300 using HiTool. You 
 1. Prepare the files to be burnt.
    1. On the client platform, create a folder for storing the files to be burnt, for example, **D:\liteos** or **D:\linux**.
    2. Save the burning configuration file and boot file to the new folder.
-       - For L1_LiteOS, the burning configuration file is **L1_3516_liteos.xml**, and the boot file is **[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)**.
+       - For the small system with the LiteOS kernel, the burning configuration file is **L1_3516_liteos.xml**, and the boot file is **[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)**.
           You need to prepare the **L1_3516_liteos.xml** file on your own by applying the template below:
 
           
@@ -35,7 +35,7 @@ The following exemplifies how to burn an image to Hi3516DV300 using HiTool. You 
           <Part Sel="1" PartitionName="" FlashType="emmc" FileSystem="none" Start="60M" Length="50M" SelectFile="D:\liteos\userfs_vfat.img"/>
           </Partition_Info>
           ```
-       - For L1_Linux, the burning configuration file is **L1_3516_linux.xml**, and the boot file is **[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)**.
+       - For the small system with the Linux kernel, the burning configuration file is **L1_3516_linux.xml**, and the boot file is **[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)**.
           You need to prepare the **L1_3516_linux.xml** file on your own by applying the template below:
 
           
@@ -53,8 +53,8 @@ The following exemplifies how to burn an image to Hi3516DV300 using HiTool. You 
       
       For the Hi3516 development board, the files required for burning of the mini system are as follows:
 
-       - L1_LiteOS: **OHOS_Image.bin**, **rootfs_vfat.img**, and **userfs_vfat.img**
-       - 1_Linux: **uImage_hi3516dv300_smp**, **rootfs_ext4.img**, **userfs_ext4.img**, and **userdata_ext4.img**
+       - Small system with the LiteOS kernel: **OHOS_Image.bin**, **rootfs_vfat.img**, and **userfs_vfat.img**
+       - Small system with the Linux kernel: **uImage_hi3516dv300_smp**, **rootfs_ext4.img**, **userfs_ext4.img**, and **userdata_ext4.img**
 
 2. Burn the image files using HiTool.
    1. Open HiTool.
@@ -77,7 +77,7 @@ The following exemplifies how to burn an image to Hi3516DV300 using HiTool. You 
       
       If **hisilicon \#** is displayed on the terminal tool page, the serial port of the development board is connected.
    3. Copy the following startup parameters in the serial port terminal tool and press **Enter** to complete the setup.
-       - Startup parameters corresponding to L1_LiteOS:
+       - Startup parameters corresponding to the small system with the LiteOS kernel:
          
           ```
           setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800;go 0x80000000";
@@ -85,7 +85,7 @@ The following exemplifies how to burn an image to Hi3516DV300 using HiTool. You 
           saveenv
           sa;reset
           ```
-       - Startup parameters corresponding to L1_Linux:
+       - Startup parameters corresponding to small system with the Linux kernel:
          
           ```
           setenv bootargs "mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),9M(kernel),50M(rootfs),50M(userfs),1024M(userdata)"

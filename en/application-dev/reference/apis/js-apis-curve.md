@@ -41,7 +41,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name               | Description:                                                        |
+| Name               | Description                                                        |
 | ------------------- | ------------------------------------------------------------ |
 | Linear              | The animation speed keeps unchanged.                          |
 | Ease                | The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.|
@@ -279,10 +279,10 @@ Creates a custom curve.
 
 ```ts
 import Curves from '@ohos.curves'
-interpolate(fraction) {
-    return Math.sqrt(fraction);
+let interpolate = function(fraction) {
+    return Math.sqrt(fraction)
   }
-private curve = Curves.customCurve(this.interpolate) // Create a custom curve.
+let curve = Curves.customCurve(interpolate) // Create a custom interpolation curve.
 ```
 
 
