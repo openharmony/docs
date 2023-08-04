@@ -220,7 +220,7 @@ struct GridExample {
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = []
+  @State numbers: string[] = []
   scroller: Scroller = new Scroller()
   @State text: string = 'drag'
 
@@ -256,11 +256,6 @@ struct GridExample {
               .width(80)
               .height(80)
               .textAlign(TextAlign.Center)
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Up) {
-                  this.text = day
-                }
-              })
           }
         })
       }
@@ -275,6 +270,7 @@ struct GridExample {
       .height(300)
       .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
+        this.text = this.numbers[itemIndex]
         return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
       })
       .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
