@@ -39,7 +39,6 @@
     }
     ```
 
-    ![datePicker](../../../application-dev/reference/arkui-ts/figures/datePicker.gif)
 
 2. @State、@Provide、 @Link和@Consume四种状态变量的数据类型声明只能由简单数据类型或引用数据类型的其中一种构成。
 
