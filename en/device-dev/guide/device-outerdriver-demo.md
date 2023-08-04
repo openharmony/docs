@@ -41,7 +41,7 @@ You can configure the device driver description in the configuration file at **.
 
 The **device\_info.hcs**  file contains all necessary information for registering drivers in the input driver model with the HDF. You do not need to make any modification for the information unless otherwise required in special scenarios. The private configuration data of each driver uses the **deviceMatchAttr**  field to match the **match\_attr**  field in the **input\_config.hcs**  file.
 
-The input-related fields in the configuration file are as follows. For details about these fields, see  [Driver Development](../driver/driver-hdf-development.md).
+The input-related fields in the configuration file are as follows. For details about these fields, see  [Driver Development](../driver/driver-overview-foundation.md).
 
 ```
 input :: host {
