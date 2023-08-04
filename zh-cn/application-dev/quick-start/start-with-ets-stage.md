@@ -45,6 +45,7 @@
    ![targetSdkVersion](figures/targetSdkVersion.png)
 
 7. 在模块级**entry &gt; build-profile.json5**文件中，将targets字段下的runtimeOS配置删除。
+
    ![deleteRuntimeOS](figures/deleteRuntimeOS.png)
 
 8. 单击**Sync Now**完成同步。此时工程对应为API 10的OpenHarmony工程。
