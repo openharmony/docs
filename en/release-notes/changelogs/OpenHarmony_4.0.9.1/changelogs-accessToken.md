@@ -1,22 +1,21 @@
 # Application Access Control Subsystem Changelog
 
 ## cl.accessToken.1 Change of the Media and Files Permission Group
-The original Media and File permission group contains the following permissions:
+The original **Media and File** permission group contains the following permissions:
 - ohos.permission.MEDIA_LOCATION
 - ohos.permission.READ_MEDIA
 - ohos.permission.WRITE_MEDIA
 
 Changed the permission group as follows:
-- Added **ohos.permission.MEDIA_LOCATION** to the Images and Video permission group.
-- Added **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** to the Documents permission group.
-
+- Moved **ohos.permission.MEDIA_LOCATION** to the **Images and Videos** permission group.
+- Moved **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** to the **Documents** permission group.
 
 **Change Impact**
 
-The dialog box for requesting permissions is displayed by permission group.
+The permission group rather than the permission is presented in the dialog box for requesting permissions.
 
-- Before the change, if the three permissions are applied for an application, a dialog box for  requesting the media and file permissions will be displayed only once.
-- After the change, if the three permissions are applied for an application, a dialog box for  requesting the image and video permissions and a dialog box for  requesting the document permission will be displayed.
+- Before the change, if the three permissions are applied for an application, a dialog box for requesting the media and file permissions will be displayed only once.
+- After the change, if the three permissions are applied for an application, a dialog box for requesting the **Images and Videos** permissions and a dialog box for requesting the **Documents** permission will be displayed.
 
 **Key API/Component Changes**
 
@@ -41,8 +40,8 @@ Permission groups after the change:
 
 N/A
 
-## cl.accessToken.2 Change of the Permission Requesting Modes of the Telephony, Messaging, and Call Logs Permission Groups
-The permissions of the Telephony, Messaging, and Call Logs permission groups are available only to system applications. The three permission groups contain the following permissions:
+## cl.accessToken.2 Change of the Permission Requesting Modes of the Phone, Messaging, and Call Logs Permission Groups
+ The **Phone**, **Messaging**, and **Call logs** permission groups contain the following permissions:
 - ohos.permission.ANSWER_CALL
 - ohos.permission.MANAGE_VOICEMAIL
 - ohos.permission.READ_CELL_MESSAGES
@@ -55,12 +54,12 @@ The permissions of the Telephony, Messaging, and Call Logs permission groups are
 - ohos.permission.WRITE_CALL_LOG
 - ohos.permission.MEDIA_LOCATION
 
-To enable third-party application developers to apply for these permissions, the method for requesting these permissions is changed to pre-authorization mode.
+These permissions can be pre-authorized only.
 
 
 **Change Impact**
 
-The system applications can obtain these permissions only in pre-authorization mode, rather than requesting these permissions through a pop-up window, .
+Instead of requesting these permissions through a pop-up window, the system applications can obtain the permissions only in pre-authorization mode.
 
 **Key API/Component Changes**
 
@@ -68,4 +67,4 @@ N/A
 
 **Adaptation Guide**
 
-Apply for the preceding permissions in pre-authorization mode for system applications.
+These permissions can be pre-authorized only.
