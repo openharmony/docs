@@ -6,55 +6,55 @@
 
 ## 如何下载Native API开发包（NDK）
 
-1. 推荐OpenHarmony正式发布的SDK包 ，下载链接可以从OpenHarmony正式发布版本的[release-notes](../../release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中【从站点镜像获取】章节下载。
+1. 推荐使用OpenHarmony正式发布的SDK包 ，下载链接可以从OpenHarmony正式发布版本的[release-notes](../../release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中【从站点镜像获取】章节下载。
 
-2. IDE OpenHarmony SDK Manager中下载
+2. IDE OpenHarmony SDK Manager中下载。
 
-3. 从每日构建中下载，下载地址 http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist ，形态组件选择ohos-sdk
+3. 从每日构建中下载，下载地址 http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist ，形态组件选择ohos-sdk。
 
 ![](figures/ci_download.png)
 
 ## 解压Native API开发包
 
-下载完成之后，将压缩包放入自己创建好的文件夹下解压，解压完成效果如下图所示：
+下载完成之后，将压缩包放入创建好的文件夹下解压，解压完成效果如下图所示：
 ![](figures/sdk-structure.png)
 
 配置Linux下的环境，如果只是在IDE中使用，跳过下面几步：
 
-将NDK自带的cmake编译工具添加到环境变量中
+将NDK自带的CMake编译工具添加到环境变量中。
 
 ```
     #打开.bashrc文件
     vim ~/.bashrc
-    #在文件最后添加cmake路径，该路径是自己的放置文件的路径，之后保存退出
+    #在文件最后添加CMake路径，具体路径用实际放置SDK路径代替
     export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
     #在命令行执行source ~/.bashrc使环境变量生效
     source ~/.bashrc
 ```
 
-查看cmake默认路径
+查看CMake默认路径。
 
 ```
-    #在命令行输入which cmake
+    #在命令行输入which命令查询当前CMake所在路径
     which cmake
-    #结果，和自己设置的路径一样
+    #结果路径与.bashrc中设置一致
     ~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin/cmake
 ```
 
 ## 如何使用Native API开发包编译一个native程序
 
-应用开发者可以通过Native API开发包快速的开发出native动态库，静态库与可执行文件，ArkUI应用程序框架可以通过NAPI框架调用到native的动态库中。开发包提供CMake作为官方的编译构建工具。下面通过自己编写一个C/C++ demo工程来演示如何使用Native API开发包来编译C/C++动态库。
+应用开发者可以通过Native API开发包快速的开发出native动态库，静态库与可执行文件，ArkUI应用程序框架可以通过NAPI框架调用到native的动态库中。开发包提供CMake作为官方的编译构建工具。下面通过编写一个C/C++ demo工程来演示如何使用Native API开发包来编译C/C++动态库。
 
 ### NDK中的文件夹简介
 
 #### build目录中工具链文件ohos.toolchain.cmake
 
-cmake编译时需要读取该文件中的默认值，比如编译器架构、C++库链接方式等，这个需要在编译时通过CMAKE_TOOLCHAIN_FILE指出该文件的路径，便于cmake在编译时定位到该文件。在编译的时候需要为cmake指定参数来控制编译目标的属性，具体要指定的参数在下面的[命令行构建](#命令行构建)会具体介绍。
+CMake编译时需要读取该文件中的默认值，比如编译器架构、C++库链接方式等，这个需要在编译时通过CMAKE_TOOLCHAIN_FILE指出该文件的路径，便于CMake在编译时定位到该文件。在编译的时候需要为CMake指定参数来控制编译目标的属性，具体要指定的参数在下面的[命令行构建](#命令行构建)会具体介绍。
 
 #### build-tools文件夹放的是NDK提供的编译工具
 
 ```
-    #键入下一行命令查看cmake的版本
+    #键入下一行命令查看CMake的版本
     cmake -version
     #结果
     cmake version 3.16.5
@@ -84,7 +84,7 @@ cmake编译时需要读取该文件中的默认值，比如编译器架构、C++
 #### CMakeLists.txt内容
 
 ```
-    # 指定cmake的最小版本
+    # 指定CMake的最小版本
     CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
     # 工程名称，这里我们就叫HELLO
@@ -118,7 +118,7 @@ cmake编译时需要读取该文件中的默认值，比如编译器架构、C++
     TARGET_LINK_LIBRARIES(Hello PUBLIC sum)
 ```
 
-详细CMake手册参考 https://cmake.org/cmake/help/v3.16/guide/tutorial/
+详细CMake手册参考 https://cmake.org/cmake/help/v3.16/guide/tutorial/ 。
 
 #### 源码内容
 
@@ -166,9 +166,9 @@ sum.cpp源码
 
 ### 命令行构建
 
-在工程目录下，创建build目录，用来放置cmake构建时产生的中间文件。注意: ohos-sdk是下载下来的SDK的根目录，开发者需要自行替换成实际的下载目录。
+在工程目录下，创建build目录，用来放置CMake构建时产生的中间文件。注意: ohos-sdk是下载下来的SDK的根目录，开发者需要自行替换成实际的下载目录。
 
-1. 采用OHOS_STL=c++_shared动态编译
+1. 采用OHOS_STL=c++_shared动态编译。
 
    ```
     >mkdir build && cd build
@@ -176,7 +176,7 @@ sum.cpp源码
     >cmake --build .
    ```
 
-2. 采用OHOS_STL=c++_static静态编译
+2. 采用OHOS_STL=c++_static静态编译。
 
    ```
     >mkdir build && cd build
