@@ -301,7 +301,7 @@ OpenHarmony 4.0版本标准系统能力持续完善：ArkUI进一步增强基础
 | -------- | -------- | -------- |
 | OpenHarmony | 4.0 Beta2 | NA |
 | Public SDK | Ohos_sdk_public 4.0.9.6 (API Version 10 Beta2) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| HUAWEI DevEco Studio（可选） | 4.0 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br />*待发布* |
+| HUAWEI DevEco Studio（可选） | 4.0 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br />[Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/9b/v3/2g1w9tlbQPevu9IkTNRhNw/devecostudio-windows-4.0.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230804T022932Z&HW-CC-Expire=315360000&HW-CC-Sign=23242113800451447FF87450B938F6B3A3B27A7360C10FBF7BCAB10B24473326)  <br />SHA256校验码：ae9b228fb1f79e99441e10bdcf347ebfc42266be8b170bbce3c9764ba32d82a4<br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/38/v3/RTDABg5YQt69xo6_WHnI3Q/devecostudio-mac-4.0.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230804T022845Z&HW-CC-Expire=315360000&HW-CC-Sign=4229D218C19968570755D8853840C8E2128E871EE895BCA45160743352191975)  <br />SHA256校验码：5c9afc5b1262868b58376155f1e8576d33c1ade8b01091edc4d7d397cd34026c<br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/5d/v3/d1TVEw9GTLaps_3giDK4NQ/devecostudio-mac-arm-4.0.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230804T023035Z&HW-CC-Expire=315360000&HW-CC-Sign=B088BE6D5E2A28E21512F8396D09DDD4C6C41E75E03DFF32830ECC8E7B467D42)  <br />SHA256校验码：ea6c98cafd5036e4a6fd46b0b1cde3a306953b1eef423d5940f1af7c632205d6 |
 | HUAWEI DevEco Device Tool（可选） | 4.0 Beta1 | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
