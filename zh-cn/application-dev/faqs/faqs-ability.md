@@ -486,7 +486,7 @@ struct AbilityContextTest {
 
 [长时任务权限](../security/permission-list.md#ohospermissionkeep_background_running)
 
-[长时任务开发指导](../task-management/continuous-task-dev-guide.md#基于stage模型)
+[长时任务开发指导](../task-management/continuous-task.md)
 
 ## FA卡片如何进行数据交互
 
