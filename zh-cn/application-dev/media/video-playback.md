@@ -6,7 +6,7 @@
 
 - Video组件：封装了视频播放的基础能力，需要设置数据源以及基础信息即可播放视频，但相对扩展能力较弱。Video组件由ArkUI提供能力，相关指导请参考UI开发文档-[Video组件](../ui/arkts-common-components-video-player.md)。
 
-本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](avsession-overview.md)和[申请长时任务](../task-management/continuous-task-dev-guide.md)，避免播放过程中音频模块被系统强制中断。
+本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](avsession-overview.md)和[申请长时任务](../task-management/continuous-task.md)，避免播放过程中音频模块被系统强制中断。
 
 ## 开发指导
 
