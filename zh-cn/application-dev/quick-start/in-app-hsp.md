@@ -5,7 +5,7 @@
 
 ## 开发应用内HSP
 
-通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构大致如下：
+通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 library
 ├── src
@@ -16,19 +16,6 @@ library
 │       ├── resources
 │       └── module.json5
 └── oh-package.json5
-```
-模块`module.json5`中的`"type"`标识模块类型，HSP的`"type"`是`"shared"`。
-```json
-{
-    "type": "shared"
-}
-```
-
-HSP通过在入口文件中导出接口，对外提供能力。入口文件在模块`oh-package.json5`的`"main"`中配置。例如：
-```json
-{
-    "main": "./src/main/ets/index.ets"
-}
 ```
 
 ### 导出ts类和方法
@@ -82,10 +69,22 @@ export { MyTitleBar } from './components/MyTitleBar'
 ```
 
 ### 通过$r访问HSP中资源
-在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，以符合高内聚低耦合的原则。可以通过`$r`/`$rawfile`访问本模块`resources`目录下的资源。
+在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，而非放在HSP的使用方处，以符合高内聚低耦合的原则。
+
+可以通过`$r`/`$rawfile`访问本模块`resources`目录下的资源，如`$r("app.media.example")`。
 
 不推荐使用相对路径的方式，容易引用错误路径。例如：
 在HSP模块中使用`Image("common/example.png")`，实际上该`Image`组件访问的是HSP调用方（如`entry`）下的资源`entry/src/main/ets/common/example.png`。
+
+```ts
+// library/src/main/ets/pages/Index.ets
+// 正确用例
+Image($r("app.media.example"))
+  .width("100%")
+// 错误用例
+Image("../../resources/base/media/example.png")
+  .width("100%")
+```
 
 ### 导出HSP中资源
 跨包访问HSP内资源时，推荐实现一个资源管理类，以封装对外导出的资源，通过该方式：
