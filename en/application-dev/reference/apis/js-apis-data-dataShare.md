@@ -587,7 +587,7 @@ import rpc from '@ohos.rpc';
 let ashmem = null;
 let subscriberId = '11';
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
@@ -600,13 +600,13 @@ try {
     ashmem = rpc.Ashmem.create("ashmem", (nums.length) * 4);
     ashmem.mapReadWriteAshmem();
     ashmem.writeAshmem(nums, nums.length, 0);
-    data.push({
+    dataArray.push({
         "key" : "key2",
         "data" : ashmem,
         "subscriberId" : "11",
     });
-    console.info("data length is:", data.length);
-    dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
+    console.info("dataArray length is:", dataArray.length);
+    dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
     console.error("publish error " + JSON.stringify(e));
 }
@@ -642,11 +642,11 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallback);
+dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", publishCallback);
 ```
 
 ### publish<sup>10+</sup>
@@ -682,11 +682,11 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let result: Array<dataShare.OperationResult> = dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest");
+let result: Array<dataShare.OperationResult> = dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest");
 ```
 
 ### getPublishedData<sup>10+</sup>
