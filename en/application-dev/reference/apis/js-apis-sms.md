@@ -135,10 +135,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let sendCallback = function (err, data) {    
+let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = function (err, data) {    
+let deliveryCallback = function (err, data) {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId = 0;

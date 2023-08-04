@@ -125,7 +125,7 @@ Abilities and widgets can be queried, added, refreshed, and deleted across devic
 
 - The distributed camera supports video recording.
 
-- Users can import account authentication information to the device security authentication system. Devices with the same login account can automatically complete authentication and networking.
+- Users can use the device management native APIs to import account authentication information to the device security authentication system. Devices with the same login account can automatically complete authentication and networking.
 
 
 #### Distributed data management

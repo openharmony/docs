@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | Permission                                      | Permission Level    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 

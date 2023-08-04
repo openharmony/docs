@@ -121,9 +121,3 @@
 |函数有变化|类名：DataShareExtensionAbility;<br>方法or属性：context?: ExtensionContext;|类名：DataShareExtensionAbility;<br>方法or属性：context: ExtensionContext;|@ohos.application.DataShareExtensionAbility.d.ts|
 |函数有变化|类名：PublishedItem;<br>方法or属性：data: string \| Ashmem;|类名：PublishedItem;<br>方法or属性：data: string \| ArrayBuffer;|@ohos.data.dataShare.d.ts|
 |函数有变化|类名：relationalStore;<br>方法or属性：type ValueType = null \| number \| string \| boolean \| Uint8Array;|类名：relationalStore;<br>方法or属性：type ValueType = null \| number \| string \| boolean \| Uint8Array \| Asset \| Assets;|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：StoreConfig;<br>方法or属性：securityLevel: SecurityLevel;<br>旧版本信息：|类名：StoreConfig;<br>方法or属性：securityLevel: SecurityLevel;<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：SecurityLevel;<br>方法or属性：enum SecurityLevel<br>旧版本信息：|类名：SecurityLevel;<br>方法or属性：enum SecurityLevel<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：SecurityLevel;<br>方法or属性：S1 = 1<br>旧版本信息：|类名：SecurityLevel;<br>方法or属性：S1 = 1<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：SecurityLevel;<br>方法or属性：S2 = 2<br>旧版本信息：|类名：SecurityLevel;<br>方法or属性：S2 = 2<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：SecurityLevel;<br>方法or属性：S3 = 3<br>旧版本信息：|类名：SecurityLevel;<br>方法or属性：S3 = 3<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|
-|跨平台能力有变化|类名：SecurityLevel;<br>方法or属性：S4 = 4<br>旧版本信息：|类名：SecurityLevel;<br>方法or属性：S4 = 4<br>新版本信息：crossplatform|@ohos.data.relationalStore.d.ts|

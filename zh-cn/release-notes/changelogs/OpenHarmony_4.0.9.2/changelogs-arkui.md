@@ -78,3 +78,50 @@ struct ListExample {
   }
 }
 ```
+
+## cl.arkui.2 ArkUI系统组件使用场景限制
+
+对ArkUI系统组件的使用场景进行限制，仅允许在struct的build方法内， pageTransition方法内或@Builder修饰的函数内使用。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+    }
+
+  }
+}
+// ERROR:UI component 'Text' cannot be used in this place.
+Text('Hello World')
+```
+
+**变更影响**
+
+ 如果ArkUI系统组件不在struct的build方法内，pageTransition方法内，@Builder修饰的函数内使用，编译报错。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+ ArkUI系统组件必须在struct的build方法内，pageTransition方法内，@Builder修饰的函数内使用。
+
+## cl.arkui.3 RowSplit/ColumnSplit组件布局与行为变更
+
+1、RowSplit/ColumnSplit交叉轴方向未设置大小时，由当前的适应父节点大小改为适应子节点大小。  
+2、RowSplit/ColumnSplit分割线拖动后子节点行为变更，变更前拖动分割线时，子节点不压缩和拉伸，只进行平移；
+变更后拖动分割线时，子节点拉伸和压缩。  
+3、使用clip属性对子组件内容超出组件区域进行裁剪时，RowSplit裁剪区域由子组件区域的右侧改为子组件区域的左右两侧，
+ColumnSplit裁剪区域由子组件区域的下侧改为子组件区域的上下两侧。
+
+**变更影响**  
+以上3点变更只影响API version 10及以后版本，API version 9及以前RowSplit/ColumnSplit组件布局与行为仍遵循变更前规则。
+
+**关键接口/组件变更**
+
+不涉及

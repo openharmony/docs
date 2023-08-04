@@ -963,21 +963,21 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (布局回调)](reference/apis/js-apis-arkui-inspector.md)
+      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
-      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
+      - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.pluginComponent (PluginComponentManager)](reference/apis/js-apis-plugincomponent.md)
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
-      - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
       - [@ohos.uiAppearance (用户界面外观)](reference/apis/js-apis-uiappearance.md)
-      - [ @ohos.arkui.performanceMonitor (性能监测)](reference/apis/js-apis-arkui-performancemonitor.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -991,12 +991,15 @@
         - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
         - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
     - 媒体
+      - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.systemSoundManager (系统声音管理)](reference/apis/js-apis-systemSoundManager.md)
+      - application
+        - [MediaControlExtensionContext (播控扩展能力上下文)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - 资源管理
@@ -1044,8 +1047,8 @@
       - [@ohos.file.fileuri (文件URI)](reference/apis/js-apis-file-fileuri.md)
       - [@ohos.file.fs (文件管理)](reference/apis/js-apis-file-fs.md)
       - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
-      - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
       - [@ohos.file.photoAccessHelper (相册管理模块)](reference/apis/js-apis-photoAccessHelper.md)
+      - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
       - [@ohos.file.securityLabel (数据标签)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (文件系统空间统计)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
@@ -1420,6 +1423,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [UIExtensionComponent](reference/arkui-ts/ts-container-ui-extension-component.md)
       - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - 媒体组件
       - [Video](reference/arkui-ts/ts-media-components-video.md)

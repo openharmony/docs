@@ -36,7 +36,3 @@
 |model有变化|类名：AbilityType;<br>方法or属性：PAGE = 1<br>旧版本信息：|类名：AbilityType;<br>方法or属性：PAGE = 1<br>新版本信息：FAModelOnly|@ohos.bundle.bundleManager.d.ts|
 |model有变化|类名：AbilityType;<br>方法or属性：SERVICE = 2<br>旧版本信息：|类名：AbilityType;<br>方法or属性：SERVICE = 2<br>新版本信息：FAModelOnly|@ohos.bundle.bundleManager.d.ts|
 |model有变化|类名：AbilityType;<br>方法or属性：DATA = 3<br>旧版本信息：|类名：AbilityType;<br>方法or属性：DATA = 3<br>新版本信息：FAModelOnly|@ohos.bundle.bundleManager.d.ts|
-|跨平台能力有变化|类名：Metadata;<br>方法or属性：export interface Metadata<br>旧版本信息：|类名：Metadata;<br>方法or属性：export interface Metadata<br>新版本信息：crossplatform|Metadata.d.ts|
-|跨平台能力有变化|类名：Metadata;<br>方法or属性：name: string;<br>旧版本信息：|类名：Metadata;<br>方法or属性：name: string;<br>新版本信息：crossplatform|Metadata.d.ts|
-|跨平台能力有变化|类名：Metadata;<br>方法or属性：value: string;<br>旧版本信息：|类名：Metadata;<br>方法or属性：value: string;<br>新版本信息：crossplatform|Metadata.d.ts|
-|跨平台能力有变化|类名：Metadata;<br>方法or属性：resource: string;<br>旧版本信息：|类名：Metadata;<br>方法or属性：resource: string;<br>新版本信息：crossplatform|Metadata.d.ts|
