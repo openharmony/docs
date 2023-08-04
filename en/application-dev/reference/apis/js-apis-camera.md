@@ -170,6 +170,7 @@ Obtains the output capability supported by a camera. This API returns the result
 **Example**
 
 ```js
+let cameras = cameraManager.getSupportedCameras();
 let cameraDevice = cameras[0];
 let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
 
@@ -581,6 +582,160 @@ cameraManager.on('cameraMute', (err, curMuetd) => {
 })
 ```
 
+### isPrelaunchSupported
+
+isPrelaunchSupported(camera: CameraDevice): boolean
+
+Checks whether a camera supports prelaunch. This API is called in prior to **setPrelaunchConfig**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| camera | [CameraDevice](#cameradevice) | Yes| Camera object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | --------------- |
+| boolean | Returns whether the camera supports prelaunch. The value **true** means that the camera supports prelaunch, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101 | Parameter missing or parameter type incorrect. |
+
+**Example**
+
+```js
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
+     this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
+}
+```
+
+### setPrelaunchConfig
+
+setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CAMERA
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| prelaunchConfig | [PrelaunchConfig](#prelaunchconfig) | Yes| Prelaunch configuration.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400102 | Operation not allow. |
+
+**Example**
+
+```js
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
+    try {
+      this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
+    } catch (error) {
+       console.error(`catch error: Code: ${error.code}, message: ${error.message}`);
+    }
+}
+```
+
+### prelaunch
+
+prelaunch(): void
+
+Prelaunches the camera. This API is called when the camera application is started after a user clicks the system camera icon.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Example**
+
+```js
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+try {
+  this.cameraManager.prelaunch();
+} catch (error) {
+  console.error(`catch error: Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+### createDeferredPreviewOutput
+
+createDeferredPreviewOutput(profile: Profile): PreviewOutput
+
+Creates a deferred **PreviewOutput** instance and adds it to the data stream instead of a common **PreviewOutput** instance during stream configuration.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| profile | [Profile](#profile) | Yes| Configuration file of the camera preview stream.|
+
+**Return value**
+
+| Type| Description|
+| -------- | --------------- |
+| [PreviewOutput](#previewoutput) | Returns a **PreviewOutput** instance.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101 | Parameter missing or parameter type incorrect. |
+
+**Example**
+
+```js
+function getDeferredPreviewOutput(context: Context, previewProfile: camera.Profile): Promise<PreviewOutput> {
+  const cameraManager = camera.getCameraManager(context);
+  const output: Promise<PreviewOutput> = cameraManager.createDeferredPreviewOutput(previewProfile);
+  return output;
+}
+```
+
+## PrelaunchConfig
+
+Defines the camera prelaunch configuration.
+
+Currently, the configuration is used for sensor-level prelaunch. It will be used for stream-level prelaunch in a later version.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name  | Type                           |     Mandatory    | Description      |
+| ------ | ----------------------------- | -------------- | ---------- |
+| cameraDevice | [CameraDevice](#cameradevice) |        Yes      | Camera object.|
+
 ## CameraStatusInfo
 
 Describes the camera status information.
@@ -835,7 +990,7 @@ cameraInput.close().then(() => {
 
 ### on('error')
 
-on(type: 'error', camera:CameraDevice, callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', camera:CameraDevice, callback: ErrorCallback): void
 
 Listens for **CameraInput** errors. This API uses a callback to return the result.
 
@@ -847,12 +1002,11 @@ Listens for **CameraInput** errors. This API uses a callback to return the resul
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
 | cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
-| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
+| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
 **Example**
 
 ```js
-let cameraDevice = cameras[0];
 cameraInput.on('error', cameraDevice, (error) => {
     console.log(`Camera input error code: ${error.code}`);
 })
@@ -883,7 +1037,7 @@ Enumerates the exposure modes.
 | EXPOSURE_MODE_AUTO            | 1    | Auto exposure. The metering point can be set by calling [setMeteringPoint](#setmeteringpoint).|
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | Continuous auto exposure. The metering point cannot be set.|
 
- ## FocusMode
+## FocusMode
 
 Enumerates the focus modes.
 
@@ -2288,7 +2442,7 @@ captureSession.on('focusStateChange', (err, focusState) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback): void
 
 Listens for **CaptureSession** errors. This API uses a callback to return the errors.
 
@@ -2299,7 +2453,7 @@ Listens for **CaptureSession** errors. This API uses a callback to return the er
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as **beginConfig()**, **commitConfig()**, and **addInput**.|
-| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
+| callback | ErrorCallback| Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
 
@@ -2547,7 +2701,7 @@ previewOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback): void
 
 Listens for **PreviewOutput** errors. This API uses a callback to return the errors.
 
@@ -2558,7 +2712,7 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as **start()** or **release()**.|
-| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
+| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
 
@@ -2566,6 +2720,49 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 previewOutput.on('error', (previewOutputError) => {
     console.log(`Preview output error code: ${previewOutputError.code}`);
 })
+```
+
+### addDeferredSurface
+
+addDeferredSurface(surfaceId: string): void
+
+Adds a surface for delayed preview. This API can run after **session.commitConfig()** is used to commit the configuration for a stream and **session.start()** is used to start the stream.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| surfaceId | string | Yes| Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+
+**Example**
+
+```js
+function async preview(context: Context, cameraInfo: camera.Device, previewProfile: camera.Profile, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+  const cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  const cameraInput camera.CameraInput = await cameraManager.createCameraInput(cameraInfo)
+  const previewOutput: camera.PreviewOutput = await cameraManager.createDeferredPreviewOutput(previewProfile);
+  const photoOutput: camera.PhotoOutput = await cameraManager.createPhotoOutput(photoProfile);
+  const session: camera.CaptureSession  = await this.mCameraManager.createCaptureSession();
+  await session.beginConfig();
+  await session.addInput(cameraInput);
+  await session.addOutput(previewOutput);
+  await session.addOutput(photoOutput);
+  await session.commitConfig();
+  await session.start();
+  await previewOutput.addDeferredSurface(surfaceId);
+}
 ```
 
 ## ImageRotation
@@ -2772,6 +2969,17 @@ For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
 **Example**
 
 ```js
+let captureLocation = {
+  latitude: 0,
+  longitude: 0,
+  altitude: 0,
+}
+let settings = {
+  quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+  rotation: camera.ImageRotation.ROTATION_0,
+  location: captureLocation,
+  mirror: false
+}
 photoOutput.capture(settings).then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
 }).catch((err) => {
@@ -2938,7 +3146,7 @@ photoOutput.on('captureEnd', (err, captureEndInfo) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback): void
 
 Listens for **PhotoOutput** errors. This API uses a callback to return the errors.
 
@@ -2949,13 +3157,160 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photographing-related API.|
-| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
+| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
 
 ```js
 photoOutput.on('error', (error) => {
     console.log(`Photo output error code: ${error.code}`);
+})
+```
+
+### isQuickThumbnailSupported
+
+isQuickThumbnailSupported(): boolean
+
+Checks whether the quick thumbnail feature is supported.
+
+This API takes effect after **CaptureSession.addOutput** and **CaptureSession.addInput** and before **CaptureSession.commitConfig**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type| Description|
+| --------- | ------ |
+| boolean | Returns whether the quick thumbnail feature is supported. The value **true** means that the quick thumbnail feature is supported, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+
+**Example**
+
+```js
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// Create a CaptureSession instance.
+this.captureSession = await this.cameraManager.createCaptureSession()
+// Start configuration for the session.
+await this.captureSession.beginConfig()
+// Add a CameraInput instance to the session.
+this.mCameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// Add a PhotoOutput instance to the session.
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+```
+
+### enableQuickThumbnail
+
+enableQuickThumbnail(enabled: boolean): void
+
+Enables or disables the quick thumbnail feature.
+
+This API takes effect after **CaptureSession.addOutput** and **CaptureSession.addInput** and before **CaptureSession.commitConfig**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                                |
+| -------- | ------------- | ---- | ----------------------------------- |
+| enabled    | boolean       | Yes  | Whether to enable the quick thumbnail feature. The value **true** means to enable the quick thumbnail feature, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+
+**Example**
+
+```js
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// Create a CaptureSession instance.
+this.captureSession = await this.cameraManager.createCaptureSession()
+// Start configuration for the session.
+await this.captureSession.beginConfig()
+// Add a CameraInput instance to the session.
+this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// Add a PhotoOutput instance to the session.
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+if (isSupported) {
+    // Enable the quick thumbnail feature.
+    this.photoOutPut.enableQuickThumbnail(true)
+}
+```
+
+### on('quickThumbnail')
+
+on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
+
+Listens for the quick thumbnail output events.
+
+The listening takes effect after **enableQuickThumbnail(true)** is called.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                                |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type    | string     | Yes  | Event type. The value is fixed at **'quickThumbnail'**.|
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise that returns a **PixelMap** instance.|
+
+**Example**
+
+```js
+import camera from '@ohos.multimedia.camera'
+
+this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
+let cameras = this.cameraManager.getSupportedCameras()
+// Create a CaptureSession instance.
+this.captureSession = await this.cameraManager.createCaptureSession()
+// Start configuration for the session.
+await this.captureSession.beginConfig()
+// Add a CameraInput instance to the session.
+this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
+await this.cameraInput.open()
+await this.captureSession.addInput(this.cameraInput)
+// Add a PhotoOutput instance to the session.
+this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
+await this.captureSession.addOutput(this.photoOutPut)
+boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
+if (isSupported) {
+    // Enable the quick thumbnail feature.
+    this.photoOutPut.enableQuickThumbnail(true)
+}
+this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
+    if (err || pixelmap === undefined) {
+        Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
+        return
+    }
+    // Display or save the PixelMap instance.
+    this.showOrSavePicture(pixelmap)
 })
 ```
 
@@ -3217,7 +3572,7 @@ videoOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback): void
 
 Listens for errors that occur during video recording. This API uses a callback to return the result.
 
@@ -3228,7 +3583,7 @@ Listens for errors that occur during video recording. This API uses a callback t
 | Name    | Type      | Mandatory| Description                                   |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a recording-related API such as **start()** and **release()**.|
-| callback | Callback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
+| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
 
@@ -3385,7 +3740,7 @@ metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback): void
 
 Listens for metadata errors. This API uses an asynchronous callback to return the result.
 
@@ -3396,7 +3751,7 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a metadata-related API such as **start()** and **release()**.|
-| callback | Callback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
+| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**
 

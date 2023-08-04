@@ -883,7 +883,7 @@ async function Demo() {
 
 getColorSpace(): colorSpaceManager.ColorSpaceManager
 
-Obtains the color space of this image
+Obtains the color space of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 

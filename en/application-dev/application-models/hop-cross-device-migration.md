@@ -53,9 +53,9 @@ The table below describes the main APIs used for cross-device migration. For det
 
 | **API**| Description|
 | -------- | -------- |
-| onContinue(wantParam : {[key: string]: any}): OnContinueResult | Called by the initiator to store the data required for migration and indicate whether the migration is accepted.<br>- **AGREE**: The migration is accepted.<br>- **REJECT**: The migration is rejected, for example, when an application is abnormal in **onContinue()**.<br>- **MISMATCH**: The version does not match. The application on the initiator can obtain the version number of the target application from **onContinue()**. If the migration cannot be performed due to version mismatch, this error code is returned.|
-| onCreate(want: Want, param: AbilityConstant.LaunchParam): void; | Called by the target to restore the data and UI page in the multiton migration scenario. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).|
-| onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void; | Called by the target to restore the data and UI page in the singleton migration scenario. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).|
+| onContinue(wantParam : {[key: string]: Object}): OnContinueResult | Called by the initiator to store the data required for migration and indicate whether the migration is accepted.<br>- **AGREE**: The migration is accepted.<br>- **REJECT**: The migration is rejected, for example, when an application is abnormal in **onContinue()**.<br>- **MISMATCH**: The version does not match. The application on the initiator can obtain the version number of the target application from **onContinue()**. If the migration cannot be performed due to version mismatch, this error code is returned.|
+| onCreate(want: Want, param: AbilityConstant.LaunchParam): void; | Called by the target to restore the data and UI page when the target uses cold start or the target is a multiton application and uses hot start. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).|
+| onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void; | Called by the target to restore the data and UI page when the target is a singleton application and uses hot start. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).|
 
 
 
@@ -90,7 +90,7 @@ The table below describes the main APIs used for cross-device migration. For det
 
 4. Implement [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) in the UIAbility of the initiator.
 
-   [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) is called on the initiator. You can save the  data in this method to implement application compatibility check and migration decision.
+   [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) is called on the initiator. You can save the data in this method to implement application compatibility check and migration decision.
    - Saving migrated data: You can save the data to be migrated in key-value pairs in **wantParam**.
 
    - Checking application compatibility: You can obtain the version number of the target application from **wantParam** and that of the current application from **wantParam.version** of the **onContinue()** callback. Then you can check the compatibility between the two.
@@ -114,7 +114,7 @@ The table below describes the main APIs used for cross-device migration. For det
    ```
 
 5. Implement **onCreate()** and **onNewWant()** in the UIAbility of the target application to implement data restoration.
-   - Implementation example of **onCreate** in the multiton scenario
+   - Implementation example of **onCreate**
       - The target device determines whether the startup is **LaunchReason.CONTINUATION** based on **launchReason** in **onCreate()**.
       - You can obtain the saved migration data from the **want** parameter.
       - After data restoration is complete, call **restoreWindowStage** to trigger page restoration, including page stack information.
@@ -139,11 +139,29 @@ The table below describes the main APIs used for cross-device migration. For det
              } 
          }
          ```
-   - For a singleton ability, use **onNewWant()** to achieve the same implementation.
+   - For a singleton application, you must also implement **onNewWant()**, in the same way as **onCreate()**.
+      - Determine the migration scenario in **onNewWant()**, restore data, and trigger page restoration.
 
+         ```ts  
+         export default class EntryAbility extends UIAbility {     
+             storage : LocalStorage;     
+             onNewWant(want, launchParam) {         
+                 console.info(`EntryAbility onNewWant ${AbilityConstant.LaunchReason.CONTINUATION}`)         
+                 if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {             
+                     // Obtain the user data from the want parameter.            
+                     let workInput = want.parameters.work             
+                     console.info(`work input ${workInput}`)             
+                     AppStorage.SetOrCreate<string>('ContinueWork', workInput)             
+                     this.storage = new LocalStorage();             
+                     this.context.restoreWindowStage(this.storage);         
+                 }     
+             } 
+         }
+      ```
+   
 6. (Optional) Call [setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) to set the mission continuation state.
 
-   For an application that supports migration, mission migration is enabled by default, and the system notifies peripheral trusted devices that a mission can be migrated or canceled based on the gain/loss focus state of the mission. If you want the system to send a notification to peripheral devices only when your application is in a specific scenario, set the migration continuation state to **INACTIVE** when the application is started and change it to **ACTIVE** when the application enters that specific scenario. For details about the API, see [setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10).
+   For an application that supports migration, mission migration is enabled by default, and the system notifies peripheral trusted devices that a mission can be migrated or canceled based on the gain/loss focus state of the mission. If you want the system to send a notification to peripheral devices only when your application is in a specific scenario, set the migration continuation state to **INACTIVE** when the application is started and change it to **ACTIVE** when the application enters that specific scenario.
 
     - Example: An application does not require migration during startup.
 
@@ -180,7 +198,7 @@ The table below describes the main APIs used for cross-device migration. For det
 
         onContinue(wantParam : {[key: string]: any}) {         
             console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
-            wantParam[wantConstant.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
+            wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
             return AbilityConstant.OnContinueResult.AGREE;
         }
 
@@ -202,7 +220,7 @@ The table below describes the main APIs used for cross-device migration. For det
 
         onContinue(wantParam : {[key: string]: any}) {         
             console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
-            wantParam[wantConstant.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
+            wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
             return AbilityConstant.OnContinueResult.AGREE;
         }
         ```
