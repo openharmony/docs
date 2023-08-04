@@ -34,7 +34,8 @@
         ],
         "third_party": [                                                 # 部件依赖的三方开源软件
           "bounds_checking_function"
-        ]
+        ],
+        "hisysevent_config": []                                          # 部件HiSysEvent打点配置文件编译入口
       }         
         "build": {				                                         # 编译相关配置
             "sub_component": [
@@ -60,6 +61,8 @@ component
 ```
 
 部件配置中需要配置部件的名称、源码路径、功能简介、是否必选、编译目标、RAM、ROM、编译输出、已适配的内核、可配置的特性和依赖等属性定义。
+
+> **注意**：部件配置中HiSysEvent打点配置文件使用说明，请参考文档[HiSysEvent打点配置](subsys-dfx-hisysevent-logging-config.md)。
 
 新增部件时需要在对应子系统json文件中添加相应的部件定义。产品所配置的部件必须在某个子系统中被定义过，否则会校验失败。
 

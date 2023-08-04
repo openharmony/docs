@@ -192,8 +192,8 @@ struct AudioDaiOps g_codecDaiDeviceOps = {
 };
 
 struct DaiData g_codecDaiData = {
-  .DaiInit = CodecDaiDeviceInit,  // Initialize the codec DAI device (need to be implemented for a new platform).
-  .ops = &g_codecDaiDeviceOps,    // Codec DAI device operation function set.
+  .DaiInit = CodecDaiDeviceInit,// Initialize the codec DAI device (need to be implemented for a new platform).
+  .ops = &g_codecDaiDeviceOps,  // Codec DAI device operation function set.
 };
 ```
 
@@ -378,13 +378,13 @@ The code snippet is as follows:
      audio :: host {
       device_codec :: device {
          device0 :: deviceNode {
-           policy = 1;              // The codec module provides services only for the kernel.
-           priority = 50;           // The codec module must be loaded before the load of the HDF_AUDIO module.
+           policy = 1;     // The codec module provides services only for the kernel.
+           priority = 50;  // The codec module must be loaded before the load of the HDF_AUDIO module.
            preload = 0;
            permission = 0666;
-           moduleName = "CODEC_HI3516";           // The value must be the same as moduleName in HdfDriverEntry.
-           serviceName = "codec_service_0";       // Name of the service provided externally.
-           deviceMatchAttr = "hdf_codec_driver";  // Name of the private attribute, which is used to match the corresponding private data (including the register configuration).
+           moduleName = "CODEC_HI3516";          // The value must be the same as moduleName in HdfDriverEntry.
+           serviceName = "codec_service_0";      // Name of the service provided externally.
+           deviceMatchAttr = "hdf_codec_driver"; // Name of the private attribute, which is used to match the corresponding private data (including the register configuration).
          }
        }
 ```
@@ -403,12 +403,12 @@ root {
             // Set the private data attribute name, which must be the same as the deviceMatchAttr in device_info.hcs.
             match_attr = "hdf_audio_driver_1"; 
             serviceName = "hdf_audio_codec_primary_dev11"; // Name of the service provided externally.
-            codecName = "codec_service_1";                 // Codec service name.
-            platformName = "dma_service_0";                // DMA service.
-            cpuDaiName = "dai_service";                    // CPU DAI service.
-            codecDaiName = "tfa9879_codec_dai";            // Codec DAI service.
-            dspName = "dsp_service_0";                     // DSP service name.
-            dspDaiName = "dsp_dai";                        // DSP DAI.
+            codecName = "codec_service_1";       // Codec service name.
+            platformName = "dma_service_0";      // DMA service.
+            cpuDaiName = "dai_service";          // CPU DAI service.
+            codecDaiName = "tfa9879_codec_dai";  // Codec DAI service.
+            dspName = "dsp_service_0";           // DSP service name.
+            dspDaiName = "dsp_dai";              // DSP DAI.
         }
     }
 }

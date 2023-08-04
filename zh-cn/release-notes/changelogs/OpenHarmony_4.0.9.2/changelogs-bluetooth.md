@@ -200,9 +200,22 @@
 |@ohos.bluetooth.ble|[deviceName](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#scanresult)|
 |@ohos.bluetooth.ble|[includeDeviceName](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#advertisedata)|
 |@ohos.bluetooth.ble|[GattProperties](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#gattproperties)|
+|@ohos.bluetooth.ble|[setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#setcharacteristicchangeindication)|
+|@ohos.bluetooth.ble|[setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#setcharacteristicchangeindication-1)|
+|@ohos.bluetooth.ble|[on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#onblemtuchange)|
+|@ohos.bluetooth.ble|[off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#offblemtuchange)|
 |@ohos.bluetooth.connection|[pinType](../../../application-dev/reference/apis/js-apis-bluetooth-connection.md#pintype)|
 |@ohos.bluetooth.connection|[BluetoothTransport](../../../application-dev/reference/apis/js-apis-bluetooth-connection.md#bluetoothtransport)|
 |@ohos.bluetooth.constant|[ProfileUuids](../../../application-dev/reference/apis/js-apis-bluetooth-constant.md#profileuuids)|
+
+### 补充promise调用方式
+
+| 模块名         |新增声明                                                 |
+| ------------- |-------------------------------------------------------- |
+|@ohos.bluetooth.ble| [notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#notifycharacteristicchanged-1)    |
+|@ohos.bluetooth.ble| [writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#writecharacteristicvalue-1)    |
+|@ohos.bluetooth.ble| [writeDescriptorValue(descriptor: BLEDescriptor): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#writedescriptorvalue-1)    |
+|@ohos.bluetooth.ble| [setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-ble.md#setcharacteristicchangenotification-1)    |
 
 **适配指导**
 

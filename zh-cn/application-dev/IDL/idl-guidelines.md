@@ -343,11 +343,10 @@ export default {
 
 #### 客户端调用IPC方法
 
-客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
+客户端调用connectServiceExtensionAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
 ```ts
 import IdlTestServiceProxy from './idl_test_service_proxy'
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
@@ -392,13 +391,13 @@ var onAbilityConnectDone = {
   }
 };
 
-function connectAbility: void {
+function connectAbility(): void {
     let want = {
         bundleName: 'com.example.myapplicationidl',
         abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
-    connectionId = featureAbility.connectAbility(want, onAbilityConnectDone);
+    connectionId = this.context.connectServiceExtensionAbility(want, onAbilityConnectDone);
 }
 
 

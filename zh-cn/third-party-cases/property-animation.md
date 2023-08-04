@@ -507,7 +507,7 @@ struct Index {
 
 [Curve](../application-dev/reference/arkui-ts/ts-appendix-enums.md#curve)
 
-[弹簧曲线动画](../application-dev/ui/arkts-spring-animation.md)
+[弹簧曲线动画](../application-dev/ui/arkts-spring-curve.md)
 
 [Flex布局](../application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)
 

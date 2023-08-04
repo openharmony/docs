@@ -48,6 +48,7 @@
   - [native_buffer.h](native__buffer_8h.md)
   - [native_image.h](native__image_8h.md)
   - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+  - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
   - [native_vsync.h](native__vsync_8h.md)
   - [raw_dir.h](raw__dir_8h.md)
   - [raw_file_manager.h](raw__file__manager_8h.md)

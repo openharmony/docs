@@ -2,7 +2,7 @@
 
 - Getting Started
   - [Before You Start](start-overview.md)
-  - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
+  - [Building the First ArkTS Application in Stage Model](start-with-ets-stage.md)
 - Development Fundamentals
   - Application Package Fundamentals
     - [Application Package Overview](application-package-overview.md)
@@ -41,8 +41,8 @@
   - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
   - [Getting Started with ArkTS](arkts-get-started.md)
-  - [Introduction to ArkTS](arkts/introduction-to-arkts.md)
-  - [TypeScript to ArkTS Migration Guide](arkts/typescript-to-arkts-migration-guide.md)
+  - [Introduction to ArkTS](introduction-to-arkts.md)
+  - [TypeScript to ArkTS Migration Guide](typescript-to-arkts-migration-guide.md)
   - UI paradigms
     - Basic Syntax
       - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
@@ -55,6 +55,7 @@
       - [\@Styles Decorator: Definition of Resusable Styles](arkts-style.md)
       - [\@Extend Decorator: Extension of Built-in Components](arkts-extend.md)
       - [stateStyles Decorator: Polymorphic Style](arkts-statestyles.md)
+      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
     - State Management
       - [State Management Overview](arkts-state-management-overview.md)
       - Component State Management

@@ -6,9 +6,13 @@
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  已实现默认拖拽效果组件：[Image](../arkui-ts/ts-basic-components-image.md)、[Text](../arkui-ts/ts-basic-components-text.md)、[TextArea](../arkui-ts/ts-basic-components-textarea.md)、[Search](../arkui-ts/ts-basic-components-search.md)。
+> 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
 >
->  应用中的预置资源文件不支持拖拽（即应用在安装前的HAP包中已经存在的资源文件）。
+> 默认支持拖入的组件：Video
+>
+> 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
+>
+> 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
@@ -88,12 +92,16 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
-    if (records.length !== 0) {
-      callback(event);
-      return true;
+    let data = event.getData();
+    if (!data) {
+      return false;
     }
-    return false;
+    let records: Array<udmf.UnifiedRecord> = data.getRecords();
+    if (!records || records.length <= 0) {
+      return false;
+    }
+    callback(event);
+    return true;
   }
 
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)

@@ -198,22 +198,23 @@
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.arkui.componentSnapshot (组件截图)](js-apis-arkui-componentSnapshot.md)
+  - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
+  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.font (注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
+  - [@ohos.measure (文本计算)](js-apis-measure.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
-  - [@ohos.measure (文本计算)](js-apis-measure.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
-  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
-  
+
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-windowExtensionAbility.md)
@@ -228,12 +229,15 @@
     - [webgl2 (WebGL2)](js-apis-webgl2.md)
 
 - 媒体
+  - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
   - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (系统声音管理)](js-apis-systemSoundManager.md)
+  - application
+    - [MediaControlExtensionContext (播控扩展能力上下文)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
 
