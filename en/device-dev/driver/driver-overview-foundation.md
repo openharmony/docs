@@ -9,16 +9,19 @@ The OpenHarmony driver subsystem provides the following features and capabilitie
 
 - Elastic framework capabilities
   
+
 Based on the traditional driver framework, the OpenHarmony driver subsystem builds elastic framework capabilities to enable deployment on terminal products with memory of hundreds KB to hundreds MB.
-  
+
 - Standardized driver interfaces
   
+
 The OpenHarmony driver subsystem provides stable driver APIs compatible with the APIs of future-proof smartphones, tablets, smart TVs.
-  
+
 - Component-based driver model
   
+
 The OpenHarmony driver subsystem provides the component-based driver model to implement more refined driver management. You can add or reduce components as required and focus on the interaction between the hardware and driver. The subsystem also presets some template-based driver model components, such as the network device model.
-  
+
 - Normalized configuration UI
   
   The OpenHarmony driver subsystem provides a unified configuration tool that supports cross-platform configuration conversion and generation, enabling seamless switchover across platforms.

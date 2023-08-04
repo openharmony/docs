@@ -217,7 +217,7 @@ Use **Context.cacheDir** to obtain the cache directory of the application.
 
 **Reference**
 
-[Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path)
+[Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths)
 
 ## In which JS file is the service widget lifecycle callback invoked?
 
@@ -262,7 +262,7 @@ Obtain them from the application context. Specifically, use **this.context.getAp
 
 **Reference**
 
-[Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path)
+[Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths)
 
 ## Why the application is not deleted from the background mission list after it calls terminateSelf?
 
@@ -472,7 +472,7 @@ To start a continuous task in the background, you must configure the permission 
 
 [Continuous Task Permission](../security/permission-list.md#ohospermissionkeep_background_running)
 
-[Continuous Task Development](../task-management/continuous-task-dev-guide.md#development-in-the-stage-model)
+[Continuous Task Development](../task-management/continuous-task.md#stage-model)
 
 ## How do FA widgets exchange data?
 
