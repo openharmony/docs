@@ -4608,6 +4608,7 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 取消订阅TLSSocketServer的连接事件。使用callback方式作为异步方法。
 
 > **说明：**
+> listen方法调用成功后，才可调用此方法。
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
