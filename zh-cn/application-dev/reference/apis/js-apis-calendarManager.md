@@ -209,7 +209,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount?: [CalendarAccount](#calendarAccount)): Promise<[Calendar](#calendar)>
+getCalendar(calendarAccount?: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
 
 获取帐户，不传参数时获取默认帐户，传参时获取指定帐户，使用Promise异步回调。
 
