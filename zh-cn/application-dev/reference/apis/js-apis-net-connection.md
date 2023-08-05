@@ -158,7 +158,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象 |
+| callback | AsyncCallback\<[HttpProxy](#httpproxy10)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象 |
 
 **错误码：**
 
@@ -192,7 +192,7 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[HttpProxy](#httpproxy)> | 以Promise形式返回网络的全局代理配置信息。 |
+| Promise\<[HttpProxy](#httpproxy10)> | 以Promise形式返回网络的全局代理配置信息。 |
 
 **错误码：**
 
@@ -229,7 +229,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| httpProxy | [HttpProxy](#httpproxy) | 是   | 网络全局Http代理配置信息                                     |
+| httpProxy | [HttpProxy](#httpproxy10) | 是   | 网络全局Http代理配置信息                                     |
 | callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功设置网络全局Http代理配置信息时，error为undefined，否则为错误对象 |
 
 **错误码：**
@@ -274,7 +274,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 
 | 参数名    | 类型                                                         | 必填 | 说明             |
 | --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | 是   | 网络全局Http代理配置信息。 |
+| httpProxy | [HttpProxy](#httpproxy10)                                      | 是   | 网络全局Http代理配置信息。 |
 
 **返回值：**
 
@@ -324,7 +324,7 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，error为undefined，data为网络默认的代理配置信息；否则为错误对象 |
+| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，error为undefined，data为网络默认的代理配置信息；否则为错误对象 |
 
 **错误码：**
 
@@ -356,7 +356,7 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 | 类型                             | 说明                                      |
 | -------------------------------- | ----------------------------------------- |
-| Promise<[HttpProxy](#httpproxy)> | 以Promise形式返回网络默认的代理配置信息。 |
+| Promise<[HttpProxy](#httpproxy10)> | 以Promise形式返回网络默认的代理配置信息。 |
 
 **错误码：**
 
