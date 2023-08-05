@@ -13,6 +13,8 @@
 |删除|类名：OutputDeviceInfo;<br>方法or属性：deviceName: Array\<string>;|NA|@ohos.multimedia.avsession.d.ts|
 |删除|类名：ImageSource;<br>方法or属性：getDelayTime(): Promise\<Array\<number>>;|NA|@ohos.multimedia.image.d.ts|
 |删除|类名：ImageSource;<br>方法or属性：getDelayTime(callback: AsyncCallback\<Array\<number>>): void;|NA|@ohos.multimedia.image.d.ts|
+|新增|NA|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,region:Array\<number>):Promise\<ColorPicker>;|@ohos.effectKit.d.ts|
+|新增|NA|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,region:Array\<number>,callback:AsyncCallback\<ColorPicker>):void;|@ohos.effectKit.d.ts|
 |新增|NA|类名：AVMediaDescription;<br>方法or属性：artist?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVMediaDescription;<br>方法or属性：duration?: number;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVCastController;<br>方法or属性：getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void;|@ohos.multimedia.avsession.d.ts|
@@ -210,6 +212,8 @@
 |新增|NA|类名：ImageSource;<br>方法or属性：getDelayTimeList(): Promise\<Array\<number>>;|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：ImageSource;<br>方法or属性：getDelayTimeList(callback: AsyncCallback\<Array\<number>>): void;|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：AVPlayer;<br>方法or属性：audioEffectMode ?: audio.AudioEffectMode;|@ohos.multimedia.media.d.ts|
+|新增(错误码)|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap): Promise\<ColorPicker>;<br>旧版本信息：|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap): Promise\<ColorPicker>;<br>新版本信息：401|@ohos.effectKit.d.ts|
+|新增(错误码)|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,callback:AsyncCallback\<ColorPicker>):void;<br>旧版本信息：|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,callback:AsyncCallback\<ColorPicker>):void;<br>新版本信息：401|@ohos.effectKit.d.ts|
 |新增(错误码)|类名：avSession;<br>方法or属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>旧版本信息：|类名：avSession;<br>方法or属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>新版本信息：401,6600101|@ohos.multimedia.avsession.d.ts|
 |新增(错误码)|类名：avSession;<br>方法or属性：function getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>;<br>旧版本信息：|类名：avSession;<br>方法or属性：function getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>;<br>新版本信息：201,6600101|@ohos.multimedia.avsession.d.ts|
 |新增(错误码)|类名：avSession;<br>方法or属性：function createController(sessionId: string): Promise\<AVSessionController>;<br>旧版本信息：|类名：avSession;<br>方法or属性：function createController(sessionId: string): Promise\<AVSessionController>;<br>新版本信息：201,401,6600101,6600102|@ohos.multimedia.avsession.d.ts|

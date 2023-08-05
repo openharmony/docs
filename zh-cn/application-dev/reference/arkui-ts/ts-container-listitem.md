@@ -97,8 +97,9 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | -------- | -------- |
 | onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | ListItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
-
 ## 示例
+
+### 示例1 
 
 ```ts
 // xxx.ets
@@ -125,6 +126,8 @@ struct ListItemExample {
 ```
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
+
+### 示例2
 
 
 ```ts
@@ -192,7 +195,8 @@ struct ListItemExample2 {
 ```
 ![deleteListItem](figures/deleteListItem.gif)
 
-## 示例3
+### 示例3
+
 ```ts
 // xxx.ets
 @Entry

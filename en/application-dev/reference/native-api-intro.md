@@ -49,7 +49,7 @@ Native APIs are stored in the **$(SDK_ROOT)/native** directory of the SDK.
 * [Native API Reference](native-apis/_o_h___native_x_component.md): provides reference for Native APIs.
 * [Standard Libraries Supported by Native APIs](../reference/native-lib/third_party_libc/musl.md): describes the open-source standard libraries supported by Native APIs.
 * [Native API Development](../napi/napi-guidelines.md): describes how to use Native APIs.
-* [Using NDK to Build a CMake C/C++ Project](../faqs/howto-migrate-cmake-with-ohosndk.md): describes how to use Native APIs to develop a CMake project.
+* [Using NDK to Build a CMake C/C++ Project](../faqs/cmake-with-ndk.md): describes how to use Native APIs to develop a CMake project.
 * [Using Node-APIs in Application Projects](../napi/napi-guidelines.md): describes how to use Node-APIs.
 
 ## How to Use

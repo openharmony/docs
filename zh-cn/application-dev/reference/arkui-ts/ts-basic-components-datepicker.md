@@ -68,9 +68,10 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述        |
-| ---------------------------------------- | ----------- |
-| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | 选择日期时触发该事件。 |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 选择日期时触发该事件。<br />**说明：**<br />从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateChange(callback: (value: Date) => void)。 |
+| onDateChange(callback: (value: Date) => void)<sup>10+</sup>  | 选择日期时触发该事件。                                       |
 
 ## DatePickerResult对象说明
 
@@ -108,9 +109,9 @@ struct DatePickerExample {
         .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
         .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
         .lunar(this.isLunar)
-        .onChange((value: DatePickerResult) => {
-          this.selectedDate.setFullYear(value.year, value.month, value.day)
-          console.info('select current date is: ' + JSON.stringify(value))
+        .onDateChange((value: Date) => {
+          this.selectedDate = value
+          console.info('select current date is: ' + value.toString())
         })
 
     }.width('100%')

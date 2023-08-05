@@ -98,7 +98,7 @@ AVSession对媒体播放做了管控，当三方应用从前台切入后台或�
 
 **参考链接**
 
-[后台任务管理的长时任务开发指导参考](../task-management/continuous-task-dev-guide.md)
+[后台任务管理的长时任务开发指导参考](../task-management/continuous-task.md)
 
 [AVSession开发指导参考](../media/using-avsession-developer.md)
 

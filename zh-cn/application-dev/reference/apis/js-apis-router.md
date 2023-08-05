@@ -409,7 +409,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 | 100003    | if the pages are pushed too much. |
 | 100004    | if the named route is not exist. |
 
-**示例：**
+**示例：** 
 
 ```ts
 try {
@@ -426,6 +426,8 @@ try {
   console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+详细示例请参考：[UI开发-页面路由](../../ui/arkts-routing.md#命名路由)
 
 ## router.pushNamedRoute<sup>10+</sup>
 

@@ -1,4 +1,4 @@
-# @ohos.bluetooth.pan (蓝牙socket模块)
+# @ohos.bluetooth.pan (蓝牙pan模块)
 
 pan模块提供了访问蓝牙个人区域网相关功能的方法。
 

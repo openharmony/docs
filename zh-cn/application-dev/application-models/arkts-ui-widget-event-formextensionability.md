@@ -11,12 +11,19 @@
   @Entry(storage)
   @Component
   struct WidgetCard {
-    @LocalStorageProp('title') title: string = 'init';
-    @LocalStorageProp('detail') detail: string = 'init';
+    @LocalStorageProp('title') title: string = 'Title default';
+    @LocalStorageProp('detail') detail: string = 'Description default';
   
     build() {
       Column() {
-        Button('刷新')
+        Column() {
+          Text(`${this.title}`)
+            .margin(5).fontWeight(FontWeight.Medium).fontSize('14fp')
+          Text(`${this.detail}`)
+            .margin(5).fontColor(Color.Gray).fontSize('12fp').height('25%')
+        }.width('100%').alignItems(HorizontalAlign.Start)
+        Button('UPDATE')
+          .margin(15).width('90%')
           .onClick(() => {
             postCardAction(this, {
               'action': 'message',
@@ -25,11 +32,7 @@
               }
             });
           })
-        Text(`${this.title}`)
-        Text(`${this.detail}`)
-      }
-      .width('100%')
-      .height('100%')
+      }.width('90%').height('90%').margin('5%')
     }
   }
   ```
@@ -46,8 +49,8 @@
       // Called when a specified message event defined by the form provider is triggered.
       console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
       let formData = {
-        'title': 'Title Update Success.', // 和卡片布局中对应
-        'detail': 'Detail Update Success.', // 和卡片布局中对应
+        'title': 'Title Update.', // 和卡片布局中对应
+        'detail': 'Description update success.', // 和卡片布局中对应
       };
       let formInfo = formBindingData.createFormBindingData(formData)
       formProvider.updateForm(formId, formInfo).then((data) => {
@@ -61,5 +64,8 @@
   }
   ```
 
-  运行效果如下图所示。  
-  ![WidgetUpdatePage](figures/WidgetUpdatePage.png)
+  运行效果如下图所示。
+  
+  | 初始状态                                                | 点击刷新                                              |
+  | ------------------------------------------------------- | ----------------------------------------------------- |
+  | ![WidgetUpdateBefore](figures/widget-update-before.PNG) | ![WidgetUpdateAfter](figures/widget-update-after.PNG) |

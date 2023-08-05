@@ -21,14 +21,14 @@
 
 
 ```ts
-@Builder myBuilderFunction({ ... })
+@Builder MyBuilderFunction({ ... })
 ```
 
 使用方法：
 
 
 ```ts
-this.myBuilderFunction({ ... })
+this.MyBuilderFunction({ ... })
 ```
 
 - 允许在自定义组件内定义一个或多个自定义构建函数，该函数被认为是该组件的私有、特殊类型的成员函数。

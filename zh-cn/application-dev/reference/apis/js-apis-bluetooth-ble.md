@@ -1,6 +1,6 @@
 # @ohos.bluetooth.ble (蓝牙ble模块)
 
-ble模块提供了访问蓝牙个人区域网相关功能的方法。
+ble模块提供了对蓝牙操作和管理的方法。
 
 > **说明：**
 >
@@ -19,7 +19,7 @@ import ble from '@ohos.bluetooth.ble';
 
 createGattServer(): GattServer
 
-创建Gatt profile实例。
+创建GattServer实例。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -27,7 +27,7 @@ createGattServer(): GattServer
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| GattServer | 返回一个JavaScript Gatt服务的实例。 |
+| GattServer | 返回一个Gatt服务的实例。 |
 
 **示例：**
 
@@ -2210,7 +2210,7 @@ try {
 
 off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
-订阅Mtu状态变化事件。
+取消订阅Mtu状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

@@ -747,6 +747,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
 
+> **说明：**
+> bind方法失败会由系统随机分配端口号。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -783,6 +786,9 @@ tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+
+> **说明：**
+> bind方法失败会由系统随机分配端口号。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1686,7 +1692,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 绑定IP地址和端口，端口可以指定或由系统随机分配。监听并接受与此套接字建立的TCPSocket连接。该接口使用多线程并发处理客户端的数据。使用callback方法作为异步方法。
 
 > **说明：**
-> 服务端使用该方法完成bind，listen，accept操作。
+> 服务端使用该方法完成bind，listen，accept操作，bind方法失败会由系统随机分配端口号。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1731,7 +1737,7 @@ listen(address: NetAddress): Promise\<void\>
 绑定IP地址和端口，端口可以指定或由系统随机分配。监听并接受与此套接字建立的TCPSocket连接。该接口使用多线程并发处理客户端的数据。使用Promise方法作为异步方法。
 
 > **说明：**
-> 服务端使用该方法完成bind，listen，accept操作。
+> 服务端使用该方法完成bind，listen，accept操作，bind方法失败会由系统随机分配端口号。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1991,6 +1997,9 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 订阅TCPSocketServer的连接事件。使用callback方式作为异步方法。
 
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -2057,6 +2066,9 @@ tcpServer.off('connect');
 on(type: 'error', callback: ErrorCallback): void
 
 订阅TCPSocketServer连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4534,7 +4546,7 @@ tlsServer.getProtocol().then(data => {
 });
 ```
 
-### on('connect')
+### on('connect')<sup>10+</sup>
 
 on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
@@ -4589,7 +4601,7 @@ tlsServer.on('connect', function(data) {
 });
 ```
 
-### off('connect')
+### off('connect')<sup>10+</sup>
 
 off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 
@@ -4650,7 +4662,7 @@ tlsServer.off('connect', callback);
 tlsServer.off('connect');
 ```
 
-### on('error')
+### on('error')<sup>10+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -4705,7 +4717,7 @@ tlsServer.on('error', err => {
 });
 ```
 
-### off('error')
+### off('error')<sup>10+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 

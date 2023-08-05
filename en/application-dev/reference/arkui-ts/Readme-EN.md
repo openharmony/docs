@@ -164,8 +164,8 @@
 - Advanced Components
   - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
 - Animation
-  - [AnimatorProperty](ts-animatorproperty.md)
-  - [Explicit Animatio](ts-explicit-animation.md)
+  - [Property Animation](ts-animatorproperty.md)
+  - [Explicit Animation](ts-explicit-animation.md)
   - Transition Animation
     - [Page Transition](ts-page-transition-animation.md)
     - [Component Transition](ts-transition-animation-component.md)
