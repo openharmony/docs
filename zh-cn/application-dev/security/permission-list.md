@@ -102,7 +102,7 @@
 
 ## ohos.permission.GET_PHONE_NUMBERS
 
-允许应用读取SIM卡MSISDN。
+允许应用读取设备的本机号码。
 
 **权限级别**：system_basic
 
