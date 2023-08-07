@@ -31,9 +31,9 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
 ## usageStatistics.isIdleState
 
-isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
+isIdleState(bundleName: string): boolean
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Callback形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -46,7 +46,12 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名        | 类型                           | 必填   | 说明                                       |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | 是    | 应用的bundleName。                           |
-| callback   | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+
+**返回值**：
+
+| 类型                     | 说明                                       |
+| ---------------------- | ---------------------------------------- |
+| boolean | 如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态。 |
 
 **错误码**：
 
@@ -63,73 +68,17 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例**：
   ```js
     try{
-        usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-            }
-        });
+        var isIdleState = usageStatistics.isIdleState("com.ohos.camera");
     } catch(error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
-
-## usageStatistics.isIdleState
-
-isIdleState(bundleName: string): Promise&lt;boolean&gt;
-
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Promise形式返回。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名        | 类型     | 必填   | 说明             |
-| ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是    | 应用的bundleName。 |
-
-**返回值**：
-
-| 类型                     | 说明                                       |
-| ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                     |
-| ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
-| 10000006   | Failed to get the application information.     |
-
-**示例**：
-
-  ```js
-    try{
-        usageStatistics.isIdleState("com.ohos.camera").then( res => {
-            console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
   ```
 
 ## usageStatistics.queryAppGroup
 
-queryAppGroup(): Promise&lt;number&gt;
+queryAppGroup(): number;
 
-查询当前应用的优先级分组。使用Promise形式返回其应用分组。
+查询当前应用的优先级分组。返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -139,7 +88,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
+| number | 返回查询的应用分组结果。 |
 
 **错误码**：
 
@@ -159,11 +108,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 ```javascript
     try{
-        usageStatistics.queryAppGroup().then( res => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
+        var priorityGroup = usageStatistics.queryAppGroup();
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
@@ -171,9 +116,9 @@ queryAppGroup(): Promise&lt;number&gt;
 
 ## usageStatistics.queryAppGroup
 
-queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
+queryAppGroup(bundleName: string): number
 
-查询当前应用的优先级分组。使用callback形式返回其应用分组。
+查询指定应用的优先级分组。返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -181,9 +126,15 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **参数**：
 
-| 参数名      | 类型                    | 必填   | 说明                         |
-| -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。 |
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| number | 返回查询的应用分组结果。 |
 
 **错误码**：
 
@@ -203,13 +154,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 ```javascript
     try{
-        usageStatistics.queryAppGroup((err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-            }
-        });
+        var priorityGroup = usageStatistics.queryAppGroup("com.ohos.camera");
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
