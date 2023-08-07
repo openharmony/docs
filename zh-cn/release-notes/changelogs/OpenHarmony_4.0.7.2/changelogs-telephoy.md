@@ -67,12 +67,47 @@ export enum VoNRState {
 使用变更后的接口，示例代码如下：
 
 ```js
+N/A
+```
+
+
+## cl.telephony.2 call模块接口变更
+
+原始设计误将set接口回调设置为布尔值，set接口回调修正为void。
+
+**变更影响**
+
+原接口设计失误，实际编码时发现并更改，接口实现不变。
+
+**关键的接口/组件变更**
+
+修改前的接口原型：
+
+```js
+function setVoNRState(slotId: number, state: VoNRState, callback: AsyncCallback<boolean>): void;
+function setVoNRState(slotId: number, state: VoNRState): Promise<boolean>;
+
+```
+
+修改后的接口原型：
+
+```js
+function setVoNRState(slotId: number, state: VoNRState, callback: AsyncCallback<void>): void;
+function setVoNRState(slotId: number, state: VoNRState): Promise<void>;
+```
+
+**适配指导**
+
+使用变更后的接口，示例代码如下：
+
+```js
 call.setVoNRState( 0, VONR_STATE_ON, (err) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    }
+    
 });
 call.setVoNRState( 0, VONR_STATE_OFF, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
-
-
