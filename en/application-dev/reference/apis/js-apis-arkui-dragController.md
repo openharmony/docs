@@ -28,7 +28,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
-| dragInfo | [DragInfo](#draginfo)                                    | Yes  | Drag information.                      |
+| dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 | callback | AsyncCallback&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.        |
 
 **Example**
@@ -89,7 +89,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
-| dragInfo | [DragInfo](#draginfo)                                    | Yes  | Drag information.                      |
+| dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 
 **Return value**
 
@@ -170,6 +170,8 @@ struct DragControllerPage {
 ```
 
 ## DragInfo
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 Defines the attributes required for initiating a drag action and information carried in the dragging process.
 

@@ -48,7 +48,7 @@ Implements a component observer for completion of component layout and drawing, 
 
 on(type: 'layout', callback: () => void): void
 
-Registers a listener for completion of component layout or drawing.
+Registers a listener for completion of component layout.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ Registers a listener for completion of component layout or drawing.
 
 off(type: 'layout', callback?: () => void): void
 
-Unregisters the listener for completion of component layout or drawing.
+Unregisters the listener for completion of component layout.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,6 +71,36 @@ Unregisters the listener for completion of component layout or drawing.
 
 | Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------------- |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
+| callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
+
+### on
+
+on(type: 'draw', callback: () => void): void
+
+Registers a listener for completion of component drawing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
+| callback | void   | Yes  | Callback invoked upon completion of component layout or drawing.                                    |
+
+### off
+
+off(type: 'draw', callback?: () => void): void
+
+Unregisters the listener for completion of component drawing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
 | callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
 
