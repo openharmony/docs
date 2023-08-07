@@ -71,3 +71,8 @@ API Version 9: Free模式显示位置
 API Version 10: Free模式显示位置与Full模式显示位置相同
 
 ![Navigation](figures/navigation_title_mode_free_sdk10.png)
+
+## cl.arkui.3 高阶动效接口标记成系统接口
+
+**变更影响**
+1. 将sphericalEffect、lightUpEffect与pixelStretchEffect三个高阶动效接口由public接口修改为systemapi接口，不对外部开发者暴露
