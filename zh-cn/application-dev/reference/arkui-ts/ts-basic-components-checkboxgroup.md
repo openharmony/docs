@@ -22,7 +22,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| group | string | 否 | 群组名称。|
+| group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
 ## 属性
 
