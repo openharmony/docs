@@ -4,7 +4,7 @@ Low Lever Debugger (LLDB) is a next-generation high-performance debugger.
 
 LLDB is developed based on the [llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4) and supports debugging on the home screen and OpenHarmony devices or simulators.
 ## How to Obtain
-Obtain the OpenHarmony SDK from http://ci.openharmony.cn/dailys/dailybuilds.
+Obtain the OpenHarmony SDK from http://ci.openharmony.cn/workbench/cicd/dailybuild.
 
 LLDB is in the following path of the SDK:
 ```
@@ -106,4 +106,4 @@ For example, for Windows, **lldb.exe** is stored in the following path after the
 - Checking the stack frame status
 
 ## References
-For details about other functions and commands, see [LLDB Usage Guide](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)
+For details about other functions and commands, see [LLDB Usage Guide](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README.md)
