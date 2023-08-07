@@ -22,6 +22,8 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME
+
 **参数：**
 
 | 参数名   | 类型            | 必填 | 说明                                       |
@@ -56,6 +58,8 @@ setTime(time : number) : Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -380,6 +384,8 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明             |
@@ -413,6 +419,8 @@ setDate(date: Date): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -509,6 +517,8 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME_ZONE
+
 **参数：**
 
 | 参数名   | 类型              | 必填 | 说明                  |
@@ -541,6 +551,8 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME_ZONE
 
 **参数：**
 
