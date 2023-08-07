@@ -293,6 +293,23 @@ OpenHarmony 4.0版本标准系统能力持续完善：ArkUI进一步增强基础
 - 传感器驱动提供温湿度传感器设备驱动能力，支持小型设备温湿度器件查询，器件使能/去使能，数据查询能力，丰富智能设备传感器能力。
 
 
+### DevEco Studio
+
+- 编辑器支持Optimize Imports能力，实现快速清除未使用的import，并根据设置的规则对import进行合并或排序。
+- 编辑器支持快速覆写父类方法模板代码，辅助开发者根据父类模板快速生成子类方法。
+- 编辑器支持Safe Delete功能，帮助您安全地删除代码中的标识符对象（变量、函数或类等）。
+- API 10 Stage模型的ArkTS工程支持代码混淆。
+- 支持开发者扩展编译任务和新增Hvigor任务。
+- 从DevEco Studio 4.0 Beta1版本开始Node.js解耦，分为IDE级Node.js和工程级Node.js。
+- 支持展开宏、移动函数体到实现处两个使用场景下的C++代码重构能力，提升开发效率。
+- 支持提取ArkTS系统组件到@Builder方法、提取ArkTS系统属性调用到@Styles和@Extend方法。
+- 在API 10工程中，AOT编译支持使用Target AOT编译。
+- oh-package.json文件中新增compileOnlyDependencies字段，用于配置弱耦合依赖。
+- 优化自定义调试参数中选择Specified Ability界面，便于开发者选择指定启动的Ability。
+- 优化HiLog和FaultLog界面显示，并增加HiLog搜索大小写匹配，便于开发者更清晰地进行日志信息定位。
+- 应用与服务体检新增自选套餐，开发者可以有针对性地选择体检规则。
+- Profiler优化框选时间段、泳道收藏等功能。
+
 ## 配套关系
 
 **表1** 版本软件和工具配套关系
