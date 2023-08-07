@@ -6,9 +6,8 @@ The **DataShare** module allows an application to manage its own data and share 
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> 
->- The APIs provided by this module are system APIs and can be used only in the stage model.
-> 
+> - The APIs provided by this module are system APIs and can be used only in the stage model.
+>
 
 
 ## Modules to Import
@@ -34,7 +33,7 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                       |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -82,7 +81,7 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                        |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | URI of the server application to connect.                              |
 | options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Configuration specifying whether [DataShareHelper](#datasharehelper) is in proxy mode.|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
@@ -132,8 +131,8 @@ Observe the following when using this API:
 
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of an application.            |
-| uri     | string                                            | Yes  | URI of the server application to connect. |
+| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of the application.            |
+| uri     | string                                            | Yes  | URI of the server application to connect.|
 | options | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode. |
 
 **Return value**
@@ -484,7 +483,7 @@ function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
     for (let i = 0; i < node.data.length; i++) {
         console.info("onPublishCallback node " + typeof node.data[i].data);
         if (typeof node.data[i].data != 'string') {
-            let array:ArrayBuffer = node.data[i].data;
+            let array:ArrayBuffer = node.data[i].data as ArrayBuffer;
             let data:Uint8Array = new Uint8Array(array);
             console.info("onPublishCallback " + i + " " + JSON.stringify(data));
         }
@@ -560,13 +559,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 ```ts
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
+let dataArray : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
 try {
-    console.info("data length is:", data.length);
-    dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
+    console.info("dataArray length is:", dataArray.length);
+    dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
     console.error("publish error " + JSON.stringify(e));
 }
@@ -602,11 +601,11 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 function publishCallback(err, result: Array<dataShare.OperationResult>) {
     console.info("publishCallback " + JSON.stringify(result));
 }
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallback);
+dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest", publishCallback);
 ```
 
 ### publish<sup>10+</sup>
@@ -642,11 +641,11 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-let data : Array<dataShare.PublishedItem> = [
+let dataArray : Array<dataShare.PublishedItem> = [
     {key:"city", subscriberId:"11", data:"xian"},
     {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
     {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let result: Array<dataShare.OperationResult> = dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest");
+let result: Array<dataShare.OperationResult> = dataShareHelper.publish(dataArray, "com.acts.ohos.data.datasharetest");
 ```
 
 ### getPublishedData<sup>10+</sup>
