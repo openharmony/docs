@@ -292,7 +292,7 @@ Registers a listener for application foreground/background state changes. This A
 | Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | string                                     | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
-| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
 
 **Example**
 
@@ -370,7 +370,7 @@ Deregisters all the listeners for application foreground/background state change
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | type   | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
-| callback | [ApplicationStateChangeCallback](#js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
 
 **Example**
 

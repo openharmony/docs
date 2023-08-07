@@ -191,7 +191,7 @@ struct PageTransition2 {
 
 **Reference**
 
-[Page Transition Animation](../ui/arkts-page-transition-animation.md)
+[Page Transition](../reference/arkui-ts/ts-page-transition-animation.md)
 
 ## How do I configure custom components to slide in and out from the bottom?
 
@@ -266,4 +266,4 @@ struct ComponentChild2 {
 
 **Reference**
 
-[Transition Animation Within the Component](../ui/arkts-transition-animation-within-component.md)
+[Transition Animation Within the Component](../ui/arkts-enter-exit-transition.md)
