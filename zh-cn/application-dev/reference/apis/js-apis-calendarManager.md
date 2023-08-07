@@ -16,7 +16,7 @@ import calendarManager from '@ohos.calendarManager';
 
 ## calendarManager.createCalendar
 
-createCalendar(calendarAccount: [CalendarAccount](#calendaraccount), callback: AsyncCallback<[Calendar](#calendar)>): void
+createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
 根据传入的信息，创建一个帐户，使用callback异步回调。
 
@@ -47,7 +47,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 ## calendarManager.createCalendar
 
-createCalendar(calendarAccount: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
+createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 根据传入的信息，创建一个帐户，使用Promise异步回调。
 
@@ -81,7 +81,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 ## calendarManager.deleteCalendar
 
-deleteCalendar(calendar: [Calendar](#calendar), callback: AsyncCallback\<void>): void
+deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 删除指定帐户，使用callback异步回调。
 
@@ -113,7 +113,7 @@ calendarManager.deleteCalendar(calendar, (err, data) => {
 
 ## calendarManager.deleteCalendar
 
-deleteCalendar(calendar: [Calendar](#calendar)): Promise\<void>
+deleteCalendar(calendar: Calendar): Promise\<void>
 
 删除指定帐户，使用Promise异步回调。
 
@@ -148,7 +148,7 @@ calendarManager.deleteCalendar(calendar).then((data) => {
 
 ## calendarManager.getCalendar
 
-getCalendar(callback: AsyncCallback<[Calendar](#calendar)>): void
+getCalendar(callback: AsyncCallback\<Calendar>): void
 
 获取默认帐户，使用callback异步回调。
 
@@ -178,7 +178,7 @@ calendarManager.getCalendar((err, data) => {
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount: [CalendarAccount](#calendaraccount), callback: AsyncCallback<[Calendar](#calendar)>): void
+getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
 获取指定帐户，使用callback异步回调。
 
@@ -209,7 +209,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 ## calendarManager.getCalendar
 
-getCalendar(calendarAccount?: [CalendarAccount](#calendaraccount)): Promise<[Calendar](#calendar)>
+getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 获取帐户，不传参数时获取默认帐户，传参时获取指定帐户，使用Promise异步回调。
 
@@ -244,7 +244,7 @@ calendarManager.getCalendar().then((data) => {
 
 ## calendarManager.getAllCalendars
 
-getAllCalendars(callback: AsyncCallback<[Calendar](#calendar)[]>): void
+getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 获取当前应用所有创建的帐户以及默认帐户，使用callback异步回调。
 
@@ -274,7 +274,7 @@ calendarManager.getAllCalendars((err, data) => {
 
 ## calendarManager.getAllCalendars
 
-getAllCalendars(): Promise<[Calendar](#calendar)[]>
+getAllCalendars(): Promise\<Calendar[]>
 
 获取当前应用所有创建的帐户以及默认帐户，使用Promise异步回调。
 
@@ -302,6 +302,10 @@ calendarManager.getAllCalendars().then((data) => {
 
 ## Calendar
 
+帐户实例。描述Calendar对象的属性和方法。
+
+下列API示例中需先通过[createCalendar()](#calendarManager.createCalendar)、[getCalendar()](#calendarManager.getCalendar)中任一方法获取Calendar实例，再通过此实例调用对应方法。
+
 ### 属性
 
 **系统能力**：SystemCapability.Applications.CalendarData
@@ -312,7 +316,7 @@ calendarManager.getAllCalendars().then((data) => {
 
 ### addEvent
 
-addEvent(event: [Event](#event), callback: AsyncCallback\<number>): void
+addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 根据传入的信息，创建一个日程，使用callback异步回调。
 
@@ -348,7 +352,7 @@ calendar.addEvent(event, (err, data) => {
 
 ### addEvent
 
-addEvent(event: [Event](#event)): Promise\<number>
+addEvent(event: Event): Promise\<number>
 
 根据传入的信息，创建一个日程，使用Promise异步回调。
 
@@ -387,7 +391,7 @@ calendar.addEvent(event).then((data) => {
 
 ### addEvents
 
-addEvents(events: [Event](#event)[], callback: AsyncCallback\<void>): void
+addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
 根据传入的信息，批量创建日程，使用callback异步回调。
 
@@ -430,7 +434,7 @@ calendar.addEvents(events, (err, data) => {
 
 ### addEvents
 
-addEvents(events: [Event](#event)[]): Promise\<void>
+addEvents(events: Event[]): Promise\<void>
 
 根据传入的信息，批量创建日程，使用Promise异步回调。
 
@@ -602,7 +606,7 @@ calendar.deleteEvents([1, 2]).then(() => {
 
 ### updateEvent
 
-updateEvent(event: [Event](#event), callback: AsyncCallback\<void>): void
+updateEvent(event: Event, callback: AsyncCallback\<void>): void
 
 根据日程实例对象，更新日程，使用callback异步回调。
 
@@ -640,7 +644,7 @@ calendar.updateEvent(event, (err, data) => {
 
 ### updateEvent
 
-updateEvent(event: [Event](#event)): Promise\<void>
+updateEvent(event: Event): Promise\<void>
 
 根据日程实例对象，更新日程，使用Promise异步回调。
 
@@ -681,7 +685,7 @@ calendar.updateEvent(event).then(() => {
 
 ### getEvents
 
-getEvents(callback: AsyncCallback<[Event](#event)[]>): void
+getEvents(callback: AsyncCallback\<Event[]>): void
 
 查询帐户下所有日程，使用callback异步回调。
 
@@ -710,7 +714,7 @@ calendar.getEvents((err, data) => {
 
 ### getEvents
 
-getEvents(eventFilter: [EventFilter](#eventfilter), eventKey: (keyof [Event](#event))[], callback: AsyncCallback<[Event](#event)[]>):void
+getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCallback\<Event[]>):void
 
 获取帐户下符合查询条件的日程，使用callback异步回调。
 
@@ -743,7 +747,7 @@ calendar.getEvents(filter, columns, (err, data) => {
 
 ### getEvents
 
-getEvents(eventFilter?: [EventFilter](#eventfilter), eventKey?: (keyof [Event](#event))[]): Promise<[Event](#event)[]>
+getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 获取帐户下符合查询条件的日程，使用Promise异步回调。
 
@@ -778,7 +782,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### getConfig
 
-getConfig(): [CalendarConfig](#calendarconfig)
+getConfig(): CalendarConfig
 
 获取帐户具体参数。
 
@@ -802,7 +806,7 @@ console.log("get config success");
 
 ### setConfig
 
-setConfig(config: [CalendarConfig](#calendarconfig), callback: AsyncCallback\<void>): void
+setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 
 设置帐户参数，使用callback异步回调。
 
@@ -835,7 +839,7 @@ calendar.setConfig(config, (err, data) => {
 
 ### setConfig
 
-setConfig(config:  [CalendarConfig](#calendarconfig)): Promise\<void>
+setConfig(config: CalendarConfig): Promise\<void>
 
 设置帐户参数，使用Promise异步回调。
 
@@ -849,9 +853,9 @@ setConfig(config:  [CalendarConfig](#calendarconfig)): Promise\<void>
 
 **返回值**：
 
-| 类型          | 说明                      |
-| ------------- | ------------------------- |
-| Promise<void> | 无返回结果的Promise对象。 |
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -871,7 +875,7 @@ calendar.setConfig(config).then(() => {
 
 ### getAccount
 
-getAccount(): [CalendarAccount](#calendaraccount)
+getAccount(): CalendarAccount
 
 获取帐户信息。
 
@@ -920,6 +924,8 @@ console.log("get account success");
 
 日程实例对象，用于设置日程标题、开始时间、结束时间等具体信息。
 
+通过[addEvent()](#addEvent)、[addEvents()](#addEvents)中的任一方法创建，通过[getEvents()](#getEvents)方法获取Event实例。
+
 **系统能力**：SystemCapability.Applications.CalendarData
 
 | 名称           | 类型                              | 只读 | 必填 | 说明             |
@@ -944,13 +950,13 @@ console.log("get account success");
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称       | 值         | 说明         |
-| ---------- | ---------- | ------------ |
-| LOCAL      | local      | 本地帐户。   |
-| EMAIL      | email      | 邮箱帐户。   |
-| BIRTHDAY   | birthday   | 生日帐户。   |
-| CALDAV     | caldav     | CalDAV帐户。 |
-| SUBSCRIBED | subscribed | 订阅帐户。   |
+| 名称       | 值           | 说明         |
+| ---------- | ------------ | ------------ |
+| LOCAL      | 'local'      | 本地帐户。   |
+| EMAIL      | 'email'      | 邮箱帐户。   |
+| BIRTHDAY   | 'birthday'   | 生日帐户。   |
+| CALDAV     | 'caldav'     | CalDAV帐户。 |
+| SUBSCRIBED | 'subscribed' | 订阅帐户。   |
 
 ## Location
 
@@ -966,9 +972,13 @@ console.log("get account success");
 
 ## EventFilter
 
+日程过滤器，查询日程时进行过滤，获取符合条件的日程。
+
+通过[filterById()](#filterById)、[filterByTime()](#filterByTime)、[filterByTitle()](#filterByTitle)任一方法获取日程过滤器，传入[getEvents()](#getEvents)进行过滤。
+
 ### filterById
 
-filterById(ids: number[]): [EventFilter](#eventfilter)
+filterById(ids: number[]): EventFilter
 
 根据日程id进行过滤日程。
 
@@ -1002,7 +1012,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTime
 
-filterByTime(start: number, end: number):  [EventFilter](#eventfilter)
+filterByTime(start: number, end: number): EventFilter
 
 根据日程时间进行过滤日程。
 
@@ -1037,7 +1047,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTitle
 
-filterByTitle(title: string):  [EventFilter](#eventfilter)
+filterByTitle(title: string): EventFilter
 
 根据日程时间进行过滤日程。
 
@@ -1133,14 +1143,14 @@ calendar.getEvents(filter).then(() => {
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称            | 值             | 说明         |
-| --------------- | -------------- | ------------ |
-| MEETING         | Meeting        | 一键入会。   |
-| WATCHING        | Watching       | 一键追剧。   |
-| REPAYMENT       | Repayment      | 一键还款。   |
-| LIVE            | Live           | 一键直播。   |
-| SHOPPING        | Shopping       | 一键购物。   |
-| TRIP            | Trip           | 一键查看。   |
-| CLASS           | Class          | 一键上课。   |
-| SPORTS_EVENTS   | SportsEvents   | 一键看赛事。 |
-| SPORTS_EXERCISE | SportsExercise | 一键运动。   |
+| 名称            | 值               | 说明         |
+| --------------- | ---------------- | ------------ |
+| MEETING         | 'Meeting'        | 一键入会。   |
+| WATCHING        | 'Watching'       | 一键追剧。   |
+| REPAYMENT       | 'Repayment'      | 一键还款。   |
+| LIVE            | 'Live'           | 一键直播。   |
+| SHOPPING        | 'Shopping'       | 一键购物。   |
+| TRIP            | 'Trip'           | 一键查看。   |
+| CLASS           | 'Class'          | 一键上课。   |
+| SPORTS_EVENTS   | 'SportsEvents'   | 一键看赛事。 |
+| SPORTS_EXERCISE | 'SportsExercise' | 一键运动。   |
