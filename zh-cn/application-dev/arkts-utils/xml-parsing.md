@@ -4,7 +4,7 @@
 对于以XML作为载体传递的数据，实际使用中需要对相关的节点进行解析，一般包括[解析XML标签和标签值](#解析xml标签和标签值)、[解析XML属性和属性值](#解析xml属性和属性值)、[解析XML事件类型和元素深度](#解析xml事件类型和元素深度)三类场景。
 
 
-XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的ArrayBufffer或DataView，输出为解析得到的信息。
+XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的ArrayBuffer或DataView，输出为解析得到的信息。
 
 
   **表1** XML解析选项
