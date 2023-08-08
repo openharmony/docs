@@ -1,7 +1,7 @@
 # 基础通信wifi子系统ChangeLog
 
 # cl.wifi.1 WiFi扫描接口名变更
-已发布的扫描接口，和API9的接口出现了差异，需要恢复到原有的API9接口，仅涉及API名称变更，使用方式不变。
+API10 Beta1已发布的扫描接口，和API9的接口出现了差异，需要恢复到原有的API9接口，仅涉及API名称变更，使用方式不变。
 
 **变更影响**
 
@@ -27,7 +27,7 @@ getScanResultsSync(): Array<WifiScanInfo>;
 ```
 
 # cl.wifi.2 WiFi P2P相关接口名变更
-已发布的P2P相关接口，和API9的接口出现了差异，需要恢复到原有的API9接口，，仅涉及API名称变更，使用方式不变。
+API10 Beta1已发布的P2P相关接口，和API9的接口出现了差异，需要恢复到原有的API9接口，，仅涉及API名称变更，使用方式不变。
 
 **变更影响**
 
