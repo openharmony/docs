@@ -11,8 +11,6 @@
 |删除|类名：OutputDeviceInfo;<br>方法or属性：isRemote: boolean;|NA|@ohos.multimedia.avsession.d.ts|
 |删除|类名：OutputDeviceInfo;<br>方法or属性：audioDeviceId: Array\<number>;|NA|@ohos.multimedia.avsession.d.ts|
 |删除|类名：OutputDeviceInfo;<br>方法or属性：deviceName: Array\<string>;|NA|@ohos.multimedia.avsession.d.ts|
-|删除|类名：ImageSource;<br>方法or属性：getDelayTime(): Promise\<Array\<number>>;|NA|@ohos.multimedia.image.d.ts|
-|删除|类名：ImageSource;<br>方法or属性：getDelayTime(callback: AsyncCallback\<Array\<number>>): void;|NA|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,region:Array\<number>):Promise\<ColorPicker>;|@ohos.effectKit.d.ts|
 |新增|NA|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,region:Array\<number>,callback:AsyncCallback\<ColorPicker>):void;|@ohos.effectKit.d.ts|
 |新增|NA|类名：AVMediaDescription;<br>方法or属性：artist?: string;|@ohos.multimedia.avsession.d.ts|
@@ -209,8 +207,6 @@
 |新增|NA|类名：PixelMap;<br>方法or属性：marshalling(sequence: rpc.MessageSequence): void;|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：PixelMap;<br>方法or属性：unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>;|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：PixelMap;<br>方法or属性：setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void;|@ohos.multimedia.image.d.ts|
-|新增|NA|类名：ImageSource;<br>方法or属性：getDelayTimeList(): Promise\<Array\<number>>;|@ohos.multimedia.image.d.ts|
-|新增|NA|类名：ImageSource;<br>方法or属性：getDelayTimeList(callback: AsyncCallback\<Array\<number>>): void;|@ohos.multimedia.image.d.ts|
 |新增|NA|类名：AVPlayer;<br>方法or属性：audioEffectMode ?: audio.AudioEffectMode;|@ohos.multimedia.media.d.ts|
 |新增(错误码)|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap): Promise\<ColorPicker>;<br>旧版本信息：|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap): Promise\<ColorPicker>;<br>新版本信息：401|@ohos.effectKit.d.ts|
 |新增(错误码)|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,callback:AsyncCallback\<ColorPicker>):void;<br>旧版本信息：|类名：effectKit;<br>方法or属性：function createColorPicker(source:image.PixelMap,callback:AsyncCallback\<ColorPicker>):void;<br>新版本信息：401|@ohos.effectKit.d.ts|
@@ -237,11 +233,6 @@
 |新增(错误码)|类名：AVSessionController;<br>方法or属性：isActive(): Promise\<boolean>;<br>旧版本信息：|类名：AVSessionController;<br>方法or属性：isActive(): Promise\<boolean>;<br>新版本信息：6600101,6600102,6600103|@ohos.multimedia.avsession.d.ts|
 |新增(错误码)|类名：AVSessionController;<br>方法or属性：getValidCommands(): Promise\<Array\<AVControlCommandType>>;<br>旧版本信息：|类名：AVSessionController;<br>方法or属性：getValidCommands(): Promise\<Array\<AVControlCommandType>>;<br>新版本信息：6600101,6600102,6600103|@ohos.multimedia.avsession.d.ts|
 |新增(错误码)|类名：AVSessionController;<br>方法or属性：sendControlCommand(command: AVControlCommand): Promise\<void>;<br>旧版本信息：|类名：AVSessionController;<br>方法or属性：sendControlCommand(command: AVControlCommand): Promise\<void>;<br>新版本信息：401,6600101,6600102,6600103,6600105,6600106,6600107|@ohos.multimedia.avsession.d.ts|
-|新增(错误码)|类名：ImageSource;<br>方法or属性：createPixelMapList(options?: DecodingOptions): Promise\<Array\<PixelMap>>;<br>旧版本信息：|类名：ImageSource;<br>方法or属性：createPixelMapList(options?: DecodingOptions): Promise\<Array\<PixelMap>>;<br>新版本信息：62980096,62980103,62980110,62980111,62980118|@ohos.multimedia.image.d.ts|
-|新增(错误码)|类名：ImageSource;<br>方法or属性：createPixelMapList(callback: AsyncCallback\<Array\<PixelMap>>): void;<br>旧版本信息：|类名：ImageSource;<br>方法or属性：createPixelMapList(callback: AsyncCallback\<Array\<PixelMap>>): void;<br>新版本信息：62980096,62980103,62980110,62980111,62980118|@ohos.multimedia.image.d.ts|
-|新增(错误码)|类名：ImageSource;<br>方法or属性：createPixelMapList(options: DecodingOptions, callback: AsyncCallback\<Array\<PixelMap>>): void;<br>旧版本信息：|类名：ImageSource;<br>方法or属性：createPixelMapList(options: DecodingOptions, callback: AsyncCallback\<Array\<PixelMap>>): void;<br>新版本信息：62980096,62980103,62980110,62980111,62980118|@ohos.multimedia.image.d.ts|
-|新增(错误码)|类名：ImageSource;<br>方法or属性：getFrameCount(): Promise\<number>;<br>旧版本信息：|类名：ImageSource;<br>方法or属性：getFrameCount(): Promise\<number>;<br>新版本信息：62980096,62980110,62980111,62980113,62980116,62980118,62980122|@ohos.multimedia.image.d.ts|
-|新增(错误码)|类名：ImageSource;<br>方法or属性：getFrameCount(callback: AsyncCallback\<number>): void;<br>旧版本信息：|类名：ImageSource;<br>方法or属性：getFrameCount(callback: AsyncCallback\<number>): void;<br>新版本信息：62980096,62980110,62980111,62980113,62980116,62980118,62980122|@ohos.multimedia.image.d.ts|
 |错误码有变化|类名：avSession;<br>方法or属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>旧版本信息：401,{@link|类名：avSession;<br>方法or属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>新版本信息：401,6600101|@ohos.multimedia.avsession.d.ts|
 |错误码有变化|类名：avSession;<br>方法or属性：function getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void;<br>旧版本信息：201,{@link|类名：avSession;<br>方法or属性：function getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void;<br>新版本信息：201,6600101|@ohos.multimedia.avsession.d.ts|
 |错误码有变化|类名：avSession;<br>方法or属性：function createController(sessionId: string, callback: AsyncCallback\<AVSessionController>): void;<br>旧版本信息：201,401,{@link,{@link|类名：avSession;<br>方法or属性：function createController(sessionId: string, callback: AsyncCallback\<AVSessionController>): void;<br>新版本信息：201,401,6600101,6600102|@ohos.multimedia.avsession.d.ts|
@@ -408,3 +399,4 @@
 |函数有变化|类名：PhotoOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback\<BusinessError>): void;|类名：PhotoOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback): void;|@ohos.multimedia.camera.d.ts|
 |函数有变化|类名：VideoOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback\<BusinessError>): void;|类名：VideoOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback): void;|@ohos.multimedia.camera.d.ts|
 |函数有变化|类名：MetadataOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback\<BusinessError>): void;|类名：MetadataOutput;<br>方法or属性：on(type: 'error', callback: ErrorCallback): void;|@ohos.multimedia.camera.d.ts|
+<!--no_check-->
