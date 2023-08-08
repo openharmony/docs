@@ -14,6 +14,7 @@
   - [事件错误码](errorcode-CommonEventService.md)
   - [通知错误码](errorcode-notification.md)
   - [DistributedNotificationService错误码](errorcode-DistributedNotificationService.md)
+  - [拖拽事件错误码](errorcode-drag-event.md)
 - UI界面
   - [动画错误码](errorcode-animator.md)
   - [弹窗错误码](errorcode-promptAction.md)

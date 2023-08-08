@@ -55,7 +55,7 @@ ArkUI组件默认支持拖拽。
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
-| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。 |
+| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
 | setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
 | getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。 |
@@ -69,6 +69,15 @@ ArkUI组件默认支持拖拽。
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[drag-event(拖拽事件)](../errorcodes/errorcode-drag-event.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 190001    | GetData failed, data not found. |
+| 190002    | GetData failed, data error. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -100,16 +109,21 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    let data = event.getData();
-    if (!data) {
+    try {
+      let data = event.getData();
+      if (!data) {
+        return false;
+      }
+      let records: Array<UDC.UnifiedRecord> = data.getRecords();
+      if (!records || records.length <= 0) {
+        return false;
+      }
+      callback(event);
+      return true;
+    } catch (e) {
+      console.log("getData failed, code = " + e.code + ", message = " + e.message);
       return false;
     }
-    let records: Array<UDC.UnifiedRecord> = data.getRecords();
-    if (!records || records.length <= 0) {
-      return false;
-    }
-    callback(event);
-    return true;
   }
 
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
