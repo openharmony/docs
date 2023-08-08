@@ -54,18 +54,18 @@
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata) | 从DragEvent中获取拖拽相关数据。 |
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-udmf.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
-| setResult(dragRect: [DragRet](#dragret10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
-| getResult()<sup>10+</sup> | [DragRet](#dragret10枚举说明) | 从DragEvent中获取拖拽结果。 |
+| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
+| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。 |
 | getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。 |
 | getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。 |
 | getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
 | getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。 |
 
-## DragRet<sup>10+</sup>枚举说明
+## DragResult<sup>10+</sup>枚举说明
 
 | 名称 | 描述 |
 | ----- | ----------------- |
-| DRAG_SUCCESS | 拖拽成功 |
+| DRAG_SUCCESSFUL | 拖拽成功 |
 | DRAG_FAILED | 拖拽失败 |
 | DRAG_CANCELED | 拖拽取消 |
 | DROP_ENABLED | 组件允许落入 |
@@ -130,9 +130,9 @@ struct Index {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragEnd((event)=>{
-          if (event.getResult() === DragRet.DRAG_SUCCESS) {
+          if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
             promptAction.showToast({duration: 100, message: 'Drag Success'});
-          } else if (event.getResult() === DragRet.DRAG_FAILED) {
+          } else if (event.getResult() === DragResult.DRAG_FAILED) {
             promptAction.showToast({duration: 100, message: 'Drag failed'});
           }
         })
@@ -203,7 +203,7 @@ struct Index {
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
               })
-              event.setResult(DragRet.DRAG_SUCCESS);
+              event.setResult(DragResult.DRAG_SUCCESSFUL);
             })
           })
 
