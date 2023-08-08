@@ -29,6 +29,7 @@ getScanResultsSync(): Array<WifiScanInfo>;
 **适配指导**
 
 示例代码如下：
+- 调用 getScanResults 异步接口：
 ```js
 function getScanResultsPromise() {
   let methodName = `${tag} getScanResultsPromise`
@@ -43,7 +44,9 @@ function getScanResultsPromise() {
     }
   })
 }
-
+```
+- 调用 getScanResultsSync 同步接口：
+```js
 function getScanResultsSync(): Array<wifiManager.WifiScanInfo> {
   let methodName = `${tag} getScanResultsSync`
   try {
