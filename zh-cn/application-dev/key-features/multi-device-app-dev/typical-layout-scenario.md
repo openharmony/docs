@@ -352,8 +352,9 @@ struct MultiLaneList {
 @Component
 struct SideBarSample {
   @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem();
   @State selectIndex: number = 0;
+  @State showSideBar:boolean=false;
 
   aboutToAppear() {
     this.breakpointSystem.register()
@@ -374,7 +375,10 @@ struct SideBarSample {
       .width(180)
       .height(36)
       .onClick(() => {
-        this.selectIndex = index
+        this.selectIndex = index;
+         if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=false
+        }
       })
   }
 
@@ -402,8 +406,11 @@ struct SideBarSample {
     .maxSideBarWidth(this.currentBreakpoint === 'sm' ? '100%' : '33.33%')
     .showControlButton(this.currentBreakpoint === 'sm')
     .autoHide(false)
+    .showSideBar(this.currentBreakpoint !== 'sm'||this.showSideBar)
     .onChange((isBarShow: boolean) => {
-      
+      if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=isBarShow
+        }
     })
   }
 }
