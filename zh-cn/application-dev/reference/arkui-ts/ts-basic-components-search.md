@@ -41,6 +41,8 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width：1.5vp<br />color：'#007DFF'<br />} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。 | 
+
 ## IconOptions<sup>10+</sup>对象说明
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
@@ -236,3 +238,46 @@ struct SearchButtoonExample {
 ```
 
 ![searchButton](figures/searchButton.gif)
+
+
+### 示例3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State inputValue: string = ""
+
+  // 自定义键盘组件
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Button('x').onClick(() => {
+        // 关闭自定义键盘
+        this.controller.stopEditing()
+      })
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      Search({ controller: this.controller, value: this.inputValue})
+        // 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+    }
+  }
+}
+````
+
+![customKeyboard](figures/searchCustomKeyboard.png)
