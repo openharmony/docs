@@ -10,7 +10,6 @@
 |**function** getCandidateConfigs(): Array<WifiDeviceConfig>; | 1.取消位置权限 |
 |**function** getDeviceConfigs(): Array<WifiDeviceConfig>; | 1.取消位置权限 |
 |**function** getStations(): Array<StationInfo>; | 1.取消位置权限;2.返回随机MAC(GET_PEER_MAC权限返回真实MAC) |
-| **function** getScanInfoList(): Array<WifiScanInfo>; | 1.取消位置权限;2.返回随机MAC(GET_PEER_MAC权限返回真实MAC) |
 | **function** getCurrentP2pGroup(): Promise<WifiP2pGroupInfo>; | 1.取消位置权限 |
 | **function** getCurrentP2pGroup(callback: AsyncCallback<WifiP2pGroupInfo>): **void**; | 1.取消位置权限 |
 | **function** getP2pPeerDevices(): Promise<WifiP2pDevice[]>; | 1.取消位置权限;2.返回随机MAC(GET_PEER_MAC权限返回真实MAC) |
