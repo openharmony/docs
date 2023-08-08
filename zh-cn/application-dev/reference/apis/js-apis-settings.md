@@ -3,7 +3,7 @@
 本模块提供访问设置数据项的能力。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
@@ -186,57 +186,57 @@ import settings from '@ohos.settings';
 | WIFI_WATCHDOG_STATUS              | string | 是   | 是   | Wi-Fi的WatchDog是否可用。 <br>值为true表示可用；<br/>值为false表示不可用。 |
 
 
-## settings.setValue
+## settings.setValue<sup>10+</sup>
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
+setValue(context: Context, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
-将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
+将数据项名称及数据项的值保存到数据库中，使用callback异步回调。
 
-**系统接口**：此接口为系统接口。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | object                                            | 是   | 数据项值。取值范围随业务变动。                               |
-| callback          | AsyncCallback\<boolean>                           | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name     | string                  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value    | string                  | 是   | 数据项值。取值范围随业务变动。                               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
 
 **示例**：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
+import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-//此处数据项值的类型为string
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-    console.log('Callback return whether value is set.');
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+  console.log('Callback return whether value is set.');
 });
 ```
 
-## settings.setValue
+## settings.setValue<sup>10+</sup>
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
+setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
 
-**系统接口**：此接口为系统接口。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | object                                            | 是   | 数据项值。取值范围随业务变动。                               |
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value   | string  | 是   | 数据项值。取值范围随业务变动。                               |
 
 **返回值**：
 
@@ -247,16 +247,147 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 **示例**：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
+import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-//此处数据项值的类型为string
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-    console.log('Callback return whether value is set.');
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+  console.log('Callback return whether value is set.');
 });
+```
+
+## setting.getValue<sup>10+</sup>
+
+getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
+
+获取数据库中指定数据项的值。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| callback | AsyncCallback\<string> | 是   | 使用callback方式获取数据项的值。                             |
+
+**示例**：
+
+```js
+import settings from '@ohos.settings';
+
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+  if (err) {
+    console.error(`Failed to get the setting. ${err.message} `);
+    return;
+  }
+  console.log(`callback:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## setting.getValue<sup>10+</sup>
+
+getValue(context: Context, name: string): Promise\<string>
+
+获取数据库中指定数据项的值。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+
+**返回值**：
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise对象。返回获得的数据项的值。 |
+
+**示例**：
+
+```js
+import settings from '@ohos.settings';
+
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+  console.log(`promise:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## settings.getValueSync<sup>10+</sup>
+
+getValueSync(context: Context, name: string, defValue: string): string;
+
+获取数据项的值。此方法相较getValue为同步方法。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| context  | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name     | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| defValue | string  | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
+
+**返回值**：
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| string | 返回数据项的值。 |
+
+**示例**：
+
+```js
+import settings from '@ohos.settings';
+
+//获取数据项亮度的值（该数据项在数据库中已存在）
+let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+```
+
+## settings.setValueSync<sup>10+</sup>
+
+setValueSync(context: Context, name: string, value: string): boolean
+
+设置数据项的值。此方法相较setValue为同步方法。
+
+如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+
+**参数**：
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value   | string  | 是   | 数据项的具体数值。取值范围随业务变动。                       |
+
+**返回值**：
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回设置数据项的值是否成功的结果。true表示设置成功，false表示设置失败。 |
+
+**示例**：
+
+```js
+import settings from '@ohos.settings';
+
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
+let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
 ## settings.enableAirplaneMode
@@ -390,7 +521,7 @@ getUriSync(name: string): string
 
 ```js
 // 获取数据项的URI
-let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uriVar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
 ## setting.getURI<sup>(deprecated)</sup>
@@ -401,7 +532,7 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -428,7 +559,7 @@ getURI(name: string): Promise\<object>
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -452,6 +583,91 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
 })
 ```
 
+## settings.setValue<sup>(deprecated)</sup>
+
+setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
+
+将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10)。
+
+**系统接口**：此接口为系统接口。
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
+| callback          | AsyncCallback\<boolean>                                      | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
+
+**示例**：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+//@ts-ignore
+//此处数据项值的类型为string
+settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+    console.log('Callback return whether value is set.');
+});
+```
+
+## settings.setValue<sup>(deprecated)</sup>
+
+setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
+
+将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10-1)。
+
+**系统接口**：此接口为系统接口。
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
+
+**返回值**：
+
+| 类型              | 说明                                               |
+| ----------------- | -------------------------------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示操作成功，否则返回false。 |
+
+**示例**：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+//@ts-ignore
+//此处数据项值的类型为string
+settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+    console.log('Callback return whether value is set.');
+});
+```
+
 ## setting.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
@@ -460,7 +676,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -468,11 +684,11 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据项的值。                             |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| callback          | AsyncCallback\<object>                                       | 是   | 使用callback方式获取数据项的值。                             |
 
 **示例**：
 
@@ -498,7 +714,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10-1)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -506,10 +722,10 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
 
@@ -537,7 +753,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。
+> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getValueSync()](#settingsgetvaluesync10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -545,11 +761,11 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| defValue          | string                                            | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| defValue          | string                                                       | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
 **返回值**：
 
@@ -578,7 +794,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。
+> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setValueSync()](#settingssetvaluesync10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -588,11 +804,11 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | string                                            | 是   | 数据项的具体数值。取值范围随业务变动。                       |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | string                                                       | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 
 **返回值**：
 
