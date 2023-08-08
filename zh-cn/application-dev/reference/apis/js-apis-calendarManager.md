@@ -858,7 +858,7 @@ console.info("get account success");
 | 名称           | 类型                                                | 只读 | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | enableReminder | boolean                                             | 否   | 否   | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
-| color          | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
+| color          | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
@@ -912,7 +912,7 @@ console.info("get account success");
 
 日程过滤器，查询日程时进行筛选过滤，获取符合条件的日程。
 
-通过[filterById()](#filterById)、[filterByTime()](#filterByTime)、[filterByTitle()](#filterByTitle)任一方法获取日程过滤器，传入[getEvents()](#getEvents)进行过滤。
+通过[filterById()](#filterbyid)、[filterByTime()](#filterbytime)、[filterByTitle()](#filterbytitle)任一方法获取日程过滤器，传入[getEvents()](#getevents)过滤。
 
 ### filterById
 
