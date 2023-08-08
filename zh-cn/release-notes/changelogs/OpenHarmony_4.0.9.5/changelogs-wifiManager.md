@@ -1,10 +1,42 @@
-# wifi子系统ChangeLog
+# 基础通信wifi子系统ChangeLog
 
-### 1 新增接口声明
+# cl.wifi.1 WiFi扫描接口名变更
+
+**变更影响**
+
+基于此前版本开发的应用，需适配变更js接口名称，否则会影响原有功能。
+
+**关键的接口/组件变更**
+
+- 涉及接口
+
+  getScanInfoList(): Array<WifiScanInfo>;
+
+- 变更前：
+
+```js
+getScanInfoList(): Array<WifiScanInfo>;
+```
+
+- 变更后：
+
+```js
+getScanResults(): Array<WifiScanInfo>;
+getScanResultsSync(): Array<WifiScanInfo>;
+```
+
+# cl.wifi.2 WiFi P2P相关接口名变更
+
+**变更影响**
+
+基于此前版本开发的应用，需适配变更js接口名称，否则会影响原有功能。
+
+**关键的接口/组件变更**
+
+- 新增接口
+
 | 接口声明 | 接口描述 |
 |------|---------|
-| **function** getScanResults(): Array<WifiScanInfo>;         | 获取扫描列表，异步接口         |
-| **function** getScanResultsSync(): Array<WifiScanInfo>;         | 获取扫描列表，同步接口         |
 | **function** updateNetwork(config: WifiDeviceConfig): number; | 更新已经添加的热点配置信息     |
 | **function** disableNetwork(netId: number): **void**;                | 去使能已经添加的热点配置     |
 | **function** removeAllNetwork(): **void**;                | 删除所有的热点配置     |
@@ -17,12 +49,10 @@
 | **function** deletePersistentGroup(netId: number): **void**;                | 删除P2P永久组     |
 | **function** setDeviceName(devName: string): **void**;                | 设置P2P设备名称     |
 
-### 2 废弃接口
-
+- 废弃接口
 
 | 接口声明  |废弃说明                                                 |
 | ------------- |-------------------------------------------------------- |
-| **function** getScanInfoList(): Array<WifiScanInfo>;         | 获取扫描列表，同步接口         |
 | **function** updateDeviceConfig(config: WifiDeviceConfig): number; | 更新已经添加的热点配置信息     |
 | **function** disableDeviceConfig(networkId: number): **void**;                | 去使能已经添加的热点配置     |
 | **function** removeAllDeviceConfigs(): **void**;                | 删除所有的热点配置     |
@@ -35,7 +65,7 @@
 | **function** deletePersistentP2pGroup(netId: number): **void**;                | 删除P2P永久组     |
 | **function** setP2pDeviceName(devName: string): **void**;                | 设置P2P设备名称     |
 
-### 3 变更接口声明
+# cl.wifi.3 WiFi AP相关接口变更
 | 接口声明 | 接口描述 |
 |------|---------|
 | **function** setHotspotConfig(config: HotspotConfig): **void**;         | 设置热点配置，channel & ipAddress改为可选字段         |
