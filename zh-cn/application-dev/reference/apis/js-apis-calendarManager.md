@@ -851,7 +851,7 @@ console.info("get account success");
 | ----------- | ----------------------------- | ---- | ---- | -------------------------------------- |
 | name        | string                        | 是   | 是   | 帐户名称。                             |
 | type        | [CalendarType](#calendartype) | 否   | 是   | 帐户类型。                             |
-| displayName | string                        | 否   | 否   | 帐户的显示名称。不填时，默认为空字符串 |
+| displayName | string                        | 否   | 否   | 帐户的显示名称。不填时，默认为空字符串。 |
 
 ## CalendarConfig
 
@@ -908,7 +908,7 @@ console.info("get account success");
 
 | 名称      | 类型   | 只读 | 必填 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
-| location  | string | 否   | 否   | 地点位置。默认为空字符串 |
+| location  | string | 否   | 否   | 地点位置。默认为空字符串。 |
 | longitude | number | 否   | 否   | 地点经度。默认为0。        |
 | latitude  | number | 否   | 否   | 地点纬度。默认为0。        |
 
