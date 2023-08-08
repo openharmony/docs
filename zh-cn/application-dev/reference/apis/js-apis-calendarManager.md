@@ -909,8 +909,8 @@ console.info("get account success");
 | 名称      | 类型   | 只读 | 必填 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | location  | string | 否   | 否   | 地点位置。默认为空字符串 |
-| longitude | number | 否   | 否   | 地点经度。默认为0        |
-| latitude  | number | 否   | 否   | 地点纬度。默认为0        |
+| longitude | number | 否   | 否   | 地点经度。默认为0。        |
+| latitude  | number | 否   | 否   | 地点纬度。默认为0。        |
 
 ## EventFilter
 
@@ -1067,8 +1067,8 @@ calendar.getEvents(filter).then((data) => {
 | 名称        | 类型                        | 只读 | 必填 | 说明                                  |
 | ----------- | --------------------------- | ---- | ---- | ------------------------------------- |
 | type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型。                            |
-| uri         | string                      | 否   | 是   | 服务的uri。可以跳转到三方应用相应界面 |
-| description | string                      | 否   | 否   | 服务辅助描述。不填时，默认为空字符串  |
+| uri         | string                      | 否   | 是   | 服务的uri。可以跳转到三方应用相应界面。 |
+| description | string                      | 否   | 否   | 服务辅助描述。不填时，默认为空字符串。  |
 
 ## ServiceType
 
