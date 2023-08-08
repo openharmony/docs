@@ -1,7 +1,7 @@
 # 基础通信wifi子系统ChangeLog
 
-# cl.wifi.1 WiFi扫描接口名变更
-API10 Beta1已发布的扫描接口，和API9的接口出现了差异，需要恢复到原有的API9接口。
+# cl.wifi.1 获取WiFi扫描结果接口名变更
+获取Wifi扫描结果的接口在API10 Beta1进行了改名，现恢复API9 release的命名。
 
 **变更影响**
 
