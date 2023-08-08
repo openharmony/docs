@@ -15,12 +15,15 @@
 import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
-
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布后台代理提醒。使用callback异步回调。
+
+> **说明：**
+>
+> 需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -30,12 +33,12 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
-  | callback | AsyncCallback\<number> | 是 | 异步回调，返回当前发布的提醒的id。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例对象。 |
+  | callback | AsyncCallback\<number> | 是 | 回调函数，返回当前发布提醒的id。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -62,12 +65,15 @@ try {
 };
 ```
 
-
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布一个后台代理提醒，使用`Promise`的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布后台代理提醒。使用callback异步回调。
+
+> **说明：**
+>
+> 需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -85,7 +91,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -115,7 +121,7 @@ try {
 
 cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
-取消指定id的提醒，使用回调的方式实现异步调用。
+取消指定Id的代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -123,12 +129,12 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标提醒的id号。 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| reminderId | number | 是 | 代理提醒的Id。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，error为undefined，否则返回error信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -151,12 +157,11 @@ try {
 };
 ```
 
-
 ## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number): Promise\<void>
 
-取消指定id的提醒，使用Promise方式实现异步调用。
+取消指定Id的代理提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -164,17 +169,17 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标提醒的id号。 |
+| reminderId | number | 是 | 代理提醒的Id。 |
 
 **返回值**：
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void>	 | Promise类型异步回调。 |
+| Promise\<void>	 | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -199,8 +204,7 @@ try {
 
 getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
-
-获取当前应用已设置的所有有效（未过期）的提醒，使用回调方式实现异步调用。
+获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -208,11 +212,11 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用已设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -259,7 +263,7 @@ try {
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-获取当前应用已设置的所有有效（未过期）的提醒，使用Promise方式实现异步调用。
+获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -267,11 +271,11 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | 返回当前应用已设置的所有有效（未过期）的提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | 返回当前应用已设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -312,12 +316,11 @@ try {
 };
 ```
 
-
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback\<void>): void
 
-取消当前应用所有的提醒，使用回调的方式实现异步调用。
+取消当前应用设置的所有代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -325,11 +328,11 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，error为undefined，否则返回error信息。  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -351,12 +354,11 @@ try {
 };
 ```
 
-
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(): Promise\<void>
 
-取消当前应用所有的提醒，使用Promise方式实现异步调用。
+取消当前应用设置的所有代理提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -364,11 +366,11 @@ cancelAllReminders(): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[@ohos.reminderAgentManager（后台代理提醒）](../errorcodes/errorcode-reminderAgentManager.md)错误码。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](../errorcodes/errorcode-reminderAgentManager.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -393,7 +395,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
-添加一个NotificationSlot，使用回调的方式实现异步调用。
+添加NotificationSlot////中文是什么（通知槽吗，通知槽是通知栏吗）。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -470,7 +472,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-删除目标NotificationSlot，使用回调的方式实现异步调用。
+删除目标NotificationSlot，使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -585,14 +587,14 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明跳转的目标包名。 |
-| abilityName | string | 是 | 指明跳转的目标ability名称。 |
+| pkgName | string | 是 | 指明跳转目标的包名。 |
+| abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## MaxScreenWantAgent
 
-全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
+全屏显示提醒到达时，自动拉起目标的ability信息，预留接口。////全屏显示提醒到达是什么意思
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -604,16 +606,16 @@ try {
 
 ## ReminderRequest
 
-提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
+代理提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
+| reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
 | actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包////。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
@@ -622,9 +624,9 @@ try {
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
+| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。////slot中文 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。////同。。是指  |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。////同。。是指 |
 
 
 ## ReminderRequestCalendar
