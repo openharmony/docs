@@ -80,7 +80,7 @@ PanGesture用于触发拖动手势事件，滑动的最小距离distance默认�
 
 适用于 OpenHarmony 3.2 Beta5 API 9
 
-TextInput获取焦点会弹出输入法，失去焦点就会关闭软键盘，使用focusControl控制焦点即可关闭软件盘。
+TextInput获取焦点会弹出输入法，失去焦点就会关闭软键盘，使用focusControl控制焦点即可关闭软键盘。
 
 **代码示例**
 
