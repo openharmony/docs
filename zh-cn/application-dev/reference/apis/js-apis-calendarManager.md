@@ -1,6 +1,6 @@
 # @ohos.calendarManager (日程管理能力)
 
-本模块提供帐户与日程管理能力，包括创建、删除、修改、查询等。
+本模块提供日历与日程管理能力，包括日历和日程的创建、删除、修改、查询等。日历[Calendar](#calendar)主要包含帐户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
 
 > **说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```javascript
+```js
 import calendarManager from '@ohos.calendarManager';
 ```
 
@@ -18,7 +18,7 @@ import calendarManager from '@ohos.calendarManager';
 
 createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
-根据传入的信息，创建一个帐户，使用callback异步回调。
+根据日历帐户信息，创建一个Calendar对象，使用callback异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -28,19 +28,23 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 | 参数名          | 类型                                  | 必填 | 说明                               |
 | --------------- | ------------------------------------- | ---- | ---------------------------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 帐户信息实例。                     |
+| calendarAccount | [CalendarAccount](#calendaraccount)   | 是   | 日历帐户信息。                     |
 | callback        | AsyncCallback\<[Calendar](#calendar)> | 是   | 回调函数，返回创建的Calendar对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.CalendarType.LOCAL }, (err, data) => {
+let calendar = null;
+const calendarAccount: calendarManager.CalendarAccount = {
+  name: 'MyCalendar',
+  type: calendarManager.CalendarType.LOCAL
+};
+calendarManager.createCalendar(calendarAccount, (err, data) => {
   if (err) {
-    console.log("create calendar failed");
+    console.error("Failed to create calendar");
   } else {
-    console.log("create calendar success");
+    console.info("Succeeded in creating calendar");
+    calendar = data;  
   }
 });
 ```
@@ -49,7 +53,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
-根据传入的信息，创建一个帐户，使用Promise异步回调。
+根据日历帐户信息，创建一个Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -59,7 +63,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 | 参数名          | 类型                                | 必填 | 说明           |
 | --------------- | ----------------------------------- | ---- | -------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 帐户信息实例。 |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 是   | 日历帐户信息。 |
 
 **返回值**：
 
@@ -70,12 +74,16 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.CalendarType.LOCAL }).then((data) => {
-  console.log("create calendar success");
+let calendar = null;
+const calendarAccount: calendarManager.CalendarAccount = {
+  name: 'MyCalendar',
+  type: calendarManager.CalendarType.LOCAL
+};
+calendarManager.createCalendar(calendarAccount).then((data) => {
+  console.info("succeeded in creating calendar");
+  calendar = data;
 }).catch((err) => {
-  console.log("create calendar failed");
+  console.error("Failed to create calendar");
 });
 ```
 
@@ -83,7 +91,7 @@ calendarManager.createCalendar({ name: 'MyCalendar', type: calendarManager.Calen
 
 deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
-删除指定帐户，使用callback异步回调。
+删除指定Calendar对象，使用callback异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -91,22 +99,19 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 **参数**：
 
-| 参数名   | 类型                  | 必填 | 说明       |
-| -------- | --------------------- | ---- | ---------- |
-| calendar | [Calendar](#calendar) | 是   | 帐户实例。 |
-| callback | AsyncCallback\<void>  | 是   | 回调函数。 |
+| 参数名   | 类型                  | 必填 | 说明           |
+| -------- | --------------------- | ---- | -------------- |
+| calendar | [Calendar](#calendar) | 是   | Calendar对象。 |
+| callback | AsyncCallback\<void>  | 是   | 回调函数。     |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.CalendarType.LOCAL });
-calendarManager.deleteCalendar(calendar, (err, data) => {
+calendarManager.deleteCalendar(specificCalendar, (err) => {
   if (err) {
-    console.log("delete calendar failed");
+    console.error("Failed to delete calendar");
   } else {
-    console.log("delete calendar success");
+    console.info("Succeeded in deleting calendar");
   }
 });
 ```
@@ -115,7 +120,7 @@ calendarManager.deleteCalendar(calendar, (err, data) => {
 
 deleteCalendar(calendar: Calendar): Promise\<void>
 
-删除指定帐户，使用Promise异步回调。
+删除指定Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -123,9 +128,9 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 **参数**：
 
-| 参数名   | 类型                  | 必填 | 说明       |
-| -------- | --------------------- | ---- | ---------- |
-| calendar | [Calendar](#calendar) | 是   | 帐户实例。 |
+| 参数名   | 类型                  | 必填 | 说明           |
+| -------- | --------------------- | ---- | -------------- |
+| calendar | [Calendar](#calendar) | 是   | Calendar对象。 |
 
 **返回值**：
 
@@ -136,13 +141,10 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.CalendarType.LOCAL });
-calendarManager.deleteCalendar(calendar).then((data) => {
-  console.log("delete calendar success");
+calendarManager.deleteCalendar(specificCalendar).then(() => {
+  console.error("Succeeded in deleting calendar");
 }).catch((err) => {
-  console.log("delete calendar failed");
+  console.info("Failed to delete calendar");
 });
 ```
 
@@ -150,7 +152,7 @@ calendarManager.deleteCalendar(calendar).then((data) => {
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认帐户，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是初始化数据库时创建的，若创建Event时不关注其Calendar归属，无须通过[createCalendar()](#calendarManager.createCalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -158,20 +160,20 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **参数**：
 
-| 参数名   | 类型                                 | 必填 | 说明                               |
-| -------- | ------------------------------------ | ---- | ---------------------------------- |
-| callback | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询的Calendar对象。 |
+| 参数名   | 类型                                 | 必填 | 说明                                 |
+| -------- | ------------------------------------ | ---- | ------------------------------------ |
+| callback | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
+let calendar = null;
 calendarManager.getCalendar((err, data) => {
   if (err) {
-    console.log("get calendar failed");
+    console.error("Failed to get calendar");
+    calendar = data;  
   } else {
-    console.log("get calendar success");
+    console.info("Succeeded in getting calendar");
   }
 });
 ```
@@ -180,7 +182,7 @@ calendarManager.getCalendar((err, data) => {
 
 getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>): void
 
-获取指定帐户，使用callback异步回调。
+获取指定Calendar对象，使用callback异步回调。
 
 **需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -188,21 +190,19 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **参数**：
 
-| 参数名          | 类型                                 | 必填 | 说明                               |
-| --------------- | ------------------------------------ | ---- | ---------------------------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 帐户信息实例。                     |
-| callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询的Calendar对象。 |
+| 参数名          | 类型                                 | 必填 | 说明                                 |
+| --------------- | ------------------------------------ | ---- | ------------------------------------ |
+| calendarAccount | [CalendarAccount](#calendaraccount)  | 是   | 日历帐户信息。                       |
+| callback        | AsyncCallback<[Calendar](#calendar)> | 是   | 回调函数，返回查询到的Calendar对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.CalendarType.LOCAL }, (err, data) => {
+calendarManager.getCalendar(calendarAccount, (err, data) => {
   if (err) {
-    console.log("get calendar failed");
+    console.error("Failed to get calendar");
   } else {
-    console.log("get calendar success");
+    console.info("Succeeded in getting calendar");
   }
 });
 ```
@@ -211,7 +211,7 @@ calendarManager.getCalendar({ name: 'MyCalendar', type: calendarManager.Calendar
 
 getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
-获取帐户，不传参数时获取默认帐户，传参时获取指定帐户，使用Promise异步回调。
+获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -219,26 +219,23 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **参数**：
 
-| 参数名          | 类型                                | 必填 | 说明           |
-| --------------- | ----------------------------------- | ---- | -------------- |
-| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 帐户信息实例。 |
+| 参数名          | 类型                                | 必填 | 说明                                                         |
+| --------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| calendarAccount | [CalendarAccount](#calendaraccount) | 否   | 日历帐户信息，用来获取指定Calendar对象，不填时，表示获取默认Calendar对象。 |
 
 **返回值**：
 
-| 类型                           | 说明                                  |
-| ------------------------------ | ------------------------------------- |
-| Promise<[Calendar](#calendar)> | Promise对象，返回查询的Calendar对象。 |
+| 类型                           | 说明                                    |
+| ------------------------------ | --------------------------------------- |
+| Promise<[Calendar](#calendar)> | Promise对象，返回查询到的Calendar对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-
 calendarManager.getCalendar().then((data) => {
-  console.log("get calendar success");
+  console.info("Succeeded in getting calendar");
 }).catch((err) => {
-  console.log("get calendar failed");
+  console.error("Failed to get calendar");
 });
 ```
 
@@ -246,7 +243,7 @@ calendarManager.getCalendar().then((data) => {
 
 getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
-获取当前应用所有创建的帐户以及默认帐户，使用callback异步回调。
+获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -254,20 +251,18 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 **参数**：
 
-| 参数名   | 类型                                   | 必填 | 说明                                    |
-| -------- | -------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback<[Calendar](#calendar)[]> | 是   | 回调函数， 返回查询的Calendar帐户数组。 |
+| 参数名   | 类型                                   | 必填 | 说明                                      |
+| -------- | -------------------------------------- | ---- | ----------------------------------------- |
+| callback | AsyncCallback<[Calendar](#calendar)[]> | 是   | 回调函数， 返回查询到的Calendar对象数组。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
 calendarManager.getAllCalendars((err, data) => {
   if (err) {
-    console.log("get all calendars failed");
+    console.error("Failed to get all calendars");
   } else {
-    console.log("get all calendars success");
+    console.info("Succeeded in getting all calendars");
   }
 });
 ```
@@ -276,7 +271,7 @@ calendarManager.getAllCalendars((err, data) => {
 
 getAllCalendars(): Promise\<Calendar[]>
 
-获取当前应用所有创建的帐户以及默认帐户，使用Promise异步回调。
+获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。
 
 **需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -284,27 +279,23 @@ getAllCalendars(): Promise\<Calendar[]>
 
 **返回值**：
 
-| 类型                             | 说明                                      |
-| -------------------------------- | ----------------------------------------- |
-| Promise<[Calendar](#calendar)[]> | Promise对象，返回查询的Calendar帐户数组。 |
+| 类型                             | 说明                                        |
+| -------------------------------- | ------------------------------------------- |
+| Promise<[Calendar](#calendar)[]> | Promise对象，返回查询到的Calendar对象数组。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
 calendarManager.getAllCalendars().then((data) => {
-  console.log("get all calendars success");
+  console.info("Succeeded in getting all calendars");
 }).catch((err) => {
-  console.log("get all calendars failed");
+  console.error("Failed to get all calendars");
 });
 ```
 
 ## Calendar
 
-帐户实例。描述Calendar对象的属性和方法。
-
-下列API示例中需先通过[createCalendar()](#calendarManager.createCalendar)、[getCalendar()](#calendarManager.getCalendar)中任一方法获取Calendar实例，再通过此实例调用对应方法。
+下列API示例中需先通过[createCalendar()](#calendarmanager.createcalendar)、[getCalendar()](#calendarmanager.getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
 
 ### 属性
 
@@ -318,7 +309,7 @@ calendarManager.getAllCalendars().then((data) => {
 
 addEvent(event: Event, callback: AsyncCallback\<number>): void
 
-根据传入的信息，创建一个日程，使用callback异步回调。
+创建日程，入参[Event](#event)不填日程id，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -326,15 +317,12 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
-| event    | [Event](#event)        | 是   | 日程具体参数实例。     |
+| event    | [Event](#event)        | 是   | Event对象。            |
 | callback | AsyncCallback\<number> | 是   | 回调函数，返回日程id。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -343,9 +331,9 @@ const event: calendarManager.Event = {
 };
 calendar.addEvent(event, (err, data) => {
   if (err) {
-    console.log("add event failed");
+    console.error("Failed to add event");
   } else {
-    console.log("add event success");
+    console.info("Succeeded in adding event");
   }
 });
 ```
@@ -354,15 +342,15 @@ calendar.addEvent(event, (err, data) => {
 
 addEvent(event: Event): Promise\<number>
 
-根据传入的信息，创建一个日程，使用Promise异步回调。
+创建日程，入参[Event](#event)不填日程id，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名 | 类型            | 必填 | 说明               |
-| ------ | --------------- | ---- | ------------------ |
-| event  | [Event](#event) | 是   | 日程具体参数实例。 |
+| 参数名 | 类型            | 必填 | 说明        |
+| ------ | --------------- | ---- | ----------- |
+| event  | [Event](#event) | 是   | Event对象。 |
 
 **返回值**：
 
@@ -373,9 +361,6 @@ addEvent(event: Event): Promise\<number>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -383,9 +368,9 @@ const event: calendarManager.Event = {
   endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.addEvent(event).then((data) => {
-  console.log("add event success");
+  console.info("Succeeded in adding event");
 }).catch((err) => {
-  console.log("add event failed");
+  console.error("Failed to add event");
 });
 ```
 
@@ -393,23 +378,20 @@ calendar.addEvent(event).then((data) => {
 
 addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
-根据传入的信息，批量创建日程，使用callback异步回调。
+批量创建日程，入参[Event](#event)不填日程id，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名   | 类型                 | 必填 | 说明                   |
-| -------- | -------------------- | ---- | ---------------------- |
-| events   | [Event](#event)[]    | 是   | 日程具体参数实例数组。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。             |
+| 参数名   | 类型                 | 必填 | 说明            |
+| -------- | -------------------- | ---- | --------------- |
+| events   | [Event](#event)[]    | 是   | Event对象数组。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。      |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -423,11 +405,11 @@ const events: calendarManager.Event[] = [
     endTime: date.getTime() + 60 * 60 * 1000
   }
 ];
-calendar.addEvents(events, (err, data) => {
+calendar.addEvents(events, (err) => {
   if (err) {
-    console.log("add events failed");
+    console.error("Failed to add events");
   } else {
-    console.log("add events success");
+    console.info("Succeeded in adding events");
   }
 });
 ```
@@ -436,15 +418,15 @@ calendar.addEvents(events, (err, data) => {
 
 addEvents(events: Event[]): Promise\<void>
 
-根据传入的信息，批量创建日程，使用Promise异步回调。
+批量创建日程，入参[Event](#event)不填日程id，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名 | 类型              | 必填 | 说明                   |
-| ------ | ----------------- | ---- | ---------------------- |
-| events | [Event](#event)[] | 是   | 日程具体参数实例数组。 |
+| 参数名 | 类型              | 必填 | 说明            |
+| ------ | ----------------- | ---- | --------------- |
+| events | [Event](#event)[] | 是   | Event对象数组。 |
 
 **返回值**：
 
@@ -455,9 +437,6 @@ addEvents(events: Event[]): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -472,9 +451,9 @@ const events: calendarManager.Event[] = [
   }
 ];
 calendar.addEvents(events).then(() => {
-  console.log("add events success");
+  console.info("Succeeded in adding events");
 }).catch((err) => {
-  console.log("add events failed");
+  console.error("Failed to add events");
 });
 ```
 
@@ -496,14 +475,11 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
-calendar.deleteEvent(1, (err, data) => {
+calendar.deleteEvent(1, (err) => {
   if (err) {
-    console.log("delete event failed");
+    console.error("Failed to delete event");
   } else {
-    console.log("delete event success");
+    console.info("Succeeded in deleting event");
   }
 });
 ```
@@ -531,13 +507,10 @@ deleteEvent(id: number): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 calendar.deleteEvent(1).then(() => {
-  console.log("delete event success");
+  console.info("Succeeded in deleting event");
 }).catch((err) => {
-  console.log("delete event failed");
+  console.error("Failed to delete event");
 });
 ```
 
@@ -559,14 +532,11 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
-calendar.deleteEvents([1, 2], (err, data) => {
+calendar.deleteEvents([1, 2], (err) => {
   if (err) {
-    console.log("delete events failed");
+    console.error("Failed to delete events");
   } else {
-    console.log("delete events success");
+    console.info("Succeeded in deleting events");
   }
 });
 ```
@@ -594,13 +564,10 @@ deleteEvents(ids: number[]): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 calendar.deleteEvents([1, 2]).then(() => {
-  console.log("delete events success");
+  console.info("Succeeded in deleting events");
 }).catch((err) => {
-  console.log("delete events failed");
+  console.error("Failed to delete events");
 });
 ```
 
@@ -608,23 +575,20 @@ calendar.deleteEvents([1, 2]).then(() => {
 
 updateEvent(event: Event, callback: AsyncCallback\<void>): void
 
-根据日程实例对象，更新日程，使用callback异步回调。
+更新日程，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名   | 类型                 | 必填 | 说明               |
-| -------- | -------------------- | ---- | ------------------ |
-| event    | [Event](#event)      | 是   | 日程具体参数示例。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。         |
+| 参数名   | 类型                 | 必填 | 说明        |
+| -------- | -------------------- | ---- | ----------- |
+| event    | [Event](#event)      | 是   | Event对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。  |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   id: 1,
@@ -633,11 +597,11 @@ const event: calendarManager.Event = {
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.updateEvent(event, (err, data) => {
+calendar.updateEvent(event, (err) => {
   if (err) {
-    console.log("update event failed");
+    console.error("Failed to update event");
   } else {
-    console.log("update event success");
+    console.info("Succeeded in updating event");
   }
 });
 ```
@@ -646,15 +610,15 @@ calendar.updateEvent(event, (err, data) => {
 
 updateEvent(event: Event): Promise\<void>
 
-根据日程实例对象，更新日程，使用Promise异步回调。
+更新日程，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名 | 类型            | 必填 | 说明               |
-| ------ | --------------- | ---- | ------------------ |
-| event  | [Event](#event) | 是   | 日程具体参数示例。 |
+| 参数名 | 类型            | 必填 | 说明        |
+| ------ | --------------- | ---- | ----------- |
+| event  | [Event](#event) | 是   | Event对象。 |
 
 **返回值**：
 
@@ -665,9 +629,6 @@ updateEvent(event: Event): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const date = new Date();
 const event: calendarManager.Event = {
   id: 1,
@@ -677,9 +638,9 @@ const event: calendarManager.Event = {
   endTime: date.getTime() + 60 * 60 * 1000
 };
 calendar.updateEvent(event).then(() => {
-  console.log("update event success");
+  console.info("Succeeded in updating event");
 }).catch((err) => {
-  console.log("update event failed");
+  console.error("Failed to update event");
 });
 ```
 
@@ -687,27 +648,24 @@ calendar.updateEvent(event).then(() => {
 
 getEvents(callback: AsyncCallback\<Event[]>): void
 
-查询帐户下所有日程，使用callback异步回调。
+查询Calendar下所有Event，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名   | 类型                             | 必填 | 说明                             |
-| -------- | -------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<[Event](#event)[]> | 是   | 回调函数，返回的是日程实例数组。 |
+| 参数名   | 类型                             | 必填 | 说明                              |
+| -------- | -------------------------------- | ---- | --------------------------------- |
+| callback | AsyncCallback<[Event](#event)[]> | 是   | 回调函数，返回的是Event对象数组。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 calendar.getEvents((err, data) => {
   if (err) {
-    console.log("get events failed");
+    console.error("Failed to get events");
   } else {
-    console.log("get events success");
+    console.info("Succeeded in getting events");
   }
 });
 ```
@@ -716,31 +674,28 @@ calendar.getEvents((err, data) => {
 
 getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCallback\<Event[]>):void
 
-获取帐户下符合查询条件的日程，使用callback异步回调。
+获取Calendar下符合查询条件的Event，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名      | 类型                             | 必填 | 说明                             |
-| ----------- | -------------------------------- | ---- | -------------------------------- |
-| eventFilter | [EventFilter](#eventfilter)      | 是   | 查询条件。                       |
-| eventKey    | (keyof [Event](#event))[]        | 是   | 查询结果集。                     |
-| callback    | AsyncCallback<[Event](#event)[]> | 是   | 回调函数，返回的是日程实例数组。 |
+| 参数名      | 类型                             | 必填 | 说明                              |
+| ----------- | -------------------------------- | ---- | --------------------------------- |
+| eventFilter | [EventFilter](#eventfilter)      | 是   | 查询条件。                        |
+| eventKey    | (keyof [Event](#event))[]        | 是   | 查询字段。                        |
+| callback    | AsyncCallback<[Event](#event)[]> | 是   | 回调函数，返回的是Event对象数组。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterById([1, 2]);
 const columns: (keyof calendarManager.Event)[] =  ['title', 'type', 'startTime', 'endTime'];
 calendar.getEvents(filter, columns, (err, data) => {
   if (err) {
-    console.log("get events failed");
+    console.error("Failed to get events");
   } else {
-    console.log("get events success");
+    console.info("Succeeded in getting events");
   }
 });
 ```
@@ -749,34 +704,31 @@ calendar.getEvents(filter, columns, (err, data) => {
 
 getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]>
 
-获取帐户下符合查询条件的日程，使用Promise异步回调。
+获取Calendar下符合查询条件的Event，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名      | 类型                        | 必填 | 说明         |
-| ----------- | --------------------------- | ---- | ------------ |
-| eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件。   |
-| eventKey    | (keyof [Event](#event))[]   | 否   | 查询结果集。 |
+| 参数名      | 类型                        | 必填 | 说明       |
+| ----------- | --------------------------- | ---- | ---------- |
+| eventFilter | [EventFilter](#eventfilter) | 否   | 查询条件。 |
+| eventKey    | (keyof [Event](#event))[]   | 否   | 查询字段。 |
 
 **返回值**：
 
-| 类型                       | 说明                            |
-| -------------------------- | ------------------------------- |
-| Promise<[Event](#event)[]> | Promise对象，返回日程实例数组。 |
+| 类型                       | 说明                                |
+| -------------------------- | ----------------------------------- |
+| Promise<[Event](#event)[]> | Promise对象，返回日程配置信息数组。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
 calendar.getEvents(filter).then((data) => {
-  console.log("get events success");
+  console.info("Succeeded in getting events");
 }).catch((err) => {
-  console.log("get events failed");
+  console.error("Failed to get events");
 });
 ```
 
@@ -784,55 +736,49 @@ calendar.getEvents(filter).then((data) => {
 
 getConfig(): CalendarConfig
 
-获取帐户具体参数。
+获取日历帐户信息。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **返回值**：
 
-| 类型                              | 说明               |
-| --------------------------------- | ------------------ |
-| [CalendarConfig](#calendarconfig) | 返回帐户参数实例。 |
+| 类型                              | 说明           |
+| --------------------------------- | -------------- |
+| [CalendarConfig](#calendarconfig) | 日历帐户信息。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const config = calendar.getConfig();
-console.log("get config success");
+console.info("get config success");
 ```
 
 ### setConfig
 
 setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 
-设置帐户参数，使用callback异步回调。
+设置日历配置信息，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名   | 类型                              | 必填 | 说明               |
-| -------- | --------------------------------- | ---- | ------------------ |
-| config   | [CalendarConfig](#calendarconfig) | 是   | 帐户具体参数实例。 |
-| callback | AsyncCallback\<void>              | 是   | 回调函数。         |
+| 参数名   | 类型                              | 必填 | 说明           |
+| -------- | --------------------------------- | ---- | -------------- |
+| config   | [CalendarConfig](#calendarconfig) | 是   | 日历配置信息。 |
+| callback | AsyncCallback\<void>              | 是   | 回调函数。     |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
-calendar.setConfig(config, (err, data) => {
+calendar.setConfig(config, (err) => {
   if (err) {
-    console.log("set config failed");
+    console.error("Failed to set config");
   } else {
-    console.log("set config success");
+    console.info("Succeeded in setting config");
   }
 });
 ```
@@ -841,15 +787,15 @@ calendar.setConfig(config, (err, data) => {
 
 setConfig(config: CalendarConfig): Promise\<void>
 
-设置帐户参数，使用Promise异步回调。
+设置日历配置信息，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **参数**：
 
-| 参数名 | 类型                              | 必填 | 说明               |
-| ------ | --------------------------------- | ---- | ------------------ |
-| config | [CalendarConfig](#calendarconfig) | 是   | 帐户具体参数实例。 |
+| 参数名 | 类型                              | 必填 | 说明           |
+| ------ | --------------------------------- | ---- | -------------- |
+| config | [CalendarConfig](#calendarconfig) | 是   | 日历配置信息。 |
 
 **返回值**：
 
@@ -860,16 +806,13 @@ setConfig(config: CalendarConfig): Promise\<void>
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
 calendar.setConfig(config).then(() => {
-  console.log("set config success");
+  console.info("Succeeded in setting config");
 }).catch((err) => {
-  console.log("set config failed");
+  console.error("Failed to set config");
 });
 ```
 
@@ -877,86 +820,81 @@ calendar.setConfig(config).then(() => {
 
 getAccount(): CalendarAccount
 
-获取帐户信息。
+获取日历帐户。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
 **返回值**：
 
-| 类型                                | 说明               |
-| ----------------------------------- | ------------------ |
-| [CalendarAccount](#calendaraccount) | 返回帐户信息实例。 |
+| 类型                                | 说明           |
+| ----------------------------------- | -------------- |
+| [CalendarAccount](#calendaraccount) | 日历帐户信息。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const account = calendar.getAccount();
-console.log("get account success");
+console.info("get account success");
 ```
 
 ## CalendarAccount
 
-日历帐户。
+日历帐户信息。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称        | 类型                          | 只读 | 必填 | 说明             |
-| ----------- | ----------------------------- | ---- | ---- | ---------------- |
-| name        | string                        | 是   | 是   | 帐户名称。       |
-| type        | [CalendarType](#calendartype) | 否   | 是   | 帐户类型。       |
-| displayName | string                        | 否   | 否   | 帐户的显示名称。 |
+| 名称        | 类型                          | 只读 | 必填 | 说明                                   |
+| ----------- | ----------------------------- | ---- | ---- | -------------------------------------- |
+| name        | string                        | 是   | 是   | 帐户名称。                             |
+| type        | [CalendarType](#calendartype) | 否   | 是   | 帐户类型。                             |
+| displayName | string                        | 否   | 否   | 帐户的显示名称。不填时，默认为空字符串 |
 
 ## CalendarConfig
 
-帐户参数。
+日历配置信息。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型          | 只读 | 必填 | 说明           |
-| -------------- | ------------- | ---- | ---- | -------------- |
-| enableReminder | boolean       | 否   | 否   | 帐户提醒能力。 |
-| color          | ResourceColor | 否   | 否   | 帐户颜色。     |
+| 名称           | 类型                                                | 只读 | 必填 | 说明                                                         |
+| -------------- | --------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| enableReminder | boolean                                             | 否   | 否   | 是否打开Calendar下所有Event提醒能力。当取值为true时，该Calendar下所有Event具备提醒能力；当取值为false时，不具备提醒能力，默认具备提醒能力。 |
+| color          | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 设置Calendar颜色。不填时，默认值为'#0A59F7'。                |
 
 ## Event
 
-日程实例对象，用于设置日程标题、开始时间、结束时间等具体信息。
-
-通过[addEvent()](#addEvent)、[addEvents()](#addEvents)中的任一方法创建，通过[getEvents()](#getEvents)方法获取Event实例。
+日程对象，包含日程标题、开始时间、结束时间等信息。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型                              | 只读 | 必填 | 说明             |
-| -------------- | --------------------------------- | ---- | ---- | ---------------- |
-| id             | number                            | 是   | 否   | 日程id。         |
-| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。       |
-| title          | string                            | 否   | 否   | 日程标题。       |
-| location       | [Location](#location)             | 否   | 否   | 日程地点。       |
-| startTime      | number                            | 否   | 是   | 日程开始时间。   |
-| endTime        | number                            | 否   | 是   | 日程结束时间。   |
-| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。 |
-| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。     |
-| timeZone       | string                            | 否   | 否   | 日程时区。       |
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。   |
-| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。   |
-| description    | string                            | 否   | 否   | 日程描述。       |
-| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。       |
+| 名称           | 类型                              | 只读 | 必填 | 说明                                                         |
+| -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| id             | number                            | 是   | 否   | 日程id。[addEvent()](#addevent)、[addEvents()](#addevents)不填 |
+| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                   |
+| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串                             |
+| location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。                               |
+| startTime      | number                            | 否   | 是   | 日程开始时间。                                               |
+| endTime        | number                            | 否   | 是   | 日程结束时间。                                               |
+| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程 |
+| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                             |
+| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的日程时，可填入对应的时区。可通过[getTimeZone()](js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区 |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。不填时，默认为不提醒                           |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复                           |
+| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串                             |
+| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务                           |
 
 ## CalendarType
 
-帐户类型。
+帐户类型枚举。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称       | 值           | 说明         |
-| ---------- | ------------ | ------------ |
-| LOCAL      | 'local'      | 本地帐户。   |
-| EMAIL      | 'email'      | 邮箱帐户。   |
-| BIRTHDAY   | 'birthday'   | 生日帐户。   |
-| CALDAV     | 'caldav'     | CalDAV帐户。 |
-| SUBSCRIBED | 'subscribed' | 订阅帐户。   |
+| 名称       | 值           | 说明                 |
+| ---------- | ------------ | -------------------- |
+| LOCAL      | 'local'      | 本地帐户。           |
+| EMAIL      | 'email'      | 邮箱帐户。           |
+| BIRTHDAY   | 'birthday'   | 生日帐户。           |
+| CALDAV     | 'caldav'     | 支持CalDAV协议帐户。 |
+| SUBSCRIBED | 'subscribed' | 订阅帐户。           |
 
 ## Location
 
@@ -964,15 +902,15 @@ console.log("get account success");
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称      | 类型    | 只读 | 必填 | 说明       |
-| --------- | ------- | ---- | ---- | ---------- |
-| location  | boolean | 否   | 否   | 地点位置。 |
-| longitude | number  | 否   | 否   | 地点经度。 |
-| latitude  | number  | 否   | 否   | 地点纬度。 |
+| 名称      | 类型   | 只读 | 必填 | 说明                     |
+| --------- | ------ | ---- | ---- | ------------------------ |
+| location  | string | 否   | 否   | 地点位置。默认为空字符串 |
+| longitude | number | 否   | 否   | 地点经度。默认为0        |
+| latitude  | number | 否   | 否   | 地点纬度。默认为0        |
 
 ## EventFilter
 
-日程过滤器，查询日程时进行过滤，获取符合条件的日程。
+日程过滤器，查询日程时进行筛选过滤，获取符合条件的日程。
 
 通过[filterById()](#filterById)、[filterByTime()](#filterByTime)、[filterByTitle()](#filterByTitle)任一方法获取日程过滤器，传入[getEvents()](#getEvents)进行过滤。
 
@@ -980,7 +918,7 @@ console.log("get account success");
 
 filterById(ids: number[]): EventFilter
 
-根据日程id进行过滤日程。
+根据日程id过滤日程。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -992,21 +930,18 @@ filterById(ids: number[]): EventFilter
 
 **返回值**：
 
-| 类型                        | 说明                   |
-| --------------------------- | ---------------------- |
-| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
+| 类型                        | 说明                 |
+| --------------------------- | -------------------- |
+| [EventFilter](#eventfilter) | 返回日程过滤器对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterById([1, 2]);
 calendar.getEvents(filter).then((data) => {
-  console.log("filter by id success");
+  console.info("Succeeded in filtering by id");
 }).catch((err) => {
-  console.log("filter by id failed");
+  console.error("Failed to filter by id");
 });
 ```
 
@@ -1014,7 +949,7 @@ calendar.getEvents(filter).then((data) => {
 
 filterByTime(start: number, end: number): EventFilter
 
-根据日程时间进行过滤日程。
+根据日程时间过滤日程。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1027,21 +962,18 @@ filterByTime(start: number, end: number): EventFilter
 
 **返回值**：
 
-| 类型                        | 说明                   |
-| --------------------------- | ---------------------- |
-| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
+| 类型                        | 说明                 |
+| --------------------------- | -------------------- |
+| [EventFilter](#eventfilter) | 返回日程过滤器对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
 calendar.getEvents(filter).then((data) => {
-  console.log("filter by time success");
+  console.info("Succeeded in filtering by time");
 }).catch((err) => {
-  console.log("filter by time failed");
+  console.error("Failed to filter by time");
 });
 ```
 
@@ -1049,7 +981,7 @@ calendar.getEvents(filter).then((data) => {
 
 filterByTitle(title: string): EventFilter
 
-根据日程时间进行过滤日程。
+根据日程标题过滤日程。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1061,34 +993,31 @@ filterByTitle(title: string): EventFilter
 
 **返回值**：
 
-| 类型                        | 说明                   |
-| --------------------------- | ---------------------- |
-| [EventFilter](#eventfilter) | 返回日程过滤实例对象。 |
+| 类型                        | 说明                 |
+| --------------------------- | -------------------- |
+| [EventFilter](#eventfilter) | 返回日程过滤器对象。 |
 
 **示例**：
 
 ```js
-import calendarManager from '@ohos.calendarManager';
-
-const calendar = await calendarManager.getCalendar();
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
-calendar.getEvents(filter).then(() => {
-  console.log("filter by title success");
+calendar.getEvents(filter).then((data) => {
+  console.info("Succeeded in filtering by title");
 }).catch((err) => {
-  console.log("filter by title failed");
+  console.error("Failed to filter by title");
 });
 ```
 
 ## EventType
 
-日程类型。
+日程类型枚举。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称      | 值   | 说明       |
-| --------- | ---- | ---------- |
-| NORMAL    | 0    | 普通日程。 |
-| IMPORTANT | 1    | 重要日程。 |
+| 名称      | 值   | 说明                 |
+| --------- | ---- | -------------------- |
+| NORMAL    | 0    | 普通日程。           |
+| IMPORTANT | 1    | 重要日程。支持倒计时 |
 
 ## RecurrenceRule
 
@@ -1096,14 +1025,14 @@ calendar.getEvents(filter).then(() => {
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称                | 类型                                        | 只读 | 必填 | 说明               |
-| ------------------- | ------------------------------------------- | ---- | ---- | ------------------ |
-| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否   | 日程重复规则类型。 |
-| expire              | number                                      | 否   | 否   | 日程过期时间。     |
+| 名称                | 类型                                        | 只读 | 必填 | 说明                            |
+| ------------------- | ------------------------------------------- | ---- | ---- | ------------------------------- |
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 是   | 日程重复规则类型。              |
+| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0 |
 
 ## RecurrenceFrequency
 
-日程重复规则类型。
+日程重复规则类型枚举。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1131,15 +1060,15 @@ calendar.getEvents(filter).then(() => {
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称        | 类型                        | 只读 | 必填 | 说明         |
-| ----------- | --------------------------- | ---- | ---- | ------------ |
-| type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型。   |
-| uri         | string                      | 否   | 是   | 服务的uri。  |
-| description | string                      | 否   | 否   | 服务的描述。 |
+| 名称        | 类型                        | 只读 | 必填 | 说明                                  |
+| ----------- | --------------------------- | ---- | ---- | ------------------------------------- |
+| type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型。                            |
+| uri         | string                      | 否   | 是   | 服务的uri。可以跳转到三方应用相应界面 |
+| description | string                      | 否   | 否   | 服务辅助描述。不填时，默认为空字符串  |
 
 ## ServiceType
 
-日程服务类型。
+日程服务类型枚举。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
