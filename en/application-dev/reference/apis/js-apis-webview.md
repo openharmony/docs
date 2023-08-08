@@ -208,7 +208,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100010 | Can not post message using this port. |
 
-
 ### onMessageEventExt<sup>10+</sup>
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
@@ -358,7 +357,7 @@ window.addEventListener('message', function(event) {
             h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
             h5Port.onmessage = function(event) {
                 console.log("hwd In html got message");
-                // 2. Receive the message sent from the ArkTS side.
+                // 2. Receive the message sent from the eTS side.
                 var result = event.data;
                 console.log("In html got message, typeof: ", typeof(result));
                 console.log("In html got message, result: ", (result));
@@ -401,7 +400,7 @@ window.addEventListener('message', function(event) {
     }
 })
 
-// Use h5Port to send a message of the string type to the ArkTS side.
+// Use h5Port to send a message of the string type to the ets side.
 function postStringToApp() {
     if (h5Port) {
         console.log("In html send string message");
@@ -638,7 +637,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            // The headers parameter is carried.
+            // The headers parameter is passed.
             this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -999,7 +998,7 @@ struct WebComponent {
 
 onActive(): void
 
-Invoked to instruct the **\<Web>** component to enter the foreground, active state.
+Invoked to instruct the **\<Web>** component to enter the active foreground state.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1348,12 +1347,14 @@ HTML file to be loaded:
 <html>
     <meta charset="utf-8">
     <body>
-        Hello world!
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
-        str = objName.test("test function")
-        console.log('objName.test result:'+ str)
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
     }
 </script>
 </html>
@@ -3866,7 +3867,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3943,7 +3944,7 @@ struct Index {
             }
             .type(ButtonType.Capsule)
             .onClick(() => {
-              //Load an HTTPS website and view the certificate information of the website.
+              // Load an HTTPS website and view the certificate information of the website.
               this.webviewCtl.loadUrl('https://www.example.com')
             })
             .height(50)
@@ -4023,7 +4024,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](./js-apis-cert.md) of the website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4031,7 +4032,7 @@ Obtains the certificate information of the current website. When the \<Web> comp
 
 | Name  | Type                        | Mandatory| Description                                    |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current HTTPS website.|
+| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current website.|
 
 **Error codes**
 
@@ -4100,7 +4101,7 @@ struct Index {
             }
             .type(ButtonType.Capsule)
             .onClick(() => {
-              //Load an HTTPS website and view the certificate information of the website.
+              // Load an HTTPS website and view the certificate information of the website.
               this.webviewCtl.loadUrl('https://www.example.com')
             })
             .height(50)
@@ -4222,9 +4223,110 @@ struct WebComponent {
 }
 ```
 
+### prefetchPage<sup>10+</sup>
+
+prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
+
+Prefetches resources in the background for a page that is likely to be accessed in the near future, without executing the page JavaScript code or presenting the page. This can significantly reduce the load time for the prefetched page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name            | Type                            | Mandatory | Description                     |                            
+| ------------------| --------------------------------| ---- | ------------- |
+| url               | string                          | Yes   | URL to be preloaded.|
+| additionalHeaders | Array\<[WebHeader](#webheader)> | No   | Additional HTTP headers of the URL.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('prefetchPopularPage')
+        .onClick(() => {
+          try {
+            // Replace 'https://www.example.com' with a real URL for the API to work.
+            this.controller.prefetchPage('https://www.example.com');
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      // Replace ''www.example1.com' with a real URL for the API to work.
+      Web({ src: 'www.example1.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### prepareForPageLoad<sup>10+</sup>
+
+static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
+
+Preconnects to a URL. This API can be called before the URL is loaded, to resolve the DNS and establish a socket connection, without obtaining the resources.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | Yes  | URL to be preconnected.|
+| preconnectable | boolean | Yes  | Whether to perform preconnection, which involves DNS resolution and socket connection establishment. The value **true** means to perform preconnection, and **false** means the opposite.|
+| numSockets     | number  | Yes  | Number of sockets to be preconnected. The value must be greater than 0. A maximum of six socket connections are allowed.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+| 171000013| The number of preconnect sockets is invalid.                                                 |
+
+**Example**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        // Replace 'https://www.example.com' with a real URL for the API to work.
+        web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
+
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling APIs in **WebCookieManager**.
 
 ### getCookie
 
@@ -4346,7 +4448,6 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
 | Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return whether the cookies are successfully saved.|
-
 
 **Example**
 
@@ -4687,6 +4788,10 @@ struct WebComponent {
 ## WebStorage
 
 Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web Storage APIs. All **\<Web>** components in an application share a **WebStorage** object.
+
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **WebStorage**.
 
 ### deleteOrigin
 
@@ -5148,6 +5253,10 @@ struct WebComponent {
 
 Implements a **WebDataBase** object.
 
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **WebDataBase**.
+
 ### getHttpAuthCredentials
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string>
@@ -5325,6 +5434,10 @@ struct WebComponent {
 ## GeolocationPermissions
 
 Implements a **GeolocationPermissions** object.
+
+> **NOTE**
+>
+> You must load the **\<Web>** component before calling the APIs in **GeolocationPermissions**.
 
 ### Required Permissions
 
@@ -5739,7 +5852,6 @@ Describes the type of the returned result of script execution using [runJavaScir
 | ARRAY_BUFFER | 4 |Raw binary data buffer.|
 | ARRAY        | 5 |Array type.|
 
-
 ## WebMessageType<sup>10+</sup>
 
 Describes the data type supported by the [webMessagePort](#webmessageport) API.
@@ -5796,7 +5908,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5841,7 +5952,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ### getArrayBuffer<sup>10+</sup>
 
 getArrayBuffer(): ArrayBuffer
@@ -5885,7 +5995,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
-
 ## WebMessageExt<sup>10+</sup>
 
 Data object received and sent by the [webMessagePort](#webmessageport) interface.
@@ -5903,7 +6012,6 @@ Obtains the type of the data object.
 | Type          | Description                                                     |
 | --------------| --------------------------------------------------------- |
 | [WebMessageType](#webmessagetype10) | Data type supported by the [webMessagePort](#webmessageport) API.|
-
 
 ### getString<sup>10+</sup>
 
@@ -5927,7 +6035,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getNumber<sup>10+</sup>
 
 getNumber(): number
@@ -5950,7 +6057,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
-
 ### getBoolean<sup>10+</sup>
 
 getBoolean(): boolean
@@ -5972,7 +6078,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -6038,7 +6143,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ### setType<sup>10+</sup>
 
@@ -6179,7 +6283,6 @@ Sets the error-object-type data for the data object. For the complete sample cod
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
-
 
 ## WebStorageOrigin
 

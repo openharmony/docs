@@ -923,6 +923,50 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 });
 ```
 
+### on('editorAttributeChanged')<sup>10+</sup>
+
+on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): void
+
+Enables listening for the edit box attribute change event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>The value **'editorAttributeChanged'** indicates the edit box attribute change event.|
+| callback | (attr: EditorAttribute) => void | Yes  | Callback used to return the edit box attribute change.|
+
+**Example**
+
+```js
+inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr) => {
+  console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
+});
+```
+
+### off('editorAttributeChanged')<sup>10+</sup>
+
+off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void): void
+
+Cancels listening for the edit box attribute change event.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>The value **'editorAttributeChanged'** indicates the edit box attribute change event.|
+| callback | (attr: EditorAttribute) => void | No  | Callback for the edit box attribute change event. It must correspond to the one in the **on** API.|
+
+**Example**
+
+```js
+inputMethodEngine.getKeyboardDelegate().off('editorAttributeChanged');
+```
+
 ## Panel<sup>10+</sup>
 
 In the following API examples, you must first use **[createPanel](#createpanel10)** to obtain a **Panel** instance, and then call the APIs using the obtained instance.
