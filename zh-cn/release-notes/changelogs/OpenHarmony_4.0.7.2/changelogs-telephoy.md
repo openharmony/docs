@@ -64,10 +64,19 @@ export enum VoNRState {
 
 **适配指导**
 
-使用变更后的接口，示例代码如下：
+使用变更后的接口，调用时注意VONR_STATE_ON值使用最新的值。建议直接使用枚举值。示例代码如下：
+
 
 ```js
-N/A
+call.setVoNRState( 0, VONR_STATE_ON, (err) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    }
+    
+});
+call.setVoNRState( 0, VONR_STATE_OFF, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
 ```
 
 
@@ -77,7 +86,7 @@ N/A
 
 **变更影响**
 
-原接口设计失误，实际编码时发现并更改，接口实现不变。
+接口返回值/回调修复为void，请开发者注意调用方式。
 
 **关键的接口/组件变更**
 
