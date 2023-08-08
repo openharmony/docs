@@ -1,7 +1,7 @@
 # 基础通信wifi子系统ChangeLog
 
 # cl.wifi.1 WiFi扫描接口名变更
-API10 Beta1已发布的扫描接口，和API9的接口出现了差异，需要恢复到原有的API9接口，仅涉及API名称变更，使用方式不变。
+API10 Beta1已发布的扫描接口，和API9的接口出现了差异，需要恢复到原有的API9接口。
 
 **变更影响**
 
@@ -59,7 +59,7 @@ function getScanResultsSync(): Array<wifiManager.WifiScanInfo> {
 ```
 
 # cl.wifi.2 WiFi P2P相关接口名变更
-API10 Beta1已发布的P2P相关接口，和API9的接口出现了差异，需要恢复到原有的API9接口，，仅涉及API名称变更，使用方式不变。
+P2P相关接口在API10 Beta1进行了改名，现恢复API9 release的命名。
 
 **变更影响**
 
@@ -98,9 +98,3 @@ API10 Beta1已发布的P2P相关接口，和API9的接口出现了差异，需�
 | **function** stopDiscoverP2pDevices(): **void**;                | 停止P2P扫描     |
 | **function** deletePersistentP2pGroup(netId: number): **void**;                | 删除P2P永久组     |
 | **function** setP2pDeviceName(devName: string): **void**;                | 设置P2P设备名称     |
-
-# cl.wifi.3 WiFi AP相关接口变更
-增加信道和IP地址的配置IE。
-| 接口声明 | 接口描述 |
-|------|---------|
-| **function** setHotspotConfig(config: HotspotConfig): **void**;         | 设置热点配置，channel & ipAddress改为可选字段         |
