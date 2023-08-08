@@ -44,7 +44,7 @@
 | 元能力-卡片框架 | 接口参数变更 | [事件订阅，取消订阅相关接口（on/off）中的callback调整为接口最后一个参数。](changelogs-formfwk.md#clformfwk2-事件订阅取消订阅相关接口onoff参数顺序调整) | 
 | 泛Sensor | 接口/组件变更 | [新增自定义振动效果属性VibrateFromFile，自定义振动配置文件描述符属性HapticFileDescriptor；振动下发接口startVibration支持的振动效果由VibrateEffect&nbsp;=&nbsp;VibrateTime。](changelogs-miscdevice.md) | 
 | 文件管理（媒体库） | 接口/组件变更 | [mediaLibrary部分接口兼容性发生变更。](changelogs-medialibrary.md#clfile1-medialibrary部分接口兼容性变更) | 
-| 基础通信 | 接口/组件变更 | [wifiManager部分接口兼容性发生变更（新增和废弃部分接口）。](changelogs-wifiManager.md#clfile1-wifiManager部分接口兼容性变更) | 
+| 基础通信 | 接口/组件变更 | [wifiManager部分接口兼容性发生变更(新增和废弃部分接口)。](changelogs-wifiManager.md#clfile1-wifiManager部分接口兼容性发生变更(新增和废弃部分接口)) | 
 
 
 > **说明：**
