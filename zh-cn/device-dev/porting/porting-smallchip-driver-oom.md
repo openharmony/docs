@@ -8,12 +8,12 @@
 
 移植LCD驱动的主要工作是编写一个驱动，在驱动中生成模型的实例，并完成注册。
 
-这些LCD的驱动被放置在源码目录//drivers/framework/model/display/driver/panel中。
+这些LCD的驱动被放置在源码目录//drivers/hdf_core/framework/model/display/driver/panel中。
 
 1. 创建Panel驱动
    创建HDF驱动，在驱动初始化中调用RegisterPanel接口注册模型实例。如:
 
-     
+   
    ```
    int32_t LCDxxEntryInit(struct HdfDeviceObject *object)
    {
@@ -41,7 +41,7 @@
    > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
    > moduleName 要与panel驱动中的moduleName相同。
 
-     
+   
    ```
    root {
        ...
@@ -61,14 +61,14 @@
 
 ## TP驱动移植
 
-本节描述如何移植触摸屏驱动。触摸屏的器件驱动被放置在源码目录//drivers/framework/model/input/driver/touchscreen中。 移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
+本节描述如何移植触摸屏驱动。触摸屏的器件驱动被放置在源码目录//drivers/hdf_core/framework/model/input/driver/touchscreen中。 移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
 详细的驱动开发指导，请参考 [TOUCHSCREEN开发指导](../driver/driver-peripherals-touch-des.md)。
 
 1. 创建触摸屏器件驱动
    在上述touchscreen目录中创建名为touch_ic_name.c的文件。编写如下内容
 
-     
+   
    ```
    #include "hdf_touch.h"
    
@@ -108,7 +108,7 @@
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > moduleName 要与触摸屏驱动中的moduleName相同。
 
-     
+   
    ```
                    deviceN :: deviceNode {
                        policy = 0;
@@ -130,11 +130,11 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 
 如图1，左半部分负责管理WLAN设备，右半部分负责WLAN流量。HDF WLAN分别为这两部分做了抽象，驱动的移植过程可以看做分别实现这两部分所需接口。这些接口有：
 
-  | 接口 | 定义头文件 | 接口说明 | 
+| 接口 | 定义头文件 | 接口说明 |
 | -------- | -------- | -------- |
-| HdfChipDriverFactory | drivers\framework\include\wifi\hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个WLAN端口 | 
-| HdfChipDriver | drivers\framework\include\wifi\wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定端口 | 
-| NetDeviceInterFace | drivers\framework\include\wifi\net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等 | 
+| HdfChipDriverFactory | drivers\hdf_core\framework\include\wifi\hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个WLAN端口 |
+| HdfChipDriver | drivers\hdf_core\framework\include\wifi\wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定端口 |
+| NetDeviceInterFace | drivers\hdf_core\framework\include\wifi\net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 详细的接口开发指导，请参考[WLAN开发](../driver/driver-peripherals-external-des.md)。
@@ -144,9 +144,9 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 1. 创建HDF WLAN 芯片驱动
    在目录/device/vendor_name/peripheral/wifi/chip_name/ 创建文件 hdf_wlan_chip_name.c。内容模板如下：
 
-     
+   
    ```
-   static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device) {
+   static int32_t HdfWlanXXXChipDriverInit(struct HdfDeviceObject *device) {
        static struct HdfChipDriverFactory factory = CreateChipDriverFactory(); // 需要移植者实现的方法
        struct HdfChipDriverManager *driverMgr = HdfWlanGetChipDriverMgr();
        if (driverMgr->RegChipDriver(&factory) != HDF_SUCCESS) { // 注册驱动工厂
@@ -193,7 +193,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 
    该文件模板如下：
 
-     
+   
    ```
    root {
        wlan_config {
@@ -219,7 +219,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 3. 编写配置文件，加载驱动
    产品的所有设备信息被定义在源码文件//vendor/vendor_name/product_name/config/device_info/device_info.hcs中。修改该文件，在名为network的host中，名为device_wlan_chips的device中增加配置。模板如下：
 
-     
+   
    ```
                    deviceN :: deviceNode {
                        policy = 0;
@@ -236,7 +236,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 4. 修改Kconfig文件，让移植的WLAN模组出现再内核配置中
    在device/vendor_name/drivers/Kconfig中增加配置菜单，模板如下
 
-     
+   
    ```
    config DRIVERS_HDF_WIFI_chip_name
        bool "Enable chip_name Host driver"
@@ -251,7 +251,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 5. 修改构建脚本，让驱动参与内核构建
    在源码文件//device/vendor_name/drivers/lite.mk末尾追加如下内容
 
-     
+   
    ```
    ifeq ($(LOSCFG_DRIVERS_HDF_WIFI_chip_name), y)
        # 构建完成要链接一个叫hdf_wlan_chipdriver_chip_name的对象，建议按这个命名，防止冲突
