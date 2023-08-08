@@ -265,7 +265,7 @@ Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
 
-// Reference plural resources. The first parameter of $r indicates the plural resource, the second parameter indicates the number of plural resources (for English, **one** indicates singular and is represented by **1**, and **other** indicates plural and is represented by an integer greater than or equal to 1; for Chinese, **other** indicates both singular and plural), and the third parameter is used to replace %d.
+// Reference plural resources. The first parameter of $r indicates the plural resource, the second parameter indicates the number of plural resources (for English, one indicates singular and is represented by 1, and other indicates plural and is represented by an integer greater than or equal to 1; for Chinese, other indicates both singular and plural), and the third parameter is used to replace %d.
 // In this example, the resultant value is "5 apples".
 Text($r('app.plural.eat_apple', 5, 5))
   .fontColor($r('app.color.color_world'))
