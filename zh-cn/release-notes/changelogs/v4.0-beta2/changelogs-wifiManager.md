@@ -26,6 +26,35 @@ getScanResults(): Array<WifiScanInfo>;
 getScanResultsSync(): Array<WifiScanInfo>;
 ```
 
+**适配指导**
+
+示例代码如下：
+```js
+function getScanResultsPromise() {
+  let methodName = `${tag} getScanResultsPromise`
+  wifiManager.getScanResults((err, data) => {
+    if (err) {
+      showToastE(`${methodName} failed ${JSON.stringify(err)}`)
+      return
+    }
+    if (data == null || data.length == 0) {
+      showToast(`${methodName} end data is null`)
+      return;
+    }
+  })
+}
+
+function getScanResultsSync(): Array<wifiManager.WifiScanInfo> {
+  let methodName = `${tag} getScanResultsSync`
+  try {
+    return wifiManager.getScanResultsSync();
+  } catch (error) {
+    showToastE(`${methodName} failed ${JSON.stringify(error)}`)
+  }
+  return Array();
+}
+```
+
 # cl.wifi.2 WiFi P2P相关接口名变更
 API10 Beta1已发布的P2P相关接口，和API9的接口出现了差异，需要恢复到原有的API9接口，，仅涉及API名称变更，使用方式不变。
 
