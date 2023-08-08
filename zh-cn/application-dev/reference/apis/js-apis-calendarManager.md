@@ -171,9 +171,9 @@ let calendar = null;
 calendarManager.getCalendar((err, data) => {
   if (err) {
     console.error("Failed to get calendar");
-    calendar = data;  
   } else {
     console.info("Succeeded in getting calendar");
+    calendar = data;  
   }
 });
 ```
@@ -198,11 +198,13 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 **示例**：
 
 ```js
+let calendar = null;
 calendarManager.getCalendar(calendarAccount, (err, data) => {
   if (err) {
     console.error("Failed to get calendar");
   } else {
     console.info("Succeeded in getting calendar");
+    calendar = data;
   }
 });
 ```
@@ -232,8 +234,10 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 **示例**：
 
 ```js
+let calendar = null;
 calendarManager.getCalendar().then((data) => {
   console.info("Succeeded in getting calendar");
+  calendar = data;
 }).catch((err) => {
   console.error("Failed to get calendar");
 });
@@ -736,7 +740,7 @@ calendar.getEvents(filter).then((data) => {
 
 getConfig(): CalendarConfig
 
-获取日历帐户信息。
+获取日历配置信息。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -744,7 +748,7 @@ getConfig(): CalendarConfig
 
 | 类型                              | 说明           |
 | --------------------------------- | -------------- |
-| [CalendarConfig](#calendarconfig) | 日历帐户信息。 |
+| [CalendarConfig](#calendarconfig) | 日历配置信息。 |
 
 **示例**：
 
@@ -820,7 +824,7 @@ calendar.setConfig(config).then(() => {
 
 getAccount(): CalendarAccount
 
-获取日历帐户。
+获取日历账户信息。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -868,19 +872,19 @@ console.info("get account success");
 
 | 名称           | 类型                              | 只读 | 必填 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| id             | number                            | 是   | 否   | 日程id。[addEvent()](#addevent)、[addEvents()](#addevents)不填 |
+| id             | number                            | 是   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 |
 | type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                   |
-| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串                             |
+| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。                             |
 | location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。                               |
 | startTime      | number                            | 否   | 是   | 日程开始时间。                                               |
 | endTime        | number                            | 否   | 是   | 日程结束时间。                                               |
-| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程 |
+| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。 |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                             |
-| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的日程时，可填入对应的时区。可通过[getTimeZone()](js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区 |
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。不填时，默认为不提醒                           |
-| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复                           |
-| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串                             |
-| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务                           |
+| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区。 |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。不填时，默认为不提醒。                           |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                           |
+| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                             |
+| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。                           |
 
 ## CalendarType
 
@@ -916,7 +920,7 @@ console.info("get account success");
 
 ### filterById
 
-filterById(ids: number[]): EventFilter
+static filterById(ids: number[]): EventFilter
 
 根据日程id过滤日程。
 
@@ -947,7 +951,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTime
 
-filterByTime(start: number, end: number): EventFilter
+static filterByTime(start: number, end: number): EventFilter
 
 根据日程时间过滤日程。
 
@@ -979,7 +983,7 @@ calendar.getEvents(filter).then((data) => {
 
 ### filterByTitle
 
-filterByTitle(title: string): EventFilter
+static filterByTitle(title: string): EventFilter
 
 根据日程标题过滤日程。
 
@@ -1017,7 +1021,7 @@ calendar.getEvents(filter).then((data) => {
 | 名称      | 值   | 说明                 |
 | --------- | ---- | -------------------- |
 | NORMAL    | 0    | 普通日程。           |
-| IMPORTANT | 1    | 重要日程。支持倒计时 |
+| IMPORTANT | 1    | 重要日程。支持倒计时。 |
 
 ## RecurrenceRule
 
@@ -1028,7 +1032,7 @@ calendar.getEvents(filter).then((data) => {
 | 名称                | 类型                                        | 只读 | 必填 | 说明                            |
 | ------------------- | ------------------------------------------- | ---- | ---- | ------------------------------- |
 | recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 是   | 日程重复规则类型。              |
-| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0 |
+| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0。 |
 
 ## RecurrenceFrequency
 
