@@ -144,6 +144,6 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ```
 
 ## Reference
-During development, you can refer to the [default thermal detection configuration](https://gitee.com/openharmony/drivers_peripheral/tree/master/thermal/interfaces/hdi_service/profile/thermal_hdf_config.xml).
+During development, you can refer to the [default thermal detection configuration](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/interfaces/hdi_service/profile/thermal_hdi_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
