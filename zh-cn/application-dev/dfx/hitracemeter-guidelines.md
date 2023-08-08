@@ -35,51 +35,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 
 在应用启动执行页面加载后，开始分布式跟踪，完成业务之后，停止分布式跟踪。
 
-1. 新建一个JS应用工程，在“Project”窗口点击“entry > src > main > js > default > pages > index”，打开工程中的“index.js”文件，在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，示例代码如下：
-
-   ```js
-   import hiTraceMeter from '@ohos.hiTraceMeter'
-
-   export default {
-       data: {
-           title: ""
-       },
-       onInit() {
-           this.title = this.$t('strings.world');
-
-           // 跟踪并行执行的同名任务
-           hiTraceMeter.startTrace("business", 1);
-           // 业务流程
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 2);  // 第二个跟踪任务开始，同时第一个跟踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
-           // 业务流程
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);
-           // 业务流程
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 2);
-
-           // 跟踪串行执行的同名任务
-           hiTraceMeter.startTrace("business", 1);
-           // 业务流程
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);  // 第一个跟踪的任务结束
-           // 业务流程
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 1);   // 第二个跟踪的同名任务开始，同名的待跟踪任务串行执行。
-           // 业务流程
-           console.log(`business running`);
-
-           let traceCount = 3;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           traceCount = 4;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           hiTraceMeter.finishTrace("business", 1);
-       }
-   }
-   ```
-
-2. 新建一个ArkTs应用工程，在“Project”窗口点击“entry > src > main > ets > pages > index”，打开工程中的“index.ets”文件，在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例 示例代码如下：
+1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry > src > main > ets > pages > index”，打开工程中的“index.ets”文件，在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例 示例代码如下：
  
    ```ts
    import hitrace from '@ohos.hiTraceMeter';
