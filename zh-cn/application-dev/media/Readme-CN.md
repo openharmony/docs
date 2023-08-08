@@ -62,7 +62,7 @@
   - 相机最佳实践
     - [拍照实现方案](camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
-    - [性能提升方案（仅对系统应用开放）](camera-preformance-imporvement.md)
+    - [性能提升方案（仅对系统应用开放）](camera-performance-improvement.md)
 - 图片
   - [图片开发概述](image-overview.md)
   - [图片解码](image-decoding.md)
