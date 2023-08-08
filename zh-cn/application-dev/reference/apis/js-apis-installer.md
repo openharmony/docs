@@ -19,6 +19,8 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | 允许应用安装企业InHouse应用。 |
 | ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE | system_core | 允许在企业设备上安装企业MDM应用包。 |
 | ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE | system_core | 允许在企业设备上安装企业NORMAL应用包。 |
+| ohos.permission.UNINSTALL_BUNDLE | system_core | 允许应用卸载应用。 |
+| ohos.permission.RECOVER_BUNDLE | system_core | 允许应用恢复预置应用。 |
 
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
@@ -321,7 +323,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -381,7 +383,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -433,7 +435,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -496,7 +498,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -554,7 +556,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -604,7 +606,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -664,7 +666,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -718,7 +720,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
