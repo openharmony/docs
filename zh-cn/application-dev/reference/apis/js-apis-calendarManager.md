@@ -152,7 +152,7 @@ calendarManager.deleteCalendar(specificCalendar).then(() => {
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-获取默认Calendar对象，默认Calendar是初始化数据库时创建的，若创建Event时不关注其Calendar归属，无须通过[createCalendar()](#calendarManager.createCalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
+获取默认Calendar对象，默认Calendar是初始化数据库时创建的，若创建Event时不关注其Calendar归属，无须通过[createCalendar()](#calendarManager.createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
 **需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -295,7 +295,7 @@ calendarManager.getAllCalendars().then((data) => {
 
 ## Calendar
 
-下列API示例中需先通过[createCalendar()](#calendarmanager.createcalendar)、[getCalendar()](#calendarmanager.getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
+下列API示例中需先通过[createCalendar()](#calendarManager.createcalendar)、[getCalendar()](#calendarManager.getcalendar)中任一方法获取Calendar对象，再通过此对象调用对应方法，对该Calendar下的日程进行创建、删除、修改、查询等操作。
 
 ### 属性
 
