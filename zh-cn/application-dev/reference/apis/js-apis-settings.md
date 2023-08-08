@@ -3,7 +3,7 @@
 本模块提供访问设置数据项的能力。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
@@ -213,9 +213,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-//此处数据项值的类型为string
-settings.setValue(this.context, uri, '100', (status) => {
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -252,9 +250,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-//此处数据项值的类型为string
-settings.setValue(this.context, uri, '100').then((status) => {
+settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -282,8 +278,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 ```js
 import settings from '@ohos.settings';
 
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-settings.getValue(this.context, uri, (err, value) => {
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
     return;
@@ -320,8 +315,7 @@ getValue(context: Context, name: string): Promise\<string>
 ```js
 import settings from '@ohos.settings';
 
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-settings.getValue(this.context, uri).then((value) => {
+settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${JSON.stringify(value)}`)
 });
 ```
@@ -356,8 +350,7 @@ getValueSync(context: Context, name: string, defValue: string): string;
 import settings from '@ohos.settings';
 
 //获取数据项亮度的值（该数据项在数据库中已存在）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let value = settings.getValueSync(this.context, uri, '10');
+let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.setValueSync<sup>10+</sup>
@@ -394,11 +387,10 @@ setValueSync(context: Context, name: string, value: string): boolean
 import settings from '@ohos.settings';
 
 //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let ret = settings.setValueSync(this.context, uri, '100');
+let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
-## settings.enableAirplaneMode<sup>7+</sup>
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -428,7 +420,7 @@ settings.enableAirplaneMode(isEnabled, (err) => {
 })
 ```
 
-## settings.enableAirplaneMode<sup>7+</sup>
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
@@ -461,7 +453,7 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 })
 ```
 
-## settings.canShowFloating<sup>7+</sup>
+## settings.canShowFloating
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
@@ -483,7 +475,7 @@ settings.canShowFloating((status) => {
 });
 ```
 
-## settings.canShowFloating<sup>7+</sup>
+## settings.canShowFloating
 
 canShowFloating(): Promise\<boolean>
 
@@ -529,7 +521,7 @@ getUriSync(name: string): string
 
 ```js
 // 获取数据项的URI
-let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uriVar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
 ## setting.getURI<sup>(deprecated)</sup>
@@ -540,7 +532,7 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -567,7 +559,7 @@ getURI(name: string): Promise\<object>
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -603,16 +595,18 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 **系统接口**：此接口为系统接口。
 
+**模型约束**：此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | object                                            | 是   | 数据项值。取值范围随业务变动。                               |
-| callback          | AsyncCallback\<boolean>                           | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
+| callback          | AsyncCallback\<boolean>                                      | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
 
 **示例**：
 
@@ -641,15 +635,17 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 
 **系统接口**：此接口为系统接口。
 
+**模型约束**：此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | object                                            | 是   | 数据项值。取值范围随业务变动。                               |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
 
 **返回值**：
 
@@ -688,11 +684,11 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据项的值。                             |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| callback          | AsyncCallback\<object>                                       | 是   | 使用callback方式获取数据项的值。                             |
 
 **示例**：
 
@@ -726,10 +722,10 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
 
@@ -757,7 +753,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getValue()](#settingsgetvaluesync10)。
+> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getValueSync()](#settingsgetvaluesync10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -765,11 +761,11 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| defValue          | string                                            | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| defValue          | string                                                       | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
 **返回值**：
 
@@ -798,7 +794,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvaluesync10)。
+> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setValueSync()](#settingssetvaluesync10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -808,11 +804,11 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **参数**：
 
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value             | string                                            | 是   | 数据项的具体数值。取值范围随业务变动。                       |
+| name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| value             | string                                                       | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 
 **返回值**：
 
