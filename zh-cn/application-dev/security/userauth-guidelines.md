@@ -1,11 +1,11 @@
 # 用户认证开发指导
 
 > **说明：**
-> 该开发指导需配合API version 9版本的SDK使用。
+> 该开发指导需配合API version 10版本的SDK使用。
 
 ## 场景介绍
 
-当前用户认证支持人脸识别和指纹识别，可应用于设备解锁、应用登录、支付等身份认证场景。
+当前用户认证支持Pin码认证、人脸识别和指纹识别，可应用于设备解锁、应用登录、支付等身份认证场景。
 
 ## 接口说明
 
@@ -18,11 +18,11 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 | 接口名称    | 功能描述                |
 | ---------- | ----------------------- |
 | getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力。 |
-| getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance | 获取AuthInstance对象，用于执行用户身份认证。 |
-| on(name : AuthEventKey, callback : AuthEvent) : void | 订阅指定类型的用户认证事件。 |
-| off(name : AuthEventKey) : void | 取消订阅特定类型的认证事件。 |
-| start: void  | 执行用户认证。        |
-| cancel: void | 取消本次认证操作。    |
+| getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance | 获取UserAuthInstance对象，用于执行用户身份认证，并支持使用统一用户身份认证组件。 |
+| on(type: 'result', callback: IAuthCallback): void | 订阅用户身份认证结果。 |
+| off(type: 'result', callback?: IAuthCallback): void | 取消订阅用户身份认证结果。 |
+| start(): void | 执行用户认证。        |
+| cancel(): void | 取消本次认证操作。    |
 
 ## 查询当前设备是否支持相应的认证能力
 
@@ -34,7 +34,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
+    
     // 查询认证能力是否支持
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
@@ -48,127 +48,56 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
+1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
-3. 调用[on](../reference/apis/js-apis-useriam-userauth.md#on9)接口订阅认证结果。
+3. 调用[on](../reference/apis/js-apis-useriam-userauth.md#on10)接口订阅认证结果。
 
-4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback9)回调返回认证结果。
+4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback10)回调返回认证结果。
 
-5. 调用[off](../reference/apis/js-apis-useriam-userauth.md#off9)接口取消订阅认证结果。
-
-    ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // 获取认证对象
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
-    // 订阅认证结果
-    try {
-        auth.on("result", {
-            callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                console.log("authV9 result " + result.result);
-                console.log("authV9 token " + result.token);
-                console.log("authV9 remainAttempts " + result.remainAttempts);
-                console.log("authV9 lockoutDuration " + result.lockoutDuration);
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
-
-    // 开始认证
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
-    // 取消订阅认证结果
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-    ```
-
-## 执行认证操作并订阅认证过程中的提示信息
-
-### 开发步骤
-
-1. 申请权限。调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
-
-2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
-
-3. 调用[on](../reference/apis/js-apis-useriam-userauth.md#on9)接口订阅认证过程中的提示信息。
-
-4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback9)回调返回认证过程中的提示信息。
-
-5. 调用[off](../reference/apis/js-apis-useriam-userauth.md#off9)接口取消订阅认证过程中的提示信息。
+5. 调用[off](../reference/apis/js-apis-useriam-userauth.md#off10)接口取消订阅认证结果。
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // 获取认证对象
-    let auth;
+    
+    const authParam = {
+        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+        authType: [userAuth.UserAuthType.PIN],
+        authTrustLevel: 10000,
+    };
+    const widgetParam = {
+    	title: '请输入密码',
+    	navigationButtonText: '返回',
+        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    };
+    let userAuthInstance;
     try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
-    // 订阅认证过程中的提示信息
-    try {
-        auth.on("tip", {
-            callback : (result : userIAM_userAuth.TipInfo) => {
-                switch (result.tip) {
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                    // do something;
-                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                    // do something;
-                    default:
-                    // do others
-                }
+        //获取认证对象
+        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+        console.log('get userAuth instance success');
+        //订阅认证结果
+        userAuthInstance.on('result', {
+            onResult (result) {
+                console.log('userAuthInstance callback result = ' + JSON.stringify(result));
             }
         });
-        console.log("subscribe authentication event success");
+        console.log('auth on success');
+        userAuthInstance.start();
+        console.log('auth start success');
     } catch (error) {
-        console.log("subscribe authentication event failed " + error);
+        console.log('auth on catch error: ' + JSON.stringify(error));
     }
-
-    // 开始认证
+    //取消订阅认证结果
     try {
-        auth.start();
-        console.info("authV9 start auth success");
+    	userAuthInstance.off('result', {
+            onResult (result) {
+                console.log('auth off result: ' + JSON.stringify(result));
+            }
+        });
+        console.log('auth off success');
     } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
-    // 取消订阅认证过程中的提示信息
-    try {
-        auth.off("tip");
-        console.info("cancel subscribe tip information success");
-    } catch (error) {
-        console.info("cancel subscribe tip information failed, error = " + error);
+        console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -176,43 +105,44 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 ### 开发步骤
 
-1. 申请权限。调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
+1. 申请权限。调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
 2. 指定challenge、[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，获取认证对象。
 
-3. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start9)接口发起认证。
+3. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证。
 
-4. 通过调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel9)接口取消本次认证。
+4. 通过调用[cancel](../reference/apis/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
 
     ```js
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-
-    // 获取认证对象
-    let auth;
+    
+    const authParam = {
+        challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+        authType: [userAuth.UserAuthType.PIN],
+        authTrustLevel: 10000,
+    };
+    const widgetParam = {
+    	title: '请输入密码',
+    	navigationButtonText: '返回',
+        windowMode: userAuth.WindowModeType.DIALOG_BOX,
+    };
+    let userAuthInstance;
     try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
+        //获取认证对象
+        userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+        console.log('get userAuth instance success');
+        //开始认证
+        userAuthInstance.start();
+        console.log('auth start success');
     } catch (error) {
-        console.log("get auth instance failed" + error);
+        console.log('auth catch error: ' + JSON.stringify(error));
     }
-
-    // 开始认证
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
+    
     // 取消认证
     try {
-        auth.cancel();
-        console.info("cancel auth success");
+        userAuthInstance.cancel();
+        console.log('auth cancel success');
     } catch (error) {
-        console.info("cancel auth failed, error = " + error);
+        console.log('auth catch error: ' + JSON.stringify(error));
     }
     ```
