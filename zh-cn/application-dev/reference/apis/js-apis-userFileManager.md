@@ -1502,7 +1502,7 @@ async function example() {
     //file had changed, do something
   }
   // 注册onCallback1监听
-  mgr.on(fileAsset.uri, false, onCallback1); 
+  mgr.on(fileAsset.uri, false, onCallback1);
   // 注册onCallback2监听
   mgr.on(fileAsset.uri, false, onCallback2);
 
@@ -1825,7 +1825,7 @@ commitModify(): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
-**示例：**  
+**示例：**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3706,7 +3706,7 @@ async function example() {
   }).catch((err) => {
     console.error('trashAlbum.delete failed, message = ', err);
   });
-}   
+}
 ```
 
 ### recover
@@ -3961,6 +3961,7 @@ async function example() {
 | POSITION<sup>10+</sup>  | position            | 文件位置类型。                               |
 | DATE_TRASHED<sup>10+</sup>  | date_trashed  | 删除日期（删除文件时间距1970年1月1日的秒数值）。                 |
 | HIDDEN<sup>10+</sup>  | hidden            | 文件的隐藏状态。                               |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。    |
 
 ## AlbumKey
 
@@ -3985,6 +3986,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subType           | [PhotoSubType](#photosubtype10) | 否  | 图片或者视频的子类型。  |
+| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。  |
 
 ## FetchOptions
 
