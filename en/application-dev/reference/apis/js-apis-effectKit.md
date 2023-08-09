@@ -21,7 +21,7 @@ import effectKit from '@ohos.effectKit';
 ## effectKit.createEffect
 createEffect(source: image.PixelMap): Filter
 
-Creates a **Filter** instance based on the pixel map.
+Creates a **Filter** instance based on a pixel map.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -53,7 +53,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses a promise to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -83,11 +83,46 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<ColorPicker>
+
+Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | ----------- | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).|
+| region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.<br>If no value is passed, the default value [0, 0, 1, 1] is used, indicating that the color region is the entire image.|
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
+
+**Example**
+
+```js
+import image from "@ohos.multimedia.image";
+
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, [0, 0, 0.5, 0.5]).then(colorPicker => {
+    console.info("color picker=" + colorPicker);
+  }).catch(ex => console.error(".error=" + ex.toString()))
+})
+```
+
 ## effectKit.createColorPicker
 
 createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>): void
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses an asynchronous callback to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -116,6 +151,40 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region:Array\<number>, callback: AsyncCallback\<ColorPicker>): void
+
+Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type               | Mandatory| Description                      |
+| -------- | ------------------ | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md). |
+| region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.<br>If no value is passed, the default value [0, 0, 1, 1] is used, indicating that the color region is the entire image.|
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
+
+**Example**
+
+```js
+import image from "@ohos.multimedia.image";
+
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, [0, 0, 0.5, 0.5], (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+    }
+  })
+})
+```
+
 ## Color
 
 A class that stores the color picked.
@@ -124,10 +193,10 @@ A class that stores the color picked.
 
 | Name  | Type  | Readable| Writable| Description             |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | Yes  | No  | Value of the red component.          |
-| green | number | Yes  | No  | Value of the green component.          |
-| blue  | number | Yes  | No  | Value of the blue component.          |
-| alpha | number | Yes  | No  | Value of the alpha component.      |
+| red   | number | Yes  | No  | Value of the red component. The value range is [0x0, 0xFF].          |
+| green | number | Yes  | No  | Value of the green component. The value range is [0x0, 0xFF].          |
+| blue  | number | Yes  | No  | Value of the blue component. The value range is [0x0, 0xFF].          |
+| alpha | number | Yes  | No  | Value of the alpha component. The value range is [0x0, 0xFF].      |
 
 ## ColorPicker
 
@@ -250,9 +319,15 @@ console.log('get average color =' + color);
 
 isBlackOrWhiteOrGrayColor(color: number): boolean
 
-Checks whether this image is black, white, and gray.
+Checks whether a color is black, white, and gray.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | ----------- | ---- | -------------------------- |
+| color| number | Yes  |  Color to check. The value range is [0x0, 0xFFFFFFFF].|
 
 **Return value**
 
