@@ -35,4 +35,6 @@
 | [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket) | 声明式开发范式 | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 | [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 | [设置应用页面](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings) | 声明式开发范式 | 本章配套的示例代码，以设置应用页面为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [音乐专辑页](https://gitee.com/openharmony/codelabs/tree/master/ExcellentCase/MultiDeviceMusic) | 声明式开发范式 | 基于自适应和响应式布局，实现一次开发、多端部署音乐专辑页面。 |
+| [视频应用](https://gitee.com/openharmony/codelabs/tree/master/ExcellentCase/Multi_device_V2) | 声明式开发范式 | 基于自适应布局和响应式布局能力，实现了常见的视频播放应用的主界面。 |
 
