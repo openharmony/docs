@@ -145,8 +145,8 @@ Inserts an element at the specified position in this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted.|
+| element | T | Yes| Target element.|
 
 **Error codes**
 
@@ -607,15 +607,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| LinkedList | LinkedList&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| LinkedList | LinkedList&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 

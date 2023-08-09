@@ -21,7 +21,7 @@ import effectKit from '@ohos.effectKit';
 ## effectKit.createEffect
 createEffect(source: image.PixelMap): Filter
 
-Creates a **Filter** instance based on the pixel map.
+Creates a **Filter** instance based on a pixel map.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -53,7 +53,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses a promise to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -87,7 +87,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>): void
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses an asynchronous callback to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -124,10 +124,10 @@ A class that stores the color picked.
 
 | Name  | Type  | Readable| Writable| Description             |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | Yes  | No  | Value of the red component.          |
-| green | number | Yes  | No  | Value of the green component.          |
-| blue  | number | Yes  | No  | Value of the blue component.          |
-| alpha | number | Yes  | No  | Value of the alpha component.      |
+| red   | number | Yes  | No  | Value of the red component. The value range is [0x0, 0xFF].          |
+| green | number | Yes  | No  | Value of the green component. The value range is [0x0, 0xFF].          |
+| blue  | number | Yes  | No  | Value of the blue component. The value range is [0x0, 0xFF].          |
+| alpha | number | Yes  | No  | Value of the alpha component. The value range is [0x0, 0xFF].      |
 
 ## ColorPicker
 
