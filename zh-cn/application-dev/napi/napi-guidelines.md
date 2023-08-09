@@ -191,3 +191,5 @@ ArkCompiler会对JS对象线程进行保护，使用不当会引起应用crash�
 - [简易Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 
 - [Native XComponent组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+
+- [库的调用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/ThirdPartyLibrary)
