@@ -143,72 +143,7 @@ The [Architecture SIG](https://gitee.com/openharmony/community/blob/master/sig/s
 
 ### License Requirements for Third-Party Open-Source Software
 
-1. The software license must be clearly defined by the [Open Source Initiative (OSI)](https://opensource.org/osd-annotated).
-2. The software license must be compatible with the license for the code repository.
-3. The following licenses for third-party open-source software are recommended in the OpenHarmony project:
-
-- Apache License 2.0
-- Mulan Permissive Software License, Version 2
-- BSD 2-clause
-- BSD 3-clause
-- DOM4J License
-- PostgreSQL License
-- Eclipse Distribution License 1.0
-- MIT
-- ISC
-- ICU
-- University of Illinois/NCSA
-- W3C Software License
-- zlib/libpng
-- Academic Free License 3.0
-- Python Software Foundation License
-- Python Imaging Library Software License
-- Boost Software License Version 1.0
-- WTF Public License
-- UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
-- Zope Public License 2.0
-
-4. The following licenses for third-party open-source software are not recommended in the OpenHarmony project:
-
-- GNU GPL 1, 2, 3
-- GNU Affero GPL 3
-- GNU LGPL 2, 2.1, 3
-- QPL
-- Sleepycat License
-- Server Side Public License (SSPL) version 1
-- Code Project Open License (CPOL)
-- BSD-4-Clause/BSD-4-Clause (University of California-Specific)
-- Facebook BSD+Patents license
-- NPL 1.0/NPL 1.1
-- The Solipsistic Eclipse Public License
-- The "Don't Be A Dick" Public License
-- JSON License
-- Binary Code License (BCL)
-- Intel Simplified Software License
-- JSR-275 License
-- Microsoft Limited Public License
-- Amazon Software License (ASL)
-- Java SDK for Satori RTM license
-- Redis Source Available License (RSAL)
-- Booz Allen Public License
-- Creative Commons Non-Commercial
-- Sun Community Source License 3.0
-- Common Development and Distribution Licenses: CDDL 1.0 and CDDL 1.1
-- Common Public License: CPL 1.0
-- Eclipse Public License: EPL 1.0
-- IBM Public License: IPL 1.0
-- Mozilla Public Licenses: MPL 1.0, MPL 1.1, and MPL 2.0
-- Sun Public License: SPL 1.0
-- Open Software License 3.0
-- Erlang Public License
-- UnRAR License
-- SIL Open Font License
-- Ubuntu Font License Version 1.0
-- IPA Font License Agreement v1.0
-- Ruby License
-- Eclipse Public License 2.0: EPL 2.0
-
-If you want to introduce the software that complies with the unrecommended licenses listed in **4** or other licenses that are not mentioned, send an email to oh-legal@openatom.io.
+For details, see [Licenses and Special License Review](licenses-and-special-license-review.md).
 
 ## Software Exit and Exit Principles
 
