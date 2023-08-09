@@ -1786,7 +1786,7 @@ console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.startAdvertising({
             interval:150,
-            txPower:60,
+            txPower:0,
             connectable:true,
         },{
             serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
