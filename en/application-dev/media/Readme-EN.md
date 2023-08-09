@@ -61,7 +61,7 @@
   - Best Practices
     - [Camera Photographing Sample](camera-shooting-case.md)
     - [Camera Recording Sample](camera-recording-case.md)
-    - [Using Performance Improvement Features (for System Applications Only)](camera-preformance-imporvement.md)
+    - [Using Performance Improvement Features (for System Applications Only)](camera-performance-improvement.md)
 - Image
   - [Image Overview](image-overview.md)
   - [Image Decoding](image-decoding.md)

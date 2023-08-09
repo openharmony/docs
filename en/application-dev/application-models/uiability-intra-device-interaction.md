@@ -219,7 +219,8 @@ The following example describes how to start the UIAbility of another applicatio
    })
    ```
    
-   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use. 
+   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use.
+   
    ![](figures/uiability-intra-device-interaction.png)
    
 3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
@@ -383,7 +384,8 @@ context.startAbility(want, options).then(() => {
 })
 ```
 
-The display effect is shown below. 
+The display effect is shown below.
+
 ![](figures/start-uiability-floating-window.png)
 
 ## Starting a Specified Page of UIAbility
