@@ -58,7 +58,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
 | 参数名  | 类型                                       | 必填   | 说明             |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 添加到执行队列的任务。 |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 执行队列中要结束回调的任务。 |
 
 
 **示例：** 
