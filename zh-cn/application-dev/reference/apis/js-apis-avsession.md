@@ -3914,7 +3914,7 @@ aVCastController.getAVPlaybackState(function (err, state) {
 
 getAVPlaybackState(): Promise\<AVPlaybackState>;
 
-获取当前的远端播放状态。结果通过callback异步回调方式返回。
+获取当前的远端播放状态。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
