@@ -18,7 +18,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 startWork(work: WorkInfo): void
 
-申请延迟任务，通知WorkSchedulerService将指定任务添加到执行队列。////排查整篇文档接口描述
+申请延迟任务，通知WorkSchedulerService将指定任务添加到执行队列。////WorkSchedulerService
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -69,7 +69,7 @@ startWork(work: WorkInfo): void
 
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-取消延迟任务，通知WorkSchedulerService停止指定任务。////接口和参数说明重新描述
+取消延迟任务，通知WorkSchedulerService停止指定任务。 ////停止指定任务是指将任务从执行队列中移除吗
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -78,7 +78,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 要停止/取消的指定任务。 |
-| needCancel | boolean               | 否    | 是否需要取消的任务，默认为不取消。 <br>- true表示。。。，false表示。。。|
+| needCancel | boolean               | 否    | 是否需要取消的任务，默认为不取消。//// <br>- true表示。。。，false表示。。。|
 
 **错误码**：
 
@@ -120,7 +120,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
-获取延迟任务状态，使用Callback形式返回。
+获取延迟任务状态，使用Callback异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -164,7 +164,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
-获取工作的最新状态，使用Promise形式返回。////
+获取工作的最新状态，使用Promise异步回调。////与上一个接口描述不一致
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -172,13 +172,13 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 | 参数名    | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | -------- |
-| workId | number | 是    | work的id。 |
+| workId | number | 是    | work的id。//// |
 
 **返回值**：
 
 | 类型                              | 说明                                       |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则抛出异常。 |
+| Promise\<[WorkInfo](#workinfo)> | Promise对象，如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态，否则抛出异常。 |
 
 **错误码**：
 
@@ -211,7 +211,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-获取所有延迟任务，使用Callback形式返回。////
+获取所有延迟任务，使用Callback异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -219,7 +219,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 | 参数名      | 类型                   | 必填   | 说明                              |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | 是    | 回调函数，返回成功，error为undefined，否则返回error信息。////回调函数说明重新描述 |
+| callback | AsyncCallback\<void> | 是    | 回调函数，获取成功时，err为undefined，否则为错误对象。 |
 
 **返回值**：
 
@@ -257,7 +257,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
-获取所有延迟任务，使用Promise形式返回。////
+获取所有延迟任务，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -265,7 +265,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 | 类型                                     | 说明                             |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | 指定的Promise回调方法，返回所有的延迟任务。 |
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise对象，返回所有的延迟任务。 |
 
 **错误码**：
 
@@ -324,7 +324,7 @@ stopAndClearWorks(): void
 
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
-检查指定任务的最后一次执行是否超时，使用Callback形式返回。////接口描述是否准确
+检查指定任务的最后一次执行是否超时，使用Callback异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -333,13 +333,13 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | 是    | 指定任务的Id。                                 |
-| callback | AsyncCallback\<void> | 是    | 回调函数。如果指定任务的最后一次执行超时，返回true；否则返回false。 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。如果指定任务的最后一次执行超时，返回true；否则返回false。////说明正确吗 |
 
 **返回值**：
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，返回true；否则返回false。////这不是回调方法吧 |
+| boolean | 返回true表示指定任务的最后一次执行超时，false表示未超时。 |
 
 **错误码**：
 
@@ -386,7 +386,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
-| Promise\<boolean> | 指定的Promise回调方法。如果指定任务的最后一次执行超时，返回true；否则返回false。 |
+| Promise\<boolean> | Promise对象。返回true表示指定任务的最后一次执行超时，false表示未超时。 |
 
 **错误码**：
 
@@ -424,7 +424,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 名称             | 类型                                | 必填   | 说明               |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | 是    | 当前工作的ID          |
-| bundleName      | string                            | 是    | 延迟任务包名           |
+| bundleName      | string                            | 是    | 延迟任务的包名           |
 | abilityName     | string                            | 是    | 延迟任务回调通知的组件名 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型             |
 | isCharging      | boolean                           | 否    | 是否充电。////true表示。。。false表示。。。|
@@ -435,10 +435,10 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isRepeat        | boolean                           | 否    | 是否循环任务。////true表示。。。false表示。。。 |
 | repeatCycleTime | number                            | 否    | 循环间隔             |
 | repeatCount     | number                            | 否    | 循环次数             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
+| isPersisted     | boolean                           | 否    | 是否持久化保存工作。////true表示。。。false表示。。。        |
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。////true表示。。。false表示。。。    |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
-| parameters      | [key: string]: number \| string \| boolean             | 否    | 携带参数信息           |
+| parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息 |
 
 ## NetworkType
 
@@ -457,7 +457,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## ChargingType
 
-触发工作的充电类型。
+触发任务的充电类型。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -470,7 +470,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## BatteryStatus
 
-触发工作的电池状态。
+触发任务的电池状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -482,7 +482,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## StorageRequest
 
-触发工作的存储状态。
+触发任务的存储状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
