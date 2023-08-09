@@ -14,12 +14,11 @@
 import distributedMissionManager from '@ohos.distributedMissionManager'
 ```
 
-
 ## distributedMissionManager.registerMissionListener
 
 registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-注册系统任务状态监听，以回调函数的方式返回。
+注册系统任务状态监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -29,9 +28,9 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听设备信息。 |
+| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。 |
 | options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。  |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行结果回调函数。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -70,7 +69,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 
 registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback): Promise&lt;void&gt;
 
-注册系统任务状态监听，以promise的方式返回。
+注册系统任务状态监听。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -80,14 +79,14 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo)  | 是    | 设备信息。    |
+| parameter | [MissionDeviceInfo](#missiondeviceinfo)  | 是    | 注册监听时的设备信息。   |
 | options   | <a href="#missioncallback">MissionCallback</a> | 是    | 注册的回调方法。 |
 
 **返回值：**
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -128,7 +127,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-取消任务状态监听, 以回调函数的方式返回。
+取消任务状态监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -138,8 +137,8 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 设备信息。     |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行结果回调函数。 |
+| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。    |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，error为undefined，否则返回error信息。|
 
 **示例：**
 
@@ -164,7 +163,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
 unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
-取消任务状态监听，以promise方式返回执行结果。
+取消系统任务状态监听。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -174,13 +173,13 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 设备信息。 |
+| parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。 |
 
 **返回值：**
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -204,7 +203,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;void&gt;): void;
 
-开始同步远端任务列表, 以回调函数的方式返回。
+开始同步远端任务列表。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -215,7 +214,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 | 参数名       | 类型                                    | 必填   | 说明        |
 | --------- | ------------------------------------- | ---- | --------- |
 | parameter | [MissionParameter](#missionparameter) | 是    | 同步信息。     |
-| callback  | AsyncCallback&lt;void&gt;             | 是    | 执行结果回调函数。 |
+| callback  | AsyncCallback&lt;void&gt;             | 是    |  回调函数，开始同步成功时，error为undefined，否则返回error信息。 |
 
 **示例：**
 
@@ -241,7 +240,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
 startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
-开始同步远端任务列表，以promise方式返回执行结果。
+开始同步远端任务列表。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -257,7 +256,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -283,7 +282,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
 stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-停止同步远端任务列表, 以回调函数的方式返回。
+停止同步远端任务列表。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -294,7 +293,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 同步信息。     |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行结果回调函数。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，停止同步成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -318,7 +317,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 
 stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
-停止同步远端任务列表，以promise方式返回执行结果。
+停止同步远端任务列表。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -334,7 +333,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
 
 **示例：**
 
@@ -358,7 +357,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-迁移任务，以回调函数的方式返回。
+迁移任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -370,7 +369,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
 | options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移成功时，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -416,7 +415,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promise&lt;void&gt;
 
-迁移任务，以promise方式返回执行结果。
+迁移任务。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -433,7 +432,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
 
 **错误码：**
 
@@ -479,7 +478,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-通过指定包名的方式进行迁移任务，使用callback异步回调。
+通过指定包名的方式进行迁移任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -490,7 +489,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 迁移任务完成回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -530,7 +529,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 
 continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
-通过指定包名的方式进行迁移任务，使用Promise异步回调。
+通过指定包名的方式进行迁移任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -546,7 +545,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | promise方式返回执行结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
 
 **错误码：**
 
@@ -586,7 +585,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
 
-注册当前应用任务流转状态的监听。
+注册当前应用任务流转状态的监听。////应用任务和系统任务的区别是什么
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -596,8 +595,8 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | 是    | 注册当前应用任务流转的状态监听，取值为continueStateChange    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 指示要注册的应用任务流转状态监听的回调，返回应用任务流转状态和流转信息。      |
+| type | string  | 是    | 当前应用任务流转状态，取值为'continueStateChange'。    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前应用任务的流转状态和流转信息。      |
 
 **示例：**
 
@@ -625,8 +624,8 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | 是    | 取消当前应用任务流转的状态监听，取值为continueStateChange    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 指示要取消的应用任务流转状态监听的回调。      |
+| type | string  | 是    | 当前应用任务流转状态，取值为'continueStateChange'。    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 回调函数，返回当前应用任务的流转状态和流转信息。////不填时的影响（取消type类型所有的回调函数）      |
 
 **示例：**
 
@@ -642,7 +641,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## MissionCallback
 
-表示开始同步后，建立的回调函数。
+开始同步后，建立的回调函数。////同步后的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -656,7 +655,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## MissionParameter
 
-表示同步时所需参数的枚举。
+同步时所需参数的枚举。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -670,7 +669,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## MissionDeviceInfo
 
-表示注册监听时所需参数的枚举。
+注册监听时所需参数的枚举。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -682,7 +681,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## ContinueState<sup>10+</sup>
 
-ContinueState说明枚举，表示当前应用任务流转的状态。
+当前应用任务流转状态的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
