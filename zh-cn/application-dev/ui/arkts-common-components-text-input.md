@@ -149,3 +149,9 @@ struct TextInputSample {
 
 
 ![zh-cn_image_0000001563060653](figures/zh-cn_image_0000001563060653.png)
+
+## 相关实例
+
+针对文本输入开发，有以下相关实例可供参考：
+
+- [简易计算器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleCalculator)
