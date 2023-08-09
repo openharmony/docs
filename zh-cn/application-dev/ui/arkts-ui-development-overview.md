@@ -92,4 +92,6 @@
 
 基于ArkTS的声明式开发范式，可参考以下实例：
 
-[ArkTS组件集](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/UI/ArkTsComponentCollection/ComponentCollection)：组件、通用方法、动画、全局方法的集合。
+- [ArkTS组件集](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/UI/ArkTsComponentCollection/ComponentCollection)：组件、通用方法、动画、全局方法的集合。
+
+- [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
