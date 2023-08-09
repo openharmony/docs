@@ -84,7 +84,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                 | 描述            |
 | ------------------ | ------------- |
 | Default   | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。   |
-| Inline    | 内联输入风格。文本选中底板高度与输入框高度相同。      |
+| Inline    | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。 |
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
@@ -244,7 +244,7 @@ struct TextInputExample {
 }
 ```
 
-![textInput](figures/textInput.gif)
+![TextInput](figures/TextInput.png)
 
 ### 示例2
 
