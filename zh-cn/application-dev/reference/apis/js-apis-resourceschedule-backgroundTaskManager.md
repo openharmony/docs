@@ -1,6 +1,6 @@
 # @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
-本模块提供短时、长时和能效资源申请的接口，当应用退至后台后，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
+本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
 > 
@@ -17,7 +17,7 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-申请延迟挂起。
+申请延迟挂起。使用callback异步回调。
 
 >  **说明：**
 > 
@@ -30,7 +30,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | 是    | 申请延迟挂起的原因。                     |
-| callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+| callback | Callback&lt;void&gt; | 是    | 回调函数，一般在延迟挂起超时前6秒，通过此回调通知应用。 |
 
 **返回值**：
 
@@ -75,7 +75,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取延迟挂起的剩余时间。使用callback形式返回。
+获取本次延迟挂起的剩余时间。使用callback形式返回。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -124,7 +124,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取延迟挂起的剩余时间。使用Promise形式返回。
+获取本次延迟挂起的剩余时间。使用Promise形式返回。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -138,7 +138,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法，返回本次延迟挂起的剩余时间，单位为毫秒。 |
+| Promise&lt;number&gt; | Promise对象，返回本次延迟挂起的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
@@ -216,7 +216,7 @@ cancelSuspendDelay(requestId: number): void
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务，使用callback形式返回结果。
+申请长时任务。使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -227,9 +227,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 后台模式。                              |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知点击后跳转的界面。              |
-| callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，返回长时任务的启动结果。                   |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知点击后跳转的界面。 ////             |
+| callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
 **错误码**：
 
@@ -305,14 +305,14 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 后台模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                  |
 
 **返回值**：
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -373,7 +373,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务，使用callback形式返回结果。
+取消长时任务。使用callback形式返回结果。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -382,7 +382,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，返回长时任务的取消结果。                |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，取消长时任务成功时，err为undefined，否则为错误对象。|
 
 **错误码**：
 
@@ -441,7 +441,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -492,7 +492,7 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息，包括资源类型，超时时间等信息。 |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息，包括资源类型、超时时间等。 |
 
 
 **错误码**：
@@ -575,7 +575,7 @@ try {
 
 ## BackgroundMode
 
-后台任务模式。
+长时任务模式。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
