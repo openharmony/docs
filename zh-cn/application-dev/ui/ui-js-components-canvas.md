@@ -147,3 +147,5 @@ export default {
 针对Canvas开发，有以下相关实例可供参考：
 
 - [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/UI/JsComponentClollection/JsComponentCollection)
+
+- [自定义抽奖转盘（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)
