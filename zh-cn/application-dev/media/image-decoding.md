@@ -154,6 +154,6 @@
 
 针对图片解码开发，有以下相关实例可供参考：
 
-- [图片编辑（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
+- [图片编辑（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
 
-- [图片编辑（JS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
