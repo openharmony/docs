@@ -32,15 +32,15 @@
 |新增|NA|模块名: ohos.net.ethernet<br>类名: ethernet<br>方法 or 属性: function off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }>): void;|@ohos.net.ethernet.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequestOptions<br>方法 or 属性: usingProxy?: boolean \| HttpProxy;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequestOptions<br>方法 or 属性: caPath?: string;|@ohos.net.http.d.ts|
-|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: requestInStream(url: string, callback: AsyncCallback\<number>): void;|@ohos.net.http.d.ts|
-|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number>): void;|@ohos.net.http.d.ts|
-|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: requestInStream(url: string, options?: HttpRequestOptions): Promise\<number>;|@ohos.net.http.d.ts|
+|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: request2(url: string, callback: AsyncCallback\<number>): void;|@ohos.net.http.d.ts|
+|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number>): void;|@ohos.net.http.d.ts|
+|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: request2(url: string, options?: HttpRequestOptions): Promise\<number>;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: on(type: "dataReceive", callback: Callback\<ArrayBuffer>): void;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: off(type: "dataReceive", callback?: Callback\<ArrayBuffer>): void;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: on(type: "dataEnd", callback: Callback\<void>): void;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: off(type: "dataEnd", callback?: Callback\<void>): void;|@ohos.net.http.d.ts|
-|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: on(type: "dataReceiveProgress", callback: Callback\<{ receiveSize: number, totalSize: number }>): void;|@ohos.net.http.d.ts|
-|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, totalSize: number }>): void;|@ohos.net.http.d.ts|
+|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: on(type: "dataProgress", callback: Callback\<{ receiveSize: number, totalSize: number }>): void;|@ohos.net.http.d.ts|
+|新增|NA|模块名: ohos.net.http<br>类名: HttpRequest<br>方法 or 属性: off(type: "dataProgress", callback?: Callback\<{ receiveSize: number, totalSize: number }>): void;|@ohos.net.http.d.ts|
 |新增|NA|模块名: ohos.net.mdns<br>类名: mdns|@ohos.net.mdns.d.ts|
 |新增|NA|模块名: ohos.net.mdns<br>类名: mdns<br>方法 or 属性: function addLocalService(context: Context, serviceInfo: LocalServiceInfo,<br>    callback: AsyncCallback\<LocalServiceInfo>): void;|@ohos.net.mdns.d.ts|
 |新增|NA|模块名: ohos.net.mdns<br>类名: mdns<br>方法 or 属性: function addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>;|@ohos.net.mdns.d.ts|
