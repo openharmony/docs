@@ -32,3 +32,5 @@
 - [rating组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
 - [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+
+- [购物应用（JS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingSample)
