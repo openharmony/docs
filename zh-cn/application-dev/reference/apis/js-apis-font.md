@@ -54,7 +54,7 @@ struct FontExample {
     // familyName和familySrc都支持string
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf'
+      familySrc: '/font/medium.ttf' // font文件与pages目录同级
     })
 
     // familyName和familySrc都支持系统Resource
