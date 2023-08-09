@@ -149,3 +149,5 @@ export default {
 - [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
 - [自定义抽奖转盘（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)
+
+- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
