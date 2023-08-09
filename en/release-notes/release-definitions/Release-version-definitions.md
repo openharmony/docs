@@ -40,6 +40,7 @@ The following table lists the maintenance schedule of the LTS and Release branch
 | 1.0.1-Release | Release  | 2021-03-30| 2022-03-30   | 2023-03-30|
 | 3.0-LTS       | LTS      | 2021-09-30| 2023-09-30   | 2025-03-30|
 | 3.1-Release   | Release  | 2022-03-30| 2023-03-30   | 2024-03-30|
+| 3.2-Release   | Release  | 2022-4-9 | 2023-4-9    | 2024-4-9 |
 
 Run the following commands to download the source code of each branch:
 
@@ -47,7 +48,8 @@ Run the following commands to download the source code of each branch:
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1.0.1-Release | repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony_1.0.1_release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 | 3.0-LTS       | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
-| 3.1-Release   | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 3.1-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 3.2-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 
 
 
