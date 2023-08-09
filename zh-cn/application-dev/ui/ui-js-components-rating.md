@@ -260,6 +260,6 @@ export default {
 
 ## 相关实例
 
-针对rating组件的开发，有以下相关实例可供参考”
+针对rating组件的开发，有以下相关实例可供参考：
 
-- [rating组件的使用（JS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+- [rating组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
