@@ -732,3 +732,10 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
      }
    }
    ```
+
+## 相关实例
+
+针对UIAbility组件间交互开发，有以下相关实例可供参考：
+
+- [UIAbility内和UIAbility间页面的跳转（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
+- [UIAbility内页面间的跳转（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PagesRouter)

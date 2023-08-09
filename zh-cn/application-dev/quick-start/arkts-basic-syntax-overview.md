@@ -38,3 +38,11 @@
 - [@Extend](arkts-extend.md)/[@Style](arkts-style.md)：扩展内置组件和封装属性样式，更灵活地组合内置组件。
 
 - [stateStyles](arkts-statestyles.md)：多态样式，可以依据组件的内部状态的不同，设置不同样式。
+
+## 相关实例
+
+针对ArkTS开发和基础知识，有以下相关实例可供参考：
+
+- [ArkTS基础知识（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/RankingDemo)
+
+- [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)

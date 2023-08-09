@@ -14,3 +14,9 @@
 - [模态转场](arkts-modal-transition.md)：新的界面覆盖在旧的界面之上的动画，旧的界面不消失，新的界面出现，如弹框就是典型的模态转场动画。
 
 - [共享元素转场](arkts-shared-element-transition.md)：共享元素转场是一种界面切换时对相同或者相似的元素做的一种位置和大小匹配的过渡动画效果。
+
+## 相关实例
+
+针对转场动画开发，有以下相关实例可供参考“
+
+- [转场动画的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation)

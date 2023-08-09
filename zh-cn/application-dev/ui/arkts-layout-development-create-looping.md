@@ -316,3 +316,11 @@ Swiper(this.swiperController) {
 ```
 
 ![two](figures/two.PNG)
+
+## 相关实例
+
+针对Swiper组件开发，有以下相关实例可供参考：
+
+- [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+
+- [Swiper的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SwiperArkTS)
