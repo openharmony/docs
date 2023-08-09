@@ -666,3 +666,8 @@ struct AutoAchieveShareTransitionDemo {
 
 ![zh-cn_image_0000001599374166](figures/zh-cn_image_0000001599374166.gif)
 
+## 相关实例
+
+针对共享元素转场开发，有以下相关实例可供参考：
+
+- [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)

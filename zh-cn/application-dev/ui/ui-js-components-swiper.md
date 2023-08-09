@@ -371,3 +371,5 @@ export default {
 针对swiper开发，有以下相关实例可供参考：
 
 - [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/UI/JsComponentCollection/JsComponentCollection)
+
+- [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

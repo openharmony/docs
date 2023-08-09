@@ -294,3 +294,9 @@
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+
+## 相关实例
+
+针对关系型数据库的开发，有以下相关实例可供参考：
+
+- [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)

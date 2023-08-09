@@ -27,8 +27,10 @@
 
 - [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/UI/JsComponentCollection/JsComponentCollection)
 
-- [`MediaCollections`：媒体管理合集（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/FileManagement/MediaCollections)
-
 - [rating组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
 - [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+
+- [购物应用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingSample)
+
+- [图片常见操作（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageOperation)
