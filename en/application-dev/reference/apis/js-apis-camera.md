@@ -665,7 +665,7 @@ if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
 
 prelaunch(): void
 
-Prelaunches the camera. This API is called when the camera application is started after a user clicks the system camera icon.
+Prelaunches the camera. This API is called when a user clicks the system camera icon to start the camera application.
 
 **System API**: This is a system API.
 
@@ -2726,7 +2726,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 addDeferredSurface(surfaceId: string): void
 
-Adds a surface for delayed preview. This API can run after **session.commitConfig()** is used to commit the configuration for a stream and **session.start()** is used to start the stream.
+Adds a surface for delayed preview. This API can run after **session.commitConfig()** or **session.start()** is called.
 
 **System API**: This is a system API.
 

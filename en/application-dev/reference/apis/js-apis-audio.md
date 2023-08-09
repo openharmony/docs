@@ -545,7 +545,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
 | STREAM_USAGE_MEDIA                        | 1      | Media.    |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.|
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.    |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.|
@@ -3076,7 +3076,7 @@ Checks whether the fixed volume mode is enabled. When the fixed volume mode is e
 **Example**
 
 ```js
-bool volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+let volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
@@ -5790,13 +5790,13 @@ audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
     console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-    console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-    console.info(`DeviceInfo name: ${descriptor.name}`);
-    console.info(`DeviceInfo address: ${descriptor.address}`);
-    console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo.name}`);
+    console.info(`DeviceInfo address: ${deviceInfo.address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
   }
 });
 ```
@@ -5819,13 +5819,13 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 ```js
 audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
   console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-  console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-  console.info(`DeviceInfo name: ${descriptor.name}`);
-  console.info(`DeviceInfo address: ${descriptor.address}`);
-  console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo.name}`);
+  console.info(`DeviceInfo address: ${deviceInfo.address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
 }).catch((err) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
@@ -6073,7 +6073,7 @@ Subscribes to audio output device change events.
 **Example**
 
 ```js
-audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
   if (err) {
     console.error(`Subscribes output device change event callback Fail: ${err}`);
   } else {
@@ -6105,7 +6105,7 @@ Unsubscribes from audio output device event changes.
 **Example**
 
 ```js
-audioRenderer.off('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
   if (err) {
     console.error(`Unsubscribes output device change event callback Fail: ${err}`);
   } else {
