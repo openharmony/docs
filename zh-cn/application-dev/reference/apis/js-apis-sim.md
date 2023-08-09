@@ -2724,7 +2724,7 @@ promise.then(() => {
 });
 ```
 
-## sim.getSimTelephoneNumber<sup>10+</sup>
+## sim.getSimTelephoneNumber<sup>8+</sup>
 
 getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 
@@ -2767,7 +2767,7 @@ sim.getSimTelephoneNumber(0, (err, data) => {
 ```
 
 
-## sim.getSimTelephoneNumber<sup>10+</sup>
+## sim.getSimTelephoneNumber<sup>8+</sup>
 
 getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 
