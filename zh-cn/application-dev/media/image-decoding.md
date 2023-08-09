@@ -13,7 +13,7 @@
    ```
 
 2. 获取图片。
-   - 方法一：获取沙箱路径。具体请参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
+   - 方法一：获取沙箱路径。具体请参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
         
       ```ts
       // Stage模型参考如下代码
@@ -139,3 +139,11 @@
    ```ts
    const pixelMap = await imageSource.createPixelMap();
    ```
+
+## 相关实例
+
+针对图片解码开发，有以下相关实例可供参考：
+
+- [图片编辑（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
+
+- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
