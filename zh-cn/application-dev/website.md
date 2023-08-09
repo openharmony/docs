@@ -1941,7 +1941,7 @@
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
-  - [如何在CMake工程中使用OpenHarmony SDK的Native API(NDK)](faqs/howto-migrate-cmake-with-ohosndk.md)
+  - [如何在CMake工程中使用NDK](faqs/cmake-with-ndk.md)
   - [应用模型常见问题](faqs/faqs-ability.md)
   - ArkUI框架开发常见问题(ArkTS)
     - [ArkTS语法使用常见问题](faqs/faqs-arkui-arkts.md)
