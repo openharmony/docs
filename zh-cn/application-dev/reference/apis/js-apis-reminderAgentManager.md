@@ -1,8 +1,6 @@
 # @ohos.reminderAgentManager (后台代理提醒)
 
-本模块提供后台代理提醒的能力。
-
-开发应用时，开发者可以调用相关接口创建定时提醒，包括倒计时、日历、闹钟这三类提醒类型。使用后台代理提醒能力后，应用被冻结或退出后，计时和弹出提醒的功能将被后台系统服务代理。
+本模块提供后台代理提醒的能力，即当应用被冻结或退出应用时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
 
 > **说明：**
 >
@@ -23,7 +21,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 > **说明：**
 >
-> 需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -33,7 +31,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例对象。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例对象。 |
   | callback | AsyncCallback\<number> | 是 | 回调函数，返回当前发布提醒的id。 |
 
 **错误码：**
@@ -73,7 +71,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 > **说明：**
 >
-> 需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -82,12 +80,12 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例。 |
 
 **返回值**：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<number> | 返回提醒的id。 |
+  | Promise\<number> | Promise对象，返回提醒的id。 |
 
 **错误码：**
 
@@ -130,7 +128,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderId | number | 是 | 代理提醒的Id。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，error为undefined，否则返回error信息。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则返回err信息。 |
 
 **错误码：**
 
@@ -175,7 +173,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void>	 | 无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -212,7 +210,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用已设置的所有有效（未过期）的代理提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效的代理提醒。 |
 
 **错误码：**
 
@@ -271,7 +269,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | 返回当前应用已设置的所有有效（未过期）的代理提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
 
 **错误码：**
 
@@ -320,7 +318,7 @@ try {
 
 cancelAllReminders(callback: AsyncCallback\<void>): void
 
-取消当前应用设置的所有代理提醒。使用callback异步回调。
+取消当前应用设置的所有代理提醒。使用callback异步回调。////取消所有代理提醒，不是所有有效的？？
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -328,7 +326,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，error为undefined，否则返回error信息。  |
+| callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -403,8 +401,8 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 ////notification\.slot中文|
+| callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
 
@@ -432,7 +430,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
-添加一个NotificationSlot，使用Promise方式实现异步调用。
+添加一个NotificationSlot。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -446,7 +444,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -480,7 +478,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。////用中文 |
 | callback | AsyncCallback\<void> | 是 | 异步回调。 |
 
 **示例**：
@@ -506,7 +504,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot，使用Promise方式实现异步调用。
+删除目标NotificationSlot。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -520,7 +518,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise类型异步回调。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -566,14 +564,13 @@ try {
 
 ## ActionButton
 
-用于设置弹出的提醒通知信息上显示的按钮类型和标题。
-
+弹出的提醒通知中按钮类型和标题。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| title | string | 是 | 按钮显示的标题。 |
+| title | string | 是 | 按钮显示的标题。 ////按钮的标题，不是提醒通知的内容对吗|
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
@@ -615,7 +612,7 @@ try {
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
 | actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包////。如果设备正在使用中，则弹出一个通知框。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包////提醒达到时。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
