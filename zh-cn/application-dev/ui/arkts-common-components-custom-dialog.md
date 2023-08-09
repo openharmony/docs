@@ -106,3 +106,5 @@
 - [`CustomDialog`：自定义弹窗（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
 
 - [构建多种样式弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
+
+- [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
