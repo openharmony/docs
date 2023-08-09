@@ -511,7 +511,7 @@
       - 相机最佳实践
         - [拍照实现方案](media/camera-shooting-case.md)
         - [录像实现方案](media/camera-recording-case.md)
-        - [性能提升方案（仅对系统应用开放）](media/camera-preformance-imporvement.md)
+        - [性能提升方案（仅对系统应用开放）](media/camera-performance-improvement.md)
     - 图片
       - [图片开发概述](media/image-overview.md)
       - [图片解码](media/image-decoding.md)
