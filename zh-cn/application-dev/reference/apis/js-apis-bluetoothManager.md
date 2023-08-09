@@ -1736,7 +1736,7 @@ try {
 
 ## bluetoothManager.BLE
 
-### bluetoothManager.BLE.createGattServer
+### createGattServer
 
 createGattServer(): GattServer
 
@@ -1757,7 +1757,7 @@ let gattServer = bluetoothManager.BLE.createGattServer();
 ```
 
 
-### bluetoothManager.BLE.createGattClientDevice
+### createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1788,7 +1788,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.getConnectedBLEDevices
+### getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1825,7 +1825,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.startBLEScan
+### startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1878,7 +1878,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.stopBLEScan
+### stopBLEScan
 
 stopBLEScan(): void
 
@@ -1909,7 +1909,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.on('BLEDeviceFind')
+### on('BLEDeviceFind')
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1948,7 +1948,7 @@ try {
 ```
 
 
-### bluetoothManager.BLE.off('BLEDeviceFind')
+### off('BLEDeviceFind')
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -2950,7 +2950,7 @@ let gattServer = bluetoothManager.BLE.createGattServer();
 try {
     gattServer.startAdvertising({
             interval:150,
-            txPower:60,
+            txPower:0,
             connectable:true,
         },{
             serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
