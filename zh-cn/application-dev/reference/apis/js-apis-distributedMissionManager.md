@@ -1,6 +1,6 @@
 # @ohos.distributedMissionManager (分布式任务管理)
 
-分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表、迁移任务操作。
+分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端系统任务列表、停止同步远端系统任务列表、迁移任务操作。
 
 > **说明：**
 >
@@ -30,7 +30,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。 |
 | options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。  |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，error为undefined，否则返回error信息。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -127,7 +127,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-取消任务状态监听。使用callback异步回调。
+取消系统任务状态监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -138,7 +138,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。    |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，error为undefined，否则返回error信息。|
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，取消监听成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -214,7 +214,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 | 参数名       | 类型                                    | 必填   | 说明        |
 | --------- | ------------------------------------- | ---- | --------- |
 | parameter | [MissionParameter](#missionparameter) | 是    | 同步信息。     |
-| callback  | AsyncCallback&lt;void&gt;             | 是    |  回调函数，开始同步成功时，error为undefined，否则返回error信息。 |
+| callback  | AsyncCallback&lt;void&gt;             | 是    | 回调函数，同步远端任务列表成功时，err为undefined，否则返回错误对象。 |
 
 **示例：**
 
@@ -293,7 +293,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 同步信息。     |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，停止同步成功时，err为undefined，否则为错误对象。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，停止同步远端任务列表成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -369,7 +369,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
 | options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移成功时，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成////还是成功时，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -489,7 +489,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，通过指定包名迁移任务完成时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -596,7 +596,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | 是    | 当前应用任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前应用任务的流转状态和流转信息。      |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前应用任务的流转状态和流转信息。    |
 
 **示例：**
 
