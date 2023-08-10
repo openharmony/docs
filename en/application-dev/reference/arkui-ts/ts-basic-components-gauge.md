@@ -68,7 +68,7 @@ struct GaugeExample {
       
       // Set the value parameter to 75 and the value attribute to 25. The attribute setting is used.
       Gauge({ value: 75 })
-        .value(25) // If both the attribute and parameter are set, the parameter setting is used.
+        .value(25) // If both the attribute and parameter are set, the attribute setting is used.
         .width(200).height(200)
         .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
       
