@@ -247,9 +247,8 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
 
    其中ChipDevice中要提供若干方法。
 
-   | | |
-   | -------- | -------- |
    | 方法 | 实现说明 | 
+   | -------- | -------- |
    | int32_t&nbsp;(\*Init)(ChipDevice&nbsp;\*device) | 器件初始化 | 
    | int32_t&nbsp;(\*Detect)(ChipDevice&nbsp;\*device) | 器件探测 | 
    | int32_t&nbsp;(\*Suspend)(ChipDevice&nbsp;\*device) | 器件休眠 | 
