@@ -538,5 +538,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 针对设备使用信息统计，有以下相关实例可供参考：
 
-- [`DeviceUsageStatistics`：设备使用信息统计（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
 
+- [存储空间统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/DeviceManagement/StorageStatistic)
+
+- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
