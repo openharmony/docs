@@ -226,6 +226,8 @@
 
 针对用户首选项开发，有以下相关实例可供参考：
 
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Game/Game2048)
+
 - [图案密码锁（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Tools/PatternLock)
 
 - [首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/DataManagement/Preferences)
