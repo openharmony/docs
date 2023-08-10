@@ -18,7 +18,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 startWork(work: WorkInfo): void
 
-申请延迟任务，通知WorkSchedulerService将指定任务添加到执行队列。////WorkSchedulerService
+申请延迟任务，WorkSchedulerService将指定任务添加到执行队列。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -69,7 +69,7 @@ startWork(work: WorkInfo): void
 
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-取消延迟任务，通知WorkSchedulerService停止指定任务。 ////停止指定任务是指将任务从执行队列中移除吗
+取消延迟任务，WorkSchedulerService在执行队列中停止或移除指定任务。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -77,8 +77,8 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 | 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
-| work       | [WorkInfo](#workinfo) | 是    | 要停止/取消的指定任务。 |
-| needCancel | boolean               | 否    | 是否需要取消的任务，默认为不取消。//// <br>- true表示。。。，false表示。。。|
+| work       | [WorkInfo](#workinfo) | 是    | 要停止或移除的指定任务。 |
+| needCancel | boolean               | 否    | 是否需要取消的任务，默认为不取消。<br>- true表示停止并移除，false表示不移除只停止。////一起看下|
 
 **错误码**：
 
@@ -333,7 +333,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 参数名      | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | 是    | 指定任务的Id。                                 |
-| callback | AsyncCallback\<void> | 是    | 回调函数。如果指定任务的最后一次执行超时，返回true；否则返回false。////说明正确吗 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。如果指定任务的最后一次执行超时，返回true；否则返回false。 |
 
 **返回值**：
 
@@ -427,22 +427,22 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | bundleName      | string                            | 是    | 延迟任务的包名           |
 | abilityName     | string                            | 是    | 延迟任务回调通知的组件名 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型             |
-| isCharging      | boolean                           | 否    | 是否充电。////true表示。。。false表示。。。|
+| isCharging      | boolean                           | 否    | 是否充电。<br>true表示充电，false表示不充电.|
 | chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型             |
 | batteryLevel    | number                            | 否    | 电量               |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态             |
 | storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态             |
-| isRepeat        | boolean                           | 否    | 是否循环任务。////true表示。。。false表示。。。 |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔             |
 | repeatCount     | number                            | 否    | 循环次数             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。////true表示。。。false表示。。。        |
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。////true表示。。。false表示。。。    |
+| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>true表示持久化保存工作。false表示非持久化保存工作。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息 |
 
 ## NetworkType
 
-触发任务的网络类型。////什么是触发任务/工作呢
+触发任务的网络类型。////拉起延迟任务回调（workSchedulerExtensionAbility）的网络类型。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
