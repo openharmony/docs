@@ -1,6 +1,6 @@
 # @ohos.bluetooth.ble (Bluetooth BLE Module)
 
-The **ble** module provides APIs for accessing the Bluetooth personal area network.
+The **ble** module provides APIs for operating and managing Bluetooth.
 
 > **NOTE**
 >
