@@ -211,7 +211,6 @@ cancelSuspendDelay(requestId: number): void
   }
   ```
 
-
 ## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
@@ -228,7 +227,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知点击后跳转的界面。 ////             |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
 **错误码**：
@@ -306,7 +305,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                  |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
 
