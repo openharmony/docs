@@ -101,7 +101,7 @@
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [Debugging Tools](tools/Readme-EN.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta2/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
