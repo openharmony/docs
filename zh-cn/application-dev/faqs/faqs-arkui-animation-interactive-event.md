@@ -194,7 +194,7 @@ struct PageTransition2 {
 
 **参考链接**
 
-[页面转场动画](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/ui/arkts-page-transition-animation.md/)
+[页面转场动画](../reference/arkui-ts/ts-page-transition-animation.md)
 
 ## 自定义组件间如何实现从底部滑入滑出的效果
 
@@ -269,5 +269,5 @@ struct ComponentChild2 {
 
 **参考链接**
 
-[组件内转场动画](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/ui/arkts-transition-animation-within-component.md/)
+[组件内转场动画](../ui/arkts-enter-exit-transition.md)
 
