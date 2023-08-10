@@ -542,3 +542,22 @@ This API is supported in ArkTS widgets.
 | BOTTOM | Bottom edge of the window.|
 | START  | Left edge of the window.|
 | END    | Right edge of the window.|
+## ImageSmoothingQuality<sup>8+</sup>
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| low      | Low quality.|
+| medium   | Medium quality.|
+| high     | High quality.|
+
+## CanvasDirection<sup>8+</sup>
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name       | Description            |
+| -------- | -------------- |
+| inherit | The text direction is inherited from the **\<Canvas>** component.|
+| ltr     | The text direction is from left to right.|
+| rtl     | The text direction is from right to left.|
