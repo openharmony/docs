@@ -1597,7 +1597,7 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string          | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceengineCallbackInfo)\>                           | 是   | 唤醒事件回调接口。 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 是   | 唤醒事件回调接口。 |
 
 **示例：**
 
@@ -1625,7 +1625,7 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     |string           | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceengineCallbackInfo)\>                           | 否   | 唤醒事件回调接口。 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 否   | 唤醒事件回调接口。 |
 
 **示例：**
 
