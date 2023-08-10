@@ -123,7 +123,7 @@
 | [OH_Image_Receiver_GetFormat](#oh_image_receiver_getformat) (const [ImageReceiverNative](#imagereceivernative) \*native, int32_t \*format) | 通过[ImageReceiverNative](#imagereceivernative)获取**ImageReceiver**的格式。 | 
 | [OH_Image_Receiver_Release](#oh_image_receiver_release) ([ImageReceiverNative](#imagereceivernative) \*native) | 释放native层 [ImageReceiverNative](#imagereceivernative) 对象。注意: 此方法不能释放应用层**ImageReceiver**对象。 | 
 | [OH_ImageSource_Create](#oh_imagesource_create) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*src, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的信息[OhosImageSource](_ohos_image_source.md) 和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层API**ImageSource**对象。 | 
-| [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*source, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的infomations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。 | 
+| [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*source, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的informations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。 | 
 | [OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats) (struct [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md) \*res) | 获取所有支持的解码格式元标记。 | 
 | [OH_ImageSource_InitNative](#oh_imagesource_initnative) (napi_env env, napi_value source) | 从输入JavaScript native层API **ImageSource** 对象中，转换成[ImageSourceNative](#imagesourcenative)值。 | 
 | [OH_ImageSource_CreatePixelMap](#oh_imagesource_createpixelmap) (const [ImageSourceNative](#imagesourcenative) \*native, struct [OhosImageDecodingOps](_ohos_image_decoding_ops.md) \*ops, napi_value \*res) | 通过一个给定的选项[OhosImageDecodingOps](_ohos_image_decoding_ops.md)结构体，从**ImageSource**中解码JavaScript native层API**PixelMap**对象 | 
@@ -540,7 +540,7 @@ enum IRNdkErrCode
 | IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW | 媒体操作次数溢出 | 
 | IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED | 媒体分布式播放器不支持 | 
 | IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED | 图像解码ICC失败 | 
-| IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED | 图像编码CC失败 | 
+| IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED | 图像编码ICC失败 | 
 | IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED | 读取像素位图失败 | 
 | IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED | 写入像素位图失败 | 
 | IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY | 像素位图不允许修改 | 
@@ -549,7 +549,7 @@ enum IRNdkErrCode
 | IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED | surface申请内存失败 | 
 | IMAGE_RESULT_CREATE_SURFACE_FAILED | 创建surface失败 | 
 | IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED | 从surface获取参数失败 | 
-| IMAGE_RESULT_GET_SURFACE_FAILED | 获取sufrace失败 | 
+| IMAGE_RESULT_GET_SURFACE_FAILED | 获取surface失败 | 
 | IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED | 申请内存失败 | 
 | IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED | 申请内存失败 | 
 | IMAGE_RESULT_REGISTER_LISTENER_FAILED | 注册监听失败 | 
@@ -1389,7 +1389,7 @@ int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource *
 
 **描述：**
 
-通过给定的infomations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过**OH_ImageSource_UpdateData**更新。
+通过给定的informations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过**OH_ImageSource_UpdateData**更新。
 
 \@Syscap SystemCapability.Multimedia.Image
 
@@ -1943,7 +1943,7 @@ int32_t OH_ImageSource_GetSupportedFormats (struct OhosImageSourceSupportedForma
 
 如果解码失败，返回IMAGE_RESULT_DECODE_FAILED；
 
-如果检查格式不对，返回MAGE_RESULT_CHECK_FORMAT_ERROR。
+如果检查格式不对，返回IMAGE_RESULT_CHECK_FORMAT_ERROR。
 
 **起始版本：**
 
