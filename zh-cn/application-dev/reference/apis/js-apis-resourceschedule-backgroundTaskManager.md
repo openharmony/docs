@@ -17,11 +17,11 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-申请延迟挂起。使用callback异步回调。
+申请短时任务。
 
 >  **说明：**
 > 
-> 延迟挂起时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。
+> 短时任务的申请时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -29,14 +29,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| reason   | string               | 是    | 申请延迟挂起的原因。                     |
-| callback | Callback&lt;void&gt; | 是    | 回调函数，一般在延迟挂起超时前6秒，通过此回调通知应用。 |
+| reason   | string               | 是    | 申请短时任务的原因。                     |
+| callback | Callback&lt;void&gt; | 是    | 短时任务即将超时的回调函数，一般在超时前6秒，通过此回调通知应用。 |
 
 **返回值**：
 
 | 类型                                    | 说明        |
 | ------------------------------------- | --------- |
-| [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
+| [DelaySuspendInfo](#delaysuspendinfo) | 返回短时任务信息。 |
 
 **错误码**：
 
@@ -75,7 +75,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取本次延迟挂起的剩余时间。使用callback形式返回。
+获取本次短时任务的剩余时间。使用callback形式返回。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -83,8 +83,8 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 延迟挂起的请求ID。                               |
-| callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次延迟挂起的剩余时间，单位为毫秒。 |
+| requestId | number                      | 是    | 短时任务的请求ID。                               |
+| callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次短时任务的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
@@ -124,7 +124,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取本次延迟挂起的剩余时间。使用Promise形式返回。
+获取本次短时任务的剩余时间。使用Promise形式返回。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -132,13 +132,13 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。 |
 
 **返回值**：
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回本次延迟挂起的剩余时间，单位为毫秒。 |
+| Promise&lt;number&gt; | Promise对象，返回本次短时任务的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
@@ -175,7 +175,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 cancelSuspendDelay(requestId: number): void
 
-取消延迟挂起。
+取消短时任务。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -183,7 +183,7 @@ cancelSuspendDelay(requestId: number): void
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。 |
 
 **错误码**：
 
@@ -564,14 +564,14 @@ try {
 
 ## DelaySuspendInfo
 
-延迟挂起信息。
+短时任务信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| requestId       | number | 是    | 延迟挂起的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际的延迟挂起时间，单位为毫秒。<br/>延迟挂起时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。 |
+| requestId       | number | 是    | 短时任务的请求ID。                               |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。 |
 
 ## BackgroundMode
 
