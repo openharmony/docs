@@ -147,7 +147,7 @@
         - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
         - 应用组件跨设备交互（流转）
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
-          - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
+          - [跨端迁移](application-models/hop-cross-device-migration.md)
           - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 了解进程模型
