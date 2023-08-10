@@ -1,6 +1,6 @@
 # @ohos.reminderAgentManager (后台代理提醒)
 
-本模块提供后台代理提醒的能力，即当应用被冻结或退出应用时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
+本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
 
 > **说明：**
 >
@@ -31,7 +31,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例对象。 |
+  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的代理提醒实例。 |
   | callback | AsyncCallback\<number> | 是 | 回调函数，返回当前发布提醒的id。 |
 
 **错误码：**
@@ -67,7 +67,7 @@ try {
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布后台代理提醒。使用callback异步回调。
+发布后台代理提醒。使用promisek异步回调。
 
 > **说明：**
 >
@@ -127,7 +127,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 代理提醒的Id。 |
+| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，取消代理提醒成功，err为undefined，否则返回err信息。 |
 
 **错误码：**
@@ -167,7 +167,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 代理提醒的Id。 |
+| reminderId | number | 是 | 需要取消的代理提醒的Id。 |
 
 **返回值**：
 
@@ -318,7 +318,7 @@ try {
 
 cancelAllReminders(callback: AsyncCallback\<void>): void
 
-取消当前应用设置的所有代理提醒。使用callback异步回调。////取消所有代理提醒，不是所有有效的？？
+取消当前应用设置的所有代理提醒。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -393,7 +393,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 
-添加NotificationSlot////中文是什么（通知槽吗，通知槽是通知栏吗）。使用callback异步回调。
+添加NotificationSlot（通知槽）。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -401,7 +401,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 ////notification\.slot中文|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
@@ -430,7 +430,7 @@ try {
 
 addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
-添加一个NotificationSlot。使用callback异步回调。
+添加NotificationSlot（通知槽）。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -470,7 +470,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-删除目标NotificationSlot，使用callback异步回调。
+删除目标NotificationSlot（通知槽），使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -478,8 +478,8 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。////用中文 |
-| callback | AsyncCallback\<void> | 是 | 异步回调。 |
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
 **示例**：
 
@@ -504,7 +504,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot。使用Promise异步回调。
+删除目标NotificationSlot（通知槽）。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -564,13 +564,13 @@ try {
 
 ## ActionButton
 
-弹出的提醒通知中按钮类型和标题。
+弹出的提醒通知中按钮的类型和标题。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| title | string | 是 | 按钮显示的标题。 ////按钮的标题，不是提醒通知的内容对吗|
+| title | string | 是 | 按钮显示的标题。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
@@ -591,7 +591,7 @@ try {
 
 ## MaxScreenWantAgent
 
-全屏显示提醒到达时，自动拉起目标的ability信息，预留接口。////全屏显示提醒到达是什么意思
+提醒到达时，全屏显示的自动拉起目标的ability信息。该接口为预留接口，暂不支持使用。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -603,7 +603,7 @@ try {
 
 ## ReminderRequest
 
-代理提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
+代理提醒对象，用于设置提醒类型、响铃时长等具体信息。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -612,7 +612,7 @@ try {
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
 | actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包////提醒达到时。如果设备正在使用中，则弹出一个通知框。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示的自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
@@ -621,9 +621,9 @@ try {
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。////slot中文 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。////同。。是指  |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。////同。。是指 |
+| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 
 
 ## ReminderRequestCalendar
