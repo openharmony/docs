@@ -287,7 +287,7 @@
 
 - [分布式音乐播放（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
 
-- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SuperFeature/DistributedAppDev/DistributedNote)
+- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 
 - [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Game/DistributedDataGobang)
 
