@@ -67,4 +67,4 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 
 - [基于Stage模型的ArkTS卡片（Canvas绘制实现的五子棋游戏卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
 
-- [基于Stage模型的ArkTS卡片（逻辑代码执行实现的计算器卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+- [ArkTS卡片计算器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
