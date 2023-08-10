@@ -8,9 +8,10 @@
 
 移植LCD驱动的主要工作是编写一个驱动，在驱动中生成模型的实例，并完成注册。
 
-这些LCD的驱动被放置在源码目录//drivers/hdf_core/framework/model/display/driver/panel中。
+这些LCD的驱动被放置在源码目录`//drivers/hdf_core/framework/model/display/driver/panel`中。
 
 1. 创建Panel驱动
+
    创建HDF驱动，在驱动初始化中调用RegisterPanel接口注册模型实例。如:
 
    
@@ -36,7 +37,8 @@
    ```
 
 2. 配置加载panel驱动
-   产品的所有设备信息被定义在源码文件//vendor/vendor_name/product_name/config/device_info/device_info.hcs中。修改该文件，在display的host中，名为device_lcd的device中增加配置。
+
+   产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/config/device_info/device_info.hcs`中。修改该文件，在display的host中，名为device_lcd的device中增加配置。
 
    > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
    > moduleName 要与panel驱动中的moduleName相同。
@@ -61,12 +63,13 @@
 
 ## TP驱动移植
 
-本节描述如何移植触摸屏驱动。触摸屏的器件驱动被放置在源码目录//drivers/hdf_core/framework/model/input/driver/touchscreen中。 移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
+本节描述如何移植触摸屏驱动。触摸屏的器件驱动被放置在源码目录`//drivers/hdf_core/framework/model/input/driver/touchscreen`中。 移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
 详细的驱动开发指导，请参考 [TOUCHSCREEN开发指导](../driver/driver-peripherals-touch-des.md)。
 
 1. 创建触摸屏器件驱动
-   在上述touchscreen目录中创建名为touch_ic_name.c的文件。编写如下内容
+
+   在上述touchscreen目录中创建名为`touch_ic_name.c`的文件。编写如下内容
 
    
    ```
@@ -103,21 +106,22 @@
    | int32_t&nbsp;(\*UpdateFirmware)(ChipDevice&nbsp;\*device) | 实现固件升级 | 
 
 2. 配置产品，加载器件驱动
-   产品的所有设备信息被定义在源码文件//vendor/vendor_name/product_name/config/device_info/device_info.hcs中。修改该文件，在名为input的host中，名为device_touch_chip的device中增加配置。
+
+   产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/config/device_info/device_info.hcs`中。修改该文件，在名为input的host中，名为device_touch_chip的device中增加配置。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > moduleName 要与触摸屏驱动中的moduleName相同。
 
    
    ```
-                   deviceN :: deviceNode {
-                       policy = 0;
-                       priority = 130;
-                       preload = 0;
-                       permission = 0660;
-                       moduleName = "HDF_TOUCH_XXXX";
-                       deviceMatchAttr = "touch_XXXX_configs";
-                   }
+   deviceN :: deviceNode {
+       policy = 0;
+       priority = 130;
+       preload = 0;
+       permission = 0660;
+       moduleName = "HDF_TOUCH_XXXX";
+       deviceMatchAttr = "touch_XXXX_configs";
+   }
    ```
 
 
@@ -126,6 +130,7 @@
 WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负责处理WLAN流量。
 
   **图1** OpenHarmony WLAN结构示意图
+
   ![zh-cn_image_0000001207756867](figures/zh-cn_image_0000001207756867.png)
 
 如图1，左半部分负责管理WLAN设备，右半部分负责WLAN流量。HDF WLAN分别为这两部分做了抽象，驱动的移植过程可以看做分别实现这两部分所需接口。这些接口有：
@@ -141,8 +146,9 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 
 具体的移植步骤如下：
 
-1. 创建HDF WLAN 芯片驱动
-   在目录/device/vendor_name/peripheral/wifi/chip_name/ 创建文件 hdf_wlan_chip_name.c。内容模板如下：
+1. 创建HDF WLAN芯片驱动
+
+   在目录`/device/vendor_name/peripheral/wifi/chip_name/`创建文件`hdf_wlan_chip_name.c`。内容模板如下：
 
    
    ```
@@ -166,7 +172,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    HDF_INIT(g_hdfXXXChipEntry);
    ```
 
-   在上述代码的CreateChipDriverFactory方法中，需要创建一个HdfChipDriverFactory类型的对象。该对象提供如下方法
+   在上述代码的CreateChipDriverFactory方法中，需要创建一个HdfChipDriverFactory类型的对象。该对象提供如下方法：
 
      | 接口 | 说明 | 
    | -------- | -------- |
@@ -178,7 +184,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    | void&nbsp;(\*Release)(struct&nbsp;HdfChipDriver&nbsp;\*chipDriver) | 释放chipDriver | 
    | uint8_t&nbsp;(\*GetMaxIFCount)(struct&nbsp;HdfChipDriverFactory&nbsp;\*factory) | 获取当前芯片支持的最大接口数 | 
 
-   其中Build方法负责创建一个管理指定网络接口的对象HdfChipDriver 。该对象需要提供方法:
+   其中Build方法负责创建一个管理指定网络接口的对象HdfChipDriver。该对象需要提供方法：
 
      | 接口 | 说明 | 
    | -------- | -------- |
@@ -189,7 +195,8 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    | struct&nbsp;HdfMac80211APOps&nbsp;\*apOps | 支持AP模式所需要的接口集 | 
 
 2. 编写配置文件描述驱动支持的芯片
-   在产品配置目录下创建芯片的配置文件，保存至源码路径//vendor/vendor_name/product_name/config/wifi/wlan_chip_chip_name.hcs
+
+   在产品配置目录下创建芯片的配置文件，保存至源码路径`//vendor/vendor_name/product_name/config/wifi/wlan_chip_chip_name.hcs`
 
    该文件模板如下：
 
@@ -212,29 +219,32 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 路径和文件中的vendor_name、product_name、chip_name请替换成实际名称
+   >
+   > 路径和文件中的vendor_name、product_name、chip_name请替换成实际名称。
    > 
    > vendorId 和 deviceId需要根据实际芯片的识别码进行填写。
 
 3. 编写配置文件，加载驱动
-   产品的所有设备信息被定义在源码文件//vendor/vendor_name/product_name/config/device_info/device_info.hcs中。修改该文件，在名为network的host中，名为device_wlan_chips的device中增加配置。模板如下：
+
+   产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/config/device_info/device_info.hcs`中。修改该文件，在名为network的host中，名为device_wlan_chips的device中增加配置。模板如下：
 
    
    ```
-                   deviceN :: deviceNode {
-                       policy = 0;
-                       preload = 2;
-                       moduleName = "HDF_WLAN_CHIPS";
-                       deviceMatchAttr = "hdf_wlan_chips_chip_name";
-                       serviceName = "driverName";
-                   }
+   deviceN :: deviceNode {
+       policy = 0;
+       preload = 2;
+       moduleName = "HDF_WLAN_CHIPS";
+       deviceMatchAttr = "hdf_wlan_chips_chip_name";
+       serviceName = "driverName";
+   }
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > moduleName 要与HDF WLAN 芯片驱动中的moduleName相同。
 
 4. 修改Kconfig文件，让移植的WLAN模组出现再内核配置中
-   在device/vendor_name/drivers/Kconfig中增加配置菜单，模板如下
+
+   在`device/vendor_name/drivers/Kconfig`中增加配置菜单，模板如下
 
    
    ```
@@ -246,10 +256,11 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 请替换模板中的chip_name为实际的芯片名称
+   > 请替换模板中的chip_name为实际的芯片名称。
 
 5. 修改构建脚本，让驱动参与内核构建
-   在源码文件//device/vendor_name/drivers/lite.mk末尾追加如下内容
+
+   在源码文件`//device/vendor_name/drivers/lite.mk`末尾追加如下内容。
 
    
    ```
@@ -262,4 +273,4 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 请替换模板中的chip_name为实际的芯片名称
+   > 请替换模板中的chip_name为实际的芯片名称。
