@@ -546,7 +546,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
   ```ts
   Flex() {
     Text('flexGrow(1)')
-      .flexGrow(2) 
+      .flexGrow(1) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
