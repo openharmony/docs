@@ -50,7 +50,7 @@
 | GPS | 32 | GPS资源，申请后应用进程被挂起后，GPS相关事件可以唤醒应用 |
 | AUDIO | 64 | 音频资源，有音频播放时对应的应用进程不被挂起 |
 | RUNNING_LOCK | 128 | RUNNING_LOCK资源，申请后挂起状态不会临时释放RUNNING_BACKGROUND锁 |
-| SENSOR | 256 | SENSOR资源，申请后不拦截Sensor回调 |
+| SENSOR | 256 | SENSOR资源，申请后挂起状态不拦截Sensor回调 |
 
 ## 开发步骤
 
