@@ -737,4 +737,6 @@ try {
 
 针对I18n开发，有以下相关实例可供参考：
 
+- [时区和语言设置（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SystemFeature/Internationalnation/International)
+
 - [国际化（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/International/International)
