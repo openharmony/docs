@@ -346,6 +346,8 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 使用画布绘制自定义图形，有以下相关实例可供参考：
 
+- [画布组件（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/UI/ArkTsComponentCollection/Canvas)
+
 - [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Game/DistributedDataGobang)
 
 - [ArkTS时钟（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Tools/JsClock)
