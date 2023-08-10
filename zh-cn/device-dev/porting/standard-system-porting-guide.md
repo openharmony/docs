@@ -191,7 +191,9 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
    HDF_INIT(g_xxxxDevEntry);
    ```
 
-2. 配置加载panel驱动产品的所有设备信息被定义在文件`//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs`中。修改该文件，在display的host中，名为device_lcd的device中增加配置。注意：moduleName要与panel驱动中的moduleName相同。
+2. 配置加载panel驱动产品的所有设备信息被定义在文件`//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs`中。修改该文件，在display的host中，名为device_lcd的device中增加配置。
+
+   注意：moduleName要与panel驱动中的moduleName相同。
 
    ```
    root {
