@@ -38,8 +38,6 @@
 | 分布式硬件 | 接口权限变更 | [接口权限变更，在Opeharmonny&nbsp;4.0.8.2之后版本开发的应用，需要持有相应权限，否则无法正常调用接口。](changelogs-device_manager.md) | 
 | 媒体 | 接口入参变更 | [getAudioEffectInfoArray接口入参变更，删除Content&nbsp;type入参。](changelogs-multimedia.md#clmultimedia4-getaudioeffectinfoarray接口入参变更删除content-type入参) | 
 | 媒体 | 接口变更 | [删除音轨切换相关接口。](changelogs-multimedia.md#clmultimedia5-播放功能接口变更) | 
-| 图形 | 接口名称变更 | [ohos.multimedia.image中getDelayTime更名为getDelayTimeList。](changelogs-image.md#climage1-ohosmultimediaimage中getdelaytime更名为getdelaytimelist) | 
-| 图形 | 接口变更（Native） | [1.image_pixel_map_napi.h&nbsp;废弃API8接口。](changelogs-image.md#climage2-ndk接口变更)<br/>[2.image_pixel_map_napi.h&nbsp;移动除API8以外的接口到image_pixel_map_mdk.h，并去除命名空间。](changelogs-image.md#climage2-ndk接口变更) | 
 | 元能力-卡片框架 | 接口权限变更 | [ohos.app.form.formHost.d.ts部分接口移出，接口权限变动。](changelogs-formfwk.md#clformfwk1-ohosappformformhostdts部分接口移出接口权限变动) | 
 | 元能力-卡片框架 | 接口参数变更 | [事件订阅，取消订阅相关接口（on/off）中的callback调整为接口最后一个参数。](changelogs-formfwk.md#clformfwk2-事件订阅取消订阅相关接口onoff参数顺序调整) | 
 | 泛Sensor | 接口/组件变更 | [新增自定义振动效果属性VibrateFromFile，自定义振动配置文件描述符属性HapticFileDescriptor；振动下发接口startVibration支持的振动效果由VibrateEffect&nbsp;=&nbsp;VibrateTime。](changelogs-miscdevice.md) | 
@@ -49,3 +47,4 @@
 
 > **说明：**
 > 以上变更如未明确说明变更类型为Native接口，则均为ArkTS接口的变更。
+<!--no_check-->

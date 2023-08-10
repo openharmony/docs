@@ -78,7 +78,6 @@
         - [程序访问控制Changelog](release-notes/changelogs/v4.0-beta2/changelogs-accesstoken.md)
         - [分布式数据管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-distributeddatamgr.md)
         - [元能力-卡片框架Changelog](release-notes/changelogs/v4.0-beta2/changelogs-formfwk.md)
-        - [图形Changelog](release-notes/changelogs/v4.0-beta2/changelogs-image.md)
         - [输入法框架Changelog](release-notes/changelogs/v4.0-beta2/changelogs-imf.md)
         - [媒体Changelog](release-notes/changelogs/v4.0-beta2/changelogs-multimedia.md)
         - [主题框架-锁屏管理Changelog](release-notes/changelogs/v4.0-beta2/changelogs-screenlock.md)
