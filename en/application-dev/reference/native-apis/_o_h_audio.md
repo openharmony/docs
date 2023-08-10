@@ -53,7 +53,7 @@ The **OHAudio** module provides native APIs of the audio module.
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) { AUDIOSTREAM_SAMPLE_U8 = 0, AUDIOSTREAM_SAMPLE_S16LE = 1, AUDIOSTREAM_SAMPLE_S24LE = 2, AUDIOSTREAM_SAMPLE_S32LE = 3 } | Enumerates the sampling formats of audio streams.| 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | Enumerates the encoding types of audio streams.| 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) { **AUDIOSTREAM_USAGE_UNKNOWN** = 0, **AUDIOSTREAM_USAGE_MUSIC** = 1, **AUDIOSTREAM_USAGE_COMMUNICATION** = 2, **AUDIOSTREAM_USAGE_GAME** = 11 } | Enumerates the usage scenarios of audio output streams.| 
-| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL } | Enumerates the latency modes of audio streams.| 
+| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL = 0, AUDIOSTREAM_LATENCY_MODE_FAST = 1} | Enumerates the latency modes of audio streams.| 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br>AUDIOSTREAM_STATE_INVALID = -1, AUDIOSTREAM_STATE_PREPARED = 1, AUDIOSTREAM_STATE_RUNNING = 2, AUDIOSTREAM_STATE_STOPPED = 3,<br>AUDIOSTREAM_STATE_RELEASED = 4, AUDIOSTREAM_STATE_PAUSED = 5<br>} | Enumerates the audio stream states.| 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) { **AUDIOSTREAM_SOURCE_TYPE_INVALID** = -1, **AUDIOSTREAM_SOURCE_TYPE_MIC**, **AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION** = 1, **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION** = 7 } | Enumerates the usage scenarios of audio input streams.| 
 
@@ -255,6 +255,7 @@ Enumerates the latency modes of audio streams.
   | Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_LATENCY_MODE_NORMAL | Normal latency mode.| 
+| AUDIOSTREAM_LATENCY_MODE_FAST | Low latency mode.| 
 
 
 ### OH_AudioStream_Result
