@@ -1958,8 +1958,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle         | [NetHandle](#nethandle) |  是  | 发生网络能力变化的网络句柄。                                |
-| netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储发生网络能力变化的数据网络的传输能力和承载类型。 |
+| netHandle         | [NetHandle](#nethandle) |  是  | 数据网络句柄。                                |
+| netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储数据网络的传输能力和承载类型。 |
 
 ## NetCapabilities<sup>8+</sup>
 
