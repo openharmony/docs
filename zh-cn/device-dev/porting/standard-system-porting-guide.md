@@ -331,7 +331,7 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
    | void&nbsp;(_Release)(struct&nbsp;HdfChipDriver&nbsp;_chipDriver) | 释放chipDriver | 
    | uint8_t&nbsp;(\*GetMaxIFCount)(struct&nbsp;HdfChipDriverFactory&nbsp;\*factory) | 获取当前芯片支持的最大接口数 | 
 
-   HdfChipDriver需要实现的接口有
+   HdfChipDriver需要实现的接口有：
 
    | 接口 | 说明 | 
    | -------- | -------- |
