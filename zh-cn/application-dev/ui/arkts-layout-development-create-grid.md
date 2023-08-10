@@ -330,4 +330,11 @@ Grid() {
 
 >**说明：**
 >
->cachedCount的增加会增大UI的CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
+> cachedCount的增加会增大UI的CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
+
+## 相关实例
+
+针对网格开发，有以下相关实例可供参考：
+
+- [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/Solutions/Game/Game2048)
+
