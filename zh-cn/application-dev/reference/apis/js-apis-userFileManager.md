@@ -1684,7 +1684,7 @@ async function example() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/image/2）。         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg）。         |
 | fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 
