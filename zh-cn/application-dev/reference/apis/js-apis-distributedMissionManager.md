@@ -1,6 +1,6 @@
 # @ohos.distributedMissionManager (分布式任务管理)
 
-分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端系统任务列表、停止同步远端系统任务列表、迁移任务操作。
+分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端系统任务列表、停止同步远端系统任务列表、迁移任务等。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import distributedMissionManager from '@ohos.distributedMissionManager'
 
 registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-注册系统任务状态监听。使用callback异步回调。
+注册系统任务状态监听。使用callback异步回调。////系统任务状态是什么呢
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -29,7 +29,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。 |
-| options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。  |
+| options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。////描述正确吗  |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -80,7 +80,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo)  | 是    | 注册监听时的设备信息。   |
-| options   | <a href="#missioncallback">MissionCallback</a> | 是    | 注册的回调方法。 |
+| options   | <a href="#missioncallback">MissionCallback</a> | 是    | 注册的回调方法。////描述正确吗 |
 
 **返回值：**
 
@@ -203,7 +203,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;void&gt;): void;
 
-开始同步远端任务列表。使用callback异步回调。
+开始同步远端任务列表。使用callback异步回调。////开始同步远端设备系统任务列表吗
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -240,7 +240,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
 startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
-开始同步远端任务列表。使用promise异步回调。
+开始同步远端任务列表。使用promise异步回调。////开始同步远端设备系统任务列表吗
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -369,7 +369,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
 | options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成////还是成功时，err为undefined，否则返回错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成时，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -641,7 +641,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## MissionCallback
 
-开始同步后，建立的回调函数。////同步后的回调函数。
+开始同步后，建立的回调函数。////同步时的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
