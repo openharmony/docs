@@ -86,7 +86,7 @@ createHttp(): HttpRequest
 
 | 类型        | 说明                                                         |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | 返回一个HttpRequest对象，里面包括request、request2、destroy、on和off方法。 |
+| HttpRequest | 返回一个HttpRequest对象，里面包括request、requestInStream、destroy、on和off方法。 |
 
 **示例：**
 
@@ -364,9 +364,9 @@ destroy(): void
 httpRequest.destroy();
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -424,18 +424,18 @@ request2(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err, data) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
   if (!err) {
-    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -494,7 +494,7 @@ request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<numb
 **示例：**
 
 ```js
-httpRequest.request2("EXAMPLE_URL",
+httpRequest.requestInStream("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
     header: {
@@ -504,16 +504,16 @@ httpRequest.request2("EXAMPLE_URL",
     connectTimeout: 60000
   }, (err, data) => {
     if (!err) {
-      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
-      console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
     }
   })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<number\>
+requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
@@ -577,7 +577,7 @@ request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```js
-let promise = httpRequest.request2("EXAMPLE_URL", {
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -586,9 +586,9 @@ let promise = httpRequest.request2("EXAMPLE_URL", {
   }
 });
 promise.then((data) => {
-  console.info("request2 OK!" + JSON.stringify(data));
+  console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
-  console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -815,9 +815,9 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 httpRequest.off('dataEnd');
 ```
 
-### on('dataProgress')<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -830,20 +830,20 @@ on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: n
 
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| type     | string                  | 是   | 订阅的事件类型，'dataProgress'。 |
+| type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
 | callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | 是   | 回调函数。<br>receiveSize：已接收的数据字节数，totalSize待接收的字节总数 |
 
 **示例：**
 
 ```js
-httpRequest.on('dataProgress', (data) => {
-  console.info('dataProgress:' + JSON.stringify(data));
+httpRequest.on('dataReceiveProgress', (data) => {
+  console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
 
-### off('dataProgress')<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
 
@@ -856,13 +856,13 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 
 | 参数名   | 类型               | 必填 | 说明                                   |
 | -------- | ------------------ | ---- | -------------------------------------- |
-| type     | string             | 是   | 取消订阅的事件类型：'dataProgress'。 |
+| type     | string             | 是   | 取消订阅的事件类型：'dataReceiveProgress'。 |
 | callback | Callback\<{ receiveSize: number, totalSize: number }\>   | 否   | 回调函数。                             |
 
 **示例：**
 
 ```js
-httpRequest.off('dataProgress');
+httpRequest.off('dataReceiveProgress');
 ```
 
 ## HttpRequestOptions<sup>6+</sup>
