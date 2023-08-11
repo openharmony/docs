@@ -43,6 +43,6 @@
 
 - [图片显示及处理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
 
-- [图片显示（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/ImageShow)
+- [图片显示（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
 
-- [图片裁剪与分割（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Media/GamePuzzle)
+- [图片裁剪与分割（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)
