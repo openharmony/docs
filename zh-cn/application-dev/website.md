@@ -1675,6 +1675,7 @@
       - [Audio错误码](reference/errorcodes/errorcode-audio.md)
       - [Media错误码](reference/errorcodes/errorcode-media.md)
       - [媒体会话管理错误码](reference/errorcodes/errorcode-avsession.md)
+      - [Camera错误码](reference/errorcodes/errorcode-camera.md)
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
