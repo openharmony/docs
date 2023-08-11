@@ -43,7 +43,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
    > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
    > - 参考`kernel.mk`，在OpenHarmony工程的编译构建流程中会拷贝kernel/linux-4.19的代码环境后进行打补丁动作，在使用版本级编译命令前，需要kernel/linux-4.19保持原代码环境。
    > 
-   > - 对应拷贝后的目录位于: out/&lt;\*\*\*&gt;/kernel/linux-4.19，可以在该目录下进行补丁的修改适配。
+   > - 对应拷贝后的目录位于：`out/<***>/kernel/linux-4.19`，可以在该目录下进行补丁的修改适配。
 
 4. 烧录启动。
 
@@ -79,7 +79,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    - 文件系统配置
 
-     文件系统配置`vendor/{company}/{product}/fs.yml`中需要创建“/bin/sh -&gt; mksh“和“/lib/ld-musl-arm.so.1 -&gt; libc.so“软连接，这两个文件分别是shell可执行程序和可执行程序依赖的c库。
+     文件系统配置`vendor/{company}/{product}/fs.yml`中需要创建`/bin/sh -> mksh`和`/lib/ld-musl-arm.so.1 -> libc.so`软连接，这两个文件分别是shell可执行程序和可执行程序依赖的c库。
 
    - 启动配置
 
@@ -91,7 +91,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
 
-   init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为"/bin/mount -a”，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
+   init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为`/bin/mount -a`，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
 
    最后，init程序会读取`init.cfg`系统服务配置文件。根据步骤1中的设置，init程序将会启动shell。如果上述流程运行正常，系统则会进入shell。
 
