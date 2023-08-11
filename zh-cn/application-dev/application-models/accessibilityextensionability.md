@@ -17,7 +17,7 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 - [如何处理一个无障碍事件](#如何处理一个无障碍事件)
 - [如何声明无障碍扩展服务具备的能力](#如何声明无障碍扩展服务具备的能力)
 - [如何开启自定义的无障碍扩展服务](#如何开启自定义的无障碍扩展服务)
-- [相关示例](#相关示例)
+- [相关实例](#相关实例)
 
 ## AccessibilityExtensionAbility概述
 
