@@ -177,3 +177,21 @@ System resources are not loaded to the sandbox path of the application process.
 **Solution**
 
 Check whether the application process contains the sandbox path of system resources.
+
+## 9001010 Invalid Overlay Path
+
+**Error Message**
+
+Overlay resource path is invalid.
+
+**Description**
+
+This error code is reported if the specified overlay path is invalid.
+
+**Possible Causes**
+
+The path does not exist or is not in the installation path of the application.
+
+**Solution**
+
+Check the location of the specified overlay path.

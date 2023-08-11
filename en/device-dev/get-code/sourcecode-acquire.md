@@ -157,8 +157,9 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 2. Learn more about the distribution.
    1. Read carefully the information about the distribution to learn its application scenarios, features, components, usage, and customization methods.
-   2. Click **Download** if you want to download the distribution to your local PC.
-   3. Click **Device component tailoring** if you want to add or delete components of the distribution.
+   2. Use either of the following modes to obtain the source code:
+      - Click **Download** if you want to download the distribution to your local PC.
+      - Click **Device component tailoring** if you want to add or delete components of the distribution.
 
          **Figure 2** Example distribution
 
