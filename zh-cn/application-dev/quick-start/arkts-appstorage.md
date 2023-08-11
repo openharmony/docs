@@ -4,7 +4,7 @@
 AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
 
 
-和LocalStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而对于AppStorage，是应用级的全局状态共享。AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过和AppStorage中转，才可以和UI回交互。
+和LocalStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而对于AppStorage，是应用级的全局状态共享。AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
 
 
 本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
@@ -23,10 +23,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 在上文中已经提到，如果要建立AppStorage和自定义组件的联系，需要使用\@StorageProp和\@StorageLink装饰器。使用\@StorageProp(key)/\@StorageLink(key)装饰组件内的变量，key标识了AppStorage的属性。
 
-当自定义组件初始化的时候，\@StorageProp(key)/\@StorageLink(key)装饰的变量会通过给定的key，绑定在AppStorage对应是属性，完成初始化。本地初始化是必要的，因为无法保证AppStorage一定存在给定的key，这取决于应用逻辑，是否在组件初始化之前在AppStorage实例中存入对应的属性。
+当自定义组件初始化的时候，会使用AppStorage中对应key的属性值将\@StorageProp(key)/\@StorageLink(key)装饰的变量初始化。由于应用逻辑的差异，无法确认是否在组件初始化之前向AppStorage实例中存入了对应的属性，所以AppStorage不一定存在key对应的属性，因此\@StorageProp(key)/\@StorageLink(key)装饰的变量进行本地初始化是必要的。
 
-
-\@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，我们允许本地改变的发生，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
+\@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，允许本地改变，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
 
 
 ### 装饰器使用规则说明
