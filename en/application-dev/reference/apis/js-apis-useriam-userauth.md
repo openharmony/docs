@@ -139,7 +139,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 Subscribes to the user authentication events of the specified type.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10.
+> This API is supported since API version 9.
 
 > **NOTE**<br>
 > Use the [AuthInstance](#authinstance9) instance obtained to invoke this API to subscribe to events.
@@ -330,7 +330,7 @@ Cancels this authentication.
 > This API is supported since API version 9.
 
 > **NOTE**<br>
-> Use the [AuthInstance](#authinstance9) instance obtained to invoke this API. The [AuthInstance](#authinstance9) instance must be the instance being authenticated.
+> Use the [AuthInstance](#authinstance9) instance obtained to invoke this API. The [AuthInstance](#authinstance9) instance must be the one being authenticated.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 

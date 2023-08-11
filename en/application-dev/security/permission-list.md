@@ -1004,7 +1004,7 @@ Allows a system application to obtain Wi-Fi parameters.
 
 ## ohos.permission.SET_WIFI_INFO
 
-Allows an application to set Wi-Fi devices.
+Allows an application to set a Wi-Fi device.
 
 **Permission level**: normal
 
@@ -1280,7 +1280,7 @@ Allows a device administrator application to set the screen-off time.
 
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
-Allows a device administrator application to install and uninstall bundles.
+Allows a device administrator application to install and uninstall applications.
 
 **Permission level**: system_core
 
@@ -2508,7 +2508,7 @@ Allows an application to manage the upload sessions.
 
 ## ohos.permission.PREPARE_APP_TERMINATE
 
-Allows an application to perform customized pre-termination actions before being terminated.
+Allows an application to perform customized actions before being terminated.
 
 **Permission level**: normal
 
@@ -2583,18 +2583,6 @@ Allows an application to control the SecurityGuard model switch.
 Allows an application to access OpenHarmony Security Detection and Response Framework.
 
 **Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: FALSE
-
-**Start version**: 10
-
-## ohos.permission.SUPPORT_USER_AUTH
-
-Allows an application to interact with the user authentication framework and register ExtensionAbilities.
-
-**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
