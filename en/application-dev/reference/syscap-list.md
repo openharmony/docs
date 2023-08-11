@@ -951,10 +951,15 @@ Device security level management
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
 
-## SystemCapability.Security.Huks
 
-Hardware Unique Key (HUK) management
+## SystemCapability.Security.Huks.Core
+Device key management - core capabilities
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | Yes    | No          | No    |
 
+## SystemCapability.Security.Huks.Extension
+Device key management - extended capabilities
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
