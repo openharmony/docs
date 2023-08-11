@@ -1309,7 +1309,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
@@ -1352,7 +1352,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 **Example**
 
 ```js
-let pasteData = pasteboard.createPlainTextData('content');
+let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');

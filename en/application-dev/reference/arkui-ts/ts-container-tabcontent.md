@@ -82,7 +82,7 @@ The following attributes are supported.
 | -------- | -------- | -------- | -------------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | No| Underline indicator color and board color.<br>Default value: **#FF007DFF**|
 | height | [Length](ts-types.md#length) | No| Height of the underline indicator.<br>Default value: **2.0**<br>Unit: vp|
-| width | [Length](ts-types.md#length) | No| Width of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
+| width | [Length](ts-types.md#length) | No| Width of the underline indicator.<br>Default value: **0.0**<br>Unit: vp<br>**NOTE**<br>If this parameter is set to **0**, the tab text width is used.|
 | borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
 | marginTop | [Length](ts-types.md#length) | No| Spacing between the underline indicator and text.<br>Default value: **8.0**<br>Unit: vp|
 
