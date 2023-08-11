@@ -170,13 +170,11 @@ struct Test {
 
 ![zh-cn_image_0000001219744181](figures/zh-cn_image_0000001219744181.png)
 
-## matrix4.invert<sup>(deprecated)</sup>
+## matrix4.invert
 
 invert(): Matrix4Transit
 
 Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,13 +184,11 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 | --------------------------------- | ---------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
 
-## matrix4.combine<sup>(deprecated)</sup>
+## matrix4.combine
 
 combine(options: Matrix4Transit): Matrix4Transit
 
 Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -208,13 +204,11 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
 | --------------------------------- | ---------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
 
-## matrix4.translate<sup>(deprecated)</sup>
+## matrix4.translate
 
 translate(options: TranslateOption): Matrix4Transit
 
 Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -230,13 +224,11 @@ Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
 | --------------------------------- | ---------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
 
-## matrix4.scale<sup>(deprecated)</sup>
+## matrix4.scale
 
 scale(options: ScaleOption): Matrix4Transit
 
 Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -252,13 +244,11 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
 | --------------------------------- | ---------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
 
-## matrix4.rotate<sup>(deprecated)</sup>
+## matrix4.rotate
 
 rotate(options: RotateOption): Matrix4Transit
 
 Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -274,13 +264,11 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
 | --------------------------------- | ---------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
 
-## matrix4.transformPoint<sup>(deprecated)</sup>
+## matrix4.transformPoint
 
 transformPoint(options: [number, number]): [number, number]
 
 Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
-
-该接口从Api 10开始废弃。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
