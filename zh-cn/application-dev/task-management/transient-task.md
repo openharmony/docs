@@ -97,4 +97,4 @@
 
 针对短时任务开发，有以下相关实例可供参考：
 
-- [短时任务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/TaskManagement/TransientTask)
+- [短时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/TaskManagement/TransientTask)
