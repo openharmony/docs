@@ -1,4 +1,4 @@
-registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback<void>): void;
+registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback<void\>): void;
 
 
 # @ohos.distributedMissionManager (分布式任务管理)
