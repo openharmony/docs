@@ -25,8 +25,8 @@ You can set the text content and response callback for an alert dialog box.
 | confirm    | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?:  [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void<br>} | No  | Text content, text color, background color, and click callback of the confirm button.|
 | cancel     | () =&gt; void      | No    | Callback invoked when the dialog box is closed after the overlay is clicked.|
 | alignment  | [DialogAlignment](#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box relative to the alignment position.|
-| gridCount  | number                       | No    | Number of grid columns occupied by the width of the dialog box.|
+| offset     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**|
+| gridCount  | number                       | No    | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**|
 
 ## AlertDialogParamWithButtons
 | Name            | Type               | Mandatory    | Description                    |
@@ -35,7 +35,7 @@ You can set the text content and response callback for an alert dialog box.
 | message         | [ResourceStr](ts-types.md#resourcestr) | Yes    | Content of the dialog box.             |
 | autoCancel      | boolean           | No  | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**     |
 | primaryButton   | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?: [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void;<br>} | No| Text content, text color, background color, and click callback of the primary button.|
-| secondaryButton | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?: [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void;<br>} | No | Text content, text color, background color, and click callback of the primary button.|
+| secondaryButton | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?: [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void;<br>} | No | Text content, text color, background color, and click callback of the secondary button.|
 | cancel          | () =&gt; void      | No | Callback invoked when the dialog box is closed after the overlay is clicked.        |
 | alignment       | [DialogAlignment](#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset          | [Offset](ts-types.md#offset) | No | Offset of the dialog box relative to the alignment position.|
