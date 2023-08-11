@@ -133,9 +133,8 @@ onAccessibilityEvent(accessibilityEvent) {
 
 若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
 
-## 相关示例
+## 相关实例
 
 针对AccessibilityExtensionAbility开发，有以下相关示例可供参考：
 
-[AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
-
+- [无障碍扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
