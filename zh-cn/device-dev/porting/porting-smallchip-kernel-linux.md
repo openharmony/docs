@@ -22,13 +22,13 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
    config文件所在源码目录：`kernel/linux/config/`
 
-   以hi3516dv300芯片为例，可在对应的`linux-4.19/arch/arm/configs/`目录下新建&lt;YOUR_CHIP&gt;_small_defconfig，如`hi3516dv300_small_defconfig`表示针对hi3516dv300小型系统的defconfig。该config文件可以由基础defconfig文件`small_common_defconfig`与该芯片相关的config组合生成。
+   以hi3516dv300芯片为例，可在对应的`linux-4.19/arch/arm/configs/`目录下新建`<YOUR_CHIP>_small_defconfig`，如`hi3516dv300_small_defconfig`表示针对hi3516dv300小型系统的defconfig。该config文件可以由基础defconfig文件`small_common_defconfig`与该芯片相关的config组合生成。
 
 2. 准备芯片补丁。
 
    补丁文件所在源码目录：`kernel/linux/patches/linux-4.19`
 
-   以hi3516dv300芯片为例，参考已有的patch目录hi3516dv300_small_patch目录，新建&lt;YOUR_CHIP&gt;_patch目录，放置相关芯片补丁，注意hdf.patch等驱动补丁。
+   以hi3516dv300芯片为例，参考已有的patch目录`hi3516dv300_small_patch`目录，新建`<YOUR_CHIP>_patch`目录，放置相关芯片补丁，注意`hdf.patch`等驱动补丁。
 
 3. 编译。
 
@@ -43,7 +43,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
    > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
    > - 参考`kernel.mk`，在OpenHarmony工程的编译构建流程中会拷贝`kernel/linux-4.19`的代码环境后进行打补丁动作，在使用版本级编译命令前，需要`kernel/linux-4.19`保持原代码环境。
    > 
-   > - 对应拷贝后的目录位于: out/&lt;\*\*\*&gt;/kernel/linux-4.19，可以在该目录下进行补丁的修改适配。
+   > - 对应拷贝后的目录位于：`out/<***>/kernel/linux-4.19`，可以在该目录下进行补丁的修改适配。
 
 4. 烧录启动。
 
@@ -79,19 +79,19 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
   
    - 文件系统配置
       
-     文件系统配置`vendor/{company}/{product}/fs.yml`中需要创建“/bin/sh -&gt; mksh“和“/lib/ld-musl-arm.so.1 -&gt; libc.so“软连接，这两个文件分别是shell可执行程序和可执行程序依赖的c库。
+     文件系统配置`vendor/{company}/{product}/fs.yml`中需要创建`/bin/sh -> mksh`和`/lib/ld-musl-arm.so.1 -> libc.so`软连接，这两个文件分别是shell可执行程序和可执行程序依赖的c库。
 
    - 启动配置
 
      启动配置在`vendor/{company}/{product}/init_configs/etc`目录下，包括fstab、rsS和Sxxx文件，请按开发板实际情况配置。
 
-   编译完成后，可通过检查产品编译输出目录下的rootfs内容，确认rootfs.img文件生成是否符合预期。
+   编译完成后，可通过检查产品编译输出目录下的rootfs内容，确认`rootfs.img`文件生成是否符合预期。
 
 2. 调试init进程和shell。
 
    烧录`rootfs.img`并调试init进程和shell，不同厂商的开发板的烧录工具和流程可能不同，请按芯片解决方案提供的流程进行烧录。烧录`rootfs.img`前请确认bootloader和linux内核启动正常。如果`rootfs.img`被内核正常挂载，接着将运行`/bin/init`程序，init进程为用户态的第一个应用程序，它的运行意味着用户态的开始。
 
-   init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为"/bin/mount -a”，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
+   init程序首先会调用`/etc/init.d/rcS`脚本，rcS脚本执行第一条命令为`/bin/mount -a`，该命令会加载fstab文件，在fstab中的命令执行完后rcS将顺序调用Sxxx脚本完成设备节点创建和扫描、文件权限配置等操作。
 
    最后，init程序会读取`init.cfg`系统服务配置文件。根据步骤1中的设置，init程序将会启动shell。如果上述流程运行正常，系统则会进入shell。
 
