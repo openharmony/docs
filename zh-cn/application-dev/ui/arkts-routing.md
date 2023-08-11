@@ -19,7 +19,15 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 >**说明：** 
 >
->页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
+>- 配置第二个页面的路由时，在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; resources &gt; base &gt; profile**”，在main_pages.json文件中的“src”下配置第二个页面的路由“pages/Second”。示例如下：
+>
+>    {
+>      "src": [
+>        "pages/Index",
+>        "pages/Second"
+>      ]
+>    }
+>- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
 
 同时，Router模块提供了两种实例模式，分别是Standard和Single。这两种模式决定了目标url是否会对应多个实例。
 
