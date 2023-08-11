@@ -45,13 +45,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | showSideBar | boolean | Whether to display the sidebar.<br>Default value: **true**<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | controlButton | [ButtonStyle](#buttonstyle)                            | Attributes of the sidebar control button.|
 | showControlButton | boolean | Whether to display the sidebar control button.<br>Default value: **true**|
-| sideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>A value less than 0 evaluates to the default value.<br>The value must comply with the width constraints. If it is not within the valid range, the value closest to the set one is used.<br>The width of the sidebar, whether it is specified or kept at the default, takes precedence over that of the sidebar child components.|
-| minSideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Minimum width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>A value less than 0 evaluates to the default value.<br>The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.<br>When set, the minimum width of the sidebar takes precedence over that of the sidebar child components. If it is not set, however, the minimum width of the sidebar child component takes precedence.|
-| maxSideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.<br>When set, the maximum width of the sidebar takes precedence over that of the sidebar child components. If it is not set, however, the maximum width of the sidebar child component takes precedence.|
+| sideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>A value less than 0 evaluates to the default value.<br>The value must comply with the width constraints. If it is not within the valid range, the value closest to the set one is used.<br>The width of the sidebar, whether it is specified or kept at the default value, takes precedence over that of the sidebar child components.|
+| minSideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Minimum width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>A value less than 0 evaluates to the default value.<br>The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.<br>**minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.|
+| maxSideBarWidth | number \| [Length](ts-types.md#length)<sup>9+</sup> | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.<br>**maxSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **maxWidth** of the sidebar child components.|
 | autoHide<sup>9+</sup> | boolean | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.<br>Default value: **true**<br>**NOTE**<br>The value is subject to the **minSideBarWidth** attribute method. If it is not set in **minSideBarWidth**, the default value is used.<br>Whether the sidebar should be hidden is determined when it is being dragged. When its width is less than the minimum width, the damping effect is required to trigger hiding (a distance out of range).|
 | sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9) | Position of the sidebar.<br>Default value: **SideBarPosition.Start**|
 | divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10) \| null | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.|
-| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | Minimum width of the content area of the sidebar container.<br>Default value: **360vp**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>In Embed mode, when the component size is increased, only the content area is enlarged; when the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the sidebar is shrunk until its width reaches the value defined by **minSideBarWidth**; if the component size is further decreased, while respecting the minimum width of the sidebar, the content area is further shrunk until it is 0 vp large.<br>minContentWidth takes precedence over maxSideBarWidth and sideBarWidth of the sidebar. If minContentWidth is not set, the priority of the default value is lower than that of minSideBarWidth and maxSideBarWidth.|
+| minContentWidth<sup>10+</sup> | [Dimension](ts-types.md#dimension10) | Minimum width of the content area of the sidebar container.<br>Default value: **360vp**<br>Unit: vp<br>**NOTE**<br>If this attribute is set to a value less than 0, the default value is used. If this attribute is not set, the value **0vp** is used.<br>In Embed mode, when the component size is increased, only the content area is enlarged; when the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the sidebar is shrunk until its width reaches the value defined by **minSideBarWidth**; if the component size is further decreased, while respecting the minimum width of the sidebar, the content area is further shrunk, with the content clipped, until it is 0 vp large.<br>**minContentWidth**, whether it is specified or kept at the default value, takes precedence over **minSideBarWidth** and **sideBarWidth** of the sidebar. |
 
 ## ButtonStyle
 
@@ -83,7 +83,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  The settings of the [universal size attributes](ts-universal-attributes-size.md) **width** and **height** do not take effect for the sidebar child component.
 >  The settings do not take effect for the sidebar content area either. By default, the sidebar content area takes up the remaining space of the sidebar container.
 >
->  If the attribute method is not used, the sidebar is displayed depending on the size.
+>  If the **showSideBar** attribute is not set, the sidebar's visibility is subject to its size.
 >
 >  - If the size is less than 520 vp, the sidebar is not displayed by default.
 >  - If the size is greater than or equal to 520 vp, the sidebar is displayed by default.
@@ -127,8 +127,6 @@ struct SideBarContainerExample {
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
-
-
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -148,6 +146,7 @@ struct SideBarContainerExample {
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
+    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
   }
 }
 ```
