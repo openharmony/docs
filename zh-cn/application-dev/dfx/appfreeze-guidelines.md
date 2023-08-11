@@ -193,3 +193,9 @@ APP_LIFECYCLE_TIMEOUT：
 ![appfreeze_20230310105874](figures/appfreeze_20230310105874.png)
 
 其他的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需要特别说明的是，一般情况下生命周期切换大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。
+
+## 相关实例
+
+针对故障日志获取，有以下相关实力可供参考：
+
+- [故障日志获取（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger)
