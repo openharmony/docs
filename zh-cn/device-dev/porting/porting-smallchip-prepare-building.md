@@ -141,4 +141,4 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 4. 编译调试
 
-   在开发板目录下执行`hb set`和`hb build`即可启动芯片解决方案的编译，编译框架会以开发板下的BUILD.gn为入口启动编译。
+   在开发板目录下执行`hb set`和`hb build`即可启动芯片解决方案的编译，编译框架会以开发板下的`BUILD.gn`为入口启动编译。
