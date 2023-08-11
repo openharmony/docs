@@ -105,6 +105,7 @@ struct GridRowExample {
     .border({ color: '#880606', width: 2 })
   }
 }
+```
 
 API Version 9：上方示例中的GridRow设定width中的"80pv"会等同于width设定字符串"80"
 
