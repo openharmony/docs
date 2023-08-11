@@ -24,4 +24,4 @@
 
 - [媒体管理合集（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/FileManagement/MediaCollections)
 
-- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/code/BasicFeature/Media/QRCodeScan)
+- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Media/QRCodeScan)
