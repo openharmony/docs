@@ -390,6 +390,7 @@
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
+  - [@ohos.calendarManager (日程管理)](js-apis-calendarManager.md)
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
@@ -430,7 +431,6 @@
 
 - 帐号管理
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
-  - [@ohos.account.appAccount.AuthorizationExtensionAbility (应用帐号授权扩展能力)](js-apis-appAccount-authorizationExtensionAbility.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
   

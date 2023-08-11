@@ -147,7 +147,7 @@
         - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
         - 应用组件跨设备交互（流转）
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
-          - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
+          - [跨端迁移](application-models/hop-cross-device-migration.md)
           - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 了解进程模型
@@ -1179,7 +1179,6 @@
         - [DriverExtensionContext](reference/apis/js-apis-inner-application-driverExtensionContext.md)
     - 帐号管理
       - [@ohos.account.appAccount (应用帐号管理)](reference/apis/js-apis-appAccount.md)
-      - [@ohos.account.appAccount.AuthorizationExtensionAbility (应用帐号授权扩展能力)](reference/apis/js-apis-appAccount-authorizationExtensionAbility.md)
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 定制管理
@@ -1676,6 +1675,7 @@
       - [Audio错误码](reference/errorcodes/errorcode-audio.md)
       - [Media错误码](reference/errorcodes/errorcode-media.md)
       - [媒体会话管理错误码](reference/errorcodes/errorcode-avsession.md)
+      - [Camera错误码](reference/errorcodes/errorcode-camera.md)
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)

@@ -100,6 +100,18 @@
 
 **起始版本**：8
 
+## ohos.permission.GET_PHONE_NUMBERS
+
+允许应用读取设备的本机号码。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
 ## ohos.permission.REQUIRE_FORM
 
 允许应用获取Ability Form。
@@ -2713,6 +2725,18 @@
 允许应用恢复预置应用。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域帐号信息。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

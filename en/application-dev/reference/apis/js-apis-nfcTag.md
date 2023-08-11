@@ -482,6 +482,96 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | **TagInfo** object obtained.|
 
+## tag.registerForegroundDispatch<sup>10+</sup>
+
+registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void;
+
+Registers listening for the card reading events of an NFC tag foreground application. You can set the supported tag technologies in **discTech**, and obtain the [TagInfo](#taginfo) read in a callback. <br>This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type    | Mandatory| Description                                                   |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+| discTech         |  number[]   | Yes  | Technologies supported by the foreground dispatch system. Each number indicates the constant value of the supported technology. Based on the value of **number**, the system sets tag technologies ([NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), and [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition)) for NFC card read polling and disable card emulation. If the **number** length is 0, both card read polling and card emulation will be disabled.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the card read event in the foreground.|
+
+**Example**
+
+See the example of [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10).
+
+## tag.unregisterForegroundDispatch<sup>10+</sup>
+
+unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void;
+
+Unregisters the listening for card reading events of an NFC tag foreground application. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type    | Mandatory| Description                                                   |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility'
+import tag from '@ohos.nfc.tag';
+
+let elementName = null;
+let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+function foregroundCb(tagInfo: any) {
+    console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+}
+
+export default class MainAbility extends UIAbility {
+    OnCreate(want, launchParam) {
+        console.log("OnCreate");
+        elementName = {
+            bundleName: want.bundleName,
+            abilityName: want.abilityName,
+            moduleName: want.moduleName
+        }
+    }
+
+    onForeground() {
+        console.log("onForeground");
+        try {
+            tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onBackground() {
+        console.log("onBackground");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    onWindowStageDestroy() {
+        console.log("onWindowStageDestroy");
+        try {
+            tag.unregisterForegroundDispatch(elementName);
+        } catch (e) {
+            console.log("registerForegroundDispatch error: " + e.message);
+        }
+    }
+
+    // override other lifecycle functions
+}
+```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 

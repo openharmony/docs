@@ -169,3 +169,41 @@ struct SwipeGestureExample {
 ```
 
 ![ifButton](figures/ifButton.gif)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct buttonTestDemo {
+  @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
+  @State widthShortSize: number = 200;
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.txt)
+          .width(this.widthShortSize)
+          .height(100)
+          .labelStyle({ overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 20,
+            maxFontSize: 20,
+            font: {
+              size: 20,
+              weight: FontWeight.Bolder,
+              family: 'cursive',
+              style: FontStyle.Italic
+            }
+          })
+          .fontSize(40)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![image-20230711171138661](figures/imageButtonLabelStyle.png)

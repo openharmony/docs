@@ -276,3 +276,9 @@
      }
    });
    ```
+
+## 相关实例
+
+针对键值型数据库开发，有以下相关实例可供参考：
+
+- [分布式手写板（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDraw)

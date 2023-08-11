@@ -120,4 +120,4 @@ export default {
 }
 ```
 
-![list](figures/list.png)
+![list](figures/list-lite.png)

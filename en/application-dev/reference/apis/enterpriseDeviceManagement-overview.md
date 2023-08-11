@@ -12,12 +12,12 @@ OpenHarmony provides Enterprise Device Management APIs to support enterprise API
 - Only the stage model is supported.
 
 ### Environment Setup
-- [Download DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio#download) and set it up as instructed on the official website.
-- [Download ohos-sdk-full](../../../release-notes/OpenHarmony-v3.2-beta2.md#acquiring-source-code-from-mirrors).
+- DevEco Studio: Download DevEco Studio from its official website and perform related configuration.
+- ohos-sdk-full: Obtain ohos-sdk-full. For details, see [Replacing Full SDK](../../faqs/full-sdk-switch-guide.md).
 
 ### How to Develop
 
-1. Use DevEco Studio to create a project and [switch to full-sdk](../../faqs/full-sdk-switch-guide.md).
+1. Use DevEco Studio to create a project and replace the full SDK.
 
 2. In the [HarmonyAppProvision file](../../security/accesstoken-overview.md#application-apls), set the **app-feature** field to **hos_system_app**.
 
@@ -27,11 +27,13 @@ OpenHarmony provides Enterprise Device Management APIs to support enterprise API
 
 ### API Reference
 
-To implement network management and Wi-Fi management, see:
-
+> **NOTE**
+>
+> - For details about the APIs, see:
 - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
 - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
 - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
+- [@ohos.enterprise.browser (Browser Management)](js-apis-enterprise-browser.md)
 - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
 - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
 - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
@@ -40,4 +42,5 @@ To implement network management and Wi-Fi management, see:
 - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
 - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
 - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
+- [@ohos.enterprise.usbManager (USB Management)](js-apis-enterprise-usbManager.md)
 - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)

@@ -3,8 +3,9 @@
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
+>
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
 
 
 

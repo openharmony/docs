@@ -15,7 +15,7 @@
 
 //vendor/MyProductVendor/MyProduct/config.json
 
-  
+
 ```
 {
     "product_name": "MyProduct",
@@ -74,7 +74,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
 ### 移植验证
 
   至此，你可以使用如下命令，启动你产品的构建了：
-  
+
 ```
 ./build.sh --product-name MyProduct 
 ```
@@ -91,7 +91,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
 
 修改文件 //build/subsystem_config.json增加一个子系统. 配置如下：
 
-  
+
 ```
   "MySOCVendor_products": {
     "project": "hmf/MySOCVendor_products",
@@ -112,7 +112,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
 
 建议的目录结构
 
-  
+
 ```
 ├── build
 │ ├── kernel
@@ -172,13 +172,13 @@ BUILD.gn是subsystem构建的唯一入口。
 
 HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱动，在驱动中生成模型的实例，并完成注册。
 
-这些LCD的驱动被放置在//drivers/framework/model/display/driver/panel目录中。
+这些LCD的驱动被放置在//drivers/hdf_core/framework/model/display/driver/panel目录中。
 
 - 创建Panel驱动
 
 在驱动的Init方法中，需要调用RegisterPanel接口注册模型实例。如:
 
-  
+
 ```
 int32_t XXXInit(struct HdfDeviceObject *object)
 {
@@ -203,7 +203,6 @@ HDF_INIT(g_xxxxDevEntry);
 
 - 配置加载panel驱动产品的所有设备信息被定义在文件//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs中。修改该文件，在display的host中，名为device_lcd的device中增加配置。注意：moduleName 要与panel驱动中的moduleName相同。
 
-  
 ```
 root {
     ...
@@ -225,13 +224,13 @@ root {
 
 ### 触摸屏
 
-本节描述如何移植触摸屏驱动。触摸屏的驱动被放置在//drivers/framework/model/input/driver/touchscreen目录中。移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
+本节描述如何移植触摸屏驱动。触摸屏的驱动被放置在//drivers/hdf_core/framework/model/input/driver/touchscreen目录中。移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
 - 创建触摸屏器件驱动
 
 在目录中创建名为touch_ic_name.c的文件。代码模板如下：注意：请替换ic_name为你所适配芯片的名称。
 
-  
+
 ```
 #include "hdf_touch.h"
 
@@ -294,20 +293,20 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 
 支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有:
 
-  | | | |
+| | | |
 | -------- | -------- | -------- |
-| 接口 | 定义头文件 | 说明 | 
-| HdfChipDriverFactory | //drivers/framework/include/wifi/hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个Wi-Fi端口 | 
-| HdfChipDriver | //drivers/framework/include/wifi/wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定的WLAN端口 | 
-| NetDeviceInterFace | //drivers/framework/include/net/net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等 | 
+| 接口 | 定义头文件 | 说明 |
+| HdfChipDriverFactory | //drivers/hdf_core/framework/include/wifi/hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个Wi-Fi端口 |
+| HdfChipDriver | //drivers/hdf_core/framework/include/wifi/wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定的WLAN端口 |
+| NetDeviceInterFace | //drivers/hdf_core/framework/include/net/net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等 |
 
 建议适配按如下步骤操作：
 
 1.创建HDF驱动建议将代码放置在//device/MySoCVendor/peripheral/wifi/chip_name/，文件模板如下：
 
-  
+
 ```
-static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device) {
+static int32_t HdfWlanXXXChipDriverInit(struct HdfDeviceObject *device) {
     static struct HdfChipDriverFactory factory = CreateChipDriverFactory();
     struct HdfChipDriverManager *driverMgr = HdfWlanGetChipDriverMgr();
     if (driverMgr->RegChipDriver(&factory) != HDF_SUCCESS) {
@@ -359,7 +358,7 @@ HdfChipDriver需要实现的接口有
 
 模板如下：
 
-  
+
 ```
 root {
     wlan_config {
@@ -381,7 +380,7 @@ root {
 
 产品的所有设备信息被定义在文件//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs中。修改该文件，在名为network的host中，名为device_wlan_chips的device中增加配置。注意：moduleName 要与触摸屏驱动中的moduleName相同。
 
-  
+
 ```
                 deviceN :: deviceNode {
                     policy = 0;
@@ -406,15 +405,15 @@ config DRIVERS_WLAN_XXX
       Answer Y to enable XXX Host driver. Support chip xxx
 ```
 
-接着修改文件//drivers/adapter/khdf/linux/model/network/wifi/Kconfig,在文件末尾加入如下代码将配置菜单加入内核中，如：
+接着修改文件//drivers/hdf_core/adapter/khdf/linux/model/network/wifi/Kconfig,在文件末尾加入如下代码将配置菜单加入内核中，如：
 
-  
+
 ```
 source "../../../../../device/MySoCVendor/peripheral/Kconfig"
 ```
 
 - 创建构建脚本
-  在//drivers/adapter/khdf/linux/model/network/wifi/Makefile文件末尾增加配置，模板如下：
+  在//drivers/hdf_core/adapter/khdf/linux/model/network/wifi/Makefile文件末尾增加配置，模板如下：
 
   
 ```

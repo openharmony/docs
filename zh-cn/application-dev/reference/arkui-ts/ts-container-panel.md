@@ -38,8 +38,8 @@ Panel(show: boolean)
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
-| show | boolean | 当滑动面板弹出时调用。 |
-| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。|
+| show | boolean | 当滑动面板弹出时调用。 <br/>默认值：true |
+| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。<br/>默认值：'#08182431' |
 | showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
 ## PanelType枚举说明
