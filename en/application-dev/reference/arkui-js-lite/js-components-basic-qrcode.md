@@ -122,4 +122,4 @@ export default {
 }
 ```
 
-![qrcode](figures/qrcode.gif)
+![qrcode](figures/qrcode-lite.gif)
