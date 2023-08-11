@@ -1,6 +1,12 @@
 # @ohos.ai.intelligentVoice (智能语音)
 
-智能语音组件包括智能语音服务框架和智能语音驱动，主要提供了语音注册及语音唤醒相关功能。
+智能语音主要提供了语音注册及语音唤醒相关功能。
+
+该模块提供以下智能语音相关的常用功能：
+
+- [IntelligentVoiceManager](#intelligentvoicemanager)：智能语音管理类，明确当前智能语音提供的相关功能，当前支持语音注册、语音唤醒。在进行智能语音相关开发前，需先调用[getIntelligentVoiceManager()](#intelligentvoicegetintelligentvoicemanager)确认当前支持智能语音的相关功能，再进行语音注册和语音唤醒的相关开发。
+- [EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine)：实现语音注册。开发者需要先进行智能语音的注册，然后才能进行唤醒。
+- [WakeupIntelligentVoiceEngine](#wakeupintelligentvoiceengine)：实现语音唤醒。开发者需要先进行智能语音的注册，然后才能进行唤醒。
 
 > **说明：**
 >
@@ -39,11 +45,11 @@ getIntelligentVoiceManager(): IntelligentVoiceManager
 **示例：** 
 
 ```js
-var intelligentVoiceManager = nullptr;
+var intelligentVoiceManager = null;
 try {
     intelligentVoiceManager = intelligentVoice.getIntelligentVoiceManager();
-} catch (error) {
-    console.error("Get IntelligentVoiceManager failed. Error: ${err}");
+} catch (err) {
+    console.error('Get IntelligentVoiceManager failed. Code:${err.code}, message:${err.message}');
 }
 ```
 
@@ -77,14 +83,14 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 
 ```js
 let engineDescriptor = {
-    wakeupPhrase: '小艺小艺',
+  wakeupPhrase: '小花小花',
 }
-var enrollIntelligentVoiceEngine = nullptr;
+var enrollIntelligentVoiceEngine = null;
 intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor, (err, data) => {
   if (err) {
-    console.error(`EnrollIntelligentVoice Created: Error: ${err}`);
+    console.error(`Failed to create enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('EnrollIntelligentVoice Created: Success: SUCCESS');
+    console.info('Succeeded in creating enrollIntelligentVoice engine.');
     enrollIntelligentVoiceEngine = data;
   }
 });
@@ -127,13 +133,13 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 ```js
 var enrollIntelligentVoiceEngine = null;
 let engineDescriptor = {
-    wakeupPhrase: '小艺小艺',
+  wakeupPhrase: '小花小花',
 }
 intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor).then((data) => {
-    enrollIntelligentVoiceEngine = data;
-    console.info('Create EnrollIntelligentVoice Engine finish');
+  enrollIntelligentVoiceEngine = data;
+  console.info('Succeeded in creating enrollIntelligentVoice engine.');
 }).catch((err) => {
-    console.error('Create EnrollIntelligentVoice Engine failed, err: ' + err.message);
+  console.error(`Failed to create enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -168,16 +174,16 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 ```js
 let engineDescriptor = {
-    needApAlgEngine: true,
-    wakeupPhrase: '小艺小艺',
+  needReconfirm: true,
+  wakeupPhrase: '小花小花',
 }
-var wkeupIntelligentVoiceEngine = nullptr;
+var wakeupIntelligentVoiceEngine = null;
 intelligentVoice.createWakeupIntelligentVoiceEngine(engineDescriptor, (err, data) => {
   if (err) {
-    console.error(`WakeupIntelligentVoice Created: Error: ${err}`);
+    console.error(`Failed to create wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('WakeupIntelligentVoice Created: Success: SUCCESS');
-    wkeupIntelligentVoiceEngine = data;
+    console.info('Succeeded in creating wakeupIntelligentVoice engine.');
+    wakeupIntelligentVoiceEngine = data;
   }
 });
 ```
@@ -217,15 +223,15 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 ```js
 let engineDescriptor = {
-    needReconfirm: true,
-    wakeupPhrase: '小艺小艺',
+  needReconfirm: true,
+  wakeupPhrase: '小花小花',
 }
-var wkeupIntelligentVoiceEngine = nullptr;
+var wakeupIntelligentVoiceEngine = null;
 intelligentVoice.createWakeupIntelligentVoiceEngine(engineDescriptor).then((data) => {
-    wkeupIntelligentVoiceEngine = data;
-    console.info('Create WakeupIntelligentVoice Engine finish');
+  wakeupIntelligentVoiceEngine = data;
+  console.info('Succeeded in creating wakeupIntelligentVoice engine.');
 }).catch((err) => {
-    console.error('Create WakeupIntelligentVoice Engine failed, err: ' + err.message);
+  console.error('Failed to create wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message});
 });
 ```
 
@@ -270,7 +276,7 @@ on(type: 'serviceChange', callback: Callback&lt;ServiceChangeType&gt;): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 系统服务变更事件，固定取值为'serviceChange'，表示服务变更事件。 |
-| callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 是   | 事件触发时回调接口。|
+| callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 是   | 服务状态变更对应的处理。|
 
 **示例：**
 
@@ -293,7 +299,7 @@ off(type: 'serviceChange', callback?: Callback\<ServiceChangeType\>): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 系统服务变更事件，固定取值为'serviceChange'。 |
-| callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 否   | 事件触发时调用回调接口。|
+| callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 否   | 服务状态变更对应的处理，无参数，则取消所有订阅，否则，取消对应的处理。|
 
 **示例：**
 
@@ -341,7 +347,7 @@ intelligentVoiceManager.off('serviceChange');
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| needReconfirm | boolean |        是       | 需要再次确认唤醒结果，true为需求，false为不需要。 |
+| needReconfirm | boolean |        是       | 是否需要再次确认唤醒结果，true为需要，false为不需要。 |
 | wakeupPhrase | string |        是       | 唤醒词。 |
 
 ## EnrollEngineConfig
@@ -352,31 +358,32 @@ intelligentVoiceManager.off('serviceChange');
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| language | string |        是       | 注册引擎支持的语言。 |
-| region | string |        是       | 注册引擎支持的区域。 |
+| language | string |        是       | 注册引擎支持的语言，当前仅支持中文，取值为'zh'。 |
+| region | string |        是       | 注册引擎支持的区域。当前仅支持中国，取值为'CN'。 |
 
 ## SensibilityType
 
 枚举，唤醒灵敏度类型。
+灵敏度用于调整唤醒的门限，灵敏度越高，门限越低，就越容易唤醒。
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| LOW_SENSIBILITY      | 1    | 低灵敏度   |
-| MIDDLE_SENSIBILITY      | 2    | 中灵敏度   |
-| HIGH_SENSIBILITY      | 3    | 高灵敏度   |
+| LOW_SENSIBILITY      | 1    | 低灵敏度。   |
+| MIDDLE_SENSIBILITY      | 2    | 中灵敏度。   |
+| HIGH_SENSIBILITY      | 3    | 高灵敏度。   |
 
 ## WakeupHapInfo
 
-描述唤醒hap信息。
+描述唤醒应用的hap信息。
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| bundleName | string |        是       | 唤醒应用bundlename。 |
-| abilityName | string |        是       | 唤醒应用ailityname。 |
+| bundleName | string |        是       | 唤醒应用的bundleName。 |
+| abilityName | string |        是       | 唤醒应用的ailityName。 |
 
 ## WakeupIntelligentVoiceEventType
 
@@ -387,7 +394,7 @@ intelligentVoiceManager.off('serviceChange');
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
 | INTELLIGENT_VOICE_EVENT_WAKEUP_NONE      | 0    | 无唤醒。   |
-| INTELLIGENT_VOICE_EVENT_RECOGNIZE_COMPLETE      | 1    | 识别完成。   |
+| INTELLIGENT_VOICE_EVENT_RECOGNIZE_COMPLETE      | 1    | 唤醒识别完成。   |
 
 ## IntelligentVoiceErrorCode
 
@@ -427,7 +434,7 @@ intelligentVoiceManager.off('serviceChange');
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| result | [EnrollResult](#enrollresult) |        是       | 错误码。 |
+| result | [EnrollResult](#enrollresult) |        是       | 注册结果。 |
 | context | string |        是       | 描述注册事件上下文。 |
 
 ## WakeupIntelligentVoiceEngineCallbackInfo
@@ -438,7 +445,7 @@ intelligentVoiceManager.off('serviceChange');
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| eventId | [WakeupIntelligentVoiceEventType](#wakeupintelligentvoiceeventtype) |        是       | 唤醒事件ID。 |
+| eventId | [WakeupIntelligentVoiceEventType](#wakeupintelligentvoiceeventtype) |        是       | 唤醒智能语音事件类型。 |
 | isSuccess | boolean |        是       | 是否唤醒成功，false为唤醒失败，true为唤醒成功。 |
 | context | string |        是       | 描述唤醒事件上下文。 |
 
@@ -465,13 +472,13 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```js
-let regions = nullptr;
+let regions = null;
 enrollIntelligentVoiceEngine.getSupportedRegions((err, data) => {
   if (err) {
-    console.error(`Failed to getSupportedRegions, ${err}`);
+    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('getSupportedRegions success.');
     regions = data;
+    console.info('Succeeded in getting supported regions, regions:${regions}.');
   }
 });
 ```
@@ -495,12 +502,12 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```js
-let regions = nullptr;
+let regions = null;
 enrollIntelligentVoiceEngine.getSupportedRegions().then((data) => {
   regions = data;
-  console.info('getSupportedRegions success');
+  console.info('Succeeded in getting supported regions, regions:${regions}.');
 }).catch((err) => {
-  console.error(`Failed to getSupportedRegion: ERROR : ${err}`);
+  console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -508,7 +515,7 @@ enrollIntelligentVoiceEngine.getSupportedRegions().then((data) => {
 
 init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 
-初始化引擎，使用callback异步回调。
+初始化注册智能语音引擎，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -534,14 +541,14 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 let config = {
-    language: "zh",
-    area: "CN",
+  language: "zh",
+  area: "CN",
 }
 enrollIntelligentVoiceEngine.init(config, (err) => {
   if (err) {
-    console.error(`Init EnrollIntelligentVoice Engine finish, Error: ${err}`);
+    console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('Init EnrollIntelligentVoice Engine SUCCESS');
+    console.info('Succeeded in initialzing enrollIntelligentVoice engine.');
   }
 });
 ```
@@ -550,7 +557,7 @@ enrollIntelligentVoiceEngine.init(config, (err) => {
 
 init(config: EnrollEngineConfig): Promise&lt;void&gt;
 
-初始化引擎，使用Promise异步回调。
+初始化注册智能语音引擎，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -566,7 +573,7 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;           | 返回初始化结果。                   |
+|  Promise&lt;void&gt;           | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -581,13 +588,13 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 
 ```js
 let config = {
-    language: "zh",
-    area: "CN",
+  language: "zh",
+  area: "CN",
 }
 enrollIntelligentVoiceEngine.init(config).then(() => {
-    console.info('Init EnrollIntelligentVoice Engine finish');
+  console.info('Succeeded in initializing enrollIntelligentVoice engine.');
 }).catch((err) => {
-    console.info('Init EnrollIntelligentVoice Engine failed, err: '+ err.message);
+  console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -612,13 +619,13 @@ enrollForResult(isLast: boolean, callback: AsyncCallback&lt;EnrollCallbackInfo&g
 
 ```js
 let isLast = true;
-let callbackInfo = nullptr;
+let callbackInfo = null;
 enrollIntelligentVoiceEngine.enrollForResult(isLast, (err, data) => {
   if (err) {
-    console.error(`Start enrollment failed, error: ${err}`);
+    console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('Start enrollment finish');
     callbackInfo = data;
+    console.info('Succeeded in enrolling for result, info:${callbackInfo}.');
   }
 });
 ```
@@ -649,12 +656,12 @@ enrollForResult(isLast: boolean): Promise&lt;EnrollCallbackInfo&gt;
 
 ```js
 let isLast = true;
-let callbackInfo = nullptr;
+let callbackInfo = null;
 enrollIntelligentVoiceEngine.enrollForResult(isLast).then((data) => {
-    callbackInfo = data;
-    console.info('Start enrollment finish');
+  callbackInfo = data;
+  console.info('Succeeded in enrolling for result, info:${callbackInfo}.');
 }).catch((err) => {
-    console.info('Start enrollment failed, err: '+ err.message);
+  console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -662,7 +669,7 @@ enrollIntelligentVoiceEngine.enrollForResult(isLast).then((data) => {
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-停止引擎，使用callback异步回调。
+停止注册，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -677,9 +684,9 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 ```js
 enrollIntelligentVoiceEngine.stop((err) => {
   if (err) {
-    console.error(`enrollIntelligentVoiceEngine stop: Error: ${err}`);
+    console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('enrollIntelligentVoiceEngine stop Success');
+    console.info('Succeeded in stopping enrollIntelligentVoice engine.');
   }
 });
 ```
@@ -688,7 +695,7 @@ enrollIntelligentVoiceEngine.stop((err) => {
 
 stop(): Promise&lt;void&gt;
 
-停止引擎，使用Promise异步回调。
+停止注册，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -698,13 +705,15 @@ stop(): Promise&lt;void&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回停止结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **示例：**
 
 ```js
 enrollIntelligentVoiceEngine.stop().then(() => {
-  console.info('enrollIntelligentVoiceEngine stop');
+  console.info('Succeeded in stopping enrollIntelligentVoice engine.');
+}).catch((err) => {
+  console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -737,9 +746,9 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 ```js
 enrollIntelligentVoiceEngine.commit((err) => {
   if (err) {
-    console.error(`Commit enroll result failed, err: ${err}`);
+    console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('Commit enroll result finish');
+    console.info('Succeeded in committing enroll.');
   }
 });
 ```
@@ -758,7 +767,7 @@ commit(): Promise&lt;void&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;           | 返回确认注册结果。                   |
+|  Promise&lt;void&gt;           | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -772,9 +781,9 @@ commit(): Promise&lt;void&gt;
 
 ```js
 enrollIntelligentVoiceEngine.commit().then(() => {
-    console.info('Commit enroll result finish');
+  console.info('Succeeded in committing enroll.');
 }).catch((err) => {
-    console.info('Commit enroll result failed, err: '+ err.message);
+  console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -782,7 +791,7 @@ enrollIntelligentVoiceEngine.commit().then(() => {
 
 setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 
-设置唤醒hap信息，使用callback异步回调。
+设置唤醒应用的hap信息，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -807,14 +816,14 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 
 ```js
 let info = {
-    bundleName: "com.huawei.hmos.wakeup",
-    abilityName: "WakeUpExtAbility",
+  bundleName: "com.huawei.hmos.wakeup",
+  abilityName: "WakeUpExtAbility",
 }
 enrollIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
   if (err) {
-    console.error(`Set wakeup hap info failed, err: ${err}`);
+    console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
   } else {
-    console.info('Set wakeup hap info finish');
+    console.info('Succeeded in setting wakeup hap info.');
   }
 });
 ```
@@ -823,7 +832,7 @@ enrollIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
 
 setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
-设置唤醒hap信息，使用Promise异步回调。
+设置唤醒应用的hap信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -833,7 +842,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置唤醒hap信息的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -847,13 +856,13 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 ```js
 let info = {
-    bundleName: "com.huawei.hmos.wakeup",
-    abilityName: "WakeUpExtAbility",
+  bundleName: "com.wakeup",
+  abilityName: "WakeUpExtAbility",
 }
 enrollIntelligentVoiceEngine.setWakeupHapInfo(info).then(() => {
-    console.info('Set wakeup hap info finish');
+  console.info('Succeeded in setting wakeup hap info.');
 }).catch((err) => {
-    console.info('Set wakeup hap info failed, err: '+ err.message);
+  console.error('Failed to set wakeup hap info, Code:${err.code},
 });
 ```
 
@@ -887,9 +896,9 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 ```js
 enrollIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err) => {
   if (err) {
-    console.error(`setSensibility: Error: ${err}`);
+    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('setSensibility: Success: SUCCESS');
+    console.info('Succeeded in setting sensibility.');
   }
 });
 ```
@@ -914,7 +923,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置灵敏度的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -928,9 +937,9 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 ```js
 enrollIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
-  console.info('setSensibility Success : Stream Type: SUCCESS');
+  console.info('Succeeded in setting sensibility.');
 }).catch((err) => {
-  console.error(`setSensibility : ERROR : ${err}`);
+  console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -938,7 +947,7 @@ enrollIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW
 
 setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
-设置智能语音参数，使用callback异步回调。
+设置指定的智能语音参数，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -965,9 +974,9 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 ```js
 enrollIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
   if (err) {
-    console.error(`setParameter: Error: ${err}`);
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('setParameter: Success: SUCCESS');
+    console.info('Succeeded in setting parameter');
   }
 });
 ```
@@ -976,7 +985,7 @@ enrollIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
 
 setParameter(key: string, value: string): Promise\<void\>
 
-设置智能语音参数，使用Promise异步回调。
+设置指定的智能语音参数，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -993,7 +1002,7 @@ setParameter(key: string, value: string): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置智能语音参数的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1006,10 +1015,10 @@ setParameter(key: string, value: string): Promise\<void\>
 **示例：**
 
 ```js
-enrollIntelligentVoiceEngine.setSensibility('scene', '0').then(() => {
-  console.info('setParameter Success : Stream Type: SUCCESS');
+enrollIntelligentVoiceEngine.setParameter('scene', '0').then(() => {
+  console.info('Succeeded in setting parameter');
 }).catch((err) => {
-  console.error(`setParameter : ERROR : ${err}`);
+  console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1017,7 +1026,7 @@ enrollIntelligentVoiceEngine.setSensibility('scene', '0').then(() => {
 
 getParameter(key: string, callback: AsyncCallback\<string\>): void
 
-获取智能语音参数，使用callback异步回调。
+获取指定的智能语音参数，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1043,10 +1052,10 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 ```js
 enrollIntelligentVoiceEngine.getParameter('key', (err,data) => {
   if (err) {
-    console.error(`getParameter: Error: ${err}`);
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('getParameter: Success: SUCCESS');
     let param = data;
+    console.info('Succeeded in getting parameter, param:${param}');
   }
 });
 ```
@@ -1055,7 +1064,7 @@ enrollIntelligentVoiceEngine.getParameter('key', (err,data) => {
 
 getParameter(key: string): Promise\<string\>
 
-获取智能语音参数，使用Promise异步回调。
+获取指定的智能语音参数，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1084,12 +1093,12 @@ getParameter(key: string): Promise\<string\>
 **示例：**
 
 ```js
-let param;
+let param = null;
 enrollIntelligentVoiceEngine.getParameter('key').then((data) => {
   param = data;
-  console.info('getParameter: Success : Stream Type: SUCCESS');
+  console.info('Succeeded in getting parameter, param:${param}');
 }).catch((err) => {
-  console.error(`getParameter: ERROR : ${err}`);
+  console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1114,9 +1123,9 @@ release(callback: AsyncCallback&lt;void&gt;): void
 ```js
 enrollIntelligentVoiceEngine.release((err) => {
   if (err) {
-    console.error(`Release EnrollIntelligentVoice engine failed, err: ${err}`);
+    console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
   } else {
-    console.info('Release EnrollIntelligentVoice engine success.');
+    console.info('Succeeded in releasing enrollIntelligentVoice engine.');
   }
 });
 ```
@@ -1135,15 +1144,15 @@ release(): Promise&lt;void&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回释放注册引擎的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                  |
 
 **示例：**
 
 ```js
 enrollIntelligentVoiceEngine.release().then(() => {
-    console.info('Release EnrollIntelligentVoice engine success.');
+  console.info('Succeeded in releasing enrollIntelligentVoice engine.');
 }).catch((err) => {
-    console.info('Release EnrollIntelligentVoice engine failed, err: '+ err.message);
+  console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
 });
 ```
 
@@ -1168,13 +1177,13 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
 ```js
-let regions = nullptr;
-wkeupIntelligentVoiceEngine.getSupportedRegions((err, data) => {
+let regions = null;
+wakeupIntelligentVoiceEngine.getSupportedRegions((err, data) => {
   if (err) {
-    console.error(`Failed to getSupportedRegions, ${err}`);
+    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('getSupportedRegions success.');
     regions = data;
+    console.info('Succeeded in getting supported regions, regions:${regions}.');
   }
 });
 ```
@@ -1198,12 +1207,12 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```js
-let regions = nullptr;
-wkeupIntelligentVoiceEngine.getSupportedRegions().then((data) => {
+let regions = null;
+wakeupIntelligentVoiceEngine.getSupportedRegions().then((data) => {
   regions = data;
-  console.info('getSupportedRegions success');
+  console.info('Succeeded in getting supported regions, regions:${regions}.');
 }).catch((err) => {
-  console.error(`Failed to getSupportedRegion: ERROR : ${err}`);
+  console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1211,7 +1220,7 @@ wkeupIntelligentVoiceEngine.getSupportedRegions().then((data) => {
 
 setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 
-设置唤醒hap信息，使用callback异步回调。
+设置唤醒应用的hap信息，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1236,14 +1245,14 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 
 ```js
 let info = {
-    bundleName: "com.huawei.hmos.wakeup",
-    abilityName: "WakeUpExtAbility",
+  bundleName: "com.huawei.hmos.wakeup",
+  abilityName: "WakeUpExtAbility",
 }
-wkeupIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
+wakeupIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
   if (err) {
-    console.error(`Set wakeup hap info failed, err: ${err}`);
+    console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
   } else {
-    console.info('Set wakeup hap info finish');
+    console.info('Succeeded in setting wakeup hap info.');
   }
 });
 ```
@@ -1252,7 +1261,7 @@ wkeupIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
 
 setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
-设置唤醒hap信息，使用promise异步回调。
+设置唤醒应用的hap信息，使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1268,7 +1277,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置唤醒hap信息的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1282,13 +1291,13 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 ```js
 let info = {
-    bundleName: "com.huawei.hmos.wakeup",
-    abilityName: "WakeUpExtAbility",
+  bundleName: "com.wakeup",
+  abilityName: "WakeUpExtAbility",
 }
-wkeupIntelligentVoiceEngine.setWakeupHapInfo(info).then(() => {
-    console.info('Set wakeup hap info finish');
+wakeupIntelligentVoiceEngine.setWakeupHapInfo(info).then(() => {
+  console.info('Succeeded in setting wakeup hap info.');
 }).catch((err) => {
-    console.info('Set wakeup hap info failed, err: '+ err.message);
+  console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
 });
 ```
 
@@ -1320,11 +1329,11 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err) => {
+wakeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err) => {
   if (err) {
-    console.error(`setSensibility: Error: ${err}`);
+    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('setSensibility: Success: SUCCESS');
+    console.info('Succeeded in setting sensibility.');
   }
 });
 ```
@@ -1349,7 +1358,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置灵敏度的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1362,10 +1371,10 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
-  console.info('setSensibility Success : Stream Type: SUCCESS');
+wakeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
+  console.info('Succeeded in setting sensibility.');
 }).catch((err) => {
-  console.error(`setSensibility : ERROR : ${err}`);
+  console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1373,7 +1382,7 @@ wkeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_
 
 setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
-设置智能语音参数，使用callback异步回调。
+设置指定的智能语音参数，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1398,11 +1407,11 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
+wakeupIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
   if (err) {
-    console.error(`setParameter: Error: ${err}`);
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('setParameter: Success: SUCCESS');
+    console.info('Succeeded in setting parameter');
   }
 });
 ```
@@ -1411,7 +1420,7 @@ wkeupIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
 
 setParameter(key: string, value: string): Promise\<void\>
 
-设置智能语音参数，使用Promise异步回调。
+设置指定的智能语音参数，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1428,7 +1437,7 @@ setParameter(key: string, value: string): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回设置智能语音参数的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1441,10 +1450,10 @@ setParameter(key: string, value: string): Promise\<void\>
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.setSensibility('scene', '0').then(() => {
-  console.info('setParameter Success : Stream Type: SUCCESS');
+wakeupIntelligentVoiceEngine.setParameter('scene', '0').then(() => {
+  console.info('Succeeded in setting parameter');
 }).catch((err) => {
-  console.error(`setParameter : ERROR : ${err}`);
+  console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1452,7 +1461,7 @@ wkeupIntelligentVoiceEngine.setSensibility('scene', '0').then(() => {
 
 getParameter(key: string, callback: AsyncCallback\<string\>): void
 
-获取智能语音参数，使用callback异步回调。
+获取指定的智能语音参数，使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1476,12 +1485,12 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.getParameter('key', (err, data) => {
+wakeupIntelligentVoiceEngine.getParameter('key', (err, data) => {
   if (err) {
-    console.error(`getParameter: Error: ${err}`);
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('getParameter: Success: SUCCESS');
     let param = data;
+    console.info('Succeeded in getting parameter, param:${param}');
   }
 });
 ```
@@ -1490,7 +1499,7 @@ wkeupIntelligentVoiceEngine.getParameter('key', (err, data) => {
 
 getParameter(key: string): Promise\<string\>
 
-获取参数，使用Promise异步回调。
+获取指定的智能语音参数，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1520,11 +1529,11 @@ getParameter(key: string): Promise\<string\>
 
 ```js
 let param;
-wkeupIntelligentVoiceEngine.getParameter('key').then((data) => {
+wakeupIntelligentVoiceEngine.getParameter('key').then((data) => {
   param = data;
-  console.info('getParameter: Success');
+  console.info('Succeeded in getting parameter, param:${param}');
 }).catch((err) => {
-  console.error(`getParameter: ERROR : ${err}`);
+  console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -1547,11 +1556,11 @@ release(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.release((err) => {
+wakeupIntelligentVoiceEngine.release((err) => {
   if (err) {
-    console.error(`Release EnrollIntelligentVoice engine failed, err: ${err}`);
+    console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
   } else {
-    console.info('Release EnrollIntelligentVoice engine success.');
+    console.info('Succeeded in releasing enrollIntelligentVoice engine.');
   }
 });
 ```
@@ -1570,15 +1579,15 @@ release(): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 返回释放唤醒引擎的结果。                   |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.release().then(() => {
-    console.info('Release EnrollIntelligentVoice engine success.');
+wakeupIntelligentVoiceEngine.release().then(() => {
+  console.info('Succeeded in releasing enrollIntelligentVoice engine.');
 }).catch((err) => {
-    console.info('Release EnrollIntelligentVoice engine failed, err: '+ err.message);
+  console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
 });
 ```
 
@@ -1597,16 +1606,16 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string          | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 是   | 唤醒事件回调接口。 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceengineCallbackInfo)\>                           | 是   | 收到唤醒事件的对应处理。 |
 
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.on('wakeupIntelligentVoiceEvent', (callback) => {
-    console.info(`wakeup intelligentvoice event`);
-    for (let prop in callback) {
-        console.info(`intelligentvoice prop: ${prop}`);
-    }
+wakeupIntelligentVoiceEngine.on('wakeupIntelligentVoiceEvent', (callback) => {
+  console.info(`wakeup intelligentvoice event`);
+  for (let prop in callback) {
+    console.info(`intelligentvoice prop: ${prop}`);
+  }
 });
 ```
 
@@ -1625,10 +1634,10 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     |string           | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 否   | 唤醒事件回调接口。 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceengineCallbackInfo)\>                           | 否   | 收到唤醒事件的对应处理。无参数，则取消所有的订阅，否则，取消对应的订阅 |
 
 **示例：**
 
 ```js
-wkeupIntelligentVoiceEngine.off('wakeupIntelligentVoiceEvent');
+wakeupIntelligentVoiceEngine.off('wakeupIntelligentVoiceEvent');
 ```
