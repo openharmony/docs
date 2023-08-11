@@ -193,12 +193,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   ```ts
   // 创建新实例并使用给定对象初始化
   let storage = new LocalStorage({ 'PropA': 47 });
-  
+
   @Component
   struct Child {
     // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink2: number = 1;
-  
+
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
         // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
@@ -211,7 +211,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   struct CompA {
     // @LocalStorageLink变量装饰器与LocalStorage中的'ProA'属性建立双向绑定
     @LocalStorageLink('PropA') storLink1: number = 1;
-  
+
     build() {
       Column({ space: 15 }) {
         Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
@@ -241,7 +241,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   struct CompA {
     // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
-  
+
     build() {
       Column({ space: 15 }) {
         // 点击后从47开始加1，只改变当前组件显示的storProp1，不会同步到LocalStorage中
@@ -251,12 +251,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
       }
     }
   }
-  
+
   @Component
   struct Child {
     // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp2: number = 2;
-  
+
     build() {
       Column({ space: 15 }) {
         // 当CompA改变时，当前storProp2不会改变，显示47
@@ -300,9 +300,9 @@ struct CompA {
 ```
 
 
-### 兄弟节点之间同步状态变量
+### 兄弟组件之间同步状态变量
 
-下面的示例展示了通过\@LocalStorageLink双向同步兄弟节点之间的状态。
+下面的示例展示了通过\@LocalStorageLink双向同步兄弟组件之间的状态。
 
 先看Parent自定义组件中发生的变化：
 
@@ -318,14 +318,14 @@ Child自定义组件中的变化：
 
    ```ts
    let storage = new LocalStorage({ countStorage: 1 });
-   
+
    @Component
    struct Child {
      // 子组件实例的名字
      label: string = 'no name';
      // 和LocalStorage中“countStorage”的双向绑定数据
      @LocalStorageLink('countStorage') playCountLink: number = 0;
-   
+
      build() {
        Row() {
          Text(this.label)
@@ -338,12 +338,12 @@ Child自定义组件中的变化：
        }.width(300).height(60)
      }
    }
-   
+
    @Entry(storage)
    @Component
    struct Parent {
      @LocalStorageLink('countStorage') playCount: number = 0;
-   
+
      build() {
        Column() {
          Row() {
@@ -355,7 +355,7 @@ Child自定义组件中的变化：
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
-   
+
          Row() {
            Text('LocalStorage')
              .width(50).height(60).fontSize(12)
@@ -365,10 +365,10 @@ Child自定义组件中的变化：
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
-   
+
          Child({ label: 'ChildA' })
          Child({ label: 'ChildB' })
-   
+
          Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
            .width(300).height(60).fontSize(12)
        }

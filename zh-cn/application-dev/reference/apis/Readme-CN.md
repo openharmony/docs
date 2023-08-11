@@ -119,7 +119,7 @@
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
-  
+
 - 公共事件与通知
   - [系统公共事件定义](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (公共事件模块)(推荐)](js-apis-commonEventManager.md)
@@ -341,7 +341,7 @@
   - tag
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
-  
+
 - 系统基础能力
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
   - [@ohos.accessibility.config (系统辅助功能配置)](js-apis-accessibility-config.md)
@@ -373,6 +373,7 @@
   - [console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - [syscap (系统能力)](js-apis-syscap.md)
+  - [@system.app (应用上下文)](js-apis-system-app.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 
@@ -423,7 +424,7 @@
   - [@ohos.account.appAccount.AuthorizationExtensionAbility (应用帐号授权扩展能力)](js-apis-appAccount-authorizationExtensionAbility.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
-  
+
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
 
@@ -493,7 +494,6 @@
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
-  - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
   - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
