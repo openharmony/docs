@@ -328,3 +328,9 @@ reqPermissions() {
   }
 ]
 ```
+
+## 相关实例
+
+针对访问控制，有以下相关实例可供参考：
+
+- [访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/Security/AbilityAccessCtrl)

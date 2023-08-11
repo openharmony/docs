@@ -23,3 +23,9 @@
 **图1** 文件分类模型示意图
 
 ![File classification model](figures/file-classification-model.png)
+
+## 相关实例
+
+针对文件管理开发，有以下相关实例可供参考：
+
+- [文件管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/FileManagement/FileManager)

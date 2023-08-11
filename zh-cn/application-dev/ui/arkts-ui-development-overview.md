@@ -87,9 +87,3 @@
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[图片](arkts-graphics-display.md)<br/>-&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | -&nbsp;[页面内的动画](arkts-layout-update-animation.md)<br/>-&nbsp;[页面间的动画](arkts-zoom-animation.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
-
-## 相关实例
-
-基于ArkTS的声明式开发范式，可参考以下实例：
-
-[ArkTS组件集](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection)：组件、通用方法、动画、全局方法的集合。

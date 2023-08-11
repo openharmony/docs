@@ -25,8 +25,6 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：Js组件（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/UI/JsComponentClollection/JsComponentCollection)
-
 - [购物应用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingSample)
 
 - [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
