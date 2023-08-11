@@ -44,33 +44,43 @@ APIs related to this event: **activateOsAccount**. This API is a system API. For
 ## COMMON_EVENT_USER_INFO_UPDATED<sup>9+<sup>
 Indicates that the user information has been updated.
 
-- Value: **usual.event.USER_INFO_UPDATED**
+- Value: usual.event.USER_INFO_UPDATED
 - Required subscriber permissions: none
 
 When the distributed account information, system account profile picture, or system account name is changed, the event notification service is triggered to publish this event carrying the system account ID.
 
 APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, and **setOsAccountDistributedInfon**. The first two are system APIs, and the last is a public API. For details, see [@ohos.account.osAccount (OS Account Management)](../js-apis-osAccount.md).
 
+## COMMON_EVENT_USER_UNLOCKED
+Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
+
+- Value: usual.event.USER_UNLOCKED
+- Required subscriber permissions: none
+
+When the device is unlocked with the lock screen password the first time after user switching, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (OS Account Management)](../js-apis-osAccount.md).
+
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
 (Reserved, not supported yet) Indicates a successful login to a distributed account.
 
-- Value: usual.event.DISTRIBUTED_ACCOUNT_LOGIN
+- Value: common.event.DISTRIBUTED_ACCOUNT_LOGIN
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
 (Reserved, not supported yet) Indicates a successful logout of a distributed account.
 
-- Value: usual.event.DISTRIBUTED_ACCOUNT_LOGOUT
+- Value: common.event.DISTRIBUTED_ACCOUNT_LOGOUT
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 (Reserved, not supported yet) Indicates the token of a distributed account is invalid.
 
-- Value: usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
+- Value: common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF
 (Reserved, not supported yet) Indicates that a distributed account is deregistered.
 
-- Value: usual.event.DISTRIBUTED_ACCOUNT_LOGOFF
+- Value: common.event.DISTRIBUTED_ACCOUNT_LOGOFF
 - Required subscriber permissions: none
