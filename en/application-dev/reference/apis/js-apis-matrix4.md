@@ -27,7 +27,7 @@ Matrix constructor, which is used to create a 4 x 4 matrix by using the input pa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| option | [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **Description of a 4 x 4 matrix**.<br>Default value:<br>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br>0,&nbsp;1,&nbsp;0,&nbsp;0,<br>0,&nbsp;0,&nbsp;1,&nbsp;0,<br>0,&nbsp;0,&nbsp;0,&nbsp;1] |
+| option | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **Description of a 4 x 4 matrix**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
 
 **Return value**
 
@@ -145,7 +145,6 @@ Copies this matrix object.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
-
 @Entry
 @Component
 struct Test {
@@ -169,6 +168,132 @@ struct Test {
 ```
 
 ![en-us_image_0000001219744181](figures/en-us_image_0000001219744181.png)
+
+## matrix4.invert<sup>(deprecated)</sup>
+
+invert(): Matrix4Transit
+
+Inverts this matrix object.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.combine<sup>(deprecated)</sup>
+
+combine(options: Matrix4Transit): Matrix4Transit
+
+Combines the effects of two matrices to generate a new matrix object.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.translate<sup>(deprecated)</sup>
+
+translate(options: TranslateOption): Matrix4Transit
+
+Translates this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.scale<sup>(deprecated)</sup>
+
+scale(options: ScaleOption): Matrix4Transit
+
+Scales this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.rotate<sup>(deprecated)</sup>
+
+rotate(options: RotateOption): Matrix4Transit
+
+Rotates this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.transformPoint<sup>(deprecated)</sup>
+
+transformPoint(options: [number, number]): [number, number]
+
+Applies the current transformation effect to a coordinate point.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | Yes  | Point to be transformed.|
+
+**Return value**
+
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| [number, number] | Point object after matrix transformation|
 
 
 ## Matrix4Transit
@@ -200,7 +325,6 @@ Combines the effects of two matrices to generate a new matrix object.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
-
 @Entry
 @Component
 struct Test {
@@ -249,7 +373,6 @@ import matrix4 from '@ohos.matrix4'
 // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
 let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.invert()
-
 @Entry
 @Component
 struct Tests {
@@ -296,7 +419,6 @@ Translates this matrix object along the x, y, and z axes.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
-
 @Entry
 @Component
 struct Test {
@@ -387,7 +509,6 @@ Rotates this matrix object along the x, y, and z axes.
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
-
 @Entry
 @Component
 struct Test {

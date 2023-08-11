@@ -25,15 +25,37 @@ Implements initialization for the interpolation curve, which is used to create a
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Default Value      | Description      |
-| ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  | [Curve](../arkui-ts/ts-appendix-enums.md#curve) | No  | Curve.Linear | Curve type.|
+| Name| Type           | Mandatory| Description                               |
+| ------ | --------------- | ---- | ----------------------------------- |
+| curve  | [Curve](#curve) | No  | Curve type.<br>Default value: **Curve.Linear**|
 
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
 |  [ICurve](#icurve) | Interpolation curve.|
+
+## Curve
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name               | Description                                                        |
+| ------------------- | ------------------------------------------------------------ |
+| Linear              | The animation speed keeps unchanged.                          |
+| Ease                | The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.|
+| EaseIn              | The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.      |
+| EaseOut             | The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.      |
+| EaseInOut           | The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.|
+| FastOutSlowIn       | The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0).                |
+| LinearOutSlowIn     | The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0).                |
+| FastOutLinearIn     | The animation uses the acceleration cubic-bezier curve (0.4, 0.0, 1.0, 1.0).                |
+| ExtremeDeceleration | The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).                |
+| Sharp               | The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).              |
+| Rhythm              | The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).                |
+| Smooth              | The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0).                |
+| Friction            | The animation uses the friction cubic-bezier curve (0.2, 0.0, 0.2, 1.0).                 |
 
 **Example**
 
@@ -151,16 +173,16 @@ Creates a spring animation curve. If multiple spring animations are applied to t
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
-| response  | number | No   | Duration of one complete oscillation,<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
+| response  | number | No   | Duration of one complete oscillation.<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
 | dampingFraction      | number | No   | Damping coefficient.<br>**0**: undamped. In this case, the spring oscillates forever.<br>> 0 and < 1: underdamped. In this case, the spring overshoots the equilibrium position.<br>**1**: critically damped.<br>> 1: overdamped. In this case, the spring approaches equilibrium gradually.<br>Default value: **0.825**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
-| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, if the **response** values of the two animations are different, they will transit smoothly over this duration.<br><br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in **[animation](../arkui-ts/ts-animatorproperty.md)** or **[animateTo](../arkui-ts/ts-explicit-animation.md)**. The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, the **response** values of these animations will transit smoothly over this duration if they are different.<br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
 
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
 
 **Example**
 
@@ -187,13 +209,13 @@ Creates a responsive spring animation curve. It is a special case of [springMoti
 | --------- | ------ | ---- | ----- |
 | response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.15**.|
 | dampingFraction      | number | No   | See **dampingFraction** in **springMotion**.<br>Default value: **0.86**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.86**.|
-| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **[animation](../arkui-ts/ts-animatorproperty.md)** or **[animateTo](../arkui-ts/ts-explicit-animation.md)**. In addition, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. In addition, the interpolation cannot be obtained by using the **interpolate** function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. In addition, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
 
 **Example**
 
@@ -206,7 +228,7 @@ Curves.responsiveSpringMotion() // Create a responsive spring animation curve wi
 ## ICurve
 
 
-### interpolate
+### interpolate<sup>9+</sup>
 
 interpolate(fraction: number): number
 
@@ -248,9 +270,9 @@ Implements initialization to create a curve. This API is deprecated since API ve
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Default Value      | Description      |
-| ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  |[Curve](../arkui-ts/ts-appendix-enums.md#curve) | No  | Curve.Linear | Curve type.|
+| Name| Type           | Mandatory| Description                               |
+| ------ | --------------- | ---- | ----------------------------------- |
+| curve  | [Curve](#curve) | No  | Curve type.<br>Default value: **Curve.Linear**|
 
 
 ## Curves.steps<sup>(deprecated)</sup>
