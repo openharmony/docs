@@ -1,6 +1,9 @@
+registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback<void>): void;
+
+
 # @ohos.distributedMissionManager (分布式任务管理)
 
-分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端系统任务列表、停止同步远端系统任务列表、迁移任务等。
+分布式任务管理模块提供跨设备任务管理能力，包括注册和取消任务状态监听、开始和停止同步远端系统任务列表、通过任务ID和包名进行迁移任务等。
 
 > **说明：**
 >
@@ -18,7 +21,7 @@ import distributedMissionManager from '@ohos.distributedMissionManager'
 
 registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-注册系统任务状态监听。使用callback异步回调。////系统任务状态是什么呢
+注册任务状态监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -29,7 +32,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。 |
-| options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。////描述正确吗  |
+| options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。 |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -69,7 +72,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 
 registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback): Promise&lt;void&gt;
 
-注册系统任务状态监听。使用promise异步回调。
+注册任务状态监听。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -80,13 +83,13 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo)  | 是    | 注册监听时的设备信息。   |
-| options   | <a href="#missioncallback">MissionCallback</a> | 是    | 注册的回调方法。////描述正确吗 |
+| options   | <a href="#missioncallback">MissionCallback</a> | 是    | 注册的回调方法。|
 
 **返回值：**
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -127,7 +130,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-取消系统任务状态监听。使用callback异步回调。
+取消任务状态监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -163,7 +166,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
 unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
-取消系统任务状态监听。使用promise异步回调。
+取消任务状态监听。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -179,7 +182,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; |无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -203,7 +206,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;void&gt;): void;
 
-开始同步远端任务列表。使用callback异步回调。////开始同步远端设备系统任务列表吗
+开始同步远端设备的任务列表。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -240,7 +243,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
 startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
-开始同步远端任务列表。使用promise异步回调。////开始同步远端设备系统任务列表吗
+开始同步远端设备的任务列表。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -256,7 +259,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
