@@ -18,7 +18,7 @@ import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 startWork(work: WorkInfo): void
 
-申请延迟任务，WorkSchedulerService将指定任务添加到执行队列。
+申请延迟任务。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -69,7 +69,7 @@ startWork(work: WorkInfo): void
 
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-取消延迟任务，WorkSchedulerService在执行队列中停止或移除指定任务。
+取消延迟任务。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
