@@ -41,3 +41,9 @@
 | 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | -&nbsp;[Emitter](itc-with-emitter.md)<br/>-&nbsp;[Worker](itc-with-worker.md) |
 | 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;[任务管理场景介绍](mission-management-overview.md)<br/>-&nbsp;[任务管理与启动模式](mission-management-launch-type.md)<br/>-&nbsp;[页面栈和任务链](page-mission-stack.md) |
 | 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | [Stage模型应用配置文件](config-file-stage.md) |
+
+## 相关实例
+
+针对Stage模型开发，有以下相关实例可供参考：
+
+- [Stage模型（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)

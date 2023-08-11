@@ -258,6 +258,6 @@ struct MediaQueryExample {
 
 ## 相关实例
 
-基于媒体查询，可参考以下实例：
+针对媒体查询开发，有以下相关实例可供参考：
 
-[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)：使用媒体查询，完成在不同设备上显示不同的界面效果。
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)
