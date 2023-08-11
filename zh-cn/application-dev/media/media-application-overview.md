@@ -26,4 +26,4 @@
 
 - [相机和媒体库（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/Solutions/Media/MultiMedia)
 
-- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Beta2/code/BasicFeature/Media/QRCodeScan)
+- [二维码扫描（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/Media/QRCodeScan)
