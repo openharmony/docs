@@ -32,7 +32,7 @@ getCameraManager(context: Context): CameraManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -267,7 +267,7 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -311,7 +311,7 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -355,7 +355,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -397,7 +397,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -439,7 +439,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -480,7 +480,7 @@ createMetadataOutput(metadataObjectTypes:Array\<MetadataObjectType\>): MetadataO
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -515,7 +515,7 @@ createCaptureSession(): CaptureSession
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -606,7 +606,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码。
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -640,7 +640,7 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码。
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -706,7 +706,7 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码。
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -868,7 +868,7 @@ open\(callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -904,7 +904,7 @@ open(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -938,7 +938,7 @@ close\(callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -972,7 +972,7 @@ close(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1096,7 +1096,7 @@ beginConfig(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1129,7 +1129,7 @@ commitConfig(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1164,7 +1164,7 @@ commitConfig(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1204,7 +1204,7 @@ addInput(cameraInput: CameraInput): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1244,7 +1244,7 @@ removeInput(cameraInput: CameraInput): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1284,7 +1284,7 @@ addOutput(cameraOutput: CameraOutput): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1324,7 +1324,7 @@ removeOutput(cameraOutput: CameraOutput): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1358,7 +1358,7 @@ start\(callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1393,7 +1393,7 @@ start\(\): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1426,7 +1426,7 @@ stop\(callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1460,7 +1460,7 @@ stop(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1492,7 +1492,7 @@ release\(callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1526,7 +1526,7 @@ release(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1558,7 +1558,7 @@ hasFlash(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1597,7 +1597,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1641,7 +1641,7 @@ setFlashMode(flashMode: FlashMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1674,7 +1674,7 @@ getFlashMode(): FlashMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1713,7 +1713,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1746,7 +1746,7 @@ getExposureMode(): ExposureMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1785,7 +1785,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1818,7 +1818,7 @@ getMeteringPoint(): Point
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1860,7 +1860,7 @@ setMeteringPoint(point: Point): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1894,7 +1894,7 @@ getExposureBiasRange(): Array\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1929,7 +1929,7 @@ setExposureBias(exposureBias: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1963,7 +1963,7 @@ getExposureValue(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2002,7 +2002,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2043,7 +2043,7 @@ setFocusMode(afMode: FocusMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2076,7 +2076,7 @@ getFocusMode(): FocusMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2118,7 +2118,7 @@ setFocusPoint(point: Point): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2152,7 +2152,7 @@ getFocusPoint(): Point
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2185,7 +2185,7 @@ getFocalLength(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2218,7 +2218,7 @@ getZoomRatioRange(): Array\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2257,7 +2257,7 @@ setZoomRatio(zoomRatio: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2291,7 +2291,7 @@ getZoomRatio(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2330,7 +2330,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2363,7 +2363,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2402,7 +2402,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2489,7 +2489,7 @@ start(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2523,7 +2523,7 @@ start(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2605,7 +2605,7 @@ release(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2639,7 +2639,7 @@ release(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2742,7 +2742,7 @@ addDeferredSurface(surfaceId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2838,7 +2838,7 @@ capture(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2873,7 +2873,7 @@ capture(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2907,7 +2907,7 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -2960,7 +2960,7 @@ capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3025,7 +3025,7 @@ release(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3059,7 +3059,7 @@ release(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3189,7 +3189,7 @@ isQuickThumbnailSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3235,7 +3235,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3358,7 +3358,7 @@ start(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3393,7 +3393,7 @@ start(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3476,7 +3476,7 @@ release(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3510,7 +3510,7 @@ release(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3615,7 +3615,7 @@ start(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -3650,7 +3650,7 @@ start(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见相机错误码
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
