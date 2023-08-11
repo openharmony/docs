@@ -116,9 +116,8 @@ BUILD.gn是subsystem构建的唯一入口。
 
 期望的构建结果
 
-  | | |
-| -------- | -------- |
 | 文件 | 文件说明 | 
+| -------- | -------- |
 | $root_build_dir/packages/phone/images/uImage | 内核镜像 | 
 | $root_build_dir/packages/phone/images/uboot | bootloader镜像 | 
 
