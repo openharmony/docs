@@ -50,7 +50,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
-| selectedIndex<sup>10+</sup> | number \| number[] | Sets the index value of the default selected item in the array. The priority is higher than that of the selected value in options.<br>**NOTE**<br>For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type.|
+| selectedIndex<sup>10+</sup> | number \| number[] | Index of the default selected item in the array. Its priority is higher than that of the selected value in **options**.<br>**NOTE**<br>For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type.|
+| canLoop<sup>10+</sup> | boolean | Whether to support scroll looping. The value **true** means to support scroll looping, and **false** means the opposite.<br>Default value: **true**|
 
 ## Events
 
@@ -60,10 +61,62 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | -------- | -------- |
 | onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | Triggered when the OK button in the dialog box is clicked.<br>- **value**: value of the selected item.<br>- **index**: index of the selected item.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
 | onCancel(callback: () => void)<sup>(deprecated) </sup>  | Triggered when the Cancel button in the dialog box is clicked.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
-| onChange(callback: (value: string \| string[]<sup>10+</sup>, index: number \| number[]<sup>10+</sup>) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item. (For a multi-column picker, **value** is of the array type.)<br>- **index**: index of the selected item. (For a multi-column picker, **index** is of the array type.)<br>**NOTE**<br>When the picker contains text only or both text and imagery, **value** indicates the text value of the selected item.When the picker contains imagery only, **value** is empty.|
+| onChange(callback: (value: string \| string[]<sup>10+</sup>, index: number \| number[]<sup>10+</sup>) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item. (For a multi-column picker, **value** is of the array type.)<br>- **index**: index of the selected item. (For a multi-column picker, **index** is of the array type.)<br>**NOTE**<br>When the picker contains text only or both text and imagery, **value** indicates the text value of the selected item. When the picker contains imagery only, **value** is empty.|
 
 
 ## Example
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4']
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  private cascade: TextCascadePickerRangeContent[] = [
+    {
+      text: 'Category 1',
+      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
+        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+    },
+    {
+      text: 'Category 2',
+      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
+        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+    },
+    {
+      text: 'Category 3',
+      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
+        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+    }
+  ]
+
+  build() {
+    Column() {
+
+      TextPicker({ range: this.apfruits, selected: this.select })
+        .onChange((value: string, index: number) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        }).margin({ bottom: 50 })
+
+      TextPicker({ range: this.multi })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+        }).margin({ bottom: 50 })
+
+      TextPicker({ range: this.cascade })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker multi-column linkage: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+        })
+    }
+  }
+}
+```
+
+![textpicker](figures/textpicker.gif)
 
 ```ts
 // xxx.ets
@@ -79,9 +132,12 @@ struct TextPickerExample {
         .onChange((value: string, index: number) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
-    }
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![en-us_image_0000001257058417](figures/en-us_image_0000001257058417.png)
+![textpicker](figures/textpicker1.gif)
