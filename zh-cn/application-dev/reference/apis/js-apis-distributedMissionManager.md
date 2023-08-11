@@ -1,9 +1,6 @@
-registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, callback: AsyncCallback\<void\>): void;
-
-
 # @ohos.distributedMissionManager (分布式任务管理)
 
-分布式任务管理模块提供跨设备任务管理能力，包括注册和取消任务状态监听、开始和停止同步远端系统任务列表、通过任务ID和包名进行迁移任务等。
+分布式任务管理模块提供跨设备任务管理能力，包括注册和取消任务状态监听、开始和停止同步远端设备任务列表、通过任务ID和包名进行迁移任务等。
 
 > **说明：**
 >
@@ -125,7 +122,6 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
   }
   ```
 
-
 ## distributedMissionManager.unRegisterMissionListener
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
@@ -160,7 +156,6 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
       console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
   }
   ```
-
 
 ## distributedMissionManager.unRegisterMissionListener
 
@@ -285,7 +280,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
 stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-停止同步远端任务列表。使用callback异步回调。
+停止同步远端设备的任务列表。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -320,7 +315,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 
 stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
-停止同步远端任务列表。使用promise异步回调。
+停止同步远端设备的任务列表。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -336,7 +331,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的promise对象。 |
 
 **示例：**
 
@@ -360,7 +355,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callback: AsyncCallback&lt;void&gt;): void;
 
-迁移任务。使用callback异步回调。
+通过指定任务ID（missionId）的方式进行迁移任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -418,7 +413,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promise&lt;void&gt;
 
-迁移任务。使用promise异步回调。
+通过指定任务ID（missionId）的方式进行迁移任务。使用promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -435,7 +430,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
+| Promise&lt;void&gt; |无返回结果的promise对象。 |
 
 **错误码：**
 
@@ -481,7 +476,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-通过指定包名的方式进行迁移任务。使用callback异步回调。
+通过指定包名（bundleName）的方式进行迁移任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -532,7 +527,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 
 continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
-通过指定包名的方式进行迁移任务。使用Promise异步回调。
+通过指定包名（bundleName）的方式进行迁移任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -548,7 +543,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的promise对象。 |
 
 **错误码：**
 
@@ -588,7 +583,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
 
-注册当前应用任务流转状态的监听。////应用任务和系统任务的区别是什么
+注册当前任务流转状态的监听。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -598,8 +593,8 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | 是    | 当前应用任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前应用任务的流转状态和流转信息。    |
+| type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前任务的流转状态和流转信息。    |
 
 **示例：**
 
@@ -617,7 +612,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 
 off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
 
-取消当前应用任务流转的状态监听。
+取消当前任务流转的状态监听。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -627,8 +622,8 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| type | string  | 是    | 当前应用任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 回调函数，返回当前应用任务的流转状态和流转信息。////不填时的影响（取消type类型所有的回调函数）      |
+| type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 回调函数，返回当前任务的流转状态和流转信息。<br>参数不填写，取消type对应的所有回调监听。    |
 
 **示例：**
 
@@ -644,7 +639,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## MissionCallback
 
-开始同步后，建立的回调函数。////同步时的回调函数。
+开始同步后，建立的回调函数。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -653,8 +648,8 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 | 名称                    | 类型       | 可读   | 可写   | 说明                 |
 | --------------------- | -------- | ---- | ---- | ------------------ |
 | notifyMissionsChanged | function | 是    | 否    | 通知任务变化，返回设备ID。     |
-| notifySnapshot        | function | 是    | 否    | 通知快照变化，返回设备ID，任务ID |
-| notifyNetDisconnect   | function | 是    | 否    | 通知断开连接，返回设备ID，网络状态 |
+| notifySnapshot        | function | 是    | 否    | 通知快照变化，返回设备ID，任务ID。 |
+| notifyNetDisconnect   | function | 是    | 否    | 通知断开连接，返回设备ID，网络状态。 |
 
 ## MissionParameter
 
@@ -684,11 +679,11 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 ## ContinueState<sup>10+</sup>
 
-当前应用任务流转状态的枚举。
+当前任务流转状态的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称           | 值       | 说明                                                         |
 | ------------- | --------- | ------------------------------------------------------------ |
-| ACTIVE        | 0         | 表示当前应用任务流转处于激活状态。                              |
-| INACTIVE      | 1         | 表示当前应用任务流转处于未激活状态。                            |
+| ACTIVE        | 0         | 表示当前任务流转处于激活状态。                              |
+| INACTIVE      | 1         | 表示当前任务流转处于未激活状态。                            |
