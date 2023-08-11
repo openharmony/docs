@@ -166,7 +166,7 @@ httpRequest.request2(
 
 针对HTTP数据请求，有以下相关实例可供参考：
 
-- [上传和下载（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SystemFeature/Connectivity/Upload)
+- [上传和下载（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/SystemFeature/Connectivity/Upload)
 
 - [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta2/code/BasicFeature/Connectivity/Http)
 
