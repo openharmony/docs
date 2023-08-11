@@ -106,3 +106,8 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 ```
 
+## 相关实例
+
+针对EnterpriseAdminExtensionAbility开发，有以下相关示例可供参考：
+
+- [企业设备管理扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
