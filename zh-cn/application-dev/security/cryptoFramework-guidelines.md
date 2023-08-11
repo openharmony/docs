@@ -1601,3 +1601,9 @@ function doRandByCallback(len) {
   });
 }
 ```
+
+## 相关实例
+
+针对加解密算法开发，有以下相关实例可供参考：
+
+- [加解密（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Security/Cipher))
