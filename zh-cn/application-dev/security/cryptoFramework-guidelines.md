@@ -2571,4 +2571,6 @@ function doRandBySync() {
 
 针对加解密算法开发，有以下相关实例可供参考：
 
+- [加解密（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Cipher)
+
 - [字符串加解密（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Security/StringCipherArkTS)
