@@ -71,6 +71,7 @@ API Version 9: Free模式显示位置
 API Version 10: Free模式显示位置与Full模式显示位置相同
 
 ![Navigation](figures/navigation_title_mode_free_sdk10.png)
+
 ## cl.arkui.3 字符串异常值默认变更
 
 **变更影响**
@@ -108,3 +109,19 @@ struct GridRowExample {
 API Version 9：上方示例中的GridRow设定width中的"80pv"会等同于width设定字符串"80"
 
 API Version 10: 上方示例中的GridRow的width中的"80pv"会被视为异常值，所以GridRow的width设定为默认值，相当于未设定
+
+## cl.arkui.4 Swiper的loop属性设置非法值时使用默认值true
+
+**变更影响**
+
+Swiper的loop属性设置非法值时原先使用false，现更改为true
+
+API Version 9: loop属性设置非法值时使用false
+
+API Version 10: loop属性设置非法值时使用true
+
+## cl.arkui.5 Swiper的翻页速度阈值由180px/s调整为1200px/s
+
+**变更影响**
+
+需要更快的速度才能满足翻页的条件
