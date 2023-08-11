@@ -16,11 +16,10 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en
-  // 后续设备的语言设置切换，都将同步到AppStorage中
   Environment.EnvProp('languageCode', 'en');
   ```
 
-- 可以使用\@StorageProp链接到Component中。Component会根据设备运行环境的变化而更新：
+- 可以使用\@StorageProp链接到Component中。
 
   ```ts
   @StorageProp('languageCode') lang : string = 'en';
