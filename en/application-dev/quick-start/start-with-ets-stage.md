@@ -1,4 +1,4 @@
-# Getting Started with ArkTS in Stage Model
+# Building the First ArkTS Application in Stage Model
 
 
 >  **NOTE**
@@ -35,7 +35,7 @@ The following describes how to create the OpenHarmony projects of API 10 and API
 
 4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
-5. After the project is created, in the project-level **build-profile.json5** file, move the **compileSdkVersion** and **compatibleSdkVersion** fields from under **app** to under the current **products**. You can identify the current **products** by clicking the ![en-us_image_0000001609333677](figures/en-us_image_0000001609333677.png) icon in the upper right corner of the editing area.
+5. After the project is created, in the project-level **build-profile.json5** file (at the same directory level as **entry**), move the **compileSdkVersion** and **compatibleSdkVersion** fields from under **app** to under the current **products**. You can identify the current **products** by clicking the ![en-us_image_0000001609333677](figures/en-us_image_0000001609333677.png) icon in the upper right corner of the editing area.
 
    ![changeToAPI10](figures/changeToAPI10.png)
 
