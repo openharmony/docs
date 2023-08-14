@@ -21,42 +21,6 @@ try {
 }
 ```
 
-## 如何隐藏状态栏实现沉浸式效果
-
-适用于：OpenHarmony 3.2 Beta5，API 9  
-
-**解决措施**
-
-1.  可以在onWindowStageCreate方法获取windowClass对象。
-
-    ```
-    onWindowStageCreate(windowStage) {
-      // Main window is created, set main page for this ability
-      console.log("[Demo] MainAbility onWindowStageCreate")
-      windowStage.getMainWindow((err, data) => {
-        if (err.code) {
-          console.error('Failed to obtain the main window.')
-          return;
-        }
-        // 获取到窗口对象
-        globalThis.windowClass = data; 
-      })
-    }
-    ```
-
-2.  设置窗口全屏，隐藏状态栏。
-
-    ```
-     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
-      if (err.code) {
-        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
-        return;
-      }
-        console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
-      });
-    ```
-
-
 ## 如何获取窗口的宽高信息
 
 适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型  
