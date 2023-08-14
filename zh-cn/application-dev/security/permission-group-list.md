@@ -86,3 +86,7 @@
 ## 读取已安装应用列表
 
 - ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+## 蓝牙
+
+- ohos.permission.ACCESS_BLUETOOTH
