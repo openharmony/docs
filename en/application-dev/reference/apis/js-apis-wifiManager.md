@@ -2051,7 +2051,7 @@ Obtains P2P link information. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-| Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Promise used to return the P2P link information obtained.|
+  | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Promise used to return the P2P link information obtained.|
 
 **Error codes**
 
@@ -2135,7 +2135,7 @@ Obtains the current P2P group information. This API uses a promise to return the
 
   | Type| Description|
   | -------- | -------- |
-| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained.|
+  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained.|
 
 **Error codes**
 
