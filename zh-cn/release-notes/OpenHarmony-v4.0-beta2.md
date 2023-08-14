@@ -300,15 +300,17 @@ OpenHarmony 4.0版本标准系统能力持续完善：ArkUI进一步增强基础
 - 编辑器支持Safe Delete功能，帮助您安全地删除代码中的标识符对象（变量、函数或类等）。
 - API 10 Stage模型的ArkTS工程支持代码混淆。
 - 支持开发者扩展编译任务和新增Hvigor任务。
-- 从DevEco Studio 4.0 Beta1版本开始Node.js解耦，分为IDE级Node.js和工程级Node.js。
+- Profiler新增支持Launch场景分析，辅助开发者对应用与服务启动过程各阶段的耗时情况进行分析。
+- Profiler提供启动周期内存分析能力，辅助开发者对应用与服务在启动过程中占用的内存资源进行分析，识别启动内存瓶颈。
+- 从DevEco Studio 4.0 Beta2版本开始Node.js解耦，分为IDE级Node.js和工程级Node.js。
 - 支持展开宏、移动函数体到实现处两个使用场景下的C++代码重构能力，提升开发效率。
 - 支持提取ArkTS系统组件到@Builder方法、提取ArkTS系统属性调用到@Styles和@Extend方法。
 - 在API 10工程中，AOT编译支持使用Target AOT编译。
-- oh-package.json文件中新增compileOnlyDependencies字段，用于配置弱耦合依赖。
+- hvigor新增prune命令，支持清除30天内未使用的hvigor缓存文件并从pnpm存储中删除未引用的包，便于开发者在CI场景中清理缓存，释放空间。
 - 优化自定义调试参数中选择Specified Ability界面，便于开发者选择指定启动的Ability。
 - 优化HiLog和FaultLog界面显示，并增加HiLog搜索大小写匹配，便于开发者更清晰地进行日志信息定位。
-- 应用与服务体检新增自选套餐，开发者可以有针对性地选择体检规则。
 - Profiler优化框选时间段、泳道收藏等功能。
+- 支持导入[ArkUI-X](https://gitee.com/arkui-x) Sample，快速创建跨平台工程。
 
 ## 配套关系
 
