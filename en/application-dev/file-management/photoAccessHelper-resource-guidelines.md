@@ -42,7 +42,7 @@ let fetchOptions = {
 };
 ```
 
-Call **PhotoAccessHelper.getAssets** to obtain the image asset.
+Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
 try {
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-### Obtaining an Image or Video by URI
+### Obtaining an Image or Video Asset by URI
 
 Example: Obtain the image with the file URI **file://media/Photo/1**.
 
@@ -70,7 +70,7 @@ let fetchOptions = {
 };
 ```
 
-Call **PhotoAccessHelper.getAssets** to obtain the image asset.
+Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
 try {
@@ -103,7 +103,7 @@ let fetchOptions = {
 };
 ```
 
-Call **PhotoAccessHelper.getAssets** to obtain the image assets.
+Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
 try {
@@ -250,7 +250,7 @@ The files moved to the trash will be retained for 30 days, and deleted permanent
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained
+- A **photoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** and **ohos.permission.READ_IMAGEVIDEO** permissions.
 
 Example: Move the first file in the result set to the trash.
