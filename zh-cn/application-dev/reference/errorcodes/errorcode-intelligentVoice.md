@@ -70,7 +70,7 @@ Commit enroll failed.
 
 **错误描述**
 
-调用注册引擎的确认注册结果接口commit()见[智能语音API参考](../apis/js-apis-intelligentVoice.md)时，返回失败。
+调用注册引擎的确认注册结果接口[commit()](../apis/js-apis-intelligentVoice.md#commit)时，返回失败。
 
 **可能原因**
 

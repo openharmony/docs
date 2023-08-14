@@ -467,7 +467,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | 是   | 返回支持区域的数组。 |
+| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | 是   | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。 |
 
 **示例：**
 
@@ -497,7 +497,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组。                   |
+|  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。                   |
 
 **示例：**
 
@@ -816,7 +816,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 
 ```js
 let info = {
-  bundleName: "com.huawei.hmos.wakeup",
+  bundleName: "com.wakeup",
   abilityName: "WakeUpExtAbility",
 }
 enrollIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
@@ -1172,7 +1172,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | 是   | 返回支持区域的数组。 |
+| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | 是   | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。 |
 
 **示例：**
 
@@ -1202,7 +1202,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组。                   |
+|  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。                   |
 
 **示例：**
 
@@ -1245,7 +1245,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 
 ```js
 let info = {
-  bundleName: "com.huawei.hmos.wakeup",
+  bundleName: "com.wakeup",
   abilityName: "WakeUpExtAbility",
 }
 wakeupIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
@@ -1558,9 +1558,9 @@ release(callback: AsyncCallback\<void\>): void
 ```js
 wakeupIntelligentVoiceEngine.release((err) => {
   if (err) {
-    console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
+    console.error('Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}');
   } else {
-    console.info('Succeeded in releasing enrollIntelligentVoice engine.');
+    console.info('Succeeded in releasing wakeupIntelligentVoice engine.');
   }
 });
 ```
@@ -1585,9 +1585,9 @@ release(): Promise\<void\>
 
 ```js
 wakeupIntelligentVoiceEngine.release().then(() => {
-  console.info('Succeeded in releasing enrollIntelligentVoice engine.');
+  console.info('Succeeded in releasing wakeupIntelligentVoice engine.');
 }).catch((err) => {
-  console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
+  console.error('Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}');
 });
 ```
 
@@ -1606,7 +1606,7 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string          | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackInfo)\>                           | 是   | 收到唤醒事件的对应处理。 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 是   | 收到唤醒事件的对应处理。 |
 
 **示例：**
 
@@ -1634,7 +1634,7 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     |string           | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'。 |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackInfo)\>                           | 否   | 收到唤醒事件的对应处理。无参数，则取消所有的订阅，否则，取消对应的订阅 |
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 否   | 收到唤醒事件的对应处理。无参数，则取消所有的订阅，否则，取消对应的订阅 |
 
 **示例：**
 
