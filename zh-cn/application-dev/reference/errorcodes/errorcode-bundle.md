@@ -645,3 +645,17 @@ Failed to install the HAP because the code signature verification is failed.
 1. 检查代码签名文件对应的module是否包含在安装包路径之中。
 2. 检查提供的代码签名文件的路径是否合法。
 3. 使用和安装包匹配的代码签名文件。
+
+## 17700050 企业设备校验失败
+**错误信息**<br/>
+Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+
+**错误描述**<br/>
+安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
+
+**可能原因**<br/>
+1. 安装设备不是企业设备。
+
+**处理步骤**<br/>
+1. 检查安装设备是否为企业设备。
+2. 检查设备参数const.bms.allowenterprisebundle是否为true
