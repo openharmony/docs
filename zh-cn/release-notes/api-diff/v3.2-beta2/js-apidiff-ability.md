@@ -73,5 +73,5 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，元能力子�
 | FormExtensionContext | FormExtensionContext | updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void;<br>updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void>; | 删除 |
 | ServiceExtensionContext | ServiceExtensionContext | extensionAbilityInfo: ExtensionAbilityInfo; | 删除 |
 | ohos.application.appManager | appManager | getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;<br>getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void; | 废弃 |
-| ohos.application.Ability | Ability | old : onNewWant(want: Want): void;<br>new : onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void; | 变更 |
+| ohos.application.Ability | Ability | old : onNewWant(want: Want): void;<br>new : onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void; | 变更 |
 | ohos.application.Ability | Callee | old : on(method: string, callback: CaleeCallBack): void;<br>new : on(method: string, callback: CalleeCallBack): void; | 变更 |

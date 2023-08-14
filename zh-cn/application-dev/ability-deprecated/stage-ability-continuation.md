@@ -13,8 +13,8 @@
 |接口名 | 描述|
 |:------ | :------|
 | onContinue(wantParam : {[key: string]: any}): OnContinueResult | 迁移**发起端**在该回调中保存迁移所需要的数据，同时返回是否同意迁移：AGREE表示同意，REJECT表示拒绝；MISMATCH表示版本不匹配。 |
-| onCreate(want: Want, param: AbilityConstant.LaunchParam): void; | 多实例应用迁移**目标端**在该回调中完成数据恢复，并触发页面恢复。 |
-| onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void; | 单实例应用迁移**目标端**在该回调中完成数据恢复，并触发页面恢复。 |
+| onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void; | 多实例应用迁移**目标端**在该回调中完成数据恢复，并触发页面恢复。 |
+| onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void; | 单实例应用迁移**目标端**在该回调中完成数据恢复，并触发页面恢复。 |
 
 
 
@@ -22,7 +22,7 @@
 
 ![continuation_dev](figures/continuation-info.png)
 
-迁移实际上是Ability携带数据的跨端启动。触发迁移动作时，会在A设备上通过系统回调应用的onContinue()方法，开发者需要在此方法中实现当前数据的保存。然后系统发起在B设备上的跨端启动，并将数据一同传输到B设备。B设备系统回调onCreate()/onNewWant()方法，开发者需要在此方法中实现传输过来的数据的恢复。 
+迁移实际上是Ability携带数据的跨端启动。触发迁移动作时，会在A设备上通过系统回调应用的onContinue()方法，开发者需要在此方法中实现当前数据的保存。然后系统发起在B设备上的跨端启动，并将数据一同传输到B设备。B设备系统回调onCreate()/onNewWant()方法，开发者需要在此方法中实现传输过来的数据的恢复。
 
 ## 开发步骤
 
@@ -35,7 +35,7 @@
    - 配置应用支持迁移
 
      在module.json5中配置continuable字段：true表示支持迁移，false表示不支持，默认为false。配置为false的应用将被系统识别为无法迁移。
-   
+
      ```javascript
      {
        "module": {
@@ -47,14 +47,14 @@
        }
      }
      ```
-     
-   
+
+
       - 配置应用启动类型
-   
+
         多实例应用在module.json5中将launchType字段配置为multiton，目标端将会拉起一个新的应用，并恢复页面；单实例将该字段配置为singleton，如果目标端应用已经打开，迁移将会将已有页面栈清空，并根据迁移数据恢复页面。关于单实例与多实例的更多信息详见[ability开发指导](./stage-ability.md)启动模式。
-        
+
         多实例：
-        
+
         ```javascript
         {
           "module": {
@@ -66,9 +66,9 @@
           }
         }
         ```
-        
+
         缺省或如下配置为单实例：
-        
+
         ```javascript
         {
           "module": {
@@ -80,20 +80,20 @@
           }
         }
         ```
-        
+
       - 申请分布式权限
-     
+
         支持跨端迁移的应用需要在module.json5申请分布式权限 DISTRIBUTED_DATASYNC。
-     
+
         ```javascript
         "requestPermissions": [
                {
                    "name": "ohos.permission.DISTRIBUTED_DATASYNC"
                },
         ```
-     
+
         这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
-     
+
         ```javascript
            requestPermissions = async () => {
                let permissions: Array<string> = [
@@ -130,7 +130,7 @@
                }
            }
         ```
-   
+
 
 
 2. 实现onContinue接口
@@ -166,20 +166,20 @@
    onCreate()接口在迁移目标端被调用，在目标端ability被拉起时，通知开发者同步已保存的内存数据和控件状态，完成后触发页面的恢复。如果不实现该接口中迁移相关逻辑，ability将会作为普通的启动方式拉起，无法恢复页面。
 
    远端设备上，在onCreate()中根据launchReason判断该次启动是否为迁移LaunchReason.CONTINUATION
-   
+
    完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复。
-   
+
    在入参want中也可以通过want.parameters.version来获取发起端的应用版本号。
 
    示例
-   
+
    ```javascript
     import UIAbility from '@ohos.app.ability.UIAbility';
     import distributedObject from '@ohos.data.distributedDataObject';
-    
+
     export default class EntryAbility extends UIAbility {
         storage : LocalStorag;
-   
+
         onCreate(want, launchParam) {
             Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
@@ -187,7 +187,7 @@
                 let workInput = want.parameters.work
                 Logger.info(`work input ${workInput}`)
                 AppStorage.SetOrCreate<string>('ContinueWork', workInput)
-   
+
                 this.storage = new LocalStorage();
                 this.context.restoreWindowStage(this.storage);
             }
@@ -209,12 +209,12 @@
   ```javascript
      import UIAbility from '@ohos.app.ability.UIAbility';
      import distributedObject from '@ohos.data.distributedDataObject';
-  
+
      var g_object = distributedObject.createDistributedObject({data:undefined});
-  
+
      export default class EntryAbility extends UIAbility {
          sessionId : string;
-  
+
       onContinue(wantParam : {[key: string]: any}) {
         Logger.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)
 
@@ -243,33 +243,33 @@
   ```javascript
   import UIAbility from '@ohos.app.ability.UIAbility';
   import distributedObject from '@ohos.data.distributedDataObject';
-  
+
   var g_object = distributedObject.createDistributedObject({data:undefined});
-  
+
   export default class EntryAbility extends UIAbility {
       storage : LocalStorag;
-  
+
       onCreate(want, launchParam) {
           Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
           if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
               // get distributed data object session id from want params
               this.sessionId = want.parameters.session
               Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
-  
+
               // in order to fetch from remote, reset g_object.data to undefined first
               g_object.data = undefined;
               // set session id, so it will fetch data from remote
               g_object.setSessionId(this.sessionId);
-  
+
               AppStorage.SetOrCreate<string>('ContinueStudy', g_object.data)
               this.storage = new LocalStorage();
               this.context.restoreWindowStage(this.storage);
           }
-  
+
       }
   }
   ```
-  
+
 ### 其他说明
 
 1. 超时机制：

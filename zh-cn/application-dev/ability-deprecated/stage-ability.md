@@ -45,13 +45,13 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
 
 |接口名|描述|
 |:------|:------|
-|onCreate(want: Want, param: AbilityConstant.LaunchParam): void|Ability生命周期回调，Ability启动时被调用。|
+|onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void|Ability生命周期回调，Ability启动时被调用。|
 |onDestroy(): void|Ability生命周期回调，Ability销毁时被调用。|
 |onWindowStageCreate(windowStage: window.WindowStage): void|Ability生命周期回调，创建window stage时被调用，应用开发者可通过window.WindowStage的接口执行页面加载等操作。|
 |onWindowStageDestroy(): void|Ability生命周期回调，销毁window stage时被调用。|
 |onForeground(): void|Ability生命周期回调，Ability切换至前台时被调用。|
 |onBackground(): void|Ability生命周期回调，Ability切换至后台时被调用。|
-|onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void|Ability回调，Ability的启动模式设置为单例时被调用。|
+|onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void|Ability回调，Ability的启动模式设置为单例时被调用。|
 |onConfigurationUpdated(config: Configuration): void|Ability回调，Ability的系统配置更新时被调用。|
 ### 实现AbilityStage及Ability生命周期
 创建Stage模型的Page Ability应用，需实现AbilityStage接口及Ability生命周期接口，并使用窗口提供的方法设置页面。具体示例代码如下：
@@ -79,29 +79,29 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
     }
-   
+
     onDestroy() {
         console.log("EntryAbility onDestroy")
     }
-   
+
     onWindowStageCreate(windowStage) {
         console.log("EntryAbility onWindowStageCreate")
-   
+
         windowStage.loadContent("pages/index").then(() => {
             console.log("EntryAbility load content succeed")
         }).catch((error) => {
             console.error("EntryAbility load content failed with error: " + JSON.stringify(error))
         })
     }
-   
+
     onWindowStageDestroy() {
         console.log("EntryAbility onWindowStageDestroy")
     }
-   
+
     onForeground() {
         console.log("EntryAbility onForeground")
     }
-   
+
     onBackground() {
         console.log("EntryAbility onBackground")
     }
@@ -277,7 +277,7 @@ async function reStartAbility() {
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-  onNewWant(want, launchParams) {
+  onNewWant(want, launchParam) {
     globalThis.newWant = want
   }
 }
