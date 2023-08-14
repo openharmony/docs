@@ -10,22 +10,22 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
 
 | Module| API| Description|
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistics | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.| 
-| \@ohos.file.statvfs | getFreeSize | Obtains the free space of a file system, in bytes.| 
-| \@ohos.file.statvfs | getTotalSize | Obtains the total space of a file system, in bytes.| 
+| \@ohos.file.storageStatistics | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.|
+| \@ohos.file.statvfs | getFreeSize | Obtains the free space of a file system, in bytes.|
+| \@ohos.file.statvfs | getTotalSize | Obtains the total space of a file system, in bytes.|
 
 **Table 2** Attributes for application space statistics
 
-| BundleStats Attribute| Description| Directory for Statistics| 
+| BundleStats Attribute| Description| Directory for Statistics|
 | -------- | -------- | -------- |
-| appSize | Size of the application installation files, in bytes.| Application installation file directory:<br>**/data/storage/el1/bundle **| 
-| cacheSize | Size of the application cache files, in bytes.| Application cache file directories:<br>**/data/storage/el1/base/cache**<br>**/data/storage/el1/base/haps/entry/cache**<br>**/data/storage/el2/base/cache**<br>**/data/storage/el2/base/haps/entry/cache **| 
-| dataSize | Size of the application files (excluding the application installation files and cache files), in bytes.| The application files include local files, distributed files, and database files.<br>- Local application file directories (parent directories of the **cache** directories):<br>**/data/storage/el1/base**<br>**/data/storage/el2/base**<br>- Distributed application directory:<br>/data/storage/el2/distributedfiles<br>- Database directories:<br>**/data/storage/el1/database**<br>**/data/storage/el2/database **| 
+| appSize | Size of the application installation files, in bytes.| /data/storage/el1/bundle |
+| cacheSize | Size of the application cache files, in bytes.| /data/storage/el1/base/cache<br>/data/storage/el1/base/haps/entry/cache<br>/data/storage/el2/base/cache<br>/data/storage/el2/base/haps/entry/cache |
+| dataSize | Size of the application files (excluding the application installation files and cache files), in bytes.| The application files include local files, distributed files, and database files.<br>- Local application file directories (parent directories of the **cache** directories):<br>**/data/storage/el1/base**<br>**/data/storage/el2/base**<br>- Distributed application directory: **/data/storage/el2/distributedfiles**<br>- Database directories:<br>**/data/storage/el1/database**<br>**/data/storage/el2/database** |
 
 ## Development Example
 
 - Obtain the free space of **/data** of the file system.
-    
+  
   ```ts
   import statvfs from '@ohos.file.statvfs';
   
@@ -40,7 +40,7 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
   ```
 
 - Obtain the space occupied by the current application.
-    
+  
   ```ts
   import storageStatistics from "@ohos.file.storageStatistics";
   

@@ -1,14 +1,14 @@
-# Backing Up and Restoring Application-triggered Data (for System Applications Only)
+# Backup and Restoration Triggered by System Applications
 
-The backup and restoration module provides a complete data backup and restoration solution for application data, user data, and system services on devices. You can implement data backup or restoration for applications by performing the following operations:
+The backup and restoration framework provides a complete data backup and restoration solution for application data, user data, and system services on devices. You can follow the procedure below to enable an application to trigger data backup or restoration:
 
-- [Obtaining the capability file](#obtaining-the-capability-file): Obtain the capability file of all applications of the system user. The capability file is indispensable for data backup and restoration.
+- [Obtain capability files](#obtaining-capability-files): Obtain capability files of all applications of the user in the system. The capability files are indispensable for data backup and restoration.
 
-- [Backing up application data](#backing-up-application-data): Select the application data to be backed up based on the application information provided by the capability file, and back up the data.
+- [Back up application data](#backing-up-application-data): Back up the application data based on the application information in the capability files.
 
-- [Restoring application data](#restoring-application-data): Select the application data to be restored based on the application information provided in the capability file and restore the data.
+- [Restore application data](#restoring-application-data): Restore the application data based on the application information in the capability files.
 
-- [Installing the application during data restoration](#installing-the-application-during-data-restoration): Install the application if the application has not been installed. As an extended function of application data restoration, this function allows the application to be installed on the device before data restoration.
+- [Install the application during data restoration](#installing-the-application-during-data-restoration): Install the application if the application with data to be restored has not been installed. As an extended function of application data restoration, this function allows the application to be installed on the device before data restoration.
 
 ## How to Develop
 
@@ -16,7 +16,7 @@ For details about the APIs to be used, see [Backup and Restoration](../reference
 
 Before using the APIs, you need to:
 
-1. Apply for the ohos.permission.BACKUP permission. For details, see [Apply for permissions](../security/accesstoken-guidelines.md).
+1. Apply for the **ohos.permission.BACKUP** permission. For details, see [Apply for Permissions](../security/accesstoken-guidelines.md).
 
 2. Import **@ohos.file.backup**.
    
@@ -24,13 +24,13 @@ Before using the APIs, you need to:
    import backup from '@ohos.file.backup';
    ```
 
-## Obtaining the Capability File
+## Obtaining Capability Files
 
-Obtain the application capability file of the current system user. This file is indispensable for application data backup and restoration.
+Obtain capability files of all applications of the current user. The capability files are indispensable for application data backup and restoration.
 
-This file contains the device type and version and basic application information, such as the application name, application data size, application version, whether to allow backup and restoration, and whether to install the application during restoration.
+The capability file of an application contains the device type, device version, and basic application information, such as the application name, application size, application version, whether to allow backup and restoration, and whether to install the application during restoration.
 
-Use **backup.getLocalCapabilities()** to obtain the capability file.
+Use **backup.getLocalCapabilities()** to obtain capability files.
 
  ```js
   import fs from '@ohos.file.fs';
@@ -79,9 +79,9 @@ Use **backup.getLocalCapabilities()** to obtain the capability file.
 
 ## Backing Up Application Data
 
-You need to select the application data to be backed up based on the application information provided by the capability file.
+You can select the application data to be backed up based on the application information in the capability files.
 
-The Backup & Restore service packages the application data into a file. The file handle is returned by the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the instance is created.
+The Backup & Restore service packages the application data to be backed up. The package file handle is returned by the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionBackup** instance is created.
 
 You can save the file to a local directory as required.
 
@@ -152,9 +152,9 @@ You can save the file to a local directory as required.
 
 ## Restoring Application Data
 
-You can select the application data to be restored based on the application information provided by the capability file.
+You can select the application data to be restored based on the application information in the capability files.
 
-During the restoration, the Backup and Restore service returns the file handle of the application data to be restored in the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the instance is created based on the [getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle) called. Then, the data to be restored is written to the file handle based on the [uri](../reference/apis/js-apis-file-backup.md#filemeta) returned. After the data is written, use [publishFile()](../reference/apis/js-apis-file-backup.md#publishfile) to notify the service that the data write is complete.
+The Backup and Restore service returns the file handle of the application data to be restored in the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionRestore** instance is created. The file handle is obtained by [getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle). Then, the data to be restored is written to the file handle based on the [uri](../reference/apis/js-apis-file-backup.md#filemeta) returned. After the data is written, use [publishFile()](../reference/apis/js-apis-file-backup.md#publishfile) to notify the service that the data write is complete.
 
 When all the data of the application is ready, the service starts to restore the application data.
 
@@ -184,7 +184,7 @@ When all the data of the application is ready, the service starts to restore the
         }
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
-        // After the data is transferred, notify the server that the file is ready.
+        // After the data is transferred, notify the server that the files are ready.
         publishFile(file);
         console.info('onFileReady success');
       },
@@ -220,11 +220,11 @@ When all the data of the application is ready, the service starts to restore the
       "com.example.hiworld",
     ]
     // You can obtain the capability file based on actual situation. The following is an example only.
-    // You can also construct a capability file as required.
+    // You can also construct capability files as required.
     let fileData = await backup.getLocalCapabilities();
     await g_session.appendBundles(fileData.fd, backupApps);
     console.info('appendBundles success');
-    // After the application to be restored is added, call getFileHandle() to obtain the handle of the application file to be restored based on the application name.
+    // After the applications to be restored are added, call getFileHandle() to obtain the handles of the application files to be restored based on the application name.
     // The number of application data files to be restored varies depending on the number of backup files. The following is only an example.
     await g_session.getFileHandle({
       bundleName: restoreApps[0],
@@ -240,11 +240,11 @@ When all the data of the application is ready, the service starts to restore the
 
 ## Installing the Application During Data Restoration
 
-You can enable the application to be installed before application data restoration. To achieve this purpose, the value of **needToInstall** in **bundleInfos** in the [capability file](#obtaining-the-capability-file) must be **true**.
+If the application has not been installed, you can install the application and then restore the application data. To achieve this purpose, the value of **needToInstall** in **bundleInfos** in the [capability file](#obtaining-capability-files) must be **true**.
 
 > **NOTE**
 > - [Application data backup](#backing-up-application-data) does not support backup of the application installation package. Therefore, you need to obtain the application installation package.
-> - To obtain the file handle of the application installation package, call [getFileHandle()](../reference/apis/js-apis-file-backup.md#getfilehandle) with **FileMeta.uri** set to **/data/storage/el2/restore/bundle.hap**. The file handle of the application installation package is returned through the **onFileReady()** callback registered when the instance is created. The returned **File.uri** is **data/storage/el2/restore/bundle.hap**.
+> - To obtain the file handle of an application installation package, call [getFileHandle()](../reference/apis/js-apis-file-backup.md#getfilehandle) with **FileMeta.uri** set to **/data/storage/el2/restore/bundle.hap**. The file handle of the application installation package is returned through the **onFileReady()** callback registered when the instance is created. The returned **File.uri** is **data/storage/el2/restore/bundle.hap**.
 
 **Example**
 
@@ -277,7 +277,7 @@ You can enable the application to be installed before application data restorati
         }
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
-        // After the data is transferred, notify the server that the file is ready.
+        // After the data is transferred, notify the server that the files are ready.
         publishFile(file);
         console.info('onFileReady success');
       },

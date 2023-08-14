@@ -1,8 +1,8 @@
 # Managing External Storage Devices (for System Applications Only)
 
-External storage devices are pluggable. OpenHarmony provides the functions of listening for the device insertion and removal events and mounting/unmounting an external storage device.
+Because external storage devices are pluggable, OpenHarmony provides functions for listening for the device insertion/removal events and mounting/unmounting an external storage device.
 
-External storage devices are managed by the StorageManager and StorageDaemon services. StorageDaemon implements the underlying listening and mount/unmount functions. StorageManager provides status change notifications, query, and management capabilities for system applications.
+External storage devices are managed by the StorageManager and StorageDaemon services. StorageDaemon implements underlying listening and mount/unmount functions. StorageManager provides status change notifications and query and management of external storage devices for system applications.
 
 **Figure 1** External storage device management 
 
@@ -10,12 +10,12 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
 
 - When an external storage device is inserted, the StorageDaemon process obtains an insertion event over netlink and creates a disk device and volume. The created volume is in the **UNMOUNTED** state.
 
-- Then, the StorageDaemon process checks the volume. During the check process, the volume is in the **CHECKING** state.
+- Then, the StorageDaemon process checks the volume. The volume transits to the **CHECKING** state.
   - The StorageDaemon process mounts the volume if the check is successful. If the mount operation is successful, the volume state changes to **MOUNTED** and StorageManager is instructed to send the COMMON_EVENT_VOLUME_MOUNTED broadcast.
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the device is directly removed, the volume information will be deleted and COMMON_EVENT_VOLUME_BAD_REMOVAL is broadcast.
+  - If the device is directly removed, the volume information is deleted and COMMON_EVENT_VOLUME_BAD_REMOVAL is broadcast.
   - If the user chooses **Eject device**, the volume state changes to **EJECTING** and the COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
 
 - For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
@@ -38,13 +38,13 @@ The following table describes the broadcast related parameters.
 
 ## How to Develop
 
-Subscribe to broadcast events to notify the insertion and removal of external storage devices. The volumes can be queried and managed based on the volume information obtained from the broadcast.
+You can subscribe to broadcast events to observe the insertion and removal of external storage devices, and query or manage volumes based on the volume information obtained from the broadcast.
 
-1. Apply for permissions.
+1. Apply for permissions.<br>
    Apply for the **ohos.permission.STORAGE_MANAGER** permission for subscribing to volume broadcast events. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Subscribe to broadcast events.
-   Subscribe to the following events:
+2. Subscribe to broadcast events.<br>
+   You can subscribe to the following events:
 
    - "usual.event.data.VOLUME_REMOVED": The device is removed.
    - "usual.event.data.VOLUME_UNMOUNTED": The volume is unmounted.
@@ -68,7 +68,7 @@ Subscribe to broadcast events to notify the insertion and removal of external st
    let subscriber = await CommonEvent.createSubscriber(subscribeInfo);
    ```
 
-3. Obtain the volume information from the broadcast.
+3. Obtain volume information from the broadcast.
 
    ```ts
    CommonEvent.subscribe(subscriber, function (err, data) {
