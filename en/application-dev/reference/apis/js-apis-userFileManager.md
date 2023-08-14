@@ -481,113 +481,6 @@ async function example() {
 }
 ```
 
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
-
-
-Obtains image and video albums. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                     |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the image and video albums obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-
-  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
-    if (fetchResult != undefined) {
-      console.info('albums.count = ' + fetchResult.getCount());
-      fetchResult.getFirstObject((err, album) => {
-        if (album != undefined) {
-          console.info('first album.albumName = ' + album.albumName);
-        } else {
-          console.error('album is undefined, err = ', err);
-        }
-      });
-    } else {
-      console.error('getPhotoAlbums fail, message = ', err);
-    }
-  });
-}
-```
-
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
-
-Obtains image and video albums. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                     |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-
-**Return value**
-
-| Type                       | Description          |
-| --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**Example**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  try {
-    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
-    console.info('album.count = ' + fetchResult.getCount());
-    const album = await fetchResult.getFirstObject();
-    console.info('first album.albumName = ' + album.albumName);
-  } catch (err) {
-    console.error('getPhotoAlbums fail, message = ' + err);
-  }
-}
-```
-
 ### createAlbum<sup>10+</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
@@ -935,11 +828,123 @@ async function example() {
 }
 ```
 
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+
+Obtains image and video albums. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the image and video albums obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+
+  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
+    if (fetchResult != undefined) {
+      console.info('albums.count = ' + fetchResult.getCount());
+      fetchResult.getFirstObject((err, album) => {
+        if (album != undefined) {
+          console.info('first album.albumName = ' + album.albumName);
+        } else {
+          console.error('album is undefined, err = ', err);
+        }
+      });
+    } else {
+      console.error('getPhotoAlbums fail, message = ', err);
+    }
+  });
+}
+```
+
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+
+Obtains image and video albums. This API uses a promise to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions = {
+    predicates: predicates
+  };
+  try {
+    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
+    console.info('album.count = ' + fetchResult.getCount());
+    const album = await fetchResult.getFirstObject();
+    console.info('first album.albumName = ' + album.albumName);
+  } catch (err) {
+    console.error('getPhotoAlbums fail, message = ' + err);
+  }
+}
+```
+
 ### getPrivateAlbum
 
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
 
 Obtains the system album. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -981,6 +986,8 @@ async function example() {
 getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
 
 Obtains the system album. This API uses a promise to return the result.
+
+This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1252,102 +1259,6 @@ async function example() {
 }
 ```
 
-### on
-
-on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
-
-Subscribes to changes of the file management library. This API uses a callback to return the result.
-
-This API will be deprecated. Use [on<sup>10+</sup>](#on10) instead.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Parameters**
-
-| Name  | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
-| callback | Callback&lt;void&gt; | Yes  | Callback that returns no value.                                                  |
-
-**Example**
-
-```ts
-async function example() {
-  console.info('onDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // Image file changed. Do something.
-  });
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  // Sleep 1s.
-  if (count > 0) {
-    console.info('onDemo success');
-  } else {
-    console.error('onDemo fail');
-  }
-  mgr.off('imageChange', () => {
-    // Unsubscription succeeds.
-  });
-}
-```
-
-### off
-
-off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
-
-Unsubscribes from changes of the file management library. This API uses a callback to return the result.
-
-This API will be deprecated. Use [off<sup>10+</sup>](#off10) instead.
-
-**System capability**: SystemCapability.FileManagement.UserFileManager.Core
-
-**Parameters**
-
-| Name  | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
-
-**Example**
-
-```ts
-async function example() {
-  console.info('offDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // Image file changed. Do something.
-  });
-
-  mgr.off('imageChange', () => {
-    // Unsubscription succeeds.
-  });
-
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  // Sleep 1s.
-  if (count == 0) {
-    console.info('offDemo success');
-  } else {
-    console.error('offDemo fail');
-  }
-}
-```
-
 ### getActivePeers
 
 getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
@@ -1427,7 +1338,7 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 | Name  | Type                             | Mandatory| Description        |
 | -------- | --------------------------------- | ---- | ------------ |
-| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the information obtained.|
+| callback | AsyncCallback&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Yes  | Callback invoked to return the peer device information obtained.|
 
 **Example**
 
@@ -1545,7 +1456,7 @@ async function example() {
 
 on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-Enables listening for the specified URI. This API uses a callback to return the result.
+Registers a listener for the specified URI.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1591,7 +1502,7 @@ async function example() {
     // File changed. Do something.
   }
   // Register onCallback1.
-  mgr.on(fileAsset.uri, false, onCallback1); 
+  mgr.on(fileAsset.uri, false, onCallback1);
   // Register onCallback2.
   mgr.on(fileAsset.uri, false, onCallback2);
 
@@ -1609,7 +1520,7 @@ async function example() {
 
  off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
-Disables listening for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use **off()** to disable the listening of the specified callbacks or all callbacks.
+Unregisters the listener for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use this API to unregister the specified callbacks or all callbacks.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1618,7 +1529,7 @@ Disables listening for the specified URI. Multiple callbacks can be registered f
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all callbacks registered for the URI will be unregistered. <br>**NOTE**: The specified callback will not be invoked.|
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all listener callbacks registered for the URI will be unregistered. <br>**NOTE**: The specified callback will not be invoked.|
 
 **Error codes**
 
@@ -1664,6 +1575,102 @@ async function example() {
       console.error('favorite failed with error:' + err);
     }
   });
+}
+```
+
+### on
+
+on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
+
+Subscribes to changes of the file management library. This API uses a callback to return the result.
+
+This API will be deprecated. Use [on<sup>10+</sup>](#on10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
+| callback | Callback&lt;void&gt; | Yes  | Callback that returns no value.                                                  |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('onDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // Image file changed. Do something.
+  });
+  try {
+    let testFileName = 'testFile' + Date.now() + '.jpg';
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  // Sleep 1s.
+  if (count > 0) {
+    console.info('onDemo success');
+  } else {
+    console.error('onDemo fail');
+  }
+  mgr.off('imageChange', () => {
+    // Unsubscription succeeds.
+  });
+}
+```
+
+### off
+
+off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
+
+Unsubscribes from changes of the file management library. This API uses a callback to return the result.
+
+This API will be deprecated. Use [off<sup>10+</sup>](#off10) instead.
+
+**System capability**: SystemCapability.FileManagement.UserFileManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('offDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // Image file changed. Do something.
+  });
+
+  mgr.off('imageChange', () => {
+    // Unsubscription succeeds.
+  });
+
+  try {
+    let testFileName = 'testFile' + Date.now() + '.jpg';
+    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  // Sleep 1s.
+  if (count == 0) {
+    console.info('offDemo success');
+  } else {
+    console.error('offDemo fail');
+  }
 }
 ```
 
@@ -1818,7 +1825,7 @@ Commits the modification on the file metadata to the database. This API uses a p
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
-**Example** 
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3488,6 +3495,8 @@ async function example() {
 
 Provides APIs for managing the system albums.
 
+This API will be discarded. Use [Album](#album) instead.
+
 ### Attributes
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3505,6 +3514,8 @@ Provides APIs for managing the system albums.
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
 Obtains image and video assets from a system album. This API uses an asynchronous callback to return the result.
+
+This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-2) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -3557,6 +3568,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 Obtains image and video assets from a system album. This API uses a promise to return the result.
 
+This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-3) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3607,6 +3620,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Deletes files from a system album.
 
+This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3651,6 +3666,8 @@ delete(uri: string): Promise&lt;void&gt;;
 
 Deletes files from a system album.
 
+This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -3689,7 +3706,7 @@ async function example() {
   }).catch((err) => {
     console.error('trashAlbum.delete failed, message = ', err);
   });
-}   
+}
 ```
 
 ### recover
@@ -3697,6 +3714,8 @@ async function example() {
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Recovers files in a system album.
+
+This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -3741,6 +3760,8 @@ async function example() {
 recover(uri: string): Promise&lt;void&gt;;
 
 Recovers files in a system album.
+
+This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.READ_AUDIO, and ohos.permission.WRITE_AUDIO
 
@@ -3890,6 +3911,8 @@ Enumerate the album subtypes.
 
 Enumerates the system album types.
 
+This API will be deprecated. Use [AlbumType](#albumtype10) and [AlbumSubType](#albumsubtype10)  instead.
+
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
 | Name   |  Value|   Description  |
@@ -3938,6 +3961,7 @@ Defines the key information about an image or video file.
 | POSITION<sup>10+</sup>  | position            | File location type.                              |
 | DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.                |
 | HIDDEN<sup>10+</sup>  | hidden            | Whether the file is hidden.                              |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
 
 ## AlbumKey
 
@@ -3962,6 +3986,7 @@ Options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subType           | [PhotoSubType](#photosubtype10) | No | Subtype of the image or video. |
+| cameraShotKey           | string | No | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
 
 ## FetchOptions
 

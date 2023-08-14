@@ -659,6 +659,20 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 **处理步骤**<br/>
 1. 检查要安装的hap或hsp是否属于当前应用。
 
+## 17700050 企业设备校验失败
+**错误信息**<br/>
+Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+
+**错误描述**<br/>
+安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
+
+**可能原因**<br/>
+1. 安装设备不是企业设备。
+
+**处理步骤**<br/>
+1. 检查安装设备是否为企业设备。
+2. 检查设备参数const.bms.allowenterprisebundle是否为true
+
 ## 17700051 应用自升级时安装的应用与调用方包名不同
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.

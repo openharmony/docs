@@ -1,10 +1,10 @@
 # @ohos.file.picker (File Picker)
 
-**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
 
 ## Modules to Import
 
@@ -138,7 +138,7 @@ async function example() {
 
 save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -177,7 +177,7 @@ async function example() {
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -213,7 +213,7 @@ async function example() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -727,7 +727,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.| 
 
 ## PhotoSaveOptions
 

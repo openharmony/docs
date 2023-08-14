@@ -732,3 +732,11 @@ try {
    ```js
    let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d"，表示中文中年月日的顺序为年-月-日。
    ```
+
+## 相关实例
+
+针对I18n开发，有以下相关实例可供参考：
+
+- [时区和语言设置（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International)
+
+- [国际化（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/International/International)
