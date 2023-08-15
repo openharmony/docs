@@ -320,11 +320,11 @@ struct MyComponent {
       }
 
       Row() {
-        Button('Click to change locally !').width(480).height(60).margin({ top: 10 })
+        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(480)
+      }.height(100).width(180)
 
       Row() {
         Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
@@ -355,7 +355,7 @@ struct MainProgram {
         MyComponent({ customCounter: this.mainCounter })
         // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
         MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-      }.width('40%')
+      }
     }
   }
 }
