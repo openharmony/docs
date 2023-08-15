@@ -76,7 +76,7 @@ Visibility verification failed.
 
 **处理步骤**
 
-请检查应用是否满足被拉起应用可见性限制。
+拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的exported配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 
 ## 16000006 不允许跨用户操作
 

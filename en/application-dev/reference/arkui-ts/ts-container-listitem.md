@@ -76,12 +76,11 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| deleteAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.|
-| onDelete | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
-| onEntryDeleteArea | () => void | No| Callback invoked each time the list item enters the delete area.|
-| onExitDeleteArea | () => void | No|Callback invoked each time the list item exits the delete area.|
+| actionAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.|
+| onAction | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
+| onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.|
+| onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.|
 | builder |  CustomBuilder | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
-| useDefaultDeleteAnimation | boolean | No|Whether to use the default delete animation.<br>Default value: **true**|
 ## ListItemOptions<sup>10+</sup>
 
 | Name | Type                                 | Mandatory| Description                                                        |
@@ -101,8 +100,9 @@ For a list in horizontal layout, it refers to the delete item displayed below (o
 | -------- | -------- |
 | onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the **\<ListItem>** changes.<br>**isSelected**: Returns **true** if the **\<ListItem>** is selected by mouse drag; returns **false** otherwise.|
 
-
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -129,6 +129,8 @@ struct ListItemExample {
 ```
 
 ![en-us_image_0000001219864159](figures/en-us_image_0000001219864159.gif)
+
+### Example 2
 
 
 ```ts
@@ -165,19 +167,18 @@ struct ListItemExample2 {
           .swipeAction({
             end: {
               builder: this.itemEnd.bind(this, item),
-              useDefaultDeleteAnimation: true,
-              onDelete: () => {
+              onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
               },
-              deleteAreaDistance: 80,
-              onEnterDeleteArea: () => {
+              actionAreaDistance: 80,
+              onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"
               },
-              onExitDeleteArea: () => {
+              onExitActionArea: () => {
                 this.enterEndDeleteAreaString = "not enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "exitEndDeleteArea"
               }
@@ -196,3 +197,43 @@ struct ListItemExample2 {
 }
 ```
 ![deleteListItem](figures/deleteListItem.gif)
+
+### Example 3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample3 {
+ private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
+ build() {
+  Column() {
+   List({ space: "4vp", initialIndex: 0 }) {
+    ListItemGroup({style:ListItemGroupStyle.CARD}){
+     ForEach(this.arr, (itemStyle,index) => {
+      ListItem({style:itemStyle}) {
+       Text(""+index)
+        .width("100%")
+        .textAlign(TextAlign.Center)
+      }
+     })
+    }
+    ForEach(this.arr, (itemStyle,index) => {
+     ListItem({style:itemStyle}) {
+      Text(""+index)
+       .width("100%")
+       .textAlign(TextAlign.Center)
+     }
+    })
+   }
+   .width('100%')
+   .multiSelectable(true)
+   .backgroundColor(0xDCDCDC) // List in light blue
+  }
+  .width('100%')
+  .padding({ top: 5 })
+ }
+}
+
+```
+![ListItemStyle](figures/listItem3.jpeg)

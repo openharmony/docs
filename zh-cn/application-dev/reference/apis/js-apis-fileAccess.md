@@ -248,7 +248,7 @@ listFile(filter?: Filter) : FileIterator
   try {
     let fileIterator = fileInfoDir.listFile();
     // 含过滤器实现的listFile
-    // let fileIterator = rootInfo.listFile(filter);
+    // let fileIterator = fileInfoDir.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
       return;
@@ -304,7 +304,7 @@ scanFile(filter?: Filter) : FileIterator;
   try {
     let fileIterator = fileInfoDir.scanFile();
     // 含过滤器实现的scanFile
-    // let fileIterator = rootInfo.scanFile(filter);
+    // let fileIterator = fileInfoDir.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
       return;
