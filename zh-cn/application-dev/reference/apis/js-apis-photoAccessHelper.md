@@ -1277,7 +1277,7 @@ async function example() {
 
 ### getPhotoIndex
 
-getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback<number>): void;
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
 
 获取相册中图片或视频的位置，使用callback方式返回结果。
 
@@ -1331,7 +1331,7 @@ async function example() {
   let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
-  let photoFetchResult = await album.getAssets(fetchOpForGetIndex);
+  let photoFetchResult = await album.getAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
   let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
@@ -1352,7 +1352,7 @@ async function example() {
 
 ### getPhotoIndex
 
-getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise<number>;
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
 
 获取相册中图片或视频的位置，使用Promise方式返回结果。
 
@@ -1406,7 +1406,7 @@ async function example() {
   let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
-  let photoFetchResult = await album.getAssets(fetchOpForGetIndex);
+  let photoFetchResult = await album.getAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
   let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
