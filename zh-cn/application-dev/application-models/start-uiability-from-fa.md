@@ -14,7 +14,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let parameter = {
     "want": {
         bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.EntryAbility"
+        abilityName: "EntryAbility"
     }
 };
 featureAbility.startAbility(parameter).then((code) => {
