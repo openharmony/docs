@@ -392,6 +392,8 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -432,6 +434,8 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses a promise to return the result.
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

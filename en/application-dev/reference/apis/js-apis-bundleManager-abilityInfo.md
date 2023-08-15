@@ -15,11 +15,11 @@ The **AbilityInfo** module defines the ability information. A system application
 | bundleName            | string                                                   | Yes  | No  | Bundle name.                           |
 | moduleName            | string                                                   | Yes  | No  | Name of the HAP file to which the ability belongs.                   |
 | name                  | string                                                   | Yes  | No  | Ability name.                              |
-| label                 | string                                                   | Yes  | No  | Ability name visible to users.                  |
+| label                 | string                                                   | Yes  | No  | Resource descriptor of the ability name visible to users. Example: **"label": "$string: mainability_description"**.                  |
 | labelId               | number                                                   | Yes  | No  | ID of the ability label.                      |
 | description           | string                                                   | Yes  | No  | Ability description.                            |
 | descriptionId         | number                                                   | Yes  | No  | ID of the ability description.                      |
-| icon                  | string                                                   | Yes  | No  | Index of the ability icon resource file.                |
+| icon                  | string                                                   | Yes  | No  | Resource descriptor of the ability icon. Example: **"icon": "$media:icon"**.                |
 | iconId                | number                                                   | Yes  | No  | ID of the ability icon.                      |
 | process               | string                                                   | Yes  | No  | Process in which the ability runs. If this parameter is not set, the bundle name is used.|
 | exported             | boolean                                                  | Yes  | No  | Whether the ability can be called by other bundles.        |
