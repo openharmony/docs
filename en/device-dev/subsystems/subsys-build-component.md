@@ -12,7 +12,7 @@ The **bundle.json** file of a component is stored in the root directory of the c
     "publishAs": "code-segment", 		                                 # HPM package release mode. The default value is code-segment.
     "segment": {										
         "destPath": ""			
-    },					                                                # Code restoration path (source code path) set when publishAs is code-segment.		
+    },					                                                 # Code restoration path (source code path) set when publishAs is code-segment.
     "dirs": {"base/sensors/sensor_lite"},	                             # Directory structure of the HPM package. This field is mandatory and can be left empty.
     "scripts": {},			                                             # Scripts to be executed. This field is mandatory and can be left empty.
     "licensePath": "COPYING",			
@@ -20,13 +20,13 @@ The **bundle.json** file of a component is stored in the root directory of the c
         "en": "README.rst"
     },
     "component": { 			                                             # Component attributes.
-        "name": "sensor_lite",			                                 # Component name.	
+        "name": "sensor_lite",			                                 # Component name.
         "subsystem": "",		                                         # Subsystem to which the component belongs.
-        "syscap": [], 				                                    # System capabilities provided by the component for applications.
+        "syscap": [], 				                                     # System capabilities provided by the component for applications.
         "features": [],                                                  # List of external configurable features of the component. Generally, this parameter corresponds to sub_component in build.
         "adapted_system_type": [],		                                 # Types of adapted systems, which can be mini, small, standard, or their combinations.
         "rom": "92KB",                                                   # Component ROM size.
-        "ram": "~200KB",                                                 # Component RAM size.      
+        "ram": "~200KB",                                                 # Component RAM size.
         "deps": {                      
         "components": [                                                  # Other components on which this component depends.
           "samgr_lite",
@@ -34,20 +34,23 @@ The **bundle.json** file of a component is stored in the root directory of the c
         ],
         "third_party": [                                                 # Third-party open-source software on which this component depends.
           "bounds_checking_function"
-        ]
+        ],
+        "hisysevent_config": []                                          # Build entry of the HiSysEvent configuration file.
       }         
-        "build": {				                                        # Build-related configurations.
+        "build": {				                                         # Build-related configurations.
             "sub_component": [
                 ""//base/sensors/sensor_lite/services:sensor_service"",  # Component build entry.
-            ],			                                                # Component build entry. Configure modules here.
-            "inner_kits": [],						                   # APIs between components.
-            "test": [] 						                           # Entry for building the component's test cases.
+            ],			                                                 # Component build entry. Configure modules here.
+            "inner_kits": [],						                     # APIs between components.
+            "test": [] 						                             # Entry for building the component's test cases.
         }
     }
  }
 ```
 
-> **CAUTION**<br>Existing components on the LiteOS are configured in the JSON file of the corresponding subsystem in the **build/lite/components** directory. The directory is named in the **{Domain}/{Subsystem}/{Component}** format. The component directory structure is as follows:
+> **CAUTION**
+>
+> Existing components on the LiteOS are configured in the JSON file of the corresponding subsystem in the **build/lite/components** directory. The directory is named in the **{Domain}/{Subsystem}/{Component}** format. The component directory structure is as follows:
 
 ```shell
 component
@@ -60,6 +63,10 @@ component
 ```
 
 You need to configure the component name, source code path, function description, mandatory or not, build target, RAM, ROM, output, adapted kernel, configurable features, and dependencies.
+
+> **NOTE**
+>
+> For details about how to use the HiSysEvent configuration file in component configuration, see [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md).
 
 When adding a component, you must add the component definition to the JSON file of the corresponding subsystem. The component configured for a product must have been defined in a subsystem. Otherwise, the verification will fail.
 
@@ -134,22 +141,55 @@ When adding a component, you must add the component definition to the JSON file 
    ```shell
    ohos_prebuilt_etc("feature3_etc") {
      source = "src/config.conf"
-     relative_install_dir = "init"    # (Optional) Relative directory for installing the module. The default installation directory is **/system/etc**.
+     relative_install_dir = "init"    # (Optional) Relative directory for installing the module. The default installation directory is /system/etc.
      part_name = "partA"
    }
    ```
 
    (d) Add the module configuration **test/examples/bundle.json** to the **bundle.json** file of the component. Each component has a **bundle.json** file in the root directory of the component. For details, see the [component bundle.json file](subsys-build-component.md#configuration-rules).
 
-2. Add the component to **//vendor/{*product_company*}/{*product_name*}/config.json**.
+2. Add the component to the product configuration file.
 
-   For example, add "subsystem_examples:partA" to the product **config.json** file. Then, **partA** will be built and packaged into the distribution.
+    Add the component to **//vendor/{*product_company*}/{*product_name*}/config.json**.
+
+    The following uses **vendor/hisilicon/hispark_taurus_standard/config.json** as an example:
+
+    ```shell
+      {
+        "product_name": "hispark_taurus_standard",
+        "device_company": "hisilicon",
+        "device_build_path": "device/board/hisilicon/hispark_taurus/linux",
+        "target_cpu": "arm",
+        "type": "standard",
+        "version": "3.0",
+        "board": "hispark_taurus",
+        "inherit": [ "productdefine/common/base/standard_system.json",
+                    "productdefine/common/inherit/ipcamera.json"
+        ],
+        "enable_ramdisk": true,
+        "subsystems": [
+          {
+            "subsystem": "subsystem_examples",                              # Subsystem to which the component belongs.
+            "components": [
+              {
+                "component": "partA",                                       # Component name.
+                "features": []                                              # Configurable features of the component.
+              }
+            ]
+          },
+        ···
+      }
+    ```
+
+    The configuration file contains information about the the product name and chip vendor. **inherit** specifies the dependent, and **subsystems** specifies the components other than the common components.
+
+    For example, add "subsystem_examples:partA" to the product **config.json** file. Then, **partA** will be built and packaged into the distribution.
 
 3. Start the build.
 
    You can start the build by using the [CLI or hb tool](subsys-build-all.md#build-commands). The following uses the CLI as an example:
 
-   You can run '--build-target componentName' to build a component separately. For example, to build the musl component of hispark_taurus_standard, run the following command:
+   You can run '**--build-target *componentName***' to build a component separately. For example, to build the musl component of hispark_taurus_standard, run the following command:
 
    ```
    ./build.sh --product-name hispark_taurus_standard --build-target musl --ccache
@@ -163,4 +203,4 @@ When adding a component, you must add the component definition to the JSON file 
 
 4. Obtain the build result.
 
-   You can obtain the generated files from the **out/hispark_taurus/** directory and the image in the **out/hispark_taurus/packages/phone/images/** directory.
+    You can obtain the generated files from the **out/hispark_taurus/** directory and the image in the **out/hispark_taurus/packages/phone/images/** directory.
