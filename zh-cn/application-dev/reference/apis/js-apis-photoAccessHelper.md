@@ -1275,6 +1275,151 @@ async function example() {
 }
 ```
 
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback<number>): void;
+
+获取相册中图片或视频的位置，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册Uri，可以为空字符串，为空字符串时默认查询全部图库资源   |
+| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项，只能填写一种检索排序方式，不填或多填均会导致接口调用不成功。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let photoFetchResult = await album.getAssets(fetchOpForGetIndex);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+    try {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    } catch (error) {
+      console.info(`getPhotoIndex failed; error: ${error}`);
+    }
+  }
+}
+```
+
+### getPhotoIndex
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise<number>;
+
+获取相册中图片或视频的位置，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册Uri，可以为空字符串，为空字符串时默认查询全部图库资源   |
+| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项，只能填写一种检索排序方式，不填或多填均会导致接口调用不成功。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoIndexDemo');
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
+  let fetchOp = {
+    fetchColumns: [],
+    predicates: predicatesForGetAsset
+  };
+  //Obtain the uri of the album
+  let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let album = await albumFetchResult.getFirstObject();
+
+  let photoFetchResult = await album.getAssets(fetchOpForGetIndex);
+  let expectIndex = 1;
+  //Obtain the uri of the second file
+  let photoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
+
+  photoAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions)
+    .then((index) => {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      }).catch((err) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    })
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
