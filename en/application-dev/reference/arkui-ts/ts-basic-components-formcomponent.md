@@ -12,10 +12,6 @@ The **FormComponent** is used to display widgets.
 
 ## Required Permissions
 
-ohos.permission.GET_BUNDLE_INFO
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
 ohos.permission.REQUIRE_FORM
 
 

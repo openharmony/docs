@@ -15,24 +15,28 @@ If an action triggers multiple events, the order of these events is fixed. By de
 
 | Name                                      | Bubbling Supported| Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse cursor enters or leaves the component.<br>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.<br>**event**: bubbling blocking of the event.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.<br>**event**: bubbling blocking of the event.|
+| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent
 
 | Name                    | Type                                    | Description                          |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
-| screenX                | number                                   | X coordinate of the cursor position relative to the upper left corner of the application window.        |
-| screenY                | number                                   | Y coordinate of the cursor position relative to the upper left corner of the application window.        |
-| x                      | number                                   | X coordinate of the cursor position relative to the upper left corner of the component being clicked.        |
-| y                      | number                                   | Y coordinate of the mouse position relative to the upper left corner of the component being clicked.        |
+| x                      | number                                   | X coordinate of the mouse pointer relative to the upper left corner of the component being clicked.        |
+| y                      | number                                   | Y coordinate of the mouse pointer relative to the upper left corner of the component being clicked.        |
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.                       |
 | action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.                     |
 | timestamp<sup>8+</sup> | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
 | source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
+| windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.|
+| windowY<sup>10+</sup> | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the application window.|
+| displayX<sup>10+</sup> | number                         | X coordinate of the mouse pointer relative to the upper left corner of the application screen.|
+| displayY<sup>10+</sup> | number                         | Y coordinate of the mouse pointer relative to the upper left corner of the application screen.|
+| screenX<sup>(deprecated)</sup> | number                 | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
+| screenY<sup>(deprecated)</sup> | number                 | Y coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
 
 ## HoverEvent<sup>10+</sup>
 
@@ -107,7 +111,7 @@ struct MouseEventExample {
           }
           this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
           '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-          '\nscreenXY=(' + event.screenX + ',' + event.screenY + ')';
+          '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
         })
       Text(this.mouseText)
     }.padding({ top: 30 }).width('100%')
