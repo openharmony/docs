@@ -75,7 +75,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取本次短时任务的剩余时间。使用callback形式返回。
+获取本次短时任务的剩余时间。使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -124,7 +124,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取本次短时任务的剩余时间。使用Promise形式返回。
+获取本次短时任务的剩余时间。使用Promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -293,7 +293,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，使用promise形式返回结果。
+申请长时任务，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -372,7 +372,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务。使用callback形式返回结果。
+取消长时任务。使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -426,7 +426,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-取消长时任务，使用promise形式返回结果。
+取消长时任务，使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -531,7 +531,7 @@ try {
 
 resetAllEfficiencyResources(): void
 
-释放全部能效资源。
+释放已申请的全部能效资源。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
