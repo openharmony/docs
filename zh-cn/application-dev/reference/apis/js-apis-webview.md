@@ -30,10 +30,10 @@ once(type: string, callback: Callback\<void\>): void
 
 **参数：**
 
-| 参数名  | 类型              | 必填 | 说明                  |
-| ------- | ---------------- | ---- | -------------------- |
-| type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| 参数名     | 类型               | 必填   | 说明                                   |
+| ------- | ---------------- | ---- | ------------------------------------ |
+| type    | string           | 是    | Web事件的类型，目前支持："webInited"（Web初始化完成）。 |
+| headers | Callback\<void\> | 是    | 所订阅的回调函数。                            |
 
 **示例：**
 
@@ -73,15 +73,15 @@ postMessageEvent(message: WebMessage): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明           |
-| ------- | ------ | ---- | :------------- |
-| message | [WebMessage](#webmessage) | 是   | 要发送的消息。 |
+| 参数名     | 类型                        | 必填   | 说明      |
+| ------- | ------------------------- | ---- | :------ |
+| message | [WebMessage](#webmessage) | 是    | 要发送的消息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
+| 错误码ID    | 错误信息                                  |
 | -------- | ------------------------------------- |
 | 17100010 | Can not post message using this port. |
 
@@ -125,16 +125,16 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | :------------------- |
-| result | [WebMessage](#webmessage) | 是   | 接收到的消息。 |
+| 参数名    | 类型                        | 必填   | 说明      |
+| ------ | ------------------------- | ---- | :------ |
+| result | [WebMessage](#webmessage) | 是    | 接收到的消息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100006 | Can not register message event using this port. |
 
 **示例：**
@@ -182,9 +182,9 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+| 名称              | 类型      | 可读   | 可写   | 说明                             |
+| --------------- | ------- | ---- | ---- | ------------------------------ |
+| isExtentionType | boolean | 是    | 否    | 创建WebMessagePort时是否指定使用扩展增强接口。 |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -196,15 +196,15 @@ postMessageEventExt(message: WebMessageExt): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明           |
-| ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](#webmessageext10) | 是   | 要发送的消息。 |
+| 参数名     | 类型                                | 必填   | 说明      |
+| ------- | --------------------------------- | ---- | :------ |
+| message | [WebMessageExt](#webmessageext10) | 是    | 要发送的消息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
+| 错误码ID    | 错误信息                                  |
 | -------- | ------------------------------------- |
 | 17100010 | Can not post message using this port. |
 
@@ -218,16 +218,16 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | :------------------- |
-| result | [WebMessageExt](#webmessageext10) | 是   | 接收到的消息。 |
+| 参数名    | 类型                                | 必填   | 说明      |
+| ------ | --------------------------------- | ---- | :------ |
+| result | [WebMessageExt](#webmessageext10) | 是    | 接收到的消息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100006 | Can not register message event using this port. |
 
 **示例：**
@@ -254,20 +254,20 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-              console.log("In eTS side send true start");
+              console.log("In ArkTS side send true start");
               if (this.nativePort) {
                   this.message.setString("helloFromEts");
                   this.nativePort.postMessageEventExt(this.message);
               }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
+        console.log("In ArkTS side message onPageEnd init mesaage channel");
         // 1. 创建消息端口
         this.ports = this.controller.createWebMessagePorts(true);
         // 2. 发送端口1到HTML5
@@ -276,10 +276,10 @@ struct WebComponent {
         this.nativePort = this.ports[0];
         // 4. 设置回调函数
         this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+            console.log("In ArkTS side got message");
             try {
                 var type = result.getType();
-                console.log("In eTS side getType:" + type);
+                console.log("In ArkTS side getType:" + type);
                 switch (type) {
                     case web_webview.WebMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
@@ -502,10 +502,10 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 **参数：**
 
-| 参数名              | 类型    | 必填   |  说明 |
-| ------------------ | ------- | ---- | ------------- |
-| secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
-| secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
+| 参数名             | 类型                                | 必填   | 说明                                       |
+| --------------- | --------------------------------- | ---- | ---------------------------------------- |
+| secureDnsMode   | [SecureDnsMode](#securednsmode10) | 是    | 使用HTTPDNS的模式。                            |
+| secureDnsConfig | string                            | 是    | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
 **示例：**
 
@@ -539,9 +539,9 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 **参数：**
 
-| 参数名              | 类型    | 必填   |  说明 |
+| 参数名                | 类型      | 必填   | 说明            |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+| webDebuggingAccess | boolean | 是    | 设置是否启用网页调试功能。 |
 
 **示例：**
 
@@ -580,20 +580,20 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 **参数：**
 
-| 参数名  | 类型             | 必填 | 说明                  |
-| ------- | ---------------- | ---- | :-------------------- |
-| url     | string \| Resource | 是   | 需要加载的 URL。      |
-| headers | Array\<[WebHeader](#webheader)> | 否   | URL的附加HTTP请求头。 |
+| 参数名     | 类型                              | 必填   | 说明             |
+| ------- | ------------------------------- | ---- | :------------- |
+| url     | string \| Resource              | 是    | 需要加载的 URL。     |
+| headers | Array\<[WebHeader](#webheader)> | 否    | URL的附加HTTP请求头。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
-| 17100003 | Invalid resource path or file type.                          |
+| 17100002 | Invalid url.                             |
+| 17100003 | Invalid resource path or file type.      |
 
 **示例：**
 
@@ -728,16 +728,16 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                                                         |
-| ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | 是   | 按照”Base64“或者”URL"编码后的一段字符串。                    |
-| mimeType   | string | 是   | 媒体类型（MIME）。                                           |
-| encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
-| historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
+| 参数名        | 类型     | 必填   | 说明                                       |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| data       | string | 是    | 按照”Base64“或者”URL"编码后的一段字符串。              |
+| mimeType   | string | 是    | 媒体类型（MIME）。                              |
+| encoding   | string | 是    | 编码类型，具体为“Base64"或者”URL编码。                |
+| baseUrl    | string | 否    | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| historyUrl | string | 否    | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
-> 
+>
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 
@@ -745,10 +745,10 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | Invalid url.                             |
 
 **示例：**
 
@@ -818,16 +818,16 @@ accessForward(): boolean
 
 **返回值：**
 
-| 类型    | 说明                              |
-| ------- | --------------------------------- |
+| 类型      | 说明                    |
+| ------- | --------------------- |
 | boolean | 可以前进返回true，否则返回false。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -870,8 +870,8 @@ forward(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -911,16 +911,16 @@ accessBackward(): boolean
 
 **返回值：**
 
-| 类型    | 说明                             |
-| ------- | -------------------------------- |
+| 类型      | 说明                    |
+| ------- | --------------------- |
 | boolean | 可以后退返回true,否则返回false。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -963,8 +963,8 @@ backward(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1006,8 +1006,8 @@ onActive(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1049,8 +1049,8 @@ onInactive(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1091,8 +1091,8 @@ refresh(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1132,22 +1132,22 @@ accessStep(step: number): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                                   |
-| ------ | -------- | ---- | ------------------------------------------ |
-| step   | number   | 是   | 要跳转的步数，正数代表前进，负数代表后退。 |
+| 参数名  | 类型     | 必填   | 说明                    |
+| ---- | ------ | ---- | --------------------- |
+| step | number | 是    | 要跳转的步数，正数代表前进，负数代表后退。 |
 
 **返回值：**
 
-| 类型    | 说明               |
-| ------- | ------------------ |
+| 类型      | 说明        |
+| ------- | --------- |
 | boolean | 页面是否前进或后退 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1191,8 +1191,8 @@ clearHistory(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1232,16 +1232,16 @@ getHitTest(): WebHitTestType
 
 **返回值：**
 
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [WebHitTestType](#webhittesttype)| 被点击区域的元素类型。 |
+| 类型                                | 说明          |
+| --------------------------------- | ----------- |
+| [WebHitTestType](#webhittesttype) | 被点击区域的元素类型。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1282,18 +1282,18 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 **参数：**
 
-| 参数名     | 类型       | 必填 | 说明                                        |
-| ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | 是   | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
-| name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
-| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
+| 参数名        | 类型             | 必填   | 说明                                       |
+| ---------- | -------------- | ---- | ---------------------------------------- |
+| object     | object         | 是    | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| name       | string         | 是    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
+| methodList | Array\<string> | 是    | 参与注册的应用侧JavaScript对象的方法。                 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1370,17 +1370,17 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| script   | string                   | 是   | JavaScript脚本。                                             |
-| callback | AsyncCallback\<string> | 是   | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| script   | string                 | 是    | JavaScript脚本。                            |
+| callback | AsyncCallback\<string> | 是    | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1451,22 +1451,22 @@ runJavaScript(script: string): Promise\<string>
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明         |
-| ------ | -------- | ---- | ---------------- |
-| script | string   | 是   | JavaScript脚本。 |
+| 参数名    | 类型     | 必填   | 说明            |
+| ------ | ------ | ---- | ------------- |
+| script | string | 是    | JavaScript脚本。 |
 
 **返回值：**
 
-| 类型            | 说明                                                |
-| --------------- | --------------------------------------------------- |
+| 类型               | 说明                              |
+| ---------------- | ------------------------------- |
 | Promise\<string> | Promise实例，返回脚本执行的结果，执行失败返回null。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1531,17 +1531,17 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                         |
-| -------- | -------------------- | ---- | ---------------------------- |
-| script   | string                   | 是   | JavaScript脚本。                                             |
-| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
+| 参数名      | 类型                                       | 必填   | 说明                  |
+| -------- | ---------------------------------------- | ---- | ------------------- |
+| script   | string                                   | 是    | JavaScript脚本。       |
+| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是    | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1647,22 +1647,22 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明         |
-| ------ | -------- | ---- | ---------------- |
-| script | string   | 是   | JavaScript脚本。 |
+| 参数名    | 类型     | 必填   | 说明            |
+| ------ | ------ | ---- | ------------- |
+| script | string | 是    | JavaScript脚本。 |
 
 **返回值：**
 
-| 类型            | 说明                                                |
-| --------------- | --------------------------------------------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | Promise\<[JsMessageExt](#jsmessageext10)> | Promise实例，返回脚本执行的结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1762,18 +1762,18 @@ deleteJavaScriptRegister(name: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明  |
-| ------ | -------- | ---- | ---- |
-| name   | string   | 是   | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| name | string | 是    | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100008 | Cannot delete JavaScriptProxy.                               |
+| 17100008 | Cannot delete JavaScriptProxy.           |
 
 **示例：**
 
@@ -1813,18 +1813,18 @@ zoom(factor: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| factor | number | 是    | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **示例：**
 
@@ -1864,16 +1864,16 @@ searchAllAsync(searchString: string): void
 
 **参数：**
 
-| 参数名       | 类型 | 必填 | 说明       |
-| ------------ | -------- | ---- | -------------- |
-| searchString | string   | 是   | 查找的关键字。 |
+| 参数名          | 类型     | 必填   | 说明      |
+| ------------ | ------ | ---- | ------- |
+| searchString | string | 是    | 查找的关键字。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1920,8 +1920,8 @@ clearMatches(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -1961,16 +1961,16 @@ searchNext(forward: boolean): void
 
 **参数：**
 
-| 参数名  | 类型 | 必填 | 说明               |
-| ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找。 |
+| 参数名     | 类型      | 必填   | 说明          |
+| ------- | ------- | ---- | ----------- |
+| forward | boolean | 是    | 从前向后或者逆向查找。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -2012,8 +2012,8 @@ clearSslCache(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -2055,8 +2055,8 @@ clearClientAuthenticationCache(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -2096,22 +2096,22 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                             |
-| ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
+| 参数名                           | 类型      | 必填   | 说明                                       |
+| ----------------------------- | ------- | ---- | :--------------------------------------- |
+| isExtentionType<sup>10+</sup> | boolean | 否    | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。 |
 
 **返回值：**
 
-| 类型                   | 说明              |
-| ---------------------- | ----------------- |
+| 类型                     | 说明         |
+| ---------------------- | ---------- |
 | Array\<WebMessagePort> | web消息端口列表。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2153,18 +2153,18 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                             |
-| ------ | ---------------------- | ---- | :------------------------------- |
-| name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
-| uri    | string                 | 是   | 接收该消息的URI。                |
+| 参数名   | 类型                     | 必填   | 说明         |
+| ----- | ---------------------- | ---- | :--------- |
+| name  | string                 | 是    | 要发送的消息名称。  |
+| ports | Array\<WebMessagePort> | 是    | 要发送的消息端口。  |
+| uri   | string                 | 是    | 接收该消息的URI。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2315,8 +2315,8 @@ requestFocus(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2358,10 +2358,10 @@ zoomIn(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **示例：**
 
@@ -2402,10 +2402,10 @@ zoomOut(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enable.                     |
 
 **示例：**
 
@@ -2444,16 +2444,16 @@ getHitTestValue(): HitTestValue
 
 **返回值：**
 
-| 类型         | 说明                 |
-| ------------ | -------------------- |
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
 | [HitTestValue](#hittestvalue) | 点击区域的元素信息。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2495,16 +2495,16 @@ getWebId(): number
 
 **返回值：**
 
-| 类型   | 说明                  |
-| ------ | --------------------- |
+| 类型     | 说明           |
+| ------ | ------------ |
 | number | 当前Web组件的索引值。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2545,16 +2545,16 @@ getUserAgent(): string
 
 **返回值：**
 
-| 类型   | 说明           |
-| ------ | -------------- |
+| 类型     | 说明      |
+| ------ | ------- |
 | string | 默认用户代理。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2626,16 +2626,16 @@ getTitle(): string
 
 **返回值：**
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
+| 类型     | 说明       |
+| ------ | -------- |
 | string | 当前网页的标题。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例:**
@@ -2676,16 +2676,16 @@ getPageHeight(): number
 
 **返回值：**
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | number | 当前网页的页面高度。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例:**
@@ -2726,20 +2726,20 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **参数：**
 
-| 参数名   | 类型              | 必填 | 说明                                                         |
-| -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
-| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| baseName | string                 | 是    | 文件存储路径，该值不能为空。                           |
+| autoName | boolean                | 是    | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保存网页失败会返回null。                  |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100003 | Invalid resource path or file type.                          |
+| 17100003 | Invalid resource path or file type.      |
 
 **示例：**
 
@@ -2786,25 +2786,25 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **参数：**
 
-| 参数名   | 类型 | 必填 | 说明                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean  | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| 参数名      | 类型      | 必填   | 说明                                       |
+| -------- | ------- | ---- | ---------------------------------------- |
+| baseName | string  | 是    | 文件存储路径，该值不能为空。                           |
+| autoName | boolean | 是    | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
 
 **返回值：**
 
-| 类型            | 说明                                                  |
-| --------------- | ----------------------------------------------------- |
+| 类型               | 说明                               |
+| ---------------- | -------------------------------- |
 | Promise\<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100003 | Invalid resource path or file type.                          |
+| 17100003 | Invalid resource path or file type.      |
 
 **示例：**
 
@@ -2851,16 +2851,16 @@ getUrl(): string
 
 **返回值：**
 
-| 类型   | 说明                |
-| ------ | ------------------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | string | 当前页面的url地址。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2903,8 +2903,8 @@ stop(): void
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2946,16 +2946,16 @@ backOrForward(step: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | -------- | ---- | ---------------------- |
-| step   | number   | 是   | 需要前进或后退的步长。 |
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| step | number | 是    | 需要前进或后退的步长。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2996,17 +2996,17 @@ scrollTo(x:number, y:number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | -------- | ---- | ---------------------- |
-| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。 |
-| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。|
+| 参数名  | 类型     | 必填   | 说明                           |
+| ---- | ------ | ---- | ---------------------------- |
+| x    | number | 是    | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。 |
+| y    | number | 是    | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3069,17 +3069,17 @@ scrollBy(deltaX:number, deltaY:number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| 参数名    | 类型     | 必填   | 说明                |
+| ------ | ------ | ---- | ----------------- |
+| deltaX | number | 是    | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number | 是    | 垂直偏移量，其中垂直向下为正方向。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3142,17 +3142,17 @@ slideScroll(vx:number, vy:number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | -------- | ---- | ---------------------- |
-| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。 |
-| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。 |
+| 参数名  | 类型     | 必填   | 说明                        |
+| ---- | ------ | ---- | ------------------------- |
+| vx   | number | 是    | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。 |
+| vy   | number | 是    | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3215,16 +3215,16 @@ getOriginalUrl(): string
 
 **返回值：**
 
-| 类型   | 说明                    |
-| ------ | ----------------------- |
+| 类型     | 说明            |
+| ------ | ------------- |
 | string | 当前页面的原始url地址。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3265,16 +3265,16 @@ getFavicon(): image.PixelMap
 
 **返回值：**
 
-| 类型                                   | 说明                            |
-| -------------------------------------- | ------------------------------- |
+| 类型                                     | 说明                      |
+| -------------------------------------- | ----------------------- |
 | [PixelMap](js-apis-image.md#pixelmap7) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3315,16 +3315,16 @@ setNetworkAvailable(enable: boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                              |
-| ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| 参数名    | 类型      | 必填   | 说明                           |
+| ------ | ------- | ---- | ---------------------------- |
+| enable | boolean | 是    | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3364,16 +3364,16 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                       |
-| -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+| 参数名      | 类型                      | 必填   | 说明            |
+| -------- | ----------------------- | ---- | ------------- |
+| callback | AsyncCallback\<boolean> | 是    | 返回查找页面是否存在图像。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -3419,16 +3419,16 @@ hasImage(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                    |
-| ----------------- | --------------------------------------- |
+| 类型                | 说明                      |
+| ----------------- | ----------------------- |
 | Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -3473,16 +3473,16 @@ removeCache(clearRom: boolean): void
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                                                     |
-| -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | 是   | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
+| 参数名      | 类型      | 必填   | 说明                                       |
+| -------- | ------- | ---- | ---------------------------------------- |
+| clearRom | boolean | 是    | 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3522,16 +3522,16 @@ pageUp(top:boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| top    | boolean | 是   | 是否跳转到页面最顶部，设置为false时将页面内容向上滚动半个视框大小，设置为true时跳转到页面最顶部。 |
+| 参数名  | 类型      | 必填   | 说明                                       |
+| ---- | ------- | ---- | ---------------------------------------- |
+| top  | boolean | 是    | 是否跳转到页面最顶部，设置为false时将页面内容向上滚动半个视框大小，设置为true时跳转到页面最顶部。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3571,16 +3571,16 @@ pageDown(bottom:boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| bottom | boolean | 是   | 是否跳转到页面最底部，设置为false时将页面内容向下滚动半个视框大小，设置为true时跳转到页面最底部。 |
+| 参数名    | 类型      | 必填   | 说明                                       |
+| ------ | ------- | ---- | ---------------------------------------- |
+| bottom | boolean | 是    | 是否跳转到页面最底部，设置为false时将页面内容向下滚动半个视框大小，设置为true时跳转到页面最底部。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3620,16 +3620,16 @@ getBackForwardEntries(): BackForwardList
 
 **返回值：**
 
-| 类型                                | 说明                        |
-| ----------------------------------- | --------------------------- |
+| 类型                                  | 说明                |
+| ----------------------------------- | ----------------- |
 | [BackForwardList](#backforwardlist) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3669,16 +3669,16 @@ serializeWebState(): Uint8Array
 
 **返回值：**
 
-| 类型       | 说明                                          |
-| ---------- | --------------------------------------------- |
+| 类型         | 说明                         |
+| ---------- | -------------------------- |
 | Uint8Array | 当前Webview的页面状态历史记录序列化后的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3742,16 +3742,16 @@ restoreWebState(state: Uint8Array): void
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                         |
-| ------ | ---------- | ---- | ---------------------------- |
-| state  | Uint8Array | 是   | 页面状态历史记录序列化数据。 |
+| 参数名   | 类型         | 必填   | 说明             |
+| ----- | ---------- | ---- | -------------- |
+| state | Uint8Array | 是    | 页面状态历史记录序列化数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3824,9 +3824,9 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                      |
-| -------- | ------- | ---- | -------------------------------------- |
-| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | 是   | 自定义协议配置，最多支持同时配置10个自定义协议。 |
+| 参数名     | 类型                                       | 必填   | 说明                        |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | 是    | 自定义协议配置，最多支持同时配置10个自定义协议。 |
 
 **示例：**
 
@@ -3873,16 +3873,16 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 
 **返回值：**
 
-| 类型       | 说明                                          |
-| ---------- | --------------------------------------------- |
+| 类型                            | 说明                                     |
+| ----------------------------- | -------------------------------------- |
 | Promise<Array<cert.X509Cert>> | Promise实例，用于获取当前加载的https网站的X509格式证书数组。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -4030,16 +4030,16 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明                                     |
-| -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<Array<cert.X509Cert>> | 是   | 通过AsyncCallback异步返回当前网站的X509格式证书。 |
+| 参数名      | 类型                                  | 必填   | 说明                                |
+| -------- | ----------------------------------- | ---- | --------------------------------- |
+| callback | AsyncCallback<Array<cert.X509Cert>> | 是    | 通过AsyncCallback异步返回当前网站的X509格式证书。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
 
 **示例：**
@@ -4187,16 +4187,16 @@ setAudioMuted(mute: boolean): void
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                      |
-| -------- | ------- | ---- | -------------------------------------- |
-| mute | boolean | 是   | 表示是否将网页设置为静音状态，true表示设置为静音状态，false表示取消静音状态。 |
+| 参数名  | 类型      | 必填   | 说明                                       |
+| ---- | ------- | ---- | ---------------------------------------- |
+| mute | boolean | 是    | 表示是否将网页设置为静音状态，true表示设置为静音状态，false表示取消静音状态。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -4233,19 +4233,19 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **参数：**
 
-| 参数名             | 类型                             | 必填  | 说明                      |                            
-| ------------------| --------------------------------| ---- | ------------- |
-| url               | string                          | 是    | 预加载的url。|
-| additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
+| 参数名               | 类型                              | 必填   | 说明             |
+| ----------------- | ------------------------------- | ---- | -------------- |
+| url               | string                          | 是    | 预加载的url。       |
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
 
-| 错误码ID  | 错误信息                                                      |
-| -------- | ------------------------------------------------------------ |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | Invalid url.                             |
 
 **示例：**
 
@@ -4286,20 +4286,20 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **参数：**
 
-| 参数名          | 类型    |  必填  | 说明                                            |
-| ---------------| ------- | ---- | ------------- |
-| url            | string  | 是   | 预连接的url。|
-| preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
-| numSockets     | number  | 是   | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。|
+| 参数名            | 类型      | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| url            | string  | 是    | 预连接的url。                                 |
+| preconnectable | boolean | 是    | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。 |
+| numSockets     | number  | 是    | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。   |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
 
-| 错误码ID  | 错误信息                                                      |
-| -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 错误码ID     | 错误信息                                     |
+| --------- | ---------------------------------------- |
+| 17100002  | Invalid url.                             |
+| 171000013 | The number of preconnect sockets is invalid. |
 
 **示例：**
 
@@ -4338,23 +4338,23 @@ static getCookie(url: string): string
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                      |
-| ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| 参数名  | 类型     | 必填   | 说明                           |
+| ---- | ------ | ---- | :--------------------------- |
+| url  | string | 是    | 要获取的cookie所属的url，建议使用完整的url。 |
 
 **返回值：**
 
-| 类型   | 说明                      |
-| ------ | ------------------------- |
+| 类型     | 说明                |
+| ------ | ----------------- |
 | string | 指定url对应的cookie的值。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 错误码ID    | 错误信息         |
+| -------- | ------------ |
+| 17100002 | Invalid url. |
 
 **示例：**
 
@@ -4394,19 +4394,19 @@ static setCookie(url: string, value: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                      |
-| ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
-| value  | string | 是   | 要设置的cookie的值。      |
+| 参数名   | 类型     | 必填   | 说明                           |
+| ----- | ------ | ---- | :--------------------------- |
+| url   | string | 是    | 要设置的cookie所属的url，建议使用完整的url。 |
+| value | string | 是    | 要设置的cookie的值。                |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
-| 17100005 | Invalid cookie value.                                  |
+| 错误码ID    | 错误信息                  |
+| -------- | --------------------- |
+| 17100002 | Invalid url.          |
+| 17100005 | Invalid cookie value. |
 
 **示例：**
 
@@ -4445,9 +4445,9 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                               |
-| -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
+| 参数名      | 类型                   | 必填   | 说明                           |
+| -------- | -------------------- | ---- | :--------------------------- |
+| callback | AsyncCallback\<void> | 是    | callback回调，用于获取cookie是否成功保存。 |
 
 **示例：**
 
@@ -4490,8 +4490,8 @@ static saveCookieAsync(): Promise\<void>
 
 **返回值：**
 
-| 类型             | 说明                                      |
-| ---------------- | ----------------------------------------- |
+| 类型             | 说明                          |
+| -------------- | --------------------------- |
 | Promise\<void> | Promise实例，用于获取cookie是否成功保存。 |
 
 **示例：**
@@ -4537,9 +4537,9 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                 |
-| ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限。 |
+| 参数名    | 类型      | 必填   | 说明                    |
+| ------ | ------- | ---- | :-------------------- |
+| accept | boolean | 是    | 设置是否拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -4578,8 +4578,8 @@ static isCookieAllowed(): boolean
 
 **返回值：**
 
-| 类型    | 说明                             |
-| ------- | -------------------------------- |
+| 类型      | 说明                          |
+| ------- | --------------------------- |
 | boolean | 是否拥有发送和接收cookie的权限，默认为true。 |
 
 **示例：**
@@ -4616,9 +4616,9 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                       |
-| ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。 |
+| 参数名    | 类型      | 必填   | 说明                       |
+| ------ | ------- | ---- | :----------------------- |
+| accept | boolean | 是    | 设置是否拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -4657,8 +4657,8 @@ static isThirdPartyCookieAllowed(): boolean
 
 **返回值：**
 
-| 类型    | 说明                                   |
-| ------- | -------------------------------------- |
+| 类型      | 说明                              |
+| ------- | ------------------------------- |
 | boolean | 是否拥有发送和接收第三方cookie的权限，默认为false。 |
 
 **示例：**
@@ -4695,8 +4695,8 @@ static existCookie(): boolean
 
 **返回值：**
 
-| 类型    | 说明                                   |
-| ------- | -------------------------------------- |
+| 类型      | 说明                     |
+| ------- | ---------------------- |
 | boolean | 是否拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
@@ -4803,17 +4803,17 @@ static deleteOrigin(origin : string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                     |
-| ------ | ------ | ---- | ------------------------ |
-| origin | string | 是   | 指定源的字符串索引，来自于[getOrigins](#getorigins)。 |
+| 参数名    | 类型     | 必填   | 说明                                      |
+| ------ | ------ | ---- | --------------------------------------- |
+| origin | string | 是    | 指定源的字符串索引，来自于[getOrigins](#getorigins)。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -4855,17 +4855,17 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                                                   |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | 是   | 以数组方式返回源的信息，信息内容参考[WebStorageOrigin](#webstorageorigin)。 |
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | 是    | 以数组方式返回源的信息，信息内容参考[WebStorageOrigin](#webstorageorigin)。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100012 | Invalid web storage origin.                             |
+| 错误码ID    | 错误信息                        |
+| -------- | --------------------------- |
+| 17100012 | Invalid web storage origin. |
 
 **示例：**
 
@@ -4916,17 +4916,17 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 **返回值：**
 
-| 类型                             | 说明                                                         |
-| -------------------------------- | ------------------------------------------------------------ |
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
 | Promise\<Array\<[WebStorageOrigin](#webstorageorigin)>> | Promise实例，用于获取当前所有源的信息，信息内容参考[WebStorageOrigin](#webstorageorigin)。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100012 | Invalid web storage origin.                             |
+| 错误码ID    | 错误信息                        |
+| -------- | --------------------------- |
+| 17100012 | Invalid web storage origin. |
 
 **示例：**
 
@@ -4977,18 +4977,18 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
+| 参数名      | 类型                     | 必填   | 说明        |
+| -------- | ---------------------- | ---- | --------- |
+| origin   | string                 | 是    | 指定源的字符串索引 |
+| callback | AsyncCallback\<number> | 是    | 指定源的存储配额  |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5036,23 +5036,23 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| origin | string | 是   | 指定源的字符串索引 |
+| 参数名    | 类型     | 必填   | 说明        |
+| ------ | ------ | ---- | --------- |
+| origin | string | 是    | 指定源的字符串索引 |
 
 **返回值：**
 
-| 类型            | 说明                                    |
-| --------------- | --------------------------------------- |
+| 类型               | 说明                      |
+| ---------------- | ----------------------- |
 | Promise\<number> | Promise实例，用于获取指定源的存储配额。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5100,18 +5100,18 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储量。   |
+| 参数名      | 类型                     | 必填   | 说明        |
+| -------- | ---------------------- | ---- | --------- |
+| origin   | string                 | 是    | 指定源的字符串索引 |
+| callback | AsyncCallback\<number> | 是    | 指定源的存储量。  |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5159,23 +5159,23 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| origin | string | 是   | 指定源的字符串索引 |
+| 参数名    | 类型     | 必填   | 说明        |
+| ------ | ------ | ---- | --------- |
+| origin | string | 是    | 指定源的字符串索引 |
 
 **返回值：**
 
-| 类型            | 说明                                  |
-| --------------- | ------------------------------------- |
+| 类型               | 说明                     |
+| ---------------- | ---------------------- |
 | Promise\<number> | Promise实例，用于获取指定源的存储量。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                              |
-| -------- | ----------------------------------------------------- |
-| 17100011 | Invalid origin.                            |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5267,15 +5267,15 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                         |
-| ------ | ------ | ---- | ---------------------------- |
-| host   | string | 是   | HTTP身份验证凭据应用的主机。 |
-| realm  | string | 是   | HTTP身份验证凭据应用的域。   |
+| 参数名   | 类型     | 必填   | 说明               |
+| ----- | ------ | ---- | ---------------- |
+| host  | string | 是    | HTTP身份验证凭据应用的主机。 |
+| realm | string | 是    | HTTP身份验证凭据应用的域。  |
 
 **返回值：**
 
-| 类型  | 说明                                         |
-| ----- | -------------------------------------------- |
+| 类型             | 说明                     |
+| -------------- | ---------------------- |
 | Array\<string> | 包含用户名和密码的组数，检索失败返回空数组。 |
 
 **示例：**
@@ -5319,12 +5319,12 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                         |
-| -------- | ------ | ---- | ---------------------------- |
-| host     | string | 是   | HTTP身份验证凭据应用的主机。 |
-| realm    | string | 是   | HTTP身份验证凭据应用的域。   |
-| username | string | 是   | 用户名。                     |
-| password | string | 是   | 密码。                       |
+| 参数名      | 类型     | 必填   | 说明               |
+| -------- | ------ | ---- | ---------------- |
+| host     | string | 是    | HTTP身份验证凭据应用的主机。 |
+| realm    | string | 是    | HTTP身份验证凭据应用的域。  |
+| username | string | 是    | 用户名。             |
+| password | string | 是    | 密码。              |
 
 **示例：**
 
@@ -5365,8 +5365,8 @@ static existHttpAuthCredentials(): boolean
 
 **返回值：**
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
 | boolean | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
 
 **示例：**
@@ -5453,17 +5453,17 @@ static allowGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| origin | string | 是   |指定源的字符串索引 |
+| 参数名    | 类型     | 必填   | 说明        |
+| ------ | ------ | ---- | --------- |
+| origin | string | 是    | 指定源的字符串索引 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5503,17 +5503,17 @@ static deleteGeolocation(origin: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| origin | string | 是   | 指定源的字符串索引 |
+| 参数名    | 类型     | 必填   | 说明        |
+| ------ | ------ | ---- | --------- |
+| origin | string | 是    | 指定源的字符串索引 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5553,18 +5553,18 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| origin   | string                 | 是   | 指定源的字符串索引                                           |
-| callback | AsyncCallback\<boolean> | 是   | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
+| 参数名      | 类型                      | 必填   | 说明                                       |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| origin   | string                  | 是    | 指定源的字符串索引                                |
+| callback | AsyncCallback\<boolean> | 是    | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5610,23 +5610,23 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明             |
-| ------ | -------- | ---- | -------------------- |
-| origin | string   | 是   | 指定源的字符串索引。 |
+| 参数名    | 类型     | 必填   | 说明         |
+| ------ | ------ | ---- | ---------- |
+| origin | string | 是    | 指定源的字符串索引。 |
 
 **返回值：**
 
-| 类型             | 说明                                                         |
-| ---------------- | ------------------------------------------------------------ |
+| 类型                | 说明                                       |
+| ----------------- | ---------------------------------------- |
 | Promise\<boolean> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100011 | Invalid origin.                             |
+| 错误码ID    | 错误信息            |
+| -------- | --------------- |
+| 17100011 | Invalid origin. |
 
 **示例：**
 
@@ -5671,9 +5671,9 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明                                     |
-| -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<Array\<string>> | 是   | 返回已存储地理位置权限状态的所有源信息。 |
+| 参数名      | 类型                             | 必填   | 说明                   |
+| -------- | ------------------------------ | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<string>> | 是    | 返回已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
 
@@ -5719,8 +5719,8 @@ static getStoredGeolocation(): Promise\<Array\<string>>
 
 **返回值：**
 
-| 类型                   | 说明                                                      |
-| ---------------------- | --------------------------------------------------------- |
+| 类型                       | 说明                               |
+| ------------------------ | -------------------------------- |
 | Promise\<Array\<string>> | Promise实例，用于获取已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
@@ -5795,25 +5795,25 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
-| ----------- | ------ | -----|------|------------------- |
-| headerKey   | string | 是 | 是 | 请求/响应头的key。   |
-| headerValue | string | 是 | 是 | 请求/响应头的value。 |
+| 名称          | 类型     | 可读   | 可写   | 说明            |
+| ----------- | ------ | ---- | ---- | ------------- |
+| headerKey   | string | 是    | 是    | 请求/响应头的key。   |
+| headerValue | string | 是    | 是    | 请求/响应头的value。 |
 
 ## WebHitTestType
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 值 | 说明                                      |
-| ------------- | -- |----------------------------------------- |
-| EditText      | 0 |可编辑的区域。                            |
-| Email         | 1 |电子邮件地址。                            |
-| HttpAnchor    | 2 |超链接，其src为http。                     |
-| HttpAnchorImg | 3 |带有超链接的图片，其中超链接的src为http。 |
-| Img           | 4 |HTML::img标签。                           |
-| Map           | 5 |地理地址。                                |
-| Phone         | 6 |电话号码。                                |
-| Unknown       | 7 |未知内容。                                |
+| 名称            | 值    | 说明                       |
+| ------------- | ---- | ------------------------ |
+| EditText      | 0    | 可编辑的区域。                  |
+| Email         | 1    | 电子邮件地址。                  |
+| HttpAnchor    | 2    | 超链接，其src为http。           |
+| HttpAnchorImg | 3    | 带有超链接的图片，其中超链接的src为http。 |
+| Img           | 4    | HTML::img标签。             |
+| Map           | 5    | 地理地址。                    |
+| Phone         | 6    | 电话号码。                    |
+| Unknown       | 7    | 未知内容。                    |
 
 ##  HitTestValue
 
@@ -5821,10 +5821,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明|
-| ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| 名称    | 类型                                | 可读   | 可写   | 说明                                       |
+| ----- | --------------------------------- | ---- | ---- | ---------------------------------------- |
+| type  | [WebHitTestType](#webhittesttype) | 是    | 否    | 当前被点击区域的元素类型。                            |
+| extra | string                            | 是    | 否    | 点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -5832,10 +5832,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 类型       | 说明                                     |
-| -------- | -------------------------------------- |
-| string   | 字符串类型数据。 |
-| ArrayBuffer   | 二进制类型数据。 |
+| 类型          | 说明       |
+| ----------- | -------- |
+| string      | 字符串类型数据。 |
+| ArrayBuffer | 二进制类型数据。 |
 
 ## JsMessageType<sup>10+</sup>
 
@@ -5843,14 +5843,14 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 值 | 说明                              |
-| ------------ | -- |--------------------------------- |
-| NOT_SUPPORT  | 0 |不支持的数据类型。|
-| STRING       | 1 |字符串类型。|
-| NUMBER       | 2 |数值类型。|
-| BOOLEAN      | 3 |布尔类型。|
-| ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
-| ARRAY        | 5 |数组类型|
+| 名称           | 值    | 说明          |
+| ------------ | ---- | ----------- |
+| NOT_SUPPORT  | 0    | 不支持的数据类型。   |
+| STRING       | 1    | 字符串类型。      |
+| NUMBER       | 2    | 数值类型。       |
+| BOOLEAN      | 3    | 布尔类型。       |
+| ARRAY_BUFFER | 4    | 原始二进制数据缓冲区。 |
+| ARRAY        | 5    | 数组类型        |
 
 ## WebMessageType<sup>10+</sup>
 
@@ -5858,15 +5858,15 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 值 | 说明                            |
-| ------------ | -- |------------------------------- |
-| NOT_SUPPORT  | 0 |不支持的数据类型。|
-| STRING       | 1 |字符串类型。|
-| NUMBER       | 2 |数值类型。|
-| BOOLEAN      | 3 |布尔类型。|
-| ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
-| ARRAY        | 5 |数组类型。|
-| ERROR        | 6 |错误类型。|
+| 名称           | 值    | 说明          |
+| ------------ | ---- | ----------- |
+| NOT_SUPPORT  | 0    | 不支持的数据类型。   |
+| STRING       | 1    | 字符串类型。      |
+| NUMBER       | 2    | 数值类型。       |
+| BOOLEAN      | 3    | 布尔类型。       |
+| ARRAY_BUFFER | 4    | 原始二进制数据缓冲区。 |
+| ARRAY        | 5    | 数组类型。       |
+| ERROR        | 6    | 错误类型。       |
 
 ## JsMessageExt<sup>10+</sup>
 
@@ -5882,8 +5882,8 @@ getType(): JsMessageType
 
 **返回值：**
 
-| 类型           | 说明                                                      |
-| --------------| --------------------------------------------------------- |
+| 类型                                | 说明                                       |
+| --------------------------------- | ---------------------------------------- |
 | [JsMessageType](#jsmessagetype10) | [runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
 
 ### getString<sup>10+</sup>
@@ -5896,16 +5896,16 @@ getString(): string
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | string | 返回字符串类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
 ### getNumber<sup>10+</sup>
@@ -5918,16 +5918,16 @@ getNumber(): number
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | number | 返回数值类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
 ### getBoolean<sup>10+</sup>
@@ -5940,16 +5940,16 @@ getBoolean(): boolean
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型      | 说明         |
+| ------- | ---------- |
 | boolean | 返回布尔类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
 ### getArrayBuffer<sup>10+</sup>
@@ -5961,16 +5961,16 @@ getArrayBuffer(): ArrayBuffer
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型          | 说明         |
+| ----------- | ---------- |
 | ArrayBuffer | 返回原始二进制数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
 ### getArray<sup>10+</sup>
@@ -5983,16 +5983,16 @@ getArray(): Array\<string | number | boolean\>
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| 类型            | 说明     |
+| ------------- | ------ |
+| Array\<string | number |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the result. |
 
 ## WebMessageExt<sup>10+</sup>
@@ -6009,8 +6009,8 @@ getType(): WebMessageType
 
 **返回值：**
 
-| 类型           | 说明                                                      |
-| --------------| --------------------------------------------------------- |
+| 类型                                  | 说明                                       |
+| ----------------------------------- | ---------------------------------------- |
 | [WebMessageType](#webmessagetype10) | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
 
 ### getString<sup>10+</sup>
@@ -6023,16 +6023,16 @@ getString(): string
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | string | 返回字符串类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### getNumber<sup>10+</sup>
@@ -6045,16 +6045,16 @@ getNumber(): number
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | number | 返回数值类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### getBoolean<sup>10+</sup>
@@ -6067,16 +6067,16 @@ getBoolean(): boolean
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型      | 说明         |
+| ------- | ---------- |
 | boolean | 返回布尔类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### getArrayBuffer<sup>10+</sup>
@@ -6088,16 +6088,16 @@ getArrayBuffer(): ArrayBuffer
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型          | 说明         |
+| ----------- | ---------- |
 | ArrayBuffer | 返回原始二进制数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### getArray<sup>10+</sup>
@@ -6110,16 +6110,16 @@ getArray(): Array\<string | number | boolean\>
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| 类型            | 说明     |
+| ------------- | ------ |
+| Array\<string | number |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### getError<sup>10+</sup>
@@ -6132,16 +6132,16 @@ getError(): Error
 
 **返回值：**
 
-| 类型           | 说明          |
-| --------------| ------------- |
+| 类型    | 说明           |
+| ----- | ------------ |
 | Error | 返回错误对象类型的数据。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setType<sup>10+</sup>
@@ -6154,14 +6154,14 @@ setType(type: WebMessageType): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| type  | [WebMessageType](#webmessagetype10) | 是   | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
+| 参数名  | 类型                                  | 必填   | 说明                                       |
+| ---- | ----------------------------------- | ---- | ---------------------------------------- |
+| type | [WebMessageType](#webmessagetype10) | 是    | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setString<sup>10+</sup>
@@ -6174,14 +6174,14 @@ setString(message: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | string | 是   | 字符串类型数据。 |
+| 参数名     | 类型     | 必填   | 说明       |
+| ------- | ------ | ---- | -------- |
+| message | string | 是    | 字符串类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setNumber<sup>10+</sup>
@@ -6194,14 +6194,14 @@ setNumber(message: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | number | 是   | 数值类型数据。 |
+| 参数名     | 类型     | 必填   | 说明      |
+| ------- | ------ | ---- | ------- |
+| message | number | 是    | 数值类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setBoolean<sup>10+</sup>
@@ -6214,14 +6214,14 @@ setBoolean(message: boolean): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | boolean | 是   | 布尔类型数据。 |
+| 参数名     | 类型      | 必填   | 说明      |
+| ------- | ------- | ---- | ------- |
+| message | boolean | 是    | 布尔类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setArrayBuffer<sup>10+</sup>
@@ -6234,14 +6234,14 @@ setArrayBuffer(message: ArrayBuffer): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | ArrayBuffer | 是   | 原始二进制类型数据。 |
+| 参数名     | 类型          | 必填   | 说明         |
+| ------- | ----------- | ---- | ---------- |
+| message | ArrayBuffer | 是    | 原始二进制类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setArray<sup>10+</sup>
@@ -6254,14 +6254,14 @@ setArray(message: Array\<string | number | boolean\>): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | Array\<string \| number \| boolean\> | 是   | 数组类型数据。 |
+| 参数名     | 类型                                   | 必填   | 说明      |
+| ------- | ------------------------------------ | ---- | ------- |
+| message | Array\<string \| number \| boolean\> | 是    | 数组类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ### setError<sup>10+</sup>
@@ -6274,14 +6274,14 @@ setError(message: Error): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | -------------------- |
-| message  | Error | 是   | 错误对象类型数据。 |
+| 参数名     | 类型    | 必填   | 说明        |
+| ------- | ----- | ---- | --------- |
+| message | Error | 是    | 错误对象类型数据。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
+| 错误码ID    | 错误信息                                     |
+| -------- | ---------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
 
 ## WebStorageOrigin
@@ -6290,11 +6290,11 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明 |
-| ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 否 | 指定源的字符串索引。 |
-| usage  | number | 是  | 否 | 指定源的存储量。     |
-| quota  | number | 是  | 否 | 指定源的存储配额。   |
+| 名称     | 类型     | 可读   | 可写   | 说明         |
+| ------ | ------ | ---- | ---- | ---------- |
+| origin | string | 是    | 否    | 指定源的字符串索引。 |
+| usage  | number | 是    | 否    | 指定源的存储量。   |
+| quota  | number | 是    | 否    | 指定源的存储配额。  |
 
 ## BackForwardList
 
@@ -6302,10 +6302,10 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| 名称           | 类型     | 可读   | 可写   | 说明                              |
+| ------------ | ------ | ---- | ---- | ------------------------------- |
+| currentIndex | number | 是    | 否    | 当前在页面历史列表中的索引。                  |
+| size         | number | 是    | 否    | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -6317,14 +6317,14 @@ getItemAtIndex(index: number): HistoryItem
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| index  | number | 是   | 指定历史列表中的索引。 |
+| 参数名   | 类型     | 必填   | 说明          |
+| ----- | ------ | ---- | ----------- |
+| index | number | 是    | 指定历史列表中的索引。 |
 
 **返回值：**
 
-| 类型                        | 说明         |
-| --------------------------- | ------------ |
+| 类型                          | 说明     |
+| --------------------------- | ------ |
 | [HistoryItem](#historyitem) | 历史记录项。 |
 
 **示例：**
@@ -6365,12 +6365,12 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型                                   | 可读 | 可写 | 说明                         |
-| ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+| 名称            | 类型                                     | 可读   | 可写   | 说明                 |
+| ------------- | -------------------------------------- | ---- | ---- | ------------------ |
+| icon          | [PixelMap](js-apis-image.md#pixelmap7) | 是    | 否    | 历史页面图标的PixelMap对象。 |
+| historyUrl    | string                                 | 是    | 否    | 历史记录项的url地址。       |
+| historyRawUrl | string                                 | 是    | 否    | 历史记录项的原始url地址。     |
+| title         | string                                 | 是    | 否    | 历史记录项的标题。          |
 
 ## WebCustomScheme
 
@@ -6378,11 +6378,11 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型       | 可读 | 可写 | 说明                         |
-| -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
+| 名称             | 类型      | 可读   | 可写   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---------------------------------------- |
+| schemeName     | string  | 是    | 是    | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。 |
+| isSupportCORS  | boolean | 是    | 是    | 是否支持跨域请求。                                |
+| isSupportFetch | boolean | 是    | 是    | 是否支持fetch请求。                             |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -6390,11 +6390,11 @@ Web組件使用HTTPDNS的模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 值 | 说明                                      |
-| ------------- | -- |----------------------------------------- |
-| Off<sup>(deprecated)</sup>           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。|
-| Auto<sup>(deprecated)</sup>          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。|
-| SecureOnly<sup>(deprecated)</sup>    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。|
-| OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
-| SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
+| 名称                                | 值    | 说明                                       |
+| --------------------------------- | ---- | ---------------------------------------- |
+| Off<sup>(deprecated)</sup>        | 0    | 不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。 |
+| Auto<sup>(deprecated)</sup>       | 1    | 自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。 |
+| SecureOnly<sup>(deprecated)</sup> | 2    | 强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。 |
+| OFF                               | 0    | 不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。        |
+| AUTO                              | 1    | 自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。      |
+| SECURE_ONLY                       | 2    | 强制使用设定的HTTPDNS服务器进行域名解析。                 |
