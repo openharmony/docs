@@ -1053,7 +1053,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
 **错误码：**
