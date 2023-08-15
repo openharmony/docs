@@ -167,7 +167,7 @@ httpRequest.requestInStream(
 
 针对HTTP数据请求，有以下相关实例可供参考：
 
-- [上传和下载（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload)
+- [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 - [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
 
