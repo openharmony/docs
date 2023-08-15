@@ -1395,7 +1395,7 @@ async function example() {
 
 ### getPhotoIndex
 
-getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback<number>): void;
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
 
 获取相册中图片或视频的位置，使用callback方式返回结果。
 
@@ -1446,10 +1446,10 @@ async function example() {
     predicates: predicatesForGetAsset
   };
   //Obtain the uri of the album
-  let albumFetchResult = await mgr.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
-  let photoFetchResult = await album.getPhotoAssets(fetchOpForGetIndex);
+  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
   let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
@@ -1470,7 +1470,7 @@ async function example() {
 
 ### getPhotoIndex
 
-getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise<number>;
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
 
 获取相册中图片或视频的位置，使用Promise方式返回结果。
 
@@ -1521,10 +1521,10 @@ async function example() {
     predicates: predicatesForGetAsset
   };
   //Obtain the uri of the album
-  let albumFetchResult = await mgr.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
+  let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
-  let photoFetchResult = await album.getPhotoAssets(fetchOpForGetIndex);
+  let photoFetchResult = await album.getPhotoAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
   let photoAsset = await photoFetchResult.getPositionObject(expectIndex);
