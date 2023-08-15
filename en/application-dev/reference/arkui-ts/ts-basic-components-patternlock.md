@@ -22,17 +22,17 @@ PatternLock(controller?: PatternLockController)
 
 ## Attributes
 
-Except for **backgroundColor**, the universal attributes are not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name           | Type                             | Description                                                        |
 | --------------- | ------------------------------------- | ------------------------------------------------------------ |
-| sideLength      | [Length](ts-types.md#length)        | Width and height (same value) of the component. If this attribute is set to 0 or a negative value, the component is not displayed.<br>Default value: **300vp**|
-| circleRadius    | [Length](ts-types.md#length)        | Radius of the grid dot.<br>Default value: **14vp**                       |
-| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in unselected state.<br>Default value: **Color.Black**|
-| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in selected state.<br>Default value: **Color.Black**|
-| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in activated state, which is when the dot is highlighted but not selected.<br>Default value: **Color.Black**|
+| sideLength      | [Length](ts-types.md#length)        | Width and height (same value) of the component. If this attribute is set to **0** or a negative number, the component is not displayed.<br>Default value: **288vp**|
+| circleRadius    | [Length](ts-types.md#length)        | Radius of the grid dot. If this attribute is set to **0** or a negative value, the default value is used.<br>Default value: **6vp**                       |
+| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the unselected state.<br>Default value: **Color.Black**|
+| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the selected state.<br>Default value: **Color.Black**|
+| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in the activated state, which is when the dot is highlighted but not selected.<br>Default value: **Color.Black**|
 | pathColor       | [ResourceColor](ts-types.md#resourcecolor) | Path color.<br>Default value: **Color.Blue**                     |
-| pathStrokeWidth | number \| string            | Width of the path stroke. If this attribute is set to 0 or a negative value, the path stroke is not displayed.<br>Default value: **34vp**          |
+| pathStrokeWidth | number \| string            | Width of the path stroke. If this attribute is set to **0** or a negative value, the path stroke is not displayed.<br>Default value: **12vp**          |
 | autoReset       | boolean                               | Whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete. The value **true** means that the user can reset the component status by touching the component again after the input is complete, and **false** means the opposite.<br>Default value: **true**|
 
 ## Events
