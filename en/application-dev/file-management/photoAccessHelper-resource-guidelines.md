@@ -1,17 +1,17 @@
-# Media Asset Management
+# Managing Media Assets
 
 Applications can call **photoAccessHelper** APIs to manage media assets (images and videos).
 
 > **NOTE**
 >
-> Before you start, refer to [photoAccessHelper Overview](photoAccessHelper-overview.md) to learn how to obtain a **photoAccessHelper** instance and apply for permissions required.
-> By default, the **photoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **photoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
+> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
+> By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
-To ensure application running efficiency, most **PhotoAccessHelper** calls are asynchronous in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 
 ## Obtaining the Specified Media Assets
 
-You can query media assets by media type, date, or album name.
+You can obtain media assets by media type, date, or album name.
 
 Use [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets) with the [FetchOptions](../reference/apis/js-apis-photoAccessHelper.md#fetchoptions) object to specify search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
@@ -19,7 +19,7 @@ To obtain the object at the specified position (for example, the first, the last
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission.
 - The [dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md) module is imported.
 
@@ -29,7 +29,7 @@ Example: Obtain the image **test.jpg**.
 
 **How to Develop**
 
-Create a **FetchOptions** object and specify **test.jpg**.
+1. Create a **FetchOptions** object and specify **test.jpg**.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -42,7 +42,7 @@ let fetchOptions = {
 };
 ```
 
-Call **PhotoAccessHelper.getAssets** to obtain image assets.
+2. Call **PhotoAccessHelper.getAssets** to obtain image assets.
 
 ```ts
 try {
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-### Obtaining an Image or Video Asset by URI
+### Obtaining an Image or Video by URI
 
 Example: Obtain the image with the file URI **file://media/Photo/1**.
 
@@ -86,7 +86,7 @@ try {
 
 ### Obtaining Images or Videos by Time
 
-Example: Obtain the media assets added from 2022-06-01 to 2023-06-01.
+Example: Obtain the media assets added between 2022-06-01 and 2023-06-01.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -96,7 +96,7 @@ let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // The val
 let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
 let date_added = photoAccessHelper.PhotoKeys.DATE_ADDED;
 predicates.between(date_added, startTime, endTime);
-predicates.orderByDesc(date_added); // The query results are sorted in descending order.
+predicates.orderByDesc(date_added); // Sort the obtained records in descending order.
 let fetchOptions = {
   fetchColumns: [date_added], // The date_added attribute is not a default option and needs to be added.
   predicates: predicates
@@ -123,7 +123,7 @@ Use [FileAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#gett
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission.
 - The [dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md) module is imported.
 
@@ -169,10 +169,10 @@ Use [createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset) to
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** permission.
 
-### Creating an Image or Video Asset
+### Creating an Image or Video
 
 Example: Create an image asset.
 
@@ -197,15 +197,15 @@ try {
 
 ## Renaming a Media Asset
 
+Before renaming a file, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) to obtain the file.
+
 Set the **FileAsset.displayName** attribute to modify the file name (including the file name extension) displayed.
 
 After the modification, use [FileAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify) to update the modification to the database.
 
-Before renaming a file, use [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) to obtain the file.
-
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** and **ohos.permission.READ_IMAGEVIDEO** permissions.
 
 Example: Rename the first file in the obtained image assets.
@@ -246,11 +246,11 @@ try {
 
 You can use [deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets) to move files to the trash.
 
-The files moved to the trash will be retained for 30 days, and deleted permanently after 30 days. Before a file is deleted permanently from the trash, the user can restore it using the system application **File Manager** or **Gallery**.
+The files moved to the trash will be retained for 30 days, and deleted permanently after 30 days. Before a file is deleted permanently from the trash, the user can restore it using the system application **FileManager** or **Gallery**.
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** and **ohos.permission.READ_IMAGEVIDEO** permissions.
 
 Example: Move the first file in the result set to the trash.
