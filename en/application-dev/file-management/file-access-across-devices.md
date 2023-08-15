@@ -1,16 +1,20 @@
-# Accessing Files Across Devices
+# Access Files Across Devices
 
-The distributed file system provides cross-device file access capabilities for applications. For the same application installed on multiple devices, you can implement read and write of the files in the application's distributed directory (**/data/storage/el2/distributedfiles/**) across devices by using [ohos.file.fs](app-file-access.md). For example, device A and device B are installed with the same application. After device A and device B are connected to form a Virtual Device, the application on device A can access the files of the same application on Device B. What you need to do is place the files to the distributed directory.
+The distributed file system provides cross-device file access capabilities for applications. For the same application installed on multiple devices that form a Super Device, you can use [ohos.file.fs](app-file-access.md) APIs to implement read and write of the files in the application's distributed directory (**/data/storage/el2/distributedfiles/**). 
+
+For example, device A and device B are installed with the same application. After device A and device B are connected to form a Super Device, the application on device A can access the files in the distributed directory of the same application on Device B.
 
 ## How to Develop
 
-1. Complete distributed networking for the devices.
-   Connect the devices to a LAN, and complete authentication of the devices. The devices must have the same account number.
-
+1. Connect the devices to form a Super Device.
+   
+Connect the devices to a LAN, and complete authentication of the devices. The devices must have the same account number.
+   
 2. Implement cross-device access to the files of the same application.
+
    Place the files in the **distributedfiles/** directory of the application sandbox to implement access from difference devices.
 
-   For example, create a test file in the **distributedfiles/** directory on device A and write data to the file. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+   For example, create a file in the **distributedfiles/** directory on device A and write data to the file. For details about how to obtain the application context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
    import fs from '@ohos.file.fs';
