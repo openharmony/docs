@@ -293,14 +293,6 @@ Sets the size of the data contained in this **MessageSequence** object.
   | ------ | ------ | ---- | ------ |
   | size   | number | Yes  | Data size to set, in bytes.|
 
-**Error codes**
-
-For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
-
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
-
 **Example**
 
   ```ts
@@ -334,7 +326,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   | ID| Error Message|
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
   | 1900011  | parcel memory alloc failed |
 
 **Example**
@@ -461,12 +452,6 @@ Moves the read pointer to the specified position.
   | ------ | ------ | ---- | ------- |
   | pos    | number | Yes  | Position from which data is to read.|
 
-**Error codes**
-
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-
 **Example**
 
   ```ts
@@ -498,12 +483,6 @@ Moves the write pointer to the specified position.
   | Name| Type  | Mandatory| Description |
   | ------ | ------ | ---- | ----- |
   | pos    | number | Yes  | Position from which data is to write.|
-
-**Error codes**
-
-  | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2945,8 +2924,8 @@ Writes an anonymous shared object to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | -------- | ------- |
+  | 1900003  | write to ashmem failed |
 
 **Example**
 
@@ -2979,7 +2958,7 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
   | Type  | Description              |
   | ------ | ------------------ |
-  | Ashmem | Anonymous share object read.|
+  | Ashmem | Anonymous share object obtained.|
 
 **Error codes**
 
@@ -2987,7 +2966,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   | ID| Error Message|
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900004  | read from ashmem failed |
 
 **Example**
 
@@ -3091,7 +3070,7 @@ Reads raw data from this **MessageSequence** object.
 
   | Type    | Description                          |
   | -------- | ------------------------------ |
-  | number[] | Raw data read, in bytes.|
+  | number[] | Raw data obtained, in bytes.|
 
 **Error codes**
 
@@ -5960,7 +5939,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   | ID| Error Message|
   | -------- | -------- |
-  | 1900005  | only proxy object permitted |
+  | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -6006,7 +5985,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   | ID| Error Message|
   | -------- | -------- |
-  | 1900005  | only proxy object permitted |
+  | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
