@@ -1,6 +1,6 @@
 # @ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)
 
-开发者可通过继承本模块开发自己的输入法应用并管理输入法应用生命周期。
+本模块支持开发者自行开发输入法应用，以及管理输入法应用的生命周期。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承自ExtensionContext。 |
+| context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承于ExtensionContext。 |
 
 ## InputMethodExtensionAbility.onCreate
 

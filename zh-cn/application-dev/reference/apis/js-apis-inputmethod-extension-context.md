@@ -1,8 +1,6 @@
 # @ohos.InputMethodExtensionContext (InputMethodExtensionContext)
 
-InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环境，继承自ExtensionContext。
-
-InputMethodExtensionContext模块提供InputMethodExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
+InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环境，继承于ExtensionContext，提供InputMethodExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
 
 > **说明：**
 >
@@ -31,7 +29,7 @@ class EntryAbility extends InputMethodExtensionAbility {
 
 destroy(callback: AsyncCallback\<void>): void
 
-停止输入法应用自身。使用callback异步回调。
+销毁输入法应用。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -39,7 +37,7 @@ destroy(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当停止输入法应用自身成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当销毁输入法应用成功时，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -53,7 +51,7 @@ this.context.destroy(() => {
 
 destroy(): Promise\<void>;
 
-停止输入法应用自身。通过Promise异步回调。
+销毁输入法应用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -61,7 +59,7 @@ destroy(): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void>; | 无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例：**
 
