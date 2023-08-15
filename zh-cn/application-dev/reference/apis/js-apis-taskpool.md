@@ -17,66 +17,6 @@
 import taskpool from '@ohos.taskpool';
 ```
 
-## Priority
-
-表示所创建任务（Task）的优先级。（暂未支持）
-
-**系统能力：**  SystemCapability.Utils.Lang
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。 |
-| MEDIUM | 1 | 任务为中优先级。 |
-| LOW | 2 | 任务为低优先级。 |
-
-## Task
-
-表示任务。使用以下方法前，需要先构造Task。
-
-### constructor
-
-constructor(func: Function, ...args: unknown[])
-
-Task的构造函数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型      | 必填 | 说明                                                                  |
-| ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**示例：**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, "this is my first Task");
-```
-
-### 属性
-
-**系统能力：** SystemCapability.Utils.Lang
-
-| 名称      | 类型      | 可读 | 可写 | 说明                                                                       |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
-| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-
 ## taskpool.execute
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
@@ -278,6 +218,66 @@ async function taskpoolCancel() {
 
 taskpoolCancel();
 ```
+
+## Priority
+
+表示所创建任务（Task）的优先级。（暂未支持）
+
+**系统能力：**  SystemCapability.Utils.Lang
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| HIGH   | 0    | 任务为高优先级。 |
+| MEDIUM | 1 | 任务为中优先级。 |
+| LOW | 2 | 任务为低优先级。 |
+
+## Task
+
+表示任务。使用以下方法前，需要先构造Task。
+
+### constructor
+
+constructor(func: Function, ...args: unknown[])
+
+Task的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                  |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
+| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称      | 类型      | 可读 | 可写 | 说明                                                                       |
+| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
+| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
+| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
 
 ## 其他说明
 
