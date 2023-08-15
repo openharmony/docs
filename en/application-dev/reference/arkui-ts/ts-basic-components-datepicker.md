@@ -26,6 +26,26 @@ Creates a date picker in the given date range.
 | end      | Date     | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
 | selected | Date     | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
+**Handling in the case of exceptions**
+
+| Exception  | Result |
+| -------- |  ------------------------------------------------------------ |
+| The start date is later than the end date, and the selected date is not set.   | The start date, end date, and selected date are set to the default values. |
+| The start date is later than the end date, and the selected date is earlier than the default start date.   | The start date and end date are set to the default values, and the selected date is set to the default start date. |
+| The start date is later than the end date, and the selected date is later than the default end date.   | The start date and end date are set to the default values, and the selected date is set to the default end date. |
+| The start date is later than the end date, and the selected date is within the range of the default start date and end date.   | The start date and end date are set to the default values, and the selected date is set to the specified value.|
+| The selected date is earlier than the start date.   | The selected date is set to the start date. |
+| The selected date is later than the end date.   | The selected date is set to the end date. |
+| The start date is later than the current system date, and the selected date is not set.   | The selected date is set to the start date. |
+| The end date is earlier than the current system date, and the selected date is not set.   | The selected date is set to the end date. |
+| The set date is in invalid format, for example, **'1999-13-32'**.  | The default value is used. |
+| The start date or end date is earlier than the valid date range.   | The start date or end date is set to the earliest date in the valid date range. |
+| The start date or end date is later than the valid date range.   | The start date or end date is set to the latest date in the valid date range. |
+
+The valid date range is from 1900-1-31 to 2100-12-31.
+
+The exception detection and handling with the selected date comes after that with the start date and end date.
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -84,6 +104,9 @@ struct DatePickerExample {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
+        .disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}})
+        .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
+        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {
           this.selectedDate.setFullYear(value.year, value.month, value.day)
@@ -95,4 +118,4 @@ struct DatePickerExample {
 }
 ```
 
-![datePicker](figures/datePicker.gif)
+![datePicker](figures/DatePickerApi10.gif)

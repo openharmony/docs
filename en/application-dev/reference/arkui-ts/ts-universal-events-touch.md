@@ -34,17 +34,21 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.                     |
 | id      | number                                      | Unique identifier of a finger.                     |
-| screenX | number                                      | X coordinate of the touch point relative to the upper left corner of the application window.  |
-| screenY | number                                      | Y coordinate of the touch point relative to the upper left corner of the application window.  |
 | x       | number                                      | X coordinate of the touch point relative to the upper left corner of the component being touched.|
 | y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the component being touched.|
+| windowX<sup>10+</sup>  | number                       | X coordinate of the touch point relative to the upper left corner of the application window.  |
+| windowY<sup>10+</sup>  | number                       | Y coordinate of the touch point relative to the upper left corner of the application window.  |
+| displayX<sup>10+</sup> | number                       | X coordinate of the touch point relative to the upper left corner of the application screen.  |
+| displayY<sup>10+</sup> | number                       | Y coordinate of the touch point relative to the upper left corner of the application screen.  |
+| screenX<sup>(deprecated)</sup> | number               | X coordinate of the touch point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.  |
+| screenY<sup>(deprecated)</sup> | number               | Y coordinate of the touch point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.  |
 
 ## HistoricalPoint<sup>10+</sup>
 
 | Name        | Type                                | Description                                                                        |
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
 | touchObject | [TouchObject](#touchobject)  | Basic information of the historical point.                                                  |
-| size        | number                              | Size of the contact area between the finger and screen for the historical point.                                    |
+| size        | number                              | Size of the contact area between the finger and screen for the historical point.<br>Default value: **0**                                    |
 | force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0,1]. A larger value indicates a greater touch force.<br>The support for this API varies by device. Currently, it is only available on tablets.|
 | timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.            |
 ## Example

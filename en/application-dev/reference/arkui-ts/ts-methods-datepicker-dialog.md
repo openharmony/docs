@@ -33,6 +33,26 @@ Shows a date picker dialog box.
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
 | onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| Callback invoked when the selected item in the picker changes.|
 
+**Handling in the case of exceptions**
+
+| Exception  | Result |
+| -------- |  ------------------------------------------------------------ |
+| The start date is later than the end date, and the selected date is not set.   | The start date, end date, and selected date are set to the default values. |
+| The start date is later than the end date, and the selected date is earlier than the default start date.   | The start date and end date are set to the default values, and the selected date is set to the default start date. |
+| The start date is later than the end date, and the selected date is later than the default end date.   | The start date and end date are set to the default values, and the selected date is set to the default end date. |
+| The start date is later than the end date, and the selected date is within the range of the default start date and end date.   | The start date and end date are set to the default values, and the selected date is set to the specified value.|
+| The selected date is earlier than the start date.   | The selected date is set to the start date. |
+| The selected date is later than the end date.   | The selected date is set to the end date. |
+| The start date is later than the current system date, and the selected date is not set.   | The selected date is set to the start date. |
+| The end date is earlier than the current system date, and the selected date is not set.   | The selected date is set to the end date. |
+| The set date is in invalid format, for example, **'1999-13-32'**.  | The default value is used. |
+| The start date or end date is earlier than the valid date range.   | The start date or end date is set to the earliest date in the valid date range. |
+| The start date or end date is later than the valid date range.   | The start date or end date is set to the latest date in the valid date range. |
+
+The valid date range is from 1900-1-31 to 2100-12-31.
+
+The exception detection and handling with the selected date comes after that with the start date and end date.
+
 ## Example
 
 ```ts
@@ -51,6 +71,11 @@ struct DatePickerDialogExample {
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
+            showTime:true,
+            useMilitaryTime:false,
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onAccept: (value: DatePickerResult) => {
               // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
               this.selectedDate.setFullYear(value.year, value.month, value.day)
@@ -73,6 +98,9 @@ struct DatePickerDialogExample {
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: true,
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onAccept: (value: DatePickerResult) => {
               this.selectedDate.setFullYear(value.year, value.month, value.day)
               console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
@@ -90,4 +118,4 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DataPickerDialog.gif)
+![DataPickerDialog](figures/DatePickerDialogApi10.gif)
