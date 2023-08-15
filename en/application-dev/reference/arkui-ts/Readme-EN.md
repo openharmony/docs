@@ -123,6 +123,7 @@
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
   - [GridItem](ts-container-griditem.md)
+  - [Hyperlink](ts-container-hyperlink.md)
   - [List](ts-container-list.md)
   - [ListItem](ts-container-listitem.md)
   - [ListItemGroup](ts-container-listitemgroup.md)
@@ -138,6 +139,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
 - Media Components
   - [Video](ts-media-components-video.md)
