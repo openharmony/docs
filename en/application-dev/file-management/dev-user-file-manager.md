@@ -1,23 +1,23 @@
-# Developing a FileManager Application (Available Only for System Applications)
+# Developing a File Manager Application (for System Applications Only)
 
-OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own **FileManager** as required.
+OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own file manager application as required.
 
 ## Available APIs
 
-For details about the APIs, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
+For details about the APIs used to develop a file manager application, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
 
 ## How to Develop
 
-1. Configure the permissions required and import dependent modules.
+1. Apply for permissions required.<br>
    Apply for the **ohos.permission.FILE_ACCESS_MANAGER** and **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permissions. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
 
    > **NOTE**
    >
-   > **ohos.permission.FILE_ACCESS_MANAGER** is required for using the user file access framework APIs.
+   > **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
    >
-   > **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** is required for querying information about file management server applications supported by the system.
+   > **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
 
-2. Import the dependent modules.
+2. Import dependent modules.
 
    ```ts
    import fileAccess from '@ohos.file.fileAccess';
@@ -26,8 +26,8 @@ For details about the APIs, see [User File Access and Management](../reference/a
 
    The **fileAccess** module provides APIs for basic file operations, and the **fileExtensionInfo** module provides key structs for application development.
 
-3. Query device information.
-   You can obtain attributes of one or all devices managed by the file management server in the current system. You can also filter devices as required.
+3. Query device information.<br>
+   You can obtain attributes of the devices managed by one or all file management servers in the system. You can also filter devices as required.
 
    In the user file access framework, **RootInfo** indicates the attribute information of a device. For example, obtain **RootInfo** of all devices.
 
@@ -68,19 +68,19 @@ For details about the APIs, see [User File Access and Management](../reference/a
    ```
 
 4. View directories.
-   In the user file access framework, **FileInfo** indicates basic information about a file (directory). You can use **listfile()** to traverse all files (directories) of the next level to obtain a **FileIterator** object or use **scanfile()** to filter the specified directories and obtain the **FileIterator** object that meets the conditions.
+   In the user file access framework, **FileInfo** indicates basic information about a file (directory). You can use **listfile()** to obtain a **FileIterator** object that traverses all files (directories) of the next level or use **scanfile()** to obtain a **FileIterator** object that meets the specified conditions.
 
-    Currently, **listfile()** and **scanfile()** can be called by the **RootInfo** object to traverse lower-level files or filter the entire directory tree. In addition, **listfile()** and **scanfile()** can be called by the **FileInfo** object to traverse lower-level files or filter specified directories.
+   Currently, **listfile()** and **scanfile()** can be called by the **RootInfo** object to traverse the next-level files or filter the entire directory tree. In addition, **listfile()** and **scanfile()** can be called by the **FileInfo** object to traverse the next-level files or filter the specified directories.
 
    ```ts
    // Start from the root directory.
    let rootInfo = rootinfos[0];
    let fileInfos = [];
    let isDone = false;
-   let filter = {suffix: [".txt", ".jpg", ".xlsx"]}; // Set filter criteria.
+   let filter = {suffix: [".txt", ".jpg", ".xlsx"]};  // Set filter criteria.
    try {  
      let fileIterator = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return an iterator object.
-     // let fileIterator = rootInfo.scanFile(filter); // Filter the file information of device rootinfos[0] that meets the specified conditions and return an iteration object.
+     // let fileIterator = rootInfo.scanFile(filter); // Filter device rootinfos[0] files that meet the specified conditions and return an iteration object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
        return;  
@@ -97,12 +97,12 @@ For details about the APIs, see [User File Access and Management](../reference/a
    }
    
    // Start from the specified directory.
-   let fileInfoDir = fileInfos[0]; // fileInfoDir indicates information about a directory.
+   let fileInfoDir = fileInfos[0];                    // fileInfoDir indicates information about a directory.
    let subFileInfos = [];
    let isDone = false;
-   let filter = {suffix: [".txt", ".jpg", ".xlsx"]}; // Set filter criteria.
+   let filter = {suffix: [".txt", ".jpg", ".xlsx"]};  // Set filter criteria.
    try {
-     let fileIterator = fileInfoDir.listFile(); // Traverse files in the specified directory and return an iterator object.
+     let fileIterator = fileInfoDir.listFile();       // Traverse files in the specified directory and return an iterator object.
      // let fileIterator = rootInfo.scanFile(filter); // Filter the files in the specified directory and return an iterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
