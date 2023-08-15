@@ -4528,7 +4528,7 @@ aVCastController.on('playPrevious', () => {
 
 off(type: 'playPrevious'): void
 
-取消设置播放下一首资源的监听事件。
+取消设置播放上一首资源的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 

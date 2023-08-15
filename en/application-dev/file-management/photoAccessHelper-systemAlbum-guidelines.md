@@ -5,7 +5,7 @@ The **photoAccessHelper** module provides APIs for managing system albums, inclu
 > **NOTE**
 >
 > Before you start, refer to [photoAccessHelper Overview](photoAccessHelper-overview.md) to learn how to obtain a **photoAccessHelper** instance and apply for permissions required.
-> By default, the **photoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **photoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
+> By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **PhotoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **PhotoAccessHelper** is not defined is reported.
 
 To ensure application running efficiency, most **photoAccessHelper** calls are asynchronous in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
@@ -133,8 +133,8 @@ Example: Unfavorite an image.
 **How to Develop**
 
 1. [Obtain the image and videos in **Favorites**](#obtaining-images-and-videos-in-favorites).
-2. Set **isFavorite** to **false**.
-3. Use **FileAsset.favorite** to remove the image from **Favorites**.
+2. Set **favoriteState** to **false**.
+3. Use **FileAsset.setFavorite** to remove the image from **Favorites**.
 
 
 ```ts

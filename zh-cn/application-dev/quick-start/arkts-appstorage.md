@@ -192,9 +192,85 @@ struct CompA {
 }
 ```
 
-### 以持久化方式订阅某个事件并接收事件回调
+### 不建议借助@StorageLink的双向同步机制实现事件通知
 
-推荐使用持久化方式订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
+不建议开发者使用@StorageLink和AppStorage的双向同步的机制来实现事件通知，AppStorage是和UI相关的数据存储，改变会带来UI的刷新，相对于一般的事件通知，UI刷新的成本较大。
+
+TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex可见自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
+
+
+```ts
+// xxx.ets
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData, index?: number) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: index
+            })
+          }.aspectRatio(1)
+
+        }, (item: ViewData, index?: number) => {
+          return JSON.stringify(item) + index;
+        })
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @State tapColor: Color = Color.Black;
+  private index: number;
+  private uri: Resource;
+
+  // 判断是否被选中
+  onTapIndexChange() {
+    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
+      this.tapColor = Color.Red;
+    } else {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
+      this.tapColor = Color.Black;
+    }
+  }
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .onClick(() => {
+          this.tapIndex = this.index;
+        })
+        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+    }
+
+  }
+}
+```
+
+开发者可以使用emit订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
 
 
 ```ts
@@ -293,10 +369,9 @@ export struct TapImage {
 }
 ```
 
-以下示例为消息机制方式订阅事件，会导致回调监听的节点数较多，非常耗时，不推荐以此来实现应用代码。
+以上通知事件逻辑简单，也可以简化成三元表达式。
 
-
-```ts
+```
 // xxx.ets
 class ViewData {
   title: string;
@@ -337,21 +412,10 @@ struct Gallery2 {
 
 @Component
 export struct TapImage {
-  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @StorageLink('tapIndex') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
   private index: number;
   private uri: Resource;
-
-  // 判断是否被选中
-  onTapIndexChange() {
-    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
-      this.tapColor = Color.Red;
-    } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
-      this.tapColor = Color.Black;
-    }
-  }
 
   build() {
     Column() {
@@ -360,12 +424,16 @@ export struct TapImage {
         .onClick(() => {
           this.tapIndex = this.index;
         })
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+        .border({
+          width: 5,
+          style: BorderStyle.Dotted,
+          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
+        })
     }
-
   }
 }
 ```
+
 
 
 ## 限制条件

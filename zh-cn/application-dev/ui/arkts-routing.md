@@ -387,3 +387,8 @@ struct Index {
 }
 ```
 
+## 相关实例
+
+针对页面路由开发，有以下相关实例可供参考：
+
+- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)

@@ -97,6 +97,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
+| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
 | enableScanEffect | boolean | 否 | 进度条扫光效果的开关。<br/>默认值： false |
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
