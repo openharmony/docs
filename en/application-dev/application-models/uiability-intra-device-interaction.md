@@ -35,8 +35,8 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    let want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
-     abilityName: 'FuncAbility',
      moduleName: 'func', // moduleName is optional.
+     abilityName: 'FuncAbility',
      parameters: { // Custom information.
        info: 'From the Index page of EntryAbility',
      },
@@ -100,8 +100,8 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    let want = {
      deviceId: '', // An empty deviceId indicates the local device.
      bundleName: 'com.example.myapplication',
-     abilityName: 'FuncAbility',
      moduleName: 'func', // moduleName is optional.
+     abilityName: 'FuncAbility',
      parameters: { // Custom information.
        info: 'From the Index page of EntryAbility',
      },
@@ -123,8 +123,8 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.myapplication',
+       moduleName: 'func', // moduleName is optional.
        abilityName: 'FuncAbility',
-       moduleName: 'func',
        parameters: {
          info: 'From the Index page of FuncAbility',
        },
@@ -219,7 +219,8 @@ The following example describes how to start the UIAbility of another applicatio
    })
    ```
    
-   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use. 
+   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use.
+   
    ![](figures/uiability-intra-device-interaction.png)
    
 3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
@@ -296,9 +297,9 @@ If you want to obtain the return result when using implicit Want to start the UI
    let abilityResult = {
      resultCode: RESULT_CODE,
      want: {
-       bundleName: 'com.example.myapplication',
+       bundleName: 'com.example.funcapplication',
+       moduleName: 'entry', // moduleName is optional.
        abilityName: 'EntryAbility',
-       moduleName: 'entry',
        parameters: {
          payResult: 'OKay',
        },
@@ -366,8 +367,8 @@ let context = ...; // UIAbilityContext
 let want = {
   deviceId: '', // An empty deviceId indicates the local device.
   bundleName: 'com.example.myapplication',
-  abilityName: 'FuncAbility',
   moduleName: 'func', // moduleName is optional.
+  abilityName: 'FuncAbility',
   parameters: { // Custom information.
     info: 'From the Index page of EntryAbility',
   },
@@ -383,7 +384,7 @@ context.startAbility(want, options).then(() => {
 })
 ```
 
-The display effect is shown below. 
+The display effect is shown below.
 
 ![](figures/start-uiability-floating-window.png)
 
@@ -400,13 +401,13 @@ When the initiator UIAbility starts another UIAbility, it usually needs to redir
 ```ts
 let context = ...; // UIAbilityContext
 let want = {
-    deviceId: '', // An empty deviceId indicates the local device.
-    bundleName: 'com.example.myapplication',
-    abilityName: 'FuncAbility',
-    moduleName: 'func', // moduleName is optional.
-    parameters: { // Custom parameter used to pass the page information.
-        router: 'funcA',
-    },
+  deviceId: '', // An empty deviceId indicates the local device.
+  bundleName: 'com.example.funcapplication',
+  moduleName: 'entry', // moduleName is optional.
+  abilityName: 'EntryAbility',
+  parameters: { // Custom parameter used to pass the page information.
+    router: 'funcA',
+  },
 }
 // context is the UIAbilityContext of the initiator UIAbility.
 context.startAbility(want).then(() => {
@@ -423,24 +424,24 @@ When the target UIAbility is started for the first time, in the **onWindowStageC
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 
 export default class FuncAbility extends UIAbility {
-  funcAbilityWant;
+  funcAbilityWant: Want;
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Receive the parameters passed by the initiator UIAbility.
     this.funcAbilityWant = want;
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created. Set a main page for this UIAbility.
     let url = 'pages/Index';
-    if (this.funcAbilityWant?.parameters?.router) {
-      if (this.funcAbilityWant.parameters.router === 'funA') {
-        url = 'pages/Second';
-      }
+    if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+      url = 'pages/Second';
     }
     windowStage.loadContent(url, (err, data) => {
       ...
@@ -449,51 +450,90 @@ export default class FuncAbility extends UIAbility {
 }
 ```
 
-
 ### Starting a Page When the Target UIAbility Is Not Started for the First Time
 
-You start application A, and its home page is displayed. Then you return to the home screen and start application B. Now you need to start application A again from application B and access a specified page of application A. An example scenario is as follows: When you open the home page of the SMS application and return to the home screen, the SMS application is in the opened state with its home page. Then you open the home page of the Contacts application, access user A's details page, and touch the SMS icon to send an SMS message to user A. The SMS application is started again and the sending page is displayed.
+If the target UIAbility has been started, the initialization logic is not executed again. Instead, the **onNewWant()** lifecycle callback is directly triggered. To implement redirection, parse the required parameters in **onNewWant()**.
 
-![uiability_not_first_started](figures/uiability_not_first_started.png)
+An example scenario is as follows:
 
-In summary, when a UIAbility instance of application A has been created and the main page of the UIAbility instance is displayed, you need to start the UIAbility of application A from application B and access a different page.
+1. A user opens the SMS application. The UIAbility instance of the SMS application is started, and the home page of the application is displayed.
+2. The user returns to the home screen, and the SMS application switches to the background.
+3. The user opens the Contacts application and finds a contact.
+4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
+5. Since the UIAbility instance of the SMS application has been started, the **onNewWant()** callback of the UIAbility is triggered, and the initialization logic such as **onCreate()** and **onWindowStageCreate()** is skipped.
 
-1. In the target UIAbility, the **Index** page is loaded by default. The UIAbility instance has been created, and the **onNewWant()** callback rather than **onCreate()** and **onWindowStageCreate()** will be invoked. In the **onNewWant()** callback, parse the **want** parameter and bind it to the global variable **globalThis**.
-   
+```mermaid
+sequenceDiagram
+Participant U as User
+Participant S as SMS app
+Participant C as Contacts app
+
+U->>S: Open the SMS app.
+S-->>U: The home page of the SMS app is displayed.
+U->>S: Return to the home screen.
+S->>S: The SMS app enters the background.
+U->>C: Open the Contacts app. 
+C-->>U: The page of the Contact app is displayed.
+U->>C: Touch the SMS button next to a contact.
+C->>S: Start the SMS app with Want.
+S-->>U: The page for sending an SMS message to the contact is displayed.
+```
+
+The development procedure is as follows:
+
+1. When the UIAbility instance of the SMS application is started for the first time, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
+
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import window from '@ohos.window';
    
-   export default class FuncAbility extends UIAbility {
-     onNewWant(want, launchParam) {
-       // Receive the parameters passed by the initiator UIAbility.
-       globalThis.funcAbilityWant = want;
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   
+   export default class EntryAbility extends UIAbility {
+     funcAbilityWant: Want;
+     uiContext: UIContext;
+   
+     ...
+     
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       // Main window is created. Set a main page for this UIAbility.
        ...
+   
+       let windowClass: window.Window;
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+           return;
+         }
+         windowClass = data;
+         this.uiContext = windowClass.getUIContext();
+       })
      }
    }
    ```
 
-2. In FuncAbility, use the router module to implement redirection to the specified page on the **Index** page. Because the **Index** page of FuncAbility is active, the variable will not be declared again and the **aboutToAppear()** callback will not be triggered. Therefore, the page routing functionality can be implemented in the **onPageShow()** callback of the **Index** page.
-   
+2. Parse the **want** parameter passed in the **onNewWant()** callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis/js-apis-arkui-UIContext.md#getrouter) in the **UIContext** class to obtain a [Router](../reference/apis/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
+
    ```ts
-   import router from '@ohos.router';
+   export default class EntryAbility extends UIAbility {
+     funcAbilityWant: Want;
+     uiContext: UIContext;
    
-   @Entry
-   @Component
-   struct Index {
-     onPageShow() {
-       let funcAbilityWant = globalThis.funcAbilityWant;
-       let url2 = funcAbilityWant?.parameters?.router;
-       if (url2 && url2 === 'funcA') {
-         router.replaceUrl({
-           url: 'pages/Second',
+     onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
+       if (want?.parameters?.router && want.parameters.router === 'funcA') {
+         let funcAUrl = 'pages/Second';
+         let router: Router = this.uiContext.getRouter();
+         router.pushUrl({
+           url: funcAUrl
+         }).catch((err) => {
+           console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
          })
        }
      }
    
-     // Page display.
-     build() {
-       ...
-     }
+     ...
    }
    ```
 
