@@ -653,8 +653,6 @@ Badge({
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
-下拉刷新与上拉加载的具体实现可参考Codelab：[新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
-
 
 ## 编辑列表
 
@@ -847,3 +845,5 @@ List() {
 - [List组件的使用之商品列表（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List)
 
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
+
+- [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)
