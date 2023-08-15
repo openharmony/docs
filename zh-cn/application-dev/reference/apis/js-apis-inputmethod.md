@@ -1,6 +1,6 @@
-# @ohos.inputMethod (输入法框架)
+# @ohos.inputMethod (输入法框架) 
 
-本模块主要面向普通前台应用（备忘录、信息、设置等系统应用与三方应用），提供对输入法的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等。
+本模块主要面向普通前台应用（备忘录、信息、设置等系统应用与三方应用），提供对输入法（输入法应用）的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等等。
 
 > **说明：**
 >
@@ -38,8 +38,8 @@ import inputMethod from '@ohos.inputMethod';
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
 | extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -101,9 +101,9 @@ let inputMethodSetting = inputMethod.getSetting();
 
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
-切换输入法。使用callback异步回调。
+切换输入法，仅系统应用可用。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -111,7 +111,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target | [InputMethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
+| target | [InputMethodProperty](#inputmethodproperty8) | 是 | 目标输入法。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -146,9 +146,9 @@ try{
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
-切换输入法。使用promise异步回调。
+切换输入法，仅系统应用可用。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -156,13 +156,13 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
 
 **返回值：**
 
   | 类型                                      | 说明                         |
   | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise对象。返回true表示切换输入法成功；返回false表示切换输入法失败。 |
+  | Promise\<boolean> | Promise对象。返回true表示切换输入法成功，返回false表示切换输入法失败。 |
 
 **错误码：**
 
@@ -196,7 +196,7 @@ try {
 
 getCurrentInputMethod(): InputMethodProperty
 
-获取当前输入法扩展应用，提供同步接口，返回当前输入法属性。
+使用同步方法获取当前输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -216,9 +216,13 @@ let currentIme = inputMethod.getCurrentInputMethod();
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
-在当前输入法应用内切换子类型。使用callback异步回调。
+切换当前输入法的子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
+> **说明：**
+>
+> 在API version 9版本，仅支持系统应用调用；API version 10版本起，支持系统应用和当前输入法应用调用。
+
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -226,7 +230,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
 **错误码：**
@@ -272,9 +276,13 @@ try {
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
-在当前输入法应用内切换子类型。使用promise异步回调。
+切换当前输入法的子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
+> **说明：**
+>
+> 在API version 9版本，仅支持系统应用调用；API version 10版本起，支持系统应用和当前输入法应用调用。
+
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -282,13 +290,13 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
 
 **返回值：**
 
 | 类型                                      | 说明                         |
 | ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise对象。返回true表示在当前输入法应用内切换子类型成功；返回false表示在当前输入法应用内切换子类型失败。 |
+| Promise\<boolean> | Promise对象。返回true表示当前输入法切换子类型成功，返回false表示当前输入法切换子类型成功失败。 |
 
 **错误码：**
 
@@ -331,7 +339,7 @@ try {
 
 getCurrentInputMethodSubtype(): InputMethodSubtype
 
-获取当前输入法子类型。
+获取当前输入法的子类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -351,9 +359,9 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
-切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用callback异步回调。
+切换至指定输入法的指定子类型，适用于跨输入法切换子类型，仅系统应用可用。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -361,8 +369,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
 **错误码：**
@@ -400,9 +408,9 @@ try {
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
 
-切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
+切换至指定输入法的指定子类型，适用于跨输入法切换子类型，仅系统应用可用。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -410,14 +418,14 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
 
 **返回值：**
 
 | 类型                                      | 说明                         |
 | ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise对象。返回true表示切换至指定输入法应用的指定子类型成功；返回false表示切换至指定输入法应用的指定子类型失败。 |
+| Promise\<boolean> | Promise对象。返回true表示切换至指定输入法的指定子类型成功，返回false表示切换至指定输入法的指定子类型失败。 |
 
 **错误码：**
 
@@ -516,7 +524,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## EnterKeyType<sup>10+</sup>
 
-输入法Enter键所代表的功能类型。
+Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -558,7 +566,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## ExtendAction<sup>10+</sup>
 
-对编辑框中文本的扩展编辑操作类型。
+编辑框中文本的扩展编辑操作类型，如剪切、复制等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -581,7 +589,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## InputAttribute<sup>10+</sup>
 
-编辑框属性，包含文本输入类型，Enter键功能类型。
+编辑框属性，包含文本输入类型和Enter键功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -592,7 +600,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## TextConfig<sup>10+</sup>
 
-编辑控件配置信息。编辑控件请求绑定输入法应用时传入，将编辑控件相关属性配置信息保存到输入法框架内。
+编辑框的配置信息。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -600,8 +608,8 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | -------- | -------- | -------- | -------- | -------- |
 | inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 是 | 编辑框属性。|
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 否 | 光标信息。|
-| selection<sup>10+</sup>  | [Range](#range10) | 否 | 否 | 文本选区范围。|
-| windowId<sup>10+</sup>  | number | 否 | 否 | 编辑控件所在的窗口Id。|
+| selection<sup>10+</sup>  | [Range](#range10) | 否 | 否 | 文本选中的范围。|
+| windowId<sup>10+</sup>  | number | 否 | 否 | 编辑框所在的窗口Id。|
 
 ## CursorInfo<sup>10+</sup>
 
@@ -618,7 +626,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## Range<sup>10+</sup>
 
-描述选中文本的范围。
+文本的选中范围。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -629,13 +637,13 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## Movement<sup>10+</sup>
 
-描述进行选中文本动作时光标移动的方向。
+选中文本时，光标移动的方向。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
 ## InputWindowInfo<sup>10+</sup>
 
@@ -653,15 +661,17 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## InputMethodController
 
-下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过实例调用对应方法。
 
 ### attach<sup>10+</sup>
 
 attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt;void&gt;): void
 
-用于自绘控件绑定输入法应用。使用callback异步回调。
+自绘控件绑定输入法。使用callback异步回调。
 
-必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
+> **说明**
+>
+> 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -669,8 +679,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后是否拉起输入法键盘。 |
-| textConfig | [TextConfig](#textconfig10) | 是 | 编辑控件配置信息。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- ture表示拉起，false表示不拉起。 |
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -708,9 +718,11 @@ try {
 
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
-用于自绘控件绑定输入法应用。使用promise异步回调。
+自绘控件绑定输入法。使用promise异步回调。
 
-必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
+> **说明**
+>
+> 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -718,8 +730,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后是否拉起输入法键盘。 |
-| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框属性。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- ture表示拉起，false表示不拉起。|
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 
 **返回值：**
 
@@ -762,7 +774,9 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 进入文本编辑状态。使用callback异步回调。
 
-编辑控件与输入法应用绑定成功后，可调用该接口去拉起软键盘。
+> **说明**
+>
+> 编辑框与输入法绑定成功后，可调用该接口拉起软键盘，进入文本编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -800,7 +814,9 @@ showTextInput(): Promise&lt;void&gt;
 
 进入文本编辑状态。使用promise异步回调。
 
-编辑控件与输入法应用绑定成功后，可调用该接口去拉起软键盘。
+> **说明**
+>
+> 编辑框与输入法绑定成功后，可调用该接口拉起软键盘，进入文本编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -836,9 +852,11 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 退出文本编辑状态。使用callback异步回调。
 
-编辑控件可调用该接口退出编辑状态。若调用该接口时当前软键盘处于显示状态，则调用该接口后软键盘会被隐藏。
-
-调用该接口不解除与输入法应用的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入编辑状态。
+> **说明**
+>
+> 调用接口时，若软键盘处于显示状态，调用接口后软键盘会被隐藏。
+>
+> 调用该接口不会解除与输入法的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入文本编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -876,9 +894,11 @@ hideTextInput(): Promise&lt;void&gt;
 
 退出文本编辑状态。使用promise异步回调。
 
-编辑控件可调用该接口退出编辑状态。若调用该接口时当前软键盘处于显示状态，则调用该接口后软键盘会被隐藏。
-
-调用该接口不解除与输入法应用的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入编辑状态。
+> **说明**
+>
+> 调用接口时，若软键盘处于显示状态，调用接口后软键盘会被隐藏。
+>
+> 调用该接口不会解除与输入法的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入文本编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -912,7 +932,7 @@ inputMethodController.hideTextInput().then(() => {
 
 detach(callback: AsyncCallback&lt;void&gt;): void
 
-解除与输入法应用的绑定。使用callback异步回调。
+自绘控件解除与输入法的绑定。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -947,7 +967,7 @@ inputMethodController.detach((err) => {
 
 detach(): Promise&lt;void&gt;
 
-解除与输入法应用的绑定。使用promise异步回调。
+自绘控件解除与输入法的绑定。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -980,9 +1000,11 @@ inputMethodController.detach().then(() => {
 
 setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置要避让的窗口。使用callback异步回调。
+设置要避让软键盘的窗口。使用callback异步回调。
 
-比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。预留能力，当前暂不支持获取windowId。
+> **说明**
+>
+> 将绑定到输入法的应用程序所在的窗口Id传入，此窗口可以避让输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -990,7 +1012,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 要避让的窗口id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1024,9 +1046,11 @@ try {
 
 setCallingWindow(windowId: number): Promise&lt;void&gt;
 
-设置要避让的窗口。使用promise异步回调。
+设置要避让软键盘的窗口。使用promise异步回调。
 
-比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。预留能力，当前暂不支持获取windowId。
+> **说明**
+>
+> 将绑定到输入法的应用程序所在的窗口Id传入，此窗口可以避让输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1034,7 +1058,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 要避让的窗口id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
 
 **返回值：**
 
@@ -1071,9 +1095,7 @@ try {
 
 updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新当前编辑框内光标信息。使用callback异步回调。
-
-当光标信息发生变化时，可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
+更新当前编辑框内的光标信息。当光标信息发生变化时，调用该接口使输入法感知到光标变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1114,9 +1136,7 @@ try {
 
 updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
-更新当前编辑控件内的光标信息。使用promise异步回调。
-
-当光标信息发生变化时，编辑控件可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
+更新当前编辑框内的光标信息。当光标信息发生变化时，调用该接口使输入法感知到光标变化。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1160,7 +1180,7 @@ try {
 
 changeSelection(text: string, start: number, end: number, callback: AsyncCallback&lt;void&gt;): void
 
-向输入法应用更新当前编辑框内被选中的文本信息，当选中的文本内容或文本范围发生变化时，可调用该接口更新文本信息。使用callback异步回调。
+更新当前编辑框内被选中的文本信息。当选中的文本内容或文本范围发生变化时，可调用该接口更新文本信息，使输入法应用感知到变化。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1171,7 +1191,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 | text | string | 是 | 整个输入文本。 |
 | start | number | 是 | 所选文本的起始位置。 |
 | end | number | 是 | 所选文本的结束位置。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当隐藏输入法成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当文本信息更新成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1203,7 +1223,7 @@ try {
 
 changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
-向输入法应用更新当前编辑框内被选中的文本信息，当选中的文本内容或文本范围发生变化时，可调用该接口更新文本信息。使用promise异步回调。
+更新当前编辑框内被选中的文本信息。当选中的文本内容或文本范围发生变化时，可调用该接口更新文本信息，使输入法应用感知到变化。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1249,7 +1269,7 @@ try {
 
 updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;): void
 
-更新编辑框属性配置信息。使用callback异步回调。
+更新编辑框属性信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1257,8 +1277,8 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| attribute | [InputAttribute](#inputattribute10) | 是 | InputAttribute对象，包含的额外信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当隐藏输入法成功时，err为undefined；否则为错误对象。 |
+| attribute | [InputAttribute](#inputattribute10) | 是 | 编辑框属性对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当编辑框属性信息更新成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1290,7 +1310,7 @@ try {
 
 updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
-更新编辑框属性配置信息。使用promise异步回调。
+更新编辑框属性信息。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1298,7 +1318,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| attribute | [InputAttribute](#inputattribute10) | 是 | InputAttribute对象，包含的额外信息。 |
+| attribute | [InputAttribute](#inputattribute10) | 是 |  编辑框属性对象。 |
 
 **返回值：**
 
@@ -1336,7 +1356,9 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 结束输入会话。使用callback异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1381,7 +1403,9 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 结束输入会话。使用promise异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1389,7 +1413,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示结束输入会话成功；返回false表示结束输入会话失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示结束输入会话成功，返回false表示结束输入会话失败。 |
 
 **错误码：**
 
@@ -1422,9 +1446,11 @@ try {
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-显示软键盘。使用callback异步回调。
+显示输入法软键盘。使用callback异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用显示当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1461,9 +1487,11 @@ inputMethodController.showSoftKeyboard((err) => {
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
-显示软键盘。使用Promise异步回调。
+显示输入法软键盘。使用Promise异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用显示当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1498,9 +1526,11 @@ inputMethodController.showSoftKeyboard().then(() => {
 
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏软键盘。使用callback异步回调。
+隐藏输入法软键盘。使用callback异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1537,9 +1567,11 @@ inputMethodController.hideSoftKeyboard((err) => {
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
-隐藏软键盘。使用Promise异步回调。
+隐藏输入法软键盘。使用Promise异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1576,10 +1608,10 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 结束输入会话。使用callback异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
-
 > **说明：** 
->
+> 
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用该接口结束输入会话。
+> 
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[stopInputSession()](#stopinputsession9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1588,7 +1620,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法隐藏成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当会话结束成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
@@ -1612,10 +1644,10 @@ stopInput(): Promise&lt;boolean&gt;
 
 结束输入会话。使用promise异步回调。
 
-需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
-
 > **说明：** 
->
+> 
+> 该接口需要编辑框与输入法绑定时才能调用，即点击编辑控件后，才可调用该接口结束输入会话。
+> 
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[stopInputSession()](#stopinputsession9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1624,7 +1656,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示输入法隐藏成功；返回false表示输入法隐藏失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示会话结束成功；返回false表示会话结束失败。 |
 
 **示例：**
 
@@ -1652,8 +1684,8 @@ on(type: 'insertText', callback: (text: string) => void): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>- type为‘insertText’时表示订阅输入法应用插入文本事件监听。 |
-| callback | (text: string) => void | 是   | 回调函数，返回需要插入的文本内容。<br/>开发者需要在回调函数中根据传入的文本内容操作编辑框中的内容。 |
+| type     | string                                                       | 是   | 设置监听类型，固定取值为'insertText'。 |
+| callback | (text: string) => void | 是   | 回调函数，返回需要插入的文本内容。<br/>根据传入的文本，在回调函数中操作编辑框中的内容。 |
 
 **错误码：**
 
@@ -1687,8 +1719,8 @@ off(type: 'insertText', callback?: (text: string) => void): void
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 设置监听类型。<br/>- type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
-| callback | (text: string) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                 | 是   | 设置监听类型，固定取值为'insertText'。 |
+| callback | (text: string) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br/>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1712,8 +1744,8 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ----- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示订阅输入法应用向左删除事件监听。 |
-| callback | (length: number) => void | 是   | 回调函数，返回需要向左删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'deleteLeft'。|
+| callback | (length: number) => void | 是   | 回调函数，返回需要向左删除的文本长度。<br/>根据传入的删除长度，在回调函数中操作编辑框中的文本。 |
 
 **错误码：**
 
@@ -1735,6 +1767,31 @@ try {
 }
 ```
 
+### off('deleteLeft')<sup>10+</sup>
+
+off(type: 'deleteLeft', callback?: (length: number) => void): void
+
+取消订阅输入法应用向左删除文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                         |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | 是   | 设置监听，固定取值为'deleteLeft'。 |
+| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```js
+let onDeleteLeftCallback = (length: number) => {
+    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+};
+inputMethodController.off('deleteLeft', onDeleteLeftCallback);
+inputMethodController.off('deleteLeft');
+```
+
 ### on('deleteRight')<sup>10+</sup>
 
 on(type: 'deleteRight', callback: (length: number) => void): void
@@ -1747,8 +1804,8 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ----- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为`deleteRight`表示订阅输入法应用向右删除事件监听。|
-| callback | (length: number) => void | 是   | 回调函数，返回需要向右删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'deleteRight'。|
+| callback | (length: number) => void | 是   | 回调函数，返回需要向右删除的文本长度。<br/>根据传入的删除长度，在回调函数中操作编辑框中的文本。 |
 
 **错误码：**
 
@@ -1769,30 +1826,6 @@ try {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
-### off('deleteLeft')<sup>10+</sup>
-
-off(type: 'deleteLeft', callback?: (length: number) => void): void
-
-取消订阅输入法应用向左删除文本事件。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                                                         |
-| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | 是   | 设置监听类型。<br/>- type为`deleteLeft`表示取消订阅输入法应用向左删除的事件监听。 |
-| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
-
-**示例：**
-
-```js
-let onDeleteLeftCallback = (length: number) => {
-    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
-};
-inputMethodController.off('deleteLeft', onDeleteLeftCallback);
-inputMethodController.off('deleteLeft');
-```
 
 ### off('deleteRight')<sup>10+</sup>
 
@@ -1806,8 +1839,8 @@ off(type: 'deleteRight', callback?: (length: number) => void): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                         |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | 是   | 设置监听类型。<br/>- type为`deleteRight`表示取消订阅输入法应用向右删除的事件监听。 |
-| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                   | 是   | 设置监听类型，固定取值为`deleteRight`。 |
+| callback | (length: number) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1823,7 +1856,7 @@ inputMethodController.off('deleteRight');
 
 on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => void): void
 
-订阅输入法应用发送键盘状态事件。使用callback异步回调。
+订阅输入法应用发送输入法软键盘状态事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1831,8 +1864,8 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 
 | 参数名   | 类型  | 必填 | 说明    |
 | -------- | ------ | ---- | ---- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示订阅输入法应用发送键盘状态事件监听。 |
-| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'sendKeyboardStatus'。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回软键盘状态。<br/>根据传入的软键盘状态，在回调函数中做相应操作。 |
 
 **错误码：**
 
@@ -1858,7 +1891,7 @@ try {
 
 off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => void): void
 
-取消订阅输入法应用发送键盘状态事件。
+取消订阅输入法应用发送软键盘状态事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1866,8 +1899,8 @@ off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
-| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                                                       | 是   | 设置监听类型，固定取值为'sendKeyboardStatus'。 |
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1891,8 +1924,8 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 | 参数名   | 类型  | 必填 | 说明     |
 | -------- | -------- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示订阅输入法应用发送功能键事件监听。 |
-| callback | (functionKey: [FunctionKey](#functionkey10)) => void | 是   | 回调函数，返回输入法应用发送的功能键信息。<br/>开发者需要根据返回的功能键做相应的操作。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'sendFunctionKey'。|
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | 是   | 回调函数，返回输入法应用发送的功能键信息。<br/>根据返回的功能键信息，做相应操作。 |
 
 **错误码：**
 
@@ -1918,7 +1951,7 @@ try {
 
 off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): void
 
-取消订阅输入法应用发送FunctionKey事件。
+取消订阅输入法应用发送功能键事件。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1926,8 +1959,8 @@ off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): voi
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                               | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
-| callback | (functionKey: [FunctionKey](#functionkey10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                                               | 是   | 设置监听类型，固定取值为'sendFunctionKey'。 |
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1951,8 +1984,8 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
-| type     | string | 是   | 设置监听类型。<br/>- type为‘moveCursor’时表示订阅输入法应用移动光标事件监听。 |
-| callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>开发者需要根据返回的光标移动方向改变光标位置。 |
+| type     | string | 是   | 设置监听类型，固定取值为'moveCursor'。 |
+| callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>根据返回的光标移动方向，改变光标位置，如光标向上或向下。  |
 
 **错误码：**
 
@@ -1986,8 +2019,8 @@ off(type: 'moveCursor', callback?: (direction: Direction) => void): void
 
 | 参数名  | 类型    | 必填 | 说明  |
 | ------ | ------ | ---- | ---- |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘moveCursor’时表示取消订阅输入法应用发送移动光标事件监听。 |
-| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type   | string | 是   | 设置监听类型，固定取值为'moveCursor'。 |
+| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2003,7 +2036,7 @@ inputMethodController.off('moveCursor');
 
 on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
-订阅输入法应用发送扩展操作事件。使用callback异步回调。
+订阅输入法应用发送扩展编辑操作事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2011,8 +2044,8 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | -------- |
-| type     | string    | 是   | 设置监听类型。<br/>- type为‘handleExtendAction’时表示订阅输入法应用发送扩展操作代码事件监听。 |
-| callback | callback: (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展操作类型。<br/>开发者需要在回调函数中根据传入的扩展操作类型做相应的操作。 |
+| type     | string    | 是   | 设置监听类型，固定取值为'handleExtendAction'。 |
+| callback | callback: (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展编辑操作类型。<br/>根据传入的扩展编辑操作类型，做相应的操作，如剪切、复制等。|
 
 **错误码：**
 
@@ -2038,7 +2071,7 @@ try {
 
 off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 
-取消订阅输入法应用发送扩展操作事件。
+取消订阅输入法应用发送扩展编辑操作事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2046,8 +2079,8 @@ off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ------ | ---- | ------- |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘handleExtendAction’时表示取消订阅输入法应用发送扩展代码事件监听。 |
-| callback | (action: [ExtendAction](#extendaction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type   | string | 是   | 设置监听类型，固定取值为'handleExtendAction'。 |
+| callback | (action: [ExtendAction](#extendaction10)) => void | 否 | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2071,8 +2104,8 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 
 | 参数名   | 类型     | 必填 | 说明     |
 | -------- | ---- | ---- | ------- |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示订阅输入法应用按范围选中文本事件监听。 |
-| callback | Callback&lt;[Range](#range10)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的范围选中编辑框中相应文本。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'selectByRange'。 |
+| callback | Callback&lt;[Range](#range10)&gt; | 是   | 回调函数，返回需要选中的文本范围。<br/>根据传入的文本范围，开发者在回调函数中编辑框中相应文本。|
 
 **示例：**
 
@@ -2086,7 +2119,7 @@ inputMethodController.on('selectByRange', (range) => {
 
 off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 
-取消订阅输入法应用按范围选中文本事件。
+取消订阅输入法应用按范围选中文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2094,8 +2127,8 @@ off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                            | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
-| callback | Callback&lt;[Range](#range10)&gt; | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                            | 是   | 设置监听类型，固定取值为'selectByRange'。 |
+| callback | Callback&lt;[Range](#range10)&gt; | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2111,7 +2144,7 @@ inputMethodController.off('selectByRange');
 
 on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
-订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
+订阅输入法应用按光标移动方向，选中文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2119,8 +2152,8 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示订阅输入法应用按光标移动动作选中文本事件监听。 |
-| callback | Callback&lt;[Movement](#movement10)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的光标动作选中编辑框中相应文本。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'selectByMovement'。 |
+| callback | Callback&lt;[Movement](#movement10)&gt; | 是   | 回调函数，返回光标移动的方向。<br/>根据传入的光标移动方向，选中编辑框中相应文本。 |
 
 **示例：**
 
@@ -2134,7 +2167,7 @@ inputMethodController.on('selectByMovement', (movement) => {
 
 off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 
-取消订阅输入法应用按光标动作选中文本事件。
+取消订阅输入法应用按光标移动方向，选中文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2142,8 +2175,8 @@ off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                               | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
-| callback | Callback&lt;[Movement](#movement10)> | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string                               | 是   | 设置监听类型，固定取值为'selectByMovement'。 |
+| callback | Callback&lt;[Movement](#movement10)> | 否   | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2167,8 +2200,8 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
 
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘getLeftTextOfCursor’时表示订阅输入法应用获取光标左侧指定长度文本事件监听。 |
-| callback | (length: number) => string | 是   | 回调函数，获取光标左侧指定长度文本内容。<br/>开发者需要在该函数中，获取编辑框最新状态下光标左侧指定length长度的文本内容并返回。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'getLeftTextOfCursor'。 |
+| callback | (length: number) => string | 是   | 回调函数，获取编辑框最新状态下光标左侧指定长度的文本内容并返回。 |
 
 **错误码：**
 
@@ -2196,7 +2229,7 @@ try {
 
 off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
 
-取消订阅输入法应用获取光标左侧指定长度文本事件。
+取消订阅输入法应用获取光标左侧指定长度文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2204,8 +2237,8 @@ off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘getLeftTextOfCursor’时表示取消订阅输入法应用获取光标左侧指定长度文本事件监听。 |
-| callback | (length: number) => string | 否  | 回调函数，获取光标左侧指定长度文本内容。需要与on接口传入的保持一致。|
+| type   | string | 是   | 设置监听类型，固定取值为'getLeftTextOfCursor'。 |
+| callback | (length: number) => string | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -2233,8 +2266,8 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
 
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘getRightTextOfCursor’时表示订阅输入法应用获取光标右侧指定长度文本事件监听。 |
-| callback | (length: number) => string | 是   | 回调函数，获取光标右侧指定长度文本内容。<br/>开发者需要在该函数中，获取编辑框最新状态下光标右侧指定length长度的文本内容并返回。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'getRightTextOfCursor'。 |
+| callback | (length: number) => string | 是   | 回调函数，获取编辑框最新状态下光标右侧指定长度的文本内容并返回。 |
 
 **错误码：**
 
@@ -2262,7 +2295,7 @@ try {
 
 off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
 
-取消订阅输入法应用获取光标右侧指定长度文本事件。
+取消订阅输入法应用获取光标右侧指定长度文本事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2270,8 +2303,8 @@ off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘getRightTextOfCursor’时表示取消订阅输入法应用获取光标右侧指定长度文本事件监听。 |
-| callback | (length: number) => string | 否  | 回调函数，获取光标右侧指定长度文本内容。需要与on接口传入的保持一致。|
+| type   | string | 是   | 设置监听类型，固定取值为'getRightTextOfCursor'。 |
+| callback | (length: number) => string | 否  |取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -2299,8 +2332,8 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void;
 
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
-| type     | string  | 是   | 设置监听类型。<br/>- type为‘getTextIndexAtCursor’时表示订阅输入法应用获取光标处文本索引事件监听。 |
-| callback | () => number | 是   | 回调函数，获取光标处文本索引。<br/>开发者需要在该函数中，获取编辑框最新状态下光标处文本索引并返回。 |
+| type     | string  | 是   | 设置监听类型，固定取值为'getTextIndexAtCursor'。 |
+| callback | () => number | 是   | 回调函数，获取编辑框最新状态下光标处文本索引并返回。 |
 
 **错误码：**
 
@@ -2328,7 +2361,7 @@ try {
 
 off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 
-取消订阅输入法应用获取光标处文本索引事件。
+取消订阅输入法应用获取光标处文本索引事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2336,8 +2369,8 @@ off(type: 'getTextIndexAtCursor', callback?: () => number): void;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>- type为‘getTextIndexAtCursor’时表示取消订阅输入法应用获取光标处文本索引事件监听。 |
-| callback | () => number | 否  | 回调函数，获取光标处文本索引。需要与on接口传入的保持一致。|
+| type   | string | 是   | 设置监听类型，固定取值为'getTextIndexAtCursor'。 |
+| callback | () => number | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -2355,7 +2388,7 @@ try {
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API均需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例后，通过实例调用。
 
 ### on('imeChange')<sup>9+</sup>
 
@@ -2369,8 +2402,8 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>- type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
+| type     | string                        | 是   | 设置监听类型，固定取值为'imeChange'。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 是 | 回调函数，返回输入法属性对象及子类型对象。 |
 
 **示例：**
 
@@ -2392,8 +2425,8 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 | 参数名   | 类型    | 必填 | 说明          |
 | -------- | --------- | ---- | --------------- |
-| type     | string    | 是   | 设置监听类型。<br/>- type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
+| type     | string    | 是   | 设置监听类型，固定取值为'imeChange'。 |
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及子类型对象。 |
 
 **示例：**
 
@@ -2415,7 +2448,7 @@ on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`表示订阅输入法软键盘显示事件。 |
+| type     | string | 是 | 设置监听类型，固定取值为'imeShow'。 |
 | callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
 
 **示例：**
@@ -2440,7 +2473,7 @@ on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeHide`表示订阅输入法软键盘隐藏事件。 |
+| type     | string | 是 | 设置监听类型，固定取值为'imeHide'。 |
 | callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
 
 **示例：**
@@ -2465,8 +2498,8 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`表示取消订阅输入法软键盘显示事件。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string | 是 | 设置监听类型，固定取值`imeShow`。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2488,8 +2521,8 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型。<br/>- type为`imeHide`表示取消订阅输入法软键盘隐藏事件。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+| type     | string | 是 | 设置监听类型，固定取值'imeHide'。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -2509,7 +2542,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| 是 | 子类型所属的输入法应用。 |
+| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| 是 | 输入法应用。 |
 | callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
 **错误码：**
@@ -2553,7 +2586,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| 是 | 子类型所属的输入法应用。 |
+| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| 是 | 输入法应用。 |
 
 **返回值：**
 
@@ -2631,7 +2664,7 @@ try {
 
 listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
-查询当前输入法的子类型列表。使用promise异步回调。
+查询当前输入法应用的所有子类型。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2668,9 +2701,13 @@ try {
 
 getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-获取已激活/未激活输入法列表。使用callback异步回调。
+获取已激活/未激活的输入法应用列表。使用callback异步回调。
 
-参数enable取true，返回已激活输入法列表；取false返回未激活输入法列表。已激活/未激活为预留概念，当前暂未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> **说明**
+> 
+> 已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> 
+> 已激活/未激活为预留概念，暂不支持。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2678,7 +2715,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 参数名   | 类型                                                | 必填 | 说明                          |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
-| enable   | boolean                                             | 是   | 指定返回已激活/未激活。       |
+| enable   | boolean                                             | 是   |true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
 | callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回已激活/未激活输入法列表。 |
 
 **错误码：**
@@ -2710,9 +2747,13 @@ try {
 
 getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-获取已激活/未激活输入法列表。使用promise异步回调。
+获取已激活/未激活的输入法应用列表。使用promise异步回调。
 
-参数enable取true，返回已激活输入法列表；取false返回未激活输入法列表。已激活/未激活为预留概念，当前暂未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> **说明**
+> 
+> 已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
+> 
+> 已激活/未激活为预留概念，暂不支持。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2720,7 +2761,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 参数名 | 类型    | 必填 | 说明                    |
 | ------ | ------- | ---- | ----------------------- |
-| enable | boolean | 是   | 指定返回已激活/未激活。 |
+| enable | boolean | 是   |- true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
 
 **错误码：**
 
@@ -2735,7 +2776,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 类型                                                         | 说明                          |
 | ------------------------------------------------------------ | ----------------------------- |
-| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise对象，返回已激活/未激活输入法列表。 |
 
 **示例：**
 
@@ -2801,7 +2842,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示输入法选择对话框显示成功；返回false表示输入法选择对话框显示失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示输入法选择对话框显示成功，返回false表示输入法选择对话框显示失败。 |
 
 **错误码：**
 
