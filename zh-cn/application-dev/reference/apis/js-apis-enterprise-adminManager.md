@@ -943,6 +943,102 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 })
 ```
 
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+
+设备管理应用授予指定应用管理员权限。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Successfully authorized permission to the application');
+});
+```
+
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
+
+设备管理应用授予指定应用管理员权限。使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| bundleName  | string | 是 | 被授予管理员权限应用的包名。 |
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当设备管理应用授予指定应用管理员权限失败时，抛出错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**示例：**
+
+```js
+let wantTemp = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
+}).catch((err) => {
+  console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
 ## EnterpriseInfo
 
 设备管理应用的企业信息。
