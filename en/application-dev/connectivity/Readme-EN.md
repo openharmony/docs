@@ -9,6 +9,7 @@
   - [Ethernet Connection](net-ethernet.md)
   - [Network Connection Management](net-connection-manager.md)
   - [mDNS Management](net-mdns.md)
+  - [VPN Management](net-vpn.md)
 - IPC & RPC
   - [IPC & RPC Overview](ipc-rpc-overview.md)
   - [IPC & RPC Development](ipc-rpc-development-guideline.md)

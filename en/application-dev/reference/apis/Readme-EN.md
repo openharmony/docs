@@ -315,6 +315,7 @@
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
+  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
 
 - Connectivity
   - [@ohos.bluetooth.a2dp (Bluetooth a2dp Module)(Recommended)](js-apis-bluetooth-a2dp.md)
