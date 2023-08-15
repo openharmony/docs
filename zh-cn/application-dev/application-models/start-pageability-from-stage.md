@@ -8,6 +8,9 @@
 
   UIAbility启动PageAbility和UIAbility启动UIAbility的方式完全相同。
 
+> **说明：**
+> 需注意FA模型中abilityName由bundleName + AbilityName组成，具体见示例。
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -25,7 +28,7 @@ export default class EntryAbility extends UIAbility {
         });
         let want = {
             bundleName: "com.ohos.fa",
-            abilityName: "EntryAbility",
+            abilityName: "com.ohos.fa.EntryAbility",
         };
         this.context.startAbility(want).then(() => {
             console.info('Start Ability successfully.');
