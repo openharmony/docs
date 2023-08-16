@@ -388,7 +388,7 @@ workerInstance.onexit = function(e) {
 workerInstance.terminate();
 
 // Worker thread:
-//parentPort.close()
+//workerPort.close()
 ```
 
 
@@ -429,7 +429,7 @@ workerInstance.onerror = function(e) {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
+Defines the event handler to be called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1053,8 +1053,8 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.workerPort;
-parentPort.onmessageerror = function(e) {
+const workerPort = worker.workerPort;
+workerPort.onmessageerror = function(e) {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -1744,11 +1744,11 @@ workerInstance.onmessage = function(e) {
 ```js
 // worker.ts
 import worker from '@ohos.worker';
-const parentPort = worker.parentPort;
-parentPort.onmessage = function(e){
+const workerPort = worker.workerPort;
+workerPort.onmessage = function(e){
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
-    parentPort.postMessage(buffer, [buffer]);
+    workerPort.postMessage(buffer, [buffer]);
 }
 ```
 
@@ -2096,10 +2096,10 @@ The worker thread is implemented based on the actor model. In the worker interac
 Each actor concurrently processes tasks of the main thread. For each actor, there is a message queue and a single-thread execution module. The message queue receives requests from the main thread and other actors; the single-thread execution module serially processes requests, sends requests to other actors, and creates new actors. These isolated actors use the asynchronous mode and can run concurrently.
 
 ### Precautions
-- Currently, a maximum of eight workers can co-exist.
+- Currently, a maximum of eight worker threads can co-exist.
 - In API version 8 and earlier versions, when the number of **Worker** instances exceeds the upper limit, the error "Too many workers, the number of workers exceeds the maximum." is thrown.
 - Since API version 9, when the number of **Worker** instances exceeds the upper limit, the business error "Worker initialization failure, the number of workers exceeds the maximum." is thrown.
-- To proactively destroy a worker thread, you can call **terminate()** or **parentPort.close()** of the newly created **Worker** instance.
+- To proactively destroy a worker thread, you can call **terminate()** or **workerPort.close()** of the newly created **Worker** instance.
 - Since API version 9, if a **Worker** instance in a non-running state (such as destroyed or being destroyed) calls an API, a business error is thrown.
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them.
 - Do not use both **new worker.Worker** and **new worker.ThreadWorker** to create a **Worker** project. Otherwise, **Worker** functions abnormally. Since API version 9, you are advised to use [new worker.ThreadWorker](#constructor9). In API version 8 and earlier versions, you are advised to use [new worker.Worker](#constructordeprecated).
@@ -2224,5 +2224,4 @@ Configuration of the **build-profile.json5** file:
     }
   }
 ```
-
 <!--no_check-->
