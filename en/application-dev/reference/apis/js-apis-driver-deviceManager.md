@@ -82,7 +82,8 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 ```js
 try {
-  deviceManager.bindDevice(device.deviceId, (error, data) => {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }, (error, data) => {
     if (error) {
@@ -131,7 +132,8 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 ```js
 try {
-  deviceManager.bindDevice(matchDevice.deviceId, (error, data) => {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.bindDevice(12345678, (error, data) => {
     console.error('Device is disconnected');
   }).then(data => {
     console.info('bindDevice success');
@@ -169,7 +171,8 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 ```js
 try {
-  deviceManager.unbindDevice(matchDevice.deviceId, (error, data) => {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.unbindDevice(12345678, (error, data) => {
   if (error) {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
     return;
@@ -211,7 +214,8 @@ Unbinds a peripheral device. This API uses a promise to return the result.
 
 ```js
 try {
-  deviceManager.unbindDevice(matchDevice.deviceId).then(data => {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.unbindDevice(12345678).then(data => {
     console.info('unbindDevice success');
   }, error => {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
