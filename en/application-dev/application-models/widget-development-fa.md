@@ -85,7 +85,7 @@ The **FormBindingData** class has the following APIs. For details, see [FormBind
 
 | API| Description|
 | -------- | -------- |
-| createFormBindingData(obj?: Object \ string): FormBindingData| | Creates a **FormBindingData** object.|
+| createFormBindingData(obj?:&nbsp;Object&nbsp;\|&nbsp;string):&nbsp;FormBindingData | Creates a **FormBindingData** instance. |
 
 
 ## How to Develop
@@ -327,9 +327,11 @@ For details about how to implement persistent data storage, see [Application Dat
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
-- Normal widget: a widget persistently used by the widget host
+- Normal widget: a widget persistently used by the widget host, for example, a widget added to the home screen.
 
-- Temporary widget: a widget temporarily used by the widget host
+- Temporary widget: a widget temporarily used by the widget host, for example, the widget displayed when you swipe up on a widget application.
+
+Converting a temporary widget to a normal one: After you swipe up on a widget application, a temporary widget is displayed. If you touch the pin button on the widget, it is displayed as a normal widget on the home screen.
 
 Data of a temporary widget will be deleted on the Widget Manager if the widget framework is killed and restarted. The widget provider, however, is not notified of the deletion and still keeps the data. Therefore, the widget provider needs to clear the data of temporary widgets proactively if the data has been kept for a long period of time. If the widget host has converted a temporary widget into a normal one, the widget provider should change the widget data from temporary storage to persistent storage. Otherwise, the widget data may be deleted by mistake.
 
