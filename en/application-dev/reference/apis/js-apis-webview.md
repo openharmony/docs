@@ -637,7 +637,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            // The headers parameter is carried.
+            // The headers parameter is passed.
             this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -998,7 +998,7 @@ struct WebComponent {
 
 onActive(): void
 
-Invoked to instruct the **\<Web>** component to enter the foreground, active state.
+Invoked to instruct the **\<Web>** component to enter the active foreground state.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1347,12 +1347,14 @@ HTML file to be loaded:
 <html>
     <meta charset="utf-8">
     <body>
-        Hello world!
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
-        str = objName.test("test function")
-        console.log('objName.test result:'+ str)
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
     }
 </script>
 </html>
@@ -3865,7 +3867,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3942,7 +3944,7 @@ struct Index {
             }
             .type(ButtonType.Capsule)
             .onClick(() => {
-              //Load an HTTPS website and view the certificate information of the website.
+              // Load an HTTPS website and view the certificate information of the website.
               this.webviewCtl.loadUrl('https://www.example.com')
             })
             .height(50)
@@ -4022,7 +4024,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](./js-apis-cert.md) of the website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4030,7 +4032,7 @@ Obtains the certificate information of the current website. When the \<Web> comp
 
 | Name  | Type                        | Mandatory| Description                                    |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current HTTPS website.|
+| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current website.|
 
 **Error codes**
 
@@ -4099,7 +4101,7 @@ struct Index {
             }
             .type(ButtonType.Capsule)
             .onClick(() => {
-              //Load an HTTPS website and view the certificate information of the website.
+              // Load an HTTPS website and view the certificate information of the website.
               this.webviewCtl.loadUrl('https://www.example.com')
             })
             .height(50)

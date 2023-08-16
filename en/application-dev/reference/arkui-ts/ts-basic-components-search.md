@@ -12,7 +12,7 @@ Not supported
 
 ## APIs
 
-Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; controller?: SearchController })
+Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
 
 **Parameters**
 
