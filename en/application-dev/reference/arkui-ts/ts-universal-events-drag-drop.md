@@ -6,13 +6,18 @@ A drag event is triggered when a component is dragged.
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The following components provide the drag effect by default: [\<Image>](../arkui-ts/ts-basic-components-image.md), [\<Text>](../arkui-ts/ts-basic-components-text.md), [\<TextArea>](../arkui-ts/ts-basic-components-textarea.md), and [\<Search>](../arkui-ts/ts-basic-components-search.md).
-
+> The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+>
+> The following component supports drop actions by default: **\<Video>**.
+>
+> The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
+>
+> The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 ## Events
 
 | Name                                                        | Bubbling Supported| Description                                                    |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br> Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br> Event priority:<br>Long press time < 500 ms: Long press event > Drag event<br> Other: Drag event > Long press event.|
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br>Event priority:<br>- Long press time < 500 ms: Long press event > Drag event<br>- Other: Drag event > Long press event |
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
@@ -36,15 +41,13 @@ Provides additional information required for dragging an item.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
-| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This attribute is valid only in the drag event of the **\<ListItem>** component.|
-| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This attribute is valid only in the drag event of the **\<List>** component.|
+| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter is valid only in the drag event of the **\<ListItem>** component. |
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter is valid only in the drag event of the **\<List>** component. |
 
 ## DragEvent
 
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
-| getX() | number | X-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
-| getY() | number | Y-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the default drop animation when the dragging ends.|
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata) | Obtains drag-related data from the drag event.|
@@ -54,7 +57,13 @@ Provides additional information required for dragging an item.
 | getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the rectangle where the preview image is located.|
 | getVelocityX()<sup>10+</sup> | number | Obtains the dragging velocity along the x-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.|
 | getVelocityY()<sup>10+</sup> | number | Obtains the dragging velocity along the y-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
-| getVelocity()<sup>10+</sup> | number | Obtains the dragging velocity along the main axis. The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. |
+| getVelocity()<sup>10+</sup> | number | Obtains the dragging velocity along the main axis. The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.|
+| getWindowX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.|
+| getWindowY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.|
+| getDisplayX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the screen, in vp.|
+| getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.|
+| getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
+| getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
 
 ## DragRet<sup>10+</sup>
 
@@ -87,10 +96,22 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
-    if (records.length !== 0) {
-      callback(event);
-      return;
+    let data = event.getData();
+    if (!data) {
+      return false;
+    }
+    let records: Array<udmf.UnifiedRecord> = data.getRecords();
+    if (!records || records.length <= 0) {
+      return false;
+    }
+    callback(event);
+    return true;
+  }
+
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
+  {
+    if(this.getDataFromUdmfRetry(event, callback)) {
+        return;
     }
     setTimeout(()=>{
       this.getDataFromUdmfRetry(event, callback);
@@ -174,7 +195,7 @@ struct Index {
           .border({color: Color.Black, width: 1})
           .allowDrop([udmf.UnifiedDataType.IMAGE])
           .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmfRetry(dragEvent, (event)=>{
+            this.getDataFromUdmf(dragEvent, (event)=>{
               let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
@@ -197,7 +218,7 @@ struct Index {
           .margin(15)
           .allowDrop([udmf.UnifiedDataType.TEXT])
           .onDrop((dragEvent: DragEvent)=>{
-            this.getDataFromUdmfRetry(dragEvent, event => {
+            this.getDataFromUdmf(dragEvent, event => {
               let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
               this.targetText = (<udmf.Text>(records[0])).details['value'];
             })
@@ -215,7 +236,7 @@ struct Index {
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
         .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
         .onDrop((dragEvent)=>{
-          this.getDataFromUdmfRetry(dragEvent, event=>{
+          this.getDataFromUdmf(dragEvent, event=>{
             let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
             let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
             this.abstractContent = plainText.abstract;
