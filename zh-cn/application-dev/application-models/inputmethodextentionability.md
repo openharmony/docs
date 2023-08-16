@@ -56,14 +56,12 @@
 
    ```ts
    import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-   import { KeyboardController } from './model/KeyboardController'
+   import keyboardController from './model/KeyboardController'
    
    export default class InputDemoService extends InputMethodExtensionAbility {
-     private keyboardController: KeyboardController;
    
      onCreate(want) {
-       this.keyboardController = new KeyboardController(this.context);
-       this.keyboardController.onCreate();  // 初始化窗口并注册对输入法框架的事件监听
+       keyboardController.onCreate(this.context);  // 初始化窗口并注册对输入法框架的事件监听
      }
    
      onDestroy() {
@@ -72,32 +70,29 @@
      }
    }
    ```
-
+   
 2. KeyboardController.ts文件。
 
    ```ts
+   import common from '@ohos.app.ability.common';
    import inputMethodEngine from '@ohos.inputMethodEngine';
    import display from '@ohos.display';
-   import windowManager from '@ohos.window';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
-   globalThis.inputAbility = inputMethodEngine.getInputMethodAbility();
+   const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    
    export class KeyboardController {
-     mContext;	// 保存InputMethodExtensionAbility中的context属性
-     WINDOW_TYPE_INPUT_METHOD_FLOAT = 2105;		// 定义窗口类型，2105代表输入法窗口类型，用于创建输入法应用窗口
-     windowName = 'inputApp';
-     private windowHeight: number = 0;
-     private windowWidth: number = 0;
-     private nonBarPosition: number = 0;
-     private isWindowShowing: boolean = false;
+     private mContext: common.ExtensionContext | undefined = undefined; // 保存InputMethodExtensionAbility中的context属性
+     private panel: inputMethodEngine.Panel | undefined = undefined; 
+     private textInputClient: inputMethodEngine.InputClient | undefined = undefined; 
+     private keyboardController: inputMethodEngine.KeyboardController | undefined = undefined;
    
-     constructor(context) {
-       this.mContext = context;
+     constructor() {
      }
    
-     public onCreate(): void
+     public onCreate(context: common.ExtensionContext): void
      {
+       this.mContext = context;
        this.initWindow();				// 初始化窗口
        this.registerListener();		// 注册对输入法框架的事件监听
      }
@@ -105,80 +100,88 @@
      public onDestroy(): void			// 应用生命周期销毁
      {
        this.unRegisterListener();		// 去注册事件监听
-       let win = windowManager.findWindow(this.windowName);
-       win.destroyWindow();				// 销毁窗口
+       if(this.panel) { // 销毁窗口
+         this.panel.hide();
+         inputMethodAbility.destroyPanel(this.panel);
+       }
+     }
+   
+     public insertText(text: string): void {
+       if(this.textInputClient) {
+         this.textInputClient.insertText(text);
+       }
+     }
+   
+     public deleteForward(length: number): void {
+       if(this.textInputClient) {
+         this.textInputClient.deleteForward(length);
+       }
      }
    
      private initWindow(): void		// 初始化窗口
      {
+       if(this.mContext === undefined) {
+         return;
+       }
        let dis = display.getDefaultDisplaySync();
        let dWidth = dis.width;
        let dHeight = dis.height;
        let keyHeightRate = 0.47;
        let keyHeight = dHeight * keyHeightRate;
-       this.windowWidth = dWidth;
-       this.windowHeight = keyHeight;
-       this.nonBarPosition = dHeight - keyHeight;
-   
-       let config = {
-         name: this.windowName,
-         windowType: this.WINDOW_TYPE_INPUT_METHOD_FLOAT,
-         ctx: this.mContext
-       }
-       windowManager.createWindow(config).then((win) => {	// 根据窗口类型创建窗口
-         win.resize(dWidth, keyHeight).then(() => {
-           win.moveWindowTo(0, this.nonBarPosition).then(() => {
-             win.setUIContent('pages/InputMethodExtAbility/Index').then(() => {
-             });
-           });
-         });
+       let nonBarPosition = dHeight - keyHeight;
+       let panelInfo: inputMethodEngine.PanelInfo = {
+         type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+         flag: inputMethodEngine.PanelFlag.FLG_FLOATING
+       };
+       inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
+         this.panel = inputPanel;
+         if(this.panel) {
+           await this.panel.resize(dWidth, keyHeight);
+           await this.panel.mobeTo(0, nonBarPosition);
+           await this.panel.setUiContent('inputmethodextability/pages/Index');
+         }
        });
      }
    
      private registerListener(): void
      {
        this.registerInputListener();	// 注册对输入法框架服务的监听
-       globalThis.inputAbility.on('keyboardShow', () => {	// 注册显示键盘事件监听
-         if (this.isWindowShowing) {
-           return;
-         }
-         this.isWindowShowing = true;
-         this.showHighWindow();	// 显示窗口
-       });
        ...
        // 注册隐藏键盘事件监听等
      }
    
-     private registerInputListener() {		// 注册对输入法框架服务的开启及停止事件监听
-       globalThis.inputAbility.on('inputStart', (kbController, textInputClient) => {
-         globalThis.textInputClient = textInputClient;		// 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
-         globalThis.keyboardController = kbController;
+     private registerInputListener(): void {		// 注册对输入法框架服务的开启及停止事件监听
+       inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
+         this.textInputClient = textInputClient;		// 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
+         this.boardController = kbController;
        })
-       globalThis.inputAbility.on('inputStop', (imeId) => {
-         if (imeId == "包名/Ability名") {
-           this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
-         }
+       globalThis.inputAbility.on('inputStop', () => {
+         this.onDestroy();	// 销毁KeyboardController
        });
      }
    
      private unRegisterListener(): void
      {
-       globalThis.inputAbility.off('inputStart');
-       globalThis.inputAbility.off('inputStop', () => {});
-       globalThis.inputAbility.off('keyboardShow');
+       inputMethodAbility.off('inputStart');
+       inputMethodAbility.off('inputStop', () => {});
      }
    
-     private showHighWindow() {
-       let win = windowManager.findWindow(this.windowName)
-       win.resize(this.windowWidth, this.windowHeight).then(() => {
-         win.moveWindowTo(0, this.nonBarPosition).then(() => {
-           win.showWindow().then(() => {
-             this.isWindowShowing = false;
-           })
-         })
-       })
+     private async showHighWindow(): Promise<void> {
+       try {
+         if(this.panel) {
+           await this.panel.resize(this.windowWidth, this.windowHeight);
+           await this.panel.moveTo(0, this.nonBarPosition);
+           await this.panel.show();
+         }
+       } catch (e) {
+         console.log('err occur: ' + JSON.stringify(e));
+       }
      }
    }
+   
+   const keyboardController = new KeyboardController();
+   
+   export default keyboardController;
    ```
 
 3. KeyboardKeyData.ts文件。
@@ -231,7 +234,8 @@
    同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
    ```ets
-   import { numberSourceListData, sourceListType } from './keyboardKeyData'
+   import { numberSourceListData, sourceListType } from './keyboardKeyData';
+   import keyboardController from '../model/KeyboardController';
    
    @Component
    struct keyItem {
@@ -250,10 +254,8 @@
        .borderRadius(6)
        .width("8%")
        .height("65%")
-       .onTouch((event: TouchEvent) => {
-         if (event.type === TouchType.Down) {
-           globalThis.textInputClient.insertText(this.keyValue.content);
-         }
+       .onClick(() => {
+         keyboardController.insertText(this.keyValue.content);
        })
      }
    }
@@ -274,10 +276,8 @@
        .backgroundColor(this.keyBgc)
        .width("13%")
        .borderRadius(6)
-       .onTouch((event: TouchEvent) => {
-         if (event.type === TouchType.Down) {
-           globalThis.textInputClient.deleteForward(1);
-         }
+       .onClick(() => {
+         keyboardController.deleteForward(1);
        })
      }
    }
@@ -338,7 +338,7 @@
      }
    }
    ```
-
+   
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
@@ -410,4 +410,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 
