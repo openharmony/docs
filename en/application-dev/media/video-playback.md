@@ -6,7 +6,7 @@ OpenHarmony provides two solutions for video playback development:
 
 - <Video\> component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
 
-In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task-dev-guide.md) to prevent the playback from being forcibly interrupted by the system.
+In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 
 ## Development Guidelines
 
@@ -25,28 +25,28 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.| 
-   | error | Mandatory; used to listen for AVPlayer errors.| 
-   | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.| 
-   | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.| 
-   | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.| 
-   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays video at the speed specified in **setSpeed()**.| 
-   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays video at the volume specified in **setVolume()**.| 
-   | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays video at the bit rate specified in **setBitrate()**.| 
-   | availableBitrates | Used to listen for available bit rates of HLS resources. The available bit rates are provided for **setBitrate()**.| 
-   | bufferingUpdate | Used to listen for network playback buffer information.| 
-   | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.| 
-   | videoSizeChange | Used to listen for the width and height of video playback and adjust the window size and ratio.| 
-   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.|
+   | error | Mandatory; used to listen for AVPlayer errors.|
+   | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.|
+   | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.|
+   | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.|
+   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays video at the speed specified in **setSpeed()**.|
+   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays video at the volume specified in **setVolume()**.|
+   | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays video at the bit rate specified in **setBitrate()**.|
+   | availableBitrates | Used to listen for available bit rates of HLS resources. The available bit rates are provided for **setBitrate()**.|
+   | bufferingUpdate | Used to listen for network playback buffer information.|
+   | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.|
+   | videoSizeChange | Used to listen for the width and height of video playback and adjust the window size and ratio.|
+   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
 
 3. Set the media asset URL. The AVPlayer enters the **initialized** state.
    > **NOTE**
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
    > 
@@ -68,7 +68,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 
 ### Sample Code
 
-  
+
 ```ts
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';

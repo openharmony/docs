@@ -2,7 +2,7 @@
 
 The AVPlayer is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
 
-If you want the application to continue playing the music in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task-dev-guide.md) to prevent the playback from being forcibly interrupted by the system.
+If you want the application to continue playing the music in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 
 
 The full playback process includes creating an **AVPlayer** instance, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance.
@@ -23,24 +23,24 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.| 
-   | error | Mandatory; used to listen for AVPlayer errors.| 
-   | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.| 
-   | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.| 
-   | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.| 
-   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays music at the speed specified in **setSpeed()**.| 
-   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays music at the volume specified in **setVolume()**.| 
-   | bufferingUpdate | Used to listen for network playback buffer information. This event reports the buffer percentage and playback progress.| 
-   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.|
+   | error | Mandatory; used to listen for AVPlayer errors.|
+   | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.|
+   | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.|
+   | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.|
+   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays music at the speed specified in **setSpeed()**.|
+   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays music at the volume specified in **setVolume()**.|
+   | bufferingUpdate | Used to listen for network playback buffer information. This event reports the buffer percentage and playback progress.|
+   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
 
 3. Set the media asset URL. The AVPlayer enters the **initialized** state.
    > **NOTE**
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
    > 
@@ -59,7 +59,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 ## Sample Code
 
 Refer to the sample code below to play a complete piece of music.
-  
+
 ```ts
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';

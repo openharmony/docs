@@ -8,6 +8,7 @@ The system schedules and executes deferred tasks at an appropriate time, subject
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
+>  - For details about the constraints on deferred task scheduling, see [Constraints](../../task-management/work-scheduler.md#constraints).
 
 
 ## Modules to Import
@@ -79,7 +80,7 @@ Instructs the WorkSchedulerService to stop a task.
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | No   | Whether to cancel the task.|
+| needCancel | boolean               | No   | Whether to cancel the task. |
 
 **Error codes**
 
@@ -410,7 +411,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 ```
 
 ## WorkInfo
-Provides detailed information about the task.
+Provides detailed information about the task. For details about the constraints on setting the **WorkInfo** parameter, see [Constraints](../../task-management/work-scheduler.md#constraints).
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -418,7 +419,7 @@ Provides detailed information about the task.
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | Task ID.         |
 | bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback. |
+| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device is charging.            |
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |

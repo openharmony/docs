@@ -2,7 +2,7 @@
 
 ## How do I obtain a notification when the device orientation changes?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -14,7 +14,7 @@ Use the **UIAbility.onConfigurationUpdate\(\)** callback to subscribe to system 
 
 ## How do I redirect a user to a specified page after they touch a service widget?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -42,7 +42,7 @@ Create a background task to provide the background service.
 
 ## Can I create a UIAbility and specify the process to run the UIAbility in the FA and Stage models?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -59,7 +59,7 @@ Yes.
 
 ## What are the differences between the stage model and the FA model in intra-process object sharing?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -72,7 +72,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 ## How do I use the lifecycle functions of AbilityStage?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -85,7 +85,7 @@ Add the field **"srcEntry": "./ets/myabilitystage/MyAbilityStage.ts"** under **m
 
 ## How do I delete the mission snapshot in Recents after terminateself is called in the multiton scenario?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -93,7 +93,7 @@ You can set **removeMissionAfterTerminate** to **true** in the **module.json5** 
 
 ## Why can't I start a UIAbility instance by using startAbility\(\)?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -102,7 +102,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 ## How do I prevent "this" in a method from changing to "undefined" when the method is called?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -112,7 +112,7 @@ Method 2: Use the arrow function.
 
 ## What should I do when the error message "must have required property 'startWindowIcon'" is displayed during the UIAbility startup?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -135,11 +135,11 @@ Configure the **startWindowIcon** attribute under **abilities** in the **module.
 
 **Reference**
 
-[module.json5 Configuration File](../quick-start/module-configuration-file.md)
+[module.json5 File](../quick-start/module-configuration-file.md)
 
 ## Can I obtain the context through globalThis in the stage model?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 Do not use **globalThis** to obtain the context in the stage model.
 
@@ -151,7 +151,7 @@ This is because all the processes of an application share a JS VM instance in th
 
 ## What should I do when an error indicating too large size is reported during HAP deployment?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -165,11 +165,11 @@ You can split the HAP into multiple HAPs.
 
 ## How is data returned when startAbilityForResult is called?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
-The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to terminate itselef and pass the result to **startAbilityForResult**.
+The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to terminate itself and pass the result to **startAbilityForResult**.
 
 **Reference**
 
@@ -178,7 +178,7 @@ The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to termin
 
 ## How do I obtain the system timestamp?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -209,7 +209,7 @@ Use the **@ohos.systemDateTime** API as follows:
 
 ## How do I obtain the cache directory of the current application?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -217,11 +217,11 @@ Use **Context.cacheDir** to obtain the cache directory of the application.
 
 **Reference**
 
-[Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path)
+[cacheDir](../application-models/application-context-stage.md#obtaining-application-file-paths)
 
 ## In which JS file is the service widget lifecycle callback invoked?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -233,7 +233,7 @@ When a widget is created, a **FormAblity.ts** file is generated, which contains 
 
 ## What should I do when the compilation on DevEco Studio fails while ServiceExtensionAbility and DataShareExtensionAbility APIs are used?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -262,12 +262,12 @@ Obtain them from the application context. Specifically, use **this.context.getAp
 
 **Reference**
 
-[Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path)
+[Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths)
 
 
 ## Can the lifecycle callback of a released FA widget be triggered when the widget is displayed in the service center so that the user login information can be obtained without opening the FA application? 
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -275,7 +275,7 @@ After a widget is added, the **onCreate()** lifecycle is triggered so that relat
 
 ## How do I implement service login by touching a widget?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -299,7 +299,7 @@ To create a service widget in the FA model, perform the following steps:
 
 ## How do I redirect to the application details page in Settings?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
