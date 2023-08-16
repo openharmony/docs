@@ -52,9 +52,9 @@ HashSet进行增、删、改、查操作的常用API如下：
 | 增加元素 | 通过add(value: T)函数每次在HashSet增加一个值。 |
 | 访问元素 | 通过values()返回一个迭代器对象，包含set中的所有value值。 |
 | 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
-| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)访问整个set的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
 | 删除元素 | 通过remove(value: T)对set中匹配到的值进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
 
@@ -109,9 +109,9 @@ TreeSet进行增、删、改、查操作的常用API如下：
 | 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | 通过getFirstValue()获取set中排在首位的value值。 |
 | 访问元素 | 通过getLastValue()获取set中排在未位的value值。 |
-| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)访问整个set的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)对set中value进行修改操作。 |
 | 删除元素 | 通过remove(value: T)对set中匹配到的值进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
 
@@ -169,9 +169,9 @@ LightWeightSet进行增、删、改、查操作的常用API如下：
 | 访问元素 | 通过values()返回一个迭代器对象，包含map中的所有value值。 |
 | 访问元素 | 通过entries()返回一个迭代器对象，包含map中的所有键值对。 |
 | 访问元素 | 通过getValueAt(index: number)获取指定index对应的value值。 |
-| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)访问整个set的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)访问整个set的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object)对set中元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)对set中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: K)对set中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过removeAt(index: number)对set中指定index的位置进行删除操作。 |
 | 删除元素 | 通过clear()清空整个set集合。 |
@@ -197,10 +197,10 @@ PlainArray进行增、删、改、查操作的常用API如下：
 | 访问元素 | 通过getIndexOfValue(value: T)获取PlainArray中指定value的index。 |
 | 访问元素 | 通过getKeyAt(index: number)获取指定index对应的key值。 |
 | 访问元素 | 通过getValueAt(index: number)获取指定index对应的value值。 |
-| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)访问整个plainarray的元素。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)访问整个plainarray的元素。 |
 | 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;迭代器进行数据访问。 |
 | 修改元素 | 通过setValueAt(index:number, value: T)对指定index对应的value值进行修改操作。 |
-| 修改元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object)对plainarray中元素进行修改操作。 |
+| 修改元素 | 通过forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)对plainarray中元素进行修改操作。 |
 | 删除元素 | 通过remove(key: number)对plainarray中匹配到的键值对进行删除操作。 |
 | 删除元素 | 通过removeAt(index: number)对plainarray中指定index的位置进行删除操作。 |
 | 删除元素 | 通过removeRangeFrom(index: number, size: number)对plainarray中指定范围内的元素进行删除操作。 |
