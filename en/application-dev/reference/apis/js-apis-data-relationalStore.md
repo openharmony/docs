@@ -216,6 +216,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext()
 
@@ -233,6 +235,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -287,6 +291,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext();
 
@@ -303,6 +309,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -353,6 +361,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext()
 const STORE_CONFIG = {
@@ -374,6 +384,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -434,6 +446,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
 let context = featureAbility.getContext();
 const STORE_CONFIG = {
@@ -454,6 +468,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility'
+
+var store;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
@@ -482,7 +498,7 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store;<br>the value **false** (default) means the opposite.|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store;the value **false** (default) means the opposite.|
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
 
 ## SecurityLevel
@@ -658,8 +674,8 @@ Enumerates the distributed table types. Use the enum names instead of the enum v
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | Distributed database table between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | -   | Distributed database table between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -669,7 +685,7 @@ Defines the configuration of the distributed mode of tables.
 
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table. The value **false** means only manual synchronization is supported for the table.|
+| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table.<br/>The value **false** means only manual synchronization is supported for the table. |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -704,12 +720,12 @@ Represents the device-cloud synchronization statistics information.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type  | Mandatory| Description                                    |
-| -------- | ------ | ---- | ---------------------------------------- |
-| total    | number | Yes  | Total number of rows to be synchronized between the device and cloud in the database table.    |
-| success  | number | Yes  | Number of rows that are successfully synchronized between the device and cloud in the database table.      |
-| failed   | number | Yes  | Number of rows that failed to be synchronized between the device and cloud in the database table.      |
-| remained | number | Yes  | Number of rows that are not executed for device-cloud synchronization in the database table.|
+| Name      | Type  | Mandatory| Description                                    |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| total      | number | Yes  | Total number of rows to be synchronized between the device and cloud in the database table.    |
+| successful | number | Yes  | Number of rows that are successfully synchronized between the device and cloud in the database table.      |
+| failed     | number | Yes  | Number of rows that failed to be synchronized between the device and cloud in the database table.      |
+| remained   | number | Yes  | Number of rows that are not executed for device-cloud synchronization in the database table.|
 
 ## TableDetails<sup>10+</sup>
 
@@ -2432,7 +2448,7 @@ store.query(predicates, function (err, resultSet) {
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2480,7 +2496,7 @@ store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err,
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2530,7 +2546,7 @@ let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2585,7 +2601,7 @@ store.query("EMPLOYEE", predicates, function (err, resultSet) {
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2639,7 +2655,7 @@ store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], fu
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2695,7 +2711,7 @@ let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY"
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2766,7 +2782,7 @@ store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALAR
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-    while(resultSet.goToNextRow()) {
+    while (resultSet.goToNextRow()) {
       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2837,7 +2853,7 @@ let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME",
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2884,7 +2900,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2930,7 +2946,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['s
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -2978,7 +2994,7 @@ let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
   // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while(resultSet.goToNextRow()) {
+  while (resultSet.goToNextRow()) {
     const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
     const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
     const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -3533,7 +3549,46 @@ promise.then(() => {
 
 ### setDistributedTables<sup>10+</sup>
 
-setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets distributed tables. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                        |
+| -------- | ------------------------------------- | ---- | ---------------------------- |
+| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set.|
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.            |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result.      |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**|
+| ------------ | ------------ |
+| 14800000     | Inner error. |
+| 14800051     |The type of the distributed table does not match.|
+
+**Example**
+
+```js
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
 Sets distributed tables. This API uses an asynchronous callback to return the result.
 
@@ -3546,16 +3601,25 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 | Name     | Type                                 | Mandatory | Description             |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | Yes  | Names of the distributed tables to set.    |
-| type     | number | Yes  | Distributed type of the tables. Currently, only **relationalStore.DistributedType.DISTRIBUTED_DEVICE** and **relationalStore.DistributedType.DISTRIBUTED_CLOUD** are supported.<br>The value **relationalStore.DistributedType.DISTRIBUTED_DEVICE** indicates distributed tables across different devices.<br>The value **relationalStore.DistributedType.DISTRIBUTED_CLOUD** indicates distributed tables between the device and cloud.|
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.|
 | config | [DistributedConfig](#distributedconfig10) | Yes| Configuration of the distributed mode.|
 | callback | AsyncCallback&lt;void&gt;           | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
 
 **Example**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+}, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3566,7 +3630,7 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 
 ### setDistributedTables<sup>10+</sup>
 
- setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
+ setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
 Sets distributed tables. This API uses a promise to return the result.
 
@@ -3578,8 +3642,8 @@ Sets distributed tables. This API uses a promise to return the result.
 
 | Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                    |
-| type   | number                                    | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.<br>Currently, only **relationalStore.DistributedType.DISTRIBUTED_DEVICE** and **relationalStore.DistributedType.DISTRIBUTED_CLOUD** are supported.<br>The value **relationalStore.DistributedType.DISTRIBUTED_DEVICE** indicates distributed tables across different devices.<br>The value **relationalStore.DistributedType.DISTRIBUTED_CLOUD** indicates distributed tables between the device and cloud.|
+| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
+| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
 | config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual synchronization is supported.|
 
 **Return value**
@@ -3588,12 +3652,21 @@ Sets distributed tables. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800000     | Inner error.                                      |
+| 14800051     | The type of the distributed table does not match. |
+
 **Example**
 
 ```js
-let config = new relationalStore.DistributedConfig();
-config.autoSync = true;
-let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+  autoSync: true
+});
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -3860,7 +3933,7 @@ Manually starts device-cloud synchronization for all distributed tables. This AP
 **Example**
 
 ```js
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3901,7 +3974,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
@@ -3931,7 +4004,7 @@ Manually starts device-cloud synchronization of the specified table. This API us
 
 ```js
 const tables = ["table1", "table2"];
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, function (progressDetails) {
     console.info(`Progess: ${progressDetails}`);
 }, function (err) {
      if (err) {
@@ -3974,7 +4047,7 @@ function progress(progressDetail) {
     console.info(`progress: ${progressDetail}`);
 }
 
-relationalStore.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
+store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, progress).then(() => {
     console.info('Cloud sync succeeded');
 }).catch((err) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
