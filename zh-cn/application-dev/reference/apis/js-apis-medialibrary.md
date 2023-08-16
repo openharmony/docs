@@ -758,7 +758,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明：**
 >
@@ -771,7 +771,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
@@ -802,7 +802,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面，可以预览列表中首张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面，可以预览列表中首张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
 > **说明：**
 >
@@ -815,7 +815,7 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
 **示例：**
@@ -844,7 +844,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
 > **说明：**
 >
@@ -857,7 +857,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 | 参数名    | 类型                  | 必填   | 说明                                       |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images | Array&lt;string&gt; | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | index  | number              | 否    | 开始显示的图片序号，不选择时默认为0。                      |
 
 **返回值：**
