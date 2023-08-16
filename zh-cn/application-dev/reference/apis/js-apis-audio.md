@@ -73,7 +73,6 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 **示例：**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -128,7 +127,6 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 **示例：**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -5193,36 +5191,32 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`Buffer size: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    let writeSize = await new Promise((resolve,reject)=>{
-      audioRenderer.write(buf,(err,writeSize)=>{
-        if(err){
-          reject(err)
-        }else{
-          resolve(writeSize)
-        }
+  console.info(`Buffer size: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      let writeSize = await new Promise((resolve,reject)=>{
+        audioRenderer.write(buf,(err,writeSize)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(writeSize)
+          }
+        })
       })
-    })	  
-  }
+    }
+  });
+}).catch((err) => {
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 
 
@@ -5249,32 +5243,28 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.info(`BufferSize: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+        let options = {
+          offset: i * bufferSize,
+          length: bufferSize
+        }
+        let readsize = await fs.read(file.fd, buf, options)
+        try{
+          let writeSize = await audioRenderer.write(buf);
+        } catch(err) {
+          console.error(`audioRenderer.write err: ${err}`);
+        }
+    }
   });
-console.info(`BufferSize: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-      let options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      }
-      let readsize = await fs.read(file.fd, buf, options)
-      try{
-         let writeSize = await audioRenderer.write(buf);
-      } catch(err) {
-         console.error(`audioRenderer.write err: ${err}`);
-      }   
-  }
+}).catch((err) => {
+  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 
