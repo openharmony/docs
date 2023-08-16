@@ -916,6 +916,78 @@ try {
 }
 ```
 
+## window.on('waterMarkFlagChange')<sup>10+</sup>
+
+on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
+
+Subscribes to the watermark flag status change event.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                                         |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type. The value is fixed at **'waterMarkFlagChange'**, indicating the watermark flag status change event.   |
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the watermark flag status. The value **true** means that the watermark flag status is changed to enabled, and **false** means that the watermark flag status is changed to disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+try {
+    window.on('waterMarkFlagChange', (data) => {
+        console.info('Succeeded in enabling the listener for watermark flag status changes. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to enable the listener for watermark flag status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('waterMarkFlagChange')<sup>10+</sup>
+
+off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
+
+Unsubscribes from the watermark flag status change event.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                       |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | Yes| Event type. The value is fixed at **'waterMarkFlagChange'**, indicating the watermark flag status change event.|
+| callback | Callback&lt;boolean&gt; | No| Callback function that has been used for registering the listener. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+try {
+    window.off('waterMarkFlagChange');
+} catch (exception) {
+    console.error('Failed to disable the listener for watermark flag status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -984,7 +1056,6 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -1000,6 +1071,126 @@ try {
 } catch (exception) {
     console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
+```
+
+## window.setWaterMarkImage<sup>10+</sup>
+setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Show or don't show watermark image. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description          |
+| -------- | ------------------------- | ---- | -------------- |
+| pixelMap | image.PixelMap           | Yes  | Watermark image.|
+| enable   | boolean                  | Yes  | Whether to show watermark image. The value **true** means to show watermark image, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+
+let pixelMap;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions)
+  .then((pixelMap) => {
+     console.info('Succeeded in creating a pixelmap.');
+     try {
+    window.setWaterMarkImage(pixelMap, true, (err) => {
+        if(err.code) {
+            console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in showing watermark image.');
+    });
+} catch (exception) {
+    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+}
+  })
+  .catch((err) => {
+    console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+  });
+```
+
+## window.setWaterMarkImage<sup>10+</sup>
+setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt;
+
+Show or don't show watermark image. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type    | Mandatory | Description                |
+| ------ | ------- | ---- | -------------------- |
+| enable | boolean | Yes  | Whether to show watermark image. The value **true** means to show watermark image, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+
+let pixelMap;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions)
+  .then((pixelMap) => {
+     console.info('Succeeded in creating a pixelmap.');
+     try {
+    let promise =window.setWaterMarkImage(pixelMap, true, (err) => {
+        if(err.code) {
+            console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in showing watermark image.');
+    });
+} catch (exception) {
+    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+}
+  })
+  .catch((err) => {
+    console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+  });
 ```
 
 ## window.create<sup>(deprecated)</sup>

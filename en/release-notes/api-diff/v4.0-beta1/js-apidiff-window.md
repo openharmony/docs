@@ -22,8 +22,12 @@
 |Added|NA|Module name: ohos.screen<br>Class name: Screen<br>Method or attribute name: readonly sourceMode: ScreenSourceMode;|@ohos.screen.d.ts|
 |Added|NA|Class name: window<br>Method or attribute name: function setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback\<void>): void;|@ohos.window.d.ts|
 |Added|NA|Class name: window<br>Method or attribute name: function setGestureNavigationEnabled(enable: boolean): Promise\<void>;|@ohos.window.d.ts|
+|Added|NA|Class name: window<br>Method or attribute name: function setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCallback\<void>): void;|@ohos.window.d.ts|
+|Added|NA|Class name: window<br>Method or attribute name: function setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise\<void>;|@ohos.window.d.ts|
 |Added|NA|Class name: window<br>Method or attribute name: function on(type: 'gestureNavigationEnabledChange', callback: Callback\<boolean>): void;|@ohos.window.d.ts|
 |Added|NA|Class name: window<br>Method or attribute name: function off(type: 'gestureNavigationEnabledChange', callback?: Callback\<boolean>): void;|@ohos.window.d.ts|
+|Added|NA|Class name: window<br>Method or attribute name: function on(type: 'waterMarkFlagChange', callback: Callback\<boolean>): void;|@ohos.window.d.ts|
+|Added|NA|Class name: window<br>Method or attribute name: function off(type: 'waterMarkFlagChange', callback?: Callback\<boolean>): void;|@ohos.window.d.ts|
 |Added|NA|Module name: ohos.window<br>Class name: WindowEventType|@ohos.window.d.ts|
 |Added|NA|Class name: WindowEventType<br>Method or attribute name: |@ohos.window.d.ts|
 |Added|NA|Module name: ohos.window<br>Class name: WindowEventType<br>Method or attribute name: WINDOW_SHOWN = 1|@ohos.window.d.ts|
