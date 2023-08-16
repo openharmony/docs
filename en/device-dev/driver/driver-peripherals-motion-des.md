@@ -59,7 +59,7 @@ The motion recognition directory structure is as follows:
 │   └── unittest\hdi                # HDI unit test code for the motion recognition module.
 ```
 
-The following describes how to develop a user-mode motion driver based on the HDF. For details, see [motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_interface_driver.cpp).
+The following describes how to develop a user-mode motion driver based on the HDF. For details, see [motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/OpenHarmony-3.2-Release/motion/hdi_service/motion_interface_driver.cpp).
 
 You need to implement the **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions. The **Bind()** function binds the service capability with the driver; **Init()** implements the initialization required before the driver is loaded; **Release()** reclaims resources when **Init()** fails; **Dispatch()** implements the service, which is bound in **Bind()**.
 

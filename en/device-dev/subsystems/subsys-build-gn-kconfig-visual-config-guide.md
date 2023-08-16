@@ -30,7 +30,7 @@ Kconfig visual configuration has the following advantages:
 
 2. Set up the environment.
 
-   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [hb Installation](../quick-start/quickstart-pkg-install-tool.md#hb-installation).
+   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [Installing hb](../quick-start/quickstart-pkg-install-tool.md#hb-installation).
 
 3. Open the Kconfig configuration interface.
 
@@ -44,7 +44,7 @@ Kconfig visual configuration has the following advantages:
 
 4. Set parameters.
 
-   For details about the parameters, see [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json).
+   For details about the parameter configuration items, see **productdefine/common/base/base_product.json**.
 
    ![Setting parameters](./figures/kconfig_set_parameters.gif)
 
@@ -99,7 +99,7 @@ Kconfig visual configuration has the following advantages:
 
 ### Latest Components Not Displayed in the Menu List
 
-The component list [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json) is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
+The full component list **productdefine/common/base/base_product.json** is updated continuously with the product update and iteration. The Kconfig menu does not contain the latest components.
 
 **Solution**
 
@@ -110,4 +110,5 @@ cd build/tools/component_tools
 python3 generate_kconfig.py
 ```
 
-You can run `python3 generate_kconfig.py -h` to view more options.
+You can run **python3 generate_kconfig.py -h** to view more options.
+
