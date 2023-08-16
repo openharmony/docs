@@ -30,14 +30,14 @@ An @State decorated variable, like all other decorated variables in the declarat
 | Decorator parameters       | None.                                       |
 | Synchronization type        | Does not synchronize with any type of variable in the parent component.                        |
 | Allowed variable types   | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>Avoid using this decorator to decorate the Date type, as doing so may lead to unexpected behavior of the application.<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
-| Initial value for the decorated variable   | Mandatory.                                   |
+| Initial value for the decorated variable| Local initialization is required.                                              |
 
 
 ## Variable Transfer/Access Rules
 
 | Transfer/Access    | Description                                      |
 | --------- | ---------------------------------------- |
-| Initialization from the parent component  | Optional. Initialization from the parent component or local initialization can be used.<br>An \@State decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
+| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An \@State decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
 | Subnode initialization | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                           |
 
