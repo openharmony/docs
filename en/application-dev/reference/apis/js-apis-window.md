@@ -1056,6 +1056,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
