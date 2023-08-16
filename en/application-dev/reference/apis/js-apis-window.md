@@ -1056,6 +1056,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -1109,26 +1110,25 @@ let initializationOptions = {
   size: {
     height: 100,
     width: 100
-  }
+    }
 };
 image.createPixelMap(color, initializationOptions)
-  .then((pixelMap) => {
-     console.info('Succeeded in creating a pixelmap.');
-     try {
-    window.setWaterMarkImage(pixelMap, true, (err) => {
-        if(err.code) {
-            console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
-            return;
+    .then((pixelMap) => {
+        console.info('Succeeded in creating a pixelmap.');
+        try {
+            window.setWaterMarkImage(pixelMap, true, (err) => {
+            if(err.code) {
+                console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+                return;
         }
         console.info('Succeeded in showing watermark image.');
     });
 } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
-}
-  })
-  .catch((err) => {
-    console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-  });
+    }
+}).catch((err) => {
+    console.error(`createPixelMap failed. Cause: `+ JSON.stringify(err));
+});
 ```
 
 ## window.setWaterMarkImage<sup>10+</sup>
@@ -1171,26 +1171,25 @@ let initializationOptions = {
   size: {
     height: 100,
     width: 100
-  }
+    }
 };
 image.createPixelMap(color, initializationOptions)
-  .then((pixelMap) => {
-     console.info('Succeeded in creating a pixelmap.');
-     try {
-    let promise =window.setWaterMarkImage(pixelMap, true, (err) => {
-        if(err.code) {
-            console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
-            return;
+    .then((pixelMap) => {
+        console.info('Succeeded in creating a pixelmap.');
+        try {
+            let promise =window.setWaterMarkImage(pixelMap, true, (err) => {
+            if(err.code) {
+                console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+                return;
         }
         console.info('Succeeded in showing watermark image.');
     });
 } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
-}
-  })
-  .catch((err) => {
-    console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-  });
+    }
+}).catch((err) => {
+    console.error(`createPixelMap failed. Cause: `+ JSON.stringify(err));
+});
 ```
 
 ## window.create<sup>(deprecated)</sup>
