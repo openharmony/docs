@@ -1700,7 +1700,7 @@ Observe the following when using this API:
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2719,7 +2719,7 @@ Observe the following when using this API:
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
