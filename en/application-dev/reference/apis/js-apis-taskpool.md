@@ -16,304 +16,6 @@ The **TaskPool** APIs return error codes in numeric format. For details about th
 ```ts
 import taskpool from '@ohos.taskpool';
 ```
-
-## Priority
-
-Enumerates the priorities available for created tasks.
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| HIGH   | 0    | The task has a high priority.|
-| MEDIUM | 1 | The task has a medium priority.|
-| LOW | 2 | The task has a low priority.|
-
-**Example**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-    lowCount++;
-    console.log("taskpool lowCount is :" + lowCount);
-  }).catch((e) => {
-    console.error("low task error: " + e);
-  })
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-    mediumCount++;
-    console.log("taskpool mediumCount is :" + mediumCount);
-  }).catch((e) => {
-    console.error("medium task error: " + e);
-  })
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-    highCount++;
-    console.log("taskpool highCount is :" + highCount);
-  }).catch((e) => {
-    console.error("high task error: " + e);
-  })
-}
-```
-
-## Task
-
-Implements a task. Before using any of the following APIs, you must create a **Task** instance.
-
-### constructor
-
-constructor(func: Function, ...args: unknown[])
-
-A constructor used to create a **Task** instance.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type     | Mandatory| Description                                                                 |
-| ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                                |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**Example**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let task = new taskpool.Task(printArgs, "this is my first Task");
-```
-
-### isCanceled<sup>10+</sup>
-
-static isCanceled(): boolean
-
-Checks whether the running task is canceled.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Return value**
-
-| Type   | Description                                |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if the running task is canceled; returns **false** otherwise.|
-
-**Example**
-
-```ts
-@Concurrent
-function inspectStatus(arg) {
-    // do something
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled.");
-      // do something
-      return arg + 1;
-    }
-    // do something
-    return arg;
-}
-```
-
-> **NOTE**
-> 
-> **isCanceled** must be used together with **taskpool.cancel**. If **cancel** is not called, **isCanceled** returns **false** by default.
-
-**Example**
-
-```ts
-@Concurrent
-function inspectStatus(arg) {
-    // Check the cancellation status and return the result.
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled before 2s sleep.");
-      return arg + 2;
-    }
-    // Wait for 2s.
-    let t = Date.now();
-    while (Date.now() - t < 2000) {
-      continue;
-    }
-    // Check the cancellation status again and return the result.
-    if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled after 2s sleep.");
-      return arg + 3;
-    }
-  return arg + 1;
-}
-
-let task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res)=>{
-  console.log("taskpool test result: " + res);
-}).catch((err) => {
-  console.log("taskpool test occur error: " + err);
-});
-// If cancel is not called, isCanceled() returns false by default, and the task execution result is 101.
-```
-
-### setTransferList<sup>10+</sup>
-
-setTransferList(transfer?: ArrayBuffer[]): void
-
-Sets the task transfer list.
-
-> **NOTE**
-> 
-> This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name  | Type          | Mandatory| Description                                         |
-| -------- | ------------- | ---- | --------------------------------------------- |
-| transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array.|
-
-**Example**
-
-```ts
-let buffer = new ArrayBuffer(8);
-let view = new Uint8Array(buffer);
-let buffer1 = new ArrayBuffer(16);
-let view1 = new Uint8Array(buffer1);
-
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
-@Concurrent
-function testTransfer(arg1, arg2) {
-  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
-  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
-  return 100;
-}
-let task = new taskpool.Task(testTransfer, view, view1);
-task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res)=>{
-  console.info("test result: " + res);
-}).catch((e)=>{
-  console.error("test catch: " + e);
-})
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
-```
-
-### Attributes
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name     | Type     | Readable| Writable| Description                                                                      |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
-| function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| arguments | unknown[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-
-## TaskGroup<sup>10+</sup>
-
-Implements a task group. Before using any of the following APIs, you must create a **TaskGroup** instance.
-
-### constructor<sup>10+</sup>
-
-constructor()
-
-Constructor used to create a **TaskGroup** instance.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Example**
-
-```ts
-let taskGroup = new taskpool.TaskGroup();
-```
-
-### addTask<sup>10+</sup>
-
-addTask(func: Function, ...args: unknown[]): void
-
-Adds the function to be executed to this task group.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type     | Mandatory| Description                                                                  |
-| ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                                |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**Example**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let taskGroup = new taskpool.TaskGroup();
-taskGroup.addTask(printArgs, 100); // 100: test number
-```
-
-### addTask<sup>10+</sup>
-
-addTask(task: Task): void
-
-Adds a created task to this task group.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description                                      |
-| -------- | --------------------- | ---- | ---------------------------------------- |
-| task     | [Task](#task)         | Yes  | Task to be added to the task group.                 |
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                                |
-| -------- | --------------------------------------- |
-| 10200014 | The function is not mark as concurrent. |
-
-**Example**
-
-```ts
-@Concurrent
-function printArgs(args) {
-    console.log("printArgs: " + args);
-    return args;
-}
-
-let taskGroup = new taskpool.TaskGroup();
-let task = new taskpool.Task(printArgs, 200); // 200: test number
-taskGroup.addTask(task);
-```
-
 ## taskpool.execute
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
@@ -497,7 +199,7 @@ Since API version 10, error code 10200016 is not reported when this API is calle
 ```ts
 @Concurrent
 function inspectStatus(arg) {
-    // Check the task cancellation state and return the result.
+    // Check the cancellation status and return the result.
     if (taskpool.Task.isCanceled()) {
       console.log("task has been canceled before 2s sleep.");
       return arg + 2;
@@ -507,7 +209,7 @@ function inspectStatus(arg) {
     while (Date.now() - t < 2000) {
       continue;
     }
-    // Check the task cancellation state again and return the result.
+    // Check the cancellation status again and return the result.
     if (taskpool.Task.isCanceled()) {
       console.log("task has been canceled after 2s sleep.");
       return arg + 3;
@@ -589,6 +291,386 @@ setTimeout(()=>{
   }
 }, 1000);
 ```
+
+
+## taskpool.getTaskPoolInfo<sup>10+</sup>
+
+getTaskPoolInfo(): TaskPoolInfo
+
+Obtains the internal information about this task pool.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                               | Description               |
+| ----------------------------------- | ------------------ |
+| [TaskPoolInfo](#taskpoolinfo10)   | Internal information about the task pool.  |
+
+**Example**
+
+```ts
+let taskpoolInfo = taskpool.getTaskPoolInfo();
+```
+
+## Priority
+
+Enumerates the priorities available for created tasks.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| HIGH   | 0    | The task has a high priority.|
+| MEDIUM | 1 | The task has a medium priority.|
+| LOW | 2 | The task has a low priority.|
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, 100); // 100: test number
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+    lowCount++;
+    console.log("taskpool lowCount is :" + lowCount);
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+    mediumCount++;
+    console.log("taskpool mediumCount is :" + mediumCount);
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+    highCount++;
+    console.log("taskpool highCount is :" + highCount);
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
+}
+```
+
+## Task
+
+Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance.
+
+### constructor
+
+constructor(func: Function, ...args: unknown[])
+
+A constructor used to create a **Task** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                 |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### isCanceled<sup>10+</sup>
+
+static isCanceled(): boolean
+
+Checks whether the running task is canceled. Before using this API, you must create a **Task** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the running task is canceled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // do something
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled.");
+      // do something
+      return arg + 1;
+    }
+    // do something
+    return arg;
+}
+```
+
+> **NOTE**
+> 
+> **isCanceled** must be used together with **taskpool.cancel**. If **cancel** is not called, **isCanceled** returns **false** by default.
+
+**Example**
+
+```ts
+@Concurrent
+function inspectStatus(arg) {
+    // Check the cancellation status and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled before 2s sleep.");
+      return arg + 2;
+    }
+    // Wait for 2s.
+    let t = Date.now();
+    while (Date.now() - t < 2000) {
+      continue;
+    }
+    // Check the cancellation status again and return the result.
+    if (taskpool.Task.isCanceled()) {
+      console.log("task has been canceled after 2s sleep.");
+      return arg + 3;
+    }
+  return arg + 1;
+}
+
+let task = new taskpool.Task(inspectStatus, 100); // 100: test number
+taskpool.execute(task).then((res)=>{
+  console.log("taskpool test result: " + res);
+}).catch((err) => {
+  console.log("taskpool test occur error: " + err);
+});
+// If cancel is not called, isCanceled() returns false by default, and the task execution result is 101.
+```
+
+### setTransferList<sup>10+</sup>
+
+setTransferList(transfer?: ArrayBuffer[]): void
+
+Sets the task transfer list. Before using this API, you must create a **Task** instance.
+
+> **NOTE**
+> 
+> This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                                         |
+| -------- | ------------- | ---- | --------------------------------------------- |
+| transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array.|
+
+**Example**
+
+```ts
+let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+let buffer1 = new ArrayBuffer(16);
+let view1 = new Uint8Array(buffer1);
+
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+@Concurrent
+function testTransfer(arg1, arg2) {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+let task = new taskpool.Task(testTransfer, view, view1);
+task.setTransferList([view.buffer, view1.buffer]);
+taskpool.execute(task).then((res)=>{
+  console.info("test result: " + res);
+}).catch((e)=>{
+  console.error("test catch: " + e);
+})
+console.info("testTransfer view byteLength: " + view.byteLength);
+console.info("testTransfer view1 byteLength: " + view1.byteLength);
+```
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name     | Type     | Readable| Writable| Description                                                                      |
+| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
+| function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
+| arguments | unknown[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+
+## TaskGroup<sup>10+</sup>
+
+Implements a task group. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+Constructor used to create a **TaskGroup** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+```ts
+let taskGroup = new taskpool.TaskGroup();
+```
+
+### addTask<sup>10+</sup>
+
+addTask(func: Function, ...args: unknown[]): void
+
+Adds the function to be executed to this task group. Before using this API, you must create a **TaskGroup** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                  |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+taskGroup.addTask(printArgs, 100); // 100: test number
+```
+
+### addTask<sup>10+</sup>
+
+addTask(task: Task): void
+
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                      |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | Yes  | Task to be added to the task group.                 |
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+let taskGroup = new taskpool.TaskGroup();
+let task = new taskpool.Task(printArgs, 200); // 200: test number
+taskGroup.addTask(task);
+```
+
+
+## State<sup>10+</sup>
+
+Enumerates the task states.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name     | Value       | Description         |
+| --------- | -------- | ------------- |
+| WAITING   | 1        | The task is waiting.|
+| RUNNING   | 2        | The task is running.|
+| CANCELED  | 3        | The task is canceled.|
+
+
+## TaskInfo<sup>10+</sup>
+
+Describes the internal information about a task.
+
+**System capability**: SystemCapability.Utils.Lang
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name    | Type               | Readable| Writable| Description                                                          |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| taskId   | number             | Yes  | No  | Task ID.                                                    |
+| state    | [State](#state10)  | Yes  | No  | Task state.                                                   |
+| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running. |
+
+## ThreadInfo<sup>10+</sup>
+
+Describes the internal information about a worker thread.
+
+**System capability**: SystemCapability.Utils.Lang
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name    | Type                   | Readable| Writable| Description                                                     |
+| -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
+| tid      | number                 | Yes  | No  | ID of the worker thread. If the return value is empty, no task is running.             |
+| taskIds  | number[]               | Yes  | No  | IDs of tasks running on the calling thread. If the return value is empty, no task is running.  |
+| priority | [Priority](#priority)  | Yes  | No  | Priority of the calling thread. If the return value is empty, no task is running.             |
+
+## TaskPoolInfo<sup>10+</sup>
+
+Describes the internal information about a task pool.
+
+**System capability**: SystemCapability.Utils.Lang
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name         | Type                             | Readable| Writable| Description                 |
+| ------------- | -------------------------------- | ---- | ---- | -------------------- |
+| threadInfos   | [ThreadInfo[]](#threadinfo10)    | Yes  | No  | Internal information about the worker threads.  |
+| taskInfos     | [TaskInfo[]](#taskinfo10)        | Yes  | No  | Internal information about the tasks.      |
+
 
 ## Additional Information
 
@@ -720,7 +802,7 @@ func2();
 // Success in canceling a task
 @Concurrent
 function inspectStatus(arg) {
-    // Check the task cancellation state and return the result.
+    // Check the cancellation status and return the result.
     if (taskpool.Task.isCanceled()) {
       console.log("task has been canceled before 2s sleep.");
       return arg + 2;
@@ -730,7 +812,7 @@ function inspectStatus(arg) {
     while (Date.now() - t < 2000) {
       continue;
     }
-    // Check the task cancellation state again and return the result.
+    // Check the cancellation status again and return the result.
     if (taskpool.Task.isCanceled()) {
       console.log("task has been canceled after 2s sleep.");
       return arg + 3;
@@ -835,4 +917,65 @@ async function taskpoolGroupCancelTest() {
 }
 
 taskpoolGroupCancelTest()
+```
+
+**Example 8**
+
+```ts
+// Create and execute 100 tasks with different priorities, and view their information.
+@Concurrent
+function delay() {
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 500) {
+    continue;
+  }
+}
+
+let highCount = 0;
+let mediumCount = 0;
+let lowCount = 0;
+let allCount = 100;
+for (let i = 0; i < allCount; i++) {
+  let task1 = new taskpool.Task(delay);
+  let task2 = new taskpool.Task(delay);
+  let task3 = new taskpool.Task(delay);
+  taskpool.execute(task1, taskpool.Priority.LOW).then(() => {
+    lowCount++;
+  }).catch((e) => {
+    console.error("low task error: " + e);
+  })
+  taskpool.execute(task2, taskpool.Priority.MEDIUM).then(() => {
+    mediumCount++;
+  }).catch((e) => {
+    console.error("medium task error: " + e);
+  })
+  taskpool.execute(task3, taskpool.Priority.HIGH).then(() => {
+    highCount++;
+  }).catch((e) => {
+    console.error("high task error: " + e);
+  })
+}
+let start = new Date().getTime();
+while (new Date().getTime() - start < 1000) {
+    continue;
+}
+let taskpoolInfo = taskpool.getTaskPoolInfo();
+let tid = 0;
+let taskIds = [];
+let priority = 0;
+let taskId = 0;
+let state = 0;
+let duration = 0;
+for(let threadInfo of taskpoolInfo.threadInfos) {
+  tid = threadInfo.tid;
+  taskIds.length = threadInfo.taskIds.length;
+  priority = threadInfo.priority;
+  console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
+}
+for(let taskInfo of taskpoolInfo.taskInfos) {
+  taskId = taskInfo.taskId;
+  state = taskInfo.state;
+  duration = taskInfo.duration;
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+}
 ```
