@@ -2992,7 +2992,7 @@ var audioStreamInfo = {
 
 var audioCapturerInfo = {
     source: audio.SourceType.SOURCE_TYPE_MIC,
-    capturerFlags = 1
+    capturerFlags : 1
 }
 
 var audioCapturer;
