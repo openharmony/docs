@@ -19,8 +19,8 @@
 
 3. 预编译：yes y | apt install libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev && rm -rf prebuilts/clang/ohos/darwin-x86_64/clang-480513 && rm -rf prebuilts/clang/ohos/windows-x86_64/clang-480513 && rm -rf prebuilts/clang/ohos/linux-x86_64/clang-480513 && bash build/prebuilts_download.sh -ndk && apt-get update -qqy && apt-get install doxygen -y --force-yes
 
-4. 编译：./build.sh --product-name ohos-sdk
-
+4. 编译windows：./build.sh --product-name ohos-sdk
+   编译mac：./build.sh --product-name ohos-sdk --gn-args full_mini_debug=false --keep-ninja-going --gn-args=is_use_check_deps=false
 
 编译成功后导出out/sdk/packages/ohos-sdk/目录下的文件即可
 
