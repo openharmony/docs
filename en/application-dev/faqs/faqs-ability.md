@@ -217,7 +217,7 @@ Use **Context.cacheDir** to obtain the cache directory of the application.
 
 **Reference**
 
-[Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths)
+[cacheDir](../application-models/application-context-stage.md#obtaining-application-file-paths)
 
 ## In which JS file is the service widget lifecycle callback invoked?
 
@@ -282,7 +282,7 @@ Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
-Refer to the code snippet below: 
+Refer to the code snippet below:
 
 ```
 let want = {
@@ -472,7 +472,7 @@ To start a continuous task in the background, you must configure the permission 
 
 [Continuous Task Permission](../security/permission-list.md#ohospermissionkeep_background_running)
 
-[Continuous Task Development](../task-management/continuous-task.md#stage-model)
+[Continuous Task](../task-management/continuous-task.md)
 
 ## How do FA widgets exchange data?
 

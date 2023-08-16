@@ -630,7 +630,7 @@ Enumerates the efficiency resource types.
 | CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
 | COMMON_EVENT            | 2    | Common events are not proxied when the application is suspended.|
 | TIMER                   | 4    | System timers are not proxied when the application is suspended.|
-| WORK_SCHEDULER          | 8    | WorkScheduler uses a loose control policy by default. For details, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on using-work-scheduler-tasks).|
+| WORK_SCHEDULER          | 8    | Work Scheduler uses a loose control policy by default. For details about the constraints on the Work Scheduler usage, see [Constraints](../../task-management/work-scheduler.md#constraints).|
 | BLUETOOTH               | 16   | Bluetooth resources are not proxied when the application is suspended.|
 | GPS                     | 32   | GPS resources are not proxied when the application is suspended.|
 | AUDIO                   | 64   | Audio resources are not proxied when the application is suspended.|
