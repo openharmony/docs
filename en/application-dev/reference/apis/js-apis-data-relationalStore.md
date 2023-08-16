@@ -6,7 +6,7 @@ The **relationalStore** module provides the following functions:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
-- [ResultSet](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
+- [Resultset](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
 
 > **NOTE**
 > 
@@ -315,7 +315,7 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store;<br> the value **false** (default) means the opposite.|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
 
 ## SecurityLevel
 
@@ -358,14 +358,14 @@ Defines the types of the key and value in a KV pair. This type is not multi-thre
 
 ## SyncMode
 
-Defines the database synchronization mode.
+Enumerates the database synchronization modes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
 | SYNC_MODE_PUSH | 0    | Push data from a local device to a remote device.|
-| SYNC_MODE_PULL | 1    | Pull data from a remote device to a local device. |
+| SYNC_MODE_PULL | 1    | Pull data from a remote device to a local device.  |
 
 ## SubscribeType
 
@@ -2040,6 +2040,53 @@ promise.then((rows) => {
 })
 ```
 
+### query<sup>10+</sup>
+
+query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)                         | Yes  | Query conditions specified by the **RdbPredicates** object.                  |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```js
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+store.query(predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // Release the dataset memory.
+  resultSet.close();
+})
+```
+
 ### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
@@ -2121,6 +2168,59 @@ promise.then((resultSet) => {
   console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
+
+### query<sup>10+</sup>
+
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| table      | string                                                       | Yes  | Name of the target table.                                           |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```js
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+store.query("EMPLOYEE", predicates, function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+  while(resultSet.goToNextRow()) {
+    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+  }
+  // Release the dataset memory.
+  resultSet.close();
+})
+```
 
 ### query
 
@@ -2380,7 +2480,7 @@ store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo
     const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
     console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
   }
-  // Release the data set memory.
+  // Release the dataset memory.
   resultSet.close();
 })
 ```
@@ -3053,7 +3153,7 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 | Name    | Type                                              | Mandatory| Description                                                        |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode)                             | Yes  | Data synchronization mode. The value can be **push** or **pull**.                              |
+| mode       | [SyncMode](#syncmode)                             | Yes  | Data synchronization mode. The value can be **0** (push) or **1** (pull).                              |
 | predicates | [RdbPredicates](#rdbpredicates)               | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.                                        |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
 
@@ -3112,7 +3212,7 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Name    | Type                                | Mandatory| Description                          |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode)               | Yes  | Data synchronization mode. The value can be **push** or **pull**.|
+| mode       | [SyncMode](#syncmode)               | Yes  | Data synchronization mode. The value can be **0** (push) or **1** (pull).|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.          |
 
 **Return value**
@@ -3165,7 +3265,7 @@ promise.then((result) =>{
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Registers an observer for this RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3173,9 +3273,9 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                                                       | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.                          |
+| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.         |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -3196,7 +3296,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unregisters the observer of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3204,9 +3304,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event. |
-| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for data changes. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event.      |
+| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change event. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
