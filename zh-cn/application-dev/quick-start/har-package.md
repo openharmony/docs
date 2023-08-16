@@ -97,7 +97,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 HAR的依赖配置成功后，可以引用HAR的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR导出的ArkUI组件，示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 
 @Entry
 @Component
@@ -122,8 +122,8 @@ struct Index {
 通过`import`引用HAR导出的ts类和方法，示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
-import { Log } from "@ohos/library"
-import { func } from "@ohos/library"
+import { Log } from "library"
+import { func } from "library"
 
 @Entry
 @Component

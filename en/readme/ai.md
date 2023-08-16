@@ -183,6 +183,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
          *         returns a non-zero value otherwise.
          */
         int32_t Destroy();
+    }
     ```
 
     >**Note**: The sequence for the SDK to call client APIs of the AI engine is as follows: AieClientInit -\> AieClientPrepare -\> AieClientSyncProcess/AieClientAsyncProcess -\> AieClientRelease -\> AieClientDestroy. An exception will be thrown if the call sequence is violated. In addition, all these APIs must be called. Otherwise, a memory leakage may occur.
