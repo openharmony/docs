@@ -17,11 +17,11 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 ## Constraints
 
-Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
+- Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference](../reference/apis/js-apis-hitracemeter.md).
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 
@@ -35,114 +35,120 @@ The performance tracing APIs are provided by the **hiTraceMeter** module. For de
 
 In this example, distributed call chain tracing begins when the application startup execution page is loaded and stops when the service usage is completed.
 
-1. Create a JS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **js** > **default** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. The sample code is as follows:
-
-   ```js
-   import hiTraceMeter from '@ohos.hiTraceMeter'
-
-   export default {
-       data: {
-           title: ""
-       },
-       onInit() {
-           this.title = this.$t('strings.world');
-
-           // Start trace tasks with the same name concurrently.
-           hiTraceMeter.startTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 2);  // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 2);
-
-           // Start trace tasks with the same name in serial mode.
-           hiTraceMeter.startTrace("business", 1);
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.finishTrace("business", 1);  // End the first trace task.
-           // Keep the service process running.
-           console.log(`business running`);
-           hiTraceMeter.startTrace("business", 1);   // Start the second trace task with the same name in serial mode.
-           // Keep the service process running.
-           console.log(`business running`);
-
-           let traceCount = 3;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           traceCount = 4;
-           hiTraceMeter.traceByValue("myTestCount", traceCount);
-           hiTraceMeter.finishTrace("business", 1);
-       }
-   }
-   ```
-
-2. Create an ArkTs application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. For example, if the name of the trace task is **HITRACE\_TAG\_APP**, the sample code is as follows:
+1. Create a project, and call hiTraceMeter APIs in the service logic to implement performance tracing.
  
-   ```ts
-   import hitrace from '@ohos.hiTraceMeter';
-  
-   @Entry
-   @Component
-   struct Index {
-     @State message: string = 'Hello World';
- 
-     build() {
-       Row() {
-         Column() {
-           Text(this.message)
-             .fontSize(50)
-             .fontWeight(FontWeight.Bold)
-             .onClick(() => {
-               this.message = 'Hello ArkUI';
+   - **ArkTS application project**
 
-               // Start trace tasks with the same name concurrently.
-               hitrace.startTrace("HITRACE_TAG_APP", 1001);
-               // Keep the service process running.
-               console.log(`HITRACE_TAG_APP running`);
-   
-               // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
-               hitrace.startTrace("HITRACE_TAG_APP", 1002);
-               // Keep the service process running.
-               console.log(`HITRACE_TAG_APP running`);
-  
-               hitrace.finishTrace("HITRACE_TAG_APP", 1001);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1002);
-   
-               // If trace tasks with the same name are not run concurrently, the same taskId can be used.
-               hitrace.startTrace("HITRACE_TAG_APP", 1003);
-               // Keep the service process running.
-               console.log(`HITRACE_TAG_APP running`);
-               // End the first trace task.
-               hitrace.finishTrace("HITRACE_TAG_APP", 1003);
-   
-               // Start the second trace task with the same name in serial mode. It uses a taskId different from the first trace task.
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
-               // Keep the service process running.
-               console.log(`HITRACE_TAG_APP running`);
-               let traceCount = 3;
-               hitrace.traceByValue("myTestCount", traceCount);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
-   
-               // Start the third trace task with the same name in serial mode. It uses a taskId same as the second trace task.
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
-               // Keep the service process running.
-               console.log(`HITRACE_TAG_APP running`);
-               // End the third trace task.
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
-   
-             })
+      Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. For example, if the name of the trace task is **HITRACE\_TAG\_APP**, the sample code is as follows:
+    
+      ```ts
+      import hitrace from '@ohos.hiTraceMeter';
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'Hello World';
+    
+        build() {
+          Row() {
+            Column() {
+              Text(this.message)
+                .fontSize(50)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  this.message = 'Hello ArkUI';
+
+                  // Start trace tasks with the same name concurrently.
+                  hitrace.startTrace("HITRACE_TAG_APP", 1001);
+                  // Keep the service process running.
+                  console.log(`HITRACE_TAG_APP running`);
+      
+                  // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
+                  hitrace.startTrace("HITRACE_TAG_APP", 1002);
+                  // Keep the service process running.
+                  console.log(`HITRACE_TAG_APP running`);
+      
+                  hitrace.finishTrace("HITRACE_TAG_APP", 1001);
+                  hitrace.finishTrace("HITRACE_TAG_APP", 1002);
+      
+                  // If trace tasks with the same name are not run concurrently, the same taskId can be used.
+                  hitrace.startTrace("HITRACE_TAG_APP", 1003);
+                  // Keep the service process running.
+                  console.log(`HITRACE_TAG_APP running`);
+                  // End the first trace task.
+                  hitrace.finishTrace("HITRACE_TAG_APP", 1003);
+      
+                  // Start the second trace task with the same name in serial mode. It uses a taskId different from the first trace task.
+                  hitrace.startTrace("HITRACE_TAG_APP", 1004);
+                  // Keep the service process running.
+                  console.log(`HITRACE_TAG_APP running`);
+                  let traceCount = 3;
+                  hitrace.traceByValue("myTestCount", traceCount);
+                  hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+      
+                  // Start the third trace task with the same name in serial mode. It uses a taskId same as the second trace task.
+                  hitrace.startTrace("HITRACE_TAG_APP", 1004);
+                  // Keep the service process running.
+                  console.log(`HITRACE_TAG_APP running`);
+                  // End the third trace task.
+                  hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+      
+                })
+              }
+              .width('100%')
+            }
+            .height('100%')
           }
-          .width('100%')
-        }
-        .height('100%')
       }
-   }
-   ```
-   
-3. Click the run button on the application page. Then, run the following commands in sequence in shell:
+      ```
+
+   - **JS application project**
+
+      Create a JS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **js** > **default** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. The sample code is as follows:
+
+      ```js
+      import hiTraceMeter from '@ohos.hiTraceMeter'
+
+      export default {
+          data: {
+              title: ""
+          },
+          onInit() {
+              this.title = this.$t('strings.world');
+
+              // Start trace tasks with the same name concurrently.
+              hiTraceMeter.startTrace("business", 1);
+              // Keep the service process running.
+              console.log(`business running`);
+              hiTraceMeter.startTrace("business", 2);  // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
+              // Keep the service process running.
+              console.log(`business running`);
+              hiTraceMeter.finishTrace("business", 1);
+              // Keep the service process running.
+              console.log(`business running`);
+              hiTraceMeter.finishTrace("business", 2);
+
+              // Start trace tasks with the same name in serial mode.
+              hiTraceMeter.startTrace("business", 1);
+              // Keep the service process running.
+              console.log(`business running`);
+              hiTraceMeter.finishTrace("business", 1);  // End the first trace task.
+              // Keep the service process running.
+              console.log(`business running`);
+              hiTraceMeter.startTrace("business", 1);   // Start the second trace task with the same name in serial mode.
+              // Keep the service process running.
+              console.log(`business running`);
+
+              let traceCount = 3;
+              hiTraceMeter.traceByValue("myTestCount", traceCount);
+              traceCount = 4;
+              hiTraceMeter.traceByValue("myTestCount", traceCount);
+              hiTraceMeter.finishTrace("business", 1);
+          }
+      }
+      ```
+ 
+2. Click the run button on the application page. Then, run the following commands in sequence in shell:
  
    ```shell
    hdc shell
