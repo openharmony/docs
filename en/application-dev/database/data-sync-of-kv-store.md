@@ -91,7 +91,7 @@ The following table lists the APIs for cross-device data synchronization of the 
 
 ## How to Develop
 
-The following uses a single KV store as an example to describe how to implement cross-device data synchronization. The following describes the development process.
+The following uses a single KV store as an example to describe how to implement cross-device data synchronization. The development process is as follows.
 
 ![kvStore_development_process](figures/kvStore_development_process.png)
 
@@ -171,7 +171,7 @@ The following uses a single KV store as an example to describe how to implement 
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // Perform related data operations.
+       // Before performing related data operations, obtain a KV store instance.
      });
    } catch (e) {
      console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
