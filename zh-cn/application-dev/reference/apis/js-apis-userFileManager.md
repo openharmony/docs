@@ -1393,7 +1393,7 @@ async function example() {
 }
 ```
 
-### getPhotoIndex
+### getPhotoIndex<sup>10+</sup>
 
 getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -1410,8 +1410,8 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
-| albumUri | string | 是   | 相册Uri，可以为空字符串，为空字符串时默认查询全部图库资源   |
-| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项，只能填写一种检索排序方式，不填或多填均会导致接口调用不成功。      |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 
 **返回值：**
 
@@ -1434,12 +1434,6 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPhotoIndexDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
   let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
   let fetchOp = {
     fetchColumns: [],
@@ -1449,6 +1443,12 @@ async function example() {
   let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
   let photoFetchResult = await album.getPhotoAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
@@ -1468,7 +1468,7 @@ async function example() {
 }
 ```
 
-### getPhotoIndex
+### getPhotoIndex<sup>10+</sup>
 
 getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
 
@@ -1485,8 +1485,8 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
-| albumUri | string | 是   | 相册Uri，可以为空字符串，为空字符串时默认查询全部图库资源   |
-| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项，只能填写一种检索排序方式，不填或多填均会导致接口调用不成功。      |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 
 **返回值：**
 
@@ -1509,12 +1509,6 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPhotoIndexDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  predicates.orderByAsc("add_modified");
-  let fetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
   let predicatesForGetAsset = new dataSharePredicates.DataSharePredicates();
   let fetchOp = {
     fetchColumns: [],
@@ -1524,6 +1518,12 @@ async function example() {
   let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubtype.FAVORITE, fetchOp);
   let album = await albumFetchResult.getFirstObject();
 
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.orderByAsc("add_modified");
+  let fetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
   let photoFetchResult = await album.getPhotoAssets(fetchOptions);
   let expectIndex = 1;
   //Obtain the uri of the second file
