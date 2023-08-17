@@ -920,7 +920,7 @@ try {
 
 on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 
-添加水印标志状态变化的监听。
+添加水印启用状态变化的监听。
 
 **系统接口：** 此接口为系统接口。
 
@@ -930,7 +930,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                          |
 | -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
-| type     | string                  | 是   | 监听事件，固定为'waterMarkFlagChange'，即水印标志状态变化事件。    |
+| type     | string                  | 是   | 监听事件，固定为'waterMarkFlagChange'，即水印启用状态变化事件。    |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前水印的启用状态。true表示当前已启用水印；false表示当前未启用水印。 |
 
 **错误码：**
@@ -945,11 +945,11 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 
 ```js
 try {
-    window.on('waterMarkFlagChange', (data) => {
-        console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
-    });
+  window.on('waterMarkFlagChange', (data) => {
+    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -957,7 +957,7 @@ try {
 
 off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 
-移除水印标志状态变化的监听。
+移除水印启用状态变化的监听。
 
 **系统接口：** 此接口为系统接口。
 
@@ -967,8 +967,8 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                        |
 | -------- | ----------------------- | -- | ------------------------------------------------------------ |
-| type     | string                  | 是 | 监听事件，固定为'waterMarkFlagChange'，即水印标志状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有安全水印状态变化的监听。 |
+| type     | string                  | 是 | 监听事件，固定为'waterMarkFlagChange'，即水印启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有水印启用状态变化的监听。 |
 
 **错误码：**
 
@@ -982,9 +982,9 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 
 ```js
 try {
-    window.off('waterMarkFlagChange');
+  window.off('waterMarkFlagChange');
 } catch (exception) {
-    console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -1087,7 +1087,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
@@ -1102,17 +1102,32 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 **示例：**
 
 ```js
-try {
-    window.setWaterMarkImage(pixelMap, true, (err) => {
-        if(err.code) {
-            console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in showing watermark image.');
+import image from '@ohos.multimedia.image';
+
+let enable = true;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  try {
+    window.setWaterMarkImage(pixelMap, enable, (err) => {
+      if (err.code) {
+        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in showing watermark image.');
     });
-} catch (exception) {
+  } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
-}
+  }
+}).catch((err) => {
+  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## window.setWaterMarkImage<sup>10+</sup>
@@ -1128,7 +1143,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 
 **返回值：**
@@ -1148,16 +1163,31 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 **示例：**
 
 ```js
-try {
-    let promise = window.setWaterMarkImage(pixelMap, true);
-    promise.then(()=> {
-        console.info('Succeeded in showing watermark image.');
-    }).catch((err)=>{
-        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+import image from '@ohos.multimedia.image';
+
+let enable = true;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  try {
+    let promise = window.setWaterMarkImage(pixelMap, enable);
+    promise.then(() => {
+      console.info('Succeeded in showing watermark image.');
+    }).catch((err) => {
+      console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
     });
-} catch (exception) {
+  } catch (exception) {
     console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
-}
+  }
+}).catch((err) => {
+  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## window.create<sup>(deprecated)</sup>
