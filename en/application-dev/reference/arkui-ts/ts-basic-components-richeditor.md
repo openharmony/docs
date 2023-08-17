@@ -27,6 +27,9 @@ RichEditor(value: RichEditorOptions)
 
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
+>  **NOTE**
+>
+> The default value of the **clip** attribute is **true**.
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -209,7 +212,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style.
+Updates the text or image span style.<br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
 
 **Parameters**
 
@@ -299,7 +302,7 @@ Provides the text style information.
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
 | fontSize | [Length](ts-types.md#length) \| number   | No| Font size.<br>Default value: **16fp**|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>Default value: **FontWeight.Normal**|
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. Default value: **'HarmonyOS Sans'**.<br>Currently, only the default font is supported.<br>Default font: **'HarmonyOS Sans'**|
 | decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 
