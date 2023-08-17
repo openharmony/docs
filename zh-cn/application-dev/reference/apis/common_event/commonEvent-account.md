@@ -67,7 +67,7 @@
 - 值： common.event.DISTRIBUTED_ACCOUNT_LOGIN
 - 订阅者所需权限： 无
 
-分布式账号登陆成功时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+分布式帐号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
 与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
 具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
@@ -78,7 +78,7 @@
 - 值： common.event.DISTRIBUTED_ACCOUNT_LOGOUT
 - 订阅者所需权限： 无
 
-分布式账号登出时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+分布式帐号登出时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
 与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
 具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
@@ -89,7 +89,7 @@
 - 值： common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 - 订阅者所需权限： 无
 
-分布式账号的token令牌无效时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+分布式帐号的token令牌无效时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
 与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API, 
 具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
@@ -100,7 +100,7 @@
 - 值： common.event.DISTRIBUTED_ACCOUNT_LOGOFF
 - 订阅者所需权限： 无
 
-分布式账号注销成功会时触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+分布式帐号注销成功会时触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
 与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
 具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
