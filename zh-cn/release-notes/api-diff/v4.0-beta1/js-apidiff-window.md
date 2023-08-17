@@ -22,12 +22,8 @@
 |新增|NA|模块名: ohos.screen<br>类名: Screen<br>方法 or 属性：readonly sourceMode: ScreenSourceMode;|@ohos.screen.d.ts|
 |新增|NA|类名：window<br>方法or属性：function setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback\<void>): void;|@ohos.window.d.ts|
 |新增|NA|类名：window<br>方法or属性：function setGestureNavigationEnabled(enable: boolean): Promise\<void>;|@ohos.window.d.ts|
-|新增|NA|类名：window<br>方法or属性：function setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCallback\<void>): void;|@ohos.window.d.ts|
-|新增|NA|类名：window<br>方法or属性：function setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise\<void>;|@ohos.window.d.ts|
 |新增|NA|类名：window<br>方法or属性：function on(type: 'gestureNavigationEnabledChange', callback: Callback\<boolean>): void;|@ohos.window.d.ts|
 |新增|NA|类名：window<br>方法or属性：function off(type: 'gestureNavigationEnabledChange', callback?: Callback\<boolean>): void;|@ohos.window.d.ts|
-|新增|NA|类名：window<br>方法or属性：function on(type: 'waterMarkFlagChange', callback: Callback\<boolean>): void;|@ohos.window.d.ts|
-|新增|NA|类名：window<br>方法or属性：function off(type: 'waterMarkFlagChange', callback?: Callback\<boolean>): void;|@ohos.window.d.ts|
 |新增|NA|模块名: ohos.window<br>类名: WindowEventType|@ohos.window.d.ts|
 |新增|NA|类名：WindowEventType<br>方法or属性：|@ohos.window.d.ts|
 |新增|NA|模块名: ohos.window<br>类名: WindowEventType<br>方法 or 属性：WINDOW_SHOWN = 1|@ohos.window.d.ts|
