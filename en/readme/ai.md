@@ -183,6 +183,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
          *         returns a non-zero value otherwise.
          */
         int32_t Destroy();
+    }
     ```
 
     >**Note**: The sequence for the SDK to call client APIs of the AI engine is as follows: AieClientInit -\> AieClientPrepare -\> AieClientSyncProcess/AieClientAsyncProcess -\> AieClientRelease -\> AieClientDestroy. An exception will be thrown if the call sequence is violated. In addition, all these APIs must be called. Otherwise, a memory leakage may occur.
@@ -314,7 +315,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-4.  Develop a sample application. For details, see the [keyword spotting demo](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai).
+4.  Develop a sample application. For details, see the [keyword spotting demo](https://gitee.com/openharmony/applications_sample_camera/tree/41e463c4085f00ce18dd993ce865d624209a7513/ai/asr/keyword_spotting).
 
     Directory: //applications/sample/camera/ai/asr/keyword\_spotting
 
