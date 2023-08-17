@@ -1680,6 +1680,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                              |
 | 9200002 | the administrator application does not have permission to manage the device.                                          |
+| 9201002 | the application install failed.                                |
 
 **示例：**
 
