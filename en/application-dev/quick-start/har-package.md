@@ -98,7 +98,7 @@ To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/do
 After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The sample code is as follows:
 ```js
 // entry/src/main/ets/pages/index.ets
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 
 @Entry
 @Component
@@ -123,8 +123,8 @@ struct Index {
 To reference the TS classes and methods exported from the HAR, use **import** as follows:
 ```js
 // entry/src/main/ets/pages/index.ets
-import { Log } from "@ohos/library"
-import { func } from "@ohos/library"
+import { Log } from "library"
+import { func } from "library"
 
 @Entry
 @Component
