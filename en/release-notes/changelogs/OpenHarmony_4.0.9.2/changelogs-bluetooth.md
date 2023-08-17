@@ -20,7 +20,7 @@
 
 
 ### APIs Requiring Dual-Permission Verification
-| Module| Declaration|
+| Module| API Declaration|
 |------|---------|
 |@ohos.bluetooth.baseProfile|[setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void](../../../application-dev/reference/apis/js-apis-bluetooth-baseProfile.md#baseprofilesetconnectionstrategy) |
 |@ohos.bluetooth.baseProfile| [setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;](../../../application-dev/reference/apis/js-apis-bluetooth-baseProfile.md#baseprofilesetconnectionstrategy-1) |
