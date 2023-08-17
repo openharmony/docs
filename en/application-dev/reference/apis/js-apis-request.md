@@ -286,6 +286,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 Subscribes to upload progress events. This API uses a callback to return the result synchronously.
 
+> **NOTE**
+>
+> To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
+
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
@@ -850,6 +854,10 @@ Implements file downloads. Before using any APIs of this class, you must obtain 
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
 Subscribes to download progress events. This API uses a callback to return the result synchronously.
+
+> **NOTE**
+>
+> To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
 **Required permissions**: ohos.permission.INTERNET
 
