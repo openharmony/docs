@@ -323,7 +323,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
     }
  ```
 
-4.  **sample开发** [（参考唤醒词识别demo）](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai)
+4.  **sample开发** [（参考唤醒词识别demo）](https://gitee.com/openharmony/applications_sample_camera/tree/41e463c4085f00ce18dd993ce865d624209a7513/ai/asr/keyword_spotting)
 
     位置：//applications/sample/camera/ai/asr/keyword\_spotting
 
