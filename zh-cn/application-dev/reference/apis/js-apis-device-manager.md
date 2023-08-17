@@ -1,6 +1,6 @@
 # @ohos.distributedHardware.deviceManager (设备管理)
 
-本模块能力暂时可继续使用，但是暂停维护，建议使用新接口进行开发。接口说明参见[https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis/js-apis-distributeDeviceManager.md]
+本模块能力暂时可继续使用，但是暂停维护，建议使用新接口进行开发。接口说明参见[@ohos.distributeDeviceManager](js-apis-distributeDeviceManager.md)。
 
 本模块提供分布式设备管理能力。
 
