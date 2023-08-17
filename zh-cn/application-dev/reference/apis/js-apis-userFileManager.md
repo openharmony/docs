@@ -2495,6 +2495,284 @@ async function example() {
 }
 ```
 
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | 返回exif标签组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let exifMessage = await fileAsset.getExif();
+    let userCommentKey = 'UserComment';
+    let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | 是   | 返回exif标签组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [ 'all_exif',  ImageVideoKey.USER_COMMENT],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userCommentKey = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset = await fetchResult.getFirstObject();
+    let userComment = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
 ## FetchResult
 
 文件检索结果集。
@@ -4107,6 +4385,7 @@ async function example() {
 | DATE_TRASHED<sup>10+</sup>  | date_trashed  | 删除日期（删除文件时间距1970年1月1日的秒数值）。                 |
 | HIDDEN<sup>10+</sup>  | hidden            | 文件的隐藏状态。                               |
 | CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。    |
+| USER_COMMENT<sup>10+</sup>  | user_comment            | 用户注释信息。                               |
 
 ## AlbumKey
 
