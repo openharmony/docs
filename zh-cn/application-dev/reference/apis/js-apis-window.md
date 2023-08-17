@@ -931,7 +931,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                          |
 | -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
 | type     | string                  | 是   | 监听事件，固定为'waterMarkFlagChange'，即水印标志状态变化事件。    |
-| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前水印的启用状态。true表示水印状态变化为启用；false表示水印状态变化为禁用。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前水印的启用状态。true表示当前已启用水印；false表示当前未启用水印。 |
 
 **错误码：**
 
@@ -1087,7 +1087,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | image.PixelMap           | 是 | 水印图片 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
@@ -1144,7 +1144,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | image.PixelMap           | 是 | 水印图片 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 
 **返回值：**

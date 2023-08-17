@@ -931,7 +931,7 @@ Subscribes to the watermark flag status change event.
 | Name  | Type                    | Mandatory| Description                                                                         |
 | -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The value is fixed at **'waterMarkFlagChange'**, indicating the watermark flag status change event.   |
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the watermark flag status. The value **true** means that the watermark flag status is changed to enabled, and **false** means that the watermark flag status is changed to disabled.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the watermark flag status. The value **true** means that the watermark is currently enabled, and **false** means that the watermark is changed to disabled.|
 
 **Error codes**
 
@@ -1087,7 +1087,7 @@ Show or don't show watermark image. This API uses an asynchronous callback to re
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | image.PixelMap           | Yes  | Watermark image.|
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | Watermark image.|
 | enable   | boolean                  | Yes  | Whether to show watermark image. The value **true** means to show watermark image, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -1144,6 +1144,7 @@ Show or don't show watermark image. This API uses a promise to return the result
 
 | Name| Type    | Mandatory | Description                |
 | ------ | ------- | ---- | -------------------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | Watermark image.|
 | enable | boolean | Yes  | Whether to show watermark image. The value **true** means to show watermark image, and **false** means the opposite.|
 
 **Return value**
