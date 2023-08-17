@@ -53,7 +53,6 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
 | barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 |
-
 >  **说明：**
 >
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }
@@ -248,17 +247,20 @@ struct TextInputExample {
 ### 示例2
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1:Resource=$r('app.media.icon')
-  @State PassWordSrc2:Resource=$r('app.media.icon')
+  @State PassWordSrc1: Resource = $r('app.media.onIcon')
+  @State PassWordSrc2: Resource = $r('app.media.offIcon')
+  @State TextError: string = undefined
+  @State Text: string = ''
+  @State NameText: string = 'test'
+
   @Builder itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
-      { value: 'GB'},
-      { value: 'TB',}])
+      { value: 'GB' },
+      { value: 'TB', }])
       .height("48vp")
       .borderRadius(0)
       .selected(2)
@@ -269,30 +271,49 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({height:"40vp",width:"80%",x:'10%',y:'6vp'})
+      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
       .onSelect((index: number) => {
         console.info('Select:' + index)
       })
   }
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       // 自定义密码显示图标
       TextInput({ placeholder: 'user define password icon' })
         .type(InputType.Password)
-        .width(400)
+        .width(380)
         .height(60)
-        .passwordIcon({onIconSrc:this.PassWordSrc1,offIconSrc : this.PassWordSrc2})
+        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
-        .width(400)
+        .width(380)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd.bind(this))
+
+      Text(`用户名：${this.Text}`)
+        .width('95%')
+      TextInput({ placeholder: '请输入用户名', text: this.Text })
+        .showUnderline(true)
+        .width(380)
+        .showError(this.TextError)
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit(() => { // 用户名不正确会清空输入框和用户名并提示错误文本
+          if (this.Text == this.NameText) {
+            this.TextError = undefined
+          } else {
+            this.TextError = '用户名输入错误'
+            this.Text = ''
+          }
+        })
+
     }.width('100%')
   }
 }
 ```
 
-![showUnit](figures/showUnit.png)
+![TextInputError](figures/TextInputError.PNG)
