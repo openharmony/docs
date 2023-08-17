@@ -508,8 +508,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -556,8 +556,8 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
@@ -585,8 +585,8 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -637,8 +637,8 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
