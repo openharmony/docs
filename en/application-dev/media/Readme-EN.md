@@ -31,6 +31,7 @@
     - [Developing Audio Call](audio-call-development.md)
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
+  - [Screen Capture](avscreen-capture.md)
   - Audio and Video Codecs
     - [Obtaining Supported Codecs](obtain-supported-codecs.md)
     - [Audio Encoding](audio-encoding.md)
