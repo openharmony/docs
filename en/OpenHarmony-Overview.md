@@ -146,7 +146,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Supported Development Boards
 
-Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
+Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist to obtain daily builds. 
 
 | System Type| Board Model| Chip Model| <div style="width:200pt">Function Description and Use Case</div> | Application Scenario| Code Repository |
 | -------- | -------- | -------- | -------- | -------- | -------- |
