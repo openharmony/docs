@@ -112,11 +112,11 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 | children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
-## onRecycle<sup>10+</sup>
+## aboutToReuse<sup>10+</sup>
 
-onRecycle?(params: { [key: string]: unknown }): void
+aboutToReuse?(params: { [key: string]: unknown }): void
 
-当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发onRecycle生命周期回调，并将组件的构造参数传递给onRecycle。
+当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -152,10 +152,10 @@ struct Index {
   }
 }
 
-@Recycle
+@Reusable
 @Component
 struct Child {
-  onRecycle(params) {
+  aboutToReuse(params) {
     console.info("Recycle Child")
   }
 
