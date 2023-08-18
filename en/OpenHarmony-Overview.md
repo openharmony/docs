@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> You are reading documents of OpenHarmony 3.2 Release. Obtain the [compatible SDK](../release-notes/OpenHarmony-v3.2-release.md#version-mapping) during your application development.
+> You are reading documents of OpenHarmony 3.2 Release. Obtain the [compatible SDK](release-notes/OpenHarmony-v3.2-release.md#version-mapping) during your application development.
 
 ## Introduction
 
@@ -150,7 +150,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Supported Development Boards
 
-Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master.  You can visit http://ci.openharmony.cn/dailys/dailybuilds to obtain daily builds. 
+Currently, the OpenHarmony community supports 22 types of development boards, which are listed in [Development Boards Supported](device-dev/dev-board-on-the-master.md). The following table describes three of them, which are the first three integrated into the OpenHarmony master. You can visit http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist. 
 
 | System Type| Board Model| Chip Model| <div style="width:200pt">Function Description and Use Case</div> | Application Scenario| Code Repository |
 | -------- | -------- | -------- | -------- | -------- | -------- |
