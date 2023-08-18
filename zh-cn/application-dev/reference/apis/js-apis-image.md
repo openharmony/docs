@@ -925,8 +925,6 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 | ---------- | ----------------------------------- | ---- | --------------- |
 | colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
 
-**示例：**
-
 **错误码：**
 
 以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
@@ -935,6 +933,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 | ------- | --------------------------------------------|
 | 62980111| If the operation invalid              |
 | 62980115| If the image parameter invalid             |
+
+**示例：**
 
 ```js
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
@@ -2520,7 +2520,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```js
 creator.dequeueImage((err, img) => {
     if (err) {
-        console.info('dequeueImage failded.');
+        console.info('dequeueImage failed.');
     }
     console.info('dequeueImage succeeded.');
 });
@@ -3064,7 +3064,7 @@ PixelMap的初始化选项。
 ## 补充说明
 ### SVG标签说明
 
-从API verison 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
 - a
 - circla
 - clipPath
