@@ -50,7 +50,7 @@ struct FontExample {
   aboutToAppear() {
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf'
+      familySrc: '/font/medium.ttf' // The font file is at the same level as the pages directory.
     })
   }
 

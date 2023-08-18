@@ -72,7 +72,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                | Description           |
 | ------------------ | ------------- |
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
-| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.     |
+| Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.|
 
 ## Events
 
@@ -162,4 +162,4 @@ struct TextInputExample {
 }
 ```
 
-![textInput](figures/textInput.gif)
+![TextInput](figures/TextInput.png)

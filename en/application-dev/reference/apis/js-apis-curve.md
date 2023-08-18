@@ -78,7 +78,7 @@ Creates a step curve.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ----| ------------------------------------------------------------ |
-| count  | number  | Yes  | Number of steps. The value must be a positive integer.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| count  | number  | Yes  | Number of steps. The value must be a positive integer.<br>Value range: [1, +∞)|
 | end    | boolean | Yes  | Whether jumping occurs when the interpolation ends.<br>- **true**: Jumping occurs when the interpolation ends.<br>- **false**: Jumping occurs when the interpolation starts.|
 
 **Return value**
@@ -108,9 +108,9 @@ Creates a cubic Bezier curve. The curve values must be between 0 and 1.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| x1     | number | Yes  | X coordinate of the first point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| x1     | number | Yes  | X coordinate of the first point on the Bezier curve.<br>Value range: [0, 1]|
 | y1     | number | Yes  | Y coordinate of the first point on the Bezier curve.<br>Value range: (-∞, +∞)         |
-| x2     | number | Yes  | X coordinate of the second point on the Bezier curve.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| x2     | number | Yes  | X coordinate of the second point on the Bezier curve.<br>Value range: [0, 1]|
 | y2     | number | Yes  | Y coordinate of the second point on the Bezier curve.<br>Value range: (-∞, +∞)         |
 
 **Return value**
@@ -141,9 +141,9 @@ Creates a spring curve.
 | Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | velocity  | number | Yes  | Initial velocity. It is applied by external factors to the spring animation, designed to help ensure the smooth transition from the previous motion state.<br>Value range: (-∞, +∞)|
-| mass      | number | Yes  | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| stiffness | number | Yes  | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| damping   | number | Yes  | Damping. It is a pure number and has no real physical meaning. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
+| mass      | number | Yes  | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)|
+| stiffness | number | Yes  | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)|
+| damping   | number | Yes  | Damping. It is a pure number and has no real physical meaning. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)|
 
 
 **Return value**
@@ -173,9 +173,9 @@ Creates a spring animation curve. If multiple spring animations are applied to t
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
-| response  | number | No   | Duration of one complete oscillation.<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
-| dampingFraction      | number | No   | Damping coefficient.<br>**0**: undamped. In this case, the spring oscillates forever.<br>> 0 and < 1: underdamped. In this case, the spring overshoots the equilibrium position.<br>**1**: critically damped.<br>> 1: overdamped. In this case, the spring approaches equilibrium gradually.<br>Default value: **0.825**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
-| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, the **response** values of these animations will transit smoothly over this duration if they are different.<br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the **interpolate** function of the curve.|
+| response  | number | No   | Duration of one complete oscillation.<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)|
+| dampingFraction      | number | No   | Damping coefficient.<br>**0**: undamped. In this case, the spring oscillates forever.<br>> 0 and < 1: underdamped. In this case, the spring overshoots the equilibrium position.<br>**1**: critically damped.<br>> 1: overdamped. In this case, the spring approaches equilibrium gradually.<br>Default value: **0.825**<br>Unit: second<br>Value range: [0, +∞)|
+| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, the **response** values of these animations will transit smoothly over this duration if they are different.<br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
 
 **Return value**
@@ -207,9 +207,9 @@ Creates a responsive spring animation curve. It is a special case of [springMoti
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
-| response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.15**.|
-| dampingFraction      | number | No   | See **dampingFraction** in **springMotion**.<br>Default value: **0.86**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.86**.|
-| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained using the **interpolate** function of the curve.|
+| response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)|
+| dampingFraction      | number | No   | See **dampingFraction** in **springMotion**.<br>Default value: **0.86**<br>Unit: second<br>Value range: [0, +∞)|
+| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
 **Return value**
 
@@ -242,7 +242,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| fraction | number | Yes  | Current normalized time.<br>Value range: [0, 1]|
 
 **Return value**
 
