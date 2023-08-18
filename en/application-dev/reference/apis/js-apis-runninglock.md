@@ -16,7 +16,7 @@ import runningLock from '@ohos.runningLock';
 
 isSupported(type: RunningLockType): boolean;
 
-Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified type of **RunningLock** is supported.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -26,7 +26,7 @@ Checks whether the specified type of **RunningLock** is supported. This API uses
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.|
 
-**Return Value**
+**Return value**
 
 | Type   | Description                                   |
 | ------- | --------------------------------------- |
@@ -69,14 +69,6 @@ Creates a **RunningLock** object.
 | type     | [RunningLockType](#runninglocktype)        | Yes  | Type of the **RunningLock** object to be created.                                          |
 | callback | AsyncCallback<[RunningLock](#runninglock)> | Yes  | Callback used to return the result. If a lock is successfully created, **err** is **undefined** and **data** is the created **RunningLock**. Otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
-
-| ID  | Error Message    |
-|---------|----------|
-| 4900101 | If connecting to the service failed. |
-
 **Example**
 
 ```js
@@ -106,19 +98,11 @@ Creates a **RunningLock** object.
 | name   | string                              | Yes  | Name of the **RunningLock** object.        |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object to be created.|
 
-**Return Value**
+**Return value**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
 | Promise&lt;[RunningLock](#runninglock)&gt; | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
-
-| ID  | Error Message    |
-|---------|----------|
-| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -138,7 +122,7 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result. This API uses an asynchronous callback to return the result.
+Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -167,7 +151,7 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
+Checks whether the specified type of **RunningLock** is supported. This API uses a promise to return the result.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -177,7 +161,7 @@ Checks whether the specified type of **RunningLock** is supported. This API uses
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.|
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                |
 | ---------------------- | ---------------------------------------------------- |
@@ -246,7 +230,7 @@ Creates a **RunningLock** object.
 | name   | string                              | Yes  | Name of the **RunningLock** object.        |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object to be created.|
 
-**Return Value**
+**Return value**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
@@ -354,7 +338,7 @@ Checks the hold status of the **Runninglock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-**Return Value**
+**Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
@@ -452,7 +436,7 @@ Checks the hold status of the **Runninglock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-**Return Value**
+**Return value**
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** indicates that the **Runninglock** object is held; and the value **false** indicates that the **Runninglock** object is released.|
@@ -478,5 +462,5 @@ Enumerates the types of **RunningLock** objects.
 
 | Name                             | Value  | Description                                                        |
 | --------------------------------- | ---- | ------------------------------------------------------------ |
-| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br>This parameter is supported since API version 7 and deprecated since API version 10.|
+| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 10.|
 | PROXIMITY_SCREEN_CONTROL          | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.                      |

@@ -443,6 +443,90 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
+## NotificationSubscribe.remove
+
+remove(hashCodes: Array\<string\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
+
+批量删除指定通知（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名       | 类型                            | 必填 | 说明                                                                                                                                                                                                                                                                                  |
+|-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hashCodes | Array\<string\>               | 是   | 通知唯一ID数组集合。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。                                                                                                                                                                                                                                                                             |
+| callback  | AsyncCallback\<void\>         | 是   | 删除指定通知回调函数。                                                                                                                                                                                                                                                                         |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```js
+let hashCodes = ['hashCode1', 'hashCode2'];
+
+function removeCallback(err) {
+    if (err) {
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("remove success");
+    }
+}
+let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+notificationSubscribe.remove(hashCodes, reason, removeCallback);
+```
+
+## NotificationSubscribe.remove
+
+remove(hashCodes: Array\<string\>, reason: RemoveReason): Promise\<void\>
+
+批量删除指定通知（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名       | 类型                            | 必填 | 说明          |
+|-----------|-------------------------------| ---- |-------------|
+| hashCodes | Array\<string\>               | 是   | 通知唯一ID数组集合。 |
+| reason    | [RemoveReason](#removereason) | 是   | 通知删除原因。     |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```js
+let hashCodes = ['hashCode1','hashCode2'];
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(hashCodes, reason).then(() => {
+    console.info("remove success");
+});
+```
 
 ## NotificationSubscribe.removeAll
 

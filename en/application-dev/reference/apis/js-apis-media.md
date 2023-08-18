@@ -1781,7 +1781,7 @@ let AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: eg.fd://45.
+  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
@@ -1852,7 +1852,7 @@ let AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: eg.fd://45.
+  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }

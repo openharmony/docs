@@ -210,4 +210,4 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 针对延迟任务调度的开发，有以下相关示例可供参考：
 
-- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)

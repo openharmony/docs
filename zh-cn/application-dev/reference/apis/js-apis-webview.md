@@ -254,20 +254,20 @@ struct WebComponent {
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
-              console.log("In eTS side send true start");
+              console.log("In ArkTS side send true start");
               if (this.nativePort) {
                   this.message.setString("helloFromEts");
                   this.nativePort.postMessageEventExt(this.message);
               }
           }
           catch (error) {
-              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
-        console.log("In eTS side message onPageEnd init mesaage channel");
+        console.log("In ArkTS side message onPageEnd init mesaage channel");
         // 1. 创建消息端口
         this.ports = this.controller.createWebMessagePorts(true);
         // 2. 发送端口1到HTML5
@@ -276,10 +276,10 @@ struct WebComponent {
         this.nativePort = this.ports[0];
         // 4. 设置回调函数
         this.nativePort.onMessageEventExt((result) => {
-            console.log("In eTS side got message");
+            console.log("In ArkTS side got message");
             try {
                 var type = result.getType();
-                console.log("In eTS side getType:" + type);
+                console.log("In ArkTS side getType:" + type);
                 switch (type) {
                     case web_webview.WebMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());

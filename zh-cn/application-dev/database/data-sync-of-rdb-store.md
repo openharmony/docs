@@ -171,3 +171,13 @@
      )
    })
    ```
+
+## 相关实例
+
+针对关系型数据库开发，有以下相关实例可供参考：
+
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+
+-[分布式关系型数据库（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
+
+- [分布式帐号（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAccount)

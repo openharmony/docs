@@ -353,7 +353,7 @@ A constructor used to create a **SessionBackup** instance.
 
   ```js
   import fs from '@ohos.file.fs';
-  let generalCallbacks = backup.GeneralCallbacks({
+  let generalCallbacks = ({
     onFileReady: (err, file) => {
       if (err) {
         console.error('onFileReady failed with err: ' + err);
@@ -568,7 +568,7 @@ A constructor used to create a **SessionRestore** instance.
 
   ```js
   import fs from '@ohos.file.fs';
-  let generalCallbacks = backup.GeneralCallbacks({
+  let generalCallbacks = ({
     onFileReady: (err, file) => {
       if (err) {
         console.error('onFileReady failed with err: ' + err);

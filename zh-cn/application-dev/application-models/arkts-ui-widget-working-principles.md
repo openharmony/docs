@@ -60,3 +60,11 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 - 暂不支持Hot Reload热重载。
 
 - 暂不支持setTimeOut。
+
+## 相关实例
+
+针对ArkTS卡片开发，有以下相关实例可供参考：
+
+- [Stage模型卡片（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+
+- [Stage模型卡片JS与C++通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

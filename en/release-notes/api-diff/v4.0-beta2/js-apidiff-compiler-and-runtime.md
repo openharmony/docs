@@ -1,0 +1,51 @@
+| Change Type | Old Version | New Version | d.ts File |
+| ---- | ------ | ------ | -------- |
+|Added|NA|Class name: ConditionType;<br>Method or attribute name: timeout?: number;|@ohos.process.d.ts|
+|Added|NA|Class name: ConditionType;<br>Method or attribute name: killSignal?: number \| string;|@ohos.process.d.ts|
+|Added|NA|Class name: ConditionType;<br>Method or attribute name: maxBuffer?: number;|@ohos.process.d.ts|
+|Added|NA|Class name: taskpool;<br>Method or attribute name: function execute(group: TaskGroup, priority?: Priority): Promise\<unknown[]>;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: taskpool;<br>Method or attribute name: function cancel(group: TaskGroup): void;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: taskpool;<br>Method or attribute name: function getTaskPoolInfo(): TaskPoolInfo;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: Task;<br>Method or attribute name: static isCanceled(): boolean;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: Task;<br>Method or attribute name: setTransferList(transfer?: ArrayBuffer[]): void;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskGroup;<br>Method or attribute name: constructor();|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskGroup;<br>Method or attribute name: addTask(func: Function, ...args: unknown[]): void;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskGroup;<br>Method or attribute name: addTask(task: Task): void;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: State;<br>Method or attribute name: WAITING = 1|@ohos.taskpool.d.ts|
+|Added|NA|Class name: State;<br>Method or attribute name: RUNNING = 2|@ohos.taskpool.d.ts|
+|Added|NA|Class name: State;<br>Method or attribute name: CANCELED = 3|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskInfo;<br>Method or attribute name: taskId: number;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskInfo;<br>Method or attribute name: state: State;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskInfo;<br>Method or attribute name: duration?: number;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: ThreadInfo;<br>Method or attribute name: tid: number;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: ThreadInfo;<br>Method or attribute name: taskIds?: number[];|@ohos.taskpool.d.ts|
+|Added|NA|Class name: ThreadInfo;<br>Method or attribute name: priority?: Priority;|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskPoolInfo;<br>Method or attribute name: threadInfos: ThreadInfo[];|@ohos.taskpool.d.ts|
+|Added|NA|Class name: TaskPoolInfo;<br>Method or attribute name: taskInfos: TaskInfo[];|@ohos.taskpool.d.ts|
+|Added|NA|Class name: Type;<br>Method or attribute name: BASIC|@ohos.util.d.ts|
+|Added|NA|Class name: Type;<br>Method or attribute name: MIME|@ohos.util.d.ts|
+|Error code added|Class name: WorkerEventListener;<br>Method or attribute name: (event: Event): void \| Promise\<void>;<br>Old version information: |Class name: WorkerEventListener;<br>Method or attribute name: (event: Event): void \| Promise\<void>;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorkerGlobalScope;<br>Method or attribute name: onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) => void;<br>Old version information: |Class name: ThreadWorkerGlobalScope;<br>Method or attribute name: onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorkerGlobalScope;<br>Method or attribute name: onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) => void;<br>Old version information: |Class name: ThreadWorkerGlobalScope;<br>Method or attribute name: onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorker;<br>Method or attribute name: onexit?: (code: number) => void;<br>Old version information: |Class name: ThreadWorker;<br>Method or attribute name: onexit?: (code: number) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorker;<br>Method or attribute name: onerror?: (err: ErrorEvent) => void;<br>Old version information: |Class name: ThreadWorker;<br>Method or attribute name: onerror?: (err: ErrorEvent) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorker;<br>Method or attribute name: onmessage?: (event: MessageEvents) => void;<br>Old version information: |Class name: ThreadWorker;<br>Method or attribute name: onmessage?: (event: MessageEvents) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code added|Class name: ThreadWorker;<br>Method or attribute name: onmessageerror?: (event: MessageEvents) => void;<br>Old version information: |Class name: ThreadWorker;<br>Method or attribute name: onmessageerror?: (event: MessageEvents) => void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code changed|Class name: taskpool;<br>Method or attribute name: function cancel(task: Task): void;<br>Old version information: 401,10200015,10200016|Class name: taskpool;<br>Method or attribute name: function cancel(task: Task): void;<br>New version information: 401,10200015|@ohos.taskpool.d.ts|
+|Error code changed|Class name: Vector;<br>Method or attribute name: insert(element: T, index: number): void;<br>Old version information: If|Class name: Vector;<br>Method or attribute name: insert(element: T, index: number): void;<br>New version information: |@ohos.util.Vector.d.ts|
+|Error code changed|Class name: Vector;<br>Method or attribute name: removeByRange(fromIndex: number, toIndex: number): void;<br>Old version information: If|Class name: Vector;<br>Method or attribute name: removeByRange(fromIndex: number, toIndex: number): void;<br>New version information: |@ohos.util.Vector.d.ts|
+|Error code changed|Class name: Vector;<br>Method or attribute name: subVector(fromIndex: number, toIndex: number): Vector\<T>;<br>Old version information: If|Class name: Vector;<br>Method or attribute name: subVector(fromIndex: number, toIndex: number): Vector\<T>;<br>New version information: |@ohos.util.Vector.d.ts|
+|Error code changed|Class name: WorkerEventTarget;<br>Method or attribute name: addEventListener(type: string, listener: WorkerEventListener): void;<br>Old version information: 401,10200004|Class name: WorkerEventTarget;<br>Method or attribute name: addEventListener(type: string, listener: WorkerEventListener): void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code changed|Class name: ThreadWorker;<br>Method or attribute name: addEventListener(type: string, listener: WorkerEventListener): void;<br>Old version information: 401,10200004|Class name: ThreadWorker;<br>Method or attribute name: addEventListener(type: string, listener: WorkerEventListener): void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code changed|Class name: ThreadWorker;<br>Method or attribute name: on(type: string, listener: WorkerEventListener): void;<br>Old version information: 401,10200004|Class name: ThreadWorker;<br>Method or attribute name: on(type: string, listener: WorkerEventListener): void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code changed|Class name: ThreadWorker;<br>Method or attribute name: once(type: string, listener: WorkerEventListener): void;<br>Old version information: 401,10200004|Class name: ThreadWorker;<br>Method or attribute name: once(type: string, listener: WorkerEventListener): void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Error code changed|Class name: ThreadWorker;<br>Method or attribute name: off(type: string, listener?: WorkerEventListener): void;<br>Old version information: 401,10200004|Class name: ThreadWorker;<br>Method or attribute name: off(type: string, listener?: WorkerEventListener): void;<br>New version information: 401,10200004,10200005|@ohos.worker.d.ts|
+|Type changed|Class name: Task;<br>Method or attribute name: arguments?: unknown[];<br>Old version information: |Class name: Task;<br>Method or attribute name: arguments?: unknown[];<br>New version information: ?unknown[]|@ohos.taskpool.d.ts|
+|Function changed|Class name: process;<br>Method or attribute name: function runCmd(command: string,<br><br>    options?: { timeout?: number, killSignal?: number \| string, maxBuffer?: number }): ChildProcess;|Class name: process;<br>Method or attribute name: function runCmd(<br><br>    command: string,<br><br>    options?: ConditionType<br><br>  ): ChildProcess;|@ohos.process.d.ts|
+|Function changed|Class name: Priority;<br>Method or attribute name: HIGH|Class name: Priority;<br>Method or attribute name: HIGH = 0|@ohos.taskpool.d.ts|
+|Function changed|Class name: Priority;<br>Method or attribute name: MEDIUM|Class name: Priority;<br>Method or attribute name: MEDIUM = 1|@ohos.taskpool.d.ts|
+|Function changed|Class name: Priority;<br>Method or attribute name: LOW|Class name: Priority;<br>Method or attribute name: LOW = 2|@ohos.taskpool.d.ts|
+|Function changed|Class name: Base64Helper;<br>Method or attribute name: encodeToStringSync(src: Uint8Array): string;|Class name: Base64Helper;<br>Method or attribute name: encodeToStringSync(src: Uint8Array, options?: Type): string;|@ohos.util.d.ts|
+|Function changed|Class name: Base64Helper;<br>Method or attribute name: decodeSync(src: Uint8Array \| string): Uint8Array;|Class name: Base64Helper;<br>Method or attribute name: decodeSync(src: Uint8Array \| string, options?: Type): Uint8Array;|@ohos.util.d.ts|
+|Function changed|Class name: Base64Helper;<br>Method or attribute name: encodeToString(src: Uint8Array): Promise\<string>;|Class name: Base64Helper;<br>Method or attribute name: encodeToString(src: Uint8Array, options?: Type): Promise\<string>;|@ohos.util.d.ts|
+|Function changed|Class name: Base64Helper;<br>Method or attribute name: decode(src: Uint8Array \| string): Promise\<Uint8Array>;|Class name: Base64Helper;<br>Method or attribute name: decode(src: Uint8Array \| string, options?: Type): Promise\<Uint8Array>;|@ohos.util.d.ts|

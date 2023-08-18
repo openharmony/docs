@@ -51,7 +51,7 @@ ohpm install
 
   ```
   "dependencies": {
-     "@ohos/library": "file:../library"
+     "library": "file:../library"
   }
   ```
 
@@ -69,12 +69,12 @@ ohpm install
 ### Referencing an HAR HML Page 
 In a JavaScript project paradigm, component functions are configured in HML files. To reference an HML page in an HAR, first import the page through the **<element>** tag in the HML file of the project. The sample code is as follows:
 ```
-<element name="comp" src="@ohos/library/src/main/js/components/index/index.hml"></element>
+<element name="comp" src="library/src/main/js/components/index/index.hml"></element>
 ```
-In the preceding example, **@ohos/library** indicates the name of the HAR, and the path of the HML page is the relative path in the HAR. 
+In the preceding example, **library** indicates the name of the HAR, and the path of the HML page is the relative path in the HAR. 
 You can then reference the HML page based on the set element name. The sample code is as follows:
 ```typescript
-<element name="comp" src="@ohos/library/src/main/js/components/index/index.hml"></element>
+<element name="comp" src="library/src/main/js/components/index/index.hml"></element>
 
 <div class="container">
    <comp></comp>
@@ -107,7 +107,7 @@ Import the exported ArkTS page in other modules. The following is an example:
 ```typescript
 // entry/MainAbility/pages/index.ets
 
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 @Entry
 @Component
 struct Index {
@@ -136,7 +136,7 @@ export function func() {
 On other JavaScript/TypeScript pages, use **import** to import the exported methods. The sample code is as follows:
 ```typescript
 // entry/src/main/js/MainAbility/pages/index/index.js
-import {func} from "@ohos/library"
+import {func} from "library"
 export default {
    data: {
       title: ""

@@ -98,7 +98,7 @@ Music cannot be played in the background.
 
 **Reference**
 
-[Continuous Task Development](../task-management/continuous-task.md)
+[Continuous Task](../task-management/continuous-task.md)
 
 [AVSession Development](../media/using-avsession-developer.md)
 

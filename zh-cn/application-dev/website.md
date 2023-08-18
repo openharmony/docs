@@ -1146,8 +1146,8 @@
       - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos. deviceStatus.dragInteraction (拖拽)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
-      - [@ohos.distributedDeviceManager (设备管理)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedDeviceManager (设备管理)(推荐)](reference/apis/js-apis-distributedDeviceManager.md)
+      - [@ohos.distributedHardware.deviceManager (设备管理)(待废弃)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (外设管理)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (位置服务)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
@@ -1675,6 +1675,7 @@
       - [Audio错误码](reference/errorcodes/errorcode-audio.md)
       - [Media错误码](reference/errorcodes/errorcode-media.md)
       - [媒体会话管理错误码](reference/errorcodes/errorcode-avsession.md)
+      - [Camera错误码](reference/errorcodes/errorcode-camera.md)
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)

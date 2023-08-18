@@ -4,7 +4,7 @@ The **photoAccessHelper** module provides APIs for album management, including c
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -341,7 +341,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |  
+| 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
@@ -401,9 +401,9 @@ async function example() {
   let options = {
     title: 'testPhoto'
   }
-  phAccessHelper.createAsset(photoType, extension, options, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -445,9 +445,9 @@ async function example() {
   console.info('createAssetDemo');
   let photoType = photoAccessHelper.PhotoType.IMAGE;
   let extension = 'jpg';
-  phAccessHelper.createAsset(photoType, extension, (err, photoAsset) => {
-    if (photoAsset != undefined) {
-      console.info('createAsset file displayName' + photoAsset.displayName);
+  phAccessHelper.createAsset(photoType, extension, (err, uri) => {
+    if (uri != undefined) {
+      console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
       console.error('createAsset failed, message = ', err);
@@ -499,8 +499,8 @@ async function example() {
     let options = {
       title: 'testPhoto'
     }
-    let photoAsset = await phAccessHelper.createAsset(photoType,extension, options);
-    console.info('createAsset file displayName' + photoAsset.displayName);
+    let uri = await phAccessHelper.createAsset(photoType, extension, options);
+    console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
     console.error('createAsset failed, message = ', err);
@@ -1077,15 +1077,15 @@ async function example() {
     //file had changed, do something
   }
   // Register onCallback1.
-  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1); 
+  phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
   // Register onCallback2.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1145,11 +1145,11 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.favorite(true, (err) => {
+  photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
-      console.info('favorite successfully');
+      console.info('setFavorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error('setFavorite failed with error:' + err);
     }
   });
 }
@@ -1539,7 +1539,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**Example** 
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2839,7 +2839,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the album files.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
 
 **Error codes**
@@ -2856,17 +2856,17 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoCallback');
-
+  console.info('albumGetAssetsDemoCallback');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
@@ -2914,17 +2914,18 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  console.info('albumGetPhotoAssetsDemoPromise');
+  console.info('albumGetAssetsDemoPromise');
 
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
   let fetchOption = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
@@ -2967,9 +2968,10 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
@@ -3015,9 +3017,10 @@ async function example() {
   console.info('albumCommitModifyDemo');
   let predicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions = {
+    fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await phAccessHelper.getAlbums(albumFetchOptions);
+  const albumList = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
@@ -3496,6 +3499,131 @@ async function example() {
 }
 ```
 
+### setCoverUri
+
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets the album cover. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri
+
+setCoverUri(uri: string): Promise&lt;void&gt;;
+
+Sets the album cover. This API uses a promise to return the result.
+
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401   | if parameter is invalid.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setCoverUriDemoCallback');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let albumFetchResult = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album = await albumFetchResult.getFirstObject();
+    let fetchResult = await album.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    album.setCoverUri(asset.uri, (err) => {
+      if (err === undefined) {
+        console.info('album setCoverUri successfully');
+      } else {
+        console.error('album setCoverUri failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setCoverUriDemoCallback failed with error: ' + err);
+  }
+}
+```
+
 ## MemberType
 
 Enumerates the member types.
@@ -3597,6 +3725,7 @@ Defines the key information about an image or video file.
 | POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## AlbumKeys
 
@@ -3618,6 +3747,7 @@ Defines the options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. **System API**: This is a system API. |
+| cameraShotKey           | string | No | Key for the Untra Snamshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## CreateOptions
 

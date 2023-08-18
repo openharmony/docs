@@ -47,7 +47,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
 | ------ | ------------------------------------------ | ---- | ----------- |
-| size   | [Length](ts-types.md#length)               | 否   | 图标尺寸。    |
+| size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
 | src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
 
@@ -62,7 +62,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 参数名    | 参数类型                                   | 必填 | 参数描述         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
-| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小。 |
+| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明

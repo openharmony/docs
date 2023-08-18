@@ -625,7 +625,7 @@ Subscribes to the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value **'colorChange'** indicates subscribing to the wallpaper color change event.|
-| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- **colors**: main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- **wallpaperType**: wallpaper type. |
 
 **Example**
 
@@ -657,7 +657,7 @@ Unsubscribes from the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value **'colorChange'** indicates unsubscribing from the wallpaper color change event.|
-| callback | function | No|   Callback for the wallpaper color change event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | No| Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- **colors**: main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- **wallpaperType**: wallpaper type. |
 
 **Example**
 

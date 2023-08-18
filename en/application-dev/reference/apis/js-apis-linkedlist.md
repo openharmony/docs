@@ -145,8 +145,8 @@ Inserts an element at the specified position in this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted.|
+| element | T | Yes| Target element.|
 
 **Error codes**
 

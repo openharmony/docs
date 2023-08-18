@@ -892,6 +892,16 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 | ----------------------------------- | ---------------- |
 | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980101| If the image data abnormal              |
+| 62980103| If the image data unsupport              |
+| 62980115| If the image parameter invalid             |
+
 **示例：**
 
 ```js
@@ -914,6 +924,15 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 | 参数名     | 类型                                | 必填 | 说明            |
 | ---------- | ----------------------------------- | ---- | --------------- |
 | colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980111| If the operation invalid              |
+| 62980115| If the image parameter invalid             |
 
 **示例：**
 
@@ -941,7 +960,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见文档底部图片错误码。
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -998,7 +1017,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见文档底部图片错误码。
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1698,7 +1717,19 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixelMap数组。 |
+| Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixeMap数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
 
 **示例：**
 
@@ -1728,6 +1759,18 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
+
 **示例：**
 
 ```js
@@ -1750,6 +1793,18 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | 是 | 解码参数。 |
 | callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980103| If the image data unsupport             |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980118| If the image plugin create failed             |
 
 **示例：**
 
@@ -1781,6 +1836,20 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback<Array\<number>> | 是   | 通过回调返回延迟时间数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
+
 **示例：**
 
 ```js
@@ -1803,6 +1872,20 @@ getDelayTimeList(): Promise<Array\<number>>;
 | -------------- | --------------------------- |
 | Promise<Array\<number>> | Promise实例，异步返回延迟时间数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
+
 **示例：**
 
 ```js
@@ -1822,6 +1905,20 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback\<number> | 是   | 通过回调返回图像帧数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| If the operation invalid              |
+| 62980110| If the image source data error              |
+| 62980111| If the image source data incomplete            |
+| 62980113| If the image format unknown            |
+| 62980116| If the image decode failed            |
+| 62980118| If the image plugin create failed             |
+| 62980122| If the image decode head abnormal             |
 
 **示例：**
 
@@ -3006,45 +3103,3 @@ PixelMap的初始化选项。
 - textPath
 - tspan
 - use
-
-### ResponseCode说明
-
-编译错误返回的响应码。
-
-| 名称                                | 值       | 说明                                                |
-| ----------------------------------- | -------- | --------------------------------------------------- |
-| ERR_MEDIA_INVALID_VALUE             | -1       | 无效大小。                                          |
-| SUCCESS                             | 0        | 操作成功。                                          |
-| ERROR                               | 62980096 | 操作失败。                                          |
-| ERR_IPC                             | 62980097 | ipc错误。                                           |
-| ERR_SHAMEM_NOT_EXIST                | 62980098 | 共享内存错误。                                      |
-| ERR_SHAMEM_DATA_ABNORMAL            | 62980099 | 共享内存错误。                                      |
-| ERR_IMAGE_DECODE_ABNORMAL           | 62980100 | 图像解码错误。                                      |
-| ERR_IMAGE_DATA_ABNORMAL             | 62980101 | 图像输入数据错误。                                  |
-| ERR_IMAGE_MALLOC_ABNORMAL           | 62980102 | 图像malloc错误。                                    |
-| ERR_IMAGE_DATA_UNSUPPORT            | 62980103 | 不支持图像类型。                                    |
-| ERR_IMAGE_INIT_ABNORMAL             | 62980104 | 图像初始化错误。                                    |
-| ERR_IMAGE_GET_DATA_ABNORMAL         | 62980105 | 图像获取数据错误。                                  |
-| ERR_IMAGE_TOO_LARGE                 | 62980106 | 图像数据太大。                                      |
-| ERR_IMAGE_TRANSFORM                 | 62980107 | 图像转换错误。                                      |
-| ERR_IMAGE_COLOR_CONVERT             | 62980108 | 图像颜色转换错误。                                  |
-| ERR_IMAGE_CROP                      | 62980109 | 裁剪错误。                                          |
-| ERR_IMAGE_SOURCE_DATA               | 62980110 | 图像源数据错误。                                    |
-| ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | 图像源数据不完整。                                  |
-| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | 图像格式不匹配。                                    |
-| ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | 图像未知格式。                                      |
-| ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | 图像源未解析。                                      |
-| ERR_IMAGE_INVALID_PARAMETER         | 62980115 | 图像无效参数。                                      |
-| ERR_IMAGE_DECODE_FAILED             | 62980116 | 解码失败。                                          |
-| ERR_IMAGE_PLUGIN_REGISTER_FAILED    | 62980117 | 注册插件失败。                                      |
-| ERR_IMAGE_PLUGIN_CREATE_FAILED      | 62980118 | 创建插件失败。                                      |
-| ERR_IMAGE_ENCODE_FAILED             | 62980119 | 图像编码失败。                                      |
-| ERR_IMAGE_ADD_PIXEL_MAP_FAILED      | 62980120 | 图像添加像素映射失败。                              |
-| ERR_IMAGE_HW_DECODE_UNSUPPORT       | 62980121 | 不支持图像硬件解码。                                |
-| ERR_IMAGE_DECODE_HEAD_ABNORMAL      | 62980122 | 图像解码头错误。                                    |
-| ERR_IMAGE_DECODE_EXIF_UNSUPPORT     | 62980123 | 图像解码exif取消支持。                              |
-| ERR_IMAGE_PROPERTY_NOT_EXIST        | 62980124 | 图像属性不存在；错误代码被媒体占用，图像从150开始。 |
-| ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | 读取像素地图失败。                                  |
-| ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | 写入像素映射失败。                                  |
-| ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | pixelmap不允许修改。                                |
-| ERR_IMAGE_CONFIG_FAILED             | 62980259 | 配置错误。                                          |

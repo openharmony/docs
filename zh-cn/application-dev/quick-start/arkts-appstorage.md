@@ -4,7 +4,7 @@
 AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
 
 
-和LocalStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而对于AppStorage，是应用级的全局状态共享。AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过和AppStorage中转，才可以和UI回交互。
+和LocalStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而对于AppStorage，是应用级的全局状态共享。AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
 
 
 本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
@@ -23,10 +23,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 在上文中已经提到，如果要建立AppStorage和自定义组件的联系，需要使用\@StorageProp和\@StorageLink装饰器。使用\@StorageProp(key)/\@StorageLink(key)装饰组件内的变量，key标识了AppStorage的属性。
 
-当自定义组件初始化的时候，\@StorageProp(key)/\@StorageLink(key)装饰的变量会通过给定的key，绑定在AppStorage对应是属性，完成初始化。本地初始化是必要的，因为无法保证AppStorage一定存在给定的key，这取决于应用逻辑，是否在组件初始化之前在AppStorage实例中存入对应的属性。
+当自定义组件初始化的时候，会使用AppStorage中对应key的属性值将\@StorageProp(key)/\@StorageLink(key)装饰的变量初始化。由于应用逻辑的差异，无法确认是否在组件初始化之前向AppStorage实例中存入了对应的属性，所以AppStorage不一定存在key对应的属性，因此\@StorageProp(key)/\@StorageLink(key)装饰的变量进行本地初始化是必要的。
 
-
-\@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，我们允许本地改变的发生，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
+\@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，允许本地改变，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
 
 
 ### 装饰器使用规则说明
@@ -193,9 +192,85 @@ struct CompA {
 }
 ```
 
-### 以持久化方式订阅某个事件并接收事件回调
+### 不建议借助@StorageLink的双向同步机制实现事件通知
 
-推荐使用持久化方式订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
+不建议开发者使用@StorageLink和AppStorage的双向同步的机制来实现事件通知，AppStorage是和UI相关的数据存储，改变会带来UI的刷新，相对于一般的事件通知，UI刷新的成本较大。
+
+TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex可见自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
+
+
+```ts
+// xxx.ets
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData, index?: number) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: index
+            })
+          }.aspectRatio(1)
+
+        }, (item: ViewData, index?: number) => {
+          return JSON.stringify(item) + index;
+        })
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @State tapColor: Color = Color.Black;
+  private index: number;
+  private uri: Resource;
+
+  // 判断是否被选中
+  onTapIndexChange() {
+    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
+      this.tapColor = Color.Red;
+    } else {
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
+      this.tapColor = Color.Black;
+    }
+  }
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .onClick(() => {
+          this.tapIndex = this.index;
+        })
+        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+    }
+
+  }
+}
+```
+
+开发者可以使用emit订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
 
 
 ```ts
@@ -294,10 +369,9 @@ export struct TapImage {
 }
 ```
 
-以下示例为消息机制方式订阅事件，会导致回调监听的节点数较多，非常耗时，不推荐以此来实现应用代码。
+以上通知事件逻辑简单，也可以简化成三元表达式。
 
-
-```ts
+```
 // xxx.ets
 class ViewData {
   title: string;
@@ -338,21 +412,10 @@ struct Gallery2 {
 
 @Component
 export struct TapImage {
-  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
+  @StorageLink('tapIndex') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
   private index: number;
   private uri: Resource;
-
-  // 判断是否被选中
-  onTapIndexChange() {
-    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
-      this.tapColor = Color.Red;
-    } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
-      this.tapColor = Color.Black;
-    }
-  }
 
   build() {
     Column() {
@@ -361,12 +424,16 @@ export struct TapImage {
         .onClick(() => {
           this.tapIndex = this.index;
         })
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+        .border({
+          width: 5,
+          style: BorderStyle.Dotted,
+          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
+        })
     }
-
   }
 }
 ```
+
 
 
 ## 限制条件

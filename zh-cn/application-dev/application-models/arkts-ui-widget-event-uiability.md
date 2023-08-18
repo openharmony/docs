@@ -5,7 +5,7 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件至FormExtensionAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件拉起UIAbility。
   
   ```ts
   let storage = new LocalStorage();
@@ -17,7 +17,7 @@
     build() {
       Column() {
         Button('跳转')
-          .margin('20%')
+          .margin(20)
           .onClick(() => {
             console.info('postCardAction to EntryAbility');
             postCardAction(this, {
@@ -28,7 +28,7 @@
               }
             });
           })
-        Text(`${this.detail}`).margin('20%')
+        Text(`${this.detail}`)
       }
       .width('100%')
       .height('100%')
@@ -47,13 +47,21 @@
   export default class EntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
     onCreate(want, launchParam) {
+      this.handleFormRouterEvent(want);
+    }
+    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
+    onNewWant(want, launchParam) {
+      this.handleFormRouterEvent(want);
+    }
+
+    handleFormRouterEvent(want) {
       console.info('Want:' + JSON.stringify(want));
       if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
         let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
         let message = JSON.parse(want.parameters.params).detail;
         console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData = {
-          "detail": message + ': onCreate UIAbility.', // 和卡片布局中对应
+          "detail": message + ': UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData)
         formProvider.updateForm(curFormId, formMsg).then((data) => {
@@ -63,25 +71,6 @@
         })
       }
     }
-    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want, launchParam) {
-      console.info('onNewWant Want:' + JSON.stringify(want));
-      if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
-        let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
-        let message = JSON.parse(want.parameters.params).detail;
-        console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-        let formData = {
-          "detail": message + ': onNewWant UIAbility.', // 和卡片布局中对应
-        };
-        let formMsg = formBindingData.createFormBindingData(formData)
-        formProvider.updateForm(curFormId, formMsg).then((data) => {
-          console.info('updateForm success.' + JSON.stringify(data));
-        }).catch((error) => {
-          console.error('updateForm failed:' + JSON.stringify(error));
-        })
-      }
-    }
-  
     ...
   }
   ```

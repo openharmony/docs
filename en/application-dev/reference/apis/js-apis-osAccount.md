@@ -481,7 +481,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -500,6 +500,41 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
       } else {
         console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
+    });
+  } catch (err) {
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>9+</sup>
+
+checkOsAccountVerified(): Promise&lt;boolean&gt;
+
+Checks whether this OS account has been verified. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                  | Description                                                                     |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```js
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.checkOsAccountVerified().then((isVerified) => {
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
+    }).catch((err) => {
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
@@ -586,6 +621,41 @@ Checks whether an OS account has been verified. This API uses a promise to retur
   let localId = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified) => {
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
+    }).catch((err) => {
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>9+</sup>
+
+checkOsAccountVerified(): Promise&lt;boolean&gt;
+
+Checks whether this OS account has been verified. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                  | Description                                                              |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```js
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.checkOsAccountVerified().then((isVerified) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
     }).catch((err) => {
       console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -1552,7 +1622,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 | 12300002 | Invalid localName or type. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **Example**
 
@@ -1601,7 +1671,7 @@ Creates an OS account. This API uses a promise to return the result.
 | 12300002 | Invalid localName or type. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **Example**
 
@@ -1646,7 +1716,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | 12300002 | Invalid type or domainInfo. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **Example**
 
@@ -1696,7 +1766,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | 12300002 | Invalid type or domainInfo. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of account reaches the upper limit. |
+| 12300007 | The number of accounts reaches the upper limit. |
 
 **Example**
 
@@ -1720,7 +1790,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 Obtains information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1756,7 +1826,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -4109,8 +4179,10 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge, authType, or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
+| 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Authentication is canceled. |
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
@@ -4168,8 +4240,10 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300001 | System service exception. |
 | 12300002 | Invalid userId, challenge, authType, or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
+| 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Authentication is canceled. |
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
@@ -5319,6 +5393,9 @@ Adds credential information, including the credential type, subtype, and token (
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300101 | Token is invalid. |
 | 12300106 | Unsupported authType. |
+| 12300109 | Operation is canceled. |
+| 12300111 | Operation timeout. |
+| 12300115 | The number of credentials reaches the upper limit. |
 
 **Example**
   ```js
@@ -5375,7 +5452,10 @@ Updates credential information. This API uses a callback to return the result.
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
 | 12300101 | Token is invalid. |
+| 12300102 | Credential not enrolled.|
 | 12300106 | Unsupported authType. |
+| 12300109 | Operation is canceled. |
+| 12300111 | Operation timeout. |
 
 **Example**
   ```js
@@ -5538,7 +5618,7 @@ Deletes user credential information.
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | Token is invalid. |
-| 12300102 | Credential not found. |
+| 12300102 | Credential not enrolled. |
 
 **Example**
   ```js
@@ -5580,6 +5660,7 @@ Obtains authentication information. This API uses an asynchronous callback to re
 | ID| Error Message              |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
+| 12300102 | Credential not enrolled. |
 
 **Example**
   ```js
@@ -5619,6 +5700,7 @@ Obtains authentication information of the specified type. This API uses an async
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
+| 12300102 | Credential not enrolled. |
 
 **Example**
   ```js
@@ -5663,6 +5745,7 @@ Obtains authentication information of the specified type. This API uses a promis
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
+| 12300102 | Credential not enrolled. |
 
 **Example**
   ```js

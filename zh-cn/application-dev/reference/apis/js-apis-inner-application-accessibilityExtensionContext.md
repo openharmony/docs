@@ -285,7 +285,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定屏幕的所有窗口。 |
+| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -355,7 +355,7 @@ try {
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定窗口的根节点元素, 使用callback异步回调。
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 

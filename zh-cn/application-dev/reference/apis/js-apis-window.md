@@ -916,6 +916,78 @@ try {
 }
 ```
 
+## window.on('waterMarkFlagChange')<sup>10+</sup>
+
+on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
+
+添加水印启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                                          |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | 是   | 监听事件，固定为'waterMarkFlagChange'，即水印启用状态变化事件。    |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前水印的启用状态。true表示当前已启用水印；false表示当前未启用水印。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+  window.on('waterMarkFlagChange', (data) => {
+    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('waterMarkFlagChange')<sup>10+</sup>
+
+off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
+
+移除水印启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                        |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | 是 | 监听事件，固定为'waterMarkFlagChange'，即水印启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有水印启用状态变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+  window.off('waterMarkFlagChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ## window.setGestureNavigationEnabled<sup>10+</sup>
 setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1000,6 +1072,122 @@ try {
 } catch (exception) {
     console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
+```
+
+## window.setWaterMarkImage<sup>10+</sup>
+setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置水印图片显示状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import image from '@ohos.multimedia.image';
+
+let enable = true;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  try {
+    window.setWaterMarkImage(pixelMap, enable, (err) => {
+      if (err.code) {
+        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in showing watermark image.');
+    });
+  } catch (exception) {
+    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+  }
+}).catch((err) => {
+  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+});
+```
+
+## window.setWaterMarkImage<sup>10+</sup>
+setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt;
+
+设置水印图片显示状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型                        | 必填  | 说明                 |
+| ------ | --------------------------- | ---- | -------------------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import image from '@ohos.multimedia.image';
+
+let enable = true;
+let color = new ArrayBuffer(0);
+let initializationOptions = {
+  size: {
+    height: 100,
+    width: 100
+  }
+};
+image.createPixelMap(color, initializationOptions).then((pixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  try {
+    let promise = window.setWaterMarkImage(pixelMap, enable);
+    promise.then(() => {
+      console.info('Succeeded in showing watermark image.');
+    }).catch((err) => {
+      console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+  }
+}).catch((err) => {
+  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## window.create<sup>(deprecated)</sup>

@@ -1,13 +1,13 @@
-# User Album Management
+# Managing User Albums
 
 The **photoAccessHelper** module provides APIs for user album management, including creating or deleting a user album, adding images and videos to a user album, and deleting image and videos from a user album.
 
 > **NOTE**
 >
-> Before you start, refer to [photoAccessHelper Overview](photoAccessHelper-overview.md) to learn how to obtain a **photoAccessHelper** instance and apply for permissions required.
-> By default, the **photoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **photoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
+> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
+> By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
-To ensure application running efficiency, most **PhotoAccessHelper** calls are asynchronous in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 ## Creating a User Album
@@ -23,14 +23,14 @@ The album name must meet the following requirements:
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** permission.
 
 Example: Create a user album.
 
 **How to Develop**
 
-1. Set the name of the album to create.
+1. Set the name of the album.
 2. Use **createAlbum** to create an album.
 
 ```ts
@@ -49,10 +49,10 @@ Use [getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums) to obt
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** permission.
 
-Example: Obtain a user album named **albumName**.
+Example: Obtain the user album named **albumName**.
 
 **How to Develop**
 
@@ -83,17 +83,15 @@ try {
 
 ## Renaming a User Album
 
-Modify the **Albums.albumName** attribute of the album,
+Modify the **Albums.albumName** attribute of the album, and use [Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-2) to update the modification to the database.
 
-and use [Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-2) to update the modification to the database.
-
-Before renaming a user album, you need to obtain an album object. You can use the [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) APIs to obtain the user album of the corresponding location.
+Before renaming a user album, you need to obtain an album object. You can use the [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) APIs to obtain the user album of the specified location.
 
 The new user album names must also comply with the user name requirements in [Creating a User Album](#creating-a-user-album).
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions.
 
 Example: Rename an album named **albumName**.
@@ -104,7 +102,7 @@ Example: Rename an album named **albumName**.
 2. Call **getAlbums** to obtain user albums.
 3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject) to obtain the first user album.
 4. Set a new album name.
-5. Call **Album.commitModify** to update the modified album attributes to the database.
+5. Call **Album.commitModify** to update the new album name to the database.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -129,16 +127,16 @@ try {
 }
 ```
 
-## Adding Images and Videos to a User Album
+## Adding Images or Videos to a User Album
 
-[Obtain a user album](#obtaining-a-user-album) and the array of the images or videos to be added to the album, and then call [Album.addAssets](../reference/apis/js-apis-photoAccessHelper.md#addassets) to add the images or videos to the user album.
+[Obtain the user album](#obtaining-a-user-album) and the images or videos to be added to the album, and then call [Album.addAssets](../reference/apis/js-apis-photoAccessHelper.md#addassets) to add the images or videos to the user album.
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions.
 
-Example: Add an image to the album named **albumName**.
+Example: Add an image to the album **albumName**.
 
 **How to Develop**
 
@@ -184,14 +182,14 @@ try {
 
 ## Obtaining Images and Videos in a User Album
 
-[Obtain the user album](#obtaining-a-user-album) object, and call [Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2) to obtain the media assets in the user album.
+[Obtain the user album](#obtaining-a-user-album), and call [Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2) to obtain the media assets in the user album.
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions.
 
-Example: Obtain an image in a user album named **albumName**.
+Example: Obtain an image in the user album **albumName**.
 
 **How to Develop**
 
@@ -235,13 +233,13 @@ try {
 
 ## Removing Images and Videos from a User Album
 
-[Obtain the user album](#obtaining-a-user-album) object, and call [Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2) to obtain the media assets in the user album.
+[Obtain the user album](#obtaining-a-user-album), and call [Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-2) to obtain the media assets in the user album.
 
-Use [Album.removeAssets](../reference/apis/js-apis-photoAccessHelper.md#removeassets) to remove the specified images.
+Use [Album.removeAssets](../reference/apis/js-apis-photoAccessHelper.md#removeassets) to remove the specified media assets.
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions.
 
 Example: Remove an image from the album named **albumName**.
@@ -290,11 +288,11 @@ try {
 
 ## Deleting a User Album
 
-[Obtain the user album](#obtaining-a-user-album) object, and call [deleteAlbums](../reference/apis/js-apis-photoAccessHelper.md#deletealbums) to delete the user album.
+[Obtain the user album](##obtaining-a-user-album), and call [deleteAlbums](../reference/apis/js-apis-photoAccessHelper.md#deletealbums) to delete the user album.
 
 **Prerequisites**
 
-- A **photoAccessHelper** instance is obtained.
+- A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.READ_IMAGEVIDEO** and **ohos.permission.WRITE_IMAGEVIDEO** permissions.
 
 Example: Delete a user album named **albumName**.

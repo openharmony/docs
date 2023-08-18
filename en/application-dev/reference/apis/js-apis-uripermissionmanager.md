@@ -53,12 +53,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```js
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
-  fileio.mkdir(path, function (err) {
+  fs.mkdir(path, function (err) {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {
@@ -115,13 +115,13 @@ By default, an application can authorize its own URIs to another application. If
   ```js
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   import fileUri from '@ohos.file.fileuri';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
 
-  fileio.mkdir(path, function (err) {
+  fs.mkdir(path, function (err) {
     if (err) {
       console.log("mkdir error"+err.message)
     } else {

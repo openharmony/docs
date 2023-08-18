@@ -134,12 +134,12 @@ Describes the left and right arrow attributes.
 
 | Name             | Type                                    | Mandatory. | Description                                    |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| isShowBackground | boolean                                  | No   | Whether to show the background for the arrow.<br>Default value: **false**               |
+| showBackground   | boolean                                  | No   | Whether to show the background for the arrow.<br>Default value: **false**               |
 | isSidebarMiddle  | boolean                                  | No   | Whether the arrow is shown on either side of the navigation point indicator.<br>Default value: **false** (the arrow is shown on either side of the navigation point indicator)|
 | backgroundSize   | [Length](ts-types.md#length)             | No   | Size of the background.<br>On both sides of the navigation point indicator:<br>Default value: **24vp**<br>On both sides of the component:<br>Default value: **32vp**<br>This parameter cannot be set in percentage.|
-| backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the background.<br>On both sides of the navigation point indicator:<br>Default value: **'\#19182431'**<br>On both sides of the component:<br>Default value: **'\#00000000'**|
-| arrowSize        | [Length](ts-types.md#length)             | No   | Size of the arrow.<br>On both sides of the navigation point indicator:<br>Default value: **18vp**<br>On both sides of the component:<br>Default value: **24vp**<br>**NOTE**<br>If **isShowBackground** is set to **true**, the value of **arrowSize** is 3/4 of the value of **backgroundSize**.<br>This parameter cannot be set in percentage.|
-| arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the arrow.<br>Default value: **\#182431**                |
+| backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the background.<br>On both sides of the navigation point indicator:<br>Default value: **'\#00000000'**<br>On both sides of the component:<br>Default value: **'\#19182431'**|
+| arrowSize        | [Length](ts-types.md#length)             | No   | Size of the arrow.<br>On both sides of the navigation point indicator:<br>Default value: **18vp**<br>On both sides of the component:<br>Default value: **24vp**<br>**NOTE**<br>If **showBackground** is set to **true**, the value of **arrowSize** is 3/4 of the value of **backgroundSize**.<br>This parameter cannot be set in percentage.|
+| arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the arrow.<br>Default value: **'\#182431'**                |
 
 ## SwiperAutoFill<sup>10+</sup>
 
@@ -219,7 +219,7 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        isShowBackground:true,
+        showBackground:true,
         isSidebarMiddle:true,
         backgroundSize:24,
         backgroundColor:Color.White,

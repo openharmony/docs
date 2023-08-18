@@ -2731,3 +2731,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：10
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：10

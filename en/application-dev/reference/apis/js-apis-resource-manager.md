@@ -35,9 +35,9 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 Obtains the **ResourceManager** object of this application. This API uses an asynchronous callback to return the result.
 
-**Model restriction**: This API can be used only in the FA model.
-
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -52,7 +52,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
           console.log("error is " + error);
           return; 
       }
-      mgr.getString(0x1000000, (error, value) => {
+      mgr.getStringValue(0x1000000, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -70,9 +70,9 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses an asynchronous callback to return the result.
 
-**Model restriction**: This API can be used only in the FA model.
-
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -94,9 +94,9 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 Obtains the **ResourceManager** object of this application. This API uses a promise to return the result.
 
-**Model restriction**: This API can be used only in the FA model.
-
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the FA model.
 
 **Return value**
 
@@ -107,7 +107,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 **Example**
   ```js
   resourceManager.getResourceManager().then(mgr => {
-      mgr.getString(0x1000000, (error, value) => {
+      mgr.getStringValue(0x1000000, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -127,9 +127,9 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses a promise to return the result.
 
-**Model restriction**: This API can be used only in the FA model.
-
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -185,7 +185,7 @@ try {
         console.log("systemResourceManager getStringValue promise error is " + error);
     });
 } catch (error) {
-    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
 }
   ```
 
@@ -247,16 +247,6 @@ Defines the device configuration.
 | direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
 | locale    | string                  | Yes   | No   | Current system language.  |
 
-**Example**
-
-  ```js
-resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration((error, value) => {
-          let direction = value.direction;
-          let locale = value.locale;
-      });
-  });
-  ```
 
 ## DeviceCapability
 
@@ -271,16 +261,6 @@ Defines the device capability.
 | screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Type of the device.  |
 
-**Example**
-
-  ```js
-resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability((error, value) => {
-          let screenDensity = value.screenDensity;
-          let deviceType = value.deviceType;
-      });
-  });
-  ```
 
 ## RawFileDescriptor<sup>8+</sup>
 
@@ -357,7 +337,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
           }
       });
     } catch (error) {
-        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     }
   ```
 
@@ -401,7 +381,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -413,6 +393,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 Obtains the string corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -447,7 +429,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   
   ```
@@ -460,6 +442,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 Obtains the string corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -497,7 +481,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -538,7 +522,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -582,7 +566,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -593,6 +577,8 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 Obtains the string array corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -627,7 +613,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -638,6 +624,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 Obtains the string array corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -675,7 +663,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getStringArray promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -714,7 +702,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -754,7 +742,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -796,7 +784,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
           console.log("getMediaContent promise error is " + error);
       });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -839,7 +827,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
           console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -850,6 +838,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 Obtains the content of the media file corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -883,7 +873,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -894,6 +884,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 Obtains the content of the media file with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -928,7 +920,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -939,6 +931,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 Obtains the content of the media file corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -975,7 +969,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -986,6 +980,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 Obtains the content of the media file with the screen density corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1023,7 +1019,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1062,7 +1058,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });       
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1102,7 +1098,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });       
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1144,7 +1140,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1187,7 +1183,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1198,6 +1194,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 Obtains the Base64 code of the image corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1231,7 +1229,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1242,6 +1240,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1270,13 +1270,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
         if (error != null) {
-            console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+            console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1287,6 +1287,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 Obtains the Base64 code of the image corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1323,7 +1325,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1334,6 +1336,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1371,7 +1375,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1391,16 +1395,18 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 **Example**
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration((error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let direction = value.direction;
-              let locale = value.locale;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getConfiguration((error, value) => {
+      if (error != null) {
+        console.error("getConfiguration callback error is " + error);
+      } else {
+        let direction = value.direction;
+        let locale = value.locale;
+      }
+    });
+  } catch (error) {
+    console.error("getConfiguration callback error is " + error);
+  }
   ```
 
 
@@ -1420,14 +1426,16 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getConfiguration().then(value => {
-          let direction = value.direction;
-          let locale = value.locale;
-      }).catch(error => {
-          console.log("getConfiguration promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getConfiguration().then(value => {
+      let direction = value.direction;
+      let locale = value.locale;
+    }).catch(error => {
+      console.error("getConfiguration promise error is " + error);
+    });
+  } catch (error) {
+    console.error("getConfiguration promise error is " + error);
+  }
   ```
 
 
@@ -1447,16 +1455,18 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 **Example**
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability((error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          } else {
-              let screenDensity = value.screenDensity;
-              let deviceType = value.deviceType;
-          }
-      });
-  });
+  try {
+    this.context.resourceManager.getDeviceCapability((error, value) => {
+      if (error != null) {
+        console.error("getDeviceCapability callback error is " + error);
+      } else {
+        let screenDensity = value.screenDensity;
+        let deviceType = value.deviceType;
+      }
+    });
+  } catch (error) {
+    console.error("getDeviceCapability callback error is " + error);
+  }
   ```
 
 
@@ -1476,16 +1486,17 @@ Obtains the device capability. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getDeviceCapability().then(value => {
-          let screenDensity = value.screenDensity;
-          let deviceType = value.deviceType;
-      }).catch(error => {
-          console.log("getDeviceCapability promise error is " + error);
-      });
-  });
+  try {
+    this.context.resourceManager.getDeviceCapability().then(value => {
+      let screenDensity = value.screenDensity;
+      let deviceType = value.deviceType;
+    }).catch(error => {
+      console.error("getDeviceCapability promise error is " + error);
+    });
+  } catch (error) {
+    console.error("getDeviceCapability promise error is " + error);
+  }
   ```
-
 
 ### getPluralStringValue<sup>9+</sup>
 
@@ -1524,8 +1535,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }   
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 
@@ -1569,8 +1580,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }  
+    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getPluralStringValue<sup>9+</sup>
@@ -1580,6 +1591,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1615,9 +1628,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-  }  
-  
+    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getPluralStringValue<sup>9+</sup>
@@ -1627,6 +1639,8 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -1665,7 +1679,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1704,9 +1718,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
-      
   ```
 
 ### getRawFileContent<sup>9+</sup>
@@ -1746,7 +1759,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getRawFileContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1787,8 +1800,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`)
-  };
+      console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### getRawFd<sup>9+</sup>
@@ -1831,7 +1844,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     });
   } catch (error) {
     console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
-  };
+  }
   ```
 
 ### getRawFileList<sup>10+</sup>
@@ -1862,15 +1875,14 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("", (error, value) => {
         if (error != null) {
-            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let rawFile = value;
         }
     });
   } catch (error) {
-    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
   }
-      
   ```
 
 ### getRawFileList<sup>10+</sup>
@@ -1907,70 +1919,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getRawFileList("").then(value => {
         let rawFile = value;
     }).catch(error => {
-        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
-
-### closeRawFileDescriptor<sup>8+</sup>
-
-closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name     | Type                       | Mandatory  | Description         |
-| -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
-
-**Example**
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          }
-      });
-  });
-  ```
-
-### closeRawFileDescriptor<sup>8+</sup>
-
-closeRawFileDescriptor(path: string): Promise&lt;void&gt;
-
-Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name | Type    | Mandatory  | Description         |
-| ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
-
-**Return value**
-
-| Type                 | Description  |
-| ------------------- | ---- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.xml").then(value => {
-          let result = value;
-      }).catch(error => {
-          console.log("closeRawFileDescriptor promise error is " + error);
-      });
-  });
-  ```
-
 
 ### closeRawFd<sup>9+</sup>
 
@@ -2004,7 +1958,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   }
       
   ```
@@ -2046,7 +2000,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("closeRawFd promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2060,9 +2014,11 @@ Releases a created **resourceManager** object.
 
 **Example**
   ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.release();
-  });
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
+  }
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -2101,9 +2057,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
-  
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -2145,7 +2100,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2185,7 +2140,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2228,7 +2183,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2267,7 +2222,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2307,7 +2262,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2392,7 +2347,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2431,7 +2386,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2471,7 +2426,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2513,7 +2468,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2556,7 +2511,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2597,7 +2552,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   
   ```
@@ -2642,7 +2597,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2681,7 +2636,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2722,7 +2677,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2733,6 +2688,8 @@ getStringSync(resource: Resource): string
 Obtains the string corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -2766,7 +2723,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync(resource);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2777,6 +2734,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 Obtains the string corresponding to the specified resource object and formats the string based on **args**. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -2812,7 +2771,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
  ```
 
@@ -2851,7 +2810,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringByNameSync("test");
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2892,7 +2851,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
  ```
 
@@ -2931,7 +2890,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 ### getBoolean<sup>9+</sup>
@@ -2941,6 +2900,8 @@ getBoolean(resource: Resource): boolean
 Obtains the Boolean result corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -2974,7 +2935,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getBoolean(resource);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3013,7 +2974,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
   } catch (error) {
-    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3052,13 +3013,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
 
   try {
     this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3069,6 +3030,8 @@ getNumber(resource: Resource): number
 Obtains the integer or float value corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -3102,7 +3065,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3141,13 +3104,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getNumberByName("integer_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
 
   try {
     this.context.resourceManager.getNumberByName("float_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3186,12 +3149,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3202,6 +3165,8 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 Obtains the **DrawableDescriptor** object corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -3235,12 +3200,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3279,12 +3244,12 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3324,7 +3289,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
           }
       });
     } catch (error) {
-        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
     }
   ```
 
@@ -3367,7 +3332,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3378,6 +3343,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 Obtains the color value corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -3412,7 +3379,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3423,6 +3390,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 Obtains the color value corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -3460,7 +3429,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3500,7 +3469,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         }
     });
   } catch (error) {
-    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3543,7 +3512,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         console.log("getColorByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3551,7 +3520,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorSync(resId: number) : number;
 
-Obtains the color value corresponding to the specified resource ID. The API returns the result synchronously.
+Obtains the color value corresponding to the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3582,7 +3551,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3590,9 +3559,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorSync(resource: Resource): number
 
-Obtains the color value corresponding to the specified resource object. The API returns the result synchronously.
+Obtains the color value corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -3626,7 +3597,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColorSync(resource);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3634,7 +3605,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorByNameSync(resName: string) : number;
 
-Obtains the color value corresponding to the specified resource name. The API returns the result synchronously.
+Obtains the color value corresponding to the specified resource name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3665,7 +3636,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColorByNameSync("test");
   } catch (error) {
-    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3697,8 +3668,8 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
       this.context.resourceManager.addResource(path);
   } catch (error) {
-      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`)
-        }
+      console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`);
+  }
   ```
 
 ### removeResource<sup>10+</sup>
@@ -3729,7 +3700,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
       this.resmgr.removeResource(path);
   } catch (error) {
-      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`)
+      console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -4188,6 +4159,67 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
           let length = value.length;
       }).catch(error => {
           console.log("getRawFileDescriptor promise error is " + error);
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>(deprecated)</sup>
+
+closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+This API is deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9).
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                       | Mandatory  | Description         |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | Yes   | Path of the raw file.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
+
+**Example**
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          }
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>(deprecated)</sup>
+
+closeRawFileDescriptor(path: string): Promise&lt;void&gt;
+
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+This API is deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9-1).
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| path | string | Yes   | Path of the raw file.|
+
+**Return value**
+
+| Type                 | Description  |
+| ------------------- | ---- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+  ```ts
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml").then(value => {
+          let result = value;
+      }).catch(error => {
+          console.log("closeRawFileDescriptor promise error is " + error);
       });
   });
   ```

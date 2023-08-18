@@ -282,6 +282,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 订阅上传任务进度监听，同步方法，使用callback形式返回结果。
 
+> **说明：**
+>
+> 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -838,6 +842,10 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度监听，同步方法，使用callback形式返回结果。
+
+> **说明：**
+>
+> 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
 
 **需要权限**：ohos.permission.INTERNET
 

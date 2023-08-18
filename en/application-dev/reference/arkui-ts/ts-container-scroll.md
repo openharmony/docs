@@ -37,6 +37,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | Scroll effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.None**|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 
 ## ScrollDirection
 | Name      | Description                    |
@@ -84,8 +85,8 @@ Scrolls to the specified position.
 
 | Name   | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>This parameter is valid only when the scroll axis is the x-axis.|
-| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>This parameter is valid only when the scroll axis is the y-axis.|
+| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, no operation is performed. That is, this parameter does not take effect.<br>This parameter is valid only when the scroll axis is the x-axis.|
+| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, no operation is performed. That is, this parameter does not take effect.<br>This parameter is valid only when the scroll axis is the y-axis.|
 | animation | {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>} \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>{<br>duration: 1000,<br>curve: Curve.Ease<br>}<br>boolean: false<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>Currently, the **\<List>**, **\<Scroll>**, **\<Grid>**, and **\<WaterFlow>** support the **Boolean** type and **ICurve**.|
 
 
@@ -243,6 +244,7 @@ struct ScrollExample {
       .scrollBar(BarState.On)  // The scrollbar is always displayed.
       .scrollBarColor(Color.Gray)  // Color of the scrollbar.
       .scrollBarWidth(10) // The scrollbar width is 10.
+      .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
@@ -325,6 +327,7 @@ struct NestedScroll {
           .width("100%")
           .height("50%")
           .edgeEffect(EdgeEffect.None)
+          .friction(0.6)
           .onReachStart(() => {
             this.listPosition = 0
           })
@@ -399,6 +402,7 @@ struct StickyNestedScroll {
       }.width("100%")
     }
     .edgeEffect(EdgeEffect.Spring)
+    .friction(0.6)
     .backgroundColor('#DCDCDC')
     .scrollBar(BarState.Off)
     .width('100%')

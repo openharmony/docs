@@ -15,7 +15,7 @@ import wifiManager from '@ohos.wifiManager';
 
 enableWifi(): void
 
-使能WLAN。
+使能WLAN，异步接口，是否打开成功需要注册并监听wifiStateChange的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -47,7 +47,7 @@ enableWifi(): void
 
 disableWifi(): void
 
-去使能WLAN。
+去使能WLAN，异步接口，是否关闭成功需要注册并监听wifiStateChange的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2082,7 +2082,7 @@ getDisconnectedReason(): DisconnectedReason
 
 enableHotspot(): void
 
-使能热点。
+使能热点，异步接口，是否打开成功需要注册并监听hotspotStateChange的回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2113,7 +2113,7 @@ enableHotspot(): void
 
 disableHotspot(): void
 
-去使能热点。
+去使能热点 ，异步接口，是否关闭成功需要注册并监听hotspotStateChange的回调。
 
 **系统接口：** 此接口为系统接口。
 

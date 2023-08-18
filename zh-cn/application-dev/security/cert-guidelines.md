@@ -573,3 +573,9 @@ function crlEntrySample() {
     });
 }
 ```
+
+## 相关实例
+
+针对证书开发，有以下相关实例可供参考：
+
+- [证书算法库框架（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CertificateFramework)
