@@ -1,8 +1,9 @@
 # @ohos.multimodalInput.keyCode (键值)
 
-按键设备键值。
+按键设备的键码值，按键设备包括键盘、电源键、拍照键等。
 
->  **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -13,7 +14,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 
 ## KeyCode
 
-按键键码值。
+键码值。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
@@ -23,20 +24,20 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_UNKNOWN                  |  -1 | 未知按键                        |
 | KEYCODE_HOME                     |  1 | 功能（Home）键                  |
 | KEYCODE_BACK                     |  2 | 返回键                         |
-| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | 多媒体键 播放/暂停                  |
-| KEYCODE_MEDIA_STOP               |  11 | 多媒体键 停止                     |
-| KEYCODE_MEDIA_NEXT               |  12 | 多媒体键 下一首                    |
-| KEYCODE_MEDIA_PREVIOUS           |  13 | 多媒体键 上一首                    |
-| KEYCODE_MEDIA_REWIND             |  14 | 多媒体键 快退                     |
-| KEYCODE_MEDIA_FAST_FORWARD       |  15 | 多媒体键 快进                     |
+| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | 多媒体键：播放/暂停                  |
+| KEYCODE_MEDIA_STOP               |  11 | 多媒体键：停止                     |
+| KEYCODE_MEDIA_NEXT               |  12 | 多媒体键：下一首                    |
+| KEYCODE_MEDIA_PREVIOUS           |  13 | 多媒体键：上一首                    |
+| KEYCODE_MEDIA_REWIND             |  14 | 多媒体键：快退                     |
+| KEYCODE_MEDIA_FAST_FORWARD       |  15 | 多媒体键：快进                     |
 | KEYCODE_VOLUME_UP                |  16 | 音量增加键                       |
 | KEYCODE_VOLUME_DOWN              |  17 | 音量减小键                       |
 | KEYCODE_POWER                    |  18 | 电源键                         |
 | KEYCODE_CAMERA                   |  19 | 拍照键                         |
 | KEYCODE_VOLUME_MUTE              |  22 | 扬声器静音键                      |
 | KEYCODE_MUTE                     |  23 | 话筒静音键                       |
-| KEYCODE_BRIGHTNESS_UP            |  40 | 亮度调节按键 调亮                   |
-| KEYCODE_BRIGHTNESS_DOWN          |  41 | 亮度调节按键 调暗                   |
+| KEYCODE_BRIGHTNESS_UP            |  40 | 亮度调节按键：调亮                   |
+| KEYCODE_BRIGHTNESS_DOWN          |  41 | 亮度调节按键：调暗                   |
 | KEYCODE_0                        |  2000 | 按键'0'                       |
 | KEYCODE_1                        |  2001 | 按键'1'                       |
 | KEYCODE_2                        |  2002 | 按键'2'                       |
@@ -49,11 +50,11 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_9                        |  2009 | 按键'9'                       |
 | KEYCODE_STAR                     |  2010 | 按键'*'                       |
 | KEYCODE_POUND                    |  2011 | 按键'#'                       |
-| KEYCODE_DPAD_UP                  |  2012 | 导航键 向上                      |
-| KEYCODE_DPAD_DOWN                |  2013 | 导航键 向下                      |
-| KEYCODE_DPAD_LEFT                |  2014 | 导航键 向左                      |
-| KEYCODE_DPAD_RIGHT               |  2015 | 导航键 向右                      |
-| KEYCODE_DPAD_CENTER              |  2016 | 导航键 确定键                     |
+| KEYCODE_DPAD_UP                  |  2012 | 导航键：向上                      |
+| KEYCODE_DPAD_DOWN                |  2013 | 导航键：向下                      |
+| KEYCODE_DPAD_LEFT                |  2014 | 导航键：向左                      |
+| KEYCODE_DPAD_RIGHT               |  2015 | 导航键：向右                      |
+| KEYCODE_DPAD_CENTER              |  2016 | 导航键：确定键                     |
 | KEYCODE_A                        |  2017 | 按键'A'                       |
 | KEYCODE_B                        |  2018 | 按键'B'                       |
 | KEYCODE_C                        |  2019 | 按键'C'                       |
@@ -89,8 +90,8 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_TAB                      |  2049 | Tab键                        |
 | KEYCODE_SPACE                    |  2050 | 空格键                         |
 | KEYCODE_SYM                      |  2051 | 符号修改器按键                     |
-| KEYCODE_EXPLORER                 |  2052 | 浏览器功能键，此键用于启动浏览器应用程序。       |
-| KEYCODE_ENVELOPE                 |  2053 | 电子邮件功能键，此键用于启动电子邮件应用程序。     |
+| KEYCODE_EXPLORER                 |  2052 | 浏览器功能键，此键用于启动浏览器应用程序      |
+| KEYCODE_ENVELOPE                 |  2053 | 电子邮件功能键，此键用于启动电子邮件应用程序    |
 | KEYCODE_ENTER                    |  2054 | 回车键                         |
 | KEYCODE_DEL                      |  2055 | 退格键                         |
 | KEYCODE_GRAVE                    |  2056 | 按键'`'                       |
@@ -122,11 +123,11 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_MOVE_END                 |  2082 | 光标移动到末尾键                    |
 | KEYCODE_INSERT                   |  2083 | 插入键                         |
 | KEYCODE_FORWARD                  |  2084 | 前进键                         |
-| KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键 播放                     |
-| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键 暂停                     |
-| KEYCODE_MEDIA_CLOSE              |  2087 | 多媒体键 关闭                     |
-| KEYCODE_MEDIA_EJECT              |  2088 | 多媒体键 弹出                     |
-| KEYCODE_MEDIA_RECORD             |  2089 | 多媒体键 录音                     |
+| KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键：播放                     |
+| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键：暂停                     |
+| KEYCODE_MEDIA_CLOSE              |  2087 | 多媒体键：关闭                     |
+| KEYCODE_MEDIA_EJECT              |  2088 | 多媒体键：弹出                     |
+| KEYCODE_MEDIA_RECORD             |  2089 | 多媒体键：录音                     |
 | KEYCODE_F1                       |  2090 | 按键'F1'                      |
 | KEYCODE_F2                       |  2091 | 按键'F2'                      |
 | KEYCODE_F3                       |  2092 | 按键'F3'                      |
