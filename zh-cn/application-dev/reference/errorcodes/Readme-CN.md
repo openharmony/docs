@@ -28,6 +28,7 @@
   - [Media错误码](errorcode-media.md)
   - [媒体会话管理错误码](errorcode-avsession.md)
   - [Camera错误码](errorcode-camera.md)
+  - [Image错误码](errorcode-image.md)
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
