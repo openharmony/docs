@@ -81,36 +81,68 @@ struct IndexComponent {
 ![zh-cn_image_0000001563060749](figures/zh-cn_image_0000001563060749.png)
 
 
-## onLayout<sup>9+</sup>
+## onLayout<sup>9+</sup><sup>(deprecated)</sup>
 
 onLayout?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
 
-框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
+ArkUI框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onPlaceChildren](#onplacechildren10)替代。
 
 **参数：**
 
-| 参数名        | 类型                                       | 说明               |
-| ---------- | ---------------------------------------- | ---------------- |
-| children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | 子组件布局信息。         |
+| 参数名        | 类型                                                         | 说明               |
+|------------|------------------------------------------------------------|------------------|
+| children   | Array&lt;[LayoutChild](#layoutchild9)&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
+## onPlaceChildren<sup>10+</sup>
 
-## onMeasure<sup>9+</sup>
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt, constraint: ConstraintSizeOptions):
+void
+
+ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名            | 类型                                                         | 说明               |
+|----------------|------------------------------------------------------------|------------------|
+| selfLayoutInfo | [GeometryInfo](#GeometryInfo10)                            | 父组件布局信息。         |
+| children       | Array&lt;[Layoutable](#Layoutable10)&gt;                   | 子组件布局信息。         |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+
+## onMeasure<sup>9+</sup><sup>(deprecated)</sup>
 
 onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
 
-框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
+ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10)替代。
 
 **参数：**
 
-| 参数名        | 类型                                       | 说明               |
-| ---------- | ---------------------------------------- | ---------------- |
-| children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | 子组件布局信息。         |
+| 参数名        | 类型                                                         | 说明               |
+|------------|------------------------------------------------------------|------------------|
+| children   | Array&lt;[LayoutChild](#layoutchild9)&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+
+## onMeasureSize<sup>10+</sup>
+
+onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt, constraint: ConstraintSizeOptions):SizeResult
+
+ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和自身的尺寸范围通过onMeasure传递给开发者。不允许在onMeasureSize函数中改变状态变量。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名            | 类型                                                         | 说明               |
+|----------------|------------------------------------------------------------|------------------|
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。         |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。         |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
 ## onRecycle<sup>10+</sup>
 
@@ -123,9 +155,14 @@ onRecycle?(params: { [key: string]: unknown }): void
 **参数：**
 
 | 参数名    | 类型                         | 说明         |
-| ------ | -------------------------- | ---------- |
-| params | { [key: string]: unknown } | 自定义组件的构造参数 |
+|--------|----------------------------|------------|
+| params | { [key: string]: unknown } | 自定义组件的构造参数。|
 
+> **说明：**
+>
+>- 自定义布局暂不支持LazyForEach写法
+>- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法
+>- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息
 
 ```ts
 // xxx.ets
@@ -170,47 +207,45 @@ struct Child {
 }
 ```
 
-## LayoutChild<sup>9+</sup>
+## LayoutChild<sup>9+</sup><sup>(deprecated)</sup>
 
 子组件布局信息。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
-| 参数         | 参数类型                                     | 描述                  |
-| ---------- | ---------------------------------------- | ------------------- |
-| name       | string                                   | 子组件名称。              |
-| id         | string                                   | 子组件id。              |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。            |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfo9)   | 子组件border信息。        |
-| position   | [Position](ts-types.md#position)         | 子组件位置坐标。            |
-| measure    | (childConstraint:)&nbsp;=&gt;&nbsp;void  | 调用此方法对子组件的尺寸范围进行限制。 |
+
+| 参数         | 参数类型                                                               | 描述                  |
+|------------|--------------------------------------------------------------------|---------------------|
+| name       | string                                                             | 子组件名称。              |
+| id         | string                                                             | 子组件id。              |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | 子组件约束尺寸。            |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfo9)                             | 子组件border信息。        |
+| position   | [Position](ts-types.md#position)                                   | 子组件位置坐标。            |
+| measure    | (childConstraint:)&nbsp;=&gt;&nbsp;void                            | 调用此方法对子组件的尺寸范围进行限制。 |
 | layout     | (LayoutInfo：&nbsp;[LayoutInfo](#layoutinfo9))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
-
-## LayoutBorderInfo<sup>9+</sup>
+## LayoutBorderInfo<sup>9+</sup><sup>(deprecated)</sup>
 
 子组件border信息。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
 | 参数          | 参数类型                                 | 描述                      |
-| ----------- | ------------------------------------ | ----------------------- |
+|-------------|--------------------------------------|-------------------------|
 | borderWidth | [EdgeWidths](ts-types.md#edgewidths) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
 | margin      | [Margin](ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距。   |
 | padding     | [Padding](ts-types.md#padding)       | 内边距类型，用于描述组件不同方向的内边距。   |
 
-
-## LayoutInfo<sup>9+</sup>
+## LayoutInfo<sup>9+</sup><sup>(deprecated)</sup>
 
 子组件layout信息。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
-| 参数         | 参数类型                                     | 描述       |
-| ---------- | ---------------------------------------- | -------- |
-| position   | [Position](ts-types.md#position)         | 子组件位置坐标。 |
+| 参数         | 参数类型                                                       | 描述       |
+|------------|------------------------------------------------------------|----------|
+| position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |
-
 
 ```ts
 // xxx.ets
@@ -258,3 +293,120 @@ struct CustomLayout {
 ```
 
 ![zh-cn_image_0000001511900496](figures/zh-cn_image_0000001511900496.png)
+
+## GeometryInfo<sup>10+</sup>
+
+父组件布局信息。
+
+从API version 10开始支持，该接口支持在ArkTS卡片中使用。
+
+| 参数          | 参数类型      | 描述                  |
+|-------------|-----------|---------------------|
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。            |
+| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。        |
+| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。 |
+
+
+## Layoutable<sup>10+</sup>
+
+子组件布局信息。
+
+从API version 10开始支持，该接口支持在ArkTS卡片中使用。
+
+| 参数         | 参数类型                                                    | 描述                  |
+|------------|---------------------------------------------------------|---------------------|
+| measureResult| [MeasureResult](#measureresult10+)                                           | 子组件测量后的尺寸信息。        |
+| layout     | ([Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+
+## Measurable<sup>10+</sup>
+
+子组件位置信息。
+
+从API version 10开始支持，该接口支持在ArkTS卡片中使用。
+
+| 参数         | 参数类型                                                                             | 描述                                    |
+|------------|----------------------------------------------------------------------------------|---------------------------------------|
+| measure    | (childConstraint:)&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10+) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
+
+## MeasureResult<sup>10+</sup>
+
+测量后的组件布局信息。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+| 参数     | 参数类型   | 描述    |
+|--------|--------|-------|
+| width  | Number | 测量后的宽。 |
+| height | Number | 测量后的高。 |
+
+
+## SizeResult<sup>10+</sup>
+
+组件尺寸信息。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+| 参数     | 参数类型   | 描述    |
+|--------|--------|-------|
+| width  | Number | 测量后的宽。 |
+| height | Number | 测量后的高。 |
+```
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State en :boolean = true
+  @State list : number[] = [1,2,3]
+
+  build() {
+    Column() {
+      CustomLayout()
+      {
+        ForEach(this.list, (index) => { //暂不支持lazyForEach的写法
+          Text('S' + index)
+            .fontSize(30)
+            .width(100).height(100)
+            .borderWidth(2)
+            .offset({x:10, y:20})
+        })
+      }
+      Button('添加一组数据').onClick(() => {
+        this.list.push(this.list.length + 1)
+      })
+    }
+  }
+}
+
+
+@Component
+struct CustomLayout {
+  @BuilderParam builder: () => {};
+  @State startSize: number = 100;
+
+  onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
+    console.info("selfLayoutInfo width = " + selfLayoutInfo.width + "---height = " + selfLayoutInfo.height)
+    let startPos = 400;
+    children.forEach((child) => {
+      let pos = startPos - child.measureResult.height;
+      child.layout({ x: pos, y: pos })
+    })
+  }
+
+  onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
+    let size = 100;
+    children.forEach((child) => {
+      let result: MeasureResult = child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
+      size += result.width/2
+      ;
+    })
+    children[0].measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
+    return { width: 100, height: 400 };
+  }
+
+  build() {
+    this.builder()
+  }
+}
+```
+
+![custom_layout10.png](figures/custom_layout10.png)
