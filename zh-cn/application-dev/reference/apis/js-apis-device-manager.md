@@ -1,6 +1,6 @@
 # @ohos.distributedHardware.deviceManager (设备管理)
 
-本模块能力暂时可继续使用，但是暂停维护，建议使用新接口进行开发。新接口说明参见[@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md)。
+本模块能力暂时可继续使用，但是停止维护，建议使用新接口进行开发。新接口说明参见[@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md)。
 
 本模块提供分布式设备管理能力。
 
