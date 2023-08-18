@@ -21,9 +21,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 | function queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 | function queryAppGroup(callback: AsyncCallback&lt;number&gt;): void | 查询当前应用的使用优先级群组。callback形式。 |
 | function queryAppGroup(): Promise&lt;number&gt;; | 查询当前应用的使用优先级群组。promise形式。 |
+|function queryAppGroupSync(): number; | 查询当前应用的使用优先级群组。同步接口。|
 | function queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | 查询指定应用的使用优先级群组。callback形式。 |
 | function queryAppGroup(bundleName : string): Promise&lt;number&gt;; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
+|function queryAppGroupSync(bundleName: string): number; |  查询当前调用者应用或者指定应用的使用优先级群组。同步接口。|
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
+|function isIdleStateSync(bundleName: string): boolean; | 判断指定Bundle Name的应用当前是否是空闲状态，同步接口。 |
 | function queryModuleUsageRecords(callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
 | function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
@@ -225,6 +228,14 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
+
+    //同步方式
+    try{
+        var priorityGroup = usageStatistics.queryAppGroupSync();
+    } catch (error) {
+        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
+    }
+
     ```
 
 7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
@@ -252,6 +263,13 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
                 console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
             }
         });
+    } catch(error) {
+        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
+    }
+
+    //同步方式
+    try{
+        var isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
     } catch(error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
