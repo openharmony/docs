@@ -1147,7 +1147,7 @@
       - [@ohos. deviceStatus.dragInteraction (拖拽)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedDeviceManager (设备管理)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedHardware.deviceManager (设备管理)(待停用)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (外设管理)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (位置服务)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
