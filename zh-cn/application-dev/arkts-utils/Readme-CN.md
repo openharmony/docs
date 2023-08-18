@@ -8,6 +8,7 @@
     - [单次I/O任务开发指导](single-io-development.md)
   - 使用多线程并发能力进行开发
     - [多线程并发概述](multi-thread-concurrency-overview.md)
+    - [Actor并发模型对比内存共享并发模型](actor-model-development-samples.md)
     - [TaskPool和Worker的对比](taskpool-vs-worker.md)
     - [CPU密集型任务开发指导](cpu-intensive-task-development.md)
     - [I/O密集型任务开发指导](io-intensive-task-development.md)
