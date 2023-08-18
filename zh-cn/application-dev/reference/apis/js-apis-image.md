@@ -3103,7 +3103,3 @@ PixelMap的初始化选项。
 - textPath
 - tspan
 - use
-
-### ResponseCode说明
-
-编译错误返回的错误码请参考[Image错误码](../errorcodes/errorcode-image.md)。
