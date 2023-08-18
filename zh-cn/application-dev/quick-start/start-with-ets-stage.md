@@ -3,8 +3,6 @@
 
 > **说明：**
 > 
-> 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
-> 
 > 为确保运行效果，本文以使用**DevEco Studio 3.1 Beta2**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio)获取下载链接。
 
 
