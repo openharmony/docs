@@ -2369,7 +2369,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息的数组。 |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
 
 **示例：**
   ```js
@@ -2401,7 +2401,7 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-封装时区城市组合信息的类型。
+时区城市组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -2414,7 +2414,7 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | cityDisplayName | string          |   是    | 城市Id在系统Locale下显示的名称。          |
 | offset          | int             |   是    | 时区Id的偏移量。                         |
 | zoneDisplayName | string          |   是    | 时区Id在系统Locale下显示的名称。          |
-| rawOffset       | int             |   否    | 时区Id的行偏移量。                       |
+| rawOffset       | int             |   否    | 时区Id的固定偏移量。                       |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -2445,6 +2445,148 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | locale          | string          |  否  | 区域代码，如"zh-Hans-CN"。locale属性默认值为系统Locale。    |
 | isUseLocalName  | boolean         |  否  | 表示是否使用本地名称进行排序。若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
 | isSuggestedFirst | boolean        |  否  | 表示是否将推荐语言或国家地区在排序结果中置顶。isSuggestedFirst属性默认值为true。  |
+
+
+## HolidayManager<sup>11+</sup>
+
+### constructor<sup>11+</sup>
+
+constructor()
+
+创建HolidayManager对象。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| icsPath   | string | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径  |
+
+**示例：**
+  ```js
+  let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+  ```
+
+
+### isHoliday<sup>11+</sup>
+
+isHoliday(date?: Date): boolean;
+
+判断指定的日期是否是节假日，如果没有指定日期，默认为当天。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ---------------| ---- | ------------- |
+| date      | Date           | 否   | JavaScript的Date对象。|
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | ----------------------|
+| boolean           | 返回true是节假日，返回false不是节假日。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------    | ---------------------------|
+| 401       | check param failed         |
+
+**示例：**
+  ```js
+  try {
+    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let isHoliday = holidayManager.isHoliday();
+    console.log(isHoliday);
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    console.log(isHoliday2);
+  } catch(error) {
+    console.error(`call holidayManager.isHoliday failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+### getHolidayInfoItemArray<sup>11+</sup>
+
+getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
+
+获取指定某年的节假日信息列表，如果没有指定年，默认为当年。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | -------------  | ---- | ------------- |
+| year      | number         | 否   | 年，例如2023。|
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt; | 返回节假日信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401    | check param failed     |
+| 890001 | param value not valid  |
+
+**示例：**
+  ```js
+  try {
+    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
+    for (let i =0 ;i < holidayInfoItemArray.length; i++) {
+        console.log(JSON.stringify(holidayInfoItemArray[i]));
+    }
+  } catch(error) {
+    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+## HolidayInfoItem<sup>11+</sup>
+
+节假日信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| baseName        | string          |   是    | 节假日的英文名称。              |
+| year            | number          |   是    | 节假日所在年。                   |
+| month           | number          |   是    | 节假日所在月。          |
+| day             | number          |   是    | 节假日所在日。                         |
+| localNames      | Array&lt;[HolidayLocaleName](#holidaylocalename11)&gt;          |   否    | 节假日的本地名称列表。          |
+
+## HolidayLocaleName<sup>11+</sup>
+
+节假日本地名称。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | -----------------| ------  | --------------------------------------- |
+| language        | string           |   是    | 节假日的本地语言，例如ar,en,tr          |
+| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami      |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
