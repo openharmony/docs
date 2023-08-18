@@ -35,9 +35,9 @@ Describes the input method application attributes.
 | id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique ID of the input method.|
 | label<sup>9+</sup>    | string | Yes| No| Optional. External name of the input method.|
 | labelId<sup>10+</sup>    | string | Yes| No| Optional. External ID of the input method.|
-| icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method.|
+| icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
 | iconId<sup>9+</sup>    | number | Yes| No| Optional. Icon ID of the input method.|
-| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
+| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
 | packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name**.|
 | methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id**.|
 
