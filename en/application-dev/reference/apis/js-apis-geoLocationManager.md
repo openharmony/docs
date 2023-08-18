@@ -125,9 +125,9 @@ Defines the current location request.
 
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
-| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The specified value must be greater than **0**.|
+| priority | [LocationRequestPriority](#locationrequestpriority) | Yes| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The specified value must be greater than or equal to **0**. The default value is **0**.|
 | timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The specified value must be greater than or equal to **1000**.|
 
 
@@ -270,8 +270,8 @@ Defines the configuration for obtaining the required data of the location servic
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | Yes| Yes| Type of the required data.|
 | needStartScan |  boolean | Yes| Yes| Whether to initiate scanning.|
-| scanInterval |  number | Yes| Yes| Scanning interval, in ms. The specified value must be greater than **0**. The default value is **10000**.|
-| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in ms. The value ranges from **0** to **600000**. The default value is **10000**.|
+| scanInterval |  number | Yes| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
+| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -2309,7 +2309,7 @@ Obtains the required data of the location service. This API uses a promise to re
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | Callback used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
+  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | Promise used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
 
 **Error codes**
 
