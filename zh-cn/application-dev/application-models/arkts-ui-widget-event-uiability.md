@@ -17,7 +17,7 @@
     build() {
       Column() {
         Button('跳转')
-          .margin('20%')
+          .margin(20)
           .onClick(() => {
             console.info('postCardAction to EntryAbility');
             postCardAction(this, {
@@ -28,7 +28,7 @@
               }
             });
           })
-        Text(`${this.detail}`).margin('20%')
+        Text(`${this.detail}`)
       }
       .width('100%')
       .height('100%')
