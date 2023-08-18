@@ -215,7 +215,7 @@ Example: Apply for the permission for an application to access the Calendar.
          // The authorization is successful.
        }).catch((err) => {
          console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-   
+         })
        // ...
      }
    }
