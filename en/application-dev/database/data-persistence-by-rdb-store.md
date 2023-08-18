@@ -50,7 +50,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 ## How to Develop
 
-1. Obtain an **RdbStore** instance.<br> Example:
+1. Obtain an **RdbStore** instance.<br>Example:
 
    Stage model:
    
@@ -75,7 +75,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
          console.info(`Succeeded in getting RdbStore.`);
          store.executeSql(SQL_CREATE_TABLE); // Create a data table.
    
-         // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
+         // Before performing data operations on the database, obtain an RdbStore instance.
    
        });
      }
@@ -107,7 +107,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
      console.info(`Succeeded in getting RdbStore.`);
      store.executeSql(SQL_CREATE_TABLE); // Create a data table.
    
-     // Perform operations such as adding, deleting, modifying, and querying data in the RDB store.
+     // Before performing data operations on the database, obtain an RdbStore instance.
    
    });
    ```
@@ -118,7 +118,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    > 
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
-2. Use **insert()** to insert data to the RDB store. 
+2. Use **insert()** to insert data to the RDB store.
    
    Example:
    
@@ -144,7 +144,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. 
+   Use **update()** to modify data and **delete()** to delete data.
 
    Example:
 
@@ -180,7 +180,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. 
+   Use **query()** to query data. The data obtained is returned in a **ResultSet** object.
 
    Example:
 
@@ -203,7 +203,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. 
+   Use **deleteRdbStore()** to delete the RDB store and related database files.
 
    Example:
 

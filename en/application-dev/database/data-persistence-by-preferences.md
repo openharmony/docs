@@ -10,7 +10,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 User applications call **Preference** through the JS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
 
-The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path).
+The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md# obtaining-application-file-paths).
 
 **Figure 1** Preferences working mechanism 
 
@@ -28,7 +28,7 @@ The preference persistent file of an application is stored in the application sa
 
 ## Available APIs
 
-The following table lists the APIs used for preferences data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
+The following table lists the APIs used for preferences data persistence. Most of the APIs are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
 
 | API| Description|
 | -------- | -------- |
@@ -68,7 +68,7 @@ The following table lists the APIs used for preferences data persistence. Most o
              return;
            }
            console.info('Succeeded in getting preferences.');
-           // Perform related data operations.
+           // Before performing related data operations, obtain a Preferences instance.
          })
        } catch (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
@@ -93,7 +93,7 @@ The following table lists the APIs used for preferences data persistence. Most o
          return;
        }
        console.info('Succeeded in getting preferences.');
-       // Perform related data operations.
+       // Before performing related data operations, obtain a Preferences instance.
      })
    } catch (err) {
      console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
@@ -143,7 +143,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 4. Read data.
 
-   Use **get()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. 
+   Use **get()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.
 
    Example:
 
@@ -182,8 +182,10 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 6. Persist data.
 
-     You can use **flush()** to persist the data held in a **Preferences** instance to a file. Example:
-     
+   You can use **flush()** to persist the data held in a **Preferences** instance to a file.
+
+   Example:
+
    ```js
    try {
      preferences.flush((err) => {
@@ -200,8 +202,10 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 7. Subscribe to data changes.
 
-     Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. Example:
-     
+   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.
+
+   Example:
+
    ```js
    let observer = function (key) {
      console.info('The key' + key + 'changed.');
