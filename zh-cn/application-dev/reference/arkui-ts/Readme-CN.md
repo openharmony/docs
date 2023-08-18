@@ -111,7 +111,6 @@
   - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
 - 容器组件
-  - [AbilityComponent](ts-container-ability-component.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
@@ -190,5 +189,6 @@
 - [类型定义](ts-types.md)
 - 已停止维护的组件
   - [GridContainer](ts-container-gridcontainer.md)
+  - [AbilityComponent](ts-container-ability-component.md)
 - 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)
