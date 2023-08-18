@@ -1,6 +1,6 @@
-# @ohos.data.UDMF（统一数据管理框架）
+# @ohos.data.unifiedDataChannel（标准化数据通路）
 
-本模块提供数据统一管理的能力，包括对文本、图片等数据类型的标准化定义。通过调用对应数据类型的接口，应用程序可将各种数据封装为统一数据对象。
+本模块为统一数据管理框架（Unified Data Management Framework,UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
 
 > **说明：**
 >
@@ -9,31 +9,8 @@
 ## 导入模块
 
 ```js
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 ```
-
-## UnifiedDataType
-
-[统一数据对象](#unifieddata)中各[数据记录](#unifiedrecord)的数据类型。
-
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
-| 名称                         | 值                            | 说明        |
-|----------------------------|------------------------------|-----------|
-| TEXT                       | 'Text'                       | 文本类型。     |
-| PLAIN_TEXT                 | 'Text.PlainText'             | 纯文本类型。    |
-| HYPERLINK                  | 'Text.Hyperlink'             | 超链接类型。    |
-| HTML                       | 'Text.HTML'                  | 富文本类型。    |
-| FILE                       | 'File'                       | 文件类型。     |
-| IMAGE                      | 'File.Media.Image'           | 图片类型。     |
-| VIDEO                      | 'File.Media.Video'           | 视频类型。     |
-| AUDIO                      | 'File.Media.Audio'           | 音频类型。     |
-| FOLDER                     | 'File.Folder'                | 文件夹类型。    |
-| SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | 系统服务数据类型。 |
-| SYSTEM_DEFINED_FORM        | 'SystemDefinedType.Form'     | 卡片类型。     |
-| SYSTEM_DEFINED_APP_ITEM    | 'SystemDefinedType.AppItem'  | 图标类型。     |
-| SYSTEM_DEFINED_PIXEL_MAP   | 'SystemDefinedType.PixelMap' | 二进制图片类型。  |
-| APPLICATION_DEFINED_RECORD | 'ApplicationDefinedType'     | 应用自定义类型。  |
 
 ## UnifiedData
 
@@ -58,9 +35,9 @@ constructor(record: UnifiedRecord)
 **示例：**
 
 ```js
-let text = new UDMF.PlainText();
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 ```
 
 ### addRecord
@@ -80,11 +57,11 @@ addRecord(record: UnifiedRecord): void
 **示例：**
 
 ```js
-let text1 = new UDMF.PlainText();
+let text1 = new unifiedDataChannel.PlainText();
 text1.textContent = 'this is textContent of text1';
-let unifiedData = new UDMF.UnifiedData(text1);
+let unifiedData = new unifiedDataChannel.UnifiedData(text1);
 
-let text2 = new UDMF.PlainText();
+let text2 = new unifiedDataChannel.PlainText();
 text2.textContent = 'this is textContent of text2';
 unifiedData.addRecord(text2);
 ```
@@ -106,22 +83,24 @@ getRecords(): Array\<UnifiedRecord\>
 **示例：**
 
 ```js
-let text = new UDMF.PlainText();
-text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
-let link = new UDMF.Hyperlink();
+let text = new unifiedDataChannel.PlainText();
+text.textContent = 'this is textContent of text';
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
+
+let link = new unifiedDataChannel.Hyperlink();
 link.url = 'www.XXX.com';
 unifiedData.addRecord(link);
 
 let records = unifiedData.getRecords();
 for (let i = 0; i < records.length; i++) {
   let record = records[i];
-  if (record.getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
-    let plainText = <UDMF.PlainText> (record);
+  if (record.getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+    let plainText = <unifiedDataChannel.PlainText> (record);
     console.info(`textContent: ${plainText.textContent}`);
-  } else if (record.getType() == UDMF.UnifiedDataType.HYPERLINK) {
-    let hyperlink = <UDMF.Hyperlink> (record);
+  } else if (record.getType() == uniformTypeDescriptor.UniformDataType.HYPERLINK) {
+    let hyperlink = <unifiedDataChannel.Hyperlink> (record);
     console.info(`linkUrl: ${hyperlink.url}`);
   }
 }
@@ -135,7 +114,7 @@ for (let i = 0; i < records.length; i++) {
 
 | 名称      | 类型                      | 可读 | 可写 | 说明                                                                                |
 | --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
-| summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UnifiedDataType](#unifieddatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
+| summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
 | totalSize | number                    | 是   | 否   | 统一数据对象内记录总大小（单位：Byte）。                                                                     |
 
 ## UnifiedRecord
@@ -156,18 +135,20 @@ getType(): string
 
 | 类型   | 说明                                                   |
 | ------ |------------------------------------------------------|
-| string | 当前数据记录对应的具体数据类型，见[UnifiedDataType](#unifieddatatype)。|
+| string | 当前数据记录对应的具体数据类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。|
 
 **示例：**
 
 ```js
-let text = new UDMF.PlainText();
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 let records = unifiedData.getRecords();
-if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
-    let plainText = <UDMF.PlainText> (records[0]);
+if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+    let plainText = <unifiedDataChannel.PlainText> (records[0]);
     console.info(`textContent: ${plainText.textContent}`);
 }
 ```
@@ -185,12 +166,12 @@ if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
 **示例：**
 
 ```js
-let text = new UDMF.Text();
+let text = new unifiedDataChannel.Text();
 text.details = {
   title: 'MyTitle',
   content: 'this is content',
 };
-let unifiedData = new UDMF.UnifiedData(text);
+let unifiedData = new unifiedDataChannel.UnifiedData(text);
 ```
 
 ## PlainText
@@ -207,7 +188,7 @@ let unifiedData = new UDMF.UnifiedData(text);
 **示例：**
 
 ```js
-let text = new UDMF.PlainText();
+let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent';
 text.abstract = 'this is abstract';
 ```
@@ -226,7 +207,7 @@ text.abstract = 'this is abstract';
 **示例：**
 
 ```js
-let link = new UDMF.Hyperlink();
+let link = new unifiedDataChannel.Hyperlink();
 link.url = 'www.XXX.com';
 link.description = 'this is description';
 ```
@@ -245,7 +226,7 @@ HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言
 **示例：**
 
 ```js
-let html = new UDMF.HTML();
+let html = new unifiedDataChannel.HTML();
 html.htmlContent = '<div><p>标题</p></div>';
 html.plainContent = 'this is plainContent';
 ```
@@ -264,7 +245,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 **示例：**
 
 ```js
-let file = new UDMF.File();
+let file = new unifiedDataChannel.File();
 file.details = {
     name: 'test',
     type: 'txt',
@@ -285,7 +266,7 @@ file.uri = 'schema://com.samples.test/files/test.txt';
 **示例：**
 
 ```js
-let image = new UDMF.Image();
+let image = new unifiedDataChannel.Image();
 image.imageUri = 'schema://com.samples.test/files/test.jpg';
 ```
 
@@ -302,7 +283,7 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 **示例：**
 
 ```js
-let video = new UDMF.Video();
+let video = new unifiedDataChannel.Video();
 video.videoUri = 'schema://com.samples.test/files/test.mp4';
 ```
 
@@ -319,7 +300,7 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 **示例：**
 
 ```js
-let audio = new UDMF.Audio();
+let audio = new unifiedDataChannel.Audio();
 audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 ```
 
@@ -336,7 +317,7 @@ audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 **示例：**
 
 ```js
-let folder = new UDMF.Folder();
+let folder = new unifiedDataChannel.Folder();
 folder.folderUri = 'schema://com.samples.test/files/folder/';
 ```
 
@@ -353,14 +334,14 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 **示例：**
 
 ```js
-let sdr = new UDMF.SystemDefinedRecord();
+let sdr = new unifiedDataChannel.SystemDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 sdr.details = {
     title: 'recordTitle',
     version: 1,
     content: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(sdr);
+let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 ```
 
 ## SystemDefinedForm
@@ -380,7 +361,7 @@ let unifiedData = new UDMF.UnifiedData(sdr);
 **示例：**
 
 ```js
-let form = new UDMF.SystemDefinedForm();
+let form = new unifiedDataChannel.SystemDefinedForm();
 form.formId = 123456;
 form.formName = 'MyFormName';
 form.bundleName = 'MyBundleName';
@@ -392,7 +373,7 @@ form.details = {
   formKey2: 'formValue',
   formKey3: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(form);
+let unifiedData = new unifiedDataChannel.UnifiedData(form);
 ```
 
 ## SystemDefinedAppItem
@@ -413,7 +394,7 @@ let unifiedData = new UDMF.UnifiedData(form);
 **示例：**
 
 ```js
-let appItem = new UDMF.SystemDefinedAppItem();
+let appItem = new unifiedDataChannel.SystemDefinedAppItem();
 appItem.appId = 'MyAppId';
 appItem.appName = 'MyAppName';
 appItem.appIconId = 'MyAppIconId';
@@ -426,7 +407,7 @@ appItem.details = {
     appItemKey2: 'appItemValue',
     appItemKey3: u8Array,
 };
-let unifiedData = new UDMF.UnifiedData(appItem);
+let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 ```
 
 ## SystemDefinedPixelMap
@@ -454,9 +435,9 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
         let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
         pixelmap.readPixelsToBuffer(arrayBuf);
         let u8Array = new Uint8Array(arrayBuf);
-        let sdpixel = new UDMF.SystemDefinedPixelMap();
+        let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
         sdpixel.rawData = u8Array;
-        let unifiedData = new UDMF.UnifiedData(sdpixel);
+        let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
     }
 })
 ```
@@ -475,11 +456,11 @@ ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应�
 **示例：**
 
 ```js
-let record = new UDMF.ApplicationDefinedRecord();
+let record = new unifiedDataChannel.ApplicationDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 record.applicationDefinedType = 'ApplicationDefinedType';
 record.rawData = u8Array;
-let unifiedData = new UDMF.UnifiedData(record);
+let unifiedData = new unifiedDataChannel.UnifiedData(record);
 ```
 
 ## Intention
@@ -502,11 +483,11 @@ UDMF提供的数据操作接口可选项，包含intention和key两个可选参�
 | 名称       | 类型                      | 可读 | 可写 | 必填 | 说明                                                                                                                                                                                                                                |
 |-----------|-------------------------|----|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | intention | [Intention](#intention) | 是  | 是  | 否  | 表示数据操作相关的数据通路类型。                                                                                                                                                                                                                  |
-| key       | string                  | 是  | 是  | 否  | UDMF中数据对象的唯一标识符，可通过[insertData](#udmfinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
+| key       | string                  | 是  | 是  | 否  | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
 
 
 
-## UDMF.insertData
+## unifiedDataChannel.insertData
 
 insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
 
@@ -525,17 +506,17 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
 let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    UDMF.insertData(options, unifiedData, (err, data) => {
+    unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
         if (err === undefined) {
             console.info(`Succeeded in inserting data. key = ${data}`);
         } else {
@@ -548,7 +529,7 @@ try {
 
 ```
 
-## UDMF.insertData
+## unifiedDataChannel.insertData
 
 insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
@@ -572,17 +553,17 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
 let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
 }
 try {
-    UDMF.insertData(options, unifiedData).then((data) => {
+    unifiedDataChannel.insertData(options, unifiedData).then((data) => {
         console.info(`Succeeded in inserting data. key = ${data}`);
     }).catch((err) => {
         console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
@@ -592,7 +573,7 @@ try {
 }
 ```
 
-## UDMF.updateData
+## unifiedDataChannel.updateData
 
 updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
 
@@ -611,18 +592,18 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
 let options = {
     key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.updateData(options, unifiedData, (err) => {
+    unifiedDataChannel.updateData(options, unifiedData, (err) => {
         if (err === undefined) {
             console.info('Succeeded in updating data.');
         } else {
@@ -634,7 +615,7 @@ try {
 }
 ```
 
-## UDMF.updateData
+## unifiedDataChannel.updateData
 
 updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
@@ -658,18 +639,18 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
-let plainText = new UDMF.PlainText();
+let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
-let unifiedData = new UDMF.UnifiedData(plainText);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
 
 let options = {
     key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.updateData(options, unifiedData).then(() => {
+    unifiedDataChannel.updateData(options, unifiedData).then(() => {
         console.info('Succeeded in updating data.');
     }).catch((err) => {
         console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
@@ -679,7 +660,7 @@ try {
 }
 ```
 
-## UDMF.queryData
+## unifiedDataChannel.queryData
 
 queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
@@ -697,21 +678,22 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    UDMF.queryData(options, (err, data) => {
+    unifiedDataChannel.queryData(options, (err, data) => {
         if (err === undefined) {
             console.info(`Succeeded in querying data. size = ${data.length}`);
             for (let i = 0; i < data.length; i++) {
                 let records = data[i].getRecords();
                 for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                        let text = <UDMF.PlainText>(records[j]);
+                    if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                        let text = <unifiedDataChannel.PlainText>(records[j]);
                         console.info(`${i + 1}.${text.textContent}`);
                     }
                 }
@@ -725,7 +707,7 @@ try {
 }
 ```
 
-## UDMF.queryData
+## unifiedDataChannel.queryData
 
 queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
@@ -748,20 +730,21 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let options = {
     key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.queryData(options).then((data) => {
+    unifiedDataChannel.queryData(options).then((data) => {
         console.info(`Succeeded in querying data. size = ${data.length}`);
         for (let i = 0; i < data.length; i++) {
             let records = data[i].getRecords();
             for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                    let text = <UDMF.PlainText>(records[j]);
+                if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                    let text = <unifiedDataChannel.PlainText>(records[j]);
                     console.info(`${i + 1}.${text.textContent}`);
                 }
             }
@@ -774,7 +757,7 @@ try {
 }
 ```
 
-## UDMF.deleteData
+## unifiedDataChannel.deleteData
 
 deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
 
@@ -792,21 +775,22 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let options = {
-    intention: UDMF.Intention.DATA_HUB
+    intention: unifiedDataChannel.Intention.DATA_HUB
 };
 
 try {
-    UDMF.deleteData(options, (err, data) => {
+    unifiedDataChannel.deleteData(options, (err, data) => {
         if (err === undefined) {
             console.info(`Succeeded in deleting data. size = ${data.length}`);
             for (let i = 0; i < data.length; i++) {
                 let records = data[i].getRecords();
                 for (let j = 0; j < records.length; j++) {
-                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                        let text = <UDMF.PlainText>(records[j]);
+                    if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                        let text = <unifiedDataChannel.PlainText>(records[j]);
                         console.info(`${i + 1}.${text.textContent}`);
                     }
                 }
@@ -820,7 +804,7 @@ try {
 }
 ```
 
-## UDMF.deleteData
+## unifiedDataChannel.deleteData
 
 deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
@@ -843,20 +827,21 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 **示例：**
 
 ```ts
-import UDMF from '@ohos.data.UDMF';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let options = {
     key: 'udmf://DataHub/com.ohos.test/0123456789'
 };
 
 try {
-    UDMF.deleteData(options).then((data) => {
+    unifiedDataChannel.deleteData(options).then((data) => {
         console.info(`Succeeded in deleting data. size = ${data.length}`);
         for (let i = 0; i < data.length; i++) {
             let records = data[i].getRecords();
             for (let j = 0; j < records.length; j++) {
-                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
-                    let text = <UDMF.PlainText>(records[j]);
+                if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+                    let text = <unifiedDataChannel.PlainText>(records[j]);
                     console.info(`${i + 1}.${text.textContent}`);
                 }
             }
