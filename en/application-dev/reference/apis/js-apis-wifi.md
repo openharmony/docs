@@ -1,9 +1,7 @@
 # @ohos.wifi (WLAN)
-
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -99,7 +97,7 @@ Obtains the scan result. This API uses a promise to return the result.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
 
 
 ## wifi.getScanInfos
@@ -253,17 +251,17 @@ Represents the WLAN configuration.
 | isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| Security type.|
 | creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
 | netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
 | randomMacType | number | Yes| No| Random MAC type.<br> **System API**: This is a system API.|
 | randomMacAddr | string | Yes| No| Random MAC address.<br> **System API**: This is a system API.|
 | ipType | [IpType](#iptype7) | Yes| No| IP address type.<br> **System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address configuration.<br> **System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address configuration.<br>**System API**: This is a system API.|
 
 
 ## IpType<sup>7+</sup>
 
-Enumerate the IP address types.
+Enumerates the IP address types.
 
 **System API**: This is a system API.
 
@@ -333,7 +331,7 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -374,7 +372,7 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
@@ -428,7 +426,7 @@ Connects to the specified network.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permissio.MANAGE_WIFI_CONNECTION (available only to system applications)
+**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
 
 **System capability**:
   SystemCapability.Communication.WiFi.STA
@@ -553,7 +551,7 @@ Represents the WLAN connection information.
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Yes| No| BSSID of the hotspot.|
-| networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
+| networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
 | rssi | number | Yes| No| RSSI of the hotspot, in dBm.|
 | band | number | Yes| No| Frequency band of the WLAN AP.|
 | linkSpeed | number | Yes| No| Speed of the WLAN AP.|
@@ -979,7 +977,7 @@ Checks whether this hotspot is active.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 
 ## wifi.setHotspotConfig<sup>7+</sup>
@@ -1091,7 +1089,7 @@ Obtains P2P link information. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
+| Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
 
 
 
@@ -1557,7 +1555,7 @@ Unregisters the WLAN state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
   ```js
@@ -1615,7 +1613,7 @@ Unregisters the WLAN connection state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
@@ -1695,7 +1693,56 @@ Unregisters the RSSI change events.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  
+  ## wifi.on('streamChange')<sup>7+</sup>
 
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+Registers Wi-Fi stream changes.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **streamChange**. |
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No.<br>- **1**: Download.<br>- **2**: Upload.<br>- **3**: Bidirectional. |
+
+## wifi.off('streamChange')<sup>7+</sup>
+
+off(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+Unregisters Wi-Fi stream changes.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **streamChange**. |
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No.<br>- **1**: Download.<br>- **2**: Upload.<br>- **3**: Bidirectional. |
+
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvStreamChangeFunc = result => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register an event.
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister an event.
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
@@ -1741,6 +1788,105 @@ Unregisters the hotspot state change events.
   | type | string | Yes| Event type. The value is **hotspotStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+## wifi.on('hotspotStaJoin')<sup>7+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+Registers the connection of an STA to a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaJoin**. |
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked when an STA is connected to a Wi-Fi hotspot. |
+
+## wifi.off('hotspotStaJoin')<sup>7+</sup>
+
+off(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+Unregisters the connection of an STA to a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaJoin**. |
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback for the connection of an STA to a Wi-Fi hotspot. |
+
+  **Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaJoinFunc = result => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifi.on('hotspotStaLeave')<sup>7+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+Registers the disconnection of an STA from a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaLeave**. |
+| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked when an STA is disconnected from a Wi-Fi hotspot. |
+
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
+
+off(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+Unregisters the disconnection of an STA from a Wi-Fi hotspot.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStaLeave**. |
+| callback | Callback&lt;StationInf]&gt; | Yes| Callback for the disconnection of an STA from a Wi-Fi hotspot. |
+
+  **Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStaLeaveFunc = result => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister an event.
+wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
