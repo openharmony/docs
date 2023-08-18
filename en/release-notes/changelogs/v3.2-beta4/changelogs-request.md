@@ -1,10 +1,10 @@
 # Upload and Download Subsystem Changelog
 
-## cl.request.1 Changes of Error Code Definitions and Some API Names
+## cl.request.1 Changes of Error Code Definitions and API Names
 
-- The processing of the [upload and download error codes](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/errorcodes/errorcode-request.md) is added to the upload and download APIs.
-- An error message is returned via **AsyncCallback** or the **error** object of **Promise**. An error message related to the parameter type or quantity is returned via an exception.
-- Some APIs need to be replaced with new APIs, and the parameters remain unchanged.
+- Processing of [error codes](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/errorcodes/errorcode-request.md) is added to the upload and download APIs.
+- Error information is returned via the **error** object in **AsyncCallback** or **Promise**. An error message related to the parameter type or quantity is returned via an exception.
+- Some APIs are replaced with new APIs, but the parameters remain unchanged.
 
 **Change Impact**
 
@@ -12,7 +12,7 @@ The application developed based on earlier versions needs to adapt the method fo
 
 **Key API/Component Changes**
 
-| Module         | Class          | Method/Attribute/Enumeration/Constant                                                                                                          | Change Type     |
+| Module         | Class          | Method/Attribute/Enum/Constant                                                                                                          | Change Type     |
 |--------------|--------------|-----------------------------------------------------------------------------------------------------------------------|-----------|
 | ohos.request | request      | EXCEPTION_PERMISSION                                                                                                  | Added|
 | ohos.request | request      | EXCEPTION_PARAMCHECK                                                                                                  | Added|
@@ -89,7 +89,7 @@ The application developed based on earlier versions needs to adapt the method fo
 
 **Adaptation Guide**
 
-The following uses **downloadFile** as an example to show how it is called in the new version:
+The following sample code shows how to call **downloadFile** in the new version:
 
 ```ts
 try {
