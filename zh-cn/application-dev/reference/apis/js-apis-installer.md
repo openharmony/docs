@@ -339,7 +339,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -399,7 +399,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -451,7 +451,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -514,7 +514,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -572,7 +572,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -622,7 +622,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -682,7 +682,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -736,7 +736,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE<sup>10+</sup>
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -789,7 +789,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array<string>, installParam: InstallParam, callback: AsyncCallback<void>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void;
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -821,7 +821,6 @@ updateBundleForSelf(hapFilePaths: Array<string>, installParam: InstallParam, cal
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
@@ -863,7 +862,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array<string>, callback: AsyncCallback<void>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void;
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -886,7 +885,6 @@ updateBundleForSelf(hapFilePaths: Array<string>, callback: AsyncCallback<void>):
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
@@ -894,7 +892,6 @@ updateBundleForSelf(hapFilePaths: Array<string>, callback: AsyncCallback<void>):
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
@@ -931,7 +928,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array<string>, installParam?: InstallParam): Promise<void>;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>;
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用promise形式返回结果。
 
@@ -962,7 +959,6 @@ updateBundleForSelf(hapFilePaths: Array<string>, installParam?: InstallParam): P
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
