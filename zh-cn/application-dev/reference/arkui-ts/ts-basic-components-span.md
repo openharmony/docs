@@ -124,4 +124,4 @@ struct SpanExample {
 }
 ```
 
-![Span](figures/Span.PNG)
+![Span](figures/span.png)
