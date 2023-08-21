@@ -270,8 +270,8 @@ Defines the configuration for obtaining the required data of the location servic
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | Yes| Yes| Type of the required data.|
 | needStartScan |  boolean | Yes| Yes| Whether to initiate scanning.|
-| scanInterval |  number | Yes| Yes| Scanning interval, in ms. The specified value must be greater than **0**. The default value is **10000**.|
-| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in ms. The value ranges from **0** to **600000**. The default value is **10000**.|
+| scanInterval |  number | Yes| Yes| Scanning interval, in milliseconds. The specified value must be greater than **0**. The default value is **10000**.|
+| scanTimeout |  number | Yes| Yes| Scanning timeout interval, in milliseconds. The value ranges from **0** to **600000**. The default value is **10000**.|
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -2309,7 +2309,7 @@ Obtains the required data of the location service. This API uses a promise to re
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | Callback used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
+  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | Promise used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
 
 **Error codes**
 
