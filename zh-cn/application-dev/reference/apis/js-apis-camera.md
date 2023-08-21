@@ -44,6 +44,44 @@ getCameraManager(context: Context): CameraManager
 ```js
 let cameraManager = camera.getCameraManager(context);
 ```
+## camera.getModeManager
+
+getModeManager(context: Context): ModeManager
+
+获取模式化管理器实例，同步返回结果。
+
+模式化管理是对于cameraManager功能的增强与扩充，主要用于一些高级功能的管理（如人像模式）。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| context  | [Context](js-apis-inner-app-context.md)      | 是   | 应用上下文。                   |
+
+**返回值：**
+
+| 类型                                  | 说明       |
+| --------------------------------------| -----------|
+| [ModeManager](#modemanager)           | 模式化管理器。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+| 7400201                |  Camera service fatal error.                                  |
+
+**示例：**
+
+```js
+let modeManager = camera.getModeManager(context);
+```
 
 ## CameraStatus
 
@@ -121,6 +159,65 @@ let cameraManager = camera.getCameraManager(context);
 | DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
+
+## CameraMode
+
+相机模式。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| NORMAL           | 0    | 普通模式  |
+| CAPTURE          | 1    | 拍照模式  |
+| VIDEO            | 2    | 录像模式  |
+| PORTRAIT         | 3    | 人像模式  |
+| NIGHT            | 4    | 夜景模式  |
+| PROFESSIONAL     | 5    | 专业模式  |
+| SLOW_MOTION      | 6    | 慢动作模式|
+
+## FilterType
+
+滤镜类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| NONE           | 0      | 原图     |
+| CLASSIC        | 1      | 经典     |
+| DAWN           | 2      | 晨光     |
+| PURE           | 3      | 清纯     |
+| GREY           | 4      | 灰调     |
+| NATURAL        | 5      | 自然     |
+| MORI           | 6      | 森系     |
+| FAIR           | 7      | 白皙     |
+| PINK           | 8      | 粉调     |
+
+
+## PortraitEffect
+
+人像效果类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| OFF             | 0      | 关闭    |
+| CIRCLES         | 1      | 圆形    |
+
+## BeautyType
+
+美颜类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| AUTO_TYPE      | 0      | 自动     |
+| SKIN_SMOOTH    | 1      | 光滑     |
+| FACE_SLENDER   | 2      | 瘦脸     |
+| SKIN_TONE      | 3      | 肤色     |
 
 ## CameraManager
 
@@ -720,6 +817,104 @@ function getDeferredPreviewOutput(context: Context, previewProfile: camera.Profi
   const output: Promise<PreviewOutput> = cameraManager.createDeferredPreviewOutput(previewProfile);
   return output;
 }
+```
+## ModeManager
+
+相机模式化管理器类，使用前需要通过[getModeManager](#cameragetmodemanager)获取相机模式化管理实例。
+
+### getSupportedModes
+
+getSupportedModes(camera: CameraDevice): Array\<CameraMode\>
+
+获取指定相机设备支持的模式列表，同步返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| camera | \<[CameraDevice](#cameradevice)>       | 是   |   相机设备实例，通过[getSupportedCameras](#getsupportedcameras)接口获取。  |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Array\<[CameraMode](#cameramode)>            | 支持的模式列表。                   |
+
+**示例：**
+
+```js
+let cameraModes = cameraManager.getSupportedModes(cameraDevices[0]);
+
+```
+
+### getSupportedOutputCapability
+
+getSupportedOutputCapability(camera:CameraDevice, mode: CameraMode): CameraOutputCapability
+
+获取指定模式下相机设备支持的输出能力，同步返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过[getSupportedCameras](#getsupportedcameras)接口获取。   |
+| mode         | [CameraMode](#cameramode)                                  | 是 | 指定模式，通过[getSupportedModes](#getsupportedmodes)接口获取。       |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CameraOutputCapability](#cameraoutputcapability)            | 相机输出能力。                   |
+
+**示例：**
+
+```js
+let cameras = cameraManager.getSupportedCameras();
+let cameraDevice = cameras[0];
+let cameraModes = modeManager.getSupportedModes(cameraDevice);
+let mode = cameraModes[0]
+let cameraOutputCapability = modeManager.getSupportedOutputCapability(cameraDevice, mode);
+
+```
+### createCaptureSession
+
+createCaptureSession(mode: CameraMode): CaptureSession
+
+根据当前的模式名，创建指定模式的会话。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| mode | [CameraMode](#cameramode)                              | 是 | 指定模式，通过[getSupportedModes](#getsupportedmodes)获取。       |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CaptureSession](#capturesession)            | 指定模式的会话实例。                   |
+
+**示例：**
+
+```js
+let cameras = cameraManager.getSupportedCameras();
+let cameraDevice = cameras[0];
+let cameraModes = modeManager.getSupportedModes(cameraDevice);
+let mode = cameraModes[0]
+let captureSession = modeManager.createCaptureSession(mode);
+
 ```
 
 ## PrelaunchConfig
@@ -2418,6 +2613,187 @@ try {
     console.log(error.code);
 }
 ```
+### getSupportedFilters
+
+getSupportedFilters(): Array\<FilterType>
+
+获取当前支持的滤镜效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+|  Array\<FilterType\>     | 返回支持的滤镜效果列表。 |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedFilters();
+```
+### setFilter
+
+setFilter(filter: FilterType): void
+
+设置滤镜效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                        | 必填 | 说明                  |
+| -------- | ----------------------------| ---- | ---------------------|
+| filter     | [FilterType](#filtertype) | 是   | 当前用户设置的滤镜类型。  |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedFilters();
+if (!FilterTypes.empty()) {
+    captureSession.setFilter(FilterTypes[0]);
+}
+```
+
+### getFilter
+
+ getFilter(): number
+
+获取当前已设置的滤镜效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                     | 说明                         |
+| ----------               | ----------------------------|
+| [FilterType](#filtertype)| 已设置的滤镜效果。可查阅[FilterType](#filtertype)。|
+
+**示例：**
+
+```js
+let FilterType = captureSession.getFilter();
+```
+### getSupportedBeautyTypes
+
+getSupportedBeautyTypes(): Array<BeautyType>
+
+获取当前支持的美颜效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<BeautyType\>| 返回当前支持的美颜效果列表。                             |
+
+**示例：**
+
+```js
+let FilterTypes = captureSession.getSupportedBeautyTypes();
+```
+### getSupportedBeautyRanges
+
+getSupportedBeautyRanges(type: BeautyType): Array<number>
+
+获取指定美颜效果的范围值。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明       |
+| -------- | --------------------------| ---- | ----------|
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型。   |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+|  Array\<number\>     | 当前美颜类型所支持的美颜强度。 |
+
+**示例：**
+
+```js
+let beautyTypes = captureSession.getSupportedBeautyTypes();
+if (!beautyTypes.empty()) {
+    let nums = captureSession.getSupportedBeautyRanges(beautyTypes[0]);
+}
+```
+
+### setBeauty
+
+setBeauty(type: BeautyType, value: number): void
+
+设置美颜类型以及对应的美颜强度
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                   |
+| -------- | --------------------------| ---- | --------------------- |
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型   |
+| value    | [number]                  | 是   | 美颜强度，通过[getSupportedBeautyRanges](#getsupportedbeautyranges)接口获取。|
+
+**示例：**
+
+```js
+let beautyTypes = captureSession.getSupportedBeautyTypes();
+let beautyLevels;
+if (!beautyTypes.empty()) {
+    beautyLevels = captureSession.getSupportedBeautyRanges(beautyTypes[0]);
+}
+if (!beautyTypes.empty() && beautyLevels.empty()) {
+    captureSession.setBeauty(beautyTypes[0], beautyLevels[0]);
+}
+```
+
+### getBeauty
+
+getBeauty(type: BeautyType): number
+
+查询当前已设置的美颜效果对应的美颜强度。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                              | 必填 | 说明                    |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| type     | [BeautyType](#beautytype) | 是   | 美颜类型   |
+
+**返回值：**
+| 参数名      | 类型                                              | 必填 | 说明                    |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| value     | [number] | 是   | 美颜强度  |
+
+**示例：**
+
+```js
+let BeautyTypes = captureSession.getSupportedBeautyTypes();
+let beautyLevels;
+if (!BeautyTypes.empty()) {
+    beautyLevels = captureSession.getSupportedBeautyRanges(BeautyTypes[0]);
+}
+if (!BeautyTypes.empty() && beautyLevels.empty()) {
+    captureSession.setBeauty(BeautyTypes[0], beautyLevels[0]);
+}
+let beautyLevel = captureSession.getBeauty(BeautyTypes[0]);
+```
 
 ### on('focusStateChange')
 
@@ -2463,6 +2839,80 @@ on(type: 'error', callback: ErrorCallback): void
 captureSession.on('error', (error) => {
     console.log(`Capture session error code: ${error.code}`);
 })
+```
+## PortraitSession
+
+继承自[CaptureSession](#capturesession)，用于设置人像模式的参数。
+
+### getSupportedPortraitEffects
+
+getSupportedPortraitEffects(): Array<PortraitEffect>
+
+获取支持的人像虚化效果列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Array<[PortraitEffect](#portraiteffect) > | 支持的人像虚化效果列表。               |
+
+**示例：**
+
+```js
+let portraitEffect = PortraitSession.getSupportedPortraitEffects();
+```
+### setPortraitEffect
+
+setPortraitEffect(effect: PortraitEffect): void
+
+设置人像虚化效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                                                            | 必填 | 说明                      |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| effect | [PortraitEffect](#portraiteffect)                              | 是 | 人像虚化效果，通过[getSupportedPortraitEffects](#getsupportedportraiteffects)接口获取。   |
+
+**示例：**
+
+```js
+let portraitEffects = PortraitSession.getSupportedPortraitEffects();
+if (!portraitEffects.empty()) {
+    PortraitSession.setPortraitEffect(portraitEffects[0]);
+}
+```
+### getPortraitEffect
+
+getPortraitEffect(): PortraitEffect
+
+获取当前设置的人像虚化效果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [PortraitEffect](#portraiteffect)               | 当前设置的人像虚化效果。                |
+
+
+**示例：**
+
+```js
+let portraitEffects = PortraitSession.getSupportedPortraitEffects();
+if (!portraitEffects.empty()) {
+    PortraitSession.setPortraitEffect(portraitEffects[0]);
+}
 ```
 
 ## CameraOutput
