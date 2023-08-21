@@ -1415,7 +1415,7 @@ netCon.unregister(function (error) {
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
+on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
 
 订阅网络能力变化事件。
 
@@ -1428,7 +1428,7 @@ on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, net
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netCapabilitiesChange'。<br/>netCapabilitiesChange：网络能力变化事件。 |
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo)> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
 
 **示例：**
 
@@ -1949,6 +1949,17 @@ connection.getDefaultNet().then(function (netHandle) {
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
 | bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+
+## NetCapabilityInfo<sup>10+</sup>
+
+提供承载数据网络能力的实例。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称                     | 类型                                | 必填  | 说明                                                         |
+| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle         | [NetHandle](#nethandle) |  是  | 数据网络句柄。                                |
+| netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储数据网络的传输能力和承载类型。 |
 
 ## NetCapabilities<sup>8+</sup>
 
