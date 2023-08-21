@@ -25,9 +25,6 @@
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
           - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
-      - 原子化服务
-        - [原子化服务开发指导](quick-start/atomicService.md)
-        - [原子化服务空间管理（仅对系统应用开放）](quick-start/atomicService-aging.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -1139,7 +1136,7 @@
       - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
-      - [@ohos. deviceStatus.dragInteraction (拖拽)](reference/apis/js-apis-devicestatus-draginteraction.md)
+      - [@ohos.deviceStatus.dragInteraction（拖拽）](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedDeviceManager (设备管理)](reference/apis/js-apis-distributedDeviceManager.md)
       - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
