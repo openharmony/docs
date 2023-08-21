@@ -6,7 +6,7 @@ ArkTS卡片开放了自定义绘制的能力，在卡片上可以通过[Canvas](
 ```ts
 @Entry
 @Component
-struct WidgetCard {
+struct CanvasCard {
   private canvasWidth: number = 0;
   private canvasHeight: number = 0;
   // 初始化CanvasRenderingContext2D和RenderingContextSettings
