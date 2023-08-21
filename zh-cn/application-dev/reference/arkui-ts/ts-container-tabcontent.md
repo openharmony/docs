@@ -75,6 +75,7 @@ SubTabBarStyle的静态构造函数。
 | selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
@@ -107,7 +108,7 @@ SubTabBarStyle的静态构造函数。
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。|
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。||
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。                              |
-| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。默认值是字体大小16.0fp、字体类型HarmonyOS Sans，字体风格正常，字重正常。      |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。      |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
@@ -137,6 +138,27 @@ BottomTabBarStyle的静态构造函数。
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
+
+### 属性
+
+支持以下属性：
+
+| 名称         | 参数类型                                                     | 描述                                                         |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp} |
+| verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
+| layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL |
+| symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
+
+## LayoutMode<sup>10+</sup>枚举说明
+
+| 名称         | 描述                                       |
+| ----------  | ---------------------------------------- |
+| AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
+| VERTICAL    | 页签内容上下排布。 |
+| HORIZONAL   | 页签内容左右排布。 |
+
 
 ## 示例
 
@@ -686,3 +708,109 @@ struct TabsTextOverflow {
 ```
 
 ![tabContent4](figures/tabContent4.png)
+
+### 示例6
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabContentExample6 {
+  private controller: TabsController = new TabsController()
+  @State text: string = "2"
+  @State tabPadding: number = 0;
+  @State symmetricExtensible: boolean = false;
+  @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
+  @State verticalAlign: VerticalAlign = VerticalAlign.Center;
+
+
+  build() {
+    Column() {
+      Row() {
+        Button("padding+10 " + this.tabPadding).width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.tabPadding += 10
+          }).margin({ right:'6%', bottom:'12vp'})
+        Button("padding-10 " + this.tabPadding).width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.tabPadding -= 10
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("文本增加 ").width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.text += '文本增加'
+          }).margin({ right:'6%', bottom:'12vp'})
+        Button("文本重置").width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.text = "2"
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("symmetricExtensible改变 " + this.symmetricExtensible).width('100%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.symmetricExtensible = !this.symmetricExtensible
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("layoutMode垂直 ").width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.layoutMode = LayoutMode.VERTICAL;
+          }).margin({ right:'6%', bottom:'12vp'})
+        Button("layoutMode水平 ").width('47%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.layoutMode = LayoutMode.HORIZONTAL;
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("verticalAlign朝上").width('100%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Top;
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("verticalAlign居中").width('100%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Center;
+          }).margin({bottom:'12vp'})
+      }
+      Row() {
+        Button("verticalAlign朝下").width('100%').height(50).margin({ top: 5 })
+          .onClick((event: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Bottom;
+          }).margin({bottom:'12vp'})
+      }
+
+
+      Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "1"))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), this.text)
+          .padding(this.tabPadding)
+          .verticalAlign(this.verticalAlign)
+          .layoutMode(this.layoutMode)
+          .symmetricExtensible(this.symmetricExtensible))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
+      }
+      .animationDuration(300)
+      .height('60%')
+      .backgroundColor(0xf1f3f5)
+      .barMode(BarMode.Fixed)
+    }
+    .width('100%')
+    .height(500)
+    .margin({ top: 5 })
+    .padding('24vp')
+  }
+}
+
+```
+
+![tabContent4](figures/tabContent5.gif)
