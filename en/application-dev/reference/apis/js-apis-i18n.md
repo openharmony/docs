@@ -1,6 +1,6 @@
 # @ohos.i18n (Internationalization)
 
- This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
+The **i18n** module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
 The [Intl](js-apis-intl.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
 
 >  **NOTE**
@@ -46,7 +46,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -85,7 +85,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -116,7 +116,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -153,7 +153,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -183,7 +183,7 @@ Checks whether the system language matches the specified region.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+| boolean | The value **true** indicates that the system language matches the specified region, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -191,7 +191,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -222,7 +222,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 |param value not valid |
 
 **Example**
   ```js
@@ -257,7 +257,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -288,7 +288,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -315,7 +315,7 @@ This is a system API.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| region | string | Yes   | Region ID.|
+| region | string | Yes   | System region ID.|
 
 **Error codes**
 
@@ -323,7 +323,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -354,7 +354,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -389,7 +389,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -412,7 +412,7 @@ Checks whether the 24-hour clock is used.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -420,7 +420,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -455,7 +455,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -492,7 +492,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -530,7 +530,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -563,7 +563,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid|
 
 **Example**
   ```js
@@ -594,7 +594,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -625,7 +625,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```js
@@ -660,7 +660,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 |param value not valid |
 
 **Example**
   ```ts
@@ -683,7 +683,7 @@ Checks whether use of local digits is enabled.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -691,7 +691,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -721,7 +721,7 @@ Checks whether the localized script for the specified language is displayed from
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
+| boolean | The value **true** indicates that the localized script is displayed from right to left, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1004,7 +1004,7 @@ Obtains the **Calendar** object name displayed for the specified locale.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | **Calendar** object name displayed for the specified locale.|
+| string | Displayed name of the **Calendar** object for the specified locale.|
 
 **Example**
   ```js
@@ -1031,7 +1031,7 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
+| boolean | The value **true** indicates that the date is a weekend, and the value **false** indicates that the date is a weekday.|
 
 **Example**
   ```js
@@ -1085,7 +1085,7 @@ Checks whether the format of the specified phone number is valid.
 
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
-| boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
+| boolean | The value **true** indicates that the phone number format is valid, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1190,7 +1190,7 @@ Creates an **IndexUtil** object.
 
 | Type                      | Description                   |
 | ------------------------ | --------------------- |
-| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
+| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the **locale** object.|
 
 **Example**
   ```js
@@ -1213,7 +1213,7 @@ Obtains the index list for this **locale** object.
 
 | Type                 | Description                |
 | ------------------- | ------------------ |
-| Array&lt;string&gt; | Index list for this **locale** object.|
+| Array&lt;string&gt; | Index list for the **locale** object.|
 
 **Example**
   ```js
@@ -1249,7 +1249,7 @@ Adds the index of the new **locale** object to the index list.
 
 getIndex(text: string): string
 
-Obtains the index of a text object.
+Obtains the index of a **text** object.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1378,7 +1378,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 | Type    | Description               |
 | ------ | ----------------- |
-| number | Offset to the first text boundary of the processed text.|
+| number | Offset to the first break point of the processed text.|
 
 **Example**
   ```js
@@ -1400,7 +1400,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | Offset to the last text boundary of the processed text.|
+| number | Offset to the last break point of the processed text.|
 
 **Example**
   ```js
@@ -1428,7 +1428,7 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
 
 **Example**
   ```js
@@ -1452,7 +1452,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
 
 **Example**
   ```js
@@ -1512,7 +1512,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
+| boolean | The value **true** indicates that the position specified by the offset is a break point, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1689,7 +1689,7 @@ Obtains the list of time zone city IDs supported by the system.
 
 static getCityDisplayName(cityID: string, locale: string): string
 
-Obtains the localized display of a time zone city in the specified locale.
+Obtains the localized representation of a time zone city in the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1704,7 +1704,7 @@ Obtains the localized display of a time zone city in the specified locale.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Localized display of the time zone city in the specified locale.|
+| string | Localized representation of the time zone city in the specified locale.|
 
 **Example**
   ```ts
@@ -1837,7 +1837,7 @@ Checks whether the input character string is composed of digits.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1863,7 +1863,7 @@ Checks whether the input character is a space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1889,7 +1889,7 @@ Checks whether the input character is a white space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1915,7 +1915,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1941,7 +1941,7 @@ Checks whether the input character is an ideographic character.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1967,7 +1967,7 @@ Checks whether the input character is a letter.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -1993,7 +1993,7 @@ Checks whether the input character is a lowercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2019,7 +2019,7 @@ Checks whether the input character is an uppercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2031,7 +2031,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the type of the input character string.
+Obtains the category value of the input character string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2045,7 +2045,7 @@ Obtains the type of the input character string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Type of the input character.|
+| string | Category value of the input character.|
 
 **Example**
   ```js
@@ -2118,7 +2118,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 Obtains the localized script for the specified country.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2149,7 +2149,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 Obtains the localized script for the specified language.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2180,7 +2180,7 @@ getSystemLanguage(): string
 
 Obtains the system language.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2202,7 +2202,7 @@ getSystemRegion(): string
 
 Obtains the system region.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2224,7 +2224,7 @@ getSystemLocale(): string
 
 Obtains the system locale.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9) instead.
+This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2246,7 +2246,7 @@ is24HourClock(): boolean
 
 Checks whether the 24-hour clock is used.
 
-This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9) instead.
+This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2254,7 +2254,7 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2268,7 +2268,7 @@ set24HourClock(option: boolean): boolean
 
 Sets the 24-hour clock.
 
-This API is deprecated since API version 9. You are advised to use [System.set24HourClock](#set24hourclock9) instead.
+This API is deprecated since API version 9. You are advised to use [System.set24HourClock](#set24hourclock9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2284,7 +2284,7 @@ This API is deprecated since API version 9. You are advised to use [System.set24
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
+| boolean | The value **true** indicates that the 24-hour clock is enabled, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2299,7 +2299,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 Adds a preferred language to the specified position on the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.addPreferredLanguage](#addpreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.addPreferredLanguage](#addpreferredlanguage9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2316,7 +2316,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
+| boolean | The value **true** indicates that the preferred language is successfully added, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2333,7 +2333,7 @@ removePreferredLanguage(index: number): boolean
 
 Deletes a preferred language from the specified position on the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.removePreferredLanguage](#removepreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.removePreferredLanguage](#removepreferredlanguage9).
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -2349,7 +2349,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
+| boolean | The value **true** indicates that the preferred language is deleted, and the value **false** indicates the opposite.|
 
 **Example**
   ```js
@@ -2365,7 +2365,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 Obtains the list of preferred languages.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2387,7 +2387,7 @@ getFirstPreferredLanguage(): string
 
 Obtains the first language in the preferred language list.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2412,7 +2412,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2442,7 +2442,7 @@ static isDigit(char: string): boolean
 
 Checks whether the input character string is composed of digits.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2456,7 +2456,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
 
 
 ### isSpaceChar<sup>(deprecated)</sup>
@@ -2465,7 +2465,7 @@ static isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2479,7 +2479,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
 
 
 ### isWhitespace<sup>(deprecated)</sup>
@@ -2488,7 +2488,7 @@ static isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2502,7 +2502,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
 
 
 ### isRTL<sup>(deprecated)</sup>
@@ -2511,7 +2511,7 @@ static isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2525,7 +2525,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
 
 
 ### isIdeograph<sup>(deprecated)</sup>
@@ -2534,7 +2534,7 @@ static isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2548,7 +2548,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
 
 
 ### isLetter<sup>(deprecated)</sup>
@@ -2557,7 +2557,7 @@ static isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2571,7 +2571,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
 
 
 ### isLowerCase<sup>(deprecated)</sup>
@@ -2580,7 +2580,7 @@ static isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2594,7 +2594,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
 
 
 ### isUpperCase<sup>(deprecated)</sup>
@@ -2603,7 +2603,7 @@ static isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2617,16 +2617,16 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
 
 
 ### getType<sup>(deprecated)</sup>
 
 static getType(char: string): string
 
-Obtains the type of the input character string.
+Obtains the category value of the input character string.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
+This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2640,4 +2640,4 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Type of the input character.|
+| string | Category value of the input character.|
