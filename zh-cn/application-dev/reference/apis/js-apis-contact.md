@@ -19,6 +19,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -51,6 +53,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 addContact(contact: Contact): Promise&lt;number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -89,6 +93,8 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -118,6 +124,8 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 deleteContact(key: string): Promise&lt;void&gt;
 
 删除联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -153,6 +161,8 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -186,6 +196,8 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
 更新联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -223,6 +235,8 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 更新联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -264,6 +278,8 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -293,6 +309,8 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -328,6 +346,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否为“我的名片”，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -357,6 +377,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 isMyCard(id: number): Promise&lt;boolean&gt;
 
 判断是否为“我的名片”，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -392,6 +414,8 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -420,6 +444,8 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 查询“我的名片”，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -452,6 +478,8 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 查询“我的名片”，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -488,6 +516,8 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -515,6 +545,8 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 选择联系人，使用Promise方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
@@ -540,6 +572,8 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -570,6 +604,8 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -606,6 +642,8 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 根据key查询联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -638,6 +676,8 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
 根据key查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -676,6 +716,8 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 根据key查询联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -718,6 +760,8 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -746,6 +790,8 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -781,6 +827,8 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 查询所有联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -812,6 +860,8 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -849,6 +899,8 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 查询所有联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -890,6 +942,8 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -919,6 +973,8 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -955,6 +1011,8 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -987,6 +1045,8 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据电话号码查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1025,6 +1085,8 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据电话号码查询联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1068,6 +1130,8 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 根据email查询联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -1097,6 +1161,8 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1133,6 +1199,8 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 根据email查询联系人，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -1165,6 +1233,8 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 根据email查询联系人，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1203,6 +1273,8 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
 根据email查询联系人，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1246,6 +1318,8 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -1274,6 +1348,8 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 查询联系人的所有群组，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1308,6 +1384,8 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 查询联系人的所有群组，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1347,6 +1425,8 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 查询所有创建联系人的应用信息，使用callback方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -1376,6 +1456,8 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
 
+该接口仅支持在FA模型中调用。
+
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -1403,6 +1485,8 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1433,6 +1517,8 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
 根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1468,6 +1554,8 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+
+该接口仅支持在FA模型中调用。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
