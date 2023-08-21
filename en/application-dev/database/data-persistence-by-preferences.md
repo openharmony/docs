@@ -68,7 +68,7 @@ The following table lists the APIs used for persisting user preference data. For
              return;
            }
            console.info('Succeeded in getting preferences.');
-           // Perform related data operations.
+           // Before performing related data operations, obtain a Preferences instance.
          })
        } catch (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
@@ -93,7 +93,7 @@ The following table lists the APIs used for persisting user preference data. For
          return;
        }
        console.info('Succeeded in getting preferences.');
-       // Perform related data operations.
+       // Before performing related data operations, obtain a Preferences instance.
      })
    } catch (err) {
      console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
