@@ -398,7 +398,7 @@
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
-  - [@ohos. deviceStatus.dragInteraction (拖拽)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction（拖拽）](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
