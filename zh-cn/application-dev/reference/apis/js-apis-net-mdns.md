@@ -718,6 +718,41 @@ discoveryService.on('discoveryStart', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
+### off('discoveryStart')<sup>10+</sup>
+
+off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void;
+
+取消开启监听mDNS服务的通知。
+
+**系统能力**：SystemCapability.Communication.NetManager.MDNS
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明                                     |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | 是       |取消订阅的事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
+
+**示例：**
+
+```js
+// 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+```
+
 ### on('discoveryStop')<sup>10+</sup>
 
 on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
@@ -747,6 +782,41 @@ discoveryService.on('discoveryStop', (data) => {
 });
 
 discoveryService.stopSearchingMDNS();
+```
+
+### off('discoveryStop')<sup>10+</sup>
+
+off(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
+
+取消订阅停止监听mDNS服务的通知。
+
+**系统能力**：SystemCapability.Communication.NetManager.MDNS
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明                                     |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | 是       |取消订阅的事件'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
+
+**示例：**
+
+```js
+// 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```
 
 ### on('serviceFound')<sup>10+</sup>
@@ -780,6 +850,41 @@ discoveryService.on('serviceFound', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
+### off('serviceFound')<sup>10+</sup>
+
+off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
+
+订阅发现mDNS服务的通知。
+
+**系统能力**：SystemCapability.Communication.NetManager.MDNS
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明                                     |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | 是       |取消订阅的事件，固定为'serviceFound'。<br>serviceFound：发现mDNS服务事件。 |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息。      |
+
+**示例：**
+
+```js
+// 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+```
+
 ### on('serviceLost')<sup>10+</sup>
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
@@ -809,6 +914,41 @@ discoveryService.on('serviceLost', (data) => {
 });
 
 discoveryService.stopSearchingMDNS();
+```
+
+### off('serviceLost')<sup>10+</sup>
+
+off(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
+
+取消订阅移除mDNS服务的通知。
+
+**系统能力**：SystemCapability.Communication.NetManager.MDNS
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明                                     |
+|-------------|--------------|-----------|-----------------------------------------------------|
+| type     | string                          | 是       |取消订阅的事件，固定为'serviceLost'。<br>serviceLost：移除mDNS服务事件。 |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | 是        |   mDNS服务的信息。      |
+
+**示例：**
+
+```js
+// 参考mdns.createDiscoveryService
+let context = globalThis.context;
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+
+discoveryService.on('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
+
+discoveryService.stopSearchingMDNS();
+
+discoveryService.off('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```
 
 ## LocalServiceInfo<sup>10+</sup>
