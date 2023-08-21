@@ -11,7 +11,7 @@ The **save()** method saves files in the file manager, not in **Gallery**.
 
 For example, select an image from **Gallery** and save it to the file manager.
 
-1. Import the [picker](../reference/apis/js-apis-file-picker.md), [fs](../reference/apis/js-apis-file-fs.md), [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md), and [dataSharePredicates] (../reference/apis/js-apis-data-dataSharePredicates.md) modules.
+1. Import the [picker](../reference/apis/js-apis-file-picker.md), [fs](../reference/apis/js-apis-file-fs.md), [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md), and [dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md) modules.
 
    ```ts
    import picker from '@ohos.file.picker';
