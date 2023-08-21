@@ -225,7 +225,7 @@ try {
 
 pairDevice(deviceId: string): void
 
-Initiates Bluetooth pairing.
+Pairs a device.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -235,7 +235,7 @@ Initiates Bluetooth pairing.
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -258,12 +258,11 @@ try {
 }
 ```
 
-
 ## bluetoothManager.pairCredibleDevice<sup>10+</sup>
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
 
-Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan mode (such as using NFC).
+Pairs a trusted device whose address is obtained in a non-Bluetooth scan mode (such as using NFC). This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -275,8 +274,8 @@ Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan 
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
-| transport | [BluetoothTransport](#bluetoothtransport10) | Yes   | Device type, for example, a classic Bluetooth device or a Bluetooth low energy (BLE) device.|
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| transport | [BluetoothTransport](#bluetoothtransport10) | Yes   | Device type, for example, a classic Bluetooth device or a BLE device.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
@@ -310,7 +309,7 @@ try {
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
 
-Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan mode (such as using NFC).
+Pairs a trusted device whose address is obtained in a non-Bluetooth scan mode (such as using NFC). This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -322,7 +321,7 @@ Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan 
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 | transport | [BluetoothTransport](#bluetoothtransport10) | Yes   | Device type, for example, a classic Bluetooth device or a BLE device.|
 
 **Return value**
@@ -356,7 +355,7 @@ try {
 ```
 
 
-## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
+## bluetoothManager.getProfileConnectionState<sup>(deprecated)</sup><a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 
@@ -404,7 +403,7 @@ try {
 
 cancelPairedDevice(deviceId: string): void
 
-Cancels a paired remote device.
+Cancels a paired device.
 
 **System API**: This is a system API.
 
@@ -416,7 +415,7 @@ Cancels a paired remote device.
 
 | Name     | Type    | Mandatory  | Description                                   |
 | -------- | ------ | ---- | ------------------------------------- |
-| deviceId | string | Yes   | Address of the remote device to cancel, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the device to cancel, for example, XX:XX:XX:XX:XX:XX. |
 
 **Error codes**
 
@@ -443,7 +442,7 @@ try {
 
 getRemoteDeviceName(deviceId: string): string
 
-Obtains the name of the remote Bluetooth device.
+Obtains the name of a Bluetooth device.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -453,13 +452,13 @@ Obtains the name of the remote Bluetooth device.
 
 | Name     | Type    | Mandatory  | Description                               |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the target device, for example, XX:XX:XX:XX:XX:XX. |
 
 **Return value**
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Device name (a string) obtained.|
+| string | Device name obtained. |
 
 **Error codes**
 
@@ -486,7 +485,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-Obtains the class of the remote Bluetooth device.
+Obtains the class of a Bluetooth device.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -496,7 +495,7 @@ Obtains the class of the remote Bluetooth device.
 
 | Name     | Type    | Mandatory  | Description                               |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the target device, for example, XX:XX:XX:XX:XX:XX. |
 
 **Return value**
 
@@ -615,7 +614,7 @@ Obtains the Bluetooth scan mode.
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| [ScanMode](#scanmode) | Bluetooth scan mode to set.|
+| [ScanMode](#scanmode) | Bluetooth scan mode obtained. |
 
 **Error codes**
 
@@ -642,7 +641,7 @@ try {
 
 startBluetoothDiscovery(): void
 
-Starts Bluetooth scan to discover remote devices.
+Starts to discover Bluetooth devices.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
@@ -678,7 +677,7 @@ try {
 
 stopBluetoothDiscovery(): void
 
-Stops Bluetooth scan.
+Stops discovering Bluetooth devices.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -704,7 +703,6 @@ try {
 }
 ```
 
-
 ## bluetoothManager.getRemoteProfileUuids<sup>10+</sup><a name="getRemoteProfileUuids"></a>
 
 getRemoteProfileUuids(device: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
@@ -713,16 +711,16 @@ Obtains the profile UUIDs of a remote Bluetooth device. This API uses an asynchr
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Yes    | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Yes   | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -756,15 +754,15 @@ Obtains the profile UUIDs of a remote Bluetooth device. This API uses a promise 
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -805,15 +803,15 @@ Obtains the profile UUIDs of the local device. This API uses an asynchronous cal
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Yes    | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Yes   | Callback invoked to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -846,15 +844,15 @@ Obtains the profile UUIDs of the local device. This API uses a promise to return
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Return value**
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Promise used to return the profile UUIDs obtained. |
+|   Promise&lt;Array&lt;[ProfileUuids](#profileuuids10)&gt;&gt; | Promise used to return the profile UUIDs obtained.|
 
 **Error codes**
 
@@ -881,7 +879,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
+## bluetoothManager.setDevicePairingConfirmation<sup>(deprecated)</sup><a name="setDevicePairingConfirmation"></a>
 
 setDevicePairingConfirmation(device: string, accept: boolean): void
 
@@ -929,7 +927,7 @@ try {
 
 setDevicePinCode(device: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the PIN for the device when [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**.
+Sets a PIN for a device whose [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**.
 
 **Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
@@ -971,7 +969,7 @@ try {
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 
-Sets the PIN for the device when [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**. This API uses a promise to return the result.
+Sets a PIN for a device whose [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
@@ -1021,7 +1019,7 @@ try {
 
 on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Subscribes to the Bluetooth device discovery events.
+Subscribes to Bluetooth device discovery events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1031,7 +1029,7 @@ Subscribes to the Bluetooth device discovery events.
 
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.|
+| type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates the discovery of a Bluetooth device. |
 | callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.   |
 
 **Error codes**
@@ -1060,7 +1058,7 @@ try {
 
 off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unsubscribes from the Bluetooth device discovery events.
+Unsubscribes from Bluetooth device discovery events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1070,8 +1068,8 @@ Unsubscribes from the Bluetooth device discovery events.
 
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback for the **bluetoothDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates the discovery of a Bluetooth device. |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback for the **bluetoothDeviceFind** event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Error codes**
 
@@ -1150,7 +1148,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback for the Bluetooth pairing request event. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback for the Bluetooth pairing request event. The input parameter is the pairing request parameter. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Error codes**
 
@@ -1179,7 +1177,7 @@ try {
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth pairing state change events.
+Subscribes to Bluetooth pairing state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1189,7 +1187,7 @@ Subscribes to the Bluetooth pairing state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates the change of the Bluetooth pairing state. |
 | callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
 
 **Error codes**
@@ -1218,7 +1216,7 @@ try {
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth pairing state change events.
+Unsubscribes from Bluetooth pairing state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1228,8 +1226,8 @@ Unsubscribes from the Bluetooth pairing state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates the change of the Bluetooth pairing state. |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Error codes**
 
@@ -1258,7 +1256,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to Bluetooth state events.
+Subscribes to Bluetooth state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1268,8 +1266,8 @@ Subscribes to Bluetooth state events.
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.  |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback invoked to return the Bluetooth connection state. You need to implement this callback.|
+| type     | string                                   | Yes   | Event type. The value **stateChange** indicates the change of the Bluetooth state. |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback invoked to return the Bluetooth state. You need to implement this callback. |
 
 **Error codes**
 
@@ -1297,7 +1295,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from Bluetooth state events.
+Unsubscribes from Bluetooth state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1307,8 +1305,8 @@ Unsubscribes from Bluetooth state events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback for the Bluetooth connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **stateChange** indicates the change of the Bluetooth state. |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback for the Bluetooth state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Error codes**
 
@@ -1348,7 +1346,7 @@ Creates a server listening socket.
 | Name     | Type                         | Mandatory  | Description                     |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | Yes   | Name of the service.                 |
-| option   | [SppOption](#sppoption)     | Yes   | Serial port profile (SPP) listening configuration.             |
+| option   | [SppOption](#sppoption)     | Yes   | SPP listening configuration.             |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the server socket ID.|
 
 **Error codes**
@@ -1492,7 +1490,7 @@ try {
 
 sppCloseServerSocket(socket: number): void
 
-Closes the listening socket of the server.
+Closes a listening socket of the server.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1500,7 +1498,7 @@ Closes the listening socket of the server.
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| socket | number | Yes   | ID of the listening socket on the server. The ID is obtained by **sppListen**.|
+| socket | number | Yes   | ID of the listening socket to close. It is obtained by **sppListen**. |
 
 **Error codes**
 
@@ -1534,7 +1532,7 @@ try {
 
 sppCloseClientSocket(socket: number): void
 
-Closes the client socket.
+Closes a client socket.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1542,8 +1540,7 @@ Closes the client socket.
 
 | Name   | Type    | Mandatory  | Description           |
 | ------ | ------ | ---- | ------------- |
-| Name   | Type    | Mandatory  | Description           |
-| socket | number | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
+| socket | number | Yes   | ID of the client socket to close. It is obtained by **sppAccept** or **sppConnect**. |
 
 **Error codes**
 
@@ -1625,7 +1622,7 @@ try {
 
 on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
-Subscribes to the SPP read request events.
+Subscribes to SPP read request events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1674,7 +1671,7 @@ try {
 
 off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
-Unsubscribes from the SPP read request events.
+Unsubscribes from SPP read request events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1684,7 +1681,7 @@ Unsubscribes from the SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback for the SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback for the SPP read request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -1915,7 +1912,7 @@ try {
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-Subscribe to the BLE device discovery events.
+Subscribe to BLE device discovery events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1925,7 +1922,7 @@ Subscribe to the BLE device discovery events.
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.  |
+| type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates the discovery of a BLE device. |
 | callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.|
 
 **Error codes**
@@ -1954,7 +1951,7 @@ try {
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-Unsubscribes from the BLE device discovery events.
+Unsubscribes from BLE device discovery events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1964,8 +1961,8 @@ Unsubscribes from the BLE device discovery events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates the discovery of a BLE device. |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Error codes**
 
@@ -2077,26 +2074,25 @@ try {
 }
 ```
 
-
 ## bluetoothManager.setConnectionStrategy<sup>10+</sup><a name="setConnectionStrategy"></a>
 
 setConnectionStrategy(device: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the profile connection strategy for this device. This API uses an asynchronous callback to return the result.
+Sets the profile connection strategy for a device. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
-| strategy | [ConnectionStrategy](#connectionstrategy10)   | Yes    |Profile connection strategy to set. |
-| callback | AsyncCallback&lt;void&gt;  | Yes    | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | Yes   |Profile connection strategy to set.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2126,26 +2122,26 @@ try {
 
 setConnectionStrategy(device: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
-Sets the profile connection strategy for this device. This API uses a promise to return the result.
+Sets the profile connection strategy for a device. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
-| strategy | [ConnectionStrategy](#connectionstrategy10)   | Yes    |Profile connection strategy to set. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| strategy | [ConnectionStrategy](#connectionstrategy10)   | Yes   |Profile connection strategy to set.|
 
 **Return value**
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2181,18 +2177,18 @@ Obtains the profile connection strategy. This API uses an asynchronous callback 
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
-| callback | AsyncCallback&lt;[ConnectionStrategy](#connectionstrategy10)&gt; | Yes    | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;[ConnectionStrategy](#connectionstrategy10)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
-**Error codes**：
+**Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
 
@@ -2224,15 +2220,15 @@ Obtains the profile connection strategy. This API uses a promise to return the r
 
 **System API**: This is a system API.
 
-**Required permissions**：ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| device | string | Yes    | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
+| device | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -2354,7 +2350,7 @@ try {
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the A2DP connection state change events.
+Subscribes to A2DP connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2362,8 +2358,8 @@ Subscribes to the A2DP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the A2DP connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change.                              |
 
 **Return value**
 
@@ -2384,7 +2380,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the A2DP connection state change events.
+Unsubscribes from A2DP connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2392,8 +2388,8 @@ Unsubscribes from the A2DP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the A2DP connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change.                              |
 
 **Return value**
 
@@ -2429,7 +2425,7 @@ Obtains the playing state of a device.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [PlayingState](#PlayingState) | Playing state of the remote device obtained.|
+| [PlayingState](#PlayingState) | Playing state of the device obtained. |
 
 **Error codes**
 
@@ -2541,7 +2537,7 @@ try {
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HFP connection state change events.
+Subscribes to HFP connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2549,8 +2545,8 @@ Subscribes to the HFP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the HFP connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change.                              |
 
 **Example**
 
@@ -2568,7 +2564,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HFP connection state change events.
+Unsubscribes from HFP connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2576,8 +2572,8 @@ Unsubscribes from the HFP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the HFP connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change.                              |
 
 **Example**
 
@@ -2683,7 +2679,7 @@ try {
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HidHost connection state change events.
+Subscribes to HidHost connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2691,8 +2687,8 @@ Subscribes to the HidHost connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change event.                |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the HidHost connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change.                |
 
 **Example**
 
@@ -2709,7 +2705,7 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HidHost connection state change events.
+Unsubscribes from HidHost connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2717,8 +2713,8 @@ Unsubscribes from the HidHost connection state change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change event.                            |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates the change of the HidHost connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change.                            |
 
 **Example**
 
@@ -2782,7 +2778,7 @@ try {
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the PAN connection state change events.
+Subscribes to PAN connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2790,8 +2786,8 @@ Subscribes to the PAN connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the PAN connection state change event.                    |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates the change of the PAN connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the PAN connection state change.                    |
 
 **Example**
 
@@ -2808,7 +2804,7 @@ panProfile.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the PAN connection state change events.
+Unsubscribes from PAN connection state changes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2816,8 +2812,8 @@ Unsubscribes from the PAN connection state change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change event.                                |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates the change of the PAN connection state. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change.                                |
 
 **Example**
 
@@ -3028,7 +3024,7 @@ Adds a service to this GATT server.
 
 | Name    | Type                         | Mandatory  | Description                      |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | Yes   | Service to add. Settings related to BLE advertising.|
+| service | [GattService](#gattservice) | Yes   | Service to add. |
 
 **Error codes**
 
@@ -3119,7 +3115,7 @@ try {
 
 close(): void
 
-Closes this GATT server to unregister it from the protocol stack. After this method is called, this [GattServer](#gattserver) cannot be used.
+Closes this GATT server to unregister it from the protocol stack. After this API is called, this [GattServer](#gattserver) cannot be used.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3254,7 +3250,7 @@ try {
 
 on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
-Subscribes to the characteristic read request events.
+Subscribes to characteristic read request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3297,7 +3293,7 @@ gattServer.on("characteristicRead", ReadCharacteristicReq);
 
 off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
-Unsubscribes from the characteristic read request events.
+Unsubscribes from characteristic read request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3308,7 +3304,7 @@ Unsubscribes from the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -3322,7 +3318,7 @@ gattServer.off("characteristicRead");
 
 on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-Subscribes to the characteristic write request events.
+Subscribes to characteristic write request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3368,7 +3364,7 @@ gattServer.on("characteristicWrite", WriteCharacteristicReq);
 
 off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-Unsubscribes from the characteristic write request events.
+Unsubscribes from characteristic write request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3379,7 +3375,7 @@ Unsubscribes from the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -3393,7 +3389,7 @@ gattServer.off("characteristicWrite");
 
 on(type: "descriptorRead", callback: Callback&lt;DescriptorReadRequest&gt;): void
 
-Subscribes to the descriptor read request events.
+Subscribes to descriptor read request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3436,7 +3432,7 @@ gattServer.on("descriptorRead", ReadDescriptorReq);
 
 off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
-Unsubscribes from the descriptor read request events.
+Unsubscribes from descriptor read request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3447,7 +3443,7 @@ Unsubscribes from the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -3461,7 +3457,7 @@ gattServer.off("descriptorRead");
 
 on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
-Subscribes to the descriptor write request events.
+Subscribes to descriptor write request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3507,7 +3503,7 @@ gattServer.on("descriptorRead", WriteDescriptorReq);
 
 off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
-Unsubscribes from the descriptor write request events.
+Unsubscribes from descriptor write request events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3518,7 +3514,7 @@ Unsubscribes from the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -3532,7 +3528,7 @@ gattServer.off("descriptorWrite");
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to BLE connection state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3542,7 +3538,7 @@ Subscribes to the BLE connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
+| type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates the change of the BLE connection state. |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
 
 **Example**
@@ -3562,7 +3558,7 @@ gattServer.on("connectStateChange", Connected);
 
 off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from BLE connection state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3572,8 +3568,8 @@ Unsubscribes from the BLE connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates the change of the BLE connection state. |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -3592,7 +3588,7 @@ Implements the GATT client. Before using an API of this class, you must create a
 
 connect(): void
 
-Initiates a connection to the remote BLE device.
+Connects to the remote BLE device.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3656,7 +3652,7 @@ try {
 
 close(): void
 
-Closes this GATT client to unregister it from the protocol stack. After this method is called, this [GattClientDevice](#gattclientdevice) instance cannot be used.
+Closes this GATT client to unregister it from the protocol stack. After this API is called, this [GattClientDevice](#gattclientdevice) instance cannot be used.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3846,7 +3842,7 @@ try {
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3963,7 +3959,7 @@ try {
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4117,7 +4113,7 @@ try {
 
 setBLEMtuSize(mtu: number): void
 
-Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
+Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by [connect()](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4205,7 +4201,7 @@ try {
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
+Subscribes to BLE characteristic changes. The client can receive a notification from the server only after **setNotifyCharacteristicChanged** is called.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4215,8 +4211,8 @@ Subscribes to the BLE characteristic change events. The client can receive a not
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value changes.                 |
+| type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates the change of a characteristic value. |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the new characteristic value.             |
 
 **Example**
 
@@ -4239,7 +4235,7 @@ try {
 
 off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
 
-Unsubscribes from the BLE characteristic change events.
+Unsubscribes from BLE characteristic changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4249,8 +4245,8 @@ Unsubscribes from the BLE characteristic change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback for the characteristic value change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates the change of a characteristic value. |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback for the characteristic value change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -4268,7 +4264,7 @@ try {
 
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to BLE connection state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4278,7 +4274,7 @@ Subscribes to the BLE connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
+| type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates the change of the BLE connection state. |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | Yes   | Callback invoked to return the BLE connection state.                          |
 
 **Example**
@@ -4301,7 +4297,7 @@ try {
 
 off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from BLE connection state changes.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4311,8 +4307,8 @@ Unsubscribes from the BLE connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates the change of the BLE connection state. |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -4413,7 +4409,7 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the received signal strength indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the Received Signal Strength Indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by [connect()](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4454,7 +4450,7 @@ try {
 
 getRssiValue(): Promise&lt;number&gt;
 
-Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by [connect()](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -4594,7 +4590,7 @@ Defines the parameters in the notifications sent when the server characteristic 
 | serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the notification needs to be confirmed by the remote end. For a notification, set it to **true**. In this case, the remote end must confirm the receipt of the notification. For an indication, set it to **false**. In this case, the remote end does not need to confirm the receipt of the notification.|
+| confirm             | boolean     | Yes   | Yes   | Whether the notification needs to be confirmed by the remote end. <br/>For a notification, set it to **true**. In this case, the remote end must confirm the receipt of the notification. <br/>For an indication, set it to **false**. In this case, the remote end does not need to confirm the receipt of the notification. |
 
 
 ## CharacteristicReadRequest
@@ -4820,7 +4816,6 @@ Defines the content of a BLE advertisement packet.
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
 | includeDeviceName<sup>10+</sup> | boolean                  | Yes   | Yes   | Whether the device name is contained. This parameter is optional.       |
 
-
 ## ManufactureData
 
 Defines the content of a BLE advertisement packet.
@@ -4889,7 +4884,7 @@ Defines the properties of a GATT characteristic.
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name      | Type | Mandatory  | Description         |
-| -------- | ------ |---- | ----------- |
+| -------- | ------ | ---- | ---- | ----------- |
 | write<sup>10+</sup>    | boolean | Yes | Permits writes of the characteristic value (with a response).|
 | writeNoResponse<sup>10+</sup> | boolean | Yes   | Permits writes of the characteristic value (without a response).|
 | read<sup>10+</sup> | boolean   |  Yes   | Permits reads of the characteristic value.|
@@ -5071,13 +5066,13 @@ Enumerates the profile connection strategies.
 
 **System API**: This is a system API.
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                            | Value     | Description           |
+| Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| CONNECT_STRATEGY_UNSUPPORTED <sup>10+</sup>   | 0 | Default connection strategy to use when the device is not paired.<br>This is a system API. |
-| CONNECT_STRATEGY_ALLOWED <sup>10+</sup>  | 1 |  Connection strategy to use when the device is allowed to accept or initiate pairing.<br>This is a system API. |
-| CONNECT_STRATEGY_FORBIDDEN  <sup>10+</sup>  | 2 | Connection strategy to use when the device is not allowed to accept or initiate pairing.<br>This is a system API.  |
+| CONNECT_STRATEGY_UNSUPPORTED <sup>10+</sup>   | 0 | Default connection strategy to use when the device is not paired.<br>This is a system API.|
+| CONNECT_STRATEGY_ALLOWED <sup>10+</sup>  | 1 |  Connection strategy to use when the device is allowed to accept or initiate pairing.<br>This is a system API.|
+| CONNECT_STRATEGY_FORBIDDEN  <sup>10+</sup>  | 2 | Connection strategy to use when the device is not allowed to accept or initiate pairing.<br>This is a system API. |
 
 
 ## PinType<sup>10+</sup><a name="PinType"></a>
@@ -5106,17 +5101,17 @@ Enumerates profile UUIDs.
 
 **System API**: This is a system API.
 
-**System capability**：SystemCapability.Communication.Bluetooth.Core。
+**System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                                  | Value   | Description             |
 | ------------------------------------| ------ | --------------- |
-| PROFILE_UUID_HFP_AG<sup>10+</sup>      | '0000111F-0000-1000-8000-00805F9B34FB' | UUID of the HFPAG Profile.<br>This is a system API.|
-| PROFILE_UUID_HFP_HF<sup>10+</sup>     | '0000111E-0000-1000-8000-00805F9B34FB' | UUID of the HFPHF Profile.<br>This is a system API. |
-| PROFILE_UUID_HSP_AG<sup>10+</sup>      | '00001112-0000-1000-8000-00805F9B34FB' | UUID of the HSPAG Profile.<br>This is a system API. |
-| PROFILE_UUID_HSP_HS<sup>10+</sup>      | '00001108-0000-1000-8000-00805F9B34FB' | UUID of the HSPHS Profile.<br>This is a system API. |
-| PROFILE_UUID_A2DP_SRC<sup>10+</sup>    | '0000110A-0000-1000-8000-00805F9B34FB' | Indicates the UID of the A2DPSRC Profile.<br>This is a system API. |
-| PROFILE_UUID_A2DP_SINK<sup>10+</sup>   | '0000110B-0000-1000-8000-00805F9B34FB' | UUID of the A2DPSINK Profile.<br>This is a system API. |
-| PROFILE_UUID_AVRCP_CT<sup>10+</sup>    | '0000110E-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPCT Profile.<br>This is a system API. |
-| PROFILE_UUID_AVRCP_TG<sup>10+</sup>    | '0000110C-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPTG Profile.<br>This is a system API. |
-| PROFILE_UUID_HID<sup>10+</sup>         | '00001124-0000-1000-8000-00805F9B34FB' | UUID of the HID Profile.<br>This is a system API. |
-| PROFILE_UUID_HOGP<sup>10+</sup>        | '00001812-0000-1000-8000-00805F9B34FB' | UUID of the HOGP Profile.<br>This is a system API. |
+| PROFILE_UUID_HFP_AG <sup>10+</sup> | '0000111F-0000-1000-8000-00805F9B34FB' | UUID of the HFPAG Profile.<br>This is a system API.|
+| PROFILE_UUID_HFP_HF <sup>10+</sup>  | '0000111E-0000-1000-8000-00805F9B34FB' | UUID of the HFPHF Profile.<br>This is a system API. |
+| PROFILE_UUID_HSP_AG <sup>10+</sup>  | '00001112-0000-1000-8000-00805F9B34FB' | UUID of the HSPAG Profile.<br>This is a system API. |
+| PROFILE_UUID_HSP_HS <sup>10+</sup>  | '00001108-0000-1000-8000-00805F9B34FB' | UUID of the HSPHS Profile.<br>This is a system API. |
+| PROFILE_UUID_A2DP_SRC <sup>10+</sup>   | '0000110A-0000-1000-8000-00805F9B34FB' | Indicates the UID of the A2DPSRC Profile.<br>This is a system API. |
+| PROFILE_UUID_A2DP_SINK <sup>10+</sup>    | '0000110B-0000-1000-8000-00805F9B34FB' | UUID of the A2DPSINK Profile.<br>This is a system API. |
+| PROFILE_UUID_AVRCP_CT <sup>10+</sup>    | '0000110E-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPCT Profile.<br>This is a system API. |
+| PROFILE_UUID_AVRCP_TG <sup>10+</sup>    | '0000110C-0000-1000-8000-00805F9B34FB' | UUID of the AVRCPTG Profile.<br>This is a system API. |
+| PROFILE_UUID_HID  <sup>10+</sup>    | '00001124-0000-1000-8000-00805F9B34FB' | UUID of the HID Profile.<br>This is a system API. |
+| PROFILE_UUID_HOGP  <sup>10+</sup>    | '00001812-0000-1000-8000-00805F9B34FB' | UUID of the HOGP Profile.<br>This is a system API. |
