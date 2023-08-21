@@ -146,7 +146,7 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-请求软件包的临时权限以访问设备。使用Promise异步回调。
+请求软件包的临时权限以访问设备。使用Promise异步回调。系统应用默认拥有访问设备权限，无需调用此接口申请。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
