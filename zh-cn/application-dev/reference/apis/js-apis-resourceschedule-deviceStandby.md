@@ -45,6 +45,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 **示例**：
 
 ```js
+let resourceTypes = 1;
 try{
 deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
   if (err) {
@@ -100,6 +101,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 **示例**：
 
 ```js
+let resourceTypes = 1;
 try{
 deviceStandby.getExemptedApps(resourceTypes).then( res => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
