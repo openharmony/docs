@@ -23,20 +23,18 @@ Before developing applications related to tag read and write, you must declare N
 
                             // Add the nfc tag action.
                             "ohos.nfc.tag.action.TAG_FOUND"
+                        ],
+                        "uris": [
+                            {
+                                "type":"tag-tech/NfcA"
+                            },
+                            {
+                                "type":"tag-tech/IsoDep"
+                            }
+                            // Add other technology if neccessary,
+                            // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                         ]
                     }
-                ],
-                "metadata": [
-                    {
-                        "name": "tag-tech",
-                        "value": "NfcA"
-                    },
-                    {
-                        "name": "tag-tech",
-                        "value": "IsoDep"
-                    }
-                    // Add other technologies,
-                    // such as NfcB, NfcF, NfcV, Ndef, MifareClassic, MifareUL, and NdefFormatable.
                 ]
             }
         ],
@@ -49,13 +47,11 @@ Before developing applications related to tag read and write, you must declare N
     }
 }
 ```
-> **CAUTION**<br>
+> **CAUTION**
 >
 > - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-> - The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
-> - The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
+> - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
-
 ## **Modules to Import**
 
 ```js
@@ -528,8 +524,16 @@ import tag from '@ohos.nfc.tag';
 
 let elementName = null;
 let discTech = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
-function foregroundCb(tagInfo: any) {
-    console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+
+function foregroundCb(err, taginfo) {
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
+    }
+    // other Operations of taginfo
+    
 }
 
 export default class MainAbility extends UIAbility {
@@ -885,7 +889,7 @@ Enumerates the tag technology types.
 | **Name**                    | **Value**| **Description**                   |
 | ---------------------------- | ------ | --------------------------- |
 | NFC_A                        | 1      | NFC-A (ISO 14443-3A). |
-| NFC_B  | 2 | NFC-B (ISO 14443-3B).|
+| NFC_B                        | 2      | NFC-B (ISO 14443-3B). |
 | ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4).|
 | NFC_F                        | 4      | NFC-F (JIS 6319-4).   |
 | NFC_V                        | 5      | NFC-V (ISO 15693).    |
