@@ -170,7 +170,7 @@ struct ListItemExample2 {
                   this.arr.splice(index, 1)
                 })
               },
-              actionAreaDistance: 80,
+              actionAreaDistance: 56,
               onEnterActionArea: () => {
                 this.enterEndDeleteAreaString = "enterEndDeleteArea"
                 this.exitEndDeleteAreaString = "not exitEndDeleteArea"
