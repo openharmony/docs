@@ -2188,6 +2188,13 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
 
@@ -2297,6 +2304,13 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 | ------------------ | --------------------------|
 | callback: AsyncCallback\<void> | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
 
