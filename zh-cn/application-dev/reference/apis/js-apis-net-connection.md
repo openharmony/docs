@@ -438,6 +438,34 @@ connection.getAppNet().then((data) => {
 })
 ```
 
+## connection.getAppNetSync<sup>10+</sup>
+
+getAppNetSync(): NetHandle
+
+使用同步方法获取App绑定的网络信息。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| [NetHandle](#nethandle8) | 返回APP绑定的数据网络。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getAppNetSync();
+```
+
 ## connection.SetAppNet<sup>9+</sup>
 
 setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
@@ -587,6 +615,37 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
+## connection.getAllNetsSync<sup>10+</sup>
+
+getAllNetsSync(): Array&lt;NetHandle&gt;
+
+使用同步方法获取所有处于连接状态的网络列表。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| Array&lt;[NetHandle](#nethandle8)&gt; | 返回激活的数据网络列表。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getAllNetsSync();
+```
+
 ## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
@@ -665,6 +724,45 @@ connection.getDefaultNet().then(function (netHandle) {
     console.log(JSON.stringify(data))
   })
 })
+```
+
+## connection.getConnectionPropertiesSync<sup>10+</sup>
+
+getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
+
+获取netHandle对应的网络的连接信息，使用同步方法返回。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明             |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
+
+**返回值：**
+
+| 类型                                                    | 说明                              |
+| ------------------------------------------------------- | --------------------------------- |
+| [ConnectionProperties](#connectionproperties8) | 返回网络的连接信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetsSync();
+let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
 ```
 
 ## connection.getNetCapabilities<sup>8+</sup>
@@ -747,6 +845,45 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getNetCapabilitiesSync<sup>10+</sup>
+
+getNetCapabilities(netHandle: NetHandle): NetCapabilities
+
+获取netHandle对应的网络的能力信息，使用同步方式返回。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明             |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
+
+**返回值：**
+
+| 类型                                          | 说明                              |
+| --------------------------------------------- | --------------------------------- |
+| [NetCapabilities](#netcapabilities8) | 返回网络的能力信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetsSync();
+let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+```
+
 ## connection.isDefaultNetMetered<sup>9+</sup>
 
 isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
@@ -814,6 +951,37 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
+## connection.isDefaultNetMeteredSync<sup>10+</sup>
+
+isDefaultNetMeteredSync(): boolean
+
+检查当前网络上的数据流量使用是否被计量，使用同步方式返回。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型              | 说明                                            |
+| ----------------- | ----------------------------------------------- |
+| boolean | 当前网络上的数据流量使用被计量true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let isMetered = connection.isDefaultNetMeteredSync();
+```
+
 ## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
@@ -879,6 +1047,37 @@ hasDefaultNet(): Promise\<boolean>
 connection.hasDefaultNet().then(function (data) {
   console.log('data: ' + data)
 })
+```
+
+## connection.hasDefaultNetSync<sup>10+</sup>
+
+hasDefaultNetSync(): boolean
+
+检查默认数据网络是否被激活，使用同步方式返回接口，如果被激活则返回true。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型              | 说明                                            |
+| ----------------- | ----------------------------------------------- |
+| boolean | 默认数据网络被激活返回true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let isDefaultNet = connection.hasDefaultNetSync();
 ```
 
 ## connection.enableAirplaneMode<sup>8+</sup>
