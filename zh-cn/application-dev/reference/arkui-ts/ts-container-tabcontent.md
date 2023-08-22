@@ -71,9 +71,9 @@ SubTabBarStyle的静态构造函数。
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br />                |
+| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。|
 | selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
-| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。 |
+| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
 
