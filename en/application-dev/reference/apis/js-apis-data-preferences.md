@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **user preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -55,14 +55,14 @@ let preferences = null;
 try {
     data_preferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
-	        console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+	        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
 	    preferences = val;
-	    console.info("Obtained the preferences successfully.");
+	    console.info("Succeeded in getting preferences.");
 	})
 } catch (err) {
-    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -78,14 +78,14 @@ class EntryAbility extends UIAbility {
         try {
             data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
                 if (err) {
-                    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+                    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
                 }
                 preferences = val;
-                console.info("Obtained the preferences successfully.");
+                console.info("Succeeded in getting preferences.");
             })
         } catch (err) {
-            console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -126,12 +126,12 @@ try {
     let promise = data_preferences.getPreferences(context, 'mystore');
     promise.then((object) => {
         preferences = object;
-        console.info("Obtained the preferences successfully.");
+        console.info("Succeeded in getting preferences.");
     }).catch((err) => {
-        console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -148,12 +148,12 @@ class EntryAbility extends UIAbility {
             let promise = data_preferences.getPreferences(this.context, 'mystore');
             promise.then((object) => {
                 preferences = object;
-                console.info("Obtained the preferences successfully.");
+                console.info("Succeeded in getting preferences.");
             }).catch((err) => {
-                console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             })
         } catch(err) {
-            console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -199,13 +199,13 @@ let context = featureAbility.getContext();
 try {
     data_preferences.deletePreferences(context, 'mystore', function (err) {
         if (err) {
-            console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
         }
-        console.info("Deleted the preferences successfully." );
+        console.info("Succeeded in deleting preferences." );
     })
 } catch (err) {
-    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -213,19 +213,18 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
             data_preferences.deletePreferences(this.context, 'mystore', function (err) {
                 if (err) {
-                    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+                    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
                 }
-                console.info("Deleted the preferences successfully." );
+                console.info("Succeeded in deleting preferences." );
             })
         } catch (err) {
-            console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -276,12 +275,12 @@ let context = featureAbility.getContext();
 try {
     let promise = data_preferences.deletePreferences(context, 'mystore');
     promise.then(() => {
-        console.info("Deleted the preferences successfully.");
+        console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
-        console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -289,18 +288,17 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
             let promise = data_preferences.deletePreferences(this.context, 'mystore');
             promise.then(() => {
-                console.info("Deleted the preferences successfully.");
+                console.info("Succeeded in deleting preferences.");
             }).catch((err) => {
-                console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+                console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             })
         } catch(err) {
-            console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -336,13 +334,13 @@ let context = featureAbility.getContext();
 try {
     data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
-            console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
         }
-        console.info("Removed the preferences successfully.");
+        console.info("Succeeded in removing preferences.");
     })
 } catch (err) {
-    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -350,19 +348,18 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
             data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
                 if (err) {
-                    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+                    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
                 }
-                console.info("Removed the preferences successfully.");
+                console.info("Succeeded in removing preferences.");
             })
         } catch (err) {
-            console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -404,12 +401,12 @@ let context = featureAbility.getContext();
 try {
     let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
 	promise.then(() => {
-    	console.info("Removed the preferences successfully.");
+    	console.info("Succeeded in removing preferences.");
     }).catch((err) => {
-        console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -423,12 +420,12 @@ class EntryAbility extends UIAbility {
         try {
             let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
             promise.then(() => {
-                console.info("Removed the preferences successfully.");
+                console.info("Succeeded in removing preferences.");
             }).catch((err) => {
-                console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             })
         } catch(err) {
-            console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         }
     }
 }
@@ -436,7 +433,7 @@ class EntryAbility extends UIAbility {
 
 ## Preferences
 
-Provides methods for obtaining and modifying data.
+Provides APIs for obtaining and modifying data.
 
 Before calling any method of **Preferences**, you must obtain a **Preferences** instance by using [data_preferences.getPreferences](#data_preferencesgetpreferences).
 
@@ -463,13 +460,13 @@ Obtains the value of a key. This API uses an asynchronous callback to return the
 try {
     preferences.get('startup', 'default', function (err, val) {
         if (err) {
-            console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
         console.info("Obtained the value of 'startup' successfully. val: " + val);
     })
 } catch (err) {
-    console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -483,7 +480,7 @@ Obtains the value of a key. This API uses a promise to return the result. If the
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
  **Parameters**
-
+ 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
@@ -503,10 +500,10 @@ try {
     promise.then((data) => {
         console.info("Got the value of 'startup'. Data: " + data);
     }).catch((err) => {
-        console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -514,7 +511,7 @@ try {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains an **Object** instance that contains all KV pairs. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs from the cached **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -522,7 +519,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses an asyn
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -530,7 +527,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses an asyn
 try {
     preferences.getAll(function (err, value) {
         if (err) {
-            console.info("Failed to get all KV pairs. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
             return;
         }
     let allKeys = Object.keys(value);
@@ -538,7 +535,7 @@ try {
     console.info("getAll object = " + JSON.stringify(value));
     })
 } catch (err) {
-    console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -547,7 +544,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains an **Object** instance that contains all KV pairs. This API uses a promise to return the result.
+Obtains all KV pairs from the cached **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -555,7 +552,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses a promi
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise used to return the **Object** instance obtained.|
+| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained, in an **Object** instance.|
 
 **Example**
 
@@ -567,10 +564,10 @@ try {
         console.info('getAll keys = ' + allKeys);
         console.info("getAll object = " + JSON.stringify(value));
     }).catch((err) => {
-        console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.info("Failed to obtain all KV pairs. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -596,13 +593,13 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 try {
     preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Failed to put the value of 'startup'. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
-        console.info("Put the value of 'startup' successfully.");
+        console.info("Successfully put the value of 'startup'.");
     })
 } catch (err) {
-    console.info("Failed to put the value of 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -634,12 +631,12 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 try {
     let promise = preferences.put('startup', 'auto');
     promise.then(() => {
-        console.info("Put the value of 'startup' successfully.");
+        console.info("Successfully put the value of 'startup'.");
     }).catch((err) => {
-        console.info("Failed to put the value of 'startup'. code =" + err.code +", message =" + err.message);
+        console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to put the value of 'startup'. code =" + err.code +", message =" + err.message);
+    console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -665,7 +662,7 @@ Checks whether this **Preferences** instance contains a KV pair with the given k
 try {
     preferences.has('startup', function (err, val) {
         if (err) {
-            console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
         if (val) {
@@ -675,7 +672,7 @@ try {
         }
   })
 } catch (err) {
-    console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -712,10 +709,10 @@ try {
             console.info("The key 'startup' is not contained.");
         }
     }).catch((err) => {
-        console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
   })
 } catch(err) {
-    console.info("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -741,13 +738,13 @@ Deletes a KV pair from this **Preferences** instance based on the specified key.
 try {
     preferences.delete('startup', function (err) {
         if (err) {
-            console.info("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
         console.info("Deleted the key 'startup'.");
     })
 } catch (err) {
-    console.info("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -780,10 +777,10 @@ try {
 	promise.then(() => {
         console.info("Deleted the key 'startup'.");
     }).catch((err) => {
-        console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+        console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+    console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -792,7 +789,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the data of this **Preferences** instance to a file asynchronously. This API uses an asynchronous callback to return the result.
+Flushes the data in this **Preferences** instance to its persistent file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -808,13 +805,13 @@ Saves the data of this **Preferences** instance to a file asynchronously. This A
 try {
     preferences.flush(function (err) {
         if (err) {
-            console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
             return;
         }
-        console.info("Flushed data successfully.");
+        console.info("Successfully flushed data.");
     })
 } catch (err) {
-    console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -823,7 +820,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-Saves the data of this **Preferences** instance to a file asynchronously. This API uses a promise to return the result.
+Flushes the data in this **Preferences** instance to its persistent file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -839,12 +836,12 @@ Saves the data of this **Preferences** instance to a file asynchronously. This A
 try {
     let promise = preferences.flush();
     promise.then(() => {
-        console.info("Flushed data successfully.");
+        console.info("Successfully flushed data.");
     }).catch((err) => {
-        console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -869,13 +866,13 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 try {
 	preferences.clear(function (err) {
         if (err) {
-            console.info("Failed to clear data. code =" + err.code + ", message =" + err.message);
+            console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
             return;
         }
-        console.info("Cleared data successfully.");
+        console.info("Successfully cleared data.");
     })
 } catch (err) {
-    console.info("Failed to clear data. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -900,12 +897,12 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 try {
     let promise = preferences.clear();
 	promise.then(() => {
-    	console.info("Cleared data successfully.");
+    	console.info("Successfully cleared data.");
     }).catch((err) => {
-        console.info("Failed to clear data. code =" + err.code + ", message =" + err.message);
+        console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to clear data. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -931,7 +928,7 @@ Subscribes to data changes. A callback will be triggered to return the new value
 try {
 	data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 		if (err) {
-			console.info("Failed to obtain the preferences.");
+			console.error("Failed to get preferences.");
 			return;
 		}
 		let observer = function (key) {
@@ -940,22 +937,22 @@ try {
 		preferences.on('change', observer);
 		preferences.put('startup', 'manual', function (err) {
 			if (err) {
-				console.info("Failed to put the value of 'startup'. Cause: " + err);
+				console.error("Failed to put the value of 'startup'. Cause: " + err);
 				return;
 			}
-			console.info("Put the value of 'startup' successfully.");
+			console.info("Successfully put the value of 'startup'.");
 
 			preferences.flush(function (err) {
 				if (err) {
-					console.info("Failed to flush data. Cause: " + err);
+					console.error("Failed to flush. Cause: " + err);
 					return;
 				}
-				console.info("Flushed data successfully.");
+				console.info("Successfully flushed data.");
 			})
 		})
 	})
 } catch (err) {
-	console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+	console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -981,7 +978,7 @@ Unsubscribes from data changes.
 try {
     data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
         if (err) {
-            console.info("Failed to obtain the preferences.");
+            console.error("Failed to get preferences.");
             return;
         }
         let observer = function (key) {
@@ -990,23 +987,23 @@ try {
         preferences.on('change', observer);
         preferences.put('startup', 'auto', function (err) {
             if (err) {
-                console.info("Failed to put the value of 'startup'. Cause: " + err);
+                console.error("Failed to put the value of 'startup'. Cause: " + err);
                 return;
             }
             console.info("Successfully put the value of 'startup'.");
 
             preferences.flush(function (err) {
                 if (err) {
-                    console.info("Failed to flush data. Cause: " + err);
+                    console.error("Failed to flush. Cause: " + err);
                     return;
                 }
-                console.info("Flushed data successfully.");
+                console.info("Successfully flushed data.");
             })
             preferences.off('change', observer);
         })
     })
 } catch (err) {
-    console.info("Failed to flush data. code =" + err.code + ", message =" + err.message);
+    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 }
 ```
 
