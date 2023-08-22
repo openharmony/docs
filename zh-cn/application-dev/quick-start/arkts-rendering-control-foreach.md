@@ -22,7 +22,7 @@ ForEach(
 | 参数名           | 参数类型                                     | 必填   | 参数描述                                     |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | arr           | Array                                    | 是    | 必须是数组，允许设置为空数组，空数组场景下将不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如Array.splice、Array.sort或Array.reverse这些改变原数组的函数。 |
-| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是    | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。<br/>**说明：**<br/>-&nbsp;子组件的类型必须是ForEach的父容器组件所允许的（例如，只有当ForEach父级为List组件时，才允许LitemItem子组件）。<br/>-&nbsp;允许子类构造函数返回if或另一个ForEach。ForEach可以在if内的任意位置。<br/>-&nbsp;可选index参数如在函数体中使用，则必须仅在函数签名中指定。 |
+| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是    | 生成子组件的lambda函数，为数组中的每一个数据项创建一个或多个子组件，单个子组件或子组件列表必须包括在大括号“{...}”中。<br/>**说明：**<br/>-&nbsp;子组件的类型必须是ForEach的父容器组件所允许的（例如，只有当ForEach父级为List组件时，才允许ListItem子组件）。<br/>-&nbsp;允许子类构造函数返回if或另一个ForEach。ForEach可以在if内的任意位置。<br/>-&nbsp;可选index参数如在函数体中使用，则必须仅在函数签名中指定。 |
 | keyGenerator  | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | 否    | 匿名函数，用于给数组中的每一个数据项生成唯一且固定的键值。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则ForEach中的所有节点都将重建。<br/>**说明：**<br/>-&nbsp;同一数组中的不同项绝对不能计算出相同的ID。<br/>-&nbsp;如果未使用index参数，则项在数组中的位置变动不得改变项的键值。如果使用了index参数，则当项在数组中的位置有变动时，键值必须更改。<br/>-&nbsp;当某个项目被新项替换（值不同）时，被替换的项键值和新项的键值必须不同。<br/>-&nbsp;在构造函数中使用index参数时，键值生成函数也必须使用该参数。<br>-&nbsp;键值生成函数不允许改变任何组件状态。 |
 
 
