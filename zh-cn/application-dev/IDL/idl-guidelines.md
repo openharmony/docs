@@ -43,7 +43,7 @@
 IDL支持的基本数据类型及其映射到C++、TS上的数据类型的对应关系如上表所示。
 
 #### sequenceable数据类型
-sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表面该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
+sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表明该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
 
 在C++中sequenceable数据类型的声明放在文件的头部，以“sequenceable includedir..namespace.typename”的形式声明。具体而言。声明可以有如下三个形式：
 
