@@ -15,6 +15,7 @@ If a task does not need to occupy a background thread for a long time (3 minutes
 1. Implement the logic of image processing.
 
 2. Segment the data, and initiate associated task scheduling through task groups.
+
    Create a [task group](../reference/apis/js-apis-taskpool.md#taskgroup10), call [addTask()](../reference/apis/js-apis-taskpool.md#addtask10) to add tasks, call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute10) to execute the tasks in the task group, and set [a high priority](../reference/apis/js-apis-taskpool.md#priority) for the task group. After all the tasks in the task group are complete, the histogram processing result is returned simultaneously.
 
 3. Summarize and process the result arrays.
@@ -78,7 +79,7 @@ The following uses the training of a region-specific house price prediction mode
 
    ![newWorker](figures/newWorker.png)
 
-2. In the main thread, call [ThreadWorker()](../reference/apis/js-apis-worker.md#threadworker9) to create a **Worker** object. The calling thread is the host thread.
+2. In the main thread, call [constructor()](../reference/apis/js-apis-worker.md#constructor9) of **ThreadWorker** to create a **Worker** object. The calling thread is the host thread.
    
    ```js
    import worker from '@ohos.worker';
@@ -167,24 +168,22 @@ The following uses the training of a region-specific house price prediction mode
 
 6. After the task is completed in the worker thread, destroy the worker thread. The worker thread can be destroyed by itself or the host thread. Then, call [onexit()](../reference/apis/js-apis-worker.md#onexit9) in the host thread to define the processing logic after the worker thread is destroyed.
 
-   
    ```js
    // After the worker thread is destroyed, execute the onexit() callback.
    workerInstance.onexit = function() {
      console.info("main thread terminate");
    }
    ```
-
-   In the host thread, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) to destroy the worker thread and stop the worker thread from receiving messages.
-
    
+   Method 1: In the host thread, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) to destroy the worker thread and stop the worker thread from receiving messages.
+
    ```js
-   // Destroy the worker thread.
+// Destroy the worker thread.
    workerInstance.terminate();
    ```
-
-   In the worker thread, call [close()](../reference/apis/js-apis-worker.md#close9) to destroy the worker thread and stop the worker thread from receiving messages.
    
+   Method 2: In the worker thread, call [close()](../reference/apis/js-apis-worker.md#close9) to destroy the worker thread and stop the worker thread from receiving messages.
+
    ```js
    // Destroy the worker thread.
    workerPort.close();
