@@ -2515,7 +2515,7 @@ tcpServer.on('connect', function(client) {
 
 ### off('close')<sup>10+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void
+off(type: 'close', callback?: Callback<void>): void
 
 取消订阅TCPSocketConnection的关闭事件。使用callback方式作为异步方法。
 
@@ -5706,7 +5706,7 @@ tlsServer.on('connect', function(client) {
 
 ### off('close')<sup>10+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void
+off(type: 'close', callback?: Callback<void>): void
 
 取消订阅TLSSocketConnection的关闭事件。使用callback方式作为异步方法。
 
