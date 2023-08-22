@@ -1734,6 +1734,48 @@ try {
 }
 ```
 
+### bundleManager.setApplicationEnabledSync<sup>10+</sup>
+
+setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void;
+
+以同步方法设置指定应用的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                  |
+| ---------- | ------- | ---- | ------------------------------------- |
+| bundleName | string  | 是   | 指定应用的bundleName。                |
+| isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+
+try {
+    bundleManager.setApplicationEnabledSync(bundleName, false);
+    hilog.info(0x0000, 'testTag', 'setApplicationEnabledSync successfully.');
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'setApplicationEnabledSync failed: %{public}s', err.message);
+}
+```
+
 ### bundleManager.setAbilityEnabled
 
 setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean, callback: AsyncCallback\<void>): void;
@@ -1785,7 +1827,7 @@ try {
             if (err) {
                 hilog.error(0x0000, 'testTag', 'setAbilityEnabled failed: %{public}s', err.message);
             } else {
-                hilog.info(0x0001, "testTag", "setAbilityEnabled successfully.");
+                hilog.info(0x0000, "testTag", "setAbilityEnabled successfully.");
             }
         });
     }).catch(err => {
@@ -1853,6 +1895,66 @@ try {
         }).catch(err => {
             hilog.error(0x0000, 'testTag', 'setAbilityEnabled failed: %{public}s', err.message);
         });
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.setAbilityEnabledSync<sup>10+</sup>
+
+setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void;
+
+以同步方法设置指定组件的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名    | 类型        | 必填 | 说明                                  |
+| -------- | ----------- | ---- | ------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。              |
+| isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ---------------------------------------|
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityInfo is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+let info;
+
+try {
+    bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
+        info = abilitiesInfo[0];
+
+        try {
+            bundleManager.setAbilityEnabledSync(info, false);
+            hilog.info(0x0000, "testTag", "setAbilityEnabledSync successfully.");
+        } catch (err) {
+            hilog.error(0x0000, 'testTag', 'setAbilityEnabledSync failed: %{public}s', err.message);
+        }
     }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
@@ -1951,6 +2053,51 @@ try {
     });
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'isApplicationEnabled failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.isApplicationEnabledSync<sup>10+</sup>
+
+isApplicationEnabledSync(bundleName: string): boolean;
+
+以同步方法获取指定应用的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | -------------------------- |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示当前应用为使能状态，返回false表示当前应用为禁用状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+
+try {
+    let data = bundleManager.isApplicationEnabledSync(bundleName);
+    hilog.info(0x0000, 'testTag', 'isApplicationEnabledSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'isApplicationEnabledSync failed: %{public}s', err.message);
 }
 ```
 
@@ -2067,6 +2214,69 @@ try {
         }).catch(err => {
             hilog.error(0x0000, 'testTag', 'isAbilityEnabled failed. Cause: %{public}s', err.message);
         });
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.isAbilityEnabledSync<sup>10+</sup>
+
+isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean;
+
+以同步方法获取指定组件的禁用或使能状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                        |
+| ---- | ----------- | ---- | --------------------------- |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息。 |
+
+**返回值：**
+
+| 类型    | 说明                                                                 |
+| ------- | ------------------------------------------------------------------- |
+| boolean | 返回true表示当前应用组件为使能状态，返回false表示当前应用组件为禁用状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | --------------------------------------- |
+| 17700001 | The specified bundleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+let info;
+
+try {
+    bundleManager.queryAbilityInfo(want, abilityFlags, userId).then((abilitiesInfo) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(abilitiesInfo));
+        info = abilitiesInfo[0];
+
+        try {
+            let data = bundleManager.isAbilityEnabledSync(info);
+            hilog.info(0x0000, 'testTag', 'isAbilityEnabledSync successfully: %{public}s', JSON.stringify(data));
+        } catch (err) {
+            hilog.error(0x0000, 'testTag', 'isAbilityEnabledSync failed: %{public}s', err.message);
+        }
     }).catch(err => {
         hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
     });
