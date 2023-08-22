@@ -1640,6 +1640,192 @@ try {
 }
 ```
 
+### registerObserver<sup>10+</sup>
+
+registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
+
+注册指定uri的callback。uri与callback可以为多对多的关系，推荐使用一个callback监听一个uri。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名               | 类型                                              | 必填 | 说明                           |
+| -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
+| uri                  | string                                            | 是   | 文件或目录的uri                |
+| notifyForDescendants | boolean                                           | 是   | 监听目录时，是否监听子文件变化 |
+| callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 返回通知信息                   |
+
+**示例1：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例2：使用相同uri、notifyForDescendants、callback重复注册**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // 返回注册成功，仅在log中提示重复注册
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  sleep(100);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例3：使用相同uri、callback及不同notifyForDescendants重复注册会重置notifyForDescendants**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // 注册成功修改notifyForDescendants为false,不感知子文件的变化
+  fileAccessHelper.registerObserver(dirUri, false, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string, callback: Callback&lt;NotifyMessage&gt;): void
+
+取消注册指定的uri和callback。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                      |
+| -------- | ------------------------------------------------- | ---- | ------------------------- |
+| uri      | string                                            | 是   | 文件或目录的uri           |
+| callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 解注册uri下对应的callback |
+
+**示例：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string): void
+
+取消注册指定的uri对应的所有callback。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| uri    | string | 是   | 文件或目录的uri |
+
+**示例：**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // 期待收到uri为'file://docs/storage/Users/currentUser/Documents'，事件类型为NOTIFY_DELETE
+  const callbackDir1 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  const callbackDir2 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir2);
+  await fileAccessHelper.delete(dirUri);
+  // 取消注册监听dirUri的所有callback(callbackDir1、callbackDir2)
+  fileAccessHelper.unregisterObserver(dirUri);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
 ## CopyResult<sup>10+</sup>
 
 表示复制操作失败时的返回信息，复制成功时则没有返回信息。
@@ -1684,3 +1870,36 @@ try {
 | DATE_MODIFIED | 'date_modified' | 文件的修改日期，例如1665310670      |
 | RELATIVE_PATH | 'relative_path' | 相对路径，例如Pictures/Screenshots/ |
 | FILE_SIZE     | 'size'          | 文件（夹）大小（单位：字节）        |
+
+## NotifyType<sup>10+</sup>
+
+枚举，通知类型。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称              | 值   | 说明                                                         |
+| ----------------- | ---- | ------------------------------------------------------------ |
+| NOTIFY_ADD        | 0    | 表示新增文件                                                 |
+| NOTIFY_DELETE     | 1    | 表示删除文件                                                 |
+| NOTIFY_MOVED_TO   | 2    | 表示移动至该文件（对该目录下子文件或目录执行rename操作，或外部文件或目录执行move操作到本文件） |
+| NOTIFY_MOVED_FROM | 3    | 表示自该文件移出（如子文件或文件夹执行move操作从该文件夹内移出） |
+| NOTIFY_MOVE_SELF  | 4    | 表示本文件被移动（如对文件或文件夹执行rename或move操作）     |
+
+## NotifyMessage<sup>10+</sup>
+
+通知回调函数的值。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
+| type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型                                            |
+| uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知 |
