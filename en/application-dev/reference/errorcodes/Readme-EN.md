@@ -24,7 +24,8 @@
   - [Audio Error Codes](errorcode-audio.md)
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
-- Resource Manager
+  - [Camera Error Codes](errorcode-camera.md)
+- Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
 - Background Task
@@ -60,7 +61,7 @@
   - [Traffic Management Error Codes](errorcode-net-statistics.md)
 - Connectivity
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
-  - [Wi-Fi Error Codes](errorcode-wifi.md)  
+  - [Wi-Fi Error Codes](errorcode-wifi.md)
   - [NFC Error Codes](errorcode-nfc.md)
   - [SE Error Codes](errorcode-se.md)
   - [RPC Error Codes](errorcode-rpc.md)
@@ -87,7 +88,7 @@
   - [Device Management Error Codes](errorcode-device-manager.md)
   - [Location Subsystem Error Codes](errorcode-geoLocationManager.md)
   - [Screen Hopping Error Codes](errorcode-devicestatus.md)
-  - [Screen Hopping Error Codes (to Be Deprecated)](errorcode-multimodalinput.md)
+  - [Screen Hopping Error Codes (To Be Deprecated Soon)](errorcode-multimodalinput.md)
   - [Sensor Error Codes](errorcode-sensor.md)
   - [Vibrator Error Codes](errorcode-vibrator.md)
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
@@ -95,7 +96,7 @@
   - [Update Error Codes](errorcode-update.md)
 - Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Common Library Library
+- Common Library
   - [Common Library Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)
