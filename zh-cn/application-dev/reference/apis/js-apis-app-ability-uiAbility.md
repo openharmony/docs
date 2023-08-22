@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-ability设置分享数据。其中，ohos.extra.param.key.contentTitle表示分享框中对分享内容title的描述，ohos.extra.param.key.shareAbstract表示分享框中对携带内容的摘要描述，ohos.extra.param.key.shareUrl表示服务的在线地址。以上三项分享数据均是开发者填充，且为Object对象，对象的key分别为title，abstract，url。
+在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -323,7 +323,7 @@ ability设置分享数据。其中，ohos.extra.param.key.contentTitle表示分�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | 待分享的数据。 |
 
 **示例：**
     
