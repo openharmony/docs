@@ -450,7 +450,7 @@ getAppNetSync(): NetHandle
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| NetHandle | 返回APP绑定的数据网络。 |
+| [NetHandle](#nethandle8) | 返回APP绑定的数据网络。 |
 
 **错误码：**
 
@@ -619,7 +619,7 @@ connection.getAllNets().then(function (data) {
 
 getAllNetsSync(): Array&lt;NetHandle&gt;
 
-使用同步方法获取App绑定的网络信息。
+使用同步方法获取所有处于连接状态的网络列表。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -629,7 +629,7 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| Array&lt;[NetHandle](#nethandle)&gt; | 返回激活的数据网络列表。 |
+| Array&lt;[NetHandle](#nethandle8)&gt; | 返回激活的数据网络列表。 |
 
 **错误码：**
 
@@ -740,13 +740,13 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 
 | 参数名    | 类型                    | 必填 | 说明             |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。 |
+| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
 
 **返回值：**
 
 | 类型                                                    | 说明                              |
 | ------------------------------------------------------- | --------------------------------- |
-| [ConnectionProperties](#connectionproperties) | 返回网络的连接信息。 |
+| [ConnectionProperties](#connectionproperties8) | 返回网络的连接信息。 |
 
 **错误码：**
 
@@ -859,13 +859,13 @@ getNetCapabilities(netHandle: NetHandle): NetCapabilities
 
 | 参数名    | 类型                    | 必填 | 说明             |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。 |
+| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
 
 **返回值：**
 
 | 类型                                          | 说明                              |
 | --------------------------------------------- | --------------------------------- |
-| [NetCapabilities](#netcapabilities) | 返回网络的能力信息。 |
+| [NetCapabilities](#netcapabilities8) | 返回网络的能力信息。 |
 
 **错误码：**
 
