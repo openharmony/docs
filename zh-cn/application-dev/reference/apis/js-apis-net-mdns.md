@@ -853,6 +853,7 @@ discoveryService.stopSearchingMDNS();
 ### off('serviceFound')<sup>10+</sup>
 
 off(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
+
 取消订阅发现mDNS服务的通知。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
