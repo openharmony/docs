@@ -5,8 +5,16 @@
 > **说明：**
 > 
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> 支持拖拽控制的组件：[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[Video](ts-media-components-video.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。
+
+ArkUI组件默认支持拖拽。
+
+当以下组件的draggable属性设置为true时可以响应拖拽事件，此时，组件不需要配置数据传输，即可进行拖拽。其他组件需要开发者将draggable属性设置为true且在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
+
+- 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
+
+- 默认支持拖入的组件：Video
+
+- 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
 
 
 ## 属性
