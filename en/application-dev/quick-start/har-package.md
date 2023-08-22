@@ -2,7 +2,17 @@
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resources, and configuration files. It enables modules and projects to share code related to ArkUI components, resources, and more. Unlike a Harmony Ability Package (HAP), a HAR cannot be independently installed on a device. Instead, it can be referenced only as the dependency of an application module.
 
 ## Creating a HAR Module
-You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612). To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building. To enable obfuscation, open the **build-profile.json5** file of the HAR module and set **artifactType** to **obfuscation** as follows:
+You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612).
+
+To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
+
+> **NOTE**
+>
+> Obfuscation is only available for ArkTS projects in the stage model.
+
+### Obfuscation in API Version 9
+
+In API version 9, obfuscation is disabled by default, and can be enabled by setting **artifactType** to **obfuscation** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
 
 ```json
 {
@@ -16,9 +26,43 @@ The value options of **artifactType** are as follows, with the default value bei
 - **original**: Code is not obfuscated.
 - **obfuscation**: Code is obfuscated using Uglify.
 
-> **NOTE**
->
-> Obfuscation is available only in the stage model. Therefore, if **artifactType** is set to **obfuscation**, **apiType** must be set to **stageMode**.
+### Obfuscation in API Version 10
+
+In API version 10, obfuscation is enabled by default, and can be set through the **enable** field under **ruleOptions** in the **build-profile.json5** file of the HAR module. The configuration is as follows:
+
+```json
+{
+  "apiType": "stageMode",
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          },
+          "consumerFiles": [
+            "./consumer-rules.txt"
+          ]
+        }
+      }
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}
+```
+### Adaptation Guide
+
+The **artifactType** field is forward compatible, and the original function is not affected. Yet, it is deprecated since API version 10, and you are advised to use the substitute as soon as possible.
 
 ## Precautions for HAR Development
 - The HAR does not support the declaration of **abilities** and **extensionAbilities** in its configuration file.
@@ -95,7 +139,7 @@ To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/do
 
 ### Reference ArkUI Components in the HAR
 
-After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The sample code is as follows:
+After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The code snippet is as follows:
 ```js
 // entry/src/main/ets/pages/index.ets
 import { MainPage } from "library"
