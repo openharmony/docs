@@ -1023,3 +1023,344 @@ struct CompA {
   }
 }
 ```
+
+## 组件复用场景
+
+子组件通过@Prop接收父组件传递的数据，如果嵌套的层数过多，会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题。下面给出5层@Prop嵌套传递数据的不推荐用法及通过@Reusable实现父组件向子组件传递数据的推荐用法。
+
+### 不推荐用法
+
+```ts
+// 以下是嵌套类对象的数据结构。
+@Observed
+class ClassA {
+  public title: string;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+}
+
+@Observed
+class ClassB {
+  public name: string;
+  public a: ClassA;
+
+  constructor(name: string, a: ClassA) {
+    this.name = name;
+    this.a = a;
+  }
+}
+
+@Observed
+class ClassC {
+  public name: string;
+  public b: ClassB;
+
+  constructor(name: string, b: ClassB) {
+    this.name = name;
+    this.b = b;
+  }
+}
+
+@Observed
+class ClassD {
+  public name: string;
+  public c: ClassC;
+
+  constructor(name: string, c: ClassC) {
+    this.name = name;
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassE {
+  public name: string;
+  public d: ClassD;
+
+  constructor(name: string, d: ClassD) {
+    this.name = name;
+    this.d = d;
+  }
+}
+
+```
+
+以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State vote: ClassE = new ClassE('Hi', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
+
+  build() {
+    Column() {
+      Button('change')
+        .onClick(() => {
+          this.vote.name = "Hello"
+        })
+      Child({ voteOne: this.vote })
+    }
+  }
+}
+
+@Component
+struct Child {
+  @Prop voteOne: ClassE
+  build() {
+    Column() {
+      Text(this.voteOne.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteOne.name:' + this.voteOne.name);
+          this.voteOne.name = 'Bye'
+        })
+      ChildOne({voteTwo:this.voteOne.d})
+    }
+  }
+}
+
+@Component
+struct ChildOne {
+  @Prop voteTwo: ClassD
+  build() {
+    Column() {
+      Text(this.voteTwo.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteTwo.name:' + this.voteTwo.name);
+          this.voteTwo.name = 'Bye Bye'
+        })
+      ChildTwo({voteThree:this.voteTwo.c})
+    }
+  }
+}
+
+@Component
+struct ChildTwo {
+  @Prop voteThree: ClassC
+  build() {
+    Column() {
+      Text(this.voteThree.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteThree.name:' + this.voteThree.name);
+          this.voteThree.name = 'Bye Bye Bye'
+        })
+      ChildThree({voteFour:this.voteThree.b})
+    }
+  }
+}
+
+@Component
+struct ChildThree {
+  @Prop voteFour: ClassB
+  build() {
+    Column() {
+      Text(this.voteFour.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteFour.name:' + this.voteFour.name);
+          this.voteFour.name = 'Bye Bye Bye Bye'
+        })
+      ChildFour({voteFive:this.voteFour.a})
+    }
+  }
+}
+
+@Component
+struct ChildFour {
+  @Prop voteFive: ClassA
+  build() {
+    Column() {
+      Text(this.voteFive.title).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteFive.title:' + this.voteFive.title);
+          this.voteFive.title = 'Bye Bye Bye Bye Bye'
+        })
+    }
+  }
+}
+```
+
+### 推荐用法
+
+当在组件复用场景时，父组件向子组件传递数据，子组件变化不会同步给父组件，推荐使用aboutToResue。
+
+```ts
+// 以下是嵌套类对象的数据结构。
+@Observed
+class ClassA {
+  public title: string;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+}
+
+@Observed
+class ClassB {
+  public name: string;
+  public a: ClassA;
+
+  constructor(name: string, a: ClassA) {
+    this.name = name;
+    this.a = a;
+  }
+}
+
+@Observed
+class ClassC {
+  public name: string;
+  public b: ClassB;
+
+  constructor(name: string, b: ClassB) {
+    this.name = name;
+    this.b = b;
+  }
+}
+
+@Observed
+class ClassD {
+  public name: string;
+  public c: ClassC;
+
+  constructor(name: string, c: ClassC) {
+    this.name = name;
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassE {
+  public name: string;
+  public d: ClassD;
+
+  constructor(name: string, d: ClassD) {
+    this.name = name;
+    this.d = d;
+  }
+}
+
+```
+
+以下组件层次结构呈现的是@Reusable组件复用场景的数据结构。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State vote: ClassE = new ClassE('Hi', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
+
+  build() {
+    Column() {
+      Button('change')
+        .onClick(() => {
+          this.vote.name = "Hello"
+        })
+        .reuseId(Child.name)
+      Child({voteOne: this.vote})
+    }
+  }
+}
+
+@Reusable
+@Component
+struct Child {
+  @State voteOne: ClassE = new ClassE('voteOne', new ClassD('OpenHarmony', new ClassC('Hello', new ClassB('World', new ClassA('Peace')))))
+  aboutToReuse(params){
+    this.voteOne = params
+
+  }
+  build() {
+    Column() {
+      Text(this.voteOne.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.error('this.voteOne.name:' + this.voteOne.name);
+          this.voteOne.name = 'Bye'
+        })
+        .reuseId(ChildOne.name)
+      ChildOne({voteTwo: this.voteOne.d})
+    }
+  }
+}
+
+@Reusable
+@Component
+struct ChildOne {
+  @State voteTwo: ClassD = new ClassD('voteTwo', new ClassC('Hello', new ClassB('World', new ClassA('Peace'))))
+  aboutToReuse(params){
+    this.voteTwo = params
+  }
+  build() {
+    Column() {
+      Text(this.voteTwo.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.error('this.voteTwo.name:' + this.voteTwo.name);
+          this.voteTwo.name = 'Bye Bye'
+        })
+        .reuseId(ChildTwo.name)
+      ChildTwo({voteThree: this.voteTwo.c})
+    }
+  }
+}
+
+@Reusable
+@Component
+struct ChildTwo {
+  @State voteThree: ClassC = new ClassC('voteThree', new ClassB('World', new ClassA('Peace')))
+  aboutToReuse(params){
+    this.voteThree = params
+
+  }
+  build() {
+    Column() {
+      Text(this.voteThree.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteThree.name:' + this.voteThree.name);
+          this.voteThree.name = 'Bye Bye Bye'
+        })
+        .reuseId(ChildThree.name)
+      ChildThree({voteFour: this.voteThree.b})
+    }
+  }
+}
+
+@Reusable
+@Component
+struct ChildThree {
+  @State voteFour: ClassB = new ClassB('voteFour', new ClassA('Peace'))
+  aboutToReuse(params){
+    this.voteFour = params
+
+  }
+  build() {
+    Column() {
+      Text(this.voteFour.name).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteFour.name:' + this.voteFour.name);
+          this.voteFour.name = 'Bye Bye Bye Bye'
+        })
+        .reuseId(ChildFour.name)
+      ChildFour({voteFive: this.voteFour.a})
+    }
+  }
+}
+
+@Reusable
+@Component
+struct ChildFour {
+  @State voteFive: ClassA = new ClassA('voteFive')
+  aboutToReuse(params){
+    this.voteFive = params
+
+  }
+  build() {
+    Column() {
+      Text(this.voteFive.title).fontSize(24).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          console.log('this.voteFive.title:' + this.voteFive.title);
+          this.voteFive.title = 'Bye Bye Bye Bye Bye'
+        })
+    }
+  }
+}
+```
