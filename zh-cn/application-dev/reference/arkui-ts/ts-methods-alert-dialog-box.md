@@ -27,6 +27,7 @@
 | alignment  | [DialogAlignment](#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
 | gridCount  | number                       | 否     | 弹窗容器宽度所占用栅格数。<br/>默认值：4 |
+| maskRect<sup>10+</sup>| [Rectangle](#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 
 ## AlertDialogParamWithButtons对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
@@ -40,6 +41,7 @@
 | alignment       | [DialogAlignment](#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset          | [Offset](ts-types.md#offset) | 否  | 弹窗相对alignment所在位置的偏移量。 |
 | gridCount       | number                       | 否  | 弹窗容器宽度所占用栅格数。 |
+| maskRect<sup>10+</sup> | [Rectangle](#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 
 ## DialogAlignment枚举说明
 
@@ -55,6 +57,25 @@
 | CenterEnd<sup>8+</sup>   | 右中对齐。   |
 | BottomStart<sup>8+</sup> | 左下对齐。   |
 | BottomEnd<sup>8+</sup>   | 右下对齐。   |
+
+## Rectangle<sup>10+</sup>类型说明
+
+Rectangle是各种Dialog中maskRect参数的类型。
+
+| 名称     | 类型                           | 必填 | 描述                                |
+|--------|------------------------------|----|-----------------------------------|
+| x      | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域相对于窗口左上角的x轴坐标。<br/>默认值：0vp |
+| y      | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域相对于窗口左上角的y轴坐标。<br/>默认值：0vp |
+| width  | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域的宽度。<br/>默认值：'100%'        |
+| height | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域的高度。<br/>默认值：'100%'        |
+
+>  **说明：**
+>
+>  x和y可以设置正负值百分比。当x设置为'100%'时表示遮蔽层区域往右偏移窗口本身宽度大小，当x设置为'-100%'时表示遮蔽层区域往左偏移窗口本身宽度大小。当y设置为'100%'时表示遮蔽层区域往下偏移窗口本身高度大小，当y设置为'-100%'时表示遮蔽层区域往上偏移窗口本身高度大小。
+>
+>  width和height只能设置正值，支持百分比，如果设置为负值，那么该值将被重置为默认值。
+>
+>  百分比相对于窗口自身宽高进行计算。
 
 ## 示例
 
