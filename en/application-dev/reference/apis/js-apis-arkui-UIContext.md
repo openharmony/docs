@@ -608,9 +608,9 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 
 **Return value**
 
-| Type          | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| ComponentInfo | Size, position, translation, scaling, rotation, and affine matrix information of the component. |
+| Type                                                    | Description                                            |
+| -------------------------------------------------------- | ------------------------------------------------ |
+| [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
 
 **Example**
 
