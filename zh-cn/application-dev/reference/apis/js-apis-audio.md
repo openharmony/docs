@@ -4310,9 +4310,9 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
 
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
 根据音频信息，返回优先级最高的输出设备，使用callback方式异步返回结果。
 
@@ -4325,6 +4325,15 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 | rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。             |
 | callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输出设备信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. Return by callback.  |
+| 6800301 | System error. Return by callback.                    |
+
 **示例：**
 ```js
 let rendererInfo = {
@@ -4332,8 +4341,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -4343,8 +4352,8 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
+getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
 
@@ -4368,7 +4377,8 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error. Return by promise.  |
+| 6800301 | System error. Return by promise.                    |
 
 **示例：**
 
@@ -4378,8 +4388,8 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-async function getPreferOutputDevice() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+async function getPreferredOutputDevice() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err) => {
     console.error(`Result ERROR: ${err}`);
@@ -4387,9 +4397,9 @@ async function getPreferOutputDevice() {
 }
 ```
 
-### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### on('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
 订阅最高优先级输出设备变化事件，使用callback获取最高优先级输出设备。
 
@@ -4399,7 +4409,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredOutputDeviceChangeForRendererInfo' |
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
 
@@ -4419,14 +4429,14 @@ let rendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0 }
 
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
   console.info(`device descriptor: ${desc}`);
 });
 ```
 
-### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### off('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
 取消订阅最高优先级输出音频设备变化事件。
 
@@ -4436,7 +4446,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredOutputDeviceChangeForRendererInfo' |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
 
 **错误码：**
@@ -4450,7 +4460,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```js
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4830,6 +4840,14 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 | mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
 | callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.  |
+
 **示例：**
 
 ```js
@@ -4861,6 +4879,14 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise用于返回执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 6800101 | Invalid parameter error. Return by promise.  |
 
 **示例：**
 
