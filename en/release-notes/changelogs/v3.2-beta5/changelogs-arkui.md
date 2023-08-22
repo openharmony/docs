@@ -39,8 +39,6 @@
     }
     ```
 
-    ![datePicker](../../../application-dev/reference/arkui-ts/figures/datePicker.gif)
-
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
     The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
