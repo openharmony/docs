@@ -3540,6 +3540,43 @@ getColorByName(resName: string): Promise&lt;number&gt;
   }
   ```
 
+### getRawFileContentSync<sup>10+</sup>
+
+getRawFileContentSync(path: string): Uint8Array
+
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回字节数组。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                              | 必填   | 说明                      |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | 是    | rawfile文件路径             |
+
+**返回值：**
+
+| 类型                    | 说明         |
+| --------------------- | ---------- |
+| Uint8Array | 返回获取的rawfile文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getRawFileContentSync("test.txt");
+  } catch (error) {
+    console.error(`getRawFileContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ### getRawFileContent<sup>9+</sup>
 
 getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
@@ -3619,6 +3656,43 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
   }
   ```
 
+### getRawFileListSync<sup>10+</sup>
+
+getRawFileListSync(path: string): Array\<string\>
+
+用户获取resources/rawfile目录下文件夹及文件列表，使用同步形式返回文件列表的字符串数组。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                              | 必填   | 说明                      |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | 是    | rawfile文件夹路径             |
+
+**返回值：**
+
+| 类型                        | 说明          |
+| ------------------------- | ----------- |
+| Array\<string\> | rawfile文件夹下的列表（包含子文件夹和文件） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.       |
+
+**示例：**
+  ```ts
+  try { // 传入""表示获取rawfile根目录下的文件列表
+    this.context.resourceManager.getRawFileListSync("")
+  } catch (error) {
+    console.error(`getRawFileListSync failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ### getRawFileList<sup>10+</sup>
 
 getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
@@ -3695,6 +3769,43 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
     });
   } catch (error) {
     console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getRawFdSync<sup>10+</sup>
+
+getRawFdSync(path: string): RawFileDescriptor
+
+用户获取resources/rawfile目录下对应rawfile文件的descriptor。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                               |
+| -------- | ---------------------------------------- | ---- | -------------------------------- |
+| path     | string                                   | 是    | rawfile文件路径                      |
+
+**返回值：**
+
+| 类型                        | 说明          |
+| ------------------------- | ----------- |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getRawFdSync("test.txt");
+  } catch (error) {
+    console.error(`getRawFdSync failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -3778,6 +3889,37 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
     });
   } catch (error) {
     console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### closeRawFdSync<sup>10+</sup>
+
+closeRawFdSync(path: string): void
+
+用户关闭resources/rawfile目录下rawfile文件的descriptor。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                        | 必填   | 说明          |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | 是    | rawfile文件路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | The resource not found by path.          |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.closeRawFdSync("test.txt");
+  } catch (error) {
+    console.error(`closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
