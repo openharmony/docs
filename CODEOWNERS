@@ -98,7 +98,6 @@ zh-cn/application-dev/dfx/hitracechain-guidelines.md @zengyawen @stone2050 @stes
 zh-cn/application-dev/dfx/errormanager-guidelines.md @littlejerry1 @ccllee @chengxingzhen @RayShih
 zh-cn/application-dev/dfx/errormanager-guidelines.md @littlejerry1 @ccllee @chengxingzhen @RayShih
 zh-cn/application-dev/key-features/multi-device-app-dev/ @lingminghw @crazyracing0726
-zh-cn/application-dev/database/ @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/napi/native-window-guidelines.md @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang @principal87 @jianghui58
 zh-cn/application-dev/napi/mindspore-lite-offline-model-guidelines.md @ge-yafang @principal87 @jianghui58
@@ -555,4 +554,36 @@ zh-cn/application-dev/reference/errorcodes/errorcode-window.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-workScheduler.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-calendarManager.md @ge-yafang @jt_123456 @edollar
-zh-cn/application-dev/arkts-utils @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/arkts-commonlibrary-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/concurrency-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/async-concurrency-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/single-io-development.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/multi-thread-concurrency-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/taskpool-vs-worker.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/cpu-intensive-task-development.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/io-intensive-task-development.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/sync-task-development.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
+zh-cn/application-dev/arkts-utils/container-overview.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/linear-container.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/nonlinear-container.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/xml-overview.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/xml-generation.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/xml-parsing.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/arkts-utils/xml-conversion.md @ge-yafang @gongjunsong @blackstone-oh
+zh-cn/application-dev/database/data-mgmt-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/app-data-persistence-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-persistence-by-preferences.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-persistence-by-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-persistence-by-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/sync-app-data-across-devices-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-sync-of-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-sync-of-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-reliability-security-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-backup-and-restore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-encryption.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/access-control-by-device-and-data-level.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-share-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
