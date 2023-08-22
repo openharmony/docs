@@ -29,7 +29,8 @@ ArkUI组件默认支持拖拽。
 
 ```ts
 // xxx.ets
-import UDMF from '@ohos.data.UDMF';
+import UDC from '@ohos.data.unifiedDataChannel';
+import UTD from '@ohos.data.uniformTypeDescriptor';
 @Entry
 @Component
 struct ImageExample {
@@ -44,7 +45,7 @@ struct ImageExample {
       Text('Image拖拽')
         .fontSize('30dp')
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-        Image($r('app.media.1'))
+        Image($r('app.media.icon'))
           .width(100)
           .height(100)
           .border({ width: 1 })
@@ -80,7 +81,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop(["File.Media.Text", "File.Media.Image"])
+          .allowDrop([UTD.UniformDataType.TEXT, UTD.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             let jsonString = JSON.parse(extraParams);
             this.uri = jsonString.extraInfo;
@@ -111,7 +112,7 @@ struct ImageExample {
           .border({width: 1})
           .height('90%')
           .width('100%')
-          .allowDrop(["File.Media.Image"])
+          .allowDrop([UTD.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             console.log("enter onDrop")
             let dragData = event.getData();
@@ -119,7 +120,7 @@ struct ImageExample {
             if(dragData != undefined) {
               let arr = dragData.getRecords();
               if(arr.length > 0) {
-                let image = <UDMF.Image>(arr[0]);
+                let image = <UDC.Image>(arr[0]);
                 this.uri = image.imageUri;
                 let jsonString = JSON.parse(extraParams);
                 this.BblockArr.splice(jsonString.insertIndex, 0, this.uri);
