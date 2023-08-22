@@ -7,6 +7,8 @@
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
+>
+> 当前不支持同时配置excuteDrag和[onDragStart](../arkui-ts/ts-universal-events-drag-drop.md#事件)。
 
 
 ## 导入模块
@@ -180,3 +182,4 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [UDMF.UnifiedData](./js-apis-data-udmf.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
+
