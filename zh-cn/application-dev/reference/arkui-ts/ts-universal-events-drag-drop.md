@@ -251,3 +251,6 @@ struct Index {
   }
 }
 ```
+
+## 注意事项
+当前不支持excuteDrag和startDrag回调同时配置。
