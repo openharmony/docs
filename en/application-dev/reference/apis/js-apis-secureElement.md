@@ -66,7 +66,7 @@ try {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
-            console.log.("Service state is Connected");
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
@@ -114,7 +114,6 @@ try {
 try {
     nfcOmaReaderList = nfcSEService.getReaders();
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        nfcOmaReader = this.nfcOmaReaderList[0];
         console.log("get reader successfully");
     } else {
         console.log("get reader failed");
@@ -205,7 +204,6 @@ import secureElement from '@ohos.secureElement';
 
 let nfcSEService = null;
 
-this.result = "version: "
 try {
     // refer to newSEService for this.nfcSEService 
     console.log("version: " + nfcSEService.getVersion());
@@ -349,7 +347,7 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 ```js
 import secureElement from '@ohos.secureElement';
 
-nfcOmaReader = null;
+let nfcOmaReader = null;
 
 try {
     // refer to SEService.getReaders for this.nfcOmaReader
@@ -584,10 +582,11 @@ import secureElement from '@ohos.secureElement';
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
+let aidArray = [720, 1080];
 
 try {
     // See Reader.openSession for this.nfcOmaSession.
-    let getPromise = nfcOmaSession.openBasicChannel(this.aidArray);
+    let getPromise = nfcOmaSession.openBasicChannel(aidArray);
     getPromise.then((channel) => {
         nfcOmaChannel = channel;
         console.log("openBasicChannel1 get channel successfully");
@@ -736,7 +735,6 @@ For details about error codes, see [SE Error Codes](../errorcodes/errorcode-se.m
 
 ```js
 import secureElement from '@ohos.secureElement';
-
 
 let nfcOmaSession = null;
 let nfcOmaChannel = null;
@@ -915,8 +913,9 @@ if (nfcOmaSession) {
         }).catch ((err) => {
             console.log("openLogicChannel3 exception");
         })
-} catch (e) {
-    console.log("openLogicChannel3 exception:" + e.message);
+    } catch (e) {
+        console.log("openLogicChannel3 exception:" + e.message);
+    }
 }
 ```
 

@@ -6,11 +6,11 @@ Deprecated **X509Cert.getSerialNumber()** and replaced it with **X509Cert.getCer
 
 **Change Impact**
 
-**X509Cert.getSerialNumber()** is deprecated since API version 10. **X509Cert.getCertSerialNumber()** should be used to replace **X509Cert.getSerialNumber()** in application development. The API function remains unchanged.
+Since API version 10, use **X509Cert.getCertSerialNumber()** instead of **X509Cert.getSerialNumber()** in application development. The API function remains unchanged.
 
 **Key API/Component Changes**
 
-API before change:
+Before change:
 
  ```js
 interface X509Cert {
@@ -20,7 +20,7 @@ interface X509Cert {
 }
  ```
 
-API after change:
+After change:
 
  ```js
 interface X509Cert {
