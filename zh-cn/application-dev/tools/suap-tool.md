@@ -3,6 +3,10 @@
 SDK upgrade assistance plugin（SDK升级辅助工具插件，简称suap），用于帮助开发者快速解决SDK升级导致的API不兼容问题。
 Beta版本不承诺API稳定性，在SDK升级后，可能存在API不兼容的问题，应用开发者对现在工程切换API版本后，需要适配API接口及其底层行为的变更，存在一定的升级成本；因此OpenHarmony提供了SDK升级辅助工具，可以帮助开发者快速了解升级适配全貌，并通过工具提示快速适配升级，显著提高SDK升级效率。
 
+## 约束与限制
+1. 应用在升级SDK之前，需要将旧版本的SDK文件进行备份，以免被新版本SDK给覆盖掉。
+2. 目前suap工具仅支持OpenHarmony应用升级SDK时使用。
+
 ## 工具安装
 
 1.主菜单栏中点击 "File" > "Settings..."。
