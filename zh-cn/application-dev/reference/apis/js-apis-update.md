@@ -1,10 +1,11 @@
 # @ohos.update (升级)
 
-升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
+升级范围：升级整个系统，包括内置资源和预置应用，不包括三方应用。
 
-升级依赖：升级分为SD卡升级和在线升级两种。
+升级类型：SD卡升级、在线升级。
 
 - SD卡升级依赖升级包和SD卡安装。
+
 - 在线升级依赖设备厂商部署的用于管理升级包的服务器。服务器由设备厂商部署，IP由调用者传入，请求的request接口是固定的，由设备厂商开发。
 
 > **说明：**
@@ -31,7 +32,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 参数名         | 类型                          | 必填   | 说明     |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级信息对象。 |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级对象信息。 |
 
 **返回值：**
 
@@ -45,7 +46,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.     |
 
 **示例：**
 
@@ -68,7 +69,7 @@ try {
 
 getRestorer(): Restorer
 
-获取恢复出厂对象。
+获取恢复出厂设置对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -85,7 +86,7 @@ getRestorer(): Restorer
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -117,7 +118,7 @@ getLocalUpdater(): LocalUpdater
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -139,7 +140,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -153,7 +154,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -171,7 +172,7 @@ checkNewVersion(): Promise\<CheckResult>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值:**
 
@@ -185,7 +186,7 @@ checkNewVersion(): Promise\<CheckResult>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
@@ -207,7 +208,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -221,7 +222,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -240,7 +241,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -254,7 +255,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -275,7 +276,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -291,7 +292,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -321,7 +322,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -342,7 +343,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -373,7 +374,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -387,7 +388,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -407,13 +408,13 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本对象。 |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本信息对象。 |
 
 **错误码**：
 
@@ -421,7 +422,7 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -443,7 +444,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -458,7 +459,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -483,7 +484,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -503,7 +504,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -529,7 +530,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -543,7 +544,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -561,7 +562,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -575,7 +576,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -595,7 +596,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -611,7 +612,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -639,7 +640,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -660,7 +661,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -690,7 +691,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -706,7 +707,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -733,7 +734,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -754,7 +755,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -783,7 +784,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -799,7 +800,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -826,7 +827,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -847,7 +848,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -876,7 +877,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -892,7 +893,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -919,7 +920,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -940,7 +941,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -969,7 +970,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -985,7 +986,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1012,7 +1013,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1033,7 +1034,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1062,7 +1063,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1076,7 +1077,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1095,7 +1096,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -1109,7 +1110,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1130,7 +1131,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1145,7 +1146,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1168,7 +1169,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1180,7 +1181,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 | 类型             | 说明                  |
 | -------------- | ------------------- |
-| Promise\<void> | Promise对象，返回设置结果对象。 |
+| Promise\<void> | Promise对象。 无返回结果的Promise对象。|
 
 **错误码**：
 
@@ -1188,7 +1189,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1213,7 +1214,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1227,7 +1228,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1245,7 +1246,7 @@ terminateUpgrade(): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值：**
 
@@ -1259,7 +1260,7 @@ terminateUpgrade(): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1292,7 +1293,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1327,7 +1328,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1352,7 +1353,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+**需要权限**：ohos.permission.FACTORY_RESET
 
 **参数：**
 
@@ -1366,7 +1367,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1384,7 +1385,7 @@ factoryReset(): Promise\<void>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+**需要权限**：ohos.permission.FACTORY_RESET
 
 **返回值:**
 
@@ -1398,7 +1399,7 @@ factoryReset(): Promise\<void>
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
@@ -1420,7 +1421,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1436,7 +1437,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1459,7 +1460,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1480,7 +1481,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
@@ -1503,7 +1504,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **参数：**
 
@@ -1518,7 +1519,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1541,7 +1542,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+**需要权限**：ohos.permission.UPDATE_SYSTEM
 
 **返回值:**
 
@@ -1555,7 +1556,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例:**
 
@@ -1591,7 +1592,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1628,7 +1629,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1664,8 +1665,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称      | 类型                                | 必填   | 说明   |
 | ------- | ----------------------------------- | ---- | ---- |
-| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商。  |
-| subType | [BusinessSubType](#businesssubtype) | 是    | 类型。   |
+| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商/厂家。  |
+| subType | [BusinessSubType](#businesssubtype) | 是    | 升级类型。  |
 
 ## CheckResult
 
@@ -1675,7 +1676,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 类型                              | 必填   | 说明     |
 | ----------------- | --------------------------------- | ---- | ------ |
-| isExistNewVersion | bool                              | 是    | 是否有新版本。 |
+| isExistNewVersion | boolean                              | 是    | 是否有新版本。<br>ture表示有新版本，false表示没有新版本。|
 | newVersionInfo    | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据。  |
 
 ## NewVersionInfo
@@ -1712,7 +1713,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式。     |
 | displayVersion  | string                              | 是    | 显示版本号。    |
 | innerVersion    | string                              | 是    | 版本号。      |
-| size            | number                              | 是    | 升级包大小。    |
+| size            | number                              | 是    | 升级包大小，单位为B。    |
 | effectiveMode   | [EffectiveMode](#effectivemode)     | 是    | 生效模式。     |
 | descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 版本描述文件信息。 |
 
@@ -1790,7 +1791,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                | 类型 | 必填   | 说明       |
 | ----------------- | ---- | ---- | -------- |
-| isAllowAutoResume | bool | 是    | 是否允许自动恢复。 |
+| isAllowAutoResume | boolean | 是    | 是否允许自动恢复。<br>ture表示允许自动恢复，false表示不允许。 |
 
 ## UpgradeOptions
 
@@ -1820,8 +1821,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 类型                                    | 必填   | 说明      |
 | ------------------- | --------------------------------------- | ---- | ------- |
-| downloadStrategy    | bool                                    | 是    | 自动下载策略。  |
-| autoUpgradeStrategy | bool                                    | 是    | 自动升级策略。  |
+| downloadStrategy    | boolean                        | 是    | 自动下载策略。 <br>ture表示可自动下载，false表示不可自动下载。 |
+| autoUpgradeStrategy | boolean                        | 是    | 自动升级策略。 <br>ture表示可自动升级，false表示不可自动升级。 |
 | autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 是    | 自动升级时间段。 |
 
 ## UpgradePeriod
@@ -1843,7 +1844,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称        | 类型                  | 必填   | 说明     |
 | --------- | --------------------- | ---- | ------ |
-| existTask | bool                  | 是    | 是否存在任务。 |
+| existTask |  boolean                  | 是    | 是否存在任务。<br>ture表示存在，false表示不存在。 |
 | taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据。   |
 
 ## EventInfo
