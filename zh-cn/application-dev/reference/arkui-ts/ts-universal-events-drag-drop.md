@@ -6,13 +6,16 @@
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
->
-> 默认支持拖入的组件：Video
->
-> 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
->
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
+
+ArkUI默认组件不支持拖拽。当组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true时，可响应拖拽事件。此时，以下组件不需要配置数据传输，即可进行拖拽，其他组件需要开发者在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
+
+- 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
+
+- 默认支持拖入的组件：Video
+
+- 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
+
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
