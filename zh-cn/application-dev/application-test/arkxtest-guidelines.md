@@ -75,8 +75,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
-
-import EntryAbility from '../../../main/ets/entryability/EntryAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 function sleep(time: number) {
@@ -94,7 +93,7 @@ export default function abilityTest() {
       })
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: EntryAbility)=>{
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
@@ -121,8 +120,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
-
-import EntryAbility from '../../../main/ets/entryability/EntryAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 function sleep(time: number) {
@@ -140,7 +138,7 @@ export default function abilityTest() {
       })
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: EntryAbility)=>{
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
