@@ -388,7 +388,7 @@ context.startAbility(want, options).then(() => {
 
 ## 启动UIAbility的指定页面
 
-一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。本文主要讲解目标UIAbility首次启动和目标UIAbility非首次启动两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
+一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。本文主要讲解[目标UIAbility冷启动](#目标UIAbility冷启动)和[目标UIAbility热启动](#目标UIAbility热启动)两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
 
 
 ### 调用方UIAbility指定启动页面
@@ -416,9 +416,9 @@ context.startAbility(want).then(() => {
 ```
 
 
-### 目标UIAbility首次启动
+### 目标UIAbility冷启动
 
-目标UIAbility首次启动时，在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
+目标UIAbility冷启动时，在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
 
 
 ```ts
@@ -448,7 +448,7 @@ export default class FuncAbility extends UIAbility {
 }
 ```
 
-### 目标UIAbility非首次启动
+### 目标UIAbility热启动
 
 在应用开发中，会遇到目标UIAbility实例之前已经启动过的场景，这时再次启动目标UIAbility时，不会重新走初始化逻辑，只会直接触发`onNewWant()`生命周期方法。为了实现跳转到指定页面，需要在`onNewWant()`中解析要参数进行处理。
 
@@ -479,7 +479,7 @@ S-->>U: 显示给张三发短信的页面
 
 开发步骤如下所示。
 
-1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -519,7 +519,7 @@ S-->>U: 显示给张三发短信的页面
      funcAbilityWant: Want;
      uiContext: UIContext;
    
-     onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
        if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Second';
          let router: Router = this.uiContext.getRouter();
