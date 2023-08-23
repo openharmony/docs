@@ -8,7 +8,7 @@ The framework provides four pixel units, with vp as the reference data unit.
 | px   | Physical pixel unit of the screen.                                          |
 | vp   | Pixel unit specific to the screen density. Pixels in this unit are converted into physical pixels of the screen based on the screen pixel density. This unit is used for values whose unit is not specified. On a screen with an actual width of 1440 physical pixels, 1 vp is approximately equal to 3 px.|
 | fp   | Font pixel, which is similar to vp and varies according to the system font size.|
-| lpx  | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**). For example, if **designWidth** is set to **720** (default value), then 1 lpx is equal to 2 px for a screen with an actual width of 1440 physical pixels.|
+| lpx  | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by [designWidth](../../quick-start/module-configuration-file.md#pages)). For example, if **designWidth** is set to **720** (default value), then 1 lpx is equal to 2 px for a screen with an actual width of 1440 physical pixels.|
 
 
 ## Pixel Unit Conversion

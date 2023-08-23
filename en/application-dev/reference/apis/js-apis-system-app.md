@@ -2,9 +2,7 @@
 
 > **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs.
-> 
-> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -14,16 +12,15 @@
 import app from '@system.app';
 ```
 
+## App
 
-## app.getInfo
+### getInfo
 
-getInfo(): AppResponse
+static getInfo(): AppResponse
 
 Obtains the declared information in the **config.json** file of an application.
 
-> **NOTE**
-> 
-> You are advised to use [@ohos.bundle](js-apis-Bundle.md) since API version 7.
+This API is deprecated since API version 9. You are advised to use [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -44,9 +41,9 @@ Obtains the declared information in the **config.json** file of an application.
   }
   ```
 
-## app.terminate
+### terminate
 
-terminate(): void
+static terminate(): void
 
 Terminates the current ability.
 
@@ -58,44 +55,16 @@ Terminates the current ability.
 
 **Example**
 
-  ```
-  export default {    
-    terminate(){        
-      app.terminate();    
-    }}
-  ```
-## app.requestFullWindow
-
-requestFullWindow(options?: RequestFullWindowOptions): void
-
-Requests the application to run in full window. You can call this API when the FA runs in a non-full window, for example, semi-modal FA. This API is invalid for an application already in full-window mode.
-
-> **NOTE**
-> 
-> You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [RequestFullWindowOptions](#requestfullwindowoptions) | No| Duration for transition from the non-full window to the full window, in milliseconds. By default, the value is in direct proportion to the distance between the non-full window and the full window.|
-
-**Example**
-
-  ```
-  export default {    
-    requestFullWindow(){        
-      app.requestFullWindow({            
-        duration: 200});    
-    }
+```ts
+export default {
+  terminate() {
+    app.terminate()
   }
-  ```
+}
+```
+### setImageCacheCount<sup>7+</sup>
 
-## app.setImageCacheCount<sup>7+</sup>
-
-setImageCacheCount(value: number): void
+static setImageCacheCount(value: number): void
 
 Sets the maximum number of decoded images that can be cached in the memory to speed up the loading of images from the same sources. If the input parameter is not set, the default value **0** is used, indicating that images are not cached. The built-in Least Recently Used (LRU) policy is used for caching. If the maximum number is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the number of images is too large, the memory usage may be too high.
 
@@ -124,9 +93,9 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
   }
   ```
 
-## app.setImageRawDataCacheSize<sup>7+</sup>
+### setImageRawDataCacheSize<sup>7+</sup>
 
-setImageRawDataCacheSize(value: number): void
+static setImageRawDataCacheSize(value: number): void
 
 Sets the maximum size (in bytes) of the image data cached in the memory before decoding to speed up the loading of images from the same sources. If the input parameter is not set, the default value **0** is used, indicating that images are not cached. The LRU policy is used for caching. If the maximum size is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the image cache is too large, the memory usage may be too high.
 
@@ -156,9 +125,9 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
   }
   ```
 
-## app.setImageFileCacheSize<sup>7+</sup>
+### setImageFileCacheSize<sup>7+</sup>
 
-setImageFileCacheSize(value: number): void
+static setImageFileCacheSize(value: number): void
 
 Sets the maximum size of the image file cache (in bytes) to speed up the loading of images from the same sources, especially online image sources and thumbnails. If the input parameter is not set, the default value 100 MB is used. The LRU policy is used for caching. If the maximum size is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the image cache is too large, the disk usage may be too high.
 
@@ -188,6 +157,48 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
   }
   ```
 
+### ScreenOnVisible<sup>(deprecated)</sup>
+
+static screenOnVisible(options?: ScreenOnVisibleOptions): void
+
+Defines whether to keep the application visible when the screen is woken up.
+
+This API is deprecated since API Version 8.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                             | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ScreenOnVisibleOptions](#screenonvisibleoptions) | No  | With keep-alive, the system is prevented from returning to the home screen when the screen is locked, so that the application is visible when the screen is woken up.|
+
+### requestFullWindow<sup>(deprecated)</sup>
+
+static requestFullWindow(options?: RequestFullWindowOptions): void
+
+Requests the application to run in full window. You can call this API when the FA runs in a non-full window, for example, semi-modal FA. This API is invalid for an application already in full-window mode.
+
+You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                 | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [RequestFullWindowOptions](#requestfullwindowoptions) | No  | Duration for transition from the non-full window to the full window, in milliseconds. By default, the value is in direct proportion to the distance between the non-full window and the full window.|
+
+**Example**
+
+```ts
+export default {
+  requestFullWindow() {
+    app.requestFullWindow({
+      duration: 200
+    })
+  }
+}
+```
+
 ## AppResponse
 
 Defines the application response information.
@@ -200,22 +211,6 @@ Defines the application response information.
 | appName | string | Yes| Application name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 | versionName | string | Yes| Application version name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 | versionCode | number | Yes| Application version number.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
-
-## ScreenOnVisible<sup>(deprecated)</sup>
-
-screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
-
-Defines whether to keep the application visible when the screen is woken up.
-
-> **NOTE**
-> 
-> This API is deprecated since API Version 8.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- |-------- |
-| options | ScreenOnVisibleOptions | No|  With keep-alive, the system is prevented from returning to the home screen when the screen is locked, so that the application is visible when the screen is woken up. |
 
 ## ScreenOnVisibleOptions
 
@@ -238,4 +233,4 @@ Defines the options of the **RequestFullWindow** API.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| duration | number | Yes| Duration of an animation, in milliseconds.|
+| duration | number | Yes| Duration of an animation.|
