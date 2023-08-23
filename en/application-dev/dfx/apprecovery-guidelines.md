@@ -168,9 +168,9 @@ onWindowStageDestroy() {
     console.log("[Demo] MainAbility onWindowStageDestroy")
 
     G.unRegisterObserver = (() => {
-        errorManager.off(type: 'error', registerId: number, (err) => {
+        errorManager.off(type: 'error', registerId: number, (err:Error) => {
             console.error("[Demo] err:", err);
-        }): void;
+        });
     })
 }
 ```
