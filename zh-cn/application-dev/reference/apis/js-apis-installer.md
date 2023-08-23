@@ -33,7 +33,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | 是   | 回调函数，获取BundleInstaller对象，err为undefined，data为获取到的BundleInstaller对象；否则为错误对象。 |
+| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
 **示例：**
 
@@ -101,7 +101,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP包的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP包，且这些HAP包的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -231,7 +231,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -349,7 +349,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
