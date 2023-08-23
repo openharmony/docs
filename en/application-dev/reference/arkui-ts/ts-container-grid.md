@@ -63,6 +63,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 
 Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
 
@@ -186,6 +187,7 @@ struct GridExample {
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
+      .friction(0.6)
       .edgeEffect(EdgeEffect.Spring)
       .scrollBar(BarState.On)
       .onScrollIndex((first: number) => {
@@ -220,7 +222,7 @@ struct GridExample {
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = []
+  @State numbers: string[] = []
   scroller: Scroller = new Scroller()
   @State text: string = 'drag'
 
@@ -256,11 +258,6 @@ struct GridExample {
               .width(80)
               .height(80)
               .textAlign(TextAlign.Center)
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Up) {
-                  this.text = day
-                }
-              })
           }
         })
       }
@@ -275,6 +272,7 @@ struct GridExample {
       .height(300)
       .editMode(true) // Enable the grid to enter editing mode, where the user can drag the grid items.
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { // Triggered when a grid item starts to be dragged.
+        this.text = this.numbers[itemIndex]
         return this.pixelMapBuilder() // Set the image to be displayed during dragging.
       })
       .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { // Triggered when the dragged item is dropped on the drop target of the grid.

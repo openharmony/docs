@@ -66,6 +66,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | scrollSnapAlign<sup>10+</sup>       | [ScrollSnapAlign](#scrollsnapalign10) | Alignment mode of list items when scrolling ends.<br>Default value: **ScrollSnapAlign.NONE**<br>**NOTE**<br>This attribute is available only when the heights of list items are the same.|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 
 ## ListItemAlign<sup>9+</sup>
 
@@ -163,7 +164,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 The table below lists the changes in the **ScrollState** enums.
 
-| Scenario    | API version 9 and earlier                        |API version 10 and later                          |
+| Scenario    | API Version 9 and Earlier                        |API Version 10 and Later                          |
 | ------ | ------------------------------ |------------------------------ |
 | Finger dragging  | Scroll | Scroll |
 | Inertial scrolling  | Fling | Fling |
@@ -213,6 +214,7 @@ struct ListExample {
       }
       .listDirection(Axis.Vertical) // Arrangement direction
       .scrollBar(BarState.Off)
+      .friction(0.6)
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // Divider
       .edgeEffect(EdgeEffect.Spring) // Set the edge scrolling effect to Spring.
       .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
@@ -264,6 +266,7 @@ struct ListLanesExample {
       }
       .height(300)
       .width("90%")
+      .friction(0.6)
       .border({ width: 3, color: Color.Red })
       .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
@@ -327,6 +330,7 @@ struct ListExample{
           }, item => item)
         }.width('90%')
         .scrollBar(BarState.Off)
+        .friction(0.6)
       }.width('100%')
 
       Button('edit list')
