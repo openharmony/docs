@@ -64,9 +64,10 @@
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export class AVPlayerDemo {
-  private avPlayer;
+  private avPlayer: media.AVPlayer;
   private count: number = 0;
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
   private fileSize: number = -1;
@@ -74,28 +75,24 @@ export class AVPlayerDemo {
   // 注册avplayer回调函数
   setAVPlayerCallback() {
     // seek操作结果回调函数
-    this.avPlayer.on('seekDone', (seekDoneTime) => {
+    this.avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
-    this.avPlayer.on('error', (err) => {
+    // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
+    this.avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       this.avPlayer.reset(); // 调用reset重置资源，触发idle状态
     })
     // 状态机变化回调函数
-    this.avPlayer.on('stateChange', async (state, reason) => {
+    this.avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
         case 'idle': // 成功调用reset接口后触发该状态机上报
           console.info('AVPlayer state idle called.');
           this.avPlayer.release(); // 调用release接口销毁实例对象
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
-          console.info('AVPlayerstate initialized called.');
-          this.avPlayer.prepare().then(() => {
-            console.info('AVPlayer prepare succeeded.');
-          }, (err) => {
-            console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-          });
+          console.info('AVPlayer state initialized called.');
+          this.avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
           console.info('AVPlayer state prepared called.');
@@ -166,9 +163,11 @@ export class AVPlayerDemo {
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
+    let avFileDescriptor: media.AVFileDescriptor =
+      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
     this.isSeek = true; // 支持seek操作
     // 为fdSrc赋值触发initialized状态机上报
-    this.avPlayer.fdSrc = fileDescriptor;
+    this.avPlayer.fdSrc = avFileDescriptor;
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(seek模式)示例
@@ -178,9 +177,9 @@ export class AVPlayerDemo {
     // 创建状态机变化回调函数
     this.setAVPlayerCallback();
     // dataSrc播放模式的的播放源地址，当播放为Seek模式时fileSize为播放文件的具体大小，下面会对fileSize赋值
-    let src = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number, pos: number) => {
         let num = 0;
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
@@ -196,7 +195,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
@@ -213,9 +212,9 @@ export class AVPlayerDemo {
     // 创建状态机变化回调函数
     this.setAVPlayerCallback();
     let context = getContext(this) as common.UIAbilityContext;
-    let src: object = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number) => {
         let num = 0;
         if (buf == undefined || length == undefined) {
           return -1;
@@ -230,7 +229,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作
