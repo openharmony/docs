@@ -1154,10 +1154,10 @@ let valuesBucket1: ValuesBucket = {
 let vbs = new Array(valuesBucket1);
 try {
     dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-    if (err !== undefined) {
-        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
-        return;
-    }
+        if (err !== undefined) {
+            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+            return;
+        }
     console.info("batchInsert succeed, data : " + data);
     });
 } catch (err) {
