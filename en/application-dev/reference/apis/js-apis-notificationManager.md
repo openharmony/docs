@@ -100,7 +100,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```js
 // NotificationRequest object
 let notificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
