@@ -49,7 +49,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 // The phAccessHelper instance obtained here is a global object. By default, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
 const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
 ## Applying for Permissions
