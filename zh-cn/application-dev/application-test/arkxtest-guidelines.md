@@ -75,8 +75,8 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
-import EntryAbility from '../../../main/ets/entryability/EntryAbility';
 
+import EntryAbility from '../../../main/ets/entryability/EntryAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 function sleep(time: number) {
