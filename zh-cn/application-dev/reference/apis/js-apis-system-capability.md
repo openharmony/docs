@@ -33,11 +33,11 @@ querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
 
 ```ts
 try {
-    systemcapability.querySystemCapabilities(function (err, data) {
+    systemcapability.querySystemCapabilities((err:Error, data:string) => {
     if (err == undefined) {
         console.log("get system capabilities:" + data)
     } else {
-        console.log(" get system capabilities err:" + err.code)
+        console.log(" get system capabilities err:" + err)
     }});
 }catch(e){
     console.log("get unexpected error: " + e);
@@ -63,11 +63,10 @@ querySystemCapabilities(): Promise&lt;string&gt;
 
 ```ts
 try {
-    var p = systemcapability.querySystemCapabilities();
-    p.then(function (value) {
+    systemcapability.querySystemCapabilities().then((value:string) => {
         console.log("get system capabilities: " + value);
-    }).catch(function (err) {
-        console.log("get system capabilities error: " + err.code);
+    }).catch((err:Error) => {
+        console.log("get system capabilities error: " + err);
     });
 }catch(e){
     console.log("get unexpected error: " + e);
