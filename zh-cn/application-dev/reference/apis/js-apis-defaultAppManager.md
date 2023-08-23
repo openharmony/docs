@@ -344,7 +344,6 @@ defaultAppMgr.getDefaultApplicationSync("image/png")
 });
 ```
 
-
 ## defaultAppMgr.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
