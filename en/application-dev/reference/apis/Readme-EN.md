@@ -16,6 +16,8 @@
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
+    - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionAbility.md)
+    - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionContentSession.md)
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
@@ -106,6 +108,7 @@
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
+      - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
@@ -205,12 +208,13 @@
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.font (Custom Font Registration)](js-apis-font.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
+  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
   - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
-  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
+
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -225,12 +229,15 @@
     - [WebGL2](js-apis-webgl2.md)
 
 - Multimedia
+  - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (System Sound Management)](js-apis-systemSoundManager.md)
+  - application
+    - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
 
@@ -413,7 +420,7 @@
   - [@ohos.account.appAccount.AuthorizationExtensionAbility (App AuthorizationExtensionAbility)](js-apis-appAccount-authorizationExtensionAbility.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
-  
+
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
 

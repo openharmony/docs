@@ -144,9 +144,10 @@
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - Inter-Device Application Component Interaction (Continuation)
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
-          - [Cross-Device Migration (for System Applications Only)](application-models/hop-cross-device-migration.md)
+          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
           - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
         - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
+        - [Setting Atomic Services to Support Sharing](application-models/atomic-services-support-sharing.md)
       - Process Model
         - [Process Model Overview](application-models/process-model-stage.md)
         - Common Events
@@ -478,6 +479,7 @@
         - [Developing Audio Call](media/audio-call-development.md)
       - [Video Playback](media/video-playback.md)
       - [Video Recording](media/video-recording.md)
+      - [Screen Capture](media/avscreen-capture.md)
       - Audio and Video Codecs
         - [Obtaining Supported Codecs](media/obtain-supported-codecs.md)
         - [Audio Encoding](media/audio-encoding.md)
@@ -544,9 +546,9 @@
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
   - AI
-    - [AI Development](./ai/ai-overview.md)
-    - [Using MindSpore Lite JavaScript APIs to Develop AI Applications](./ai/mindspore-guidelines-based-js.md)
-    - [Using MindSpore Lite Native APIs to Develop AI Applications](./ai/mindspore-guidelines-based-native.md)
+    - [AI Development](ai/ai-overview.md)
+    - [Using MindSpore Lite JavaScript APIs to Develop AI Applications](ai/mindspore-guidelines-based-js.md)
+    - [Using MindSpore Lite Native APIs to Develop AI Applications](ai/mindspore-guidelines-based-native.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
@@ -624,12 +626,12 @@
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
       - [Accessing Files Across Devices](file-management/file-access-across-devices.md)
   - Background Task Management
-      - [Background Task Overview](task-management/background-task-overview.md)
-      - [Transient Task](task-management/transient-task.md)
-      - [Continuous Task](task-management/continuous-task.md)
-      - [Deferred Task](task-management/work-scheduler.md)
-      - [Agent-powered Reminder](task-management/agent-powered-reminder.md)     
-      - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
+    - [Background Task Overview](task-management/background-task-overview.md)
+    - [Transient Task](task-management/transient-task.md)
+    - [Continuous Task](task-management/continuous-task.md)
+    - [Deferred Task](task-management/work-scheduler.md)
+    - [Agent-powered Reminder](task-management/agent-powered-reminder.md)     
+    - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
   - Device Management
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -680,6 +682,7 @@
   - Native APIs
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - Graphics
+      - [XComponent Development](napi/xcomponent-guidelines.md)
       - [Drawing Development](napi/drawing-guidelines.md)
       - [NativeBuffer Development](napi/native-buffer-guidelines.md)
       - [NativeImage Development](napi/native-image-guidelines.md)
@@ -730,6 +733,8 @@
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
+        - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionAbility.md)
+        - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionContentSession.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
         - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
@@ -820,6 +825,7 @@
           - [ProcessInformation](reference/apis/js-apis-inner-application-processInformation.md)
           - [ServiceExtensionContext](reference/apis/js-apis-inner-application-serviceExtensionContext.md)
           - [UIAbilityContext](reference/apis/js-apis-inner-application-uiAbilityContext.md)
+          - [UIExtensionContext](reference/apis/js-apis-inner-application-uiExtensionContext.md)
           - [shellCmdResult](reference/apis/js-apis-inner-application-shellCmdResult.md)
           - [WindowExtensionContext](reference/apis/js-apis-inner-application-windowExtensionContext.md)
         - wantAgent
@@ -935,12 +941,15 @@
         - [WebGL](reference/apis/js-apis-webgl.md)
         - [WebGL2](reference/apis/js-apis-webgl2.md)
     - Multimedia
+      - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (AVSession Management)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (Camera Management)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (Image Processing)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (Media)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.systemSoundManager (System Sound Management)](reference/apis/js-apis-systemSoundManager.md)
+      - application
+        - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (Ringtone Player)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - Resource Management
@@ -1336,6 +1345,7 @@
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
+      - [Hyperlink](reference/arkui-ts/ts-container-hyperlink.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
       - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
@@ -1351,6 +1361,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [UIExtensionComponent](reference/arkui-ts/ts-container-ui-extension-component.md)
       - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - Media Components
       - [Video](reference/arkui-ts/ts-media-components-video.md)
@@ -1603,6 +1614,7 @@
       - [Audio Error Codes](reference/errorcodes/errorcode-audio.md)
       - [Media Error Codes](reference/errorcodes/errorcode-media.md)
       - [AVSession Management Error Codes](reference/errorcodes/errorcode-avsession.md)
+      - [Camera Error Codes](reference/errorcodes/errorcode-camera.md)
     - Resource Management
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
@@ -1622,7 +1634,7 @@
       - [DataShare Error Codes](reference/errorcodes/errorcode-datashare.md)
       - [Distributed Data Object Error Codes](reference/errorcodes/errorcode-distributed-dataObject.md)
       - [Distributed KV Store Error Codes](reference/errorcodes/errorcode-distributedKVStore.md)
-      - [Preferences Error Codes](reference/errorcodes/errorcode-preferences.md)
+      - [User Preference Error Codes](reference/errorcodes/errorcode-preferences.md)
     - File Management
       - [File Management Error Codes](reference/errorcodes/errorcode-filemanagement.md)
     - Telephony Service
@@ -1656,7 +1668,7 @@
       - [Time and Time Zone Service Error Codes](reference/errorcodes/errorcode-time.md)
       - [Webview Error Codes](reference/errorcodes/errorcode-webview.md)
     - Account Management
-      - [Account Error Codes](reference/errorcodes/errorcode-account.md)
+      - [Account Management Error Codes](reference/errorcodes/errorcode-account.md)
     - Device Management
       - [Power Consumption Statistics Error Codes](reference/errorcodes/errorcode-batteryStatistics.md)
       - [Brightness Error Codes](reference/errorcodes/errorcode-brightness.md)
