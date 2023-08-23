@@ -33,7 +33,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -69,7 +69,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -116,7 +116,7 @@ Synchronously creates a **Helper** object to connect to the specified Wants. The
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -167,7 +167,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -234,7 +234,7 @@ Synchronously obtains a **FileIterator** object that lists the next-level files 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -290,7 +290,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -322,7 +322,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 ## FileIterator
 
-Provides the **FileIterator** object.
+Provides a **FileIterator** object.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -346,11 +346,11 @@ Obtains information about the next-level files or directories.
 
 | Type| Description|
 | --- | -- |
-| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This method traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
+| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This API traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## RootInfo
 
@@ -398,7 +398,7 @@ Synchronously obtains a **FileIterator** object that lists the first-level files
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -454,7 +454,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -510,11 +510,11 @@ Obtains the root directory of the next-level device.
 
 | Type| Description|
 | --- | -- |
-| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This method traverses the directory until **true** is returned. The **value** field contains the root directory information.|
+| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This API traverses the directory until **true** is returned. The **value** field contains the root directory information.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## FileAccessHelper
 
@@ -543,7 +543,7 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -591,7 +591,7 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -645,7 +645,7 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -689,7 +689,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -738,7 +738,7 @@ Creates a directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -782,7 +782,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -831,7 +831,7 @@ Opens a file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -868,7 +868,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -915,7 +915,7 @@ Deletes a file or directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -953,7 +953,7 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1001,7 +1001,7 @@ Moves a file or directory. This API uses a promise to return the result. Current
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1040,7 +1040,7 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1089,7 +1089,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1127,7 +1127,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1174,7 +1174,7 @@ Checks whether a file or directory exists. This API uses a promise to return the
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1214,7 +1214,7 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1640,6 +1640,192 @@ try {
 }
 ```
 
+### registerObserver<sup>10+</sup>
+
+registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
+
+Registers a callback for the specified URI. URIs and callbacks can be in many-to-many relationships. You are advised to use one callback to observe one URI.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name              | Type                                             | Mandatory| Description                          |
+| -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
+| uri                  | string                                            | Yes  | URI of the file or directory to observe.               |
+| notifyForDescendants | boolean                                           | Yes  | Whether to observe changes of the files in the directory.|
+| callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | Yes  | Callback invoked to return the notification.                  |
+
+**Example 1**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // In the following example, uri is 'file://docs/storage/Users/currentUser/Documents', and the observed event type is NOTIFY_DELETE.
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+Example 2: Use the same **uri**, **notifyForDescendants**, and **callback** to register repeatedly.
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // In the following example, uri is 'file://docs/storage/Users/currentUser/Documents', and the observed event type is NOTIFY_DELETE.
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // A message is returned indicating that the registration is successful. Repeated registration is reported only in the log.
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  sleep(100);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+Example 3: Use the same **uri** and **callback** but different **notifyForDescendants** for registration. In this case, **notifyForDescendants** will be reset.
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // In the following example, uri is 'file://docs/storage/Users/currentUser/Documents', and the observed event type is NOTIFY_DELETE.
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  // After the registration is successful, change notifyForDescendants to false.
+  fileAccessHelper.registerObserver(dirUri, false, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string, callback: Callback&lt;NotifyMessage&gt;): void
+
+Unregisters a callback of the specified URI.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                     |
+| -------- | ------------------------------------------------- | ---- | ------------------------- |
+| uri      | string                                            | Yes  | URI of the target file or directory.          |
+| callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | Yes  | Callback to unregister.|
+
+**Example**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // In the following example, uri is 'file://docs/storage/Users/currentUser/Documents', and the observed event type is NOTIFY_DELETE.
+  const callbackDir = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+  await fileAccessHelper.delete(dirUri);
+  fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+### unregisterObserver<sup>10+</sup>
+
+ unregisterObserver(uri: string): void
+
+Unregisters all callbacks of the specified URI.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description           |
+| ------ | ------ | ---- | --------------- |
+| uri    | string | Yes  | URI of the target file or directory.|
+
+**Example**
+
+```js
+let DirUri = 'file://docs/storage/Users/currentUser/Documents';
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+  // In the following example, uri is 'file://docs/storage/Users/currentUser/Documents', and the observed event type is NOTIFY_DELETE.
+  const callbackDir1 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  const callbackDir2 = (NotifyMessageDir) => {
+    if (NotifyMessageDir != undefined) {
+      console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' +
+      NotifyMessageDir.uris[0]);
+    } else {
+      console.error("NotifyMessageDir is undefined");
+    }
+  }
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
+  fileAccessHelper.registerObserver(dirUri, true, callbackDir2);
+  await fileAccessHelper.delete(dirUri);
+  // Unregister all callbacks (callbackDir1 and callbackDir2) of dirUri.
+  fileAccessHelper.unregisterObserver(dirUri);
+} catch (error) {
+  console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
 ## CopyResult<sup>10+</sup>
 
 Defines the information returned when the file copy operation fails. If the copy operation is successful, no information is returned.
@@ -1684,3 +1870,36 @@ Enumerates the keys of the file attributes to query.
 | DATE_MODIFIED | 'date_modified' | Date when a file was modified, for example, **1665310670**.     |
 | RELATIVE_PATH | 'relative_path' | Relative path of the file, for example, **Pictures/Screenshots/**.|
 | FILE_SIZE     | 'size'          | Size of a file, in bytes.       |
+
+## NotifyType<sup>10+</sup>
+
+Enumerates the notification types.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+| Name             | Value  | Description                                                        |
+| ----------------- | ---- | ------------------------------------------------------------ |
+| NOTIFY_ADD        | 0    | File added.                                                |
+| NOTIFY_DELETE     | 1    | File deleted.                                                |
+| NOTIFY_MOVED_TO   | 2    | File or folder moved in (for example, **rename()** is performed on a file or folder in this directory or a file or directory is moved to this directory)|
+| NOTIFY_MOVED_FROM | 3    | File or folder moved out.|
+| NOTIFY_MOVE_SELF  | 4    | File moved (for example, **rename()** or **move()** is performed on a file or folder).    |
+
+## NotifyMessage<sup>10+</sup>
+
+Represents the notification message.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+| Name| Type                       | Readable| Writable| Description                                                     |
+| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
+| type | [NotifyType](#notifytype10) | Yes  | No  | Notification type.                                           |
+| uris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files. Currently, only one notification is supported. A collection of multiple notifications will be supported in later versions.|
