@@ -32,7 +32,7 @@
 数据管理服务提供了两种同步方式：手动同步和自动同步。键值型数据库可选择其中一种方式实现同应用跨设备数据同步。
 
 
-- **手动同步**：由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。手动同步功能，仅系统应用可用。
+- **手动同步**：由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。
 
 - **自动同步**：由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，同步时机包括设备上线、应用程序更新数据等，应用不需要主动调用sync接口。
 
@@ -71,8 +71,6 @@
 - 每个应用程序最多支持同时打开16个键值型分布式数据库。
 
 - 单个数据库最多支持注册8个订阅数据变化的回调。
-
-- 手动同步功能，仅系统应用可用。
 
 
 ## 接口说明
@@ -247,34 +245,33 @@
 
    > **说明：**
    >
-   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getTrustedDeviceListSync](../reference/apis/js-apis-device-manager.md#gettrusteddevicelistsync)方法得到，deviceManager模块的接口均为系统接口，仅系统应用可用。
+   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
-     
    ```js
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
+   import deviceManager from '@ohos.distributedDeviceManager';
    
    let devManager;
-   // create deviceManager
-   deviceManager.createDeviceManager('bundleName', (err, value) => {
-     if (!err) {
-       devManager = value;
-       // deviceIds由deviceManager调用getTrustedDeviceListSync方法得到
-       let deviceIds = [];
-       if (devManager !== null) {
-         //需要权限：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可以获取
-         let devices = devManager.getTrustedDeviceListSync();
-         for (let i = 0; i < devices.length; i++) {
-           deviceIds[i] = devices[i].deviceId;
-         }
-       }
-       try {
-         // 1000表示最大延迟时间为1000ms
-         kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
-       } catch (e) {
-         console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+   try {
+     // create deviceManager
+     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     // deviceIds由deviceManager调用getAvailableDeviceListSync方法得到
+     let deviceIds = [];
+     if (devManager != null) {
+       let devices = devManager.getAvailableDeviceListSync();
+       for (let i = 0; i < devices.length; i++) {
+         deviceIds[i] = devices[i].networkId;
        }
      }
-   });
+     try {
+       // 1000表示最大延迟时间为1000ms
+       kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
+     } catch (e) {
+       console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     }
+   
+   } catch (err) {
+     console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+   }
    ```
 
 ## 相关实例

@@ -13,7 +13,6 @@
 > **说明：** 
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> <br>本模块中所有需要获取deviceId的接口，都仅系统应用可用。
 
 ## 导入模块
 
@@ -2030,7 +2029,7 @@ deviceId(deviceId:string):Query
 添加设备ID作为key的前缀。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
@@ -2819,7 +2818,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 删除指定设备的数据，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2871,7 +2870,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 删除指定设备的数据，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -4550,7 +4549,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceinfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -4576,40 +4575,41 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 
 let devManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        kvStore.sync(deviceIds, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds = [];
+  if (devManager != null) {
+    var devices = devManager.getAvailableDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', function (data) {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      kvStore.sync(deviceIds, mode, 1000);
+    });
+  } catch (e) {
+    console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+  }
+
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ### sync
@@ -4619,7 +4619,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceinfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -4646,43 +4646,44 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 
 let devManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
-deviceManager.createDeviceManager('bundleName', (err, value) => {
-  if (!err) {
-    devManager = value;
-    let deviceIds = [];
-    if (devManager != null) {
-      var devices = devManager.getTrustedDeviceListSync();
-      for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].networkId;
-      }
-    }
-    try {
-      kvStore.on('syncComplete', function (data) {
-        console.info('Sync dataChange');
-      });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
-        if (err != undefined) {
-          console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in putting data');
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        const query = new distributedKVStore.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(deviceIds, query, mode, 1000);
-      });
-    } catch (e) {
-      console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+try {
+  let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+  let deviceIds = [];
+  if (devManager != null) {
+    var devices = devManager.getAvailableDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+      deviceIds[i] = devices[i].networkId;
     }
   }
-});
+  try {
+    kvStore.on('syncComplete', function (data) {
+      console.info('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
+      if (err != undefined) {
+        console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in putting data');
+      const mode = distributedKVStore.SyncMode.PULL_ONLY;
+      const query = new distributedKVStore.Query();
+      query.prefixKey("batch_test");
+      query.deviceId(devManager.getLocalDeviceNetworkId());
+      kvStore.sync(deviceIds, query, mode, 1000);
+    });
+  } catch (e) {
+    console.error(`Failed to sync.code is ${e.code},message is ${e.message}`);
+  }
+
+} catch (err) {
+  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ### on('dataChange')
@@ -5046,7 +5047,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 获取与指定设备ID和key匹配的string值，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5101,7 +5102,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 获取与指定设备ID和key匹配的string值，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5281,7 +5282,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 获取与指定设备ID和key前缀匹配的所有键值对，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5348,7 +5349,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 获取与指定设备ID和key前缀匹配的所有键值对，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5544,7 +5545,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5616,7 +5617,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 获取与指定设备ID和Query对象匹配的键值对列表，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5824,7 +5825,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5879,7 +5880,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -5935,7 +5936,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6011,7 +6012,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6154,7 +6155,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 获取与本设备指定Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
@@ -6343,7 +6344,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统接口：** 此接口为系统接口。
@@ -6404,7 +6405,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统接口：** 此接口为系统接口。
@@ -6585,7 +6586,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 获取与指定设备ID和Query对象匹配的结果数，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -6651,7 +6652,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 获取与指定设备ID和Query对象匹配的结果数，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
