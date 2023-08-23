@@ -44,14 +44,14 @@ The APIs provided by **Vector** are deprecated since API version 9. You are advi
 | Accessing elements| Use **vec\[index]** to obtain the value at a given position (specified by **index**).|
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getLastElement()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **vec\[index]=xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
 | Modifying elements| Use **setLength(newSize: number)** to set the size of this container.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 | Deleting elements| Use **removeByRange(fromIndex: number, toIndex: number)** to remove all of the elements within a range.|
 
@@ -74,14 +74,14 @@ You are advised to use **List** for frequent insertion and removal operations.
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getFirst()** to obtain the first element in this container.|
 | Accessing elements| Use **getLast()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;)=&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **list\[index] = xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
 | Modifying elements| Use **replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object)** to replace all elements in this container with new elements.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 
 
@@ -105,13 +105,13 @@ You are advised to use **LinkedList** for frequent insertion and removal operati
 | Accessing elements| Use **get(index: number)** to obtain the element at a given position (specified by **index**).|
 | Accessing elements| Use **getFirst()** to obtain the first element in this container.|
 | Accessing elements| Use **getLast()** to obtain the last element in this container.|
-| Accessing elements| Use **getlndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
-| Accessing elements| Use **getLastlndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
+| Accessing elements| Use **getIndexOf(element: T)** to obtain the index of the first occurrence of the specified element.|
+| Accessing elements| Use **getLastIndexOf(element: T)** to obtain the index of the last occurrence of the specified element.|
 | Accessing elements| Use **forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object)** to traverse the elements in this container.|
 | Accessing elements| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
 | Modifying elements| Use **list\[index]=xxx** to change the value at a given position (specified by **index**).|
 | Modifying elements| Use **set(index: number, element: T)** to replace an element at a given position (specified by **index**) with a given element.|
-| Deleting elements| Use **removeBylndex(index: number)** to remove the value at a given position (specified by **index**).|
+| Deleting elements| Use **removeByIndex(index: number)** to remove the value at a given position (specified by **index**).|
 | Deleting elements| Use **remove(element: T)** to remove the first occurrence of the specified element.|
 
 
