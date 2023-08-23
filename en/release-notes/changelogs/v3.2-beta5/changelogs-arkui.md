@@ -39,7 +39,6 @@
     }
     ```
 
-    ![datePicker](../../../application-dev/reference/arkui-ts/figures/datePicker.gif)
 
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
