@@ -533,6 +533,41 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   });
   ```
 
+## fs.dup<sup>10+</sup>
+
+dup(fd: number): File
+
+将文件描述符转化为File。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | 是    | 文件描述符。 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | [File](#file) | 打开的File对象。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```js
+  // convert fd to file
+  let fd = 0;  // fd comes from other modules
+  let file = fs.dup(fd);
+  console.info("The name of the file is " + file.name);
+  fs.closeSync(file);
+  ```
+
+
 ## fs.mkdir
 
 mkdir(path: string): Promise&lt;void&gt;
@@ -3263,6 +3298,8 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | 是    | 否    | 打开的文件描述符。 |
+| path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
+| name<sup>10+</sup> | string | 是    | 否    | 文件名。 |
 
 ### lock
 
