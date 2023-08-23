@@ -37,6 +37,7 @@ Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ - If the ability to start is in another mission stack and the result needs to be returned to the caller, set the **want** parameter by following the description provided in [Want](js-apis-app-ability-want.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -44,7 +45,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
