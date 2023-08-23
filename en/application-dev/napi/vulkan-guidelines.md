@@ -18,6 +18,15 @@ For details about the APIs, see [Vulkan](../reference/native-lib/third_party_vul
 
 The following steps illustrate how to create a **VkSurfaceKHR** instance.
 
+**Adding Dynamic Link Libraries**
+
+Add the following libraries to **CMakeLists.txt**:
+```txt
+libace_ndk.z.so
+libnative_window.so
+libvulkan.so
+```
+
 **Header File**
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
