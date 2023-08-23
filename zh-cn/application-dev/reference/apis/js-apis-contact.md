@@ -13,7 +13,57 @@
 import contact from '@ohos.contact';
 ```
 
-## contact.addContact
+## contact.addContact<sup>10+<sup>
+
+addContact(context: Context, contact: Contact, callback: AsyncCallback<number>): void 
+
+添加联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    }, (err, data) => {
+      if (err) {
+        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        return;
+      }
+      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.addContact(deprecated)
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
@@ -45,8 +95,61 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
+## contact.addContact<sup>10+<sup>
 
-## contact.addContact
+addContact(context: Context, contact: Contact): Promise<number&gt;
+
+添加联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| contact | [Contact](#contact) | 是   | 联系人信息。                                                 |
+
+**返回值：**
+
+| 类型                  | 说明                                        |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | 以Promise形式返回结果，返回添加的联系人id。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.addContact(
+    globalThis.context as Context,
+    {name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  });
+  promise.then((data) => {
+    console.log(`addContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`addContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.addContact(deprecated)
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
@@ -82,8 +185,53 @@ addContact(contact: Contact): Promise&lt;number&gt;
   });
   ```
 
+## contact.deleteContact<sup>10+<sup>
 
-## contact.deleteContact
+deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;): void
+
+删除联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key      | string                    | 是   | 联系人key值，一个联系人对应一个key。                         |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回删除联系人的结果。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }  
+  contact.deleteContact(globalThis.context as Context, 'xxx', (err) => {
+      if (err) {
+          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log('deleteContact success');
+  });
+```
+
+## contact.deleteContact(deprecated)
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -113,7 +261,57 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.deleteContact
+## contact.deleteContact<sup>10+<sup>
+
+deleteContact(context: Context,  key: string): Promise&lt;void&gt;
+
+删除联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key     | string  | 是   | 联系人的key值，一个联系人对应一个key。                       |
+
+**返回值：**
+
+| 类型                | 说明                                          |
+| ------------------- | --------------------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回结果，返回删除联系人的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.deleteContact(globalThis.context as Context, 'xxx');
+  promise.then(() => {
+      console.log(`deleteContact success`);
+  }).catch((err) => {
+      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.deleteContact(deprecated)
 
 deleteContact(key: string): Promise&lt;void&gt;
 
@@ -147,7 +345,57 @@ deleteContact(key: string): Promise&lt;void&gt;
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+<sup>
+
+updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;void&gt;): void
+
+更新联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。                                                 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回更新联系人的更新结果。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -181,7 +429,60 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+<sup>
+
+updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
+
+更新联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数，返回更新联系人的更新结果。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err) => {
+      if (err) {
+          console.log('updateContact callback: err->${JSON.stringify(err)}');
+          return;
+      }
+      console.log('updateContact success');
+  });
+  ```
+
+## contact.updateContact(deprecated)
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -218,7 +519,64 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
   ```
 
 
-## contact.updateContact
+## contact.updateContact<sup>10+<sup>
+
+updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
+
+更新联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                | 说明                                              |
+| ------------------- | ------------------------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回结果，返回更新联系人的更新结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.updateContact(globalThis.context as Context, {
+      id: 1,
+      name: {fullName: 'xxx'},
+      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then(() => {
+      console.log('updateContact success');
+  }).catch((err) => {
+      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.updateContact(deprecated)
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -258,7 +616,53 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
   ```
 
 
-## contact.isLocalContact
+## contact.isLocalContact<sup>10+<sup>
+
+isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+判断当前联系人id是否在电话簿中，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isLocalContact(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.isLocalContact(deprecated)
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -287,8 +691,57 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
+## contact.isLocalContact<sup>10+<sup>
 
-## contact.isLocalContact
+isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
+
+判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id      | number  | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isLocalContact(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isLocalContact(deprecated)
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
@@ -321,8 +774,53 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
   });
   ```
 
+## contact.isMyCard<sup>10+<sup>
 
-## contact.isMyCard
+isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+判断是否为“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id       | number                       | 是   | 联系人对象的id属性。                                         |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.isMyCard(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -352,7 +850,57 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## contact.isMyCard
+## contact.isMyCard<sup>10+<sup>
+
+isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
+
+判断是否为“我的名片”，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id      | number  | 是   | 联系人对象的id属性。                                         |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.isMyCard(globalThis.context as Context, /*id*/1);
+  promise.then((data) => {
+      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.isMyCard(deprecated)
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
@@ -385,8 +933,52 @@ isMyCard(id: number): Promise&lt;boolean&gt;
   });
   ```
 
+## contact.queryMyCard<sup>10+<sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
+
+查询“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -414,8 +1006,55 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   });
   ```
 
+## contact.queryMyCard<sup>10+<sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+查询“我的名片”，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -446,8 +1085,59 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
   });
   ```
 
+## contact.queryMyCard<sup>10+<sup>
 
-## contact.queryMyCard
+queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+查询“我的名片”，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                               | 说明                                        |
+| ---------------------------------- | ------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回“我的名片”信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryMyCard(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+  });
+```
+
+## contact.queryMyCard(deprecated)
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -535,7 +1225,53 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+<sup>
+
+queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -566,6 +1302,57 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 
 ## contact.queryContact
+
+queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -599,8 +1386,56 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
   });
   ```
 
-
 ## contact.queryContact
+
+queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -632,8 +1467,61 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
   });
   ```
 
-
 ## contact.queryContact
+
+queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
+
+根据key查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+  });
+```
+
+## contact.queryContact(deprecated)
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -673,6 +1561,63 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 ## contact.queryContact
 
+queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
+
+根据key查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+| 类型                               | 说明                                            |
+| ---------------------------------- | ----------------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | 以Promise形式返回结果，返回查询到的联系人对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContact(globalThis.context as Context, 'xxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContact(deprecated)
+
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 根据key查询联系人，使用Promise方式作为异步方法。
@@ -711,8 +1656,52 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
   });
   ```
 
-
 ## contact.queryContacts
+
+queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -740,8 +1729,57 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   });
   ```
 
-
 ## contact.queryContacts
+
+queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -774,8 +1812,55 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
   });
   ```
 
-
 ## contact.queryContacts
+
+queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -806,8 +1891,60 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
   });
   ```
 
-
 ## contact.queryContacts
+
+queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+查询所有联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -843,8 +1980,63 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
   });
   ```
 
-
 ## contact.queryContacts
+
+queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+查询所有联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContacts(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContacts(deprecated)
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -862,13 +2054,14 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
 
 **返回值：**
+
 | 类型                                            | 说明                                                |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
 
 **示例：**
 
-  ```js
+```js
   let promise = contact.queryContacts({
       holderId: 0,
       bundleName: "",
@@ -881,10 +2074,55 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
   }).catch((err) => {
       console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
   });
-  ```
-
+```
 
 ## contact.queryContactsByPhoneNumber
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -915,6 +2153,57 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 
 ## contact.queryContactsByPhoneNumber
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -948,8 +2237,56 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
   });
   ```
 
-
 ## contact.queryContactsByPhoneNumber
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -981,8 +2318,61 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
   });
   ```
 
-
 ## contact.queryContactsByPhoneNumber
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据电话号码查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1019,8 +2409,65 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
   });
   ```
 
-
 ## contact.queryContactsByPhoneNumber
+
+queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+根据电话号码查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明                                                         |
+| ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
+| holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByPhoneNumber(deprecated)
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1061,8 +2508,53 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
   });
   ```
 
-
 ## contact.queryContactsByEmail
+
+queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1091,8 +2583,58 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   });
   ```
 
-
 ## contact.queryContactsByEmail
+
+queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1126,8 +2668,56 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
   });
   ```
 
-
 ## contact.queryContactsByEmail
+
+queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1159,8 +2749,61 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   });
   ```
 
-
 ## contact.queryContactsByEmail
+
+queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+
+根据email查询联系人，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| email    | string                                                | 是   | 联系人的邮箱地址。                                           |
+| holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
+| attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1197,8 +2840,65 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
   });
   ```
 
-
 ## contact.queryContactsByEmail
+
+queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
+
+根据email查询联系人，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| email   | string                                  | 是   | 联系人的邮箱地址。                                           |
+| holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
+| attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+
+**返回值：**
+
+| 类型                                            | 说明                                                |
+| ----------------------------------------------- | --------------------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  });
+  promise.then((data) => {
+      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryContactsByEmail(deprecated)
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1239,8 +2939,52 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   });
   ```
 
-
 ## contact.queryGroups
+
+queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+查询联系人的所有群组，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -1268,8 +3012,57 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   });
   ```
 
-
 ## contact.queryGroups
+
+queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
+
+查询联系人的所有群组，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| holder   | Holder                                            | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -1302,8 +3095,61 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
   });
   ```
 
-
 ## contact.queryGroups
+
+queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
+
+查询联系人的所有群组，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                                         |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+
+**返回值：**
+
+| 类型                                        | 说明                                              |
+| ------------------------------------------- | ------------------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | 以Promise形式返回结果，返回查询到的群组对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryGroups(globalThis.context as Context, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryGroups(deprecated)
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -1340,8 +3186,52 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
-
 ## contact.queryHolders
+
+queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
+
+查询所有创建联系人的应用信息，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryHolders(globalThis.context as Context, (err, data) => {
+      if (err) {
+          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -1369,8 +3259,56 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   });
   ```
 
-
 ## contact.queryHolders
+
+queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
+
+查询所有创建联系人的应用信息，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+
+**返回值：**
+
+| 类型                                          | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | 以Promise形式返回结果，返回查询到的创建联系人应用信息的对象数组。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryHolders(globalThis.context as Context);
+  promise.then((data) => {
+      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryHolders(deprecated)
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -1397,8 +3335,53 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
-
 ## contact.queryKey
+
+queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): void
+
+根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -1427,8 +3410,58 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   });
   ```
 
-
 ## contact.queryKey
+
+queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
+
+根据联系人的id查询联系人的key，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id       | number                      | 是   | 联系人对象的id属性。                                         |
+| holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  }, (err, data) => {
+      if (err) {
+          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          return;
+      }
+      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -1462,8 +3495,62 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
   });
   ```
 
-
 ## contact.queryKey
+
+queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
+
+根据联系人的id查询联系人的key，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                                         |
+| ------- | ----------------- | ---- | ------------------------------------------------------------ |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiAbility.md)。 |
+| id      | number            | 是   | 联系人对象的id属性。                                         |
+| holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
+
+**返回值：**
+
+| 类型                  | 说明                                                 |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | 以Promise形式返回结果，返回查询到的联系人对应的key。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+| 401      | Parameter error.   |
+
+**示例：**
+
+  ```js
+  // 获取context
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage){
+      globalThis.context = this.context;
+    }
+  }
+  let promise = contact.queryKey(globalThis.context as Context, /*id*/1, {
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
+  });
+  promise.then((data) => {
+      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+  }).catch((err) => {
+      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+  });
+  ```
+
+## contact.queryKey(deprecated)
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
