@@ -214,7 +214,7 @@ struct AnimateToExample {
 
 ### showAlertDialog
 
-showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons): void
+showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
@@ -224,7 +224,8 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 | 参数名    | 类型  | 必填 | 说明 |
 | ---- | --------------- | -------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)  | 是 | 定义并显示AlertDialog组件。 |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10对象说明)  | 是 | 定义并显示AlertDialog组件。 |
+
 
 **示例：**
 
