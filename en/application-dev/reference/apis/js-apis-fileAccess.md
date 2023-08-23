@@ -1,6 +1,6 @@
 # @ohos.file.fileAccess (User File Access and Management)
 
-The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with file management services, such as the media library and external storage management service, and provides a set of unified interfaces for system applications to access and manage files. The media library service allows access to user files on local and distributed devices. The external storage management service allows access to the user files stored on devices, such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
@@ -33,7 +33,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -69,7 +69,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -116,7 +116,7 @@ Synchronously creates a **Helper** object to connect to the specified Wants. The
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -168,7 +168,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -235,12 +235,12 @@ Synchronously obtains a **FileIterator** object that lists the next-level files 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
   ```js
-  // fileInfoDir indicates information about a directory.
+  // fileInfoDir specifies the target directory.
   // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
   let fileInfoDir = fileInfos[0];
   let subfileInfos = [];
@@ -248,7 +248,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   try {
     let fileIterator = fileInfoDir.listFile();
     // listFile() with the filter implementation.
-    // let fileIterator = rootInfo.listFile(filter);
+    // let fileIterator = fileInfoDir.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
       return;
@@ -291,12 +291,12 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
   ```js
-  // fileInfoDir indicates information about a directory.
+  // fileInfoDir specifies the target directory.
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let fileInfoDir = fileInfos[0];
   let subfileInfos = [];
@@ -304,7 +304,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   try {
     let fileIterator = fileInfoDir.scanFile();
     // scanFile() with the filter implementation.
-    // let fileIterator = rootInfo.scanFile(filter);
+    // let fileIterator = fileInfoDir.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
       return;
@@ -323,7 +323,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 ## FileIterator
 
-Provides the **FileIterator** object.
+Provides a **FileIterator** object.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -347,11 +347,11 @@ Obtains information about the next-level files or directories.
 
 | Type| Description|
 | --- | -- |
-| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This method traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
+| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This API traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## RootInfo
 
@@ -399,7 +399,7 @@ Synchronously obtains a **FileIterator** object that lists the first-level files
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -455,7 +455,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -511,11 +511,11 @@ Obtains the root directory of the next-level device.
 
 | Type| Description|
 | --- | -- |
-| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This method traverses the directory until **true** is returned. The **value** field contains the root directory information.|
+| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This API traverses the directory until **true** is returned. The **value** field contains the root directory information.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## FileAccessHelper
 
@@ -544,7 +544,7 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -592,7 +592,7 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -646,7 +646,7 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -690,7 +690,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -739,7 +739,7 @@ Creates a directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -783,7 +783,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -832,7 +832,7 @@ Opens a file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -869,7 +869,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -916,7 +916,7 @@ Deletes a file or directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -954,7 +954,7 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1002,13 +1002,13 @@ Moves a file or directory. This API uses a promise to return the result. Current
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
   ```js
   // The media library URI is used as an example.
-  // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
+  // In the sample code, sourceFile and destFile indicate the files or directories in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceFile = "file://media/file/102";
   let destFile = "file://media/file/101";
@@ -1041,13 +1041,13 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
   ```js
   // The media library URI is used as an example.
-  // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
+  // In the sample code, sourceFile and destFile indicate the files or directories in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceFile = "file://media/file/102";
   let destFile = "file://media/file/101";
@@ -1090,7 +1090,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1128,7 +1128,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1175,7 +1175,7 @@ Checks whether a file or directory exists. This API uses a promise to return the
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1215,13 +1215,13 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
   ```js
   // The media library URI is used as an example.
-  // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // In the sample code, sourceDir indicates a folder in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceDir = "file://media/file/100";
   try {
