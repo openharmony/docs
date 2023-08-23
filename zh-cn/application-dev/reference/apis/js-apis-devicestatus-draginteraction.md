@@ -14,7 +14,7 @@
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
-## dragInteraction.on
+## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
@@ -41,7 +41,7 @@ try {
 }
 ```
 
-## dragInteraction.off
+## dragInteraction.off('drag')
 
 off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
