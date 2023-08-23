@@ -17,16 +17,16 @@ Promise有三种状态：pending（进行中）、fulfilled（已完成）和rej
 
 
 ```js
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const randomNumber = Math.random();
-    if (randomNumber > 0.5) {
-      resolve(randomNumber);
-    } else {
-      reject(new Error('Random number is too small'));
-    }
-  }, 1000);
-});
+const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+setTimeout(() => {
+  const randomNumber: number = Math.random();
+  if (randomNumber > 0.5) {
+    resolve(randomNumber);
+  } else {
+    reject(new Error('Random number is too small'));
+  }
+}, 1000);
+}
 ```
 
 上述代码中，setTimeout函数模拟了一个异步操作，并在1秒钟后随机生成一个数字。如果随机数大于0.5，则执行resolve回调函数并将随机数作为参数传递；否则执行reject回调函数并传递一个错误对象作为参数。
@@ -55,13 +55,13 @@ async函数是一个返回Promise对象的函数，用于表示一个异步操�
 
 
 ```js
-async function myAsyncFunction() {
-  const result = await new Promise((resolve) => {
+async function myAsyncFunction(): Promise<void> {
+  const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
-  console.info(String(result)); // 输出： Hello, world!
+  console.info(result); // 输出： Hello, world!
 }
 
 myAsyncFunction();
@@ -73,9 +73,9 @@ myAsyncFunction();
 
 
 ```js
-async function myAsyncFunction() {
+async function myAsyncFunction(): Promise<void> {
   try {
-    const result = await new Promise((resolve) => {
+    const result: string = await new Promise((resolve: Function) => {
       resolve('Hello, world!');
     });
   } catch (e) {
