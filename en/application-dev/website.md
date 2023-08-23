@@ -558,6 +558,7 @@
       - [Network Connection Management](connectivity/net-connection-manager.md)
       - [MDNS Management](connectivity/net-mdns.md)
       - [Traffic Management](connectivity/net-statistics.md)
+      - [VPN Management](connectivity/net-vpn.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
@@ -910,6 +911,7 @@
     - UI Page
       - [@ohos.animator (Animator)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (Component Snapshot)](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.componentUtils (componentUtils)](reference/apis/js-apis-arkui-componentUtils.md)
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
@@ -1019,6 +1021,7 @@
       - [@ohos.net.sharing (Network Sharing)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket Connection)](reference/apis/js-apis-socket.md)
       - [@ohos.net.statistics (Traffic Management)](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.vpn (VPN Management)](reference/apis/js-apis-net-vpn.md)
       - [@ohos.net.webSocket (WebSocket Connection)](reference/apis/js-apis-webSocket.md)
       - [@ohos.request (Upload and Download)](reference/apis/js-apis-request.md)
     - Connectivity
@@ -1088,10 +1091,10 @@
       - [@ohos.charger (Charging Type)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (Screen Hopping)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (Device Attestation)](reference/apis/js-apis-deviceAttest.md)
-      - [@ohos. deviceStatus.dragInteraction (Drag)](reference/apis/js-apis-devicestatus-draginteraction.md)
+      - [@ohos.deviceStatus.dragInteraction (Drag)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (Device Information)](reference/apis/js-apis-device-info.md)
-      - [@ohos.distributedDeviceManager (Device Management)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (Device Management)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedDeviceManager (Device Management) (Recommended)](reference/apis/js-apis-distributedDeviceManager.md)
+      - [@ohos.distributedHardware.deviceManager (Device Management) (To Be Deprecated Soon)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (Peripheral Management)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (Geolocation Manager)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
@@ -1654,6 +1657,7 @@
       - [Policy Management Error Codes](reference/errorcodes/errorcode-net-policy.md)
       - [mDNS Error Codes](reference/errorcodes/errorcode-net-mdns.md)
       - [Traffic Management Error Codes](reference/errorcodes/errorcode-net-statistics.md)
+      - [VPN Error Codes](reference/errorcodes/errorcode-net-vpn.md)
     - Connectivity
       - [Bluetooth Error Codes](reference/errorcodes/errorcode-bluetoothManager.md)
       - [Wi-Fi Error Codes](reference/errorcodes/errorcode-wifi.md)
