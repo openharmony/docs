@@ -1886,7 +1886,7 @@ listFile(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
@@ -1946,7 +1946,7 @@ listFile(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。|
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
@@ -2002,7 +2002,7 @@ listFileSync(path: string, options?: {
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
+  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
