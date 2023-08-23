@@ -1853,7 +1853,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-订阅任务进度的监听。
+订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1889,7 +1889,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1925,7 +1925,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务完成的监听。
+订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1961,7 +1961,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -1997,7 +1997,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-订阅任务失败的监听。
+订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2033,7 +2033,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2070,7 +2070,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务进度的监听。
+取消订阅前端任务进度的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2106,7 +2106,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2143,7 +2143,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务完成的监听。
+取消订阅前端任务完成的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2179,7 +2179,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
@@ -2216,7 +2216,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务失败的监听。
+取消订阅前端任务失败的监听。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2252,7 +2252,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
     description: 'Sample code for event listening',
-    mode: request.agent.Mode.BACKGROUND,
+    mode: request.agent.Mode.FOREGROUND,
     overwrite: false,
     method: "PUT",
     data: attachments,
