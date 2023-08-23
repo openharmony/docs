@@ -91,7 +91,7 @@ try {
 }
 ```
 
-## BundleInstaller.getBundleInstallerSync
+## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
 
 getBundleInstallerSync(): BundleInstaller;
 
@@ -104,7 +104,7 @@ getBundleInstallerSync(): BundleInstaller;
 **返回值：**
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [BundleInstaller](js-apis-installer.md#BundleInstaller) | 返回BundleInstaller对象 |
+| [BundleInstaller](js-apis-installer.md#BundleInstaller) | 返回BundleInstaller对象。 |
 
 **示例：**
 
@@ -112,10 +112,10 @@ getBundleInstallerSync(): BundleInstaller;
 import installer from '@ohos.bundle.installer';
 
 try {
-    let data: BundleInstaller = installer.getBundleInstaller();
-    console.info('getBundleInstaller successfully.');
+    installer.getBundleInstallerSync();
+    console.info('getBundleInstallerSync successfully.');
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    console.error('getBundleInstallerSync failed. Cause: ' + error.message);
 }
 ```
 

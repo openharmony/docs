@@ -15,7 +15,7 @@
 
 - 被\@Observed装饰的类，可以被观察到属性的变化；
 
-- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中是属性，这个属性同样也需要被\@Observed装饰。
+- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
 - 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
 
@@ -162,6 +162,26 @@ class ClassB {
     this.a = a;
   }
 }
+
+@Observed
+class ClassD {
+  public c: ClassC;
+
+  constructor(c: ClassC) {
+    this.c = c;
+  }
+}
+
+@Observed
+class ClassC extends ClassA {
+  public k: number;
+
+  constructor(k: number) {
+    // 调用父类方法对k进行处理
+    super(k);
+    this.k = k;
+  }
+}
 ```
 
 
@@ -169,60 +189,64 @@ class ClassB {
 
 ```ts
 @Component
-struct ViewA {
-  label: string = 'ViewA1';
-  @ObjectLink a: ClassA;
+struct ViewC {
+  label: string = 'ViewC1';
+  @ObjectLink c: ClassC;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c=${this.a.c} +1`)
-        .onClick(() => {
-          this.a.c += 1;
-        })
-    }
+      Column() {
+        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+          .fontColor('#ffffffff')
+          .backgroundColor('#ff3fc4c4')
+          .height(50)
+          .borderRadius(25)
+        Button(`ViewC: this.c.c add 1`)
+          .backgroundColor('#ff7fcf58')
+          .onClick(() => {
+            this.c.c += 1;
+            console.log('this.c.c:' + this.c.c)
+          })
+      }
+    .width(300)
   }
+}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-
+  @State child : ClassD = new ClassD(new ClassC(0));
   build() {
     Column() {
-      ViewA({ label: 'ViewA #1', a: this.b.a })
-      ViewA({ label: 'ViewA #2', a: this.b.a })
-
-      Button(`ViewB: this.b.a.c+= 1`)
+      ViewC({ label: 'ViewC #3', c: this.child.c})
+      Button(`ViewC: this.child.c.c add 10`)
+        .backgroundColor('#ff7fcf58')
         .onClick(() => {
-          this.b.a.c += 1;
-        })
-      Button(`ViewB: this.b.a = new ClassA(0)`)
-        .onClick(() => {
-          this.b.a = new ClassA(0);
-        })
-      Button(`ViewB: this.b = new ClassB(ClassA(0))`)
-        .onClick(() => {
-          this.b = new ClassB(new ClassA(0));
+          this.child.c.c += 10
+          console.log('this.child.c.c:' + this.child.c.c)
         })
     }
   }
 }
 ```
 
+被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
+
 
 ViewB中的事件句柄：
 
 
-- this.b.a = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
+- this.child.c = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
 
-- this.b.a.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
-
-
-ViewA中的事件句柄：
+- this.child.c.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
-- this.a.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+ViewC中的事件句柄：
+
+
+- this.c.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.a = new ClassA(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 

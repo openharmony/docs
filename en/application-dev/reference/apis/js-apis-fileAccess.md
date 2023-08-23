@@ -1,6 +1,6 @@
 # @ohos.file.fileAccess (User File Access and Management)
 
-The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with file management services, such as the media library and external storage management service, and provides a set of unified interfaces for system applications to access and manage files. The media library service allows access to user files on local and distributed devices. The external storage management service allows access to the user files stored on devices, such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with a variety of file management services, such as the storage management service, and provides a set of unified file access and management interfaces for system applications. The storage management service manages both the directories of the built-in storage and resources on external devices, such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
@@ -124,10 +124,9 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   createFileAccessHelper() {
     let fileAccessHelper = null;
     // Obtain wantInfos by using getFileAccessAbilityInfo().
-    // Create a helper object to interact with the media library service only.
     let wantInfos = [
       {
-        "bundleName": "com.ohos.medialibrary.medialibrarydata",
+        "bundleName": "com.ohos.UserFile.ExternalFileManager",
         "abilityName": "FileExtensionAbility",
       },
     ]
@@ -248,7 +247,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   try {
     let fileIterator = fileInfoDir.listFile();
     // listFile() with the filter implementation.
-    // let fileIterator = rootInfo.listFile(filter);
+    // let fileIterator = fileInfoDir.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
       return;
@@ -304,7 +303,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   try {
     let fileIterator = fileInfoDir.scanFile();
     // scanFile() with the filter implementation.
-    // let fileIterator = rootInfo.scanFile(filter);
+    // let fileIterator = fileInfoDir.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
       return;
@@ -651,10 +650,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let displayName = "file1"
   let fileUri = null;
   try {
@@ -695,10 +694,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let displayName = "file1"
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -744,10 +743,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let dirName = "dirTest"
   let dirUri = null;
   try {
@@ -788,10 +787,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   let dirName = "dirTest"
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -837,10 +836,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri  = "file://media/file/100";
+  let targetUri  = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
@@ -874,10 +873,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri  = "file://media/file/100";
+  let targetUri  = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, function (err, fd) {
@@ -921,10 +920,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri = "file://media/file/100";
+  let targetUri = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let code = await fileAccessHelper.delete(targetUri);
@@ -959,10 +958,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri = "file://media/file/100";
+  let targetUri = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.delete(targetUri, function (err, code) {
@@ -1007,11 +1006,11 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
-  // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
+  // A built-in storage directory is used as an example.
+  // In the sample code, sourceFile and destFile indicate the files or directories in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceFile = "file://media/file/102";
-  let destFile = "file://media/file/101";
+  let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destFile = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
@@ -1046,11 +1045,11 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
-  // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
+  // A built-in storage directory is used as an example.
+  // In the sample code, sourceFile and destFile indicate the files or directories in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceFile = "file://media/file/102";
-  let destFile = "file://media/file/101";
+  let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destFile = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.move(sourceFile, destFile, function (err, fileUri) {
@@ -1095,10 +1094,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
@@ -1133,10 +1132,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.rename(sourceDir, "testDir", function (err, DestDir) {
@@ -1180,10 +1179,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/1.txt";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let existJudgment = await fileAccessHelper.access(sourceDir);
@@ -1220,10 +1219,10 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 **Example**
 
   ```js
-  // The media library URI is used as an example.
-  // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // A built-in storage directory is used as an example.
+  // In the sample code, sourceDir indicates a folder in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "file://media/file/100";
+  let sourceDir = "file://docs/storage/Users/currentUser/Download/test";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.access(sourceDir, function (err, existJudgment) {
@@ -1266,10 +1265,10 @@ Obtains a **FileInfo** object based on the specified URI. This API uses a promis
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
@@ -1298,10 +1297,10 @@ Obtains a **FileInfo** object based on the specified URI. This API uses an async
 **Example**
 
   ```js
-  // The media library URI is used as an example.
+  // A built-in storage directory is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "file://media/file/6";
+  let sourceUri = "file://docs/storage/Users/currentUser/Download";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
@@ -1342,7 +1341,6 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses a pro
 **Example**
 
   ```js
-  // The relative path of the Media Library is used as an example.
   // In the sample code, relativePath indicates the Download directory, which is the relativePath in fileInfo.
   // You can use the relativePath obtained.
   let relativePath = "Download/";
@@ -1374,7 +1372,6 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses an as
 **Example**
 
   ```js
-  // The relative path of the Media Library is used as an example.
   // In the sample code, relativePath indicates the Download directory, which is the relativePath in fileInfo.
   // You can use the relativePath obtained.
   let relativePath = "Download/";
@@ -1391,90 +1388,6 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses an as
     console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
-
-### getThumbnail<sup>10+</sup>
-
-getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
-
-Obtains the **Pixelmap** object of a media file based on the specified URI and size. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description       |
-| ------ | ----------------------------------- | ---- | ----------- |
-| uri    | string                              | Yes  | URI of the media file.|
-| size   | [image.Size](js-apis-image.md#size) | Yes  | Size of the thumbnail. |
-
-**Return value**
-
-| Type                         | Description              |
-| :---------------------------- | :----------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the **Pixelmap** object obtained.|
-
-**Example**
-
-```js
-// The media library URI is used as an example.
-// In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
-// You can use the URI obtained.
-let targetUri = "file://media/image/100";
-let size = { width: 128, height: 128 };
-try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  let pixelMap = await fileAccessHelper.getThumbnail(targetUri, size);
-  let imageInfo = await pixelMap.getImageInfo();    
-  console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
-  console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
-} catch (error) {
-  console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
-};
-```
-
-### getThumbnail<sup>10+</sup>
-
- getThumbnail(uri: string, size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;) : void
-
-Obtains the **Pixelmap** object of a media file based on the specified URI and size. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name  | Type                               | Mandatory| Description              |
-| -------- | ----------------------------------- | ---- | ------------------ |
-| uri      | string                              | Yes  | URI of the media file.       |
-| size     | [image.Size](js-apis-image.md#size) | Yes  | Size of the thumbnail.        |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes  | Callback invoked to return the **Pixelmap** object obtained.|
-
-**Example**
-
-```js
-// The media library URI is used as an example.
-// In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
-// You can use the URI obtained.
-let targetUri = "file://media/image/100";
-let size = { width: 128, height: 128 };
-try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.getThumbnail(targetUri, size, async(err, pixelMap) => {
-        if (err) {
-            console.error("Failed to getThumbnail in async, errCode:" + err.code + ", errMessage:" + err.message);
-            return;
-        }
-        let imageInfo = await pixelMap.getImageInfo();
-        console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
-        console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
-    });
-} catch (error) {
-    console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
-};
-```
 
 ### query<sup>10+</sup>
 
@@ -1502,7 +1415,7 @@ Queries the attribute information about a file or directory based on the URI. Th
 **Example**
 
 ```js
-var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var imageFileRelativePath = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
 var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -1535,7 +1448,7 @@ Queries the attribute information about a file or directory based on the URI. Th
 **Example**
 
 ```js
-var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var imageFileRelativePath = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
 var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -1566,8 +1479,8 @@ Copies a file or directory. This API uses a promise to return the result.
 
 | Name   | Type   | Mandatory| Description                                                        |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| sourceUri | string  | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
-| destUri   | string  | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
+| sourceUri | string  | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string  | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.       |
 | force     | boolean | No  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
 
 **Return value**
@@ -1579,11 +1492,11 @@ Copies a file or directory. This API uses a promise to return the result.
 Example 1: Copy a file with **force** unspecified.
 
 ```js
-// The media library URI is used as an example.
+// A built-in storage directory is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
@@ -1605,11 +1518,11 @@ try {
 Example 2: Copy a file or directory when **force** set to **true**.
 
 ```js
-// The media library URI is used as an example.
+// A built-in storage directory is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
@@ -1642,18 +1555,18 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
+| sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
 
 **Example**
 
 ```js
-// The media library URI is used as an example.
+// A built-in storage directory is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
@@ -1691,19 +1604,19 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
+| sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | force     | boolean                                          | Yes  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
 
 **Example**
 
 ```js
-// The media library URI is used as an example.
+// A built-in storage directory is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "file://media/file/102";
-let destFile = "file://media/file/101";
+let sourceFile = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile = "file://docs/storage/Users/currentUser/Download/test";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {
@@ -1771,6 +1684,3 @@ Enumerates the keys of the file attributes to query.
 | DATE_MODIFIED | 'date_modified' | Date when a file was modified, for example, **1665310670**.     |
 | RELATIVE_PATH | 'relative_path' | Relative path of the file, for example, **Pictures/Screenshots/**.|
 | FILE_SIZE     | 'size'          | Size of a file, in bytes.       |
-| WIDTH         | 'width'         | Width of the image file, in pixels.       |
-| HEIGHT        | 'height'        | Height of the image file, in pixels.       |
-| DURATION      | 'duration'      | Duration of the audio or video file, in milliseconds. |

@@ -257,7 +257,7 @@
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: launchWant: Want;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: lastRequestWant: Want;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: callee: Callee;|@ohos.app.ability.UIAbility.d.ts|
-|新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onCreate(want: Want, param: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
+|新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onWindowStageCreate(windowStage: window.WindowStage): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onWindowStageDestroy(): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onWindowStageRestore(windowStage: window.WindowStage): void;|@ohos.app.ability.UIAbility.d.ts|
@@ -265,7 +265,7 @@
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onForeground(): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onBackground(): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;|@ohos.app.ability.UIAbility.d.ts|
-|新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
+|新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onDump(params: Array\<string>): Array\<string>;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.UIAbility<br>类名: UIAbility<br>方法 or 属性: onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;|@ohos.app.ability.UIAbility.d.ts|
 |新增|NA|模块名: ohos.app.ability.Want<br>类名: Want|@ohos.app.ability.Want.d.ts|

@@ -36,7 +36,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 ## 限制条件
 
 - LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前stage，通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -300,9 +300,9 @@ struct CompA {
 ```
 
 
-### 兄弟节点之间同步状态变量
+### 兄弟组件之间同步状态变量
 
-下面的示例展示了通过\@LocalStorageLink双向同步兄弟节点之间的状态。
+下面的示例展示了通过\@LocalStorageLink双向同步兄弟组件之间的状态。
 
 先看Parent自定义组件中发生的变化：
 
@@ -402,7 +402,7 @@ export default class EntryAbility extends UIAbility {
 
 
 ```ts
-// 通过GetShared接口获取stage共享的Storage实例
+// 通过GetShared接口获取stage共享的LocalStorage实例
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)

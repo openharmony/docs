@@ -52,7 +52,8 @@ httpRequest.on('headersReceive', (header) => {
   console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定"EXAMPLE_URL",
+  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+  "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
@@ -81,7 +82,7 @@ httpRequest.request(
       // 当该请求使用完毕时，调用destroy方法主动销毁
       httpRequest.destroy();
     } else {
-      console.info('error:' + JSON.stringify(err));
+      console.error('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件
       httpRequest.off('headersReceive');
       // 当该请求使用完毕时，调用destroy方法主动销毁
@@ -146,7 +147,7 @@ httpRequest.requestInStream(
     readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
   }, (err, data) => {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
     console.info('ResponseCode :' + JSON.stringify(data));
     // 取消订阅HTTP响应头事件
     httpRequest.off('headersReceive');
@@ -166,7 +167,7 @@ httpRequest.requestInStream(
 
 针对HTTP数据请求，有以下相关实例可供参考：
 
-- [上传和下载（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload)
+- [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 - [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
 

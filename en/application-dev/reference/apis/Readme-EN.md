@@ -205,12 +205,13 @@
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.font (Custom Font Registration)](js-apis-font.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
+  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
   - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
-  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
+
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -225,12 +226,15 @@
     - [WebGL2](js-apis-webgl2.md)
 
 - Multimedia
+  - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (System Sound Management)](js-apis-systemSoundManager.md)
+  - application
+    - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
 
@@ -315,18 +319,19 @@
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
+  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
 
 - Connectivity
-  - [@ohos.bluetooth.a2dp (Bluetooth a2dp Module)(Recommended)](js-apis-bluetooth-a2dp.md)
-  - [@ohos.bluetooth.access (Bluetooth access Module)(Recommended)](js-apis-bluetooth-access.md)
-  - [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)(Recommended)](js-apis-bluetooth-baseProfile.md)
-  - [@ohos.bluetooth.ble (Bluetooth ble Module)(Recommended)](js-apis-bluetooth-ble.md)
-  - [@ohos.bluetooth.connection (Bluetooth connection Module)(Recommended)](js-apis-bluetooth-connection.md)
-  - [@ohos.bluetooth.constant (Bluetooth constant Module)(Recommended)](js-apis-bluetooth-constant.md)
-  - [@ohos.bluetooth.hfp (Bluetooth hfp Module)(Recommended)](js-apis-bluetooth-hfp.md)
-  - [@ohos.bluetooth.hid (Bluetooth hid Module)(Recommended)(js-apis-bluetooth-hid.md)
-  - [@ohos.bluetooth.pan (Bluetooth pan Module)(Recommended)](js-apis-bluetooth-pan.md)
-  - [@ohos.bluetooth.socket (Bluetooth socket Module)(Recommended)](js-apis-bluetooth-socket.md)
+  - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](js-apis-bluetooth-a2dp.md)
+  - [@ohos.bluetooth.access (Bluetooth Access Module) (Recommended)](js-apis-bluetooth-access.md)
+  - [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module) (Recommended)](js-apis-bluetooth-baseProfile.md)
+  - [@ohos.bluetooth.ble (Bluetooth BLE Module) (Recommended)](js-apis-bluetooth-ble.md)
+  - [@ohos.bluetooth.connection (Bluetooth connection Module) (Recommended)](js-apis-bluetooth-connection.md)
+  - [@ohos.bluetooth.constant (Bluetooth constant Module) (Recommended)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.hfp (Bluetooth hfp Module) (Recommended)](js-apis-bluetooth-hfp.md)
+  - [@ohos.bluetooth.hid (Bluetooth hid Module) (Recommended)](js-apis-bluetooth-hid.md)
+  - [@ohos.bluetooth.pan (Bluetooth pan Module) (Recommended)](js-apis-bluetooth-pan.md)
+  - [@ohos.bluetooth.socket (Bluetooth socket Module) (Recommended)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
@@ -385,6 +390,7 @@
   - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
+  - [@ohos. deviceStatus.dragInteraction (Drag)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
@@ -405,6 +411,7 @@
   - [@ohos.multimodalInput.touchEvent (Touch Event)](js-apis-touchevent.md)
   - [@ohos.multimodalInput.shortKey (Shortcut Key)](js-apis-shortKey.md)
   - [@ohos.power (System Power Management)](js-apis-power.md)
+  - [@ohos.resourceschedule.deviceStandby (Device Standby)](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.runningLock (Runninglock)](js-apis-runninglock.md)
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)
   - [@ohos.settings (Data Item Settings)](js-apis-settings.md)
@@ -420,7 +427,6 @@
 
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
-  - [@ohos.account.appAccount.AuthorizationExtensionAbility (App AuthorizationExtensionAbility)](js-apis-appAccount-authorizationExtensionAbility.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
   

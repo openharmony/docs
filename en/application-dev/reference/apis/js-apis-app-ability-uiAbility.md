@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility is an application component that has the UI. The **UIAbility** module provides lifecycle callback such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
+UIAbility is an application component that has the UI. The **UIAbility** module provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
 
 - [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
@@ -141,7 +141,7 @@ Called when this UIAbility is destroyed to clear resources.
   }
   ```
 
-After the **onDestroy** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDestroy** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDestroy** is complete.
+After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
   ```ts
 class MyUIAbility extends UIAbility {
@@ -202,7 +202,7 @@ Called to save data during the ability migration preparation process.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
 
 **Return value**
 
@@ -289,7 +289,7 @@ Called when the framework automatically saves the UIAbility state in the case of
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the UIAbility state.|
-| wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
 
 **Return value**
 
@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-Called when this UIAbility sets data to share. **ohos.extra.param.key.contentTitle** indicates the title of the content to share in the sharing box, **ohos.extra.param.key.shareAbstract** provides an abstract description of the content, and **ohos.extra.param.key.shareUrl** indicates the online address of the service. You need to set these three items as objects, with the key set to **title**, **abstract**, and **url**, respectively.
+Called by this UIAbility to set data to share. **ohos.extra.param.key.shareUrl** indicates the online address of the service.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -332,9 +332,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
     onShare(wantParams) {
         console.log('onShare');
-        wantParams['ohos.extra.param.key.contentTitle'] = {title: "OA"};
-        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for company employee"};
-        wantParams['ohos.extra.param.key.shareUrl'] = {url: "oa.example.com"};
+        wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
     }
 }
   ```

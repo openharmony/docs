@@ -646,6 +646,19 @@ Failed to install the HAP because the code signature verification is failed.
 2. 检查提供的代码签名文件的路径是否合法。
 3. 使用和安装包匹配的代码签名文件。
 
+## 17700049 应用自升级时安装的应用与调用方包名不同
+**错误信息**<br/>
+Failed to install the HAP because the bundleName is different from the bundleName of the caller application.
+
+**错误描述**<br/>
+企业mdm应用自升级时，安装的应用与调用方包名不同。
+
+**可能原因**<br/>
+1. 要安装的hap或hsp不属于当前应用。
+
+**处理步骤**<br/>
+1. 检查要安装的hap或hsp是否属于当前应用。
+
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
 Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
@@ -659,3 +672,16 @@ Failed to install the HAP because enterprise normal/MDM bundle cannot be install
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
 2. 检查设备参数const.bms.allowenterprisebundle是否为true
+
+## 17700051 应用自升级时安装的应用与调用方包名不同
+**错误信息**<br/>
+Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+
+**错误描述**<br/>
+企业mdm应用自升级时，调用方的分发类型不是企业mdm。
+
+**可能原因**<br/>
+1. 调用方的分发类型不是企业mdm。
+
+**处理步骤**<br/>
+1. 检查应用的签名文件是否正确配置。

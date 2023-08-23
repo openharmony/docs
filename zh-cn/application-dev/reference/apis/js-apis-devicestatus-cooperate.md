@@ -4,9 +4,9 @@
 
 > **说明**
 >
->   - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  - 本模块接口均为系统接口。
+> - 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import cooperate from '@ohos.cooperate'
 
 prepare(callback: AsyncCallback&lt;void&gt;): void;
 
-准备键鼠穿越，使用AsyncCallback异步方式返回结果。
+准备键鼠穿越，使用Callback异步回调。
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -26,7 +26,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名    | 类型      | 必填  | 说明    |
 | -------- | ------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;void&gt;  | 是 |回调函数，异步返回准备键鼠穿越的结果。   |
+| callback | AsyncCallback&lt;void&gt;  | 是 |回调函数，准备键鼠穿越成功时，err为undefined，否则为错误对象。   |
 
 **示例**：
 
@@ -56,7 +56,7 @@ prepare(): Promise&lt;void&gt;
 
 | 参数                 | 说明                     |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise对象，异步返回准备键鼠穿越的结果。 |
+| Promise&lt;void&gt;      | 无返回结果的Promise对象。 |
 
 
 
@@ -75,18 +75,17 @@ try {
 ```
 
 
-
 ## cooperate.unprepare
 
 unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
-取消键鼠穿越准备，使用AsyncCallback异步方式返回结果。
+取消键鼠穿越准备，使用Callback异步回调。
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
 | 参数名   | 类型                      | 必填 | 说明                                       |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，异步返回取消准备键鼠穿越的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，取消键鼠穿越准备成功时，err为undefined，否则为错误对象。 |
 
 **示例**：
 
@@ -104,13 +103,11 @@ try {
 }
 ```
 
-
-
 ## cooperate.unprepare
 
 unprepare(): Promise&lt;void&gt;;
 
-取消键鼠穿越准备，使用Promise异步方式返回结果。
+取消键鼠穿越准备，使用Promise异步回调。
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -118,7 +115,7 @@ unprepare(): Promise&lt;void&gt;;
 
 | 参数                | 说明                                          |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise对象，异步返回取消准备键鼠穿越的结果。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 ```js
 try {
@@ -133,12 +130,11 @@ try {
 ```
 
 
-
 ## cooperate.activate
 
 activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-启动键鼠穿越，使用AsyncCallback异步方式返回结果。
+启动键鼠穿越，使用Callback异步回调。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -148,7 +144,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
 | inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
-| callback             | AsyncCallback&lt;void&gt; |  是    | 回调函数，异步返回启动键鼠穿越的结果。 |
+| callback             | AsyncCallback&lt;void&gt; |  是    | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -156,7 +152,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
+| 20900001 | Operation failed.|
 
 **示例**：
 
@@ -180,7 +176,7 @@ try {
 
 activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
-启动键鼠穿越，使用Promise异步方式返回结果。
+启动键鼠穿越，使用Promise异步回调。
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -197,7 +193,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，异步返回启动键鼠穿越结果。     |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。     |
 
 **错误码：**
 
@@ -205,7 +201,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
+| 20900001 | Operation failed.   |
 
 **示例**：
 
@@ -227,7 +223,7 @@ try {
 
 deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-停止键鼠穿越，使用AsyncCallback异步方式返回结果。
+停止键鼠穿越，使用Callback异步回调。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -235,8 +231,8 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | 是 | 是否关闭跨设备链路。 |
-| callback             | AsyncCallback&lt;void&gt; |  是   | 回调函数，异步返回停止键鼠穿越的结果。       |
+| isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
+| callback     | AsyncCallback&lt;void&gt; |  是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。|
 
 
 
@@ -260,7 +256,7 @@ try {
 
 deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
-停止键鼠穿越，使用Promise异步方式返回结果。
+停止键鼠穿越，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -268,7 +264,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名      | 类型    | 必填 | 说明               |
 | ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路 |
+| isUnchained | boolean | 是   | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
 
 
 
@@ -276,7 +272,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise&lt;void&gt; |  Promise对象，异步返回停止键鼠穿越结果。      |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。      |
 
 
 
@@ -298,7 +294,7 @@ try {
 
 getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;): void;
 
-获取目标设备键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
+获取目标设备键鼠穿越开关的状态，使用Callback异步回调。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -307,7 +303,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
 | networkId | string                       |  是    | 键鼠穿越目标设备描述符。             |
-| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，异步返回目标设备的键鼠穿越开关状态 |
+| callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 **示例**：
 
@@ -336,9 +332,9 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 **参数**：
 
-| 参数名                | 类型                          | 必填   | 说明                            |
-| --------             | ---------                    | ----  | ----------------------------    |
-| networkId | string                       |  是    | 键鼠穿越目标设备描述符。            |
+| 参数名    | 类型   | 必填   | 说明                            |
+| --------   | ---------  | ----  | ----------------------------    |
+| networkId | string     |  是    | 键鼠穿越目标设备描述符。            |
 
 
 
@@ -346,7 +342,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，异步返回目标设备的键鼠穿越开关状态 |
+| Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
 
 
@@ -377,8 +373,8 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  是  | 监听类型，取值为”cooperate“ |
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息 |
+| type                 | string                                                          |  是  | 监听类型，取值为'cooperate' |
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息。 |
 
 
 
@@ -406,7 +402,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  是    | 监听类型，取值为“cooperate” |
+| type                 | string                                                           |  是    | 监听类型，取值为'cooperate'。 |
 | callback             | AsyncCallback&lt;void&gt; |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 
@@ -455,4 +451,4 @@ try {
 | COOPERATE_ACTIVATE_FAIL | 4 | 表示键鼠穿越启动失败。 |
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | 表示键鼠穿越停止成功。 |
 | COOPERATE_DEACTIVATE_FAIL | 6 | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开 |
+| COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开。 |

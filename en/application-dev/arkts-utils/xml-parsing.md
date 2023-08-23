@@ -4,7 +4,7 @@
 Data transferred in XML format must be parsed in actual use. Generally, three types of elements need to be parsed, as described in [Parsing XML Tags and Tag Values](#parsing-xml-tags-and-tag-values), [Parsing XML Attributes and Attribute Values](#parsing-xml-attributes-and-attribute-values), and [Parsing XML Event Types and Element Depths](#parsing-xml-event-types-and-element-depths).
 
 
-The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBufffer or DataView type containing XML text, and the output is the parsed information.
+The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBuffer or DataView type containing XML text, and the output is the parsed information.
 
 
 **Table 1** XML parsing options

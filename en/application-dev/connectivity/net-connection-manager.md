@@ -107,7 +107,7 @@ conn.on('netAvailable', (data => {
 
 // Listen to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
 conn.on('netUnavailable', (data => {
-  console.log("net is unavailable, netId is " + data.netId);
+  console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
 
 // Register an observer for network status changes.

@@ -138,7 +138,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 | 类型                          | 说明                                               |
 | ----------------------------- | -------------------------------------------------- |
-| Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
 
 **错误码：**
 
@@ -155,8 +155,8 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
-    let data: Array<LauncherAbilityInfo> = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data[0]));
+    let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
+    console.log("data is " + JSON.stringify(data));
 } catch (errData) {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
@@ -373,7 +373,7 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)> | Array形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)> | Array形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -389,8 +389,8 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 try {
-    let data: Array<ShortcutInfo> = launcherBundleManager.getShortcutInfo("com.example.demo");
-    console.log("data is " + JSON.stringify(data[0]));
+    let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    console.log("data is " + JSON.stringify(data));
 } catch (errData) {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }

@@ -16,7 +16,7 @@ This module provides the following common functions:
 import cloudData from '@ohos.data.cloudData';
 ```
 
-##   Action
+##   ClearAction
 
 Enumerates the actions to take to clear the downloaded cloud data locally.
 
@@ -347,9 +347,9 @@ try {
 }
 ```
 
-###  clean
+###  clear
 
-static clean(accountId: string, appActions: {[bundleName: string]: Action},  callback: AsyncCallback&lt;void&gt;):void
+static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
 
 Clears the cloud data locally. This API uses an asynchronous callback to return the result.
 
@@ -361,26 +361,26 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description                            |
-| ---------- | ----------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                    | Yes  | ID of the cloud account.            |
-| appActions | {[bundleName: string]: [Action](#action)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
-| callback   | AsyncCallback&lt;void&gt;                 | Yes  | Callback invoked to return the result.                      |
+| Name    | Type                                               | Mandatory| Description                            |
+| ---------- | --------------------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                              | Yes  | ID of the cloud account.            |
+| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
+| callback   | AsyncCallback&lt;void&gt;                           | Yes  | Callback invoked to return the result.                      |
 
 **Example**
 
 ```js
-let action = cloudData.Action;
+let action = cloudData.ClearAction;
 let account = "test_id";
 let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions, function (err) {
+  cloudData.Config.clear(account, appActions, function (err) {
     if (err === undefined) {
-      console.info('Succeeding in cleaning cloud data');
+      console.info('Succeeding in clearing cloud data');
     } else {
-      console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
     }
   });
 } catch (error) {
@@ -388,9 +388,9 @@ try {
 }
 ```
 
-### clean
+### clear
 
-static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
+static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
 
 Clears the cloud data locally. This API uses a promise to return the result.
 
@@ -402,10 +402,10 @@ Clears the cloud data locally. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description                            |
-| ---------- | ----------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                    | Yes  | ID of the cloud account.            |
-| appActions | {[bundleName: string]: [Action](#action)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
+| Name    | Type                                               | Mandatory| Description                            |
+| ---------- | --------------------------------------------------- | ---- | -------------------------------- |
+| accountId  | string                                              | Yes  | ID of the cloud account.            |
+| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | Yes  | Information about the application whose data is to be cleared and the action to take.|
 
 **Return value**
 
@@ -416,16 +416,16 @@ Clears the cloud data locally. This API uses a promise to return the result.
 **Example**
 
 ```js
-let action = cloudData.Action;
+let action = cloudData.ClearAction;
 let account = "test_id";
 let bundleName1 = "test_bundleName1";
 let bundleName2 = "test_bundleName2";
 let appActions = { [bundleName1]: action.CLEAR_CLOUD_INFO, [bundleName2]: action.CLEAR_CLOUD_DATA_AND_INFO };
 try {
-  cloudData.Config.clean(account, appActions).then(() => {
-    console.info('Succeeding in cleaning cloud data');
+  cloudData.Config.clear(account, appActions).then(() => {
+    console.info('Succeeding in clearing cloud data');
   }).catch((err) => {
-    console.error(`Failed to clean cloud data. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to clear cloud data. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);

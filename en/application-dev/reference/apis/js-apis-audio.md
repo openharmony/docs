@@ -74,7 +74,6 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -129,7 +128,6 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 **Example**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
@@ -545,7 +543,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
 | STREAM_USAGE_MEDIA                        | 1      | Media.    |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.|
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.    |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.|
@@ -813,7 +811,7 @@ Describes audio capturer configurations.
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | Yes  | Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -835,7 +833,8 @@ Enumerates the audio source types.
 | SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup> | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wakeup scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -3076,7 +3075,7 @@ Checks whether the fixed volume mode is enabled. When the fixed volume mode is e
 **Example**
 
 ```js
-bool volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
+let volumeAdjustSwitch = audioVolumeGroupManager.isVolumeUnadjustable();
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
@@ -5226,36 +5225,32 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
-  });
-console.info(`Buffer size: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-    let options = {
-      offset: i * bufferSize,
-      length: bufferSize
-    }
-    let readsize = await fs.read(file.fd, buf, options)
-    let writeSize = await new Promise((resolve,reject)=>{
-      audioRenderer.write(buf,(err,writeSize)=>{
-        if(err){
-          reject(err)
-        }else{
-          resolve(writeSize)
-        }
+  console.info(`Buffer size: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+      let options = {
+        offset: i * bufferSize,
+        length: bufferSize
+      }
+      let readsize = await fs.read(file.fd, buf, options)
+      let writeSize = await new Promise((resolve,reject)=>{
+        audioRenderer.write(buf,(err,writeSize)=>{
+          if(err){
+            reject(err)
+          }else{
+            resolve(writeSize)
+          }
+        })
       })
-    })	  
-  }
+    }
+  });
+}).catch((err) => {
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 
 
@@ -5282,32 +5277,28 @@ let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.info(`BufferSize: ${bufferSize}`);
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat) => {
+    let buf = new ArrayBuffer(bufferSize);
+    let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    for (let i = 0;i < len; i++) {
+        let options = {
+          offset: i * bufferSize,
+          length: bufferSize
+        }
+        let readsize = await fs.read(file.fd, buf, options)
+        try{
+          let writeSize = await audioRenderer.write(buf);
+        } catch(err) {
+          console.error(`audioRenderer.write err: ${err}`);
+        }
+    }
   });
-console.info(`BufferSize: ${bufferSize}`);
-let context = featureAbility.getContext();
-let path;
-async function getCacheDir(){
-  path = await context.getCacheDir();
-}
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-fs.stat(path).then((stat) => {
-  let buf = new ArrayBuffer(bufferSize);
-  let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-  for (let i = 0;i < len; i++) {
-      let options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      }
-      let readsize = await fs.read(file.fd, buf, options)
-      try{
-         let writeSize = await audioRenderer.write(buf);
-      } catch(err) {
-         console.error(`audioRenderer.write err: ${err}`);
-      }   
-  }
+}).catch((err) => {
+  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 
@@ -5790,13 +5781,13 @@ audioRenderer.getCurrentOutputDevices((err, deviceInfo) => {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
   } else {
     console.info(`DeviceInfo id: ${deviceInfo.id}`);
-    console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-    console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-    console.info(`DeviceInfo name: ${descriptor.name}`);
-    console.info(`DeviceInfo address: ${descriptor.address}`);
-    console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-    console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-    console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+    console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+    console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+    console.info(`DeviceInfo name: ${deviceInfo.name}`);
+    console.info(`DeviceInfo address: ${deviceInfo.address}`);
+    console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+    console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+    console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
   }
 });
 ```
@@ -5819,13 +5810,13 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 ```js
 audioRenderer.getCurrentOutputDevices().then((deviceInfo) => {
   console.info(`DeviceInfo id: ${deviceInfo.id}`);
-  console.info(`DeviceInfo type: ${descriptor.deviceType}`);
-  console.info(`DeviceInfo role: ${descriptor.deviceRole}`);
-  console.info(`DeviceInfo name: ${descriptor.name}`);
-  console.info(`DeviceInfo address: ${descriptor.address}`);
-  console.info(`DeviceInfo samplerates: ${descriptor.sampleRates[0]}`);
-  console.info(`DeviceInfo channelcounts: ${descriptor.channelCounts[0]}`);
-  console.info(`DeviceInfo channelmask: ${descriptor.channelMasks}`);
+  console.info(`DeviceInfo type: ${deviceInfo.deviceType}`);
+  console.info(`DeviceInfo role: ${deviceInfo.deviceRole}`);
+  console.info(`DeviceInfo name: ${deviceInfo.name}`);
+  console.info(`DeviceInfo address: ${deviceInfo.address}`);
+  console.info(`DeviceInfo samplerates: ${deviceInfo.sampleRates[0]}`);
+  console.info(`DeviceInfo channelcounts: ${deviceInfo.channelCounts[0]}`);
+  console.info(`DeviceInfo channelmask: ${deviceInfo.channelMasks}`);
 }).catch((err) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
@@ -6073,7 +6064,7 @@ Subscribes to audio output device change events.
 **Example**
 
 ```js
-audioRenderer.on('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.on('outputDeviceChange', (err, deviceChangeInfo) => {
   if (err) {
     console.error(`Subscribes output device change event callback Fail: ${err}`);
   } else {
@@ -6105,7 +6096,7 @@ Unsubscribes from audio output device event changes.
 **Example**
 
 ```js
-audioRenderer.off('outputDeviceChange', (deviceChangeInfo) => {
+audioRenderer.off('outputDeviceChange', (err,deviceChangeInfo) => {
   if (err) {
     console.error(`Unsubscribes output device change event callback Fail: ${err}`);
   } else {

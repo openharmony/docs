@@ -24,7 +24,7 @@
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：launchWant: Want;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：lastRequestWant: Want;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：callee: Callee;|NA|@ohos.application.Ability.d.ts|
-|删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onCreate(want: Want, param: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
+|删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onWindowStageCreate(windowStage: window.WindowStage): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onWindowStageDestroy(): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onWindowStageRestore(windowStage: window.WindowStage): void;|NA|@ohos.application.Ability.d.ts|
@@ -32,7 +32,7 @@
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onForeground(): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onBackground(): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;|NA|@ohos.application.Ability.d.ts|
-|删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
+|删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onConfigurationUpdated(config: Configuration): void;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：dump(params: Array<string>): Array<string>;|NA|@ohos.application.Ability.d.ts|
 |删除|模块名: ohos.application.Ability<br>类名: Ability<br>方法 or 属性：onMemoryLevel(level: AbilityConstant.MemoryLevel): void;|NA|@ohos.application.Ability.d.ts|

@@ -61,7 +61,7 @@
 
 | \@Provide传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
-| 从父组件初始化和更新     | 可选，允许父组件中常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
+| 从父组件初始化和更新     | 可选，允许父组件中常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
 | 用于初始化子组件       | 允许，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 和父组件同步         | 否。                                       |
 | 和后代组件同步        | 和\@Consume双向同步。                          |

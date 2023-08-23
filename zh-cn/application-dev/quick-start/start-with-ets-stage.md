@@ -3,8 +3,6 @@
 
 > **说明：**
 > 
-> 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
-> 
 > 为确保运行效果，本文以使用**DevEco Studio 4.0 Beta2**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.0-beta2.md#配套关系)获取下载链接。
 
 ## 创建ArkTS工程
