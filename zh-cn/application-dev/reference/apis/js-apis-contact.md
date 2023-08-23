@@ -1301,7 +1301,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+<sup>
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1386,7 +1386,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
   });
   ```
 
-## contact.queryContact
+## contact.queryContact<sup>10+<sup>
 
 queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1467,7 +1467,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
   });
   ```
 
-## contact.queryContact
+## contact.queryContact<sup>10+<sup>
 
 queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1559,7 +1559,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
   ```
 
 
-## contact.queryContact
+## contact.queryContact<sup>10+<sup>
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1656,7 +1656,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
   });
   ```
 
-## contact.queryContacts
+## contact.queryContacts<sup>10+<sup>
 
 queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1729,7 +1729,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   });
   ```
 
-## contact.queryContacts
+## contact.queryContacts<sup>10+<sup>
 
 queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1812,7 +1812,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
   });
   ```
 
-## contact.queryContacts
+## contact.queryContacts<sup>10+<sup>
 
 queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1891,7 +1891,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
   });
   ```
 
-## contact.queryContacts
+## contact.queryContacts<sup>10+<sup>
 
 queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1980,7 +1980,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
   });
   ```
 
-## contact.queryContacts
+## contact.queryContacts<sup>10+<sup>
 
 queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2076,7 +2076,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
   });
 ```
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+<sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2152,7 +2152,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
   ```
 
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+<sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2237,7 +2237,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
   });
   ```
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+<sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2318,7 +2318,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
   });
   ```
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+<sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2409,7 +2409,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
   });
   ```
 
-## contact.queryContactsByPhoneNumber
+## contact.queryContactsByPhoneNumber<sup>10+<sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2508,7 +2508,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
   });
   ```
 
-## contact.queryContactsByEmail
+## contact.queryContactsByEmail<sup>10+<sup>
 
 queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2583,7 +2583,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   });
   ```
 
-## contact.queryContactsByEmail
+## contact.queryContactsByEmail<sup>10+<sup>
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2668,7 +2668,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
   });
   ```
 
-## contact.queryContactsByEmail
+## contact.queryContactsByEmail<sup>10+<sup>
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2749,7 +2749,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
   });
   ```
 
-## contact.queryContactsByEmail
+## contact.queryContactsByEmail<sup>10+<sup>
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2840,7 +2840,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
   });
   ```
 
-## contact.queryContactsByEmail
+## contact.queryContactsByEmail<sup>10+<sup>
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2939,7 +2939,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   });
   ```
 
-## contact.queryGroups
+## contact.queryGroups<sup>10+<sup>
 
 queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3012,7 +3012,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   });
   ```
 
-## contact.queryGroups
+## contact.queryGroups<sup>10+<sup>
 
 queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3095,7 +3095,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
   });
   ```
 
-## contact.queryGroups
+## contact.queryGroups<sup>10+<sup>
 
 queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -3186,7 +3186,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   });
   ```
 
-## contact.queryHolders
+## contact.queryHolders<sup>10+<sup>
 
 queryHolders(context: Context,  callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3259,7 +3259,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   });
   ```
 
-## contact.queryHolders
+## contact.queryHolders<sup>10+<sup>
 
 queryHolders(context: Context ): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3335,7 +3335,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
   });
   ```
 
-## contact.queryKey
+## contact.queryKey<sup>10+<sup>
 
 queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3410,7 +3410,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   });
   ```
 
-## contact.queryKey
+## contact.queryKey<sup>10+<sup>
 
 queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3495,7 +3495,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
   });
   ```
 
-## contact.queryKey
+## contact.queryKey<sup>10+<sup>
 
 queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
