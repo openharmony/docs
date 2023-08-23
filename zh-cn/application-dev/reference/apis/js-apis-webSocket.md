@@ -538,7 +538,7 @@ ws.off('message');
 
 ### on('close')<sup>6+</sup>
 
-on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
+on(type: 'close', callback: AsyncCallback\<{ CloseResult }\>): void
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -549,7 +549,7 @@ on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback\<{ code: number, reason: string }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| callback | AsyncCallback\<{ CloseResult }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 
@@ -562,7 +562,7 @@ ws.on('close', (err, value) => {
 
 ### off('close')<sup>6+</sup>
 
-off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>): void
+off(type: 'close', callback?: AsyncCallback\<{ CloseResult }\>): void
 
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -576,7 +576,7 @@ off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>)
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback\<{ code: number, reason: string }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| callback | AsyncCallback\<{ CloseResult }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 
@@ -654,6 +654,17 @@ ws.off('error');
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为1000。 |
 | reason | string | 否   | 原因值，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为空字符串（""）。 |
+
+## CloseResult<sup>10+</sup>
+
+关闭WebSocket连接时，监听close事件得到的关闭结果。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| code   | number | 是   | 错误码，监听close事件得到的关闭连接的错误码。 |
+| reason | string | 是   | 原因值，监听close事件得到的关闭连接的错误原因。 |
 
 ## close错误码说明
 
