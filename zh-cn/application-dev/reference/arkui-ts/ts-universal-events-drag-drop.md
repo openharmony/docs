@@ -6,13 +6,18 @@
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
->
-> 默认支持拖入的组件：Video
->
-> 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
->
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
+
+ArkUI组件默认支持拖拽。
+
+当以下组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true时可以响应拖拽事件，此时，组件不需要配置数据传输，即可进行拖拽。其他组件需要开发者将[draggable](ts-universal-attributes-drag-drop.md)属性设置为true且在onDragStart等接口中实现数据传输相关内容，才能完成拖拽。
+
+- 默认支持拖拽（拖入和拖出）的组件：Search、TextInput、TextArea
+
+- 默认支持拖入的组件：Video
+
+- 默认支持拖出的组件：Text、List、Grid、FormComponent、Image、Hyperlink
+
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
@@ -78,15 +83,14 @@
 ## 示例
 
 ```ts
-import udmf from '@ohos.data.UDMF';
+import UDC from '@ohos.data.unifiedDataChannel';
+import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Index {
   @State targetImage: string = '';
   @State targetText: string = 'Drag Text';
-  @State hyperLinkText: string = 'HyperLink';
-  @State hyperLinkContent: string = 'HyperLink';
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
@@ -100,7 +104,7 @@ struct Index {
     if (!data) {
       return false;
     }
-    let records: Array<udmf.UnifiedRecord> = data.getRecords();
+    let records: Array<UDC.UnifiedRecord> = data.getRecords();
     if (!records || records.length <= 0) {
       return false;
     }
@@ -111,7 +115,7 @@ struct Index {
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
   {
     if(this.getDataFromUdmfRetry(event, callback)) {
-        return;
+      return;
     }
     setTimeout(()=>{
       this.getDataFromUdmfRetry(event, callback);
@@ -134,12 +138,12 @@ struct Index {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragEnd((event)=>{
-          if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-            promptAction.showToast({duration: 100, message: 'Drag Success'});
-          } else if (event.getResult() === DragResult.DRAG_FAILED) {
-            promptAction.showToast({duration: 100, message: 'Drag failed'});
-          }
-        })
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              promptAction.showToast({duration: 100, message: 'Drag Success'});
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              promptAction.showToast({duration: 100, message: 'Drag failed'});
+            }
+          })
         Text('test drag event')
           .width('100%')
           .height(100)
@@ -160,9 +164,9 @@ struct Index {
           Text('change video source')
         }.draggable(true)
         .onDragStart((event)=>{
-          let video: udmf.Video = new udmf.Video();
+          let video: UDC.Video = new UDC.Video();
           video.videoUri = 'resource://RAWFILE/01.mp4';
-          let data: udmf.UnifiedData = new udmf.UnifiedData(video);
+          let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           event.setData(data);
         })
         Column() {
@@ -173,10 +177,10 @@ struct Index {
         .width('100%')
         .height(100)
         .onDragStart((event)=>{
-          let data: udmf.PlainText = new udmf.PlainText();
+          let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
-          event.setData(new udmf.UnifiedData(data));
+          event.setData(new UDC.UnifiedData(data));
         })
       }.width('45%')
       .height('100%')
@@ -193,14 +197,14 @@ struct Index {
           .draggable(true)
           .margin({left: 15})
           .border({color: Color.Black, width: 1})
-          .allowDrop([udmf.UnifiedDataType.IMAGE])
+          .allowDrop([UTD.UniformDataType.IMAGE])
           .onDrop((dragEvent: DragEvent)=> {
             this.getDataFromUdmf(dragEvent, (event)=>{
-              let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
-              this.targetImage = (<udmf.Image>(records[0])).imageUri;
+              this.targetImage = (<UDC.Image>(records[0])).imageUri;
               event.useCustomDropAnimation = false;
               animateTo({duration: 1000}, ()=>{
                 this.imageWidth = 100;
@@ -216,11 +220,11 @@ struct Index {
           .height(100)
           .border({color: Color.Black, width: 1})
           .margin(15)
-          .allowDrop([udmf.UnifiedDataType.TEXT])
+          .allowDrop([UTD.UniformDataType.TEXT])
           .onDrop((dragEvent: DragEvent)=>{
             this.getDataFromUdmf(dragEvent, event => {
-              let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
-              this.targetText = (<udmf.Text>(records[0])).details['value'];
+              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              this.targetText = (<UDC.Text>(records[0])).details['value'];
             })
           })
 
@@ -228,17 +232,17 @@ struct Index {
           .width('100%')
           .height(200)
           .controls(true)
-          .allowDrop([udmf.UnifiedDataType.VIDEO])
+          .allowDrop([UTD.UniformDataType.VIDEO])
 
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
-        .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
+        .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
         .onDrop((dragEvent)=>{
           this.getDataFromUdmf(dragEvent, event=>{
-            let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
-            let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
+            let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+            let plainText: UDC.PlainText = <UDC.PlainText>(records[0]);
             this.abstractContent = plainText.abstract;
             this.textContent = plainText.textContent;
           })
