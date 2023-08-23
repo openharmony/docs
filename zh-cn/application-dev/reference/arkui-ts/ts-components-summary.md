@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     多选框群组，用于控制多选框全选或者不全选状态。
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    提供下拉日历弹窗，可以让用户选择日期。
 - [DatePicker](ts-basic-components-datepicker.md)
 
     选择日期的滑动选择器组件。
