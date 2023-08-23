@@ -100,7 +100,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 3. ShareExtAbility.ts文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
-  ```ts
+   ```ts
    import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
    const TAG: string = "[ShareExtAbility]";
 
