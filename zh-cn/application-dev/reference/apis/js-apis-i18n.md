@@ -1,7 +1,7 @@
 # @ohos.i18n (国际化-I18n)
 
  本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。
-[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
+[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 >  **说明：**
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -26,7 +26,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
@@ -34,7 +34,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | locale       | string  | 是    | 显示指定国家的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -48,12 +48,12 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let displayCountry = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
-  } catch(error) {
-    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`);
+      let displayCountry: string = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
+  } catch (error) {
+      console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -65,7 +65,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
@@ -73,7 +73,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | locale       | string  | 是    | 显示指定语言的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -87,10 +87,10 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let displayLanguage = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
+    let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -104,7 +104,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
@@ -118,10 +118,10 @@ static getSystemLanguages(): Array&lt;string&gt;
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let systemLanguages = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
+    let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -135,13 +135,13 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
 | language | string | 是    | 语言ID。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
@@ -155,10 +155,10 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let systemCountries = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
+    let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
     console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -172,14 +172,14 @@ static isSuggested(language: string, region?: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
 | region   | string | 否    | 合法的地区ID，例如CN。默认值：使用SIM卡国家或地区。  |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -193,10 +193,10 @@ static isSuggested(language: string, region?: string): boolean
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let res = I18n.System.isSuggested('zh', 'CN');  // res = true
+    let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -210,7 +210,7 @@ static getSystemLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
@@ -224,10 +224,10 @@ static getSystemLanguage(): string
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let systemLanguage = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
+    let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
     console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -245,7 +245,7 @@ static setSystemLanguage(language: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
@@ -259,7 +259,7 @@ static setSystemLanguage(language: string): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
@@ -276,7 +276,7 @@ static getSystemRegion(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
@@ -290,10 +290,10 @@ static getSystemRegion(): string
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let systemRegion = I18n.System.getSystemRegion(); // 获取系统当前地区设置
+    let systemRegion: string = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
     console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -311,7 +311,7 @@ static setSystemRegion(region: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
@@ -325,7 +325,7 @@ static setSystemRegion(region: string): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
     I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
@@ -342,7 +342,7 @@ static getSystemLocale(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
@@ -356,10 +356,10 @@ static getSystemLocale(): string
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let systemLocale = I18n.System.getSystemLocale();  // 获取系统当前Locale
+    let systemLocale: string = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
     console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -377,7 +377,7 @@ static setSystemLocale(locale: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
@@ -391,7 +391,7 @@ static setSystemLocale(locale: string): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
     I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
@@ -408,7 +408,7 @@ static is24HourClock(): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -422,10 +422,10 @@ static is24HourClock(): boolean
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let is24HourClock = I18n.System.is24HourClock();  // 系统24小时开关是否开启
+    let is24HourClock: boolean = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
     console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -443,7 +443,7 @@ static set24HourClock(option: boolean): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
@@ -457,7 +457,7 @@ static set24HourClock(option: boolean): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   // 将系统时间设置为24小时制
   try {
@@ -479,7 +479,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
@@ -494,7 +494,7 @@ static addPreferredLanguage(language: string, index?: number): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   // 将语言zh-CN添加到系统偏好语言列表中
   let language = 'zh-CN';
@@ -518,7 +518,7 @@ static removePreferredLanguage(index: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
@@ -532,10 +532,10 @@ static removePreferredLanguage(index: number): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   // 删除系统偏好语言列表中的第一个偏好语言
-  let index = 0;
+  let index: number = 0;
   try {
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
@@ -551,7 +551,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明        |
 | ------------------- | --------- |
@@ -565,10 +565,10 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let preferredLanguageList = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
+    let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
     console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -582,7 +582,7 @@ static getFirstPreferredLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明             |
 | ------ | -------------- |
@@ -596,10 +596,10 @@ static getFirstPreferredLanguage(): string
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
+    let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
     console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -613,7 +613,7 @@ static getAppPreferredLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
@@ -627,10 +627,10 @@ static getAppPreferredLanguage(): string
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```js
   try {
-    let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
+    let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
     console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -648,7 +648,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
@@ -662,7 +662,7 @@ static setUsingLocalDigit(flag: boolean): void
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```ts
   try {
     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
@@ -679,7 +679,7 @@ static getUsingLocalDigit(): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -693,10 +693,10 @@ static getUsingLocalDigit(): boolean
 | ------ | ---------------------- |
 | 890001 | param value not valid |
 
-**示例：** 
+**示例：**
   ```ts
   try {
-    let status = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
+    let status: boolean = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
     console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -711,19 +711,19 @@ isRTL(locale: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | locale | string | 是    | 指定区域ID。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | true表示该locale从右至左显示语言；false表示该locale从左至右显示语言。 |
 
-**示例：** 
+**示例：**
   ```js
   I18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
   I18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
@@ -738,20 +738,20 @@ getCalendar(locale: string, type? : string): Calendar
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | 合法的locale值，例如zh-Hans-CN。                 |
 | type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。默认值：区域默认的日历类型。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                     | 说明    |
 | ---------------------- | ----- |
 | [Calendar](#calendar8) | 日历对象。 |
 
-**示例：** 
+**示例：**
   ```js
   I18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
   ```
@@ -768,16 +768,16 @@ setTime(date: Date): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
 | date | Date | 是    | 将要设置的日历对象的内部时间日期。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("en-US", "gregory");
-  let date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -790,15 +790,15 @@ setTime(time: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
 | time | number | 是    | time为从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("en-US", "gregory");
+  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
 
@@ -811,7 +811,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
@@ -822,9 +822,9 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
 | second | number | 否    | 设置的秒。默认值：系统秒。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   ```
 
@@ -837,15 +837,15 @@ setTimeZone(timezone: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明                        |
 | -------- | ------ | ---- | ------------------------- |
 | timezone | string | 是    | 设置的时区id，如“Asia/Shanghai”。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   ```
 
@@ -858,17 +858,17 @@ getTimeZone(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 日历对象的时区id。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
-  let timezone = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
+  let timezone: string = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
   ```
 
 
@@ -880,16 +880,16 @@ getFirstDayOfWeek(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                    |
 | ------ | --------------------- |
 | number | 获取一周的起始日，1代表周日，7代表周六。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("en-US", "gregory");
-  let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
+  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
+  let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
 
@@ -901,17 +901,17 @@ setFirstDayOfWeek(value: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
 | value | number | 是    | 设置一周的起始日，1代表周日，7代表周六。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.setFirstDayOfWeek(3);
-  let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
+  let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
 
 
@@ -923,16 +923,16 @@ getMinimalDaysInFirstWeek(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明           |
 | ------ | ------------ |
 | number | 一年中第一周的最小天数。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
-  let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
 
@@ -944,17 +944,17 @@ setMinimalDaysInFirstWeek(value: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明           |
 | ----- | ------ | ---- | ------------ |
 | value | number | 是    | 一年中第一周的最小天数。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
-  let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
+  let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
 
 
@@ -966,23 +966,23 @@ get(field: string): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值有&nbsp;era,&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond,&nbsp;zone_offset,&nbsp;dst_offset,&nbsp;year_woy,&nbsp;dow_local,&nbsp;extended_year,&nbsp;julian_day,&nbsp;milliseconds_in_day,&nbsp;is_leap_month。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get("year")返回1990。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
-  let hourOfDay = calendar.get("hour_of_day"); // hourOfDay = 8
+  let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
 
@@ -994,22 +994,22 @@ getDisplayName(locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | locale用于指定区域，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | string | 日历在locale所指示的区域的名字。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("en-US", "buddhist");
-  let calendarName = calendar.getDisplayName("zh"); // calendarName = "佛历"
+  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "buddhist");
+  let calendarName: string = calendar.getDisplayName("zh"); // calendarName = "佛历"
   ```
 
 
@@ -1021,24 +1021,24 @@ isWeekend(date?: Date): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
 | date | Date | 否    | 指定的日期。若不填，则判断当前日期是否为周末。默认值：系统日期。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
 | boolean | 若判断指定日期为周末时，返回true，否则返回false。 |
 
-**示例：** 
+**示例：**
   ```js
-  let calendar = I18n.getCalendar("zh-Hans");
+  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
   calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
-  let date = new Date(2011, 11, 6, 9, 0, 0);
+  let date: Date = new Date(2011, 11, 6, 9, 0, 0);
   calendar.isWeekend(date); // true
   ```
 
@@ -1054,16 +1054,17 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
 | options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。默认值：NATIONAL。  |
 
-**示例：** 
+**示例：**
   ```js
-  let phoneNumberFormat= new I18n.PhoneNumberFormat("CN", {"type": "E164"});
+  let option: I18n.PhoneNumberFormatOptions = {type: "E164"};
+  let phoneNumberFormat: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN", option);
   ```
 
 
@@ -1075,22 +1076,22 @@ isValidNumber(number: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明        |
 | ------ | ------ | ---- | --------- |
 | number | string | 是    | 待判断的电话号码。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
 | boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
 
-**示例：** 
+**示例：**
   ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let isValidNumber: boolean = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
   ```
 
 
@@ -1102,22 +1103,22 @@ format(number: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明         |
 | ------ | ------ | ---- | ---------- |
 | number | string | 是    | 待格式化的电话号码。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的电话号码。 |
 
-**示例：** 
+**示例：**
   ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let formattedPhoneNumber: string = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
   ```
 
 
@@ -1129,23 +1130,23 @@ getLocationName(number: string, locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | string | 是    | 电话号码 |
 | locale | string | 是    | 区域ID |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 电话号码归属地。 |
 
-**示例：** 
+**示例：**
   ```js
-  let phonenumberfmt = new I18n.PhoneNumberFormat("CN");
-  let locationName = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "广东省湛江市"
+  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let locationName: string = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "广东省湛江市"
   ```
 
 
@@ -1180,21 +1181,21 @@ getInstance(locale?:string): IndexUtil
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | 否    | 区域设置信息字符串，包括语言以及可选的脚本和区域。默认值：系统Locale。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                       | 说明                    |
 | ------------------------ | --------------------- |
 | [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
 
-**示例：** 
+**示例：**
   ```js
-  let indexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
   ```
 
 
@@ -1209,18 +1210,18 @@ getIndexList(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明                 |
 | ------------------- | ------------------ |
 | Array&lt;string&gt; | 返回当前locale对应的索引列表。 |
 
-**示例：** 
+**示例：**
   ```js
-  let indexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
   // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
   //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
-  let indexList = indexUtil.getIndexList();
+  let indexList: Array<string> = indexUtil.getIndexList();
   ```
 
 
@@ -1232,15 +1233,15 @@ addLocale(locale: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | 是    | 区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 
-**示例：** 
+**示例：**
   ```js
-  let indexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
 
@@ -1253,22 +1254,22 @@ getIndex(text: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
 | text | string | 是    | 待计算索引值的输入文本。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 输入文本对应的索引值。 |
 
-**示例：** 
+**示例：**
   ```js
-  let indexUtil = I18n.getInstance("zh-CN");
-  let index = indexUtil.getIndex("hi");  // index = "H"
+  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
+  let index: string = indexUtil.getIndex("hi");  // index = "H"
   ```
 
 
@@ -1280,21 +1281,21 @@ getLineInstance(locale: string): BreakIterator
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | 合法的locale值，例如zh-Hans-CN。生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域的规则来进行断句。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                               | 说明          |
 | -------------------------------- | ----------- |
 | [BreakIterator](#breakiterator8) | 用于进行断句的处理器。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   ```
 
 
@@ -1309,15 +1310,15 @@ setLineBreakText(text: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明                      |
 | ---- | ------ | ---- | ----------------------- |
 | text | string | 是    | 指定BreakIterator进行断句的文本。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit."); // 设置短句文本
   ```
 
@@ -1330,17 +1331,17 @@ getLineBreakText(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
 | string | BreakIterator对象正在处理的文本 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let breakText = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
+  let breakText: string = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
   ```
 
 
@@ -1352,17 +1353,17 @@ current(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                          |
 | ------ | --------------------------- |
 | number | BreakIterator在当前所处理的文本中的位置。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let currentPos = iterator.current(); // currentPos = 0
+  let currentPos: number = iterator.current(); // currentPos = 0
   ```
 
 
@@ -1374,17 +1375,17 @@ first(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                |
 | ------ | ----------------- |
 | number | 被处理文本的第一个分割点的偏移量。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let firstPos = iterator.first(); // firstPos = 0
+  let firstPos: number = iterator.first(); // firstPos = 0
   ```
 
 
@@ -1396,17 +1397,17 @@ last(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
 | number | 被处理的文本的最后一个分割点的偏移量 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let lastPos = iterator.last(); // lastPos = 27
+  let lastPos: number = iterator.last(); // lastPos = 27
   ```
 
 
@@ -1418,23 +1419,23 @@ next(index?: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | index | number | 否    | BreakIterator将要移动的分割点数。正数代表向后移动，即将BreakIterator向后移动number个可断句的分割点；负数代表向前移动，即向前移动相应个分割点。默认值：1。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回移动了index个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let pos = iterator.first(); // pos = 0
+  let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(); // pos = 6
   pos = iterator.next(10); // pos = -1
   ```
@@ -1448,17 +1449,17 @@ previous(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回移动到前一个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let pos = iterator.first(); // pos = 0
+  let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(3); // pos = 12
   pos = iterator.previous(); // pos = 9
   ```
@@ -1472,23 +1473,23 @@ following(offset: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | offset | number | 是    | 将BreakIterator设置到指定位置的后面一个分割点。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回BreakIterator移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let pos = iterator.following(0); // pos = 6
+  let pos: number = iterator.following(0); // pos = 6
   pos = iterator.following(100); // pos = -1
   pos = iterator.current(); // pos = 27
   ```
@@ -1502,23 +1503,23 @@ isBoundary(offset: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | ----------- |
 | offset | number | 是    | 若offset指定的文本位置是一个分割点，则返回true，否则返回false。返回true时，将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
 | boolean | 如果是一个分割点返回true,&nbsp;否则返回false。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iterator = I18n.getLineInstance("en");
+  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  let isBoundary = iterator.isBoundary(0); // isBoundary = true;
+  let isBoundary: boolean = iterator.isBoundary(0); // isBoundary = true;
   isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
 
@@ -1531,21 +1532,21 @@ getTimeZone(zoneID?: string): TimeZone
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
 | zondID | string | 否    | 时区ID。默认值：系统时区。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型       | 说明           |
 | -------- | ------------ |
 | TimeZone | 时区ID对应的时区对象。 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezone = I18n.getTimeZone();
+  let timezone: I18n.TimeZone = I18n.getTimeZone();
   ```
 
 
@@ -1560,16 +1561,16 @@ getID(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明           |
 | ------ | ------------ |
 | string | 时区对象对应的时区ID。 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezone = I18n.getTimeZone();
-  let timezoneID = timezone.getID(); // timezoneID = "Asia/Shanghai"
+  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezoneID: string = timezone.getID(); // timezoneID = "Asia/Shanghai"
   ```
 
 
@@ -1581,23 +1582,23 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | 否    | 区域ID。默认值：系统Locale。                |
 | isDST  | boolean | 否    | 时区对象本地化表示时是否考虑夏令时。默认值：false。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 时区对象在指定区域的表示。 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezone = I18n.getTimeZone();
-  let timezoneName = timezone.getDisplayName("zh-CN", false); // timezoneName = "中国标准时间"
+  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezoneName: string = timezone.getDisplayName("zh-CN", false); // timezoneName = "中国标准时间"
   ```
 
 
@@ -1609,16 +1610,16 @@ getRawOffset(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | number | 时区对象表示的时区与UTC时区的偏差。 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezone = I18n.getTimeZone();
-  let offset = timezone.getRawOffset(); // offset = 28800000
+  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let offset: number = timezone.getRawOffset(); // offset = 28800000
   ```
 
 
@@ -1630,16 +1631,16 @@ getOffset(date?: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
 | number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezone = I18n.getTimeZone();
-  let offset = timezone.getOffset(1234567890); // offset = 28800000
+  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let offset: number = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
 
@@ -1651,16 +1652,16 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明          |
 | ------------------- | ----------- |
 | Array&lt;string&gt; | 系统支持的时区ID列表 |
 
-**示例：** 
+**示例：**
   ```ts
   // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 当前共支持24个时区
-  let ids = I18n.TimeZone.getAvailableIDs();
+  let ids: Array<string> = I18n.TimeZone.getAvailableIDs();
   ```
 
 
@@ -1672,16 +1673,16 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
 | Array&lt;string&gt; | 系统支持的时区城市ID列表 |
 
-**示例：** 
+**示例：**
   ```ts
   // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]，当前共支持24个时区城市
-  let cityIDs = I18n.TimeZone.getAvailableZoneCityIDs();
+  let cityIDs: Array<string> = I18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
 
@@ -1693,22 +1694,22 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID |
 | locale | string | 是    | 区域ID   |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
 | string | 时区城市在locale下的本地化显示 |
 
-**示例：** 
+**示例：**
   ```ts
-  let displayName = I18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海(中国)"
+  let displayName: string = I18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海(中国)"
   ```
 
 
@@ -1720,21 +1721,21 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID |
 
-**返回值：** 
+**返回值：**
 
 | 类型       | 说明          |
 | -------- | ----------- |
 | TimeZone | 时区城市对应的时区对象 |
 
-**示例：** 
+**示例：**
   ```ts
-  let timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
+  let timezone: I18n.TimeZone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
 ### getTimezonesByLocation<sup>10+</sup>
@@ -1745,24 +1746,24 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型     | 必填   | 说明     |
 | --------- | ------ | ---- | ------ |
 | longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值 |
 | latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值 |
 
-**返回值：** 
+**返回值：**
 
 | 类型       | 说明          |
 | -------- | ----------- |
 | Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
 
-**示例：** 
+**示例：**
   ```js
-  let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
-  for (var i = 0; i < timezoneArray.length; i++) {
-     let tzId = timezoneArray[i].getID();
+  let timezoneArray: Array<I18n.TimeZone> = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  for (let i = 0; i < timezoneArray.length; i++) {
+      let tzId: string = timezoneArray[i].getID();
   }
   ```
 
@@ -1778,17 +1779,17 @@ static getAvailableIDs(): string[]
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型       | 说明         |
 | -------- | ---------- |
 | string[] | 音译支持的ID列表。 |
 
-**示例：** 
+**示例：**
   ```ts
   // ids共支持671个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
   // 更多使用信息可以参考ISO-15924。
-  let ids = I18n.Transliterator.getAvailableIDs();
+  let ids: string[] = I18n.Transliterator.getAvailableIDs();
   ```
 
 
@@ -1800,21 +1801,21 @@ static getInstance(id: string): Transliterator
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明       |
 | ---- | ------ | ---- | -------- |
 | id   | string | 是    | 音译支持的ID。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                                 | 说明    |
 | ---------------------------------- | ----- |
 | [Transliterator](#transliterator9) | 音译对象。 |
 
-**示例：** 
+**示例：**
   ```ts
-  let transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance("Any-Latn");
   ```
 
 
@@ -1826,22 +1827,22 @@ transform(text: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
 | text | string | 是    | 输入字符串。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 转换后的字符串。 |
 
-**示例：** 
+**示例：**
   ```ts
-  let transliterator = I18n.Transliterator.getInstance("Any-Latn");
-  let res = transliterator.transform("中国"); // res = "zhōng guó"
+  let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  let res: string = transliterator.transform("中国"); // res = "zhōng guó"
   ```
 
 
@@ -1856,21 +1857,21 @@ static isDigit(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
 | boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isdigit = I18n.Unicode.isDigit("1");  // isdigit = true
+  let isdigit: boolean = I18n.Unicode.isDigit("1");  // isdigit = true
   ```
 
 
@@ -1882,21 +1883,21 @@ static isSpaceChar(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
 | boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isspacechar = I18n.Unicode.isSpaceChar("a");  // isspacechar = false
+  let isspacechar: boolean = I18n.Unicode.isSpaceChar("a");  // isspacechar = false
   ```
 
 
@@ -1908,21 +1909,21 @@ static isWhitespace(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
 | boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
 
-**示例：** 
+**示例：**
   ```js
-  let iswhitespace = I18n.Unicode.isWhitespace("a");  // iswhitespace = false
+  let iswhitespace: boolean = I18n.Unicode.isWhitespace("a");  // iswhitespace = false
   ```
 
 
@@ -1934,21 +1935,21 @@ static isRTL(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isrtl = I18n.Unicode.isRTL("a");  // isrtl = false
+  let isrtl: boolean = I18n.Unicode.isRTL("a");  // isrtl = false
   ```
 
 
@@ -1960,21 +1961,21 @@ static isIdeograph(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isideograph = I18n.Unicode.isIdeograph("a");  // isideograph = false
+  let isideograph: boolean = I18n.Unicode.isIdeograph("a");  // isideograph = false
   ```
 
 
@@ -1986,21 +1987,21 @@ static isLetter(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
 | boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isletter = I18n.Unicode.isLetter("a");  // isletter = true
+  let isletter: boolean = I18n.Unicode.isLetter("a");  // isletter = true
   ```
 
 
@@ -2012,21 +2013,21 @@ static isLowerCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
 
-**示例：** 
+**示例：**
   ```js
-  let islowercase = I18n.Unicode.isLowerCase("a");  // islowercase = true
+  let islowercase: boolean = I18n.Unicode.isLowerCase("a");  // islowercase = true
   ```
 
 
@@ -2038,21 +2039,21 @@ static isUpperCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
 
-**示例：** 
+**示例：**
   ```js
-  let isuppercase = I18n.Unicode.isUpperCase("a");  // isuppercase = false
+  let isuppercase: boolean = I18n.Unicode.isUpperCase("a");  // isuppercase = false
   ```
 
 
@@ -2064,13 +2065,13 @@ static getType(char: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
@@ -2112,9 +2113,9 @@ static getType(char: string): string
 | U_MODIFIER_SYMBOL | U_MODIFIER_SYMBOL | 表示修饰符号。 |
 | U_OTHER_SYMBOL | U_OTHER_SYMBOL | 表示其它符号。 |
 
-**示例：** 
+**示例：**
   ```js
-  let type = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
+  let type: string = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2128,7 +2129,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型                     | 必填   | 说明                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
@@ -2138,15 +2139,15 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
 | string | 按照toUnit的单位格式化后，得到的字符串。 |
 
-**示例：** 
+**示例：**
   ```js
-  let res = I18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long"); // res = 236.588 liters
+  let res: string = I18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
 
@@ -2158,21 +2159,21 @@ static getDateOrder(locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | locale | string | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | string | 返回该区域年、月、日的排列顺序。 |
 
-**示例：** 
+**示例：**
   ```js
-  let order = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  let order: string = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
   ```
 
 
@@ -2200,7 +2201,7 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 **示例：**
   ```js
-  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
   ```
 
 
@@ -2226,8 +2227,8 @@ normalize(text: string): string
 
 **示例：**
   ```js
-  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
-  let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
   ```
 
 
@@ -2260,7 +2261,7 @@ constructor()
 
 **示例：**
   ```js
-  let systemLocaleManager= new I18n.SystemLocaleManager();
+  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
   ```
 
 
@@ -2298,14 +2299,14 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 **示例：**
   ```js
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
-  let systemLocaleManager = new I18n.SystemLocaleManager();
-  var languages = ["zh-Hans", "en-US", "pt", "ar"];
-  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
+  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
   try {
-    // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
-    let sortedLanguages = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+      // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
+      let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
-    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+      console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2344,14 +2345,14 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 **示例：**
   ```js
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
-  let systemLocaleManager = new I18n.SystemLocaleManager();
-  var regions = ["CN", "US", "PT", "EG"];
-  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let regions: string[] = ["CN", "US", "PT", "EG"];
+  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
   try {
-    // 排序后的地区顺序为: [CN, EG, US, PT]
-    let sortedRegions = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+      // 排序后的地区顺序为: [CN, EG, US, PT]
+      let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
-    console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+      console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2374,10 +2375,10 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 **示例：**
   ```js
   try {
-    let timeZoneCityItemArray = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
-    for (var i = 0; i < timeZoneCityItemArray.length; i++) {
-        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName + 
-                   ", " + timeZoneCityItemArray[i].offset + "\r\n");
+    let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    for (let i = 0; i < timeZoneCityItemArray.length; i++) {
+        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
+            ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {
     console.error(`call SystemLocaleManager.getTimeZoneCityItemArray failed, error code: ${error.code}, message: ${error.message}.`);
@@ -2457,7 +2458,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
@@ -2465,15 +2466,15 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | locale       | string  | 是    | 显示指定国家的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 指定国家的本地化显示文本。 |
 
-**示例：** 
+**示例：**
   ```js
-  let countryName = I18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
+  let countryName: string = I18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
   countryName = I18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = true
   ```
 
@@ -2488,7 +2489,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
@@ -2496,15 +2497,15 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | locale       | string  | 是    | 显示指定语言的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 指定语言的本地化显示文本。 |
 
-**示例：** 
+**示例：**
   ```js
-  let languageName = I18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
+  let languageName: string = I18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
   languageName = I18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
   ```
 
@@ -2519,15 +2520,15 @@ getSystemLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统语言ID。 |
 
-**示例：** 
+**示例：**
   ```js
-  let systemLanguage = I18n.getSystemLanguage(); // 返回当前系统语言
+  let systemLanguage: string = I18n.getSystemLanguage(); // 返回当前系统语言
   ```
 
 
@@ -2541,15 +2542,15 @@ getSystemRegion(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统地区ID。 |
 
-**示例：** 
+**示例：**
   ```js
-  let region = I18n.getSystemRegion(); // 返回当前系统地区
+  let region: string = I18n.getSystemRegion(); // 返回当前系统地区
   ```
 
 
@@ -2563,15 +2564,15 @@ getSystemLocale(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统区域ID。 |
 
-**示例：** 
+**示例：**
   ```js
-  let locale = I18n.getSystemLocale(); // 返回系统Locale
+  let locale: string = I18n.getSystemLocale(); // 返回系统Locale
   ```
 
 
@@ -2585,15 +2586,15 @@ is24HourClock(): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
 
-**示例：** 
+**示例：**
   ```js
-  let is24HourClock = I18n.is24HourClock();
+  let is24HourClock: boolean = I18n.is24HourClock();
   ```
 
 
@@ -2609,22 +2610,22 @@ set24HourClock(option: boolean): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
 | option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
 
-**示例：** 
+**示例：**
   ```js
   // 将系统时间设置为24小时制
-  let success = I18n.set24HourClock(true);
+  let success: boolean = I18n.set24HourClock(true);
   ```
 
 
@@ -2640,25 +2641,25 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
 | language | string | 是    | 待添加的偏好语言。  |
 | index    | number | 否    | 偏好语言的添加位置。默认值：系统偏好语言列表长度。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
 
-**示例：** 
+**示例：**
   ```js
   // 将语言zh-CN添加到系统偏好语言列表中
-  let language = 'zh-CN';
-  let index = 0;
-  let success = I18n.addPreferredLanguage(language, index);
+  let language: string = 'zh-CN';
+  let index: number = 0;
+  let success: boolean = I18n.addPreferredLanguage(language, index);
   ```
 
 
@@ -2674,23 +2675,23 @@ removePreferredLanguage(index: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
 | index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
 
-**示例：** 
+**示例：**
   ```js
   // 删除系统偏好语言列表中的第一个偏好语言
-  let index = 0;
-  let success = I18n.removePreferredLanguage(index);
+  let index: number = 0;
+  let success: boolean = I18n.removePreferredLanguage(index);
   ```
 
 
@@ -2704,15 +2705,15 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明        |
 | ------------------- | --------- |
 | Array&lt;string&gt; | 系统偏好语言列表。 |
 
-**示例：** 
+**示例：**
   ```js
-  let preferredLanguageList = I18n.getPreferredLanguageList(); // 获取系统偏好语言列表
+  let preferredLanguageList: Array<string> = I18n.getPreferredLanguageList(); // 获取系统偏好语言列表
   ```
 
 
@@ -2726,15 +2727,15 @@ getFirstPreferredLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明             |
 | ------ | -------------- |
 | string | 偏好语言列表中的第一个语言。 |
 
-**示例：** 
+**示例：**
   ```js
-  let firstPreferredLanguage = I18n.getFirstPreferredLanguage();
+  let firstPreferredLanguage: string = I18n.getFirstPreferredLanguage();
   ```
 
 
@@ -2751,7 +2752,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型                     | 必填   | 说明                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
@@ -2761,7 +2762,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
@@ -2781,13 +2782,13 @@ static isDigit(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
@@ -2804,13 +2805,13 @@ static isSpaceChar(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
@@ -2827,13 +2828,13 @@ static isWhitespace(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
@@ -2850,13 +2851,13 @@ static isRTL(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -2873,13 +2874,13 @@ static isIdeograph(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -2896,13 +2897,13 @@ static isLetter(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
@@ -2919,13 +2920,13 @@ static isLowerCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -2942,13 +2943,13 @@ static isUpperCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
@@ -2965,13 +2966,13 @@ static getType(char: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
