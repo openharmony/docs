@@ -74,7 +74,10 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ```javascript
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
 import EntryAbility from '../../../main/ets/entryability/EntryAbility';
+
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -86,7 +89,7 @@ export default function abilityTest() {
       //start tested ability
       await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
-      }).catch((err: string) => {
+      }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
       })
       await sleep(1000);
@@ -117,19 +120,22 @@ import { Driver, ON } from '@ohos.UiTest'
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
+import { BusinessError } from '@ohos.base';
+
 import EntryAbility from '../../../main/ets/entryability/EntryAbility';
+
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
+  describe('ActsAbilityTest', () => {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
       await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
-      }).catch((err: string) => {
+      }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
       })
       await sleep(1000);
