@@ -657,14 +657,14 @@ ws.off('error');
 
 ## CloseResult<sup>10+</sup>
 
-关闭WebSocket连接时，监听close事件得到的关闭结果。
+关闭WebSocket连接时，订阅close事件得到的关闭结果。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| code   | number | 是   | 错误码，监听close事件得到的关闭连接的错误码。 |
-| reason | string | 是   | 原因值，监听close事件得到的关闭连接的错误原因。 |
+| code   | number | 是   | 错误码，订阅close事件得到的关闭连接的错误码。 |
+| reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
 ## close错误码说明
 
