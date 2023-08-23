@@ -27,6 +27,17 @@ For details about the APIs, see [native_image](../reference/native-apis/_o_h___n
 
 The following steps describe how to use the native APIs provided by **NativeImage** to create an **OH_NativeImage** instance as the consumer and update the data to a OpenGL external texture.
 
+**Adding Dynamic Link Libraries**
+
+Add the following libraries to **CMakeLists.txt**:
+```txt
+libEGL.so
+libGLESv3.so
+libnative_image.so
+libnative_window.so
+libnative_buffer.so
+```
+
 **Header File**
 ```c++
 #include <EGL/egl.h>
@@ -159,41 +170,48 @@ The following steps describe how to use the native APIs provided by **NativeImag
 
 4. Write the produced content to a **NativeWindowBuffer** instance.
     1. Obtain a NativeWindowBuffer instance from the NativeWindow instance.
-    ```c++
-    OHNativeWindowBuffer* buffer = nullptr;
-    int fenceFd;
-    // Obtain a NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
-    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
     
-    BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
-    int code = SET_BUFFER_GEOMETRY;
-    int32_t width = 0x100;
-    int32_t height = 0x100;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    ```
-    3. Write the produced content to the **NativeWindowBuffer** instance.
-    ```c++
-    static uint32_t value = 0x00;
-    value++;
-    uint32_t *pixel = static_cast<uint32_t *>(handle->virAddr);
-    for (uint32_t x = 0; x < width; x++) {
-        for (uint32_t y = 0;  y < height; y++) {
-            *pixel++ = value;
-        }
-    }
-    ```
-    4. Flush the **NativeWindowBuffer** to the **NativeWindow**.
-    ```c++
-    // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the NativeWindowBuffer are changed.
-    Region region{nullptr, 0};
-    // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
-    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
-    ```
-    5. Destroy the **NativeWindow** instance when it is no longer needed.
-    ```c++
-    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
-    ```
-
+       ```c++
+       OHNativeWindowBuffer* buffer = nullptr;
+       int fenceFd;
+       // Obtain a NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
+       OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
+       
+       BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
+       int code = SET_BUFFER_GEOMETRY;
+       int32_t width = 0x100;
+       int32_t height = 0x100;
+       ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
+       ```
+    
+    2. Write the produced content to the **NativeWindowBuffer** instance.
+    
+       ```c++
+       static uint32_t value = 0x00;
+       value++;
+       uint32_t *pixel = static_cast<uint32_t *>(handle->virAddr);
+       for (uint32_t x = 0; x < width; x++) {
+           for (uint32_t y = 0;  y < height; y++) {
+               *pixel++ = value;
+           }
+       }
+       ```
+    
+    3. Flush the **NativeWindowBuffer** to the **NativeWindow**.
+    
+       ```c++
+       // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the NativeWindowBuffer are changed.
+       Region region{nullptr, 0};
+       // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
+       OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
+   ```
+    
+    4. Destroy the **NativeWindow** instance when it is no longer needed.
+    
+       ```c++
+       OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+       ```
+    
 5. Update the content to the OpenGL texture.
     ```c++
     // Update the content to the OpenGL texture.

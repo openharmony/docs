@@ -3,7 +3,7 @@
 - [Ability framework](js-apidiff-ability.md)
 - [Account subsystem](js-apidiff-account.md)
 - [AI subsystem](js-apidiff-ai.md)
-- [System Applications](js-apidiff-application.md)
+- [System applications](js-apidiff-application.md)
 - [ArkUI development framework](js-apidiff-arkui.md)
 - [Power management subsystem](js-apidiff-battery.md)
 - [Bundle management framework](js-apidiff-bundle.md)

@@ -13,6 +13,10 @@ When you return to the home screen, lock the screen, or switch to another applic
 
 To ensure the normal use of features such as music playback and calendar reminders in the background, the system provides constrained background tasks to extend the running time of applications in the background.
 
+## Resource Usage Constraints
+
+The system provides resource quotas for running processes, including the memory usage and CPU usage in a continuous period of time, as well as disk write I/O volume in 24 hours. When the quota is reached, the system generates a warning-level log if the process is running in the foreground, and terminates the process if it is running in the background.
+
 ## Background Task Types
 
 For standard-system devices, OpenHarmony provides the following types of constrained background tasks: transient tasks, continuous tasks, deferred tasks, agent-powered reminders, and efficiency resources.
@@ -29,12 +33,13 @@ You can select a proper background task type to ensure that your application can
 
 For system applications that provide basic capabilities, the system provides an API for [requesting energy resources](efficiency-resource-request.md). After an application calls the API, the system exempts the application from management.
 
-  **Figure 1** Selecting a type of background task 
+**Figure 1** Selecting a type of background task
+
 ![bgtask_choice](figures/bgtask_choice.png)
 
 
 > **NOTE**
 >
-> 1. The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
+> - The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
 > 
-> 2. For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
+> - For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
