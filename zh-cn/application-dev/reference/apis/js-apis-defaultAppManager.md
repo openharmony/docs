@@ -595,54 +595,6 @@ defaultAppMgr.resetDefaultApplication("image/png", (err, data) => {
 });
 ```
 
-## defaultAppMgr.resetDefaultApplication
-
-resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
-
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
-
-**需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
-
-**系统API：**  此接口为系统接口。
-
-**参数：**
-
-| 参数名         | 类型     | 必填   | 说明                                      |
-| ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
-| callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 17700025 | The specified type is invalid.      |
-
-**示例：**
-
-```ts
-import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful.');
-});
-
-defaultAppMgr.resetDefaultApplication("image/png", (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful.');
-});
-```
-
 ## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
 
 isDefaultApplicationSync(type: string): boolean;
