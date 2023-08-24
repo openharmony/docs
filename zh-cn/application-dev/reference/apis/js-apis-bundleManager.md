@@ -1141,6 +1141,82 @@ try {
 }
 ```
 
+### bundleManager.queryAbilityInfoSync
+
+queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
+
+以同步方法根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                                                  |
+| ------------ | ------ | ---- | ------------------------------------------------------- |
+| want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
+| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
+| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Array\<AbilityInfo>信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    
+    let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags, userId);
+    hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfoSync failed. Cause: %{public}s', err.message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags);
+    hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryAbilityInfoSync failed. Cause: %{public}s', err.message);
+}
+```
+
 ### bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId: number, callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void;
@@ -1337,6 +1413,84 @@ try {
     })
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.queryExtensionAbilityInfoSync
+
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+
+以同步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                                          | 必填 | 说明                                                      |
+| --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
+| extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
+| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
+
+**返回值：**
+
+| 类型                                                         | 说明                                          |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Array\<ExtensionAbilityInfo>信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified extensionAbility is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let extenInfos = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(extenInfos));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed. Cause: %{public}s', err.message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let extenInfos = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(extenInfos));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed. Cause: %{public}s', err.message);
 }
 ```
 
@@ -2438,6 +2592,72 @@ try {
 }
 ```
 
+
+### bundleManager.getLaunchWantForBundleSync
+
+getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
+
+以同步方法根据给定的bundleName和userId获取用于启动应用程序的Want参数。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ------------------------- |
+| bundleName | string | 是   | 表示应用程序的bundleName。 |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Want | Want对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let userId = 100;
+
+try {
+    let want = bundleManager.getLaunchWantForBundleSync(bundleName, userId);
+    hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundleSync failed. Cause: %{public}s', err.message);
+}
+```
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let userId = 100;
+
+try {
+    let want = bundleManager.getLaunchWantForBundleSync(bundleName);
+    hilog.info(0x0000, 'testTag', 'getLaunchWantForBundleSync successfully. Data: %{public}s', JSON.stringify(want));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getLaunchWantForBundleSync failed. Cause: %{public}s', err.message);
+}
+```
+
 ### bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
@@ -2767,6 +2987,52 @@ try {
 }
 ```
 
+### bundleManager.getPermissionDefSync
+
+getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
+
+以同步方法根据给定的permissionName获取权限定义结构体PermissionDef信息。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名           | 类型   | 必填 | 说明           |
+| -------------- | ------ | ---- | -------------- |
+| permissionName | string | 是   | 表示权限参数名。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                       |
+| ------------------------------------------------------------ | ------------------------------------------ |
+|[PermissionDef](js-apis-bundleManager-permissionDef.md) | PermissionDef对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17700006 | The specified permission is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let permissionName = "ohos.permission.GET_BUNDLE_INFO";
+try {
+    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getPermissionDefSync failed. Cause: %{public}s', err.message);
+}
+```
+
 ### bundleManager.getAbilityLabel
 
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<string>): void;
@@ -2880,6 +3146,60 @@ try {
 }
 ```
 
+### bundleManager.getAbilityLabelSync
+
+getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
+
+以同步的方法获取指定bundleName、moduleName和abilityName的label。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                      |
+| ----------- | ------ | ---- | ------------------------- |
+| bundleName  | string | 是   | 表示应用程序的bundleName。  |
+| moduleName  | string | 是   | 表示应用程序的moduleName。  |
+| abilityName | string | 是   | 表示应用程序的abilityName。 |
+
+**返回值：**
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| string | 指定组件的Lablel值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | --------------------------------------- |
+| 17700001 | The specified bundleName is not found.  |
+| 17700002 | The specified moduleName is not found.  |
+| 17700003 | The specified abilityName is not found. |
+| 17700026 | The specified bundle is disabled.       |
+| 17700029 | The specified ability is disabled.      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let moduleName = 'entry';
+let abilityName = 'EntryAbility';
+
+try {
+    let abilityLabel = bundleManager.getAbilityLabelSync(bundleName, moduleName, abilityName);
+    hilog.info(0x0000, 'testTag', 'getAbilityLabelSync successfully. Data: %{public}s', abilityLabel);
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAbilityLabelSync failed. Cause: %{public}s', err.message);
+}
+```
 
 ### bundleManager.getApplicationInfoSync
 
