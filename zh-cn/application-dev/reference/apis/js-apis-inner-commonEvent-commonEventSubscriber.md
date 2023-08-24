@@ -83,6 +83,27 @@ subscriber.getCode().then((code) => {
 });
 ```
 
+## getCodeSync
+
+getCodeSync(): number
+
+getCode的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| number | 公共事件代码。 |
+
+**示例：**
+
+```ts
+let code = subscriber.getCodeSync();
+console.info("getCodeSync " + JSON.stringify(code));
+```
+
 ## setCode
 
 setCode(code: number, callback: AsyncCallback\<void>): void
@@ -142,6 +163,32 @@ subscriber.setCode(1).then(() => {
 });
 ```
 
+## setCodeSync
+
+setCodeSync(code: number): void
+
+setCode的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | 是   | 公共事件的代码。 |
+
+
+**示例：**
+
+```ts
+
+try {
+    subscriber.setCodeSync(1);
+} catch (err) {
+    console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ## getData
 
 getData(callback: AsyncCallback\<string>): void
@@ -192,6 +239,27 @@ subscriber.getData().then((data) => {
 }).catch((err) => {
     console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getDataSync
+
+getDataSync(): string
+
+getData的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明               |
+| ---------------- | ------------------ |
+| string | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+let data = subscriber.getDataSync();
+console.info("getDataSync " + JSON.stringify(data));
 ```
 
 ## setData
@@ -251,6 +319,29 @@ subscriber.setData("publish_data_changed").then(() => {
 }).catch((err) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## setDataSync
+setDataSync(data: string): void
+
+setData的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | 是   | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+try {
+    subscriber.setDataSync("publish_data_changed");
+} catch (err) {
+    console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## setCodeAndData
@@ -314,6 +405,31 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 });
 ```
 
+## setCodeAndDataSync
+
+setCodeAndData的同步接口。
+
+setCodeAndDataSync(code: number, data: string): void
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| code   | number | 是   | 公共事件的代码。 |
+| data   | string | 是   | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+try {
+    subscriber.setCodeAndDataSync(1, "publish_data_changed");
+} catch (err) {
+    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
 ## isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
@@ -368,6 +484,29 @@ subscriber.isOrderedCommonEvent().then((isOrdered) => {
 }).catch((err) => {
     console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## isOrderedCommonEventSync
+
+isOrderedCommonEventSync(): boolean
+
+isOrderedCommonEvent的同步接口
+
+返回true代表是有序公共事件，false代表不是有序公共事件。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| boolean | 当前公共事件的是否为有序公共事件。 |
+
+**示例：**
+
+```ts
+let isOrdered  = subscriber.isOrderedCommonEventSync();
+console.info("isOrdered " + JSON.stringify(isOrdered));
 ```
 
 ## isStickyCommonEvent
@@ -426,6 +565,29 @@ subscriber.isStickyCommonEvent().then((isSticky) => {
 });
 ```
 
+## isStickyCommonEventSync
+
+isStickyCommonEventSync(): boolean
+
+isStickyCommonEvent的同步接口。
+
+返回true代表是粘性公共事件，false代表不是粘性公共事件。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| boolean | 当前公共事件的是否为粘性公共事件。 |
+
+**示例：**
+
+```ts
+let isSticky  = subscriber.isStickyCommonEventSync();
+console.info("isSticky " + JSON.stringify(isSticky));
+```
+
 ## abortCommonEvent
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
@@ -476,6 +638,20 @@ subscriber.abortCommonEvent().then(() => {
 }).catch((err) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## abortCommonEventSync
+
+abortCommonEventSync(): void
+
+abortCommonEvent的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**示例：**
+
+```ts
+subscriber.abortCommonEventSync();
 ```
 
 ## clearAbortCommonEvent
@@ -530,6 +706,20 @@ subscriber.clearAbortCommonEvent().then(() => {
 });
 ```
 
+## clearAbortCommonEventSync
+
+clearAbortCommonEventSync(): void
+
+clearAbortCommonEvent的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**示例：**
+
+```ts
+subscriber.clearAbortCommonEventSync()；
+```
+
 ## getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
@@ -582,6 +772,27 @@ subscriber.getAbortCommonEvent().then((abortEvent) => {
 });
 ```
 
+## getAbortCommonEventSync
+
+getAbortCommonEventSync(): boolean
+
+getAbortCommonEvent的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | ---------------------------------- |
+| boolean | 表示当前有序公共事件是否取消的状态。 |
+
+**示例：**
+
+```ts
+let abortEvent = subscriber.getAbortCommonEventSync();
+console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
+```
+
 ## getSubscribeInfo
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
@@ -632,6 +843,27 @@ subscriber.getSubscribeInfo().then((subscribeInfo) => {
 }).catch((err) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getSubscribeInfoSync
+
+getSubscribeInfoSync(): CommonEventSubscribeInfo
+
+getSubscribeInfo的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 表示订阅者的订阅信息。 |
+
+**示例：**
+
+```ts
+let subscribeInfo = subscriber.getSubscribeInfoSync();
+console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 ```
 
 ## finishCommonEvent<sup>9+</sup>
