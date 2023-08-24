@@ -847,7 +847,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 ## connection.getNetCapabilitiesSync<sup>10+</sup>
 
-getNetCapabilities(netHandle: NetHandle): NetCapabilities
+getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 
 获取netHandle对应的网络的能力信息，使用同步方式返回。
 
@@ -1614,7 +1614,7 @@ netCon.unregister(function (error) {
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
 订阅网络能力变化事件。
 
