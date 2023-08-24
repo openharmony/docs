@@ -1652,7 +1652,6 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | finishSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | finishSession的参数集合。                           |
-| token    | Uint8Array                                           | 是   | finishSession操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
