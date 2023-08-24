@@ -2241,5 +2241,5 @@ isTerminating(): boolean;
 
   ```ts
   let isTerminating = this.context.isTerminating();
-  console.log('ability state :' + isTerminating);
+  console.log(`ability state is ${isTerminating}`);
   ```
