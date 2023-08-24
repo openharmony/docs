@@ -224,7 +224,6 @@ export const taskDataArr: Array<TaskData> =
 export struct TaskSwitchMainPage {
   displayWidth: number = WindowManager.getInstance().getDisplayWidth();
   scroller: Scroller = new Scroller();
-  bgImage: Resource = $r('app.media.share');
   cardSpace: number = 0; // 卡片间距
   cardWidth: number = this.displayWidth / 2 - this.cardSpace / 2; // 卡片宽度
   cardHeight: number = 400; // 卡片高度
