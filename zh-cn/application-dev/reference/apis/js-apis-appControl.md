@@ -272,7 +272,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
