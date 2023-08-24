@@ -50,7 +50,7 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -- | -- |
 | 500001 | Internal error. |
 
@@ -97,7 +97,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -- | -- |
 | 500001 | Internal error. |
 
@@ -136,7 +136,7 @@ getDarkMode(): DarkMode;
 
 错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
 
-| 错误码ID | 错误码信息 |
+| 错误码ID | 错误信息 |
 | -- | -- |
 | 500001 | Internal error. |
 
