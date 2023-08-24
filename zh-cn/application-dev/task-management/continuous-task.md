@@ -82,7 +82,7 @@
    
    ```ts
    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
    ```
 
 4. 申请和取消长时任务。
@@ -99,10 +99,10 @@
    struct Index {
      @State message: string = 'ContinuousTask';
      // 通过getContext方法，来获取page所在的UIAbility上下文。
-     private context = getContext(this);
+     private context: Context = getContext(this);
    
      startContinuousTask() {
-       let wantAgentInfo = {
+       let wantAgentInfo: wantAgent.wantAgentInfo = {
          // 点击通知后，将要执行的动作列表
          wants: [
            {
@@ -119,30 +119,22 @@
        };
    
        // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-         try {
-           backgroundTaskManager.startBackgroundRunning(this.context,
-           backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-             console.info(`Succeeded in operationing startBackgroundRunning.`);
-           }).catch((err) => {
-             console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-           });
-         } catch (error) {
-           console.error(`Failed to start background running. Code is ${error.code} message is ${error.message}`);
-         }
+       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+          backgroundTaskManager.startBackgroundRunning(this.context,
+            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+            console.info(`Succeeded in operationing startBackgroundRunning.`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+          });
        });
      }
    
      stopContinuousTask() {
-       try {
-         backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-           console.info(`Succeeded in operationing stopBackgroundRunning.`);
-         }).catch((err) => {
-           console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-         });
-       } catch (error) {
-         console.error(`Failed to stop background running. Code is ${error.code} message is ${error.message}`);
-       }
+        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+          console.info(`Succeeded in operationing stopBackgroundRunning.`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+        });
      }
    
      build() {
@@ -193,6 +185,9 @@
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
    
    const MSG_SEND_METHOD: string = 'CallSendMsg'
    
