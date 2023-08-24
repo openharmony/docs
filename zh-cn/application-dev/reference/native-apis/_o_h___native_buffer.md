@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数。<br/>引用文件：&lt;native_buffer/native_buffer.h&gt; |
+| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数。<br/>**引用文件：** &lt;native_buffer/native_buffer.h&gt; <br/>**库：** libnative_buffer.so|
 
 
 ### 结构体
@@ -35,6 +35,12 @@
 | -------- | -------- |
 | [OH_NativeBuffer](#oh_nativebuffer) | 提供OH_NativeBuffer结构体声明。 |
 
+### 枚举
+
+| 名称 | 描述 |
+| -------- | -------- |
+| [OH_NativeBuffer_Usage](#oh_nativebuffer_usage) { NATIVEBUFFER_USAGE_CPU_READ = (1ULL &lt;&lt; 0), NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL &lt;&lt; 1), NATIVEBUFFER_USAGE_MEM_DMA = (1ULL &lt;&lt; 3) } | OH_NativeBuffer的用途。 |
+| [OH_NativeBuffer_Format](#oh_nativebuffer_format) {<br/>NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3, NATIVEBUFFER_PIXEL_FMT_RGBA_5658, NATIVEBUFFER_PIXEL_FMT_RGBX_4444, NATIVEBUFFER_PIXEL_FMT_RGBA_4444,<br/>NATIVEBUFFER_PIXEL_FMT_RGB_444, NATIVEBUFFER_PIXEL_FMT_RGBX_5551, NATIVEBUFFER_PIXEL_FMT_RGBA_5551, NATIVEBUFFER_PIXEL_FMT_RGB_555,<br/>NATIVEBUFFER_PIXEL_FMT_RGBX_8888, NATIVEBUFFER_PIXEL_FMT_RGBA_8888, NATIVEBUFFER_PIXEL_FMT_RGB_888, NATIVEBUFFER_PIXEL_FMT_BGR_565,<br/>NATIVEBUFFER_PIXEL_FMT_BGRX_4444, NATIVEBUFFER_PIXEL_FMT_BGRA_4444, NATIVEBUFFER_PIXEL_FMT_BGRX_5551, NATIVEBUFFER_PIXEL_FMT_BGRA_5551,<br/>NATIVEBUFFER_PIXEL_FMT_BGRX_8888, NATIVEBUFFER_PIXEL_FMT_BGRA_8888, NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF<br/>} | OH_NativeBuffer的格式。 |
 
 ### 函数
 
@@ -62,6 +68,70 @@ typedef struct OH_NativeBuffer OH_NativeBuffer
 **描述:**
 
 提供OH_NativeBuffer结构体声明。
+
+## 枚举类型说明
+
+
+### OH_NativeBuffer_Format
+
+```
+enum OH_NativeBuffer_Format
+```
+
+**描述:**
+
+OH_NativeBuffer的格式。
+
+\@SysCap SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| NATIVEBUFFER_PIXEL_FMT_RGB_565 | RGB565格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBA_5658 | RGBA5658格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBX_4444 | RGBX4444格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBA_4444 | RGBA4444格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGB_444 | RGB444格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBX_5551 | RGBX5551格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBA_5551 | RGBA5551格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGB_555 | RGB555格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBX_8888 | RGBX8888格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGBA_8888 | RGBA8888格式 |
+| NATIVEBUFFER_PIXEL_FMT_RGB_888 | RGB888格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGR_565 | BGR565格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRX_4444 | BGRX4444格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRA_4444 | BGRA4444格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRX_5551 | BGRX5551格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRA_5551 | BGRA5551格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRX_8888 | BGRX8888格式 |
+| NATIVEBUFFER_PIXEL_FMT_BGRA_8888 | BGRA8888格式 |
+| NATIVEBUFFER_PIXEL_FMT_BUTT | 无效格式 |
+
+**起始版本：**
+
+10
+
+
+### OH_NativeBuffer_Usage
+
+```
+enum OH_NativeBuffer_Usage
+```
+
+**描述:**
+
+OH_NativeBuffer的用途。
+
+\@SysCap SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| NATIVEBUFFER_USAGE_CPU_READ | CPU可读 |
+| NATIVEBUFFER_USAGE_CPU_WRITE | CPU可写 |
+| NATIVEBUFFER_USAGE_MEM_DMA | 直接内存访问缓冲区 |
+
+**起始版本：**
+
+10
 
 
 ## 函数说明
