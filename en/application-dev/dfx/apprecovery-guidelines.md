@@ -1,6 +1,6 @@
 # Application Recovery Development
 
-## When to Use
+## Overview
 
 During application running, some unexpected behaviors are inevitable. For example, unprocessed exceptions and errors are thrown, and the call or running constraints of the recovery framework are violated.
 
