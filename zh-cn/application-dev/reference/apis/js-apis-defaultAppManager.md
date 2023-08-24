@@ -117,7 +117,7 @@ isDefaultApplicationSync(type: string): boolean;
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
-| boolean | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+| boolean | 返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
 
 **示例：**
