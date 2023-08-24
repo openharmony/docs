@@ -75,17 +75,15 @@ Image支持加载存档图、多媒体像素图两种类型。
   支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。
-      ​    
       ```ts
       import picker from '@ohos.file.picker';
-
+      
       @Entry
       @Component
       struct Index {
         @State imgDatas: string[] = [];
         // 获取照片url集
         getAllImg() {
-          let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
             let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -101,7 +99,7 @@ Image支持加载存档图、多媒体像素图两种类型。
           } catch (err) {
             console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
         }
-
+      
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
           this.getAllImg();
@@ -121,8 +119,8 @@ Image支持加载存档图、多媒体像素图两种类型。
         }
       }
       ```
+
   2. 从媒体库获取的url格式通常如下。
-      ​    
       ```ts
       Image('file://media/Photos/5')
       .width(200)
@@ -150,14 +148,12 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    请求网络图片请求，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
-       ​    
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
        ```
    2. 填写网络图片地址。
-       ​    
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
          (error, data) => {
@@ -168,25 +164,24 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          }
        )
        ```
-   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。
-       ​    
+   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
        let code = data.responseCode;
-       if(ResponseCode.ResponseCode.OK === code) {
+       if (ResponseCode.ResponseCode.OK === code) {
          let imageSource = image.createImageSource(data.result);
          let options = {
-           alphaType: 0,                     // 透明度
-           editable: false,                  // 是否可编辑
-           pixelFormat: 3,                   // 像素格式
-           scaleMode: 1,                     // 缩略值
-           size: {height: 100, width: 100}
-          }  // 创建图片大小
-           imageSource.createPixelMap(options).then((pixelMap) => {
+           alphaType: 0, // 透明度
+           editable: false, // 是否可编辑
+           pixelFormat: 3, // 像素格式
+           scaleMode: 1, // 缩略值
+           size: { height: 100, width: 100 }
+         } // 创建图片大小
+         imageSource.createPixelMap(options).then((pixelMap) => {
            this.image = pixelMap
-       })
+         })
+       }
        ```
    4. 显示图片。
-       ​    
        ```ts
        Button("获取网络图片")
          .onClick(() => {
