@@ -328,9 +328,9 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 **返回值：**
 
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。 |
+| **类型** | **说明** |
+| -------- | -------- |
+| Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的bssid为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -575,9 +575,9 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -776,10 +776,10 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
 
 **错误码：**
 
@@ -820,9 +820,9 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -868,10 +868,10 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
 
 **错误码：**
 
@@ -1123,9 +1123,9 @@ connectToDevice(config: WifiDeviceConfig): void
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **错误码：**
 
@@ -2331,9 +2331,9 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 
 **返回值：**
 
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 连接的设备数组。 |
+| **类型** | **说明** |
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 连接的设备数组。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的macAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2467,9 +2467,9 @@ getCurrentP2pGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise对象。表示当前组信息。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise对象。表示当前组信息。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2491,9 +2491,9 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2532,9 +2532,9 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise对象。表示对端设备列表信息。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise对象。表示对端设备列表信息。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2556,9 +2556,9 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2691,9 +2691,9 @@ createGroup(config: WifiP2PConfig): void
 
 **参数：**
 
-  | **参数名** | **类型** | 必填 | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 群组配置信息。 |
+| **参数名** | **类型** | 必填 | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 群组配置信息。如果DeviceAddressType未指定值，则DeviceAddressType默认为随机设备地址类型。 |
 
 **错误码：**
 
@@ -2792,9 +2792,9 @@ p2pConnect(config: WifiP2PConfig): void
 
 **参数：**
 
-  | **参数名** | **类型** | 必填 | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 连接配置信息。 |
+| **参数名** | **类型** | 必填 | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 连接配置信息。如果DeviceAddressType未指定值，则DeviceAddressType默认为随机设备地址类型。 |
 
 **错误码：**
 
@@ -3011,9 +3011,9 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -3074,9 +3074,9 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -3700,10 +3700,10 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 状态改变回调函数。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 状态改变回调函数。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -3725,10 +3725,10 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 **参数：**
 
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
