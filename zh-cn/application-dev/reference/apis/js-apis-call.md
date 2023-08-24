@@ -2836,7 +2836,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 | 参数名   | 类型                                             | 必填 | 说明                                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceCallbackInfo](#AudioDeviceCallbackInfo10)> | 是   | 回调函数。                                           |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 回调函数。                                           |
 
 **错误码：**
 
@@ -2878,7 +2878,7 @@ off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\)
 | 参数名   | 类型                                                       | 必填  |                           说明                      |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceCallbackInfo](#AudioDeviceCallbackInfo10)>            | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。     |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。     |
 
 **错误码：**
 
