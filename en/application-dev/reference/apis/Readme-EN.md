@@ -16,6 +16,8 @@
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
+    - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionAbility.md)
+    - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionContentSession.md)
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
@@ -42,6 +44,7 @@
     - [@ohos.app.form.formBindingData (formBindingData)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
+    - [@ohos.app.form.formObserver (formObserver)](js-apis-app-form-formObserver.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
     - [@ohos.application.uriPermissionManager (URI Permission Management)](js-apis-uripermissionmanager.md)
   - Both Models (To Be Deprecated Soon)
@@ -106,6 +109,7 @@
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
+      - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
@@ -198,6 +202,7 @@
 - UI Page
   - [@ohos.animator (Animator)](js-apis-animator.md)
   - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui-componentSnapshot.md)
+  - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (Layout Callback)](js-apis-arkui-inspector.md)
@@ -317,9 +322,9 @@
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
+  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
-  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
 
 - Connectivity
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](js-apis-bluetooth-a2dp.md)
@@ -390,7 +395,7 @@
   - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
-  - [@ohos. deviceStatus.dragInteraction (Drag)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction (Drag)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
@@ -429,7 +434,7 @@
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
-  
+
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
 

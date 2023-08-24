@@ -59,6 +59,7 @@
   - [Policy Management Error Codes](errorcode-net-policy.md)
   - [mDNS Error Codes](errorcode-net-mdns.md)
   - [Traffic Management Error Codes](errorcode-net-statistics.md)
+  - [VPN Error Codes](errorcode-net-vpn.md)
 - Connectivity
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)
