@@ -71,7 +71,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
-```javascript
+```js
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
@@ -109,13 +109,13 @@ export default function abilityTest() {
 
 1.增加依赖导包。
 
-```javascript
+```js
 import { Driver, ON } from '@ohos.UiTest'
 ```
 
 2.编写具体测试代码。
 
-```javascript
+```js
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
