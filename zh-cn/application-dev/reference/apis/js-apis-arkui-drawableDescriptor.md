@@ -141,7 +141,7 @@ getBackground(): DrawableDescriptor;
 **示例：**
   ```ts
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
     .id))).getBackground();
   ```
 
