@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.bluetooth`](js-apis-bluetooth.md).
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [@ohos.bluetoothManager](js-apis-bluetoothManager.md).
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
