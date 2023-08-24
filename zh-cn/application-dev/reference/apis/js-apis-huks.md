@@ -6,6 +6,8 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 > **说明**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 以下示例代码片段适用于JS语言开发。 
 
 ## 导入模块
 
@@ -896,7 +898,7 @@ async function TestExportFunc(alias, options) {
     }
 }
 
-function exportKey(alias, options) : Promise<huks.HuksReturnResult> {
+function exportKey(alias, options) {
     return new Promise((resolve, reject) => {
         try {
             huks.exportKeyItem(alias, options, function (error, data) {
