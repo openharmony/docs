@@ -102,11 +102,11 @@ let targetNames = ['com.ohos.xyz'];
 try {
     axContext.setTargetBundleName(targetNames).then(() => {
         console.info('set target bundle names success');
-    }).catch((err) => {
-        console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
+    console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
 };
 ```
 
@@ -131,14 +131,14 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 let targetNames = ['com.ohos.xyz'];
 try {
     axContext.setTargetBundleName(targetNames, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
+        if (err) {
+            console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
             return;
         }
         console.info('set target bundle names success');
     });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
+    console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
 };
 ```
 
@@ -178,11 +178,11 @@ try {
     axContext.getFocusElement().then((data) => {
         focusElement = data;
         console.log('get focus element success');
-    }).catch((err) => {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+    console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -214,15 +214,15 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 let focusElement;
 try {
     axContext.getFocusElement((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get focus element, because ${JSON.stringify(err)}');
+        if (err) {
+            console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
             return;
         }
         focusElement = data;
         console.info('get focus element success');
     });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+    console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -256,15 +256,15 @@ let focusElement;
 let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get focus element, because ${JSON.stringify(err)}');
+    if (err) {
+        console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
         return;
     }
     focusElement = data;
     console.info('get focus element success');
 });
 } catch (exception) {
-    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
+    console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityExtensionContext.getWindowRootElement
@@ -303,11 +303,11 @@ try {
     axContext.getWindowRootElement().then((data) => {
         rootElement = data;
         console.log('get root element of the window success');
-    }).catch((err) => {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to get root element of the window, ${JSON.stringify(exception)}');
+    console.error(`failed to get root element of the window, ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -339,15 +339,15 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 let rootElement;
 try {
     axContext.getWindowRootElement((err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
+    if (err) {
+        console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
         return;
     }
     rootElement = data;
     console.info('get root element of the window success');
 });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+    console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -381,15 +381,15 @@ let rootElement;
 let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
-    if (err && err.code) {
-        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
+    if (err) {
+        console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
         return;
     }
     rootElement = data;
     console.info('get root element of the window success');
 });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
+    console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -429,11 +429,11 @@ try {
     axContext.getWindows().then((data) => {
         windows = data;
         console.log('get windows success');
-    }).catch((err) => {
-        console.error('failed to get windows, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to get windows, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+    console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -465,15 +465,15 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 let windows;
 try {
     axContext.getWindows((err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
+        if (err) {
+            console.error(`failed to get windows, because ${JSON.stringify(err)}`);
             return;
         }
         windows = data;
         console.info('get windows success');
     });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+    console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -507,15 +507,15 @@ let windows;
 let displayId = 10;
 try {
     axContext.getWindows(displayId, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to get windows, because ${JSON.stringify(err)}');
+        if (err) {
+            console.error(`failed to get windows, because ${JSON.stringify(err)}`);
             return;
         }
         windows = data;
         console.info('get windows success');
     });
 } catch (exception) {
-    console.error('failed to get windows, because ${JSON.stringify(exception)}');
+    console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
 }
 ```
 
@@ -560,11 +560,11 @@ try {
     }
     axContext.injectGesture(gesturePath).then(() => {
         console.info('inject gesture success');
-    }).catch((err) => {
-        console.error('failed to inject gesture, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+    console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityExtensionContext.injectGesture
@@ -602,14 +602,14 @@ try {
         gesturePath.points.push(gesturePoint);
     }
     axContext.injectGesture(gesturePath, (err, data) => {
-        if (err && err.code) {
-            console.error('failed to inject gesture, because ${JSON.stringify(err)}');
+        if (err) {
+            console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
             return;
         }
         console.info('inject gesture success');
     });
 } catch (exception) {
-    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
+    console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
 ## AccessibilityElement<sup>9+</sup>
@@ -635,13 +635,12 @@ attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 **示例：**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames().then((data) => {
     console.log('get attribute names success');
     attributeNames = data;
-}).catch((err) => {
-    console.log('failed to get attribute names, because ${JSON.stringify(err)}');
+}).catch((err: object) => {
+    console.log(`failed to get attribute names, because ${JSON.stringify(err)}`);
 });
 ```
 ### attributeNames
@@ -661,11 +660,10 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 **示例：**
 
 ```ts
-let rootElement;
 let attributeNames;
 rootElement.attributeNames((err, data) => {
     if (err) {
-        console.error('failed to get attribute names, because ${JSON.stringify(err)}');
+        console.error(`failed to get attribute names, because ${JSON.stringify(err)}`);
         return;
     }
     attributeNames = data;
@@ -705,16 +703,15 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 ```ts
 let attributeName = 'name';
 let attributeValue;
-let rootElement;
 try {
     rootElement.attributeValue(attributeName).then((data) => {
         console.log('get attribute value by name success');
         attributeValue = data;
-    }).catch((err) => {
-        console.error('failed to get attribute value, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+    console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### attributeValue
@@ -744,20 +741,19 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 **示例：**
 
 ```ts
-let rootElement;
 let attributeValue;
 let attributeName = 'name';
 try {
     rootElement.attributeValue(attributeName, (err, data) => {
         if (err) {
-            console.error('failed to get attribute value, because ${JSON.stringify(err)}');
+            console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
             return;
         }
         attributeValue = data;
         console.info('get attribute value success');
     });
 } catch (exception) {
-    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
+    console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
 }
 ```
 ### actionNames
@@ -777,13 +773,12 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames().then((data) => {
     console.log('get action names success');
     actionNames = data;
-}).catch((err) => {
-    console.error('failed to get action names because ${JSON.stringify(err)}');
+}).catch((err: object) => {
+    console.error(`failed to get action names because ${JSON.stringify(err)}`);
 });
 ```
 ### actionNames
@@ -803,11 +798,10 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let rootElement;
 let actionNames;
 rootElement.actionNames((err, data) => {
     if (err) {
-        console.error('failed to get action names, because ${JSON.stringify(err)}');
+        console.error(`failed to get action names, because ${JSON.stringify(err)}`);
         return;
     }
     actionNames = data;
@@ -846,15 +840,14 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 **示例：**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
-    }).catch((err) => {
-        console.error('failed to perform action, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to perform action, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -883,17 +876,16 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let rootElement;
 try {
     rootElement.performAction('action', (err, data) => {
         if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
+            console.error(`failed to perform action, because ${JSON.stringify(err)}`);
             return;
         }
         console.info('perform action success');
     });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### performAction
@@ -923,7 +915,6 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-let rootElement;
 let actionName = 'action';
 let parameters = {
     'setText': 'test text'
@@ -931,13 +922,13 @@ let parameters = {
 try {
     rootElement.performAction(actionName, parameters, (err, data) => {
         if (err) {
-            console.error('failed to perform action, because ${JSON.stringify(err)}');
+            console.error(`failed to perform action, because ${JSON.stringify(err)}`);
             return;
         }
         console.info('perform action success');
     });
 } catch (exception) {
-    console.error('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -964,7 +955,6 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
@@ -972,11 +962,11 @@ try {
     rootElement.findElement(type, condition).then((data) => {
         elements = data;
         console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to find element, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('content')
@@ -998,21 +988,20 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'content';
 let condition = 'keyword';
 let elements;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
+            console.error(`failed to find element, because ${JSON.stringify(err)}`);
             return;
         }
         elements = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1039,7 +1028,6 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
@@ -1047,11 +1035,11 @@ try {
     rootElement.findElement(type, condition).then((data) => {
         element = data;
         console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to find element, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusType')
@@ -1073,21 +1061,20 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusType';
 let condition = 'normal';
 let element;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
+            console.error(`failed to find element, because ${JSON.stringify(err)}`);
             return;
         }
         element = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1114,7 +1101,6 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let element;
@@ -1122,11 +1108,11 @@ try {
     rootElement.findElement(type, condition).then((data) => {
         element = data;
         console.log('find element success');
-    }).catch((err) => {
-        console.error('failed to find element, because ${JSON.stringify(err)}');
+    }).catch((err: object) => {
+        console.error(`failed to find element, because ${JSON.stringify(err)}`);
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
 ### findElement('focusDirection')
@@ -1148,20 +1134,19 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 **示例：**
 
 ```ts
-let rootElement;
 let type = 'focusDirection';
 let condition = 'up';
 let elements;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ${JSON.stringify(err)}');
+            console.error(`failed to find element, because ${JSON.stringify(err)}`);
             return;
         }
         elements = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.error('failed to find element, because ${JSON.stringify(exception)}');
+    console.error(`failed to find element, because ${JSON.stringify(exception)}`);
 }
 ```
