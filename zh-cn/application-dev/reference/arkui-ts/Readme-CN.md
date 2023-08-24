@@ -141,6 +141,7 @@
   - [TabContent](ts-container-tabcontent.md)
   - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
+  - [EffectComponent](ts-container-effectcomponent.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
 - 绘制组件
