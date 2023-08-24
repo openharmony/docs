@@ -1,6 +1,6 @@
 # Ethernet Connection
 
-## Introduction
+## Overview
 
 The Ethernet Connection module allows a device to access the Internet through a network cable. After a device is connected to the Ethernet through a network cable, the device can obtain a series of network attributes, such as the dynamically allocated IP address, subnet mask, gateway, and DNS. You can manually configure and obtain the network attributes of the device in static mode.
 

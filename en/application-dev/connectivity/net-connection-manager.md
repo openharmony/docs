@@ -1,6 +1,6 @@
 # Network Connection Management
 
-## Introduction
+## Overview
 
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
