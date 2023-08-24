@@ -26,6 +26,11 @@ StepperItem()
 | nextLabel | string | Text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.|
 | status | [ItemState](#itemstate) | Display status of **nextLabel** in the stepper. Optional.<br>Default value: **ItemState.Normal**|
 
+>  **NOTE**
+>
+>  - The **\<StepperItem>** component does not support setting of the universal width attribute. By default, its width is the same as that of the parent **\<Stepper>** component.
+>  - The **\<StepperItem>** component does not support setting of the universal height attribute. Its height is the height of the parent **\<Stepper>** component minus the height of the label button.
+>  - The **\<StepperItem>** component does not support setting of the **aspectRadio** or **constrainSize** attribute, which may affect the length and width.
 ## ItemState
 
 |   Name   | Description|
