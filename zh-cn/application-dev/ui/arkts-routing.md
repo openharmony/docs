@@ -340,6 +340,7 @@ import router from '@ohos.router';
 
 ```ts
 // library/src/main/ets/pages/Index.ets
+// library为新建共享包自定义的名字
 @Entry({ routeName : 'myPage' })
 @Component
 struct MyComponent {
@@ -351,7 +352,7 @@ struct MyComponent {
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/Index.ets' // 引入共享包library中的命名路由页面
+import 'library/src/main/ets/pages/Index.ets' // 引入共享包library中的命名路由页面
 
 @Entry
 @Component
