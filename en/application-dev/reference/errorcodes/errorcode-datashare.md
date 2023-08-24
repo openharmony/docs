@@ -23,7 +23,12 @@ The **DataShareHelper** class fails to be created.
 **Solution**
 
 1. Obtain the correct URI.
+
 2. Check that the context of the stage model is used.
+
 3. Check whether the client has the read or write permission on data. Perform the following steps:
+    
     (1) Obtain the data provider bundle name in the path of the URI. For example, the bundle name in uri = "datashare:///com.acts.datasharetest" is **com.acts.datasharetest**.
+    
     (2) Obtain the configuration based on the bundle name. For example, run **bm dump --bundle-name com.acts.datasharetest** to obtain the **DataShareExtension** configuration, and check whether the data consumer has **readPermission** or **writePermission**.
+
