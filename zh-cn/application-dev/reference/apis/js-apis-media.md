@@ -1689,6 +1689,10 @@ avPlayer.off('audioInterrupt')
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | 是   | 该键值对支持的key取值范围，请参考[MediaDescriptionKey](#mediadescriptionkey8);每个key值的Object类型和范围，请参考[MediaDescriptionKey](#mediadescriptionkey8)对应Key值的说明 |
+
 **示例：**
 
 ```js
