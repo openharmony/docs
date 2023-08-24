@@ -5289,6 +5289,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```js
@@ -5341,6 +5342,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```js
