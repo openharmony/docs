@@ -53,6 +53,7 @@ httpRequest.on('headersReceive', (header) => {
 });
 httpRequest.request(
   // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
     // You can add header fields based on service requirements.
@@ -81,7 +82,7 @@ httpRequest.request(
       // Call the destroy() method to release resources after HttpRequest is complete.
       httpRequest.destroy();
     } else {
-      console.info('error:' + JSON.stringify(err));
+      console.error('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
       // Call the destroy() method to release resources after HttpRequest is complete.
@@ -146,7 +147,7 @@ httpRequest.request2(
     readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
   }, (err, data) => {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
     console.info('ResponseCode :' + JSON.stringify(data));
     // Unsubscribe from HTTP Response Header events.
     httpRequest.off('headersReceive');
@@ -161,10 +162,3 @@ httpRequest.request2(
   }
 );
 ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the HTTP data request feature:
-
-- [`Http`: Data Request (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [HTTP Communication (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

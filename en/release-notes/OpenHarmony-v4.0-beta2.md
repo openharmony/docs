@@ -40,7 +40,7 @@ The standard system capabilities of OpenHarmony 4.0 are continuously improved. A
 
 - RDB store NDK interfaces are provided. These interfaces are used for transaction addition, deletion, modification, and query, data encryption, hierarchical data protection, and backup and restore.
 
-- The system can automatically selects a Bluetooth or Wi-Fi P2P channel for synchronization of key-value and distributed data objects based on the data volume.
+- The system can automatically select a Bluetooth or Wi-Fi P2P channel for synchronization of key-value and distributed data objects based on the data volume.
 
 
 ### DSoftBus
@@ -293,6 +293,25 @@ Code execution permission control is enhanced as follows:
 - The sensor driver provides driving for temperature and humidity sensors. It supports the query of temperature and humidity components of small-system devices, component enabling/disabling, and data query.
 
 
+### DevEco Studio
+
+- The editor supports the Optimize Imports feature, which helps you remove unused imports and merge or sort imports based on preset rules.
+- The editor provides template code for overriding parent class methods so that you can quickly generate child class methods based on the parent class template.
+- The editor supports the Safe Delete feature, which helps you securely delete identifier objects (variables, functions, or classes) from your code.
+- ArkTS projects of API version 10 in the stage model support code obfuscation.
+- You can extend build tasks and add Hvigor tasks.
+- Profiler supports launch scenario analysis, which helps you analyze the time consumed in each phase of the application and service launch process.
+- Profiler supports launch memory analysis, which helps you analyze the memory resources occupied by applications and services during launch and identify memory bottlenecks.
+- Since DevEco Studio 4.0 Beta2, Node.js is classified into DevEco Studio-level Node.js and project-level Node.js.
+- C++ code refactoring is supported in two use cases: expanding macros and moving function bodies to implementation.
+- ArkTS system components can be extracted to the @Builder method, and ArkTS system attributes can be extracted to the @Styles and @Extend methods.
+- In API 10 projects, target ahead-of-time (AOT) compilation can be used.
+- Hvigor provides the **prune** command, which can be used to clear Hvigor cache files that are not used within 30 days and delete packages that are not referenced from the pnpm storage.
+- The Specified Ability page is optimized so that you can select an ability to start.
+- The HiLog and FaultLog UIs are optimized, and case-sensitive HiLog search is added for easier log information locating.
+- The features of selecting time segments and favoriting lanes are optimized in Profiler.
+- [ArkUI-X](https://gitee.com/arkui-x) samples can be imported to facilitate the creation of cross-platform projects.
+
 ## Version Mapping
 
 **Table 1** Version mapping of software and tools
@@ -391,7 +410,7 @@ This version has the following updates to OpenHarmony 4.0 Beta1.
 
 ### API 
 
-For details about the API changes over OpenHarmony 4.0 Beta1, see [API Differences](/api-diff/v4.0-beta2/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](changelogs/v4.0-beta2/Readme-EN.md).
+For details about the API changes over OpenHarmony 4.0 Beta1, see [API Differences](./api-diff/v4.0-beta2/Readme-EN.md). A few API changes may affect applications developed using API version 9 or earlier. For details about the change impact and adaptation guide, see [Changelogs](./changelogs/v4.0-beta2/Readme-EN.md).
 
 
 ### Feature Updates
