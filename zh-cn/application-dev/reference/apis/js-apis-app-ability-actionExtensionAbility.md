@@ -7,6 +7,10 @@ ActionExtensionAbility是为开发者提供的自定义操作业务模板，继�
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
+## 场景介绍
+
+以翻译文本为例。首先需要创建请求发起方，再创建出ActionExtension，请求发起方需要将翻译的文本发送给ActionExtension，ActionExtension接收到文本后，需要将接收的文本进行翻译，翻译后的文本再发送给请求发起方。
+
 ## 导入模块
 
 ```ts
@@ -100,11 +104,13 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 3. ActionExtAbility.ts文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
 
-  ```ts
+   ```ts
    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
    const TAG: string = "[ActionExtAbility]";
 
    export default class ActionExtAbility extends ActionExtensionAbility {
+     storage: LocalStorage;
+     message: string;
      onCreate() {
        console.info(TAG, `onCreate`);
      }
@@ -112,19 +118,26 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
      onForeground() {
        console.info(TAG, `ononForeground`);
      }
-   
+
      onBackground() {
        console.info(TAG, `onBackground`);
      }
-   
+
      onSessionCreate(want, session) {
-       cconsole.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+       this.message = want.parameters.shareMessages;
+       this.storage = new LocalStorage(
+        {
+          'session': session,
+          'messages': this.message
+        });
+       session.loadContent('pages/Index', this.storage);
      }
 
      onSessionDestroy(session) {
        console.info(TAG, `onSessionDestroy`);
      }
- 
+
      onDestroy() {
        console.info(TAG, `onDestroy`);
      }
