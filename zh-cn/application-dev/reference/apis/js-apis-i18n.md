@@ -2451,7 +2451,7 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 ### constructor<sup>11+</sup>
 
-constructor()
+constructor(icsPath: string)
 
 创建HolidayManager对象。
 
@@ -2475,7 +2475,7 @@ constructor()
 
 isHoliday(date?: Date): boolean;
 
-判断指定的日期是否是节假日，如果没有指定日期，默认为当天。
+判断指定的日期是否是节假日。
 
 **系统接口**：此接口为系统接口。
 
@@ -2485,7 +2485,7 @@ isHoliday(date?: Date): boolean;
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | 否   | JavaScript的Date对象。|
+| date      | Date           | 否   | JavaScript的Date对象。<br>如果没有指定日期，默认为当天。|
 
 **返回值：**
 
@@ -2519,7 +2519,7 @@ isHoliday(date?: Date): boolean;
 
 getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
 
-获取指定某年的节假日信息列表，如果没有指定年，默认为当年。
+获取指定某年的节假日信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -2529,7 +2529,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | -------------  | ---- | ------------- |
-| year      | number         | 否   | 年，例如2023。|
+| year      | number         | 否   | 年，例如2023。<br>如果没有指定年，默认为当年。|
 
 **返回值：**
 
@@ -2543,7 +2543,6 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401    | check param failed     |
 | 890001 | param value not valid  |
 
 **示例：**
@@ -2585,8 +2584,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   是    | 节假日的本地语言，例如ar,en,tr          |
-| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami      |
+| language        | string           |   是    | 节假日的本地语言，例如ar,en,tr。          |
+| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
