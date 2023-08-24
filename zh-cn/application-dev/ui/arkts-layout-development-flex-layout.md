@@ -514,31 +514,33 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 
   ```ts
-  Flex() {
-    Text('flexBasis("auto")')
-      .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
-      .height(100)
-      .backgroundColor(0xF5DEB3)
-    Text('flexBasis("auto")'+' width("40%")')
-      .width('40%')
-      .flexBasis('auto') //设置width以及flexBasis值auto，使用width的值
-      .height(100)
-      .backgroundColor(0xD2B48C)
+Flex() {
+  Text('flexBasis("auto")')
+    .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
+    .height(100)
+    .backgroundColor(0xF5DEB3)
+  Text('flexBasis("auto")' + ' width("40%")')
+    .width('40%')
+    .flexBasis('auto') //设置width以及flexBasis值auto，使用width的值
+    .height(100)
+    .backgroundColor(0xD2B48C)
 
-    Text('flexBasis(100)')  // 未设置width以及flexBasis值为100，宽度为100vp
-      .flexBasis(100)  
-      .height(100)
-      .backgroundColor(0xF5DEB3)
+  Text('flexBasis(100)') // 未设置width以及flexBasis值为100，宽度为100vp
+    .fontSize(15)
+    .flexBasis(100)
+    .height(100)
+    .backgroundColor(0xF5DEB3)
 
-    Text('flexBasis(100)')
-      .flexBasis(100)
-      .width(200) // flexBasis值为100，覆盖width的设置值，宽度为100vp
-      .height(100)
-      .backgroundColor(0xD2B48C)
-  }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
+  Text('flexBasis(100)')
+    .fontSize(15)
+    .flexBasis(100)
+    .width(200) // flexBasis值为100，覆盖width的设置值，宽度为100vp
+    .height(100)
+    .backgroundColor(0xD2B48C)
+}.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
 
-  ![zh-cn_image_0000001562940505](figures/zh-cn_image_0000001562940505.png)
+![zh-cn_image_0000001562940505](figures/zh-cn_image_0000001562940505.png)
 
 - flexGrow：设置父容器的剩余空间分配给此属性所在组件的比例。用于“瓜分”父组件的剩余空间。
 
@@ -574,24 +576,25 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 
   ```ts
-  Flex({ direction: FlexDirection.Row }) {
-    Text('flexShrink(3)')
-      .flexShrink(3)
-      .width(200)
-      .height(100)
-      .backgroundColor(0xF5DEB3)
-    
-    Text('no flexShrink')
-      .width(200)
-      .height(100)
-      .backgroundColor(0xD2B48C)
+Flex({ direction: FlexDirection.Row }) {
+  Text('flexShrink(3)')
+    .fontSize(15)
+    .flexShrink(3)
+    .width(200)
+    .height(100)
+    .backgroundColor(0xF5DEB3)
 
-    Text('flexShrink(2)')
-      .flexShrink(2)
-      .width(200)
-      .height(100)
-      .backgroundColor(0xF5DEB3)  
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
+  Text('no flexShrink')
+    .width(200)
+    .height(100)
+    .backgroundColor(0xD2B48C)
+
+  Text('flexShrink(2)')
+    .flexShrink(2)
+    .width(200)
+    .height(100)
+    .backgroundColor(0xF5DEB3)
+}.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
 
   ![zh-cn_image_0000001562820813](figures/zh-cn_image_0000001562820813.png)
