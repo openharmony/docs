@@ -2919,7 +2919,7 @@ export default class EntryAbility extends UIAbility {
     localWant.moduleName = 'entry';
     localWant.abilityName = 'TestAbility';
 
-    let option: StartOptions = {
+    let option = {
       displayId: 0
     }
 
