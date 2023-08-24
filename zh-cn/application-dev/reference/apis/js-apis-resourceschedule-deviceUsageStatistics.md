@@ -305,6 +305,8 @@ queryAppGroupSync(bundleName: string): number
 
 查询指定bundleName应用的优先级分组。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **系统API**：此接口为系统接口。
