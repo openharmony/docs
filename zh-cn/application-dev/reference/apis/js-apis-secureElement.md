@@ -261,7 +261,7 @@ isSecureElementPresent(): boolean
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -302,8 +302,8 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -340,7 +340,7 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -413,7 +413,7 @@ getATR(): number[]
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -456,7 +456,7 @@ close(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -526,7 +526,7 @@ closeChannels(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
@@ -570,10 +570,10 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -619,10 +619,10 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -675,10 +675,10 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -726,10 +726,10 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -782,10 +782,10 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -831,10 +831,10 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
@@ -887,10 +887,10 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -947,10 +947,10 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -1176,9 +1176,9 @@ transmit(command: number[]): Promise<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
@@ -1228,9 +1228,9 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
