@@ -188,7 +188,7 @@ let value: number = AppStorage.Get('PropA'); // 47
 
 static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
-在AppStorage中设置propName对应属性的值。
+在AppStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。
 
 **参数：**
 
@@ -215,7 +215,8 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-propName如果已经在AppStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，值为newValue。
+如果propName已经在AppStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
+如果propName不存在，则创建propName属性，值为newValue。
 
 **参数：**
 
@@ -470,7 +471,7 @@ let value: number = storage.get('PropA'); // 47
 
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
-在LocalStorage中设置propName对应属性的值。
+在LocalStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -499,7 +500,8 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
-propName如果已经在LocalStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，初始化为newValue。
+如果propName已经在AppStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
+如果propName不存在，则创建propName属性，值为newValue。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
