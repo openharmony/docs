@@ -335,7 +335,7 @@ try {
 
 isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-查询是否支持传入参数effectId。
+查询是否支持传入参数effectId。使用callback异步回调。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -388,7 +388,7 @@ try {
 
 isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
-查询是否支持传入参数effectId。
+查询是否支持传入参数effectId。使用promise异步回调。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -446,7 +446,7 @@ try {
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。////这句话是什么意思 |
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
 
 
 ## VibratorStopMode
@@ -457,7 +457,7 @@ try {
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。//// duration模式的振动是专有名词吗？？ |
+| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
 | VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
 
 ## VibrateEffect<sup>9+</sup>
