@@ -63,32 +63,32 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
    ```ts
    class AVProfile {
-      fileFormat: media.ContainerFormatType;
-      videoBitrate: number;
-      videoCodec: media.CodecMimeType;
-      videoFrameWidth: number;
-      videoFrameHeight: number;
-      videoFrameRate: number;
+     fileFormat: media.ContainerFormatType;
+     videoBitrate: number;
+     videoCodec: media.CodecMimeType;
+     videoFrameWidth: number;
+     videoFrameHeight: number;
+     videoFrameRate: number;
    }
    class AVConfig {
-      videoSourceType: media.VideoSourceType;
-      profile: AVProfile;
-      url: string;
-      rotation: number;
+     videoSourceType: media.VideoSourceType;
+     profile: AVProfile;
+     url: string;
+     rotation: number;
    }
    let avProfile: AVProfile = {
-      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
-      videoBitrate : 100000, // Video bit rate.
-      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
-      videoFrameWidth: 640, // Video frame width.
-      videoFrameHeight: 480, // Video frame height.
-      videoFrameRate: 30 // Video frame rate.
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+     videoBitrate : 100000, // Video bit rate.
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+     videoFrameWidth: 640, // Video frame width.
+     videoFrameHeight: 480, // Video frame height.
+     videoFrameRate: 30 // Video frame rate.
    }
    let avConfig: AVConfig = {
-      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
-      profile : avProfile,
-      url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
-      rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
+     profile : avProfile,
+     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
+     rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    }
    avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success')
