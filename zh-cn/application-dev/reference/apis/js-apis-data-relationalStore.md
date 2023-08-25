@@ -4488,7 +4488,6 @@ getColumnIndex(columnName: string): number
 **示例：**
 
   ```js
-resultSet.goToFirstRow();
 const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
 const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
 const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
@@ -4562,14 +4561,9 @@ goTo(offset:number): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise= store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goTo(1);
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goTo(1);
+
   ```
 
 ### goToRow
@@ -4603,14 +4597,9 @@ goToRow(position: number): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goToRow(5);
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goToRow(5);
+
   ```
 
 ### goToFirstRow
@@ -4639,14 +4628,9 @@ goToFirstRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goToFirstRow();
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goToFirstRow();
+
   ```
 
 ### goToLastRow
@@ -4674,14 +4658,9 @@ goToLastRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goToLastRow();
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goToLastRow();
+
   ```
 
 ### goToNextRow
@@ -4709,14 +4688,9 @@ goToNextRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goToNextRow();
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goToNextRow();
+
   ```
 
 ### goToPreviousRow
@@ -4744,14 +4718,9 @@ goToPreviousRow(): boolean
 **示例：**
 
   ```js
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  resultSet.goToPreviousRow();
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`query failed, code is ${err.code},message is ${err.message}`);
-});
+
+resultSet.goToPreviousRow();
+
   ```
 
 ### getBlob
