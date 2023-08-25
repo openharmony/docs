@@ -26,9 +26,9 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
-      avRecorder = recorder
+     avRecorder = recorder
    }, (error: Error) => {
-      console.error('createAVRecorder failed')
+     console.error('createAVRecorder failed')
    })
    ```
 
@@ -41,11 +41,11 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    ```ts
    // 状态上报回调函数
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.info('current state is: ' + state);
+     console.info('current state is: ' + state);
    })
    // 错误上报回调函数
    avRecorder.on('error', (err: BusinessError) => {
-      console.error('error happened, error message is ' + err);
+     console.error('error happened, error message is ' + err);
    })
    ```
 
@@ -91,9 +91,9 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
      rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
    }
    avRecorder.prepare(avConfig).then(() => {
-      console.info('avRecorder prepare success')
+     console.info('avRecorder prepare success')
    }, (error: Error) => {
-      console.error('avRecorder prepare failed')
+     console.error('avRecorder prepare failed')
    })
    ```
 
