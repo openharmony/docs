@@ -6,7 +6,9 @@
 >
 > - 该组件从API Version 10开始支持。
 >
-> - 目前该组件仅支持子组件背景模糊效果的合并优化。在对子组件的背景模糊特效进行绘制合并时，需要将子组件的backgroundBlurStyle(BlurStyle)属性替换成userEffect(true)。
+> - 目前该组件仅支持子组件背景模糊效果的绘制合并优化。
+>
+> - 在对子组件的背景模糊特效进行绘制合并时，需要将子组件的backgroundBlurStyle(BlurStyle)属性替换成useEffect(true)。
 
 
 ## 子组件
@@ -18,7 +20,7 @@
 
 EffectComponent()
 
-创建特效合并组件，用于对子组件背景模糊特效绘制的合并。
+创建特效绘制合并组件，用于对子组件背景模糊特效的绘制合并。
 
 ## 事件
 
@@ -41,15 +43,17 @@ struct Index {
         .autoResize(true)
       EffectComponent() {
         Column({ space: 20 }) {
+		  // 使用backgroundBlurStyle进行模糊绘制
           Text("Normal text with backgroundBlurStyle")
             .textAlign(TextAlign.Center)
             .fontSize(16)
             .fontWeight(FontWeight.Medium)
-            .backgroundBlurStyle(BlurStyle.Thin)
+            .backgroundBlurStyle(BlurStyle.Thick)
             .borderRadius(16)
             .width('90%')
             .height('48')
 
+          // 不进行模糊绘制
           Text("Normal text without blur effect")
             .textAlign(TextAlign.Center)
             .fontSize(16)
@@ -59,6 +63,7 @@ struct Index {
             .width('90%')
             .height('48')
 
+          // 使用useEffect进行模糊合并绘制，继承effectcomponent的模糊参数
           Text("Normal text with useeffcet blur 1")
             .textAlign(TextAlign.Center)
             .useEffect(true)
@@ -68,6 +73,7 @@ struct Index {
             .width('90%')
             .height('48')
 
+          // 使用useEffect进行模糊合并绘制，继承effectcomponent的模糊参数
           Text("Normal text with useeffcet blur 2")
             .textAlign(TextAlign.Center)
             .useEffect(true)
