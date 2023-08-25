@@ -78,7 +78,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    }
    let avProfile: AVProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
-     videoBitrate : 100000, // Video bit rate.
+     videoBitrate: 100000, // Video bit rate.
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
@@ -211,7 +211,7 @@ export class VideoRecorderDemo {
     // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
     // 3. Set recording parameters to complete the preparations.
     await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface(); 
     // 4. Complete camera-related preparations.
     await this.prepareCamera();
     // 5. Start the camera stream output.
