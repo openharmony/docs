@@ -20,11 +20,11 @@
    ```ts
    import media from '@ohos.multimedia.media';
    
-   let avRecorder = undefined;
-   media.createAVRecorder().then((recorder) => {
+   let avRecorder: media.AVRecorder;
+   media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (err) => {
-     console.error(`Invoke createAVRecorder failed, code is ${err.code}, message is ${err.message}`);
+   }, (error: Error) => {
+     console.error(`createAVRecorder failed`);
    })
    ```
 
@@ -37,13 +37,13 @@
      
    ```ts
    // 状态上报回调函数
-   avRecorder.on('stateChange', (state, reason) => {
+   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
      // 用户可以在此补充状态发生切换后想要进行的动作
    })
    
    // 错误上报回调函数
-   avRecorder.on('error', (err) => {
+   avRecorder.on('error', (err: BusinessError) => {
      console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -61,21 +61,21 @@
 
      
    ```ts
-   let avProfile = {
+   let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
      audioChannels: 2, // 音频声道数
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
      audioSampleRate: 48000, // 音频采样率
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
    }
-   let avConfig = {
+   let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
      profile: avProfile,
      url: 'fd://35', // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处
    }
    avRecorder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
-   }, (err) => {
+   }, (err: BusinessError) => {
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -99,17 +99,18 @@
   
 ```ts
 import media from '@ohos.multimedia.media';
+import { BusinessError } from '@ohos.base';
 
 export class AudioRecorderDemo {
-  private avRecorder;
-  private avProfile = {
+  private avRecorder: media.AVRecorder;
+  private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率
     audioChannels: 2, // 音频声道数
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
     audioSampleRate: 48000, // 音频采样率
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
   };
-  private avConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
     profile: this.avProfile,
     url: 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
@@ -118,11 +119,11 @@ export class AudioRecorderDemo {
   // 注册audioRecorder回调函数
   setAudioRecorderCallback() {
     // 状态机变化回调函数
-    this.avRecorder.on('stateChange', (state, reason) => {
+    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
       console.log(`AudioRecorder current state is ${state}`);
     })
     // 错误上报回调函数
-    this.avRecorder.on('error', (err) => {
+    this.avRecorder.on('error', (err: BusinessError) => {
       console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
     })
   }
