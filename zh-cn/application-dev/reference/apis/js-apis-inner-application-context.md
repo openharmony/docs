@@ -202,7 +202,7 @@ try {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>);
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 

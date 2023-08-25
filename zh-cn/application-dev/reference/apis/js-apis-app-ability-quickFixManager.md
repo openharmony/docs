@@ -309,12 +309,6 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
-
 **示例：**
 
 ```ts
