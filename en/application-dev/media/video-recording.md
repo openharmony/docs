@@ -26,9 +26,9 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
-      avRecorder = recorder
+     avRecorder = recorder
    }, (error: Error) => {
-      console.error('createAVRecorder failed')
+     console.error('createAVRecorder failed')
    })
    ```
 
@@ -41,11 +41,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```ts
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.info('current state is: ' + state);
+     console.info('current state is: ' + state);
    })
    // Callback function for errors.
    avRecorder.on('error', (err: BusinessError) => {
-      console.error('error happened, error message is ' + err);
+     console.error('error happened, error message is ' + err);
    })
    ```
 
@@ -91,9 +91,9 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
       rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    }
    avRecorder.prepare(avConfig).then(() => {
-      console.info('avRecorder prepare success')
+     console.info('avRecorder prepare success')
    }, (error: Error) => {
-      console.error('avRecorder prepare failed')
+     console.error('avRecorder prepare failed')
    })
    ```
 
@@ -239,7 +239,7 @@ export class VideoRecorderDemo {
   async stopRecordingProcess() {
     // 1. Stop recording.
     if (this.avRecorder.state === 'started'
-      || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+    || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
       await this.avRecorder.stop();
       await this.stopCameraOutput();
     }
