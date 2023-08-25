@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
-> - 该组件从API Version 10开始支持。
+> - 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件为系统接口。
 >
 > - 目前该组件仅支持子组件背景模糊效果的绘制合并优化。
 >
@@ -39,7 +41,7 @@ EffectComponent()
 struct Index {
   build() {
     Stack() {
-      Image("pages/test1.png")
+      Image($r("app.media.example"))
         .autoResize(true)
       EffectComponent() {
         Column({ space: 20 }) {
